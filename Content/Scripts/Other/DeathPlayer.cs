@@ -13,8 +13,8 @@ public class DeathPlayer : Node2D
     public void Activate()
     {
         Random random = new Random();
-        var ParentXPos = GetParent<KinematicBody2D>().Position.x;
-        xmotion = random.Next(100) > 50 ? -5 * (ParentXPos / 1024) : 5 * ((1 - ParentXPos / 1024));
+        var GlobalXPos = GetGlobalPosition().x;
+        xmotion = random.Next(100) > 50 ? -5 * (GlobalXPos / 1024) : 5 * ((1 - GlobalXPos / 1024));
         ymotion = -8;
         var deathSound = GetNode<AudioStreamPlayer>("DeathSound");
         deathSound.Play();

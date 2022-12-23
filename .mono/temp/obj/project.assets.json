@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Jiofef\\Documents\\The WellPlayable HalfProject\\The WellPlayable HalfProject.csproj",
+      "projectUniqueName": "C:\\Users\\Jiofef\\Documents\\GitHub\\Little-Slippey-game\\The WellPlayable HalfProject.csproj",
       "projectName": "The WellPlayable HalfProject",
-      "projectPath": "C:\\Users\\Jiofef\\Documents\\The WellPlayable HalfProject\\The WellPlayable HalfProject.csproj",
+      "projectPath": "C:\\Users\\Jiofef\\Documents\\GitHub\\Little-Slippey-game\\The WellPlayable HalfProject.csproj",
       "packagesPath": "C:\\Users\\Jiofef\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Jiofef\\Documents\\The WellPlayable HalfProject\\.mono\\temp\\obj\\",
+      "outputPath": "C:\\Users\\Jiofef\\Documents\\GitHub\\Little-Slippey-game\\.mono\\temp\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Jiofef\\AppData\\Roaming\\NuGet\\NuGet.Config",
