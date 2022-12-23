@@ -57,6 +57,7 @@ public class DefaultCross : Node2D
 
     public void Deleting()
     {
+        GetTree().Quit();
         QueueFree();
     }
 }
