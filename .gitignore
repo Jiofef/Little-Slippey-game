@@ -1,5 +1,18 @@
-# Created by https://www.toptal.com/developers/gitignore/api/vs
-# Edit at https://www.toptal.com/developers/gitignore?templates=vs
+# Created by https://www.toptal.com/developers/gitignore/api/vs,godot
+# Edit at https://www.toptal.com/developers/gitignore?templates=vs,godot
+
+### Godot ###
+# Godot-specific ignores
+.import/
+export.cfg
+export_presets.cfg
+
+# Imported translations (automatically generated from CSV files)
+*.translation
+
+# Mono-specific ignores
+.mono/
+data_*/
 
 ### vs ###
 ## Ignore Visual Studio temporary files, build results, and
@@ -356,4 +369,4 @@ MigrationBackup/
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
 
-# End of https://www.toptal.com/developers/gitignore/api/vs
+# End of https://www.toptal.com/developers/gitignore/api/vs,godot
