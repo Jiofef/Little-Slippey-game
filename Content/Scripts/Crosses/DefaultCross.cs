@@ -60,3 +60,4 @@ public class DefaultCross : Node2D
         QueueFree();
     }
 }
+//Жопа
