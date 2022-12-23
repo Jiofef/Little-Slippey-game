@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Content/Sounds/Other/ButtonUp.wav" type="AudioStream" id=1]
+[ext_resource path="res://Content/Sprites/Interface/Menu/Buttons/Default/PlaceHolder.png" type="Texture" id=2]
+[ext_resource path="res://Content/Scripts/Interface&Menu/ButtonScript.cs" type="Script" id=3]
+[ext_resource path="res://Content/Sounds/Other/ButtonDown.wav" type="AudioStream" id=4]
+
+[node name="Button" type="TextureButton"]
+margin_right = 48.0
+margin_bottom = 16.0
+rect_scale = Vector2( 5, 5 )
+texture_normal = ExtResource( 2 )
+script = ExtResource( 3 )
+
+[node name="ButtonUpSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 1 )
+volume_db = 10.0
+bus = "Interface"
+
+[node name="ButtonDownSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+volume_db = 10.0
+bus = "Interface"
+
+[connection signal="button_down" from="." to="." method="ButtonDown"]
+[connection signal="button_up" from="." to="." method="ButtonUp"]
+[connection signal="mouse_entered" from="." to="." method="MouseEntered"]

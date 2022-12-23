@@ -1,0 +1,66 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Content/Scenes/Interface&Menu/Button.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Content/Sprites/Interface/Menu/Other/TitlesCreen.png" type="Texture" id=2]
+[ext_resource path="res://Content/Sprites/Interface/Menu/Options/OptionsBackground.png" type="Texture" id=3]
+[ext_resource path="res://Content/Sprites/Interface/Menu/Buttons/Default/Cancel.png" type="Texture" id=4]
+[ext_resource path="res://Content/Sprites/Interface/Menu/Buttons/Pressed/PressedCancel.png" type="Texture" id=5]
+[ext_resource path="res://Content/Sprites/Interface/Menu/Buttons/Chosen/ChosenCancel.png" type="Texture" id=6]
+[ext_resource path="res://Content/Sprites/Other/Fog.png" type="Texture" id=7]
+[ext_resource path="res://Content/Scripts/Interface&Menu/Titles.cs" type="Script" id=8]
+
+[node name="Titles" type="Control"]
+margin_right = 1060.0
+margin_bottom = 600.0
+script = ExtResource( 8 )
+
+[node name="Background" type="Sprite" parent="."]
+position = Vector2( 530, 300 )
+texture = ExtResource( 3 )
+
+[node name="Fog" type="Sprite" parent="."]
+self_modulate = Color( 1, 1, 1, 0.588235 )
+position = Vector2( 530, 300 )
+scale = Vector2( 26.5, 15 )
+texture = ExtResource( 7 )
+
+[node name="TitlesCreen" type="Sprite" parent="."]
+position = Vector2( 534, 321 )
+scale = Vector2( 3.37688, 3.415 )
+texture = ExtResource( 2 )
+
+[node name="MainText" type="Label" parent="."]
+margin_left = 287.0
+margin_top = 162.0
+margin_right = 567.0
+margin_bottom = 177.0
+rect_scale = Vector2( 1.8, 2 )
+custom_colors/font_color = Color( 0.662745, 0.662745, 0.662745, 1 )
+text = "We need to honor the memory of these people"
+uppercase = true
+
+[node name="SecondaryText" type="RichTextLabel" parent="."]
+margin_left = 294.0
+margin_top = 215.0
+margin_right = 615.0
+margin_bottom = 358.0
+rect_scale = Vector2( 1.5, 1.5 )
+custom_colors/default_color = Color( 0.588235, 0.588235, 0.588235, 1 )
+text = "Noise sound by NovaComputing Youtube channel
+
+PixBob Font for piece of text by Habib Khoirul Fajar 
+
+report bugs on jiofef gmail com
+
+Game by Paradise Underground"
+
+[node name="Cancel" parent="." instance=ExtResource( 1 )]
+margin_left = 867.0
+margin_top = 507.0
+margin_right = 903.0
+margin_bottom = 523.0
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 5 )
+texture_focused = ExtResource( 6 )
+
+[connection signal="pressed" from="Cancel" to="." method="Cancel"]

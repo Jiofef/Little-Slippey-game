@@ -1,0 +1,76 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://Content/Scripts/Other/PlayPart.cs" type="Script" id=1]
+[ext_resource path="res://Content/Scripts/Other/MainScript.cs" type="Script" id=2]
+[ext_resource path="res://Content/Sprites/Other/Fog.png" type="Texture" id=3]
+[ext_resource path="res://Content/Sprites/Interface/Pause/Buttons/Pressed/PressedResume.png" type="Texture" id=4]
+[ext_resource path="res://Content/Sprites/Interface/Pause/Buttons/Default/Resume.png" type="Texture" id=5]
+[ext_resource path="res://Content/Scenes/Interface&Menu/Button.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Content/Sprites/Interface/Pause/Buttons/Default/Options.png" type="Texture" id=7]
+[ext_resource path="res://Content/Sprites/Interface/Pause/Buttons/Pressed/PressedMenu.png" type="Texture" id=8]
+[ext_resource path="res://Content/Sprites/Interface/Pause/Buttons/Default/Menu.png" type="Texture" id=9]
+[ext_resource path="res://Content/Sprites/Interface/Pause/Other/PauseDesk.png" type="Texture" id=10]
+[ext_resource path="res://Content/Sprites/Interface/Pause/Buttons/Chosen/ChosenOptions.png" type="Texture" id=11]
+[ext_resource path="res://Content/Sprites/Interface/Pause/Buttons/Chosen/ChosenMenu.png" type="Texture" id=12]
+[ext_resource path="res://Content/Sprites/Interface/Pause/Buttons/Chosen/ChosenResume.png" type="Texture" id=13]
+[ext_resource path="res://Content/Sprites/Interface/Pause/Buttons/Pressed/PressedOptions.png" type="Texture" id=14]
+
+[node name="Main" type="Node2D"]
+pause_mode = 2
+script = ExtResource( 2 )
+
+[node name="PlayPart" type="Node2D" parent="."]
+pause_mode = 1
+script = ExtResource( 1 )
+
+[node name="Pause" type="CanvasLayer" parent="."]
+pause_mode = 2
+visible = false
+
+[node name="Sprite" type="Sprite" parent="Pause"]
+modulate = Color( 1, 1, 1, 0.784314 )
+position = Vector2( 542, 345 )
+scale = Vector2( 30, 20 )
+texture = ExtResource( 3 )
+
+[node name="PauseDesk" type="Sprite" parent="Pause"]
+position = Vector2( 530, 100 )
+scale = Vector2( 7, 7 )
+texture = ExtResource( 10 )
+
+[node name="Buttons" type="Control" parent="Pause"]
+margin_right = 1060.0
+margin_bottom = 600.0
+
+[node name="Resume" parent="Pause/Buttons" instance=ExtResource( 6 )]
+margin_left = 410.0
+margin_top = 250.0
+margin_right = 458.0
+margin_bottom = 266.0
+focus_neighbour_top = NodePath("../Menu")
+texture_normal = ExtResource( 5 )
+texture_pressed = ExtResource( 4 )
+texture_focused = ExtResource( 13 )
+
+[node name="Options" parent="Pause/Buttons" instance=ExtResource( 6 )]
+margin_left = 410.0
+margin_top = 350.0
+margin_right = 458.0
+margin_bottom = 366.0
+texture_normal = ExtResource( 7 )
+texture_pressed = ExtResource( 14 )
+texture_focused = ExtResource( 11 )
+
+[node name="Menu" parent="Pause/Buttons" instance=ExtResource( 6 )]
+margin_left = 410.0
+margin_top = 450.0
+margin_right = 458.0
+margin_bottom = 466.0
+focus_neighbour_bottom = NodePath("../Resume")
+texture_normal = ExtResource( 9 )
+texture_pressed = ExtResource( 8 )
+texture_focused = ExtResource( 12 )
+
+[connection signal="pressed" from="Pause/Buttons/Resume" to="." method="UnPause"]
+[connection signal="pressed" from="Pause/Buttons/Options" to="." method="Options"]
+[connection signal="pressed" from="Pause/Buttons/Menu" to="." method="Menu"]

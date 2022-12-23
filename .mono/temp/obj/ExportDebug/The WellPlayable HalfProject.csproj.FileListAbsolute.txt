@@ -1,0 +1,9 @@
+C:\Users\Jiofef\Documents\The WellPlayable HalfProject\.mono\temp\bin\ExportDebug\The WellPlayable HalfProject.dll
+C:\Users\Jiofef\Documents\The WellPlayable HalfProject\.mono\temp\bin\ExportDebug\The WellPlayable HalfProject.pdb
+C:\Users\Jiofef\Documents\The WellPlayable HalfProject\.mono\temp\obj\ExportDebug\The WellPlayable HalfProject.csproj.AssemblyReference.cache
+C:\Users\Jiofef\Documents\The WellPlayable HalfProject\.mono\temp\obj\ExportDebug\The WellPlayable HalfProject.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Jiofef\Documents\The WellPlayable HalfProject\.mono\temp\obj\ExportDebug\The WellPlayable HalfProject.AssemblyInfoInputs.cache
+C:\Users\Jiofef\Documents\The WellPlayable HalfProject\.mono\temp\obj\ExportDebug\The WellPlayable HalfProject.AssemblyInfo.cs
+C:\Users\Jiofef\Documents\The WellPlayable HalfProject\.mono\temp\obj\ExportDebug\The WellPlayable HalfProject.csproj.CoreCompileInputs.cache
+C:\Users\Jiofef\Documents\The WellPlayable HalfProject\.mono\temp\obj\ExportDebug\The WellPlayable HalfProject.dll
+C:\Users\Jiofef\Documents\The WellPlayable HalfProject\.mono\temp\obj\ExportDebug\The WellPlayable HalfProject.pdb

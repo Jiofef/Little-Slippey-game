@@ -1,0 +1,280 @@
+[gd_scene load_steps=23 format=2]
+
+[ext_resource path="res://Content/Scripts/Interface&Menu/OptionsMenu.cs" type="Script" id=1]
+[ext_resource path="res://Content/Scripts/Interface&Menu/VideoSettings.cs" type="Script" id=2]
+[ext_resource path="res://Content/Scripts/Interface&Menu/ApplyCancel.cs" type="Script" id=3]
+[ext_resource path="res://Content/Scripts/Interface&Menu/SoundSettings.cs" type="Script" id=4]
+[ext_resource path="res://Content/Scripts/Interface&Menu/GameplaySettings.cs" type="Script" id=5]
+[ext_resource path="res://Content/Sprites/Interface/Menu/Options/GameplaySettings.png" type="Texture" id=6]
+[ext_resource path="res://Content/Sprites/Interface/Menu/Options/ApplyCancelSector.png" type="Texture" id=7]
+[ext_resource path="res://Content/Sprites/Interface/Menu/Options/SoundSettings.png" type="Texture" id=8]
+[ext_resource path="res://Content/Sprites/Interface/Menu/Options/VideoSettings.png" type="Texture" id=9]
+[ext_resource path="res://Content/Sprites/Other/Fog.png" type="Texture" id=10]
+[ext_resource path="res://Content/Sprites/Interface/Menu/Options/OptionsBackground.png" type="Texture" id=11]
+[ext_resource path="res://Content/Scripts/Interface&Menu/OptionsBackground.cs" type="Script" id=12]
+[ext_resource path="res://Content/Scenes/Interface&Menu/Button.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Content/Sprites/Interface/Menu/Buttons/Chosen/ChosenApply.png" type="Texture" id=14]
+[ext_resource path="res://Content/Sprites/Interface/Menu/Buttons/Default/Cancel.png" type="Texture" id=15]
+[ext_resource path="res://Content/Sprites/Interface/Menu/Buttons/Default/Apply.png" type="Texture" id=16]
+[ext_resource path="res://Content/Sprites/Interface/Menu/Buttons/Pressed/PressedApply.png" type="Texture" id=17]
+[ext_resource path="res://Content/Sprites/Interface/Menu/Buttons/Pressed/PressedCancel.png" type="Texture" id=18]
+[ext_resource path="res://Content/Sprites/Interface/Menu/Buttons/Chosen/ChosenCancel.png" type="Texture" id=19]
+[ext_resource path="res://Content/Other/PIXBOB LITE.ttf" type="DynamicFontData" id=20]
+[ext_resource path="res://Content/Other/FontPreset.tres" type="DynamicFont" id=21]
+
+[sub_resource type="DynamicFont" id=3]
+font_data = ExtResource( 20 )
+
+[node name="Options" type="Control"]
+pause_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Background" type="Sprite" parent="CanvasLayer"]
+position = Vector2( 530, 300 )
+texture = ExtResource( 11 )
+script = ExtResource( 12 )
+
+[node name="Fog" type="Sprite" parent="CanvasLayer/Background"]
+self_modulate = Color( 1, 1, 1, 0.588235 )
+position = Vector2( 1.33514e-05, 2.00272e-05 )
+scale = Vector2( 26.5, 15 )
+texture = ExtResource( 10 )
+
+[node name="Sound" type="Control" parent="CanvasLayer"]
+margin_right = 350.0
+margin_bottom = 600.0
+script = ExtResource( 4 )
+
+[node name="Sprite" type="Sprite" parent="CanvasLayer/Sound"]
+position = Vector2( 177, 300 )
+scale = Vector2( 4.02273, 4 )
+texture = ExtResource( 8 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Sound"]
+margin_left = 75.0
+margin_top = 100.0
+margin_right = 93.0
+margin_bottom = 269.0
+rect_scale = Vector2( 2, 1.8 )
+
+[node name="Global" type="Label" parent="CanvasLayer/Sound/VBoxContainer"]
+margin_right = 97.0
+margin_bottom = 15.0
+custom_fonts/font = ExtResource( 21 )
+text = "Global"
+align = 1
+uppercase = true
+
+[node name="GlobalSlider" type="HSlider" parent="CanvasLayer/Sound/VBoxContainer"]
+margin_top = 19.0
+margin_right = 97.0
+margin_bottom = 35.0
+min_value = -30.0
+max_value = 10.0
+
+[node name="Interface" type="Label" parent="CanvasLayer/Sound/VBoxContainer"]
+margin_top = 39.0
+margin_right = 97.0
+margin_bottom = 54.0
+custom_fonts/font = ExtResource( 21 )
+text = "Interface"
+align = 1
+uppercase = true
+
+[node name="InterfaceSlider" type="HSlider" parent="CanvasLayer/Sound/VBoxContainer"]
+margin_top = 58.0
+margin_right = 97.0
+margin_bottom = 74.0
+min_value = -30.0
+max_value = 10.0
+
+[node name="Music" type="Label" parent="CanvasLayer/Sound/VBoxContainer"]
+margin_top = 78.0
+margin_right = 97.0
+margin_bottom = 93.0
+custom_fonts/font = ExtResource( 21 )
+text = "Music"
+align = 1
+uppercase = true
+
+[node name="MusicSlider" type="HSlider" parent="CanvasLayer/Sound/VBoxContainer"]
+margin_top = 97.0
+margin_right = 97.0
+margin_bottom = 113.0
+min_value = -30.0
+max_value = 10.0
+
+[node name="Player" type="Label" parent="CanvasLayer/Sound/VBoxContainer"]
+margin_top = 117.0
+margin_right = 97.0
+margin_bottom = 132.0
+custom_fonts/font = ExtResource( 21 )
+text = "Player"
+align = 1
+uppercase = true
+
+[node name="PlayerSlider" type="HSlider" parent="CanvasLayer/Sound/VBoxContainer"]
+margin_top = 136.0
+margin_right = 97.0
+margin_bottom = 152.0
+min_value = -30.0
+max_value = 10.0
+
+[node name="CrossSnap" type="Label" parent="CanvasLayer/Sound/VBoxContainer"]
+margin_top = 156.0
+margin_right = 97.0
+margin_bottom = 171.0
+custom_fonts/font = ExtResource( 21 )
+text = "Cross snap"
+align = 1
+uppercase = true
+
+[node name="CrossSnapSlider" type="HSlider" parent="CanvasLayer/Sound/VBoxContainer"]
+margin_top = 175.0
+margin_right = 97.0
+margin_bottom = 191.0
+min_value = -30.0
+max_value = 10.0
+
+[node name="CrossOther" type="Label" parent="CanvasLayer/Sound/VBoxContainer"]
+margin_top = 195.0
+margin_right = 97.0
+margin_bottom = 210.0
+custom_fonts/font = ExtResource( 21 )
+text = "Cross other"
+align = 1
+uppercase = true
+
+[node name="CrossOtherSlider" type="HSlider" parent="CanvasLayer/Sound/VBoxContainer"]
+margin_top = 214.0
+margin_right = 97.0
+margin_bottom = 230.0
+min_value = -30.0
+max_value = 10.0
+
+[node name="CrossExplosion" type="Label" parent="CanvasLayer/Sound/VBoxContainer"]
+margin_top = 234.0
+margin_right = 97.0
+margin_bottom = 249.0
+custom_fonts/font = ExtResource( 21 )
+text = "Cross explosion"
+align = 1
+uppercase = true
+
+[node name="CrossExplosionSlider" type="HSlider" parent="CanvasLayer/Sound/VBoxContainer"]
+margin_top = 253.0
+margin_right = 97.0
+margin_bottom = 269.0
+min_value = -30.0
+max_value = 10.0
+
+[node name="Video" type="Control" parent="CanvasLayer"]
+margin_left = 355.0
+margin_right = 705.0
+margin_bottom = 600.0
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="CanvasLayer/Video"]
+position = Vector2( 176.5, 300 )
+scale = Vector2( 4.03409, 4 )
+texture = ExtResource( 9 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Video"]
+anchor_top = 0.03
+anchor_bottom = 0.03
+margin_left = 21.0
+margin_top = 100.0
+margin_right = 176.0
+margin_bottom = 269.0
+rect_scale = Vector2( 2, 1.8 )
+
+[node name="ChangeResolution" type="OptionButton" parent="CanvasLayer/Video/VBoxContainer"]
+margin_right = 155.0
+margin_bottom = 21.0
+custom_fonts/font = SubResource( 3 )
+text = "Resolution"
+align = 1
+
+[node name="ScreenFormat" type="OptionButton" parent="CanvasLayer/Video/VBoxContainer"]
+margin_top = 25.0
+margin_right = 155.0
+margin_bottom = 46.0
+custom_fonts/font = SubResource( 3 )
+text = "Screenformat"
+align = 1
+
+[node name="Gameplay" type="Control" parent="CanvasLayer"]
+margin_left = 710.0
+margin_right = 1060.0
+margin_bottom = 500.0
+script = ExtResource( 5 )
+
+[node name="Sprite" type="Sprite" parent="CanvasLayer/Gameplay"]
+position = Vector2( 174.5, 250 )
+scale = Vector2( 3.98864, 4 )
+texture = ExtResource( 6 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Gameplay"]
+anchor_top = 0.03
+anchor_bottom = 0.03
+margin_left = 75.0
+margin_top = 100.0
+margin_right = 93.0
+margin_bottom = 269.0
+rect_scale = Vector2( 2, 1.8 )
+
+[node name="DificultyChange" type="OptionButton" parent="CanvasLayer/Gameplay/VBoxContainer"]
+margin_right = 108.0
+margin_bottom = 21.0
+custom_fonts/font = SubResource( 3 )
+text = "Set dificulty"
+align = 1
+
+[node name="ApplyCancel" type="Control" parent="CanvasLayer"]
+margin_left = 710.0
+margin_top = 500.0
+margin_right = 1060.0
+margin_bottom = 600.0
+script = ExtResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="CanvasLayer/ApplyCancel"]
+position = Vector2( 174.5, 50 )
+scale = Vector2( 3.98864, 4 )
+texture = ExtResource( 7 )
+
+[node name="Apply" parent="CanvasLayer/ApplyCancel" instance=ExtResource( 13 )]
+margin_left = 7.0
+margin_top = 10.0
+margin_right = 43.0
+margin_bottom = 26.0
+rect_scale = Vector2( 4.6, 5 )
+texture_normal = ExtResource( 16 )
+texture_pressed = ExtResource( 17 )
+texture_focused = ExtResource( 14 )
+
+[node name="Cancel" parent="CanvasLayer/ApplyCancel" instance=ExtResource( 13 )]
+margin_left = 173.0
+margin_top = 10.0
+margin_right = 209.0
+margin_bottom = 26.0
+rect_scale = Vector2( 4.6, 5 )
+texture_normal = ExtResource( 15 )
+texture_pressed = ExtResource( 18 )
+texture_focused = ExtResource( 19 )
+
+[connection signal="value_changed" from="CanvasLayer/Sound/VBoxContainer/GlobalSlider" to="CanvasLayer/Sound" method="GlobalChanged"]
+[connection signal="value_changed" from="CanvasLayer/Sound/VBoxContainer/InterfaceSlider" to="CanvasLayer/Sound" method="InterfaceChanged"]
+[connection signal="value_changed" from="CanvasLayer/Sound/VBoxContainer/MusicSlider" to="CanvasLayer/Sound" method="MusicChanged"]
+[connection signal="value_changed" from="CanvasLayer/Sound/VBoxContainer/PlayerSlider" to="CanvasLayer/Sound" method="PlayerChanged"]
+[connection signal="value_changed" from="CanvasLayer/Sound/VBoxContainer/CrossSnapSlider" to="CanvasLayer/Sound" method="CrossSnapChanged"]
+[connection signal="value_changed" from="CanvasLayer/Sound/VBoxContainer/CrossOtherSlider" to="CanvasLayer/Sound" method="CrossOtherChanged"]
+[connection signal="value_changed" from="CanvasLayer/Sound/VBoxContainer/CrossExplosionSlider" to="CanvasLayer/Sound" method="CrossExplosionChanged"]
+[connection signal="item_selected" from="CanvasLayer/Video/VBoxContainer/ChangeResolution" to="CanvasLayer/Video" method="ChangeResolution"]
+[connection signal="item_selected" from="CanvasLayer/Video/VBoxContainer/ScreenFormat" to="CanvasLayer/Video" method="ChangeScreenFormat"]
+[connection signal="item_selected" from="CanvasLayer/Gameplay/VBoxContainer/DificultyChange" to="CanvasLayer/Gameplay" method="DificultyChanged"]
+[connection signal="pressed" from="CanvasLayer/ApplyCancel/Apply" to="CanvasLayer/ApplyCancel" method="Apply"]
+[connection signal="pressed" from="CanvasLayer/ApplyCancel/Cancel" to="CanvasLayer/ApplyCancel" method="Cancel"]
