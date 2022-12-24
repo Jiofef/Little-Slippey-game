@@ -10,4 +10,4 @@ public class StartupScene : Node2D
         UnchangableMeta.LoadSave();
         GetTree().ChangeScene("res://Content/Scenes/Interface&Menu/Menu.tscn");
     }
-}//ssdas
+}
