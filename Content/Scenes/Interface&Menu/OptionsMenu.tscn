@@ -192,17 +192,9 @@ margin_right = 176.0
 margin_bottom = 269.0
 rect_scale = Vector2( 2, 1.8 )
 
-[node name="ChangeResolution" type="OptionButton" parent="CanvasLayer/Video/VBoxContainer"]
+[node name="ScreenFormat" type="OptionButton" parent="CanvasLayer/Video/VBoxContainer"]
 margin_right = 155.0
 margin_bottom = 21.0
-custom_fonts/font = SubResource( 3 )
-text = "Resolution"
-align = 1
-
-[node name="ScreenFormat" type="OptionButton" parent="CanvasLayer/Video/VBoxContainer"]
-margin_top = 25.0
-margin_right = 155.0
-margin_bottom = 46.0
 custom_fonts/font = SubResource( 3 )
 text = "Screenformat"
 align = 1
@@ -273,7 +265,6 @@ texture_focused = ExtResource( 19 )
 [connection signal="value_changed" from="CanvasLayer/Sound/VBoxContainer/CrossSnapSlider" to="CanvasLayer/Sound" method="CrossSnapChanged"]
 [connection signal="value_changed" from="CanvasLayer/Sound/VBoxContainer/CrossOtherSlider" to="CanvasLayer/Sound" method="CrossOtherChanged"]
 [connection signal="value_changed" from="CanvasLayer/Sound/VBoxContainer/CrossExplosionSlider" to="CanvasLayer/Sound" method="CrossExplosionChanged"]
-[connection signal="item_selected" from="CanvasLayer/Video/VBoxContainer/ChangeResolution" to="CanvasLayer/Video" method="ChangeResolution"]
 [connection signal="item_selected" from="CanvasLayer/Video/VBoxContainer/ScreenFormat" to="CanvasLayer/Video" method="ChangeScreenFormat"]
 [connection signal="item_selected" from="CanvasLayer/Gameplay/VBoxContainer/DificultyChange" to="CanvasLayer/Gameplay" method="DificultyChanged"]
 [connection signal="pressed" from="CanvasLayer/ApplyCancel/Apply" to="CanvasLayer/ApplyCancel" method="Apply"]

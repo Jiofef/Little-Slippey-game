@@ -19,7 +19,7 @@ public class Meta : Node
 
     //VideoOptions
     public Vector2 Resolution = new Vector2(1280, 720);
-    public enum ScreenFormat { Windowed, Borderless, Fullscreen }
+    public enum ScreenFormat { Standart, Fullscreen }
     public ScreenFormat _screenFormat;
 
     //Gameplay
@@ -35,13 +35,9 @@ public class Meta : Node
 
         switch (_screenFormat)
         {
-            case ScreenFormat.Windowed:
+            case ScreenFormat.Standart:
                 OS.WindowFullscreen = false;
                 OS.WindowBorderless = false;
-                break;
-            case ScreenFormat.Borderless:
-                OS.WindowFullscreen = false;
-                OS.WindowBorderless = true;
                 break;
             case ScreenFormat.Fullscreen:
                 OS.WindowFullscreen = true;
@@ -76,9 +72,6 @@ public class Meta : Node
             {"_dobusmuted4",  _dobusmuted[4]},
             {"_dobusmuted5",  _dobusmuted[5]},
             {"_dobusmuted6",  _dobusmuted[6]},
-            {"ResolutionX", Resolution.x},
-            {"ResolutionY", Resolution.y},
-            {"screenFormat", _screenFormat},
             {"_dificulty", _dificulty}
         };
     }
@@ -111,27 +104,10 @@ public class Meta : Node
             for (int i = 0; i < 7; i++)
                 _dobusmuted[i] = (bool)model["_dobusmuted" + i];
 
-            Resolution.x = (float)model["ResolutionX"];
-            Resolution.y = (float)model["ResolutionY"];
-
-            var screenFormatID = Convert.ToInt32(model["screenFormat"]);
-            switch (screenFormatID)
-            {
-                case 0:
-                    _screenFormat = ScreenFormat.Windowed;
-                    break;
-                case 1:
-                    _screenFormat = ScreenFormat.Borderless;
-                    break;
-                case 2:
-                    _screenFormat = ScreenFormat.Fullscreen;
-                    break;
-            }
-
             _dificulty = Convert.ToByte(model["_dificulty"]);
 
             file.Close();
         }
-        catch {}
+        catch{}
     }
 }
