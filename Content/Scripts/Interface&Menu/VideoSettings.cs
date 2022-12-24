@@ -8,22 +8,11 @@ public class VideoSettings : Control
         var screenFormat = GetNode<OptionButton>("VBoxContainer/ScreenFormat");
         screenFormat.AddItem("Standart");
         screenFormat.AddItem("Fullscreen");
-        screenFormat.Selected = (int)Meta.Instance._screenFormat;
+        screenFormat.Selected = Convert.ToInt32(Meta.Instance._isfullscreen);
     }
     public void ChangeScreenFormat(int index)
     {
-        switch (index)
-        {
-            case 0:
-                OS.WindowFullscreen = false;
-                OS.WindowBorderless = false;
-                Meta.Instance._screenFormat = Meta.ScreenFormat.Standart;
-                break;
-            case 1:
-                OS.WindowFullscreen = true;
-                OS.WindowBorderless = false;
-                Meta.Instance._screenFormat = Meta.ScreenFormat.Fullscreen;
-                break;
-        }
+        Meta.Instance._isfullscreen = Convert.ToBoolean(index);
+        OS.WindowFullscreen = Convert.ToBoolean(index);
     }
 }

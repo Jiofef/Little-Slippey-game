@@ -15,16 +15,14 @@ public class Meta : Node
     //SoundsVolume
     //in this array #0 is _master, #1 _interface, #2 _music, #3 _player, #4 _crosssnap, #5 _crossother, %6 _crossexplosion
     public float[] _busvolumes = { -8, 0, 0, 0, -15, 0, 0 };
-    public bool[] _dobusmuted = { false, false, false, false, false, false, false };
+    public bool[] _dobusmuted = new bool[7];
 
     //VideoOptions
-    public Vector2 Resolution = new Vector2(1280, 720);
-    public enum ScreenFormat { Standart, Fullscreen }
-    public ScreenFormat _screenFormat;
+    //Since this is the HTML version, it will be incorrect to save the full screen state, and this is the only non-saving variable in the meta
+    public bool _isfullscreen = false;
 
     //Gameplay
     public byte _dificulty = 0;
-
     public void ApplyOptions()
     {
         for (int i = 0; i < Instance._busvolumes.Length; i++)
@@ -33,19 +31,7 @@ public class Meta : Node
             AudioServer.SetBusMute(i, Instance._dobusmuted[i]);
         }
 
-        switch (_screenFormat)
-        {
-            case ScreenFormat.Standart:
-                OS.WindowFullscreen = false;
-                OS.WindowBorderless = false;
-                break;
-            case ScreenFormat.Fullscreen:
-                OS.WindowFullscreen = true;
-                OS.WindowBorderless = false;
-                break;
-        }
-
-        OS.WindowSize = Instance.Resolution;
+        OS.WindowFullscreen = Meta.Instance._isfullscreen;
     }
     public Meta Clone()
     {
@@ -56,8 +42,7 @@ public class Meta : Node
             returnmeta._dobusmuted[i] = _dobusmuted[i];
         }
         returnmeta._dificulty = _dificulty;
-        returnmeta._screenFormat = _screenFormat;
-        returnmeta.Resolution = Resolution;
+        returnmeta._isfullscreen = _isfullscreen;
         return returnmeta;
     }
     public Dictionary<string, object> GetJson()
