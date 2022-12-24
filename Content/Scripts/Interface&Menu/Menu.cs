@@ -11,11 +11,6 @@ public class Menu : Control
         if (GetTree().Paused)
             GetTree().Paused = false;
     }
-    public override void _Process(float delta)
-    {
-        if (Input.IsActionJustPressed("Cancel"))
-            Quit();
-    }
     public void Play()
     {
         Random random = new Random();
@@ -33,10 +28,6 @@ public class Menu : Control
     public void Titles()
     {
         GetTree().ChangeScene("res://Content/Scenes/Interface&Menu/Titles.tscn");
-    }
-    public void Quit()
-    {
-        GetTree().Quit();
     }
     public void EasterButtonPressed()
     {
