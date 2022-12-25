@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/BlueElementalCrossPart.png-f6aa66f7191ec7ea5f8a744139a252f6.stex"
+path="res://.import/GreenElementCrossSprout.png-38d61bd792d43dcb911de1018c0e3381.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Content/Sprites/Crosses/BlueElementalCrossPart.png"
-dest_files=[ "res://.import/BlueElementalCrossPart.png-f6aa66f7191ec7ea5f8a744139a252f6.stex" ]
+source_file="res://Content/Sprites/Crosses/GreenElementCrossSprout.png"
+dest_files=[ "res://.import/GreenElementCrossSprout.png-38d61bd792d43dcb911de1018c0e3381.stex" ]
 
 [params]
 

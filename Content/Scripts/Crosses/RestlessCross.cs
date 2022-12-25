@@ -5,7 +5,7 @@ public class RestlessCross : Node2D
 {
     [Signal] public delegate void AnimationStarted();
     [Signal] public delegate void WarningStarted();
-    private float _replacemodulate = 0, _operationstotal = 40, _deletetimer = 60;
+    private float _operationstotal = 40, _deletetimer = 60;
     private readonly string _link = "Path2D/PathFollow2D/FollowNode/";
     private bool _dosignaled;
     public override void _Ready()
@@ -20,9 +20,8 @@ public class RestlessCross : Node2D
         if (_operationstotal > 0)
         {
             _operationstotal --;
-            _replacemodulate += 0.025f;
             Scale = new Vector2(Scale.x - 0.05f, Scale.y - 0.05f);
-            Modulate = new Color(Modulate.r, Modulate.g, Modulate.b, _replacemodulate);
+            Modulate = new Color(Modulate.r, Modulate.g, Modulate.b, Modulate.a + 0.25f);
         }
         else if (_deletetimer > 0)
         {
