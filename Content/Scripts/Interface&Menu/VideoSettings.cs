@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Reflection;
 
 public class VideoSettings : Control
 {
@@ -8,7 +9,8 @@ public class VideoSettings : Control
         var screenFormat = GetNode<OptionButton>("VBoxContainer/ScreenFormat");
         screenFormat.AddItem("Standart");
         screenFormat.AddItem("Fullscreen");
-        screenFormat.Selected = Convert.ToInt32(Meta.Instance._isfullscreen);
+        Meta.Instance._isfullscreen = OS.WindowFullscreen;
+        screenFormat.Selected = Convert.ToInt32(OS.WindowFullscreen);
     }
     public void ChangeScreenFormat(int index)
     {

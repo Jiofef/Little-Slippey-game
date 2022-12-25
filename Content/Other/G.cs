@@ -7,7 +7,7 @@ public class G : Node
     public static bool _playerdead;
     public static float _playerdeathtimer, _pdcoeff1, _movecoeffplayer = 1, _pdcoeff2 = 1, _resettimer, afterdeadtimer, _scores = 0;
     public static int _currentlvl;
-    public static readonly int _levelstotal = 1, _dificultiescount = 2;
+    public static readonly int _levelstotal = 1, _crossestotal = 2, _dificultiescount = 2;
 
     public static readonly Vector2[] LevelSizes = 
     { 

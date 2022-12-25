@@ -6,7 +6,7 @@ using System.Collections.ObjectModel;
 
 public class LevelScript : Node2D
 {
-    PackedScene[] defaultCross = new PackedScene[2];
+    PackedScene[] defaultCross = new PackedScene[G._crossestotal];
     KinematicBody2D player;
     public override void _Ready()
     {
