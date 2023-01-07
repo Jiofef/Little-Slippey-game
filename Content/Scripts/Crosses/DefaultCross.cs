@@ -3,7 +3,7 @@ using System;
 
 public class DefaultCross : Node2D
 {
-    private float  _operationstotal = 40, _deletetimer = 60;
+    private int _operationstotal = 40, _deletetimer = 60;
     public override void _Ready()
     {
         Modulate = new Color(Modulate.r, Modulate.g, Modulate.b, 0);
@@ -21,15 +21,12 @@ public class DefaultCross : Node2D
             _deletetimer--;
             if (_deletetimer == 60 || _deletetimer == 45 || _deletetimer == 30 || _deletetimer == 15)
             {
-                var crossSprite = GetNode<Sprite>("CrossSprite");
-                crossSprite.Visible = false;
-                var explosionSignal = GetNode<AudioStreamPlayer>("ExplosionSignal");
-                explosionSignal.Play();
+                GetNode<Sprite>("CrossSprite").Visible = false;
+                GetNode<AudioStreamPlayer>("ExplosionSignal").Play();
             }
             else if (_deletetimer == 55 || _deletetimer == 40 || _deletetimer == 25 || _deletetimer == 10)
             {
-                var crossSprite = GetNode<Sprite>("CrossSprite");
-                crossSprite.Visible = true;
+                GetNode<Sprite>("CrossSprite").Visible = true;
             }
         }
         else
@@ -42,14 +39,11 @@ public class DefaultCross : Node2D
                 explosiveArea.Disabled = true;
                 return;
             }
-            var crossSprite = GetNode<Sprite>("CrossSprite");
-            crossSprite.Visible = false;
-            var warningSprite = GetNode<Sprite>("WarningSprite");
-            warningSprite.Visible = false;
+            GetNode<Sprite>("CrossSprite").QueueFree();
+            GetNode<Sprite>("WarningSprite").QueueFree();
+            GetNode<AudioStreamPlayer>("ExplosionSound").Play();
             explosionAnimation.Visible = true;
             explosionAnimation.Play();
-            var explosionSound = GetNode<AudioStreamPlayer>("ExplosionSound");
-            explosionSound.Play();
             explosiveArea.Disabled = false;
         }
     }

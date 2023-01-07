@@ -3,7 +3,7 @@ using System;
 
 public class EasterCubicCross : Node2D
 {
-    private float _operationstotal = 40, _deletetimer = 60;
+    private int _operationstotal = 40, _deletetimer = 60;
     public override void _Ready()
     {
         SetPhysicsProcess(false);
@@ -15,7 +15,6 @@ public class EasterCubicCross : Node2D
     }
     public override void _PhysicsProcess(float delta)
     {
-        if (!Visible) return;
         if (_operationstotal > 0)
         {
             _operationstotal--;
@@ -41,16 +40,19 @@ public class EasterCubicCross : Node2D
         else
         {
             var explosionAnimation = GetNode<AnimatedSprite>("ExplosionAnimation");
+            var explosiveArea = GetNode<CollisionShape2D>("ExplosiveArea/CollisionShape2D");
             if (explosionAnimation.Playing)
+            {
+                if (!explosiveArea.Disabled)
+                    explosiveArea.Disabled = true;
                 return;
-            var crossSprite = GetNode<Sprite>("CrossSprite");
-            crossSprite.Visible = false;
-            var warningSprite = GetNode<Sprite>("WarningSprite");
-            warningSprite.Visible = false;
+            }
+            GetNode<Sprite>("CrossSprite").Visible = false;
+            GetNode<Sprite>("WarningSprite").Visible = false;
+            GetNode<AudioStreamPlayer>("ExplosionSound").Play();
             explosionAnimation.Visible = true;
             explosionAnimation.Play();
-            var explosionSound = GetNode<AudioStreamPlayer>("ExplosionSound");
-            explosionSound.Play();
+            explosiveArea.Disabled = false;
         }
     }
     public void Deleting()

@@ -12,7 +12,7 @@
 [ext_resource path="res://Content/Sprites/Interface/Pause/Buttons/Pressed/PressedOptions.png" type="Texture" id=11]
 [ext_resource path="res://Content/Sprites/Interface/Pause/Buttons/Chosen/ChosenOptions.png" type="Texture" id=12]
 [ext_resource path="res://Content/Sprites/Interface/Menu/Buttons/Default/ChooseLevel.png" type="Texture" id=13]
-[ext_resource path="res://Content/Sprites/Animations/Idle.png" type="Texture" id=15]
+[ext_resource path="res://Content/Sprites/Player Animations/Idle.png" type="Texture" id=15]
 [ext_resource path="res://Content/Sprites/Interface/Menu/Buttons/Default/Titles.png" type="Texture" id=16]
 [ext_resource path="res://Content/Sprites/Interface/Menu/Other/WhiteCross.png" type="Texture" id=17]
 [ext_resource path="res://Content/Sprites/Interface/Menu/Other/RedCross.png" type="Texture" id=18]
@@ -24,6 +24,7 @@
 [ext_resource path="res://Content/Sprites/Interface/Menu/Other/InterfaceBackground.png" type="Texture" id=25]
 [ext_resource path="res://Content/Scripts/Interface&Menu/RightMenuBackground.cs" type="Script" id=26]
 [ext_resource path="res://Content/Sprites/Other/DeadPlayer.png" type="Texture" id=27]
+
 
 [sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 15 )

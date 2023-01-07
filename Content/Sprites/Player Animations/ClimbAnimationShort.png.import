@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/ElementalCrossPreparing.png-d29b7e44212574999f1b373d06f8d48f.stex"
+path="res://.import/ClimbAnimationShort.png-0c1eb7dfff54f965314a39797d80002f.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Content/Sprites/Crosses/ElementalCrossPreparing.png"
-dest_files=[ "res://.import/ElementalCrossPreparing.png-d29b7e44212574999f1b373d06f8d48f.stex" ]
+source_file="res://Content/Sprites/Player Animations/ClimbAnimationShort.png"
+dest_files=[ "res://.import/ClimbAnimationShort.png-0c1eb7dfff54f965314a39797d80002f.stex" ]
 
 [params]
 

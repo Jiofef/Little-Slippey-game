@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/WallCatch.png-773274abb26aefc4518a004435e981c6.stex"
+path="res://.import/Jump.png-00f36655bd605c237f85a96a4bd9842e.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Content/Sprites/Animations/WallCatch.png"
-dest_files=[ "res://.import/WallCatch.png-773274abb26aefc4518a004435e981c6.stex" ]
+source_file="res://Content/Sprites/Player Animations/Jump.png"
+dest_files=[ "res://.import/Jump.png-00f36655bd605c237f85a96a4bd9842e.stex" ]
 
 [params]
 

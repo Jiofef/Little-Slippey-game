@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/ElementalCrossPrepared.png-8f74e9a6c48a2261029edcf9c3dcc8e4.stex"
+path="res://.import/Idle.png-2a40be6bb040ce938b534e842bd3be8b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Content/Sprites/Crosses/ElementalCrossPrepared.png"
-dest_files=[ "res://.import/ElementalCrossPrepared.png-8f74e9a6c48a2261029edcf9c3dcc8e4.stex" ]
+source_file="res://Content/Sprites/Player Animations/Idle.png"
+dest_files=[ "res://.import/Idle.png-2a40be6bb040ce938b534e842bd3be8b.stex" ]
 
 [params]
 

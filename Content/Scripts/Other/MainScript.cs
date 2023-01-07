@@ -28,7 +28,8 @@ public class MainScript : Node2D
     }
     public void Menu()
     {
-        G.ResetData();
+        G.SaveRecords();
+        G.FitToDefaultValues();
         GetTree().ChangeScene("res://Content/Scenes/Interface&Menu/Menu.tscn");
     }
     public void OptionsClosing()

@@ -5,8 +5,8 @@ public class RestlessCross : Node2D
 {
     [Signal] public delegate void AnimationStarted();
     [Signal] public delegate void WarningStarted();
-    private float _operationstotal = 40, _deletetimer = 60;
-    private readonly string _link = "Path2D/PathFollow2D/FollowNode/";
+    private int _operationstotal = 40, _deletetimer = 60;
+    private const string _link = "Path2D/PathFollow2D/FollowNode/";
     private bool _dosignaled;
     public override void _Ready()
     {
@@ -21,7 +21,7 @@ public class RestlessCross : Node2D
         {
             _operationstotal --;
             Scale = new Vector2(Scale.x - 0.05f, Scale.y - 0.05f);
-            Modulate = new Color(Modulate.r, Modulate.g, Modulate.b, Modulate.a + 0.25f);
+            Modulate = new Color(Modulate.r, Modulate.g, Modulate.b, Modulate.a + 0.025f);
         }
         else if (_deletetimer > 0)
         {
@@ -54,16 +54,12 @@ public class RestlessCross : Node2D
                     explosiveArea.Disabled = true;
                 return;
             }
-            var crossSprite = GetNode<Sprite>(_link + "CrossSprite");
-            crossSprite.Visible = false;
-            var warningSprite = GetNode<Sprite>(_link + "WarningSprite");
-            warningSprite.Visible = false;
+            GetNode<Sprite>(_link + "CrossSprite").QueueFree();
+            GetNode<Sprite>(_link + "WarningSprite").QueueFree();
+            GetNode<AudioStreamPlayer>(_link + "ExplosionSound").Play();
             explosionAnimation.Visible = true;
             explosionAnimation.Play();
-            var explosionSound = GetNode<AudioStreamPlayer>(_link + "ExplosionSound");
-            explosionSound.Play();
             explosiveArea.Disabled = false;
-            EmitSignal("AnimationStarted");
         }
     }
     public void Deleting()
