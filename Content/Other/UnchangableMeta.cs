@@ -6,20 +6,20 @@ using static Meta;
 public class UnchangableMeta : Node
 {
     // Unchangable Meta is the saving singleton with the data which the player cannot directly change (not the settings, simply put)
-    public static int[][] _levelrecords =
+    public static int[][] LevelRecords =
     {
-        new int[G._levelstotal],
-        new int[G._levelstotal],
-        new int[G._levelstotal]
+        new int[G.LevelsInGameTotal],
+        new int[G.LevelsInGameTotal],
+        new int[G.LevelsInGameTotal]
     };
     public static Dictionary<string, object> GetJson()
     {
         int[][] sus = { new int[] { 3 } };
         return new Dictionary<string, object>()
         {
-            {"_levelrecords1", _levelrecords[0]},
-            {"_levelrecords2", _levelrecords[1]},
-            { "_levelrecords3", _levelrecords[2]}
+            {"level_records0", LevelRecords[0]},
+            {"level_records1", LevelRecords[1]},
+            {"level_records2", LevelRecords[2]}
         };
     }
     public static void SaveToFile()
@@ -34,6 +34,8 @@ public class UnchangableMeta : Node
     }
     public static void LoadSave()
     {
+        try
+        {
             const string ReadPath = "user://save.json";
 
             File file = new File();
@@ -43,16 +45,14 @@ public class UnchangableMeta : Node
             var text = file.GetAsText();
             var model = JSON.Parse(text).Result as Dictionary;
 
-            var LevelRecordsArray1 = model["_levelrecords1"] as Godot.Collections.Array;
-            for (int i = 0; i < LevelRecordsArray1.Count; i++)
-                _levelrecords[0][i] = Convert.ToInt32(LevelRecordsArray1[i]);
-            var LevelRecordsArray2 = model["_levelrecords2"] as Godot.Collections.Array;
-            for (int i = 0; i < LevelRecordsArray2.Count; i++)
-                _levelrecords[1][i] = Convert.ToInt32(LevelRecordsArray2[i]);
-            var LevelRecordsArray3 = model["_levelrecords3"] as Godot.Collections.Array;
-            for (int i = 0; i < LevelRecordsArray3.Count; i++)
-                _levelrecords[2][i] = Convert.ToInt32(LevelRecordsArray3[i]);
-
+            Godot.Collections.Array[] LevelRecordsArrays = new Godot.Collections.Array[3];
+            for (int i = 0; i < LevelRecordsArrays.Length; i++)
+                LevelRecordsArrays[i] = model["level_records" + i] as Godot.Collections.Array;
+            for (int i = 0; i < LevelRecordsArrays.Length; i++)
+                for (int j = 0; j < G.LevelsInGameTotal; j++)
+                    LevelRecords[i][j] = Convert.ToInt32(LevelRecordsArrays[i][j]);
             file.Close();
+        }
+        catch {}
     }
 }

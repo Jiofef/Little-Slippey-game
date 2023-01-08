@@ -7,7 +7,7 @@ public class ApplyCancel : Control
     public delegate void OptionsClosing();
     public override void _Ready()
     {
-        if (G._scores != 0)
+        if (G.Scores != 0)
             Connect("OptionsClosing", GetParent().GetParent().GetParent(), "OptionsClosing");
     }
     public override void _Process(float delta)
@@ -21,7 +21,7 @@ public class ApplyCancel : Control
     {
         Meta.Instance = Meta.OptionsReserve.Clone();
         Meta.Instance.ApplyOptions();
-        if (G._scores == 0)
+        if (G.Scores == 0)
             GetTree().ChangeScene("res://Content/Scenes/Interface&Menu/Menu.tscn");
         
         else
@@ -33,7 +33,7 @@ public class ApplyCancel : Control
     public void Apply()
     {
         Meta.Instance.SaveToFile();
-        if (G._scores == 0)
+        if (G.Scores == 0)
             GetTree().ChangeScene("res://Content/Scenes/Interface&Menu/Menu.tscn");
         else
         {

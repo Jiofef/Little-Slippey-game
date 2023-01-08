@@ -7,7 +7,7 @@ public class SoundSettings : Control
     {
         string[] SliderNames = {"GlobalSlider", "InterfaceSlider", "MusicSlider", "PlayerSlider", "CrossSnapSlider", "CrossOtherSlider", "CrossExplosionSlider"};
         for (int i = 0; i < SliderNames.Length; i++)
-            GetNode<Slider>("VBoxContainer/" + SliderNames[i]).Value = Meta.Instance._busvolumes[i];
+            GetNode<Slider>("VBoxContainer/" + SliderNames[i]).Value = Meta.Instance.BusVolumes[i];
     }
     public void GlobalChanged(float value)
     {
@@ -41,15 +41,15 @@ public class SoundSettings : Control
     {
         if (value > -29)
         {
-            Meta.Instance._busvolumes[BusNubmer] = value;
-            Meta.Instance._dobusmuted[BusNubmer] = false;
+            Meta.Instance.BusVolumes[BusNubmer] = value;
+            Meta.Instance.DoBusMuted[BusNubmer] = false;
             AudioServer.SetBusVolumeDb(BusNubmer, value);
             AudioServer.SetBusMute(BusNubmer, false);
         }
         else
         {
-            Meta.Instance._busvolumes[BusNubmer] = value;
-            Meta.Instance._dobusmuted[BusNubmer] = true;
+            Meta.Instance.BusVolumes[BusNubmer] = value;
+            Meta.Instance.DoBusMuted[BusNubmer] = true;
             AudioServer.SetBusVolumeDb(BusNubmer, value);
             AudioServer.SetBusMute(BusNubmer, true);
         }

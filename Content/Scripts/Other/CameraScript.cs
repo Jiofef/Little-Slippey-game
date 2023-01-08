@@ -16,20 +16,20 @@ public class CameraScript : Camera2D
     {
         int IntPos1 = 0, IntPos2 = 0;
         var restartNoise = GetNode<AnimatedSprite>("GUI/RestartNoise");
-        if (G._resettimer != 0)
+        if (G.ResetTimer != 0)
         {
             if (SmoothingEnabled)
                 SmoothingEnabled = false;
             if (!restartNoise.Playing)
                 restartNoise.Play();
-            restartNoise.Modulate = new Color(restartNoise.Modulate.r, restartNoise.Modulate.g, restartNoise.Modulate.b, G._resettimer / 2);
+            restartNoise.Modulate = new Color(restartNoise.Modulate.r, restartNoise.Modulate.g, restartNoise.Modulate.b, G.ResetTimer / 2);
             var restartNoiseSound = GetNode<AudioStreamPlayer>("GUI/RestartNoise/Sound");
             if (!restartNoiseSound.Playing)
                 restartNoiseSound.Play();
-            restartNoiseSound.VolumeDb = -5 + G._resettimer * 10;
+            restartNoiseSound.VolumeDb = -5 + G.ResetTimer * 10;
 
             Random random = new Random();
-            float RndPos1 = random.Next(-50, 50) * G._resettimer, RndPos2 = random.Next(-50, 50) * G._resettimer;
+            float RndPos1 = random.Next(-50, 50) * G.ResetTimer, RndPos2 = random.Next(-50, 50) * G.ResetTimer;
             IntPos1 = (int)RndPos1;
             IntPos2 = (int)RndPos2;
             Position = new Vector2(RndPos1, RndPos2);
@@ -46,20 +46,20 @@ public class CameraScript : Camera2D
             IntPos1 = 0; IntPos2 = 0;
         }
 
-        if (!G._playerdead) return;
+        if (!G.PlayerDead) return;
 
-        float zoom = G._playerdeathtimer < 4 ? 0.7f - G._playerdeathtimer * 0.1f : 0.3f;
+        float zoom = G.PlayerDeathTimer < 4 ? 0.7f - G.PlayerDeathTimer * 0.1f : 0.3f;
         Zoom = new Vector2(zoom, zoom);
-        int TimerX50 = (int)(G._playerdeathtimer * 50);
+        int TimerX50 = (int)(G.PlayerDeathTimer * 50);
         LimitsSetting(-TimerX50 - IntPos2, TimerX50 + IntPos1, TimerX50 + IntPos2, -TimerX50 - IntPos1);
 
-        if (G._playerdeathtimer >= 4.5f)
+        if (G.PlayerDeathTimer >= 4.5f)
         {
             var emergingElements = GetNode<Node2D>("GUI/EmergingElements");
             if (!emergingElements.Visible) 
             {
                 emergingElements.Visible = true;
-                GetNode<RichTextLabel>("GUI/EmergingElements/FinalScore/RichTextLabel").Text = Convert.ToString((int)G._scores);
+                GetNode<RichTextLabel>("GUI/EmergingElements/FinalScore/RichTextLabel").Text = Convert.ToString((int)G.Scores);
             }
             if (emergingElements.Modulate.a < 1)
                 emergingElements.Modulate = new Color(emergingElements.Modulate.r, emergingElements.Modulate.g, emergingElements.Modulate.b, emergingElements.Modulate.a + 0.005f);
@@ -67,7 +67,7 @@ public class CameraScript : Camera2D
     }
     public void CameraZoom()
     {
-        G._playerdead = true;
+        G.PlayerDead = true;
         SmoothingEnabled = false;
         GetNode<Label>("GUI/Scores").Visible = false;
     }

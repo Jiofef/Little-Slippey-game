@@ -9,12 +9,12 @@ public class GameplaySettings : Control
         dificultyChange.AddItem("Easy");
         dificultyChange.AddItem("Default");
         dificultyChange.AddItem("Hard");
-        dificultyChange.Selected = Meta.Instance._dificulty;
-        if (G._scores != 0)
+        dificultyChange.Selected = Meta.Instance.Dificulty;
+        if (G.Scores != 0)
             dificultyChange.Disabled = true;
     }
     public void DificultyChanged(int index)
     {
-        Meta.Instance._dificulty = (byte)index;
+        Meta.Instance.Dificulty = (byte)index;
     }
 }

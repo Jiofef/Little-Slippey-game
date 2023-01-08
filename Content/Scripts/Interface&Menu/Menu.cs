@@ -4,7 +4,7 @@ using System.IO;
 
 public class Menu : Control
 {
-    private bool _easteregged;
+    private bool _easterEgged;
     public override void _Ready()
     {
         GetNode<TextureButton>("Buttons/Play").GrabFocus();
@@ -14,7 +14,7 @@ public class Menu : Control
     public void Play()
     {
         Random random = new Random();
-        G._currentlvl = random.Next(G._levelstotal) + 1;
+        G.CurrentLevel = random.Next(G.LevelsInGameTotal) + 1;
         GetTree().ChangeScene("res://Content/Scenes/Other/Main.tscn");
     }
     public void ChooseLevel()
@@ -31,9 +31,9 @@ public class Menu : Control
     }
     public void EasterButtonPressed()
     {
-        if (!_easteregged)
+        if (!_easterEgged)
         {
-            _easteregged = true;
+            _easterEgged = true;
             GetNode<Node2D>("CubicCross").Visible = true;
         }
     }

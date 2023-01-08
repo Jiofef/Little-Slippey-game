@@ -102,6 +102,3 @@ modulate = Color( 1, 1, 1, 0.615686 )
 position = Vector2( -0.833313, -9.99998 )
 scale = Vector2( 32, 22.6667 )
 texture = ExtResource( 2 )
-
-[node name="Node2D" type="Node2D" parent="Background"]
-position = Vector2( 456.667, 250 )

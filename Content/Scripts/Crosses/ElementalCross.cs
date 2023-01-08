@@ -4,50 +4,50 @@ using System;
 public class ElementalCross : Node2D
 {
     private enum ElementalType { Red = 0, Green = 1, Blue = 2 };
-    private ElementalType _elementaltype;
-    private int _operationstotal = 80, _timertonextspawn, _elementstospawn;
-    private bool _doelementsspawnbegun = false;
-    private bool _lastelementdeleted = false;
-    private readonly int _elementaltypestotal = 3, _defaulttimertonextspawnvalue = 7;
-    private float _xspritemotion, _yspritemotion, _gravity = 9.8f;
-    private Random random = new Random();
-    private PackedScene summonableElemental;
-    private Sprite sprite;
+    private ElementalType _elementalType;
+    private int _operationsTotal = 80, _timerToNextSpawn, _elementsToSpawn;
+    private bool _doElementsSpawnBegun = false;
+    private bool _lastElementDeleted = false;
+    private readonly int _elementalTypesTotal = 3, _defaultNextSpawnTimerValue = 7;
+    private float _xSpriteMotion, _ySpriteMotion, _gravity = 9.8f;
+    private Random _random = new Random();
+    private PackedScene _summonableElemental;
+    private Sprite _sprite;
     public override void _Ready()
     {
-        sprite = GetNode<Sprite>("Sprite");
-        sprite.Modulate = new Color(Modulate.r, Modulate.g, Modulate.b, 0);
-        _elementstospawn = random.Next(6, 11);
-        _timertonextspawn = _defaulttimertonextspawnvalue;
+        _sprite = GetNode<Sprite>("Sprite");
+        _sprite.Modulate = new Color(Modulate.r, Modulate.g, Modulate.b, 0);
+        _elementsToSpawn = _random.Next(6, 11);
+        _timerToNextSpawn = _defaultNextSpawnTimerValue;
     }
     public override void _PhysicsProcess(float delta)
     {
-        if (_lastelementdeleted)
+        if (_lastElementDeleted)
         {
-            if (sprite.Modulate.a != 0)
+            if (_sprite.Modulate.a != 0)
             {
-                sprite.Modulate = new Color(sprite.Modulate.r, sprite.Modulate.g, sprite.Modulate.b, sprite.Modulate.a - 0.02f);
-                sprite.Position = new Vector2(sprite.Position.x + _xspritemotion, sprite.Position.y + _yspritemotion);
-                _yspritemotion += _gravity / 100;
-                sprite.Rotation += 0.04f;
+                _sprite.Modulate = new Color(_sprite.Modulate.r, _sprite.Modulate.g, _sprite.Modulate.b, _sprite.Modulate.a - 0.02f);
+                _sprite.Position = new Vector2(_sprite.Position.x + _xSpriteMotion, _sprite.Position.y + _ySpriteMotion);
+                _ySpriteMotion += _gravity / 100;
+                _sprite.Rotation += 0.04f;
                 return;
             }
             else QueueFree();
         }
 
-        if (_operationstotal > 0)
+        if (_operationsTotal > 0)
         {
-            _operationstotal--;
+            _operationsTotal--;
             Scale = new Vector2(Scale.x - 0.025f, Scale.y - 0.025f);
-            sprite.Modulate = new Color((float)random.NextDouble(), (float)random.NextDouble(), (float)random.NextDouble(), Modulate.a + 0.0125f);
+            _sprite.Modulate = new Color((float)_random.NextDouble(), (float)_random.NextDouble(), (float)_random.NextDouble(), Modulate.a + 0.0125f);
         }
-        else if (!_doelementsspawnbegun)
+        else if (!_doElementsSpawnBegun)
         {
-            _doelementsspawnbegun = true;
-            _elementaltype = (ElementalType)random.Next(_elementaltypestotal);
-            summonableElemental = ResourceLoader.Load<PackedScene>("res://Content/Scenes/Crosses/" + _elementaltype.ToString() + "ElementalCrossPart.tscn");
+            _doElementsSpawnBegun = true;
+            _elementalType = (ElementalType)_random.Next(_elementalTypesTotal);
+            _summonableElemental = ResourceLoader.Load<PackedScene>("res://Content/Scenes/Crosses/" + _elementalType.ToString() + "ElementalCrossPart.tscn");
             var sprite = GetNode<Sprite>("Sprite");
-            switch (_elementaltype)
+            switch (_elementalType)
             { 
                 case ElementalType.Red:
                     sprite.Modulate = new Color(1, 0, 0);
@@ -62,13 +62,13 @@ public class ElementalCross : Node2D
         }
         else
         {
-            _timertonextspawn = _timertonextspawn <= 0 ? _defaulttimertonextspawnvalue + random.Next(-2, 3): _timertonextspawn - 1;
-            if (_timertonextspawn == 0 && _elementstospawn != 0)
+            _timerToNextSpawn = _timerToNextSpawn <= 0 ? _defaultNextSpawnTimerValue + _random.Next(-2, 3): _timerToNextSpawn - 1;
+            if (_timerToNextSpawn == 0 && _elementsToSpawn != 0)
             {
-                _elementstospawn--;
-                Node2D element = (Node2D)summonableElemental.Instance();
-                element.Position = new Vector2(random.Next(-30, 30), random.Next(-30, 30));
-                if (_elementstospawn <= 0)
+                _elementsToSpawn--;
+                Node2D element = (Node2D)_summonableElemental.Instance();
+                element.Position = new Vector2(_random.Next(-30, 30), _random.Next(-30, 30));
+                if (_elementsToSpawn <= 0)
                     element.Connect("ElementExploded", this, "SelfDeletingStart");
                 AddChild(element);
             }
@@ -76,8 +76,8 @@ public class ElementalCross : Node2D
     }
     public void SelfDeletingStart()
     {
-        _yspritemotion = -3;
-        _xspritemotion = random.Next(-2, 3);
-        _lastelementdeleted = true;
+        _ySpriteMotion = -3;
+        _xSpriteMotion = _random.Next(-2, 3);
+        _lastElementDeleted = true;
     }
 }

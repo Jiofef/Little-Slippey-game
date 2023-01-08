@@ -3,14 +3,14 @@ using System;
 
 public class ButtonScript : TextureButton
 {
-    Texture _texturefocused;
-    AudioStreamPlayer buttondown;
-    AudioStreamPlayer buttonup;
+    Texture _textureFocused;
+    AudioStreamPlayer _buttonDown;
+    AudioStreamPlayer _buttonUp;
     public override void _Ready()
     {
-        _texturefocused = TextureFocused;
-        buttondown = GetNode<AudioStreamPlayer>("ButtonDownSound");
-        buttonup = GetNode<AudioStreamPlayer>("ButtonUpSound");
+        _textureFocused = TextureFocused;
+        _buttonDown = GetNode<AudioStreamPlayer>("ButtonDownSound");
+        _buttonUp = GetNode<AudioStreamPlayer>("ButtonUpSound");
     }
     public void MouseEntered()
     {
@@ -18,13 +18,13 @@ public class ButtonScript : TextureButton
     }
     public void ButtonDown()
     {
-        buttondown.Play();
+        _buttonDown.Play();
         TextureFocused = null;
         Pressed = true;
     }
     public void ButtonUp()
     {
-        buttonup.Play();
-        TextureFocused = _texturefocused;
+        _buttonUp.Play();
+        TextureFocused = _textureFocused;
     }
 }
