@@ -40,7 +40,6 @@ public class LevelScript : Node2D
         if (_random.Next(RandomRange) == 0)
         {
             Node2D Cross = (Node2D)_defaultCross[_random.Next(_defaultCross.Length)].Instance();
-            Cross = (Node2D)_defaultCross[3].Instance();
             float CrossGathering = _random.Next(100) < (1 - G.PlayerMoveCoeff) * 50 ? 3 - G.PlayerMoveCoeff * 2 : 1;
             Cross.Position = new Vector2(_player.Position.x + (-750 + _random.Next(1500)) / CrossGathering, _player.Position.y + (-450 + _random.Next(900)) / CrossGathering);
             if (Cross.Name == "BlumCross")

@@ -81,7 +81,6 @@ public class BlumCross : Node2D
     {
         GetNode<AudioStreamPlayer>("AbortButtonPressedSound").Play();
         _abortButtonPressed = true;
-        GD.Print(Position);
     }
     public void HideExplosionAnimation()
     {
