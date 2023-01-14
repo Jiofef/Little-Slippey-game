@@ -34,6 +34,7 @@ public class LevelScript : Node2D
         if (G.PlayerDead) return;
 
         G.Scores += delta;
+        _intScores = (int)G.Scores;
         _scores.Text = _intScores.ToString();
 
         int RandomRange = _intScores < (15 - Meta.Instance.Dificulty * 4) * 15 ? 20 - _intScores / 15 - Meta.Instance.Dificulty * 5 : 5 - Meta.Instance.Dificulty;
@@ -54,7 +55,7 @@ public class LevelScript : Node2D
                         return -desiredDistance;
                     else return coordinate;
                 }
-                Cross.Position = new Vector2(Cross.Position.x + DistancingToDesiredDistance(CrossPositionRelativeToPlayer.x, 200), Cross.Position.y + DistancingToDesiredDistance(CrossPositionRelativeToPlayer.y, 200));
+                Cross.Position = new Vector2(Cross.Position.x + DistancingToDesiredDistance(CrossPositionRelativeToPlayer.x, 150), Cross.Position.y + DistancingToDesiredDistance(CrossPositionRelativeToPlayer.y, 100));
             }
             AddChild(Cross);
         }
