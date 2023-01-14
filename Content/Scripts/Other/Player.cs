@@ -1,29 +1,26 @@
 using Godot;
-using Godot.Collections;
-using System;
-using System.Runtime.CompilerServices;
 
 public class Player : KinematicBody2D
 {
     [Export] float _speed = 200, _gravity = 9.8f, _jumpForce = 300;
 
     // floats related to wall-jumping
-    float _wallDetectNumber, _inertion, _savedWallNumber, _wallJumpTimer = 0,
+    private float _wallDetectNumber, _inertion, _savedWallNumber, _wallJumpTimer = 0,
 
           // wall climbs
           _climbBufer, _climbTimer, _savedClimbWallNumber, _climbUncontrollingTimer,
 
           // other
-          _moveCalcTimer = 0;
+          _moveCalculationTimer = 0;
 
     // other variable
-    bool _isFliph;
+    private bool _isFliph;
 
-    string _animationName;
+    private string _animationName;
 
-    byte _moveCalculationStartTimer;
-    //
-    enum State {Default, DownDash, Inerted}
+    private byte _moveCalculationStartTimer;
+
+    private enum State {Default, DownDash, Inerted}
     State _state = State.Default;
 
     AnimatedSprite _animatedSprite;
@@ -166,10 +163,10 @@ public class Player : KinematicBody2D
 
 
         //Physics injection
-        _moveCalcTimer += delta * 3;
-        if (_moveCalcTimer > 0.1f)
+        _moveCalculationTimer += delta * 3;
+        if (_moveCalculationTimer > 0.1f)
         {
-            _moveCalcTimer = 0;
+            _moveCalculationTimer = 0;
             _savedPastPositions[_savedPastPositions.Length - 1] = Position;
             for (int i = 0; i < _savedPastPositions.Length - 1; i++)
                 _savedPastPositions[i] = _savedPastPositions[i + 1];
@@ -178,7 +175,6 @@ public class Player : KinematicBody2D
                 G.PlayerMoveCoeff = MoveDist < 200 ? MoveDist / 200 : 1;
             else _moveCalculationStartTimer++;
         }
-
 
         MoveAndSlide(_motion);
 

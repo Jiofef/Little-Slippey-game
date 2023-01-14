@@ -1,7 +1,6 @@
 using Godot;
 using System;
 using Godot.Collections;
-using static Meta;
 
 public class UnchangableMeta : Node
 {

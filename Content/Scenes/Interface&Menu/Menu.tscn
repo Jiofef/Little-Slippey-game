@@ -25,7 +25,6 @@
 [ext_resource path="res://Content/Scripts/Interface&Menu/RightMenuBackground.cs" type="Script" id=26]
 [ext_resource path="res://Content/Sprites/Other/DeadPlayer.png" type="Texture" id=27]
 
-
 [sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 15 )
 region = Rect2( 0, 0, 12, 16 )

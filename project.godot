@@ -98,6 +98,7 @@ Reset={
 2d_physics/layer_3="BasedTilemap"
 2d_physics/layer_4="PlayerDamager"
 2d_physics/layer_5="CrossExplosion"
+2d_physics/layer_6="BlumCrossButton"
 
 [mono]
 

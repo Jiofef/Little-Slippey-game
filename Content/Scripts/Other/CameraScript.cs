@@ -1,6 +1,5 @@
 using Godot;
 using System;
-using System.Drawing.Drawing2D;
 
 public class CameraScript : Camera2D
 {

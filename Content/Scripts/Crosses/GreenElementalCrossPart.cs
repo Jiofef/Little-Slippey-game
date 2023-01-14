@@ -51,6 +51,7 @@ public class GreenElementalCrossPart : Node2D
             {
                 if (!explosiveArea.Disabled)
                     explosiveArea.Disabled = true;
+                SetPhysicsProcess(false);
                 return;
             }
             GetNode<Sprite>(link + "Sprite").QueueFree();
