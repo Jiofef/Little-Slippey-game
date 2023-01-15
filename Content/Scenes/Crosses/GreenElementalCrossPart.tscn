@@ -5,7 +5,7 @@
 [ext_resource path="res://Content/Scripts/Crosses/GreenElementalCrossPart.cs" type="Script" id=3]
 [ext_resource path="res://Content/Sounds/Crosses/MicroExplosion.wav" type="AudioStream" id=4]
 [ext_resource path="res://Content/Sprites/Crosses/GreenElementalCrossPartVar4.png" type="Texture" id=5]
-[ext_resource path="res://Content/Scenes/Other/ExplosionAnimation.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Content/Scenes/Crosses/ExplosionAnimation.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Content/Sounds/Crosses/GreenElementalCrossSpawnSound.wav" type="AudioStream" id=7]
 
 [sub_resource type="Curve2D" id=1]
@@ -58,7 +58,7 @@ animations = [ {
 } ]
 
 [sub_resource type="CircleShape2D" id=2]
-radius = 15.6808
+radius = 14.0
 
 [sub_resource type="Gradient" id=22]
 colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )

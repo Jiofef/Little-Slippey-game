@@ -1,7 +1,7 @@
 [gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://Content/Scenes/Crosses/CrossLayout.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Content/Scenes/Other/ExplosionAnimation.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Content/Scenes/Crosses/ExplosionAnimation.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Content/Scenes/Interface&Menu/Button.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Content/Scripts/Interface&Menu/LogoEasterEgg.cs" type="Script" id=4]
 [ext_resource path="res://Content/Scripts/Interface&Menu/Menu.cs" type="Script" id=5]

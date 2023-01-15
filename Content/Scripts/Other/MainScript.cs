@@ -3,19 +3,18 @@ using System;
 
 public class MainScript : Node2D
 {
+    private bool _subMenusOpened;
     public override void _Process(float delta)
     {
-        if (Input.IsActionJustPressed("Cancel"))
+        if (Input.IsActionJustPressed("Cancel") && !_subMenusOpened)
         {
             UnPause();
         }
     }
     public void UnPause()
     {
-        var pause = GetNode<CanvasLayer>("Pause");
-        pause.Visible = !GetTree().Paused;
-        var resumeButton = GetNode<TextureButton>("Pause/Buttons/Resume");
-        resumeButton.GrabFocus();
+        GetNode<CanvasLayer>("Pause").Visible = !GetTree().Paused;
+        GetNode<TextureButton>("Pause/Buttons/Resume").GrabFocus();
         Input.MouseMode = GetTree().Paused ? Input.MouseModeEnum.Hidden : Input.MouseModeEnum.Visible;
         GetTree().Paused = !GetTree().Paused;
     }
@@ -25,6 +24,7 @@ public class MainScript : Node2D
         pause.PauseMode = PauseModeEnum.Stop;
         pause.Visible = false;
         AddChild(ResourceLoader.Load<PackedScene>("res://Content/Scenes/Interface&Menu/OptionsMenu.tscn").Instance<Control>());
+        _subMenusOpened = true;
     }
     public void Menu()
     {
@@ -37,5 +37,7 @@ public class MainScript : Node2D
         var pause = GetNode<CanvasLayer>("Pause");
         pause.PauseMode = PauseModeEnum.Process;
         pause.Visible = true;
+        GetNode<TextureButton>("Pause/Buttons/Resume").GrabFocus();
+        _subMenusOpened = false;
     }
 }

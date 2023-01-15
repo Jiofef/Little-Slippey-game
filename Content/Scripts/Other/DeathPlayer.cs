@@ -4,8 +4,8 @@ using System;
 public class DeathPlayer : Node2D
 {
     [Signal] public delegate void Death();
-    float _xMotion = 0, _yMotion = 0, _gravity = 9.8f;
-    public Sprite _deadSprite;
+    private float _xMotion = 0, _yMotion = 0, _gravity = 9.8f;
+    private Sprite _deadSprite;
     public override void _Ready()
     {
         _deadSprite = GetNode<Sprite>("Sprite");
@@ -13,11 +13,10 @@ public class DeathPlayer : Node2D
     public void Activate()
     {
         Random random = new Random();
-        var GlobalXPos = GetGlobalPosition().x;
+        var GlobalXPos = GlobalPosition.x;
         _xMotion = random.Next(100) > 50 ? -5 * (GlobalXPos / 1024) : 5 * ((1 - GlobalXPos / 1024));
         _yMotion = -8;
-        var deathSound = GetNode<AudioStreamPlayer>("DeathSound");
-        deathSound.Play();
+        GetNode<AudioStreamPlayer>("DeathSound").Play();
         EmitSignal("Death");
     }
     public override void _PhysicsProcess(float delta)
