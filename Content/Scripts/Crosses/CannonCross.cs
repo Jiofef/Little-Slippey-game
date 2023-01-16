@@ -6,13 +6,10 @@ public class CannonCross : Path2D
     Node2D _sprites;
     PathFollow2D _cannonPathFollow2D, _ballPathFollow;
     Sprite _frontWheel, _backWheel, _barrel, _tornBarrel;
-    private Random _random = new Random();
     private float _ballSpeed = 2, _cannonSpeed = 0.7f;
     private bool _doCannonShoted = false;
     public override void _Ready()
     {
-        Scale = new Vector2(_random.Next(100) <= 50 ? 1 : -1, 1);
-
         _sprites = GetNode<Node2D>("PathFollow2D/Cannon/Sprites");
         _cannonPathFollow2D = GetNode<PathFollow2D>("PathFollow2D");
         _ballPathFollow = GetNode<PathFollow2D>("PathFollow2D/Cannon/BallPath/BallPathFollow");

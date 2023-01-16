@@ -1,6 +1,4 @@
 using Godot;
-using System;
-
 public class MainScript : Node2D
 {
     private bool _subMenusOpened;

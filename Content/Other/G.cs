@@ -11,7 +11,7 @@ public class G : Node
 
     public static readonly Vector2[] LevelXYSizes = 
     { 
-        new Vector2(456, 250),
+        new Vector2(1024, 600),
     };
     public override void _Process(float delta)
     {

@@ -26,8 +26,7 @@ radius = 6.66667
 [sub_resource type="Gradient" id=4]
 colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
 
-[node name="CannonCrossPath" type="Path2D"]
-scale = Vector2( -1, 1 )
+[node name="CannonCross" type="Path2D"]
 curve = SubResource( 1 )
 script = ExtResource( 4 )
 
