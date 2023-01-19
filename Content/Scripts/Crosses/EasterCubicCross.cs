@@ -26,34 +26,23 @@ public class EasterCubicCross : Node2D
             _ticksToExplosion--;
             if (_ticksToExplosion == 60 || _ticksToExplosion == 45 || _ticksToExplosion == 30 || _ticksToExplosion == 15)
             {
-                var crossSprite = GetNode<Sprite>("CrossSprite");
-                crossSprite.Visible = false;
-                var explosionSignal = GetNode<AudioStreamPlayer>("ExplosionSignal");
-                explosionSignal.Play();
+                GetNode<Sprite>("CrossSprite").Visible = false;
+                GetNode<AudioStreamPlayer>("ExplosionSignal").Play();
             }
             else if (_ticksToExplosion == 55 || _ticksToExplosion == 40 || _ticksToExplosion == 25 || _ticksToExplosion == 10)
             {
-                var crossSprite = GetNode<Sprite>("CrossSprite");
-                crossSprite.Visible = true;
+                GetNode<Sprite>("CrossSprite").Visible = true;
             }
         }
         else
         {
-            var explosionAnimation = GetNode<AnimatedSprite>("ExplosionAnimation");
-            var explosiveArea = GetNode<CollisionShape2D>("ExplosiveArea/CollisionShape2D");
-            if (explosionAnimation.Playing)
-            {
-                if (!explosiveArea.Disabled)
-                    explosiveArea.Disabled = true;
-                SetPhysicsProcess(false);
-                return;
-            }
             GetNode<Sprite>("CrossSprite").Visible = false;
             GetNode<Sprite>("WarningSprite").Visible = false;
             GetNode<AudioStreamPlayer>("ExplosionSound").Play();
+            var explosionAnimation = GetNode<AnimatedSprite>("ExplosionAnimation");
             explosionAnimation.Visible = true;
             explosionAnimation.Play();
-            explosiveArea.Disabled = false;
+            SetPhysicsProcess(false);
         }
     }
     public void Deleting()

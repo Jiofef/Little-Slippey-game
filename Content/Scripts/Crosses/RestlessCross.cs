@@ -33,15 +33,12 @@ public class RestlessCross : Node2D
             _ticksToExplosion--;
             if (_ticksToExplosion == 60 || _ticksToExplosion == 45 || _ticksToExplosion == 30 || _ticksToExplosion == 15)
             {
-                var crossSprite = GetNode<Sprite>(_link + "CrossSprite");
-                crossSprite.Visible = false;
-                var explosionSignal = GetNode<AudioStreamPlayer>(_link + "ExplosionSignal");
-                explosionSignal.Play();
+                GetNode<Sprite>(_link + "CrossSprite").Visible = false;
+                GetNode<AudioStreamPlayer>(_link + "ExplosionSignal").Play();
             }
             else if (_ticksToExplosion == 55 || _ticksToExplosion == 40 || _ticksToExplosion == 25 || _ticksToExplosion == 10)
             {
-                var crossSprite = GetNode<Sprite>(_link + "CrossSprite");
-                crossSprite.Visible = true;
+                GetNode<Sprite>(_link + "CrossSprite").Visible = true;
             }
         }
         else
@@ -50,8 +47,7 @@ public class RestlessCross : Node2D
             var explosiveArea = GetNode<CollisionShape2D>(_link + "ExplosiveArea/CollisionShape2D");
             if (explosionAnimation.Playing)
             {
-                if (!explosiveArea.Disabled)
-                    explosiveArea.Disabled = true;
+                explosiveArea.Disabled = true;
                 SetPhysicsProcess(false);
                 return;
             }

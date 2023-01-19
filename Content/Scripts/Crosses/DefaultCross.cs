@@ -35,7 +35,6 @@ public class DefaultCross : Node2D
             var explosiveArea = GetNode<CollisionShape2D>("ExplosiveArea/CollisionShape2D");
             if (explosionAnimation.Playing)
             {
-                if (!explosiveArea.Disabled)
                 explosiveArea.Disabled = true;
                 SetPhysicsProcess(false);
                 return;

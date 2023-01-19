@@ -69,7 +69,7 @@ public class ElementalCross : Node2D
                 _elementsToSpawn--;
                 Node2D element = (Node2D)_summonableElemental.Instance();
                 element.Position = new Vector2(_random.Next(-30, 30), _random.Next(-30, 30));
-                if (_elementsToSpawn <= 0)
+                if (_elementsToSpawn == 0)
                     element.Connect("ElementExploded", this, "SelfDeletingStart");
                 AddChild(element);
             }

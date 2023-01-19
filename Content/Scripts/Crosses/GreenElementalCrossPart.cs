@@ -43,15 +43,15 @@ public class GreenElementalCrossPart : Node2D
         }
         else if (!_doExplosed)
         {
-            _doExplosed = true;
+
             const string link = "Path2D/PathFollow2D/";
             var explosionAnimation = GetNode<AnimatedSprite>(link + "ExplosionAnimation");
             var explosiveArea = GetNode<CollisionShape2D>(link + "ExplosiveArea/CollisionShape2D");
             if (explosionAnimation.Playing)
             {
-                if (!explosiveArea.Disabled)
-                    explosiveArea.Disabled = true;
+                explosiveArea.Disabled = true;
                 SetPhysicsProcess(false);
+                _doExplosed = true;
                 return;
             }
             GetNode<Sprite>(link + "Sprite").QueueFree();
