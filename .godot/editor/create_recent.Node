@@ -1,0 +1,14 @@
+Node3D
+Node2D
+CanvasLayer
+AnimatedSprite2D
+Label
+CPUParticles2D
+GPUParticles2D
+AudioStreamPlayer
+Camera2D
+CollisionShape2D
+Sprite2D
+Control
+MarginContainer
+VBoxContainer

@@ -1,32 +1,32 @@
 using Godot;
 using System;
 
-public class CannonCross : Path2D
+public partial class CannonCross : Path2D
 {
-    Node2D _sprites;
-    PathFollow2D _cannonPathFollow2D, _ballPathFollow;
-    Sprite _frontWheel, _backWheel, _barrel, _tornBarrel;
-    private float _ballSpeed = 2, _cannonSpeed = 0.7f;
-    private bool _doCannonShoted = false;
+    Node2D _sprites, _ball;
+    PathFollow2D _cannonPathFollow2D;
+    Sprite2D _frontWheel, _backWheel, _barrel, _tornBarrel;
+    private float _cannonSpeed = 0.7f, _ballYBound = G.LevelXYSizes[G.CurrentLevel].Y + 100, _ballYMotion = 1.1f;
+    private bool _doCannonShoted;
     public override void _Ready()
     {
         _sprites = GetNode<Node2D>("PathFollow2D/Cannon/Sprites");
+        _ball = GetNode<Node2D>("PathFollow2D/Cannon/Ball");
         _cannonPathFollow2D = GetNode<PathFollow2D>("PathFollow2D");
-        _ballPathFollow = GetNode<PathFollow2D>("PathFollow2D/Cannon/BallPath/BallPathFollow");
-        _frontWheel = GetNode<Sprite>("PathFollow2D/Cannon/Sprites/FrontWheel");
-        _backWheel = GetNode<Sprite>("PathFollow2D/Cannon/Sprites/BackWheel");
-        _barrel = GetNode<Sprite>("PathFollow2D/Cannon/Sprites/Barrel");
-        _tornBarrel = GetNode<Sprite>("PathFollow2D/Cannon/Sprites/TornBarrel");
+        _frontWheel = GetNode<Sprite2D>("PathFollow2D/Cannon/Sprites/FrontWheel");
+        _backWheel = GetNode<Sprite2D>("PathFollow2D/Cannon/Sprites/BackWheel");
+        _barrel = GetNode<Sprite2D>("PathFollow2D/Cannon/Sprites/Barrel");
+        _tornBarrel = GetNode<Sprite2D>("PathFollow2D/Cannon/Sprites/TornBarrel");
     }
-    public override void _PhysicsProcess(float delta)
+    public override void _PhysicsProcess(double delta)
     {
-        if (_cannonPathFollow2D.UnitOffset < 0.95f)
+        if (_cannonPathFollow2D.ProgressRatio < 0.95f)
         {
-            _cannonPathFollow2D.Offset += _cannonSpeed;
+            _cannonPathFollow2D.Progress += _cannonSpeed;
             _backWheel.Rotation -= _cannonSpeed / 20;
             _frontWheel.Rotation -= _cannonSpeed / 20;
 
-            if (_cannonPathFollow2D.UnitOffset >= 0.95f)
+            if (_cannonPathFollow2D.ProgressRatio >= 0.95f)
             {
                 GetNode<AudioStreamPlayer>("PathFollow2D/Cannon/Sounds/RollingCannon").Stop();
                 GetNode<AudioStreamPlayer>("PathFollow2D/Cannon/Sounds/Charge").Play();
@@ -34,31 +34,31 @@ public class CannonCross : Path2D
         }
         else if (!_doCannonShoted)
         {
-            _barrel.Scale = new Vector2(_barrel.Scale.x + 0.0025f, _barrel.Scale.y - 0.005f);
-            _barrel.Modulate = new Color(_barrel.Modulate.r, _barrel.Modulate.g - 0.0085f, _barrel.Modulate.b - 0.0085f);
-            if (_barrel.Scale.y <= 0.6f)
+            _barrel.Scale = new Vector2(_barrel.Scale.X + 0.0025f, _barrel.Scale.Y - 0.005f);
+            _barrel.Modulate = new Color(_barrel.Modulate.R, _barrel.Modulate.G - 0.0085f, _barrel.Modulate.B - 0.0085f);
+            if (_barrel.Scale.Y <= 0.6f)
             {
                 GetNode<AudioStreamPlayer>("PathFollow2D/Cannon/Sounds/Shot").Play();
-                GetNode<CPUParticles2D>("PathFollow2D/Cannon/ExplosionParticles").Emitting = true;
-                GetNode<CollisionShape2D>("PathFollow2D/Cannon/BallPath/BallPathFollow/Hitbox/CollisionShape2D").Disabled = false;
+                GetNode<CpuParticles2D>("PathFollow2D/Cannon/ExplosionParticles").Emitting = true;
+                GetNode<CollisionShape2D>("PathFollow2D/Cannon/Ball/Hitbox/CollisionShape2D").Disabled = false;
                 _barrel.Visible = false;
-                _ballPathFollow.Visible = true;
+                _ball.Visible = true;
                 _tornBarrel.Visible = true;
                 _doCannonShoted = true;
             }
         }
-        else if (_ballPathFollow.UnitOffset < 0.95f)
+        else if (_ball.GlobalPosition.Y < _ballYBound)
         {
-            _ballPathFollow.Offset += _ballSpeed;
-            if (_sprites.Position.x < 50)
+            _ball.Position = new Vector2(_ball.Position.X - 1.75f, _ball.Position.Y + _ballYMotion);
+            _ball.Rotation -= 0.06f;
+            _ballYMotion -= 0.015f;
+            if (_sprites.Position.X < 50)
             {
-                _sprites.Position = new Vector2(_sprites.Position.x + 1.5f, _sprites.Position.y);
-                _sprites.Rotation += 0.06f;
+                _sprites.Position = new Vector2(_sprites.Position.X + 1.5f, _sprites.Position.Y);
+                _sprites.Rotation -= 0.06f;
             }
         }
         else
-        {
             QueueFree();
-        }
     }
 }

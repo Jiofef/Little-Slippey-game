@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/MicroExplosion.wav-b5a69ecd9c81906a5bc507d0cd9729d1.sample"
+type="AudioStreamWAV"
+uid="uid://gj5ebhpdiyko"
+path="res://.godot/imported/MicroExplosion.wav-b5a69ecd9c81906a5bc507d0cd9729d1.sample"
 
 [deps]
 
 source_file="res://Content/Sounds/Crosses/MicroExplosion.wav"
-dest_files=[ "res://.import/MicroExplosion.wav-b5a69ecd9c81906a5bc507d0cd9729d1.sample" ]
+dest_files=["res://.godot/imported/MicroExplosion.wav-b5a69ecd9c81906a5bc507d0cd9729d1.sample"]
 
 [params]
 

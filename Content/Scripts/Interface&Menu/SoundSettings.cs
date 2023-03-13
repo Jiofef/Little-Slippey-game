@@ -1,7 +1,6 @@
 using Godot;
-using System;
 
-public class SoundSettings : Control
+public partial class SoundSettings : Control
 {
     public override void _Ready()
     {
@@ -39,17 +38,15 @@ public class SoundSettings : Control
     }
     private void SoundChanging(int BusNubmer, float value)
     {
-        if (value > -29)
+        if (value > -30)
         {
             Meta.Instance.BusVolumes[BusNubmer] = value;
-            Meta.Instance.DoBusMuted[BusNubmer] = false;
             AudioServer.SetBusVolumeDb(BusNubmer, value);
             AudioServer.SetBusMute(BusNubmer, false);
         }
         else
         {
             Meta.Instance.BusVolumes[BusNubmer] = value;
-            Meta.Instance.DoBusMuted[BusNubmer] = true;
             AudioServer.SetBusVolumeDb(BusNubmer, value);
             AudioServer.SetBusMute(BusNubmer, true);
         }

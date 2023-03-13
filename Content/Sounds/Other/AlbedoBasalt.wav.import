@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/AlbedoBasalt.wav-0f9532806826bcc93954025aa293aca4.sample"
+type="AudioStreamWAV"
+uid="uid://ba04n144d1133"
+path="res://.godot/imported/AlbedoBasalt.wav-0f9532806826bcc93954025aa293aca4.sample"
 
 [deps]
 
 source_file="res://Content/Sounds/Other/AlbedoBasalt.wav"
-dest_files=[ "res://.import/AlbedoBasalt.wav-0f9532806826bcc93954025aa293aca4.sample" ]
+dest_files=["res://.godot/imported/AlbedoBasalt.wav-0f9532806826bcc93954025aa293aca4.sample"]
 
 [params]
 

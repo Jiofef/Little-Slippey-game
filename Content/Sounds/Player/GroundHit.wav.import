@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/GroundHit.wav-940c8db0cb15f13b19de6ed79b3daf1a.sample"
+type="AudioStreamWAV"
+uid="uid://y2jek6twhvve"
+path="res://.godot/imported/GroundHit.wav-940c8db0cb15f13b19de6ed79b3daf1a.sample"
 
 [deps]
 
 source_file="res://Content/Sounds/Player/GroundHit.wav"
-dest_files=[ "res://.import/GroundHit.wav-940c8db0cb15f13b19de6ed79b3daf1a.sample" ]
+dest_files=["res://.godot/imported/GroundHit.wav-940c8db0cb15f13b19de6ed79b3daf1a.sample"]
 
 [params]
 

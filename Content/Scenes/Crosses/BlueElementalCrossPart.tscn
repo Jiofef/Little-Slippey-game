@@ -1,49 +1,54 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=8 format=3 uid="uid://c8sdugxtwovh6"]
 
-[ext_resource path="res://Content/Scenes/Crosses/CrossLayout.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Content/Sprites/Crosses/BlueElementalCrossPart.png" type="Texture" id=2]
-[ext_resource path="res://Content/Scripts/Crosses/BlueElementalCrossPart.cs" type="Script" id=3]
-[ext_resource path="res://Content/Scenes/Crosses/ExplosionAnimation.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Content/Sounds/Crosses/MicroExplosion.wav" type="AudioStream" id=5]
+[ext_resource type="PackedScene" path="res://Content/Scenes/Crosses/CrossLayout.tscn" id="1"]
+[ext_resource type="Texture2D" uid="uid://daihu7vaujeu7" path="res://Content/Sprites/Crosses/BlueElementalCrossPart.png" id="2"]
+[ext_resource type="Script" path="res://Content/Scripts/Crosses/BlueElementalCrossPart.cs" id="3"]
+[ext_resource type="PackedScene" uid="uid://bt41vubjcqv8p" path="res://Content/Scenes/Crosses/ExplosionAnimation.tscn" id="4"]
+[ext_resource type="AudioStream" uid="uid://gj5ebhpdiyko" path="res://Content/Sounds/Crosses/MicroExplosion.wav" id="5"]
 
-[sub_resource type="Curve2D" id=2]
+[sub_resource type="Curve2D" id="2"]
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 41, 119.333 )
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 41, 119.333)
 }
+point_count = 2
 
-[sub_resource type="CircleShape2D" id=1]
+[sub_resource type="CircleShape2D" id="1"]
 radius = 12.6842
 
-[node name="BlueElementalCrossPart" instance=ExtResource( 1 )]
-script = ExtResource( 3 )
+[node name="BlueElementalCrossPart" instance=ExtResource("1")]
+script = ExtResource("3")
+
+[node name="ExplosionSignal" parent="." index="0"]
+bus = &"CrossSnap"
 
 [node name="ExplosionSound" parent="." index="1"]
-stream = ExtResource( 5 )
+stream = ExtResource("5")
 volume_db = -7.0
+bus = &"CrossExplosion"
 
 [node name="Path2D" type="Path2D" parent="." index="2"]
-curve = SubResource( 2 )
+curve = SubResource("2")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D" index="0"]
-rotate = false
+rotates = false
 
 [node name="ExplosiveArea" type="Area2D" parent="Path2D/PathFollow2D" index="0"]
 collision_layer = 16
 collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Path2D/PathFollow2D/ExplosiveArea" index="0"]
-shape = SubResource( 1 )
+shape = SubResource("1")
 disabled = true
 
-[node name="Sprite" type="Sprite" parent="Path2D/PathFollow2D" index="1"]
-scale = Vector2( 1.5, 1.5 )
-texture = ExtResource( 2 )
+[node name="Sprite2D" type="Sprite2D" parent="Path2D/PathFollow2D" index="1"]
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("2")
 
-[node name="ExplosionAnimation" parent="Path2D/PathFollow2D" index="2" instance=ExtResource( 4 )]
-scale = Vector2( 0.75, 0.75 )
+[node name="ExplosionAnimation" parent="Path2D/PathFollow2D" index="2" instance=ExtResource("4")]
+scale = Vector2(0.75, 0.75)
 
 [node name="SpawnSound" type="AudioStreamPlayer" parent="." index="3"]
 volume_db = 5.0
-bus = "CrossOther"
+bus = &"CrossOther"
 
 [connection signal="animation_finished" from="Path2D/PathFollow2D/ExplosionAnimation" to="." method="Deleting"]

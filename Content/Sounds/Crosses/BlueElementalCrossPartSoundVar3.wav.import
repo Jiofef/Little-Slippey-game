@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/BlueElementalCrossPartSoundVar3.wav-1d7d7889120ebef5f1f8c9fe56e61b31.sample"
+type="AudioStreamWAV"
+uid="uid://bq5de5ae7xg1r"
+path="res://.godot/imported/BlueElementalCrossPartSoundVar3.wav-1d7d7889120ebef5f1f8c9fe56e61b31.sample"
 
 [deps]
 
 source_file="res://Content/Sounds/Crosses/BlueElementalCrossPartSoundVar3.wav"
-dest_files=[ "res://.import/BlueElementalCrossPartSoundVar3.wav-1d7d7889120ebef5f1f8c9fe56e61b31.sample" ]
+dest_files=["res://.godot/imported/BlueElementalCrossPartSoundVar3.wav-1d7d7889120ebef5f1f8c9fe56e61b31.sample"]
 
 [params]
 

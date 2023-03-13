@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/RedElementalCrossSpawnSound.wav-43c867b9b0c99454928edf106d9a1200.sample"
+type="AudioStreamWAV"
+uid="uid://bg3vf8ge7ugou"
+path="res://.godot/imported/RedElementalCrossSpawnSound.wav-43c867b9b0c99454928edf106d9a1200.sample"
 
 [deps]
 
 source_file="res://Content/Sounds/Crosses/RedElementalCrossSpawnSound.wav"
-dest_files=[ "res://.import/RedElementalCrossSpawnSound.wav-43c867b9b0c99454928edf106d9a1200.sample" ]
+dest_files=["res://.godot/imported/RedElementalCrossSpawnSound.wav-43c867b9b0c99454928edf106d9a1200.sample"]
 
 [params]
 

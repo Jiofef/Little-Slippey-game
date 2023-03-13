@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/CannonChargingSound.wav-939ce9fda18702cb668060a376c0ce9e.sample"
+type="AudioStreamWAV"
+uid="uid://cq4chw1mbchw1"
+path="res://.godot/imported/CannonChargingSound.wav-939ce9fda18702cb668060a376c0ce9e.sample"
 
 [deps]
 
 source_file="res://Content/Sounds/Crosses/CannonChargingSound.wav"
-dest_files=[ "res://.import/CannonChargingSound.wav-939ce9fda18702cb668060a376c0ce9e.sample" ]
+dest_files=["res://.godot/imported/CannonChargingSound.wav-939ce9fda18702cb668060a376c0ce9e.sample"]
 
 [params]
 

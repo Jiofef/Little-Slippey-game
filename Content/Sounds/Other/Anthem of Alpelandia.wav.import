@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/Anthem of Alpelandia.wav-2e6dffe31b5eee63713e3c3d8c91905b.sample"
+type="AudioStreamWAV"
+uid="uid://l6ifiq1o3gkv"
+path="res://.godot/imported/Anthem of Alpelandia.wav-2e6dffe31b5eee63713e3c3d8c91905b.sample"
 
 [deps]
 
 source_file="res://Content/Sounds/Other/Anthem of Alpelandia.wav"
-dest_files=[ "res://.import/Anthem of Alpelandia.wav-2e6dffe31b5eee63713e3c3d8c91905b.sample" ]
+dest_files=["res://.godot/imported/Anthem of Alpelandia.wav-2e6dffe31b5eee63713e3c3d8c91905b.sample"]
 
 [params]
 

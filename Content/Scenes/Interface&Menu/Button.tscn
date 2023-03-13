@@ -1,27 +1,27 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=5 format=3 uid="uid://bi3r8ko1akhe1"]
 
-[ext_resource path="res://Content/Sounds/Other/ButtonUp.wav" type="AudioStream" id=1]
-[ext_resource path="res://Content/Sprites/Interface/Menu/Buttons/Default/PlaceHolder.png" type="Texture" id=2]
-[ext_resource path="res://Content/Scripts/Interface&Menu/ButtonScript.cs" type="Script" id=3]
-[ext_resource path="res://Content/Sounds/Other/ButtonDown.wav" type="AudioStream" id=4]
+[ext_resource type="AudioStream" uid="uid://bsh68dpfm758v" path="res://Content/Sounds/Other/ButtonUp.wav" id="1"]
+[ext_resource type="Texture2D" uid="uid://m32rkn6okj25" path="res://Content/Sprites/Interface/Menu/Buttons/Default/PlaceHolder.png" id="2"]
+[ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/ButtonScript.cs" id="3"]
+[ext_resource type="AudioStream" uid="uid://cs50sf2kyk8ir" path="res://Content/Sounds/Other/ButtonDown.wav" id="4"]
 
 [node name="Button" type="TextureButton"]
-margin_right = 48.0
-margin_bottom = 16.0
-rect_scale = Vector2( 5, 5 )
-texture_normal = ExtResource( 2 )
-script = ExtResource( 3 )
+offset_right = 48.0
+offset_bottom = 16.0
+scale = Vector2(5, 5)
+texture_normal = ExtResource("2")
+script = ExtResource("3")
 
 [node name="ButtonUpSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 1 )
+stream = ExtResource("1")
 volume_db = 10.0
-bus = "Interface"
+bus = &"Interface"
 
 [node name="ButtonDownSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 4 )
+stream = ExtResource("4")
 volume_db = 10.0
-bus = "Interface"
+bus = &"Interface"
 
-[connection signal="button_down" from="." to="." method="ButtonDown"]
-[connection signal="button_up" from="." to="." method="ButtonUp"]
-[connection signal="mouse_entered" from="." to="." method="MouseEntered"]
+[connection signal="button_down" from="." to="." method="ThisButtonDown"]
+[connection signal="button_up" from="." to="." method="ThisButtonUp"]
+[connection signal="mouse_entered" from="." to="." method="ThisMouseEntered"]

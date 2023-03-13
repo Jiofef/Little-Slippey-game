@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/MegaExplosion.wav-c0b6f0204e27e48e3f02c6bbec0b43d4.sample"
+type="AudioStreamWAV"
+uid="uid://dannf4n2kbklp"
+path="res://.godot/imported/MegaExplosion.wav-c0b6f0204e27e48e3f02c6bbec0b43d4.sample"
 
 [deps]
 
 source_file="res://Content/Sounds/Crosses/MegaExplosion.wav"
-dest_files=[ "res://.import/MegaExplosion.wav-c0b6f0204e27e48e3f02c6bbec0b43d4.sample" ]
+dest_files=["res://.godot/imported/MegaExplosion.wav-c0b6f0204e27e48e3f02c6bbec0b43d4.sample"]
 
 [params]
 

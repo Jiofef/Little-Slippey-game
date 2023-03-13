@@ -1,12 +1,13 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://Content/Sprites/Crosses/ElementalCross.png" type="Texture" id=2]
+[ext_resource path="res://Content/Sprites/Crosses/ElementalCross.png" type="Texture2D" id=2]
 [ext_resource path="res://Content/Scripts/Crosses/ElementalCross.cs" type="Script" id=3]
 
 [node name="ElementalCross" type="Node2D"]
+position = Vector2( 500, 500 )
 scale = Vector2( 3, 3 )
 script = ExtResource( 3 )
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2( 7, 7 )
 texture = ExtResource( 2 )

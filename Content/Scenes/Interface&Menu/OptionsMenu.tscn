@@ -1,276 +1,309 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=18 format=3 uid="uid://djnb31rnldxtp"]
 
-[ext_resource path="res://Content/Scripts/Interface&Menu/OptionsMenu.cs" type="Script" id=1]
-[ext_resource path="res://Content/Scripts/Interface&Menu/VideoSettings.cs" type="Script" id=2]
-[ext_resource path="res://Content/Scripts/Interface&Menu/ApplyCancel.cs" type="Script" id=3]
-[ext_resource path="res://Content/Scripts/Interface&Menu/SoundSettings.cs" type="Script" id=4]
-[ext_resource path="res://Content/Scripts/Interface&Menu/GameplaySettings.cs" type="Script" id=5]
-[ext_resource path="res://Content/Sprites/Interface/Menu/Options/GameplaySettings.png" type="Texture" id=6]
-[ext_resource path="res://Content/Sprites/Interface/Menu/Options/ApplyCancelSector.png" type="Texture" id=7]
-[ext_resource path="res://Content/Sprites/Interface/Menu/Options/SoundSettings.png" type="Texture" id=8]
-[ext_resource path="res://Content/Sprites/Interface/Menu/Options/VideoSettings.png" type="Texture" id=9]
-[ext_resource path="res://Content/Sprites/Other/Fog.png" type="Texture" id=10]
-[ext_resource path="res://Content/Sprites/Interface/Menu/Options/OptionsBackground.png" type="Texture" id=11]
-[ext_resource path="res://Content/Scripts/Interface&Menu/OptionsBackground.cs" type="Script" id=12]
-[ext_resource path="res://Content/Scenes/Interface&Menu/Button.tscn" type="PackedScene" id=13]
-[ext_resource path="res://Content/Sprites/Interface/Menu/Buttons/Chosen/ChosenApply.png" type="Texture" id=14]
-[ext_resource path="res://Content/Sprites/Interface/Menu/Buttons/Default/Cancel.png" type="Texture" id=15]
-[ext_resource path="res://Content/Sprites/Interface/Menu/Buttons/Default/Apply.png" type="Texture" id=16]
-[ext_resource path="res://Content/Sprites/Interface/Menu/Buttons/Pressed/PressedApply.png" type="Texture" id=17]
-[ext_resource path="res://Content/Sprites/Interface/Menu/Buttons/Pressed/PressedCancel.png" type="Texture" id=18]
-[ext_resource path="res://Content/Sprites/Interface/Menu/Buttons/Chosen/ChosenCancel.png" type="Texture" id=19]
-[ext_resource path="res://Content/Other/PIXBOB LITE.ttf" type="DynamicFontData" id=20]
-[ext_resource path="res://Content/Other/FontPreset.tres" type="DynamicFont" id=21]
-
-[sub_resource type="DynamicFont" id=3]
-font_data = ExtResource( 20 )
+[ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/OptionsMenu.cs" id="1"]
+[ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/VideoSettings.cs" id="2"]
+[ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/ApplyCancel.cs" id="3"]
+[ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/SoundSettings.cs" id="4"]
+[ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/GameplaySettings.cs" id="5"]
+[ext_resource type="Texture2D" uid="uid://celdcwenl1h3u" path="res://Content/Sprites/Interface/Menu/Options/OptionsSector.png" id="6_kjhkq"]
+[ext_resource type="Texture2D" uid="uid://ca4i342wjnluv" path="res://Content/Sprites/Interface/Menu/Options/ApplyCancelSector.png" id="7"]
+[ext_resource type="Texture2D" uid="uid://b6g0lgar27768" path="res://Content/Sprites/Other/Fog.png" id="10"]
+[ext_resource type="Texture2D" uid="uid://klm8gfasncuf" path="res://Content/Sprites/Interface/Menu/Options/OptionsBackground.png" id="11"]
+[ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/OptionsBackground.cs" id="12"]
+[ext_resource type="PackedScene" uid="uid://bi3r8ko1akhe1" path="res://Content/Scenes/Interface&Menu/Button.tscn" id="13"]
+[ext_resource type="Texture2D" uid="uid://d1mqno3m6hyxx" path="res://Content/Sprites/Interface/Menu/Buttons/Chosen/ChosenApply.png" id="14"]
+[ext_resource type="Texture2D" uid="uid://cwpcewk28vec5" path="res://Content/Sprites/Interface/Menu/Buttons/Default/Cancel.png" id="15"]
+[ext_resource type="Texture2D" uid="uid://s7umdmkfdevj" path="res://Content/Sprites/Interface/Menu/Buttons/Default/Apply.png" id="16"]
+[ext_resource type="Texture2D" uid="uid://bp172gwsotta5" path="res://Content/Sprites/Interface/Menu/Buttons/Pressed/PressedApply.png" id="17"]
+[ext_resource type="Texture2D" uid="uid://bhs7korbvekxq" path="res://Content/Sprites/Interface/Menu/Buttons/Pressed/PressedCancel.png" id="18"]
+[ext_resource type="Texture2D" uid="uid://bslepnhric7fv" path="res://Content/Sprites/Interface/Menu/Buttons/Chosen/ChosenCancel.png" id="19"]
 
 [node name="Options" type="Control"]
-pause_mode = 2
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-script = ExtResource( 1 )
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+scale = Vector2(1.208, 1.208)
+transform = Transform2D(1.208, 0, 0, 1.208, 0, 0)
 
-[node name="Background" type="Sprite" parent="CanvasLayer"]
-position = Vector2( 530, 300 )
-texture = ExtResource( 11 )
-script = ExtResource( 12 )
+[node name="Background" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(530, 297.185)
+scale = Vector2(1, 0.990618)
+texture = ExtResource("11")
+script = ExtResource("12")
 
-[node name="Fog" type="Sprite" parent="CanvasLayer/Background"]
-self_modulate = Color( 1, 1, 1, 0.588235 )
-position = Vector2( 1.33514e-05, 2.00272e-05 )
-scale = Vector2( 26.5, 15 )
-texture = ExtResource( 10 )
+[node name="Fog" type="Sprite2D" parent="CanvasLayer/Background"]
+self_modulate = Color(1, 1, 1, 0.588235)
+position = Vector2(1.33514e-05, 0.835699)
+scale = Vector2(26.5, 15.0418)
+texture = ExtResource("10")
 
 [node name="Sound" type="Control" parent="CanvasLayer"]
-margin_right = 350.0
-margin_bottom = 600.0
-script = ExtResource( 4 )
+layout_mode = 3
+anchors_preset = 0
+offset_right = 350.0
+offset_bottom = 600.0
+scale = Vector2(0.8, 0.8)
+script = ExtResource("4")
 
-[node name="Sprite" type="Sprite" parent="CanvasLayer/Sound"]
-position = Vector2( 177, 300 )
-scale = Vector2( 4.02273, 4 )
-texture = ExtResource( 8 )
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/Sound"]
+position = Vector2(221.44, 372.391)
+scale = Vector2(5.03274, 4.96856)
+texture = ExtResource("6_kjhkq")
+
+[node name="Label" type="Label" parent="CanvasLayer/Sound"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.046
+anchor_top = 0.038
+anchor_right = 1.223
+anchor_bottom = 0.218
+offset_left = -0.100006
+offset_top = 0.199997
+offset_right = -309.05
+offset_bottom = -80.8
+scale = Vector2(3.8, 3.8)
+text = "Sound"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Sound"]
-margin_left = 75.0
-margin_top = 100.0
-margin_right = 93.0
-margin_bottom = 269.0
-rect_scale = Vector2( 2, 1.8 )
+layout_mode = 0
+offset_left = 33.0
+offset_top = 147.0
+offset_right = 245.0
+offset_bottom = 500.0
+scale = Vector2(1.778, 1.6)
+alignment = 1
 
 [node name="Global" type="Label" parent="CanvasLayer/Sound/VBoxContainer"]
-margin_right = 97.0
-margin_bottom = 15.0
-custom_fonts/font = ExtResource( 21 )
+layout_mode = 2
 text = "Global"
-align = 1
 uppercase = true
 
 [node name="GlobalSlider" type="HSlider" parent="CanvasLayer/Sound/VBoxContainer"]
-margin_top = 19.0
-margin_right = 97.0
-margin_bottom = 35.0
+layout_mode = 2
 min_value = -30.0
 max_value = 10.0
 
 [node name="Interface" type="Label" parent="CanvasLayer/Sound/VBoxContainer"]
-margin_top = 39.0
-margin_right = 97.0
-margin_bottom = 54.0
-custom_fonts/font = ExtResource( 21 )
+layout_mode = 2
 text = "Interface"
-align = 1
 uppercase = true
 
 [node name="InterfaceSlider" type="HSlider" parent="CanvasLayer/Sound/VBoxContainer"]
-margin_top = 58.0
-margin_right = 97.0
-margin_bottom = 74.0
+layout_mode = 2
 min_value = -30.0
 max_value = 10.0
 
 [node name="Music" type="Label" parent="CanvasLayer/Sound/VBoxContainer"]
-margin_top = 78.0
-margin_right = 97.0
-margin_bottom = 93.0
-custom_fonts/font = ExtResource( 21 )
+layout_mode = 2
 text = "Music"
-align = 1
 uppercase = true
 
-[node name="Music" type="Label" parent="CanvasLayer/Sound/VBoxContainer/Music"]
-modulate = Color( 0.647059, 0.647059, 0.647059, 1 )
-anchor_top = -8.744
-anchor_bottom = -8.744
-margin_left = 25.0
-margin_top = 135.382
-margin_right = 118.0
-margin_bottom = 150.382
-rect_scale = Vector2( 0.5, 0.5 )
-custom_fonts/font = ExtResource( 21 )
-text = "not aviable yet"
-align = 1
+[node name="Not aviable yet" type="Label" parent="CanvasLayer/Sound/VBoxContainer/Music"]
+modulate = Color(0.647059, 0.647059, 0.647059, 1)
+layout_mode = 2
+offset_left = 73.2807
+offset_top = 8.02443
+offset_right = 269.281
+offset_bottom = 33.0244
+scale = Vector2(0.5, 0.5)
+text = "(not aviable yet)"
 uppercase = true
 
 [node name="MusicSlider" type="HSlider" parent="CanvasLayer/Sound/VBoxContainer"]
-margin_top = 97.0
-margin_right = 97.0
-margin_bottom = 113.0
+layout_mode = 2
 min_value = -30.0
 max_value = 10.0
 
 [node name="Player" type="Label" parent="CanvasLayer/Sound/VBoxContainer"]
-margin_top = 117.0
-margin_right = 97.0
-margin_bottom = 132.0
-custom_fonts/font = ExtResource( 21 )
+layout_mode = 2
 text = "Player"
-align = 1
 uppercase = true
 
 [node name="PlayerSlider" type="HSlider" parent="CanvasLayer/Sound/VBoxContainer"]
-margin_top = 136.0
-margin_right = 97.0
-margin_bottom = 152.0
+layout_mode = 2
 min_value = -30.0
 max_value = 10.0
 
 [node name="CrossSnap" type="Label" parent="CanvasLayer/Sound/VBoxContainer"]
-margin_top = 156.0
-margin_right = 97.0
-margin_bottom = 171.0
-custom_fonts/font = ExtResource( 21 )
+layout_mode = 2
 text = "Cross snap"
-align = 1
 uppercase = true
 
 [node name="CrossSnapSlider" type="HSlider" parent="CanvasLayer/Sound/VBoxContainer"]
-margin_top = 175.0
-margin_right = 97.0
-margin_bottom = 191.0
+layout_mode = 2
 min_value = -30.0
 max_value = 10.0
 
 [node name="CrossOther" type="Label" parent="CanvasLayer/Sound/VBoxContainer"]
-margin_top = 195.0
-margin_right = 97.0
-margin_bottom = 210.0
-custom_fonts/font = ExtResource( 21 )
+layout_mode = 2
 text = "Cross other"
-align = 1
 uppercase = true
 
 [node name="CrossOtherSlider" type="HSlider" parent="CanvasLayer/Sound/VBoxContainer"]
-margin_top = 214.0
-margin_right = 97.0
-margin_bottom = 230.0
+layout_mode = 2
 min_value = -30.0
 max_value = 10.0
 
 [node name="CrossExplosion" type="Label" parent="CanvasLayer/Sound/VBoxContainer"]
-margin_top = 234.0
-margin_right = 97.0
-margin_bottom = 249.0
-custom_fonts/font = ExtResource( 21 )
+layout_mode = 2
 text = "Cross explosion"
-align = 1
 uppercase = true
 
 [node name="CrossExplosionSlider" type="HSlider" parent="CanvasLayer/Sound/VBoxContainer"]
-margin_top = 253.0
-margin_right = 97.0
-margin_bottom = 269.0
+layout_mode = 2
 min_value = -30.0
 max_value = 10.0
 
 [node name="Video" type="Control" parent="CanvasLayer"]
-margin_left = 355.0
-margin_right = 705.0
-margin_bottom = 600.0
-script = ExtResource( 2 )
+layout_mode = 3
+anchors_preset = 0
+offset_left = 355.0
+offset_right = 705.0
+offset_bottom = 600.0
+scale = Vector2(0.8, 0.8)
+script = ExtResource("2")
 
-[node name="Sprite" type="Sprite" parent="CanvasLayer/Video"]
-position = Vector2( 176.5, 300 )
-scale = Vector2( 4.03409, 4 )
-texture = ExtResource( 9 )
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/Video"]
+position = Vector2(221.023, 372.516)
+scale = Vector2(5.04598, 4.96689)
+texture = ExtResource("6_kjhkq")
+
+[node name="Label" type="Label" parent="CanvasLayer/Video"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.046
+anchor_top = 0.038
+anchor_right = 1.223
+anchor_bottom = 0.205
+offset_left = -0.100002
+offset_top = 0.199999
+offset_right = -309.05
+offset_bottom = -75.0
+scale = Vector2(4, 4)
+text = "Video"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Video"]
+layout_mode = 1
+anchors_preset = -1
 anchor_top = 0.03
 anchor_bottom = 0.03
-margin_left = 21.0
-margin_top = 100.0
-margin_right = 176.0
-margin_bottom = 269.0
-rect_scale = Vector2( 2, 1.8 )
+offset_left = 30.0
+offset_top = 123.0
+offset_right = 221.0
+offset_bottom = 441.0
+scale = Vector2(2, 1.8)
 
 [node name="ScreenFormat" type="OptionButton" parent="CanvasLayer/Video/VBoxContainer"]
-margin_right = 155.0
-margin_bottom = 21.0
-custom_fonts/font = SubResource( 3 )
-text = "Screenformat"
-align = 1
+layout_mode = 2
+item_count = 2
+selected = 0
+popup/item_0/text = "Standart"
+popup/item_0/id = 0
+popup/item_1/text = "Fullscreen"
+popup/item_1/id = 1
 
 [node name="Gameplay" type="Control" parent="CanvasLayer"]
-margin_left = 710.0
-margin_right = 1060.0
-margin_bottom = 500.0
-script = ExtResource( 5 )
+layout_mode = 3
+anchors_preset = 0
+offset_left = 710.0
+offset_right = 1060.0
+offset_bottom = 500.0
+scale = Vector2(0.8, 0.8)
+script = ExtResource("5")
 
-[node name="Sprite" type="Sprite" parent="CanvasLayer/Gameplay"]
-position = Vector2( 174.5, 250 )
-scale = Vector2( 3.98864, 4 )
-texture = ExtResource( 6 )
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/Gameplay"]
+position = Vector2(218.002, 372.517)
+scale = Vector2(4.97731, 4.96689)
+texture = ExtResource("6_kjhkq")
+
+[node name="Label" type="Label" parent="CanvasLayer/Gameplay"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.046
+anchor_top = 0.038
+anchor_right = 1.207
+anchor_bottom = 0.217
+offset_left = -0.100002
+offset_right = -279.45
+offset_bottom = -61.5
+scale = Vector2(3.2, 3.2)
+text = "Gameplay"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Gameplay"]
+layout_mode = 1
+anchors_preset = -1
 anchor_top = 0.03
 anchor_bottom = 0.03
-margin_left = 75.0
-margin_top = 100.0
-margin_right = 93.0
-margin_bottom = 269.0
-rect_scale = Vector2( 2, 1.8 )
+offset_left = 30.0
+offset_top = 126.0
+offset_right = 218.0
+offset_bottom = 383.0
+scale = Vector2(2, 1.8)
 
 [node name="DificultyChange" type="OptionButton" parent="CanvasLayer/Gameplay/VBoxContainer"]
-margin_right = 108.0
-margin_bottom = 21.0
-custom_fonts/font = SubResource( 3 )
-text = "Set dificulty"
-align = 1
+layout_mode = 2
+item_count = 3
+selected = 0
+popup/item_0/text = "Easy"
+popup/item_0/id = 0
+popup/item_1/text = "Default"
+popup/item_1/id = 1
+popup/item_2/text = "Hard"
+popup/item_2/id = 2
 
 [node name="ApplyCancel" type="Control" parent="CanvasLayer"]
-margin_left = 710.0
-margin_top = 500.0
-margin_right = 1060.0
-margin_bottom = 600.0
-script = ExtResource( 3 )
+layout_mode = 3
+anchors_preset = 0
+offset_left = 710.0
+offset_top = 500.0
+offset_right = 1060.0
+offset_bottom = 596.0
+script = ExtResource("3")
 
-[node name="Sprite" type="Sprite" parent="CanvasLayer/ApplyCancel"]
-position = Vector2( 174.5, 50 )
-scale = Vector2( 3.98864, 4 )
-texture = ExtResource( 7 )
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/ApplyCancel"]
+position = Vector2(174.304, 46.1922)
+scale = Vector2(3.98406, 3.98674)
+texture = ExtResource("7")
 
-[node name="Apply" parent="CanvasLayer/ApplyCancel" instance=ExtResource( 13 )]
-margin_left = 7.0
-margin_top = 10.0
-margin_right = 43.0
-margin_bottom = 26.0
-rect_scale = Vector2( 4.6, 5 )
-texture_normal = ExtResource( 16 )
-texture_pressed = ExtResource( 17 )
-texture_focused = ExtResource( 14 )
+[node name="Apply" parent="CanvasLayer/ApplyCancel" instance=ExtResource("13")]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.955
+offset_left = 11.8544
+offset_top = 8.27817
+offset_right = -302.146
+offset_bottom = -71.2218
+scale = Vector2(4.496, 4.7)
+texture_normal = ExtResource("16")
+texture_pressed = ExtResource("17")
+texture_focused = ExtResource("14")
 
-[node name="Cancel" parent="CanvasLayer/ApplyCancel" instance=ExtResource( 13 )]
-margin_left = 173.0
-margin_top = 10.0
-margin_right = 209.0
-margin_bottom = 26.0
-rect_scale = Vector2( 4.6, 5 )
-texture_normal = ExtResource( 15 )
-texture_pressed = ExtResource( 18 )
-texture_focused = ExtResource( 19 )
+[node name="Cancel" parent="CanvasLayer/ApplyCancel" instance=ExtResource("13")]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.009
+offset_left = 174.934
+offset_top = 8.27817
+offset_right = 207.784
+offset_bottom = 24.2782
+scale = Vector2(4.496, 4.7)
+texture_normal = ExtResource("15")
+texture_pressed = ExtResource("18")
+texture_focused = ExtResource("19")
 
 [connection signal="value_changed" from="CanvasLayer/Sound/VBoxContainer/GlobalSlider" to="CanvasLayer/Sound" method="GlobalChanged"]
 [connection signal="value_changed" from="CanvasLayer/Sound/VBoxContainer/InterfaceSlider" to="CanvasLayer/Sound" method="InterfaceChanged"]

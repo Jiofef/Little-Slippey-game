@@ -1,36 +1,36 @@
 using Godot;
 using System;
 
-public class BlumCross : Node2D
+public partial class BlumCross : Node2D
 {
     private float _cycleSpeedMultiplier = 1f / 60 / 2, _xSpriteMotion, _ySpriteMotion = -3, _gravity = 9.8f;
     private byte _cyclesToExplosion = 10;
-    private Sprite _crossSprite, _warningSprite, _abortButton;
+    private Sprite2D _crossSprite, _warningSprite, _abortButton;
     private AudioStreamPlayer _explosiveSignal;
     private bool _abortButtonPressed = false;
     private Random _random = new Random();
     public override void _Ready()
     {
-        Modulate = new Color(Modulate.r, Modulate.g, Modulate.b, 0);
-        _crossSprite = GetNode<Sprite>("CrossSprite");
-        _warningSprite = GetNode<Sprite>("WarningSprite");
-        _abortButton = GetNode<Sprite>("AbortButton");
+        Modulate = new Color(Modulate.R, Modulate.G, Modulate.B, 0);
+        _crossSprite = GetNode<Sprite2D>("CrossSprite");
+        _warningSprite = GetNode<Sprite2D>("WarningSprite");
+        _abortButton = GetNode<Sprite2D>("AbortButton");
         _explosiveSignal = GetNode<AudioStreamPlayer>("ExplosionSignal");
 
-        _crossSprite.Modulate = new Color(_crossSprite.Modulate.r + _cycleSpeedMultiplier, _crossSprite.Modulate.g, _crossSprite.Modulate.b);
+        _crossSprite.Modulate = new Color(_crossSprite.Modulate.R + _cycleSpeedMultiplier, _crossSprite.Modulate.G, _crossSprite.Modulate.B);
 
         _explosiveSignal.Play();
 
         _xSpriteMotion = _random.Next(-2, 3);
     }
-    public override void _PhysicsProcess(float delta)
+    public override void _PhysicsProcess(double delta)
     {
         if (_abortButtonPressed)
         {
-            if (Modulate.a != 0)
+            if (Modulate.A != 0)
             {
-                Modulate = new Color(Modulate.r, Modulate.g, Modulate.b, Modulate.a - 0.03f);
-                Position = new Vector2(Position.x + _xSpriteMotion, Position.y + _ySpriteMotion);
+                Modulate = new Color(Modulate.R, Modulate.G, Modulate.B, Modulate.A - 0.03f);
+                Translate(new Vector2(_xSpriteMotion, _ySpriteMotion));
                 _ySpriteMotion += _gravity / 100;
                 Rotation += 0.01f;
                 return;
@@ -39,17 +39,17 @@ public class BlumCross : Node2D
         }
         if (_cyclesToExplosion > 0)
         {
-            if (Modulate.a < 1)
-                Modulate = new Color(Modulate.r, Modulate.g, Modulate.b, Modulate.a + _cycleSpeedMultiplier);
+            if (Modulate.A < 1)
+                Modulate = new Color(Modulate.R, Modulate.G, Modulate.B, Modulate.A + _cycleSpeedMultiplier);
 
-            _crossSprite.Modulate = new Color(_crossSprite.Modulate.r + _cycleSpeedMultiplier, _crossSprite.Modulate.g, _crossSprite.Modulate.b);
-            _warningSprite.Modulate = new Color(_warningSprite.Modulate.r, _warningSprite.Modulate.r, _warningSprite.Modulate.r, _warningSprite.Modulate.a + _cycleSpeedMultiplier);
+            _crossSprite.Modulate = new Color(_crossSprite.Modulate.R + _cycleSpeedMultiplier, _crossSprite.Modulate.G, _crossSprite.Modulate.B);
+            _warningSprite.Modulate = new Color(_warningSprite.Modulate.R, _warningSprite.Modulate.R, _warningSprite.Modulate.R, _warningSprite.Modulate.A + _cycleSpeedMultiplier);
         }
         else
         {
-            var explosionAnimation = GetNode<AnimatedSprite>("ExplosionAnimation");
+            var explosionAnimation = GetNode<AnimatedSprite2D>("ExplosionAnimation");
             var explosiveArea = GetNode<CollisionShape2D>("ExplosiveArea/CollisionShape2D");
-            if (explosionAnimation.Playing)
+            if (explosionAnimation.IsPlaying())
             {
                 explosiveArea.Disabled = true;
                 SetPhysicsProcess(false);
@@ -70,8 +70,8 @@ public class BlumCross : Node2D
         _cycleSpeedMultiplier *= 1.5f;
         _cyclesToExplosion--;
 
-        _crossSprite.Modulate = new Color(0, _crossSprite.Modulate.g, _crossSprite.Modulate.b);
-        _warningSprite.Modulate = new Color(_warningSprite.Modulate.r, _warningSprite.Modulate.r, _warningSprite.Modulate.r, 0);
+        _crossSprite.Modulate = new Color(0, _crossSprite.Modulate.G, _crossSprite.Modulate.B);
+        _warningSprite.Modulate = new Color(_warningSprite.Modulate.R, _warningSprite.Modulate.R, _warningSprite.Modulate.R, 0);
 
         _explosiveSignal.PitchScale *= 1.5f;
         _explosiveSignal.Play();
@@ -83,7 +83,7 @@ public class BlumCross : Node2D
     }
     public void HideExplosionAnimation()
     {
-        var explosionAnimation = GetNode<AnimatedSprite>("ExplosionAnimation");
+        var explosionAnimation = GetNode<AnimatedSprite2D>("ExplosionAnimation");
         explosionAnimation.Stop();
         explosionAnimation.Visible = false;
     }

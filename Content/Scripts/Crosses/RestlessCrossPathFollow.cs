@@ -1,27 +1,25 @@
 using Godot;
 
-public class RestlessCrossPathFollow : Path2D
+public partial class RestlessCrossPathFollow : Path2D
 {
     private float _timer = 0;
-    private bool _stopProcess;
     PathFollow2D _follow;
     public override void _Ready()
     {
-        StopMotion();
+        SetPhysicsProcess(false);
         _follow = GetNode<PathFollow2D>("PathFollow2D");
     }
-    public override void _PhysicsProcess(float delta)
+    public override void _PhysicsProcess(double delta)
     {
-        if (_stopProcess) return;
-        _timer += delta * G.ReversedPlayerDeathTimerCoeff;
-        _follow.Offset = 300 * _timer * _timer;
+        _timer += 0.016667f * G.ReversedPlayerDeathTimerCoeff;
+        _follow.Progress = 300 * _timer * _timer;
     }
     public void StartMotion()
     {
-        _stopProcess = false;
+        SetPhysicsProcess(true);
     }
     public void StopMotion()
     {
-        _stopProcess = true;
+        SetPhysicsProcess(false);
     }
 }

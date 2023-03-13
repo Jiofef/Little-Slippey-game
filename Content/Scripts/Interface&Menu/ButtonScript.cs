@@ -1,9 +1,9 @@
 using Godot;
 using System;
 
-public class ButtonScript : TextureButton
+public partial class ButtonScript : TextureButton
 {
-    Texture _textureFocused;
+    Texture2D _textureFocused;
     AudioStreamPlayer _buttonDown;
     AudioStreamPlayer _buttonUp;
     public override void _Ready()
@@ -12,17 +12,17 @@ public class ButtonScript : TextureButton
         _buttonDown = GetNode<AudioStreamPlayer>("ButtonDownSound");
         _buttonUp = GetNode<AudioStreamPlayer>("ButtonUpSound");
     }
-    public void MouseEntered()
+    public void ThisMouseEntered()
     {
         GrabFocus();
     }
-    public void ButtonDown()
+    public void ThisButtonDown()
     {
         _buttonDown.Play();
         TextureFocused = null;
-        Pressed = true;
+        ButtonPressed = true;
     }
-    public void ButtonUp()
+    public void ThisButtonUp()
     {
         _buttonUp.Play();
         TextureFocused = _textureFocused;

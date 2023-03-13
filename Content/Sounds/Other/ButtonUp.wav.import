@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/ButtonUp.wav-877619e73d1261425500bfd13740f627.sample"
+type="AudioStreamWAV"
+uid="uid://bsh68dpfm758v"
+path="res://.godot/imported/ButtonUp.wav-877619e73d1261425500bfd13740f627.sample"
 
 [deps]
 
 source_file="res://Content/Sounds/Other/ButtonUp.wav"
-dest_files=[ "res://.import/ButtonUp.wav-877619e73d1261425500bfd13740f627.sample" ]
+dest_files=["res://.godot/imported/ButtonUp.wav-877619e73d1261425500bfd13740f627.sample"]
 
 [params]
 

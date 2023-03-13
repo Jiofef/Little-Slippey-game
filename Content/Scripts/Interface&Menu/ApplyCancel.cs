@@ -1,29 +1,25 @@
 using Godot;
-using System;
 
-public class ApplyCancel : Control
+public partial class ApplyCancel : Control
 {
     [Signal]
-    public delegate void OptionsClosing();
+    public delegate void OptionsClosingEventHandler();
     public override void _Ready()
     {
         if (G.Scores != 0)
-            Connect("OptionsClosing", GetParent().GetParent().GetParent(), "OptionsClosing");
+            Connect("OptionsClosing",new Callable(GetParent().GetParent().GetParent(),"OptionsClosing"));
     }
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
         if (Input.IsActionJustPressed("Cancel"))
-        {
             Cancel();
-        }
     }
     public void Cancel()
     {
         Meta.Instance = Meta.OptionsReserve.Clone();
         Meta.Instance.ApplyOptions();
         if (G.Scores == 0)
-            GetTree().ChangeScene("res://Content/Scenes/Interface&Menu/Menu.tscn");
-        
+            GetTree().ChangeSceneToFile("res://Content/Scenes/Interface&Menu/Menu.tscn");
         else
         {
             EmitSignal("OptionsClosing");
@@ -34,7 +30,7 @@ public class ApplyCancel : Control
     {
         Meta.Instance.SaveToFile();
         if (G.Scores == 0)
-            GetTree().ChangeScene("res://Content/Scenes/Interface&Menu/Menu.tscn");
+            GetTree().ChangeSceneToFile("res://Content/Scenes/Interface&Menu/Menu.tscn");
         else
         {
             EmitSignal("OptionsClosing");

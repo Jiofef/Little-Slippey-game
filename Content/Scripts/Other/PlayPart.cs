@@ -1,9 +1,9 @@
 using Godot;
 
-public class PlayPart : Node2D
+public partial class PlayPart : Node2D
 {
     public override void _Ready()
     {
-        AddChild(ResourceLoader.Load<PackedScene>("res://Content/Scenes/Levels/FullParts/Level" + G.CurrentLevel + ".tscn").Instance());
+        AddChild(ResourceLoader.Load<PackedScene>("res://Content/Scenes/Levels/FullParts/Level" + G.CurrentLevel + ".tscn").Instantiate());
     }
 }

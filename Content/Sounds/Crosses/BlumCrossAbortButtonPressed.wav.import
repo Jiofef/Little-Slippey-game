@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/BlumCrossAbortButtonPressed.wav-062910ad4e73a189d099f1bb171be760.sample"
+type="AudioStreamWAV"
+uid="uid://byv6yfnw13c33"
+path="res://.godot/imported/BlumCrossAbortButtonPressed.wav-062910ad4e73a189d099f1bb171be760.sample"
 
 [deps]
 
 source_file="res://Content/Sounds/Crosses/BlumCrossAbortButtonPressed.wav"
-dest_files=[ "res://.import/BlumCrossAbortButtonPressed.wav-062910ad4e73a189d099f1bb171be760.sample" ]
+dest_files=["res://.godot/imported/BlumCrossAbortButtonPressed.wav-062910ad4e73a189d099f1bb171be760.sample"]
 
 [params]
 

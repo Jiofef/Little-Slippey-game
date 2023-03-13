@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/WhiteNoise.wav-2a4d8dfda2ff885143ee46a8224d9e4c.sample"
+type="AudioStreamWAV"
+uid="uid://fvujnce467hn"
+path="res://.godot/imported/WhiteNoise.wav-2a4d8dfda2ff885143ee46a8224d9e4c.sample"
 
 [deps]
 
 source_file="res://Content/Sounds/Other/WhiteNoise.wav"
-dest_files=[ "res://.import/WhiteNoise.wav-2a4d8dfda2ff885143ee46a8224d9e4c.sample" ]
+dest_files=["res://.godot/imported/WhiteNoise.wav-2a4d8dfda2ff885143ee46a8224d9e4c.sample"]
 
 [params]
 

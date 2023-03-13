@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/Climb.wav-6c8c3ff5e217c46194a1bf56235cbf23.sample"
+type="AudioStreamWAV"
+uid="uid://jkmxs0pdjtvc"
+path="res://.godot/imported/Climb.wav-6c8c3ff5e217c46194a1bf56235cbf23.sample"
 
 [deps]
 
 source_file="res://Content/Sounds/Player/Climb.wav"
-dest_files=[ "res://.import/Climb.wav-6c8c3ff5e217c46194a1bf56235cbf23.sample" ]
+dest_files=["res://.godot/imported/Climb.wav-6c8c3ff5e217c46194a1bf56235cbf23.sample"]
 
 [params]
 

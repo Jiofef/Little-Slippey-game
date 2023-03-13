@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/RestlessCrossSignal.wav-3aedee5ea32ac3d08ee9600d5fc5983a.sample"
+type="AudioStreamWAV"
+uid="uid://dowfutjgchko"
+path="res://.godot/imported/RestlessCrossSignal.wav-3aedee5ea32ac3d08ee9600d5fc5983a.sample"
 
 [deps]
 
 source_file="res://Content/Sounds/Crosses/RestlessCrossSignal.wav"
-dest_files=[ "res://.import/RestlessCrossSignal.wav-3aedee5ea32ac3d08ee9600d5fc5983a.sample" ]
+dest_files=["res://.godot/imported/RestlessCrossSignal.wav-3aedee5ea32ac3d08ee9600d5fc5983a.sample"]
 
 [params]
 

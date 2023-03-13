@@ -1,76 +1,105 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=18 format=3 uid="uid://dxnmuyu5wcsgv"]
 
-[ext_resource path="res://Content/Scripts/Other/PlayPart.cs" type="Script" id=1]
-[ext_resource path="res://Content/Scripts/Other/MainScript.cs" type="Script" id=2]
-[ext_resource path="res://Content/Sprites/Other/Fog.png" type="Texture" id=3]
-[ext_resource path="res://Content/Sprites/Interface/Pause/Buttons/Pressed/PressedResume.png" type="Texture" id=4]
-[ext_resource path="res://Content/Sprites/Interface/Pause/Buttons/Default/Resume.png" type="Texture" id=5]
-[ext_resource path="res://Content/Scenes/Interface&Menu/Button.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Content/Sprites/Interface/Pause/Buttons/Default/Options.png" type="Texture" id=7]
-[ext_resource path="res://Content/Sprites/Interface/Pause/Buttons/Pressed/PressedMenu.png" type="Texture" id=8]
-[ext_resource path="res://Content/Sprites/Interface/Pause/Buttons/Default/Menu.png" type="Texture" id=9]
-[ext_resource path="res://Content/Sprites/Interface/Pause/Other/PauseDesk.png" type="Texture" id=10]
-[ext_resource path="res://Content/Sprites/Interface/Pause/Buttons/Chosen/ChosenOptions.png" type="Texture" id=11]
-[ext_resource path="res://Content/Sprites/Interface/Pause/Buttons/Chosen/ChosenMenu.png" type="Texture" id=12]
-[ext_resource path="res://Content/Sprites/Interface/Pause/Buttons/Chosen/ChosenResume.png" type="Texture" id=13]
-[ext_resource path="res://Content/Sprites/Interface/Pause/Buttons/Pressed/PressedOptions.png" type="Texture" id=14]
+[ext_resource type="Script" path="res://Content/Scripts/Other/PlayPart.cs" id="1"]
+[ext_resource type="Script" path="res://Content/Scripts/Other/MainScript.cs" id="2"]
+[ext_resource type="Texture2D" uid="uid://b6g0lgar27768" path="res://Content/Sprites/Other/Fog.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://c4253ngxvs3vx" path="res://Content/Sprites/Interface/Pause/Buttons/Pressed/PressedResume.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://c8anx03uvrcbq" path="res://Content/Sprites/Interface/Pause/Buttons/Default/Resume.png" id="5"]
+[ext_resource type="PackedScene" uid="uid://bi3r8ko1akhe1" path="res://Content/Scenes/Interface&Menu/Button.tscn" id="6"]
+[ext_resource type="Texture2D" uid="uid://cg8obnaf3qqvi" path="res://Content/Sprites/Interface/Pause/Buttons/Default/Options.png" id="7"]
+[ext_resource type="Texture2D" uid="uid://cfq3bxmsshnb7" path="res://Content/Sprites/Interface/Pause/Buttons/Pressed/PressedMenu.png" id="8"]
+[ext_resource type="Texture2D" uid="uid://bxvhpqekdo5um" path="res://Content/Sprites/Interface/Pause/Buttons/Default/Menu.png" id="9"]
+[ext_resource type="Texture2D" uid="uid://emg8y7w217f1" path="res://Content/Sprites/Interface/Pause/Other/PauseDesk.png" id="10"]
+[ext_resource type="Texture2D" uid="uid://di1rsl1rkxwgk" path="res://Content/Sprites/Interface/Pause/Buttons/Chosen/ChosenOptions.png" id="11"]
+[ext_resource type="Texture2D" uid="uid://co1wrgrjo5bcx" path="res://Content/Sprites/Interface/Pause/Buttons/Chosen/ChosenMenu.png" id="12"]
+[ext_resource type="Texture2D" uid="uid://bxup7q3khjtl6" path="res://Content/Sprites/Interface/Pause/Buttons/Chosen/ChosenResume.png" id="13"]
+[ext_resource type="Texture2D" uid="uid://bho5ckwtfxmcg" path="res://Content/Sprites/Interface/Pause/Buttons/Pressed/PressedOptions.png" id="14"]
+[ext_resource type="Texture2D" uid="uid://doanmwi3cpowk" path="res://Content/Sprites/Interface/Pause/Buttons/Default/OpenMovementTutorial.png" id="15_j7pd1"]
+[ext_resource type="Texture2D" uid="uid://ds83tr2trx50s" path="res://Content/Sprites/Interface/Pause/Buttons/Pressed/PressedOpenMovementTutorialt.png" id="16_s072k"]
+[ext_resource type="Texture2D" uid="uid://fedmavhv1yed" path="res://Content/Sprites/Interface/Pause/Buttons/Chosen/ChosenOpenMovementTutorial.png" id="17_ndief"]
 
 [node name="Main" type="Node2D"]
-pause_mode = 2
-script = ExtResource( 2 )
+process_mode = 3
+script = ExtResource("2")
 
 [node name="PlayPart" type="Node2D" parent="."]
-pause_mode = 1
-script = ExtResource( 1 )
+process_mode = 1
+script = ExtResource("1")
 
 [node name="Pause" type="CanvasLayer" parent="."]
-pause_mode = 2
+process_mode = 2
 visible = false
 
-[node name="Sprite" type="Sprite" parent="Pause"]
-modulate = Color( 1, 1, 1, 0.784314 )
-position = Vector2( 542, 345 )
-scale = Vector2( 30, 20 )
-texture = ExtResource( 3 )
+[node name="Sprite2D" type="Sprite2D" parent="Pause"]
+modulate = Color(1, 1, 1, 0.784314)
+position = Vector2(640, 360)
+scale = Vector2(32, 18)
+texture = ExtResource("3")
 
-[node name="PauseDesk" type="Sprite" parent="Pause"]
-position = Vector2( 530, 100 )
-scale = Vector2( 7, 7 )
-texture = ExtResource( 10 )
+[node name="PauseDesk" type="Sprite2D" parent="Pause"]
+position = Vector2(640, 100)
+scale = Vector2(8, 8)
+texture = ExtResource("10")
 
 [node name="Buttons" type="Control" parent="Pause"]
-margin_right = 1060.0
-margin_bottom = 600.0
+layout_mode = 3
+anchor_left = 0.406
+anchor_top = 0.417
+anchor_right = 0.594
+anchor_bottom = 0.806
+offset_left = -23.6801
+offset_top = -0.240021
+offset_right = -24.3201
+offset_bottom = -0.320068
 
-[node name="Resume" parent="Pause/Buttons" instance=ExtResource( 6 )]
-margin_left = 410.0
-margin_top = 250.0
-margin_right = 458.0
-margin_bottom = 266.0
-focus_neighbour_top = NodePath("../Menu")
-texture_normal = ExtResource( 5 )
-texture_pressed = ExtResource( 4 )
-texture_focused = ExtResource( 13 )
+[node name="Resume" parent="Pause/Buttons" instance=ExtResource("6")]
+layout_mode = 0
+scale = Vector2(6, 6)
+focus_neighbor_left = NodePath("../OpenMovementTutorial")
+focus_neighbor_top = NodePath("../Menu")
+focus_neighbor_right = NodePath("../OpenMovementTutorial")
+texture_normal = ExtResource("5")
+texture_pressed = ExtResource("4")
+texture_focused = ExtResource("13")
 
-[node name="Options" parent="Pause/Buttons" instance=ExtResource( 6 )]
-margin_left = 410.0
-margin_top = 350.0
-margin_right = 458.0
-margin_bottom = 366.0
-texture_normal = ExtResource( 7 )
-texture_pressed = ExtResource( 14 )
-texture_focused = ExtResource( 11 )
+[node name="Options" parent="Pause/Buttons" instance=ExtResource("6")]
+layout_mode = 0
+offset_top = 105.0
+offset_bottom = 121.0
+scale = Vector2(6, 6)
+focus_neighbor_left = NodePath("../OpenMovementTutorial")
+focus_neighbor_right = NodePath("../OpenMovementTutorial")
+texture_normal = ExtResource("7")
+texture_pressed = ExtResource("14")
+texture_focused = ExtResource("11")
 
-[node name="Menu" parent="Pause/Buttons" instance=ExtResource( 6 )]
-margin_left = 410.0
-margin_top = 450.0
-margin_right = 458.0
-margin_bottom = 466.0
-focus_neighbour_bottom = NodePath("../Resume")
-texture_normal = ExtResource( 9 )
-texture_pressed = ExtResource( 8 )
-texture_focused = ExtResource( 12 )
+[node name="Menu" parent="Pause/Buttons" instance=ExtResource("6")]
+layout_mode = 0
+offset_top = 210.0
+offset_bottom = 226.0
+scale = Vector2(6, 6)
+focus_neighbor_left = NodePath("../OpenMovementTutorial")
+focus_neighbor_right = NodePath("../OpenMovementTutorial")
+focus_neighbor_bottom = NodePath("../Resume")
+texture_normal = ExtResource("9")
+texture_pressed = ExtResource("8")
+texture_focused = ExtResource("12")
+
+[node name="OpenMovementTutorial" parent="Pause/Buttons" instance=ExtResource("6")]
+layout_mode = 0
+offset_left = 693.0
+offset_top = 329.0
+offset_right = 709.0
+offset_bottom = 345.0
+focus_neighbor_left = NodePath("../Resume")
+focus_neighbor_top = NodePath("../Resume")
+focus_neighbor_right = NodePath("../Resume")
+focus_neighbor_bottom = NodePath("../Resume")
+texture_normal = ExtResource("15_j7pd1")
+texture_pressed = ExtResource("16_s072k")
+texture_focused = ExtResource("17_ndief")
 
 [connection signal="pressed" from="Pause/Buttons/Resume" to="." method="UnPause"]
 [connection signal="pressed" from="Pause/Buttons/Options" to="." method="Options"]
 [connection signal="pressed" from="Pause/Buttons/Menu" to="." method="Menu"]
+[connection signal="pressed" from="Pause/Buttons/OpenMovementTutorial" to="." method="OpenMovementTutorial"]

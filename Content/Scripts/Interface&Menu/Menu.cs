@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class Menu : Control
+public partial class Menu : Control
 {
     private bool _easterEgged;
     public override void _Ready()
@@ -14,7 +14,7 @@ public class Menu : Control
     {
         Random random = new Random();
         G.CurrentLevel = random.Next(G.LevelsInGameTotal) + 1;
-        GetTree().ChangeScene("res://Content/Scenes/Other/Main.tscn");
+        GetTree().ChangeSceneToFile("res://Content/Scenes/Other/Main.tscn");
     }
     public void ChooseLevel()
     {
@@ -22,11 +22,11 @@ public class Menu : Control
     }
     public void Options()
     {
-        GetTree().ChangeScene("res://Content/Scenes/Interface&Menu/OptionsMenu.tscn");
+        GetTree().ChangeSceneToFile("res://Content/Scenes/Interface&Menu/OptionsMenu.tscn");
     }
     public void Titles()
     {
-        GetTree().ChangeScene("res://Content/Scenes/Interface&Menu/Titles.tscn");
+        GetTree().ChangeSceneToFile("res://Content/Scenes/Interface&Menu/Titles.tscn");
     }
     public void EasterButtonPressed()
     {

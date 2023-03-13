@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/Explosion.wav-07d26aa7475e07ab306b60416d9f4167.sample"
+type="AudioStreamWAV"
+uid="uid://clx6n3ton256w"
+path="res://.godot/imported/Explosion.wav-07d26aa7475e07ab306b60416d9f4167.sample"
 
 [deps]
 
 source_file="res://Content/Sounds/Crosses/Explosion.wav"
-dest_files=[ "res://.import/Explosion.wav-07d26aa7475e07ab306b60416d9f4167.sample" ]
+dest_files=["res://.godot/imported/Explosion.wav-07d26aa7475e07ab306b60416d9f4167.sample"]
 
 [params]
 

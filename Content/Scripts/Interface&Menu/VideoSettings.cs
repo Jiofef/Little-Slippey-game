@@ -1,19 +1,21 @@
 using Godot;
 using System;
 
-public class VideoSettings : Control
+public partial class VideoSettings : Control
 {
+    private OptionButton _screenFormat;
     public override void _Ready()
     {
-        var screenFormat = GetNode<OptionButton>("VBoxContainer/ScreenFormat");
-        screenFormat.AddItem("Standart");
-        screenFormat.AddItem("Fullscreen");
-        Meta.Instance.IsFullScreen = OS.WindowFullscreen;
-        screenFormat.Selected = Convert.ToInt32(OS.WindowFullscreen);
+        _screenFormat = GetNode<OptionButton>("VBoxContainer/ScreenFormat");
+        Meta.Instance.IsFullScreen = DisplayServer.WindowGetMode() == DisplayServer.WindowMode.Fullscreen;
+    }
+    public override void _Process(double delta)
+    {
+        _screenFormat.Selected = DisplayServer.WindowGetMode() == DisplayServer.WindowMode.Fullscreen ? 1 : 0;
     }
     public void ChangeScreenFormat(int index)
     {
         Meta.Instance.IsFullScreen = Convert.ToBoolean(index);
-        OS.WindowFullscreen = Convert.ToBoolean(index);
+        DisplayServer.WindowSetMode(index == 1 ? DisplayServer.WindowMode.Fullscreen : DisplayServer.WindowMode.Windowed);
     }
 }

@@ -1,0 +1,63 @@
+[gd_scene load_steps=11 format=3 uid="uid://c8vk4ml75ab1c"]
+
+[ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/MovementTutorial.cs" id="1_2u0q4"]
+[ext_resource type="Texture2D" uid="uid://b6g0lgar27768" path="res://Content/Sprites/Other/Fog.png" id="2_kxslm"]
+[ext_resource type="Texture2D" uid="uid://cbrk1xoxvr3pl" path="res://Content/Sprites/Interface/Pause/Other/MovementTutorial.png" id="3_20kbo"]
+[ext_resource type="PackedScene" uid="uid://bi3r8ko1akhe1" path="res://Content/Scenes/Interface&Menu/Button.tscn" id="4_va4cn"]
+[ext_resource type="Texture2D" uid="uid://cwpcewk28vec5" path="res://Content/Sprites/Interface/Menu/Buttons/Default/Cancel.png" id="5_3c5i5"]
+[ext_resource type="Texture2D" uid="uid://bhs7korbvekxq" path="res://Content/Sprites/Interface/Menu/Buttons/Pressed/PressedCancel.png" id="6_vdkwx"]
+[ext_resource type="Texture2D" uid="uid://bslepnhric7fv" path="res://Content/Sprites/Interface/Menu/Buttons/Chosen/ChosenCancel.png" id="7_hoyi1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xd0bv"]
+atlas = ExtResource("3_20kbo")
+region = Rect2(0, 0, 73, 97)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5kijq"]
+atlas = ExtResource("3_20kbo")
+region = Rect2(74, 0, 73, 97)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_a4xn2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xd0bv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5kijq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.2
+}]
+
+[node name="MovementTutorial" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_2u0q4")
+
+[node name="Fog" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.588235)
+position = Vector2(640, 360)
+scale = Vector2(32, 18)
+texture = ExtResource("2_kxslm")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(640, 360)
+scale = Vector2(7, 7)
+sprite_frames = SubResource("SpriteFrames_a4xn2")
+autoplay = "default"
+
+[node name="Cancel" parent="." instance=ExtResource("4_va4cn")]
+process_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 992.0
+offset_top = 592.0
+offset_right = -252.0
+offset_bottom = -112.0
+scale = Vector2(8, 8)
+texture_normal = ExtResource("5_3c5i5")
+texture_pressed = ExtResource("6_vdkwx")
+texture_focused = ExtResource("7_hoyi1")
+
+[connection signal="pressed" from="Cancel" to="." method="Cancel"]

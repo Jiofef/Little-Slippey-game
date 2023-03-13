@@ -1,7 +1,6 @@
 using Godot;
-using System;
 
-public class OptionsMenu : Control
+public partial class OptionsMenu : Control
 {
     public override void _Ready()
     {

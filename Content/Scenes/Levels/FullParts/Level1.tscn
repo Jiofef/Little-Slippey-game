@@ -1,11 +1,14 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=4 format=3 uid="uid://bdwkd1ryf53r8"]
 
-[ext_resource path="res://Content/Scenes/Levels/PresentedParts/PresentedLevel1.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Content/Scripts/Other/LevelScript.cs" type="Script" id=2]
-[ext_resource path="res://Content/Scenes/Other/Player.tscn" type="PackedScene" id=3]
+[ext_resource type="PackedScene" uid="uid://s428pb1e6f8r" path="res://Content/Scenes/Levels/PresentedParts/PresentedLevel1.tscn" id="1"]
+[ext_resource type="Script" path="res://Content/Scripts/Other/LevelScript.cs" id="2"]
+[ext_resource type="PackedScene" uid="uid://dlscufxb5f1ca" path="res://Content/Scenes/Other/Player.tscn" id="3"]
 
-[node name="Level1" instance=ExtResource( 1 )]
-script = ExtResource( 2 )
+[node name="Level1" instance=ExtResource("1")]
+script = ExtResource("2")
 
-[node name="Player" parent="." index="2" instance=ExtResource( 3 )]
-position = Vector2( 483, 224 )
+[node name="Fog" parent="Background" index="2"]
+modulate = Color(1, 1, 1, 0.490196)
+
+[node name="Player" parent="." index="2" instance=ExtResource("3")]
+position = Vector2(650, 375)

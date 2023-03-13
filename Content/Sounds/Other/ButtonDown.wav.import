@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/ButtonDown.wav-e140ffbe66df0e22c99ad4df0a513fcd.sample"
+type="AudioStreamWAV"
+uid="uid://cs50sf2kyk8ir"
+path="res://.godot/imported/ButtonDown.wav-e140ffbe66df0e22c99ad4df0a513fcd.sample"
 
 [deps]
 
 source_file="res://Content/Sounds/Other/ButtonDown.wav"
-dest_files=[ "res://.import/ButtonDown.wav-e140ffbe66df0e22c99ad4df0a513fcd.sample" ]
+dest_files=["res://.godot/imported/ButtonDown.wav-e140ffbe66df0e22c99ad4df0a513fcd.sample"]
 
 [params]
 

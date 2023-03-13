@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/RollingCannonSounds.wav-7feab8f6a1753a172ce224ec70949759.sample"
+type="AudioStreamWAV"
+uid="uid://cnlsin5w3w8xr"
+path="res://.godot/imported/RollingCannonSounds.wav-7feab8f6a1753a172ce224ec70949759.sample"
 
 [deps]
 
 source_file="res://Content/Sounds/Crosses/RollingCannonSounds.wav"
-dest_files=[ "res://.import/RollingCannonSounds.wav-7feab8f6a1753a172ce224ec70949759.sample" ]
+dest_files=["res://.godot/imported/RollingCannonSounds.wav-7feab8f6a1753a172ce224ec70949759.sample"]
 
 [params]
 

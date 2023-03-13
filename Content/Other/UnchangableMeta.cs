@@ -2,7 +2,7 @@ using Godot;
 using System;
 using Godot.Collections;
 
-public class UnchangableMeta : Node
+public partial class UnchangableMeta : Node
 {
     // Unchangable Meta is the saving singleton with the data which the player cannot directly change (not the settings, simply put)
     public static int[][] LevelRecords =
@@ -11,47 +11,40 @@ public class UnchangableMeta : Node
         new int[G.LevelsInGameTotal],
         new int[G.LevelsInGameTotal]
     };
-    public static Dictionary<string, object> GetJson()
+    public static bool DoFirstTimePlayed;
+    public static Dictionary<string, Variant> GetJson()
     {
-        int[][] sus = { new int[] { 3 } };
-        return new Dictionary<string, object>()
+        return new Dictionary<string, Variant>()
         {
             {"level_records0", LevelRecords[0]},
             {"level_records1", LevelRecords[1]},
-            {"level_records2", LevelRecords[2]}
+            {"level_records2", LevelRecords[2]},
+            {"do_first_time_played", DoFirstTimePlayed}
         };
     }
     public static void SaveToFile()
     {
-        const string SavePath = "user://save.json";
-        File file = new File();
-        var data = GetJson();
-        var jsondata = JSON.Print(data);
-        file.Open(SavePath, File.ModeFlags.Write);
-        file.StoreString(jsondata);
+        using FileAccess file = FileAccess.Open("user://save.json", FileAccess.ModeFlags.Write);
+        file.StoreString(GetJson().ToString());
         file.Close();
     }
     public static void LoadSave()
     {
         try
         {
-            const string ReadPath = "user://save.json";
-
-            File file = new File();
-            if (!file.FileExists(ReadPath)) return;
-            file.Open(ReadPath, File.ModeFlags.Read);
-
-            var text = file.GetAsText();
-            var model = JSON.Parse(text).Result as Dictionary;
+            using FileAccess file = FileAccess.Open("user://save.json", FileAccess.ModeFlags.Read);
+            var model = Json.ParseString(file.GetAsText()).Obj as Dictionary;
 
             Godot.Collections.Array[] LevelRecordsArrays = new Godot.Collections.Array[3];
             for (int i = 0; i < LevelRecordsArrays.Length; i++)
-                LevelRecordsArrays[i] = model["level_records" + i] as Godot.Collections.Array;
+                LevelRecordsArrays[i] = (Godot.Collections.Array)model["level_records" + i];
             for (int i = 0; i < LevelRecordsArrays.Length; i++)
                 for (int j = 0; j < G.LevelsInGameTotal; j++)
-                    LevelRecords[i][j] = Convert.ToInt32(LevelRecordsArrays[i][j]);
+                    LevelRecords[i][j] = Convert.ToInt32(LevelRecordsArrays[i][j].ToString());
+            DoFirstTimePlayed = (bool)(model["do_first_time_played"]);
+
             file.Close();
         }
-        catch {}
+        catch{}
     }
 }

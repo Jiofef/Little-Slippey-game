@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/PullDown.wav-cd96cb0f3fa96f9b3c2b482e289b9864.sample"
+type="AudioStreamWAV"
+uid="uid://dtbqcivkkem4g"
+path="res://.godot/imported/PullDown.wav-cd96cb0f3fa96f9b3c2b482e289b9864.sample"
 
 [deps]
 
 source_file="res://Content/Sounds/Player/PullDown.wav"
-dest_files=[ "res://.import/PullDown.wav-cd96cb0f3fa96f9b3c2b482e289b9864.sample" ]
+dest_files=["res://.godot/imported/PullDown.wav-cd96cb0f3fa96f9b3c2b482e289b9864.sample"]
 
 [params]
 
