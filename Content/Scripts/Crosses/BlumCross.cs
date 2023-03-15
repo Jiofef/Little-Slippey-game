@@ -27,7 +27,7 @@ public partial class BlumCross : Node2D
     {
         if (_abortButtonPressed)
         {
-            if (Modulate.A != 0)
+            if (Modulate.A > 0)
             {
                 Modulate = new Color(Modulate.R, Modulate.G, Modulate.B, Modulate.A - 0.03f);
                 Translate(new Vector2(_xSpriteMotion, _ySpriteMotion));
@@ -72,6 +72,7 @@ public partial class BlumCross : Node2D
 
         _crossSprite.Modulate = new Color(0, _crossSprite.Modulate.G, _crossSprite.Modulate.B);
         _warningSprite.Modulate = new Color(_warningSprite.Modulate.R, _warningSprite.Modulate.R, _warningSprite.Modulate.R, 0);
+
 
         _explosiveSignal.PitchScale *= 1.5f;
         _explosiveSignal.Play();

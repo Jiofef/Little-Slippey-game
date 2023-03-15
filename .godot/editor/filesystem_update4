@@ -1,6 +1,5 @@
 res://default_env.tres
-res://Content/Scenes/Other/Main.tscn
-res://Content/Scenes/Interface&Menu/MovementTutorial.tscn
+res://Content/Scenes/Levels/FullParts/Level1.tscn
+res://Content/Scenes/Crosses/Cross4.tscn
 res://Content/Scenes/Levels/PresentedParts/PresentedLevel1.tscn
 res://Content/Scenes/Other/Player.tscn
-res://Content/Scenes/Levels/FullParts/Level1.tscn

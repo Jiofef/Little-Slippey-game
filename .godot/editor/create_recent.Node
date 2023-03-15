@@ -1,12 +1,12 @@
-Node3D
+Camera2D
 Node2D
+Node3D
 CanvasLayer
 AnimatedSprite2D
 Label
 CPUParticles2D
 GPUParticles2D
 AudioStreamPlayer
-Camera2D
 CollisionShape2D
 Sprite2D
 Control

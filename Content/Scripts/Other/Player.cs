@@ -79,6 +79,7 @@ public partial class Player : CharacterBody2D
                 _savedWallNumber = _wallDetectNumber;
                 _motion.Y = -_jumpForce;
                 _inertion = 1.25f * -_savedWallNumber;
+                _isFliph = _savedWallNumber == 1;
                 _state = State.Inerted;
                 PlaySound("Climb");
             }
@@ -146,9 +147,13 @@ public partial class Player : CharacterBody2D
         if (_animatedSprite.Animation != _animationName)
             _animatedSprite.Animation = _animationName;
 
-        float DoFlip = _animationName == "Climb" || _animationName == "WallCatch" ? _wallDetectNumber : Input.GetActionStrength("ui_right") - Input.GetActionStrength("ui_left");
-        if (DoFlip != 0)
-            _isFliph = DoFlip == 1 ? true : false;
+        if (_animationName == "Climb")
+            _isFliph = _savedClimbWallNumber == 1;
+        else if (_animationName == "WallCatch")
+            _isFliph = _wallDetectNumber == 1;
+        else if (_motion.X != 0)
+            _isFliph = _motion.X > 0;
+
         _animatedSprite.FlipH = _isFliph;
 
 

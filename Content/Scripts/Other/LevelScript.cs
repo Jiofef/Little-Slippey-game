@@ -42,7 +42,8 @@ public partial class LevelScript : Node2D
 
         int IntScores = (int)G.Scores;
         GetNode<Label>("Player/DeadPlayer/Camera2D/GUI/Scores").Text = IntScores.ToString();
-        int RandomRange1 = IntScores < (15 - Meta.Instance.Dificulty * 4) * 15 ? 20 - IntScores / 15 - Meta.Instance.Dificulty * 5 : 5 - Meta.Instance.Dificulty;
+        int RandomRange1 = IntScores < 150 ? 20 - IntScores / 30 - Meta.Instance.Dificulty * 5 : 15 - Meta.Instance.Dificulty * 5;
+        
         if (_random.Next(RandomRange1) == 0)
         {
             if (!_doAllCrossWeigthsSetted)
@@ -98,22 +99,18 @@ public partial class LevelScript : Node2D
                     break;
 
                 case "BlumCross":
-                    Vector2 CrossPositionRelativeToPlayer = new Vector2(Cross.Position.X - _player.Position.X, Cross.Position.Y - _player.Position.Y);
-
-                    float DistancingToDesiredDistance(float coordinate, float desiredDistance)
-                    {
-                        if (coordinate < desiredDistance && coordinate >= 0)
-                            return desiredDistance;
-                        else if (coordinate > -desiredDistance && coordinate < 0)
-                            return -desiredDistance;
-                        else return coordinate;
-                    }
-                    Cross.Position = new Vector2(Cross.Position.X + DistancingToDesiredDistance(CrossPositionRelativeToPlayer.X, 200), Cross.Position.Y + DistancingToDesiredDistance(CrossPositionRelativeToPlayer.Y, 100));
+                    if ((Cross.Position - _player.Position).X < 300)
+                        Cross.Position = new Vector2(
+                            Cross.Position.X,
+                            _random.Next(100) < 50 ? 
+                            _random.Next((int)_player.Position.Y - 750, (int)_player.Position.Y - 250) : 
+                            _random.Next((int)_player.Position.Y + 250, (int)_player.Position.Y + 750)
+                            );
                     break;
 
                 case "CannonCross":
                     Cross.Scale = new Vector2(_random.Next(100) <= 50 ? 1 : -1, 1);
-                    Cross.GlobalPosition = Cross.Scale.X == -1 ? new Vector2(G.LevelXYSizes[G.CurrentLevel].X + 120, Cross.Position.Y) : new Vector2(-120, Cross.Position.Y);
+                    Cross.Position = Cross.Scale.X == -1 ? new Vector2(G.LevelXYSizes[G.CurrentLevel].X + 120, Cross.Position.Y) : new Vector2(-120, Cross.Position.Y);
                     break;
             }
             AddChild(Cross);
