@@ -7,6 +7,9 @@
 [node name="Level1" instance=ExtResource("1")]
 script = ExtResource("2")
 
+[node name="Layer2" parent="Background" index="1"]
+position = Vector2(30, 0)
+
 [node name="Fog" parent="Background" index="2"]
 modulate = Color(1, 1, 1, 0.490196)
 
