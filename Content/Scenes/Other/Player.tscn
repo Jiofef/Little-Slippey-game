@@ -258,7 +258,6 @@ shape = SubResource("1")
 [node name="DamageDetector" type="Area2D" parent="Areas"]
 collision_layer = 8
 collision_mask = 24
-monitoring = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/DamageDetector"]
 position = Vector2(0, 9)
