@@ -36,7 +36,7 @@ public partial class LevelScript : Node2D
         else G.ResetTimer = G.ResetTimer > 0 ? G.ResetTimer - _floatDelta : 0;
 
         if (G.PlayerDead) return;
-        G.Scores += _floatDelta * 10;
+        G.Scores += _floatDelta;
         _weightMultiplierExtenderToCurrentCross += (_floatDelta * G._defaultCrossWeight[_lastAviableCrossNumber]) / 30;
         
 
