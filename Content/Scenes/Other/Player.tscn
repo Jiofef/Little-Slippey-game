@@ -442,8 +442,8 @@ bus = &"Player"
 [node name="Node2D" type="Node2D" parent="."]
 position = Vector2(426, -239)
 
-[connection signal="area_entered" from="Areas/DamageDetector" to="." method="DamageGetting"]
-[connection signal="area_entered" from="Areas/DamageDetector" to="DeadPlayer/Camera2D" method="CameraZoom"]
+[connection signal="area_entered" from="Areas/DamageDetector" to="." method="DamageGetting" flags=6]
+[connection signal="area_entered" from="Areas/DamageDetector" to="DeadPlayer/Camera2D" method="CameraZoom" flags=6]
 [connection signal="body_entered" from="Areas/WallDirectionLeftDetector" to="." method="LeftWallDetect"]
 [connection signal="body_exited" from="Areas/WallDirectionLeftDetector" to="." method="WallUndetected"]
 [connection signal="body_entered" from="Areas/WallDirectionRightDetector" to="." method="RightWallDetect"]

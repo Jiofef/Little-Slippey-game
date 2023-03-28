@@ -1,9 +1,142 @@
-[gd_scene format=3 uid="uid://c7dgo7tq8pfa8"]
+[gd_scene load_steps=17 format=3 uid="uid://c7dgo7tq8pfa8"]
 
-[node name="Control" type="Control"]
+[ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/LevelsMenu.cs" id="1_d5t7a"]
+[ext_resource type="PackedScene" uid="uid://bi3r8ko1akhe1" path="res://Content/Scenes/Interface&Menu/Button.tscn" id="1_pycgw"]
+[ext_resource type="Texture2D" uid="uid://dt12n2ofkodg2" path="res://Content/Sprites/Interface/Menu/LevelsMenu/Computer.png" id="2_5l5q2"]
+[ext_resource type="Texture2D" uid="uid://cwpcewk28vec5" path="res://Content/Sprites/Interface/Menu/Buttons/Default/Cancel.png" id="2_2131h"]
+[ext_resource type="Texture2D" uid="uid://dttuf4odb201n" path="res://Content/Sprites/Interface/Menu/LevelsMenu/BackgroundWall.png" id="2_sl6b7"]
+[ext_resource type="Texture2D" uid="uid://bhs7korbvekxq" path="res://Content/Sprites/Interface/Menu/Buttons/Pressed/PressedCancel.png" id="3_wrn8p"]
+[ext_resource type="Texture2D" uid="uid://bslepnhric7fv" path="res://Content/Sprites/Interface/Menu/Buttons/Chosen/ChosenCancel.png" id="4_n1d6l"]
+[ext_resource type="Texture2D" uid="uid://wg2cduuk1ske" path="res://Content/Sprites/Interface/Menu/Buttons/Pressed/ChosenArrowLeft.png" id="6_cytue"]
+[ext_resource type="Texture2D" uid="uid://bpr48mwu3pm1v" path="res://Content/Sprites/Interface/Menu/Buttons/Default/Play.png" id="7_51xip"]
+[ext_resource type="Texture2D" uid="uid://b4twn2fuc51eg" path="res://Content/Sprites/Interface/Menu/Buttons/Pressed/PressedPlay.png" id="8_8br3j"]
+[ext_resource type="Texture2D" uid="uid://cv68gjcdumk5m" path="res://Content/Sprites/Interface/Menu/Buttons/Chosen/ChosenPlay.png" id="9_lj7q7"]
+[ext_resource type="Texture2D" uid="uid://cjg50bxlltg6p" path="res://Content/Sprites/Interface/Menu/Buttons/Default/ArrowLeft.png" id="10_8f6b4"]
+[ext_resource type="Texture2D" uid="uid://d7ogjysy0kcx" path="res://Content/Sprites/Interface/Menu/Buttons/Chosen/ChosenArrowLeft.png" id="11_setfk"]
+[ext_resource type="Texture2D" uid="uid://dchbawo7igh8x" path="res://Content/Sprites/Interface/Menu/Buttons/Default/ArrowRight.png" id="12_y46ly"]
+[ext_resource type="Texture2D" uid="uid://e8tg7120t4x0" path="res://Content/Sprites/Interface/Menu/Buttons/Pressed/ChosenArrowRight.png" id="12_ye8li"]
+[ext_resource type="Texture2D" uid="uid://bw8a4lm28ihtu" path="res://Content/Sprites/Interface/Menu/Buttons/Chosen/ChosenArrowRight.png" id="13_fh8ln"]
+
+[node name="LevelsMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_d5t7a")
+
+[node name="BackgroundWall" type="Sprite2D" parent="."]
+position = Vector2(640, 360)
+scale = Vector2(4, 3.6)
+texture = ExtResource("2_sl6b7")
+
+[node name="Computer" type="Control" parent="."]
+clip_contents = true
+layout_mode = 1
+anchor_right = 0.836
+anchor_bottom = 0.737
+offset_left = 218.0
+offset_top = 10.0
+offset_right = 71.9199
+offset_bottom = 179.36
+
+[node name="Screen" type="Control" parent="Computer"]
+anchors_preset = 0
+offset_left = 98.0
+offset_top = 77.0
+offset_right = 827.0
+offset_bottom = 487.0
+
+[node name="Sprite" type="Sprite2D" parent="Computer"]
+position = Vector2(462, 350)
+scale = Vector2(3.5, 3.5)
+texture = ExtResource("2_5l5q2")
+
+[node name="CameraNumber" type="Label" parent="Computer"]
+layout_mode = 0
+offset_left = 140.0
+offset_top = 83.0
+offset_right = 184.0
+offset_bottom = 108.0
+scale = Vector2(1.5, 1.5)
+theme_override_colors/font_color = Color(0.921569, 0.921569, 0.921569, 1)
+theme_override_colors/font_shadow_color = Color(0.223529, 0.203922, 0.341176, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/shadow_outline_size = 3
+text = "Cam"
+
+[node name="MaxLivetime" type="Label" parent="Computer"]
+layout_mode = 0
+offset_left = 143.0
+offset_top = 457.0
+offset_right = 283.0
+offset_bottom = 482.0
+scale = Vector2(1.5, 1.5)
+theme_override_colors/font_color = Color(0.921569, 0.921569, 0.921569, 1)
+theme_override_colors/font_shadow_color = Color(0.223529, 0.203922, 0.341176, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/shadow_outline_size = 3
+text = "Max Livetime"
+
+[node name="Buttons" type="Control" parent="Computer"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -177.0
+offset_top = -20.0
+offset_right = 1105.0
+offset_bottom = 698.0
+
+[node name="ChangeToPastLevel" parent="Computer/Buttons" instance=ExtResource("1_pycgw")]
+layout_mode = 0
+offset_left = 316.0
+offset_top = 580.0
+offset_right = 352.0
+offset_bottom = 596.0
+focus_neighbor_left = NodePath("../Cancel")
+texture_normal = ExtResource("10_8f6b4")
+texture_pressed = ExtResource("6_cytue")
+texture_focused = ExtResource("11_setfk")
+
+[node name="Play" parent="Computer/Buttons" instance=ExtResource("1_pycgw")]
+layout_mode = 0
+offset_left = 501.0
+offset_top = 580.0
+offset_right = 549.0
+offset_bottom = 596.0
+focus_neighbor_top = NodePath("../Titles")
+texture_normal = ExtResource("7_51xip")
+texture_pressed = ExtResource("8_8br3j")
+texture_focused = ExtResource("9_lj7q7")
+
+[node name="ChangeToNextLevel" parent="Computer/Buttons" instance=ExtResource("1_pycgw")]
+layout_mode = 0
+offset_left = 746.0
+offset_top = 580.0
+offset_right = 782.0
+offset_bottom = 596.0
+texture_normal = ExtResource("12_y46ly")
+texture_pressed = ExtResource("12_ye8li")
+texture_focused = ExtResource("13_fh8ln")
+
+[node name="Cancel" parent="Computer/Buttons" instance=ExtResource("1_pycgw")]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 934.0
+offset_top = 596.0
+offset_right = -312.0
+offset_bottom = -106.0
+scale = Vector2(4, 4)
+focus_neighbor_right = NodePath("../ChangeToPastLevel")
+texture_normal = ExtResource("2_2131h")
+texture_pressed = ExtResource("3_wrn8p")
+texture_focused = ExtResource("4_n1d6l")
+
+[connection signal="pressed" from="Computer/Buttons/ChangeToPastLevel" to="." method="ChangeToPastLevel"]
+[connection signal="pressed" from="Computer/Buttons/Play" to="." method="Play"]
+[connection signal="pressed" from="Computer/Buttons/ChangeToNextLevel" to="." method="ChangeToNextLevel"]
+[connection signal="pressed" from="Computer/Buttons/Cancel" to="." method="Cancel"]

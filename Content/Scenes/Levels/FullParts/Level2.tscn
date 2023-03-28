@@ -1,0 +1,89 @@
+[gd_scene load_steps=11 format=3 uid="uid://cecxaddlegjki"]
+
+[ext_resource type="Script" path="res://Content/Scripts/Other/LevelScript.cs" id="1_5ed8v"]
+[ext_resource type="Texture2D" uid="uid://q2j1uuqfjmos" path="res://Content/Sprites/Levels/BaseTileSet.png" id="1_daoq4"]
+[ext_resource type="PackedScene" uid="uid://dlscufxb5f1ca" path="res://Content/Scenes/Other/Player.tscn" id="2_7ed56"]
+[ext_resource type="Texture2D" uid="uid://ba64m2i1e8tsn" path="res://Content/Sprites/Levels/Level2/Sky.png" id="2_mo542"]
+[ext_resource type="Texture2D" uid="uid://ccgm5hyl1wawi" path="res://Content/Sprites/Levels/Level2/Clouds.png" id="3_se3bt"]
+[ext_resource type="Texture2D" uid="uid://cgxe628gayb6" path="res://Content/Sprites/Levels/Level2/FieldBackLayer.png" id="4_nj8ud"]
+[ext_resource type="Texture2D" uid="uid://djl0os2aumwrv" path="res://Content/Sprites/Levels/Level2/FieldMiddleLayer.png" id="5_kkplr"]
+[ext_resource type="Texture2D" uid="uid://b5rhwso34agae" path="res://Content/Sprites/Levels/Level2/FieldFrontLayer.png" id="6_cvfb3"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_i2m21"]
+texture = ExtResource("1_daoq4")
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:0/0 = 0
+1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:0/0/physics_layer_0/angular_velocity = 0.0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 8, 8, 8, 8, -8, -8, -8)
+2:0/0 = 0
+2:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:0/0/physics_layer_0/angular_velocity = 0.0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, -8, 8, 8, 8, 8, -8)
+
+[sub_resource type="TileSet" id="TileSet_yfdty"]
+physics_layer_0/collision_layer = 4
+physics_layer_0/collision_mask = 0
+sources/1 = SubResource("TileSetAtlasSource_i2m21")
+
+[node name="Level2" type="Node2D"]
+script = ExtResource("1_5ed8v")
+
+[node name="Background" type="ParallaxBackground" parent="."]
+
+[node name="Sky" type="ParallaxLayer" parent="Background"]
+position = Vector2(426, 239)
+scale = Vector2(2.75, 2.75)
+motion_scale = Vector2(0, 0.1)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Sky"]
+texture = ExtResource("2_mo542")
+
+[node name="Clouds" type="ParallaxLayer" parent="Background"]
+position = Vector2(576, 316)
+scale = Vector2(4, 4)
+motion_scale = Vector2(0.075, 0.3)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Clouds"]
+texture = ExtResource("3_se3bt")
+
+[node name="FieldBackLayer" type="ParallaxLayer" parent="Background"]
+position = Vector2(576, 300)
+scale = Vector2(4, 4)
+motion_scale = Vector2(0.2, 0.4)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/FieldBackLayer"]
+texture = ExtResource("4_nj8ud")
+
+[node name="FieldMiddleLayer" type="ParallaxLayer" parent="Background"]
+position = Vector2(736, 240)
+scale = Vector2(5, 5)
+motion_scale = Vector2(0.3, 0.5)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/FieldMiddleLayer"]
+texture = ExtResource("5_kkplr")
+
+[node name="FieldFrontLayer" type="ParallaxLayer" parent="Background"]
+position = Vector2(896, 158)
+scale = Vector2(6, 6)
+motion_scale = Vector2(0.5, 0.6)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/FieldFrontLayer"]
+texture = ExtResource("6_cvfb3")
+
+[node name="Fog" type="ColorRect" parent="Background"]
+offset_right = 1280.0
+offset_bottom = 720.0
+color = Color(0.180392, 0.270588, 1, 0.196078)
+
+[node name="TileMap" type="TileMap" parent="."]
+scale = Vector2(4, 4)
+tile_set = SubResource("TileSet_yfdty")
+format = 2
+layer_0/tile_data = PackedInt32Array(655360, 131073, 0, 655361, 131073, 0, 655362, 131073, 0, 655363, 131073, 0, 655364, 131073, 0, 655365, 131073, 0, 655366, 131073, 0, 655367, 131073, 0, 655368, 131073, 0, 655369, 131073, 0, 655370, 131073, 0, 655371, 131073, 0, 655372, 131073, 0, 655373, 131073, 0, 655374, 131073, 0, 655375, 131073, 0, 655376, 131073, 0, 655377, 131073, 0, 655378, 131073, 0, 655379, 131073, 0, 655380, 131073, 0, 655381, 131073, 0, 655382, 131073, 0, 655383, 131073, 0, 655384, 131073, 0, 655385, 131073, 0, 655386, 131073, 0, 655387, 131073, 0, 655388, 131073, 0, 655389, 131073, 0, 655390, 131073, 0, 655391, 131073, 0, 655392, 131073, 0, 655393, 131073, 0, 655394, 131073, 0, 655395, 131073, 0, 655396, 131073, 0, 655397, 131073, 0, 655398, 131073, 0, 655399, 131073, 0, 720895, 1, 0, 655359, 1, 0, 589823, 1, 0, 524287, 1, 0, 458751, 1, 0, 393215, 1, 0, 327679, 1, 0, 262143, 1, 0, 196607, 1, 0, 131071, 1, 0, 65535, 1, 0, -1, 65537, 0, -65536, 65537, 0, -65535, 65537, 0, -65534, 65537, 0, -65533, 65537, 0, -65532, 65537, 0, -65531, 65537, 0, -65530, 65537, 0, -65529, 65537, 0, -65528, 65537, 0, -65527, 65537, 0, -65526, 65537, 0, -65525, 65537, 0, -65524, 65537, 0, -65523, 65537, 0, -65522, 65537, 0, -65521, 65537, 0, -65520, 65537, 0, -65519, 65537, 0, -65518, 65537, 0, -65517, 65537, 0, -65516, 65537, 0, -65515, 65537, 0, -65514, 65537, 0, -65513, 65537, 0, -65512, 65537, 0, -65511, 65537, 0, -65510, 65537, 0, -65509, 65537, 0, -65508, 65537, 0, -65507, 65537, 0, -65506, 65537, 0, -65505, 65537, 0, -65504, 65537, 0, -65503, 65537, 0, -65502, 65537, 0, -65501, 65537, 0, -65500, 65537, 0, -65499, 65537, 0, -65498, 65537, 0, -65497, 65537, 0, -65496, 65537, 0, 40, 1, 0, 65576, 1, 0, 131112, 1, 0, 196648, 1, 0, 262184, 1, 0, 327720, 1, 0, 393256, 1, 0, 458792, 1, 0, 524328, 1, 0, 589864, 1, 0, 655400, 1, 0)
+
+[node name="Player" parent="." instance=ExtResource("2_7ed56")]
+position = Vector2(426, 239)

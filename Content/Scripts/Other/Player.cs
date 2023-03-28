@@ -189,7 +189,6 @@ public partial class Player : CharacterBody2D
 
     public void DamageGetting(Area2D BodyDetected)
     {
-        if (G.PlayerDead) return;
         G.PlayerDead = true;
         GetNode<AnimatedSprite2D>("AnimatedSprite2D").Visible = false;
         GetNode<Sprite2D>("DeadPlayer/Sprite2D").Visible = true;

@@ -1,0 +1,77 @@
+[gd_scene load_steps=11 format=3 uid="uid://uik855fx6mxc"]
+
+[ext_resource type="Texture2D" uid="uid://ba64m2i1e8tsn" path="res://Content/Sprites/Levels/Level2/Sky.png" id="1_ptacx"]
+[ext_resource type="Texture2D" uid="uid://ccgm5hyl1wawi" path="res://Content/Sprites/Levels/Level2/Clouds.png" id="2_rwtq5"]
+[ext_resource type="Texture2D" uid="uid://cgxe628gayb6" path="res://Content/Sprites/Levels/Level2/FieldBackLayer.png" id="3_2g0kx"]
+[ext_resource type="Texture2D" uid="uid://djl0os2aumwrv" path="res://Content/Sprites/Levels/Level2/FieldMiddleLayer.png" id="4_ub53v"]
+[ext_resource type="Texture2D" uid="uid://b5rhwso34agae" path="res://Content/Sprites/Levels/Level2/FieldFrontLayer.png" id="5_gypoq"]
+[ext_resource type="Texture2D" uid="uid://b6g0lgar27768" path="res://Content/Sprites/Other/Fog.png" id="6_l20q3"]
+[ext_resource type="Texture2D" uid="uid://q2j1uuqfjmos" path="res://Content/Sprites/Levels/BaseTileSet.png" id="7_w4y2o"]
+
+[sub_resource type="Curve2D" id="Curve2D_a7rve"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_i2m21"]
+texture = ExtResource("7_w4y2o")
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:0/0 = 0
+1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:0/0/physics_layer_0/angular_velocity = 0.0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 8, 8, 8, 8, -8, -8, -8)
+2:0/0 = 0
+2:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:0/0/physics_layer_0/angular_velocity = 0.0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, -8, 8, 8, 8, 8, -8)
+
+[sub_resource type="TileSet" id="TileSet_og5a3"]
+physics_layer_0/collision_layer = 4
+physics_layer_0/collision_mask = 0
+sources/1 = SubResource("TileSetAtlasSource_i2m21")
+
+[node name="Path2D" type="Path2D"]
+curve = SubResource("Curve2D_a7rve")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="."]
+
+[node name="PresentedLevel2" type="Node2D" parent="PathFollow2D"]
+
+[node name="Background" type="Node2D" parent="PathFollow2D/PresentedLevel2"]
+
+[node name="Sky" type="Sprite2D" parent="PathFollow2D/PresentedLevel2/Background"]
+position = Vector2(1280, 310)
+scale = Vector2(8, 4)
+texture = ExtResource("1_ptacx")
+
+[node name="Clouds" type="Sprite2D" parent="PathFollow2D/PresentedLevel2/Background"]
+position = Vector2(1280, 310)
+scale = Vector2(8, 6)
+texture = ExtResource("2_rwtq5")
+
+[node name="FieldBackLayer" type="Sprite2D" parent="PathFollow2D/PresentedLevel2/Background"]
+position = Vector2(1280, 350)
+scale = Vector2(8, 6)
+texture = ExtResource("3_2g0kx")
+
+[node name="FieldMiddleLayer" type="Sprite2D" parent="PathFollow2D/PresentedLevel2/Background"]
+position = Vector2(1280, 350)
+scale = Vector2(8, 6)
+texture = ExtResource("4_ub53v")
+
+[node name="FieldFrontLayer" type="Sprite2D" parent="PathFollow2D/PresentedLevel2/Background"]
+position = Vector2(1280, 350)
+scale = Vector2(8, 6)
+texture = ExtResource("5_gypoq")
+
+[node name="Fog" type="Sprite2D" parent="PathFollow2D/PresentedLevel2/Background"]
+modulate = Color(1, 1, 1, 0.117647)
+position = Vector2(1280, 429.818)
+scale = Vector2(64, 26.0091)
+texture = ExtResource("6_l20q3")
+
+[node name="TileMap" type="TileMap" parent="PathFollow2D/PresentedLevel2"]
+scale = Vector2(4, 4)
+tile_set = SubResource("TileSet_og5a3")
+format = 2
+layer_0/tile_data = PackedInt32Array(655360, 131073, 0, 655361, 131073, 0, 655362, 131073, 0, 655363, 131073, 0, 655364, 131073, 0, 655365, 131073, 0, 655366, 131073, 0, 655367, 131073, 0, 655368, 131073, 0, 655369, 131073, 0, 655370, 131073, 0, 655371, 131073, 0, 655372, 131073, 0, 655373, 131073, 0, 655374, 131073, 0, 655375, 131073, 0, 655376, 131073, 0, 655377, 131073, 0, 655378, 131073, 0, 655379, 131073, 0, 655380, 131073, 0, 655381, 131073, 0, 655382, 131073, 0, 655383, 131073, 0, 655384, 131073, 0, 655385, 131073, 0, 655386, 131073, 0, 655387, 131073, 0, 655388, 131073, 0, 655389, 131073, 0, 655390, 131073, 0, 655391, 131073, 0, 655392, 131073, 0, 655393, 131073, 0, 655394, 131073, 0, 655395, 131073, 0, 655396, 131073, 0, 655397, 131073, 0, 655398, 131073, 0, 655399, 131073, 0, 720895, 1, 0, 655359, 1, 0, 589823, 1, 0, 524287, 1, 0, 458751, 1, 0, 393215, 1, 0, 327679, 1, 0, 262143, 1, 0, 196607, 1, 0, 131071, 1, 0, 65535, 1, 0, -1, 65537, 0, -65536, 65537, 0, -65535, 65537, 0, -65534, 65537, 0, -65533, 65537, 0, -65532, 65537, 0, -65531, 65537, 0, -65530, 65537, 0, -65529, 65537, 0, -65528, 65537, 0, -65527, 65537, 0, -65526, 65537, 0, -65525, 65537, 0, -65524, 65537, 0, -65523, 65537, 0, -65522, 65537, 0, -65521, 65537, 0, -65520, 65537, 0, -65519, 65537, 0, -65518, 65537, 0, -65517, 65537, 0, -65516, 65537, 0, -65515, 65537, 0, -65514, 65537, 0, -65513, 65537, 0, -65512, 65537, 0, -65511, 65537, 0, -65510, 65537, 0, -65509, 65537, 0, -65508, 65537, 0, -65507, 65537, 0, -65506, 65537, 0, -65505, 65537, 0, -65504, 65537, 0, -65503, 65537, 0, -65502, 65537, 0, -65501, 65537, 0, -65500, 65537, 0, -65499, 65537, 0, -65498, 65537, 0, -65497, 65537, 0, -65496, 65537, 0, 40, 1, 0, 65576, 1, 0, 131112, 1, 0, 196648, 1, 0, 262184, 1, 0, 327720, 1, 0, 393256, 1, 0, 458792, 1, 0, 524328, 1, 0, 589864, 1, 0, 655400, 1, 0)
