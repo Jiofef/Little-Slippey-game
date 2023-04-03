@@ -39,8 +39,16 @@ public partial class UnchangableMeta : Node
             for (int i = 0; i < LevelRecordsArrays.Length; i++)
                 LevelRecordsArrays[i] = (Godot.Collections.Array)model["level_records" + i];
             for (int i = 0; i < LevelRecordsArrays.Length; i++)
-                for (int j = 0; j < G.LevelsInGameTotal; j++)
-                    LevelRecords[i][j] = Convert.ToInt32(LevelRecordsArrays[i][j].ToString());
+                try
+                {
+                    for (int j = 0; j < G.LevelsInGameTotal; j++)
+                    {
+                        LevelRecords[i][j] = Convert.ToInt32(LevelRecordsArrays[i][j].ToString());
+                    }
+                }
+                catch { }
+
+
             DoFirstTimePlayed = (bool)(model["do_first_time_played"]);
 
             file.Close();

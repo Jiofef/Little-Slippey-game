@@ -7,6 +7,7 @@ public partial class MovementTutorial : CanvasLayer
     public override void _Ready()
     {
         Connect("MovementTutorialClosing", new Callable(GetParent(), "MovementTutorialClosed"));
+        GetNode<TextureButton>("Cancel").GrabFocus();
     }
     public override void _Process(double delta)
     {

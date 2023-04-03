@@ -1,8 +1,7 @@
-[gd_scene load_steps=18 format=3 uid="uid://dxnmuyu5wcsgv"]
+[gd_scene load_steps=17 format=3 uid="uid://dxnmuyu5wcsgv"]
 
 [ext_resource type="Script" path="res://Content/Scripts/Other/PlayPart.cs" id="1"]
 [ext_resource type="Script" path="res://Content/Scripts/Other/MainScript.cs" id="2"]
-[ext_resource type="Texture2D" uid="uid://b6g0lgar27768" path="res://Content/Sprites/Other/Fog.png" id="3"]
 [ext_resource type="Texture2D" uid="uid://c4253ngxvs3vx" path="res://Content/Sprites/Interface/Pause/Buttons/Pressed/PressedResume.png" id="4"]
 [ext_resource type="Texture2D" uid="uid://c8anx03uvrcbq" path="res://Content/Sprites/Interface/Pause/Buttons/Default/Resume.png" id="5"]
 [ext_resource type="PackedScene" uid="uid://bi3r8ko1akhe1" path="res://Content/Scenes/Interface&Menu/Button.tscn" id="6"]
@@ -30,11 +29,10 @@ script = ExtResource("1")
 process_mode = 2
 visible = false
 
-[node name="Sprite2D" type="Sprite2D" parent="Pause"]
-modulate = Color(1, 1, 1, 0.784314)
-position = Vector2(640, 360)
-scale = Vector2(32, 18)
-texture = ExtResource("3")
+[node name="ColorRect" type="ColorRect" parent="Pause"]
+offset_right = 1280.0
+offset_bottom = 720.0
+color = Color(0, 0.439216, 0.439216, 0.588235)
 
 [node name="PauseDesk" type="Sprite2D" parent="Pause"]
 position = Vector2(640, 100)

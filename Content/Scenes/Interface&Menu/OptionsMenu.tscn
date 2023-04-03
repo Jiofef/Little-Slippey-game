@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://djnb31rnldxtp"]
+[gd_scene load_steps=17 format=3 uid="uid://djnb31rnldxtp"]
 
 [ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/OptionsMenu.cs" id="1"]
 [ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/VideoSettings.cs" id="2"]
@@ -7,7 +7,6 @@
 [ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/GameplaySettings.cs" id="5"]
 [ext_resource type="Texture2D" uid="uid://celdcwenl1h3u" path="res://Content/Sprites/Interface/Menu/Options/OptionsSector.png" id="6_kjhkq"]
 [ext_resource type="Texture2D" uid="uid://ca4i342wjnluv" path="res://Content/Sprites/Interface/Menu/Options/ApplyCancelSector.png" id="7"]
-[ext_resource type="Texture2D" uid="uid://b6g0lgar27768" path="res://Content/Sprites/Other/Fog.png" id="10"]
 [ext_resource type="Texture2D" uid="uid://klm8gfasncuf" path="res://Content/Sprites/Interface/Menu/Options/OptionsBackground.png" id="11"]
 [ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/OptionsBackground.cs" id="12"]
 [ext_resource type="PackedScene" uid="uid://bi3r8ko1akhe1" path="res://Content/Scenes/Interface&Menu/Button.tscn" id="13"]
@@ -38,11 +37,12 @@ scale = Vector2(1, 0.990618)
 texture = ExtResource("11")
 script = ExtResource("12")
 
-[node name="Fog" type="Sprite2D" parent="CanvasLayer/Background"]
-self_modulate = Color(1, 1, 1, 0.588235)
-position = Vector2(1.33514e-05, 0.835699)
-scale = Vector2(26.5, 15.0418)
-texture = ExtResource("10")
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Background"]
+offset_left = -530.0
+offset_top = -300.0
+offset_right = 530.0
+offset_bottom = 302.0
+color = Color(0, 0.439216, 0.439216, 0.588235)
 
 [node name="Sound" type="Control" parent="CanvasLayer"]
 layout_mode = 3
@@ -89,6 +89,7 @@ uppercase = true
 
 [node name="GlobalSlider" type="HSlider" parent="CanvasLayer/Sound/VBoxContainer"]
 layout_mode = 2
+focus_neighbor_top = NodePath("../../../ApplyCancel/Cancel")
 min_value = -30.0
 max_value = 10.0
 
@@ -160,6 +161,7 @@ uppercase = true
 
 [node name="CrossExplosionSlider" type="HSlider" parent="CanvasLayer/Sound/VBoxContainer"]
 layout_mode = 2
+focus_neighbor_bottom = NodePath("../../../Video/VBoxContainer/ScreenFormat")
 min_value = -30.0
 max_value = 10.0
 
@@ -206,6 +208,8 @@ scale = Vector2(2, 1.8)
 
 [node name="ScreenFormat" type="OptionButton" parent="CanvasLayer/Video/VBoxContainer"]
 layout_mode = 2
+focus_neighbor_top = NodePath("../../../Sound/VBoxContainer/CrossExplosionSlider")
+focus_neighbor_bottom = NodePath("../../../Gameplay/VBoxContainer/DificultyChange")
 item_count = 2
 selected = 0
 popup/item_0/text = "Standart"
@@ -255,6 +259,8 @@ scale = Vector2(2, 1.8)
 
 [node name="DificultyChange" type="OptionButton" parent="CanvasLayer/Gameplay/VBoxContainer"]
 layout_mode = 2
+focus_neighbor_top = NodePath("../../../Video/VBoxContainer/ScreenFormat")
+focus_neighbor_bottom = NodePath("../../../ApplyCancel/Cancel")
 item_count = 3
 selected = 0
 popup/item_0/text = "Easy"
@@ -284,10 +290,13 @@ anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 0.955
 offset_left = 11.8544
-offset_top = 8.27817
+offset_top = 9.93381
 offset_right = -302.146
-offset_bottom = -71.2218
+offset_bottom = -65.7462
 scale = Vector2(4.496, 4.7)
+focus_neighbor_left = NodePath("../../Sound/VBoxContainer/GlobalSlider")
+focus_neighbor_top = NodePath("../../Gameplay/VBoxContainer/DificultyChange")
+focus_neighbor_bottom = NodePath("../../Sound/VBoxContainer/GlobalSlider")
 texture_normal = ExtResource("16")
 texture_pressed = ExtResource("17")
 texture_focused = ExtResource("14")
@@ -301,6 +310,9 @@ offset_top = 8.27817
 offset_right = 207.784
 offset_bottom = 24.2782
 scale = Vector2(4.496, 4.7)
+focus_neighbor_top = NodePath("../../Gameplay/VBoxContainer/DificultyChange")
+focus_neighbor_right = NodePath("../../Sound/VBoxContainer/GlobalSlider")
+focus_neighbor_bottom = NodePath("../../Sound/VBoxContainer/GlobalSlider")
 texture_normal = ExtResource("15")
 texture_pressed = ExtResource("18")
 texture_focused = ExtResource("19")

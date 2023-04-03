@@ -37,25 +37,26 @@ public partial class LevelScript : Node2D
 
         if (G.PlayerDead) return;
         G.Scores += _floatDelta;
-        _weightMultiplierExtenderToCurrentCross += (_floatDelta * G._defaultCrossWeight[_lastAviableCrossNumber]) / 30;
+        _weightMultiplierExtenderToCurrentCross += (_floatDelta * G.DefaultCrossWeight[_lastAviableCrossNumber]) / 30;
         
 
         int IntScores = (int)G.Scores;
         GetNode<Label>("Player/DeadPlayer/Camera2D/GUI/Scores").Text = IntScores.ToString();
         int RandomRange1 = IntScores < 150 ? 20 - IntScores / 30 - Meta.Instance.Dificulty * 5 : 15 - Meta.Instance.Dificulty * 5;
-        
+        RandomRange1 -= (int)(5 - G.PlayerMoveCoeff * 5);
+        GD.Print(RandomRange1);
         if (_random.Next(RandomRange1) == 0)
         {
             if (!_doAllCrossWeigthsSetted)
             {
-                if (_crossWeight[_lastAviableCrossNumber] + _weightMultiplierExtenderToCurrentCross < G._defaultCrossWeight[_lastAviableCrossNumber])
+                if (_crossWeight[_lastAviableCrossNumber] + _weightMultiplierExtenderToCurrentCross < G.DefaultCrossWeight[_lastAviableCrossNumber])
                 {
                     _crossWeight[_lastAviableCrossNumber] += _weightMultiplierExtenderToCurrentCross;
                     _weightMultiplierExtenderToCurrentCross = 0;
                 }
                 else
                 {
-                    _crossWeight[_lastAviableCrossNumber] = G._defaultCrossWeight[_lastAviableCrossNumber];
+                    _crossWeight[_lastAviableCrossNumber] = G.DefaultCrossWeight[_lastAviableCrossNumber];
                     _lastAviableCrossNumber++;
                     _weightMultiplierExtenderToCurrentCross = 0;
                 }
@@ -73,12 +74,12 @@ public partial class LevelScript : Node2D
             int RandomNumber = _random.Next((int)RandomRange2);
             for (int i = 0; ; i++)
             {
-                if (RandomNumber < G._defaultCrossWeight[i])
+                if (RandomNumber < G.DefaultCrossWeight[i])
                 {
                     SelectedCrossNumber = i;
                     break;
                 }
-                else RandomNumber -= G._defaultCrossWeight[i];
+                else RandomNumber -= G.DefaultCrossWeight[i];
             }
 
             Node2D Cross = (Node2D)_defaultCross[SelectedCrossNumber].Instantiate();

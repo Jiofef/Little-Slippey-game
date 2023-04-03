@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://c2rvi0rp3kh5f"]
+[gd_scene load_steps=43 format=3 uid="uid://b5emddlfuaux0"]
 
 [ext_resource type="PackedScene" path="res://Content/Scenes/Crosses/CrossLayout.tscn" id="1"]
 [ext_resource type="PackedScene" uid="uid://bt41vubjcqv8p" path="res://Content/Scenes/Crosses/ExplosionAnimation.tscn" id="2"]
@@ -24,7 +24,6 @@
 [ext_resource type="Texture2D" uid="uid://ccljiefpt2m3o" path="res://Content/Sprites/Interface/Menu/Buttons/Pressed/PressedTitles.png" id="24"]
 [ext_resource type="Texture2D" uid="uid://dvstwq52e1g0x" path="res://Content/Sprites/Interface/Menu/Other/InterfaceBackground.png" id="25"]
 [ext_resource type="Texture2D" uid="uid://bg2mvitb1ih7q" path="res://Content/Sprites/Other/CrossExplosion.png" id="25_1g36h"]
-[ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/RightMenuBackground.cs" id="26"]
 [ext_resource type="Texture2D" uid="uid://knd473uoa7nk" path="res://Content/Sprites/Other/DeadPlayer.png" id="27"]
 
 [sub_resource type="AtlasTexture" id="2"]
@@ -166,11 +165,25 @@ grow_vertical = 2
 script = ExtResource("5")
 
 [node name="RightBackground" type="Node2D" parent="."]
-position = Vector2(350, 20)
-script = ExtResource("26")
+position = Vector2(340, 20)
+
+[node name="LevelPresenter" type="Node2D" parent="RightBackground"]
+
+[node name="CameraNumber" type="Label" parent="RightBackground"]
+offset_left = 1.0
+offset_top = 1.00001
+offset_right = 45.0
+offset_bottom = 26.0
+scale = Vector2(1.5, 1.5)
+theme_override_colors/font_color = Color(0.921569, 0.921569, 0.921569, 1)
+theme_override_colors/font_shadow_color = Color(0.223529, 0.203922, 0.341176, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/shadow_outline_size = 3
+text = "Cam 1"
 
 [node name="Bound" type="Sprite2D" parent="."]
-position = Vector2(300, 358.5)
+position = Vector2(299, 358.5)
 scale = Vector2(4.5, 4.50625)
 texture = ExtResource("3_w1tvo")
 
@@ -178,9 +191,15 @@ texture = ExtResource("3_w1tvo")
 position = Vector2(0, 14)
 
 [node name="Sprite2D" type="Sprite2D" parent="LeftBackground"]
-position = Vector2(144.75, 344.2)
+position = Vector2(144, 344.2)
 scale = Vector2(6, 4.80267)
 texture = ExtResource("25")
+
+[node name="ColorRect" type="ColorRect" parent="LeftBackground"]
+offset_top = -16.0
+offset_right = 288.0
+offset_bottom = 171.0
+color = Color(0, 0.811765, 0.811765, 0.301961)
 
 [node name="LogoEasterEgg" type="TextureButton" parent="LeftBackground"]
 offset_left = 82.0
@@ -224,7 +243,6 @@ offset_top = 175.0
 offset_right = 60.0
 offset_bottom = 191.0
 scale = Vector2(5.5, 5.5)
-disabled = true
 texture_normal = ExtResource("13")
 texture_pressed = ExtResource("23")
 texture_focused = ExtResource("10")

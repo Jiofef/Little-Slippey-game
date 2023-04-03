@@ -16,12 +16,12 @@ public partial class OptionsBackground : Sprite2D
         int RandomNumber = _random.Next(200);
         for (int i = 0; ; i++)
         {
-            if (RandomNumber < G._defaultCrossWeight[i])
+            if (RandomNumber < G.DefaultCrossWeight[i])
             {
                 SelectedCrossNumber = i;
                 break;
             }
-            else RandomNumber -= G._defaultCrossWeight[i];
+            else RandomNumber -= G.DefaultCrossWeight[i];
         }
 
         int RandomRange = 20 - Meta.Instance.Dificulty * 5;
