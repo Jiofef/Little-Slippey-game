@@ -195,6 +195,12 @@ position = Vector2(144, 344.2)
 scale = Vector2(6, 4.80267)
 texture = ExtResource("25")
 
+[node name="ColorRect" type="ColorRect" parent="LeftBackground"]
+offset_top = -16.0
+offset_right = 288.0
+offset_bottom = 171.0
+color = Color(0, 0.811765, 0.811765, 0.301961)
+
 [node name="LogoEasterEgg" type="TextureButton" parent="LeftBackground"]
 offset_left = 82.0
 offset_top = 6.0

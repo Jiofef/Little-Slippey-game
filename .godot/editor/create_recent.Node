@@ -1,10 +1,10 @@
+TileMap
+ColorRect
 PointLight2D
 SubViewport
 Sprite2D
-ColorRect
 ParallaxLayer
 ParallaxBackground
-TileMap
 Control
 NavigationAgent2D
 Node2D

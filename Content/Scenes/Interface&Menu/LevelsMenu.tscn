@@ -42,6 +42,7 @@ offset_right = 71.9199
 offset_bottom = 179.36
 
 [node name="Screen" type="Control" parent="Computer"]
+clip_contents = true
 anchors_preset = 0
 offset_left = 98.0
 offset_top = 77.0

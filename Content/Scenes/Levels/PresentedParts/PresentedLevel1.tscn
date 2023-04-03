@@ -1,8 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://c4nwtbe6tw265"]
+[gd_scene load_steps=8 format=3 uid="uid://c4nwtbe6tw265"]
 
 [ext_resource type="Script" path="res://Content/Scripts/Other/CameraMovingByLevelSimulation.cs" id="1_a7wix"]
 [ext_resource type="Texture2D" uid="uid://da3lsq4mvhbrv" path="res://Content/Sprites/Levels/Level1/BackLayer.png" id="1_nafe2"]
-[ext_resource type="Texture2D" uid="uid://b6g0lgar27768" path="res://Content/Sprites/Other/Fog.png" id="2"]
 [ext_resource type="Texture2D" uid="uid://iyc2n8rea3ew" path="res://Content/Sprites/Levels/Level1/FrontLayer.png" id="2_0q8vt"]
 [ext_resource type="Texture2D" uid="uid://q2j1uuqfjmos" path="res://Content/Sprites/Levels/BaseTileSet.png" id="4"]
 
@@ -43,15 +42,16 @@ scale = Vector2(4, 4)
 texture = ExtResource("1_nafe2")
 
 [node name="Sprite2" type="Sprite2D" parent="PathFollow2D/PresentedLevel1/Background2"]
-position = Vector2(170, 90)
-scale = Vector2(5.5, 5.5)
+position = Vector2(2.72726, -35.9091)
+scale = Vector2(3.87879, 3.48636)
 texture = ExtResource("2_0q8vt")
 
-[node name="Fog" type="Sprite2D" parent="PathFollow2D/PresentedLevel1/Background2"]
-modulate = Color(1, 1, 1, 0.294118)
-position = Vector2(-0.833313, -43.6364)
-scale = Vector2(32, 17.8182)
-texture = ExtResource("2")
+[node name="ColorRect" type="ColorRect" parent="PathFollow2D/PresentedLevel1/Background2"]
+offset_left = -580.0
+offset_top = -328.0
+offset_right = 585.0
+offset_bottom = 255.0
+color = Color(0, 0.439216, 0.439216, 0.117647)
 
 [node name="TileMap" type="TileMap" parent="PathFollow2D/PresentedLevel1"]
 position = Vector2(3, 0)

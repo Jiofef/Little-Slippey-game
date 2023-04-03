@@ -53,6 +53,7 @@ public partial class MainScript : Node2D
     {
         _subMenusOpened = false;
         GetNode<CanvasLayer>("Pause").ProcessMode = ProcessModeEnum.WhenPaused;
+        GetNode<TextureButton>("Pause/Buttons/Resume").GrabFocus();
     }
     public void OpenMovementTutorial()
     {

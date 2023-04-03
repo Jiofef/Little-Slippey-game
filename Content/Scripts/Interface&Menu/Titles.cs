@@ -3,6 +3,10 @@ using System;
 
 public partial class Titles : Control
 {
+    public override void _Ready()
+    {
+        GetNode<TextureButton>("Cancel").GrabFocus();
+    }
     public override void _Process(double delta)
     {
         if (Input.IsActionJustPressed("Cancel"))

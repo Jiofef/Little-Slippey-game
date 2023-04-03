@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b6g0lgar27768"
-path="res://.godot/imported/Fog.png-a5cad22ca89f7d7bc7b013a511e61c62.ctex"
+uid="uid://b830neidt3avy"
+path="res://.godot/imported/Mort`sTileset.png-bfaa542d0558b4a0a8c8c76fe81b07fc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Content/Sprites/Other/Fog.png"
-dest_files=["res://.godot/imported/Fog.png-a5cad22ca89f7d7bc7b013a511e61c62.ctex"]
+source_file="res://Content/Sprites/Levels/Mort`sTileset.png"
+dest_files=["res://.godot/imported/Mort`sTileset.png-bfaa542d0558b4a0a8c8c76fe81b07fc.ctex"]
 
 [params]
 
