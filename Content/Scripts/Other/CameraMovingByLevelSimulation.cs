@@ -13,7 +13,7 @@ public partial class CameraMovingByLevelSimulation : PathFollow2D
 	{
         if (_stopTimer <= 0)
 		{
-			Progress += !_doMotionReversed ? 1.5f : -1.5f;
+			Progress += !_doMotionReversed ? 1.5f: -1.5f;
 			if (ProgressRatio == 0)
 			{
 				_stopTimer = 1.5f;

@@ -33,20 +33,20 @@ script = ExtResource("1_a7wix")
 
 [node name="PresentedLevel1" type="Node2D" parent="PathFollow2D"]
 
-[node name="Background2" type="Node2D" parent="PathFollow2D/PresentedLevel1"]
+[node name="Background" type="Node2D" parent="PathFollow2D/PresentedLevel1"]
 position = Vector2(640, 360)
 scale = Vector2(1.1, 1.1)
 
-[node name="Sprite1" type="Sprite2D" parent="PathFollow2D/PresentedLevel1/Background2"]
+[node name="Sprite1" type="Sprite2D" parent="PathFollow2D/PresentedLevel1/Background"]
 scale = Vector2(4, 4)
 texture = ExtResource("1_nafe2")
 
-[node name="Sprite2" type="Sprite2D" parent="PathFollow2D/PresentedLevel1/Background2"]
+[node name="Sprite2" type="Sprite2D" parent="PathFollow2D/PresentedLevel1/Background"]
 position = Vector2(2.72726, -35.9091)
 scale = Vector2(3.87879, 3.48636)
 texture = ExtResource("2_0q8vt")
 
-[node name="ColorRect" type="ColorRect" parent="PathFollow2D/PresentedLevel1/Background2"]
+[node name="ColorRect" type="ColorRect" parent="PathFollow2D/PresentedLevel1/Background"]
 offset_left = -580.0
 offset_top = -328.0
 offset_right = 585.0

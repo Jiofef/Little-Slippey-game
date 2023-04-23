@@ -9,7 +9,7 @@ public partial class CameraScript : Camera2D
     }
     private void LimitsChangingBy(float plus1, float plus2, float plus3, float plus4)
     {
-        float[] Defaultlimits = {-25, G.LevelXYSizes[G.CurrentLevel].X + 30, G.LevelXYSizes[G.CurrentLevel].Y + 30, -25};
+        float[] Defaultlimits = {-25, G.LevelXYSizes[G.CurrentLevel].X + 30, G.LevelXYSizes[G.CurrentLevel].Y + 100, -25};
         LimitTop = (int)(Defaultlimits[0] + plus1);
         LimitRight = (int)(Defaultlimits[1] + plus2);
         LimitBottom = (int)(Defaultlimits[2] + plus3);

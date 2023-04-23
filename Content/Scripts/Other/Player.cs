@@ -8,7 +8,7 @@ public partial class Player : CharacterBody2D
     private float _wallDetectNumber, _inertion, _savedWallNumber, _wallJumpTimer = 0,
 
           // wall climbs
-          _climbBufer, _climbTimer, _savedClimbWallNumber, _climbUncontrollingTimer,
+          _climbBufer = 3, _climbTimer, _savedClimbWallNumber, _climbUncontrollingTimer,
 
           // other
           _moveCalculationTimer = 0;
@@ -115,7 +115,7 @@ public partial class Player : CharacterBody2D
             if (_state == State.DownDash)
             {
                 _motion.X = 0;
-                _motion.Y = 1000;
+                _motion.Y = 1250;
             }
             _wallJumpTimer -= _floatDelta;
             _climbTimer -= _floatDelta;

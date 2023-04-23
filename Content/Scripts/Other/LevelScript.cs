@@ -43,8 +43,7 @@ public partial class LevelScript : Node2D
         int IntScores = (int)G.Scores;
         GetNode<Label>("Player/DeadPlayer/Camera2D/GUI/Scores").Text = IntScores.ToString();
         int RandomRange1 = IntScores < 150 ? 20 - IntScores / 30 - Meta.Instance.Dificulty * 5 : 15 - Meta.Instance.Dificulty * 5;
-        RandomRange1 -= (int)(5 - G.PlayerMoveCoeff * 5);
-        GD.Print(RandomRange1);
+        RandomRange1 -= (int)(RandomRange1 / 2 - G.PlayerMoveCoeff * RandomRange1 / 2);
         if (_random.Next(RandomRange1) == 0)
         {
             if (!_doAllCrossWeigthsSetted)
