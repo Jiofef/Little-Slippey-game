@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class LevelScript : Node2D
+public partial class BaseLevelScript : Node2D
 {
     PackedScene[] _defaultCross = new PackedScene[G.CrossesInGameTotal];
     CharacterBody2D _player;

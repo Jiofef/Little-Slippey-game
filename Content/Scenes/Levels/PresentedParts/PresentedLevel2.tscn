@@ -293,6 +293,7 @@ position = Vector2(0, 2)
 rotates = false
 loop = false
 script = ExtResource("1_j8drf")
+_levelNumber = 2
 
 [node name="PresentedLevel2" type="Node2D" parent="PathFollow2D"]
 

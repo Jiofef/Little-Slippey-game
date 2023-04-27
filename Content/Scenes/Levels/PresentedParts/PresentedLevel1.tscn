@@ -30,6 +30,7 @@ curve = SubResource("Curve2D_faalx")
 rotates = false
 loop = false
 script = ExtResource("1_a7wix")
+_levelNumber = 1
 
 [node name="PresentedLevel1" type="Node2D" parent="PathFollow2D"]
 

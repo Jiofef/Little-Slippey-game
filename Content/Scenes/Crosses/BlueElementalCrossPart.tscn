@@ -16,6 +16,7 @@ point_count = 2
 radius = 12.6842
 
 [node name="BlueElementalCrossPart" instance=ExtResource("1")]
+z_index = 1
 script = ExtResource("3")
 
 [node name="ExplosionSignal" parent="." index="0"]

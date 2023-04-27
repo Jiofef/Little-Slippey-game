@@ -1,6 +1,6 @@
-[gd_scene load_steps=15 format=3 uid="uid://cecxaddlegjki"]
+[gd_scene load_steps=15 format=3 uid="uid://chw67n0du3uqb"]
 
-[ext_resource type="Script" path="res://Content/Scripts/Other/LevelScript.cs" id="1_5ed8v"]
+[ext_resource type="Script" path="res://Content/Scripts/Levels/BaseLevelScript.cs" id="1_5ed8v"]
 [ext_resource type="Texture2D" uid="uid://q2j1uuqfjmos" path="res://Content/Sprites/Levels/BaseTileSet.png" id="1_daoq4"]
 [ext_resource type="PackedScene" uid="uid://dlscufxb5f1ca" path="res://Content/Scenes/Other/Player.tscn" id="2_7ed56"]
 [ext_resource type="Texture2D" uid="uid://ba64m2i1e8tsn" path="res://Content/Sprites/Levels/Level2/Sky.png" id="2_mo542"]

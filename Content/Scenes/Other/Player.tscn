@@ -21,13 +21,13 @@
 [ext_resource type="Texture2D" uid="uid://knd473uoa7nk" path="res://Content/Sprites/Other/DeadPlayer.png" id="19"]
 
 [sub_resource type="RectangleShape2D" id="1"]
-size = Vector2(40, 46)
+size = Vector2(40, 56)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y6w3b"]
-size = Vector2(40, 46)
+size = Vector2(40, 56)
 
 [sub_resource type="RectangleShape2D" id="2"]
-size = Vector2(4, 46)
+size = Vector2(4, 56)
 
 [sub_resource type="AtlasTexture" id="11"]
 atlas = ExtResource("7")
@@ -250,19 +250,17 @@ collision_mask = 5
 script = ExtResource("1")
 
 [node name="FullBodyCollider" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2(0, 9)
+position = Vector2(0, 4)
 shape = SubResource("1")
 
 [node name="Areas" type="Node2D" parent="."]
-visible = false
 
 [node name="DamageDetector" type="Area2D" parent="Areas"]
 collision_layer = 8
 collision_mask = 24
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/DamageDetector"]
-position = Vector2(0, 9)
+position = Vector2(0, 4)
 shape = SubResource("RectangleShape2D_y6w3b")
 
 [node name="WallDirectionLeftDetector" type="Area2D" parent="Areas"]
@@ -270,7 +268,7 @@ collision_layer = 2
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/WallDirectionLeftDetector"]
-position = Vector2(-22, 9)
+position = Vector2(-22, 4)
 shape = SubResource("2")
 
 [node name="WallDirectionRightDetector" type="Area2D" parent="Areas"]
@@ -278,12 +276,12 @@ collision_layer = 2
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/WallDirectionRightDetector"]
-position = Vector2(22, 9)
+position = Vector2(22, 4)
 shape = SubResource("2")
 
 [node name="Sounds" type="Node" parent="."]
 
-[node name="DownPullHit" type="AudioStreamPlayer" parent="Sounds"]
+[node name="PullDownHit" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("3")
 bus = &"Player"
 
@@ -294,11 +292,12 @@ bus = &"Player"
 
 [node name="Climb" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("8")
+volume_db = 5.0
 bus = &"Player"
 
 [node name="PullDown" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("9")
-volume_db = -6.0
+volume_db = -10.0
 bus = &"Player"
 
 [node name="Ghost" type="Sprite2D" parent="."]
@@ -307,8 +306,7 @@ scale = Vector2(4, 4)
 texture = ExtResource("10")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(1.43051e-06, 4)
-scale = Vector2(4, 3.5)
+scale = Vector2(4, 4)
 sprite_frames = SubResource("10")
 animation = &"Idle"
 autoplay = "Idle"

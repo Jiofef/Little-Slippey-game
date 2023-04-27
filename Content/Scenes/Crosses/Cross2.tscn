@@ -18,6 +18,7 @@ point_count = 2
 radius = 85.0
 
 [node name="RestlessCross" type="Node2D"]
+z_index = 1
 scale = Vector2(3, 3)
 script = ExtResource("1")
 

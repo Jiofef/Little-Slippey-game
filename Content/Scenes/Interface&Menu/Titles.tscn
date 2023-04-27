@@ -23,6 +23,7 @@ position = Vector2(530, 300)
 texture = ExtResource("3")
 
 [node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
 offset_right = 1060.0
 offset_bottom = 600.0
 color = Color(0, 0.54902, 0.54902, 0.470588)
@@ -47,10 +48,11 @@ text = "We need to honor the memory of these people"
 uppercase = true
 
 [node name="SecondaryText" type="RichTextLabel" parent="."]
+clip_contents = false
 layout_mode = 0
 offset_left = 294.0
 offset_top = 215.0
-offset_right = 615.0
+offset_right = 816.0
 offset_bottom = 358.0
 scale = Vector2(1.5, 1.5)
 theme_override_colors/default_color = Color(0.533333, 0.533333, 0.533333, 1)
@@ -64,7 +66,240 @@ A few sounds from Sfxbuzz.com and soundjay.com
 
 Report bugs on jiofef@gmail.com
 
-Game by Paradise Underground"
+Game by Paradise Underground
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Thanks to my mom and Illya"
 
 [node name="Cancel" parent="." instance=ExtResource("1")]
 layout_mode = 1

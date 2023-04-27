@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b3figmatmye7u"
-path="res://.godot/imported/Sprite-0001.png-4dd617799e8f9df8bb416e3af71e8cac.ctex"
+uid="uid://dsukwby7alfd"
+path="res://.godot/imported/UltraBigSaw.png-dc18033d9b5817316d6927ff60459dc5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Content/Sprites/Levels/Sprite-0001.png"
-dest_files=["res://.godot/imported/Sprite-0001.png-4dd617799e8f9df8bb416e3af71e8cac.ctex"]
+source_file="res://Content/Sprites/Levels/Level4/UltraBigSaw.png"
+dest_files=["res://.godot/imported/UltraBigSaw.png-dc18033d9b5817316d6927ff60459dc5.ctex"]
 
 [params]
 

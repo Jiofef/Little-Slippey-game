@@ -131,7 +131,7 @@ public partial class Player : CharacterBody2D
             _climbUncontrollingTimer = 0;
 
             if (_state == State.DownDash)
-                PlaySound("DownPullHit");
+                PlaySound("PullDownHit");
             _state = State.Default;
         }
         //Animations

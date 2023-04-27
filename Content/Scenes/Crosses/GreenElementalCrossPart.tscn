@@ -185,6 +185,7 @@ animations = [{
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
 [node name="GreenElementalCrossPart" instance=ExtResource("1")]
+z_index = 1
 position = Vector2(300, 300)
 script = ExtResource("3")
 
