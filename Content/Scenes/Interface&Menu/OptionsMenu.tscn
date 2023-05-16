@@ -28,10 +28,12 @@ grow_vertical = 2
 script = ExtResource("1")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 2
 scale = Vector2(1.208, 1.208)
 transform = Transform2D(1.208, 0, 0, 1.208, 0, 0)
 
 [node name="Background" type="Sprite2D" parent="CanvasLayer"]
+z_index = -1
 position = Vector2(530, 297.185)
 scale = Vector2(1, 0.990618)
 texture = ExtResource("11")
@@ -79,7 +81,7 @@ offset_left = 33.0
 offset_top = 147.0
 offset_right = 245.0
 offset_bottom = 500.0
-scale = Vector2(1.778, 1.6)
+scale = Vector2(1.556, 1.4)
 alignment = 1
 
 [node name="Global" type="Label" parent="CanvasLayer/Sound/VBoxContainer"]
@@ -160,6 +162,17 @@ text = "Cross explosion"
 uppercase = true
 
 [node name="CrossExplosionSlider" type="HSlider" parent="CanvasLayer/Sound/VBoxContainer"]
+layout_mode = 2
+focus_neighbor_bottom = NodePath("../../../Video/VBoxContainer/ScreenFormat")
+min_value = -30.0
+max_value = 10.0
+
+[node name="LevelSounds" type="Label" parent="CanvasLayer/Sound/VBoxContainer"]
+layout_mode = 2
+text = "Level sounds"
+uppercase = true
+
+[node name="LevelSoundsSlider" type="HSlider" parent="CanvasLayer/Sound/VBoxContainer"]
 layout_mode = 2
 focus_neighbor_bottom = NodePath("../../../Video/VBoxContainer/ScreenFormat")
 min_value = -30.0
@@ -317,13 +330,14 @@ texture_normal = ExtResource("15")
 texture_pressed = ExtResource("18")
 texture_focused = ExtResource("19")
 
-[connection signal="value_changed" from="CanvasLayer/Sound/VBoxContainer/GlobalSlider" to="CanvasLayer/Sound" method="GlobalChanged"]
-[connection signal="value_changed" from="CanvasLayer/Sound/VBoxContainer/InterfaceSlider" to="CanvasLayer/Sound" method="InterfaceChanged"]
-[connection signal="value_changed" from="CanvasLayer/Sound/VBoxContainer/MusicSlider" to="CanvasLayer/Sound" method="MusicChanged"]
-[connection signal="value_changed" from="CanvasLayer/Sound/VBoxContainer/PlayerSlider" to="CanvasLayer/Sound" method="PlayerChanged"]
-[connection signal="value_changed" from="CanvasLayer/Sound/VBoxContainer/CrossSnapSlider" to="CanvasLayer/Sound" method="CrossSnapChanged"]
-[connection signal="value_changed" from="CanvasLayer/Sound/VBoxContainer/CrossOtherSlider" to="CanvasLayer/Sound" method="CrossOtherChanged"]
-[connection signal="value_changed" from="CanvasLayer/Sound/VBoxContainer/CrossExplosionSlider" to="CanvasLayer/Sound" method="CrossExplosionChanged"]
+[connection signal="value_changed" from="CanvasLayer/Sound/VBoxContainer/GlobalSlider" to="CanvasLayer/Sound" method="SoundChanging" binds= [0]]
+[connection signal="value_changed" from="CanvasLayer/Sound/VBoxContainer/InterfaceSlider" to="CanvasLayer/Sound" method="SoundChanging" binds= [1]]
+[connection signal="value_changed" from="CanvasLayer/Sound/VBoxContainer/MusicSlider" to="CanvasLayer/Sound" method="SoundChanging" binds= [2]]
+[connection signal="value_changed" from="CanvasLayer/Sound/VBoxContainer/PlayerSlider" to="CanvasLayer/Sound" method="SoundChanging" binds= [3]]
+[connection signal="value_changed" from="CanvasLayer/Sound/VBoxContainer/CrossSnapSlider" to="CanvasLayer/Sound" method="SoundChanging" binds= [4]]
+[connection signal="value_changed" from="CanvasLayer/Sound/VBoxContainer/CrossOtherSlider" to="CanvasLayer/Sound" method="SoundChanging" binds= [5]]
+[connection signal="value_changed" from="CanvasLayer/Sound/VBoxContainer/CrossExplosionSlider" to="CanvasLayer/Sound" method="SoundChanging" binds= [6]]
+[connection signal="value_changed" from="CanvasLayer/Sound/VBoxContainer/LevelSoundsSlider" to="CanvasLayer/Sound" method="SoundChanging" binds= [7]]
 [connection signal="item_selected" from="CanvasLayer/Video/VBoxContainer/ScreenFormat" to="CanvasLayer/Video" method="ChangeScreenFormat"]
 [connection signal="item_selected" from="CanvasLayer/Gameplay/VBoxContainer/DificultyChange" to="CanvasLayer/Gameplay" method="DificultyChanged"]
 [connection signal="pressed" from="CanvasLayer/ApplyCancel/Apply" to="CanvasLayer/ApplyCancel" method="Apply"]

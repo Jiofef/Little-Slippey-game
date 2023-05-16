@@ -12,7 +12,7 @@ public partial class Meta : Node
 
     //SoundsVolume
     //in this array #0 is _master, #1 _interface, #2 _music, #3 _player, #4 _crosssnap, #5 _crossother, %6 _crossexplosion
-    public float[] BusVolumes = { -8, 0, 0, 0, -15, 0, 0 };
+    public float[] BusVolumes = { -8, 0, 0, 0, -15, 0, 0, 0};
 
     //VideoOptions
     //Since this is the HTML version, it will be incorrect to save the full screen state, and this is the only non-saving variable in the meta

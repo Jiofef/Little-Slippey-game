@@ -46,6 +46,8 @@ public partial class ElementalCross : Node2D
         {
             _doElementsSpawnBegun = true;
             _elementalType = (ElementalType)_random.Next(_elementalTypesTotal);
+            if (G.CurrentLevel == 5)
+                _elementalType = ElementalType.Blue;
             _summonableElemental = ResourceLoader.Load<PackedScene>("res://Content/Scenes/Crosses/" + _elementalType.ToString() + "ElementalCrossPart.tscn");
             var sprite = GetNode<Sprite2D>("Sprite2D");
             switch (_elementalType)

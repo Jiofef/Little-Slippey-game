@@ -136,7 +136,7 @@ script = ExtResource("1_fdlw2")
 [node name="Sky" type="ParallaxLayer" parent="Background"]
 position = Vector2(510, 335)
 scale = Vector2(3.5, 3.5)
-motion_scale = Vector2(0.1, 0.1)
+motion_scale = Vector2(0.1, 0.3)
 
 [node name="Sprite2D" type="Sprite2D" parent="Background/Sky"]
 texture = ExtResource("5_sgwec")
@@ -152,7 +152,7 @@ texture = ExtResource("6_3p46s")
 [node name="Sea" type="ParallaxLayer" parent="Background"]
 position = Vector2(580, 375)
 scale = Vector2(4.3, 4.3)
-motion_scale = Vector2(0.2, 0.4)
+motion_scale = Vector2(0.2, 0.3)
 
 [node name="Sprite2D" type="Sprite2D" parent="Background/Sea"]
 texture = ExtResource("7_imrif")

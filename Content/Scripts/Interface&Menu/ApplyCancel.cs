@@ -7,7 +7,7 @@ public partial class ApplyCancel : Control
     public override void _Ready()
     {
         if (G.Scores != 0)
-            Connect("OptionsClosing",new Callable(GetParent().GetParent().GetParent(),"OptionsClosing"));
+            Connect("OptionsClosing",new Callable(GetNode("../../.."),"OptionsClosing"));
         GetNode<TextureButton>("Cancel").GrabFocus();
     }
     public override void _Process(double delta)

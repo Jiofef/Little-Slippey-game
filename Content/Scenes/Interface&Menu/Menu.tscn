@@ -168,6 +168,7 @@ script = ExtResource("5")
 position = Vector2(340, 20)
 
 [node name="LevelPresenter" type="Node2D" parent="RightBackground"]
+z_index = -1
 
 [node name="CameraNumber" type="Label" parent="RightBackground"]
 offset_left = 1.0

@@ -12,6 +12,11 @@ public partial class MainScript : Node2D
             GetTree().Paused = true;
             OpenMovementTutorial();
         }
+
+        var levelMusicPlayer = GetNode<AudioStreamPlayer>("LevelMusicPlayer");
+        AudioStream Music = ResourceLoader.Load<AudioStream>("res://Content/Sounds/Soundtrack/Level" + G.CurrentLevel + ".wav");
+        levelMusicPlayer.Stream = Music;
+        levelMusicPlayer.Play();
     }
     public override void _Process(double delta)
     {
@@ -22,6 +27,7 @@ public partial class MainScript : Node2D
     }
     public void UnPause()
     {
+        AudioServer.SetBusEffectEnabled(2, 0, !GetTree().Paused);
         GetNode<CanvasLayer>("Pause").Visible = !GetTree().Paused;
         GetNode<TextureButton>("Pause/Buttons/Resume").GrabFocus();
         Input.MouseMode = GetTree().Paused ? Input.MouseModeEnum.Hidden : Input.MouseModeEnum.Visible;
@@ -40,6 +46,7 @@ public partial class MainScript : Node2D
         G.SaveRecords();
         G.ResetValues();
         GetTree().ChangeSceneToFile("res://Content/Scenes/Interface&Menu/Menu.tscn");
+        AudioServer.SetBusEffectEnabled(2, 0, false);
     }
     public void OptionsClosing()
     {
