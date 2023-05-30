@@ -6,17 +6,18 @@ public partial class G : Node
 	public static bool PlayerDead, DoNewRecordReached;
 	public static float PlayerDeathTimer, PlayerDeathTimerCoeff = 0, PlayerMoveCoeff = 1, ReversedPlayerDeathTimerCoeff = 1, ResetTimer, AfterPlayerDeadTimer, Scores = 0;
 	public static int CurrentLevel;
-	public static readonly int LevelsInGameTotal = 5, CrossesInGameTotal = 5, DificultiesInGameTotal = 3;
+	public static readonly int LevelsInGameTotal = 6, CrossesInGameTotal = 5, DificultiesInGameTotal = 3;
     public static readonly int[] DefaultCrossWeight = { 100, 40, 20, 10, 30 };
 	public static readonly Vector2[] LevelXYSizes =
 	{
-		//Level sizes start from element with index "1", element with index "0" is the minimal level size
+		//Level sizes starts from Vector2 with index "1", Vector2 with index "0" is the minimal level size
 		new Vector2(1280, 640),
 		new Vector2(1280, 640),
 		new Vector2(2560, 640),
 		new Vector2(2560, 1280),
 		new Vector2(2560, 1280),
 		new Vector2(2560, 640),
+		new Vector2(2560, 1280),
     };
 	public override void _Process(double delta)
 	{

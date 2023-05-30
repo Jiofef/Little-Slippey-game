@@ -246,7 +246,9 @@ animations = [{
 }]
 
 [node name="Player" type="CharacterBody2D"]
-collision_mask = 5
+collision_mask = 197
+platform_floor_layers = 132
+platform_wall_layers = 132
 script = ExtResource("1")
 
 [node name="FullBodyCollider" type="CollisionShape2D" parent="."]
@@ -255,17 +257,17 @@ shape = SubResource("1")
 
 [node name="Areas" type="Node2D" parent="."]
 
-[node name="DamageDetector" type="Area2D" parent="Areas"]
+[node name="PlayerDamageDetector" type="Area2D" parent="Areas"]
 collision_layer = 8
 collision_mask = 24
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/DamageDetector"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/PlayerDamageDetector"]
 position = Vector2(0, 4)
 shape = SubResource("RectangleShape2D_y6w3b")
 
 [node name="WallDirectionLeftDetector" type="Area2D" parent="Areas"]
 collision_layer = 2
-collision_mask = 4
+collision_mask = 132
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/WallDirectionLeftDetector"]
 position = Vector2(-22, 4)
@@ -273,7 +275,7 @@ shape = SubResource("2")
 
 [node name="WallDirectionRightDetector" type="Area2D" parent="Areas"]
 collision_layer = 2
-collision_mask = 4
+collision_mask = 132
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/WallDirectionRightDetector"]
 position = Vector2(22, 4)
@@ -440,8 +442,8 @@ stream = ExtResource("16")
 volume_db = 10.0
 bus = &"Player"
 
-[connection signal="area_entered" from="Areas/DamageDetector" to="." method="DamageGetting" flags=6]
-[connection signal="area_entered" from="Areas/DamageDetector" to="DeadPlayer/Camera2D" method="CameraZoom" flags=6]
+[connection signal="area_entered" from="Areas/PlayerDamageDetector" to="." method="DamageGetting" flags=6]
+[connection signal="area_entered" from="Areas/PlayerDamageDetector" to="DeadPlayer/Camera2D" method="CameraZoom" flags=6]
 [connection signal="body_entered" from="Areas/WallDirectionLeftDetector" to="." method="LeftWallDetect"]
 [connection signal="body_exited" from="Areas/WallDirectionLeftDetector" to="." method="WallUndetected"]
 [connection signal="body_entered" from="Areas/WallDirectionRightDetector" to="." method="RightWallDetect"]

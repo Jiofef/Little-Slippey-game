@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://7fixf626ebi4"]
+
+[ext_resource type="Script" path="res://Content/Scripts/Other/CameraMovingByLevelSimulation.cs" id="1_meie2"]
+
+[sub_resource type="Curve2D" id="Curve2D_6y43r"]
+
+[node name="Path2D" type="Path2D"]
+curve = SubResource("Curve2D_6y43r")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="."]
+script = ExtResource("1_meie2")
+
+[node name="PresentedLevel6" type="Node2D" parent="PathFollow2D"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://b7kkrwxpd5r75"]
+[gd_scene load_steps=17 format=3 uid="uid://b7kkrwxpd5r75"]
 
 [ext_resource type="Script" path="res://Content/Scripts/Levels/BaseLevelScript.cs" id="1_7epq6"]
 [ext_resource type="Texture2D" uid="uid://q2j1uuqfjmos" path="res://Content/Sprites/Levels/BaseTileSet.png" id="1_vpwsw"]
@@ -10,12 +10,6 @@
 [ext_resource type="AudioStream" uid="uid://dqc0vbb5n0mue" path="res://Content/Sounds/Levels/Level5Thunder.wav" id="7_n57c7"]
 [ext_resource type="AudioStream" uid="uid://1y7s1ielwra0" path="res://Content/Sounds/Levels/Level5Ambience1.wav" id="8_1upyt"]
 [ext_resource type="AudioStream" uid="uid://bb56wmhlog106" path="res://Content/Sounds/Levels/Level5Ambience2.wav" id="9_cr48p"]
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_b4npu"]
-texture = ExtResource("1_vpwsw")
-0:0/0 = 0
-1:0/0 = 0
-2:0/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_r08os"]
 texture = ExtResource("5_5oi6v")
@@ -50,10 +44,9 @@ texture = ExtResource("5_5oi6v")
 3:2/3/flip_h = true
 
 [sub_resource type="TileSet" id="TileSet_o1orc"]
-sources/1 = SubResource("TileSetAtlasSource_b4npu")
 sources/2 = SubResource("TileSetAtlasSource_r08os")
 
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_b41pk"]
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_c47k8"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mxbjq"]
 texture = ExtResource("1_vpwsw")
@@ -159,7 +152,7 @@ texture = ExtResource("5_5oi6v")
 [sub_resource type="TileSet" id="TileSet_weig7"]
 physics_layer_0/collision_layer = 4
 physics_layer_0/collision_mask = 3
-physics_layer_0/physics_material = SubResource("PhysicsMaterial_b41pk")
+physics_layer_0/physics_material = SubResource("PhysicsMaterial_c47k8")
 sources/0 = SubResource("TileSetAtlasSource_mxbjq")
 sources/1 = SubResource("TileSetAtlasSource_odx4j")
 
