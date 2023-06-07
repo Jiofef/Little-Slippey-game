@@ -1,4 +1,8 @@
+res://default_bus_layout.tres
 res://default_env.tres
+res://Content/Scenes/Levels/FullParts/Level2.tscn
 res://Content/Scenes/Levels/FullParts/Level6.tscn
-res://Content/Scenes/Other/Level6FlyingCar.tscn
-res://Content/Scenes/Other/Player.tscn
+res://Content/Scenes/Levels/PresentedParts/PresentedLevel6.tscn
+res://Content/Scenes/Levels/PresentedParts/PresentedLevel5.tscn
+res://Content/Scenes/Levels/PresentedParts/PresentedLevel4.tscn
+res://Content/Scenes/Interface&Menu/Button.tscn

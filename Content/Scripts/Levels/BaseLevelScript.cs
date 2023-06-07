@@ -113,7 +113,6 @@ public partial class BaseLevelScript : Node2D
                     Cross.Position = Cross.Scale.X == -1 ? new Vector2(G.LevelXYSizes[G.CurrentLevel].X + 120, Cross.Position.Y) : new Vector2(-120, Cross.Position.Y);
                     break;
             }
-            return;
             AddChild(Cross);
         }
 

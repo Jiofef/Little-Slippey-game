@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://c8bud6raefbd"]
+[gd_scene load_steps=8 format=3 uid="uid://c8bud6raefbd"]
 
 [ext_resource type="Script" path="res://Content/Scripts/Levels/Level6FlyingCar.cs" id="1_0duqf"]
-[ext_resource type="Texture2D" uid="uid://bajocrmag5mkq" path="res://Content/Sprites/Levels/Level6/FrontCarHalf.png" id="2_k0cbq"]
-[ext_resource type="Texture2D" uid="uid://wu2lyrr417m" path="res://Content/Sprites/Levels/Level6/BackCarHalf.png" id="3_en1pi"]
+[ext_resource type="Texture2D" uid="uid://cim0cdx4secre" path="res://Content/Sprites/Levels/Level6/GieroFlyingCar.png" id="2_jjd8w"]
+[ext_resource type="PackedScene" uid="uid://bt41vubjcqv8p" path="res://Content/Scenes/Crosses/ExplosionAnimation.tscn" id="4_wsswu"]
+[ext_resource type="AudioStream" uid="uid://clx6n3ton256w" path="res://Content/Sounds/Crosses/Explosion.wav" id="5_ildig"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_33feu"]
 size = Vector2(128, 64)
@@ -10,30 +11,68 @@ size = Vector2(128, 64)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bkpm6"]
 size = Vector2(126, 62)
 
+[sub_resource type="Gradient" id="Gradient_qa2ky"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
 [node name="Level6FlyingCar" type="AnimatableBody2D"]
 collision_layer = 128
 collision_mask = 129
 script = ExtResource("1_0duqf")
+metadata/_edit_vertical_guides_ = []
+metadata/_edit_horizontal_guides_ = []
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_33feu")
 
 [node name="CarArea" type="Area2D" parent="."]
 collision_layer = 128
-collision_mask = 200
+collision_mask = 136
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CarArea"]
 shape = SubResource("RectangleShape2D_bkpm6")
 
-[node name="FrontHalf" type="Sprite2D" parent="."]
-position = Vector2(32, 0)
-scale = Vector2(4, 4)
-texture = ExtResource("2_k0cbq")
+[node name="Model" type="Node2D" parent="."]
 
-[node name="BackHalf" type="Sprite2D" parent="."]
+[node name="BackHalf" type="Sprite2D" parent="Model"]
 position = Vector2(-32, 0)
 scale = Vector2(4, 4)
-texture = ExtResource("3_en1pi")
+texture = ExtResource("2_jjd8w")
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)
+
+[node name="FrontHalf" type="Sprite2D" parent="Model"]
+position = Vector2(32, 0)
+scale = Vector2(4, 4)
+texture = ExtResource("2_jjd8w")
+region_enabled = true
+region_rect = Rect2(16, 0, 16, 16)
+
+[node name="ExplosionAnimation" parent="." instance=ExtResource("4_wsswu")]
+modulate = Color(0.882353, 0.882353, 0.882353, 1)
+speed_scale = 1.5
+
+[node name="ExplosionParticles" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 30
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.9
+emission_shape = 3
+emission_rect_extents = Vector2(60, 30)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 500.0
+initial_velocity_max = 500.0
+angle_min = -720.0
+angle_max = 720.0
+scale_amount_min = 4.0
+scale_amount_max = 4.0
+color = Color(1, 0.847059, 0.380392, 1)
+color_ramp = SubResource("Gradient_qa2ky")
+
+[node name="ExplosionSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_ildig")
+bus = &"LevelSounds"
 
 [connection signal="area_entered" from="CarArea" to="." method="AreaEntered"]
-[connection signal="area_exited" from="CarArea" to="." method="AreaExited"]
+[connection signal="animation_finished" from="ExplosionAnimation" to="." method="queue_free"]

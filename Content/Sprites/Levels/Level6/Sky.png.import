@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cy1lov1ry2p21"
-path="res://.godot/imported/TheCity.png-d2ab682ac7dee9c433dd808e21f875ba.ctex"
+uid="uid://cl251rqg2xbw0"
+path="res://.godot/imported/Sky.png-c5cb809cf8ac821d99a95847fa5c72e3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Content/Sprites/Levels/Level6/TheCity.png"
-dest_files=["res://.godot/imported/TheCity.png-d2ab682ac7dee9c433dd808e21f875ba.ctex"]
+source_file="res://Content/Sprites/Levels/Level6/Sky.png"
+dest_files=["res://.godot/imported/Sky.png-c5cb809cf8ac821d99a95847fa5c72e3.ctex"]
 
 [params]
 

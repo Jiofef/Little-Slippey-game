@@ -1,45 +1,101 @@
 using Godot;
+using System;
 
 public partial class Level6FlyingCar : AnimatableBody2D
 {
-	private int _speed;
-	private bool _isInForeground = false;
+	[Export] bool _isPreSpawned = false;
+
+	private int _speed, _moveXVector;
+    private bool _doExploded = false;
+    private float _carHalfsYMotion;
+    private bool _iDKHowNameThisVar; // if false, car will appear and dissapear in the foreground. If true, car will do it in the background.
+
+	CollisionShape2D _collision, _areaCollision;
+    Sprite2D _backHalf, _frontHalf;
+	Node2D _model;
+
     public override void _Ready()
     {
-		_speed = 5 * (int)Scale.X;
+        _moveXVector = (int)Scale.X;
+        _speed = (3 + Meta.Instance.Dificulty) * _moveXVector;
+
+        Random random = new Random();
+        _iDKHowNameThisVar = Convert.ToBoolean(random.Next(2));
+
+		_collision = GetNode<CollisionShape2D>("CollisionShape2D");
+		_areaCollision = GetNode<CollisionShape2D>("CarArea/CollisionShape2D");
+        _backHalf = GetNode<Sprite2D>("Model/BackHalf");
+        _frontHalf = GetNode<Sprite2D>("Model/FrontHalf");
+        _model = GetNode<Node2D>("Model");
+
+		if (!_isPreSpawned)
+		{
+            Modulate = new Color(Modulate.R, Modulate.G, Modulate.B, 0);
+            _areaCollision.SetDeferred("disabled", true);
+            _collision.Disabled = true;
+        }
     }
     public override void _PhysicsProcess(double delta)
 	{
-		Position = new Vector2(Position.X + _speed, Position.Y);
-		if (Position.X > 2705 || Position.X < -145)
-			QueueFree();
+        if (_doExploded)
+        {
+            _backHalf.Position = new Vector2(_backHalf.Position.X - _moveXVector * 5, _backHalf.Position.Y + _carHalfsYMotion);
+            _backHalf.Modulate = new Color(_backHalf.Modulate.R - 0.05f, _backHalf.Modulate.G - 0.05f, _backHalf.Modulate.B - 0.05f, _backHalf.Modulate.A - 0.05f);
+            _backHalf.Rotate(0.03f * _moveXVector);
+            _frontHalf.Position = new Vector2(_frontHalf.Position.X + _moveXVector * 5, _frontHalf.Position.Y + _carHalfsYMotion);
+            _frontHalf.Modulate = new Color(_frontHalf.Modulate.R - 0.05f, _frontHalf.Modulate.G - 0.05f, _frontHalf.Modulate.B - 0.05f, _frontHalf.Modulate.A - 0.05f);
+            _frontHalf.Rotate(0.03f * _moveXVector);
 
-        if (!_isInForeground && Modulate.A < 1)
-            Modulate = new Color(Modulate.R, Modulate.G, Modulate.B, Modulate.A + 0.1f);
-        else if (_isInForeground && Modulate.A > 0.2f)
-            Modulate = new Color(Modulate.R, Modulate.G, Modulate.B, Modulate.A - 0.1f);
+            _carHalfsYMotion += 0.15f;
+            return;
+        }
+
+		Position = new Vector2(Position.X + _speed, Position.Y);
+
+        float DisAppearingCoeff = Position.X < 1280 ? (Position.X - 395) / 200 : (2100 - Position.X) / 200;
+        if (DisAppearingCoeff <= 1)
+		{
+			Modulate = new Color(Modulate.R, Modulate.G, Modulate.B, DisAppearingCoeff);
+
+            float NewModelScale = _iDKHowNameThisVar ? 0.5f + DisAppearingCoeff / 2 : 1.5f - DisAppearingCoeff / 2;
+            _model.Scale = new Vector2(NewModelScale, NewModelScale);
+
+			if (!_collision.Disabled)
+			{
+                _collision.SetDeferred("disabled", true); ;
+                _areaCollision.SetDeferred("disabled", true);
+            }
+        }
+		else
+		{
+            if (_collision.Disabled)
+			{
+                Modulate = new Color(Modulate.R, Modulate.G, Modulate.B, 1);
+                _model.Scale = new Vector2(1, 1);
+                _collision.SetDeferred("disabled", false);
+                _areaCollision.SetDeferred("disabled", false);
+            }
+        }
+
+        if (Position.X > 2105 || Position.X < 395)
+            QueueFree();
     }
 
 	public void AreaEntered(Area2D area)
 	{
 		if (area.Name == "CarArea" || area.Name == "PlayerDamageDetector")
-		{
-			QueueFree();
-		}
-		else if (area.Name == "ForegroundArea")
-		{
-			_isInForeground = true;
-            GetNode<CollisionShape2D>("CarArea/CollisionShape2D").SetDeferred("disabled", true);
-        }
-	}
+        {
+            _doExploded = true;
+            var explosionAnimation = GetNode<AnimatedSprite2D>("ExplosionAnimation");
+            explosionAnimation.Visible = true;
+            explosionAnimation.Play();
 
-    public void AreaExited(Area2D area)
-	{
-		if (area.Name == "ForegroundArea")
-		{
-            _isInForeground = false;
-			GetNode<Area2D>("CarArea").SetCollisionMaskValue(4, true);
-            GetNode<CollisionShape2D>("CarArea/CollisionShape2D").SetDeferred("disabled", false);
+            _collision.SetDeferred("disabled", true);
+            _areaCollision.SetDeferred("disabled", true);
+            GetNode<CpuParticles2D>("ExplosionParticles").Emitting = true;
+            GetNode<AudioStreamPlayer>("ExplosionSound").Play();
+
+            _carHalfsYMotion = -4;
         }
 	}
 }

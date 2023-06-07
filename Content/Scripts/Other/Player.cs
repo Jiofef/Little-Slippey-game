@@ -19,7 +19,7 @@ public partial class Player : CharacterBody2D
 
     private string _animationName;
 
-    private byte _moveCalculationStartTimer;
+    private sbyte _moveCalculationStartTimer, _lastXMoveVector;
 
     private enum State {Default, DownDash, Inerted}
     State _state = State.Default;
@@ -83,7 +83,7 @@ public partial class Player : CharacterBody2D
                 _state = State.Inerted;
                 PlaySound("Climb");
             }
-            else if (!Input.IsActionPressed("wall_catch") && _wallDetectNumber != 0 && _climbTimer < 0 && _climbBufer > 0)
+            else if (!Input.IsActionPressed("wall_catch") && _lastXMoveVector == _wallDetectNumber && _wallDetectNumber != 0 && _climbTimer < 0 && _climbBufer > 0)
             {
                 _climbTimer = 0.2f;
                 _climbBufer--;
@@ -134,6 +134,12 @@ public partial class Player : CharacterBody2D
                 PlaySound("PullDownHit");
             _state = State.Default;
         }
+
+        if (_motion.X > 0)
+            _lastXMoveVector = 1;
+        else if (_motion.X < 0)
+            _lastXMoveVector = -1;
+
         //Animations
         if (IsOnFloor() && _motion.X == 0)
             _animationName = "Idle";

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bajocrmag5mkq"
-path="res://.godot/imported/FrontCarHalf.png-092ebf4327b811866210f388b175f92a.ctex"
+uid="uid://dvbdc2wlk062n"
+path="res://.godot/imported/FrontCity.png-68992364e46e72875a2d1e1c9c1897c4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Content/Sprites/Levels/Level6/FrontCarHalf.png"
-dest_files=["res://.godot/imported/FrontCarHalf.png-092ebf4327b811866210f388b175f92a.ctex"]
+source_file="res://Content/Sprites/Levels/Level6/FrontCity.png"
+dest_files=["res://.godot/imported/FrontCity.png-68992364e46e72875a2d1e1c9c1897c4.ctex"]
 
 [params]
 

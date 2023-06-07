@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bg2mvitb1ih7q" path="res://Content/Sprites/Other/CrossExplosion.png" id="6_q8c7e"]
 
 [sub_resource type="CircleShape2D" id="1"]
-radius = 85.0
+radius = 77.6674
 
 [sub_resource type="AtlasTexture" id="9"]
 atlas = ExtResource("6_q8c7e")
@@ -117,7 +117,6 @@ scale = Vector2(10, 10)
 texture = ExtResource("2")
 
 [node name="ExplosiveArea" type="Area2D" parent="." index="2"]
-visible = false
 collision_layer = 16
 collision_mask = 8
 
