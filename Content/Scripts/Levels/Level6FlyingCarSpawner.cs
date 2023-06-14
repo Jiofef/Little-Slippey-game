@@ -4,7 +4,7 @@ using System;
 public partial class Level6FlyingCarSpawner : Node2D
 {
 	PackedScene _flyingCar = new PackedScene();
-	Random _random = new Random();
+	private Random _random = new Random();
 	public override void _Ready()
 	{
 		_flyingCar = ResourceLoader.Load<PackedScene>("res://Content/Scenes/Other/Level6FlyingCar.tscn");

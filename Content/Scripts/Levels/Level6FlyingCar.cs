@@ -81,21 +81,18 @@ public partial class Level6FlyingCar : AnimatableBody2D
             QueueFree();
     }
 
-	public void AreaEntered(Area2D area)
+	public void AreaEntered()
 	{
-		if (area.Name == "CarArea" || area.Name == "PlayerDamageDetector")
-        {
-            _doExploded = true;
-            var explosionAnimation = GetNode<AnimatedSprite2D>("ExplosionAnimation");
-            explosionAnimation.Visible = true;
-            explosionAnimation.Play();
+        _doExploded = true;
+        var explosionAnimation = GetNode<AnimatedSprite2D>("ExplosionAnimation");
+        explosionAnimation.Visible = true;
+        explosionAnimation.Play();
 
-            _collision.SetDeferred("disabled", true);
-            _areaCollision.SetDeferred("disabled", true);
-            GetNode<CpuParticles2D>("ExplosionParticles").Emitting = true;
-            GetNode<AudioStreamPlayer>("ExplosionSound").Play();
+        _collision.SetDeferred("disabled", true);
+        _areaCollision.SetDeferred("disabled", true);
+        GetNode<CpuParticles2D>("ExplosionParticles").Emitting = true;
+        GetNode<AudioStreamPlayer>("ExplosionSound").Play();
 
-            _carHalfsYMotion = -4;
-        }
+        _carHalfsYMotion = -4;
 	}
 }

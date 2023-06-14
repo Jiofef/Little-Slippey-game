@@ -4,7 +4,7 @@ using System;
 public partial class OptionsBackground : Sprite2D
 {
     PackedScene[] _defaultCross = new PackedScene[5];
-    Random _random = new Random();
+    private Random _random = new Random();
     public override void _Ready()
     {
         for (int i = 0; i < _defaultCross.Length; i++)

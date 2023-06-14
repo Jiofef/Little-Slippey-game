@@ -74,5 +74,5 @@ color_ramp = SubResource("Gradient_qa2ky")
 stream = ExtResource("5_ildig")
 bus = &"LevelSounds"
 
-[connection signal="area_entered" from="CarArea" to="." method="AreaEntered"]
+[connection signal="area_entered" from="CarArea" to="." method="AreaEntered" unbinds=1]
 [connection signal="animation_finished" from="ExplosionAnimation" to="." method="queue_free"]

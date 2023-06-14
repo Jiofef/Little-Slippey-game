@@ -45,8 +45,4 @@ public partial class EasterCubicCross : Node2D
             SetPhysicsProcess(false);
         }
     }
-    public void Deleting()
-    {
-        QueueFree();
-    }
 }

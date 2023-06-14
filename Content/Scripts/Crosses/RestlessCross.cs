@@ -51,8 +51,4 @@ public partial class RestlessCross : Node2D
             explosiveArea.Disabled = false;
         }
     }
-    public void Deleting()
-    {
-        QueueFree();
-    }
 }

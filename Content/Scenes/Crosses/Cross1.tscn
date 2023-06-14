@@ -134,4 +134,4 @@ bus = &"CrossExplosion"
 [node name="ExplosionAnimation" parent="." index="5" instance=ExtResource("5")]
 sprite_frames = SubResource("8")
 
-[connection signal="animation_finished" from="ExplosionAnimation" to="." method="Deleting"]
+[connection signal="animation_finished" from="ExplosionAnimation" to="." method="queue_free"]

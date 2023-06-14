@@ -46,8 +46,4 @@ public partial class RedElementalCrossPart : Node2D
             EmitSignal("ElementExploded");
         }
     }
-    public void Deleting()
-    {
-        QueueFree();
-    }
 }

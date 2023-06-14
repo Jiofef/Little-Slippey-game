@@ -83,7 +83,7 @@ public partial class CameraScript : Camera2D
             }
         }
     }
-    public void CameraZoom(Area2D junk)
+    public void CameraZoom()
     {
         PositionSmoothingEnabled = false;
         GetNode<Label>("GUI/Scores").Visible = false;

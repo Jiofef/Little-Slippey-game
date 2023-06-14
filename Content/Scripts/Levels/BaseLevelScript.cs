@@ -3,7 +3,7 @@ using System;
 
 public partial class BaseLevelScript : Node2D
 {
-    PackedScene[] _defaultCross = new PackedScene[G.CrossesInGameTotal];
+    PackedScene[] _crosses = new PackedScene[G.CrossesInGameTotal];
     CharacterBody2D _player;
 
     Random _random = new Random();
@@ -18,8 +18,8 @@ public partial class BaseLevelScript : Node2D
     {
         G.ResetValues();
         _player = GetNode<CharacterBody2D>("Player");
-        for (int i = 0; i < _defaultCross.Length; i++)
-            _defaultCross[i] = ResourceLoader.Load<PackedScene>("res://Content/Scenes/Crosses/Cross" + (i + 1) + ".tscn");
+        for (int i = 0; i < _crosses.Length; i++)
+            _crosses[i] = ResourceLoader.Load<PackedScene>("res://Content/Scenes/Crosses/Cross" + (i + 1) + ".tscn");
         Input.MouseMode = !GetTree().Paused ? Input.MouseModeEnum.Hidden : Input.MouseModeEnum.Visible;
     }
     public override void _PhysicsProcess(double delta)
@@ -81,7 +81,7 @@ public partial class BaseLevelScript : Node2D
                 else RandomNumber -= G.DefaultCrossWeight[i];
             }
 
-            Node2D Cross = (Node2D)_defaultCross[SelectedCrossNumber].Instantiate();
+            Node2D Cross = (Node2D)_crosses[SelectedCrossNumber].Instantiate();
             float CrossGathering = _random.Next(100) < (1 - G.PlayerMoveCoeff) * 50 ? 3 - G.PlayerMoveCoeff * 2 : 1;
             Cross.Position = new Vector2(_player.Position.X + (-750 + _random.Next(1500)) / CrossGathering, _player.Position.Y + (-450 + _random.Next(900)) / CrossGathering);
             switch (Cross.Name)

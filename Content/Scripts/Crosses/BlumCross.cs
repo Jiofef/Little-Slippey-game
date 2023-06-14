@@ -77,7 +77,7 @@ public partial class BlumCross : Node2D
         _explosiveSignal.PitchScale *= 1.5f;
         _explosiveSignal.Play();
     }
-    public void AbortButtonPressed(Node junk)
+    public void AbortButtonPressed()
     {
         GetNode<AudioStreamPlayer>("AbortButtonPressedSound").Play();
         _abortButtonPressed = true;
@@ -87,9 +87,5 @@ public partial class BlumCross : Node2D
         var explosionAnimation = GetNode<AnimatedSprite2D>("ExplosionAnimation");
         explosionAnimation.Stop();
         explosionAnimation.Visible = false;
-    }
-    public void Deleting()
-    {
-        QueueFree();
     }
 }

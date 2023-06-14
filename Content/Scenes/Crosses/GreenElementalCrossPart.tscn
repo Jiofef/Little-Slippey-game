@@ -247,4 +247,4 @@ volume_db = -10.0
 autoplay = true
 bus = &"CrossOther"
 
-[connection signal="animation_finished" from="Path2D/PathFollow2D/ExplosionAnimation" to="." method="Deleting"]
+[connection signal="animation_finished" from="Path2D/PathFollow2D/ExplosionAnimation" to="." method="queue_free"]

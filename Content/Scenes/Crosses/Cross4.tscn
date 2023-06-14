@@ -74,7 +74,7 @@ bus = &"CrossOther"
 scale = Vector2(18, 18)
 speed_scale = 0.8
 
-[connection signal="body_entered" from="AbortButton/PressButtonArea" to="." method="AbortButtonPressed"]
+[connection signal="body_entered" from="AbortButton/PressButtonArea" to="." method="AbortButtonPressed" unbinds=1]
 [connection signal="finished" from="ExplosionSignal" to="." method="SignalPlayed"]
-[connection signal="finished" from="ExplosionSound" to="." method="Deleting"]
+[connection signal="finished" from="ExplosionSound" to="." method="queue_free"]
 [connection signal="animation_finished" from="ExplosionAnimation" to="." method="HideExplosionAnimation"]

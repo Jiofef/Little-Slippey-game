@@ -51,4 +51,4 @@ scale = Vector2(0.75, 0.75)
 volume_db = 5.0
 bus = &"CrossOther"
 
-[connection signal="animation_finished" from="Path2D/PathFollow2D/ExplosionAnimation" to="." method="Deleting"]
+[connection signal="animation_finished" from="Path2D/PathFollow2D/ExplosionAnimation" to="." method="queue_free"]

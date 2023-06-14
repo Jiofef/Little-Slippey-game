@@ -18,8 +18,8 @@ config/icon="res://icon.png"
 [autoload]
 
 Meta="*res://Content/Other/Meta.cs"
-G="*res://Content/Other/G.cs"
 UnchangableMeta="*res://Content/Other/UnchangableMeta.cs"
+G="*res://Content/Other/G.cs"
 
 [display]
 

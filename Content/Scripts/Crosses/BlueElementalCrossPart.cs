@@ -50,8 +50,4 @@ public partial class BlueElementalCrossPart : Node2D
             EmitSignal("ElementExploded");
         }
     }
-    public void Deleting()
-    {
-        QueueFree();
-    }
 }

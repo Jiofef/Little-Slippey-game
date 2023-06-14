@@ -63,8 +63,4 @@ public partial class GreenElementalCrossPart : Node2D
             _vineAnimation.Modulate = new Color(_vineAnimation.Modulate.R - 0.03f, _vineAnimation.Modulate.G - 0.03f, _vineAnimation.Modulate.B - 0.03f, _vineAnimation.Modulate.A - 0.03f);
         }
     }
-    public void Deleting()
-    {
-        QueueFree();
-    }
 }

@@ -319,9 +319,6 @@ script = ExtResource("14")
 [node name="Camera2D" type="Camera2D" parent="DeadPlayer"]
 position = Vector2(1, 0)
 zoom = Vector2(1.5, 1.5)
-limit_left = 0
-limit_top = 0
-limit_right = 5000
 limit_smoothed = true
 position_smoothing_enabled = true
 editor_draw_limits = true
@@ -442,11 +439,11 @@ stream = ExtResource("16")
 volume_db = 10.0
 bus = &"Player"
 
-[connection signal="area_entered" from="Areas/PlayerDamageDetector" to="." method="DamageGetting" flags=6]
-[connection signal="area_entered" from="Areas/PlayerDamageDetector" to="DeadPlayer/Camera2D" method="CameraZoom" flags=6]
-[connection signal="body_entered" from="Areas/WallDirectionLeftDetector" to="." method="LeftWallDetect"]
-[connection signal="body_exited" from="Areas/WallDirectionLeftDetector" to="." method="WallUndetected"]
-[connection signal="body_entered" from="Areas/WallDirectionRightDetector" to="." method="RightWallDetect"]
-[connection signal="body_exited" from="Areas/WallDirectionRightDetector" to="." method="WallUndetected"]
+[connection signal="area_entered" from="Areas/PlayerDamageDetector" to="." method="DamageGetting" flags=6 unbinds=1]
+[connection signal="area_entered" from="Areas/PlayerDamageDetector" to="DeadPlayer/Camera2D" method="CameraZoom" flags=6 unbinds=1]
+[connection signal="body_entered" from="Areas/WallDirectionLeftDetector" to="." method="LeftWallDetect" unbinds=1]
+[connection signal="body_exited" from="Areas/WallDirectionLeftDetector" to="." method="WallUndetected" unbinds=1]
+[connection signal="body_entered" from="Areas/WallDirectionRightDetector" to="." method="RightWallDetect" unbinds=1]
+[connection signal="body_exited" from="Areas/WallDirectionRightDetector" to="." method="WallUndetected" unbinds=1]
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="AnimationFinished"]
 [connection signal="visibility_changed" from="DeadPlayer/Sprite2D" to="DeadPlayer" method="Activate"]

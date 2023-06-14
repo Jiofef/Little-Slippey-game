@@ -306,5 +306,5 @@ _isPreSpawned = true
 [node name="Player" parent="." instance=ExtResource("2_ltb8i")]
 position = Vector2(1280, 250)
 
-[connection signal="body_entered" from="BuildingForeground/TileMap/ForegroundArea" to="BuildingForeground" method="Hide"]
-[connection signal="body_exited" from="BuildingForeground/TileMap/ForegroundArea" to="BuildingForeground" method="Show"]
+[connection signal="body_entered" from="BuildingForeground/TileMap/ForegroundArea" to="BuildingForeground" method="Hide" unbinds=1]
+[connection signal="body_exited" from="BuildingForeground/TileMap/ForegroundArea" to="BuildingForeground" method="Show" unbinds=1]

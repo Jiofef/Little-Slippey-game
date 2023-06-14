@@ -58,6 +58,6 @@ disabled = true
 
 [node name="ExplosionAnimation" parent="Path2D/PathFollow2D/FollowNode" instance=ExtResource("3")]
 
-[connection signal="AnimationStarted" from="." to="Path2D" method="StopMotion"]
-[connection signal="WarningStarted" from="." to="Path2D" method="StartMotion"]
-[connection signal="animation_finished" from="Path2D/PathFollow2D/FollowNode/ExplosionAnimation" to="." method="Deleting"]
+[connection signal="AnimationStarted" from="." to="Path2D" method="set_physics_process" binds= [false]]
+[connection signal="WarningStarted" from="." to="Path2D" method="set_physics_process" binds= [true]]
+[connection signal="animation_finished" from="Path2D/PathFollow2D/FollowNode/ExplosionAnimation" to="." method="queue_free"]

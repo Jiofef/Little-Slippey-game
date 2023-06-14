@@ -42,20 +42,20 @@ scale = Vector2(1.2, 1.2)
 transform = Transform2D(1.2, 0, 0, 1.2, 650, 375)
 scroll_base_scale = Vector2(0.5, 0.5)
 
-[node name="Layer1" type="ParallaxLayer" parent="Background"]
+[node name="FrontLayer" type="ParallaxLayer" parent="Background"]
 scale = Vector2(1.1, 1.1)
 
-[node name="Sprite2D" type="Sprite2D" parent="Background/Layer1"]
+[node name="Sprite2D" type="Sprite2D" parent="Background/FrontLayer"]
 position = Vector2(-4.66406e-05, -9.99999)
 scale = Vector2(3.7, 3.7)
 texture = ExtResource("3_1eqx8")
 
-[node name="Layer2" type="ParallaxLayer" parent="Background"]
+[node name="Sky" type="ParallaxLayer" parent="Background"]
 modulate = Color(0.85098, 0.85098, 0.85098, 1)
 position = Vector2(30, 0)
 motion_scale = Vector2(1.2, 1.2)
 
-[node name="Sprite2D" type="Sprite2D" parent="Background/Layer2"]
+[node name="Sprite2D" type="Sprite2D" parent="Background/Sky"]
 position = Vector2(125, 10)
 scale = Vector2(3.91111, 3.9125)
 texture = ExtResource("4_abssm")

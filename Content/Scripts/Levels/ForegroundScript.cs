@@ -1,5 +1,4 @@
 using Godot;
-using System;
 
 public partial class ForegroundScript : Node2D
 {
@@ -12,13 +11,13 @@ public partial class ForegroundScript : Node2D
         else if (_doHideForeground && Modulate.A > 0.3f)
             Modulate = new Color(Modulate.R, Modulate.G, Modulate.B, Modulate.A - 0.04f);
     }
-    public void Hide(Node2D junk)
+    public void Hide()
 	{
         _doHideForeground = true;
         SetPlayerCollidingWithFlyingCars(false);
 
     }
-    public void Show(Node2D junk)
+    public void Show()
     {
         _doHideForeground = false;
         SetPlayerCollidingWithFlyingCars(true);

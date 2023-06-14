@@ -193,7 +193,7 @@ public partial class Player : CharacterBody2D
         _animatedSprite.Play();
     }
 
-    public void DamageGetting(Area2D BodyDetected)
+    public void DamageGetting()
     {
         G.PlayerDead = true;
         GetNode<AnimatedSprite2D>("AnimatedSprite2D").Visible = false;
@@ -203,17 +203,17 @@ public partial class Player : CharacterBody2D
         UnchangableMeta.SaveToFile();
     }
 
-    public void LeftWallDetect(Node BodyDetected)
+    public void LeftWallDetect()
     {
         _wallDetectNumber = -1;
     }
 
-    public void RightWallDetect(Node BodyDetected)
+    public void RightWallDetect()
     {
         _wallDetectNumber = 1;
     }
 
-    public void WallUndetected(Node BodyDetected)
+    public void WallUndetected()
     {
         _wallDetectNumber = 0;
     }

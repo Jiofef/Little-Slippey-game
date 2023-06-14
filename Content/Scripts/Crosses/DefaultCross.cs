@@ -47,9 +47,4 @@ public partial class DefaultCross : Node2D
             explosiveArea.Disabled = false;
         }
     }
-
-    public void Deleting()
-    {
-        QueueFree();
-    }
 }

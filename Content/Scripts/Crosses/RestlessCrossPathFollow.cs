@@ -14,12 +14,4 @@ public partial class RestlessCrossPathFollow : Path2D
         _timer += 0.016667f * G.ReversedPlayerDeathTimerCoeff;
         _follow.Progress = 300 * _timer * _timer;
     }
-    public void StartMotion()
-    {
-        SetPhysicsProcess(true);
-    }
-    public void StopMotion()
-    {
-        SetPhysicsProcess(false);
-    }
 }
