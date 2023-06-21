@@ -110,17 +110,6 @@ layout_mode = 2
 text = "Music"
 uppercase = true
 
-[node name="Not aviable yet" type="Label" parent="CanvasLayer/Sound/VBoxContainer/Music"]
-modulate = Color(0.647059, 0.647059, 0.647059, 1)
-layout_mode = 2
-offset_left = 73.2807
-offset_top = 8.02443
-offset_right = 269.281
-offset_bottom = 33.0244
-scale = Vector2(0.5, 0.5)
-text = "(not aviable yet)"
-uppercase = true
-
 [node name="MusicSlider" type="HSlider" parent="CanvasLayer/Sound/VBoxContainer"]
 layout_mode = 2
 min_value = -30.0

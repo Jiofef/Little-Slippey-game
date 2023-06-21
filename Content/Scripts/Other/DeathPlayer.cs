@@ -11,15 +11,6 @@ public partial class DeathPlayer : Node2D
         _deadSprite = GetNode<Sprite2D>("Sprite2D");
         SetPhysicsProcess(false);
     }
-    public void Activate()
-    {
-        Random random = new Random();
-        _xMotion = random.Next(100) > 50 ? -5 * (GlobalPosition.X / G.LevelXYSizes[G.CurrentLevel].X) : 5 * (1 - GlobalPosition.X / G.LevelXYSizes[G.CurrentLevel].X);
-        _yMotion = -8;
-        GetNode<AudioStreamPlayer>("DeathSound").Play();
-        EmitSignal("Death");
-        SetPhysicsProcess(true);
-    }
     public override void _PhysicsProcess(double delta)
     {
         if (G.PlayerDeathTimer != 4.5f)
@@ -31,5 +22,15 @@ public partial class DeathPlayer : Node2D
         }
         else
             G.AfterPlayerDeadTimer += 0.016667f;
+    }
+    public void Activate()
+    {
+        Random random = new Random();
+        _xMotion = random.Next(100) > 50 ? -5 * (GlobalPosition.X / G.LevelXYSizes[G.CurrentLevel].X) : 5 * (1 - GlobalPosition.X / G.LevelXYSizes[G.CurrentLevel].X);
+        _yMotion = -8;
+        GetNode<AudioStreamPlayer>("DeathSound").Play();
+        EmitSignal("Death");
+        SetPhysicsProcess(true);
+
     }
 }

@@ -109,7 +109,6 @@ offset_left = 501.0
 offset_top = 580.0
 offset_right = 549.0
 offset_bottom = 596.0
-focus_neighbor_top = NodePath("../Titles")
 texture_normal = ExtResource("7_51xip")
 texture_pressed = ExtResource("8_8br3j")
 texture_focused = ExtResource("9_lj7q7")

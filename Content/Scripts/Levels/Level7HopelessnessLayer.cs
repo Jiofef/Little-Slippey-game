@@ -5,11 +5,11 @@ public partial class Level7HopelessnessLayer : CanvasLayer
 {
 	PackedScene _mindTumor = new PackedScene();
 
-	float _tumorSpawnTimer = 10;
+	private float _tumorSpawnTimer = 10;
 
     public override void _PhysicsProcess(double delta)
     {
-        _tumorSpawnTimer -= 0.01667f;
+        _tumorSpawnTimer -= 0.016667f;
 		if (_tumorSpawnTimer <= 0)
 		{
 			_tumorSpawnTimer = 30;

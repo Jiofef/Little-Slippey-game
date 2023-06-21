@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://d0cj6uvrrnuoy"]
+
+[sub_resource type="Curve2D" id="Curve2D_2aehb"]
+
+[node name="Path2D" type="Path2D"]
+curve = SubResource("Curve2D_2aehb")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="."]
+
+[node name="PresentedLevel8" type="Node2D" parent="PathFollow2D"]

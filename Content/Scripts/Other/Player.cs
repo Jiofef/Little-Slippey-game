@@ -195,9 +195,10 @@ public partial class Player : CharacterBody2D
 
     public void DamageGetting()
     {
-        G.PlayerDead = true;
+        G.IsPlayerDead = true;
         GetNode<AnimatedSprite2D>("AnimatedSprite2D").Visible = false;
         GetNode<Sprite2D>("DeadPlayer/Sprite2D").Visible = true;
+        GetNode<AudioStreamPlayer>("../../../LevelMusicPlayer").StreamPaused = true;
         SetPhysicsProcess(false);
         G.SaveRecords();
         UnchangableMeta.SaveToFile();

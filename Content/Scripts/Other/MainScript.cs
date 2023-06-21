@@ -21,9 +21,7 @@ public partial class MainScript : Node2D
     public override void _Process(double delta)
     {
         if (Input.IsActionJustPressed("Cancel") && !_subMenusOpened)
-        {
             UnPause();
-        }
     }
     public void UnPause()
     {

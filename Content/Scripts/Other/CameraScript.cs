@@ -3,9 +3,15 @@ using System;
 
 public partial class CameraScript : Camera2D
 {
+    AnimatedSprite2D _restartNoise;
+    CharacterBody2D _player;
+    Label _scores;
     public override void _Ready()
     {
         LimitsChangingBy(0, 0, 0, 0);
+        _restartNoise = GetNode<AnimatedSprite2D>("GUI/RestartNoise");
+        _player = GetNode<CharacterBody2D>("../..");
+        _scores = GetNode<Label>("GUI/Scores");
     }
     private void LimitsChangingBy(float plus1, float plus2, float plus3, float plus4)
     {
@@ -15,17 +21,16 @@ public partial class CameraScript : Camera2D
         LimitBottom = (int)(Defaultlimits[2] + plus3);
         LimitLeft = (int)(Defaultlimits[3] + plus4);
     }
-    public override void _Process(double delta)
+    public override void _PhysicsProcess(double delta)
     {
         float IntPos1 = 0, IntPos2 = 0;
-        var restartNoise = GetNode<AnimatedSprite2D>("GUI/RestartNoise");
         if (G.ResetTimer != 0)
         {
             if (PositionSmoothingEnabled)
                 PositionSmoothingEnabled = false;
-            if (!restartNoise.IsPlaying())
-                restartNoise.Play();
-            restartNoise.Modulate = new Color(restartNoise.Modulate.R, restartNoise.Modulate.G, restartNoise.Modulate.B, G.ResetTimer / 2);
+            if (!_restartNoise.IsPlaying())
+                _restartNoise.Play();
+            _restartNoise.Modulate = new Color(_restartNoise.Modulate.R, _restartNoise.Modulate.G, _restartNoise.Modulate.B, G.ResetTimer / 2);
             var restartNoiseSound = GetNode<AudioStreamPlayer>("GUI/RestartNoise/Sound");
             if (!restartNoiseSound.Playing)
                 restartNoiseSound.Play();
@@ -38,7 +43,7 @@ public partial class CameraScript : Camera2D
             Position = new Vector2(RndPos1, RndPos2);
             LimitsChangingBy(IntPos1, IntPos1, IntPos2, IntPos2);
         }
-        else if (restartNoise.IsPlaying())
+        else if (_restartNoise.IsPlaying())
         {
             PositionSmoothingEnabled = true;
             var restartnoise = GetNode<AnimatedSprite2D>("GUI/RestartNoise");
@@ -49,7 +54,7 @@ public partial class CameraScript : Camera2D
             IntPos1 = 0; IntPos2 = 0;
         }
 
-        if (G.PlayerDead)
+        if (G.IsPlayerDead)
         {
             float zoom = G.PlayerDeathTimer < 4 ? 1.5f + G.PlayerDeathTimer * 0.75f : 4.5f;
             Zoom = new Vector2(zoom, zoom);
@@ -62,7 +67,7 @@ public partial class CameraScript : Camera2D
                 if (!emergingElements.Visible)
                 {
                     emergingElements.Visible = true;
-                    if (G.DoNewRecordReached)
+                    if (G.IsNewRecordReached)
                     {
                         string link = "GUI/EmergingElements/NewRecordScores";
                         var newRecordScores = GetNode<Label>(link);
@@ -73,15 +78,18 @@ public partial class CameraScript : Camera2D
                     }
                     else
                     {
-                        var scores = GetNode<Label>("GUI/EmergingElements/Scores");
-                        scores.Visible = true;
-                        scores.Text = Convert.ToString("Score: " + (int)G.Scores);
+                        var emergingScores = GetNode<Label>("GUI/EmergingElements/Scores");
+                        emergingScores.Visible = true;
+                        emergingScores.Text = Convert.ToString("Score: " + (int)G.Scores);
                     }
                 }
                 if (emergingElements.Modulate.A < 1)
                     emergingElements.Modulate = new Color(emergingElements.Modulate.R, emergingElements.Modulate.G, emergingElements.Modulate.B, emergingElements.Modulate.A + 0.005f);
             }
         }
+        else
+            _scores.Modulate = new Color(_scores.Modulate.R, _scores.Modulate.G, _scores.Modulate.B, _player.Position.Y > 200 ? 1 : _player.Position.Y / 200);
+
     }
     public void CameraZoom()
     {
