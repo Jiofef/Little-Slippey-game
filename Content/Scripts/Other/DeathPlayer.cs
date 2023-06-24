@@ -27,10 +27,15 @@ public partial class DeathPlayer : Node2D
     {
         Random random = new Random();
         _xMotion = random.Next(100) > 50 ? -5 * (GlobalPosition.X / G.LevelXYSizes[G.CurrentLevel].X) : 5 * (1 - GlobalPosition.X / G.LevelXYSizes[G.CurrentLevel].X);
+
+        if(G.CurrentLevel == 8)
+            _xMotion = random.Next(100) > 50 ? -5 : +5;
+
         _yMotion = -8;
+
+
         GetNode<AudioStreamPlayer>("DeathSound").Play();
         EmitSignal("Death");
         SetPhysicsProcess(true);
-
     }
 }

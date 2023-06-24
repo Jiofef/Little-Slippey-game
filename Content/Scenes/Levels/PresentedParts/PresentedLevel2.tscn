@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cgxe628gayb6" path="res://Content/Sprites/Levels/Level2/FieldBackLayer.png" id="3_2g0kx"]
 [ext_resource type="Texture2D" uid="uid://djl0os2aumwrv" path="res://Content/Sprites/Levels/Level2/FieldMiddleLayer.png" id="4_ub53v"]
 [ext_resource type="Texture2D" uid="uid://b5rhwso34agae" path="res://Content/Sprites/Levels/Level2/FieldFrontLayer.png" id="5_gypoq"]
-[ext_resource type="Texture2D" uid="uid://b830neidt3avy" path="res://Content/Sprites/Levels/Mort`sTileset.png" id="7_acygi"]
+[ext_resource type="Texture2D" uid="uid://b830neidt3avy" path="res://Content/Sprites/Levels/Mort'sTileset.png" id="7_acygi"]
 [ext_resource type="Texture2D" uid="uid://q2j1uuqfjmos" path="res://Content/Sprites/Levels/BaseTileSet.png" id="7_w4y2o"]
 
 [sub_resource type="Curve2D" id="Curve2D_a7rve"]

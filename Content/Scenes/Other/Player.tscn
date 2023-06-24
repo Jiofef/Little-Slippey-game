@@ -246,7 +246,7 @@ animations = [{
 }]
 
 [node name="Player" type="CharacterBody2D"]
-collision_mask = 197
+collision_mask = 196
 platform_floor_layers = 132
 platform_wall_layers = 132
 script = ExtResource("1")
@@ -259,7 +259,7 @@ shape = SubResource("1")
 
 [node name="PlayerDamageDetector" type="Area2D" parent="Areas"]
 collision_layer = 8
-collision_mask = 24
+collision_mask = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/PlayerDamageDetector"]
 position = Vector2(0, 4)

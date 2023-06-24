@@ -1,5 +1,10 @@
+res://default_bus_layout.tres
 res://default_env.tres
+res://Content/Scenes/Level8TileMaps/TileMap4.tscn
 res://Content/Scenes/Levels/FullParts/Level8.tscn
-res://Content/Scenes/Levels/FullParts/Level7.tscn
-res://Content/Scenes/Levels/FullParts/Level6.tscn
-res://Content/Scenes/Other/Level8Tilemap1.tscn
+res://Content/Scenes/Level8TileMaps/TileMap3.tscn
+res://Content/Scenes/Level8TileMaps/TileMap2.tscn
+res://Content/Scenes/Level8TileMaps/TileMap5.tscn
+res://Content/Scenes/Other/Level8DisposableButton.tscn
+res://Content/Scenes/Levels/PresentedParts/PresentedLevel5.tscn
+res://Content/Scenes/Levels/FullParts/Level5.tscn

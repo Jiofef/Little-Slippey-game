@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://cgxe628gayb6" path="res://Content/Sprites/Levels/Level2/FieldBackLayer.png" id="4_nj8ud"]
 [ext_resource type="Texture2D" uid="uid://djl0os2aumwrv" path="res://Content/Sprites/Levels/Level2/FieldMiddleLayer.png" id="5_kkplr"]
 [ext_resource type="Texture2D" uid="uid://b5rhwso34agae" path="res://Content/Sprites/Levels/Level2/FieldFrontLayer.png" id="6_cvfb3"]
-[ext_resource type="Texture2D" uid="uid://b830neidt3avy" path="res://Content/Sprites/Levels/Mort`sTileset.png" id="8_qc0ry"]
+[ext_resource type="Texture2D" uid="uid://b830neidt3avy" path="res://Content/Sprites/Levels/Mort'sTileset.png" id="8_qc0ry"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hl1pk"]
 texture = ExtResource("8_qc0ry")

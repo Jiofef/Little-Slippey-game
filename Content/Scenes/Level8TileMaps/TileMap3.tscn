@@ -1,0 +1,494 @@
+[gd_scene load_steps=14 format=3 uid="uid://bo4jqtdxh3bia"]
+
+[ext_resource type="Texture2D" uid="uid://q2j1uuqfjmos" path="res://Content/Sprites/Levels/BaseTileSet.png" id="1_7rfuw"]
+[ext_resource type="Script" path="res://Content/Scripts/Levels/Level4CircularSawScript.cs" id="2_43ctl"]
+[ext_resource type="Texture2D" uid="uid://oy0q0tel1241" path="res://Content/Sprites/Levels/Level4/BigSaw.png" id="3_8hif1"]
+[ext_resource type="Texture2D" uid="uid://dse3qddcaf5o4" path="res://Content/Sprites/Levels/Level4/TheMostOrdinaryUnremarkableSawWhichSurprisinglyCanKillAPlayerWithoutProblemsBecauseItHasAHitboxOnTheSameLayerAsTheExplosionOfCrossesThatsInShort.png" id="4_x0u2j"]
+[ext_resource type="Texture2D" uid="uid://op4k0tjuspxj" path="res://Content/Sprites/Levels/Level4/Stud.png" id="5_1y7dn"]
+[ext_resource type="Texture2D" uid="uid://cfic0bnuc1ocj" path="res://Content/Sprites/Levels/Level4/BigSawStud.png" id="6_sdn3l"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4wgrl"]
+texture = ExtResource("1_7rfuw")
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:0/0 = 0
+1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:0/0/physics_layer_0/angular_velocity = 0.0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:0/0 = 0
+2:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:0/0/physics_layer_0/angular_velocity = 0.0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSet" id="TileSet_gtmsj"]
+physics_layer_0/collision_layer = 4
+physics_layer_0/collision_mask = 0
+sources/0 = SubResource("TileSetAtlasSource_4wgrl")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mrx3p"]
+texture = ExtResource("1_7rfuw")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_0pcrf"]
+sources/0 = SubResource("TileSetAtlasSource_mrx3p")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_h3e50"]
+texture = ExtResource("1_7rfuw")
+0:0/0 = 0
+1:0/next_alternative_id = 4
+1:0/0 = 0
+1:0/1 = 1
+2:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_hwj8p"]
+sources/0 = SubResource("TileSetAtlasSource_h3e50")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_typ5x"]
+radius = 17.5
+
+[node name="TileMap" type="TileMap"]
+scale = Vector2(4, 4)
+tile_set = SubResource("TileSet_gtmsj")
+format = 2
+layer_0/tile_data = PackedInt32Array(-65507, 65536, 0, -131043, 65536, 0, -196579, 65536, 0, -262115, 65536, 0, -262116, 65536, 0, -262117, 65536, 0, -262118, 65536, 0, -262119, 65536, 0, -262120, 65536, 0, -262121, 65536, 0, -262122, 65536, 0, -262123, 65536, 0, -262124, 65536, 0, -262125, 65536, 0, -262126, 65536, 0, -262127, 65536, 0, -262128, 65536, 0, -262129, 65536, 0, -262130, 65536, 0, -262131, 65536, 0, -262132, 65536, 0, -262133, 65536, 0, -262134, 65536, 0, -262135, 65536, 0, -262136, 65536, 0, -262137, 65536, 0, -262138, 65536, 0, -262139, 65536, 0, -262140, 65536, 0, -262141, 65536, 0, -262142, 65536, 0, -262143, 65536, 0, -262144, 65536, 0, -196608, 65536, 0, -131072, 65536, 0, -65536, 65536, 0, 655360, 65536, 0, 720896, 65536, 0, 786432, 65536, 0, 851968, 65536, 0, 851969, 65536, 0, 786433, 65536, 0, 720897, 65536, 0, 655361, 65536, 0, -65535, 65536, 0, -131071, 65536, 0, -196607, 65536, 0, -196606, 65536, 0, -131070, 65536, 0, -65534, 65536, 0, 655362, 65536, 0, 720898, 65536, 0, 786434, 65536, 0, 851970, 65536, 0, 851971, 65536, 0, 786435, 65536, 0, 720899, 65536, 0, 655363, 65536, 0, -65533, 65536, 0, -131069, 65536, 0, -196605, 65536, 0, -196604, 65536, 0, -131068, 65536, 0, -65532, 65536, 0, 655364, 65536, 0, 720900, 65536, 0, 786436, 65536, 0, 851972, 65536, 0, 851973, 65536, 0, 786437, 65536, 0, 720901, 65536, 0, 655365, 65536, 0, -65531, 65536, 0, -131067, 65536, 0, -196603, 65536, 0, -196602, 65536, 0, -131066, 65536, 0, -65530, 65536, 0, 655366, 65536, 0, 720902, 65536, 0, 786438, 65536, 0, 851974, 65536, 0, 851975, 65536, 0, 786439, 65536, 0, 720903, 65536, 0, 655367, 65536, 0, -65529, 65536, 0, -131065, 65536, 0, -196601, 65536, 0, -196600, 65536, 0, -131064, 65536, 0, -65528, 65536, 0, 655368, 65536, 0, 720904, 65536, 0, 786440, 65536, 0, 851976, 65536, 0, 851977, 65536, 0, 786441, 65536, 0, 720905, 65536, 0, 655369, 65536, 0, -65527, 65536, 0, -131063, 65536, 0, -196599, 65536, 0, -196598, 65536, 0, -131062, 65536, 0, -65526, 65536, 0, 655370, 65536, 0, 720906, 65536, 0, 786442, 65536, 0, 851978, 65536, 0, 851979, 65536, 0, 786443, 65536, 0, 720907, 65536, 0, 655371, 65536, 0, -65525, 65536, 0, -131061, 65536, 0, -196597, 65536, 0, -196596, 65536, 0, -131060, 65536, 0, -65524, 65536, 0, 655372, 65536, 0, 720908, 65536, 0, 786444, 65536, 0, 851980, 65536, 0, 851981, 65536, 0, 786445, 65536, 0, 720909, 65536, 0, 655373, 65536, 0, 655374, 65536, 0, 720910, 65536, 0, 786446, 65536, 0, 851982, 65536, 0, 851983, 65536, 0, 786447, 65536, 0, 720911, 65536, 0, 655375, 65536, 0, 655376, 65536, 0, 720912, 65536, 0, 786448, 65536, 0, 851984, 65536, 0, 851985, 65536, 0, 786449, 65536, 0, 720913, 65536, 0, 655377, 65536, 0, -65518, 65536, 0, -131054, 65536, 0, -196590, 65536, 0, -196591, 65536, 0, -196592, 65536, 0, -196593, 65536, 0, -196594, 65536, 0, -196595, 65536, 0, -131059, 65536, 0, -65523, 65536, 0, -65522, 65536, 0, -131058, 65536, 0, -131057, 65536, 0, -65521, 65536, 0, -65520, 65536, 0, -131056, 65536, 0, -131055, 65536, 0, -65519, 65536, 0, -196589, 65536, 0, -131053, 65536, 0, -65517, 65536, 0, 655378, 65536, 0, 720914, 65536, 0, 786450, 65536, 0, 851986, 65536, 0, 851987, 65536, 0, 786451, 65536, 0, 720915, 65536, 0, 655379, 65536, 0, -65516, 65536, 0, -131052, 65536, 0, -196588, 65536, 0, -196587, 65536, 0, -131051, 65536, 0, -65515, 65536, 0, 655381, 65536, 0, 655380, 65536, 0, 720916, 65536, 0, 786452, 65536, 0, 851988, 65536, 0, 851989, 65536, 0, 786453, 65536, 0, 720917, 65536, 0, 720918, 65536, 0, 655382, 65536, 0, -65514, 65536, 0, -131050, 65536, 0, -196586, 65536, 0, -196585, 65536, 0, -131049, 65536, 0, -65513, 65536, 0, 655383, 65536, 0, 720919, 65536, 0, 786455, 65536, 0, 786454, 65536, 0, 851990, 65536, 0, 851991, 65536, 0, 851992, 65536, 0, 786456, 65536, 0, 720920, 65536, 0, 655384, 65536, 0, -65512, 65536, 0, -131048, 65536, 0, -196584, 65536, 0, -196583, 65536, 0, -131047, 65536, 0, -65511, 65536, 0, 655385, 65536, 0, 720921, 65536, 0, 786457, 65536, 0, 851993, 65536, 0, 851994, 65536, 0, 786458, 65536, 0, 720922, 65536, 0, 655386, 65536, 0, -65510, 65536, 0, -131046, 65536, 0, -196582, 65536, 0, -196581, 65536, 0, -131045, 65536, 0, -65509, 65536, 0, 655387, 65536, 0, 720923, 65536, 0, 786459, 65536, 0, 851995, 65536, 0, 851996, 65536, 0, 786460, 65536, 0, 720924, 65536, 0, 655388, 65536, 0, -65508, 65536, 0, -131044, 65536, 0, -196580, 65536, 0, 655389, 65536, 0, 720925, 65536, 0, 786461, 65536, 0, 851997, 65536, 0, 851998, 65536, 0, 786462, 65536, 0, 720926, 65536, 0, 655390, 65536, 0, -65506, 65536, 0, -131042, 65536, 0, -196578, 65536, 0, -262114, 65536, 0, -262113, 65536, 0, -196577, 65536, 0, -131041, 65536, 0, -65505, 65536, 0, 655391, 65536, 0, 720927, 65536, 0, 786463, 65536, 0, 851999, 65536, 0, 852000, 65536, 0, 786464, 65536, 0, 720928, 65536, 0, 655392, 65536, 0, -65504, 65536, 0, -131040, 65536, 0, -196576, 65536, 0, -262112, 65536, 0, -262111, 65536, 0, -196575, 65536, 0, -131039, 65536, 0, -65503, 65536, 0, 655393, 65536, 0, 720929, 65536, 0, 786465, 65536, 0, 852001, 65536, 0, 852002, 65536, 0, 786466, 65536, 0, 720930, 65536, 0, 655394, 65536, 0, -65502, 65536, 0, -131038, 65536, 0, -196574, 65536, 0, -262110, 65536, 0, -262109, 65536, 0, -196573, 65536, 0, -131037, 65536, 0, -65501, 65536, 0, 655395, 65536, 0, 720931, 65536, 0, 786467, 65536, 0, 852003, 65536, 0, 852004, 65536, 0, 786468, 65536, 0, 720932, 65536, 0, 655396, 65536, 0, -65500, 65536, 0, -131036, 65536, 0, -196572, 65536, 0, -262108, 65536, 0, -262107, 65536, 0, -196571, 65536, 0, -131035, 65536, 0, -65499, 65536, 0, 655397, 65536, 0, 720933, 65536, 0, 786469, 65536, 0, 852005, 65536, 0, 852006, 65536, 0, 786470, 65536, 0, 720934, 65536, 0, 655398, 65536, 0, -65498, 65536, 0, -131034, 65536, 0, -196570, 65536, 0, -262106, 65536, 0, -262105, 65536, 0, -196569, 65536, 0, -131033, 65536, 0, -65497, 65536, 0, 655399, 65536, 0, 720935, 65536, 0, 786471, 65536, 0, 852007, 65536, 0, 262153, 65536, 0, 327689, 65536, 0, 393225, 65536, 0, 458761, 65536, 0, 524297, 65536, 0, 589833, 65536, 0, 196614, 65536, 0, 6, 65536, 0, 9, 65536, 0, 7, 65536, 0, 8, 65536, 0, 262150, 65536, 0, 327686, 65536, 0, 393222, 65536, 0, 196617, 65536, 0, 393221, 65536, 0, 589829, 65536, 0, 589830, 65536, 0, 589831, 65536, 0, 589832, 65536, 0, 10, 65536, 0, 196618, 65536, 0, 393229, 65536, 0, 262161, 65536, 0, 458773, 65536, 0, 262168, 65536, 0, 327710, 65536, 0, 196641, 65536, 0, 196642, 65536, 0, 262178, 65536, 0, 327714, 65536, 0, 393250, 65536, 0, 458786, 65536, 0, 524322, 65536, 0, 589858, 65536, 0, 589859, 65536, 0, 589860, 65536, 0, 589861, 65536, 0, 393253, 65536, 0, 196645, 65536, 0, 262181, 65536, 0, 327717, 65536, 0, 393254, 65536, 0, 589862, 65536, 0, 37, 65536, 0, 65573, 65536, 0, 131109, 65536, 0, 33, 65536, 0, 34, 65536, 0, 35, 65536, 0, 36, 65536, 0, 196610, 65536, 0)
+
+[node name="DecorationMap" type="TileMap" parent="."]
+modulate = Color(0.501961, 0.501961, 0.501961, 1)
+tile_set = SubResource("TileSet_0pcrf")
+format = 2
+layer_0/tile_data = PackedInt32Array(458765, 65536, 0, 524301, 65536, 0, 589837, 65536, 0, 327697, 65536, 0, 393233, 65536, 0, 458769, 65536, 0, 524305, 65536, 0, 589841, 65536, 0, 524309, 65536, 0, 589845, 65536, 0, 327704, 65536, 0, 393240, 65536, 0, 458776, 65536, 0, 524312, 65536, 0, 589848, 65536, 0, 393246, 65536, 0, 458782, 65536, 0, 524318, 65536, 0, 589854, 65536, 0, 2, 65536, 0, 65538, 65536, 0, 131074, 65536, 0)
+
+[node name="SecretShortCut" type="TileMap" parent="."]
+modulate = Color(1, 1, 1, 0.941176)
+z_index = 1
+tile_set = SubResource("TileSet_hwj8p")
+format = 2
+layer_0/tile_data = PackedInt32Array(65542, 65536, 0, 131078, 65536, 0, 6, 65536, 0)
+
+[node name="Saws" type="Node2D" parent="."]
+
+[node name="MiddleSaws" type="Node2D" parent="Saws"]
+
+[node name="MiddleCircularSaw1" type="Node2D" parent="Saws/MiddleSaws"]
+modulate = Color(0.933333, 0.933333, 0.933333, 1)
+z_index = -1
+position = Vector2(40, 56)
+script = ExtResource("2_43ctl")
+_rotationSpeed = 0.04
+metadata/_edit_group_ = true
+
+[node name="Saw" type="Sprite2D" parent="Saws/MiddleSaws/MiddleCircularSaw1"]
+self_modulate = Color(0.901961, 0.901961, 0.901961, 1)
+texture = ExtResource("3_8hif1")
+
+[node name="Stud" type="Sprite2D" parent="Saws/MiddleSaws/MiddleCircularSaw1"]
+self_modulate = Color(0.901961, 0.901961, 0.901961, 1)
+texture = ExtResource("6_sdn3l")
+
+[node name="MiddleCircularSaw2" type="Node2D" parent="Saws/MiddleSaws"]
+modulate = Color(0.933333, 0.933333, 0.933333, 1)
+z_index = -1
+position = Vector2(216, 104)
+scale = Vector2(0.75, 0.75)
+script = ExtResource("2_43ctl")
+_rotationSpeed = 0.07
+metadata/_edit_group_ = true
+
+[node name="Saw" type="Sprite2D" parent="Saws/MiddleSaws/MiddleCircularSaw2"]
+self_modulate = Color(0.901961, 0.901961, 0.901961, 1)
+texture = ExtResource("3_8hif1")
+
+[node name="FrontCircularSaw" type="Node2D" parent="Saws/MiddleSaws/MiddleCircularSaw2/Saw"]
+z_index = 1
+position = Vector2(40, 0)
+scale = Vector2(0.5, 0.5)
+script = ExtResource("2_43ctl")
+_rotationSpeed = 0.3
+
+[node name="Saw" type="Sprite2D" parent="Saws/MiddleSaws/MiddleCircularSaw2/Saw/FrontCircularSaw"]
+scale = Vector2(2, 2)
+texture = ExtResource("4_x0u2j")
+
+[node name="HitBox" type="Area2D" parent="Saws/MiddleSaws/MiddleCircularSaw2/Saw/FrontCircularSaw/Saw"]
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Saws/MiddleSaws/MiddleCircularSaw2/Saw/FrontCircularSaw/Saw/HitBox"]
+shape = SubResource("CircleShape2D_typ5x")
+
+[node name="Stud" type="Sprite2D" parent="Saws/MiddleSaws/MiddleCircularSaw2/Saw/FrontCircularSaw"]
+scale = Vector2(2, 2)
+texture = ExtResource("5_1y7dn")
+
+[node name="Stud" type="Sprite2D" parent="Saws/MiddleSaws/MiddleCircularSaw2"]
+self_modulate = Color(0.901961, 0.901961, 0.901961, 1)
+texture = ExtResource("6_sdn3l")
+
+[node name="MiddleCircularSaw3" type="Node2D" parent="Saws/MiddleSaws"]
+modulate = Color(0.933333, 0.933333, 0.933333, 1)
+z_index = -1
+position = Vector2(280, 72)
+scale = Vector2(0.75, 0.75)
+script = ExtResource("2_43ctl")
+_rotationSpeed = 0.06
+metadata/_edit_group_ = true
+
+[node name="Saw" type="Sprite2D" parent="Saws/MiddleSaws/MiddleCircularSaw3"]
+self_modulate = Color(0.901961, 0.901961, 0.901961, 1)
+texture = ExtResource("3_8hif1")
+
+[node name="FrontCircularSaw" type="Node2D" parent="Saws/MiddleSaws/MiddleCircularSaw3/Saw"]
+z_index = 1
+position = Vector2(40, 0)
+scale = Vector2(0.5, 0.5)
+script = ExtResource("2_43ctl")
+_rotationSpeed = 0.3
+
+[node name="Saw" type="Sprite2D" parent="Saws/MiddleSaws/MiddleCircularSaw3/Saw/FrontCircularSaw"]
+scale = Vector2(2, 2)
+texture = ExtResource("4_x0u2j")
+
+[node name="HitBox" type="Area2D" parent="Saws/MiddleSaws/MiddleCircularSaw3/Saw/FrontCircularSaw/Saw"]
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Saws/MiddleSaws/MiddleCircularSaw3/Saw/FrontCircularSaw/Saw/HitBox"]
+shape = SubResource("CircleShape2D_typ5x")
+
+[node name="Stud" type="Sprite2D" parent="Saws/MiddleSaws/MiddleCircularSaw3/Saw/FrontCircularSaw"]
+scale = Vector2(2, 2)
+texture = ExtResource("5_1y7dn")
+
+[node name="Stud" type="Sprite2D" parent="Saws/MiddleSaws/MiddleCircularSaw3"]
+self_modulate = Color(0.901961, 0.901961, 0.901961, 1)
+texture = ExtResource("6_sdn3l")
+
+[node name="MiddleCircularSaw4" type="Node2D" parent="Saws/MiddleSaws"]
+modulate = Color(0.933333, 0.933333, 0.933333, 1)
+z_index = -1
+position = Vector2(344, 120)
+scale = Vector2(0.75, 0.75)
+script = ExtResource("2_43ctl")
+_rotationSpeed = 0.07
+metadata/_edit_group_ = true
+
+[node name="Saw" type="Sprite2D" parent="Saws/MiddleSaws/MiddleCircularSaw4"]
+self_modulate = Color(0.901961, 0.901961, 0.901961, 1)
+texture = ExtResource("3_8hif1")
+
+[node name="FrontCircularSaw" type="Node2D" parent="Saws/MiddleSaws/MiddleCircularSaw4/Saw"]
+z_index = 1
+position = Vector2(40, 0)
+scale = Vector2(0.5, 0.5)
+script = ExtResource("2_43ctl")
+_rotationSpeed = 0.3
+
+[node name="Saw" type="Sprite2D" parent="Saws/MiddleSaws/MiddleCircularSaw4/Saw/FrontCircularSaw"]
+scale = Vector2(2, 2)
+texture = ExtResource("4_x0u2j")
+
+[node name="HitBox" type="Area2D" parent="Saws/MiddleSaws/MiddleCircularSaw4/Saw/FrontCircularSaw/Saw"]
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Saws/MiddleSaws/MiddleCircularSaw4/Saw/FrontCircularSaw/Saw/HitBox"]
+shape = SubResource("CircleShape2D_typ5x")
+
+[node name="Stud" type="Sprite2D" parent="Saws/MiddleSaws/MiddleCircularSaw4/Saw/FrontCircularSaw"]
+scale = Vector2(2, 2)
+texture = ExtResource("5_1y7dn")
+
+[node name="Stud" type="Sprite2D" parent="Saws/MiddleSaws/MiddleCircularSaw4"]
+self_modulate = Color(0.901961, 0.901961, 0.901961, 1)
+texture = ExtResource("6_sdn3l")
+
+[node name="MiddleCircularSaw5" type="Node2D" parent="Saws/MiddleSaws"]
+modulate = Color(0.933333, 0.933333, 0.933333, 1)
+z_index = -1
+position = Vector2(392, 72)
+scale = Vector2(0.75, 0.75)
+script = ExtResource("2_43ctl")
+_rotationSpeed = 0.06
+metadata/_edit_group_ = true
+
+[node name="Saw" type="Sprite2D" parent="Saws/MiddleSaws/MiddleCircularSaw5"]
+self_modulate = Color(0.901961, 0.901961, 0.901961, 1)
+texture = ExtResource("3_8hif1")
+
+[node name="FrontCircularSaw" type="Node2D" parent="Saws/MiddleSaws/MiddleCircularSaw5/Saw"]
+z_index = 1
+position = Vector2(40, 0)
+scale = Vector2(0.5, 0.5)
+script = ExtResource("2_43ctl")
+_rotationSpeed = 0.3
+
+[node name="Saw" type="Sprite2D" parent="Saws/MiddleSaws/MiddleCircularSaw5/Saw/FrontCircularSaw"]
+scale = Vector2(2, 2)
+texture = ExtResource("4_x0u2j")
+
+[node name="HitBox" type="Area2D" parent="Saws/MiddleSaws/MiddleCircularSaw5/Saw/FrontCircularSaw/Saw"]
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Saws/MiddleSaws/MiddleCircularSaw5/Saw/FrontCircularSaw/Saw/HitBox"]
+shape = SubResource("CircleShape2D_typ5x")
+
+[node name="Stud" type="Sprite2D" parent="Saws/MiddleSaws/MiddleCircularSaw5/Saw/FrontCircularSaw"]
+scale = Vector2(2, 2)
+texture = ExtResource("5_1y7dn")
+
+[node name="Stud" type="Sprite2D" parent="Saws/MiddleSaws/MiddleCircularSaw5"]
+self_modulate = Color(0.901961, 0.901961, 0.901961, 1)
+texture = ExtResource("6_sdn3l")
+
+[node name="MiddleCircularSaw6" type="Node2D" parent="Saws/MiddleSaws"]
+modulate = Color(0.933333, 0.933333, 0.933333, 1)
+z_index = -1
+position = Vector2(488, 88)
+scale = Vector2(0.75, 0.75)
+script = ExtResource("2_43ctl")
+_rotationSpeed = 0.07
+metadata/_edit_group_ = true
+
+[node name="Saw" type="Sprite2D" parent="Saws/MiddleSaws/MiddleCircularSaw6"]
+self_modulate = Color(0.901961, 0.901961, 0.901961, 1)
+texture = ExtResource("3_8hif1")
+
+[node name="FrontCircularSaw" type="Node2D" parent="Saws/MiddleSaws/MiddleCircularSaw6/Saw"]
+z_index = 1
+position = Vector2(40, 0)
+scale = Vector2(0.5, 0.5)
+script = ExtResource("2_43ctl")
+_rotationSpeed = 0.3
+
+[node name="Saw" type="Sprite2D" parent="Saws/MiddleSaws/MiddleCircularSaw6/Saw/FrontCircularSaw"]
+scale = Vector2(2, 2)
+texture = ExtResource("4_x0u2j")
+
+[node name="HitBox" type="Area2D" parent="Saws/MiddleSaws/MiddleCircularSaw6/Saw/FrontCircularSaw/Saw"]
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Saws/MiddleSaws/MiddleCircularSaw6/Saw/FrontCircularSaw/Saw/HitBox"]
+shape = SubResource("CircleShape2D_typ5x")
+
+[node name="Stud" type="Sprite2D" parent="Saws/MiddleSaws/MiddleCircularSaw6/Saw/FrontCircularSaw"]
+scale = Vector2(2, 2)
+texture = ExtResource("5_1y7dn")
+
+[node name="Stud" type="Sprite2D" parent="Saws/MiddleSaws/MiddleCircularSaw6"]
+self_modulate = Color(0.901961, 0.901961, 0.901961, 1)
+texture = ExtResource("6_sdn3l")
+
+[node name="FrontSaws" type="Node2D" parent="Saws"]
+
+[node name="FrontCircularSaw" type="Node2D" parent="Saws/FrontSaws"]
+z_index = 1
+position = Vector2(176.25, 145.5)
+scale = Vector2(0.5, 0.5)
+script = ExtResource("2_43ctl")
+_rotationSpeed = 0.3
+metadata/_edit_group_ = true
+
+[node name="Saw" type="Sprite2D" parent="Saws/FrontSaws/FrontCircularSaw"]
+scale = Vector2(2, 2)
+texture = ExtResource("4_x0u2j")
+
+[node name="HitBox" type="Area2D" parent="Saws/FrontSaws/FrontCircularSaw/Saw"]
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Saws/FrontSaws/FrontCircularSaw/Saw/HitBox"]
+shape = SubResource("CircleShape2D_typ5x")
+
+[node name="Stud" type="Sprite2D" parent="Saws/FrontSaws/FrontCircularSaw"]
+scale = Vector2(2, 2)
+texture = ExtResource("5_1y7dn")
+
+[node name="FrontCircularSaw2" type="Node2D" parent="Saws/FrontSaws"]
+z_index = 1
+position = Vector2(219, 155.25)
+scale = Vector2(0.5, 0.5)
+script = ExtResource("2_43ctl")
+_rotationSpeed = 0.3
+metadata/_edit_group_ = true
+
+[node name="Saw" type="Sprite2D" parent="Saws/FrontSaws/FrontCircularSaw2"]
+scale = Vector2(2, 2)
+texture = ExtResource("4_x0u2j")
+
+[node name="HitBox" type="Area2D" parent="Saws/FrontSaws/FrontCircularSaw2/Saw"]
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Saws/FrontSaws/FrontCircularSaw2/Saw/HitBox"]
+shape = SubResource("CircleShape2D_typ5x")
+
+[node name="Stud" type="Sprite2D" parent="Saws/FrontSaws/FrontCircularSaw2"]
+scale = Vector2(2, 2)
+texture = ExtResource("5_1y7dn")
+
+[node name="FrontCircularSaw3" type="Node2D" parent="Saws/FrontSaws"]
+z_index = 1
+position = Vector2(261.75, 151.25)
+scale = Vector2(0.5, 0.5)
+script = ExtResource("2_43ctl")
+_rotationSpeed = 0.3
+metadata/_edit_group_ = true
+
+[node name="Saw" type="Sprite2D" parent="Saws/FrontSaws/FrontCircularSaw3"]
+scale = Vector2(2, 2)
+texture = ExtResource("4_x0u2j")
+
+[node name="HitBox" type="Area2D" parent="Saws/FrontSaws/FrontCircularSaw3/Saw"]
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Saws/FrontSaws/FrontCircularSaw3/Saw/HitBox"]
+shape = SubResource("CircleShape2D_typ5x")
+
+[node name="Stud" type="Sprite2D" parent="Saws/FrontSaws/FrontCircularSaw3"]
+scale = Vector2(2, 2)
+texture = ExtResource("5_1y7dn")
+
+[node name="FrontCircularSaw4" type="Node2D" parent="Saws/FrontSaws"]
+z_index = 1
+position = Vector2(306, 160.75)
+scale = Vector2(0.5, 0.5)
+script = ExtResource("2_43ctl")
+_rotationSpeed = 0.3
+metadata/_edit_group_ = true
+
+[node name="Saw" type="Sprite2D" parent="Saws/FrontSaws/FrontCircularSaw4"]
+scale = Vector2(2, 2)
+texture = ExtResource("4_x0u2j")
+
+[node name="HitBox" type="Area2D" parent="Saws/FrontSaws/FrontCircularSaw4/Saw"]
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Saws/FrontSaws/FrontCircularSaw4/Saw/HitBox"]
+shape = SubResource("CircleShape2D_typ5x")
+
+[node name="Stud" type="Sprite2D" parent="Saws/FrontSaws/FrontCircularSaw4"]
+scale = Vector2(2, 2)
+texture = ExtResource("5_1y7dn")
+
+[node name="FrontCircularSaw5" type="Node2D" parent="Saws/FrontSaws"]
+z_index = 1
+position = Vector2(342.25, 144)
+scale = Vector2(0.5, 0.5)
+script = ExtResource("2_43ctl")
+_rotationSpeed = 0.3
+metadata/_edit_group_ = true
+
+[node name="Saw" type="Sprite2D" parent="Saws/FrontSaws/FrontCircularSaw5"]
+scale = Vector2(2, 2)
+texture = ExtResource("4_x0u2j")
+
+[node name="HitBox" type="Area2D" parent="Saws/FrontSaws/FrontCircularSaw5/Saw"]
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Saws/FrontSaws/FrontCircularSaw5/Saw/HitBox"]
+shape = SubResource("CircleShape2D_typ5x")
+
+[node name="Stud" type="Sprite2D" parent="Saws/FrontSaws/FrontCircularSaw5"]
+scale = Vector2(2, 2)
+texture = ExtResource("5_1y7dn")
+
+[node name="FrontCircularSaw6" type="Node2D" parent="Saws/FrontSaws"]
+z_index = 1
+position = Vector2(388.5, 154)
+scale = Vector2(0.5, 0.5)
+script = ExtResource("2_43ctl")
+_rotationSpeed = 0.3
+metadata/_edit_group_ = true
+
+[node name="Saw" type="Sprite2D" parent="Saws/FrontSaws/FrontCircularSaw6"]
+scale = Vector2(2, 2)
+texture = ExtResource("4_x0u2j")
+
+[node name="HitBox" type="Area2D" parent="Saws/FrontSaws/FrontCircularSaw6/Saw"]
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Saws/FrontSaws/FrontCircularSaw6/Saw/HitBox"]
+shape = SubResource("CircleShape2D_typ5x")
+
+[node name="Stud" type="Sprite2D" parent="Saws/FrontSaws/FrontCircularSaw6"]
+scale = Vector2(2, 2)
+texture = ExtResource("5_1y7dn")
+
+[node name="FrontCircularSaw7" type="Node2D" parent="Saws/FrontSaws"]
+z_index = 1
+position = Vector2(436, 149.25)
+scale = Vector2(0.5, 0.5)
+script = ExtResource("2_43ctl")
+_rotationSpeed = 0.3
+metadata/_edit_group_ = true
+
+[node name="Saw" type="Sprite2D" parent="Saws/FrontSaws/FrontCircularSaw7"]
+scale = Vector2(2, 2)
+texture = ExtResource("4_x0u2j")
+
+[node name="HitBox" type="Area2D" parent="Saws/FrontSaws/FrontCircularSaw7/Saw"]
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Saws/FrontSaws/FrontCircularSaw7/Saw/HitBox"]
+shape = SubResource("CircleShape2D_typ5x")
+
+[node name="Stud" type="Sprite2D" parent="Saws/FrontSaws/FrontCircularSaw7"]
+scale = Vector2(2, 2)
+texture = ExtResource("5_1y7dn")
+
+[node name="FrontCircularSaw8" type="Node2D" parent="Saws/FrontSaws"]
+z_index = 1
+position = Vector2(484.75, 154)
+scale = Vector2(0.5, 0.5)
+script = ExtResource("2_43ctl")
+_rotationSpeed = 0.3
+metadata/_edit_group_ = true
+
+[node name="Saw" type="Sprite2D" parent="Saws/FrontSaws/FrontCircularSaw8"]
+scale = Vector2(2, 2)
+texture = ExtResource("4_x0u2j")
+
+[node name="HitBox" type="Area2D" parent="Saws/FrontSaws/FrontCircularSaw8/Saw"]
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Saws/FrontSaws/FrontCircularSaw8/Saw/HitBox"]
+shape = SubResource("CircleShape2D_typ5x")
+
+[node name="Stud" type="Sprite2D" parent="Saws/FrontSaws/FrontCircularSaw8"]
+scale = Vector2(2, 2)
+texture = ExtResource("5_1y7dn")
+
+[node name="FrontCircularSaw9" type="Node2D" parent="Saws/FrontSaws"]
+z_index = 1
+position = Vector2(527, 142.25)
+scale = Vector2(0.5, 0.5)
+script = ExtResource("2_43ctl")
+_rotationSpeed = 0.3
+metadata/_edit_group_ = true
+
+[node name="Saw" type="Sprite2D" parent="Saws/FrontSaws/FrontCircularSaw9"]
+scale = Vector2(2, 2)
+texture = ExtResource("4_x0u2j")
+
+[node name="HitBox" type="Area2D" parent="Saws/FrontSaws/FrontCircularSaw9/Saw"]
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Saws/FrontSaws/FrontCircularSaw9/Saw/HitBox"]
+shape = SubResource("CircleShape2D_typ5x")
+
+[node name="Stud" type="Sprite2D" parent="Saws/FrontSaws/FrontCircularSaw9"]
+scale = Vector2(2, 2)
+texture = ExtResource("5_1y7dn")

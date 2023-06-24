@@ -18,7 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://kcd1m7tkh45l" path="res://Content/Sprites/Levels/NePeretrudilsyaTileset.png" id="14_eybje"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wn5uk"]
-radius = 25.75
+radius = 25.0
 
 [sub_resource type="Curve" id="Curve_hbtk7"]
 min_value = -360.0

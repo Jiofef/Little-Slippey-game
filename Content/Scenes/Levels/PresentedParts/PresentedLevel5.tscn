@@ -215,6 +215,7 @@ autostart = true
 
 [node name="ThunderTimer" type="Timer" parent="PathFollow2D/PresentedLevel5/Rain"]
 wait_time = 20.0
+autostart = true
 
 [node name="Particles" type="CPUParticles2D" parent="PathFollow2D/PresentedLevel5/Rain"]
 position = Vector2(1100, -180)

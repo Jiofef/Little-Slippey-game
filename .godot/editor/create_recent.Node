@@ -1,16 +1,19 @@
+Label
+StaticBody2D
+CollisionShape2D
+RigidBody2D
 TileMap
-Node2D
 Sprite2D
+Area2D
+Node2D
+ColorRect
 ParallaxLayer
 ParallaxBackground
-CollisionShape2D
-Area2D
 PathFollow2D
 Path2D
 Timer
 Control
 CanvasLayer
-ColorRect
 Camera2D
 SubViewport
 Marker2D
@@ -19,7 +22,6 @@ AnimationPlayer
 VideoStreamPlayer
 CPUParticles2D
 AudioStreamPlayer
-Label
 ScrollContainer
 PointLight2D
 MeshInstance2D
@@ -28,5 +30,3 @@ TextureRect
 WorldEnvironment
 Node3D
 AnimatedSprite2D
-GPUParticles2D
-MarginContainer

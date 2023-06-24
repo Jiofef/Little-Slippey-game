@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://dgxxv3neagyw"]
+
+[ext_resource type="Texture2D" uid="uid://nlwphmf6wah0" path="res://Content/Sprites/Levels/Level8/Button.png" id="1_g1t13"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_shptl"]
+size = Vector2(14, 10)
+
+[node name="DisposableButton" type="Area2D"]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_shptl")
+
+[node name="Unpressed" type="Sprite2D" parent="."]
+texture = ExtResource("1_g1t13")
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 8)
+
+[node name="Pressed" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("1_g1t13")
+region_enabled = true
+region_rect = Rect2(16, 0, 16, 8)
+
+[connection signal="area_entered" from="." to="Unpressed" method="hide" flags=6 unbinds=1]
+[connection signal="area_entered" from="." to="Pressed" method="show" flags=6 unbinds=1]
