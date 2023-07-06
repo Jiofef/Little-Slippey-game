@@ -33,7 +33,7 @@ scale = Vector2(1.208, 1.208)
 transform = Transform2D(1.208, 0, 0, 1.208, 0, 0)
 
 [node name="Background" type="Sprite2D" parent="CanvasLayer"]
-z_index = -1
+z_index = -2
 position = Vector2(530, 297.185)
 scale = Vector2(1, 0.990618)
 texture = ExtResource("11")

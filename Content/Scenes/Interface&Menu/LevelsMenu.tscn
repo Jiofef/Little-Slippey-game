@@ -32,7 +32,7 @@ scale = Vector2(4, 3.6)
 texture = ExtResource("2_sl6b7")
 
 [node name="Computer" type="Control" parent="."]
-z_index = 1
+z_index = 2
 clip_contents = true
 layout_mode = 1
 anchor_right = 0.836
@@ -43,7 +43,7 @@ offset_right = 71.9199
 offset_bottom = 179.36
 
 [node name="Screen" type="Control" parent="Computer"]
-z_index = -1
+z_index = -2
 clip_contents = true
 anchors_preset = 0
 offset_left = 98.0

@@ -12,7 +12,7 @@
 
 [sub_resource type="Curve2D" id="1"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 64, 0, 0, 0, 0, 0, 145, 0)
+"points": PackedVector2Array(0, 0, 0, 0, -57, 0, 0, 0, 0, 0, 23, 0)
 }
 point_count = 2
 
@@ -23,13 +23,12 @@ colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 radius = 6.66667
 
 [node name="CannonCross" type="Path2D"]
-z_index = 1
-position = Vector2(-120, 0)
+z_index = 2
 curve = SubResource("1")
 script = ExtResource("4")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="."]
-position = Vector2(64, 0)
+position = Vector2(-57, 0)
 rotation = 3.14159
 rotates = false
 loop = false
@@ -99,7 +98,6 @@ position = Vector2(-3, 5.75)
 
 [node name="Ball" type="Sprite2D" parent="PathFollow2D/Cannon/Ball"]
 position = Vector2(-3, -3)
-rotation = -2.98694
 texture = ExtResource("6")
 
 [node name="Hitbox" type="Area2D" parent="PathFollow2D/Cannon/Ball"]

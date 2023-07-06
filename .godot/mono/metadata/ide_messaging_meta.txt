@@ -1,0 +1,2 @@
+﻿56870
+C:/Program Files/Godot C#/Godot.exe

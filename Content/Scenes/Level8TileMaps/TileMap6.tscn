@@ -1,0 +1,554 @@
+[gd_scene load_steps=18 format=3 uid="uid://c54y5p5phc42k"]
+
+[ext_resource type="Texture2D" uid="uid://q2j1uuqfjmos" path="res://Content/Sprites/Levels/BaseTileSet.png" id="1_df6gx"]
+[ext_resource type="Script" path="res://Content/Scripts/Levels/Level8FragileTile.cs" id="2_ad6m7"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4wgrl"]
+texture = ExtResource("1_df6gx")
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:0/0 = 0
+1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:0/0/physics_layer_0/angular_velocity = 0.0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:0/0 = 0
+2:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:0/0/physics_layer_0/angular_velocity = 0.0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSet" id="TileSet_gtmsj"]
+physics_layer_0/collision_layer = 4
+physics_layer_0/collision_mask = 0
+sources/0 = SubResource("TileSetAtlasSource_4wgrl")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fie0q"]
+size = Vector2(32, 32)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kag1i"]
+texture = ExtResource("1_df6gx")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_vn8hj"]
+sources/0 = SubResource("TileSetAtlasSource_kag1i")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nnofw"]
+size = Vector2(32.5, 32.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mmmbn"]
+size = Vector2(32.5, 32.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_636iv"]
+size = Vector2(16, 512)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ois04"]
+size = Vector2(80, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nvrnf"]
+size = Vector2(18.5, 514)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xc2xe"]
+size = Vector2(64.5, 17)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xjlky"]
+size = Vector2(32.5, 32.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_klhr2"]
+size = Vector2(96, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qgtth"]
+size = Vector2(96.5, 16.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7pobi"]
+size = Vector2(528, 42)
+
+[node name="TileMap" type="TileMap"]
+scale = Vector2(4, 4)
+tile_set = SubResource("TileSet_gtmsj")
+format = 2
+layer_0/tile_data = PackedInt32Array(-196608, 65536, 0, -131072, 65536, 0, -65536, 65536, 0, -262144, 65536, 0, 720896, 65536, 0, 786432, 65536, 0, 851968, 65536, 0, -262143, 65536, 0, -196607, 65536, 0, -131071, 65536, 0, -65535, 65536, 0, 720897, 65536, 0, 786433, 65536, 0, 851969, 65536, 0, -262142, 65536, 0, -196606, 65536, 0, -131070, 65536, 0, -65534, 65536, 0, 851970, 65536, 0, -262141, 65536, 0, -196605, 65536, 0, -131069, 65536, 0, -65533, 65536, 0, 851971, 65536, 0, -262140, 65536, 0, -196604, 65536, 0, -131068, 65536, 0, -65532, 65536, 0, 851972, 65536, 0, -262139, 65536, 0, -196603, 65536, 0, -131067, 65536, 0, -65531, 65536, 0, 851973, 65536, 0, -262138, 65536, 0, -196602, 65536, 0, -131066, 65536, 0, -65530, 65536, 0, 851974, 65536, 0, -262137, 65536, 0, -196601, 65536, 0, -131065, 65536, 0, -65529, 65536, 0, 851975, 65536, 0, -262136, 65536, 0, -196600, 65536, 0, -131064, 65536, 0, -65528, 65536, 0, 851976, 65536, 0, -262135, 65536, 0, -196599, 65536, 0, -131063, 65536, 0, -65527, 65536, 0, 851977, 65536, 0, -262134, 65536, 0, -196598, 65536, 0, -131062, 65536, 0, -65526, 65536, 0, 851978, 65536, 0, -262133, 65536, 0, -196597, 65536, 0, -131061, 65536, 0, -65525, 65536, 0, 851979, 65536, 0, -262132, 65536, 0, -196596, 65536, 0, -131060, 65536, 0, -65524, 65536, 0, 851980, 65536, 0, -262131, 65536, 0, -196595, 65536, 0, -131059, 65536, 0, -65523, 65536, 0, 851981, 65536, 0, -262130, 65536, 0, -196594, 65536, 0, -131058, 65536, 0, -65522, 65536, 0, 851982, 65536, 0, -262129, 65536, 0, -196593, 65536, 0, -131057, 65536, 0, -65521, 65536, 0, 851983, 65536, 0, -262128, 65536, 0, -196592, 65536, 0, -131056, 65536, 0, -65520, 65536, 0, 851984, 65536, 0, -262127, 65536, 0, -196591, 65536, 0, -131055, 65536, 0, -65519, 65536, 0, 851985, 65536, 0, -262126, 65536, 0, -196590, 65536, 0, -131054, 65536, 0, -65518, 65536, 0, 851986, 65536, 0, -262125, 65536, 0, -196589, 65536, 0, -131053, 65536, 0, -65517, 65536, 0, 851987, 65536, 0, -262124, 65536, 0, -196588, 65536, 0, -131052, 65536, 0, -65516, 65536, 0, 851988, 65536, 0, -262123, 65536, 0, -196587, 65536, 0, -131051, 65536, 0, -65515, 65536, 0, 851989, 65536, 0, -262122, 65536, 0, -196586, 65536, 0, -131050, 65536, 0, -65514, 65536, 0, 851990, 65536, 0, -262121, 65536, 0, -196585, 65536, 0, -131049, 65536, 0, -65513, 65536, 0, 851991, 65536, 0, -262120, 65536, 0, -196584, 65536, 0, -131048, 65536, 0, -65512, 65536, 0, 851992, 65536, 0, -262119, 65536, 0, -196583, 65536, 0, -131047, 65536, 0, -65511, 65536, 0, 851993, 65536, 0, -262118, 65536, 0, -196582, 65536, 0, -131046, 65536, 0, -65510, 65536, 0, 851994, 65536, 0, -262117, 65536, 0, -196581, 65536, 0, -131045, 65536, 0, -65509, 65536, 0, 851995, 65536, 0, -262116, 65536, 0, -196580, 65536, 0, -131044, 65536, 0, -65508, 65536, 0, 851996, 65536, 0, -262115, 65536, 0, -196579, 65536, 0, -131043, 65536, 0, -65507, 65536, 0, 851997, 65536, 0, -262114, 65536, 0, -196578, 65536, 0, -131042, 65536, 0, -65506, 65536, 0, 851998, 65536, 0, -262113, 65536, 0, -196577, 65536, 0, -131041, 65536, 0, -65505, 65536, 0, 851999, 65536, 0, -262112, 65536, 0, -196576, 65536, 0, -131040, 65536, 0, -65504, 65536, 0, 852000, 65536, 0, -262111, 65536, 0, -196575, 65536, 0, -131039, 65536, 0, -65503, 65536, 0, 852001, 65536, 0, -262110, 65536, 0, -196574, 65536, 0, -131038, 65536, 0, -65502, 65536, 0, 852002, 65536, 0, -262109, 65536, 0, -196573, 65536, 0, -131037, 65536, 0, -65501, 65536, 0, 852003, 65536, 0, -262108, 65536, 0, -196572, 65536, 0, -131036, 65536, 0, -65500, 65536, 0, 852004, 65536, 0, -262107, 65536, 0, -196571, 65536, 0, -131035, 65536, 0, -65499, 65536, 0, 852005, 65536, 0, -262106, 65536, 0, -196570, 65536, 0, -131034, 65536, 0, -65498, 65536, 0, 720934, 65536, 0, 786470, 65536, 0, 852006, 65536, 0, -262105, 65536, 0, -196569, 65536, 0, -131033, 65536, 0, -65497, 65536, 0, 720935, 65536, 0, 786471, 65536, 0, 852007, 65536, 0, 655360, 65536, 0, 655361, 65536, 0, 655398, 65536, 0, 655399, 65536, 0, 23, 65536, 0, 65559, 65536, 0, 131095, 65536, 0, 655396, 65536, 0, 720932, 65536, 0, 786468, 65536, 0, 655397, 65536, 0, 720933, 65536, 0, 786469, 65536, 0, 38, 65536, 0, 65574, 65536, 0, 131110, 65536, 0, 196646, 65536, 0, 262182, 65536, 0, 327718, 65536, 0, 393254, 65536, 0, 458790, 65536, 0, 131107, 65536, 0, 196643, 65536, 0, 262179, 65536, 0, 327715, 65536, 0, 393251, 65536, 0, 458787, 65536, 0, 524323, 65536, 0, 589859, 65536, 0, 655395, 65536, 0, 720931, 65536, 0, 786467, 65536, 0)
+
+[node name="FragileTiles" type="Node2D" parent="."]
+
+[node name="FragileTile1" type="AnimatableBody2D" parent="FragileTiles"]
+position = Vector2(112, 160)
+collision_layer = 4
+collision_mask = 0
+collision_priority = 2.0
+script = ExtResource("2_ad6m7")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FragileTiles/FragileTile1"]
+shape = SubResource("RectangleShape2D_fie0q")
+
+[node name="TileMap" type="TileMap" parent="FragileTiles/FragileTile1"]
+tile_set = SubResource("TileSet_vn8hj")
+format = 2
+layer_0/tile_data = PackedInt32Array(65535, 65536, 0, 0, 65536, 0, -1, 65536, 0, -65536, 65536, 0)
+
+[node name="Particles" type="CPUParticles2D" parent="FragileTiles/FragileTile1"]
+emitting = false
+amount = 500
+one_shot = true
+explosiveness = 0.1
+lifetime_randomness = 1.0
+emission_shape = 3
+emission_rect_extents = Vector2(16, 16)
+spread = 180.0
+initial_velocity_min = 10.0
+initial_velocity_max = 30.0
+scale_amount_min = 4.0
+scale_amount_max = 4.0
+color = Color(0.596078, 0.529412, 0.537255, 1)
+
+[node name="Particles2" type="CPUParticles2D" parent="FragileTiles/FragileTile1"]
+emitting = false
+amount = 500
+one_shot = true
+explosiveness = 1.0
+lifetime_randomness = 1.0
+emission_shape = 3
+emission_rect_extents = Vector2(16, 16)
+spread = 180.0
+initial_velocity_min = 20.0
+initial_velocity_max = 40.0
+scale_amount_min = 4.0
+scale_amount_max = 4.0
+color = Color(0.596078, 0.529412, 0.537255, 1)
+
+[node name="Area2D" type="Area2D" parent="FragileTiles/FragileTile1"]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FragileTiles/FragileTile1/Area2D"]
+shape = SubResource("RectangleShape2D_nnofw")
+
+[node name="FragileTile2" type="AnimatableBody2D" parent="FragileTiles"]
+position = Vector2(208, 144)
+collision_layer = 4
+collision_mask = 0
+collision_priority = 2.0
+script = ExtResource("2_ad6m7")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FragileTiles/FragileTile2"]
+shape = SubResource("RectangleShape2D_fie0q")
+
+[node name="TileMap" type="TileMap" parent="FragileTiles/FragileTile2"]
+tile_set = SubResource("TileSet_vn8hj")
+format = 2
+layer_0/tile_data = PackedInt32Array(65535, 65536, 0, 0, 65536, 0, -1, 65536, 0, -65536, 65536, 0)
+
+[node name="Particles" type="CPUParticles2D" parent="FragileTiles/FragileTile2"]
+emitting = false
+amount = 500
+one_shot = true
+explosiveness = 0.1
+lifetime_randomness = 1.0
+emission_shape = 3
+emission_rect_extents = Vector2(16, 16)
+spread = 180.0
+initial_velocity_min = 10.0
+initial_velocity_max = 30.0
+scale_amount_min = 4.0
+scale_amount_max = 4.0
+color = Color(0.596078, 0.529412, 0.537255, 1)
+
+[node name="Particles2" type="CPUParticles2D" parent="FragileTiles/FragileTile2"]
+emitting = false
+amount = 500
+one_shot = true
+explosiveness = 1.0
+lifetime_randomness = 1.0
+emission_shape = 3
+emission_rect_extents = Vector2(16, 16)
+spread = 180.0
+initial_velocity_min = 20.0
+initial_velocity_max = 40.0
+scale_amount_min = 4.0
+scale_amount_max = 4.0
+color = Color(0.596078, 0.529412, 0.537255, 1)
+
+[node name="Area2D" type="Area2D" parent="FragileTiles/FragileTile2"]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FragileTiles/FragileTile2/Area2D"]
+shape = SubResource("RectangleShape2D_mmmbn")
+
+[node name="FragileTile3" type="AnimatableBody2D" parent="FragileTiles"]
+position = Vector2(272, 128)
+collision_layer = 4
+collision_mask = 0
+collision_priority = 2.0
+script = ExtResource("2_ad6m7")
+TimeToFall = 0.2
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FragileTiles/FragileTile3"]
+position = Vector2(-8, -208)
+shape = SubResource("RectangleShape2D_636iv")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="FragileTiles/FragileTile3"]
+position = Vector2(-184, -72)
+shape = SubResource("RectangleShape2D_ois04")
+
+[node name="TileMap" type="TileMap" parent="FragileTiles/FragileTile3"]
+tile_set = SubResource("TileSet_vn8hj")
+format = 2
+layer_0/tile_data = PackedInt32Array(65535, 65536, 0, -1, 65536, 0, -327681, 65536, 0, -262145, 65536, 0, -196609, 65536, 0, -131073, 65536, 0, -65537, 65536, 0, 131071, 65536, 0, 196607, 65536, 0, -458753, 65536, 0, -393217, 65536, 0, -1835009, 65536, 0, -1769473, 65536, 0, -1703937, 65536, 0, -1638401, 65536, 0, -1572865, 65536, 0, -1507329, 65536, 0, -1441793, 65536, 0, -1376257, 65536, 0, -1310721, 65536, 0, -1245185, 65536, 0, -1179649, 65536, 0, -1114113, 65536, 0, -1048577, 65536, 0, -983041, 65536, 0, -917505, 65536, 0, -851969, 65536, 0, -786433, 65536, 0, -720897, 65536, 0, -655361, 65536, 0, -589825, 65536, 0, -524289, 65536, 0, -262158, 65536, 0, -262157, 65536, 0, -262156, 65536, 0, -262155, 65536, 0, -262154, 65536, 0)
+
+[node name="DecorationMap" type="TileMap" parent="FragileTiles/FragileTile3"]
+z_index = -1
+tile_set = SubResource("TileSet_vn8hj")
+format = 2
+layer_0/modulate = Color(0.501961, 0.501961, 0.501961, 1)
+layer_0/tile_data = PackedInt32Array(-655372, 65536, 0, -589836, 65536, 0, -524300, 65536, 0, -458764, 65536, 0, -393228, 65536, 0, -720908, 65536, 0, -327692, 65536, 0)
+
+[node name="Particles" type="CPUParticles2D" parent="FragileTiles/FragileTile3"]
+position = Vector2(-8, -48)
+emitting = false
+amount = 500
+one_shot = true
+explosiveness = 0.1
+lifetime_randomness = 1.0
+emission_shape = 3
+emission_rect_extents = Vector2(8, 96)
+spread = 180.0
+initial_velocity_min = 20.0
+initial_velocity_max = 60.0
+scale_amount_min = 4.0
+scale_amount_max = 4.0
+color = Color(0.596078, 0.529412, 0.537255, 1)
+
+[node name="Particles2" type="CPUParticles2D" parent="FragileTiles/FragileTile3"]
+position = Vector2(-8, -48)
+emitting = false
+amount = 500
+one_shot = true
+explosiveness = 1.0
+lifetime_randomness = 1.0
+emission_shape = 3
+emission_rect_extents = Vector2(8, 96)
+spread = 180.0
+initial_velocity_min = 20.0
+initial_velocity_max = 40.0
+scale_amount_min = 4.0
+scale_amount_max = 4.0
+color = Color(0.596078, 0.529412, 0.537255, 1)
+
+[node name="Area2D" type="Area2D" parent="FragileTiles/FragileTile3"]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FragileTiles/FragileTile3/Area2D"]
+position = Vector2(-8, -208)
+shape = SubResource("RectangleShape2D_nvrnf")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="FragileTiles/FragileTile3/Area2D"]
+position = Vector2(-175.75, -72)
+shape = SubResource("RectangleShape2D_xc2xe")
+
+[node name="FragileTile4" type="AnimatableBody2D" parent="FragileTiles"]
+position = Vector2(192, 48)
+collision_layer = 4
+collision_mask = 0
+collision_priority = 2.0
+script = ExtResource("2_ad6m7")
+TimeToFall = 1.5
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FragileTiles/FragileTile4"]
+shape = SubResource("RectangleShape2D_fie0q")
+
+[node name="TileMap" type="TileMap" parent="FragileTiles/FragileTile4"]
+tile_set = SubResource("TileSet_vn8hj")
+format = 2
+layer_0/tile_data = PackedInt32Array(65535, 65536, 0, 0, 65536, 0, -1, 65536, 0, -65536, 65536, 0)
+
+[node name="Particles" type="CPUParticles2D" parent="FragileTiles/FragileTile4"]
+emitting = false
+amount = 500
+one_shot = true
+explosiveness = 0.1
+lifetime_randomness = 1.0
+emission_shape = 3
+emission_rect_extents = Vector2(16, 16)
+spread = 180.0
+initial_velocity_min = 10.0
+initial_velocity_max = 30.0
+scale_amount_min = 4.0
+scale_amount_max = 4.0
+color = Color(0.596078, 0.529412, 0.537255, 1)
+
+[node name="Particles2" type="CPUParticles2D" parent="FragileTiles/FragileTile4"]
+emitting = false
+amount = 500
+one_shot = true
+explosiveness = 1.0
+lifetime_randomness = 1.0
+emission_shape = 3
+emission_rect_extents = Vector2(16, 16)
+spread = 180.0
+initial_velocity_min = 20.0
+initial_velocity_max = 40.0
+scale_amount_min = 4.0
+scale_amount_max = 4.0
+color = Color(0.596078, 0.529412, 0.537255, 1)
+
+[node name="Area2D" type="Area2D" parent="FragileTiles/FragileTile4"]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FragileTiles/FragileTile4/Area2D"]
+shape = SubResource("RectangleShape2D_xjlky")
+
+[node name="FragileTile5" type="AnimatableBody2D" parent="FragileTiles"]
+position = Vector2(288, 48)
+collision_layer = 4
+collision_mask = 0
+collision_priority = 2.0
+script = ExtResource("2_ad6m7")
+TimeToFall = 0.3
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FragileTiles/FragileTile5"]
+position = Vector2(32, 8)
+shape = SubResource("RectangleShape2D_klhr2")
+
+[node name="TileMap" type="TileMap" parent="FragileTiles/FragileTile5"]
+tile_set = SubResource("TileSet_vn8hj")
+format = 2
+layer_0/tile_data = PackedInt32Array(65535, 65536, 0, 0, 65536, 0, 1, 65536, 0, 2, 65536, 0, 3, 65536, 0, 4, 65536, 0)
+
+[node name="Particles" type="CPUParticles2D" parent="FragileTiles/FragileTile5"]
+position = Vector2(32, 8)
+emitting = false
+amount = 500
+one_shot = true
+explosiveness = 0.1
+lifetime_randomness = 1.0
+emission_shape = 3
+emission_rect_extents = Vector2(48, 8)
+spread = 180.0
+initial_velocity_min = 10.0
+initial_velocity_max = 30.0
+scale_amount_min = 4.0
+scale_amount_max = 4.0
+color = Color(0.596078, 0.529412, 0.537255, 1)
+
+[node name="Particles2" type="CPUParticles2D" parent="FragileTiles/FragileTile5"]
+position = Vector2(32, 8)
+emitting = false
+amount = 500
+one_shot = true
+explosiveness = 1.0
+lifetime_randomness = 1.0
+emission_shape = 3
+emission_rect_extents = Vector2(48, 8)
+spread = 180.0
+initial_velocity_min = 20.0
+initial_velocity_max = 40.0
+scale_amount_min = 4.0
+scale_amount_max = 4.0
+color = Color(0.596078, 0.529412, 0.537255, 1)
+
+[node name="Area2D" type="Area2D" parent="FragileTiles/FragileTile5"]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FragileTiles/FragileTile5/Area2D"]
+position = Vector2(32, 8)
+shape = SubResource("RectangleShape2D_qgtth")
+
+[node name="FragileTile6" type="AnimatableBody2D" parent="FragileTiles"]
+position = Vector2(432, 112)
+collision_layer = 4
+collision_mask = 0
+collision_priority = 2.0
+script = ExtResource("2_ad6m7")
+TimeToFall = 0.1
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FragileTiles/FragileTile6"]
+shape = SubResource("RectangleShape2D_fie0q")
+
+[node name="TileMap" type="TileMap" parent="FragileTiles/FragileTile6"]
+tile_set = SubResource("TileSet_vn8hj")
+format = 2
+layer_0/tile_data = PackedInt32Array(65535, 65536, 0, 0, 65536, 0, -1, 65536, 0, -65536, 65536, 0)
+
+[node name="Particles" type="CPUParticles2D" parent="FragileTiles/FragileTile6"]
+emitting = false
+amount = 500
+one_shot = true
+explosiveness = 0.1
+lifetime_randomness = 1.0
+emission_shape = 3
+emission_rect_extents = Vector2(16, 16)
+spread = 180.0
+initial_velocity_min = 10.0
+initial_velocity_max = 30.0
+scale_amount_min = 4.0
+scale_amount_max = 4.0
+color = Color(0.596078, 0.529412, 0.537255, 1)
+
+[node name="Particles2" type="CPUParticles2D" parent="FragileTiles/FragileTile6"]
+emitting = false
+amount = 500
+one_shot = true
+explosiveness = 1.0
+lifetime_randomness = 1.0
+emission_shape = 3
+emission_rect_extents = Vector2(16, 16)
+spread = 180.0
+initial_velocity_min = 20.0
+initial_velocity_max = 40.0
+scale_amount_min = 4.0
+scale_amount_max = 4.0
+color = Color(0.596078, 0.529412, 0.537255, 1)
+
+[node name="Area2D" type="Area2D" parent="FragileTiles/FragileTile6"]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FragileTiles/FragileTile6/Area2D"]
+shape = SubResource("RectangleShape2D_nnofw")
+
+[node name="FragileTile7" type="AnimatableBody2D" parent="FragileTiles"]
+position = Vector2(528, 80)
+collision_layer = 4
+collision_mask = 0
+collision_priority = 2.0
+script = ExtResource("2_ad6m7")
+TimeToFall = 0.1
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FragileTiles/FragileTile7"]
+shape = SubResource("RectangleShape2D_fie0q")
+
+[node name="TileMap" type="TileMap" parent="FragileTiles/FragileTile7"]
+tile_set = SubResource("TileSet_vn8hj")
+format = 2
+layer_0/tile_data = PackedInt32Array(65535, 65536, 0, 0, 65536, 0, -1, 65536, 0, -65536, 65536, 0)
+
+[node name="Particles" type="CPUParticles2D" parent="FragileTiles/FragileTile7"]
+emitting = false
+amount = 500
+one_shot = true
+explosiveness = 0.1
+lifetime_randomness = 1.0
+emission_shape = 3
+emission_rect_extents = Vector2(16, 16)
+spread = 180.0
+initial_velocity_min = 10.0
+initial_velocity_max = 30.0
+scale_amount_min = 4.0
+scale_amount_max = 4.0
+color = Color(0.596078, 0.529412, 0.537255, 1)
+
+[node name="Particles2" type="CPUParticles2D" parent="FragileTiles/FragileTile7"]
+emitting = false
+amount = 500
+one_shot = true
+explosiveness = 1.0
+lifetime_randomness = 1.0
+emission_shape = 3
+emission_rect_extents = Vector2(16, 16)
+spread = 180.0
+initial_velocity_min = 20.0
+initial_velocity_max = 40.0
+scale_amount_min = 4.0
+scale_amount_max = 4.0
+color = Color(0.596078, 0.529412, 0.537255, 1)
+
+[node name="Area2D" type="Area2D" parent="FragileTiles/FragileTile7"]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FragileTiles/FragileTile7/Area2D"]
+shape = SubResource("RectangleShape2D_nnofw")
+
+[node name="FragileTile8" type="AnimatableBody2D" parent="FragileTiles"]
+position = Vector2(592, 48)
+collision_layer = 4
+collision_mask = 0
+collision_priority = 2.0
+script = ExtResource("2_ad6m7")
+TimeToFall = 0.0
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FragileTiles/FragileTile8"]
+shape = SubResource("RectangleShape2D_fie0q")
+
+[node name="TileMap" type="TileMap" parent="FragileTiles/FragileTile8"]
+tile_set = SubResource("TileSet_vn8hj")
+format = 2
+layer_0/tile_data = PackedInt32Array(65535, 65536, 0, 0, 65536, 0, -1, 65536, 0, -65536, 65536, 0)
+
+[node name="Particles" type="CPUParticles2D" parent="FragileTiles/FragileTile8"]
+emitting = false
+amount = 500
+one_shot = true
+explosiveness = 0.1
+lifetime_randomness = 1.0
+emission_shape = 3
+emission_rect_extents = Vector2(16, 16)
+spread = 180.0
+initial_velocity_min = 10.0
+initial_velocity_max = 30.0
+scale_amount_min = 4.0
+scale_amount_max = 4.0
+color = Color(0.596078, 0.529412, 0.537255, 1)
+
+[node name="Particles2" type="CPUParticles2D" parent="FragileTiles/FragileTile8"]
+emitting = false
+amount = 500
+one_shot = true
+explosiveness = 1.0
+lifetime_randomness = 1.0
+emission_shape = 3
+emission_rect_extents = Vector2(16, 16)
+spread = 180.0
+initial_velocity_min = 20.0
+initial_velocity_max = 40.0
+scale_amount_min = 4.0
+scale_amount_max = 4.0
+color = Color(0.596078, 0.529412, 0.537255, 1)
+
+[node name="Area2D" type="Area2D" parent="FragileTiles/FragileTile8"]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FragileTiles/FragileTile8/Area2D"]
+shape = SubResource("RectangleShape2D_nnofw")
+
+[node name="Lava" type="Node2D" parent="."]
+
+[node name="DeathZone" type="Area2D" parent="Lava"]
+position = Vector2(216, 180)
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lava/DeathZone"]
+position = Vector2(80, 7)
+shape = SubResource("RectangleShape2D_7pobi")
+
+[node name="ColorRect" type="ColorRect" parent="Lava"]
+offset_left = 32.0
+offset_top = 166.0
+offset_right = 560.0
+offset_bottom = 224.0
+color = Color(1, 0.584314, 0.231373, 1)
+
+[connection signal="area_entered" from="FragileTiles/FragileTile1/Area2D" to="FragileTiles/FragileTile1" method="FallingStart" unbinds=1]
+[connection signal="area_entered" from="FragileTiles/FragileTile2/Area2D" to="FragileTiles/FragileTile2" method="FallingStart" flags=6 unbinds=1]
+[connection signal="area_entered" from="FragileTiles/FragileTile3/Area2D" to="FragileTiles/FragileTile3" method="FallingStart" flags=6 unbinds=1]
+[connection signal="area_entered" from="FragileTiles/FragileTile4/Area2D" to="FragileTiles/FragileTile4" method="FallingStart" unbinds=1]
+[connection signal="area_entered" from="FragileTiles/FragileTile5/Area2D" to="FragileTiles/FragileTile5" method="FallingStart" flags=6 unbinds=1]
+[connection signal="area_entered" from="FragileTiles/FragileTile6/Area2D" to="FragileTiles/FragileTile6" method="FallingStart" flags=6 unbinds=1]
+[connection signal="area_entered" from="FragileTiles/FragileTile7/Area2D" to="FragileTiles/FragileTile7" method="FallingStart" flags=6 unbinds=1]
+[connection signal="area_entered" from="FragileTiles/FragileTile8/Area2D" to="FragileTiles/FragileTile8" method="FallingStart" flags=6 unbinds=1]

@@ -114,8 +114,15 @@ public partial class BaseLevelScript : Node2D
                     break;
 
                 case "CannonCross":
+                    if (G.CurrentLevel == 8)
+                    {
+                        Cross.Rotation = _random.Next(100) <= 50 ? 90 : -90;
+                        Cross.Position = new Vector2(Cross.Position.X + 1280, Cross.Rotation == 90 ? -25 : 760);
+                        break;
+                    }
+
                     Cross.Scale = new Vector2(_random.Next(100) <= 50 ? 1 : -1, 1);
-                    Cross.Position = Cross.Scale.X == -1 ? new Vector2(G.LevelXYSizes[G.CurrentLevel].X + 120, Cross.Position.Y) : new Vector2(-120, Cross.Position.Y);
+                    Cross.Position = Cross.Scale.X == -1 ? new Vector2(G.LevelXYSizes[G.CurrentLevel].X + 25, Cross.Position.Y) : new Vector2(-25, Cross.Position.Y);
                     break;
             }
             AddChild(Cross);

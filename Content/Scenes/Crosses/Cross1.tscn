@@ -103,7 +103,7 @@ animations = [{
 }]
 
 [node name="DefaultCross" instance=ExtResource("4")]
-z_index = 1
+z_index = 2
 script = ExtResource("3")
 
 [node name="CrossSprite" type="Sprite2D" parent="." index="0"]

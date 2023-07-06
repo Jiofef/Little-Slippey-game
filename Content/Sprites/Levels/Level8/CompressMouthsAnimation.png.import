@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c5wfchsi4jq6y"
-path="res://.godot/imported/WallOfCompress.png-eeed678512efb0f1dc5a7b0ced1780d4.ctex"
+uid="uid://boyg80qmk1fn3"
+path="res://.godot/imported/CompressMouthsAnimation.png-994910de071d5a43f700c0bd9fd9c265.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Content/Sprites/Levels/Level8/WallOfCompress.png"
-dest_files=["res://.godot/imported/WallOfCompress.png-eeed678512efb0f1dc5a7b0ced1780d4.ctex"]
+source_file="res://Content/Sprites/Levels/Level8/CompressMouthsAnimation.png"
+dest_files=["res://.godot/imported/CompressMouthsAnimation.png-994910de071d5a43f700c0bd9fd9c265.ctex"]
 
 [params]
 

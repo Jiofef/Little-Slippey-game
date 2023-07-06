@@ -5,7 +5,8 @@ public partial class Level8WallOfCompress : Node2D
 {
 	CharacterBody2D _player;
 
-    private float _wallDefaultSpeed = 3, _wallSpeed;
+    private readonly float[] _tileMapWallSpeedMotificators = { 1.4f, 1, 1, 0.85f, 1.1f, 0.75f, 0.8f, 1, 0.5f, 1.4f, };
+    private float _wallDefaultSpeed = 3, _wallSpeed, _wallSpeedSmoothedModificator = 1, _wallSpeedHardModificator = 1;
 	public override void _Ready()
 	{
 		_player = GetNode<CharacterBody2D>("../Player");
@@ -13,7 +14,13 @@ public partial class Level8WallOfCompress : Node2D
 
 	public override void _PhysicsProcess(double delta)
 	{
-		_wallSpeed = _wallDefaultSpeed + (_player.Position.X - Position.X) / 1920 * 4;
+		_wallSpeedSmoothedModificator += (_wallSpeedHardModificator - _wallSpeedSmoothedModificator) / 30;
+		_wallSpeed = (_wallDefaultSpeed + (_player.Position.X - Position.X) / 1920 * 4) * _wallSpeedSmoothedModificator;
 		Position = new Vector2(Position.X + _wallSpeed, Position.Y);
+	}
+
+	public void UpdateWallSpeedModificator(int value)
+	{
+        _wallSpeedHardModificator = _tileMapWallSpeedMotificators[value];
 	}
 }

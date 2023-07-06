@@ -1,5 +1,4 @@
 using Godot;
-using System;
 
 public partial class CannonCross : Path2D
 {
@@ -47,9 +46,12 @@ public partial class CannonCross : Path2D
                 _doCannonShoted = true;
             }
         }
-        else if (_ball.GlobalPosition.Y < _ballYBound)
+        else if (_ball.GlobalPosition.Y < _ballYBound && G.CurrentLevel != 8 || _ball.GlobalPosition.Y < 800 && _ball.GlobalPosition.Y > -100 && G.CurrentLevel == 8)
         {
-            _ball.Position = new Vector2(_ball.Position.X - 1.75f, _ball.Position.Y + _ballYMotion);
+            if (G.CurrentLevel != 8)
+                _ball.Position = new Vector2(_ball.Position.X - 1.75f, _ball.Position.Y + _ballYMotion);
+            else
+                _ball.Position = new Vector2(_ball.Position.X - 2, _ball.Position.Y);
             _ball.Rotation -= 0.06f;
             _ballYMotion -= 0.015f;
             if (_sprites.Position.X < 50)

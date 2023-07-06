@@ -1,12 +1,15 @@
+Sprite2D
+AnimatedSprite2D
+Node2D
+TileMap
+ColorRect
+CollisionShape2D
+Area2D
+CPUParticles2D
+AnimatableBody2D
 Label
 StaticBody2D
-CollisionShape2D
 RigidBody2D
-TileMap
-Sprite2D
-Area2D
-Node2D
-ColorRect
 ParallaxLayer
 ParallaxBackground
 PathFollow2D
@@ -17,10 +20,8 @@ CanvasLayer
 Camera2D
 SubViewport
 Marker2D
-AnimatableBody2D
 AnimationPlayer
 VideoStreamPlayer
-CPUParticles2D
 AudioStreamPlayer
 ScrollContainer
 PointLight2D
@@ -29,4 +30,3 @@ NavigationAgent2D
 TextureRect
 WorldEnvironment
 Node3D
-AnimatedSprite2D

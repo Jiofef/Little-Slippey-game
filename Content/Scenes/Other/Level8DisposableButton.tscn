@@ -1,5 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://dgxxv3neagyw"]
+[gd_scene load_steps=4 format=3 uid="uid://dgxxv3neagyw"]
 
+[ext_resource type="Script" path="res://Content/Scripts/Levels/Level8DisposableButton.cs" id="1_ac7k3"]
 [ext_resource type="Texture2D" uid="uid://nlwphmf6wah0" path="res://Content/Sprites/Levels/Level8/Button.png" id="1_g1t13"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_shptl"]
@@ -8,6 +9,7 @@ size = Vector2(14, 10)
 [node name="DisposableButton" type="Area2D"]
 collision_layer = 0
 collision_mask = 8
+script = ExtResource("1_ac7k3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -1)
@@ -24,5 +26,6 @@ texture = ExtResource("1_g1t13")
 region_enabled = true
 region_rect = Rect2(16, 0, 16, 8)
 
+[connection signal="area_entered" from="." to="." method="AreaEntered" flags=6 unbinds=1]
 [connection signal="area_entered" from="." to="Unpressed" method="hide" flags=6 unbinds=1]
 [connection signal="area_entered" from="." to="Pressed" method="show" flags=6 unbinds=1]

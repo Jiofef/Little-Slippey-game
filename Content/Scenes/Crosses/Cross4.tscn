@@ -20,7 +20,7 @@ data = PackedByteArray(0, 0, 254, 16, 254, 16, 183, 16, 184, 16, 108, 16, 112, 1
 format = 1
 
 [node name="BlumCross" instance=ExtResource("1")]
-z_index = 1
+z_index = 2
 scale = Vector2(1, 1)
 script = ExtResource("6")
 
