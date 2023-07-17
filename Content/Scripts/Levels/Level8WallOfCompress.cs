@@ -5,7 +5,7 @@ public partial class Level8WallOfCompress : Node2D
 {
 	CharacterBody2D _player;
 
-    private readonly float[] _tileMapWallSpeedMotificators = { 1.4f, 1, 1, 0.85f, 1.1f, 0.75f, 0.8f, 1, 0.5f, 1.4f, };
+    private readonly float[] _tileMapWallSpeedMotificators = { 1.4f, 1, 1, 0.85f, 1.1f, 0.6f, 0.8f, 0.9f, 0.5f, 1.25f, };
     private float _wallDefaultSpeed = 3, _wallSpeed, _wallSpeedSmoothedModificator = 1, _wallSpeedHardModificator = 1;
 	public override void _Ready()
 	{

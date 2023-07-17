@@ -35,7 +35,6 @@ public partial class Level8TileMapSpawner : Node2D
 					break;
 				}
             }
-
             TileMap tileMap = (TileMap)_tileMaps[_lastTileMapID].Instantiate();
             tileMap.Position = new Vector2(2560 + _spawnedTileMapsNumber * 2560, 0);
 			AddChild(tileMap);

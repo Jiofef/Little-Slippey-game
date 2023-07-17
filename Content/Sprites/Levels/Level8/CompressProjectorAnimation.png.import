@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dykr0x5b4axg5"
-path="res://.godot/imported/CompressProjector.png-19edd91ef57887aed221e1d9ea4f992b.ctex"
+uid="uid://c44den1mklg56"
+path="res://.godot/imported/CompressProjectorAnimation.png-4265d63d90c5a9f4fd427c51ea52bf75.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Content/Sprites/Levels/Level8/CompressProjector.png"
-dest_files=["res://.godot/imported/CompressProjector.png-19edd91ef57887aed221e1d9ea4f992b.ctex"]
+source_file="res://Content/Sprites/Levels/Level8/CompressProjectorAnimation.png"
+dest_files=["res://.godot/imported/CompressProjectorAnimation.png-4265d63d90c5a9f4fd427c51ea52bf75.ctex"]
 
 [params]
 
