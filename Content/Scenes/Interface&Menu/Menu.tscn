@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://b5emddlfuaux0"]
+[gd_scene load_steps=42 format=3 uid="uid://b5emddlfuaux0"]
 
 [ext_resource type="PackedScene" path="res://Content/Scenes/Crosses/CrossLayout.tscn" id="1"]
 [ext_resource type="PackedScene" uid="uid://bt41vubjcqv8p" path="res://Content/Scenes/Crosses/ExplosionAnimation.tscn" id="2"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cg8hblg2g7jn1" path="res://Content/Sprites/Interface/Menu/Other/BackroundsBound.png" id="3_w1tvo"]
 [ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/LogoEasterEgg.cs" id="4"]
 [ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/Menu.cs" id="5"]
+[ext_resource type="Texture2D" uid="uid://060bgiw5i00k" path="res://Content/Sprites/PlayerSkins/Slippey.png" id="5_ieym6"]
 [ext_resource type="Script" path="res://Content/Scripts/Crosses/EasterCubicCross.cs" id="6"]
 [ext_resource type="Texture2D" uid="uid://cg8obnaf3qqvi" path="res://Content/Sprites/Interface/Pause/Buttons/Default/Options.png" id="8"]
 [ext_resource type="Texture2D" uid="uid://cv68gjcdumk5m" path="res://Content/Sprites/Interface/Menu/Buttons/Chosen/ChosenPlay.png" id="9"]
@@ -13,7 +14,6 @@
 [ext_resource type="Texture2D" uid="uid://bho5ckwtfxmcg" path="res://Content/Sprites/Interface/Pause/Buttons/Pressed/PressedOptions.png" id="11"]
 [ext_resource type="Texture2D" uid="uid://di1rsl1rkxwgk" path="res://Content/Sprites/Interface/Pause/Buttons/Chosen/ChosenOptions.png" id="12"]
 [ext_resource type="Texture2D" uid="uid://b6uvxttw4l32" path="res://Content/Sprites/Interface/Menu/Buttons/Default/ChooseLevel.png" id="13"]
-[ext_resource type="Texture2D" uid="uid://bmlqk01m2t5ia" path="res://Content/Sprites/Player Animations/Idle.png" id="15"]
 [ext_resource type="Texture2D" uid="uid://xl6qq3j54qfc" path="res://Content/Sprites/Interface/Menu/Buttons/Default/Titles.png" id="16"]
 [ext_resource type="Texture2D" uid="uid://621e277ix0g6" path="res://Content/Sprites/Interface/Menu/Other/WhiteCross.png" id="17"]
 [ext_resource type="Texture2D" uid="uid://bu8ahiqpowgn1" path="res://Content/Sprites/Interface/Menu/Other/RedCross.png" id="18"]
@@ -23,41 +23,40 @@
 [ext_resource type="Texture2D" uid="uid://bd5i3p2j1hvse" path="res://Content/Sprites/Interface/Menu/Buttons/Pressed/PressedChooseLevel.png" id="23"]
 [ext_resource type="Texture2D" uid="uid://ccljiefpt2m3o" path="res://Content/Sprites/Interface/Menu/Buttons/Pressed/PressedTitles.png" id="24"]
 [ext_resource type="Texture2D" uid="uid://dvstwq52e1g0x" path="res://Content/Sprites/Interface/Menu/Other/InterfaceBackground.png" id="25"]
-[ext_resource type="Texture2D" uid="uid://bg2mvitb1ih7q" path="res://Content/Sprites/Other/CrossExplosion.png" id="25_1g36h"]
-[ext_resource type="Texture2D" uid="uid://knd473uoa7nk" path="res://Content/Sprites/Other/DeadPlayer.png" id="27"]
+[ext_resource type="Texture2D" uid="uid://bg2mvitb1ih7q" path="res://Content/Sprites/Other/Explosion.png" id="25_1g36h"]
 
-[sub_resource type="AtlasTexture" id="2"]
-atlas = ExtResource("15")
-region = Rect2(0, 0, 12, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_cvnl5"]
+atlas = ExtResource("5_ieym6")
+region = Rect2(64, 64, 16, 16)
 
-[sub_resource type="AtlasTexture" id="3"]
-atlas = ExtResource("15")
-region = Rect2(13, 0, 12, 16)
-
-[sub_resource type="AtlasTexture" id="5"]
-atlas = ExtResource("27")
+[sub_resource type="AtlasTexture" id="AtlasTexture_mvbrk"]
+atlas = ExtResource("5_ieym6")
 region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_upqkv"]
+atlas = ExtResource("5_ieym6")
+region = Rect2(16, 0, 16, 16)
 
 [sub_resource type="SpriteFrames" id="4"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("2")
-}, {
-"duration": 1.0,
-"texture": SubResource("3")
+"texture": SubResource("AtlasTexture_cvnl5")
 }],
 "loop": true,
-"name": &"Default",
-"speed": 2.0
+"name": &"Death",
+"speed": 0.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("5")
+"texture": SubResource("AtlasTexture_mvbrk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_upqkv")
 }],
 "loop": true,
-"name": &"EasterEggAnimation",
-"speed": 0.0
+"name": &"Idle",
+"speed": 2.0
 }]
 
 [sub_resource type="AtlasTexture" id="9"]
@@ -202,7 +201,7 @@ offset_right = 288.0
 offset_bottom = 171.0
 color = Color(0, 0.811765, 0.811765, 0.301961)
 
-[node name="LogoEasterEgg" type="TextureButton" parent="LeftBackground"]
+[node name="EasterEgg" type="TextureButton" parent="LeftBackground"]
 offset_left = 82.0
 offset_top = 6.0
 offset_right = 172.0
@@ -211,12 +210,12 @@ scale = Vector2(1.4, 1.4)
 focus_mode = 0
 script = ExtResource("4")
 
-[node name="Logo" type="AnimatedSprite2D" parent="LeftBackground/LogoEasterEgg"]
+[node name="Slippey" type="AnimatedSprite2D" parent="LeftBackground/EasterEgg"]
 position = Vector2(45, 59)
 scale = Vector2(7.5, 7.5)
 sprite_frames = SubResource("4")
-animation = &"Default"
-autoplay = "Default"
+animation = &"Idle"
+autoplay = "Idle"
 
 [node name="Buttons" type="Control" parent="."]
 anchors_preset = 0
@@ -287,7 +286,7 @@ texture = ExtResource("17")
 [node name="ExplosionAnimation" parent="CubicCross" instance=ExtResource("2")]
 sprite_frames = SubResource("8")
 
-[connection signal="pressed" from="LeftBackground/LogoEasterEgg" to="." method="EasterButtonPressed"]
+[connection signal="pressed" from="LeftBackground/EasterEgg" to="." method="EasterButtonPressed"]
 [connection signal="pressed" from="Buttons/Play" to="." method="Play"]
 [connection signal="pressed" from="Buttons/ChooseLevel" to="." method="ChooseLevel"]
 [connection signal="pressed" from="Buttons/Options" to="." method="Options"]
@@ -295,4 +294,4 @@ sprite_frames = SubResource("8")
 [connection signal="visibility_changed" from="CubicCross" to="CubicCross" method="set_physics_process" binds= [true]]
 [connection signal="visibility_changed" from="CubicCross" to="CubicCross" method="set_modulate" binds= [Color(1, 1, 1, 0)]]
 [connection signal="animation_finished" from="CubicCross/ExplosionAnimation" to="CubicCross" method="queue_free"]
-[connection signal="visibility_changed" from="CubicCross/ExplosionAnimation" to="LeftBackground/LogoEasterEgg" method="GoingFall"]
+[connection signal="visibility_changed" from="CubicCross/ExplosionAnimation" to="LeftBackground/EasterEgg" method="GoingFall"]

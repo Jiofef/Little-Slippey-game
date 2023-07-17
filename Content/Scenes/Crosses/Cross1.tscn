@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://Content/Scripts/Crosses/DefaultCross.cs" id="3"]
 [ext_resource type="PackedScene" path="res://Content/Scenes/Crosses/CrossLayout.tscn" id="4"]
 [ext_resource type="PackedScene" uid="uid://bt41vubjcqv8p" path="res://Content/Scenes/Crosses/ExplosionAnimation.tscn" id="5"]
-[ext_resource type="Texture2D" uid="uid://bg2mvitb1ih7q" path="res://Content/Sprites/Other/CrossExplosion.png" id="6_q8c7e"]
+[ext_resource type="Texture2D" uid="uid://bg2mvitb1ih7q" path="res://Content/Sprites/Other/Explosion.png" id="6_q8c7e"]
 
 [sub_resource type="CircleShape2D" id="1"]
 radius = 77.6674

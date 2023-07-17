@@ -13,15 +13,15 @@ public partial class DeathPlayer : Node2D
     }
     public override void _PhysicsProcess(double delta)
     {
-        if (G.PlayerDeathTimer != 4.5f)
+        if (G.PlayerCorpseFlightTimer != 4.5f)
         {
-            G.PlayerDeathTimer = G.PlayerDeathTimer < 4.5f ? G.PlayerDeathTimer + 0.016667f : 4.5f;
-            Position = new Vector2(Position.X + _xMotion * G.ReversedPlayerDeathTimerCoeff, Position.Y + _yMotion * G.ReversedPlayerDeathTimerCoeff);
-            Rotation += _xMotion / 50 * G.ReversedPlayerDeathTimerCoeff;
+            G.PlayerCorpseFlightTimer = G.PlayerCorpseFlightTimer < 4.5f ? G.PlayerCorpseFlightTimer + 0.016667f : 4.5f;
+            Position = new Vector2(Position.X + _xMotion * G.ReversedPlayerCorpseFlightTimerCoeff, Position.Y + _yMotion * G.ReversedPlayerCorpseFlightTimerCoeff);
+            Rotation += _xMotion / 50 * G.ReversedPlayerCorpseFlightTimerCoeff;
             _yMotion += _gravity / 100;
         }
         else
-            G.AfterPlayerDeadTimer += 0.016667f;
+            G.AfterPlayerCorpseFlightTimer += 0.016667f;
     }
     public void Activate()
     {

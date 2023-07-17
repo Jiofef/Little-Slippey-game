@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dclk66snfbku6" path="res://Content/Sprites/Crosses/GreenElementalCrossPartVar4.png" id="5"]
 [ext_resource type="PackedScene" uid="uid://bt41vubjcqv8p" path="res://Content/Scenes/Crosses/ExplosionAnimation.tscn" id="6"]
 [ext_resource type="AudioStream" uid="uid://no4lbqqyk6xe" path="res://Content/Sounds/Crosses/GreenElementalCrossSpawnSound.wav" id="7"]
-[ext_resource type="Texture2D" uid="uid://bg2mvitb1ih7q" path="res://Content/Sprites/Other/CrossExplosion.png" id="7_hkh8a"]
+[ext_resource type="Texture2D" uid="uid://bg2mvitb1ih7q" path="res://Content/Sprites/Other/Explosion.png" id="7_hkh8a"]
 
 [sub_resource type="Curve2D" id="1"]
 _data = {

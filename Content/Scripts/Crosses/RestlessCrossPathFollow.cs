@@ -11,7 +11,7 @@ public partial class RestlessCrossPathFollow : Path2D
     }
     public override void _PhysicsProcess(double delta)
     {
-        _timer += 0.016667f * G.ReversedPlayerDeathTimerCoeff;
+        _timer += 0.016667f * G.ReversedPlayerCorpseFlightTimerCoeff;
         _follow.Progress = 300 * _timer * _timer;
     }
 }

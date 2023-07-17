@@ -4,36 +4,36 @@
 
 [sub_resource type="Curve2D" id="Curve2D_jw4kv"]
 
-[sub_resource type="AtlasTexture" id="33"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_m23ck"]
 atlas = ExtResource("1_ulj6d")
-region = Rect2(0, 0, 176, 100)
+region = Rect2(0, 0, 320, 180)
 
-[sub_resource type="AtlasTexture" id="34"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_2nkyg"]
 atlas = ExtResource("1_ulj6d")
-region = Rect2(0, 100, 176, 100)
+region = Rect2(0, 180, 320, 180)
 
-[sub_resource type="AtlasTexture" id="35"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_gjuy0"]
 atlas = ExtResource("1_ulj6d")
-region = Rect2(0, 200, 176, 100)
+region = Rect2(0, 360, 320, 180)
 
-[sub_resource type="AtlasTexture" id="36"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_lr1hx"]
 atlas = ExtResource("1_ulj6d")
-region = Rect2(0, 300, 176, 100)
+region = Rect2(0, 540, 320, 180)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_t63pr"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("33")
+"texture": SubResource("AtlasTexture_m23ck")
 }, {
 "duration": 1.0,
-"texture": SubResource("34")
+"texture": SubResource("AtlasTexture_2nkyg")
 }, {
 "duration": 1.0,
-"texture": SubResource("35")
+"texture": SubResource("AtlasTexture_gjuy0")
 }, {
 "duration": 1.0,
-"texture": SubResource("36")
+"texture": SubResource("AtlasTexture_lr1hx")
 }],
 "loop": true,
 "name": &"default",
@@ -46,6 +46,6 @@ curve = SubResource("Curve2D_jw4kv")
 [node name="WhiteNoise" type="AnimatedSprite2D" parent="."]
 modulate = Color(0.945098, 0.831373, 0.635294, 1)
 position = Vector2(590, 335)
-scale = Vector2(7.3, 7.3)
+scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_t63pr")
 autoplay = "default"

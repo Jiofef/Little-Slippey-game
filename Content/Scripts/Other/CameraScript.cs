@@ -10,7 +10,7 @@ public partial class CameraScript : Camera2D
     {
         LimitsChangingBy(0, 0, 0, 0);
         _restartNoise = GetNode<AnimatedSprite2D>("GUI/RestartNoise");
-        _player = GetNode<CharacterBody2D>("../..");
+        _player = GetNode<CharacterBody2D>("..");
         _scores = GetNode<Label>("GUI/Scores");
     }
     private void LimitsChangingBy(float plus1, float plus2, float plus3, float plus4)
@@ -56,12 +56,12 @@ public partial class CameraScript : Camera2D
 
         if (G.IsPlayerDead)
         {
-            float zoom = G.PlayerDeathTimer < 4 ? 1.5f + G.PlayerDeathTimer * 0.75f : 4.5f;
+            float zoom = G.PlayerCorpseFlightTimer < 4 ? 1.5f + G.PlayerCorpseFlightTimer * 0.75f : 4.5f;
             Zoom = new Vector2(zoom, zoom);
-            float TimerX50 = G.PlayerDeathTimer * 50;
+            float TimerX50 = G.PlayerCorpseFlightTimer * 50;
             LimitsChangingBy(-TimerX50 - IntPos2, TimerX50 + IntPos1, TimerX50 + IntPos2, -TimerX50 - IntPos1);
 
-            if (G.PlayerDeathTimer >= 4.5f)
+            if (G.PlayerCorpseFlightTimer >= 4.5f)
             {
                 var emergingElements = GetNode<Node2D>("GUI/EmergingElements");
                 if (!emergingElements.Visible)
@@ -94,6 +94,6 @@ public partial class CameraScript : Camera2D
     public void CameraZoom()
     {
         PositionSmoothingEnabled = false;
-        GetNode<Label>("GUI/Scores").Visible = false;
+        _scores.Visible = false;
     }
 }

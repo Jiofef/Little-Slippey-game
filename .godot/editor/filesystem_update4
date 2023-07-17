@@ -1,3 +1,6 @@
 res://default_env.tres
 res://Content/Scenes/Levels/FullParts/Level8.tscn
 res://Content/Scenes/Interface&Menu/Titles.tscn
+res://Content/Scenes/Other/Player.tscn
+res://Content/Scenes/Levels/PresentedParts/PresentedLevel7.tscn
+res://Content/Scenes/Interface&Menu/Menu.tscn

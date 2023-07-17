@@ -4,7 +4,7 @@ public partial class G : Node
 {
 	// G is gameplay singleton, that having importal information which may be needed in various places of the game. They will not save by exiting the game
 	public static bool IsPlayerDead, IsNewRecordReached;
-	public static float PlayerDeathTimer, PlayerDeathTimerCoeff = 0, PlayerMoveCoeff = 1, ReversedPlayerDeathTimerCoeff = 1, ResetTimer, AfterPlayerDeadTimer, Scores = 0;
+	public static float PlayerMoveCoeff = 1, Scores = 0, ResetTimer, PlayerCorpseFlightTimer, PlayerCorpseFlightTimerCoeff = 0,  ReversedPlayerCorpseFlightTimerCoeff = 1, AfterPlayerCorpseFlightTimer;
 	public static int CurrentLevel;
 	public static readonly int LevelsInGameTotal = 8, CrossesInGameTotal = 5, DificultiesInGameTotal = 3;
     public static readonly int[] DefaultCrossWeight = { 100, 40, 20, 10, 30 };
@@ -23,16 +23,16 @@ public partial class G : Node
     };
 	public override void _Process(double delta)
 	{
-		PlayerDeathTimerCoeff = PlayerDeathTimer / 4.5f;
-		ReversedPlayerDeathTimerCoeff = 1 - PlayerDeathTimerCoeff;
+		PlayerCorpseFlightTimerCoeff = PlayerCorpseFlightTimer / 4.5f;
+		ReversedPlayerCorpseFlightTimerCoeff = 1 - PlayerCorpseFlightTimerCoeff;
 	}
 	public static void ResetValues()
 	{
 		IsNewRecordReached = false;
 		IsPlayerDead = false;
-		PlayerDeathTimer = 0;
+		PlayerCorpseFlightTimer = 0;
 		ResetTimer = 0;
-		AfterPlayerDeadTimer = 0;
+		AfterPlayerCorpseFlightTimer = 0;
 		Scores = 0;
 		SaveRecords();
 		UnchangableMeta.SaveToFile();

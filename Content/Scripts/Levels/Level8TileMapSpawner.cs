@@ -16,7 +16,7 @@ public partial class Level8TileMapSpawner : Node2D
 	{
 		_player = GetNode<CharacterBody2D>("../Player");
 		for (int i = 0; i < _tileMaps.Length; i++)
-			_tileMaps[i] = ResourceLoader.Load<PackedScene>("res://Content/Scenes/Level8TileMaps/TileMap" + i + ".tscn");
+			_tileMaps[i] = ResourceLoader.Load<PackedScene>("res://Content/Scenes/Levels/Level8TileMaps/TileMap" + i + ".tscn");
 		_previousTileMaps[0] = GetNode<TileMap>("../TileMap");
 	}
 

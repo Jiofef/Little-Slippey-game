@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://balvyactbl4bv"
-path="res://.godot/imported/WallCatch.png-3ebc9f25db7757754e6d140f83e057fd.ctex"
+uid="uid://bg2mvitb1ih7q"
+path="res://.godot/imported/Explosion.png-5e213879ac02032b99bbc56a9832a5d7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Content/Sprites/Player Animations/WallCatch.png"
-dest_files=["res://.godot/imported/WallCatch.png-3ebc9f25db7757754e6d140f83e057fd.ctex"]
+source_file="res://Content/Sprites/Other/Explosion.png"
+dest_files=["res://.godot/imported/Explosion.png-5e213879ac02032b99bbc56a9832a5d7.ctex"]
 
 [params]
 
