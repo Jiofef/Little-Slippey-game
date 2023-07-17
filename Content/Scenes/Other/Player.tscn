@@ -328,7 +328,7 @@ sprite_frames = SubResource("10")
 animation = &"Death"
 autoplay = "Idle"
 
-[node name="Camera" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(1, 0)
 zoom = Vector2(1.5, 1.5)
 limit_smoothed = true
@@ -336,12 +336,12 @@ position_smoothing_enabled = true
 editor_draw_limits = true
 script = ExtResource("13")
 
-[node name="GUI" type="CanvasLayer" parent="Camera"]
+[node name="GUI" type="CanvasLayer" parent="Camera2D"]
 offset = Vector2(600, 0)
 scale = Vector2(4, 4)
 transform = Transform2D(4, 0, 0, 4, 600, 0)
 
-[node name="Scores" type="Label" parent="Camera/GUI"]
+[node name="Scores" type="Label" parent="Camera2D/GUI"]
 offset_left = -150.0
 offset_top = 5.0
 offset_right = 10.0
@@ -354,11 +354,11 @@ theme_override_fonts/font = ExtResource("15_47p4f")
 text = "000000000"
 horizontal_alignment = 1
 
-[node name="EmergingElements" type="Node2D" parent="Camera/GUI"]
+[node name="EmergingElements" type="Node2D" parent="Camera2D/GUI"]
 visible = false
 modulate = Color(1, 1, 1, 0)
 
-[node name="Scores" type="Label" parent="Camera/GUI/EmergingElements"]
+[node name="Scores" type="Label" parent="Camera2D/GUI/EmergingElements"]
 visible = false
 offset_left = -130.0
 offset_top = 5.0
@@ -373,7 +373,7 @@ theme_override_fonts/font = ExtResource("15_47p4f")
 text = "Score: 0"
 horizontal_alignment = 1
 
-[node name="NewRecordScores" type="Label" parent="Camera/GUI/EmergingElements"]
+[node name="NewRecordScores" type="Label" parent="Camera2D/GUI/EmergingElements"]
 visible = false
 offset_left = -130.0
 offset_top = 5.0
@@ -389,7 +389,7 @@ text = "New Record!
 Score: 0"
 horizontal_alignment = 1
 
-[node name="Particles1" type="CPUParticles2D" parent="Camera/GUI/EmergingElements/NewRecordScores"]
+[node name="Particles1" type="CPUParticles2D" parent="Camera2D/GUI/EmergingElements/NewRecordScores"]
 position = Vector2(127, 8)
 emitting = false
 amount = 30
@@ -402,7 +402,7 @@ initial_velocity_max = 1.0
 color = Color(0.980392, 0.894118, 0, 1)
 color_ramp = SubResource("Gradient_biahg")
 
-[node name="Particles2" type="CPUParticles2D" parent="Camera/GUI/EmergingElements/NewRecordScores"]
+[node name="Particles2" type="CPUParticles2D" parent="Camera2D/GUI/EmergingElements/NewRecordScores"]
 position = Vector2(129, 33)
 emitting = false
 amount = 20
@@ -415,7 +415,7 @@ initial_velocity_max = 1.0
 color = Color(0.980392, 0.894118, 0, 1)
 color_ramp = SubResource("Gradient_biahg")
 
-[node name="Hold R" type="Label" parent="Camera/GUI/EmergingElements"]
+[node name="Hold R" type="Label" parent="Camera2D/GUI/EmergingElements"]
 offset_left = -53.0
 offset_top = 140.0
 offset_right = 24.0
@@ -428,19 +428,19 @@ theme_override_fonts/font = ExtResource("15_47p4f")
 text = "Hold R"
 horizontal_alignment = 1
 
-[node name="RestartNoise" type="AnimatedSprite2D" parent="Camera/GUI"]
+[node name="RestartNoise" type="AnimatedSprite2D" parent="Camera2D/GUI"]
 modulate = Color(1, 1, 1, 0)
 position = Vector2(10, 90)
 sprite_frames = SubResource("37")
 frame_progress = 0.601279
 
-[node name="Sound" type="AudioStreamPlayer" parent="Camera/GUI/RestartNoise"]
+[node name="Sound" type="AudioStreamPlayer" parent="Camera2D/GUI/RestartNoise"]
 stream = ExtResource("17")
 volume_db = -5.0
 bus = &"Player"
 
 [connection signal="area_entered" from="Areas/PlayerDamageDetector" to="." method="Death" flags=6 unbinds=1]
-[connection signal="area_entered" from="Areas/PlayerDamageDetector" to="Camera" method="CameraZoom" flags=6 unbinds=1]
+[connection signal="area_entered" from="Areas/PlayerDamageDetector" to="Camera2D" method="CameraZoom" flags=6 unbinds=1]
 [connection signal="body_entered" from="Areas/WallDirectionLeftDetector" to="." method="LeftWallDetect" unbinds=1]
 [connection signal="body_exited" from="Areas/WallDirectionLeftDetector" to="." method="WallUndetected" unbinds=1]
 [connection signal="body_entered" from="Areas/WallDirectionRightDetector" to="." method="RightWallDetect" unbinds=1]
