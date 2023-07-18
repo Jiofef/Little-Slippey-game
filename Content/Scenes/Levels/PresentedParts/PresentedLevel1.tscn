@@ -39,11 +39,11 @@ position = Vector2(640, 360)
 scale = Vector2(1.1, 1.1)
 
 [node name="Sprite1" type="Sprite2D" parent="PathFollow2D/PresentedLevel1/Background"]
+position = Vector2(0, -10)
 scale = Vector2(4, 4)
 texture = ExtResource("1_nafe2")
 
 [node name="Sprite2" type="Sprite2D" parent="PathFollow2D/PresentedLevel1/Background"]
-position = Vector2(2.72726, -35.9091)
 scale = Vector2(3.87879, 3.48636)
 texture = ExtResource("2_0q8vt")
 

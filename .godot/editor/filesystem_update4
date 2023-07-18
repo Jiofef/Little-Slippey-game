@@ -1,5 +1,2 @@
-res://default_bus_layout.tres
 res://default_env.tres
 res://Content/Scenes/Other/StartupScene.tscn
-res://Content/Scenes/Other/Player.tscn
-res://Content/Scenes/Levels/FullParts/Level1.tscn
