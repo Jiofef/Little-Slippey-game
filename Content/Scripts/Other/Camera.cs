@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class CameraScript : Camera2D
+public partial class Camera : Camera2D
 {
     AnimatedSprite2D _restartNoise;
     CharacterBody2D _player;

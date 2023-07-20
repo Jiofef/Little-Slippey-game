@@ -1,8 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://xm4rpwhtwbdq"]
+[gd_scene load_steps=7 format=3 uid="uid://bacvpu8gv5q4j"]
 
 [ext_resource type="Texture2D" uid="uid://bvogrd2bqhwmt" path="res://Content/Sprites/Other/OblivionNoise.png" id="1_ulj6d"]
-
-[sub_resource type="Curve2D" id="Curve2D_jw4kv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_m23ck"]
 atlas = ExtResource("1_ulj6d")
@@ -20,7 +18,7 @@ region = Rect2(0, 360, 320, 180)
 atlas = ExtResource("1_ulj6d")
 region = Rect2(0, 540, 320, 180)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_t63pr"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_yvuy2"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -40,12 +38,11 @@ animations = [{
 "speed": 7.0
 }]
 
-[node name="Path2D" type="Path2D"]
-curve = SubResource("Curve2D_jw4kv")
+[node name="PresentedLevel7" type="Node2D"]
 
 [node name="WhiteNoise" type="AnimatedSprite2D" parent="."]
 modulate = Color(0.945098, 0.831373, 0.635294, 1)
-position = Vector2(590, 335)
+position = Vector2(640, 360)
 scale = Vector2(4, 4)
-sprite_frames = SubResource("SpriteFrames_t63pr")
+sprite_frames = SubResource("SpriteFrames_yvuy2")
 autoplay = "default"

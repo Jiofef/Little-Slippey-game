@@ -147,7 +147,7 @@ physics_layer_0/collision_layer = 4
 physics_layer_0/collision_mask = 0
 sources/1 = SubResource("TileSetAtlasSource_wv2uq")
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wo38c"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4su74"]
 texture = ExtResource("4_rpou3")
 0:0/next_alternative_id = 2
 0:0/0 = 0
@@ -195,7 +195,7 @@ texture = ExtResource("4_rpou3")
 3:3/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_sdcfh"]
-sources/0 = SubResource("TileSetAtlasSource_wo38c")
+sources/0 = SubResource("TileSetAtlasSource_4su74")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_w5p32"]
 atlas = ExtResource("5_bdrxy")

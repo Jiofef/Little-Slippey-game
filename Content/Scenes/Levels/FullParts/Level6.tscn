@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://dj5m4kmysh1li" path="res://Content/Sprites/Levels/Level6/BackCity.png" id="2_q5h8r"]
 [ext_resource type="Texture2D" uid="uid://dvbdc2wlk062n" path="res://Content/Sprites/Levels/Level6/FrontCity.png" id="3_dlc8r"]
 [ext_resource type="Texture2D" uid="uid://b1dppreruk7js" path="res://Content/Sprites/Levels/poliSiSagEtilEseT.png" id="5_wgand"]
-[ext_resource type="Script" path="res://Content/Scripts/Levels/ForegroundScript.cs" id="6_4r1sy"]
+[ext_resource type="Script" path="res://Content/Scripts/Levels/Foreground.cs" id="6_4r1sy"]
 [ext_resource type="PackedScene" uid="uid://c8bud6raefbd" path="res://Content/Scenes/Other/Level6FlyingCar.tscn" id="7_gju5d"]
 [ext_resource type="Script" path="res://Content/Scripts/Levels/Level6FlyingCarSpawner.cs" id="9_43wb8"]
 

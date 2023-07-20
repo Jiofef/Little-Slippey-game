@@ -91,7 +91,8 @@ public partial class Level6FlyingCar : AnimatableBody2D
         _collision.SetDeferred("disabled", true);
         _areaCollision.SetDeferred("disabled", true);
         GetNode<CpuParticles2D>("ExplosionParticles").Emitting = true;
-        GetNode<AudioStreamPlayer>("ExplosionSound").Play();
+        if (G.CurrentLevel != 0)
+            GetNode<AudioStreamPlayer>("ExplosionSound").Play();
 
         _carHalfsYMotion = -4;
 	}

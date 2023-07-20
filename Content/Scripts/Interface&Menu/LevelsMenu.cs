@@ -47,12 +47,10 @@ public partial class LevelsMenu : Control
             PresentedLevel.QueueFree();
 
         PresentedLevel = (Node2D)ResourceLoader.Load<PackedScene>("res://Content/Scenes/Levels/PresentedParts/PresentedLevel" + _chosenLevel + ".tscn").Instantiate();
-        PresentedLevel.Position = new Vector2(22, 10);
-        PresentedLevel.Scale = new Vector2(0.75f, 0.6f);
         GetNode<Label>("Computer/CameraNumber").Text = "Cam " + _chosenLevel.ToString();
         GetNode<Label>("Computer/MaxLivetime").Text = "MaxLivetime: " + UnchangableMeta.LevelRecords[Meta.Instance.Dificulty][_chosenLevel - 1].ToString();
-        var screen = GetNode<Control>("Computer/Screen");
-        screen.AddChild(PresentedLevel);
-        screen.MoveChild(PresentedLevel, 0);
+        var subViewport = GetNode("Computer/Screen/SubViewport");
+        subViewport.AddChild(PresentedLevel);
+        subViewport.MoveChild(PresentedLevel, 0);
     }
 }

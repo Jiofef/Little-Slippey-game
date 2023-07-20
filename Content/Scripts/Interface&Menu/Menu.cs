@@ -7,23 +7,13 @@ public partial class Menu : Control
 
     public override void _Ready()
     {
-        GetNode<TextureButton>("Buttons/Play").GrabFocus();
+        GetNode<TextureButton>("Foreground/Buttons/ChooseLevel").GrabFocus();
         if (GetTree().Paused)
             GetTree().Paused = false;
 
         Random random = new Random();
-        int RandomLevel = random.Next(G.LevelsInGameTotal) + 1;
-
-        GetNode<Label>("RightBackground/CameraNumber").Text = "Cam " + RandomLevel.ToString();
-
-        var PresentedLevel = (Node2D)ResourceLoader.Load<PackedScene>("res://Content/Scenes/Levels/PresentedParts/PresentedLevel" + (RandomLevel) + ".tscn").Instantiate();
-        GetNode<Node2D>("RightBackground/LevelPresenter").AddChild(PresentedLevel);
-    }
-    public void Play()
-    {
-        Random random = new Random();
-        G.CurrentLevel = UnchangableMeta.DoFirstTimePlayed ? random.Next(G.LevelsInGameTotal) + 1 : 1;
-        GetTree().ChangeSceneToFile("res://Content/Scenes/Other/Main.tscn");
+        var PresentedLevel = (Node2D)ResourceLoader.Load<PackedScene>("res://Content/Scenes/Levels/PresentedParts/PresentedLevel" + (random.Next(G.LevelsInGameTotal) + 1) + ".tscn").Instantiate();
+        GetNode<SubViewport>("Background/LevelPresenter/SubViewport").AddChild(PresentedLevel);
     }
     public void ChooseLevel()
     {

@@ -14,7 +14,7 @@ public partial class Level5Rain : Node2D
     {
         _fog = GetNode<ColorRect>("CanvasLayer/Fog?");
         _thunderLight = GetNode<ColorRect>("CanvasLayer/ThunderLight");
-        _playerCamera = GetNode<Camera2D>("../Player/DeadPlayer/Camera2D");
+        _playerCamera = GetNode<Camera2D>("../Player/Camera2D");
         _particles = GetNode<CpuParticles2D>("Particles");
 
         ThunderStart();

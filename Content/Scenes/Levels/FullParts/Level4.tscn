@@ -270,9 +270,5 @@ modulate = Color(0.956863, 0.956863, 0.956863, 1)
 z_index = 1
 position = Vector2(1312, 672)
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(1323, 679)
-zoom = Vector2(0.5, 0.5)
-
 [connection signal="timeout" from="BackCircularSaw/Saw/MiddleCircularSaw/SpinCicleTimer" to="BackCircularSaw/Saw/MiddleCircularSaw/ScreechSound" method="PlayReccurentSound"]
 [connection signal="timeout" from="BackCircularSaw/Saw/MiddleCircularSaw/SpinCicleTimer" to="BackCircularSaw/Saw/MiddleCircularSaw/MetalSparks" method="set_emitting" binds= [true]]

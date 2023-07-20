@@ -31,37 +31,31 @@ position = Vector2(640, 360)
 scale = Vector2(4, 3.6)
 texture = ExtResource("2_sl6b7")
 
-[node name="Computer" type="Control" parent="."]
-z_index = 2
-clip_contents = true
-layout_mode = 1
-anchor_right = 0.836
-anchor_bottom = 0.737
-offset_left = 218.0
-offset_top = 10.0
-offset_right = 71.9199
-offset_bottom = 179.36
+[node name="Computer" type="Node2D" parent="."]
 
-[node name="Screen" type="Control" parent="Computer"]
-z_index = -2
-clip_contents = true
-anchors_preset = 0
-offset_left = 98.0
-offset_top = 77.0
-offset_right = 827.0
-offset_bottom = 487.0
+[node name="Screen" type="SubViewportContainer" parent="Computer"]
+offset_left = 310.0
+offset_top = 82.0
+offset_right = 1050.0
+offset_bottom = 502.0
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="Computer/Screen"]
+handle_input_locally = false
+canvas_item_default_texture_filter = 0
+size = Vector2i(740, 420)
+render_target_update_mode = 4
 
 [node name="Sprite" type="Sprite2D" parent="Computer"]
-position = Vector2(462, 350)
+position = Vector2(680, 360)
 scale = Vector2(3.5, 3.5)
 texture = ExtResource("2_5l5q2")
 
 [node name="CameraNumber" type="Label" parent="Computer"]
-layout_mode = 0
-offset_left = 140.0
-offset_top = 83.0
-offset_right = 184.0
-offset_bottom = 108.0
+offset_left = 358.0
+offset_top = 93.0
+offset_right = 402.0
+offset_bottom = 118.0
 scale = Vector2(1.5, 1.5)
 theme_override_colors/font_color = Color(0.921569, 0.921569, 0.921569, 1)
 theme_override_colors/font_shadow_color = Color(0.223529, 0.203922, 0.341176, 1)
@@ -71,11 +65,10 @@ theme_override_constants/shadow_outline_size = 3
 text = "Cam"
 
 [node name="MaxLivetime" type="Label" parent="Computer"]
-layout_mode = 0
-offset_left = 143.0
-offset_top = 457.0
-offset_right = 283.0
-offset_bottom = 482.0
+offset_left = 361.0
+offset_top = 467.0
+offset_right = 501.0
+offset_bottom = 492.0
 scale = Vector2(1.5, 1.5)
 theme_override_colors/font_color = Color(0.921569, 0.921569, 0.921569, 1)
 theme_override_colors/font_shadow_color = Color(0.223529, 0.203922, 0.341176, 1)
@@ -87,10 +80,10 @@ text = "Max Livetime"
 [node name="Buttons" type="Control" parent="Computer"]
 layout_mode = 3
 anchors_preset = 0
-offset_left = -177.0
-offset_top = -20.0
-offset_right = 1105.0
-offset_bottom = 698.0
+offset_left = 41.0
+offset_top = -10.0
+offset_right = 1323.0
+offset_bottom = 708.0
 
 [node name="ChangeToPastLevel" parent="Computer/Buttons" instance=ExtResource("1_pycgw")]
 layout_mode = 0

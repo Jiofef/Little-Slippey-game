@@ -7,7 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://dtbqcivkkem4g" path="res://Content/Sounds/Player/PullDown.wav" id="9"]
 [ext_resource type="Texture2D" uid="uid://nmw5orvjy6f8" path="res://Content/Sprites/Other/PlayerGhost.png" id="10"]
 [ext_resource type="AudioStream" uid="uid://cqkgwxdng8oby" path="res://Content/Sounds/Player/Jump.wav" id="11"]
-[ext_resource type="Script" path="res://Content/Scripts/Other/CameraScript.cs" id="13"]
+[ext_resource type="Script" path="res://Content/Scripts/Other/Camera.cs" id="13"]
 [ext_resource type="Texture2D" uid="uid://bvogrd2bqhwmt" path="res://Content/Sprites/Other/OblivionNoise.png" id="15"]
 [ext_resource type="FontFile" uid="uid://cp7vrks23tdh3" path="res://Content/Other/FFFFORWA.TTF" id="15_47p4f"]
 [ext_resource type="AudioStream" uid="uid://crtcoacg8vdmx" path="res://Content/Sounds/Player/Death.wav" id="16"]
