@@ -1,37 +1,16 @@
-[gd_scene load_steps=40 format=3 uid="uid://b5emddlfuaux0"]
+[gd_scene load_steps=14 format=3 uid="uid://b5emddlfuaux0"]
 
-[ext_resource type="PackedScene" path="res://Content/Scenes/Crosses/CrossLayout.tscn" id="1"]
 [ext_resource type="PackedScene" uid="uid://bt41vubjcqv8p" path="res://Content/Scenes/Crosses/ExplosionAnimation.tscn" id="2"]
-[ext_resource type="PackedScene" uid="uid://bi3r8ko1akhe1" path="res://Content/Scenes/Interface&Menu/Button.tscn" id="3"]
-[ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/LogoEasterEgg.cs" id="4"]
+[ext_resource type="Shader" path="res://Content/Other/BlurShader.gdshader" id="2_iomxt"]
+[ext_resource type="PackedScene" uid="uid://bwpstpk1xmkah" path="res://Content/Scenes/Interface&Menu/Button.tscn" id="3_iel6a"]
 [ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/Menu.cs" id="5"]
 [ext_resource type="Texture2D" uid="uid://060bgiw5i00k" path="res://Content/Sprites/PlayerSkins/Slippey.png" id="5_ieym6"]
-[ext_resource type="Script" path="res://Content/Scripts/Crosses/EasterCubicCross.cs" id="6"]
-[ext_resource type="Texture2D" uid="uid://cg8obnaf3qqvi" path="res://Content/Sprites/Interface/Pause/Buttons/Default/Options.png" id="8"]
-[ext_resource type="Texture2D" uid="uid://bauvdn3xsc3nb" path="res://Content/Sprites/Interface/Menu/Buttons/Chosen/ChosenChooseLevel.png" id="10"]
-[ext_resource type="Texture2D" uid="uid://bho5ckwtfxmcg" path="res://Content/Sprites/Interface/Pause/Buttons/Pressed/PressedOptions.png" id="11"]
-[ext_resource type="Texture2D" uid="uid://di1rsl1rkxwgk" path="res://Content/Sprites/Interface/Pause/Buttons/Chosen/ChosenOptions.png" id="12"]
-[ext_resource type="Texture2D" uid="uid://b6uvxttw4l32" path="res://Content/Sprites/Interface/Menu/Buttons/Default/ChooseLevel.png" id="13"]
-[ext_resource type="Texture2D" uid="uid://xl6qq3j54qfc" path="res://Content/Sprites/Interface/Menu/Buttons/Default/Titles.png" id="16"]
-[ext_resource type="Texture2D" uid="uid://621e277ix0g6" path="res://Content/Sprites/Interface/Menu/Other/WhiteCross.png" id="17"]
-[ext_resource type="Texture2D" uid="uid://bu8ahiqpowgn1" path="res://Content/Sprites/Interface/Menu/Other/RedCross.png" id="18"]
-[ext_resource type="Texture2D" uid="uid://q2j1uuqfjmos" path="res://Content/Sprites/Levels/BaseTileSet.png" id="19_iflm7"]
-[ext_resource type="Texture2D" uid="uid://cbpinepnmwfpe" path="res://Content/Sprites/Interface/Menu/Buttons/Chosen/ChosenTitles.png" id="21"]
-[ext_resource type="Texture2D" uid="uid://bd5i3p2j1hvse" path="res://Content/Sprites/Interface/Menu/Buttons/Pressed/PressedChooseLevel.png" id="23"]
-[ext_resource type="Texture2D" uid="uid://ccljiefpt2m3o" path="res://Content/Sprites/Interface/Menu/Buttons/Pressed/PressedTitles.png" id="24"]
-[ext_resource type="Texture2D" uid="uid://bg2mvitb1ih7q" path="res://Content/Sprites/Other/Explosion.png" id="25_1g36h"]
+[ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/SlippeyEasterEgg.cs" id="5_x55c5"]
+[ext_resource type="AudioStream" uid="uid://dannf4n2kbklp" path="res://Content/Sounds/Crosses/MegaExplosion.wav" id="7_kujvy"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mxbjq"]
-texture = ExtResource("19_iflm7")
-0:0/next_alternative_id = 8
-0:0/0 = 0
-1:0/next_alternative_id = 8
-1:0/0 = 0
-2:0/next_alternative_id = 8
-2:0/0 = 0
-
-[sub_resource type="TileSet" id="TileSet_p6j7x"]
-sources/0 = SubResource("TileSetAtlasSource_mxbjq")
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_iqcir"]
+shader = ExtResource("2_iomxt")
+shader_parameter/lod = 2.5
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cvnl5"]
 atlas = ExtResource("5_ieym6")
@@ -67,97 +46,8 @@ animations = [{
 "speed": 2.0
 }]
 
-[sub_resource type="AtlasTexture" id="9"]
-atlas = ExtResource("25_1g36h")
-region = Rect2(0, 0, 48, 48)
-
-[sub_resource type="AtlasTexture" id="10"]
-atlas = ExtResource("25_1g36h")
-region = Rect2(49, 0, 48, 48)
-
-[sub_resource type="AtlasTexture" id="11"]
-atlas = ExtResource("25_1g36h")
-region = Rect2(98, 0, 48, 48)
-
-[sub_resource type="AtlasTexture" id="12"]
-atlas = ExtResource("25_1g36h")
-region = Rect2(0, 49, 48, 48)
-
-[sub_resource type="AtlasTexture" id="13"]
-atlas = ExtResource("25_1g36h")
-region = Rect2(49, 49, 48, 48)
-
-[sub_resource type="AtlasTexture" id="14"]
-atlas = ExtResource("25_1g36h")
-region = Rect2(98, 49, 48, 48)
-
-[sub_resource type="AtlasTexture" id="15"]
-atlas = ExtResource("25_1g36h")
-region = Rect2(0, 98, 48, 48)
-
-[sub_resource type="AtlasTexture" id="16"]
-atlas = ExtResource("25_1g36h")
-region = Rect2(49, 98, 48, 48)
-
-[sub_resource type="AtlasTexture" id="17"]
-atlas = ExtResource("25_1g36h")
-region = Rect2(98, 98, 48, 48)
-
-[sub_resource type="AtlasTexture" id="18"]
-atlas = ExtResource("25_1g36h")
-region = Rect2(0, 147, 48, 48)
-
-[sub_resource type="AtlasTexture" id="19"]
-atlas = ExtResource("25_1g36h")
-region = Rect2(49, 147, 48, 48)
-
-[sub_resource type="AtlasTexture" id="20"]
-atlas = ExtResource("25_1g36h")
-region = Rect2(98, 147, 48, 48)
-
-[sub_resource type="SpriteFrames" id="8"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("9")
-}, {
-"duration": 1.0,
-"texture": SubResource("10")
-}, {
-"duration": 1.0,
-"texture": SubResource("11")
-}, {
-"duration": 1.0,
-"texture": SubResource("12")
-}, {
-"duration": 1.0,
-"texture": SubResource("13")
-}, {
-"duration": 1.0,
-"texture": SubResource("14")
-}, {
-"duration": 1.0,
-"texture": SubResource("15")
-}, {
-"duration": 1.0,
-"texture": SubResource("16")
-}, {
-"duration": 1.0,
-"texture": SubResource("17")
-}, {
-"duration": 1.0,
-"texture": SubResource("18")
-}, {
-"duration": 1.0,
-"texture": SubResource("19")
-}, {
-"duration": 1.0,
-"texture": SubResource("20")
-}],
-"loop": false,
-"name": &"default",
-"speed": 15.0
-}]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6og2f"]
+size = Vector2(12, 14)
 
 [node name="Menu" type="Control"]
 process_mode = 3
@@ -184,99 +74,157 @@ size_2d_override = Vector2i(740, 420)
 size_2d_override_stretch = true
 render_target_update_mode = 4
 
-[node name="Foreground" type="Node2D" parent="."]
-position = Vector2(512, 0)
+[node name="Blur" type="ColorRect" parent="Background"]
+material = SubResource("ShaderMaterial_iqcir")
+offset_right = 1280.0
+offset_bottom = 720.0
 
-[node name="TileMap" type="TileMap" parent="Foreground"]
-scale = Vector2(8, 8)
-tile_set = SubResource("TileSet_p6j7x")
-format = 2
-layer_0/tile_data = PackedInt32Array(262144, 131072, 0, 327680, 0, 0, 262145, 131072, 0, 327681, 0, 0, 393212, 0, 0, 393213, 0, 0, 393214, 0, 0, 393215, 0, 0, 327682, 0, 0, 327683, 0, 0, 327684, 0, 0, 327685, 0, 0, 327676, 131072, 0, 327677, 131072, 0, 327678, 131072, 0, 327679, 131072, 0, 262146, 131072, 0, 262147, 131072, 0, 262148, 131072, 0, 262149, 131072, 0)
-
-[node name="EasterEgg" type="TextureButton" parent="Foreground"]
-offset_left = 80.0
-offset_top = 384.0
-offset_right = 176.0
-offset_bottom = 512.0
+[node name="CrossSpawn_Button_" type="TextureButton" parent="."]
+layout_mode = 0
+offset_right = 1280.0
+offset_bottom = 720.0
 focus_mode = 0
-script = ExtResource("4")
 
-[node name="Slippey" type="AnimatedSprite2D" parent="Foreground/EasterEgg"]
-position = Vector2(48, 64)
+[node name="Foreground" type="Node2D" parent="."]
+
+[node name="TopRect" type="ColorRect" parent="Foreground"]
+offset_right = 384.0
+offset_bottom = 256.0
+mouse_filter = 2
+color = Color(0, 0, 0.117647, 0.196078)
+
+[node name="BottomRect" type="ColorRect" parent="Foreground"]
+offset_top = 256.0
+offset_right = 384.0
+offset_bottom = 720.0
+mouse_filter = 2
+color = Color(0, 0, 0, 0.588235)
+
+[node name="Buttons" type="Control" parent="Foreground/BottomRect"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 384.0
+offset_bottom = 464.0
+mouse_filter = 2
+
+[node name="Play" parent="Foreground/BottomRect/Buttons" instance=ExtResource("3_iel6a")]
+layout_mode = 0
+offset_bottom = 15.0
+focus_neighbor_top = NodePath("../Titles")
+
+[node name="Label" type="Label" parent="Foreground/BottomRect/Buttons/Play"]
+layout_mode = 0
+offset_right = 240.0
+offset_bottom = 40.0
+scale = Vector2(0.4, 0.4)
+theme_override_colors/font_outline_color = Color(0.501961, 0.501961, 0.501961, 1)
+theme_override_constants/outline_size = 4
+text = "Play"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Options" parent="Foreground/BottomRect/Buttons" instance=ExtResource("3_iel6a")]
+layout_mode = 0
+offset_top = 60.0
+offset_bottom = 75.0
+
+[node name="Label" type="Label" parent="Foreground/BottomRect/Buttons/Options"]
+layout_mode = 0
+offset_right = 240.0
+offset_bottom = 40.0
+scale = Vector2(0.4, 0.4)
+theme_override_colors/font_outline_color = Color(0.501961, 0.501961, 0.501961, 1)
+theme_override_constants/outline_size = 4
+text = "Options"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Skins" parent="Foreground/BottomRect/Buttons" instance=ExtResource("3_iel6a")]
+layout_mode = 0
+offset_top = 120.0
+offset_bottom = 135.0
+
+[node name="Label" type="Label" parent="Foreground/BottomRect/Buttons/Skins"]
+layout_mode = 0
+offset_right = 240.0
+offset_bottom = 40.0
+scale = Vector2(0.4, 0.4)
+theme_override_colors/font_outline_color = Color(0.501961, 0.501961, 0.501961, 1)
+theme_override_constants/outline_size = 4
+text = "Skins"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Achievements" parent="Foreground/BottomRect/Buttons" instance=ExtResource("3_iel6a")]
+layout_mode = 0
+offset_top = 180.0
+offset_bottom = 196.0
+
+[node name="Label" type="Label" parent="Foreground/BottomRect/Buttons/Achievements"]
+layout_mode = 0
+offset_right = 240.0
+offset_bottom = 41.0
+scale = Vector2(0.4, 0.4)
+theme_override_colors/font_outline_color = Color(0.501961, 0.501961, 0.501961, 1)
+theme_override_constants/outline_size = 4
+text = "Achievements"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Titles" parent="Foreground/BottomRect/Buttons" instance=ExtResource("3_iel6a")]
+layout_mode = 0
+offset_top = 400.0
+offset_bottom = 416.0
+focus_neighbor_bottom = NodePath("../Play")
+
+[node name="Label" type="Label" parent="Foreground/BottomRect/Buttons/Titles"]
+layout_mode = 0
+offset_right = 240.0
+offset_bottom = 40.0
+scale = Vector2(0.4, 0.4)
+theme_override_colors/font_outline_color = Color(0.501961, 0.501961, 0.501961, 1)
+theme_override_constants/outline_size = 4
+text = "Titles"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ButtonsFocusingTimer" type="Timer" parent="Foreground/BottomRect/Buttons"]
+wait_time = 1.5
+one_shot = true
+
+[node name="Slippey" type="AnimatedSprite2D" parent="Foreground/BottomRect"]
+position = Vector2(192, -64)
 scale = Vector2(8, 8)
 sprite_frames = SubResource("4")
 animation = &"Idle"
 autoplay = "Idle"
+script = ExtResource("5_x55c5")
 
-[node name="Buttons" type="Control" parent="Foreground"]
-layout_mode = 3
-anchors_preset = 0
-offset_left = -512.0
-offset_top = 512.0
-offset_right = 768.0
-offset_bottom = 720.0
+[node name="DamageDetector" type="Area2D" parent="Foreground/BottomRect/Slippey"]
+position = Vector2(0, 1)
+collision_layer = 8
+collision_mask = 16
 
-[node name="ChooseLevel" parent="Foreground/Buttons" instance=ExtResource("3")]
-layout_mode = 2
-offset_left = 513.0
-offset_top = 58.0
-offset_right = 561.0
-offset_bottom = 74.0
-scale = Vector2(5.5, 5.5)
-focus_neighbor_left = NodePath("../Options")
-focus_neighbor_right = NodePath("../Titles")
-texture_normal = ExtResource("13")
-texture_pressed = ExtResource("23")
-texture_focused = ExtResource("10")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Foreground/BottomRect/Slippey/DamageDetector"]
+shape = SubResource("RectangleShape2D_6og2f")
 
-[node name="Options" parent="Foreground/Buttons" instance=ExtResource("3")]
-layout_mode = 2
-offset_left = 27.0
-offset_top = 63.0
-offset_right = 75.0
-offset_bottom = 79.0
-scale = Vector2(5.5, 5.5)
-focus_neighbor_left = NodePath("../Titles")
-focus_neighbor_right = NodePath("../ChooseLevel")
-texture_normal = ExtResource("8")
-texture_pressed = ExtResource("11")
-texture_focused = ExtResource("12")
+[node name="ExplosionAnimation" parent="." instance=ExtResource("2")]
+position = Vector2(640, 320)
+scale = Vector2(100, 100)
 
-[node name="Titles" parent="Foreground/Buttons" instance=ExtResource("3")]
-layout_mode = 2
-offset_left = 995.0
-offset_top = 63.0
-offset_right = 1043.0
-offset_bottom = 79.0
-scale = Vector2(5.5, 5.5)
-focus_neighbor_left = NodePath("../ChooseLevel")
-focus_neighbor_right = NodePath("../Options")
-texture_normal = ExtResource("16")
-texture_pressed = ExtResource("24")
-texture_focused = ExtResource("21")
+[node name="ExplosionSound" type="AudioStreamPlayer" parent="ExplosionAnimation"]
+stream = ExtResource("7_kujvy")
+volume_db = 15.0
 
-[node name="CubicCross" parent="." instance=ExtResource("1")]
-visible = false
-modulate = Color(1, 1, 1, 0)
-position = Vector2(144, 90)
-scale = Vector2(3.5, 3.5)
-script = ExtResource("6")
-
-[node name="CrossSprite" type="Sprite2D" parent="CubicCross"]
-texture = ExtResource("18")
-
-[node name="WarningSprite" type="Sprite2D" parent="CubicCross"]
-position = Vector2(-2, -2)
-texture = ExtResource("17")
-
-[node name="ExplosionAnimation" parent="CubicCross" instance=ExtResource("2")]
-sprite_frames = SubResource("8")
-
-[connection signal="pressed" from="Foreground/EasterEgg" to="." method="EasterButtonPressed"]
-[connection signal="pressed" from="Foreground/Buttons/ChooseLevel" to="." method="ChooseLevel"]
-[connection signal="pressed" from="Foreground/Buttons/Options" to="." method="Options"]
-[connection signal="pressed" from="Foreground/Buttons/Titles" to="." method="Titles"]
-[connection signal="visibility_changed" from="CubicCross" to="CubicCross" method="set_physics_process" binds= [true]]
-[connection signal="visibility_changed" from="CubicCross" to="CubicCross" method="set_modulate" binds= [Color(1, 1, 1, 0)]]
-[connection signal="animation_finished" from="CubicCross/ExplosionAnimation" to="CubicCross" method="queue_free"]
-[connection signal="visibility_changed" from="CubicCross/ExplosionAnimation" to="Foreground/EasterEgg" method="GoingFall"]
+[connection signal="button_down" from="CrossSpawn_Button_" to="." method="SpawnCross"]
+[connection signal="focus_entered" from="Foreground/BottomRect/Buttons/Play" to="Foreground/BottomRect/Buttons/ButtonsFocusingTimer" method="start"]
+[connection signal="pressed" from="Foreground/BottomRect/Buttons/Play" to="." method="Play"]
+[connection signal="ready" from="Foreground/BottomRect/Buttons/Play" to="Foreground/BottomRect/Buttons/Play" method="grab_focus"]
+[connection signal="focus_entered" from="Foreground/BottomRect/Buttons/Options" to="Foreground/BottomRect/Buttons/ButtonsFocusingTimer" method="start"]
+[connection signal="pressed" from="Foreground/BottomRect/Buttons/Options" to="." method="Options"]
+[connection signal="focus_entered" from="Foreground/BottomRect/Buttons/Skins" to="Foreground/BottomRect/Buttons/ButtonsFocusingTimer" method="start"]
+[connection signal="focus_entered" from="Foreground/BottomRect/Buttons/Achievements" to="Foreground/BottomRect/Buttons/ButtonsFocusingTimer" method="start"]
+[connection signal="focus_entered" from="Foreground/BottomRect/Buttons/Titles" to="Foreground/BottomRect/Buttons/ButtonsFocusingTimer" method="start"]
+[connection signal="pressed" from="Foreground/BottomRect/Buttons/Titles" to="." method="Titles"]
+[connection signal="area_entered" from="Foreground/BottomRect/Slippey/DamageDetector" to="Foreground/BottomRect/Slippey" method="GoingFall" unbinds=1]
+[connection signal="animation_finished" from="ExplosionAnimation" to="." method="queue_free"]

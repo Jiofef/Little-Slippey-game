@@ -1,27 +1,38 @@
-[gd_scene load_steps=5 format=3 uid="uid://bi3r8ko1akhe1"]
+[gd_scene load_steps=6 format=3 uid="uid://bwpstpk1xmkah"]
 
-[ext_resource type="AudioStream" uid="uid://bsh68dpfm758v" path="res://Content/Sounds/Other/ButtonUp.wav" id="1"]
-[ext_resource type="Texture2D" uid="uid://m32rkn6okj25" path="res://Content/Sprites/Interface/Menu/Buttons/Default/PlaceHolder.png" id="2"]
-[ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/ButtonScript.cs" id="3"]
-[ext_resource type="AudioStream" uid="uid://cs50sf2kyk8ir" path="res://Content/Sounds/Other/ButtonDown.wav" id="4"]
+[ext_resource type="Texture2D" uid="uid://b74iy0kiw62iu" path="res://Content/Sprites/Interface/Menu/Other/ButtonOutline.png" id="1_ikf35"]
+[ext_resource type="Texture2D" uid="uid://co2whefmahedo" path="res://Content/Sprites/Interface/Menu/Other/ButtonOutlinePressed.png" id="2_5tddo"]
+[ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/Button.cs" id="2_j2ehd"]
+[ext_resource type="AudioStream" uid="uid://cs50sf2kyk8ir" path="res://Content/Sounds/Other/ButtonDown.wav" id="4_utbb0"]
+[ext_resource type="AudioStream" uid="uid://bsh68dpfm758v" path="res://Content/Sounds/Other/ButtonUp.wav" id="5_exc5d"]
 
 [node name="Button" type="TextureButton"]
-offset_right = 48.0
+clip_contents = true
+offset_right = 96.0
 offset_bottom = 16.0
-scale = Vector2(5, 5)
-texture_normal = ExtResource("2")
-script = ExtResource("3")
+scale = Vector2(4, 4)
+texture_normal = ExtResource("1_ikf35")
+texture_pressed = ExtResource("2_5tddo")
+ignore_texture_size = true
+script = ExtResource("2_j2ehd")
 
-[node name="ButtonUpSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("1")
-volume_db = 24.0
-bus = &"Interface"
+[node name="FocusRect" type="ColorRect" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 95.0
+offset_bottom = 15.0
+mouse_filter = 2
+color = Color(1, 1, 1, 0.784314)
 
-[node name="ButtonDownSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("4")
-volume_db = 24.0
-bus = &"Interface"
+[node name="DownSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_utbb0")
+volume_db = 10.0
 
-[connection signal="button_down" from="." to="." method="ThisButtonDown"]
-[connection signal="button_up" from="." to="." method="ThisButtonUp"]
-[connection signal="mouse_entered" from="." to="." method="ThisMouseEntered"]
+[node name="UpSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_exc5d")
+volume_db = 10.0
+
+[connection signal="button_down" from="." to="DownSound" method="play"]
+[connection signal="button_up" from="." to="UpSound" method="play"]

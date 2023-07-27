@@ -1,7 +1,7 @@
 [gd_scene load_steps=17 format=3 uid="uid://c7dgo7tq8pfa8"]
 
 [ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/LevelsMenu.cs" id="1_d5t7a"]
-[ext_resource type="PackedScene" uid="uid://bi3r8ko1akhe1" path="res://Content/Scenes/Interface&Menu/Button.tscn" id="1_pycgw"]
+[ext_resource type="PackedScene" uid="uid://bwpstpk1xmkah" path="res://Content/Scenes/Interface&Menu/Button.tscn" id="1_pycgw"]
 [ext_resource type="Texture2D" uid="uid://dt12n2ofkodg2" path="res://Content/Sprites/Interface/Menu/LevelsMenu/Computer.png" id="2_5l5q2"]
 [ext_resource type="Texture2D" uid="uid://cwpcewk28vec5" path="res://Content/Sprites/Interface/Menu/Buttons/Default/Cancel.png" id="2_2131h"]
 [ext_resource type="Texture2D" uid="uid://dttuf4odb201n" path="res://Content/Sprites/Interface/Menu/LevelsMenu/BackgroundWall.png" id="2_sl6b7"]
@@ -125,7 +125,6 @@ offset_left = 934.0
 offset_top = 596.0
 offset_right = -312.0
 offset_bottom = -106.0
-scale = Vector2(4, 4)
 focus_neighbor_right = NodePath("../ChangeToPastLevel")
 texture_normal = ExtResource("2_2131h")
 texture_pressed = ExtResource("3_wrn8p")

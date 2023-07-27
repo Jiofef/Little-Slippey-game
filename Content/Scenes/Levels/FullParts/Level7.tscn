@@ -58,7 +58,7 @@ offset_left = -807.5
 offset_top = -418.333
 offset_right = 791.5
 offset_bottom = 287.667
-color = Color(0, 0.268054, 0.268053, 0.588235)
+color = Color(0, 0.235294, 0.235294, 0.501961)
 
 [node name="TileMap" type="TileMap" parent="."]
 scale = Vector2(4, 4)
