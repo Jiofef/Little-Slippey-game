@@ -1,0 +1,171 @@
+[gd_scene load_steps=23 format=3 uid="uid://bab2a1vvoqmrk"]
+
+[ext_resource type="Texture2D" uid="uid://b53a4snnwbhr1" path="res://Content/Sprites/Levels/Level9/SpitCross.png" id="1_1qgl2"]
+[ext_resource type="PackedScene" path="res://Content/Scenes/Crosses/CrossLayout.tscn" id="1_k80i8"]
+[ext_resource type="Texture2D" uid="uid://bv5jkxumbdvb2" path="res://Content/Sprites/Levels/Level9/SpitCrossWarning.png" id="2_p6oj2"]
+[ext_resource type="AudioStream" uid="uid://gj5ebhpdiyko" path="res://Content/Sounds/Crosses/MicroExplosion.wav" id="4_dwxab"]
+[ext_resource type="PackedScene" uid="uid://bt41vubjcqv8p" path="res://Content/Scenes/Crosses/ExplosionAnimation.tscn" id="5_3ikju"]
+[ext_resource type="Texture2D" uid="uid://bg2mvitb1ih7q" path="res://Content/Sprites/Other/Explosion.png" id="6_alr2a"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_b2ggo"]
+radius = 77.6674
+
+[sub_resource type="AtlasTexture" id="9"]
+atlas = ExtResource("6_alr2a")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="10"]
+atlas = ExtResource("6_alr2a")
+region = Rect2(49, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="11"]
+atlas = ExtResource("6_alr2a")
+region = Rect2(98, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="12"]
+atlas = ExtResource("6_alr2a")
+region = Rect2(0, 49, 48, 48)
+
+[sub_resource type="AtlasTexture" id="13"]
+atlas = ExtResource("6_alr2a")
+region = Rect2(49, 49, 48, 48)
+
+[sub_resource type="AtlasTexture" id="14"]
+atlas = ExtResource("6_alr2a")
+region = Rect2(98, 49, 48, 48)
+
+[sub_resource type="AtlasTexture" id="15"]
+atlas = ExtResource("6_alr2a")
+region = Rect2(0, 98, 48, 48)
+
+[sub_resource type="AtlasTexture" id="16"]
+atlas = ExtResource("6_alr2a")
+region = Rect2(49, 98, 48, 48)
+
+[sub_resource type="AtlasTexture" id="17"]
+atlas = ExtResource("6_alr2a")
+region = Rect2(98, 98, 48, 48)
+
+[sub_resource type="AtlasTexture" id="18"]
+atlas = ExtResource("6_alr2a")
+region = Rect2(0, 147, 48, 48)
+
+[sub_resource type="AtlasTexture" id="19"]
+atlas = ExtResource("6_alr2a")
+region = Rect2(49, 147, 48, 48)
+
+[sub_resource type="AtlasTexture" id="20"]
+atlas = ExtResource("6_alr2a")
+region = Rect2(98, 147, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hra8y"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("9")
+}, {
+"duration": 1.0,
+"texture": SubResource("10")
+}, {
+"duration": 1.0,
+"texture": SubResource("11")
+}, {
+"duration": 1.0,
+"texture": SubResource("12")
+}, {
+"duration": 1.0,
+"texture": SubResource("13")
+}, {
+"duration": 1.0,
+"texture": SubResource("14")
+}, {
+"duration": 1.0,
+"texture": SubResource("15")
+}, {
+"duration": 1.0,
+"texture": SubResource("16")
+}, {
+"duration": 1.0,
+"texture": SubResource("17")
+}, {
+"duration": 1.0,
+"texture": SubResource("18")
+}, {
+"duration": 1.0,
+"texture": SubResource("19")
+}, {
+"duration": 1.0,
+"texture": SubResource("20")
+}],
+"loop": false,
+"name": &"default",
+"speed": 15.0
+}]
+
+[sub_resource type="Animation" id="Animation_t7vh3"]
+resource_name = "LifeCycle"
+step = 0.0166667
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ExplosionSignal")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"values": []
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ExplosionSignal:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.2, 0.383333, 0.633333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, true, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rfw6f"]
+_data = {
+"LifeCycle": SubResource("Animation_t7vh3")
+}
+
+[node name="SpitCross" instance=ExtResource("1_k80i8")]
+scale = Vector2(1, 1)
+
+[node name="SpitCross" type="Sprite2D" parent="." index="0"]
+scale = Vector2(10, 10)
+texture = ExtResource("1_1qgl2")
+
+[node name="SpitCrossWarning" type="Sprite2D" parent="." index="1"]
+position = Vector2(-2, -2)
+scale = Vector2(10, 10)
+texture = ExtResource("2_p6oj2")
+
+[node name="ExplosiveArea" type="Area2D" parent="." index="2"]
+collision_layer = 16
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExplosiveArea" index="0"]
+shape = SubResource("CircleShape2D_b2ggo")
+disabled = true
+
+[node name="ExplosionSignal" parent="." index="3"]
+pitch_scale = 1.5
+bus = &"CrossSnap"
+
+[node name="ExplosionSound" parent="." index="4"]
+stream = ExtResource("4_dwxab")
+bus = &"CrossExplosion"
+
+[node name="ExplosionAnimation" parent="." index="5" instance=ExtResource("5_3ikju")]
+sprite_frames = SubResource("SpriteFrames_hra8y")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="6"]
+libraries = {
+"": SubResource("AnimationLibrary_rfw6f")
+}

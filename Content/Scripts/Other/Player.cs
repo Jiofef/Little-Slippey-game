@@ -76,8 +76,8 @@ public partial class Player : CharacterBody2D
                 }
             }
 
-            if (_wallDetectNumber != 0 && Input.IsActionPressed("wall_catch") && !IsOnFloor() && _motion.Y > 0 && _state != State.DownDash)
-                if (!Input.IsActionPressed("jump") || _inertion != 0)
+            if (_wallDetectNumber != 0 && Input.IsActionPressed("WallCatch") && !IsOnFloor() && _motion.Y > 0 && _state != State.DownDash)
+                if (!Input.IsActionPressed("Jump") || _inertion != 0)
                 {
                     _motion.Y = 15;
                     _animationName = "WallCatch";
@@ -86,14 +86,14 @@ public partial class Player : CharacterBody2D
             if (_climbBufer < 3 && _climbUncontrollingTimer > 0)
                 _motion.X /= _motion.X / _savedClimbWallNumber < 0 ? _climbUncontrollingTimer * 3 + 1 : 1;
 
-            if (Input.IsActionPressed("jump"))
+            if (Input.IsActionPressed("Jump"))
             {
                 if (IsOnFloor())
                 {
                     _motion.Y = -_jumpForce;
                     PlaySound("Jump");
                 }
-                else if (Input.IsActionPressed("wall_catch") && _wallDetectNumber != 0 && _inertion == 0 && _wallJumpTimer < 0 && _climbTimer < 0)
+                else if (Input.IsActionPressed("WallCatch") && _wallDetectNumber != 0 && _inertion == 0 && _wallJumpTimer < 0 && _climbTimer < 0)
                 {
                     _savedWallNumber = _wallDetectNumber;
                     _motion.Y = -_jumpForce;
@@ -102,7 +102,7 @@ public partial class Player : CharacterBody2D
                     _state = State.Inerted;
                     PlaySound("Climb");
                 }
-                else if (!Input.IsActionPressed("wall_catch") && _lastXMoveVector == _wallDetectNumber && _wallDetectNumber != 0 && _climbTimer < 0 && _climbBufer > 0)
+                else if (!Input.IsActionPressed("WallCatch") && _lastXMoveVector == _wallDetectNumber && _wallDetectNumber != 0 && _climbTimer < 0 && _climbBufer > 0)
                 {
                     _climbTimer = 0.2f;
                     _climbBufer--;
@@ -114,7 +114,7 @@ public partial class Player : CharacterBody2D
                     PlaySound("Climb");
                 }
             }
-            else if (Input.IsActionJustPressed("down_pull") && !IsOnFloor() && _state != State.DownDash)
+            else if (Input.IsActionJustPressed("DownPull") && !IsOnFloor() && _state != State.DownDash)
             {
                 _state = State.DownDash;
                 PlaySound("PullDown");
@@ -233,7 +233,7 @@ public partial class Player : CharacterBody2D
         GetNode<CollisionShape2D>("FullBodyCollider").SetDeferred("disabled", true);
         _animatedSprite.Animation = "Death";
         G.IsPlayerDead = true;
-        G.SaveRecords();
+        UnchangableMeta.SaveRecords();
         UnchangableMeta.SaveToFile();
     }
 

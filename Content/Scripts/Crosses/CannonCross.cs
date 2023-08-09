@@ -5,7 +5,7 @@ public partial class CannonCross : Path2D
     Node2D _sprites, _ball;
     PathFollow2D _cannonPathFollow2D;
     Sprite2D _frontWheel, _backWheel, _barrel, _tornBarrel;
-    private float _cannonSpeed = 0.7f, _ballYBound = G.LevelXYSizes[G.CurrentLevel].Y + 100, _ballYMotion = 1.1f;
+    private float _cannonSpeed = 0.7f, _ballYBound = G.LevelXYSizes[G.CurrentLevel].Y + 100, _ballYMotion = 0.5f;
     private bool _doCannonShoted;
     public override void _Ready()
     {
@@ -49,11 +49,11 @@ public partial class CannonCross : Path2D
         else if (_ball.GlobalPosition.Y < _ballYBound && G.CurrentLevel != 8 || _ball.GlobalPosition.Y < 800 && _ball.GlobalPosition.Y > -100 && G.CurrentLevel == 8)
         {
             if (G.CurrentLevel != 8)
-                _ball.Position = new Vector2(_ball.Position.X - 1.75f, _ball.Position.Y + _ballYMotion);
+                _ball.Position = new Vector2(_ball.Position.X - 1.4f, _ball.Position.Y + _ballYMotion);
             else
-                _ball.Position = new Vector2(_ball.Position.X - 2, _ball.Position.Y);
+                _ball.Position = new Vector2(_ball.Position.X - 1.5f, _ball.Position.Y);
             _ball.Rotation -= 0.06f;
-            _ballYMotion -= 0.015f;
+            _ballYMotion -= 0.006f;
             if (_sprites.Position.X < 50)
             {
                 _sprites.Position = new Vector2(_sprites.Position.X + 1.5f, _sprites.Position.Y);

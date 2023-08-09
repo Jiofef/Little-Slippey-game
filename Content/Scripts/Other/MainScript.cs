@@ -6,13 +6,6 @@ public partial class MainScript : Node2D
 
     public override void _Ready()
     {
-        if (!UnchangableMeta.DoFirstTimePlayed)
-        {
-            Input.MouseMode = Input.MouseModeEnum.Visible;
-            GetTree().Paused = true;
-            OpenMovementTutorial();
-        }
-
         var levelMusicPlayer = GetNode<AudioStreamPlayer>("LevelMusicPlayer");
         AudioStream Music = ResourceLoader.Load<AudioStream>("res://Content/Sounds/Soundtrack/Level" + G.CurrentLevel + ".wav");
         levelMusicPlayer.Stream = Music;
@@ -41,7 +34,7 @@ public partial class MainScript : Node2D
     }
     public void Menu()
     {
-        G.SaveRecords();
+        UnchangableMeta.SaveRecords();
         G.ResetValues();
         GetTree().ChangeSceneToFile("res://Content/Scenes/Interface&Menu/Menu.tscn");
         AudioServer.SetBusEffectEnabled(2, 0, false);
@@ -53,17 +46,5 @@ public partial class MainScript : Node2D
         pause.Visible = true;
         GetNode<TextureButton>("Pause/Buttons/Resume").GrabFocus();
         _subMenusOpened = false;
-    }
-    public void MovementTutorialClosed()
-    {
-        _subMenusOpened = false;
-        GetNode<CanvasLayer>("Pause").ProcessMode = ProcessModeEnum.WhenPaused;
-        GetNode<TextureButton>("Pause/Buttons/Resume").GrabFocus();
-    }
-    public void OpenMovementTutorial()
-    {
-        _subMenusOpened = true;
-        GetNode<CanvasLayer>("Pause").ProcessMode = ProcessModeEnum.Disabled;
-        AddChild(ResourceLoader.Load<PackedScene>("res://Content/Scenes/Interface&Menu/MovementTutorial.tscn").Instantiate());
     }
 }

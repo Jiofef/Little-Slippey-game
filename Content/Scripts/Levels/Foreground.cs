@@ -1,6 +1,6 @@
 using Godot;
 
-public partial class ForegroundScript : Node2D
+public partial class Foreground : Node2D
 {
 	private bool _doHideForeground = false;
 

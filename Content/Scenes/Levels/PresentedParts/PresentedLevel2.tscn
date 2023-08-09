@@ -363,7 +363,6 @@ progress = 1440.0
 rotates = false
 
 [node name="Camera2D" type="Camera2D" parent="CameraPath/PathFollow2D"]
-rotation = 0.09066
 zoom = Vector2(0.6, 0.6)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CameraPath/PathFollow2D"]

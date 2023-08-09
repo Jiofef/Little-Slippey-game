@@ -2,19 +2,19 @@
 
 [ext_resource type="Texture2D" uid="uid://bvogrd2bqhwmt" path="res://Content/Sprites/Other/OblivionNoise.png" id="1_ulj6d"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_m23ck"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_gbavx"]
 atlas = ExtResource("1_ulj6d")
 region = Rect2(0, 0, 320, 180)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_2nkyg"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_fsxhq"]
 atlas = ExtResource("1_ulj6d")
 region = Rect2(0, 180, 320, 180)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_gjuy0"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_82m6p"]
 atlas = ExtResource("1_ulj6d")
 region = Rect2(0, 360, 320, 180)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_lr1hx"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_qfmnk"]
 atlas = ExtResource("1_ulj6d")
 region = Rect2(0, 540, 320, 180)
 
@@ -22,16 +22,16 @@ region = Rect2(0, 540, 320, 180)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_m23ck")
+"texture": SubResource("AtlasTexture_gbavx")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_2nkyg")
+"texture": SubResource("AtlasTexture_fsxhq")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_gjuy0")
+"texture": SubResource("AtlasTexture_82m6p")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_lr1hx")
+"texture": SubResource("AtlasTexture_qfmnk")
 }],
 "loop": true,
 "name": &"default",
@@ -41,8 +41,12 @@ animations = [{
 [node name="PresentedLevel7" type="Node2D"]
 
 [node name="WhiteNoise" type="AnimatedSprite2D" parent="."]
-modulate = Color(0.945098, 0.831373, 0.635294, 1)
+modulate = Color(1, 0.784314, 0.627451, 1)
 position = Vector2(640, 360)
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_yvuy2")
 autoplay = "default"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(640, 360)
+zoom = Vector2(0.6, 0.6)

@@ -15,47 +15,87 @@
 texture = ExtResource("6_tfqk5")
 0:0/next_alternative_id = 8
 0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
 1:0/next_alternative_id = 8
 1:0/0 = 0
+1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:0/0/physics_layer_0/angular_velocity = 0.0
 2:0/next_alternative_id = 8
 2:0/0 = 0
+2:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:0/0/physics_layer_0/angular_velocity = 0.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_v11dt"]
 texture = ExtResource("7_f4egv")
 0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
 1:0/0 = 0
+1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:0/0/physics_layer_0/angular_velocity = 0.0
 2:0/0 = 0
+2:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:0/0/physics_layer_0/angular_velocity = 0.0
 0:1/next_alternative_id = 3
 0:1/0 = 0
+0:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:1/0/physics_layer_0/angular_velocity = 0.0
 0:1/2 = 2
 0:1/2/transpose = true
+0:1/2/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:1/2/physics_layer_0/angular_velocity = 0.0
 1:1/next_alternative_id = 6
 1:1/0 = 0
+1:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:1/0/physics_layer_0/angular_velocity = 0.0
 1:1/2 = 2
 1:1/2/transpose = true
+1:1/2/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:1/2/physics_layer_0/angular_velocity = 0.0
 1:1/3 = 3
 1:1/3/flip_h = true
+1:1/3/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:1/3/physics_layer_0/angular_velocity = 0.0
 1:1/4 = 4
 1:1/4/flip_v = true
 1:1/4/transpose = true
+1:1/4/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:1/4/physics_layer_0/angular_velocity = 0.0
 2:1/next_alternative_id = 6
 2:1/0 = 0
+2:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:1/0/physics_layer_0/angular_velocity = 0.0
 2:1/2 = 2
 2:1/2/flip_h = true
 2:1/2/flip_v = true
+2:1/2/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:1/2/physics_layer_0/angular_velocity = 0.0
 2:1/3 = 3
 2:1/3/flip_v = true
+2:1/3/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:1/3/physics_layer_0/angular_velocity = 0.0
 2:1/4 = 4
 2:1/4/flip_h = true
+2:1/4/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:1/4/physics_layer_0/angular_velocity = 0.0
 0:2/next_alternative_id = 6
 0:2/0 = 0
+0:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:2/0/physics_layer_0/angular_velocity = 0.0
 0:2/3 = 3
 0:2/3/transpose = true
+0:2/3/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:2/3/physics_layer_0/angular_velocity = 0.0
 0:2/4 = 4
 0:2/4/flip_h = true
+0:2/4/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:2/4/physics_layer_0/angular_velocity = 0.0
 0:2/5 = 5
 0:2/5/flip_v = true
 0:2/5/transpose = true
+0:2/5/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:2/5/physics_layer_0/angular_velocity = 0.0
 
 [sub_resource type="TileSet" id="TileSet_cafun"]
 physics_layer_0/collision_layer = 4
@@ -163,7 +203,7 @@ _data = {
 motion_scale = Vector2(0.2, 0.2)
 
 [node name="Sprite2D" type="Sprite2D" parent="Background/Sky"]
-position = Vector2(800, 360)
+position = Vector2(800, 380)
 scale = Vector2(5, 5)
 texture = ExtResource("2_uoe8d")
 
@@ -171,7 +211,7 @@ texture = ExtResource("2_uoe8d")
 motion_scale = Vector2(0.3, 0.3)
 
 [node name="Sprite2D" type="Sprite2D" parent="Background/BackCity"]
-position = Vector2(800, 480)
+position = Vector2(800, 490)
 scale = Vector2(4, 4)
 texture = ExtResource("3_qdav7")
 
@@ -278,7 +318,6 @@ position = Vector2(560, 320)
 rotates = false
 
 [node name="Camera2D" type="Camera2D" parent="CameraPath/PathFollow2D"]
-rotation = 0.09066
 zoom = Vector2(0.6, 0.6)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CameraPath/PathFollow2D"]

@@ -6,7 +6,7 @@ public partial class G : Node
 	public static bool IsPlayerDead, IsNewRecordReached;
 	public static float PlayerMoveCoeff = 1, Scores = 0, ResetTimer, PlayerCorpseFlightTimer, PlayerCorpseFlightTimerCoeff = 0,  ReversedPlayerCorpseFlightTimerCoeff = 1, AfterPlayerCorpseFlightTimer;
 	public static int CurrentLevel;
-	public static readonly int LevelsInGameTotal = 8, CrossesInGameTotal = 5, DificultiesInGameTotal = 3;
+	public static readonly int LevelsInGameTotal = 9, CrossesInGameTotal = 5, DificultiesInGameTotal = 3;
     public static readonly int[] DefaultCrossWeight = { 100, 40, 20, 10, 30 };
 	public static readonly Vector2[] LevelXYSizes =
 	{
@@ -20,6 +20,7 @@ public partial class G : Node
 		new Vector2(2560, 1280),
         new Vector2(1280, 640),
 		new Vector2(999999999, 640),
+		new Vector2(2560, 1280)
     };
 	public override void _Process(double delta)
 	{
@@ -34,15 +35,7 @@ public partial class G : Node
 		ResetTimer = 0;
 		AfterPlayerCorpseFlightTimer = 0;
 		Scores = 0;
-		SaveRecords();
+		UnchangableMeta.SaveRecords();
 		UnchangableMeta.SaveToFile();
-	}
-	public static void SaveRecords()
-	{
-		if (Scores > UnchangableMeta.LevelRecords[Meta.Instance.Dificulty][CurrentLevel - 1])
-		{
-            UnchangableMeta.LevelRecords[Meta.Instance.Dificulty][CurrentLevel - 1] = (int)Scores;
-			IsNewRecordReached = true;
-        }
 	}
 }

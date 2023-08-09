@@ -1,22 +1,11 @@
-[gd_scene load_steps=18 format=3 uid="uid://dxnmuyu5wcsgv"]
+[gd_scene load_steps=7 format=3 uid="uid://dxnmuyu5wcsgv"]
 
 [ext_resource type="Script" path="res://Content/Scripts/Other/PlayPart.cs" id="1"]
 [ext_resource type="Script" path="res://Content/Scripts/Other/MainScript.cs" id="2"]
 [ext_resource type="AudioStream" uid="uid://bd600nupwwnkt" path="res://Content/Sounds/Soundtrack/Level7.wav" id="2_onyb5"]
-[ext_resource type="Texture2D" uid="uid://c4253ngxvs3vx" path="res://Content/Sprites/Interface/Pause/Buttons/Pressed/PressedResume.png" id="4"]
-[ext_resource type="Texture2D" uid="uid://c8anx03uvrcbq" path="res://Content/Sprites/Interface/Pause/Buttons/Default/Resume.png" id="5"]
-[ext_resource type="PackedScene" uid="uid://bi3r8ko1akhe1" path="res://Content/Scenes/Interface&Menu/Button.tscn" id="6"]
-[ext_resource type="Texture2D" uid="uid://cg8obnaf3qqvi" path="res://Content/Sprites/Interface/Pause/Buttons/Default/Options.png" id="7"]
-[ext_resource type="Texture2D" uid="uid://cfq3bxmsshnb7" path="res://Content/Sprites/Interface/Pause/Buttons/Pressed/PressedMenu.png" id="8"]
-[ext_resource type="Texture2D" uid="uid://bxvhpqekdo5um" path="res://Content/Sprites/Interface/Pause/Buttons/Default/Menu.png" id="9"]
-[ext_resource type="Texture2D" uid="uid://emg8y7w217f1" path="res://Content/Sprites/Interface/Pause/Other/PauseDesk.png" id="10"]
-[ext_resource type="Texture2D" uid="uid://di1rsl1rkxwgk" path="res://Content/Sprites/Interface/Pause/Buttons/Chosen/ChosenOptions.png" id="11"]
-[ext_resource type="Texture2D" uid="uid://co1wrgrjo5bcx" path="res://Content/Sprites/Interface/Pause/Buttons/Chosen/ChosenMenu.png" id="12"]
-[ext_resource type="Texture2D" uid="uid://bxup7q3khjtl6" path="res://Content/Sprites/Interface/Pause/Buttons/Chosen/ChosenResume.png" id="13"]
-[ext_resource type="Texture2D" uid="uid://bho5ckwtfxmcg" path="res://Content/Sprites/Interface/Pause/Buttons/Pressed/PressedOptions.png" id="14"]
-[ext_resource type="Texture2D" uid="uid://doanmwi3cpowk" path="res://Content/Sprites/Interface/Pause/Buttons/Default/OpenMovementTutorial.png" id="15_j7pd1"]
-[ext_resource type="Texture2D" uid="uid://ds83tr2trx50s" path="res://Content/Sprites/Interface/Pause/Buttons/Pressed/PressedOpenMovementTutorialt.png" id="16_s072k"]
-[ext_resource type="Texture2D" uid="uid://fedmavhv1yed" path="res://Content/Sprites/Interface/Pause/Buttons/Chosen/ChosenOpenMovementTutorial.png" id="17_ndief"]
+[ext_resource type="PackedScene" uid="uid://bwpstpk1xmkah" path="res://Content/Scenes/Interface&Menu/Button.tscn" id="6"]
+[ext_resource type="Texture2D" uid="uid://b74iy0kiw62iu" path="res://Content/Sprites/Interface/MenuButtonOutline.png" id="6_eqfpd"]
+[ext_resource type="Texture2D" uid="uid://emg8y7w217f1" path="res://Content/Sprites/Interface/PauseDesk.png" id="10"]
 
 [node name="Main" type="Node2D"]
 process_mode = 3
@@ -48,63 +37,72 @@ texture = ExtResource("10")
 
 [node name="Buttons" type="Control" parent="Pause"]
 layout_mode = 3
-anchor_left = 0.406
+anchor_left = 0.35
 anchor_top = 0.417
-anchor_right = 0.594
-anchor_bottom = 0.806
-offset_left = -23.6801
-offset_top = -0.240021
-offset_right = -24.3201
-offset_bottom = -0.320068
+anchor_right = 0.65
+anchor_bottom = 0.672
+offset_left = -3.05176e-05
+offset_top = 49.76
+offset_right = -6.10352e-05
+offset_bottom = 50.16
 
 [node name="Resume" parent="Pause/Buttons" instance=ExtResource("6")]
 layout_mode = 0
-scale = Vector2(6, 6)
-focus_neighbor_left = NodePath("../OpenMovementTutorial")
-focus_neighbor_top = NodePath("../Menu")
-focus_neighbor_right = NodePath("../OpenMovementTutorial")
-texture_normal = ExtResource("5")
-texture_pressed = ExtResource("4")
-texture_focused = ExtResource("13")
+offset_right = 96.0
+offset_bottom = 15.0
+texture_normal = ExtResource("6_eqfpd")
+
+[node name="Label" type="Label" parent="Pause/Buttons/Resume"]
+layout_mode = 0
+offset_right = 240.0
+offset_bottom = 40.0
+scale = Vector2(0.4, 0.4)
+theme_override_colors/font_outline_color = Color(0.501961, 0.501961, 0.501961, 1)
+theme_override_constants/outline_size = 4
+text = "Resume
+"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Options" parent="Pause/Buttons" instance=ExtResource("6")]
 layout_mode = 0
-offset_top = 105.0
-offset_bottom = 121.0
-scale = Vector2(6, 6)
-focus_neighbor_left = NodePath("../OpenMovementTutorial")
-focus_neighbor_right = NodePath("../OpenMovementTutorial")
-texture_normal = ExtResource("7")
-texture_pressed = ExtResource("14")
-texture_focused = ExtResource("11")
+offset_top = 60.0
+offset_right = 96.0
+offset_bottom = 75.0
+texture_normal = ExtResource("6_eqfpd")
+
+[node name="Label" type="Label" parent="Pause/Buttons/Options"]
+layout_mode = 0
+offset_right = 240.0
+offset_bottom = 40.0
+scale = Vector2(0.4, 0.4)
+theme_override_colors/font_outline_color = Color(0.501961, 0.501961, 0.501961, 1)
+theme_override_constants/outline_size = 4
+text = "Options
+"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Menu" parent="Pause/Buttons" instance=ExtResource("6")]
 layout_mode = 0
-offset_top = 210.0
-offset_bottom = 226.0
-scale = Vector2(6, 6)
-focus_neighbor_left = NodePath("../OpenMovementTutorial")
-focus_neighbor_right = NodePath("../OpenMovementTutorial")
-focus_neighbor_bottom = NodePath("../Resume")
-texture_normal = ExtResource("9")
-texture_pressed = ExtResource("8")
-texture_focused = ExtResource("12")
+offset_left = 0.00012207
+offset_top = 120.0
+offset_right = 96.0001
+offset_bottom = 136.0
+texture_normal = ExtResource("6_eqfpd")
 
-[node name="OpenMovementTutorial" parent="Pause/Buttons" instance=ExtResource("6")]
+[node name="Label" type="Label" parent="Pause/Buttons/Menu"]
 layout_mode = 0
-offset_left = 693.0
-offset_top = 329.0
-offset_right = 709.0
-offset_bottom = 345.0
-focus_neighbor_left = NodePath("../Resume")
-focus_neighbor_top = NodePath("../Resume")
-focus_neighbor_right = NodePath("../Resume")
-focus_neighbor_bottom = NodePath("../Resume")
-texture_normal = ExtResource("15_j7pd1")
-texture_pressed = ExtResource("16_s072k")
-texture_focused = ExtResource("17_ndief")
+offset_right = 240.0
+offset_bottom = 40.0
+scale = Vector2(0.4, 0.4)
+theme_override_colors/font_outline_color = Color(0.501961, 0.501961, 0.501961, 1)
+theme_override_constants/outline_size = 4
+text = "Menu
+"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="pressed" from="Pause/Buttons/Resume" to="." method="UnPause"]
 [connection signal="pressed" from="Pause/Buttons/Options" to="." method="Options"]
 [connection signal="pressed" from="Pause/Buttons/Menu" to="." method="Menu"]
-[connection signal="pressed" from="Pause/Buttons/OpenMovementTutorial" to="." method="OpenMovementTutorial"]

@@ -18,7 +18,7 @@ public partial class BaseLevelScript : Node2D
     public override void _Ready()
     {
         G.ResetValues();
-        AudioServer.SetBusMute(2, false);
+        AudioServer.SetBusMute(2, Meta.Instance.BusVolumes[2] <= -30);
         GetNode<AudioStreamPlayer>("../../LevelMusicPlayer").StreamPaused = false;
         _player = GetNode<CharacterBody2D>("Player");
         for (int i = 0; i < _crosses.Length; i++)
@@ -28,12 +28,15 @@ public partial class BaseLevelScript : Node2D
     }
     public override void _PhysicsProcess(double delta)
     {
+        if (Input.IsActionJustReleased("ScoreDebug"))
+            G.Scores += 5;
+
         if (Input.IsActionPressed("Reset"))
         {
             G.ResetTimer += _floatDelta;
             if (G.ResetTimer > 1.5f)
             {
-                G.SaveRecords();
+                UnchangableMeta.SaveRecords();
                 EmitSignal("LevelReload");
                 QueueFree();
             }

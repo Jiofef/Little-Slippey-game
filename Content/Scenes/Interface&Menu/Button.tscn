@@ -1,30 +1,25 @@
-[gd_scene load_steps=6 format=3 uid="uid://bwpstpk1xmkah"]
+[gd_scene load_steps=4 format=3 uid="uid://bwpstpk1xmkah"]
 
-[ext_resource type="Texture2D" uid="uid://b74iy0kiw62iu" path="res://Content/Sprites/Interface/Menu/Other/ButtonOutline.png" id="1_ikf35"]
-[ext_resource type="Texture2D" uid="uid://co2whefmahedo" path="res://Content/Sprites/Interface/Menu/Other/ButtonOutlinePressed.png" id="2_5tddo"]
 [ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/Button.cs" id="2_j2ehd"]
 [ext_resource type="AudioStream" uid="uid://cs50sf2kyk8ir" path="res://Content/Sounds/Other/ButtonDown.wav" id="4_utbb0"]
 [ext_resource type="AudioStream" uid="uid://bsh68dpfm758v" path="res://Content/Sounds/Other/ButtonUp.wav" id="5_exc5d"]
 
 [node name="Button" type="TextureButton"]
 clip_contents = true
-offset_right = 96.0
+offset_right = 16.0
 offset_bottom = 16.0
 scale = Vector2(4, 4)
-texture_normal = ExtResource("1_ikf35")
-texture_pressed = ExtResource("2_5tddo")
 ignore_texture_size = true
 script = ExtResource("2_j2ehd")
 
 [node name="FocusRect" type="ColorRect" parent="."]
 modulate = Color(1, 1, 1, 0)
+show_behind_parent = true
 layout_mode = 0
-offset_left = 1.0
-offset_top = 1.0
-offset_right = 95.0
-offset_bottom = 15.0
+offset_right = 16.0
+offset_bottom = 16.0
 mouse_filter = 2
-color = Color(1, 1, 1, 0.784314)
+color = Color(1, 1, 1, 0.501961)
 
 [node name="DownSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_utbb0")

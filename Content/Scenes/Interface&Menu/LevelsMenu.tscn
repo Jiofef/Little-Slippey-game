@@ -1,21 +1,419 @@
-[gd_scene load_steps=17 format=3 uid="uid://c7dgo7tq8pfa8"]
+[gd_scene load_steps=38 format=3 uid="uid://c7dgo7tq8pfa8"]
 
 [ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/LevelsMenu.cs" id="1_d5t7a"]
-[ext_resource type="PackedScene" uid="uid://bwpstpk1xmkah" path="res://Content/Scenes/Interface&Menu/Button.tscn" id="1_pycgw"]
-[ext_resource type="Texture2D" uid="uid://dt12n2ofkodg2" path="res://Content/Sprites/Interface/Menu/LevelsMenu/Computer.png" id="2_5l5q2"]
-[ext_resource type="Texture2D" uid="uid://cwpcewk28vec5" path="res://Content/Sprites/Interface/Menu/Buttons/Default/Cancel.png" id="2_2131h"]
-[ext_resource type="Texture2D" uid="uid://dttuf4odb201n" path="res://Content/Sprites/Interface/Menu/LevelsMenu/BackgroundWall.png" id="2_sl6b7"]
-[ext_resource type="Texture2D" uid="uid://bhs7korbvekxq" path="res://Content/Sprites/Interface/Menu/Buttons/Pressed/PressedCancel.png" id="3_wrn8p"]
-[ext_resource type="Texture2D" uid="uid://bslepnhric7fv" path="res://Content/Sprites/Interface/Menu/Buttons/Chosen/ChosenCancel.png" id="4_n1d6l"]
-[ext_resource type="Texture2D" uid="uid://wg2cduuk1ske" path="res://Content/Sprites/Interface/Menu/Buttons/Pressed/ChosenArrowLeft.png" id="6_cytue"]
-[ext_resource type="Texture2D" uid="uid://bpr48mwu3pm1v" path="res://Content/Sprites/Interface/Menu/Buttons/Default/Play.png" id="7_51xip"]
-[ext_resource type="Texture2D" uid="uid://b4twn2fuc51eg" path="res://Content/Sprites/Interface/Menu/Buttons/Pressed/PressedPlay.png" id="8_8br3j"]
-[ext_resource type="Texture2D" uid="uid://cv68gjcdumk5m" path="res://Content/Sprites/Interface/Menu/Buttons/Chosen/ChosenPlay.png" id="9_lj7q7"]
-[ext_resource type="Texture2D" uid="uid://cjg50bxlltg6p" path="res://Content/Sprites/Interface/Menu/Buttons/Default/ArrowLeft.png" id="10_8f6b4"]
-[ext_resource type="Texture2D" uid="uid://d7ogjysy0kcx" path="res://Content/Sprites/Interface/Menu/Buttons/Chosen/ChosenArrowLeft.png" id="11_setfk"]
-[ext_resource type="Texture2D" uid="uid://dchbawo7igh8x" path="res://Content/Sprites/Interface/Menu/Buttons/Default/ArrowRight.png" id="12_y46ly"]
-[ext_resource type="Texture2D" uid="uid://e8tg7120t4x0" path="res://Content/Sprites/Interface/Menu/Buttons/Pressed/ChosenArrowRight.png" id="12_ye8li"]
-[ext_resource type="Texture2D" uid="uid://bw8a4lm28ihtu" path="res://Content/Sprites/Interface/Menu/Buttons/Chosen/ChosenArrowRight.png" id="13_fh8ln"]
+[ext_resource type="PackedScene" uid="uid://bwpstpk1xmkah" path="res://Content/Scenes/Interface&Menu/Button.tscn" id="2_6jw0o"]
+[ext_resource type="Texture2D" uid="uid://bvogrd2bqhwmt" path="res://Content/Sprites/Other/OblivionNoise.png" id="2_d2goi"]
+[ext_resource type="Texture2D" uid="uid://d0sqlunqacimf" path="res://Content/Sprites/Interface/CancelButtonOutline.png" id="3_1uhey"]
+[ext_resource type="AudioStream" uid="uid://fvujnce467hn" path="res://Content/Sounds/Other/WhiteNoise.wav" id="3_oln2v"]
+[ext_resource type="Texture2D" uid="uid://bs42vfh75wcnm" path="res://Content/Sprites/Interface/CancelButtonOutlinePressed.png" id="4_gwypa"]
+[ext_resource type="Texture2D" uid="uid://clg1i8k0880p3" path="res://Content/Sprites/Interface/CancelButtonCross.png" id="5_bj8ux"]
+[ext_resource type="Texture2D" uid="uid://c6v5r4xne78e0" path="res://Content/Sprites/Interface/LevelListScrollButtonOutline.png" id="6_jy5ym"]
+[ext_resource type="Texture2D" uid="uid://cy2lmvegkv1ri" path="res://Content/Sprites/Interface/LevelListScrollButtonOutlinePressed.png" id="7_fs4gw"]
+[ext_resource type="Texture2D" uid="uid://dk6qvinkosaoa" path="res://Content/Sprites/Interface/LevelListScrollButtonOutlineDisabled.png" id="8_x43tu"]
+[ext_resource type="Texture2D" uid="uid://bufypr86xc1vb" path="res://Content/Sprites/Interface/LevelListCrollButtonArrow.png" id="9_a1odr"]
+[ext_resource type="Texture2D" uid="uid://71vomw6byask" path="res://Content/Sprites/Interface/LevelIconButtonOutline.png" id="10_k5w04"]
+[ext_resource type="Texture2D" uid="uid://hejo03d51jgt" path="res://Content/Sprites/Interface/LevelIconButtonOutlinePressed.png" id="11_aoo2n"]
+[ext_resource type="Texture2D" uid="uid://bppnbtehdr3md" path="res://Content/Sprites/Interface/LevelsIcons.png" id="12_lkhk3"]
+[ext_resource type="Texture2D" uid="uid://ba7grlwd3ygbr" path="res://Content/Sprites/Interface/LevelsMenuLevel5IconWindow.png" id="15_yae0y"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m23ck"]
+atlas = ExtResource("2_d2goi")
+region = Rect2(0, 0, 320, 180)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2nkyg"]
+atlas = ExtResource("2_d2goi")
+region = Rect2(0, 180, 320, 180)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gjuy0"]
+atlas = ExtResource("2_d2goi")
+region = Rect2(0, 360, 320, 180)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lr1hx"]
+atlas = ExtResource("2_d2goi")
+region = Rect2(0, 540, 320, 180)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nihe6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m23ck")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2nkyg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gjuy0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lr1hx")
+}],
+"loop": true,
+"name": &"default",
+"speed": 7.0
+}]
+
+[sub_resource type="Animation" id="Animation_13ry7"]
+resource_name = "NoiseDisappearing"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sound:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(2, 1),
+"update": 0,
+"values": [-5.0, -30.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sound:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_g0wyp"]
+_data = {
+"NoiseDisappearing": SubResource("Animation_13ry7")
+}
+
+[sub_resource type="Animation" id="Animation_t4qks"]
+resource_name = "HardTextShake"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 68), Vector2(0, 69)]
+}
+
+[sub_resource type="Animation" id="Animation_lrp3w"]
+resource_name = "TextShake"
+length = 0.09
+loop_mode = 1
+step = 0.03
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.03, 0.06),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-4, 168), Vector2(0, 172), Vector2(-4, 176)]
+}
+
+[sub_resource type="Animation" id="Animation_1jag1"]
+resource_name = "InsaneTextShake"
+length = 0.15
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-1, 119), Vector2(0, 120), Vector2(1, 119)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5buc8"]
+_data = {
+"HardTextShake": SubResource("Animation_t4qks"),
+"InfernalTextShake": SubResource("Animation_lrp3w"),
+"InsaneTextShake": SubResource("Animation_1jag1")
+}
+
+[sub_resource type="Gradient" id="Gradient_kr0se"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="Curve" id="Curve_a4o33"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.1, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Animation" id="Animation_n85q6"]
+resource_name = "LightingAndBlackoutAnimation1"
+length = 10.0
+loop_mode = 1
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WindowView/ThunderLight:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 10),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WindowView/ThunderLightInterior:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 10),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.00997252), Color(1, 1, 1, 0.00997252)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("WindowView/Fog?:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 10),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.501961), Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("WindowView/Fog?Interior:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 10),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.25098), Color(1, 1, 1, 0.784314)]
+}
+
+[sub_resource type="Animation" id="Animation_42grw"]
+resource_name = "LightingAndBlackoutAnimation2"
+length = 10.0
+loop_mode = 1
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WindowView/ThunderLight:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 7, 10),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WindowView/ThunderLightInterior:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 7, 10),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.00997252), Color(1, 1, 1, 0.00997252), Color(1, 1, 1, 0.00997252)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("WindowView/Fog?:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 7, 10),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.501961), Color(1, 1, 1, 1), Color(1, 1, 1, 0.833091)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("WindowView/Fog?Interior:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 7, 10),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.25098), Color(1, 1, 1, 0.784314), Color(1, 1, 1, 0.685579)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("WindowView/Fog:emitting")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_pxge4"]
+resource_name = "LightingAndBlackoutAnimation3"
+length = 10.0
+loop_mode = 1
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WindowView/ThunderLight:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 10),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WindowView/ThunderLightInterior:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 10),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.00997252), Color(1, 1, 1, 0.00997252)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("WindowView/Fog?:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 10),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.501961), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("WindowView/Fog?Interior:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 10),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.25098), Color(1, 1, 1, 0), Color(1, 1, 1, 0.784314), Color(1, 1, 1, 0.784314)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_80l7y"]
+_data = {
+"LightingAndBlackoutAnimation1": SubResource("Animation_n85q6"),
+"LightingAndBlackoutAnimation2": SubResource("Animation_42grw"),
+"LightingAndBlackoutAnimation3": SubResource("Animation_pxge4")
+}
+
+[sub_resource type="Animation" id="Animation_eermi"]
+resource_name = "Scroll 1-2"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.25, 1),
+"update": 0,
+"values": [Vector2(10, 0), Vector2(-1190, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_xp0c0"]
+resource_name = "Scroll 2-1"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.25, 1),
+"update": 0,
+"values": [Vector2(-1190, 0), Vector2(10, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_egxn2"]
+resource_name = "Scroll 2-3"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.25, 1),
+"update": 0,
+"values": [Vector2(-1190, 0), Vector2(-2390, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_qp6ok"]
+resource_name = "Scroll 3-2"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.25, 1),
+"update": 0,
+"values": [Vector2(-2390, 0), Vector2(-1190, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lgy1q"]
+_data = {
+"Scroll 1-2": SubResource("Animation_eermi"),
+"Scroll 2-1": SubResource("Animation_xp0c0"),
+"Scroll 2-3": SubResource("Animation_egxn2"),
+"Scroll 3-2": SubResource("Animation_qp6ok")
+}
 
 [node name="LevelsMenu" type="Control"]
 layout_mode = 3
@@ -26,111 +424,559 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_d5t7a")
 
-[node name="BackgroundWall" type="Sprite2D" parent="."]
-position = Vector2(640, 360)
-scale = Vector2(4, 3.6)
-texture = ExtResource("2_sl6b7")
+[node name="Visual" type="Node2D" parent="."]
 
-[node name="Computer" type="Node2D" parent="."]
+[node name="Background" type="ColorRect" parent="Visual"]
+offset_right = 1280.0
+offset_bottom = 720.0
+color = Color(0.501961, 0.501961, 0.501961, 1)
 
-[node name="Screen" type="SubViewportContainer" parent="Computer"]
-offset_left = 310.0
-offset_top = 82.0
-offset_right = 1050.0
-offset_bottom = 502.0
+[node name="LevelPresenterOutline" type="ColorRect" parent="Visual"]
+offset_left = 170.0
+offset_top = 30.0
+offset_right = 930.0
+offset_bottom = 470.0
+color = Color(0.392157, 0.392157, 0.392157, 1)
+
+[node name="LevelPresenter" type="SubViewportContainer" parent="Visual/LevelPresenterOutline"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 750.0
+offset_bottom = 430.0
 stretch = true
 
-[node name="SubViewport" type="SubViewport" parent="Computer/Screen"]
+[node name="SubViewport" type="SubViewport" parent="Visual/LevelPresenterOutline/LevelPresenter"]
 handle_input_locally = false
 canvas_item_default_texture_filter = 0
 size = Vector2i(740, 420)
 render_target_update_mode = 4
 
-[node name="Sprite" type="Sprite2D" parent="Computer"]
-position = Vector2(680, 360)
-scale = Vector2(3.5, 3.5)
-texture = ExtResource("2_5l5q2")
+[node name="WhiteNoise" type="AnimatedSprite2D" parent="Visual/LevelPresenterOutline/LevelPresenter"]
+scale = Vector2(2.3125, 2.33333)
+sprite_frames = SubResource("SpriteFrames_nihe6")
+autoplay = "default"
+speed_scale = 2.0
+centered = false
 
-[node name="CameraNumber" type="Label" parent="Computer"]
-offset_left = 358.0
-offset_top = 93.0
-offset_right = 402.0
-offset_bottom = 118.0
+[node name="Sound" type="AudioStreamPlayer" parent="Visual/LevelPresenterOutline/LevelPresenter/WhiteNoise"]
+stream = ExtResource("3_oln2v")
+volume_db = -5.0
+bus = &"Interface"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Visual/LevelPresenterOutline/LevelPresenter/WhiteNoise"]
+libraries = {
+"": SubResource("AnimationLibrary_g0wyp")
+}
+
+[node name="SubMenu" type="ColorRect" parent="Visual"]
+offset_left = 930.0
+offset_top = 30.0
+offset_right = 1230.0
+offset_bottom = 470.0
+color = Color(0.392157, 0.392157, 0.392157, 1)
+
+[node name="ColorRect" type="ColorRect" parent="Visual/SubMenu"]
+layout_mode = 0
+offset_top = 10.0
+offset_right = 290.0
+offset_bottom = 430.0
+color = Color(0.501961, 0.501961, 0.501961, 1)
+
+[node name="BestResults" type="Label" parent="Visual/SubMenu/ColorRect"]
+layout_mode = 0
+offset_right = 148.0
+offset_bottom = 32.0
+scale = Vector2(2, 2)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 1
+text = "Best Results"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Border" type="ColorRect" parent="Visual/SubMenu/ColorRect"]
+layout_mode = 0
+offset_top = 60.0
+offset_right = 290.0
+offset_bottom = 68.0
+color = Color(0.454902, 0.454902, 0.454902, 1)
+
+[node name="HardBestResult" type="Label" parent="Visual/SubMenu/ColorRect"]
+layout_mode = 0
+offset_top = 68.218
+offset_right = 197.0
+offset_bottom = 100.218
 scale = Vector2(1.5, 1.5)
-theme_override_colors/font_color = Color(0.921569, 0.921569, 0.921569, 1)
-theme_override_colors/font_shadow_color = Color(0.223529, 0.203922, 0.341176, 1)
-theme_override_constants/shadow_offset_x = 2
-theme_override_constants/shadow_offset_y = 0
-theme_override_constants/shadow_outline_size = 3
-text = "Cam"
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+text = "Hard: 000000000"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="MaxLivetime" type="Label" parent="Computer"]
-offset_left = 361.0
-offset_top = 467.0
-offset_right = 501.0
-offset_bottom = 492.0
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Visual/SubMenu/ColorRect/HardBestResult"]
+autoplay = "HardTextShake"
+libraries = {
+"": SubResource("AnimationLibrary_5buc8")
+}
+
+[node name="Border2" type="ColorRect" parent="Visual/SubMenu/ColorRect"]
+layout_mode = 0
+offset_top = 116.0
+offset_right = 290.0
+offset_bottom = 120.0
+color = Color(0.454902, 0.454902, 0.454902, 1)
+
+[node name="InsaneBestResult" type="Label" parent="Visual/SubMenu/ColorRect"]
+layout_mode = 0
+offset_left = 0.0696321
+offset_top = 119.0
+offset_right = 197.07
+offset_bottom = 151.004
 scale = Vector2(1.5, 1.5)
-theme_override_colors/font_color = Color(0.921569, 0.921569, 0.921569, 1)
-theme_override_colors/font_shadow_color = Color(0.223529, 0.203922, 0.341176, 1)
-theme_override_constants/shadow_offset_x = 2
-theme_override_constants/shadow_offset_y = 0
-theme_override_constants/shadow_outline_size = 3
-text = "Max Livetime"
+theme_override_colors/font_color = Color(0.784314, 0, 0.784314, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+text = "Insane: 000000000"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Buttons" type="Control" parent="Computer"]
-layout_mode = 3
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Visual/SubMenu/ColorRect/InsaneBestResult"]
+autoplay = "InsaneTextShake"
+libraries = {
+"": SubResource("AnimationLibrary_5buc8")
+}
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Visual/SubMenu/ColorRect/InsaneBestResult"]
+position = Vector2(99, 16)
+amount = 4
+lifetime = 0.5
+emission_shape = 3
+emission_rect_extents = Vector2(99, 16)
+direction = Vector2(0, -1)
+initial_velocity_min = 100.0
+initial_velocity_max = 100.0
+scale_amount_min = 4.0
+scale_amount_max = 4.0
+color = Color(0, 0.705882, 0.705882, 1)
+
+[node name="Border3" type="ColorRect" parent="Visual/SubMenu/ColorRect"]
+layout_mode = 0
+offset_top = 168.0
+offset_right = 290.0
+offset_bottom = 172.0
+color = Color(0.454902, 0.454902, 0.454902, 1)
+
+[node name="InfernalBestResult" type="Label" parent="Visual/SubMenu/ColorRect"]
+layout_mode = 0
+offset_left = -4.0
+offset_top = 168.0
+offset_right = 196.0
+offset_bottom = 200.0
+scale = Vector2(1.5, 1.5)
+theme_override_colors/font_color = Color(1, 0.705882, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 24
+text = "Infernal: 000000000"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Visual/SubMenu/ColorRect/InfernalBestResult"]
+autoplay = "InfernalTextShake"
+libraries = {
+"": SubResource("AnimationLibrary_5buc8")
+}
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Visual/SubMenu/ColorRect/InfernalBestResult"]
+position = Vector2(99, 16)
+amount = 256
+lifetime = 0.3
+emission_shape = 3
+emission_rect_extents = Vector2(99, 16)
+direction = Vector2(0, -1)
+gravity = Vector2(0, 0)
+initial_velocity_min = 50.0
+initial_velocity_max = 100.0
+scale_amount_min = 8.0
+scale_amount_max = 8.0
+color = Color(1, 0.501961, 0, 0.501961)
+color_ramp = SubResource("Gradient_kr0se")
+
+[node name="Border4" type="ColorRect" parent="Visual/SubMenu/ColorRect"]
+layout_mode = 0
+offset_top = 220.0
+offset_right = 290.0
+offset_bottom = 224.0
+color = Color(0.454902, 0.454902, 0.454902, 1)
+
+[node name="CancelButton" parent="." instance=ExtResource("2_6jw0o")]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 28.0
+offset_right = 74.0
+offset_bottom = 52.0
+texture_normal = ExtResource("3_1uhey")
+texture_pressed = ExtResource("4_gwypa")
+
+[node name="CancelButtonCross" type="Sprite2D" parent="CancelButton"]
+position = Vector2(12, 12)
+texture = ExtResource("5_bj8ux")
+
+[node name="LevelsList" type="Control" parent="."]
 anchors_preset = 0
-offset_left = 41.0
-offset_top = -10.0
-offset_right = 1323.0
-offset_bottom = 708.0
+offset_left = 50.0
+offset_top = 495.0
+offset_right = 1230.0
+offset_bottom = 695.0
 
-[node name="ChangeToPastLevel" parent="Computer/Buttons" instance=ExtResource("1_pycgw")]
+[node name="ColorRect" type="ColorRect" parent="LevelsList"]
 layout_mode = 0
-offset_left = 316.0
-offset_top = 580.0
-offset_right = 352.0
-offset_bottom = 596.0
-focus_neighbor_left = NodePath("../Cancel")
-texture_normal = ExtResource("10_8f6b4")
-texture_pressed = ExtResource("6_cytue")
-texture_focused = ExtResource("11_setfk")
+offset_right = 1180.0
+offset_bottom = 200.0
+color = Color(0.392157, 0.392157, 0.392157, 1)
 
-[node name="Play" parent="Computer/Buttons" instance=ExtResource("1_pycgw")]
+[node name="LeftScrollButton" parent="LevelsList" instance=ExtResource("2_6jw0o")]
 layout_mode = 0
-offset_left = 501.0
-offset_top = 580.0
-offset_right = 549.0
-offset_bottom = 596.0
-texture_normal = ExtResource("7_51xip")
-texture_pressed = ExtResource("8_8br3j")
-texture_focused = ExtResource("9_lj7q7")
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 26.0
+offset_bottom = 55.0
+focus_neighbor_left = NodePath("../RightScrollButton")
+disabled = true
+texture_normal = ExtResource("6_jy5ym")
+texture_pressed = ExtResource("7_fs4gw")
+texture_disabled = ExtResource("8_x43tu")
 
-[node name="ChangeToNextLevel" parent="Computer/Buttons" instance=ExtResource("1_pycgw")]
+[node name="Arrow" type="Sprite2D" parent="LevelsList/LeftScrollButton"]
+position = Vector2(8, 22.5)
+texture = ExtResource("9_a1odr")
+
+[node name="RightScrollButton" parent="LevelsList" instance=ExtResource("2_6jw0o")]
 layout_mode = 0
-offset_left = 746.0
-offset_top = 580.0
-offset_right = 782.0
-offset_bottom = 596.0
-texture_normal = ExtResource("12_y46ly")
-texture_pressed = ExtResource("12_ye8li")
-texture_focused = ExtResource("13_fh8ln")
+offset_left = 1106.0
+offset_top = 10.0
+offset_right = 1122.0
+offset_bottom = 55.0
+focus_neighbor_right = NodePath("../LeftScrollButton")
+texture_normal = ExtResource("6_jy5ym")
+texture_pressed = ExtResource("7_fs4gw")
+texture_disabled = ExtResource("8_x43tu")
 
-[node name="Cancel" parent="Computer/Buttons" instance=ExtResource("1_pycgw")]
+[node name="Arrow" type="Sprite2D" parent="LevelsList/RightScrollButton"]
+position = Vector2(8, 22.5)
+scale = Vector2(-1, 1)
+texture = ExtResource("9_a1odr")
+
+[node name="LevelsIconsContainer" type="Control" parent="LevelsList"]
+clip_contents = true
 layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 934.0
-offset_top = 596.0
-offset_right = -312.0
-offset_bottom = -106.0
-focus_neighbor_right = NodePath("../ChangeToPastLevel")
-texture_normal = ExtResource("2_2131h")
-texture_pressed = ExtResource("3_wrn8p")
-texture_focused = ExtResource("4_n1d6l")
+anchor_left = 0.076
+anchor_top = 0.05
+anchor_right = 0.076
+anchor_bottom = 0.05
+offset_left = 0.319992
+offset_right = 1000.32
+offset_bottom = 180.0
 
-[connection signal="pressed" from="Computer/Buttons/ChangeToPastLevel" to="." method="ChangeToPastLevel"]
-[connection signal="pressed" from="Computer/Buttons/Play" to="." method="Play"]
-[connection signal="pressed" from="Computer/Buttons/ChangeToNextLevel" to="." method="ChangeToNextLevel"]
-[connection signal="pressed" from="Computer/Buttons/Cancel" to="." method="Cancel"]
+[node name="ColorRect" type="ColorRect" parent="LevelsList/LevelsIconsContainer"]
+layout_mode = 0
+offset_right = 1000.0
+offset_bottom = 180.0
+color = Color(0.313726, 0.313726, 0.313726, 1)
+
+[node name="SubContainer" type="Control" parent="LevelsList/LevelsIconsContainer"]
+z_index = 1
+anchors_preset = 0
+offset_left = 10.0
+offset_right = 990.0
+offset_bottom = 180.0
+
+[node name="Level1Button" parent="LevelsList/LevelsIconsContainer/SubContainer" instance=ExtResource("2_6jw0o")]
+layout_mode = 0
+offset_right = 45.0
+offset_bottom = 45.0
+texture_normal = ExtResource("10_k5w04")
+texture_pressed = ExtResource("11_aoo2n")
+PossibleGrabFocusRect = Rect2(140, 505, 1000, 180)
+
+[node name="Sprite2D" type="Sprite2D" parent="LevelsList/LevelsIconsContainer/SubContainer/Level1Button"]
+z_index = -1
+texture = ExtResource("12_lkhk3")
+centered = false
+region_enabled = true
+
+[node name="Level2Button" parent="LevelsList/LevelsIconsContainer/SubContainer" instance=ExtResource("2_6jw0o")]
+layout_mode = 0
+offset_left = 200.0
+offset_right = 245.0
+offset_bottom = 45.0
+texture_normal = ExtResource("10_k5w04")
+texture_pressed = ExtResource("11_aoo2n")
+PossibleGrabFocusRect = Rect2(140, 505, 1000, 180)
+
+[node name="Sprite2D" type="Sprite2D" parent="LevelsList/LevelsIconsContainer/SubContainer/Level2Button"]
+z_index = -1
+texture = ExtResource("12_lkhk3")
+centered = false
+region_enabled = true
+
+[node name="Level3Button" parent="LevelsList/LevelsIconsContainer/SubContainer" instance=ExtResource("2_6jw0o")]
+layout_mode = 0
+offset_left = 400.0
+offset_right = 445.0
+offset_bottom = 45.0
+texture_normal = ExtResource("10_k5w04")
+texture_pressed = ExtResource("11_aoo2n")
+PossibleGrabFocusRect = Rect2(140, 505, 1000, 180)
+
+[node name="Sprite2D" type="Sprite2D" parent="LevelsList/LevelsIconsContainer/SubContainer/Level3Button"]
+z_index = -1
+texture = ExtResource("12_lkhk3")
+centered = false
+region_enabled = true
+
+[node name="Level4Button" parent="LevelsList/LevelsIconsContainer/SubContainer" instance=ExtResource("2_6jw0o")]
+layout_mode = 0
+offset_left = 600.0
+offset_right = 645.0
+offset_bottom = 45.0
+texture_normal = ExtResource("10_k5w04")
+texture_pressed = ExtResource("11_aoo2n")
+PossibleGrabFocusRect = Rect2(140, 505, 1000, 180)
+
+[node name="Sprite2D" type="Sprite2D" parent="LevelsList/LevelsIconsContainer/SubContainer/Level4Button"]
+z_index = -1
+texture = ExtResource("12_lkhk3")
+centered = false
+region_enabled = true
+
+[node name="Level5Button" parent="LevelsList/LevelsIconsContainer/SubContainer" instance=ExtResource("2_6jw0o")]
+layout_mode = 0
+offset_left = 800.0
+offset_right = 845.0
+offset_bottom = 45.0
+texture_normal = ExtResource("10_k5w04")
+texture_pressed = ExtResource("11_aoo2n")
+PossibleGrabFocusRect = Rect2(140, 505, 1000, 180)
+
+[node name="Sprite2D" type="Sprite2D" parent="LevelsList/LevelsIconsContainer/SubContainer/Level5Button"]
+z_index = -1
+texture = ExtResource("12_lkhk3")
+centered = false
+region_enabled = true
+
+[node name="WindowView" type="Node2D" parent="LevelsList/LevelsIconsContainer/SubContainer/Level5Button"]
+visible = false
+z_index = -1
+
+[node name="Rain" type="CPUParticles2D" parent="LevelsList/LevelsIconsContainer/SubContainer/Level5Button/WindowView"]
+position = Vector2(32, 4)
+amount = 500
+lifetime = 0.5
+preprocess = 1.0
+speed_scale = 2.0
+emission_shape = 3
+emission_rect_extents = Vector2(28, 0)
+direction = Vector2(-0.5, 1)
+spread = 0.0
+gravity = Vector2(0, 300)
+initial_velocity_min = 50.0
+initial_velocity_max = 60.0
+angle_min = -180.0
+angle_max = 180.0
+scale_amount_max = 4.0
+color = Color(0, 0.501961, 0.501961, 1)
+
+[node name="Fog" type="CPUParticles2D" parent="LevelsList/LevelsIconsContainer/SubContainer/Level5Button/WindowView"]
+position = Vector2(22.5, 22.5)
+amount = 96
+lifetime = 4.0
+emission_shape = 3
+emission_rect_extents = Vector2(22.5, 22.5)
+gravity = Vector2(0, 0)
+initial_velocity_min = 1.0
+initial_velocity_max = 2.0
+angle_min = -180.0
+angle_max = 180.0
+scale_amount_min = 64.0
+scale_amount_max = 64.0
+color = Color(1, 1, 1, 0.0392157)
+
+[node name="Fog?" type="ColorRect" parent="LevelsList/LevelsIconsContainer/SubContainer/Level5Button/WindowView"]
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 44.0
+offset_bottom = 45.0
+mouse_filter = 2
+color = Color(0, 0.121569, 0.121569, 1)
+
+[node name="ThunderLight" type="ColorRect" parent="LevelsList/LevelsIconsContainer/SubContainer/Level5Button/WindowView"]
+modulate = Color(1, 1, 1, 0)
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 44.0
+offset_bottom = 44.0
+mouse_filter = 2
+
+[node name="Window" type="Sprite2D" parent="LevelsList/LevelsIconsContainer/SubContainer/Level5Button/WindowView"]
+texture = ExtResource("15_yae0y")
+centered = false
+
+[node name="Rain" type="CPUParticles2D" parent="LevelsList/LevelsIconsContainer/SubContainer/Level5Button/WindowView/Window"]
+show_behind_parent = true
+position = Vector2(22.5, 22.5)
+amount = 96
+lifetime = 6.0
+emission_shape = 3
+emission_rect_extents = Vector2(22.5, 22.5)
+direction = Vector2(0, 1)
+spread = 0.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 1.0
+initial_velocity_max = 10.0
+scale_amount_min = 4.0
+scale_amount_max = 4.0
+scale_amount_curve = SubResource("Curve_a4o33")
+color = Color(0, 0.501961, 0.501961, 0.313726)
+
+[node name="Fog?Interior" type="ColorRect" parent="LevelsList/LevelsIconsContainer/SubContainer/Level5Button/WindowView"]
+modulate = Color(1, 1, 1, 0.784314)
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 44.0
+offset_bottom = 45.0
+mouse_filter = 2
+color = Color(0, 0.121569, 0.121569, 1)
+
+[node name="ThunderLightInterior" type="ColorRect" parent="LevelsList/LevelsIconsContainer/SubContainer/Level5Button/WindowView"]
+modulate = Color(1, 1, 1, 0.00997252)
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 44.0
+offset_bottom = 44.0
+mouse_filter = 2
+color = Color(1, 1, 1, 0.784314)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="LevelsList/LevelsIconsContainer/SubContainer/Level5Button/WindowView"]
+root_node = NodePath("../..")
+autoplay = "LightingAndBlackoutAnimation1"
+libraries = {
+"": SubResource("AnimationLibrary_80l7y")
+}
+
+[node name="Level6Button" parent="LevelsList/LevelsIconsContainer/SubContainer" instance=ExtResource("2_6jw0o")]
+layout_mode = 0
+offset_left = 1200.0
+offset_right = 1245.0
+offset_bottom = 45.0
+texture_normal = ExtResource("10_k5w04")
+texture_pressed = ExtResource("11_aoo2n")
+PossibleGrabFocusRect = Rect2(140, 505, 1000, 180)
+
+[node name="Sprite2D" type="Sprite2D" parent="LevelsList/LevelsIconsContainer/SubContainer/Level6Button"]
+z_index = -1
+texture = ExtResource("12_lkhk3")
+centered = false
+region_enabled = true
+
+[node name="Level7Button" parent="LevelsList/LevelsIconsContainer/SubContainer" instance=ExtResource("2_6jw0o")]
+layout_mode = 0
+offset_left = 1400.0
+offset_right = 1445.0
+offset_bottom = 45.0
+texture_normal = ExtResource("10_k5w04")
+texture_pressed = ExtResource("11_aoo2n")
+PossibleGrabFocusRect = Rect2(140, 505, 1000, 180)
+
+[node name="Sprite2D" type="Sprite2D" parent="LevelsList/LevelsIconsContainer/SubContainer/Level7Button"]
+z_index = -1
+texture = ExtResource("12_lkhk3")
+centered = false
+region_enabled = true
+
+[node name="Level8Button" parent="LevelsList/LevelsIconsContainer/SubContainer" instance=ExtResource("2_6jw0o")]
+layout_mode = 0
+offset_left = 1600.0
+offset_right = 1645.0
+offset_bottom = 45.0
+texture_normal = ExtResource("10_k5w04")
+texture_pressed = ExtResource("11_aoo2n")
+PossibleGrabFocusRect = Rect2(140, 505, 1000, 180)
+
+[node name="Sprite2D" type="Sprite2D" parent="LevelsList/LevelsIconsContainer/SubContainer/Level8Button"]
+z_index = -1
+texture = ExtResource("12_lkhk3")
+centered = false
+region_enabled = true
+
+[node name="Level9Button" parent="LevelsList/LevelsIconsContainer/SubContainer" instance=ExtResource("2_6jw0o")]
+layout_mode = 0
+offset_left = 1800.0
+offset_right = 1845.0
+offset_bottom = 45.0
+texture_normal = ExtResource("10_k5w04")
+texture_pressed = ExtResource("11_aoo2n")
+PossibleGrabFocusRect = Rect2(140, 505, 1000, 180)
+
+[node name="Sprite2D" type="Sprite2D" parent="LevelsList/LevelsIconsContainer/SubContainer/Level9Button"]
+z_index = -1
+texture = ExtResource("12_lkhk3")
+centered = false
+region_enabled = true
+
+[node name="Level10Button" parent="LevelsList/LevelsIconsContainer/SubContainer" instance=ExtResource("2_6jw0o")]
+layout_mode = 0
+offset_left = 2000.0
+offset_right = 2045.0
+offset_bottom = 45.0
+texture_normal = ExtResource("10_k5w04")
+texture_pressed = ExtResource("11_aoo2n")
+PossibleGrabFocusRect = Rect2(140, 505, 1000, 180)
+
+[node name="Sprite2D" type="Sprite2D" parent="LevelsList/LevelsIconsContainer/SubContainer/Level10Button"]
+z_index = -1
+texture = ExtResource("12_lkhk3")
+centered = false
+region_enabled = true
+
+[node name="Level11Button" parent="LevelsList/LevelsIconsContainer/SubContainer" instance=ExtResource("2_6jw0o")]
+layout_mode = 0
+offset_left = 2800.0
+offset_right = 2845.0
+offset_bottom = 45.0
+texture_normal = ExtResource("10_k5w04")
+texture_pressed = ExtResource("11_aoo2n")
+PossibleGrabFocusRect = Rect2(140, 505, 1000, 180)
+
+[node name="Sprite2D" type="Sprite2D" parent="LevelsList/LevelsIconsContainer/SubContainer/Level11Button"]
+z_index = -1
+texture = ExtResource("12_lkhk3")
+centered = false
+region_enabled = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="LevelsList/LevelsIconsContainer/SubContainer"]
+libraries = {
+"": SubResource("AnimationLibrary_lgy1q")
+}
+
+[connection signal="pressed" from="CancelButton" to="." method="Cancel"]
+[connection signal="pressed" from="LevelsList/LeftScrollButton" to="." method="ChangeLevelRowToPast"]
+[connection signal="pressed" from="LevelsList/RightScrollButton" to="." method="ChangeLevelRowToNext"]
+[connection signal="focus_entered" from="LevelsList/LevelsIconsContainer/SubContainer/Level1Button" to="." method="SetPresentedLevel" binds= [1]]
+[connection signal="pressed" from="LevelsList/LevelsIconsContainer/SubContainer/Level1Button" to="." method="PlayLevel" binds= [1]]
+[connection signal="focus_entered" from="LevelsList/LevelsIconsContainer/SubContainer/Level2Button" to="." method="SetPresentedLevel" binds= [2]]
+[connection signal="pressed" from="LevelsList/LevelsIconsContainer/SubContainer/Level2Button" to="." method="PlayLevel" binds= [2]]
+[connection signal="focus_entered" from="LevelsList/LevelsIconsContainer/SubContainer/Level3Button" to="." method="SetPresentedLevel" binds= [3]]
+[connection signal="pressed" from="LevelsList/LevelsIconsContainer/SubContainer/Level3Button" to="." method="PlayLevel" binds= [3]]
+[connection signal="focus_entered" from="LevelsList/LevelsIconsContainer/SubContainer/Level4Button" to="." method="SetPresentedLevel" binds= [4]]
+[connection signal="pressed" from="LevelsList/LevelsIconsContainer/SubContainer/Level4Button" to="." method="PlayLevel" binds= [4]]
+[connection signal="focus_entered" from="LevelsList/LevelsIconsContainer/SubContainer/Level5Button" to="." method="SetPresentedLevel" binds= [5]]
+[connection signal="pressed" from="LevelsList/LevelsIconsContainer/SubContainer/Level5Button" to="." method="PlayLevel" binds= [5]]
+[connection signal="focus_entered" from="LevelsList/LevelsIconsContainer/SubContainer/Level6Button" to="." method="SetPresentedLevel" binds= [6]]
+[connection signal="pressed" from="LevelsList/LevelsIconsContainer/SubContainer/Level6Button" to="." method="PlayLevel" binds= [6]]
+[connection signal="focus_entered" from="LevelsList/LevelsIconsContainer/SubContainer/Level7Button" to="." method="SetPresentedLevel" binds= [7]]
+[connection signal="pressed" from="LevelsList/LevelsIconsContainer/SubContainer/Level7Button" to="." method="PlayLevel" binds= [7]]
+[connection signal="focus_entered" from="LevelsList/LevelsIconsContainer/SubContainer/Level8Button" to="." method="SetPresentedLevel" binds= [8]]
+[connection signal="pressed" from="LevelsList/LevelsIconsContainer/SubContainer/Level8Button" to="." method="PlayLevel" binds= [8]]
+[connection signal="focus_entered" from="LevelsList/LevelsIconsContainer/SubContainer/Level9Button" to="." method="SetPresentedLevel" binds= [9]]
+[connection signal="pressed" from="LevelsList/LevelsIconsContainer/SubContainer/Level9Button" to="." method="PlayLevel" binds= [9]]

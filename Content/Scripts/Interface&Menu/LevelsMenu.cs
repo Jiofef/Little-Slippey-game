@@ -2,55 +2,97 @@ using Godot;
 
 public partial class LevelsMenu : Control
 {
-    int _chosenLevel = 1;
-    Node2D PresentedLevel;
-	public override void _Ready()
-	{
-        GetNode<TextureButton>("Computer/Buttons/Play").GrabFocus();
-        LevelWasChanged();
-	}
+    Node2D _presentedLevel;
 
-    public override void _Process(double delta)
+    private int _chosenLevel;
+    private int _currentLevelsRow = 1;
+
+    public override void _Ready()
+	{
+        GetNode<TextureButton>("LevelsList/LevelsIconsContainer/SubContainer/Level1Button").GrabFocus();
+        for (int i = 0; i < G.LevelsInGameTotal; i++)
+            if (UnchangableMeta.LevelCompleteStatus[i] > 0)
+            GetNode<Sprite2D>("LevelsList/LevelsIconsContainer/SubContainer/Level" + (i + 1) + "Button/Sprite2D").RegionRect = new Rect2(new Vector2(45 * i, 45 * (UnchangableMeta.LevelCompleteStatus[i] - 1)), new Vector2(45, 45));
+        if (UnchangableMeta.LevelCompleteStatus[4] > 0)
+        {
+            GetNode<Node2D>("LevelsList/LevelsIconsContainer/SubContainer/Level5Button/WindowView").Visible = true;
+            GetNode<AnimationPlayer>("LevelsList/LevelsIconsContainer/SubContainer/Level5Button/WindowView/AnimationPlayer").CurrentAnimation = "LightingAndBlackoutAnimation" + UnchangableMeta.LevelCompleteStatus[4];
+        }
+    }
+
+    public override void _PhysicsProcess(double delta)
     {
         if (Input.IsActionJustPressed("Cancel"))
             Cancel();
     }
-    public void Play()
-    {
-        G.CurrentLevel = _chosenLevel;
-        GetTree().ChangeSceneToFile("res://Content/Scenes/Other/Main.tscn");
-    }
+
     public void Cancel()
     {
         GetTree().ChangeSceneToFile("res://Content/Scenes/Interface&Menu/Menu.tscn");
     }
-    public void ChangeToPastLevel()
-    {
-        _chosenLevel--;
-        if (_chosenLevel < 1)
-            _chosenLevel = G.LevelsInGameTotal;
 
-        LevelWasChanged();
-    }
-    public void ChangeToNextLevel()
+    public void SetPresentedLevel(int value)
     {
-        _chosenLevel++;
-        if (_chosenLevel > G.LevelsInGameTotal)
-            _chosenLevel = 1;
-
-        LevelWasChanged();
+        if(_chosenLevel != value)
+        {
+            var noiseAnimationPlayer = GetNode<AnimationPlayer>("Visual/LevelPresenterOutline/LevelPresenter/WhiteNoise/AnimationPlayer");
+            noiseAnimationPlayer.CurrentAnimation = null;
+            noiseAnimationPlayer.Play("NoiseDisappearing");
+            
+            _chosenLevel = value;
+            LevelPresenterViewportUpdate();
+        }
     }
 
-    private void LevelWasChanged()
+    public void PlayLevel(int value)
     {
-        if (PresentedLevel != null)
-            PresentedLevel.QueueFree();
+        G.CurrentLevel = value;
+        GetTree().ChangeSceneToFile("res://Content/Scenes/Other/Main.tscn");
+    }
 
-        PresentedLevel = (Node2D)ResourceLoader.Load<PackedScene>("res://Content/Scenes/Levels/PresentedParts/PresentedLevel" + _chosenLevel + ".tscn").Instantiate();
-        GetNode<Label>("Computer/CameraNumber").Text = "Cam " + _chosenLevel.ToString();
-        GetNode<Label>("Computer/MaxLivetime").Text = "MaxLivetime: " + UnchangableMeta.LevelRecords[Meta.Instance.Dificulty][_chosenLevel - 1].ToString();
-        var subViewport = GetNode("Computer/Screen/SubViewport");
-        subViewport.AddChild(PresentedLevel);
-        subViewport.MoveChild(PresentedLevel, 0);
+    public void ChangeLevelRowToPast()
+    {
+        _currentLevelsRow--;
+
+        var animationPlayer = GetNode<AnimationPlayer>("LevelsList/LevelsIconsContainer/SubContainer/AnimationPlayer");
+        animationPlayer.CurrentAnimation = "Scroll " + (_currentLevelsRow + 1) + "-" + _currentLevelsRow;
+        animationPlayer.Play();
+
+        var leftScrollButton = GetNode<TextureButton>("LevelsList/LeftScrollButton");
+        if (_currentLevelsRow <= 1)
+            leftScrollButton.Disabled = true;
+        else
+            leftScrollButton.Disabled = false;
+        GetNode<TextureButton>("LevelsList/RightScrollButton").Disabled = false;
+    }
+
+    public void ChangeLevelRowToNext()
+    {
+        _currentLevelsRow++;
+
+        var animationPlayer = GetNode<AnimationPlayer>("LevelsList/LevelsIconsContainer/SubContainer/AnimationPlayer");
+        animationPlayer.CurrentAnimation = "Scroll " + (_currentLevelsRow - 1) + "-" + _currentLevelsRow;
+        animationPlayer.Play();
+
+        var rightScrollButton = GetNode<TextureButton>("LevelsList/RightScrollButton");
+        if (_currentLevelsRow >= 3)
+            rightScrollButton.Disabled = true;
+        else
+            rightScrollButton.Disabled = false;
+        GetNode<TextureButton>("LevelsList/LeftScrollButton").Disabled = false;
+    }
+
+    private void LevelPresenterViewportUpdate()
+    {
+        if (_presentedLevel != null)
+            _presentedLevel.QueueFree();
+
+        _presentedLevel = (Node2D)ResourceLoader.Load<PackedScene>("res://Content/Scenes/Levels/PresentedParts/PresentedLevel" + _chosenLevel + ".tscn").Instantiate();
+
+        GetNode("Visual/LevelPresenterOutline/LevelPresenter/SubViewport").AddChild(_presentedLevel);
+
+        GetNode<Label>("Visual/SubMenu/ColorRect/HardBestResult").Text = "Hard: " + UnchangableMeta.LevelRecords[0][_chosenLevel - 1];
+        GetNode<Label>("Visual/SubMenu/ColorRect/InsaneBestResult").Text = "Insane: " + UnchangableMeta.LevelRecords[1][_chosenLevel - 1];
+        GetNode<Label>("Visual/SubMenu/ColorRect/InfernalBestResult").Text = "Infernal: " + UnchangableMeta.LevelRecords[2][_chosenLevel - 1];
     }
 }

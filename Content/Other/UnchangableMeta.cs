@@ -11,7 +11,24 @@ public partial class UnchangableMeta : Node
         new int[G.LevelsInGameTotal],
         new int[G.LevelsInGameTotal]
     };
+
+    //the values of the LevelsCompleteStatus array variables can be 0, 1, 2, 3. 0 means the level is not passed, 1 means it is passed at the minimum difficulty,
+    //correspondingly 2 at the average and 3 at the maximum difficulty.
+    public static int[] LevelCompleteStatus = new int[G.LevelsInGameTotal];
+
     public static bool DoFirstTimePlayed;
+
+    public static void SaveRecords()
+    {
+        if ((int)G.Scores > LevelRecords[Meta.Instance.Dificulty][G.CurrentLevel - 1])
+        {
+            LevelRecords[Meta.Instance.Dificulty][G.CurrentLevel - 1] = (int)G.Scores;
+            G.IsNewRecordReached = true;
+            if (G.Scores > 150 && Meta.Instance.Dificulty + 1 > LevelCompleteStatus[G.CurrentLevel - 1])
+                LevelCompleteStatus[G.CurrentLevel - 1] = Meta.Instance.Dificulty + 1;
+        }
+    }
+
     public static Dictionary<string, Variant> GetJson()
     {
         return new Dictionary<string, Variant>()
@@ -19,6 +36,7 @@ public partial class UnchangableMeta : Node
             {"level_records0", LevelRecords[0]},
             {"level_records1", LevelRecords[1]},
             {"level_records2", LevelRecords[2]},
+            {"level_complete_status", LevelCompleteStatus},
             {"do_first_time_played", DoFirstTimePlayed}
         };
     }
@@ -47,6 +65,16 @@ public partial class UnchangableMeta : Node
                     }
                 }
                 catch { }
+
+            Godot.Collections.Array LevelCompleteStatusArray = (Godot.Collections.Array)model["level_complete_status"];
+            try
+            {
+                for (int i = 0; i < LevelCompleteStatus.Length; i++)
+                {
+                    LevelCompleteStatus[i] = Convert.ToInt32(LevelCompleteStatusArray[i].ToString());
+                }
+            }
+            catch { }
 
 
             DoFirstTimePlayed = (bool)(model["do_first_time_played"]);
