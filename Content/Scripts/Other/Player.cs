@@ -62,11 +62,12 @@ public partial class Player : CharacterBody2D
         //Player control and physic consequence
         {
             _motion = Velocity;
-            _motion.Y += _gravity;
+            if (_motion.Y < 1250)
+                _motion.Y += _gravity;
 
             if (_state != State.DownDash)
             {
-                _motion.X = Input.GetActionStrength("ui_right") - Input.GetActionStrength("ui_left");
+                _motion.X += Input.GetActionStrength("ui_right") - Input.GetActionStrength("ui_left");
                 _motion.X *= _speed;
 
                 if (_state == State.Inerted)
@@ -201,6 +202,7 @@ public partial class Player : CharacterBody2D
 
             Velocity = _motion;
             MoveAndSlide();
+            Velocity = new Vector2(0, Velocity.Y);
         }
 
         //BOO

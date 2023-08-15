@@ -10,7 +10,7 @@ public partial class Level9JiofefHead : Node2D
 
     Random _random = new Random();
     private float _jiofefHeadSpeedMultiplier = 1;
-	private readonly string[] _attackAnimationsList = {"CrossSpit", "CrossVomit", "Spin"};
+	private readonly string[] _attackAnimationsList = {"CrossSpit", "CrossVomit", "Spin", "Bite"};
 
 	public override void _Ready()
 	{
@@ -35,7 +35,6 @@ public partial class Level9JiofefHead : Node2D
 			float RotationDegreesBy360 = RotationDegrees % 360;
             _animatedSprite2D.FlipV = RotationDegreesBy360 > 90 && RotationDegreesBy360 < 270 || RotationDegreesBy360 < -90 && RotationDegreesBy360 > -270;
         }
-
 		if (_animatedSprite2D.Animation == "CrossVomit" && _animatedSprite2D.Frame == 2)
 		{
 			if (_random.Next(4) == 0)
@@ -49,10 +48,15 @@ public partial class Level9JiofefHead : Node2D
                 GetParent().AddChild(VomitCross);
             }
         }
-		if (_animationPlayer.CurrentAnimation == "SpinAttack" && _animationPlayer.CurrentAnimationPosition > 4.5f)
+		if (_animationPlayer.CurrentAnimation == "SpinAttack" && _animationPlayer.CurrentAnimationPosition > 4.5f && Position.DistanceTo(_player.Position) < 600)
 		{
-			float PlayerAddVelocityCoeff = Position.DistanceTo(_player.Position) / 30;
-			_player.Velocity += new Vector2((Position.X - _player.Position.X) / 30, (Position.Y - _player.Position.Y) / 30);
+			float DistanceToPlayerCoeff = Position.DistanceTo(_player.Position) / 100;
+			if (DistanceToPlayerCoeff < 1)
+                DistanceToPlayerCoeff = 1;
+			_player.Velocity += new Vector2(
+				(Position.X - _player.Position.X) / Math.Abs(Position.X - _player.Position.X) / DistanceToPlayerCoeff * 2,
+				(Position.Y - _player.Position.Y) / Math.Abs(Position.Y - _player.Position.Y) / (DistanceToPlayerCoeff / 1.5f) * 60
+				);
 		}
 	}
 
@@ -67,6 +71,7 @@ public partial class Level9JiofefHead : Node2D
 	{
         if (_random.Next(2) == 0)
             _animationPlayer.Play(_attackAnimationsList[_random.Next(_attackAnimationsList.Length)] + "Attack");
+        _animationPlayer.Play(_attackAnimationsList[3] + "Attack");
     }
 
 	public void SpeedMultiplayerUpdate()
@@ -86,5 +91,17 @@ public partial class Level9JiofefHead : Node2D
             SpitCross.GlobalPosition = SpitSpawnPoint.GlobalPosition;
             GetParent().AddChild(SpitCross);
         }
+	}
+    public void TeleportTo(Vector2 value)
+    {
+        GlobalPosition = value;
+    }
+    public void TeleportToPlayer()
+	{
+		GlobalPosition = _player.GlobalPosition;
+	}
+    public void TeleportToRandomPoint()
+	{
+		GlobalPosition = new Vector2(_random.Next(2560), _random.Next(1280));
 	}
 }

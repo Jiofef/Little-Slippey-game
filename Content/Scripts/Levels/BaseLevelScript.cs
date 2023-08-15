@@ -36,6 +36,7 @@ public partial class BaseLevelScript : Node2D
             G.ResetTimer += _floatDelta;
             if (G.ResetTimer > 1.5f)
             {
+                G.IsProgressPaused = false;
                 UnchangableMeta.SaveRecords();
                 EmitSignal("LevelReload");
                 QueueFree();

@@ -34,6 +34,7 @@ public partial class MainScript : Node2D
     }
     public void Menu()
     {
+        G.IsProgressPaused = false;
         UnchangableMeta.SaveRecords();
         G.ResetValues();
         GetTree().ChangeSceneToFile("res://Content/Scenes/Interface&Menu/Menu.tscn");
