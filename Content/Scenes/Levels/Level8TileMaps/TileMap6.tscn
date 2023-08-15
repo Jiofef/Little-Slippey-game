@@ -682,7 +682,6 @@ collision_mask = 0
 collision_priority = 2.0
 script = ExtResource("2_ad6m7")
 TimeToFall = 0.3
-metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FragileTiles/FragileTile5"]
 position = Vector2(40, 8)
@@ -694,14 +693,14 @@ format = 2
 layer_0/tile_data = PackedInt32Array(65535, 0, 2, 0, 0, 2, 1, 0, 2, 2, 0, 2, 3, 0, 2, 4, 0, 2, 5, 0, 2)
 
 [node name="Particles" type="CPUParticles2D" parent="FragileTiles/FragileTile5"]
-position = Vector2(32, 8)
+position = Vector2(40, 8)
 emitting = false
 amount = 500
 one_shot = true
 explosiveness = 0.1
 lifetime_randomness = 1.0
 emission_shape = 3
-emission_rect_extents = Vector2(48, 8)
+emission_rect_extents = Vector2(56, 8)
 spread = 180.0
 initial_velocity_min = 10.0
 initial_velocity_max = 30.0
@@ -710,14 +709,14 @@ scale_amount_max = 4.0
 color = Color(0.596078, 0.529412, 0.537255, 1)
 
 [node name="Particles2" type="CPUParticles2D" parent="FragileTiles/FragileTile5"]
-position = Vector2(32, 8)
+position = Vector2(40, 8)
 emitting = false
 amount = 500
 one_shot = true
 explosiveness = 1.0
 lifetime_randomness = 1.0
 emission_shape = 3
-emission_rect_extents = Vector2(48, 8)
+emission_rect_extents = Vector2(56, 8)
 spread = 180.0
 initial_velocity_min = 20.0
 initial_velocity_max = 40.0

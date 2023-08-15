@@ -50,7 +50,7 @@ public partial class Level6FlyingCar : AnimatableBody2D
             return;
         }
 
-		Position = new Vector2(Position.X + _speed, Position.Y);
+		Translate(new Vector2(_speed, 0));
 
         float DisAppearingCoeff = Position.X < 1280 ? (Position.X - 395) / 200 : (2100 - Position.X) / 200;
         if (DisAppearingCoeff <= 1)

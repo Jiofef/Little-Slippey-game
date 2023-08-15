@@ -35,8 +35,7 @@ public partial class ElementalCross : Node2D
             }
             else QueueFree();
         }
-
-        if (_ticksToNextPhase > 0)
+        else if (_ticksToNextPhase > 0)
         {
             _ticksToNextPhase--;
             Scale = new Vector2(Scale.X - 0.025f, Scale.Y - 0.025f);

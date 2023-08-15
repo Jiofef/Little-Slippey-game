@@ -1,65 +1,64 @@
-[gd_scene load_steps=22 format=3 uid="uid://ddd7cqetjnrwf"]
+[gd_scene load_steps=22 format=3 uid="uid://gd2rt5ce45cx"]
 
-[ext_resource type="Texture2D" uid="uid://b53a4snnwbhr1" path="res://Content/Sprites/Levels/Level9/SpitCross.png" id="1_1qgl2"]
-[ext_resource type="PackedScene" path="res://Content/Scenes/Crosses/CrossLayout.tscn" id="1_k80i8"]
-[ext_resource type="Script" path="res://Content/Scripts/Levels/Level9SpitCross.cs" id="2_5cjaf"]
-[ext_resource type="Texture2D" uid="uid://bv5jkxumbdvb2" path="res://Content/Sprites/Levels/Level9/SpitCrossWarning.png" id="2_p6oj2"]
-[ext_resource type="AudioStream" uid="uid://gj5ebhpdiyko" path="res://Content/Sounds/Crosses/MicroExplosion.wav" id="4_dwxab"]
-[ext_resource type="PackedScene" uid="uid://bt41vubjcqv8p" path="res://Content/Scenes/Crosses/ExplosionAnimation.tscn" id="5_3ikju"]
-[ext_resource type="Texture2D" uid="uid://bg2mvitb1ih7q" path="res://Content/Sprites/Other/Explosion.png" id="6_alr2a"]
+[ext_resource type="PackedScene" path="res://Content/Scenes/Crosses/CrossLayout.tscn" id="1_mvh8w"]
+[ext_resource type="Script" path="res://Content/Scripts/Levels/Level9VomitCross.cs" id="2_012gw"]
+[ext_resource type="Texture2D" uid="uid://b53a4snnwbhr1" path="res://Content/Sprites/Levels/Level9/SpitCross.png" id="3_jof67"]
+[ext_resource type="Texture2D" uid="uid://bv5jkxumbdvb2" path="res://Content/Sprites/Levels/Level9/SpitCrossWarning.png" id="4_2lxfp"]
+[ext_resource type="PackedScene" uid="uid://bt41vubjcqv8p" path="res://Content/Scenes/Crosses/ExplosionAnimation.tscn" id="5_30vlq"]
+[ext_resource type="Texture2D" uid="uid://bg2mvitb1ih7q" path="res://Content/Sprites/Other/Explosion.png" id="6_jxgrm"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_1nct1"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_x3uqb"]
 radius = 55.0
 
 [sub_resource type="AtlasTexture" id="9"]
-atlas = ExtResource("6_alr2a")
+atlas = ExtResource("6_jxgrm")
 region = Rect2(0, 0, 48, 48)
 
 [sub_resource type="AtlasTexture" id="10"]
-atlas = ExtResource("6_alr2a")
+atlas = ExtResource("6_jxgrm")
 region = Rect2(49, 0, 48, 48)
 
 [sub_resource type="AtlasTexture" id="11"]
-atlas = ExtResource("6_alr2a")
+atlas = ExtResource("6_jxgrm")
 region = Rect2(98, 0, 48, 48)
 
 [sub_resource type="AtlasTexture" id="12"]
-atlas = ExtResource("6_alr2a")
+atlas = ExtResource("6_jxgrm")
 region = Rect2(0, 49, 48, 48)
 
 [sub_resource type="AtlasTexture" id="13"]
-atlas = ExtResource("6_alr2a")
+atlas = ExtResource("6_jxgrm")
 region = Rect2(49, 49, 48, 48)
 
 [sub_resource type="AtlasTexture" id="14"]
-atlas = ExtResource("6_alr2a")
+atlas = ExtResource("6_jxgrm")
 region = Rect2(98, 49, 48, 48)
 
 [sub_resource type="AtlasTexture" id="15"]
-atlas = ExtResource("6_alr2a")
+atlas = ExtResource("6_jxgrm")
 region = Rect2(0, 98, 48, 48)
 
 [sub_resource type="AtlasTexture" id="16"]
-atlas = ExtResource("6_alr2a")
+atlas = ExtResource("6_jxgrm")
 region = Rect2(49, 98, 48, 48)
 
 [sub_resource type="AtlasTexture" id="17"]
-atlas = ExtResource("6_alr2a")
+atlas = ExtResource("6_jxgrm")
 region = Rect2(98, 98, 48, 48)
 
 [sub_resource type="AtlasTexture" id="18"]
-atlas = ExtResource("6_alr2a")
+atlas = ExtResource("6_jxgrm")
 region = Rect2(0, 147, 48, 48)
 
 [sub_resource type="AtlasTexture" id="19"]
-atlas = ExtResource("6_alr2a")
+atlas = ExtResource("6_jxgrm")
 region = Rect2(49, 147, 48, 48)
 
 [sub_resource type="AtlasTexture" id="20"]
-atlas = ExtResource("6_alr2a")
+atlas = ExtResource("6_jxgrm")
 region = Rect2(98, 147, 48, 48)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_235ix"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_chf6h"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -103,36 +102,50 @@ animations = [{
 "speed": 15.0
 }]
 
-[node name="SpitCross" instance=ExtResource("1_k80i8")]
+[sub_resource type="Gradient" id="Gradient_d0qmv"]
+offsets = PackedFloat32Array(0, 0.25, 0.5, 0.75, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[node name="CrossLayout" instance=ExtResource("1_mvh8w")]
 scale = Vector2(1, 1)
-script = ExtResource("2_5cjaf")
+script = ExtResource("2_012gw")
 
 [node name="CrossSprite" type="Sprite2D" parent="." index="0"]
 position = Vector2(-1.19209e-07, 0)
 scale = Vector2(10, 10)
-texture = ExtResource("1_1qgl2")
+texture = ExtResource("3_jof67")
 
 [node name="WarningSprite" type="Sprite2D" parent="." index="1"]
 position = Vector2(-2, -2)
 scale = Vector2(10, 10)
-texture = ExtResource("2_p6oj2")
+texture = ExtResource("4_2lxfp")
 
 [node name="ExplosiveArea" type="Area2D" parent="." index="2"]
 collision_layer = 16
 collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ExplosiveArea" index="0"]
-shape = SubResource("CircleShape2D_1nct1")
+shape = SubResource("CircleShape2D_x3uqb")
 disabled = true
 
 [node name="ExplosionSignal" parent="." index="3"]
 bus = &"CrossSnap"
 
 [node name="ExplosionSound" parent="." index="4"]
-stream = ExtResource("4_dwxab")
 bus = &"CrossExplosion"
 
-[node name="ExplosionAnimation" parent="." index="5" instance=ExtResource("5_3ikju")]
-sprite_frames = SubResource("SpriteFrames_235ix")
+[node name="ExplosionAnimation" parent="." index="5" instance=ExtResource("5_30vlq")]
+sprite_frames = SubResource("SpriteFrames_chf6h")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." index="6"]
+emission_shape = 1
+emission_sphere_radius = 55.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 15.0
+initial_velocity_max = 15.0
+scale_amount_min = 4.0
+scale_amount_max = 10.0
+color_ramp = SubResource("Gradient_d0qmv")
 
 [connection signal="animation_finished" from="ExplosionAnimation" to="." method="queue_free"]

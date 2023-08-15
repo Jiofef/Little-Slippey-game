@@ -1,5 +1,4 @@
 using Godot;
-using System;
 
 public partial class Level8WallOfCompress : Node2D
 {
@@ -16,7 +15,7 @@ public partial class Level8WallOfCompress : Node2D
 	{
 		_wallSpeedSmoothedModificator += (_wallSpeedHardModificator - _wallSpeedSmoothedModificator) / 30;
 		_wallSpeed = (_wallDefaultSpeed + (_player.Position.X - Position.X) / 1920 * 4) * _wallSpeedSmoothedModificator;
-		Position = new Vector2(Position.X + _wallSpeed, Position.Y);
+		Translate(new Vector2(_wallSpeed, 0));
 	}
 
 	public void UpdateWallSpeedModificator(int value)

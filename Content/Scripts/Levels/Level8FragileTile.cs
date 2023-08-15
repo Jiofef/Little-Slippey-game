@@ -1,11 +1,10 @@
 using Godot;
-using System;
 
 public partial class Level8FragileTile : AnimatableBody2D
 {
 	[Export] float TimeToFall = 1;
 
-	private float FallSpeed = 0;
+	private float _fallSpeed = 0;
 
     public override void _Ready()
 	{
@@ -25,8 +24,8 @@ public partial class Level8FragileTile : AnimatableBody2D
 		}
 		else if (GlobalPosition.Y < 3000)
 		{
-			Position = new Vector2(Position.X, Position.Y + FallSpeed);
-            FallSpeed += 0.075f;
+			Position = new Vector2(Position.X, Position.Y + _fallSpeed);
+            _fallSpeed += 0.075f;
 		}
 	}
 

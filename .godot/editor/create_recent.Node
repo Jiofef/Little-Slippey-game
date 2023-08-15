@@ -1,11 +1,11 @@
-AnimationPlayer
+AnimatedSprite2D
+CPUParticles2D
 Timer
+Node2D
+AnimationPlayer
 CollisionShape2D
 Area2D
-CPUParticles2D
 AnimationTree
-AnimatedSprite2D
-Node2D
 ColorRect
 Sprite2D
 Control

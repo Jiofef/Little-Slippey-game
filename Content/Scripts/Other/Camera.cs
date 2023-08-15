@@ -12,6 +12,9 @@ public partial class Camera : Camera2D
         _restartNoise = GetNode<AnimatedSprite2D>("GUI/RestartNoise");
         _player = GetNode<CharacterBody2D>("..");
         _scores = GetNode<Label>("GUI/Scores");
+
+        if (G.CurrentLevel == 9)
+            Zoom = new Vector2(1.2f, 1.2f);
     }
     private void LimitsChangingBy(float plus1, float plus2, float plus3, float plus4)
     {

@@ -44,9 +44,12 @@ public partial class BaseLevelScript : Node2D
         else G.ResetTimer = G.ResetTimer > 0 ? G.ResetTimer - _floatDelta : 0;
 
         if (G.IsPlayerDead) return;
-        G.Scores += _floatDelta;
-        _weightMultiplierExtenderToCurrentCross += (_floatDelta * G.DefaultCrossWeight[_lastAviableCrossNumber]) / 30;
-        
+
+        if (!G.IsProgressPaused)
+        {
+            G.Scores += _floatDelta;
+            _weightMultiplierExtenderToCurrentCross += (_floatDelta * G.DefaultCrossWeight[_lastAviableCrossNumber]) / 30;
+        }
 
         int IntScores = (int)G.Scores;
         GetNode<Label>("Player/Camera2D/GUI/Scores").Text = IntScores.ToString();
