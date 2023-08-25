@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://dof0nf2kfi53m"]
+
+[ext_resource type="Script" path="res://Content/Scripts/Levels/Level9JiofefEye.cs" id="1_a88yv"]
+[ext_resource type="Texture2D" uid="uid://c3plfjipt2uqv" path="res://Content/Sprites/Levels/Level9/JiofefEye.png" id="1_facbb"]
+[ext_resource type="PackedScene" uid="uid://bt41vubjcqv8p" path="res://Content/Scenes/Crosses/ExplosionAnimation.tscn" id="3_dn1tu"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vdp4u"]
+radius = 60.0
+
+[node name="JiofefEye" type="Node2D"]
+z_index = 1
+script = ExtResource("1_a88yv")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_facbb")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_vdp4u")
+
+[node name="ExplosionAnimation" parent="." instance=ExtResource("3_dn1tu")]
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 16
+one_shot = true
+explosiveness = 1.0
+spread = 180.0
+initial_velocity_min = 300.0
+initial_velocity_max = 300.0
+scale_amount_min = 8.0
+scale_amount_max = 8.0
+color = Color(0.501961, 0, 0, 1)
+
+[connection signal="animation_finished" from="ExplosionAnimation" to="." method="queue_free"]
+[connection signal="ready" from="CPUParticles2D" to="CPUParticles2D" method="set_emitting" binds= [true]]

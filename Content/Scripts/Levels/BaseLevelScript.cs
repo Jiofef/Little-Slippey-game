@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Linq;
 
 public partial class BaseLevelScript : Node2D
 {
@@ -37,6 +38,7 @@ public partial class BaseLevelScript : Node2D
             if (G.ResetTimer > 1.5f)
             {
                 G.IsProgressPaused = false;
+                G.CrossSpawnMultiplier = 1;
                 UnchangableMeta.SaveRecords();
                 EmitSignal("LevelReload");
                 QueueFree();
@@ -54,9 +56,10 @@ public partial class BaseLevelScript : Node2D
 
         int IntScores = (int)G.Scores;
         GetNode<Label>("Player/Camera2D/GUI/Scores").Text = IntScores.ToString();
-        int RandomRange1 = IntScores < 150 ? 20 - IntScores / 30 - Meta.Instance.Dificulty * 5 : 15 - Meta.Instance.Dificulty * 5;
-        RandomRange1 -= (int)(RandomRange1 / 2 - G.PlayerMoveCoeff * RandomRange1 / 2);
-        if (_random.Next(RandomRange1) == 0)
+        int RandomRange = IntScores < 150 ? 20 - IntScores / 30 - Meta.Instance.Dificulty * 5 : 15 - Meta.Instance.Dificulty * 5;
+        RandomRange -= (int)(RandomRange / 2 - G.PlayerMoveCoeff * RandomRange / 2);
+        RandomRange = (int)(RandomRange / G.CrossSpawnMultiplier);
+        if (_random.Next(RandomRange) == 0)
         {
             if (!_doAllCrossWeigthsSetted)
             {
@@ -77,12 +80,9 @@ public partial class BaseLevelScript : Node2D
                     _doAllCrossWeigthsSetted = true;
                 }
             }
-            float RandomRange2 = 0;
-            for (int i = 0; i < _crossWeight.Length && _crossWeight[i] != 0; i++)
-                RandomRange2 += _crossWeight[i];
 
             int SelectedCrossNumber;
-            int RandomNumber = _random.Next((int)RandomRange2);
+            int RandomNumber = _random.Next((int)_crossWeight.Sum());
             for (int i = 0; ; i++)
             {
                 if (RandomNumber < G.DefaultCrossWeight[i])
@@ -100,12 +100,12 @@ public partial class BaseLevelScript : Node2D
             {
                 case "RestlessCross":
                     float XPos = _random.Next(
-                        _player.Position.X - 426 > 0 ? (int)_player.Position.X - 426 : 0,
-                        _player.Position.X + 426 < G.LevelXYSizes[G.CurrentLevel].X ? (int)_player.Position.X + 426 : (int)_player.Position.X + 456
+                        _player.Position.X - 425 > 0 ? (int)_player.Position.X - 425 : 0,
+                        _player.Position.X + 425 < G.LevelXYSizes[G.CurrentLevel].X ? (int)_player.Position.X + 425 : (int)_player.Position.X + 425
                         ) ;
                     float YPos = _random.Next(
-                        _player.Position.Y - 239 > 0 ? (int)_player.Position.Y - 239 : 0, 
-                        _player.Position.Y + 239 < G.LevelXYSizes[G.CurrentLevel].Y ? (int)_player.Position.Y + 239 : (int)_player.Position.Y + 239
+                        _player.Position.Y - 240 > 0 ? (int)_player.Position.Y - 240 : 0, 
+                        _player.Position.Y + 240 < G.LevelXYSizes[G.CurrentLevel].Y ? (int)_player.Position.Y + 240 : (int)_player.Position.Y + 240
                         );
                     Cross.Position = new Vector2(XPos, YPos);
                     break;
@@ -133,6 +133,9 @@ public partial class BaseLevelScript : Node2D
                     break;
             }
             AddChild(Cross);
+
+            if (G.CurrentLevel == 9)
+                Cross.AddToGroup("Crosses");
         }
 
     }

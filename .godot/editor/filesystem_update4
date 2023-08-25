@@ -1,7 +1,6 @@
-res://default_bus_layout.tres
 res://default_env.tres
+res://Content/Scenes/Other/Level9JiofefEye.tscn
 res://Content/Scenes/Levels/FullParts/Level9.tscn
-res://Content/Scenes/Interface&Menu/LevelsMenu.tscn
 res://Content/Other/G.cs
 res://Content/Other/Meta.cs
 res://Content/Other/UnchangableMeta.cs
@@ -41,6 +40,7 @@ res://Content/Scripts/Levels/Level8FragileTile.cs
 res://Content/Scripts/Levels/Level8Host.cs
 res://Content/Scripts/Levels/Level8TileMapSpawner.cs
 res://Content/Scripts/Levels/Level8WallOfCompress.cs
+res://Content/Scripts/Levels/Level9JiofefEye.cs
 res://Content/Scripts/Levels/Level9JiofefHead.cs
 res://Content/Scripts/Levels/Level9SpitCross.cs
 res://Content/Scripts/Levels/Level9VomitCross.cs

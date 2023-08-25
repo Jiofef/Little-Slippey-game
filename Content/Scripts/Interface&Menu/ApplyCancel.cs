@@ -6,7 +6,7 @@ public partial class ApplyCancel : Control
     public delegate void OptionsClosingEventHandler();
     public override void _Ready()
     {
-        if (G.Scores != 0)
+        if (G.CurrentLevel != 0)
             Connect("OptionsClosing",new Callable(GetNode("../../.."),"OptionsClosing"));
         GetNode<TextureButton>("Cancel").GrabFocus();
     }
@@ -30,7 +30,7 @@ public partial class ApplyCancel : Control
     public void Apply()
     {
         Meta.Instance.SaveToFile();
-        if (G.Scores == 0)
+        if (G.CurrentLevel == 0)
             GetTree().ChangeSceneToFile("res://Content/Scenes/Interface&Menu/Menu.tscn");
         else
         {

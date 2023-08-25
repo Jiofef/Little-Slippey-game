@@ -14,7 +14,7 @@ public partial class Level8WallOfCompress : Node2D
 	public override void _PhysicsProcess(double delta)
 	{
 		_wallSpeedSmoothedModificator += (_wallSpeedHardModificator - _wallSpeedSmoothedModificator) / 30;
-		_wallSpeed = (_wallDefaultSpeed + (_player.Position.X - Position.X) / 1920 * 4) * _wallSpeedSmoothedModificator;
+		_wallSpeed = (_wallDefaultSpeed + (_player.GlobalPosition.X - GlobalPosition.X) / 1920 * 4) * _wallSpeedSmoothedModificator;
 		Translate(new Vector2(_wallSpeed, 0));
 	}
 

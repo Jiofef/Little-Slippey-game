@@ -35,8 +35,10 @@ public partial class MainScript : Node2D
     public void Menu()
     {
         G.IsProgressPaused = false;
+        G.CrossSpawnMultiplier = 1;
         UnchangableMeta.SaveRecords();
         G.ResetValues();
+        G.CurrentLevel = 0;
         GetTree().ChangeSceneToFile("res://Content/Scenes/Interface&Menu/Menu.tscn");
         AudioServer.SetBusEffectEnabled(2, 0, false);
     }

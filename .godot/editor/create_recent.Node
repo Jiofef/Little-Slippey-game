@@ -1,13 +1,16 @@
+Sprite2D
 ColorRect
+CPUParticles2D
+Node2D
+AudioStreamPlayer2D
+AudioStreamPlayer
+Node
 CollisionShape2D
 Area2D
 AnimatedSprite2D
-CPUParticles2D
 Timer
-Node2D
 AnimationPlayer
 AnimationTree
-Sprite2D
 Control
 MarginContainer
 BoxContainer
@@ -16,7 +19,6 @@ TextureButton
 Button
 TextureRect
 Label
-AudioStreamPlayer
 CollisionPolygon2D
 VBoxContainer
 Container
@@ -28,5 +30,3 @@ Camera2D
 PathFollow2D
 Path2D
 Window
-ParallaxBackground
-ParallaxLayer

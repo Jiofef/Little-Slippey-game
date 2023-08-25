@@ -1,16 +1,21 @@
 using Godot;
 using System;
+using System.Linq;
 
 public partial class Level9JiofefHead : Node2D
 {
 	AnimationPlayer _animationPlayer;
 	AnimatedSprite2D _animatedSprite2D;
 	CharacterBody2D _player;
-	PackedScene _spitCross, _vomitCross;
+	PackedScene _spitCross, _vomitCross, _jiofefEye;
 
+	Vector2 _dashDirection, _spiderMovingDirection, _bullDashDirection;
     Random _random = new Random();
-    private float _jiofefHeadSpeedMultiplier = 1;
-	private readonly string[] _attackAnimationsList = {"CrossSpit", "CrossVomit", "Spin", "Bite"};
+    private readonly int[] _attackWeight = { 10, 8, 6, 6, 4, 8, 0 };
+    private readonly string[] _attackAnimationsList = { "CrossSpit", "CrossVomit", "Spin", "Bite", "Spider", "EyeGouging" };
+    private float _jiofefHeadSpeedMultiplier = 1, _initialDashStackedDirection = 0;
+	private string _previousAttack;
+	private bool _isPreparingForDash = false, _isBullDashing = false;
 
 	public override void _Ready()
 	{
@@ -22,20 +27,29 @@ public partial class Level9JiofefHead : Node2D
         _player = GetNode<CharacterBody2D>("../Player");
         _spitCross = ResourceLoader.Load<PackedScene>("res://Content/Scenes/Other/Level9SpitCross.tscn");
         _vomitCross = ResourceLoader.Load<PackedScene>("res://Content/Scenes/Other/Level9VomitCross.tscn");
-
-		for (int i = 0; i < _attackAnimationsList.Length; i++)
+		_jiofefEye = ResourceLoader.Load<PackedScene>("res://Content/Scenes/Other/Level9JiofefEye.tscn");
+		
+        for (int i = 0; i < _attackAnimationsList.Length; i++)
 			_animationPlayer.AnimationSetNext(_attackAnimationsList[i] + "Attack", "Idle");
+        _animationPlayer.AnimationSetNext("Hahahahahahahaha", "Idle");
     }
 
 	public override void _PhysicsProcess(double delta)
 	{
+
+		if (G.Scores > 20 && _random.Next(600) == 0)
+		{
+			//_animationPlayer.CurrentAnimation = "Hahahahahahahaha";
+		}
+
 		if (_animationPlayer.CurrentAnimation == "CrossSpitAttack" || _animationPlayer.CurrentAnimation == "CrossVomitAttack" && _animatedSprite2D.Frame == 2)
 		{
             Rotation += GetAngleTo(_player.Position);
 			float RotationDegreesBy360 = RotationDegrees % 360;
             _animatedSprite2D.FlipV = RotationDegreesBy360 > 90 && RotationDegreesBy360 < 270 || RotationDegreesBy360 < -90 && RotationDegreesBy360 > -270;
         }
-		if (_animatedSprite2D.Animation == "CrossVomit" && _animatedSprite2D.Frame == 2)
+
+		if (_animationPlayer.CurrentAnimation == "CrossVomitAttack" && _animationPlayer.CurrentAnimationPosition > 1.5f)
 		{
 			if (_random.Next(4) == 0)
 			{
@@ -48,15 +62,45 @@ public partial class Level9JiofefHead : Node2D
                 GetParent().AddChild(VomitCross);
             }
         }
-		if (_animationPlayer.CurrentAnimation == "SpinAttack" && _animationPlayer.CurrentAnimationPosition > 4.5f && Position.DistanceTo(_player.Position) < 600)
+
+		if (_animationPlayer.CurrentAnimation == "SpinAttack" && _animationPlayer.CurrentAnimationPosition > 4.5f)
 		{
-			float DistanceToPlayerCoeff = Position.DistanceTo(_player.Position) / 100;
-			if (DistanceToPlayerCoeff < 1)
+            float DistanceToPlayerCoeff = Position.DistanceTo(_player.Position) / 100;
+            if (DistanceToPlayerCoeff < 1)
                 DistanceToPlayerCoeff = 1;
-			_player.Velocity += new Vector2(
-				(Position.X - _player.Position.X) / Math.Abs(Position.X - _player.Position.X) / DistanceToPlayerCoeff * 2,
-				(Position.Y - _player.Position.Y) / Math.Abs(Position.Y - _player.Position.Y) / (DistanceToPlayerCoeff / 1.5f) * 60
-				);
+
+			Vector2 PlayerDirectionToHead = _player.GlobalPosition.DirectionTo(GlobalPosition);
+            _player.Velocity += new Vector2(PlayerDirectionToHead.X / (DistanceToPlayerCoeff / 2) * 2f,PlayerDirectionToHead.Y / (DistanceToPlayerCoeff / 1.5f) * 90);
+
+			var AllCrossesOnScreen = GetTree().GetNodesInGroup("Crosses");
+			for (int  i = 0; i < AllCrossesOnScreen.Count; i++)
+			{
+				var Cross = (Node2D)AllCrossesOnScreen[i];
+				Cross.Translate(Cross.GlobalPosition.DirectionTo(GlobalPosition + new Vector2(_random.Next(25), _random.Next(25))) * 2.5f * _jiofefHeadSpeedMultiplier);
+			}
+		}
+
+		if (_animationPlayer.CurrentAnimation == "SpiderAttack" && _animationPlayer.CurrentAnimationPosition > 5f && _animationPlayer.CurrentAnimationPosition < 24f)
+		{
+			float DashStackedDirection = Math.Abs(_dashDirection.X) + Math.Abs(_dashDirection.Y);
+			if (DashStackedDirection > 0.2f && _isPreparingForDash)
+			{
+				Translate(-_dashDirection / 10);
+			}
+			else if (DashStackedDirection > 0.2f)
+			{
+				Translate(_dashDirection);
+				_dashDirection -= _dashDirection / 20;
+			}
+			_spiderMovingDirection += (GlobalPosition.DirectionTo(_player.GlobalPosition) * ((75 - DashStackedDirection) / 75) * 5) - _spiderMovingDirection;
+			Translate(_spiderMovingDirection);
+		}
+		else
+			_spiderMovingDirection = new Vector2(0, 0);
+
+		if (_animationPlayer.CurrentAnimation == "BullUltAttack" &&)
+		{
+
 		}
 	}
 
@@ -70,38 +114,109 @@ public partial class Level9JiofefHead : Node2D
 	public void IdleCiclePassed()
 	{
         if (_random.Next(2) == 0)
-            _animationPlayer.Play(_attackAnimationsList[_random.Next(_attackAnimationsList.Length)] + "Attack");
-        _animationPlayer.Play(_attackAnimationsList[3] + "Attack");
+		{
+			Attack();
+        }
     }
+
+	public void AnimationChanged(string AnimationName, string junk)
+	{
+		if (AnimationName == "Hahahahahahahaha")
+		{
+			Attack();
+		}
+		else if (_random.Next(2) == 0 && G.Scores > 20)
+		{
+			_animationPlayer.CurrentAnimation = "Hahahahahahahaha";
+        }
+	}
 
 	public void SpeedMultiplayerUpdate()
 	{
-        _jiofefHeadSpeedMultiplier = 1 + G.Scores / 50;
+        _jiofefHeadSpeedMultiplier = 1.5f + G.Scores / 60;
         _animatedSprite2D.SpeedScale = _jiofefHeadSpeedMultiplier;
         _animationPlayer.SpeedScale = _jiofefHeadSpeedMultiplier;
+		G.CrossSpawnMultiplier = 1 / (1 + (_jiofefHeadSpeedMultiplier - 1) / 3);
     }
+
 
 	public void CrossSpit()
 	{
-        var SpitSpawnPoint = GetNode<Node2D>("AnimatedSprite2D/SpitSpawnPoint");
-        SpitSpawnPoint.Position = new Vector2(80, 73 * (_animatedSprite2D.FlipV ? -1 : 1));
+        var spitSpawnPoint = GetNode<Node2D>("AnimatedSprite2D/SpitSpawnPoint");
+        spitSpawnPoint.Position = new Vector2(80, 73 * (_animatedSprite2D.FlipV ? -1 : 1));
         for (int i = 0; i < _random.Next(3, 6); i++)
 		{
             var SpitCross = (Node2D)_spitCross.Instantiate();
-            SpitCross.GlobalPosition = SpitSpawnPoint.GlobalPosition;
+            SpitCross.GlobalPosition = spitSpawnPoint.GlobalPosition;
             GetParent().AddChild(SpitCross);
         }
 	}
+
+	public void EyeGouge(Vector2 EyeSpawnPosition)
+	{
+		var JiofefEye = _jiofefEye.Instantiate<Node2D>();
+		JiofefEye.GlobalPosition = GlobalPosition + EyeSpawnPosition;
+		GetParent().AddChild(JiofefEye);
+	}
+
+	public void PreparingToDash()
+	{
+		_dashDirection = GlobalPosition.DirectionTo(_player.GlobalPosition) * 50;
+        _initialDashStackedDirection = Math.Abs(_dashDirection.X) + Math.Abs(_dashDirection.Y);
+        _isPreparingForDash = true;
+	}
+
+	public void Dash()
+	{
+		_isPreparingForDash = false;
+	}
+
+	public void PrepareDoBullDash()
+	{
+		_bullDashDirection = new Vector2(_random.Next(2) == 0 ? -1 : 1, 0);
+		GlobalPosition = new Vector2(_bullDashDirection.X == -1 ? -300 : 2860, _player.GlobalPosition.Y + _random.Next(250, -250));
+	}
+	public void BullDash()
+	{
+		_isBullDashing = false;
+	}
+
     public void TeleportTo(Vector2 value)
     {
         GlobalPosition = value;
     }
+
     public void TeleportToPlayer()
 	{
 		GlobalPosition = _player.GlobalPosition;
 	}
+
     public void TeleportToRandomPoint()
 	{
 		GlobalPosition = new Vector2(_random.Next(2560), _random.Next(1280));
 	}
+
+	private void Attack()
+	{
+        int SelectedAttackNumber;
+        do
+        {
+            int RandomNumber = _random.Next(_attackWeight.Sum());
+            for (int i = 0; ; i++)
+            {
+                if (RandomNumber < _attackWeight[i])
+                {
+                    SelectedAttackNumber = i;
+                    break;
+                }
+                else RandomNumber -= _attackWeight[i];
+            }
+        }
+        while (_attackAnimationsList[SelectedAttackNumber] == _previousAttack);
+
+        _animationPlayer.Play(_attackAnimationsList[SelectedAttackNumber] + "Attack");
+		//_animationPlayer.PlayBackwards();
+
+        _previousAttack = _attackAnimationsList[SelectedAttackNumber];
+    }
 }

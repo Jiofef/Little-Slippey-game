@@ -1,11 +1,11 @@
 [gd_scene load_steps=19 format=3 uid="uid://bnhfvlxa24vr6"]
 
-[ext_resource type="Texture2D" uid="uid://cr0lk5qipck6y" path="res://Content/Sprites/Levels/level3/Sky.png" id="2_sknno"]
-[ext_resource type="Texture2D" uid="uid://wixjoarsbqvb" path="res://Content/Sprites/Levels/level3/Clouds.png" id="3_7gfvk"]
+[ext_resource type="Texture2D" uid="uid://cr0lk5qipck6y" path="res://Content/Sprites/Levels/Level3/Sky.png" id="2_sknno"]
+[ext_resource type="Texture2D" uid="uid://wixjoarsbqvb" path="res://Content/Sprites/Levels/Level3/Clouds.png" id="3_7gfvk"]
 [ext_resource type="Texture2D" uid="uid://cfvp6wj1pwrjk" path="res://Content/Sprites/Levels/WorkingPleaseWaitTileset.png" id="3_etsr8"]
 [ext_resource type="Texture2D" uid="uid://q2j1uuqfjmos" path="res://Content/Sprites/Levels/BaseTileSet.png" id="4_b31s4"]
-[ext_resource type="Texture2D" uid="uid://c8qk0xqcn6fc6" path="res://Content/Sprites/Levels/level3/Sea.png" id="4_pghbd"]
-[ext_resource type="Texture2D" uid="uid://cm4bhp47bpkw4" path="res://Content/Sprites/Levels/level3/Grass.png" id="5_824lq"]
+[ext_resource type="Texture2D" uid="uid://c8qk0xqcn6fc6" path="res://Content/Sprites/Levels/Level3/Sea.png" id="4_pghbd"]
+[ext_resource type="Texture2D" uid="uid://cm4bhp47bpkw4" path="res://Content/Sprites/Levels/Level3/Grass.png" id="5_824lq"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_i2m21"]
 texture = ExtResource("4_b31s4")
