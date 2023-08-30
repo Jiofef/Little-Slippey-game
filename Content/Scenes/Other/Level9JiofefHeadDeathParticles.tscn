@@ -1,0 +1,62 @@
+[gd_scene load_steps=6 format=3 uid="uid://dydgg68xlbmyx"]
+
+[ext_resource type="Script" path="res://Content/Scripts/Levels/Level9JiofefHeadDeathParticles.cs" id="1_5djou"]
+[ext_resource type="AudioStream" uid="uid://t7mmc2687hs0" path="res://Content/Sounds/Levels/Level9Chaos.mp3" id="2_cncxe"]
+[ext_resource type="AudioStream" uid="uid://j3eptu8vfa8h" path="res://Content/Sounds/Levels/Level9ChaosIsOver.mp3" id="3_putbu"]
+
+[sub_resource type="Gradient" id="Gradient_v7153"]
+offsets = PackedFloat32Array(0, 0.0331126, 0.0794702, 0.125828, 0.172185, 0.218543)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1, 1, 0.501961, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 0.501961, 0, 1)
+
+[sub_resource type="Gradient" id="Gradient_y1baa"]
+offsets = PackedFloat32Array(0, 0.0728477, 0.145695, 0.251656, 0.370861, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.152941, 0.501961, 0.152941, 1, 1, 0.211765, 0.211765, 1, 0.541176, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
+
+[node name="JiofefHeadDeathParticles" type="CPUParticles2D"]
+modulate = Color(1, 1, 1, 0.117647)
+show_behind_parent = true
+z_index = 10
+emitting = false
+amount = 15000
+lifetime = 6.0
+one_shot = true
+speed_scale = 1.5
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 500.0
+initial_velocity_max = 500.0
+angular_velocity_min = -720.0
+angular_velocity_max = 720.0
+linear_accel_min = 100.0
+linear_accel_max = 100.0
+radial_accel_min = 100.0
+radial_accel_max = 100.0
+tangential_accel_min = 100.0
+tangential_accel_max = 100.0
+scale_amount_min = 512.0
+scale_amount_max = 512.0
+color_ramp = SubResource("Gradient_v7153")
+color_initial_ramp = SubResource("Gradient_y1baa")
+script = ExtResource("1_5djou")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 9.0
+one_shot = true
+autostart = true
+
+[node name="ParticlesEmittingTimer" type="Timer" parent="."]
+wait_time = 4.5
+one_shot = true
+autostart = true
+
+[node name="Chaos" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_cncxe")
+autoplay = true
+bus = &"LevelSounds"
+
+[node name="ChaosIsOver" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_putbu")
+bus = &"LevelSounds"
+
+[connection signal="timeout" from="Timer" to="." method="OnTimerTimeout"]
+[connection signal="timeout" from="ParticlesEmittingTimer" to="." method="ChaosIsOver"]

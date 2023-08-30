@@ -9,13 +9,13 @@ public partial class Level9JiofefHead : Node2D
 	CharacterBody2D _player;
 	PackedScene _spitCross, _vomitCross, _jiofefEye;
 
-	Vector2 _dashDirection, _spiderMovingDirection, _bullDashDirection;
+	Vector2 _dashDirection, _spiderMovingDirection, _bullDashDirection, _moveDirection;
     Random _random = new Random();
-    private readonly int[] _attackWeight = { 10, 8, 6, 6, 4, 8, 0 };
-    private readonly string[] _attackAnimationsList = { "CrossSpit", "CrossVomit", "Spin", "Bite", "Spider", "EyeGouging" };
+    private readonly int[] _attackWeight = { 10, 8, 6, 6, 3, 6, 6};
+    private readonly string[] _attackAnimationsList = { "CrossSpit", "CrossVomit", "Spin", "Bite", "Spider", "EyeGouging", "BullUlt"};
     private float _jiofefHeadSpeedMultiplier = 1, _initialDashStackedDirection = 0;
 	private string _previousAttack;
-	private bool _isPreparingForDash = false, _isBullDashing = false;
+	private bool _isPreparingForDash = false, _isBullDashing = false, _isUnpinned = false;
 
 	public override void _Ready()
 	{
@@ -32,15 +32,31 @@ public partial class Level9JiofefHead : Node2D
         for (int i = 0; i < _attackAnimationsList.Length; i++)
 			_animationPlayer.AnimationSetNext(_attackAnimationsList[i] + "Attack", "Idle");
         _animationPlayer.AnimationSetNext("Hahahahahahahaha", "Idle");
+        _animationPlayer.AnimationSetNext("Unpinning", "Idle");
     }
 
 	public override void _PhysicsProcess(double delta)
 	{
-
-		if (G.Scores > 20 && _random.Next(600) == 0)
+        if (_isUnpinned && _animationPlayer.CurrentAnimation != "BullUltAttack" && _animationPlayer.CurrentAnimation != "BiteAttack" && _animationPlayer.CurrentAnimation != "SpiderAttack" && _animationPlayer.CurrentAnimation != "D E A T H")
 		{
-			//_animationPlayer.CurrentAnimation = "Hahahahahahahaha";
-		}
+            Translate(_moveDirection  * _jiofefHeadSpeedMultiplier);
+
+			float XRadius = 100 * Scale.X * _animatedSprite2D.Scale.X, YRadius = 150 * Scale.Y * _animatedSprite2D.Scale.Y;
+
+            if (GlobalPosition.X >= (G.LevelXYSizes[G.CurrentLevel].X - XRadius) || GlobalPosition.X < XRadius)
+			{
+                GetNode<CpuParticles2D>("WallSlammingParticles").Emitting = true;
+                _moveDirection.X *= -1;
+            }
+            if (GlobalPosition.Y >= (G.LevelXYSizes[G.CurrentLevel].Y - YRadius) || GlobalPosition.Y < YRadius)
+			{
+                GetNode<CpuParticles2D>("WallSlammingParticles").Emitting = true;
+                _moveDirection.Y *= -1;
+            }
+        }
+
+		if (G.Scores > 75 && _random.Next(600) == 0 && _animationPlayer.CurrentAnimation != "D E A T H" || _animationPlayer.CurrentAnimation == "")
+			_animationPlayer.Play("Hahahahahahahaha");
 
 		if (_animationPlayer.CurrentAnimation == "CrossSpitAttack" || _animationPlayer.CurrentAnimation == "CrossVomitAttack" && _animatedSprite2D.Frame == 2)
 		{
@@ -98,9 +114,11 @@ public partial class Level9JiofefHead : Node2D
 		else
 			_spiderMovingDirection = new Vector2(0, 0);
 
-		if (_animationPlayer.CurrentAnimation == "BullUltAttack" &&)
+		if (_isBullDashing)
 		{
-
+			Translate(_bullDashDirection * (60 * _jiofefHeadSpeedMultiplier));
+			if (Position.X < -300 || Position.X > 2860)
+				_isBullDashing = false;
 		}
 	}
 
@@ -119,16 +137,32 @@ public partial class Level9JiofefHead : Node2D
         }
     }
 
-	public void AnimationChanged(string AnimationName, string junk)
+	public void AnimationChanged(string OldAnimation, string NewAnimation)
 	{
-		if (AnimationName == "Hahahahahahahaha")
-		{
+		SpeedMultiplayerUpdate();
+
+		if (OldAnimation == "Hahahahahahahaha")
 			Attack();
-		}
-		else if (_random.Next(2) == 0 && G.Scores > 20)
+		else if (_random.Next(2) == 0 && G.Scores > 25)
+			_animationPlayer.Play("Hahahahahahahaha");
+
+		if (G.Scores > 50 && !_isUnpinned)
+			_animationPlayer.Play("Unpinning");
+
+		if (OldAnimation == "Unpinning")
 		{
-			_animationPlayer.CurrentAnimation = "Hahahahahahahaha";
+			_moveDirection = new Vector2(_random.Next(2) == 0 ? -1.666f : 1.666f, _random.Next(2) == 0 ? -1 : 1);
+			_isUnpinned = true;
+            _animationPlayer.Play("Idle");
         }
+
+		if (G.Scores > 150)
+		{
+			GetNode<Timer>("SpeedMultiplierUpdateTimer").Stop();
+			_animationPlayer.Play("D E A T H");
+			_animationPlayer.SpeedScale = 1;
+			G.CrossSpawnMultiplier = 0.001f;
+		}
 	}
 
 	public void SpeedMultiplayerUpdate()
@@ -136,7 +170,7 @@ public partial class Level9JiofefHead : Node2D
         _jiofefHeadSpeedMultiplier = 1.5f + G.Scores / 60;
         _animatedSprite2D.SpeedScale = _jiofefHeadSpeedMultiplier;
         _animationPlayer.SpeedScale = _jiofefHeadSpeedMultiplier;
-		G.CrossSpawnMultiplier = 1 / (1 + (_jiofefHeadSpeedMultiplier - 1) / 3);
+		G.CrossSpawnMultiplier = 1 / (1 + ((_jiofefHeadSpeedMultiplier - 1) / 3 * (1 - 0.5f * Meta.Instance.Dificulty)));
     }
 
 
@@ -173,12 +207,15 @@ public partial class Level9JiofefHead : Node2D
 
 	public void PrepareDoBullDash()
 	{
-		_bullDashDirection = new Vector2(_random.Next(2) == 0 ? -1 : 1, 0);
-		GlobalPosition = new Vector2(_bullDashDirection.X == -1 ? -300 : 2860, _player.GlobalPosition.Y + _random.Next(250, -250));
-	}
-	public void BullDash()
-	{
 		_isBullDashing = false;
+        _bullDashDirection = new Vector2(_random.Next(2) == 0 ? -1 : 1, 0);
+		Scale = new Vector2(_bullDashDirection.X, Scale.Y);
+		GlobalPosition = new Vector2(_bullDashDirection.X == 1 ? -300 : 2860, _player.GlobalPosition.Y + _random.Next(-100, 100));
+	}
+
+	public void SetBullDashState(bool value)
+	{
+		_isBullDashing = value;
 	}
 
     public void TeleportTo(Vector2 value)
@@ -215,8 +252,18 @@ public partial class Level9JiofefHead : Node2D
         while (_attackAnimationsList[SelectedAttackNumber] == _previousAttack);
 
         _animationPlayer.Play(_attackAnimationsList[SelectedAttackNumber] + "Attack");
-		//_animationPlayer.PlayBackwards();
+		if (G.Scores > 100 && _random.Next(4) == 0 && _animationPlayer.CurrentAnimation != "BiteAttack")
+		_animationPlayer.PlayBackwards();
 
         _previousAttack = _attackAnimationsList[SelectedAttackNumber];
     }
+
+	private void AFittingEndToAnExistenceDefinedByFutileStruggle()
+	{
+		var jiofefHeadDeathParticles = (CpuParticles2D)ResourceLoader.Load<PackedScene>("res://Content/Scenes/Other/Level9JiofefHeadDeathParticles.tscn").Instantiate();
+		jiofefHeadDeathParticles.GlobalPosition = GlobalPosition;
+		jiofefHeadDeathParticles.Emitting = true;
+		GetParent().AddChild(jiofefHeadDeathParticles);
+		QueueFree();
+	}
 }

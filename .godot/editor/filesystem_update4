@@ -1,6 +1,6 @@
 res://default_env.tres
-res://Content/Scenes/Other/Level9JiofefEye.tscn
 res://Content/Scenes/Levels/FullParts/Level9.tscn
+res://Content/Scenes/Other/Level9JiofefHeadDeathParticles.tscn
 res://Content/Other/G.cs
 res://Content/Other/Meta.cs
 res://Content/Other/UnchangableMeta.cs
@@ -42,6 +42,7 @@ res://Content/Scripts/Levels/Level8TileMapSpawner.cs
 res://Content/Scripts/Levels/Level8WallOfCompress.cs
 res://Content/Scripts/Levels/Level9JiofefEye.cs
 res://Content/Scripts/Levels/Level9JiofefHead.cs
+res://Content/Scripts/Levels/Level9JiofefHeadDeathParticles.cs
 res://Content/Scripts/Levels/Level9SpitCross.cs
 res://Content/Scripts/Levels/Level9VomitCross.cs
 res://Content/Scripts/Levels/PresentedLevel5Rain.cs
@@ -50,3 +51,4 @@ res://Content/Scripts/Other/MainScript.cs
 res://Content/Scripts/Other/Player.cs
 res://Content/Scripts/Other/PlayPart.cs
 res://Content/Scripts/Other/StartupScene.cs
+res://default_bus_layout.tres

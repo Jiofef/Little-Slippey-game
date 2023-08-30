@@ -1,4 +1,4 @@
-[gd_scene load_steps=92 format=3 uid="uid://du6g5eiwtpfa7"]
+[gd_scene load_steps=143 format=3 uid="uid://du6g5eiwtpfa7"]
 
 [ext_resource type="Script" path="res://Content/Scripts/Levels/BaseLevelScript.cs" id="1_gw2dt"]
 [ext_resource type="Texture2D" uid="uid://q2j1uuqfjmos" path="res://Content/Sprites/Levels/BaseTileSet.png" id="1_tk1f8"]
@@ -10,7 +10,39 @@
 [ext_resource type="Script" path="res://Content/Scripts/Levels/Level9JiofefHead.cs" id="5_slbdm"]
 [ext_resource type="AudioStream" uid="uid://d0dbdyv2fdr0j" path="res://Content/Sounds/Levels/Level9Jiofef(V)Laugh.wav" id="8_ubd4f"]
 [ext_resource type="Texture2D" uid="uid://fmqvkabh71d2" path="res://Content/Sprites/Levels/Level9/JiofefHandSpriteList.png" id="9_0o1pc"]
+[ext_resource type="Texture2D" uid="uid://drfhwrg4p7ivv" path="res://Content/Sprites/Levels/Level9/BullDashZone.png" id="10_1nwkd"]
+[ext_resource type="AudioStream" uid="uid://bfua2l1sq2crb" path="res://Content/Sounds/Levels/Level9TurningOn.mp3" id="10_dsps0"]
+[ext_resource type="AudioStream" uid="uid://5jxx0m85kg31" path="res://Content/Sounds/Levels/Level9PreSpit.mp3" id="10_m6v4n"]
+[ext_resource type="AudioStream" uid="uid://c76u7p63yub80" path="res://Content/Sounds/Levels/Level9Hibernation.mp3" id="11_fyguj"]
 [ext_resource type="Texture2D" uid="uid://dlt3qs0r7tnyi" path="res://Content/Sprites/Levels/Level9/FOCUSPOCUS.png" id="11_rywpr"]
+[ext_resource type="AudioStream" uid="uid://c50wt8gr2xwj2" path="res://Content/Sounds/Levels/Level9Spit.mp3" id="11_uv2su"]
+[ext_resource type="AudioStream" uid="uid://c1dtex3tfgnc1" path="res://Content/Sounds/Levels/Level9PreVomit.mp3" id="12_832wb"]
+[ext_resource type="AudioStream" uid="uid://jx8kp8o35wn4" path="res://Content/Sounds/Levels/Level9Vomit.mp3" id="13_7oph2"]
+[ext_resource type="AudioStream" uid="uid://cgoirvtc6gbw" path="res://Content/Sounds/Levels/Level9PrePreSpin.mp3" id="14_p2wjm"]
+[ext_resource type="AudioStream" uid="uid://cdixe6g07aneg" path="res://Content/Sounds/Levels/Level9PreSpin.mp3" id="15_12d7w"]
+[ext_resource type="AudioStream" uid="uid://dnra0lghuwtmf" path="res://Content/Sounds/Levels/Level9Spin.wav" id="16_vlqy0"]
+[ext_resource type="AudioStream" uid="uid://b53tp1y8ubem7" path="res://Content/Sounds/Levels/PrePreBite.mp3" id="17_qvikq"]
+[ext_resource type="AudioStream" uid="uid://cndmva7mv7i6r" path="res://Content/Sounds/Levels/Level9PreBite.wav" id="18_n7mj1"]
+[ext_resource type="AudioStream" uid="uid://cx50lqwk0ta3b" path="res://Content/Sounds/Levels/Level9Bite.mp3" id="19_tu0a4"]
+[ext_resource type="AudioStream" uid="uid://bbli6la5s5avt" path="res://Content/Sounds/Levels/Level9AfterBite.mp3" id="20_t1nls"]
+[ext_resource type="AudioStream" uid="uid://beoenmfnqdtyb" path="res://Content/Sounds/Levels/Level9PrePrePrePreSpider.mp3" id="21_hxrb4"]
+[ext_resource type="AudioStream" uid="uid://cj3ln2ygtteh1" path="res://Content/Sounds/Levels/Level9PrePrePreSpider.mp3" id="22_uynot"]
+[ext_resource type="AudioStream" uid="uid://d2petbfxv70b4" path="res://Content/Sounds/Levels/Level9PrePreSpider.mp3" id="23_ltjy1"]
+[ext_resource type="AudioStream" uid="uid://cnis02iigdqug" path="res://Content/Sounds/Levels/Level9PreSpider.mp3" id="24_g6um7"]
+[ext_resource type="AudioStream" uid="uid://bhp5iicrqnhxy" path="res://Content/Sounds/Levels/Level9Spider.mp3" id="25_0kytd"]
+[ext_resource type="AudioStream" uid="uid://b3j3c3qqt8d1t" path="res://Content/Sounds/Levels/Level9SpiderDash.mp3" id="26_bsrxb"]
+[ext_resource type="AudioStream" uid="uid://bxdk3wbylo0ff" path="res://Content/Sounds/Levels/Level9PreEyeGouging.mp3" id="27_5fbsf"]
+[ext_resource type="AudioStream" uid="uid://cc2geqtaxri8x" path="res://Content/Sounds/Levels/Level9BullDashWarning.mp3" id="27_67wle"]
+[ext_resource type="AudioStream" uid="uid://b0a58a2ws568o" path="res://Content/Sounds/Levels/Level9EyeGouging.mp3" id="28_o1ctv"]
+[ext_resource type="AudioStream" uid="uid://cjgh1rubmuegl" path="res://Content/Sounds/Levels/Level9PrePrePreBullUlt.mp3" id="29_8irew"]
+[ext_resource type="AudioStream" uid="uid://bfxxlc285y3ib" path="res://Content/Sounds/Levels/Level9D_E_A_T_H.mp3" id="29_ynxpv"]
+[ext_resource type="AudioStream" uid="uid://bctfe8324afnb" path="res://Content/Sounds/Levels/Level9PrePreBullUlt.mp3" id="30_e7js4"]
+[ext_resource type="AudioStream" uid="uid://csgsf0xguw2f4" path="res://Content/Sounds/Levels/Level9BullDash.mp3" id="30_o45up"]
+[ext_resource type="AudioStream" uid="uid://cpje33b88rnvr" path="res://Content/Sounds/Levels/Level9PreBullUlt.mp3" id="31_al730"]
+[ext_resource type="AudioStream" uid="uid://48bslaf2ccfu" path="res://Content/Sounds/Levels/Level9BrakingHead.mp3" id="31_uwre8"]
+[ext_resource type="AudioStream" uid="uid://dk1mbskwwoo0k" path="res://Content/Sounds/Levels/Level9UnpinningCrunch1.mp3" id="36_4ldi7"]
+[ext_resource type="AudioStream" uid="uid://bmxssvm0wjcg0" path="res://Content/Sounds/Levels/Level9UnpinningCrunch2.mp3" id="37_yrhpp"]
+[ext_resource type="AudioStream" uid="uid://bjttvhebuv2kx" path="res://Content/Sounds/Levels/Level9UnpinningCrunch.mp3" id="38_il4c7"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_okjct"]
 
@@ -124,6 +156,9 @@ physics_layer_0/physics_material = SubResource("PhysicsMaterial_okjct")
 sources/0 = SubResource("TileSetAtlasSource_mxbjq")
 sources/2 = SubResource("TileSetAtlasSource_v11dt")
 
+[sub_resource type="Gradient" id="Gradient_11nw7"]
+colors = PackedColorArray(1, 0, 0, 1, 0.501961, 0, 0, 1)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_2h7ig"]
 atlas = ExtResource("5_hppfq")
 region = Rect2(400, 600, 200, 300)
@@ -236,6 +271,14 @@ region = Rect2(1200, 1200, 200, 300)
 atlas = ExtResource("5_hppfq")
 region = Rect2(1400, 1200, 200, 300)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_tw0wp"]
+atlas = ExtResource("5_hppfq")
+region = Rect2(1000, 1500, 200, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5elqq"]
+atlas = ExtResource("5_hppfq")
+region = Rect2(1200, 1500, 200, 300)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_e22sf"]
 atlas = ExtResource("5_hppfq")
 region = Rect2(0, 900, 200, 300)
@@ -299,6 +342,30 @@ region = Rect2(600, 0, 200, 300)
 [sub_resource type="AtlasTexture" id="AtlasTexture_dsull"]
 atlas = ExtResource("5_hppfq")
 region = Rect2(200, 0, 200, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7ttrb"]
+atlas = ExtResource("5_hppfq")
+region = Rect2(1600, 1200, 200, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iyu5t"]
+atlas = ExtResource("5_hppfq")
+region = Rect2(0, 1500, 200, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m4tu7"]
+atlas = ExtResource("5_hppfq")
+region = Rect2(200, 1500, 200, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_br750"]
+atlas = ExtResource("5_hppfq")
+region = Rect2(400, 1500, 200, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eumv0"]
+atlas = ExtResource("5_hppfq")
+region = Rect2(600, 1500, 200, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s26lw"]
+atlas = ExtResource("5_hppfq")
+region = Rect2(800, 1500, 200, 300)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_1ivfi"]
 animations = [{
@@ -436,6 +503,17 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_tw0wp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5elqq")
+}],
+"loop": true,
+"name": &"OhNoI\'mDyingHowSad",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_e22sf")
 }, {
 "duration": 1.0,
@@ -496,6 +574,54 @@ animations = [{
 "loop": true,
 "name": &"TurningOn",
 "speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7ttrb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iyu5t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m4tu7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_br750")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eumv0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s26lw")
+}],
+"loop": false,
+"name": &"Unpinning",
+"speed": 0.0
+}]
+
+[sub_resource type="Gradient" id="Gradient_q5mfr"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_usrtw"]
+atlas = ExtResource("5_hppfq")
+region = Rect2(1400, 1500, 200, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ss4pk"]
+atlas = ExtResource("5_hppfq")
+region = Rect2(1600, 1500, 200, 300)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vphid"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_usrtw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ss4pk")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_an0n3"]
@@ -641,6 +767,32 @@ animations = [{
 
 [sub_resource type="Gradient" id="Gradient_jarwd"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="Gradient" id="Gradient_i2n3f"]
+offsets = PackedFloat32Array(0, 0.966887)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="Gradient" id="Gradient_y05x0"]
+offsets = PackedFloat32Array(0, 0.490066, 0.496689, 1)
+colors = PackedColorArray(0.783523, 0.783523, 0.783523, 1, 0.768864, 0.768864, 0.768864, 1, 0.86492, 0.86492, 0.449336, 1, 1, 1, 0, 1)
+
+[sub_resource type="Gradient" id="Gradient_t4ovb"]
+colors = PackedColorArray(1, 0, 0, 1, 1, 1, 0, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_t2qvy"]
+radius = 127.0
+height = 450.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_e6amm"]
+radius = 75.0
+height = 160.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ap7an"]
+radius = 125.0
+height = 250.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3duej"]
+size = Vector2(300, 160)
 
 [sub_resource type="Animation" id="Animation_lsy6a"]
 resource_name = "BiteAttack"
@@ -865,6 +1017,396 @@ tracks/15/keys = {
 "method": &"play"
 }]
 }
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("Sounds/PrePreBite:playing")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/17/type = "value"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("Sounds/PreBite:playing")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/18/type = "value"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("Sounds/Bite:playing")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = {
+"times": PackedFloat32Array(3, 5, 7, 9, 11, 13),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, true, true, true, true, true]
+}
+tracks/19/type = "value"
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/path = NodePath("Sounds/AfterBite:playing")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/keys = {
+"times": PackedFloat32Array(13.9, 14.5, 15.1, 15.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [true, true, true, true]
+}
+
+[sub_resource type="Animation" id="Animation_34ldc"]
+resource_name = "BullUltAttack"
+length = 25.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"BullUlt"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2.5, 3.6, 22.9, 24),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("HandAnimatedSprite:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2.5, 3.2, 3.5, 3.6),
+"transitions": PackedFloat32Array(1, 1, 0.5, 0, 1),
+"update": 0,
+"values": [Vector2(20, 1000), Vector2(20, 1000), Vector2(240, 100), Vector2(450, -150), Vector2(20, 1000)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("HandAnimatedSprite:animation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"FOCUSPOCUS"]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("HandAnimatedSprite:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 3.2, 3.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, 0.698132]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("HandAnimatedSprite/FocusPocusParticles:emitting")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(3.2),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("HandAnimatedSprite:frame")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 3.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("FOCUSPOCUS:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 3.2, 4.7),
+"transitions": PackedFloat32Array(1, 0, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("FOCUSPOCUS:modulate")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 3.2, 3.5, 3.6, 4.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("FOCUSPOCUS:scale")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 3.2, 3.5, 4.7),
+"transitions": PackedFloat32Array(1, 1, 0, 1),
+"update": 0,
+"values": [Vector2(0.1, 0.1), Vector2(0.1, 0.1), Vector2(150, 150), Vector2(0.1, 150)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath(".:scale")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0, 19.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Vector2(1, 1), Vector2(1, 1)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("BullDashHitBox/CollisionShape2D:disabled")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0, 3.6, 22.9),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+tracks/12/type = "method"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath(".")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(3.6, 6.1, 7.5, 10, 11.4, 13.9, 15.3, 17.8, 19.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"values": [{
+"args": [],
+"method": &"PrepareDoBullDash"
+}, {
+"args": [true],
+"method": &"SetBullDashState"
+}, {
+"args": [],
+"method": &"PrepareDoBullDash"
+}, {
+"args": [true],
+"method": &"SetBullDashState"
+}, {
+"args": [],
+"method": &"PrepareDoBullDash"
+}, {
+"args": [true],
+"method": &"SetBullDashState"
+}, {
+"args": [],
+"method": &"PrepareDoBullDash"
+}, {
+"args": [true],
+"method": &"SetBullDashState"
+}, {
+"args": [false],
+"method": &"SetBullDashState"
+}]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("AnimatedSprite2D/BullDashZone:visible")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0, 3.6, 25),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("AnimatedSprite2D/BullDashZone:modulate")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(3.6, 3.9, 4.2, 4.5, 4.8, 5.1, 5.4, 5.7, 6, 6.8, 7.4, 7.5, 7.8, 8.1, 8.4, 8.7, 9, 9.3, 9.6, 9.9, 10.7, 11.3, 11.4, 11.7, 12, 12.3, 12.6, 12.9, 13.2, 13.5, 13.8, 14.6, 15.2, 15.3, 15.6, 15.9, 16.2, 16.5, 16.8, 17.1, 17.4, 17.7, 18.5, 19.1, 19.2, 19.5, 19.8, 20.1, 20.4, 20.7, 21, 21.3, 21.6, 22.4, 23),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.501961), Color(0, 0, 0, 0.501961), Color(1, 1, 1, 0.501961), Color(0, 0, 0, 0.501961), Color(1, 1, 1, 0.501961), Color(0, 0, 0, 0.501961), Color(1, 1, 1, 0.501961), Color(0, 0, 0, 0.501961), Color(1, 1, 1, 0.501961), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0.501961), Color(0, 0, 0, 0.501961), Color(1, 1, 1, 0.501961), Color(0, 0, 0, 0.501961), Color(1, 1, 1, 0.501961), Color(0, 0, 0, 0.501961), Color(1, 1, 1, 0.501961), Color(0, 0, 0, 0.501961), Color(1, 1, 1, 0.501961), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0.501961), Color(0, 0, 0, 0.501961), Color(1, 1, 1, 0.501961), Color(0, 0, 0, 0.501961), Color(1, 1, 1, 0.501961), Color(0, 0, 0, 0.501961), Color(1, 1, 1, 0.501961), Color(0, 0, 0, 0.501961), Color(1, 1, 1, 0.501961), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0.501961), Color(0, 0, 0, 0.501961), Color(1, 1, 1, 0.501961), Color(0, 0, 0, 0.501961), Color(1, 1, 1, 0.501961), Color(0, 0, 0, 0.501961), Color(1, 1, 1, 0.501961), Color(0, 0, 0, 0.501961), Color(1, 1, 1, 0.501961), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0.501961), Color(0, 0, 0, 0.501961), Color(1, 1, 1, 0.501961), Color(0, 0, 0, 0.501961), Color(1, 1, 1, 0.501961), Color(0, 0, 0, 0.501961), Color(1, 1, 1, 0.501961), Color(0, 0, 0, 0.501961), Color(1, 1, 1, 0.501961), Color(1, 1, 1, 1), Color(1, 1, 1, 1)]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("AnimatedSprite2D/BullDashZone:scale")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(3.6, 6.1, 7.4, 7.5, 10, 11.3, 11.4, 13.9, 15.2, 15.3, 17.8, 19.1, 19.2, 21.7, 22.9, 24, 24.9, 25),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1),
+"update": 0,
+"values": [Vector2(1, 1.666), Vector2(30, 1.666), Vector2(30, 1.666), Vector2(1, 1.666), Vector2(30, 1.666), Vector2(30, 1.666), Vector2(1, 1.666), Vector2(30, 1.666), Vector2(30, 1.666), Vector2(1, 1.666), Vector2(30, 1.666), Vector2(30, 1.666), Vector2(1, 1.666), Vector2(30, 1.666), Vector2(30, 1.666), Vector2(-5, 1.666), Vector2(-60, 1.666), Vector2(1, 1.666)]
+}
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath(".:position")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(19.2),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(1280, 640)]
+}
+tracks/17/type = "value"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("BullDashHitBox:position")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"times": PackedFloat32Array(0, 19.2, 21.6, 22.9, 24, 25),
+"transitions": PackedFloat32Array(0, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-1580, 0), Vector2(-1580, 0), Vector2(-500, 0), Vector2(-160, 0), Vector2(0, 0)]
+}
+tracks/18/type = "value"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("AnimatedSprite2D:position")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = {
+"times": PackedFloat32Array(0, 19.2, 21.6, 22.9, 24, 25),
+"transitions": PackedFloat32Array(0, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-1560, 0), Vector2(-1560, 0), Vector2(-500, 0), Vector2(-160, 0), Vector2(0, 0)]
+}
+tracks/19/type = "value"
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/path = NodePath("AnimatedSprite2D/BullDashBrakingSparks:emitting")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/keys = {
+"times": PackedFloat32Array(0, 22.9, 25),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/20/type = "value"
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/path = NodePath(".:rotation")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/21/type = "value"
+tracks/21/imported = false
+tracks/21/enabled = true
+tracks/21/path = NodePath("Sounds/BullDashWarning:playing")
+tracks/21/interp = 1
+tracks/21/loop_wrap = true
+tracks/21/keys = {
+"times": PackedFloat32Array(3.6, 7.5, 11.4, 15.3, 19.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, true, true, true, true]
+}
+tracks/22/type = "value"
+tracks/22/imported = false
+tracks/22/enabled = true
+tracks/22/path = NodePath("Sounds/PrePrePreBullUlt:playing")
+tracks/22/interp = 1
+tracks/22/loop_wrap = true
+tracks/22/keys = {
+"times": PackedFloat32Array(0, 2.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/23/type = "value"
+tracks/23/imported = false
+tracks/23/enabled = true
+tracks/23/path = NodePath("Sounds/PrePreBullUlt:playing")
+tracks/23/interp = 1
+tracks/23/loop_wrap = true
+tracks/23/keys = {
+"times": PackedFloat32Array(2.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/24/type = "value"
+tracks/24/imported = false
+tracks/24/enabled = true
+tracks/24/path = NodePath("Sounds/BullDash:playing")
+tracks/24/interp = 1
+tracks/24/loop_wrap = true
+tracks/24/keys = {
+"times": PackedFloat32Array(6.1, 10, 13.9, 17.8, 21.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, true, true, true, true]
+}
+tracks/25/type = "value"
+tracks/25/imported = false
+tracks/25/enabled = true
+tracks/25/path = NodePath("Sounds/BullDashBraking:playing")
+tracks/25/interp = 1
+tracks/25/loop_wrap = true
+tracks/25/keys = {
+"times": PackedFloat32Array(22.9),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_x45o8"]
 resource_name = "CrossSpitAttack"
@@ -927,6 +1469,30 @@ tracks/2/keys = {
 "args": [],
 "method": &"CrossSpit"
 }]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sounds/PreSpit:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.6, 1.1, 1.6, 2.1, 2.6, 3.1, 3.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, true, true, true, true, true, true, true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sounds/Spit:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.4, 0.9, 1.4, 1.9, 2.4, 2.9, 3.4, 3.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, true, true, true, true, true, true, true]
 }
 
 [sub_resource type="Animation" id="Animation_o0nwc"]
@@ -1015,6 +1581,220 @@ tracks/6/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [0.0]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Sounds/PreVomit:playing")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0.7),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Sounds/Vomit:playing")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(1.5, 8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_whemq"]
+resource_name = "D E A T H"
+length = 15.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"OhNoI\'mDyingHowSad"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimationPlayer:speed_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1.0]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimatedSprite2D")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"", 1.0, false],
+"method": &"play"
+}]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AnimatedSprite2D/SpasmOfMatter:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AnimatedSprite2D/SpasmOfMatter:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 8, 12),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("AnimatedSprite2D:speed_scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 14.4, 14.5),
+"transitions": PackedFloat32Array(2, 1, 1),
+"update": 0,
+"values": [1.0, 100.0, 0.0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("AnimatedSprite2D/SpasmOfMatter:speed_scale")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 14.4, 14.5),
+"transitions": PackedFloat32Array(2, 1, 1),
+"update": 0,
+"values": [1.0, 100.0, 0.0]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("EnergyBeamParticles:emitting")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 14),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("EnergyBeamParticles:speed_scale")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 13),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [3.0, 10.0]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("PreDeathParticles:emitting")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(14, 14.1, 14.5, 14.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false]
+}
+tracks/10/type = "method"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath(".")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(15),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"AFittingEndToAnExistenceDefinedByFutileStruggle"
+}]
+}
+tracks/11/type = "method"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("AnimatedSprite2D/SpasmOfMatter")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"", 1.0, false],
+"method": &"play"
+}]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath(".:rotation")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("AnimatedSprite2D:flip_v")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("Sounds/D_E_A_T_H:playing")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_k8t22"]
@@ -1144,6 +1924,30 @@ tracks/7/keys = {
 "method": &"play"
 }]
 }
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Sounds/PreEyeGouging:playing")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Sounds/EyeGouging:playing")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(2.5, 3.3, 4.1, 4.9, 5.7, 6.5, 7.3, 8.1, 8.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, true, true, true, true, true, true, true, true]
+}
 
 [sub_resource type="Animation" id="Animation_3hbj4"]
 resource_name = "Hahahahahahaha"
@@ -1210,9 +2014,22 @@ tracks/4/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("BullDashHitBox/CollisionShape2D:disabled")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_jdpnq"]
 resource_name = "Hibernation"
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -1224,6 +2041,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [&"Hibernation"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sounds/Hibernation:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_sy2xy"]
@@ -1531,6 +2360,90 @@ tracks/14/keys = {
 "method": &"stop"
 }]
 }
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("Sounds/PrePrePrePreSpider:playing")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("Sounds/PrePrePreSpider:playing")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(2.1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/17/type = "value"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("Sounds/PrePreSpider:playing")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"times": PackedFloat32Array(3),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/18/type = "value"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("Sounds/Spider:playing")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = {
+"times": PackedFloat32Array(5, 24),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/19/type = "value"
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/path = NodePath("Sounds/Spider:pitch_scale")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/keys = {
+"times": PackedFloat32Array(9, 10.5, 15, 16.5, 20, 21.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0.5, 1.0, 0.5, 1.0, 0.5, 1.0]
+}
+tracks/20/type = "value"
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/path = NodePath("Sounds/SpiderDash:playing")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/keys = {
+"times": PackedFloat32Array(10.5, 16.5, 20, 25),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [true, true, true, true]
+}
+tracks/21/type = "value"
+tracks/21/imported = false
+tracks/21/enabled = true
+tracks/21/path = NodePath("Sounds/PreSpider:playing")
+tracks/21/interp = 1
+tracks/21/loop_wrap = true
+tracks/21/keys = {
+"times": PackedFloat32Array(5, 26),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, true]
+}
 
 [sub_resource type="Animation" id="Animation_daim2"]
 resource_name = "SpinAttack"
@@ -1648,6 +2561,42 @@ tracks/8/keys = {
 "method": &"play"
 }]
 }
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Sounds/PrePreSpin:playing")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Sounds/PreSpin:playing")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(2.2),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Sounds/Spin:playing")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(3, 13),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
 
 [sub_resource type="Animation" id="Animation_knpxt"]
 resource_name = "TurningOnAnimation"
@@ -1743,7 +2692,7 @@ tracks/6/keys = {
 tracks/7/type = "method"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("SpeedMultiplayerUpdateTimer")
+tracks/7/path = NodePath("SpeedMultiplierUpdateTimer")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
@@ -1754,10 +2703,34 @@ tracks/7/keys = {
 "method": &"start"
 }]
 }
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Sounds/TurningOn:playing")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Sounds/Hibernation:playing")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
-[sub_resource type="Animation" id="Animation_34ldc"]
-resource_name = "BullUltAttack"
-length = 15.0
+[sub_resource type="Animation" id="Animation_jvope"]
+resource_name = "Unpinning"
+length = 9.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -1768,7 +2741,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [&"BullUlt"]
+"values": [&"Unpinning"]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -1777,106 +2750,58 @@ tracks/1/path = NodePath("AnimatedSprite2D:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 2.3, 3.5),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 1, 2, 3, 6, 7.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [0, 1, 2]
+"values": [0, 1, 2, 3, 4, 5]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("HandAnimatedSprite:position")
+tracks/2/path = NodePath("UnpinningFlesh:emitting")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 2.3, 3, 3.2, 3.4),
-"transitions": PackedFloat32Array(1, 1, 0.5, 0, 1),
-"update": 0,
-"values": [Vector2(20, 1000), Vector2(20, 1000), Vector2(240, 100), Vector2(450, -150), Vector2(20, 1000)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("HandAnimatedSprite:animation")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"FOCUSPOCUS"]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("HandAnimatedSprite:rotation")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 3, 3.2),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [0.0, 0.0, 0.698132]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("HandAnimatedSprite/FocusPocusParticles:emitting")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(3),
+"times": PackedFloat32Array(9),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
 }
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("HandAnimatedSprite:frame")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0, 3),
-"transitions": PackedFloat32Array(1, 1),
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sounds/UnpinningCrunch1:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(6),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [0, 1]
+"values": [true]
 }
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("FOCUSPOCUS:visible")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"times": PackedFloat32Array(0, 3),
-"transitions": PackedFloat32Array(1, 1),
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sounds/UnpinningCrunch2:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(7.5),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [false, true]
+"values": [true]
 }
-tracks/8/type = "value"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("FOCUSPOCUS:modulate")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
-"times": PackedFloat32Array(0, 3, 3.3, 3.4, 4.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-tracks/9/type = "value"
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/path = NodePath("FOCUSPOCUS:scale")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/keys = {
-"times": PackedFloat32Array(0, 3, 3.3),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(0.1, 0.1), Vector2(0.1, 0.1), Vector2(150, 150)]
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Sounds/UnpinningCrunch3:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(9),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4era0"]
@@ -1885,26 +2810,16 @@ _data = {
 "BullUltAttack": SubResource("Animation_34ldc"),
 "CrossSpitAttack": SubResource("Animation_x45o8"),
 "CrossVomitAttack": SubResource("Animation_o0nwc"),
+"D E A T H": SubResource("Animation_whemq"),
 "EyeGougingAttack": SubResource("Animation_k8t22"),
 "Hahahahahahahaha": SubResource("Animation_3hbj4"),
 "Hibernation": SubResource("Animation_jdpnq"),
 "Idle": SubResource("Animation_sy2xy"),
 "SpiderAttack": SubResource("Animation_pcy0i"),
 "SpinAttack": SubResource("Animation_daim2"),
-"TurningOn": SubResource("Animation_knpxt")
+"TurningOn": SubResource("Animation_knpxt"),
+"Unpinning": SubResource("Animation_jvope")
 }
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_t2qvy"]
-radius = 127.0
-height = 450.0
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_e6amm"]
-radius = 75.0
-height = 160.0
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ap7an"]
-radius = 125.0
-height = 250.0
 
 [node name="Level9" type="Node2D"]
 script = ExtResource("1_gw2dt")
@@ -1947,12 +2862,147 @@ position = Vector2(1280, 992)
 z_index = 1
 position = Vector2(1280, 640)
 script = ExtResource("5_slbdm")
+metadata/_edit_group_ = true
 
 [node name="Sounds" type="Node" parent="JiofefHead"]
 
+[node name="Hibernation" type="AudioStreamPlayer2D" parent="JiofefHead/Sounds"]
+position = Vector2(1280, 640)
+stream = ExtResource("11_fyguj")
+bus = &"JiofefHead"
+
+[node name="TurningOn" type="AudioStreamPlayer" parent="JiofefHead/Sounds"]
+stream = ExtResource("10_dsps0")
+volume_db = 10.0
+bus = &"JiofefHead"
+
+[node name="PreSpit" type="AudioStreamPlayer" parent="JiofefHead/Sounds"]
+stream = ExtResource("10_m6v4n")
+volume_db = 4.0
+bus = &"JiofefHead"
+
+[node name="Spit" type="AudioStreamPlayer" parent="JiofefHead/Sounds"]
+stream = ExtResource("11_uv2su")
+volume_db = 4.0
+bus = &"JiofefHead"
+
+[node name="PreVomit" type="AudioStreamPlayer" parent="JiofefHead/Sounds"]
+stream = ExtResource("12_832wb")
+bus = &"JiofefHead"
+
+[node name="Vomit" type="AudioStreamPlayer" parent="JiofefHead/Sounds"]
+stream = ExtResource("13_7oph2")
+bus = &"JiofefHead"
+
+[node name="PrePreSpin" type="AudioStreamPlayer" parent="JiofefHead/Sounds"]
+stream = ExtResource("14_p2wjm")
+bus = &"JiofefHead"
+
+[node name="PreSpin" type="AudioStreamPlayer" parent="JiofefHead/Sounds"]
+stream = ExtResource("15_12d7w")
+bus = &"JiofefHead"
+
+[node name="Spin" type="AudioStreamPlayer" parent="JiofefHead/Sounds"]
+stream = ExtResource("16_vlqy0")
+bus = &"JiofefHead"
+
+[node name="PrePreBite" type="AudioStreamPlayer" parent="JiofefHead/Sounds"]
+stream = ExtResource("17_qvikq")
+bus = &"JiofefHead"
+
+[node name="PreBite" type="AudioStreamPlayer" parent="JiofefHead/Sounds"]
+stream = ExtResource("18_n7mj1")
+bus = &"JiofefHead"
+
+[node name="Bite" type="AudioStreamPlayer" parent="JiofefHead/Sounds"]
+stream = ExtResource("19_tu0a4")
+bus = &"JiofefHead"
+
+[node name="AfterBite" type="AudioStreamPlayer" parent="JiofefHead/Sounds"]
+stream = ExtResource("20_t1nls")
+bus = &"JiofefHead"
+
+[node name="PrePrePrePreSpider" type="AudioStreamPlayer" parent="JiofefHead/Sounds"]
+stream = ExtResource("21_hxrb4")
+bus = &"JiofefHead"
+
+[node name="PrePrePreSpider" type="AudioStreamPlayer" parent="JiofefHead/Sounds"]
+stream = ExtResource("22_uynot")
+bus = &"JiofefHead"
+
+[node name="PrePreSpider" type="AudioStreamPlayer" parent="JiofefHead/Sounds"]
+stream = ExtResource("23_ltjy1")
+bus = &"JiofefHead"
+
+[node name="PreSpider" type="AudioStreamPlayer" parent="JiofefHead/Sounds"]
+stream = ExtResource("24_g6um7")
+bus = &"JiofefHead"
+
+[node name="Spider" type="AudioStreamPlayer" parent="JiofefHead/Sounds"]
+stream = ExtResource("25_0kytd")
+bus = &"JiofefHead"
+
+[node name="SpiderDash" type="AudioStreamPlayer" parent="JiofefHead/Sounds"]
+stream = ExtResource("26_bsrxb")
+bus = &"JiofefHead"
+
+[node name="PreEyeGouging" type="AudioStreamPlayer" parent="JiofefHead/Sounds"]
+stream = ExtResource("27_5fbsf")
+bus = &"JiofefHead"
+
+[node name="EyeGouging" type="AudioStreamPlayer" parent="JiofefHead/Sounds"]
+stream = ExtResource("28_o1ctv")
+bus = &"JiofefHead"
+
+[node name="PrePrePreBullUlt" type="AudioStreamPlayer" parent="JiofefHead/Sounds"]
+stream = ExtResource("29_8irew")
+volume_db = -20.0
+bus = &"JiofefHead"
+
+[node name="PrePreBullUlt" type="AudioStreamPlayer" parent="JiofefHead/Sounds"]
+stream = ExtResource("30_e7js4")
+bus = &"JiofefHead"
+
+[node name="PreBullUlt" type="AudioStreamPlayer" parent="JiofefHead/Sounds"]
+stream = ExtResource("31_al730")
+bus = &"JiofefHead"
+
+[node name="BullDashWarning" type="AudioStreamPlayer" parent="JiofefHead/Sounds"]
+stream = ExtResource("27_67wle")
+volume_db = 8.0
+bus = &"JiofefHead"
+
+[node name="BullDash" type="AudioStreamPlayer" parent="JiofefHead/Sounds"]
+stream = ExtResource("30_o45up")
+bus = &"JiofefHead"
+
+[node name="BullDashBraking" type="AudioStreamPlayer" parent="JiofefHead/Sounds"]
+stream = ExtResource("31_uwre8")
+bus = &"JiofefHead"
+
 [node name="Laugh" type="AudioStreamPlayer" parent="JiofefHead/Sounds"]
 stream = ExtResource("8_ubd4f")
-bus = &"LevelSounds"
+volume_db = 6.0
+bus = &"JiofefHead"
+
+[node name="UnpinningCrunch1" type="AudioStreamPlayer" parent="JiofefHead/Sounds"]
+stream = ExtResource("36_4ldi7")
+volume_db = 15.0
+bus = &"JiofefHead"
+
+[node name="UnpinningCrunch2" type="AudioStreamPlayer" parent="JiofefHead/Sounds"]
+stream = ExtResource("37_yrhpp")
+volume_db = 15.0
+bus = &"JiofefHead"
+
+[node name="UnpinningCrunch3" type="AudioStreamPlayer" parent="JiofefHead/Sounds"]
+stream = ExtResource("38_il4c7")
+volume_db = 15.0
+bus = &"JiofefHead"
+
+[node name="D_E_A_T_H" type="AudioStreamPlayer" parent="JiofefHead/Sounds"]
+stream = ExtResource("29_ynxpv")
+bus = &"JiofefHead"
 
 [node name="SpiderParticles" type="CPUParticles2D" parent="JiofefHead"]
 emitting = false
@@ -1965,32 +3015,66 @@ initial_velocity_max = 1000.0
 scale_amount_min = 4.0
 scale_amount_max = 4.0
 
+[node name="UnpinningFlesh" type="CPUParticles2D" parent="JiofefHead"]
+emitting = false
+amount = 100
+one_shot = true
+explosiveness = 0.85
+spread = 180.0
+initial_velocity_min = 1000.0
+initial_velocity_max = 1000.0
+angle_min = -720.0
+angle_max = 720.0
+scale_amount_min = 8.0
+scale_amount_max = 8.0
+color_initial_ramp = SubResource("Gradient_11nw7")
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="JiofefHead"]
 scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_1ivfi")
-animation = &"BullUlt"
+animation = &"Hibernation"
 autoplay = "Hibernation"
-frame = 2
 
 [node name="SpitSpawnPoint" type="Node2D" parent="JiofefHead/AnimatedSprite2D"]
 position = Vector2(80, 73)
 
-[node name="BullUltAttackZone" type="ColorRect" parent="JiofefHead/AnimatedSprite2D"]
+[node name="BullDashZone" type="Sprite2D" parent="JiofefHead/AnimatedSprite2D"]
 visible = false
-offset_right = 40.0
-offset_bottom = 40.0
+show_behind_parent = true
+position = Vector2(0, -53)
+scale = Vector2(1, 1.666)
+texture = ExtResource("10_1nwkd")
+centered = false
+
+[node name="BullDashBrakingSparks" type="CPUParticles2D" parent="JiofefHead/AnimatedSprite2D"]
+show_behind_parent = true
+position = Vector2(0, 9)
+emitting = false
+amount = 300
+lifetime = 0.5
+emission_shape = 1
+emission_sphere_radius = 80.0
+initial_velocity_min = 1000.0
+initial_velocity_max = 1000.0
+scale_amount_min = 4.0
+scale_amount_max = 4.0
+color = Color(1, 1, 0, 1)
+color_ramp = SubResource("Gradient_q5mfr")
+
+[node name="SpasmOfMatter" type="AnimatedSprite2D" parent="JiofefHead/AnimatedSprite2D"]
+visible = false
+sprite_frames = SubResource("SpriteFrames_vphid")
+frame_progress = 0.590928
+speed_scale = 0.0
 
 [node name="HandAnimatedSprite" type="AnimatedSprite2D" parent="JiofefHead"]
 position = Vector2(20, 1000)
-rotation = 0.698132
 scale = Vector2(1.3, 1.3)
 sprite_frames = SubResource("SpriteFrames_cfj0x")
-animation = &"FOCUSPOCUS"
-frame = 1
+animation = &"Eureka"
 
 [node name="FocusPocusParticles" type="CPUParticles2D" parent="JiofefHead/HandAnimatedSprite"]
 position = Vector2(-105.385, 26.9231)
-scale = Vector2(1, 1)
 emitting = false
 amount = 24
 lifetime = 0.5
@@ -2003,12 +3087,6 @@ scale_amount_min = 40.0
 scale_amount_max = 40.0
 color = Color(1, 1, 0.501961, 0.501961)
 color_ramp = SubResource("Gradient_jarwd")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="JiofefHead"]
-autoplay = "Hibernation"
-libraries = {
-"": SubResource("AnimationLibrary_4era0")
-}
 
 [node name="EnergyBeamParticles" type="CPUParticles2D" parent="JiofefHead"]
 modulate = Color(1, 1, 1, 0.117647)
@@ -2057,6 +3135,53 @@ scale_amount_min = 512.0
 scale_amount_max = 512.0
 color = Color(1, 0, 0, 0.117647)
 
+[node name="WallSlammingParticles" type="CPUParticles2D" parent="JiofefHead"]
+emitting = false
+amount = 16
+lifetime = 0.3
+one_shot = true
+explosiveness = 1.0
+lifetime_randomness = 0.5
+emission_shape = 1
+emission_sphere_radius = 32.0
+spread = 180.0
+initial_velocity_min = 1000.0
+initial_velocity_max = 1000.0
+scale_amount_min = 8.0
+scale_amount_max = 16.0
+color_ramp = SubResource("Gradient_i2n3f")
+color_initial_ramp = SubResource("Gradient_y05x0")
+
+[node name="PreDeathParticles" type="CPUParticles2D" parent="JiofefHead"]
+modulate = Color(1, 1, 1, 0.117647)
+show_behind_parent = true
+emitting = false
+amount = 4000
+lifetime = 1.5
+speed_scale = 3.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 1000.0
+initial_velocity_max = 1000.0
+angular_velocity_min = -720.0
+angular_velocity_max = 720.0
+linear_accel_min = 100.0
+linear_accel_max = 100.0
+radial_accel_min = 100.0
+radial_accel_max = 100.0
+tangential_accel_min = 100.0
+tangential_accel_max = 100.0
+scale_amount_min = 128.0
+scale_amount_max = 128.0
+color_initial_ramp = SubResource("Gradient_t4ovb")
+
+[node name="FOCUSPOCUS" type="Sprite2D" parent="JiofefHead"]
+visible = false
+modulate = Color(1, 1, 1, 0)
+position = Vector2(103, 135)
+scale = Vector2(0.1, 150)
+texture = ExtResource("11_rywpr")
+
 [node name="ActivationArea" type="Area2D" parent="JiofefHead"]
 visible = false
 collision_layer = 0
@@ -2085,13 +3210,23 @@ collision_mask = 0
 shape = SubResource("CapsuleShape2D_ap7an")
 disabled = true
 
-[node name="SpeedMultiplayerUpdateTimer" type="Timer" parent="JiofefHead"]
+[node name="BullDashHitBox" type="Area2D" parent="JiofefHead"]
+visible = false
+collision_layer = 16
+collision_mask = 0
 
-[node name="FOCUSPOCUS" type="Sprite2D" parent="JiofefHead"]
-modulate = Color(1, 1, 1, 0)
-position = Vector2(103, 135)
-scale = Vector2(150, 150)
-texture = ExtResource("11_rywpr")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="JiofefHead/BullDashHitBox"]
+shape = SubResource("RectangleShape2D_3duej")
+disabled = true
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="JiofefHead"]
+autoplay = "Hibernation"
+libraries = {
+"": SubResource("AnimationLibrary_4era0")
+}
+
+[node name="SpeedMultiplierUpdateTimer" type="Timer" parent="JiofefHead"]
 
 [node name="Fg" type="ColorRect" parent="."]
 z_index = 2
@@ -2102,6 +3237,6 @@ offset_bottom = 1472.0
 color = Color(0, 0, 0, 0)
 metadata/_edit_lock_ = true
 
-[connection signal="animation_changed" from="JiofefHead/AnimationPlayer" to="JiofefHead" method="AnimationChanged"]
 [connection signal="area_entered" from="JiofefHead/ActivationArea" to="JiofefHead" method="GodotIsShit" flags=6 unbinds=1]
-[connection signal="timeout" from="JiofefHead/SpeedMultiplayerUpdateTimer" to="JiofefHead" method="SpeedMultiplayerUpdate"]
+[connection signal="animation_changed" from="JiofefHead/AnimationPlayer" to="JiofefHead" method="AnimationChanged"]
+[connection signal="timeout" from="JiofefHead/SpeedMultiplierUpdateTimer" to="JiofefHead" method="SpeedMultiplayerUpdate"]

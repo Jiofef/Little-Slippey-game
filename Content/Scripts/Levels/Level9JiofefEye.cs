@@ -6,15 +6,18 @@ public partial class Level9JiofefEye : Node2D
     Random _random = new Random();
     Vector2 _moveDirection;
 	Sprite2D _sprite2D;
+	Node2D _iLoveYou;
 	public override void _Ready()
 	{
 		_moveDirection = new Vector2(_random.Next(2) == 1 ? 1 : -1, _random.Next(2) == 1 ? 1 : -1);
 		_sprite2D = GetNode<Sprite2D>("Sprite2D");
-	}
+		_iLoveYou = GetNode<Node2D>("CludgeToNotFuckMyBrainOnceAgain");
+    }
 
 	public override void _PhysicsProcess(double delta)
 	{
 		_sprite2D.Rotate((float)_random.Next(-1, 2) / 50);
+		GetNode<Node2D>("CludgeToNotFuckMyBrainOnceAgain").Scale = _moveDirection;
 
 		Translate(_moveDirection * (Scale.X * 3 + G.Scores / 50));
 
@@ -28,6 +31,7 @@ public partial class Level9JiofefEye : Node2D
 		if (Scale.X < 0.5f)
 		{
             _sprite2D.QueueFree();
+            GetNode<Node2D>("CludgeToNotFuckMyBrainOnceAgain").QueueFree();
             GetNode<CollisionShape2D>("Area2D/CollisionShape2D").Disabled = true;
             var explosionAnimation = GetNode<AnimatedSprite2D>("ExplosionAnimation");
 			explosionAnimation.Visible = true;

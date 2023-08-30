@@ -1,8 +1,18 @@
-[gd_resource type="AudioBusLayout" load_steps=2 format=3 uid="uid://ckidm8k61xlwg"]
+[gd_resource type="AudioBusLayout" load_steps=4 format=3 uid="uid://ckidm8k61xlwg"]
 
 [sub_resource type="AudioEffectFilter" id="AudioEffectFilter_kkpqv"]
 resource_name = "Filter"
 db = 1
+
+[sub_resource type="AudioEffectReverb" id="AudioEffectReverb_ot10t"]
+resource_name = "Reverb"
+room_size = 0.05
+wet = 0.1
+
+[sub_resource type="AudioEffectPitchShift" id="AudioEffectPitchShift_t00qa"]
+resource_name = "PitchShift"
+pitch_scale = 0.75
+fft_size = 2
 
 [resource]
 bus/0/volume_db = -8.00903
@@ -50,3 +60,13 @@ bus/7/mute = false
 bus/7/bypass_fx = false
 bus/7/volume_db = 0.0
 bus/7/send = &"Master"
+bus/8/name = &"JiofefHead"
+bus/8/solo = false
+bus/8/mute = false
+bus/8/bypass_fx = false
+bus/8/volume_db = 0.0
+bus/8/send = &"LevelSounds"
+bus/8/effect/0/effect = SubResource("AudioEffectReverb_ot10t")
+bus/8/effect/0/enabled = true
+bus/8/effect/1/effect = SubResource("AudioEffectPitchShift_t00qa")
+bus/8/effect/1/enabled = true

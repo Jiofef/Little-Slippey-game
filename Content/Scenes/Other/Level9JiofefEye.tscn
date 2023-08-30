@@ -1,8 +1,31 @@
-[gd_scene load_steps=5 format=3 uid="uid://dof0nf2kfi53m"]
+[gd_scene load_steps=9 format=3 uid="uid://dof0nf2kfi53m"]
 
 [ext_resource type="Script" path="res://Content/Scripts/Levels/Level9JiofefEye.cs" id="1_a88yv"]
 [ext_resource type="Texture2D" uid="uid://c3plfjipt2uqv" path="res://Content/Sprites/Levels/Level9/JiofefEye.png" id="1_facbb"]
+[ext_resource type="Texture2D" uid="uid://c6mjnwwukug26" path="res://Content/Sprites/Levels/Level9/OpticNerveAnimation.png" id="2_ywqwc"]
 [ext_resource type="PackedScene" uid="uid://bt41vubjcqv8p" path="res://Content/Scenes/Crosses/ExplosionAnimation.tscn" id="3_dn1tu"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t3eig"]
+atlas = ExtResource("2_ywqwc")
+region = Rect2(0, 0, 200, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lj6yi"]
+atlas = ExtResource("2_ywqwc")
+region = Rect2(0, 80, 200, 80)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_x4g83"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t3eig")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lj6yi")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vdp4u"]
 radius = 60.0
@@ -10,6 +33,16 @@ radius = 60.0
 [node name="JiofefEye" type="Node2D"]
 z_index = 1
 script = ExtResource("1_a88yv")
+
+[node name="CludgeToNotFuckMyBrainOnceAgain" type="Node2D" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CludgeToNotFuckMyBrainOnceAgain"]
+rotation = 3.92699
+sprite_frames = SubResource("SpriteFrames_x4g83")
+autoplay = "default"
+frame_progress = 0.241596
+centered = false
+offset = Vector2(0, -40)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_facbb")
