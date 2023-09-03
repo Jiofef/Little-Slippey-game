@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://c54y5p5phc42k"]
+[gd_scene load_steps=25 format=3 uid="uid://cmuiupnjgqyvr"]
 
 [ext_resource type="Texture2D" uid="uid://duk32e0otnfky" path="res://Content/Sprites/Levels/FuckItVolume2Tileset.png" id="1_b5f1i"]
 [ext_resource type="Script" path="res://Content/Scripts/Levels/Level8FragileTile.cs" id="2_ad6m7"]
@@ -227,6 +227,11 @@ physics_layer_0/collision_layer = 4
 physics_layer_0/collision_mask = 0
 sources/1 = SubResource("TileSetAtlasSource_wv2uq")
 
+[sub_resource type="TileSet" id="TileSet_q8ol7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fie0q"]
+size = Vector2(32, 32)
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ua1ox"]
 texture = ExtResource("1_b5f1i")
 0:0/next_alternative_id = 2
@@ -311,12 +316,6 @@ texture = ExtResource("1_b5f1i")
 1:6/0 = 0
 2:6/0 = 0
 3:6/0 = 0
-
-[sub_resource type="TileSet" id="TileSet_q8ol7"]
-sources/0 = SubResource("TileSetAtlasSource_ua1ox")
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_fie0q"]
-size = Vector2(32, 32)
 
 [sub_resource type="TileSet" id="TileSet_8tpds"]
 sources/0 = SubResource("TileSetAtlasSource_ua1ox")

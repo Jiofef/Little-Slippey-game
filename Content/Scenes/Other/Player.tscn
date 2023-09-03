@@ -295,6 +295,7 @@ shape = SubResource("2")
 
 [node name="PullDownHit" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("3")
+volume_db = 6.0
 bus = &"Player"
 
 [node name="Jump" type="AudioStreamPlayer" parent="Sounds"]
@@ -342,6 +343,7 @@ scale = Vector2(4, 4)
 transform = Transform2D(4, 0, 0, 4, 600, 0)
 
 [node name="Scores" type="Label" parent="Camera2D/GUI"]
+visible = false
 offset_left = -150.0
 offset_top = 5.0
 offset_right = 10.0
@@ -439,6 +441,7 @@ stream = ExtResource("17")
 volume_db = -5.0
 bus = &"Player"
 
+[connection signal="CameraLimitsChanged" from="." to="Camera2D" method="LimitsChangingBy" binds= [0.0, 0.0, 0.0, 0.0]]
 [connection signal="area_entered" from="Areas/PlayerDamageDetector" to="." method="Death" flags=6 unbinds=1]
 [connection signal="area_entered" from="Areas/PlayerDamageDetector" to="Camera2D" method="CameraZoom" flags=6 unbinds=1]
 [connection signal="body_entered" from="Areas/WallDirectionLeftDetector" to="." method="LeftWallDetect" unbinds=1]

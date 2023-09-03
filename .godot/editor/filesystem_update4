@@ -1,6 +1,8 @@
+res://default_bus_layout.tres
 res://default_env.tres
 res://Content/Scenes/Levels/FullParts/Level9.tscn
-res://Content/Scenes/Other/Level9JiofefHeadDeathParticles.tscn
+res://Content/Scenes/Other/Player.tscn
+res://Content/Scenes/Levels/Level8TileMaps/TileMap6.tscn
 res://Content/Other/G.cs
 res://Content/Other/Meta.cs
 res://Content/Other/UnchangableMeta.cs
@@ -51,4 +53,3 @@ res://Content/Scripts/Other/MainScript.cs
 res://Content/Scripts/Other/Player.cs
 res://Content/Scripts/Other/PlayPart.cs
 res://Content/Scripts/Other/StartupScene.cs
-res://default_bus_layout.tres

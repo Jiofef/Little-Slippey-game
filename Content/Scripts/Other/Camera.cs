@@ -8,6 +8,7 @@ public partial class Camera : Camera2D
     Label _scores;
     public override void _Ready()
     {
+        G.CameraLimits = new Vector4(0, G.LevelXYSizes[G.CurrentLevel].X, G.LevelXYSizes[G.CurrentLevel].Y, 0);
         LimitsChangingBy(0, 0, 0, 0);
         _restartNoise = GetNode<AnimatedSprite2D>("GUI/RestartNoise");
         _player = GetNode<CharacterBody2D>("..");
@@ -18,7 +19,7 @@ public partial class Camera : Camera2D
     }
     private void LimitsChangingBy(float plus1, float plus2, float plus3, float plus4)
     {
-        float[] Defaultlimits = {-30, G.LevelXYSizes[G.CurrentLevel].X + 30, G.LevelXYSizes[G.CurrentLevel].Y + 100, -30};
+        float[] Defaultlimits = {G.CameraLimits.X - 30, G.CameraLimits.Y + 30, G.CameraLimits.Z + 100, G.CameraLimits.W - 30};
         LimitTop = (int)(Defaultlimits[0] + plus1);
         LimitRight = (int)(Defaultlimits[1] + plus2);
         LimitBottom = (int)(Defaultlimits[2] + plus3);

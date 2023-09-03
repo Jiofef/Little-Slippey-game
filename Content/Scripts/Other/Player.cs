@@ -5,6 +5,8 @@ public partial class Player : CharacterBody2D
 {
     [Export] float _speed = 400, _gravity = 18.6f, _jumpForce = 600;
 
+    [Signal] public delegate void CameraLimitsChangedEventHandler();
+
     // floats related to wall-jumping
     private float _wallDetectNumber, _inertion, _savedWallNumber, _wallJumpTimer = 0,
 
@@ -252,5 +254,11 @@ public partial class Player : CharacterBody2D
     public void WallUndetected()
     {
         _wallDetectNumber = 0;
+    }
+
+    public void SetCameraLimits(Vector4 value)
+    {
+        G.CameraLimits = value;
+        EmitSignal("CameraLimitsChanged");
     }
 }
