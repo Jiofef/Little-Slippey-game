@@ -18,10 +18,10 @@ public partial class MovementTutorial : CanvasLayer
     }
     public void Cancel()
     {
-        if (!UnchangableMeta.DoFirstTimePlayed)
+        if (!UnchangableMeta.IsFirstTimePlayed)
         {
             Input.MouseMode = Input.MouseModeEnum.Hidden;
-            UnchangableMeta.DoFirstTimePlayed = true;
+            UnchangableMeta.IsFirstTimePlayed = true;
             GetTree().Paused = false;
         }
         EmitSignal("MovementTutorialClosing");

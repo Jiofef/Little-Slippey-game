@@ -29,6 +29,8 @@ public partial class BaseLevelScript : Node2D
     }
     public override void _PhysicsProcess(double delta)
     {
+        if (Input.IsActionPressed("TeleportDebug"))
+            _player.GlobalPosition = GetGlobalMousePosition();
         if (Input.IsActionJustReleased("ScoreDebug"))
             G.Scores += 5;
 
@@ -37,11 +39,7 @@ public partial class BaseLevelScript : Node2D
             G.ResetTimer += _floatDelta;
             if (G.ResetTimer > 1.5f)
             {
-                G.IsProgressPaused = false;
-                G.CrossSpawnMultiplier = 1;
-                UnchangableMeta.SaveRecords();
-                EmitSignal("LevelReload");
-                QueueFree();
+                Reset();
             }
         }
         else G.ResetTimer = G.ResetTimer > 0 ? G.ResetTimer - _floatDelta : 0;
@@ -138,5 +136,13 @@ public partial class BaseLevelScript : Node2D
                 Cross.AddToGroup("Crosses");
         }
 
+    }
+    public void Reset()
+    {
+        G.IsProgressPaused = false;
+        G.CrossSpawnMultiplier = 1;
+        UnchangableMeta.SaveRecords();
+        EmitSignal("LevelReload");
+        QueueFree();
     }
 }

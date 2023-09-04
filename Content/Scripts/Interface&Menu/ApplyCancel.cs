@@ -19,7 +19,7 @@ public partial class ApplyCancel : Control
     {
         Meta.Instance = Meta.OptionsReserve.Clone();
         Meta.Instance.ApplyOptions();
-        if (G.Scores == 0)
+        if (G.CurrentLevel == 0)
             GetTree().ChangeSceneToFile("res://Content/Scenes/Interface&Menu/Menu.tscn");
         else
         {

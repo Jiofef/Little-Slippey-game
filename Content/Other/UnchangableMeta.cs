@@ -16,7 +16,7 @@ public partial class UnchangableMeta : Node
     //correspondingly 2 at the average and 3 at the maximum difficulty.
     public static int[] LevelCompleteStatus = new int[G.LevelsInGameTotal];
 
-    public static bool DoFirstTimePlayed;
+    public static bool IsFirstTimePlayed, IsLevel9PlatformSectionFirstTimeCompleted, IsLevel9PlatformSectionSkipAllowed;
 
     public static void SaveRecords()
     {
@@ -37,7 +37,9 @@ public partial class UnchangableMeta : Node
             {"level_records1", LevelRecords[1]},
             {"level_records2", LevelRecords[2]},
             {"level_complete_status", LevelCompleteStatus},
-            {"do_first_time_played", DoFirstTimePlayed}
+            {"is_first_time_played", IsFirstTimePlayed},
+            {"is_level9_platform_section_first_time_completed", IsLevel9PlatformSectionFirstTimeCompleted},
+            {"is_level9_platform_section_skip_is_allowed", IsLevel9PlatformSectionSkipAllowed}
         };
     }
     public static void SaveToFile()
@@ -77,7 +79,8 @@ public partial class UnchangableMeta : Node
             catch { }
 
 
-            DoFirstTimePlayed = (bool)(model["do_first_time_played"]);
+            IsFirstTimePlayed = (bool)model["is_first_time_played"];
+            IsLevel9PlatformSectionFirstTimeCompleted = (bool)model["is_level9_platform_section_first_time_completed"];
 
             file.Close();
         }
