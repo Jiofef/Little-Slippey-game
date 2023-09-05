@@ -81,6 +81,7 @@ public partial class UnchangableMeta : Node
 
             IsFirstTimePlayed = (bool)model["is_first_time_played"];
             IsLevel9PlatformSectionFirstTimeCompleted = (bool)model["is_level9_platform_section_first_time_completed"];
+            IsLevel9PlatformSectionSkipAllowed = (bool)model["is_level9_platform_section_skip_is_allowed"];
 
             file.Close();
         }

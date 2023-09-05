@@ -16,7 +16,7 @@ public partial class Button : TextureButton
 	{
 		Vector2 MousePos = GetLocalMousePosition();
 		Vector2 MouseGlobalPos = GetGlobalMousePosition();
-		if (!HasFocus() && _previousFrameMousePos != MousePos &&
+		if (!HasFocus() && !Disabled && _previousFrameMousePos != MousePos &&
             MouseGlobalPos >= PossibleGrabFocusRect.Position && MouseGlobalPos <= PossibleGrabFocusRect.Position + PossibleGrabFocusRect.Size &&
 			MousePos.X > 0 && MousePos.X < Size.X && MousePos.Y > 0 && MousePos.Y < Size.Y)
 			GrabFocus();

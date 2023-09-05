@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://bjf1k0vs8j6wq"]
+
+[ext_resource type="VideoStream" path="res://Content/Other/AhahahSillyVideo.ogv" id="1_vnn2f"]
+
+[node name="AhahahSilly" type="VideoStreamPlayer"]
+offset_left = 150.0
+offset_top = 110.0
+offset_right = 1150.0
+offset_bottom = 610.0
+stream = ExtResource("1_vnn2f")
+expand = true
+
+[node name="ShowTimer" type="Timer" parent="."]
+wait_time = 8.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="ShowTimer" to="." method="play" flags=6]
+[connection signal="timeout" from="ShowTimer" to="." method="set_visible" flags=6 binds= [true]]

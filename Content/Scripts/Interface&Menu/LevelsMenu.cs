@@ -46,6 +46,12 @@ public partial class LevelsMenu : Control
 
     public void PlayLevel(int value)
     {
+        if (value == 9 && UnchangableMeta.IsLevel9PlatformSectionSkipAllowed)
+        {
+            GetNode<Control>("LevelsList/LevelsIconsContainer/SubContainer/Level9Button/StartOption").Visible = true;
+            GetNode<TextureButton>("LevelsList/LevelsIconsContainer/SubContainer/Level9Button").Disabled = true;
+            return;
+        }
         G.CurrentLevel = value;
         GetTree().ChangeSceneToFile("res://Content/Scenes/Other/Main.tscn");
     }
@@ -94,5 +100,12 @@ public partial class LevelsMenu : Control
         GetNode<Label>("Visual/SubMenu/ColorRect/HardBestResult").Text = "Hard: " + UnchangableMeta.LevelRecords[0][_chosenLevel - 1];
         GetNode<Label>("Visual/SubMenu/ColorRect/InsaneBestResult").Text = "Insane: " + UnchangableMeta.LevelRecords[1][_chosenLevel - 1];
         GetNode<Label>("Visual/SubMenu/ColorRect/InfernalBestResult").Text = "Infernal: " + UnchangableMeta.LevelRecords[2][_chosenLevel - 1];
+    }
+
+    public void PlayLevel9(bool DoSkipPlatformSection)
+    {
+        G.IsLevel9PlatformSectionSkips = DoSkipPlatformSection;
+        G.CurrentLevel = 9;
+        GetTree().ChangeSceneToFile("res://Content/Scenes/Other/Main.tscn");
     }
 }
