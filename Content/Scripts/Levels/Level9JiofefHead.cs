@@ -161,7 +161,7 @@ public partial class Level9JiofefHead : Node2D
 			GetNode<Timer>("SpeedMultiplierUpdateTimer").Stop();
 			_animationPlayer.Play("D E A T H");
 			_animationPlayer.SpeedScale = 1;
-			G.CrossSpawnMultiplier = 0.001f;
+			G.CrossSpawnMultiplier = 0.0001f;
 		}
 	}
 

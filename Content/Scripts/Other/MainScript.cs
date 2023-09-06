@@ -34,6 +34,7 @@ public partial class MainScript : Node2D
     }
     public void Menu()
     {
+        G.LevelAdditionalLink = null;
         G.IsProgressPaused = false;
         G.CrossSpawnMultiplier = 1;
         UnchangableMeta.SaveRecords();

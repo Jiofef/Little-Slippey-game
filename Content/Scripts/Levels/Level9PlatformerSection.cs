@@ -18,12 +18,12 @@ public partial class Level9PlatformerSection : TileMap
         UnchangableMeta.IsLevel9PlatformSectionFirstTimeCompleted = true;
 
         if (UnchangableMeta.IsLevel9PlatformSectionSkipAllowed)
-            G.IsLevel9PlatformSectionSkips = true;
+            G.LevelAdditionalLink = "WithoutPlatformSection";
     }
     public void AhahahSilly()
     {
         UnchangableMeta.IsLevel9PlatformSectionSkipAllowed = true;
-        G.IsLevel9PlatformSectionSkips = true;
+        G.LevelAdditionalLink = "WithoutPlatformSection";
         Connect("Reset", new Callable(GetNode(".."), "Reset"));
         EmitSignal("Reset");
     }

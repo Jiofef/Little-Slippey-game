@@ -1,10 +1,11 @@
+TileMap
+ParallaxLayer
 Sprite2D
 TextureButton
 Label
 ColorRect
 Control
 Timer
-TileMap
 VideoStreamPlayer
 Node
 Node2D
@@ -29,4 +30,3 @@ HBoxContainer
 Button
 VBoxContainer
 Container
-HFlowContainer

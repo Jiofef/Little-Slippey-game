@@ -48,8 +48,11 @@ public partial class LevelsMenu : Control
     {
         if (value == 9 && UnchangableMeta.IsLevel9PlatformSectionSkipAllowed)
         {
-            GetNode<Control>("LevelsList/LevelsIconsContainer/SubContainer/Level9Button/StartOption").Visible = true;
-            GetNode<TextureButton>("LevelsList/LevelsIconsContainer/SubContainer/Level9Button").Disabled = true;
+            string link = "LevelsList/LevelsIconsContainer/SubContainer/Level9Button";
+            GetNode<Control>(link + "/StartOption").Visible = true;
+            GetNode<TextureButton>(link).Disabled = true;
+            GetNode<TextureButton>(link + "/StartOption/Yes").Disabled = false;
+            GetNode<TextureButton>(link + "/StartOption/No").Disabled = false;
             return;
         }
         G.CurrentLevel = value;
@@ -104,7 +107,7 @@ public partial class LevelsMenu : Control
 
     public void PlayLevel9(bool DoSkipPlatformSection)
     {
-        G.IsLevel9PlatformSectionSkips = DoSkipPlatformSection;
+        G.LevelAdditionalLink = DoSkipPlatformSection ? "WithoutPlatformSection" : null;
         G.CurrentLevel = 9;
         GetTree().ChangeSceneToFile("res://Content/Scenes/Other/Main.tscn");
     }
