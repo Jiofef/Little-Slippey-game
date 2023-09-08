@@ -1,5 +1,7 @@
 res://default_env.tres
 res://Content/Scenes/Levels/FullParts/Level9.tscn
+res://Content/Scenes/Other/Player.tscn
+res://Content/Scenes/Levels/FullParts/Level9WithoutPlatformSection.tscn
 res://Content/Other/G.cs
 res://Content/Other/Meta.cs
 res://Content/Other/UnchangableMeta.cs
@@ -52,4 +54,5 @@ res://Content/Scripts/Other/MainScript.cs
 res://Content/Scripts/Other/Player.cs
 res://Content/Scripts/Other/PlayPart.cs
 res://Content/Scripts/Other/StartupScene.cs
+res://Content/Scenes/Levels/FullParts/Level4.tscn
 res://Content/Scenes/Interface&Menu/LevelsMenu.tscn

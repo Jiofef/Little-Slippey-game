@@ -31,8 +31,24 @@ public partial class BaseLevelScript : Node2D
     {
         if (Input.IsActionPressed("TeleportDebug"))
             _player.GlobalPosition = GetGlobalMousePosition();
+
         if (Input.IsActionJustReleased("ScoreDebug"))
             G.Scores += 5;
+
+        if (Input.IsActionJustPressed("InvincibilityDebug"))
+        {
+            var playerDamageDetector = GetNode<Area2D>("Player/Areas/PlayerDamageDetector");
+            playerDamageDetector.Monitoring = !playerDamageDetector.Monitoring;
+            GD.Print("Invinciblity: " + !playerDamageDetector.Monitoring);
+        }
+
+        if (Input.IsActionJustPressed("PlayerPhysicsDebug"))
+        {
+            _player.SetPhysicsProcess(!_player.IsPhysicsProcessing());
+            GD.Print("PlayerPhysics: " + _player.IsPhysicsProcessing());
+        }
+
+
 
         if (Input.IsActionPressed("Reset"))
         {

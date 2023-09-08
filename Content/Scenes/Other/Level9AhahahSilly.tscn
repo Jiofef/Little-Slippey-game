@@ -8,6 +8,7 @@ offset_top = 110.0
 offset_right = 1150.0
 offset_bottom = 610.0
 stream = ExtResource("1_vnn2f")
+volume_db = 20.0
 expand = true
 
 [node name="ShowTimer" type="Timer" parent="."]

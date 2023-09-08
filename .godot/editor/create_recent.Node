@@ -1,6 +1,7 @@
-TileMap
-ParallaxLayer
 Sprite2D
+ParallaxLayer
+ParallaxBackground
+TileMap
 TextureButton
 Label
 ColorRect
@@ -29,4 +30,3 @@ BoxContainer
 HBoxContainer
 Button
 VBoxContainer
-Container
