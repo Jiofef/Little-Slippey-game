@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Content/Scripts/Levels/BaseLevelScript.cs" id="1_gw2dt"]
 [ext_resource type="Texture2D" uid="uid://q2j1uuqfjmos" path="res://Content/Sprites/Levels/BaseTileSet.png" id="1_tk1f8"]
-[ext_resource type="Texture2D" uid="uid://dsbmsydekaqyb" path="res://Content/Sprites/Levels/Level9/infernal-dark-cave-with-lava-scene_1308-52286.png" id="2_n0j7f"]
+[ext_resource type="Texture2D" uid="uid://dsbmsydekaqyb" path="res://Content/Sprites/Levels/Level9/VolcanoInterior.png" id="2_hkqj5"]
 [ext_resource type="PackedScene" uid="uid://dlscufxb5f1ca" path="res://Content/Scenes/Other/Player.tscn" id="3_hf35u"]
 [ext_resource type="Texture2D" uid="uid://dxd8sjpbxlk4r" path="res://Content/Sprites/Levels/Level9/JiofefHeadSpriteList.png" id="5_hppfq"]
 [ext_resource type="Script" path="res://Content/Scripts/Levels/Level9JiofefHead.cs" id="5_slbdm"]
@@ -3477,8 +3477,8 @@ layer = -99
 motion_scale = Vector2(0.5, 0.5)
 
 [node name="Sprite2D" type="Sprite2D" parent="Background/Hell"]
-scale = Vector2(3, 2.25)
-texture = ExtResource("2_n0j7f")
+scale = Vector2(4, 4)
+texture = ExtResource("2_hkqj5")
 centered = false
 
 [node name="Fog" type="ColorRect" parent="Background"]

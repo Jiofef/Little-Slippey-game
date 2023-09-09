@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dsbmsydekaqyb"
-path="res://.godot/imported/infernal-dark-cave-with-lava-scene_1308-52286.png-6f847a61df8c44c1cd1f5b393f1470d7.ctex"
+uid="uid://cwlb2ggj7gmuh"
+path="res://.godot/imported/VulcanInteriorLavaAnimation.png-0555742347ea41968319b4205d3c45d1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Content/Sprites/Levels/Level9/infernal-dark-cave-with-lava-scene_1308-52286.png"
-dest_files=["res://.godot/imported/infernal-dark-cave-with-lava-scene_1308-52286.png-6f847a61df8c44c1cd1f5b393f1470d7.ctex"]
+source_file="res://Content/Sprites/Levels/Level9/VulcanInteriorLavaAnimation.png"
+dest_files=["res://.godot/imported/VulcanInteriorLavaAnimation.png-0555742347ea41968319b4205d3c45d1.ctex"]
 
 [params]
 

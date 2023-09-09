@@ -1,9 +1,11 @@
-[gd_scene load_steps=149 format=3 uid="uid://vtbg6l876n02"]
+[gd_scene load_steps=155 format=3 uid="uid://vtbg6l876n02"]
 
 [ext_resource type="Script" path="res://Content/Scripts/Levels/BaseLevelScript.cs" id="1_w53sw"]
-[ext_resource type="Texture2D" uid="uid://dsbmsydekaqyb" path="res://Content/Sprites/Levels/Level9/infernal-dark-cave-with-lava-scene_1308-52286.png" id="2_t6lej"]
+[ext_resource type="Texture2D" uid="uid://dsbmsydekaqyb" path="res://Content/Sprites/Levels/Level9/VolcanoInterior.png" id="2_t6lej"]
+[ext_resource type="Texture2D" uid="uid://cwlb2ggj7gmuh" path="res://Content/Sprites/Levels/Level9/VulcanInteriorLavaAnimation.png" id="3_qlk78"]
 [ext_resource type="Texture2D" uid="uid://q2j1uuqfjmos" path="res://Content/Sprites/Levels/BaseTileSet.png" id="3_uq0a3"]
 [ext_resource type="Texture2D" uid="uid://dgluki8hnwb62" path="res://Content/Sprites/Levels/Level8/AcidAndLavaTileset.png" id="4_jnlg4"]
+[ext_resource type="Texture2D" uid="uid://d2gkb2n1pgjkq" path="res://Content/Sprites/Levels/Level9/VolcanoStalactites.png" id="4_n53b5"]
 [ext_resource type="Script" path="res://Content/Scripts/Levels/Level9JiofefHead.cs" id="5_1blcj"]
 [ext_resource type="AudioStream" uid="uid://c76u7p63yub80" path="res://Content/Sounds/Levels/Level9Hibernation.mp3" id="6_jugxr"]
 [ext_resource type="AudioStream" uid="uid://bfua2l1sq2crb" path="res://Content/Sounds/Levels/Level9TurningOn.mp3" id="7_n3l12"]
@@ -44,14 +46,46 @@
 [ext_resource type="Texture2D" uid="uid://dlx8ycfcvywk5" path="res://Content/Sprites/Levels/InMyHeadTileset.png" id="42_jrydc"]
 [ext_resource type="PackedScene" uid="uid://dlscufxb5f1ca" path="res://Content/Scenes/Other/Player.tscn" id="52_t4hct"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_5xpao"]
+atlas = ExtResource("3_qlk78")
+region = Rect2(0, 0, 410, 225)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8gkjt"]
+atlas = ExtResource("3_qlk78")
+region = Rect2(410, 0, 410, 225)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7u7no"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5xpao")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8gkjt")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_eu86x"]
 texture = ExtResource("3_uq0a3")
 0:0/0 = 0
 2:0/0 = 0
 1:0/0 = 0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xnrdn"]
+texture = ExtResource("42_jrydc")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+
 [sub_resource type="TileSet" id="TileSet_dne3r"]
 sources/0 = SubResource("TileSetAtlasSource_eu86x")
+sources/1 = SubResource("TileSetAtlasSource_xnrdn")
 
 [sub_resource type="Gradient" id="Gradient_11nw7"]
 colors = PackedColorArray(1, 0, 0, 1, 0.501961, 0, 0, 1)
@@ -2817,18 +2851,34 @@ script = ExtResource("1_w53sw")
 
 [node name="Background" type="ParallaxBackground" parent="."]
 
-[node name="Background" type="ParallaxLayer" parent="Background"]
+[node name="BackLayer" type="ParallaxLayer" parent="Background"]
 motion_scale = Vector2(0.5, 0.5)
 
-[node name="Sprite2D" type="Sprite2D" parent="Background/Background"]
-scale = Vector2(3, 2.25)
+[node name="Sprite2D" type="Sprite2D" parent="Background/BackLayer"]
+scale = Vector2(4, 4)
 texture = ExtResource("2_t6lej")
+centered = false
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Background/BackLayer"]
+position = Vector2(188, 0)
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_7u7no")
+autoplay = "default"
+frame_progress = 0.788733
+centered = false
+
+[node name="FrontLayer" type="ParallaxLayer" parent="Background"]
+motion_scale = Vector2(0.75, 0.75)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/FrontLayer"]
+scale = Vector2(4, 4)
+texture = ExtResource("4_n53b5")
 centered = false
 
 [node name="Fog" type="ColorRect" parent="Background"]
 offset_right = 1280.0
 offset_bottom = 720.0
-color = Color(0.501961, 0, 0, 0.196078)
+color = Color(0.501961, 0, 0, 0.294118)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
