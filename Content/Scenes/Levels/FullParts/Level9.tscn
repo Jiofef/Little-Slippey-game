@@ -1,9 +1,11 @@
-[gd_scene load_steps=213 format=3 uid="uid://bxb0uv43nywb"]
+[gd_scene load_steps=218 format=3 uid="uid://bxb0uv43nywb"]
 
 [ext_resource type="Script" path="res://Content/Scripts/Levels/BaseLevelScript.cs" id="1_gw2dt"]
 [ext_resource type="Texture2D" uid="uid://q2j1uuqfjmos" path="res://Content/Sprites/Levels/BaseTileSet.png" id="1_tk1f8"]
 [ext_resource type="Texture2D" uid="uid://dsbmsydekaqyb" path="res://Content/Sprites/Levels/Level9/VolcanoInterior.png" id="2_hkqj5"]
+[ext_resource type="Texture2D" uid="uid://cwlb2ggj7gmuh" path="res://Content/Sprites/Levels/Level9/VulcanInteriorLavaAnimation.png" id="3_0clol"]
 [ext_resource type="PackedScene" uid="uid://dlscufxb5f1ca" path="res://Content/Scenes/Other/Player.tscn" id="3_hf35u"]
+[ext_resource type="Texture2D" uid="uid://d2gkb2n1pgjkq" path="res://Content/Sprites/Levels/Level9/VolcanoStalactites.png" id="4_tu3hq"]
 [ext_resource type="Texture2D" uid="uid://dxd8sjpbxlk4r" path="res://Content/Sprites/Levels/Level9/JiofefHeadSpriteList.png" id="5_hppfq"]
 [ext_resource type="Script" path="res://Content/Scripts/Levels/Level9JiofefHead.cs" id="5_slbdm"]
 [ext_resource type="Texture2D" uid="uid://dgluki8hnwb62" path="res://Content/Sprites/Levels/Level8/AcidAndLavaTileset.png" id="6_lv5lb"]
@@ -56,6 +58,28 @@
 [ext_resource type="Texture2D" uid="uid://duk32e0otnfky" path="res://Content/Sprites/Levels/FuckItVolume2Tileset.png" id="49_mpira"]
 [ext_resource type="Texture2D" uid="uid://dum4qduobam4q" path="res://Content/Sprites/Levels/Level9/DoomApproachesAnimation.png" id="50_y5bqq"]
 [ext_resource type="Script" path="res://Content/Scripts/Levels/Level9DoomApproachesAnimation.cs" id="51_4mop4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5xpao"]
+atlas = ExtResource("3_0clol")
+region = Rect2(0, 0, 410, 225)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8gkjt"]
+atlas = ExtResource("3_0clol")
+region = Rect2(410, 0, 410, 225)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2ev7u"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5xpao")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8gkjt")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ftebw"]
 texture = ExtResource("1_tk1f8")
@@ -3473,19 +3497,33 @@ script = ExtResource("1_gw2dt")
 [node name="Background" type="ParallaxBackground" parent="."]
 layer = -99
 
-[node name="Hell" type="ParallaxLayer" parent="Background"]
+[node name="BackLayer" type="ParallaxLayer" parent="Background"]
 motion_scale = Vector2(0.5, 0.5)
 
-[node name="Sprite2D" type="Sprite2D" parent="Background/Hell"]
+[node name="Sprite2D" type="Sprite2D" parent="Background/BackLayer"]
 scale = Vector2(4, 4)
 texture = ExtResource("2_hkqj5")
 centered = false
 
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Background/BackLayer"]
+position = Vector2(188, 0)
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_2ev7u")
+autoplay = "default"
+centered = false
+
+[node name="FrontLayer" type="ParallaxLayer" parent="Background"]
+motion_scale = Vector2(0.75, 0.75)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/FrontLayer"]
+scale = Vector2(4, 4)
+texture = ExtResource("4_tu3hq")
+centered = false
+
 [node name="Fog" type="ColorRect" parent="Background"]
-visible = false
 offset_right = 1280.0
 offset_bottom = 720.0
-color = Color(0.501961, 0, 0, 0.501961)
+color = Color(0.501961, 0, 0, 0.294118)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
