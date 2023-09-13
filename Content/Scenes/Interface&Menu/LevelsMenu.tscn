@@ -58,26 +58,26 @@ resource_name = "NoiseDisappearing"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sound:volume_db")
+tracks/0/path = NodePath("Sound:playing")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(2, 1),
-"update": 0,
-"values": [-5.0, -30.0]
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sound:playing")
+tracks/1/path = NodePath("Sound:volume_db")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
+"transitions": PackedFloat32Array(2, 1),
+"update": 0,
+"values": [-5.0, -30.0]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -1021,21 +1021,6 @@ texture = ExtResource("12_lkhk3")
 centered = false
 region_enabled = true
 
-[node name="Level11Button" parent="LevelsList/LevelsIconsContainer/SubContainer" instance=ExtResource("2_6jw0o")]
-layout_mode = 0
-offset_left = 2800.0
-offset_right = 2845.0
-offset_bottom = 45.0
-texture_normal = ExtResource("10_k5w04")
-texture_pressed = ExtResource("11_aoo2n")
-PossibleGrabFocusRect = Rect2(140, 505, 1000, 180)
-
-[node name="Sprite2D" type="Sprite2D" parent="LevelsList/LevelsIconsContainer/SubContainer/Level11Button"]
-z_index = -1
-texture = ExtResource("12_lkhk3")
-centered = false
-region_enabled = true
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="LevelsList/LevelsIconsContainer/SubContainer"]
 libraries = {
 "": SubResource("AnimationLibrary_lgy1q")
@@ -1044,27 +1029,31 @@ libraries = {
 [connection signal="pressed" from="CancelButton" to="." method="Cancel"]
 [connection signal="pressed" from="LevelsList/LeftScrollButton" to="." method="ChangeLevelRowToPast"]
 [connection signal="pressed" from="LevelsList/RightScrollButton" to="." method="ChangeLevelRowToNext"]
-[connection signal="focus_entered" from="LevelsList/LevelsIconsContainer/SubContainer/Level1Button" to="." method="SetPresentedLevel" binds= [1]]
-[connection signal="pressed" from="LevelsList/LevelsIconsContainer/SubContainer/Level1Button" to="." method="PlayLevel" binds= [1]]
-[connection signal="focus_entered" from="LevelsList/LevelsIconsContainer/SubContainer/Level2Button" to="." method="SetPresentedLevel" binds= [2]]
-[connection signal="pressed" from="LevelsList/LevelsIconsContainer/SubContainer/Level2Button" to="." method="PlayLevel" binds= [2]]
-[connection signal="focus_entered" from="LevelsList/LevelsIconsContainer/SubContainer/Level3Button" to="." method="SetPresentedLevel" binds= [3]]
-[connection signal="pressed" from="LevelsList/LevelsIconsContainer/SubContainer/Level3Button" to="." method="PlayLevel" binds= [3]]
-[connection signal="focus_entered" from="LevelsList/LevelsIconsContainer/SubContainer/Level4Button" to="." method="SetPresentedLevel" binds= [4]]
-[connection signal="pressed" from="LevelsList/LevelsIconsContainer/SubContainer/Level4Button" to="." method="PlayLevel" binds= [4]]
-[connection signal="focus_entered" from="LevelsList/LevelsIconsContainer/SubContainer/Level5Button" to="." method="SetPresentedLevel" binds= [5]]
-[connection signal="pressed" from="LevelsList/LevelsIconsContainer/SubContainer/Level5Button" to="." method="PlayLevel" binds= [5]]
-[connection signal="focus_entered" from="LevelsList/LevelsIconsContainer/SubContainer/Level6Button" to="." method="SetPresentedLevel" binds= [6]]
-[connection signal="pressed" from="LevelsList/LevelsIconsContainer/SubContainer/Level6Button" to="." method="PlayLevel" binds= [6]]
-[connection signal="focus_entered" from="LevelsList/LevelsIconsContainer/SubContainer/Level7Button" to="." method="SetPresentedLevel" binds= [7]]
-[connection signal="pressed" from="LevelsList/LevelsIconsContainer/SubContainer/Level7Button" to="." method="PlayLevel" binds= [7]]
-[connection signal="focus_entered" from="LevelsList/LevelsIconsContainer/SubContainer/Level8Button" to="." method="SetPresentedLevel" binds= [8]]
-[connection signal="pressed" from="LevelsList/LevelsIconsContainer/SubContainer/Level8Button" to="." method="PlayLevel" binds= [8]]
-[connection signal="focus_entered" from="LevelsList/LevelsIconsContainer/SubContainer/Level9Button" to="." method="SetPresentedLevel" binds= [9]]
-[connection signal="pressed" from="LevelsList/LevelsIconsContainer/SubContainer/Level9Button" to="." method="PlayLevel" binds= [9]]
+[connection signal="focus_entered" from="LevelsList/LevelsIconsContainer/SubContainer/Level1Button" to="." method="SetPresentedLevel" binds= [1, ""]]
+[connection signal="pressed" from="LevelsList/LevelsIconsContainer/SubContainer/Level1Button" to="." method="PlayLevel" binds= [1, "", false]]
+[connection signal="focus_entered" from="LevelsList/LevelsIconsContainer/SubContainer/Level2Button" to="." method="SetPresentedLevel" binds= [2, ""]]
+[connection signal="pressed" from="LevelsList/LevelsIconsContainer/SubContainer/Level2Button" to="." method="PlayLevel" binds= [2, "", false]]
+[connection signal="focus_entered" from="LevelsList/LevelsIconsContainer/SubContainer/Level3Button" to="." method="SetPresentedLevel" binds= [3, ""]]
+[connection signal="pressed" from="LevelsList/LevelsIconsContainer/SubContainer/Level3Button" to="." method="PlayLevel" binds= [3, "", false]]
+[connection signal="focus_entered" from="LevelsList/LevelsIconsContainer/SubContainer/Level4Button" to="." method="SetPresentedLevel" binds= [4, ""]]
+[connection signal="pressed" from="LevelsList/LevelsIconsContainer/SubContainer/Level4Button" to="." method="PlayLevel" binds= [4, "", false]]
+[connection signal="focus_entered" from="LevelsList/LevelsIconsContainer/SubContainer/Level5Button" to="." method="SetPresentedLevel" binds= [5, ""]]
+[connection signal="pressed" from="LevelsList/LevelsIconsContainer/SubContainer/Level5Button" to="." method="PlayLevel" binds= [5, "", false]]
+[connection signal="focus_entered" from="LevelsList/LevelsIconsContainer/SubContainer/Level6Button" to="." method="SetPresentedLevel" binds= [6, ""]]
+[connection signal="pressed" from="LevelsList/LevelsIconsContainer/SubContainer/Level6Button" to="." method="PlayLevel" binds= [6, "", false]]
+[connection signal="focus_entered" from="LevelsList/LevelsIconsContainer/SubContainer/Level7Button" to="." method="SetPresentedLevel" binds= [7, ""]]
+[connection signal="pressed" from="LevelsList/LevelsIconsContainer/SubContainer/Level7Button" to="." method="PlayLevel" binds= [7, "", false]]
+[connection signal="focus_entered" from="LevelsList/LevelsIconsContainer/SubContainer/Level8Button" to="." method="SetPresentedLevel" binds= [8, ""]]
+[connection signal="pressed" from="LevelsList/LevelsIconsContainer/SubContainer/Level8Button" to="." method="PlayLevel" binds= [8, "", false]]
+[connection signal="focus_entered" from="LevelsList/LevelsIconsContainer/SubContainer/Level9Button" to="." method="SetPresentedLevel" binds= [9, ""]]
+[connection signal="pressed" from="LevelsList/LevelsIconsContainer/SubContainer/Level9Button" to="." method="PlayLevel" binds= [9, "", true]]
 [connection signal="pressed" from="LevelsList/LevelsIconsContainer/SubContainer/Level9Button/StartOption/CloseOption" to="LevelsList/LevelsIconsContainer/SubContainer/Level9Button" method="set_disabled" binds= [false]]
 [connection signal="pressed" from="LevelsList/LevelsIconsContainer/SubContainer/Level9Button/StartOption/CloseOption" to="LevelsList/LevelsIconsContainer/SubContainer/Level9Button/StartOption" method="set_visible" binds= [false]]
 [connection signal="pressed" from="LevelsList/LevelsIconsContainer/SubContainer/Level9Button/StartOption/CloseOption" to="LevelsList/LevelsIconsContainer/SubContainer/Level9Button/StartOption/Yes" method="set_disabled" binds= [true]]
 [connection signal="pressed" from="LevelsList/LevelsIconsContainer/SubContainer/Level9Button/StartOption/CloseOption" to="LevelsList/LevelsIconsContainer/SubContainer/Level9Button/StartOption/No" method="set_disabled" binds= [true]]
-[connection signal="pressed" from="LevelsList/LevelsIconsContainer/SubContainer/Level9Button/StartOption/Yes" to="." method="PlayLevel9" binds= [true]]
-[connection signal="pressed" from="LevelsList/LevelsIconsContainer/SubContainer/Level9Button/StartOption/No" to="." method="PlayLevel9" binds= [false]]
+[connection signal="focus_entered" from="LevelsList/LevelsIconsContainer/SubContainer/Level9Button/StartOption/Yes" to="." method="SetPresentedLevel" binds= [9, "WithoutPlatformSection"]]
+[connection signal="pressed" from="LevelsList/LevelsIconsContainer/SubContainer/Level9Button/StartOption/Yes" to="." method="PlayLevel" binds= [9, "WithoutPlatformSection", false]]
+[connection signal="focus_entered" from="LevelsList/LevelsIconsContainer/SubContainer/Level9Button/StartOption/No" to="." method="SetPresentedLevel" binds= [9, ""]]
+[connection signal="pressed" from="LevelsList/LevelsIconsContainer/SubContainer/Level9Button/StartOption/No" to="." method="PlayLevel" binds= [9, "", false]]
+[connection signal="focus_entered" from="LevelsList/LevelsIconsContainer/SubContainer/Level10Button" to="." method="SetPresentedLevel" binds= [10, ""]]
+[connection signal="pressed" from="LevelsList/LevelsIconsContainer/SubContainer/Level10Button" to="." method="PlayLevel" binds= [10, "", false]]

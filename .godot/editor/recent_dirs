@@ -1,4 +1,6 @@
 res://Content/Sprites/Levels/Level9
+res://Content/Scenes/Levels/PresentedParts
+res://Content/Scenes/Levels/FullParts
 res://Content/Scripts/Levels
 res://Content/Scenes/Other
 res://Content/Scenes/Crosses
@@ -11,5 +13,4 @@ res://Content/Sprites/Levels/Level8
 C:/Основные файлы/Папки/Вне категорий/Little Slippey
 res://Content
 res://Content/Scripts/Other
-res://Content/Scenes/Levels/PresentedParts
 res://Content/Scenes/Levels

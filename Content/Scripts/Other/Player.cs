@@ -226,7 +226,7 @@ public partial class Player : CharacterBody2D
     {
         Random random = new Random();
         _corpseMotion.X = random.Next(100) > 50 ? -5 * (GlobalPosition.X / G.LevelXYSizes[G.CurrentLevel].X) : 5 * (1 - GlobalPosition.X / G.LevelXYSizes[G.CurrentLevel].X);
-        if (G.CurrentLevel == 8)
+        if (G.CurrentLevel == 8 || GlobalPosition > G.LevelXYSizes[G.CurrentLevel] || GlobalPosition < Vector2.Zero)
             _corpseMotion.X = random.Next(100) > 50 ? -5 : +5;
 
         _corpseMotion.Y = -8;

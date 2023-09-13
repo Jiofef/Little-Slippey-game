@@ -120,7 +120,7 @@ tracks/0/path = NodePath(".:progress")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 4, 6, 8, 10, 14, 16.5, 18, 20),
+"times": PackedFloat32Array(0, 4, 6, 8, 10, 14, 15.9, 18, 20),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [0.0, 1440.0, 1440.0, 2080.0, 2080.0, 3520.0, 3520.0, 4160.0, 4160.0]
@@ -196,7 +196,8 @@ layer_0/tile_data = PackedInt32Array(720902, 131072, 2, 524291, 0, 0, 917507, 19
 curve = SubResource("Curve2D_6f2vp")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="CameraPath"]
-position = Vector2(560, 320)
+position = Vector2(560.001, 960.001)
+progress = 3520.0
 rotates = false
 
 [node name="Camera2D" type="Camera2D" parent="CameraPath/PathFollow2D"]

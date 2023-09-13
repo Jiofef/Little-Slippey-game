@@ -4,8 +4,8 @@ public partial class LevelsMenu : Control
 {
     Node2D _presentedLevel;
 
-    private int _chosenLevel;
-    private int _currentLevelsRow = 1;
+    private int _chosenLevel, _currentLevelsRow = 1;
+    private string _additionalLevelLink;
 
     public override void _Ready()
 	{
@@ -31,22 +31,23 @@ public partial class LevelsMenu : Control
         GetTree().ChangeSceneToFile("res://Content/Scenes/Interface&Menu/Menu.tscn");
     }
 
-    public void SetPresentedLevel(int value)
+    public void SetPresentedLevel(int value, string additionalLinkValue = "")
     {
-        if(_chosenLevel != value)
+        if(_chosenLevel != value || additionalLinkValue != _additionalLevelLink)
         {
             var noiseAnimationPlayer = GetNode<AnimationPlayer>("Visual/LevelPresenterOutline/LevelPresenter/WhiteNoise/AnimationPlayer");
             noiseAnimationPlayer.CurrentAnimation = null;
             noiseAnimationPlayer.Play("NoiseDisappearing");
             
             _chosenLevel = value;
+            _additionalLevelLink = additionalLinkValue;
             LevelPresenterViewportUpdate();
         }
     }
 
-    public void PlayLevel(int value)
+    public void PlayLevel(int value, string additionalLevelLink = "", bool doOpenLevelPossibleStartOptions = false)
     {
-        if (value == 9 && UnchangableMeta.IsLevel9PlatformSectionSkipAllowed)
+        if (value == 9 && UnchangableMeta.IsLevel9PlatformSectionSkipAllowed && doOpenLevelPossibleStartOptions)
         {
             string link = "LevelsList/LevelsIconsContainer/SubContainer/Level9Button";
             GetNode<Control>(link + "/StartOption").Visible = true;
@@ -55,6 +56,8 @@ public partial class LevelsMenu : Control
             GetNode<TextureButton>(link + "/StartOption/No").Disabled = false;
             return;
         }
+
+        G.LevelAdditionalLink = additionalLevelLink;
         G.CurrentLevel = value;
         GetTree().ChangeSceneToFile("res://Content/Scenes/Other/Main.tscn");
     }
@@ -84,7 +87,7 @@ public partial class LevelsMenu : Control
         animationPlayer.Play();
 
         var rightScrollButton = GetNode<TextureButton>("LevelsList/RightScrollButton");
-        if (_currentLevelsRow >= 3)
+        if (_currentLevelsRow >= 2)
             rightScrollButton.Disabled = true;
         else
             rightScrollButton.Disabled = false;
@@ -96,19 +99,12 @@ public partial class LevelsMenu : Control
         if (_presentedLevel != null)
             _presentedLevel.QueueFree();
 
-        _presentedLevel = (Node2D)ResourceLoader.Load<PackedScene>("res://Content/Scenes/Levels/PresentedParts/PresentedLevel" + _chosenLevel + ".tscn").Instantiate();
+        _presentedLevel = (Node2D)ResourceLoader.Load<PackedScene>("res://Content/Scenes/Levels/PresentedParts/PresentedLevel" + _chosenLevel + _additionalLevelLink + ".tscn").Instantiate();
 
         GetNode("Visual/LevelPresenterOutline/LevelPresenter/SubViewport").AddChild(_presentedLevel);
 
         GetNode<Label>("Visual/SubMenu/ColorRect/HardBestResult").Text = "Hard: " + UnchangableMeta.LevelRecords[0][_chosenLevel - 1];
         GetNode<Label>("Visual/SubMenu/ColorRect/InsaneBestResult").Text = "Insane: " + UnchangableMeta.LevelRecords[1][_chosenLevel - 1];
         GetNode<Label>("Visual/SubMenu/ColorRect/InfernalBestResult").Text = "Infernal: " + UnchangableMeta.LevelRecords[2][_chosenLevel - 1];
-    }
-
-    public void PlayLevel9(bool DoSkipPlatformSection)
-    {
-        G.LevelAdditionalLink = DoSkipPlatformSection ? "WithoutPlatformSection" : null;
-        G.CurrentLevel = 9;
-        GetTree().ChangeSceneToFile("res://Content/Scenes/Other/Main.tscn");
     }
 }

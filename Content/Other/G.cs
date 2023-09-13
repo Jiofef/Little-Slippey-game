@@ -8,7 +8,7 @@ public partial class G : Node
 	public static int CurrentLevel;
 	public static string LevelAdditionalLink;
 	public static Vector4 CameraLimits;
-	public static readonly int LevelsInGameTotal = 9, CrossesInGameTotal = 5, DificultiesInGameTotal = 3;
+	public static readonly int LevelsInGameTotal = 10, CrossesInGameTotal = 5, DificultiesInGameTotal = 3;
     public static readonly int[] DefaultCrossWeight = { 100, 40, 20, 10, 30 };
 	public static readonly Vector2[] LevelXYSizes =
 	{
@@ -22,6 +22,7 @@ public partial class G : Node
 		new Vector2(2560, 1280),
         new Vector2(1280, 640),
 		new Vector2(999999999, 640),
+		new Vector2(2560, 1280),
 		new Vector2(2560, 1280)
     };
 	public override void _Process(double delta)

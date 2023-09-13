@@ -16,7 +16,7 @@ public partial class UnchangableMeta : Node
     //correspondingly 2 at the average and 3 at the maximum difficulty.
     public static int[] LevelCompleteStatus = new int[G.LevelsInGameTotal];
 
-    public static bool IsFirstTimePlayed, IsLevel9PlatformSectionFirstTimeCompleted, IsLevel9PlatformSectionSkipAllowed;
+    public static bool IsFirstTimePlayed, IsLevel9PlatformSectionFirstTimeCompleted, IsLevel9PlatformSectionSkipAllowed, IsLevel10PreludeSkipAllowed;
 
     public static void SaveRecords()
     {
