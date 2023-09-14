@@ -25,7 +25,6 @@ public partial class Menu : Control
     }
     public override void _PhysicsProcess(double delta)
     {
-
         if (Input.IsActionPressed("ui_up") || Input.IsActionPressed("ui_down"))
             _buttonsFocusingTimer.Start();
 

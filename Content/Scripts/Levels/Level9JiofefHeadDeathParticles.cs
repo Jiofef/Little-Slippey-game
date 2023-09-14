@@ -4,6 +4,7 @@ public partial class Level9JiofefHeadDeathParticles : CpuParticles2D
 {
     public void OnTimerTimeout()
     {
+        G.IsCrossesEnabled = true;
         G.CrossSpawnMultiplier = 1;
         QueueFree();
     }

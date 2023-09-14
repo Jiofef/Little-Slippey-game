@@ -1,20 +1,144 @@
-[gd_scene load_steps=26 format=3 uid="uid://4rq2qv4xbcb1"]
+[gd_scene load_steps=40 format=3 uid="uid://4rq2qv4xbcb1"]
 
 [ext_resource type="Script" path="res://Content/Scripts/Levels/BaseLevelScript.cs" id="1_4x67j"]
 [ext_resource type="Texture2D" uid="uid://cl251rqg2xbw0" path="res://Content/Sprites/Levels/Level6/Sky.png" id="1_plpi7"]
 [ext_resource type="Texture2D" uid="uid://dj5m4kmysh1li" path="res://Content/Sprites/Levels/Level6/BackCity.png" id="2_w51c8"]
+[ext_resource type="Script" path="res://Content/Scripts/Levels/Level10RealityDissector.cs" id="2_x0f02"]
+[ext_resource type="Shader" path="res://Content/Other/StaticNoiseShader.gdshader" id="3_3ofug"]
 [ext_resource type="Texture2D" uid="uid://cy1lov1ry2p21" path="res://Content/Sprites/Levels/Level6/MiddleCity.png" id="3_lpaof"]
 [ext_resource type="Texture2D" uid="uid://dvbdc2wlk062n" path="res://Content/Sprites/Levels/Level6/FrontCity.png" id="4_8lyp3"]
 [ext_resource type="Texture2D" uid="uid://q2j1uuqfjmos" path="res://Content/Sprites/Levels/BaseTileSet.png" id="5_otv2e"]
 [ext_resource type="PackedScene" uid="uid://dlscufxb5f1ca" path="res://Content/Scenes/Other/Player.tscn" id="7_0a07g"]
-[ext_resource type="Texture2D" uid="uid://c1a8v62iy3ybh" path="res://Content/Sprites/Levels/WhyIsItStillRainingTileset.png" id="7_wbuae"]
 [ext_resource type="Texture2D" uid="uid://bvogrd2bqhwmt" path="res://Content/Sprites/Other/OblivionNoise.png" id="8_qacj1"]
 [ext_resource type="Script" path="res://Content/Scripts/Levels/Level8DisposableButton.cs" id="9_0qtsu"]
 [ext_resource type="AudioStream" uid="uid://bcoaxaj8pl1v0" path="res://Content/Sounds/Levels/Level10YoureNotGoingAnywhere.wav" id="9_7mala"]
 [ext_resource type="PackedScene" uid="uid://d3u7pfig07yrs" path="res://Content/Scenes/Other/CrutchedArea2D.tscn" id="10_4e1pi"]
+[ext_resource type="AudioStream" uid="uid://x0nebyfepo5c" path="res://Content/Sounds/Levels/Level10HereYouAre.mp3" id="14_t7klq"]
+[ext_resource type="AudioStream" uid="uid://cic53a7chfdjn" path="res://Content/Sounds/Levels/Level10LightTurnOn1.mp3" id="15_ncnwv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mapyl"]
 size = Vector2(192, 1282)
+
+[sub_resource type="Animation" id="Animation_4s1sj"]
+resource_name = "RealityTumor"
+length = 50.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../StaticNoiseTileMap:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../../TileMap:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 30),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../RealityDessection/NoiseAnimation:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 30),
+"transitions": PackedFloat32Array(1, 2),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.784314)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../RealityDessection/NoiseAnimation:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../RealityDessection/NoiseAnimation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"", 1.0, false],
+"method": &"play"
+}]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../../TileMap:layer_0/enabled")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(30),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/6/type = "method"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../../Player")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(30),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [15.0],
+"method": &"SetCameraPositionSmoothingSpeed"
+}]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../CanvasLayer/Dark:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(30),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("../CanvasLayer/Dark:modulate")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(30, 50),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.882353)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_np0vx"]
+_data = {
+"RealityTumor": SubResource("Animation_4s1sj")
+}
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i2jhq"]
 size = Vector2(96, 96)
@@ -35,7 +159,7 @@ region = Rect2(0, 360, 320, 180)
 atlas = ExtResource("8_qacj1")
 region = Rect2(0, 540, 320, 180)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_ecgsp"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_btcnq"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -55,173 +179,216 @@ animations = [{
 "speed": 8.0
 }]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_r08os"]
-texture = ExtResource("7_wbuae")
-0:0/0 = 0
-1:0/0 = 0
-2:0/0 = 0
-3:0/0 = 0
-0:1/0 = 0
-1:1/0 = 0
-2:1/next_alternative_id = 2
-2:1/0 = 0
-2:1/1 = 1
-2:1/1/flip_h = true
-3:1/0 = 0
-0:2/next_alternative_id = 2
-0:2/0 = 0
-0:2/1 = 1
-0:2/1/flip_h = true
-1:2/0 = 0
-2:2/next_alternative_id = 2
-2:2/0 = 0
-2:2/1 = 1
-2:2/1/flip_h = true
-3:2/next_alternative_id = 4
-3:2/0 = 0
-3:2/1 = 1
-3:2/1/flip_v = true
-3:2/2 = 2
-3:2/2/flip_h = true
-3:2/2/flip_v = true
-3:2/3 = 3
-3:2/3/flip_h = true
+[sub_resource type="SpriteFrames" id="SpriteFrames_ecgsp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m23ck")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2nkyg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gjuy0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lr1hx")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
 
-[sub_resource type="TileSet" id="TileSet_g6ho5"]
-sources/2 = SubResource("TileSetAtlasSource_r08os")
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ebifj"]
+resource_name = "sus"
+shader = ExtResource("3_3ofug")
+shader_parameter/u_amount = 1.0
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_c47k8"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mxbjq"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8ffjx"]
 texture = ExtResource("5_otv2e")
-0:0/next_alternative_id = 8
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+1:0/0 = 0
+1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:0/0/physics_layer_0/angular_velocity = 0.0
+2:0/0 = 0
+2:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:0/0/physics_layer_0/angular_velocity = 0.0
+
+[sub_resource type="TileSet" id="TileSet_jsk1l"]
+physics_layer_0/collision_layer = 4
+physics_layer_0/collision_mask = 3
+physics_layer_0/physics_material = SubResource("PhysicsMaterial_c47k8")
+sources/0 = SubResource("TileSetAtlasSource_8ffjx")
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_x5li7"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_x6gsv"]
+load_path = "res://.godot/imported/BaseTileSet.png-dac811be5d14166fafb0b92137c4ede6.ctex"
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hmabq"]
+texture = SubResource("CompressedTexture2D_x6gsv")
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:0/0/physics_layer_0/angular_velocity = 0.0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-1:0/next_alternative_id = 8
 1:0/0 = 0
 1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 1:0/0/physics_layer_0/angular_velocity = 0.0
 1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-2:0/next_alternative_id = 8
 2:0/0 = 0
 2:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 2:0/0/physics_layer_0/angular_velocity = 0.0
 2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_odx4j"]
-texture = ExtResource("7_wbuae")
-0:0/0 = 0
-0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-0:0/0/physics_layer_0/angular_velocity = 0.0
-0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-1:0/next_alternative_id = 2
-1:0/0 = 0
-1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-1:0/0/physics_layer_0/angular_velocity = 0.0
-1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-1, 2, 8, 2, 8, 1, -1, 1)
-1:0/0/physics_layer_0/polygon_0/one_way = true
-1:0/1 = 1
-1:0/1/flip_h = true
-1:0/1/physics_layer_0/linear_velocity = Vector2(0, 0)
-1:0/1/physics_layer_0/angular_velocity = 0.0
-1:0/1/physics_layer_0/polygon_0/points = PackedVector2Array(1, 1, 1, 2, -8, 2, -8, 1)
-1:0/1/physics_layer_0/polygon_0/one_way = true
-2:0/0 = 0
-2:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-2:0/0/physics_layer_0/angular_velocity = 0.0
-2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 1, 8, 1, 8, 2, -8, 2)
-2:0/0/physics_layer_0/polygon_0/one_way = true
-3:0/next_alternative_id = 2
-3:0/0 = 0
-3:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-3:0/0/physics_layer_0/angular_velocity = 0.0
-3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-3:0/1 = 1
-3:0/1/flip_v = true
-3:0/1/physics_layer_0/linear_velocity = Vector2(0, 0)
-3:0/1/physics_layer_0/angular_velocity = 0.0
-3:0/1/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-0:1/0 = 0
-0:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-0:1/0/physics_layer_0/angular_velocity = 0.0
-0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-1:1/0 = 0
-1:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-1:1/0/physics_layer_0/angular_velocity = 0.0
-2:1/next_alternative_id = 2
-2:1/0 = 0
-2:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-2:1/0/physics_layer_0/angular_velocity = 0.0
-2:1/1 = 1
-2:1/1/flip_h = true
-2:1/1/physics_layer_0/linear_velocity = Vector2(0, 0)
-2:1/1/physics_layer_0/angular_velocity = 0.0
-3:1/next_alternative_id = 2
-3:1/0 = 0
-3:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-3:1/0/physics_layer_0/angular_velocity = 0.0
-3:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-5, -8, -1, -8, -1, 8, -5, 8)
-3:1/1 = 1
-3:1/1/flip_v = true
-3:1/1/physics_layer_0/linear_velocity = Vector2(0, 0)
-3:1/1/physics_layer_0/angular_velocity = 0.0
-3:1/1/physics_layer_0/polygon_0/points = PackedVector2Array(-5, -8, -1, -8, -1, 8, -5, 8)
-0:2/next_alternative_id = 3
-0:2/0 = 0
-0:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-0:2/0/physics_layer_0/angular_velocity = 0.0
-0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-0:2/1 = 1
-0:2/1/flip_h = true
-0:2/1/physics_layer_0/linear_velocity = Vector2(0, 0)
-0:2/1/physics_layer_0/angular_velocity = 0.0
-0:2/1/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-1:2/0 = 0
-1:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-1:2/0/physics_layer_0/angular_velocity = 0.0
-2:2/next_alternative_id = 2
-2:2/0 = 0
-2:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-2:2/0/physics_layer_0/angular_velocity = 0.0
-2:2/1 = 1
-2:2/1/flip_h = true
-2:2/1/physics_layer_0/linear_velocity = Vector2(0, 0)
-2:2/1/physics_layer_0/angular_velocity = 0.0
-3:2/0 = 0
-3:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-3:2/0/physics_layer_0/angular_velocity = 0.0
-
-[sub_resource type="TileSet" id="TileSet_hqs86"]
+[sub_resource type="TileSet" id="TileSet_grnbr"]
 physics_layer_0/collision_layer = 4
 physics_layer_0/collision_mask = 3
-physics_layer_0/physics_material = SubResource("PhysicsMaterial_c47k8")
-sources/0 = SubResource("TileSetAtlasSource_mxbjq")
-sources/1 = SubResource("TileSetAtlasSource_odx4j")
+physics_layer_0/physics_material = SubResource("PhysicsMaterial_x5li7")
+sources/2 = SubResource("TileSetAtlasSource_hmabq")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qx4ic"]
+size = Vector2(192, 29360)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g7c4s"]
+size = Vector2(192, 29360)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ugpm4"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_tii31"]
+
+[sub_resource type="Animation" id="Animation_nnjx3"]
+resource_name = "HereYouAre"
+length = 8.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../RealityDissector/RealityDessection/NoiseAnimation:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 2,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FallSound:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("LightTurnOnSound:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(7),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("..")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(8),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_d840e"]
+_data = {
+"HereYouAre": SubResource("Animation_nnjx3")
+}
 
 [node name="Level10" type="Node2D"]
 script = ExtResource("1_4x67j")
 
-[node name="ByNoMeansArtificalBoundaries" type="Area2D" parent="."]
+[node name="RealityDissector" type="Node" parent="."]
+script = ExtResource("2_x0f02")
+
+[node name="ByNoMeansArtificalBoundaries" type="Area2D" parent="RealityDissector"]
 collision_layer = 0
 collision_mask = 8
 script = ExtResource("9_0qtsu")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ByNoMeansArtificalBoundaries"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RealityDissector/ByNoMeansArtificalBoundaries"]
 position = Vector2(-96, -1)
 shape = SubResource("RectangleShape2D_mapyl")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="ByNoMeansArtificalBoundaries"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="RealityDissector/ByNoMeansArtificalBoundaries"]
 position = Vector2(3744, -1)
 shape = SubResource("RectangleShape2D_mapyl")
 
-[node name="CameraLimitsSetTrigger" parent="." instance=ExtResource("10_4e1pi")]
-position = Vector2(1920, 520)
+[node name="AnimationPlayer" type="AnimationPlayer" parent="RealityDissector/ByNoMeansArtificalBoundaries"]
+libraries = {
+"": SubResource("AnimationLibrary_np0vx")
+}
+
+[node name="CameraLimitsSetTrigger" parent="RealityDissector" instance=ExtResource("10_4e1pi")]
+position = Vector2(1824, 520)
 metadata/_edit_group_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraLimitsSetTrigger"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RealityDissector/CameraLimitsSetTrigger"]
 shape = SubResource("RectangleShape2D_i2jhq")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="RealityDissector"]
+
+[node name="WhiteNoiseGlitch" type="AnimatedSprite2D" parent="RealityDissector/CanvasLayer"]
+visible = false
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_btcnq")
+autoplay = "default"
+speed_scale = 2.0
+centered = false
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="RealityDissector/CanvasLayer/WhiteNoiseGlitch"]
+stream = ExtResource("9_7mala")
+
+[node name="Dark" type="ColorRect" parent="RealityDissector/CanvasLayer"]
+modulate = Color(1, 1, 1, 0)
+offset_right = 1280.0
+offset_bottom = 720.0
+color = Color(0, 0, 0, 1)
+
+[node name="RealityDessection" type="CanvasLayer" parent="RealityDissector"]
+layer = -1
+
+[node name="NoiseAnimation" type="AnimatedSprite2D" parent="RealityDissector/RealityDessection"]
+visible = false
+modulate = Color(1, 1, 1, 0)
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_ecgsp")
+frame_progress = 0.485429
+speed_scale = 2.0
+centered = false
+
+[node name="StaticNoiseTileMap" type="TileMap" parent="RealityDissector"]
+clip_children = 1
+z_index = -1
+material = SubResource("ShaderMaterial_ebifj")
+scale = Vector2(4, 4)
+tile_set = SubResource("TileSet_jsk1l")
+format = 2
+layer_0/tile_data = PackedInt32Array(655380, 131072, 0, 655379, 131072, 0, 655378, 131072, 0, 655377, 131072, 0, 655376, 131072, 0, 655375, 131072, 0, 655374, 131072, 0, 655373, 131072, 0, 655366, 131072, 0, 655365, 131072, 0, 655364, 131072, 0, 655363, 131072, 0, 655362, 131072, 0, 655361, 131072, 0, 655360, 131072, 0, 720895, 131072, 0, 786431, 0, 0, 720896, 0, 0, 720897, 0, 0, 720898, 0, 0, 720899, 0, 0, 720900, 0, 0, 720901, 0, 0, 720902, 0, 0, 720903, 0, 0, 720904, 0, 0, 720905, 0, 0, 720906, 0, 0, 720907, 0, 0, 720908, 0, 0, 720909, 0, 0, 720910, 0, 0, 720911, 0, 0, 720912, 0, 0, 720913, 0, 0, 720914, 0, 0, 720915, 0, 0, 720916, 0, 0, 655372, 131072, 0, 655371, 131072, 0, 655370, 131072, 0, 655369, 131072, 0, 655368, 131072, 0, 655367, 131072, 0, 720917, 0, 0, 720918, 0, 0, 720919, 0, 0, 786430, 0, 0, 786429, 0, 0, 851967, 0, 0, 786452, 0, 0, 786451, 0, 0, 786450, 0, 0, 786449, 0, 0, 786448, 0, 0, 786447, 0, 0, 786446, 0, 0, 786445, 0, 0, 786444, 0, 0, 786443, 0, 0, 786442, 0, 0, 786441, 0, 0, 786440, 0, 0, 786439, 0, 0, 786438, 0, 0, 786437, 0, 0, 786436, 0, 0, 786435, 0, 0, 786434, 0, 0, 786433, 0, 0, 786432, 0, 0, 655381, 131072, 0, 786456, 0, 0, 786453, 0, 0, 786454, 0, 0, 786455, 0, 0, 851966, 0, 0, 851965, 0, 0, 720920, 0, 0, 655383, 131072, 0, 655382, 131072, 0, 655399, 131072, 0, 655384, 131072, 0, 655385, 131072, 0, 655386, 131072, 0, 655387, 131072, 0, 655391, 131072, 0, 655392, 131072, 0, 655393, 131072, 0, 655394, 131072, 0, 655395, 131072, 0, 655396, 131072, 0, 655397, 131072, 0, 655398, 131072, 0, 720921, 0, 0, 720922, 0, 0, 720923, 0, 0, 720924, 0, 0, 720925, 0, 0, 720926, 0, 0, 720927, 0, 0, 720928, 0, 0, 720929, 0, 0, 720930, 0, 0, 720931, 0, 0, 720932, 0, 0, 720933, 0, 0, 720934, 0, 0, 720935, 0, 0, 786457, 0, 0, 786458, 0, 0, 786459, 0, 0, 786460, 0, 0, 786461, 0, 0, 786462, 0, 0, 786463, 0, 0, 786464, 0, 0, 786465, 0, 0, 786466, 0, 0, 786467, 0, 0, 786468, 0, 0, 786469, 0, 0, 786470, 0, 0, 786471, 0, 0, 720936, 0, 0, 786472, 0, 0, 720937, 0, 0, 786473, 0, 0, 720938, 0, 0, 786474, 0, 0, 655400, 131072, 0, 720939, 0, 0, 786475, 0, 0, 655401, 131072, 0, 655402, 131072, 0, 655403, 131072, 0, 720893, 131072, 0, 720894, 131072, 0, 655388, 131072, 0, 655389, 131072, 0, 655390, 131072, 0, 720940, 0, 0, 786476, 0, 0, 655404, 131072, 0, 655405, 131072, 0, 655406, 131072, 0, 655407, 131072, 0, 655408, 131072, 0, 655409, 131072, 0, 655410, 131072, 0, 655411, 131072, 0, 655412, 131072, 0, 655413, 131072, 0, 655414, 131072, 0, 655415, 131072, 0, 655416, 131072, 0, 655417, 131072, 0, 655418, 131072, 0, 655419, 131072, 0, 720941, 0, 0, 786477, 0, 0, 720942, 0, 0, 786478, 0, 0, 720943, 0, 0, 786479, 0, 0, 720944, 0, 0, 786480, 0, 0, 720945, 0, 0, 786481, 0, 0, 720946, 0, 0, 786482, 0, 0, 720947, 0, 0, 786483, 0, 0, 720948, 0, 0, 786484, 0, 0, 720949, 0, 0, 786485, 0, 0, 720950, 0, 0, 786486, 0, 0, 720951, 0, 0, 786487, 0, 0, 720952, 0, 0, 786488, 0, 0, 720953, 0, 0, 786489, 0, 0, 720954, 0, 0, 786490, 0, 0, 720955, 0, 0, 786491, 0, 0, 720886, 131072, 0, 720887, 131072, 0, 720888, 131072, 0, 720889, 131072, 0, 720890, 131072, 0, 720891, 131072, 0, 720892, 131072, 0, 786422, 0, 0, 851958, 0, 0, 786423, 0, 0, 851959, 0, 0, 786424, 0, 0, 851960, 0, 0, 786425, 0, 0, 851961, 0, 0, 786426, 0, 0, 851962, 0, 0, 786427, 0, 0, 851963, 0, 0, 786428, 0, 0, 851964, 0, 0, 720884, 131072, 0, 720885, 131072, 0, 786420, 0, 0, 851956, 0, 0, 786421, 0, 0, 851957, 0, 0, 720956, 0, 0, 786492, 0, 0, 720957, 0, 0, 786493, 0, 0, 655420, 131072, 0, 655421, 131072, 0, 655422, 131072, 0, 655423, 131072, 0, 655424, 131072, 0, 655425, 131072, 0, 655426, 131072, 0, 655427, 131072, 0, 655428, 131072, 0, 720958, 0, 0, 786494, 0, 0, 720959, 0, 0, 786495, 0, 0, 720960, 0, 0, 786496, 0, 0, 720961, 0, 0, 786497, 0, 0, 720962, 0, 0, 786498, 0, 0, 720963, 0, 0, 786499, 0, 0, 720964, 0, 0, 786500, 0, 0, 917492, 0, 0, 983028, 0, 0, 917493, 0, 0, 983029, 0, 0, 917494, 0, 0, 983030, 0, 0, 917495, 0, 0, 983031, 0, 0, 917496, 0, 0, 983032, 0, 0, 917497, 0, 0, 983033, 0, 0, 917498, 0, 0, 983034, 0, 0, 917499, 0, 0, 983035, 0, 0, 917500, 0, 0, 983036, 0, 0, 917501, 0, 0, 983037, 0, 0, 917502, 0, 0, 983038, 0, 0, 917503, 0, 0, 983039, 0, 0, 851968, 0, 0, 917504, 0, 0, 851969, 0, 0, 917505, 0, 0, 851970, 0, 0, 917506, 0, 0, 851971, 0, 0, 917507, 0, 0, 851972, 0, 0, 917508, 0, 0, 851973, 0, 0, 917509, 0, 0, 851974, 0, 0, 917510, 0, 0, 851975, 0, 0, 917511, 0, 0, 851976, 0, 0, 917512, 0, 0, 851977, 0, 0, 917513, 0, 0, 851978, 0, 0, 917514, 0, 0, 851979, 0, 0, 917515, 0, 0, 851980, 0, 0, 917516, 0, 0, 851981, 0, 0, 917517, 0, 0, 851982, 0, 0, 917518, 0, 0, 851983, 0, 0, 917519, 0, 0, 851984, 0, 0, 917520, 0, 0, 851985, 0, 0, 917521, 0, 0, 851986, 0, 0, 917522, 0, 0, 851987, 0, 0, 917523, 0, 0, 851988, 0, 0, 917524, 0, 0, 851989, 0, 0, 917525, 0, 0, 851990, 0, 0, 917526, 0, 0, 851991, 0, 0, 917527, 0, 0, 851992, 0, 0, 917528, 0, 0, 851993, 0, 0, 917529, 0, 0, 851994, 0, 0, 917530, 0, 0, 851995, 0, 0, 917531, 0, 0, 851996, 0, 0, 917532, 0, 0, 851997, 0, 0, 917533, 0, 0, 851998, 0, 0, 917534, 0, 0, 851999, 0, 0, 917535, 0, 0, 852000, 0, 0, 917536, 0, 0, 852001, 0, 0, 917537, 0, 0, 852002, 0, 0, 917538, 0, 0, 852003, 0, 0, 917539, 0, 0, 852004, 0, 0, 917540, 0, 0, 852005, 0, 0, 917541, 0, 0, 852006, 0, 0, 917542, 0, 0, 852007, 0, 0, 917543, 0, 0, 852008, 0, 0, 917544, 0, 0, 852009, 0, 0, 917545, 0, 0, 852010, 0, 0, 917546, 0, 0, 852011, 0, 0, 917547, 0, 0, 852012, 0, 0, 917548, 0, 0, 852013, 0, 0, 917549, 0, 0, 852014, 0, 0, 917550, 0, 0, 852015, 0, 0, 917551, 0, 0, 852016, 0, 0, 917552, 0, 0, 852017, 0, 0, 917553, 0, 0, 852018, 0, 0, 917554, 0, 0, 852019, 0, 0, 917555, 0, 0, 852020, 0, 0, 917556, 0, 0, 852021, 0, 0, 917557, 0, 0, 852022, 0, 0, 917558, 0, 0, 852023, 0, 0, 917559, 0, 0, 852024, 0, 0, 917560, 0, 0, 852025, 0, 0, 917561, 0, 0, 852026, 0, 0, 917562, 0, 0, 852027, 0, 0, 917563, 0, 0, 852028, 0, 0, 917564, 0, 0, 852029, 0, 0, 917565, 0, 0, 852030, 0, 0, 917566, 0, 0, 852031, 0, 0, 917567, 0, 0, 852032, 0, 0, 917568, 0, 0, 852033, 0, 0, 917569, 0, 0, 852034, 0, 0, 917570, 0, 0, 852035, 0, 0, 917571, 0, 0, 852036, 0, 0, 917572, 0, 0)
 
 [node name="Background" type="ParallaxBackground" parent="."]
 
@@ -257,46 +424,69 @@ position = Vector2(1000, 380)
 scale = Vector2(4, 4)
 texture = ExtResource("4_8lyp3")
 
-[node name="ColorRect" type="ColorRect" parent="Background"]
-offset_right = 1280.0
-offset_bottom = 720.0
-color = Color(0, 0.980392, 0.980392, 0.0784314)
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="WhiteNoise" type="AnimatedSprite2D" parent="CanvasLayer"]
-visible = false
-scale = Vector2(2.3125, 2.33333)
-sprite_frames = SubResource("SpriteFrames_ecgsp")
-autoplay = "default"
-frame = 3
-frame_progress = 1.0
-speed_scale = 2.0
-centered = false
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="CanvasLayer/WhiteNoise"]
-stream = ExtResource("9_7mala")
-
-[node name="DecorationMap" type="TileMap" parent="."]
-modulate = Color(0.501961, 0.501961, 0.501961, 1)
-scale = Vector2(4, 4)
-tile_set = SubResource("TileSet_g6ho5")
-format = 2
-
 [node name="TileMap" type="TileMap" parent="."]
+clip_children = 1
 scale = Vector2(4, 4)
-tile_set = SubResource("TileSet_hqs86")
+tile_set = SubResource("TileSet_grnbr")
 format = 2
-layer_0/tile_data = PackedInt32Array(655380, 131072, 0, 655379, 131072, 0, 655378, 131072, 0, 655377, 131072, 0, 655376, 131072, 0, 655375, 131072, 0, 655374, 131072, 0, 655373, 131072, 0, 655366, 131072, 0, 655365, 131072, 0, 655364, 131072, 0, 655363, 131072, 0, 655362, 131072, 0, 655361, 131072, 0, 655360, 131072, 0, 720895, 131072, 0, 786431, 0, 0, 720896, 0, 0, 720897, 0, 0, 720898, 0, 0, 720899, 0, 0, 720900, 0, 0, 720901, 0, 0, 720902, 0, 0, 720903, 0, 0, 720904, 0, 0, 720905, 0, 0, 720906, 0, 0, 720907, 0, 0, 720908, 0, 0, 720909, 0, 0, 720910, 0, 0, 720911, 0, 0, 720912, 0, 0, 720913, 0, 0, 720914, 0, 0, 720915, 0, 0, 720916, 0, 0, 655372, 131072, 0, 655371, 131072, 0, 655370, 131072, 0, 655369, 131072, 0, 655368, 131072, 0, 655367, 131072, 0, 720917, 0, 0, 720918, 0, 0, 720919, 0, 0, 786430, 0, 0, 786429, 0, 0, 851967, 0, 0, 786452, 0, 0, 786451, 0, 0, 786450, 0, 0, 786449, 0, 0, 786448, 0, 0, 786447, 0, 0, 786446, 0, 0, 786445, 0, 0, 786444, 0, 0, 786443, 0, 0, 786442, 0, 0, 786441, 0, 0, 786440, 0, 0, 786439, 0, 0, 786438, 0, 0, 786437, 0, 0, 786436, 0, 0, 786435, 0, 0, 786434, 0, 0, 786433, 0, 0, 786432, 0, 0, 655381, 131072, 0, 786456, 0, 0, 786453, 0, 0, 786454, 0, 0, 786455, 0, 0, 851966, 0, 0, 851965, 0, 0, 720920, 0, 0, 655383, 131072, 0, 655382, 131072, 0, 655399, 131072, 0, 655384, 131072, 0, 655385, 131072, 0, 655386, 131072, 0, 655387, 131072, 0, 655391, 131072, 0, 655392, 131072, 0, 655393, 131072, 0, 655394, 131072, 0, 655395, 131072, 0, 655396, 131072, 0, 655397, 131072, 0, 655398, 131072, 0, 720921, 0, 0, 720922, 0, 0, 720923, 0, 0, 720924, 0, 0, 720925, 0, 0, 720926, 0, 0, 720927, 0, 0, 720928, 0, 0, 720929, 0, 0, 720930, 0, 0, 720931, 0, 0, 720932, 0, 0, 720933, 0, 0, 720934, 0, 0, 720935, 0, 0, 786457, 0, 0, 786458, 0, 0, 786459, 0, 0, 786460, 0, 0, 786461, 0, 0, 786462, 0, 0, 786463, 0, 0, 786464, 0, 0, 786465, 0, 0, 786466, 0, 0, 786467, 0, 0, 786468, 0, 0, 786469, 0, 0, 786470, 0, 0, 786471, 0, 0, 720936, 0, 0, 786472, 0, 0, 720937, 0, 0, 786473, 0, 0, 720938, 0, 0, 786474, 0, 0, 655400, 131072, 0, 720939, 0, 0, 786475, 0, 0, 655401, 131072, 0, 655402, 131072, 0, 655403, 131072, 0, 720893, 131072, 0, 720894, 131072, 0, 655388, 131072, 0, 655389, 131072, 0, 655390, 131072, 0, 720940, 0, 0, 786476, 0, 0, 655404, 131072, 0, 655405, 131072, 0, 655406, 131072, 0, 655407, 131072, 0, 655408, 131072, 0, 655409, 131072, 0, 655410, 131072, 0, 655411, 131072, 0, 655412, 131072, 0, 655413, 131072, 0, 655414, 131072, 0, 655415, 131072, 0, 655416, 131072, 0, 655417, 131072, 0, 655418, 131072, 0, 655419, 131072, 0, 720941, 0, 0, 786477, 0, 0, 720942, 0, 0, 786478, 0, 0, 720943, 0, 0, 786479, 0, 0, 720944, 0, 0, 786480, 0, 0, 720945, 0, 0, 786481, 0, 0, 720946, 0, 0, 786482, 0, 0, 720947, 0, 0, 786483, 0, 0, 720948, 0, 0, 786484, 0, 0, 720949, 0, 0, 786485, 0, 0, 720950, 0, 0, 786486, 0, 0, 720951, 0, 0, 786487, 0, 0, 720952, 0, 0, 786488, 0, 0, 720953, 0, 0, 786489, 0, 0, 720954, 0, 0, 786490, 0, 0, 720955, 0, 0, 786491, 0, 0, 720886, 131072, 0, 720887, 131072, 0, 720888, 131072, 0, 720889, 131072, 0, 720890, 131072, 0, 720891, 131072, 0, 720892, 131072, 0, 786422, 0, 0, 851958, 0, 0, 786423, 0, 0, 851959, 0, 0, 786424, 0, 0, 851960, 0, 0, 786425, 0, 0, 851961, 0, 0, 786426, 0, 0, 851962, 0, 0, 786427, 0, 0, 851963, 0, 0, 786428, 0, 0, 851964, 0, 0, 720884, 131072, 0, 720885, 131072, 0, 786420, 0, 0, 851956, 0, 0, 786421, 0, 0, 851957, 0, 0, 720956, 0, 0, 786492, 0, 0, 720957, 0, 0, 786493, 0, 0, 655420, 131072, 0, 655421, 131072, 0, 655422, 131072, 0, 655423, 131072, 0, 655424, 131072, 0, 655425, 131072, 0, 655426, 131072, 0, 655427, 131072, 0, 655428, 131072, 0, 720958, 0, 0, 786494, 0, 0, 720959, 0, 0, 786495, 0, 0, 720960, 0, 0, 786496, 0, 0, 720961, 0, 0, 786497, 0, 0, 720962, 0, 0, 786498, 0, 0, 720963, 0, 0, 786499, 0, 0, 720964, 0, 0, 786500, 0, 0, 917492, 0, 0, 983028, 0, 0, 917493, 0, 0, 983029, 0, 0, 917494, 0, 0, 983030, 0, 0, 917495, 0, 0, 983031, 0, 0, 917496, 0, 0, 983032, 0, 0, 917497, 0, 0, 983033, 0, 0, 917498, 0, 0, 983034, 0, 0, 917499, 0, 0, 983035, 0, 0, 917500, 0, 0, 983036, 0, 0, 917501, 0, 0, 983037, 0, 0, 917502, 0, 0, 983038, 0, 0, 917503, 0, 0, 983039, 0, 0, 851968, 0, 0, 917504, 0, 0, 851969, 0, 0, 917505, 0, 0, 851970, 0, 0, 917506, 0, 0, 851971, 0, 0, 917507, 0, 0, 851972, 0, 0, 917508, 0, 0, 851973, 0, 0, 917509, 0, 0, 851974, 0, 0, 917510, 0, 0, 851975, 0, 0, 917511, 0, 0, 851976, 0, 0, 917512, 0, 0, 851977, 0, 0, 917513, 0, 0, 851978, 0, 0, 917514, 0, 0, 851979, 0, 0, 917515, 0, 0, 851980, 0, 0, 917516, 0, 0, 851981, 0, 0, 917517, 0, 0, 851982, 0, 0, 917518, 0, 0, 851983, 0, 0, 917519, 0, 0, 851984, 0, 0, 917520, 0, 0, 851985, 0, 0, 917521, 0, 0, 851986, 0, 0, 917522, 0, 0, 851987, 0, 0, 917523, 0, 0, 851988, 0, 0, 917524, 0, 0, 851989, 0, 0, 917525, 0, 0, 851990, 0, 0, 917526, 0, 0, 851991, 0, 0, 917527, 0, 0, 851992, 0, 0, 917528, 0, 0, 851993, 0, 0, 917529, 0, 0, 851994, 0, 0, 917530, 0, 0, 851995, 0, 0, 917531, 0, 0, 851996, 0, 0, 917532, 0, 0, 851997, 0, 0, 917533, 0, 0, 851998, 0, 0, 917534, 0, 0, 851999, 0, 0, 917535, 0, 0, 852000, 0, 0, 917536, 0, 0, 852001, 0, 0, 917537, 0, 0, 852002, 0, 0, 917538, 0, 0, 852003, 0, 0, 917539, 0, 0, 852004, 0, 0, 917540, 0, 0, 852005, 0, 0, 917541, 0, 0, 852006, 0, 0, 917542, 0, 0, 852007, 0, 0, 917543, 0, 0, 852008, 0, 0, 917544, 0, 0, 852009, 0, 0, 917545, 0, 0, 852010, 0, 0, 917546, 0, 0, 852011, 0, 0, 917547, 0, 0, 852012, 0, 0, 917548, 0, 0, 852013, 0, 0, 917549, 0, 0, 852014, 0, 0, 917550, 0, 0, 852015, 0, 0, 917551, 0, 0, 852016, 0, 0, 917552, 0, 0, 852017, 0, 0, 917553, 0, 0, 852018, 0, 0, 917554, 0, 0, 852019, 0, 0, 917555, 0, 0, 852020, 0, 0, 917556, 0, 0, 852021, 0, 0, 917557, 0, 0, 852022, 0, 0, 917558, 0, 0, 852023, 0, 0, 917559, 0, 0, 852024, 0, 0, 917560, 0, 0, 852025, 0, 0, 917561, 0, 0, 852026, 0, 0, 917562, 0, 0, 852027, 0, 0, 917563, 0, 0, 852028, 0, 0, 917564, 0, 0, 852029, 0, 0, 917565, 0, 0, 852030, 0, 0, 917566, 0, 0, 852031, 0, 0, 917567, 0, 0, 852032, 0, 0, 917568, 0, 0, 852033, 0, 0, 917569, 0, 0, 852034, 0, 0, 917570, 0, 0, 852035, 0, 0, 917571, 0, 0, 852036, 0, 0, 917572, 0, 0)
+layer_0/tile_data = PackedInt32Array(655380, 131074, 0, 655379, 131074, 0, 655378, 131074, 0, 655377, 131074, 0, 655376, 131074, 0, 655375, 131074, 0, 655374, 131074, 0, 655373, 131074, 0, 655366, 131074, 0, 655365, 131074, 0, 655364, 131074, 0, 655363, 131074, 0, 655362, 131074, 0, 655361, 131074, 0, 655360, 131074, 0, 720895, 131074, 0, 786431, 2, 0, 720896, 2, 0, 720897, 2, 0, 720898, 2, 0, 720899, 2, 0, 720900, 2, 0, 720901, 2, 0, 720902, 2, 0, 720903, 2, 0, 720904, 2, 0, 720905, 2, 0, 720906, 2, 0, 720907, 2, 0, 720908, 2, 0, 720909, 2, 0, 720910, 2, 0, 720911, 2, 0, 720912, 2, 0, 720913, 2, 0, 720914, 2, 0, 720915, 2, 0, 720916, 2, 0, 655372, 131074, 0, 655371, 131074, 0, 655370, 131074, 0, 655369, 131074, 0, 655368, 131074, 0, 655367, 131074, 0, 720917, 2, 0, 720918, 2, 0, 720919, 2, 0, 786430, 2, 0, 786429, 2, 0, 851967, 2, 0, 786452, 2, 0, 786451, 2, 0, 786450, 2, 0, 786449, 2, 0, 786448, 2, 0, 786447, 2, 0, 786446, 2, 0, 786445, 2, 0, 786444, 2, 0, 786443, 2, 0, 786442, 2, 0, 786441, 2, 0, 786440, 2, 0, 786439, 2, 0, 786438, 2, 0, 786437, 2, 0, 786436, 2, 0, 786435, 2, 0, 786434, 2, 0, 786433, 2, 0, 786432, 2, 0, 655381, 131074, 0, 786456, 2, 0, 786453, 2, 0, 786454, 2, 0, 786455, 2, 0, 851966, 2, 0, 851965, 2, 0, 720920, 2, 0, 655383, 131074, 0, 655382, 131074, 0, 655399, 131074, 0, 655384, 131074, 0, 655385, 131074, 0, 655386, 131074, 0, 655387, 131074, 0, 655391, 131074, 0, 655392, 131074, 0, 655393, 131074, 0, 655394, 131074, 0, 655395, 131074, 0, 655396, 131074, 0, 655397, 131074, 0, 655398, 131074, 0, 720921, 2, 0, 720922, 2, 0, 720923, 2, 0, 720924, 2, 0, 720925, 2, 0, 720926, 2, 0, 720927, 2, 0, 720928, 2, 0, 720929, 2, 0, 720930, 2, 0, 720931, 2, 0, 720932, 2, 0, 720933, 2, 0, 720934, 2, 0, 720935, 2, 0, 786457, 2, 0, 786458, 2, 0, 786459, 2, 0, 786460, 2, 0, 786461, 2, 0, 786462, 2, 0, 786463, 2, 0, 786464, 2, 0, 786465, 2, 0, 786466, 2, 0, 786467, 2, 0, 786468, 2, 0, 786469, 2, 0, 786470, 2, 0, 786471, 2, 0, 720936, 2, 0, 786472, 2, 0, 720937, 2, 0, 786473, 2, 0, 720938, 2, 0, 786474, 2, 0, 655400, 131074, 0, 720939, 2, 0, 786475, 2, 0, 655401, 131074, 0, 655402, 131074, 0, 655403, 131074, 0, 720893, 131074, 0, 720894, 131074, 0, 655388, 131074, 0, 655389, 131074, 0, 655390, 131074, 0, 720940, 2, 0, 786476, 2, 0, 655404, 131074, 0, 655405, 131074, 0, 655406, 131074, 0, 655407, 131074, 0, 655408, 131074, 0, 655409, 131074, 0, 655410, 131074, 0, 655411, 131074, 0, 655412, 131074, 0, 655413, 131074, 0, 655414, 131074, 0, 655415, 131074, 0, 655416, 131074, 0, 655417, 131074, 0, 655418, 131074, 0, 655419, 131074, 0, 720941, 2, 0, 786477, 2, 0, 720942, 2, 0, 786478, 2, 0, 720943, 2, 0, 786479, 2, 0, 720944, 2, 0, 786480, 2, 0, 720945, 2, 0, 786481, 2, 0, 720946, 2, 0, 786482, 2, 0, 720947, 2, 0, 786483, 2, 0, 720948, 2, 0, 786484, 2, 0, 720949, 2, 0, 786485, 2, 0, 720950, 2, 0, 786486, 2, 0, 720951, 2, 0, 786487, 2, 0, 720952, 2, 0, 786488, 2, 0, 720953, 2, 0, 786489, 2, 0, 720954, 2, 0, 786490, 2, 0, 720955, 2, 0, 786491, 2, 0, 720886, 131074, 0, 720887, 131074, 0, 720888, 131074, 0, 720889, 131074, 0, 720890, 131074, 0, 720891, 131074, 0, 720892, 131074, 0, 786422, 2, 0, 851958, 2, 0, 786423, 2, 0, 851959, 2, 0, 786424, 2, 0, 851960, 2, 0, 786425, 2, 0, 851961, 2, 0, 786426, 2, 0, 851962, 2, 0, 786427, 2, 0, 851963, 2, 0, 786428, 2, 0, 851964, 2, 0, 720884, 131074, 0, 720885, 131074, 0, 786420, 2, 0, 851956, 2, 0, 786421, 2, 0, 851957, 2, 0, 720956, 2, 0, 786492, 2, 0, 720957, 2, 0, 786493, 2, 0, 655420, 131074, 0, 655421, 131074, 0, 655422, 131074, 0, 655423, 131074, 0, 655424, 131074, 0, 655425, 131074, 0, 655426, 131074, 0, 655427, 131074, 0, 655428, 131074, 0, 720958, 2, 0, 786494, 2, 0, 720959, 2, 0, 786495, 2, 0, 720960, 2, 0, 786496, 2, 0, 720961, 2, 0, 786497, 2, 0, 720962, 2, 0, 786498, 2, 0, 720963, 2, 0, 786499, 2, 0, 720964, 2, 0, 786500, 2, 0, 917492, 2, 0, 983028, 2, 0, 917493, 2, 0, 983029, 2, 0, 917494, 2, 0, 983030, 2, 0, 917495, 2, 0, 983031, 2, 0, 917496, 2, 0, 983032, 2, 0, 917497, 2, 0, 983033, 2, 0, 917498, 2, 0, 983034, 2, 0, 917499, 2, 0, 983035, 2, 0, 917500, 2, 0, 983036, 2, 0, 917501, 2, 0, 983037, 2, 0, 917502, 2, 0, 983038, 2, 0, 917503, 2, 0, 983039, 2, 0, 851968, 2, 0, 917504, 2, 0, 851969, 2, 0, 917505, 2, 0, 851970, 2, 0, 917506, 2, 0, 851971, 2, 0, 917507, 2, 0, 851972, 2, 0, 917508, 2, 0, 851973, 2, 0, 917509, 2, 0, 851974, 2, 0, 917510, 2, 0, 851975, 2, 0, 917511, 2, 0, 851976, 2, 0, 917512, 2, 0, 851977, 2, 0, 917513, 2, 0, 851978, 2, 0, 917514, 2, 0, 851979, 2, 0, 917515, 2, 0, 851980, 2, 0, 917516, 2, 0, 851981, 2, 0, 917517, 2, 0, 851982, 2, 0, 917518, 2, 0, 851983, 2, 0, 917519, 2, 0, 851984, 2, 0, 917520, 2, 0, 851985, 2, 0, 917521, 2, 0, 851986, 2, 0, 917522, 2, 0, 851987, 2, 0, 917523, 2, 0, 851988, 2, 0, 917524, 2, 0, 851989, 2, 0, 917525, 2, 0, 851990, 2, 0, 917526, 2, 0, 851991, 2, 0, 917527, 2, 0, 851992, 2, 0, 917528, 2, 0, 851993, 2, 0, 917529, 2, 0, 851994, 2, 0, 917530, 2, 0, 851995, 2, 0, 917531, 2, 0, 851996, 2, 0, 917532, 2, 0, 851997, 2, 0, 917533, 2, 0, 851998, 2, 0, 917534, 2, 0, 851999, 2, 0, 917535, 2, 0, 852000, 2, 0, 917536, 2, 0, 852001, 2, 0, 917537, 2, 0, 852002, 2, 0, 917538, 2, 0, 852003, 2, 0, 917539, 2, 0, 852004, 2, 0, 917540, 2, 0, 852005, 2, 0, 917541, 2, 0, 852006, 2, 0, 917542, 2, 0, 852007, 2, 0, 917543, 2, 0, 852008, 2, 0, 917544, 2, 0, 852009, 2, 0, 917545, 2, 0, 852010, 2, 0, 917546, 2, 0, 852011, 2, 0, 917547, 2, 0, 852012, 2, 0, 917548, 2, 0, 852013, 2, 0, 917549, 2, 0, 852014, 2, 0, 917550, 2, 0, 852015, 2, 0, 917551, 2, 0, 852016, 2, 0, 917552, 2, 0, 852017, 2, 0, 917553, 2, 0, 852018, 2, 0, 917554, 2, 0, 852019, 2, 0, 917555, 2, 0, 852020, 2, 0, 917556, 2, 0, 852021, 2, 0, 917557, 2, 0, 852022, 2, 0, 917558, 2, 0, 852023, 2, 0, 917559, 2, 0, 852024, 2, 0, 917560, 2, 0, 852025, 2, 0, 917561, 2, 0, 852026, 2, 0, 917562, 2, 0, 852027, 2, 0, 917563, 2, 0, 852028, 2, 0, 917564, 2, 0, 852029, 2, 0, 917565, 2, 0, 852030, 2, 0, 917566, 2, 0, 852031, 2, 0, 917567, 2, 0, 852032, 2, 0, 917568, 2, 0, 852033, 2, 0, 917569, 2, 0, 852034, 2, 0, 917570, 2, 0, 852035, 2, 0, 917571, 2, 0, 852036, 2, 0, 917572, 2, 0)
 
 [node name="Player" parent="." instance=ExtResource("7_0a07g")]
-position = Vector2(1920, 520)
+position = Vector2(1824, 520)
 _gravity = 14.0
 
-[connection signal="ButtonPressed" from="ByNoMeansArtificalBoundaries" to="CanvasLayer/WhiteNoise" method="play"]
-[connection signal="ButtonPressed" from="ByNoMeansArtificalBoundaries" to="CanvasLayer/WhiteNoise/AudioStreamPlayer" method="play"]
-[connection signal="ButtonPressed" from="ByNoMeansArtificalBoundaries" to="Player" method="set_global_position" binds= [Vector2(1920, 520)]]
-[connection signal="ButtonPressed" from="ByNoMeansArtificalBoundaries" to="CanvasLayer/WhiteNoise" method="set_visible" binds= [true]]
-[connection signal="area_entered" from="ByNoMeansArtificalBoundaries" to="ByNoMeansArtificalBoundaries" method="AreaEntered" unbinds=1]
-[connection signal="ButtonPressed" from="CameraLimitsSetTrigger" to="Player" method="SetCameraLimits" binds= [Vector4(-100000, 100000, 100000, -100000)]]
-[connection signal="animation_finished" from="CanvasLayer/WhiteNoise" to="CanvasLayer/WhiteNoise" method="set_visible" binds= [false]]
+[node name="Boundaries" type="StaticBody2D" parent="."]
+position = Vector2(1824, 0)
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boundaries"]
+position = Vector2(-1920, 15320)
+shape = SubResource("RectangleShape2D_qx4ic")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Boundaries"]
+position = Vector2(1920, 15320)
+shape = SubResource("RectangleShape2D_g7c4s")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Boundaries"]
+position = Vector2(0, 30000)
+shape = SubResource("WorldBoundaryShape2D_ugpm4")
+
+[node name="ColorRect" type="ColorRect" parent="Boundaries/CollisionShape2D3"]
+offset_left = -4096.0
+offset_right = 4096.0
+offset_bottom = 512.0
+color = Color(0, 0, 0, 1)
+
+[node name="FloorTouchDetector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+script = ExtResource("9_0qtsu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FloorTouchDetector"]
+position = Vector2(1824, 29994)
+shape = SubResource("WorldBoundaryShape2D_tii31")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="FloorTouchDetector"]
+libraries = {
+"": SubResource("AnimationLibrary_d840e")
+}
+
+[node name="FallSound" type="AudioStreamPlayer" parent="FloorTouchDetector"]
+stream = ExtResource("14_t7klq")
+volume_db = 10.0
+
+[node name="LightTurnOnSound" type="AudioStreamPlayer" parent="FloorTouchDetector"]
+stream = ExtResource("15_ncnwv")
+volume_db = 8.0
+
+[connection signal="ButtonPressed" from="RealityDissector/ByNoMeansArtificalBoundaries" to="RealityDissector/CanvasLayer/WhiteNoiseGlitch" method="play"]
+[connection signal="ButtonPressed" from="RealityDissector/ByNoMeansArtificalBoundaries" to="RealityDissector/CanvasLayer/WhiteNoiseGlitch/AudioStreamPlayer" method="play"]
+[connection signal="ButtonPressed" from="RealityDissector/ByNoMeansArtificalBoundaries" to="RealityDissector/ByNoMeansArtificalBoundaries/AnimationPlayer" method="play" flags=6 binds= ["RealityTumor"]]
+[connection signal="ButtonPressed" from="RealityDissector/ByNoMeansArtificalBoundaries" to="RealityDissector/CanvasLayer/WhiteNoiseGlitch" method="set_visible" binds= [true]]
+[connection signal="ButtonPressed" from="RealityDissector/ByNoMeansArtificalBoundaries" to="Player" method="set_global_position" binds= [Vector2(1920, 520)]]
+[connection signal="area_entered" from="RealityDissector/ByNoMeansArtificalBoundaries" to="RealityDissector/ByNoMeansArtificalBoundaries" method="AreaEntered" unbinds=1]
+[connection signal="ButtonPressed" from="RealityDissector/CameraLimitsSetTrigger" to="Player" method="SetCameraLimits" binds= [Vector4(-100000, 100000, 100000, -100000)]]
+[connection signal="animation_finished" from="RealityDissector/CanvasLayer/WhiteNoiseGlitch" to="RealityDissector/CanvasLayer/WhiteNoiseGlitch" method="set_visible" binds= [false]]
+[connection signal="ButtonPressed" from="FloorTouchDetector" to="FloorTouchDetector/AnimationPlayer" method="play" flags=6 binds= ["HereYouAre"]]
+[connection signal="area_entered" from="FloorTouchDetector" to="FloorTouchDetector" method="AreaEntered" unbinds=1]

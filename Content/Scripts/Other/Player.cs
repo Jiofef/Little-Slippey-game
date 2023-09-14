@@ -261,4 +261,9 @@ public partial class Player : CharacterBody2D
         G.CameraLimits = value;
         EmitSignal("CameraLimitsChanged");
     }
+
+    public void SetCameraPositionSmoothingSpeed (float value)
+    {
+        GetNode<Camera2D>("Camera2D").PositionSmoothingSpeed = value;
+    }
 }

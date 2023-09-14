@@ -1,6 +1,8 @@
+res://default_bus_layout.tres
 res://default_env.tres
-res://Content/Scenes/Interface&Menu/LevelsMenu.tscn
 res://Content/Scenes/Levels/FullParts/Level10.tscn
+res://Content/Other/StaticNoiseShader.gdshader
+res://Content/Scenes/Other/Player.tscn
 res://Content/Other/G.cs
 res://Content/Other/Meta.cs
 res://Content/Other/UnchangableMeta.cs
@@ -28,6 +30,7 @@ res://Content/Scripts/Interface&Menu/Titles.cs
 res://Content/Scripts/Interface&Menu/VideoSettings.cs
 res://Content/Scripts/Levels/BaseLevelScript.cs
 res://Content/Scripts/Levels/Foreground.cs
+res://Content/Scripts/Levels/Level10RealityDissector.cs
 res://Content/Scripts/Levels/Level4CircularSawScreechSound.cs
 res://Content/Scripts/Levels/Level4CircularSawScript.cs
 res://Content/Scripts/Levels/Level5Rain.cs
@@ -53,4 +56,3 @@ res://Content/Scripts/Other/MainScript.cs
 res://Content/Scripts/Other/Player.cs
 res://Content/Scripts/Other/PlayPart.cs
 res://Content/Scripts/Other/StartupScene.cs
-res://Content/Scenes/Levels/FullParts/Level5.tscn
