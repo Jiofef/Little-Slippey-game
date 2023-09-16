@@ -165,6 +165,7 @@ public partial class BaseLevelScript : Node2D
             }
         }
     }
+
     public void Reset()
     {
         G.IsProgressPaused = false;
@@ -172,5 +173,10 @@ public partial class BaseLevelScript : Node2D
         UnchangableMeta.SaveRecords();
         EmitSignal("LevelReload");
         QueueFree();
+    }
+
+    public void SetCrossEnabled(bool value)
+    {
+        G.IsCrossesEnabled = value;
     }
 }
