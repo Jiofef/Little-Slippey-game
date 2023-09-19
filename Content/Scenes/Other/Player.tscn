@@ -331,7 +331,7 @@ autoplay = "Idle"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(1, 0)
-zoom = Vector2(1.5, 1.5)
+zoom = Vector2(1.25, 1.25)
 limit_smoothed = true
 position_smoothing_enabled = true
 editor_draw_limits = true

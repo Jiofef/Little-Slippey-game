@@ -285,45 +285,48 @@ script = ExtResource("1_5ed8v")
 [node name="Background" type="ParallaxBackground" parent="."]
 
 [node name="Sky" type="ParallaxLayer" parent="Background"]
-position = Vector2(426, 239)
-scale = Vector2(2.75, 2.75)
 motion_scale = Vector2(0, 0.1)
 
 [node name="Sprite2D" type="Sprite2D" parent="Background/Sky"]
+scale = Vector2(4, 4)
 texture = ExtResource("2_mo542")
+centered = false
 
 [node name="Clouds" type="ParallaxLayer" parent="Background"]
-position = Vector2(576, 316)
-scale = Vector2(4, 4)
 motion_scale = Vector2(0.075, 0.3)
 
 [node name="Sprite2D" type="Sprite2D" parent="Background/Clouds"]
+scale = Vector2(4, 4)
 texture = ExtResource("3_se3bt")
+centered = false
 
 [node name="FieldBackLayer" type="ParallaxLayer" parent="Background"]
 modulate = Color(0.960784, 0.960784, 0.960784, 1)
-position = Vector2(576, 300)
-scale = Vector2(4, 4)
 motion_scale = Vector2(0.2, 0.4)
 
 [node name="Sprite2D" type="Sprite2D" parent="Background/FieldBackLayer"]
+position = Vector2(0, -180)
+scale = Vector2(4.25, 4.25)
 texture = ExtResource("4_nj8ud")
+centered = false
 
 [node name="FieldMiddleLayer" type="ParallaxLayer" parent="Background"]
-position = Vector2(736, 240)
-scale = Vector2(5, 5)
 motion_scale = Vector2(0.3, 0.5)
 
 [node name="Sprite2D" type="Sprite2D" parent="Background/FieldMiddleLayer"]
+position = Vector2(0, -256)
+scale = Vector2(4.6, 4.6)
 texture = ExtResource("5_kkplr")
+centered = false
 
 [node name="FieldFrontLayer" type="ParallaxLayer" parent="Background"]
-position = Vector2(850, 120)
-scale = Vector2(6, 6)
 motion_scale = Vector2(0.5, 0.6)
 
 [node name="Sprite2D" type="Sprite2D" parent="Background/FieldFrontLayer"]
+position = Vector2(0, -480)
+scale = Vector2(5.6, 5.6)
 texture = ExtResource("6_cvfb3")
+centered = false
 
 [node name="Fog" type="ColorRect" parent="Background"]
 offset_right = 1280.0

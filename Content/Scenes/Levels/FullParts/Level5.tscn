@@ -165,17 +165,17 @@ script = ExtResource("1_7epq6")
 motion_scale = Vector2(0.4, 0.4)
 
 [node name="Sprite2D" type="Sprite2D" parent="Background/Sky"]
-position = Vector2(1200, 250)
 scale = Vector2(4, 4)
 texture = ExtResource("2_vgvpy")
+centered = false
 
 [node name="HomeSweetHome" type="ParallaxLayer" parent="Background"]
 motion_scale = Vector2(0.9, 0.9)
 
 [node name="Sprite2D" type="Sprite2D" parent="Background/HomeSweetHome"]
-position = Vector2(1200, 320)
 scale = Vector2(4, 4)
 texture = ExtResource("3_7wxdf")
+centered = false
 
 [node name="Fog" type="ColorRect" parent="Background"]
 offset_left = -192.0

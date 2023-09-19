@@ -94,18 +94,18 @@ color_ramp = SubResource("4")
 
 [node name="Ball" type="Node2D" parent="PathFollow2D/Cannon"]
 visible = false
-position = Vector2(-3, 5.75)
+position = Vector2(-5, 3)
 
 [node name="Ball" type="Sprite2D" parent="PathFollow2D/Cannon/Ball"]
-position = Vector2(-3, -3)
 texture = ExtResource("6")
 
 [node name="Hitbox" type="Area2D" parent="PathFollow2D/Cannon/Ball"]
-position = Vector2(-3, -3)
-rotation = -2.98694
 collision_layer = 16
 collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PathFollow2D/Cannon/Ball/Hitbox"]
 shape = SubResource("3")
 disabled = true
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(-37, -12)

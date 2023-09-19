@@ -8,8 +8,6 @@ public partial class Level4CircularSawScreechSound : AudioStreamPlayer
 	{
 		for (int i = 0; i < _soundsQueue.Length; i++)
 			_soundsQueue[i] = ResourceLoader.Load<AudioStream>("res://Content/Sounds/Levels/Level4CircularSawScreech" + (i + 1) + ".wav");
-
-		PlayReccurentSound();
 	}
 
 	public void PlayReccurentSound()

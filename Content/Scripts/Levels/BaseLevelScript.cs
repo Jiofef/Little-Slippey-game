@@ -88,7 +88,7 @@ public partial class BaseLevelScript : Node2D
                 {
                     if (_crossWeight[_lastAviableCrossNumber] + _weightMultiplierExtenderToCurrentCross < G.DefaultCrossWeight[_lastAviableCrossNumber])
                     {
-                        _crossWeight[_lastAviableCrossNumber] += _weightMultiplierExtenderToCurrentCross;
+                        _crossWeight[_lastAviableCrossNumber] += _weightMultiplierExtenderToCurrentCross * 100;
                         _weightMultiplierExtenderToCurrentCross = 0;
                     }
                     else
@@ -146,8 +146,8 @@ public partial class BaseLevelScript : Node2D
                     case "CannonCross":
                         if (G.CurrentLevel == 8)
                         {
-                            Cross.Rotation = _random.Next(100) <= 50 ? 90 : -90;
-                            Cross.Position = new Vector2(Cross.Position.X + 1280, Cross.Rotation == 90 ? -25 : 760);
+                            Cross.RotationDegrees = _random.Next(100) <= 50 ? 90 : -90;
+                            Cross.Position = new Vector2(Cross.Position.X + 1280, Cross.RotationDegrees == 90 ? -25 : 760);
                             break;
                         }
 
