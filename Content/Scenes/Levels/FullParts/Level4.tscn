@@ -251,6 +251,10 @@ self_modulate = Color(0.784314, 0.784314, 0.784314, 1)
 position = Vector2(1.25, 0)
 texture = ExtResource("9_58fc4")
 
+[node name="Player" parent="." instance=ExtResource("6_158dd")]
+modulate = Color(0.956863, 0.956863, 0.956863, 1)
+position = Vector2(1312, 672)
+
 [node name="TileMap" type="TileMap" parent="."]
 modulate = Color(0.952941, 0.952941, 0.952941, 1)
 scale = Vector2(4, 4)
@@ -264,11 +268,6 @@ scale = Vector2(4, 4)
 tile_set = SubResource("TileSet_2keek")
 format = 2
 layer_0/tile_data = PackedInt32Array(262161, 65536, 1, 196625, 65536, 1, 131089, 65536, 1, 65553, 65536, 1, 17, 65536, 1, 23, 65536, 1, 65559, 65536, 1, 131095, 65536, 1, 196631, 65536, 1, 262167, 65536, 1, 131085, 65536, 1, 196621, 65536, 1, 262157, 65536, 1, 327693, 65536, 1, 393229, 65536, 1, 13, 65536, 1, 393243, 65536, 1, 327707, 65536, 1, 262171, 65536, 1, 196635, 65536, 1, 131099, 65536, 1, 27, 65536, 1, 458775, 65536, 1, 393239, 65536, 1, 458769, 65536, 1, 393233, 65536, 1, 720913, 65536, 1, 786449, 65536, 1, 851985, 65536, 1, 917521, 65536, 1, 983057, 65536, 1, 983063, 65536, 1, 917527, 65536, 1, 851991, 65536, 1, 786455, 65536, 1, 720919, 65536, 1, 917524, 65536, 1, 983060, 65536, 1, 1048596, 65536, 1, 720916, 65536, 1, 655380, 65536, 1, 589844, 65536, 1, 524308, 65536, 1, 458772, 65536, 1, 393236, 65536, 1, 327700, 65536, 1, 262164, 65536, 1, 196628, 65536, 1, 131092, 65536, 1, 65556, 65536, 1, 20, 65536, 1, 983067, 65536, 1, 1048603, 65536, 1, 1114139, 65536, 1, 1179668, 65536, 1, 1245204, 65536, 1, 1048592, 65536, 1, 1114128, 65536, 1, 1179664, 65536, 1, 1245200, 65536, 1, 1048600, 65536, 1, 1114136, 65536, 1, 1179672, 65536, 1, 1245208, 65536, 1, 983053, 65536, 1, 1048589, 65536, 1, 1114125, 65536, 1)
-
-[node name="Player" parent="." instance=ExtResource("6_158dd")]
-modulate = Color(0.956863, 0.956863, 0.956863, 1)
-z_index = 1
-position = Vector2(1312, 672)
 
 [connection signal="timeout" from="BackCircularSaw/Saw/MiddleCircularSaw/SpinCicleTimer" to="BackCircularSaw/Saw/MiddleCircularSaw/ScreechSound" method="PlayReccurentSound"]
 [connection signal="timeout" from="BackCircularSaw/Saw/MiddleCircularSaw/SpinCicleTimer" to="BackCircularSaw/Saw/MiddleCircularSaw/MetalSparks" method="set_emitting" binds= [true]]

@@ -51,8 +51,8 @@ public partial class Player : CharacterBody2D
             if (G.PlayerCorpseFlightTimer != 4.5f)
             {
                 G.PlayerCorpseFlightTimer = G.PlayerCorpseFlightTimer < 4.5f ? G.PlayerCorpseFlightTimer + 0.016667f : 4.5f;
-                Position = new Vector2(Position.X + _corpseMotion.X * G.ReversedPlayerCorpseFlightTimerCoeff, Position.Y + _corpseMotion.Y * G.ReversedPlayerCorpseFlightTimerCoeff);
-                Rotation += _corpseMotion.X / 50 * G.ReversedPlayerCorpseFlightTimerCoeff;
+                Position = new Vector2(Position.X + _corpseMotion.X * G.GetReversedPlayerCorpseFlightTimerCoeff(), Position.Y + _corpseMotion.Y * G.GetReversedPlayerCorpseFlightTimerCoeff());
+                Rotation += _corpseMotion.X / 50 * G.GetReversedPlayerCorpseFlightTimerCoeff();
                 _corpseMotion.Y += _gravity / 200;
             }
             else
@@ -224,6 +224,7 @@ public partial class Player : CharacterBody2D
 
     public void Death()
     {
+        ZIndex++;
         Random random = new Random();
         _corpseMotion.X = random.Next(100) > 50 ? -5 * (GlobalPosition.X / G.LevelXYSizes[G.CurrentLevel].X) : 5 * (1 - GlobalPosition.X / G.LevelXYSizes[G.CurrentLevel].X);
         if (G.CurrentLevel == 8 || GlobalPosition > G.LevelXYSizes[G.CurrentLevel] || GlobalPosition < Vector2.Zero)
@@ -256,10 +257,10 @@ public partial class Player : CharacterBody2D
         _wallDetectNumber = 0;
     }
 
-    public void SetCameraLimits(Vector4 value)
+    public void SetCameraLimits(Vector4 value, bool DoResetSmoothing = false)
     {
         G.CameraLimits = value;
-        EmitSignal("CameraLimitsChanged");
+        EmitSignal("CameraLimitsChanged", DoResetSmoothing, 0, 0, 0, 0);
     }
 
     public void SetCameraPositionSmoothingSpeed (float value)

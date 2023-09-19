@@ -7,13 +7,15 @@ public partial class Level10RealityDissector : Node
 	public override void _Ready()
 	{
 		G.CrossSpawnMultiplier = 0.25f;
+		G.IsProgressPaused = true;
 		_player = GetNode<CharacterBody2D>("../Player");
     }
 
 
 	public override void _PhysicsProcess(double delta)
 	{
-		if (G.Scores > 10)
+        G.Scores += 0.016667f;
+        if (G.Scores > 10)
 			G.Scores = 1;
 	}
 }

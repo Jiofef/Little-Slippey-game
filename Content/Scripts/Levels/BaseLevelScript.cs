@@ -77,12 +77,9 @@ public partial class BaseLevelScript : Node2D
             _weightMultiplierExtenderToCurrentCross += (_floatDelta * G.DefaultCrossWeight[_lastAviableCrossNumber]) / 30;
         }
 
-        int IntScores = (int)G.Scores;
-        GetNode<Label>("Player/Camera2D/GUI/Scores").Text = IntScores.ToString();
-
         if (G.IsCrossesEnabled)
         {
-            int RandomRange = IntScores < 150 ? 20 - IntScores / 30 - Meta.Instance.Dificulty * 5 : 15 - Meta.Instance.Dificulty * 5;
+            int RandomRange = (int)G.Scores < 150 ? 20 - (int)G.Scores / 30 - Meta.Instance.Dificulty * 5 : 15 - Meta.Instance.Dificulty * 5;
             RandomRange -= (int)(RandomRange / 2 - G.PlayerMoveCoeff * RandomRange / 2);
             RandomRange = (int)(RandomRange / G.CrossSpawnMultiplier);
             if (_random.Next(RandomRange) == 0)
@@ -126,12 +123,12 @@ public partial class BaseLevelScript : Node2D
                 {
                     case "RestlessCross":
                         float XPos = _random.Next(
-                            _player.Position.X - 425 > 0 ? (int)_player.Position.X - 425 : 0,
-                            _player.Position.X + 425 < G.LevelXYSizes[G.CurrentLevel].X ? (int)_player.Position.X + 425 : (int)_player.Position.X + 425
+                            _player.Position.X - 425 > G.CameraLimits.W ? (int)_player.Position.X - 425 : 0,
+                            _player.Position.X + 425 < G.CameraLimits.Y ? (int)_player.Position.X + 425 : (int)_player.Position.X + 425
                             );
                         float YPos = _random.Next(
-                            _player.Position.Y - 240 > 0 ? (int)_player.Position.Y - 240 : 0,
-                            _player.Position.Y + 240 < G.LevelXYSizes[G.CurrentLevel].Y ? (int)_player.Position.Y + 240 : (int)_player.Position.Y + 240
+                            _player.Position.Y - 240 > G.CameraLimits.X ? (int)_player.Position.Y - 240 : 0,
+                            _player.Position.Y + 240 < G.CameraLimits.Z ? (int)_player.Position.Y + 240 : (int)_player.Position.Y + 240
                             );
                         Cross.Position = new Vector2(XPos, YPos);
                         break;

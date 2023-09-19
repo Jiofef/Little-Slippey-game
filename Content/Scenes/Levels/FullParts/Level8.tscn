@@ -19,6 +19,56 @@
 [ext_resource type="Texture2D" uid="uid://blju7km18lxu0" path="res://Content/Sprites/Levels/Level8/BackLayer.png" id="17_uj868"]
 [ext_resource type="Texture2D" uid="uid://dmrf7wrobrp34" path="res://Content/Sprites/Levels/Level8/FrontLayer.png" id="18_2jtiw"]
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4su74"]
+texture = ExtResource("4_rpou3")
+0:0/next_alternative_id = 2
+0:0/0 = 0
+0:0/1 = 1
+0:0/1/transpose = true
+1:0/next_alternative_id = 5
+1:0/0 = 0
+1:0/1 = 1
+1:0/1/transpose = true
+1:0/2 = 2
+1:0/2/flip_h = true
+1:0/3 = 3
+1:0/3/flip_v = true
+1:0/3/transpose = true
+2:0/next_alternative_id = 4
+2:0/0 = 0
+2:0/1 = 1
+2:0/1/flip_h = true
+2:0/2 = 2
+2:0/2/flip_h = true
+2:0/2/flip_v = true
+2:0/3 = 3
+2:0/3/flip_v = true
+3:0/next_alternative_id = 4
+3:0/0 = 0
+3:0/1 = 1
+3:0/1/transpose = true
+3:0/2 = 2
+3:0/2/flip_v = true
+3:0/3 = 3
+3:0/3/flip_h = true
+3:0/3/transpose = true
+0:1/0 = 0
+2:1/0 = 0
+1:1/0 = 0
+0:3/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+3:1/0 = 0
+0:4/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_sdcfh"]
+sources/0 = SubResource("TileSetAtlasSource_4su74")
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wv2uq"]
 texture = ExtResource("4_rpou3")
 0:0/next_alternative_id = 2
@@ -146,56 +196,6 @@ texture = ExtResource("4_rpou3")
 physics_layer_0/collision_layer = 4
 physics_layer_0/collision_mask = 0
 sources/1 = SubResource("TileSetAtlasSource_wv2uq")
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4su74"]
-texture = ExtResource("4_rpou3")
-0:0/next_alternative_id = 2
-0:0/0 = 0
-0:0/1 = 1
-0:0/1/transpose = true
-1:0/next_alternative_id = 5
-1:0/0 = 0
-1:0/1 = 1
-1:0/1/transpose = true
-1:0/2 = 2
-1:0/2/flip_h = true
-1:0/3 = 3
-1:0/3/flip_v = true
-1:0/3/transpose = true
-2:0/next_alternative_id = 4
-2:0/0 = 0
-2:0/1 = 1
-2:0/1/flip_h = true
-2:0/2 = 2
-2:0/2/flip_h = true
-2:0/2/flip_v = true
-2:0/3 = 3
-2:0/3/flip_v = true
-3:0/next_alternative_id = 4
-3:0/0 = 0
-3:0/1 = 1
-3:0/1/transpose = true
-3:0/2 = 2
-3:0/2/flip_v = true
-3:0/3 = 3
-3:0/3/flip_h = true
-3:0/3/transpose = true
-0:1/0 = 0
-2:1/0 = 0
-1:1/0 = 0
-0:3/0 = 0
-0:2/0 = 0
-1:2/0 = 0
-2:2/0 = 0
-3:2/0 = 0
-3:1/0 = 0
-0:4/0 = 0
-1:3/0 = 0
-2:3/0 = 0
-3:3/0 = 0
-
-[sub_resource type="TileSet" id="TileSet_sdcfh"]
-sources/0 = SubResource("TileSetAtlasSource_4su74")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_w5p32"]
 atlas = ExtResource("5_bdrxy")
@@ -502,6 +502,23 @@ script = ExtResource("1_t06hj")
 [node name="TileMapSpawner" type="Node2D" parent="."]
 script = ExtResource("8_e8osd")
 
+[node name="DecorationMap" type="TileMap" parent="."]
+modulate = Color(0.392157, 0.392157, 0.392157, 1)
+scale = Vector2(4, 4)
+tile_set = SubResource("TileSet_sdcfh")
+format = 2
+layer_0/tile_data = PackedInt32Array(131099, 65536, 2, 131100, 65536, 2, 131101, 65536, 2, 131102, 65536, 2, 196638, 65536, 2, 262174, 65536, 2, 327710, 65536, 2, 393246, 65536, 2, 393247, 65536, 2, 393248, 65536, 2, 393249, 65536, 2, 393250, 65536, 2, 327714, 65536, 2, 262178, 65536, 2, 262177, 65536, 2, 262176, 65536, 2, 196640, 65536, 2, 131104, 65536, 2, 65568, 65536, 2, 65569, 65536, 2, 65570, 65536, 2, 65571, 65536, 2)
+
+[node name="DecorationMap2" type="TileMap" parent="."]
+modulate = Color(0.588235, 0.588235, 0.588235, 1)
+scale = Vector2(4, 4)
+tile_set = SubResource("TileSet_sdcfh")
+format = 2
+layer_0/tile_data = PackedInt32Array(21, 0, 3, 65557, 65536, 2, 196629, 65536, 2, 262165, 65536, 2, 327701, 65536, 2, 393237, 0, 0, 458773, 65536, 2, 524309, 65536, 2, 589845, 65536, 2, 22, 65536, 2, 65558, 65536, 2, 131094, 65536, 2, 196630, 65536, 2, 262166, 131072, 2, 327702, 65536, 2, 393238, 0, 0, 458774, 65536, 2, 524310, 131072, 2, 589846, 65536, 2, 23, 65536, 2, 65559, 65536, 2, 131095, 65536, 2, 196631, 65536, 2, 262167, 65536, 2, 327703, 65536, 2, 24, 131072, 2, 65560, 65536, 2, 131096, 131072, 2, 196632, 65536, 2, 262168, 65536, 2, 327704, 65536, 2, 25, 65536, 2, 65561, 65536, 2, 196633, 65536, 2, 262169, 65536, 2, 327705, 65536, 2, 26, 0, 3, 65562, 65536, 2, 196634, 65536, 2, 327706, 131072, 2, 393241, 0, 0, 458777, 65536, 2, 524313, 65536, 2, 589849, 65536, 2, 393242, 0, 0, 458778, 65536, 2, 524314, 196608, 2, 589850, 65536, 2, 458775, 196608, 196608, 524311, 196608, 196608, 589847, 196608, 196608, 458776, 196608, 65536, 524312, 196608, 65536, 589848, 196608, 65536, 196628, 196608, 196608, 262164, 196608, 196608, 327700, 196608, 196608, 131098, 196608, 2, 262170, 65536, 2, 131093, 65536, 2, 131097, 65536, 2)
+
+[node name="Player" parent="." instance=ExtResource("1_qxhw6")]
+position = Vector2(832, 352)
+
 [node name="TileMap" type="TileMap" parent="."]
 scale = Vector2(4, 4)
 tile_set = SubResource("TileSet_gtmsj")
@@ -528,20 +545,6 @@ rotation = -1.0472
 tile_set = SubResource("TileSet_sdcfh")
 format = 2
 layer_0/tile_data = PackedInt32Array(917503, 65536, 3)
-
-[node name="DecorationMap" type="TileMap" parent="."]
-modulate = Color(0.392157, 0.392157, 0.392157, 1)
-scale = Vector2(4, 4)
-tile_set = SubResource("TileSet_sdcfh")
-format = 2
-layer_0/tile_data = PackedInt32Array(131099, 65536, 2, 131100, 65536, 2, 131101, 65536, 2, 131102, 65536, 2, 196638, 65536, 2, 262174, 65536, 2, 327710, 65536, 2, 393246, 65536, 2, 393247, 65536, 2, 393248, 65536, 2, 393249, 65536, 2, 393250, 65536, 2, 327714, 65536, 2, 262178, 65536, 2, 262177, 65536, 2, 262176, 65536, 2, 196640, 65536, 2, 131104, 65536, 2, 65568, 65536, 2, 65569, 65536, 2, 65570, 65536, 2, 65571, 65536, 2)
-
-[node name="DecorationMap2" type="TileMap" parent="."]
-modulate = Color(0.588235, 0.588235, 0.588235, 1)
-scale = Vector2(4, 4)
-tile_set = SubResource("TileSet_sdcfh")
-format = 2
-layer_0/tile_data = PackedInt32Array(21, 0, 3, 65557, 65536, 2, 196629, 65536, 2, 262165, 65536, 2, 327701, 65536, 2, 393237, 0, 0, 458773, 65536, 2, 524309, 65536, 2, 589845, 65536, 2, 22, 65536, 2, 65558, 65536, 2, 131094, 65536, 2, 196630, 65536, 2, 262166, 131072, 2, 327702, 65536, 2, 393238, 0, 0, 458774, 65536, 2, 524310, 131072, 2, 589846, 65536, 2, 23, 65536, 2, 65559, 65536, 2, 131095, 65536, 2, 196631, 65536, 2, 262167, 65536, 2, 327703, 65536, 2, 24, 131072, 2, 65560, 65536, 2, 131096, 131072, 2, 196632, 65536, 2, 262168, 65536, 2, 327704, 65536, 2, 25, 65536, 2, 65561, 65536, 2, 196633, 65536, 2, 262169, 65536, 2, 327705, 65536, 2, 26, 0, 3, 65562, 65536, 2, 196634, 65536, 2, 327706, 131072, 2, 393241, 0, 0, 458777, 65536, 2, 524313, 65536, 2, 589849, 65536, 2, 393242, 0, 0, 458778, 65536, 2, 524314, 196608, 2, 589850, 65536, 2, 458775, 196608, 196608, 524311, 196608, 196608, 589847, 196608, 196608, 458776, 196608, 65536, 524312, 196608, 65536, 589848, 196608, 65536, 196628, 196608, 196608, 262164, 196608, 196608, 327700, 196608, 196608, 131098, 196608, 2, 262170, 65536, 2, 131093, 65536, 2, 131097, 65536, 2)
 
 [node name="WallOfCompress" type="Node2D" parent="."]
 z_index = 2
@@ -680,9 +683,6 @@ frame_progress = 0.963169
 sprite_frames = SubResource("SpriteFrames_n5ec8")
 autoplay = "default"
 frame_progress = 0.359743
-
-[node name="Player" parent="." instance=ExtResource("1_qxhw6")]
-position = Vector2(832, 352)
 
 [node name="Background" type="ParallaxBackground" parent="."]
 
