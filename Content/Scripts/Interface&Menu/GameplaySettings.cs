@@ -7,7 +7,7 @@ public partial class GameplaySettings : Control
     {
         var dificultyChange = GetNode<OptionButton>("VBoxContainer/DificultyChange");
         dificultyChange.Selected = Meta.Instance.Dificulty;
-        if (G.Scores != 0)
+        if (G.CurrentLevel != 0)
             dificultyChange.Disabled = true;
     }
     public void DificultyChanged(int index)

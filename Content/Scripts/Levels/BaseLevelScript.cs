@@ -23,7 +23,7 @@ public partial class BaseLevelScript : Node2D
         GetNode<AudioStreamPlayer>("../../LevelMusicPlayer").StreamPaused = false;
         _player = GetNode<CharacterBody2D>("Player");
         for (int i = 0; i < _crosses.Length; i++)
-            _crosses[i] = ResourceLoader.Load<PackedScene>("res://Content/Scenes/Crosses/Cross" + (i + 1) + ".tscn");
+            _crosses[i] = ResourceLoader.Load<PackedScene>("res://Content/Scenes/Crosses/" + (G.CurrentLevel == 10 && G.LevelAdditionalLink == "True" || Meta.Instance.EnhancedCrossesAtAllLevels ? "Enhanced" : "") + "Cross" + (i + 1) + ".tscn");
         Connect("LevelReload", new Callable(GetNode(".."), "LevelLoad"));
         Input.MouseMode = !GetTree().Paused ? Input.MouseModeEnum.Hidden : Input.MouseModeEnum.Visible;
     }
@@ -88,7 +88,7 @@ public partial class BaseLevelScript : Node2D
                 {
                     if (_crossWeight[_lastAviableCrossNumber] + _weightMultiplierExtenderToCurrentCross < G.DefaultCrossWeight[_lastAviableCrossNumber])
                     {
-                        _crossWeight[_lastAviableCrossNumber] += _weightMultiplierExtenderToCurrentCross * 100;
+                        _crossWeight[_lastAviableCrossNumber] += _weightMultiplierExtenderToCurrentCross;
                         _weightMultiplierExtenderToCurrentCross = 0;
                     }
                     else
@@ -115,6 +115,7 @@ public partial class BaseLevelScript : Node2D
                     }
                     else RandomNumber -= G.DefaultCrossWeight[i];
                 }
+                SelectedCrossNumber = 1;
 
                 Node2D Cross = (Node2D)_crosses[SelectedCrossNumber].Instantiate();
                 float CrossGathering = _random.Next(100) < (1 - G.PlayerMoveCoeff) * 50 ? 3 - G.PlayerMoveCoeff * 2 : 1;

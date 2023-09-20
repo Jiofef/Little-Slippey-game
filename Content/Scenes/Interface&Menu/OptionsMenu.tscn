@@ -185,6 +185,18 @@ popup/item_0/id = 0
 popup/item_1/text = "Fullscreen"
 popup/item_1/id = 1
 
+[node name="ScoresShowingFormat" type="OptionButton" parent="CanvasLayer/Video/VBoxContainer"]
+layout_mode = 2
+expand_icon = true
+item_count = 3
+selected = 0
+popup/item_0/text = "Label at the top"
+popup/item_0/id = 0
+popup/item_1/text = "Label in the corner"
+popup/item_1/id = 1
+popup/item_2/text = "Hide"
+popup/item_2/id = 2
+
 [node name="Gameplay" type="Control" parent="CanvasLayer"]
 layout_mode = 3
 anchors_preset = 0
@@ -264,6 +276,7 @@ texture_normal = ExtResource("7_c4sdx")
 [connection signal="value_changed" from="CanvasLayer/Sound/VBoxContainer/CrossExplosionSlider" to="CanvasLayer/Sound" method="SoundChanging" binds= [6]]
 [connection signal="value_changed" from="CanvasLayer/Sound/VBoxContainer/LevelSoundsSlider" to="CanvasLayer/Sound" method="SoundChanging" binds= [7]]
 [connection signal="item_selected" from="CanvasLayer/Video/VBoxContainer/ScreenFormat" to="CanvasLayer/Video" method="ChangeScreenFormat"]
+[connection signal="item_selected" from="CanvasLayer/Video/VBoxContainer/ScoresShowingFormat" to="CanvasLayer/Video" method="ChangeScoresShowingFormat"]
 [connection signal="item_selected" from="CanvasLayer/Gameplay/VBoxContainer/DificultyChange" to="CanvasLayer/Gameplay" method="DificultyChanged"]
 [connection signal="pressed" from="CanvasLayer/ApplyCancel/Apply" to="CanvasLayer/ApplyCancel" method="Apply"]
 [connection signal="pressed" from="CanvasLayer/ApplyCancel/Cancel" to="CanvasLayer/ApplyCancel" method="Cancel"]

@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://b5csm7lkembqn"]
+
+[ext_resource type="Script" path="res://Content/Scripts/Crosses/ElementalCross.cs" id="1_yibfn"]
+[ext_resource type="Texture2D" uid="uid://bveu1semcpcd1" path="res://Content/Sprites/Crosses/ElementalCross.png" id="2_kepj1"]
+
+[node name="ElementalCross" type="Node2D"]
+z_index = 2
+scale = Vector2(3, 3)
+script = ExtResource("1_yibfn")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(7, 7)
+texture = ExtResource("2_kepj1")

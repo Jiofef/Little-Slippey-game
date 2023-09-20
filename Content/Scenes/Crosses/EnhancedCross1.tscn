@@ -1,61 +1,61 @@
-[gd_scene load_steps=21 format=3 uid="uid://ckv1q4rw8ybd3"]
+[gd_scene load_steps=21 format=3 uid="uid://dipe3yh17sylm"]
 
-[ext_resource type="Texture2D" uid="uid://53uh2aqy4q1p" path="res://Content/Sprites/Crosses/DefaultCross.png" id="1"]
-[ext_resource type="Texture2D" uid="uid://doeu7dyjmu0db" path="res://Content/Sprites/Crosses/DefaultCrossWarning.png" id="2"]
-[ext_resource type="Script" path="res://Content/Scripts/Crosses/DefaultCross.cs" id="3"]
-[ext_resource type="PackedScene" path="res://Content/Scenes/Crosses/CrossLayout.tscn" id="4"]
-[ext_resource type="PackedScene" uid="uid://bt41vubjcqv8p" path="res://Content/Scenes/Crosses/ExplosionAnimation.tscn" id="5"]
-[ext_resource type="Texture2D" uid="uid://bg2mvitb1ih7q" path="res://Content/Sprites/Other/Explosion.png" id="6_q8c7e"]
+[ext_resource type="PackedScene" path="res://Content/Scenes/Crosses/CrossLayout.tscn" id="1_ebjgs"]
+[ext_resource type="Script" path="res://Content/Scripts/Crosses/DefaultCross.cs" id="2_4gmpi"]
+[ext_resource type="Texture2D" uid="uid://53uh2aqy4q1p" path="res://Content/Sprites/Crosses/DefaultCross.png" id="3_3isei"]
+[ext_resource type="Texture2D" uid="uid://doeu7dyjmu0db" path="res://Content/Sprites/Crosses/DefaultCrossWarning.png" id="4_38eib"]
+[ext_resource type="PackedScene" uid="uid://bt41vubjcqv8p" path="res://Content/Scenes/Crosses/ExplosionAnimation.tscn" id="5_k0cg1"]
+[ext_resource type="Texture2D" uid="uid://bg2mvitb1ih7q" path="res://Content/Sprites/Other/Explosion.png" id="6_newgh"]
 
 [sub_resource type="CircleShape2D" id="1"]
-radius = 78.0
+radius = 75.0
 
 [sub_resource type="AtlasTexture" id="9"]
-atlas = ExtResource("6_q8c7e")
+atlas = ExtResource("6_newgh")
 region = Rect2(0, 0, 48, 48)
 
 [sub_resource type="AtlasTexture" id="10"]
-atlas = ExtResource("6_q8c7e")
+atlas = ExtResource("6_newgh")
 region = Rect2(49, 0, 48, 48)
 
 [sub_resource type="AtlasTexture" id="11"]
-atlas = ExtResource("6_q8c7e")
+atlas = ExtResource("6_newgh")
 region = Rect2(98, 0, 48, 48)
 
 [sub_resource type="AtlasTexture" id="12"]
-atlas = ExtResource("6_q8c7e")
+atlas = ExtResource("6_newgh")
 region = Rect2(0, 49, 48, 48)
 
 [sub_resource type="AtlasTexture" id="13"]
-atlas = ExtResource("6_q8c7e")
+atlas = ExtResource("6_newgh")
 region = Rect2(49, 49, 48, 48)
 
 [sub_resource type="AtlasTexture" id="14"]
-atlas = ExtResource("6_q8c7e")
+atlas = ExtResource("6_newgh")
 region = Rect2(98, 49, 48, 48)
 
 [sub_resource type="AtlasTexture" id="15"]
-atlas = ExtResource("6_q8c7e")
+atlas = ExtResource("6_newgh")
 region = Rect2(0, 98, 48, 48)
 
 [sub_resource type="AtlasTexture" id="16"]
-atlas = ExtResource("6_q8c7e")
+atlas = ExtResource("6_newgh")
 region = Rect2(49, 98, 48, 48)
 
 [sub_resource type="AtlasTexture" id="17"]
-atlas = ExtResource("6_q8c7e")
+atlas = ExtResource("6_newgh")
 region = Rect2(98, 98, 48, 48)
 
 [sub_resource type="AtlasTexture" id="18"]
-atlas = ExtResource("6_q8c7e")
+atlas = ExtResource("6_newgh")
 region = Rect2(0, 147, 48, 48)
 
 [sub_resource type="AtlasTexture" id="19"]
-atlas = ExtResource("6_q8c7e")
+atlas = ExtResource("6_newgh")
 region = Rect2(49, 147, 48, 48)
 
 [sub_resource type="AtlasTexture" id="20"]
-atlas = ExtResource("6_q8c7e")
+atlas = ExtResource("6_newgh")
 region = Rect2(98, 147, 48, 48)
 
 [sub_resource type="SpriteFrames" id="8"]
@@ -102,19 +102,19 @@ animations = [{
 "speed": 15.0
 }]
 
-[node name="DefaultCross" instance=ExtResource("4")]
+[node name="DefaultCross" instance=ExtResource("1_ebjgs")]
 z_index = 2
-script = ExtResource("3")
+script = ExtResource("2_4gmpi")
 
 [node name="CrossSprite" type="Sprite2D" parent="." index="0"]
 position = Vector2(-1.19209e-07, 0)
 scale = Vector2(10, 10)
-texture = ExtResource("1")
+texture = ExtResource("3_3isei")
 
 [node name="WarningSprite" type="Sprite2D" parent="." index="1"]
 position = Vector2(-2, -2)
 scale = Vector2(10, 10)
-texture = ExtResource("2")
+texture = ExtResource("4_38eib")
 
 [node name="ExplosiveArea" type="Area2D" parent="." index="2"]
 collision_layer = 16
@@ -131,7 +131,7 @@ bus = &"CrossSnap"
 [node name="ExplosionSound" parent="." index="4"]
 bus = &"CrossExplosion"
 
-[node name="ExplosionAnimation" parent="." index="5" instance=ExtResource("5")]
+[node name="ExplosionAnimation" parent="." index="5" instance=ExtResource("5_k0cg1")]
 sprite_frames = SubResource("8")
 
 [connection signal="animation_finished" from="ExplosionAnimation" to="." method="queue_free"]

@@ -3,16 +3,15 @@ using System;
 
 public partial class RestlessCross : Node2D
 {
-    [Signal] public delegate void AnimationStartedEventHandler();
-    [Signal] public delegate void WarningStartedEventHandler();
+    [Export] bool _isCrossEnhanced;
     private int _ticksToNextPhase = 40, _ticksToExplosion = 60;
-    private const string _link = "Path2D/PathFollow2D/FollowNode/";
-    private bool _doSignaled;
+    private bool _isSignaled;
+    private float _timerToExplosion;
     public override void _Ready()
     {
         Modulate = new Color(Modulate.R, Modulate.G, Modulate.B, 0);
         Random random = new Random();
-        Rotation = random.Next(-180, 180);
+        RotationDegrees = random.Next(-180, 180);
     }
 
     public override void _PhysicsProcess(double delta)
@@ -25,27 +24,38 @@ public partial class RestlessCross : Node2D
         }
         else if (_ticksToExplosion > 0)
         {
-            if (!_doSignaled)
+            if (!_isSignaled)
             {
-                _doSignaled = true;
-                EmitSignal("WarningStarted");
-                GetNode<AudioStreamPlayer>(_link + "StartSignal").Play();
+                _isSignaled = true;
+                GetNode<AudioStreamPlayer>("StartSignal").Play();
             }
+            if (_isCrossEnhanced)
+            {
+                float AngleToPlayer = GetAngleTo(GetNode<CharacterBody2D>("../Player").Position);
+                float RotationValue = AngleToPlayer / 10;
+                if (RotationValue > 0.025f)
+                    RotationValue = 0.025f;
+                else if (RotationValue < -0.025f)
+                    RotationValue = -0.025f;
+                Rotation += RotationValue;
+            }
+            Translate(new Vector2(10f * _timerToExplosion, 0).Rotated(Rotation));
+            _timerToExplosion += 0.016667f;
             _ticksToExplosion--;
         }
         else
         {
-            var explosionAnimation = GetNode<AnimatedSprite2D>(_link + "ExplosionAnimation");
-            var explosiveArea = GetNode<CollisionShape2D>(_link + "ExplosiveArea/CollisionShape2D");
+            var explosionAnimation = GetNode<AnimatedSprite2D>("ExplosionAnimation");
+            var explosiveArea = GetNode<CollisionShape2D>("ExplosiveArea/CollisionShape2D");
             if (explosionAnimation.IsPlaying())
             {
                 explosiveArea.Disabled = true;
                 SetPhysicsProcess(false);
                 return;
             }
-            GetNode<Sprite2D>(_link + "CrossSprite").QueueFree();
-            GetNode<Sprite2D>(_link + "WarningSprite").QueueFree();
-            GetNode<AudioStreamPlayer>(_link + "ExplosionSound").Play();
+            GetNode<Sprite2D>("CrossSprite").QueueFree();
+            GetNode<Sprite2D>("WarningSprite").QueueFree();
+            GetNode<AudioStreamPlayer>("ExplosionSound").Play();
             explosionAnimation.Visible = true;
             explosionAnimation.Play();
             explosiveArea.Disabled = false;

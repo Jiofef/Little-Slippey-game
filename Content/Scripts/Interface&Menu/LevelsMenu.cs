@@ -47,13 +47,22 @@ public partial class LevelsMenu : Control
 
     public void PlayLevel(int value, string additionalLevelLink = "", bool doOpenLevelPossibleStartOptions = false)
     {
-        if (value == 9 && UnchangableMeta.IsLevel9PlatformSectionSkipAllowed && doOpenLevelPossibleStartOptions)
+        void OpenStartOptions(string link)
         {
-            string link = "LevelsList/LevelsIconsContainer/SubContainer/Level9Button";
             GetNode<Control>(link + "/StartOption").Visible = true;
             GetNode<TextureButton>(link).Disabled = true;
             GetNode<TextureButton>(link + "/StartOption/Yes").Disabled = false;
             GetNode<TextureButton>(link + "/StartOption/No").Disabled = false;
+        }
+
+        if (value == 9 && UnchangableMeta.IsLevel9PlatformSectionSkipAllowed && doOpenLevelPossibleStartOptions)
+        {
+            OpenStartOptions("LevelsList/LevelsIconsContainer/SubContainer/Level9Button");
+            return;
+        }
+        else if (value == 10 && UnchangableMeta.IsFakeLevel10SkipAllowed && doOpenLevelPossibleStartOptions)
+        {
+            OpenStartOptions("LevelsList/LevelsIconsContainer/SubContainer/Level10Button");
             return;
         }
 

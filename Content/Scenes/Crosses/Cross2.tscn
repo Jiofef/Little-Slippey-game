@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://c0w7ccrl7jm2x"]
+[gd_scene load_steps=8 format=3 uid="uid://c0w7ccrl7jm2x"]
 
 [ext_resource type="Script" path="res://Content/Scripts/Crosses/RestlessCross.cs" id="1"]
 [ext_resource type="PackedScene" path="res://Content/Scenes/Crosses/CrossLayout.tscn" id="2"]
@@ -6,58 +6,43 @@
 [ext_resource type="AudioStream" uid="uid://dowfutjgchko" path="res://Content/Sounds/Crosses/RestlessCrossSignal.wav" id="4_os5p8"]
 [ext_resource type="Texture2D" uid="uid://but63grrrb71n" path="res://Content/Sprites/Crosses/RestlessCross.png" id="5"]
 [ext_resource type="Texture2D" uid="uid://bvdnbwuuaailw" path="res://Content/Sprites/Crosses/RestlessCrossWarning.png" id="6"]
-[ext_resource type="Script" path="res://Content/Scripts/Crosses/RestlessCrossPathFollow.cs" id="7"]
 
-[sub_resource type="Curve2D" id="1"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -311)
-}
-point_count = 2
+[sub_resource type="CircleShape2D" id="CircleShape2D_wtdjb"]
+radius = 75.0
 
-[sub_resource type="CircleShape2D" id="2"]
-radius = 77.0065
-
-[node name="RestlessCross" type="Node2D"]
-z_index = 2
-scale = Vector2(3, 3)
+[node name="RestlessCross" instance=ExtResource("2")]
 script = ExtResource("1")
 
-[node name="Path2D" type="Path2D" parent="."]
-curve = SubResource("1")
-script = ExtResource("7")
+[node name="ExplosionSignal" parent="." index="0"]
+bus = &"CrossSnap"
 
-[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
-rotates = false
-cubic_interp = false
-loop = false
+[node name="ExplosionSound" parent="." index="1"]
+bus = &"CrossExplosion"
 
-[node name="FollowNode" parent="Path2D/PathFollow2D" instance=ExtResource("2")]
-scale = Vector2(1, 1)
-
-[node name="StartSignal" type="AudioStreamPlayer" parent="Path2D/PathFollow2D/FollowNode"]
+[node name="StartSignal" type="AudioStreamPlayer" parent="." index="2"]
 stream = ExtResource("4_os5p8")
 volume_db = -3.0
 bus = &"CrossOther"
 
-[node name="CrossSprite" type="Sprite2D" parent="Path2D/PathFollow2D/FollowNode"]
+[node name="CrossSprite" type="Sprite2D" parent="." index="3"]
+rotation = 1.5708
 scale = Vector2(10, 10)
 texture = ExtResource("5")
 
-[node name="WarningSprite" type="Sprite2D" parent="Path2D/PathFollow2D/FollowNode"]
+[node name="WarningSprite" type="Sprite2D" parent="." index="4"]
 position = Vector2(-2, -2)
+rotation = 1.5708
 scale = Vector2(10, 10)
 texture = ExtResource("6")
 
-[node name="ExplosiveArea" type="Area2D" parent="Path2D/PathFollow2D/FollowNode"]
+[node name="ExplosiveArea" type="Area2D" parent="." index="5"]
 collision_layer = 16
 collision_mask = 8
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Path2D/PathFollow2D/FollowNode/ExplosiveArea"]
-shape = SubResource("2")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExplosiveArea" index="0"]
+shape = SubResource("CircleShape2D_wtdjb")
 disabled = true
 
-[node name="ExplosionAnimation" parent="Path2D/PathFollow2D/FollowNode" instance=ExtResource("3")]
+[node name="ExplosionAnimation" parent="." index="6" instance=ExtResource("3")]
 
-[connection signal="AnimationStarted" from="." to="Path2D" method="set_physics_process" binds= [false]]
-[connection signal="WarningStarted" from="." to="Path2D" method="set_physics_process" binds= [true]]
-[connection signal="animation_finished" from="Path2D/PathFollow2D/FollowNode/ExplosionAnimation" to="." method="queue_free"]
+[connection signal="animation_finished" from="ExplosionAnimation" to="." method="queue_free"]

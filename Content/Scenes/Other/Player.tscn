@@ -343,7 +343,6 @@ scale = Vector2(4, 4)
 transform = Transform2D(4, 0, 0, 4, 600, 0)
 
 [node name="Scores" type="Label" parent="Camera2D/GUI"]
-visible = false
 offset_left = -150.0
 offset_top = 5.0
 offset_right = 10.0

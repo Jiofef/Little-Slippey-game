@@ -1,3 +1,6 @@
+OptionButton
+Label
+CheckBox
 Sprite2D
 ParallaxLayer
 ColorRect
@@ -15,7 +18,6 @@ Node
 Control
 AnimatedSprite2D
 TextureButton
-Label
 Timer
 VideoStreamPlayer
 AnimatableBody2D
@@ -29,4 +31,3 @@ SubViewport
 AnimationTree
 MarginContainer
 BoxContainer
-HBoxContainer

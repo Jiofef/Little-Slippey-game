@@ -8,6 +8,7 @@ public partial class VideoSettings : Control
     {
         _screenFormat = GetNode<OptionButton>("VBoxContainer/ScreenFormat");
         Meta.Instance.IsFullScreen = DisplayServer.WindowGetMode() == DisplayServer.WindowMode.Fullscreen;
+        GetNode<OptionButton>("VBoxContainer/ScoresShowingFormat").Selected = Meta.Instance.ScoresShowingFormatIndex;
     }
     public override void _Process(double delta)
     {
@@ -17,5 +18,9 @@ public partial class VideoSettings : Control
     {
         Meta.Instance.IsFullScreen = Convert.ToBoolean(index);
         DisplayServer.WindowSetMode(index == 1 ? DisplayServer.WindowMode.Fullscreen : DisplayServer.WindowMode.Windowed);
+    }
+    public void ChangeScoresShowingFormat(int index)
+    {
+        Meta.Instance.ScoresShowingFormatIndex = index;
     }
 }

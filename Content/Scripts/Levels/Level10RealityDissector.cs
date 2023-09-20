@@ -3,7 +3,9 @@ using System;
 
 public partial class Level10RealityDissector : Node
 {
-	CharacterBody2D _player;
+    [Signal] public delegate void LevelResetEventHandler();
+
+    CharacterBody2D _player;
 	public override void _Ready()
 	{
 		G.CrossSpawnMultiplier = 0.25f;
@@ -18,4 +20,12 @@ public partial class Level10RealityDissector : Node
         if (G.Scores > 10)
 			G.Scores = 1;
 	}
+
+	public void ChangeLevelToTrueVersion()
+	{
+		if (!UnchangableMeta.IsFakeLevel10SkipAllowed)
+			UnchangableMeta.IsFakeLevel10SkipAllowed = true;
+		G.LevelAdditionalLink = "True";
+		EmitSignal("LevelReset");
+    }
 }
