@@ -16,7 +16,7 @@ public partial class UnchangableMeta : Node
     //correspondingly 2 at the average and 3 at the maximum difficulty.
     public static int[] LevelCompleteStatus = new int[G.LevelsInGameTotal];
 
-    public static bool IsFirstTimePlayed, IsLevel9PlatformSectionFirstTimeCompleted, IsLevel9PlatformSectionSkipAllowed, IsLevel10PreludeSkipAllowed;
+    public static bool IsFirstTimePlayed, IsLevel9PlatformSectionFirstTimeCompleted, IsLevel9PlatformSectionSkipAllowed, IsFakeLevel10SkipAllowed;
 
     public static void SaveRecords()
     {
@@ -39,7 +39,8 @@ public partial class UnchangableMeta : Node
             {"level_complete_status", LevelCompleteStatus},
             {"is_first_time_played", IsFirstTimePlayed},
             {"is_level9_platform_section_first_time_completed", IsLevel9PlatformSectionFirstTimeCompleted},
-            {"is_level9_platform_section_skip_is_allowed", IsLevel9PlatformSectionSkipAllowed}
+            {"is_level9_platform_section_skip_is_allowed", IsLevel9PlatformSectionSkipAllowed},
+            {"is_fake_level10_skip_allowed", IsFakeLevel10SkipAllowed},
         };
     }
     public static void SaveToFile()
@@ -82,6 +83,7 @@ public partial class UnchangableMeta : Node
             IsFirstTimePlayed = (bool)model["is_first_time_played"];
             IsLevel9PlatformSectionFirstTimeCompleted = (bool)model["is_level9_platform_section_first_time_completed"];
             IsLevel9PlatformSectionSkipAllowed = (bool)model["is_level9_platform_section_skip_is_allowed"];
+            IsFakeLevel10SkipAllowed = (bool)model["is_fake_level10_skip_allowed"];
 
             file.Close();
         }
