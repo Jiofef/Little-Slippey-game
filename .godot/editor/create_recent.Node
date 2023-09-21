@@ -1,12 +1,13 @@
+Sprite2D
+Node2D
+ColorRect
+ShaderGlobalsOverride
 OptionButton
 Label
 CheckBox
-Sprite2D
 ParallaxLayer
-ColorRect
 TileMap
 CanvasLayer
-Node2D
 CollisionShape2D
 AudioStreamPlayer
 AnimationPlayer
@@ -29,5 +30,3 @@ SubViewportContainer
 Camera2D
 SubViewport
 AnimationTree
-MarginContainer
-BoxContainer

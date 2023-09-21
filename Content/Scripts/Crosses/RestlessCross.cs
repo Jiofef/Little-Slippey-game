@@ -31,13 +31,20 @@ public partial class RestlessCross : Node2D
             }
             if (_isCrossEnhanced)
             {
-                float AngleToPlayer = GetAngleTo(GetNode<CharacterBody2D>("../Player").Position);
-                float RotationValue = AngleToPlayer / 10;
-                if (RotationValue > 0.025f)
-                    RotationValue = 0.025f;
-                else if (RotationValue < -0.025f)
-                    RotationValue = -0.025f;
+                Vector2 playerPos = GetNode<CharacterBody2D>("../Player").Position;
+                float RotationValue = GetAngleTo(playerPos) / 10;
+                if (RotationValue > 0.033f)
+                    RotationValue = 0.033f;
+                else if (RotationValue < -0.033f)
+                    RotationValue = -0.033f;
                 Rotation += RotationValue;
+
+                var pointingRect = GetNode<Node2D>("PointingRect");
+                pointingRect.Rotation += pointingRect.GetAngleTo(playerPos) / 30;
+                if (pointingRect.RotationDegrees > 70)
+                    pointingRect.RotationDegrees = 70;
+                else if (pointingRect.RotationDegrees < -70)
+                    pointingRect.RotationDegrees = -70;
             }
             Translate(new Vector2(10f * _timerToExplosion, 0).Rotated(Rotation));
             _timerToExplosion += 0.016667f;

@@ -1,10 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://djnb31rnldxtp"]
+[gd_scene load_steps=4 format=3 uid="uid://djnb31rnldxtp"]
 
 [ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/OptionsMenu.cs" id="1"]
-[ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/VideoSettings.cs" id="2"]
-[ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/ApplyCancel.cs" id="3"]
-[ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/SoundSettings.cs" id="4"]
-[ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/GameplaySettings.cs" id="5"]
 [ext_resource type="Texture2D" uid="uid://d0sqlunqacimf" path="res://Content/Sprites/Interface/CancelButtonOutline.png" id="7_c4sdx"]
 [ext_resource type="PackedScene" uid="uid://bwpstpk1xmkah" path="res://Content/Scenes/Interface&Menu/Button.tscn" id="13"]
 
@@ -29,7 +25,6 @@ anchors_preset = 0
 offset_right = 350.0
 offset_bottom = 600.0
 scale = Vector2(0.8, 0.8)
-script = ExtResource("4")
 
 [node name="Label" type="Label" parent="CanvasLayer/Sound"]
 layout_mode = 1
@@ -145,7 +140,6 @@ offset_left = 355.0
 offset_right = 705.0
 offset_bottom = 600.0
 scale = Vector2(0.8, 0.8)
-script = ExtResource("2")
 
 [node name="Label" type="Label" parent="CanvasLayer/Video"]
 layout_mode = 1
@@ -204,7 +198,6 @@ offset_left = 710.0
 offset_right = 1060.0
 offset_bottom = 500.0
 scale = Vector2(0.8, 0.8)
-script = ExtResource("5")
 
 [node name="Label" type="Label" parent="CanvasLayer/Gameplay"]
 layout_mode = 1
@@ -244,39 +237,30 @@ popup/item_1/id = 1
 popup/item_2/text = "Inferno"
 popup/item_2/id = 2
 
-[node name="ApplyCancel" type="Control" parent="CanvasLayer"]
-layout_mode = 3
-anchors_preset = 0
-offset_left = 710.0
+[node name="Apply" parent="CanvasLayer" instance=ExtResource("13")]
+offset_left = 871.689
 offset_top = 500.0
-offset_right = 1060.0
-offset_bottom = 596.0
-script = ExtResource("3")
-
-[node name="Apply" parent="CanvasLayer/ApplyCancel" instance=ExtResource("13")]
-layout_mode = 0
-offset_left = 161.689
-offset_right = 184.689
-offset_bottom = 24.0
+offset_right = 894.689
+offset_bottom = 524.0
 texture_normal = ExtResource("7_c4sdx")
 
-[node name="Cancel" parent="CanvasLayer/ApplyCancel" instance=ExtResource("13")]
-layout_mode = 0
-offset_left = 253.576
-offset_right = 277.576
-offset_bottom = 24.0
+[node name="Cancel" parent="CanvasLayer" instance=ExtResource("13")]
+offset_left = 963.576
+offset_top = 500.0
+offset_right = 987.576
+offset_bottom = 524.0
 texture_normal = ExtResource("7_c4sdx")
 
-[connection signal="value_changed" from="CanvasLayer/Sound/VBoxContainer/GlobalSlider" to="CanvasLayer/Sound" method="SoundChanging" binds= [0]]
-[connection signal="value_changed" from="CanvasLayer/Sound/VBoxContainer/InterfaceSlider" to="CanvasLayer/Sound" method="SoundChanging" binds= [1]]
-[connection signal="value_changed" from="CanvasLayer/Sound/VBoxContainer/MusicSlider" to="CanvasLayer/Sound" method="SoundChanging" binds= [2]]
-[connection signal="value_changed" from="CanvasLayer/Sound/VBoxContainer/PlayerSlider" to="CanvasLayer/Sound" method="SoundChanging" binds= [3]]
-[connection signal="value_changed" from="CanvasLayer/Sound/VBoxContainer/CrossSnapSlider" to="CanvasLayer/Sound" method="SoundChanging" binds= [4]]
-[connection signal="value_changed" from="CanvasLayer/Sound/VBoxContainer/CrossOtherSlider" to="CanvasLayer/Sound" method="SoundChanging" binds= [5]]
-[connection signal="value_changed" from="CanvasLayer/Sound/VBoxContainer/CrossExplosionSlider" to="CanvasLayer/Sound" method="SoundChanging" binds= [6]]
-[connection signal="value_changed" from="CanvasLayer/Sound/VBoxContainer/LevelSoundsSlider" to="CanvasLayer/Sound" method="SoundChanging" binds= [7]]
-[connection signal="item_selected" from="CanvasLayer/Video/VBoxContainer/ScreenFormat" to="CanvasLayer/Video" method="ChangeScreenFormat"]
-[connection signal="item_selected" from="CanvasLayer/Video/VBoxContainer/ScoresShowingFormat" to="CanvasLayer/Video" method="ChangeScoresShowingFormat"]
-[connection signal="item_selected" from="CanvasLayer/Gameplay/VBoxContainer/DificultyChange" to="CanvasLayer/Gameplay" method="DificultyChanged"]
-[connection signal="pressed" from="CanvasLayer/ApplyCancel/Apply" to="CanvasLayer/ApplyCancel" method="Apply"]
-[connection signal="pressed" from="CanvasLayer/ApplyCancel/Cancel" to="CanvasLayer/ApplyCancel" method="Cancel"]
+[connection signal="value_changed" from="CanvasLayer/Sound/VBoxContainer/GlobalSlider" to="." method="SoundChanging" binds= [0]]
+[connection signal="value_changed" from="CanvasLayer/Sound/VBoxContainer/InterfaceSlider" to="." method="SoundChanging" binds= [1]]
+[connection signal="value_changed" from="CanvasLayer/Sound/VBoxContainer/MusicSlider" to="." method="SoundChanging" binds= [2]]
+[connection signal="value_changed" from="CanvasLayer/Sound/VBoxContainer/PlayerSlider" to="." method="SoundChanging" binds= [3]]
+[connection signal="value_changed" from="CanvasLayer/Sound/VBoxContainer/CrossSnapSlider" to="." method="SoundChanging" binds= [4]]
+[connection signal="value_changed" from="CanvasLayer/Sound/VBoxContainer/CrossOtherSlider" to="." method="SoundChanging" binds= [5]]
+[connection signal="value_changed" from="CanvasLayer/Sound/VBoxContainer/CrossExplosionSlider" to="." method="SoundChanging" binds= [6]]
+[connection signal="value_changed" from="CanvasLayer/Sound/VBoxContainer/LevelSoundsSlider" to="." method="SoundChanging" binds= [7]]
+[connection signal="item_selected" from="CanvasLayer/Video/VBoxContainer/ScreenFormat" to="." method="ChangeScreenFormat"]
+[connection signal="item_selected" from="CanvasLayer/Video/VBoxContainer/ScoresShowingFormat" to="." method="ChangeScoresShowingFormat"]
+[connection signal="item_selected" from="CanvasLayer/Gameplay/VBoxContainer/DificultyChange" to="." method="DificultyChanged"]
+[connection signal="pressed" from="CanvasLayer/Apply" to="." method="Apply"]
+[connection signal="pressed" from="CanvasLayer/Cancel" to="." method="Cancel"]
