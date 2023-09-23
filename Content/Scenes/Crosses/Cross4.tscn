@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://gqjqjb7xbjek"]
 
-[ext_resource type="PackedScene" path="res://Content/Scenes/Crosses/CrossLayout.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://dbugo8fshahv7" path="res://Content/Scenes/Crosses/CrossLayout.tscn" id="1"]
 [ext_resource type="Texture2D" uid="uid://detxcerqfck3s" path="res://Content/Sprites/Crosses/BlumCross.png" id="2"]
 [ext_resource type="Texture2D" uid="uid://rd1mytt3ov2w" path="res://Content/Sprites/Crosses/BlumCrossWarning.png" id="3"]
 [ext_resource type="Texture2D" uid="uid://bkts22v0lwcwq" path="res://Content/Sprites/Crosses/BlumAbortButton.png" id="4"]
@@ -10,7 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://byv6yfnw13c33" path="res://Content/Sounds/Crosses/BlumCrossAbortButtonPressed.wav" id="8"]
 
 [sub_resource type="RectangleShape2D" id="4"]
-size = Vector2(652, 652)
+size = Vector2(650, 650)
 
 [sub_resource type="RectangleShape2D" id="2"]
 size = Vector2(17, 17)
@@ -21,7 +21,6 @@ format = 1
 
 [node name="BlumCross" instance=ExtResource("1")]
 z_index = 2
-scale = Vector2(1, 1)
 script = ExtResource("6")
 
 [node name="CrossSprite" type="Sprite2D" parent="." index="0"]
@@ -39,7 +38,6 @@ collision_layer = 16
 collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ExplosiveArea" index="0"]
-position = Vector2(-1, -1)
 shape = SubResource("4")
 disabled = true
 
@@ -59,11 +57,9 @@ shape = SubResource("2")
 stream = SubResource("3")
 volume_db = 5.0
 pitch_scale = 0.25
-bus = &"CrossSnap"
 
 [node name="ExplosionSound" parent="." index="5"]
 stream = ExtResource("7")
-bus = &"CrossExplosion"
 
 [node name="AbortButtonPressedSound" type="AudioStreamPlayer" parent="." index="6"]
 stream = ExtResource("8")
@@ -77,4 +73,4 @@ speed_scale = 0.8
 [connection signal="body_entered" from="AbortButton/PressButtonArea" to="." method="AbortButtonPressed" unbinds=1]
 [connection signal="finished" from="ExplosionSignal" to="." method="SignalPlayed"]
 [connection signal="finished" from="ExplosionSound" to="." method="queue_free"]
-[connection signal="animation_finished" from="ExplosionAnimation" to="." method="HideExplosionAnimation"]
+[connection signal="animation_finished" from="ExplosionAnimation" to="ExplosionAnimation" method="queue_free"]

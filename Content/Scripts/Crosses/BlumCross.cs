@@ -9,9 +9,9 @@ public partial class BlumCross : Node2D
     private AudioStreamPlayer _explosiveSignal;
     private bool _abortButtonPressed = false;
     private Random _random = new Random();
+
     public override void _Ready()
     {
-        Modulate = new Color(Modulate.R, Modulate.G, Modulate.B, 0);
         _crossSprite = GetNode<Sprite2D>("CrossSprite");
         _warningSprite = GetNode<Sprite2D>("WarningSprite");
         _abortButton = GetNode<Sprite2D>("AbortButton");
@@ -23,6 +23,7 @@ public partial class BlumCross : Node2D
 
         _xSpriteMotion = _random.Next(-2, 3);
     }
+
     public override void _PhysicsProcess(double delta)
     {
         if (_abortButtonPressed)
@@ -37,6 +38,7 @@ public partial class BlumCross : Node2D
             }
             else QueueFree();
         }
+
         if (_cyclesToExplosion > 0)
         {
             if (Modulate.A < 1)
@@ -64,6 +66,7 @@ public partial class BlumCross : Node2D
             explosiveArea.Disabled = false;
         }
     }
+
     public void SignalPlayed()
     {
         if (_cyclesToExplosion <= 0) return;
@@ -77,15 +80,10 @@ public partial class BlumCross : Node2D
         _explosiveSignal.PitchScale *= 1.5f;
         _explosiveSignal.Play();
     }
+
     public void AbortButtonPressed()
     {
         GetNode<AudioStreamPlayer>("AbortButtonPressedSound").Play();
         _abortButtonPressed = true;
-    }
-    public void HideExplosionAnimation()
-    {
-        var explosionAnimation = GetNode<AnimatedSprite2D>("ExplosionAnimation");
-        explosionAnimation.Stop();
-        explosionAnimation.Visible = false;
-    }
+    }   
 }

@@ -13,7 +13,7 @@ public partial class BaseLevelScript : Node2D
     private float[] _crossWeight = new float[G.CrossesInGameTotal];
     private int _lastAviableCrossNumber = 0;
     private float _weightMultiplierExtenderToCurrentCross = 0;
-    private bool _doAllCrossWeigthsSetted;
+    private bool _doAllCrossWeigthsSetted, _isCrossesEnhanced;
     private readonly float _floatDelta = 0.016667f;
 
     public override void _Ready()
@@ -22,8 +22,9 @@ public partial class BaseLevelScript : Node2D
         AudioServer.SetBusMute(2, Meta.Instance.BusVolumes[2] <= -30);
         GetNode<AudioStreamPlayer>("../../LevelMusicPlayer").StreamPaused = false;
         _player = GetNode<CharacterBody2D>("Player");
+        _isCrossesEnhanced = G.CurrentLevel == 10 || Meta.Instance.EnhancedCrossesAtAllLevels;
         for (int i = 0; i < _crosses.Length; i++)
-            _crosses[i] = ResourceLoader.Load<PackedScene>("res://Content/Scenes/Crosses/" + (G.CurrentLevel == 10 && G.LevelAdditionalLink == "True" || Meta.Instance.EnhancedCrossesAtAllLevels ? "Enhanced" : "") + "Cross" + (i + 1) + ".tscn");
+            _crosses[i] = ResourceLoader.Load<PackedScene>("res://Content/Scenes/Crosses/" + (_isCrossesEnhanced ? "Enhanced" : "") + "Cross" + (i + 1) + ".tscn");
         Connect("LevelReload", new Callable(GetNode(".."), "LevelLoad"));
         Input.MouseMode = !GetTree().Paused ? Input.MouseModeEnum.Hidden : Input.MouseModeEnum.Visible;
     }
@@ -74,7 +75,7 @@ public partial class BaseLevelScript : Node2D
         if (!G.IsProgressPaused)
         {
             G.Scores += _floatDelta;
-            _weightMultiplierExtenderToCurrentCross += (_floatDelta * G.DefaultCrossWeight[_lastAviableCrossNumber]) / 30;
+            _weightMultiplierExtenderToCurrentCross += (_floatDelta * G.DefaultCrossWeight[_lastAviableCrossNumber]) / 30 * 100;
         }
 
         if (G.IsCrossesEnabled)
@@ -115,14 +116,21 @@ public partial class BaseLevelScript : Node2D
                     }
                     else RandomNumber -= G.DefaultCrossWeight[i];
                 }
-                SelectedCrossNumber = 1;
 
                 Node2D Cross = (Node2D)_crosses[SelectedCrossNumber].Instantiate();
                 float CrossGathering = _random.Next(100) < (1 - G.PlayerMoveCoeff) * 50 ? 3 - G.PlayerMoveCoeff * 2 : 1;
                 Cross.Position = new Vector2(_player.Position.X + (-750 + _random.Next(1500)) / CrossGathering, _player.Position.Y + (-450 + _random.Next(900)) / CrossGathering);
+
                 switch (Cross.Name)
                 {
+                    case "DefaultCross":
+                        Cross.Modulate = new Color(1, 1, 1, 0);
+                        Cross.Scale = new Vector2(3, 3);
+                        break;
+
                     case "RestlessCross":
+                        Cross.Modulate = new Color(1, 1, 1, 0);
+                        Cross.Scale = new Vector2(3, 3);
                         float XPos = _random.Next(
                             _player.Position.X - 425 > G.CameraLimits.W ? (int)_player.Position.X - 425 : 0,
                             _player.Position.X + 425 < G.CameraLimits.Y ? (int)_player.Position.X + 425 : (int)_player.Position.X + 425
@@ -134,7 +142,13 @@ public partial class BaseLevelScript : Node2D
                         Cross.Position = new Vector2(XPos, YPos);
                         break;
 
+                    case "ElementalCross":
+                        Cross.GetChild<Sprite2D>(0).Modulate = new Color(1, 1, 1, 0);
+                        Cross.Scale = new Vector2(3, 3);
+                        break;
+
                     case "BlumCross":
+                        Cross.Modulate = new Color(1, 1, 1, 0);
                         if ((Cross.Position - _player.Position).X < 300)
                             Cross.Position = new Vector2(
                                 Cross.Position.X,
@@ -158,7 +172,7 @@ public partial class BaseLevelScript : Node2D
                 }
                 AddChild(Cross);
 
-                if (G.CurrentLevel == 9)
+                if (G.CurrentLevel == 9 || _isCrossesEnhanced)
                     Cross.AddToGroup("Crosses");
             }
         }

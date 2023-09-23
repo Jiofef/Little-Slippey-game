@@ -2,16 +2,11 @@ using Godot;
 
 public partial class DefaultCross : Node2D
 {
-    private int _ticksToNextPhase = 40, _ticksToExplosion = 60;
-    public override void _Ready()
-    {
-        Modulate = new Color(Modulate.R, Modulate.G, Modulate.B, 0);
-    }
+    private int _ticksToExplosion = 60;
     public override void _PhysicsProcess(double delta)
     {
-        if (_ticksToNextPhase > 0)
+        if (Scale.X > 1 && Scale.Y > 1 && Modulate.A < 1)
         {
-            _ticksToNextPhase--;
             Scale = new Vector2(Scale.X - 0.05f, Scale.Y - 0.05f);
             Modulate = new Color(Modulate.R, Modulate.G, Modulate.B, Modulate.A + 0.025f);
         }

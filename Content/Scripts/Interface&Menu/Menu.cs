@@ -72,6 +72,8 @@ public partial class Menu : Control
     public void SpawnCross()
     {
         Node2D Cross = (Node2D)ResourceLoader.Load<PackedScene>("res://Content/Scenes/Crosses/Cross1.tscn").Instantiate();
+        Cross.Scale = new Vector2(3, 3);
+        Cross.Modulate = new Color(1, 1, 1, 0);
         Cross.Position = GetGlobalMousePosition();
         AddChild(Cross);
         _crossesSpawnedByClick++;

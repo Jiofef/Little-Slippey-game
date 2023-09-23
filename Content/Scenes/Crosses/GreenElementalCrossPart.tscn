@@ -1,6 +1,6 @@
 [gd_scene load_steps=35 format=3 uid="uid://vpmrarf3nuni"]
 
-[ext_resource type="PackedScene" path="res://Content/Scenes/Crosses/CrossLayout.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://dbugo8fshahv7" path="res://Content/Scenes/Crosses/CrossLayout.tscn" id="1"]
 [ext_resource type="Texture2D" uid="uid://n120rila20ry" path="res://Content/Sprites/Crosses/GreenElementCrossVineAnimation.png" id="2"]
 [ext_resource type="Script" path="res://Content/Scripts/Crosses/GreenElementalCrossPart.cs" id="3"]
 [ext_resource type="AudioStream" uid="uid://gj5ebhpdiyko" path="res://Content/Sounds/Crosses/MicroExplosion.wav" id="4"]
@@ -11,9 +11,9 @@
 
 [sub_resource type="Curve2D" id="1"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -74.6667, -19.6667)
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -74.6667, -19.6667, 0, 0, 0, 0, -224, -59)
 }
-point_count = 2
+point_count = 3
 
 [sub_resource type="AtlasTexture" id="13"]
 atlas = ExtResource("2")
@@ -87,7 +87,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="2"]
-radius = 14.0
+radius = 20.0
 
 [sub_resource type="AtlasTexture" id="9"]
 atlas = ExtResource("7_hkh8a")
@@ -185,23 +185,18 @@ animations = [{
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
 [node name="GreenElementalCrossPart" instance=ExtResource("1")]
-position = Vector2(300, 300)
 script = ExtResource("3")
-
-[node name="ExplosionSignal" parent="." index="0"]
-bus = &"CrossSnap"
 
 [node name="ExplosionSound" parent="." index="1"]
 stream = ExtResource("4")
-bus = &"CrossExplosion"
 
 [node name="Path2D" type="Path2D" parent="." index="2"]
 curve = SubResource("1")
 
 [node name="VineAnimation" type="AnimatedSprite2D" parent="Path2D" index="0"]
-position = Vector2(-33.6166, -8.90838)
+position = Vector2(-109, -29)
 rotation = 0.261799
-scale = Vector2(2.75045, 1.3)
+scale = Vector2(9, 4)
 sprite_frames = SubResource("12")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D" index="1"]
@@ -218,11 +213,11 @@ shape = SubResource("2")
 disabled = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Path2D/PathFollow2D" index="1"]
-scale = Vector2(1.7, 1.7)
+scale = Vector2(6, 6)
 texture = ExtResource("5")
 
 [node name="ExplosionAnimation" parent="Path2D/PathFollow2D" index="2" instance=ExtResource("6")]
-scale = Vector2(0.75, 0.75)
+scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("8")
 
 [node name="ScrapsParticles" type="CPUParticles2D" parent="." index="3"]

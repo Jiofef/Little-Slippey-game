@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://c8sdugxtwovh6"]
 
-[ext_resource type="PackedScene" path="res://Content/Scenes/Crosses/CrossLayout.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://dbugo8fshahv7" path="res://Content/Scenes/Crosses/CrossLayout.tscn" id="1"]
 [ext_resource type="Texture2D" uid="uid://daihu7vaujeu7" path="res://Content/Sprites/Crosses/BlueElementalCrossPart.png" id="2"]
 [ext_resource type="Script" path="res://Content/Scripts/Crosses/BlueElementalCrossPart.cs" id="3"]
 [ext_resource type="PackedScene" uid="uid://bt41vubjcqv8p" path="res://Content/Scenes/Crosses/ExplosionAnimation.tscn" id="4"]
@@ -8,23 +8,19 @@
 
 [sub_resource type="Curve2D" id="2"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 41, 119.333)
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 123, 358)
 }
 point_count = 2
 
 [sub_resource type="CircleShape2D" id="1"]
-radius = 12.6842
+radius = 20.0
 
 [node name="BlueElementalCrossPart" instance=ExtResource("1")]
 script = ExtResource("3")
 
-[node name="ExplosionSignal" parent="." index="0"]
-bus = &"CrossSnap"
-
 [node name="ExplosionSound" parent="." index="1"]
 stream = ExtResource("5")
 volume_db = -7.0
-bus = &"CrossExplosion"
 
 [node name="Path2D" type="Path2D" parent="." index="2"]
 curve = SubResource("2")
@@ -41,11 +37,11 @@ shape = SubResource("1")
 disabled = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Path2D/PathFollow2D" index="1"]
-scale = Vector2(1.5, 1.5)
+scale = Vector2(5, 5)
 texture = ExtResource("2")
 
 [node name="ExplosionAnimation" parent="Path2D/PathFollow2D" index="2" instance=ExtResource("4")]
-scale = Vector2(0.75, 0.75)
+scale = Vector2(1.5, 1.5)
 
 [node name="SpawnSound" type="AudioStreamPlayer" parent="." index="3"]
 volume_db = 5.0

@@ -5,7 +5,6 @@
 
 [node name="ElementalCross" type="Node2D"]
 z_index = 2
-scale = Vector2(3, 3)
 script = ExtResource("1_yibfn")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

@@ -5,8 +5,8 @@ public partial class ElementalCross : Node2D
 {
     private enum ElementalType { Red = 0, Green = 1, Blue = 2 };
     private ElementalType _elementalType;
-    private int _ticksToNextPhase = 80, _ticksToNextSpawn, _elementsToSpawn;
-    private bool _lastElementDeleted = false;
+    private int _ticksToNextSpawn, _elementsToSpawn;
+    private bool _isLastElementExploded = false;
     private readonly int _defaultTicksToNextElementSpawn = 7;
     private float _xSpriteMotion, _ySpriteMotion = -3, _gravity = 9.8f;
 
@@ -24,9 +24,8 @@ public partial class ElementalCross : Node2D
     }
     public override void _PhysicsProcess(double delta)
     {
-        if (_ticksToNextPhase > 0)
+        if (Scale.X > 1 && Scale.Y > 1 && _sprite.SelfModulate.A < 1)
         {
-            _ticksToNextPhase--;
             Scale = new Vector2(Scale.X - 0.025f, Scale.Y - 0.025f);
             _sprite.Modulate = new Color((float)_random.NextDouble(), (float)_random.NextDouble(), (float)_random.NextDouble());
             _sprite.SelfModulate = new Color(_sprite.SelfModulate.R, _sprite.SelfModulate.G, _sprite.SelfModulate.B, _sprite.SelfModulate.A + 0.0125f);
@@ -62,11 +61,11 @@ public partial class ElementalCross : Node2D
                 Node2D element = (Node2D)_summonableElemental.Instantiate();
                 element.Position = new Vector2(_random.Next(-30, 30), _random.Next(-30, 30));
                 if (_elementsToSpawn == 0)
-                    element.Connect("ElementExploded", new Callable(this, "LastElementHasBeenDeleted"));
+                    element.Connect("ElementExploded", new Callable(this, "LastElementExploded"));
                 AddChild(element);
             }
         }
-        else if (_lastElementDeleted)
+        else if (_isLastElementExploded)
         {
             _sprite.Modulate = new Color(_sprite.Modulate.R, _sprite.Modulate.G, _sprite.Modulate.B, _sprite.Modulate.A - 0.02f);
             _sprite.Translate(new Vector2(_xSpriteMotion, _ySpriteMotion));
@@ -77,8 +76,8 @@ public partial class ElementalCross : Node2D
                 QueueFree();
         }
     }
-    public void LastElementHasBeenDeleted()
+    public void LastElementExploded()
     {
-        _lastElementDeleted = true;
+        _isLastElementExploded = true;
     }
 }

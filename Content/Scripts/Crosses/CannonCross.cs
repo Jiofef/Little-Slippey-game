@@ -55,11 +55,14 @@ public partial class CannonCross : Path2D
                 _ball.GlobalTranslate(new Vector2(0, 7.5f * (RotationDegrees == 90 ? 1 : -1)));
             _ballSprite.Rotation -= 0.06f;
             _ballYMotion -= 0.006f;
-            if (_sprites.Position.X < 50)
+
+            if (_sprites.Visible == true && _sprites.Position.X < 50)
             {
                 _sprites.Position = new Vector2(_sprites.Position.X + 1.5f, _sprites.Position.Y);
                 _sprites.Rotation -= 0.06f;
             }
+            else if (_sprites.Visible == true)
+                _sprites.Visible = false;
         }
         else
             QueueFree();

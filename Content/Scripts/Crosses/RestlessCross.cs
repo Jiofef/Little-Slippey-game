@@ -4,21 +4,19 @@ using System;
 public partial class RestlessCross : Node2D
 {
     [Export] bool _isCrossEnhanced;
-    private int _ticksToNextPhase = 40, _ticksToExplosion = 60;
+    private int _ticksToExplosion = 60;
     private bool _isSignaled;
     private float _timerToExplosion;
     public override void _Ready()
     {
-        Modulate = new Color(Modulate.R, Modulate.G, Modulate.B, 0);
         Random random = new Random();
         RotationDegrees = random.Next(-180, 180);
     }
 
     public override void _PhysicsProcess(double delta)
     {
-        if (_ticksToNextPhase > 0)
+        if (Scale.X > 1 && Scale.Y > 1 && Modulate.A < 1)
         {
-            _ticksToNextPhase --;
             Scale = new Vector2(Scale.X - 0.05f, Scale.Y - 0.05f);
             Modulate = new Color(Modulate.R, Modulate.G, Modulate.B, Modulate.A + 0.025f);
         }

@@ -1,15 +1,14 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=3 format=3 uid="uid://dbugo8fshahv7"]
 
-[ext_resource path="res://Content/Sounds/Crosses/Explosion.wav" type="AudioStream" id=1]
-[ext_resource path="res://Content/Sounds/Crosses/DefaultCrossSignal.wav" type="AudioStream" id=2]
+[ext_resource type="AudioStream" uid="uid://clx6n3ton256w" path="res://Content/Sounds/Crosses/Explosion.wav" id="1"]
+[ext_resource type="AudioStream" uid="uid://8sxcb06uhwkm" path="res://Content/Sounds/Crosses/DefaultCrossSignal.wav" id="2"]
 
 [node name="CrossLayout" type="Node2D"]
-scale = Vector2( 3, 3 )
 
 [node name="ExplosionSignal" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 2 )
-bus = "CrossSnap"
+stream = ExtResource("2")
+bus = &"CrossSnap"
 
 [node name="ExplosionSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 1 )
-bus = "CrossExplosion"
+stream = ExtResource("1")
+bus = &"CrossExplosion"

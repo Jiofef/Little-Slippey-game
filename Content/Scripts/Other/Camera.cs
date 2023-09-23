@@ -27,7 +27,8 @@ public partial class Camera : Camera2D
         LimitLeft = (int)(Defaultlimits[3] + plus4);
 
         if (DoResetSmoothing)
-        ResetSmoothing();
+            ResetSmoothing();
+
     }
     public override void _PhysicsProcess(double delta)
     {

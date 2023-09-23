@@ -9,26 +9,22 @@ public partial class GreenElementalCrossPart : Node2D
     private PathFollow2D _pathFollow2D;
     private AnimatedSprite2D _vineAnimation;
     private const float _elementsMultipleSLowdown = 1.04f;
-    private float _elementSpeed = 3f;
+    private float _elementSpeed = 9f;
     private bool _doExplosed = false;
     public override void _Ready()
     {
         Random random = new Random();
 
         _sprite = GetNode<Sprite2D>("Path2D/PathFollow2D/Sprite2D");
-
         _sprite.Texture = ResourceLoader.Load("res://Content/Sprites/Crosses/GreenElementalCrossPartVar" + (random.Next(_flowerSpritesCount) + 1) + ".png") as Texture2D;
-
         _pathFollow2D = GetNode<PathFollow2D>("Path2D/PathFollow2D");
-
         _vineAnimation = GetNode<AnimatedSprite2D>("Path2D/VineAnimation");
 
         GetNode<Path2D>("Path2D").Scale = new Vector2(random.Next(25, 100) / 100f * (random.Next(100) > 50 ? 1 : -1), random.Next(40, 100) / 100f);
-        _pathFollow2D.GlobalScale = new Vector2(3, 3);
+        _pathFollow2D.GlobalScale = new Vector2(1, 1);
         _pathFollow2D.Modulate = new Color(_pathFollow2D.Modulate.R, _pathFollow2D.Modulate.G, _pathFollow2D.Modulate.B, 0);
 
         GetNode<AnimatedSprite2D>("Path2D/VineAnimation").Play();
-
         GetNode<CpuParticles2D>("ScrapsParticles").Emitting = true;
     }
     public override void _PhysicsProcess(double delta)

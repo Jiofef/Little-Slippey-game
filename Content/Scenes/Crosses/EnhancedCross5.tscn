@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://bqgf6x8v3tt7e"]
 
 [ext_resource type="Script" path="res://Content/Scripts/Crosses/CannonCross.cs" id="1_6bbjl"]
-[ext_resource type="PackedScene" path="res://Content/Scenes/Crosses/CrossLayout.tscn" id="2_fndgc"]
+[ext_resource type="PackedScene" uid="uid://dbugo8fshahv7" path="res://Content/Scenes/Crosses/CrossLayout.tscn" id="2_fndgc"]
 [ext_resource type="AudioStream" uid="uid://cnlsin5w3w8xr" path="res://Content/Sounds/Crosses/RollingCannonSounds.wav" id="3_grpp6"]
 [ext_resource type="AudioStream" uid="uid://cq4chw1mbchw1" path="res://Content/Sounds/Crosses/CannonChargingSound.wav" id="4_8jcr8"]
 [ext_resource type="AudioStream" uid="uid://dmkgagt1ps7j5" path="res://Content/Sounds/Crosses/CannonShot.wav" id="5_ihn28"]

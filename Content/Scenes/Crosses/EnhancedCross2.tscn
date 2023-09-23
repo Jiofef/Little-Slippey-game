@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://c0w7ccrl7jm2x" path="res://Content/Scenes/Crosses/Cross2.tscn" id="1_24dmb"]
 [ext_resource type="Texture2D" uid="uid://cgpmfppklulie" path="res://Content/Sprites/Crosses/EnhancedRestlessCross.png" id="2_oneab"]
-[ext_resource type="Texture2D" uid="uid://csnrg83dxih5b" path="res://Content/Sprites/Crosses/EnhancedElementalCrossWarning.png" id="3_p6gne"]
+[ext_resource type="Texture2D" uid="uid://csnrg83dxih5b" path="res://Content/Sprites/Crosses/EnhancedRestlessCrossWarning.png" id="3_p6gne"]
 
 [node name="RestlessCross" instance=ExtResource("1_24dmb")]
 _isCrossEnhanced = true

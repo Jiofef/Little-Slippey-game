@@ -6,8 +6,8 @@ public partial class BlueElementalCrossPart : Node2D
     [Signal] public delegate void ElementExplodedEventHandler();
     private Sprite2D _sprite;
     private PathFollow2D _pathFollow2D;
-    private const float _elementAcceleration = 0.04f, _limitOffsetForElement = 125;
-    private float _elementSpeed = 0.5f;
+    private const float _elementAcceleration = 0.12f;
+    private float _elementSpeed = 1.5f;
     public override void _Ready()
     {
         _sprite = GetNode<Sprite2D>("Path2D/PathFollow2D/Sprite2D");
@@ -15,7 +15,7 @@ public partial class BlueElementalCrossPart : Node2D
 
         Random random = new Random();
         GetNode<Path2D>("Path2D").Scale = new Vector2(random.Next(10,100) * (random.Next(100) > 50 ? 1 : -1) / 100f, random.Next(20, 100) / 100f);
-        _pathFollow2D.GlobalScale = new Vector2(3, 3);
+        _pathFollow2D.GlobalScale = new Vector2(1, 1);
 
         _sprite.Modulate = new Color(_sprite.Modulate.R, _sprite.Modulate.G, _sprite.Modulate.B, 0);
 
@@ -25,7 +25,7 @@ public partial class BlueElementalCrossPart : Node2D
     }
     public override void _PhysicsProcess(double delta)
     {
-        if (_pathFollow2D.Progress < _limitOffsetForElement - 5)
+        if (_pathFollow2D.ProgressRatio < 0.98f)
         {
             _pathFollow2D.Progress += _elementSpeed;
             _elementSpeed += _elementAcceleration;

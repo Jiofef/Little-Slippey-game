@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://c0vem1s8mr4cy"]
+
+[sub_resource type="Curve" id="Curve_f7734"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_w3xr6"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="Gradient" id="Gradient_p5fx4"]
+colors = PackedColorArray(0.501407, 0.501406, 0.501406, 1, 1, 1, 1, 1)
+
+[node name="CPUParticles2D" type="CPUParticles2D"]
+emitting = false
+one_shot = true
+explosiveness = 1.0
+emission_shape = 1
+emission_sphere_radius = 20.0
+spread = 180.0
+initial_velocity_min = 400.0
+initial_velocity_max = 400.0
+scale_amount_min = 20.0
+scale_amount_max = 20.0
+scale_amount_curve = SubResource("Curve_f7734")
+color = Color(0.784314, 0, 1, 0.784314)
+color_ramp = SubResource("Gradient_w3xr6")
+color_initial_ramp = SubResource("Gradient_p5fx4")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+autostart = true
+
+[connection signal="ready" from="." to="." method="set_emitting" flags=6 binds= [true]]
+[connection signal="timeout" from="Timer" to="." method="queue_free"]
