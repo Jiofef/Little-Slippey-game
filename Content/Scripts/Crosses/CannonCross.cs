@@ -45,6 +45,10 @@ public partial class CannonCross : Path2D
                 _ball.Visible = true;
                 _tornBarrel.Visible = true;
                 _doCannonShoted = true;
+
+                var Groups = GetGroups();
+                for (int i = 0; i < Groups.Count; i++)
+                    RemoveFromGroup(Groups[i]);
             }
         }
         else if (_ball.GlobalPosition.Y < _ballYBound && G.CurrentLevel != 8 || _ball.GlobalPosition.Y < 800 && _ball.GlobalPosition.Y > -100 && G.CurrentLevel == 8)

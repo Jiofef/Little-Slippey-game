@@ -39,6 +39,10 @@ public partial class DefaultCross : Node2D
             explosionAnimation.Visible = true;
             explosionAnimation.Play();
             explosiveArea.Disabled = false;
+
+            var Groups = GetGroups();
+            for (int i = 0; i < Groups.Count; i++)
+                RemoveFromGroup(Groups[i]);
         }
     }
 }

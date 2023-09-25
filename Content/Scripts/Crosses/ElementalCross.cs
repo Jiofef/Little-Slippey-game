@@ -79,5 +79,9 @@ public partial class ElementalCross : Node2D
     public void LastElementExploded()
     {
         _isLastElementExploded = true;
+
+        var Groups = GetGroups();
+        for (int i = 0; i < Groups.Count; i++)
+            RemoveFromGroup(Groups[i]);
     }
 }

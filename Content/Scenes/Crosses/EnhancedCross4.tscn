@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://ckwc2sf7ili08"]
+[gd_scene load_steps=25 format=3 uid="uid://ckwc2sf7ili08"]
 
 [ext_resource type="PackedScene" uid="uid://dbugo8fshahv7" path="res://Content/Scenes/Crosses/CrossLayout.tscn" id="1_315wj"]
 [ext_resource type="Script" path="res://Content/Scripts/Crosses/EnhancedBlumCross.cs" id="2_t11fp"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://sb76vc7slrym" path="res://Content/Sprites/Crosses/EnhancedBlumCrossCrystalAnimation.png" id="5_0sw4k"]
 [ext_resource type="Texture2D" uid="uid://csq1qdkb418s" path="res://Content/Sprites/Crosses/EnhancedBlumCrossCrystalHead.png" id="5_u48da"]
 [ext_resource type="AudioStream" uid="uid://dannf4n2kbklp" path="res://Content/Sounds/Crosses/MegaExplosion.wav" id="6_c6bnr"]
+[ext_resource type="Texture2D" uid="uid://r3iyalnukxbo" path="res://Content/Sprites/Crosses/EnhancedBlumCrossEnergyBeamAnimation.png" id="6_ywbs3"]
 [ext_resource type="AudioStream" uid="uid://byv6yfnw13c33" path="res://Content/Sounds/Crosses/BlumCrossAbortButtonPressed.wav" id="7_5ka0y"]
 [ext_resource type="PackedScene" uid="uid://bt41vubjcqv8p" path="res://Content/Scenes/Crosses/ExplosionAnimation.tscn" id="8_a6rgt"]
 
@@ -37,6 +38,42 @@ animations = [{
 "loop": true,
 "name": &"default",
 "speed": 2.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fqsfr"]
+atlas = ExtResource("6_ywbs3")
+region = Rect2(0, 0, 720, 3)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nb6ee"]
+atlas = ExtResource("6_ywbs3")
+region = Rect2(0, 4, 720, 3)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yyfl6"]
+atlas = ExtResource("6_ywbs3")
+region = Rect2(0, 8, 720, 3)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1drlb"]
+atlas = ExtResource("6_ywbs3")
+region = Rect2(0, 12, 720, 3)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fc84j"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fqsfr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nb6ee")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yyfl6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1drlb")
+}],
+"loop": true,
+"name": &"default",
+"speed": 20.0
 }]
 
 [sub_resource type="Curve" id="Curve_f7734"]
@@ -71,10 +108,7 @@ metadata/_edit_group_ = true
 [node name="Point1" type="Node2D" parent="EnergyPoints" index="0"]
 position = Vector2(0, 320)
 
-[node name="Sprite2D" type="Sprite2D" parent="EnergyPoints/Point1" index="0"]
-scale = Vector2(4, 4)
-
-[node name="Crystal" type="Control" parent="EnergyPoints/Point1" index="1"]
+[node name="Crystal" type="Control" parent="EnergyPoints/Point1" index="0"]
 clip_contents = true
 layout_mode = 3
 anchors_preset = 0
@@ -92,11 +126,31 @@ frame = 2
 frame_progress = 0.728425
 centered = false
 
-[node name="CrystallHead" type="Sprite2D" parent="EnergyPoints/Point1" index="2"]
+[node name="CrystallHead" type="Sprite2D" parent="EnergyPoints/Point1" index="1"]
 position = Vector2(-3.8147e-06, -40)
 rotation = 3.14159
 scale = Vector2(10, 10)
 texture = ExtResource("5_u48da")
+
+[node name="EnergyBeam" type="Node2D" parent="EnergyPoints/Point1" index="2"]
+visible = false
+
+[node name="ShowingRangeController" type="Control" parent="EnergyPoints/Point1/EnergyBeam" index="0"]
+clip_contents = true
+layout_mode = 3
+anchors_preset = 0
+offset_top = -7.5
+offset_right = 30.0
+offset_bottom = 7.5
+pivot_offset = Vector2(0, 7.5)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="EnergyPoints/Point1/EnergyBeam/ShowingRangeController" index="0"]
+z_index = 1
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_fc84j")
+autoplay = "default"
+frame_progress = 0.305153
+centered = false
 
 [node name="CrystallParticles1" type="CPUParticles2D" parent="EnergyPoints" index="1"]
 z_index = 1
@@ -147,6 +201,26 @@ rotation = -1.5708
 scale = Vector2(10, 10)
 texture = ExtResource("5_u48da")
 
+[node name="EnergyBeam" type="Node2D" parent="EnergyPoints/Point2" index="3"]
+visible = false
+
+[node name="ShowingRangeController" type="Control" parent="EnergyPoints/Point2/EnergyBeam" index="0"]
+clip_contents = true
+layout_mode = 3
+anchors_preset = 0
+offset_top = -7.5
+offset_right = 30.0
+offset_bottom = 7.5
+pivot_offset = Vector2(0, 7.5)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="EnergyPoints/Point2/EnergyBeam/ShowingRangeController" index="0"]
+z_index = 1
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_fc84j")
+autoplay = "default"
+frame_progress = 0.0889699
+centered = false
+
 [node name="CrystallParticles2" type="CPUParticles2D" parent="EnergyPoints" index="3"]
 z_index = 1
 position = Vector2(-275, 0)
@@ -194,6 +268,25 @@ rotation = 1.5708
 scale = Vector2(10, 10)
 texture = ExtResource("5_u48da")
 
+[node name="EnergyBeam" type="Node2D" parent="EnergyPoints/Point3" index="3"]
+
+[node name="ShowingRangeController" type="Control" parent="EnergyPoints/Point3/EnergyBeam" index="0"]
+clip_contents = true
+layout_mode = 3
+anchors_preset = 0
+offset_top = -7.0
+offset_right = 15.0
+offset_bottom = 8.0
+pivot_offset = Vector2(0, 7.5)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="EnergyPoints/Point3/EnergyBeam/ShowingRangeController" index="0"]
+z_index = 1
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_fc84j")
+autoplay = "default"
+frame_progress = 0.0889699
+centered = false
+
 [node name="CrystallParticles3" type="CPUParticles2D" parent="EnergyPoints" index="5"]
 z_index = 1
 position = Vector2(275, 0)
@@ -238,6 +331,26 @@ centered = false
 position = Vector2(0, 40)
 scale = Vector2(10, 10)
 texture = ExtResource("5_u48da")
+
+[node name="EnergyBeam" type="Node2D" parent="EnergyPoints/Point4" index="3"]
+visible = false
+
+[node name="ShowingRangeController" type="Control" parent="EnergyPoints/Point4/EnergyBeam" index="0"]
+clip_contents = true
+layout_mode = 3
+anchors_preset = 0
+offset_top = -7.5
+offset_right = 30.0
+offset_bottom = 7.5
+pivot_offset = Vector2(0, 7.5)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="EnergyPoints/Point4/EnergyBeam/ShowingRangeController" index="0"]
+z_index = 1
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_fc84j")
+autoplay = "default"
+frame_progress = 0.0889699
+centered = false
 
 [node name="CrystallParticles4" type="CPUParticles2D" parent="EnergyPoints" index="7"]
 z_index = 1

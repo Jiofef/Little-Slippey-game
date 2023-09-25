@@ -26,6 +26,8 @@ public partial class EnhancedBlumCross : Node2D
 
         _controlledCrossesGroupIndex = "ControlledCrosses_" + Name;
 
+        for (int i = 0; i < _controllersLeft; i++)
+            GetNode<Node2D>("EnergyPoints/Point" + (4 - i) + "/EnergyBeam").Modulate = new Color(1, 1, 1, 1f / _controllersLeft);
     }
 
 	public override void _PhysicsProcess(double delta)
@@ -45,6 +47,10 @@ public partial class EnhancedBlumCross : Node2D
                 if (controlledCrosses.Count == _controllersLeft)
                     controlledCrosses[_controllersLeft - 1].RemoveFromGroup(_controlledCrossesGroupIndex);
                 _controllersLeft--;
+
+                for (int i = 0; i < _controllersLeft; i++)
+                    GetNode<Node2D>("EnergyPoints/Point" + (4 - i) + "/EnergyBeam").Modulate = new Color(1, 1, 1, 1f / _controllersLeft);
+
                 _timerToControllerExplosion = 5;
             }
 
@@ -53,10 +59,27 @@ public partial class EnhancedBlumCross : Node2D
                 AllCrossesOnScreen.PickRandom().AddToGroup(_controlledCrossesGroupIndex);
 
             var AllControlledCrosses = GetTree().GetNodesInGroup(_controlledCrossesGroupIndex);
-            for (int i = 0; i < AllControlledCrosses.Count; i++)
+
+            for (int i = 0; i < _controllersLeft; i++)
             {
-                var Cross = (Node2D)AllControlledCrosses[i];
-                Cross.Translate(Cross.Position.DirectionTo(_player.Position) * 5 / _controllersLeft);
+                var showingRangeController = GetNode<Control>("EnergyPoints/Point" + (4 - i) + "/EnergyBeam/ShowingRangeController");
+                var energyBeam = GetNode<Node2D>("EnergyPoints/Point" + (4 - i) + "/EnergyBeam");
+
+                if (AllControlledCrosses.Count > i)
+                {
+                    if (!energyBeam.Visible)
+                        energyBeam.Visible = true;
+                    
+                    var ControlledCross = (Node2D)AllControlledCrosses[i];
+                    ControlledCross.Translate(ControlledCross.Position.DirectionTo(_player.Position) * 5 / _controllersLeft);
+                    showingRangeController.Size = new Vector2(showingRangeController.GlobalPosition.DistanceTo(ControlledCross.GlobalPosition), showingRangeController.Size.Y);
+
+                    energyBeam.Rotation += energyBeam.GetAngleTo(ControlledCross.GlobalPosition);           
+                }
+                else
+                {
+                    energyBeam.Visible = false;
+                }
             }
 
         }
@@ -81,6 +104,10 @@ public partial class EnhancedBlumCross : Node2D
             explosionAnimation.Visible = true;
             explosionAnimation.Play();
             explosiveArea.Disabled = false;
+
+            var Groups = GetGroups();
+            for (int i = 0; i < Groups.Count; i++)
+                RemoveFromGroup(Groups[i]);
         }
     }
 
