@@ -1,6 +1,5 @@
 using Godot;
 using System;
-using System.Linq;
 
 public partial class EnhancedBlumCross : Node2D
 {
@@ -8,7 +7,7 @@ public partial class EnhancedBlumCross : Node2D
     private byte _controllersLeft = 4;
     private string _controlledCrossesGroupIndex;
     private bool _isWearAccelerated = false;
-    private Sprite2D _crossSprite, _warningSprite;
+    private Sprite2D _warningSprite;
     private AudioStreamPlayer _explosiveSignal;
     private CharacterBody2D _player;
     private Random _random = new Random();
@@ -17,12 +16,8 @@ public partial class EnhancedBlumCross : Node2D
 
     public override void _Ready()
 	{
-        _crossSprite = GetNode<Sprite2D>("CrossSprite");
         _warningSprite = GetNode<Sprite2D>("WarningSprite");
-        _explosiveSignal = GetNode<AudioStreamPlayer>("ExplosionSignal");
         _player = GetNode<CharacterBody2D>("../Player");
-
-        _explosiveSignal.Play();
 
         _controlledCrossesGroupIndex = "ControlledCrosses_" + Name;
 
@@ -41,6 +36,7 @@ public partial class EnhancedBlumCross : Node2D
             GetNode<Control>("EnergyPoints/Point" + (5 - _controllersLeft) + "/Crystal").Size = new Vector2(170, _timerToControllerExplosion * 44);
             if (_timerToControllerExplosion < 0)
             {
+                GetNode<AudioStreamPlayer>("CrystalBreaking").Play();
                 GetNode<Node2D>("EnergyPoints/Point" + (5 - _controllersLeft)).QueueFree();
                 GetNode<CpuParticles2D>("EnergyPoints/CrystallParticles" + (5 - _controllersLeft)).Emitting = true;
                 var controlledCrosses = GetTree().GetNodesInGroup(_controlledCrossesGroupIndex);
@@ -48,6 +44,8 @@ public partial class EnhancedBlumCross : Node2D
                     controlledCrosses[_controllersLeft - 1].RemoveFromGroup(_controlledCrossesGroupIndex);
                 _controllersLeft--;
 
+                if (_controllersLeft == 0)
+                    GetNode<AudioStreamPlayer>("ExplosionSignal").Play();
                 for (int i = 0; i < _controllersLeft; i++)
                     GetNode<Node2D>("EnergyPoints/Point" + (4 - i) + "/EnergyBeam").Modulate = new Color(1, 1, 1, 1f / _controllersLeft);
 
@@ -56,7 +54,17 @@ public partial class EnhancedBlumCross : Node2D
 
             var AllCrossesOnScreen = GetTree().GetNodesInGroup("Crosses");
             if (GetTree().GetNodesInGroup(_controlledCrossesGroupIndex).Count < _controllersLeft && AllCrossesOnScreen.Count > 0)
-                AllCrossesOnScreen.PickRandom().AddToGroup(_controlledCrossesGroupIndex);
+            {
+                var AddableCross = (Node2D)AllCrossesOnScreen.PickRandom();
+
+                if (AddableCross.SceneFilePath == "res://Content/Scenes/Crosses/EnhancedCross5.tscn")
+                    AddableCross.GetNode<Node2D>("PathFollow2D/Cannon/Ball").AddToGroup(_controlledCrossesGroupIndex);
+                else if (AddableCross.Material == null || AddableCross.Material.ResourceName != "StaticNoise")
+                    if (AddableCross.SceneFilePath != "res://Content/Scenes/Crosses/EnhancedCross4.tscn" || _random.Next(25) == 0)
+                        AddableCross.AddToGroup(_controlledCrossesGroupIndex);
+
+            }
+                
 
             var AllControlledCrosses = GetTree().GetNodesInGroup(_controlledCrossesGroupIndex);
 
@@ -71,15 +79,14 @@ public partial class EnhancedBlumCross : Node2D
                         energyBeam.Visible = true;
                     
                     var ControlledCross = (Node2D)AllControlledCrosses[i];
-                    ControlledCross.Translate(ControlledCross.Position.DirectionTo(_player.Position) * 5 / _controllersLeft);
+                    if (ControlledCross.Name != "Ball" || ControlledCross.Visible)
+                        ControlledCross.GlobalTranslate(ControlledCross.GlobalPosition.DirectionTo(_player.GlobalPosition) * 5 / _controllersLeft);
                     showingRangeController.Size = new Vector2(showingRangeController.GlobalPosition.DistanceTo(ControlledCross.GlobalPosition), showingRangeController.Size.Y);
 
                     energyBeam.Rotation += energyBeam.GetAngleTo(ControlledCross.GlobalPosition);           
                 }
                 else
-                {
                     energyBeam.Visible = false;
-                }
             }
 
         }
@@ -98,7 +105,7 @@ public partial class EnhancedBlumCross : Node2D
                 SetPhysicsProcess(false);
                 return;
             }
-            _crossSprite.QueueFree();
+            GetNode<Sprite2D>("CrossSprite").QueueFree();
             _warningSprite.QueueFree();
             GetNode<AudioStreamPlayer>("ExplosionSound").Play();
             explosionAnimation.Visible = true;

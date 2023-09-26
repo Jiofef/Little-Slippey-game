@@ -1,5 +1,5 @@
 shader_type canvas_item;
-uniform float u_amount = 0.1;
+uniform float u_amount = 1;
 
 float get_noise(vec2 uv) {
     return fract(sin(dot(uv ,vec2(12.9898,78.233))) * 43758.5453);

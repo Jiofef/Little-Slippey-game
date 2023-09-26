@@ -37,6 +37,7 @@ public partial class MainScript : Node2D
         G.LevelAdditionalLink = null;
         G.IsProgressPaused = false;
         G.CrossSpawnMultiplier = 1;
+        G.IsCrossesEnabled = true;
         UnchangableMeta.SaveRecords();
         G.ResetValues();
         G.CurrentLevel = 0;

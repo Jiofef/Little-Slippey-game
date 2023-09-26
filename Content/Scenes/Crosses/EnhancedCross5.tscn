@@ -22,7 +22,7 @@ colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 [sub_resource type="CircleShape2D" id="3"]
 radius = 6.66667
 
-[node name="CannonCross" type="Path2D"]
+[node name="EnhancedCannonCross" type="Path2D"]
 z_index = 2
 curve = SubResource("1")
 script = ExtResource("1_6bbjl")

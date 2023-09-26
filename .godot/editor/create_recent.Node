@@ -1,6 +1,7 @@
+AnimatedSprite2D
+AudioStreamPlayer
 Node2D
 Control
-AnimatedSprite2D
 Sprite2D
 Timer
 CPUParticles2D
@@ -15,7 +16,6 @@ Label
 CheckBox
 TileMap
 CanvasLayer
-AudioStreamPlayer
 AnimationPlayer
 StaticBody2D
 RigidBody2D

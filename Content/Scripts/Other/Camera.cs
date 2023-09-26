@@ -8,15 +8,13 @@ public partial class Camera : Camera2D
     Label _scores;
     public override void _Ready()
     {
+        Zoom = new Vector2(Meta.Instance.CameraZoom, Meta.Instance.CameraZoom);
         G.CameraLimits = new Vector4(0, G.LevelXYSizes[G.CurrentLevel].X, G.LevelXYSizes[G.CurrentLevel].Y, 0);
         LimitsChangingBy(true, 0, 0, 0, 0);
         ResetSmoothing();
         _restartNoise = GetNode<AnimatedSprite2D>("GUI/RestartNoise");
         _player = GetNode<CharacterBody2D>("..");
         _scores = GetNode<Label>("GUI/Scores");
-
-        if (G.CurrentLevel == 9)
-            Zoom = new Vector2(1.2f, 1.2f);
     }
     private void LimitsChangingBy(bool DoResetSmoothing = false, float plus1 = 0, float plus2 = 0, float plus3 = 0, float plus4 = 0)
     {
@@ -64,7 +62,7 @@ public partial class Camera : Camera2D
 
         if (G.IsPlayerDead)
         {
-            float zoom = G.PlayerCorpseFlightTimer < 4 ? 1.5f + G.PlayerCorpseFlightTimer * 0.75f : 4.5f;
+            float zoom = G.PlayerCorpseFlightTimer < 4 ? Meta.Instance.CameraZoom + G.PlayerCorpseFlightTimer * ((4.5f - Meta.Instance.CameraZoom) / 4) : 4.5f;
             Zoom = new Vector2(zoom, zoom);
             float TimerX50 = G.PlayerCorpseFlightTimer * 50;
             LimitsChangingBy(false, -TimerX50 - IntPos2, TimerX50 + IntPos1, TimerX50 + IntPos2, -TimerX50 - IntPos1);
@@ -103,5 +101,10 @@ public partial class Camera : Camera2D
     {
         PositionSmoothingEnabled = false;
         _scores.Visible = false;
+    }
+
+    public void SetZoom(Vector2 value)
+    {
+        Zoom = value;
     }
 }

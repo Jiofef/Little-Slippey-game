@@ -9,7 +9,6 @@ public partial class G : Node
 	public static string LevelAdditionalLink;
 	public static Vector4 CameraLimits;
 	public static readonly int LevelsInGameTotal = 10, CrossesInGameTotal = 5, DificultiesInGameTotal = 3;
-    public static readonly int[] DefaultCrossWeight = { 100, 40, 20, 10, 30 };
 	public static readonly Vector2[] LevelXYSizes =
 	{
 		//Level sizes starts from Vector2 with index "1", Vector2 with index "0" is the minimal level size

@@ -5,6 +5,8 @@ public partial class OptionsMenu : Control
 {
     [Signal]
     public delegate void OptionsClosingEventHandler();
+    [Signal]
+    public delegate void SetPlayerCameraZoomEventHandler();
 
     private OptionButton _screenFormat;
 
@@ -12,7 +14,9 @@ public partial class OptionsMenu : Control
     {
         Meta.OptionsReserve = Meta.Instance.Clone();
         if (G.CurrentLevel != 0)
+        {
             Connect("OptionsClosing", new Callable(GetNode(".."), "OptionsClosing"));
+        }
         GetNode<TextureButton>("CanvasLayer/Cancel").GrabFocus();
 
 
@@ -52,6 +56,10 @@ public partial class OptionsMenu : Control
         else
         {
             EmitSignal("OptionsClosing");
+
+            Connect("SetPlayerCameraZoom", new Callable(GetNode("../PlayPart/Level" + G.CurrentLevel + "/Player/Camera2D"), "SetZoom"));
+            EmitSignal("SetPlayerCameraZoom", new Vector2(Meta.Instance.CameraZoom, Meta.Instance.CameraZoom));
+
             QueueFree();
         }
     }

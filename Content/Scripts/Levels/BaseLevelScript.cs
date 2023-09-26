@@ -10,6 +10,7 @@ public partial class BaseLevelScript : Node2D
 
     Random _random = new Random();
 
+    private int[] CrossDefaultWeight = { 100, 40, 20, 10, 30 };
     private float[] _crossWeight = new float[G.CrossesInGameTotal];
     private int _lastAviableCrossNumber = 0;
     private float _weightMultiplierExtenderToCurrentCross = 0;
@@ -19,14 +20,17 @@ public partial class BaseLevelScript : Node2D
     public override void _Ready()
     {
         G.ResetValues();
+        Input.MouseMode = !GetTree().Paused ? Input.MouseModeEnum.Hidden : Input.MouseModeEnum.Visible;
         AudioServer.SetBusMute(2, Meta.Instance.BusVolumes[2] <= -30);
+        Connect("LevelReload", new Callable(GetNode(".."), "LevelLoad"));
         GetNode<AudioStreamPlayer>("../../LevelMusicPlayer").StreamPaused = false;
         _player = GetNode<CharacterBody2D>("Player");
         _isCrossesEnhanced = G.CurrentLevel == 10 || Meta.Instance.EnhancedCrossesAtAllLevels;
         for (int i = 0; i < _crosses.Length; i++)
             _crosses[i] = ResourceLoader.Load<PackedScene>("res://Content/Scenes/Crosses/" + (_isCrossesEnhanced ? "Enhanced" : "") + "Cross" + (i + 1) + ".tscn");
-        Connect("LevelReload", new Callable(GetNode(".."), "LevelLoad"));
-        Input.MouseMode = !GetTree().Paused ? Input.MouseModeEnum.Hidden : Input.MouseModeEnum.Visible;
+
+        if (_isCrossesEnhanced)
+            CrossDefaultWeight = new int[] {150, 120, 20, 7, 45};
     }
 
     private bool _crossesEnabledDebug = true;
@@ -75,7 +79,7 @@ public partial class BaseLevelScript : Node2D
         if (!G.IsProgressPaused)
         {
             G.Scores += _floatDelta;
-            _weightMultiplierExtenderToCurrentCross += (_floatDelta * G.DefaultCrossWeight[_lastAviableCrossNumber]) / 30 * 100;
+            _weightMultiplierExtenderToCurrentCross += (_floatDelta * CrossDefaultWeight[_lastAviableCrossNumber]) / 30 * 100;
         }
 
         if (G.IsCrossesEnabled)
@@ -87,14 +91,14 @@ public partial class BaseLevelScript : Node2D
             {
                 if (!_doAllCrossWeigthsSetted)
                 {
-                    if (_crossWeight[_lastAviableCrossNumber] + _weightMultiplierExtenderToCurrentCross < G.DefaultCrossWeight[_lastAviableCrossNumber])
+                    if (_crossWeight[_lastAviableCrossNumber] + _weightMultiplierExtenderToCurrentCross < CrossDefaultWeight[_lastAviableCrossNumber])
                     {
                         _crossWeight[_lastAviableCrossNumber] += _weightMultiplierExtenderToCurrentCross;
                         _weightMultiplierExtenderToCurrentCross = 0;
                     }
                     else
                     {
-                        _crossWeight[_lastAviableCrossNumber] = G.DefaultCrossWeight[_lastAviableCrossNumber];
+                        _crossWeight[_lastAviableCrossNumber] = CrossDefaultWeight[_lastAviableCrossNumber];
                         _lastAviableCrossNumber++;
                         _weightMultiplierExtenderToCurrentCross = 0;
                     }
@@ -109,12 +113,12 @@ public partial class BaseLevelScript : Node2D
                 int RandomNumber = _random.Next((int)_crossWeight.Sum());
                 for (int i = 0; ; i++)
                 {
-                    if (RandomNumber < G.DefaultCrossWeight[i])
+                    if (RandomNumber < CrossDefaultWeight[i])
                     {
                         SelectedCrossNumber = i;
                         break;
                     }
-                    else RandomNumber -= G.DefaultCrossWeight[i];
+                    else RandomNumber -= CrossDefaultWeight[i];
                 }
 
                 Node2D Cross = (Node2D)_crosses[SelectedCrossNumber].Instantiate();
@@ -123,12 +127,12 @@ public partial class BaseLevelScript : Node2D
 
                 switch (Cross.Name)
                 {
-                    case "DefaultCross":
+                    case "DefaultCross" or "EnhancedDefaultCross":
                         Cross.Modulate = new Color(1, 1, 1, 0);
                         Cross.Scale = new Vector2(3, 3);
                         break;
 
-                    case "RestlessCross":
+                    case "RestlessCross" or "EnhancedRestlessCross":
                         Cross.Modulate = new Color(1, 1, 1, 0);
                         Cross.Scale = new Vector2(3, 3);
                         float XPos = _random.Next(
@@ -147,7 +151,7 @@ public partial class BaseLevelScript : Node2D
                         Cross.Scale = new Vector2(3, 3);
                         break;
 
-                    case "BlumCross":
+                    case "BlumCross" or "EnhancedBlummCross":
                         Cross.Modulate = new Color(1, 1, 1, 0);
                         if ((Cross.Position - _player.Position).X < 300)
                             Cross.Position = new Vector2(
@@ -158,7 +162,7 @@ public partial class BaseLevelScript : Node2D
                                 );
                         break;
 
-                    case "CannonCross":
+                    case "CannonCross" or "EnhancedCannonCross":
                         if (G.CurrentLevel == 8)
                         {
                             Cross.RotationDegrees = _random.Next(100) <= 50 ? 90 : -90;
@@ -180,6 +184,7 @@ public partial class BaseLevelScript : Node2D
 
     public void Reset()
     {
+        G.IsCrossesEnabled = true;
         G.IsProgressPaused = false;
         G.CrossSpawnMultiplier = 1;
         UnchangableMeta.SaveRecords();

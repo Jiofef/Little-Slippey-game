@@ -102,16 +102,18 @@ animations = [{
 "speed": 15.0
 }]
 
-[node name="DefaultCross" instance=ExtResource("1_ebjgs")]
+[node name="EnhancedDefaultCross" instance=ExtResource("1_ebjgs")]
 z_index = 2
 script = ExtResource("2_4gmpi")
 
 [node name="CrossSprite" type="Sprite2D" parent="." index="0"]
+use_parent_material = true
 position = Vector2(-1.19209e-07, 0)
 scale = Vector2(10, 10)
 texture = ExtResource("3_3isei")
 
 [node name="WarningSprite" type="Sprite2D" parent="." index="1"]
+use_parent_material = true
 position = Vector2(-2, -2)
 scale = Vector2(10, 10)
 texture = ExtResource("4_38eib")
@@ -128,6 +130,7 @@ disabled = true
 volume_db = -15.0
 
 [node name="ExplosionAnimation" parent="." index="5" instance=ExtResource("5_k0cg1")]
+use_parent_material = true
 sprite_frames = SubResource("8")
 
 [connection signal="animation_finished" from="ExplosionAnimation" to="." method="queue_free"]

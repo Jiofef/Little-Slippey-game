@@ -63,7 +63,8 @@ public partial class RestlessCross : Node2D
             GetNode<AudioStreamPlayer>("ExplosionSound").Play();
             explosionAnimation.Visible = true;
             explosionAnimation.Play();
-            explosiveArea.Disabled = false;
+            if (Material == null || Material.ResourceName != "StaticNoise")
+                explosiveArea.Disabled = false;
 
             var Groups = GetGroups();
             for (int i = 0; i < Groups.Count; i++)

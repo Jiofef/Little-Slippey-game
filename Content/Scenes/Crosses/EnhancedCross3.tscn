@@ -1,12 +1,71 @@
-[gd_scene load_steps=3 format=3 uid="uid://b5csm7lkembqn"]
+[gd_scene load_steps=12 format=3 uid="uid://b5csm7lkembqn"]
 
-[ext_resource type="Script" path="res://Content/Scripts/Crosses/ElementalCross.cs" id="1_yibfn"]
-[ext_resource type="Texture2D" uid="uid://bveu1semcpcd1" path="res://Content/Sprites/Crosses/ElementalCross.png" id="2_kepj1"]
+[ext_resource type="Script" path="res://Content/Scripts/Crosses/EnhancedElementalCross.cs" id="1_cu7se"]
+[ext_resource type="Shader" path="res://Content/Other/StaticNoiseShader.gdshader" id="1_f3m00"]
+[ext_resource type="Texture2D" uid="uid://ctq5ebhau88rj" path="res://Content/Sprites/Crosses/EnhancedElementalCrossAnimation.png" id="3_gthcy"]
 
-[node name="ElementalCross" type="Node2D"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3aj87"]
+resource_name = "StaticNoise"
+shader = ExtResource("1_f3m00")
+shader_parameter/u_amount = 1.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ogb55"]
+atlas = ExtResource("3_gthcy")
+region = Rect2(0, 0, 17, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h6din"]
+atlas = ExtResource("3_gthcy")
+region = Rect2(17, 0, 17, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iqyj3"]
+atlas = ExtResource("3_gthcy")
+region = Rect2(0, 16, 17, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3gu8o"]
+atlas = ExtResource("3_gthcy")
+region = Rect2(17, 16, 17, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nhaba"]
+atlas = ExtResource("3_gthcy")
+region = Rect2(0, 32, 17, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gd8y0"]
+atlas = ExtResource("3_gthcy")
+region = Rect2(17, 32, 17, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3gkad"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ogb55")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h6din")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iqyj3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3gu8o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nhaba")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gd8y0")
+}],
+"loop": true,
+"name": &"default",
+"speed": 19.78
+}]
+
+[node name="EnhancedElementalCross" type="Node2D"]
 z_index = 2
-script = ExtResource("1_yibfn")
+material = SubResource("ShaderMaterial_3aj87")
+script = ExtResource("1_cu7se")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(7, 7)
-texture = ExtResource("2_kepj1")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(10, 10)
+sprite_frames = SubResource("SpriteFrames_3gkad")
+autoplay = "default"
+frame_progress = 0.0356515
