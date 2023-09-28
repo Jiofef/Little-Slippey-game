@@ -18,7 +18,7 @@ public partial class EnhancedElementalCross : Node2D
     public override void _Process(double delta)
 	{
         Modulate = new Color(1, 1, 1, (float)_random.Next(10) / 100);
-        if (_random.Next (150) == 0)
+        if (_random.Next (100) == 0)
         {
             var Cross = (Node2D)_crosses[_random.Next(_crosses.Length)].Instantiate();
             Cross.GlobalPosition = GlobalPosition;

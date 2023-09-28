@@ -8,13 +8,16 @@ public partial class Camera : Camera2D
     Label _scores;
     public override void _Ready()
     {
-        Zoom = new Vector2(Meta.Instance.CameraZoom, Meta.Instance.CameraZoom);
         G.CameraLimits = new Vector4(0, G.LevelXYSizes[G.CurrentLevel].X, G.LevelXYSizes[G.CurrentLevel].Y, 0);
         LimitsChangingBy(true, 0, 0, 0, 0);
         ResetSmoothing();
+
         _restartNoise = GetNode<AnimatedSprite2D>("GUI/RestartNoise");
         _player = GetNode<CharacterBody2D>("..");
         _scores = GetNode<Label>("GUI/Scores");
+
+        SetZoom(new Vector2(Meta.Instance.CameraZoom, Meta.Instance.CameraZoom));
+        _scores.Visible = Meta.Instance.ScoresShowingFormatIndex == 0;
     }
     private void LimitsChangingBy(bool DoResetSmoothing = false, float plus1 = 0, float plus2 = 0, float plus3 = 0, float plus4 = 0)
     {
@@ -106,5 +109,11 @@ public partial class Camera : Camera2D
     public void SetZoom(Vector2 value)
     {
         Zoom = value;
+    }
+
+    public void OptionsChanged()
+    {
+        SetZoom(new Vector2(Meta.Instance.CameraZoom, Meta.Instance.CameraZoom));
+        _scores.Visible = Meta.Instance.ScoresShowingFormatIndex == 0;
     }
 }

@@ -151,7 +151,7 @@ public partial class BaseLevelScript : Node2D
                         Cross.Scale = new Vector2(3, 3);
                         break;
 
-                    case "BlumCross" or "EnhancedBlummCross":
+                    case "BlumCross" or "EnhancedBlumCross":
                         Cross.Modulate = new Color(1, 1, 1, 0);
                         if ((Cross.Position - _player.Position).X < 300)
                             Cross.Position = new Vector2(

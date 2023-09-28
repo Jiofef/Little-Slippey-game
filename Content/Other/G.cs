@@ -31,7 +31,6 @@ public partial class G : Node
 	public static float GetReversedPlayerCorpseFlightTimerCoeff()
 	{
 		return 1 - GetPlayerCorpseFlightTimerCoeff();
-
     }
     public static void ResetValues()
 	{
