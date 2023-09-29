@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://53uh2aqy4q1p" path="res://Content/Sprites/Crosses/DefaultCross.png" id="1"]
 [ext_resource type="Texture2D" uid="uid://doeu7dyjmu0db" path="res://Content/Sprites/Crosses/DefaultCrossWarning.png" id="2"]
 [ext_resource type="Script" path="res://Content/Scripts/Crosses/DefaultCross.cs" id="3"]
-[ext_resource type="PackedScene" path="res://Content/Scenes/Crosses/CrossLayout.tscn" id="4"]
+[ext_resource type="PackedScene" uid="uid://dbugo8fshahv7" path="res://Content/Scenes/Crosses/CrossLayout.tscn" id="4"]
 [ext_resource type="PackedScene" uid="uid://bt41vubjcqv8p" path="res://Content/Scenes/Crosses/ExplosionAnimation.tscn" id="5"]
 [ext_resource type="Texture2D" uid="uid://bg2mvitb1ih7q" path="res://Content/Sprites/Other/Explosion.png" id="6_q8c7e"]
 
@@ -126,10 +126,6 @@ disabled = true
 
 [node name="ExplosionSignal" parent="." index="3"]
 volume_db = -15.0
-bus = &"CrossSnap"
-
-[node name="ExplosionSound" parent="." index="4"]
-bus = &"CrossExplosion"
 
 [node name="ExplosionAnimation" parent="." index="5" instance=ExtResource("5")]
 sprite_frames = SubResource("8")

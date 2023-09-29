@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://c0w7ccrl7jm2x"]
 
 [ext_resource type="Script" path="res://Content/Scripts/Crosses/RestlessCross.cs" id="1"]
-[ext_resource type="PackedScene" path="res://Content/Scenes/Crosses/CrossLayout.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://dbugo8fshahv7" path="res://Content/Scenes/Crosses/CrossLayout.tscn" id="2"]
 [ext_resource type="PackedScene" uid="uid://bt41vubjcqv8p" path="res://Content/Scenes/Crosses/ExplosionAnimation.tscn" id="3"]
 [ext_resource type="AudioStream" uid="uid://dowfutjgchko" path="res://Content/Sounds/Crosses/RestlessCrossSignal.wav" id="4_os5p8"]
 [ext_resource type="Texture2D" uid="uid://but63grrrb71n" path="res://Content/Sprites/Crosses/RestlessCross.png" id="5"]
@@ -14,13 +14,8 @@ light_mode = 1
 radius = 75.0
 
 [node name="RestlessCross" instance=ExtResource("2")]
+z_index = 2
 script = ExtResource("1")
-
-[node name="ExplosionSignal" parent="." index="0"]
-bus = &"CrossSnap"
-
-[node name="ExplosionSound" parent="." index="1"]
-bus = &"CrossExplosion"
 
 [node name="StartSignal" type="AudioStreamPlayer" parent="." index="2"]
 stream = ExtResource("4_os5p8")

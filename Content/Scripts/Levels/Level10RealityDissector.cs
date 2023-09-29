@@ -16,9 +16,14 @@ public partial class Level10RealityDissector : Node
 
 	public override void _PhysicsProcess(double delta)
 	{
-        G.Scores += 0.016667f;
-        if (G.Scores > 10)
-			G.Scores = 1;
+		if (!G.IsPlayerDead)
+		{
+            G.Scores += 0.016667f;
+            if (G.Scores > 10)
+                G.Scores = 1;
+        }
+		else 
+			G.Scores = 0;
 	}
 
 	public void ChangeLevelToTrueVersion()

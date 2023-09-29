@@ -1011,6 +1011,7 @@ layout_mode = 0
 offset_left = 2000.0
 offset_right = 2045.0
 offset_bottom = 45.0
+focus_neighbor_bottom = NodePath("StartOption/Yes")
 texture_normal = ExtResource("10_k5w04")
 texture_pressed = ExtResource("11_aoo2n")
 PossibleGrabFocusRect = Rect2(140, 505, 1000, 180)
