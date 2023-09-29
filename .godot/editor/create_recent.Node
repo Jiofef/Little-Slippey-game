@@ -1,8 +1,9 @@
-TileMap
 Sprite2D
+AnimationPlayer
+AnimationTree
 ParallaxLayer
 ColorRect
-AnimationPlayer
+TileMap
 CanvasLayer
 ParallaxBackground
 AnimatedSprite2D
@@ -29,4 +30,3 @@ TextureRect
 SubViewportContainer
 Camera2D
 SubViewport
-AnimationTree
