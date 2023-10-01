@@ -1,0 +1,50 @@
+[gd_scene load_steps=7 format=3 uid="uid://bx32w5tx4u2sr"]
+
+[ext_resource type="PackedScene" uid="uid://dbugo8fshahv7" path="res://Content/Scenes/Crosses/CrossLayout.tscn" id="1_ws3sn"]
+[ext_resource type="Script" path="res://Content/Scripts/Crosses/HelicopterBomb.cs" id="2_hrhph"]
+[ext_resource type="PackedScene" uid="uid://bt41vubjcqv8p" path="res://Content/Scenes/Crosses/ExplosionAnimation.tscn" id="3_c65yf"]
+[ext_resource type="Texture2D" uid="uid://0tt2fv11qvro" path="res://Content/Sprites/Crosses/HelicopterBomb.png" id="3_hirod"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c5ln7"]
+size = Vector2(124, 64)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_v6osl"]
+radius = 75.0
+
+[node name="HelicopterBomb" instance=ExtResource("1_ws3sn")]
+script = ExtResource("2_hrhph")
+
+[node name="ExplosionSignal" parent="." index="0"]
+autoplay = true
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="2"]
+scale = Vector2(4, 4)
+texture = ExtResource("3_hirod")
+
+[node name="Hitbox" type="Area2D" parent="." index="3"]
+collision_layer = 0
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2(2, 0)
+shape = SubResource("RectangleShape2D_c5ln7")
+disabled = true
+
+[node name="EnablingTimer" type="Timer" parent="Hitbox" index="1"]
+wait_time = 0.5
+autostart = true
+
+[node name="ExplosiveArea" type="Area2D" parent="." index="4"]
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExplosiveArea" index="0"]
+shape = SubResource("CircleShape2D_v6osl")
+disabled = true
+
+[node name="ExplosionAnimation" parent="." index="5" instance=ExtResource("3_c65yf")]
+scale = Vector2(3, 3)
+
+[connection signal="body_entered" from="Hitbox" to="." method="Explosion" unbinds=1]
+[connection signal="timeout" from="Hitbox/EnablingTimer" to="Hitbox/CollisionShape2D" method="set_disabled" flags=6 binds= [false]]
+[connection signal="animation_finished" from="ExplosionAnimation" to="." method="queue_free" flags=6]

@@ -576,12 +576,12 @@ region_rect = Rect2(0, 0, 550, 8)
 
 [node name="Object" type="Sprite2D" parent="Background/Rail/Rail"]
 show_behind_parent = true
-position = Vector2(-75, 2)
+position = Vector2(-75, 0)
 rotation = 0.261799
 texture = ExtResource("5_uvnwq")
 centered = false
 region_enabled = true
-region_rect = Rect2(0, 8, 18, 24)
+region_rect = Rect2(110, 8, 32, 38)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Background/Rail/Rail/Object"]
 root_node = NodePath("../../..")

@@ -30,7 +30,7 @@ public partial class BaseLevelScript : Node2D
             _crosses[i] = ResourceLoader.Load<PackedScene>("res://Content/Scenes/Crosses/" + (_isCrossesEnhanced ? "Enhanced" : "") + "Cross" + (i + 1) + ".tscn");
 
         if (_isCrossesEnhanced)
-            CrossDefaultWeight = new int[] {150, 120, 20, 7, 45};
+            CrossDefaultWeight = new int[] {150, 120, 20, 5, 10};
     }
 
     private bool _crossesEnabledDebug = true;
@@ -162,7 +162,7 @@ public partial class BaseLevelScript : Node2D
                                 );
                         break;
 
-                    case "CannonCross" or "EnhancedCannonCross":
+                    case "CannonCross":
                         if (G.CurrentLevel == 8)
                         {
                             Cross.RotationDegrees = _random.Next(100) <= 50 ? 90 : -90;
@@ -172,6 +172,10 @@ public partial class BaseLevelScript : Node2D
 
                         Cross.Scale = new Vector2(_random.Next(100) <= 50 ? 1 : -1, 1);
                         Cross.Position = Cross.Scale.X == -1 ? new Vector2(G.LevelXYSizes[G.CurrentLevel].X + 25, Cross.Position.Y) : new Vector2(-25, Cross.Position.Y);
+                        break;
+
+                    case "EnhancedCannonCross":
+                        Cross.Position = new Vector2(_random.Next(2) == 0 ? _player.Position.X - 1280 : _player.Position.X + 1280, _player.Position.Y + _random.Next(-750, -250));
                         break;
                 }
                 AddChild(Cross);

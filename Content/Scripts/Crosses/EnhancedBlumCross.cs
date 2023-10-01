@@ -57,12 +57,10 @@ public partial class EnhancedBlumCross : Node2D
             {
                 var AddableCross = (Node2D)AllCrossesOnScreen.PickRandom();
 
-                if (AddableCross.SceneFilePath == "res://Content/Scenes/Crosses/EnhancedCross5.tscn")
-                    AddableCross.GetNode<Node2D>("PathFollow2D/Cannon/Ball").AddToGroup(_controlledCrossesGroupIndex);
-                else if (AddableCross.Material == null || AddableCross.Material.ResourceName != "StaticNoise")
-                    if (AddableCross.SceneFilePath != "res://Content/Scenes/Crosses/EnhancedCross4.tscn" || _random.Next(25) == 0)
+                if (AddableCross.Material == null || AddableCross.Material.ResourceName != "StaticNoise")
+                    if (AddableCross.SceneFilePath != "res://Content/Scenes/Crosses/EnhancedCross5.tscn")
+                        if (AddableCross.SceneFilePath != "res://Content/Scenes/Crosses/EnhancedCross4.tscn" || _random.Next(25) == 0)
                         AddableCross.AddToGroup(_controlledCrossesGroupIndex);
-
             }
                 
 

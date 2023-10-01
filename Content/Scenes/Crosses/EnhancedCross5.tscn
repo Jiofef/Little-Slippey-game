@@ -1,111 +1,50 @@
-[gd_scene load_steps=13 format=3 uid="uid://bqgf6x8v3tt7e"]
+[gd_scene load_steps=5 format=3 uid="uid://yxwyqxrx2p8s"]
 
-[ext_resource type="Script" path="res://Content/Scripts/Crosses/CannonCross.cs" id="1_6bbjl"]
-[ext_resource type="PackedScene" uid="uid://dbugo8fshahv7" path="res://Content/Scenes/Crosses/CrossLayout.tscn" id="2_fndgc"]
-[ext_resource type="AudioStream" uid="uid://cnlsin5w3w8xr" path="res://Content/Sounds/Crosses/RollingCannonSounds.wav" id="3_grpp6"]
-[ext_resource type="AudioStream" uid="uid://cq4chw1mbchw1" path="res://Content/Sounds/Crosses/CannonChargingSound.wav" id="4_8jcr8"]
-[ext_resource type="AudioStream" uid="uid://dmkgagt1ps7j5" path="res://Content/Sounds/Crosses/CannonShot.wav" id="5_ihn28"]
-[ext_resource type="Texture2D" uid="uid://f066ngoira7" path="res://Content/Sprites/Crosses/CannonWheel.png" id="6_xyrwi"]
-[ext_resource type="Texture2D" uid="uid://bkuwiddwgfqo4" path="res://Content/Sprites/Crosses/CannonBarrel.png" id="7_pk1sd"]
-[ext_resource type="Texture2D" uid="uid://ojysa637ors8" path="res://Content/Sprites/Crosses/TornCannonBarrel.png" id="8_ks87x"]
-[ext_resource type="Texture2D" uid="uid://wf2tjey7r0fu" path="res://Content/Sprites/Crosses/CannonBall.png" id="9_d10fg"]
+[ext_resource type="Script" path="res://Content/Scripts/Crosses/EnhancedCannonCross.cs" id="1_jei06"]
+[ext_resource type="Texture2D" uid="uid://dxgtoqpjnurps" path="res://Content/Sprites/Crosses/Helicopter.png" id="2_77f4a"]
 
-[sub_resource type="Curve2D" id="1"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, -57, 0, 0, 0, 0, 0, 23, 0)
+[sub_resource type="Animation" id="Animation_frvpa"]
+resource_name = "BladesTorsion"
+length = 0.05
+loop_mode = 2
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.05, 1)]
 }
-point_count = 2
 
-[sub_resource type="Gradient" id="4"]
-colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_r06m4"]
+_data = {
+"BladesTorsion": SubResource("Animation_frvpa")
+}
 
-[sub_resource type="CircleShape2D" id="3"]
-radius = 6.66667
+[node name="EnhancedCannonCross" type="Node2D"]
+z_index = 3
+script = ExtResource("1_jei06")
 
-[node name="EnhancedCannonCross" type="Path2D"]
-z_index = 2
-curve = SubResource("1")
-script = ExtResource("1_6bbjl")
-
-[node name="PathFollow2D" type="PathFollow2D" parent="."]
-position = Vector2(-57, 0)
-rotation = 3.14159
-rotates = false
-loop = false
-
-[node name="Cannon" parent="PathFollow2D" instance=ExtResource("2_fndgc")]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(4, 4)
+texture = ExtResource("2_77f4a")
 
-[node name="Sounds" type="Node" parent="PathFollow2D/Cannon"]
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -86.0
+offset_top = -86.0
+offset_right = 214.0
+offset_bottom = -80.0
+scale = Vector2(0.477454, 1)
+pivot_offset = Vector2(150, 3)
+color = Color(0.223529, 0.203922, 0.341176, 1)
 
-[node name="RollingCannon" type="AudioStreamPlayer" parent="PathFollow2D/Cannon/Sounds"]
-stream = ExtResource("3_grpp6")
-autoplay = true
-bus = &"CrossSnap"
-
-[node name="Charge" type="AudioStreamPlayer" parent="PathFollow2D/Cannon/Sounds"]
-stream = ExtResource("4_8jcr8")
-bus = &"CrossOther"
-
-[node name="Shot" type="AudioStreamPlayer" parent="PathFollow2D/Cannon/Sounds"]
-stream = ExtResource("5_ihn28")
-volume_db = -5.0
-bus = &"CrossExplosion"
-
-[node name="Sprites" type="Node2D" parent="PathFollow2D/Cannon"]
-scale = Vector2(1, -1)
-
-[node name="BackWheel" type="Sprite2D" parent="PathFollow2D/Cannon/Sprites"]
-modulate = Color(0.631373, 0.631373, 0.631373, 1)
-position = Vector2(0, 6.667)
-texture = ExtResource("6_xyrwi")
-
-[node name="Barrel" type="Sprite2D" parent="PathFollow2D/Cannon/Sprites"]
-rotation = -1.0472
-texture = ExtResource("7_pk1sd")
-
-[node name="TornBarrel" type="Sprite2D" parent="PathFollow2D/Cannon/Sprites"]
-visible = false
-position = Vector2(0.25, -0.5)
-rotation = -1.0472
-texture = ExtResource("8_ks87x")
-
-[node name="FrontWheel" type="Sprite2D" parent="PathFollow2D/Cannon/Sprites"]
-modulate = Color(0.870588, 0.870588, 0.870588, 1)
-position = Vector2(3.66667, 6.66667)
-texture = ExtResource("6_xyrwi")
-
-[node name="ExplosionParticles" type="CPUParticles2D" parent="PathFollow2D/Cannon"]
-position = Vector2(-7.25, 4.25)
-emitting = false
-amount = 12
-one_shot = true
-explosiveness = 1.0
-randomness = 1.0
-emission_shape = 1
-emission_sphere_radius = 5.0
-spread = 180.0
-gravity = Vector2(0, 100)
-initial_velocity_max = 50.0
-scale_amount_min = 4.0
-scale_amount_max = 4.0
-color = Color(1, 0.737255, 0.0352941, 1)
-color_ramp = SubResource("4")
-
-[node name="Ball" type="Node2D" parent="PathFollow2D/Cannon"]
-visible = false
-position = Vector2(-5, 3)
-
-[node name="Ball" type="Sprite2D" parent="PathFollow2D/Cannon/Ball"]
-texture = ExtResource("9_d10fg")
-
-[node name="Hitbox" type="Area2D" parent="PathFollow2D/Cannon/Ball"]
-collision_layer = 16
-collision_mask = 8
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PathFollow2D/Cannon/Ball/Hitbox"]
-shape = SubResource("3")
-disabled = true
-
-[node name="Node2D" type="Node2D" parent="."]
-position = Vector2(-37, -12)
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ColorRect"]
+autoplay = "BladesTorsion"
+libraries = {
+"": SubResource("AnimationLibrary_r06m4")
+}

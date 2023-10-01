@@ -14,4 +14,5 @@ public partial class AnimationRandomizer : AnimationPlayer
 	{
 		Random random = new Random();
 		CurrentAnimation = _animationsArray[random.Next(_animationsArray.Length)];
-	}}
+	}
+}
