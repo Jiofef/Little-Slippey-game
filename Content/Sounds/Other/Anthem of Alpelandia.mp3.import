@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://sig561ut8m2u"
+path="res://.godot/imported/Anthem of Alpelandia.mp3-a792733fd88b2a36a70dff9f5a616cb6.mp3str"
+
+[deps]
+
+source_file="res://Content/Sounds/Other/Anthem of Alpelandia.mp3"
+dest_files=["res://.godot/imported/Anthem of Alpelandia.mp3-a792733fd88b2a36a70dff9f5a616cb6.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

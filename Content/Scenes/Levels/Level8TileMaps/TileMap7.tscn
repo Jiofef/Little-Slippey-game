@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://duk32e0otnfky" path="res://Content/Sprites/Levels/FuckItVolume2Tileset.png" id="2_76mna"]
 [ext_resource type="PackedScene" uid="uid://bt41vubjcqv8p" path="res://Content/Scenes/Crosses/ExplosionAnimation.tscn" id="3_isuv8"]
 [ext_resource type="Texture2D" uid="uid://bg2mvitb1ih7q" path="res://Content/Sprites/Other/Explosion.png" id="4_yow1n"]
-[ext_resource type="AudioStream" uid="uid://dannf4n2kbklp" path="res://Content/Sounds/Crosses/MegaExplosion.wav" id="5_lqkwf"]
+[ext_resource type="AudioStream" uid="uid://djlnmwp104edh" path="res://Content/Sounds/Crosses/MegaExplosion.mp3" id="5_gfefn"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wv2uq"]
 texture = ExtResource("2_76mna")
@@ -423,7 +423,7 @@ scale_amount_max = 16.0
 color = Color(0.784314, 0.784314, 0.705882, 1)
 
 [node name="ExplosionSound" type="AudioStreamPlayer" parent="DisposableButton/Explosion"]
-stream = ExtResource("5_lqkwf")
+stream = ExtResource("5_gfefn")
 bus = &"LevelSounds"
 
 [node name="DisposableButton2" parent="." instance=ExtResource("2_5k45f")]
@@ -461,7 +461,7 @@ scale_amount_max = 16.0
 color = Color(0.784314, 0.784314, 0.705882, 1)
 
 [node name="ExplosionSound" type="AudioStreamPlayer" parent="DisposableButton2/Explosion"]
-stream = ExtResource("5_lqkwf")
+stream = ExtResource("5_gfefn")
 bus = &"LevelSounds"
 
 [node name="DisposableButton3" parent="." instance=ExtResource("2_5k45f")]
@@ -499,7 +499,7 @@ scale_amount_max = 16.0
 color = Color(0.784314, 0.784314, 0.705882, 1)
 
 [node name="ExplosionSound" type="AudioStreamPlayer" parent="DisposableButton3/Explosion"]
-stream = ExtResource("5_lqkwf")
+stream = ExtResource("5_gfefn")
 bus = &"LevelSounds"
 
 [node name="DisposableButton4" parent="." instance=ExtResource("2_5k45f")]
@@ -537,7 +537,7 @@ scale_amount_max = 16.0
 color = Color(0.784314, 0.784314, 0.705882, 1)
 
 [node name="ExplosionSound" type="AudioStreamPlayer" parent="DisposableButton4/Explosion"]
-stream = ExtResource("5_lqkwf")
+stream = ExtResource("5_gfefn")
 bus = &"LevelSounds"
 
 [connection signal="ButtonPressed" from="DisposableButton" to="DisposableButton/TileMap" method="queue_free"]

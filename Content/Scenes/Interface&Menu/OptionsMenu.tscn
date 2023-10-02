@@ -91,22 +91,12 @@ layout_mode = 2
 min_value = -30.0
 max_value = 10.0
 
-[node name="CrossSnap" type="Label" parent="CanvasLayer/Sound/VBoxContainer"]
+[node name="CrossSounds" type="Label" parent="CanvasLayer/Sound/VBoxContainer"]
 layout_mode = 2
-text = "Cross snap"
+text = "Cross Sounds"
 uppercase = true
 
-[node name="CrossSnapSlider" type="HSlider" parent="CanvasLayer/Sound/VBoxContainer"]
-layout_mode = 2
-min_value = -30.0
-max_value = 10.0
-
-[node name="CrossOther" type="Label" parent="CanvasLayer/Sound/VBoxContainer"]
-layout_mode = 2
-text = "Cross other"
-uppercase = true
-
-[node name="CrossOtherSlider" type="HSlider" parent="CanvasLayer/Sound/VBoxContainer"]
+[node name="CrossSoundsSlider" type="HSlider" parent="CanvasLayer/Sound/VBoxContainer"]
 layout_mode = 2
 min_value = -30.0
 max_value = 10.0
@@ -255,10 +245,9 @@ texture_normal = ExtResource("7_c4sdx")
 [connection signal="value_changed" from="CanvasLayer/Sound/VBoxContainer/InterfaceSlider" to="." method="SoundChanging" binds= [1]]
 [connection signal="value_changed" from="CanvasLayer/Sound/VBoxContainer/MusicSlider" to="." method="SoundChanging" binds= [2]]
 [connection signal="value_changed" from="CanvasLayer/Sound/VBoxContainer/PlayerSlider" to="." method="SoundChanging" binds= [3]]
-[connection signal="value_changed" from="CanvasLayer/Sound/VBoxContainer/CrossSnapSlider" to="." method="SoundChanging" binds= [4]]
-[connection signal="value_changed" from="CanvasLayer/Sound/VBoxContainer/CrossOtherSlider" to="." method="SoundChanging" binds= [5]]
-[connection signal="value_changed" from="CanvasLayer/Sound/VBoxContainer/CrossExplosionSlider" to="." method="SoundChanging" binds= [6]]
-[connection signal="value_changed" from="CanvasLayer/Sound/VBoxContainer/LevelSoundsSlider" to="." method="SoundChanging" binds= [7]]
+[connection signal="value_changed" from="CanvasLayer/Sound/VBoxContainer/CrossSoundsSlider" to="." method="SoundChanging" binds= [4]]
+[connection signal="value_changed" from="CanvasLayer/Sound/VBoxContainer/CrossExplosionSlider" to="." method="SoundChanging" binds= [5]]
+[connection signal="value_changed" from="CanvasLayer/Sound/VBoxContainer/LevelSoundsSlider" to="." method="SoundChanging" binds= [6]]
 [connection signal="item_selected" from="CanvasLayer/Video/VBoxContainer/ScreenFormat" to="." method="ChangeScreenFormat"]
 [connection signal="item_selected" from="CanvasLayer/Video/VBoxContainer/ScoresShowingFormat" to="." method="ChangeScoresShowingFormat"]
 [connection signal="item_selected" from="CanvasLayer/Gameplay/VBoxContainer/DificultyChange" to="." method="DificultyChanged"]

@@ -1,16 +1,15 @@
-[gd_scene load_steps=25 format=3 uid="uid://ckwc2sf7ili08"]
+[gd_scene load_steps=24 format=3 uid="uid://ckwc2sf7ili08"]
 
-[ext_resource type="PackedScene" uid="uid://dbugo8fshahv7" path="res://Content/Scenes/Crosses/CrossLayout.tscn" id="1_315wj"]
 [ext_resource type="Script" path="res://Content/Scripts/Crosses/EnhancedBlumCross.cs" id="2_t11fp"]
 [ext_resource type="Texture2D" uid="uid://bs7uef7wkpd40" path="res://Content/Sprites/Crosses/EnhancedBlumCross.png" id="3_iro5u"]
 [ext_resource type="Texture2D" uid="uid://6cxf6dabdomb" path="res://Content/Sprites/Crosses/EnhancedBlumCrossWarning.png" id="4_iwu4o"]
 [ext_resource type="Texture2D" uid="uid://sb76vc7slrym" path="res://Content/Sprites/Crosses/EnhancedBlumCrossCrystalAnimation.png" id="5_0sw4k"]
 [ext_resource type="Texture2D" uid="uid://csq1qdkb418s" path="res://Content/Sprites/Crosses/EnhancedBlumCrossCrystalHead.png" id="5_u48da"]
-[ext_resource type="AudioStream" uid="uid://dannf4n2kbklp" path="res://Content/Sounds/Crosses/MegaExplosion.wav" id="6_c6bnr"]
 [ext_resource type="Texture2D" uid="uid://r3iyalnukxbo" path="res://Content/Sprites/Crosses/EnhancedBlumCrossEnergyBeamAnimation.png" id="6_ywbs3"]
 [ext_resource type="PackedScene" uid="uid://bt41vubjcqv8p" path="res://Content/Scenes/Crosses/ExplosionAnimation.tscn" id="8_a6rgt"]
 [ext_resource type="AudioStream" uid="uid://c5uftb5sncnln" path="res://Content/Sounds/Crosses/EnhancedBlumCrossCrystalBreaking.mp3" id="8_hj7f4"]
 [ext_resource type="AudioStream" uid="uid://dfo3s2oywny1s" path="res://Content/Sounds/Crosses/EnhancedBlumCrossSignal.mp3" id="9_pifl3"]
+[ext_resource type="AudioStream" uid="uid://djlnmwp104edh" path="res://Content/Sounds/Crosses/MegaExplosion.mp3" id="9_s8yf4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vy3rc"]
 atlas = ExtResource("5_0sw4k")
@@ -90,21 +89,22 @@ colors = PackedColorArray(0.501407, 0.501406, 0.501406, 1, 1, 1, 1, 1)
 [sub_resource type="CircleShape2D" id="CircleShape2D_pbttr"]
 radius = 250.0
 
-[node name="EnhancedBlumCross" instance=ExtResource("1_315wj")]
+[node name="EnhancedBlumCross" type="Node2D"]
+z_index = 2
 script = ExtResource("2_t11fp")
 
-[node name="CrossSprite" type="Sprite2D" parent="." index="0"]
+[node name="CrossSprite" type="Sprite2D" parent="."]
 position = Vector2(-1.19209e-07, 0)
 scale = Vector2(10, 10)
 texture = ExtResource("3_iro5u")
 metadata/_edit_group_ = true
 
-[node name="EnergyPoints" type="Node2D" parent="." index="1"]
+[node name="EnergyPoints" type="Node2D" parent="."]
 
-[node name="Point1" type="Node2D" parent="EnergyPoints" index="0"]
+[node name="Point1" type="Node2D" parent="EnergyPoints"]
 position = Vector2(0, 320)
 
-[node name="Crystal" type="Control" parent="EnergyPoints/Point1" index="0"]
+[node name="Crystal" type="Control" parent="EnergyPoints/Point1"]
 clip_contents = true
 layout_mode = 3
 anchors_preset = 0
@@ -114,7 +114,7 @@ offset_right = 255.0
 offset_bottom = 135.0
 rotation = -3.14159
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="EnergyPoints/Point1/Crystal" index="0"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="EnergyPoints/Point1/Crystal"]
 scale = Vector2(10, 10)
 sprite_frames = SubResource("SpriteFrames_kdarv")
 autoplay = "default"
@@ -122,16 +122,16 @@ frame = 2
 frame_progress = 0.728425
 centered = false
 
-[node name="CrystallHead" type="Sprite2D" parent="EnergyPoints/Point1" index="1"]
+[node name="CrystallHead" type="Sprite2D" parent="EnergyPoints/Point1"]
 position = Vector2(-3.8147e-06, -40)
 rotation = 3.14159
 scale = Vector2(10, 10)
 texture = ExtResource("5_u48da")
 
-[node name="EnergyBeam" type="Node2D" parent="EnergyPoints/Point1" index="2"]
+[node name="EnergyBeam" type="Node2D" parent="EnergyPoints/Point1"]
 visible = false
 
-[node name="ShowingRangeController" type="Control" parent="EnergyPoints/Point1/EnergyBeam" index="0"]
+[node name="ShowingRangeController" type="Control" parent="EnergyPoints/Point1/EnergyBeam"]
 clip_contents = true
 layout_mode = 3
 anchors_preset = 0
@@ -140,7 +140,7 @@ offset_right = 30.0
 offset_bottom = 7.5
 pivot_offset = Vector2(0, 7.5)
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="EnergyPoints/Point1/EnergyBeam/ShowingRangeController" index="0"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="EnergyPoints/Point1/EnergyBeam/ShowingRangeController"]
 z_index = 1
 scale = Vector2(5, 5)
 sprite_frames = SubResource("SpriteFrames_fc84j")
@@ -148,7 +148,7 @@ autoplay = "default"
 frame_progress = 0.305153
 centered = false
 
-[node name="CrystallParticles1" type="CPUParticles2D" parent="EnergyPoints" index="1"]
+[node name="CrystallParticles1" type="CPUParticles2D" parent="EnergyPoints"]
 z_index = 1
 position = Vector2(0, 275)
 emitting = false
@@ -167,13 +167,13 @@ color = Color(0.784314, 0, 1, 0.784314)
 color_ramp = SubResource("Gradient_w3xr6")
 color_initial_ramp = SubResource("Gradient_p5fx4")
 
-[node name="Point2" type="Node2D" parent="EnergyPoints" index="2"]
+[node name="Point2" type="Node2D" parent="EnergyPoints"]
 position = Vector2(-320, 0)
 
-[node name="Sprite2D" type="Sprite2D" parent="EnergyPoints/Point2" index="0"]
+[node name="Sprite2D" type="Sprite2D" parent="EnergyPoints/Point2"]
 scale = Vector2(4, 4)
 
-[node name="Crystal" type="Control" parent="EnergyPoints/Point2" index="1"]
+[node name="Crystal" type="Control" parent="EnergyPoints/Point2"]
 clip_contents = true
 layout_mode = 3
 anchors_preset = 0
@@ -183,7 +183,7 @@ offset_right = 255.0
 offset_bottom = 305.0
 rotation = -1.5708
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="EnergyPoints/Point2/Crystal" index="0"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="EnergyPoints/Point2/Crystal"]
 scale = Vector2(10, 10)
 sprite_frames = SubResource("SpriteFrames_kdarv")
 autoplay = "default"
@@ -191,16 +191,16 @@ frame = 1
 frame_progress = 0.845908
 centered = false
 
-[node name="CrystallHead" type="Sprite2D" parent="EnergyPoints/Point2" index="2"]
+[node name="CrystallHead" type="Sprite2D" parent="EnergyPoints/Point2"]
 position = Vector2(40, 0)
 rotation = -1.5708
 scale = Vector2(10, 10)
 texture = ExtResource("5_u48da")
 
-[node name="EnergyBeam" type="Node2D" parent="EnergyPoints/Point2" index="3"]
+[node name="EnergyBeam" type="Node2D" parent="EnergyPoints/Point2"]
 visible = false
 
-[node name="ShowingRangeController" type="Control" parent="EnergyPoints/Point2/EnergyBeam" index="0"]
+[node name="ShowingRangeController" type="Control" parent="EnergyPoints/Point2/EnergyBeam"]
 clip_contents = true
 layout_mode = 3
 anchors_preset = 0
@@ -209,7 +209,7 @@ offset_right = 30.0
 offset_bottom = 7.5
 pivot_offset = Vector2(0, 7.5)
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="EnergyPoints/Point2/EnergyBeam/ShowingRangeController" index="0"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="EnergyPoints/Point2/EnergyBeam/ShowingRangeController"]
 z_index = 1
 scale = Vector2(5, 5)
 sprite_frames = SubResource("SpriteFrames_fc84j")
@@ -217,7 +217,7 @@ autoplay = "default"
 frame_progress = 0.0889699
 centered = false
 
-[node name="CrystallParticles2" type="CPUParticles2D" parent="EnergyPoints" index="3"]
+[node name="CrystallParticles2" type="CPUParticles2D" parent="EnergyPoints"]
 z_index = 1
 position = Vector2(-275, 0)
 emitting = false
@@ -236,13 +236,13 @@ color = Color(0.784314, 0, 1, 0.784314)
 color_ramp = SubResource("Gradient_w3xr6")
 color_initial_ramp = SubResource("Gradient_p5fx4")
 
-[node name="Point3" type="Node2D" parent="EnergyPoints" index="4"]
+[node name="Point3" type="Node2D" parent="EnergyPoints"]
 position = Vector2(320, 0)
 
-[node name="Sprite2D" type="Sprite2D" parent="EnergyPoints/Point3" index="0"]
+[node name="Sprite2D" type="Sprite2D" parent="EnergyPoints/Point3"]
 scale = Vector2(4, 4)
 
-[node name="Crystal" type="Control" parent="EnergyPoints/Point3" index="1"]
+[node name="Crystal" type="Control" parent="EnergyPoints/Point3"]
 clip_contents = true
 layout_mode = 3
 anchors_preset = 0
@@ -252,22 +252,22 @@ offset_right = 85.0
 offset_bottom = 145.0
 rotation = 1.5708
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="EnergyPoints/Point3/Crystal" index="0"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="EnergyPoints/Point3/Crystal"]
 scale = Vector2(10, 10)
 sprite_frames = SubResource("SpriteFrames_kdarv")
 autoplay = "default"
 centered = false
 
-[node name="CrystallHead" type="Sprite2D" parent="EnergyPoints/Point3" index="2"]
+[node name="CrystallHead" type="Sprite2D" parent="EnergyPoints/Point3"]
 position = Vector2(-40, 7.62939e-06)
 rotation = 1.5708
 scale = Vector2(10, 10)
 texture = ExtResource("5_u48da")
 
-[node name="EnergyBeam" type="Node2D" parent="EnergyPoints/Point3" index="3"]
+[node name="EnergyBeam" type="Node2D" parent="EnergyPoints/Point3"]
 visible = false
 
-[node name="ShowingRangeController" type="Control" parent="EnergyPoints/Point3/EnergyBeam" index="0"]
+[node name="ShowingRangeController" type="Control" parent="EnergyPoints/Point3/EnergyBeam"]
 clip_contents = true
 layout_mode = 3
 anchors_preset = 0
@@ -276,7 +276,7 @@ offset_right = 15.0
 offset_bottom = 8.0
 pivot_offset = Vector2(0, 7.5)
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="EnergyPoints/Point3/EnergyBeam/ShowingRangeController" index="0"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="EnergyPoints/Point3/EnergyBeam/ShowingRangeController"]
 z_index = 1
 scale = Vector2(5, 5)
 sprite_frames = SubResource("SpriteFrames_fc84j")
@@ -284,7 +284,7 @@ autoplay = "default"
 frame_progress = 0.0889699
 centered = false
 
-[node name="CrystallParticles3" type="CPUParticles2D" parent="EnergyPoints" index="5"]
+[node name="CrystallParticles3" type="CPUParticles2D" parent="EnergyPoints"]
 z_index = 1
 position = Vector2(275, 0)
 emitting = false
@@ -303,13 +303,13 @@ color = Color(0.784314, 0, 1, 0.784314)
 color_ramp = SubResource("Gradient_w3xr6")
 color_initial_ramp = SubResource("Gradient_p5fx4")
 
-[node name="Point4" type="Node2D" parent="EnergyPoints" index="6"]
+[node name="Point4" type="Node2D" parent="EnergyPoints"]
 position = Vector2(0, -320)
 
-[node name="Sprite2D" type="Sprite2D" parent="EnergyPoints/Point4" index="0"]
+[node name="Sprite2D" type="Sprite2D" parent="EnergyPoints/Point4"]
 scale = Vector2(4, 4)
 
-[node name="Crystal" type="Control" parent="EnergyPoints/Point4" index="1"]
+[node name="Crystal" type="Control" parent="EnergyPoints/Point4"]
 clip_contents = true
 layout_mode = 3
 anchors_preset = 0
@@ -318,21 +318,21 @@ offset_top = 85.0
 offset_right = 85.0
 offset_bottom = 315.0
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="EnergyPoints/Point4/Crystal" index="0"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="EnergyPoints/Point4/Crystal"]
 scale = Vector2(10, 10)
 sprite_frames = SubResource("SpriteFrames_kdarv")
 autoplay = "default"
 centered = false
 
-[node name="CrystallHead" type="Sprite2D" parent="EnergyPoints/Point4" index="2"]
+[node name="CrystallHead" type="Sprite2D" parent="EnergyPoints/Point4"]
 position = Vector2(0, 40)
 scale = Vector2(10, 10)
 texture = ExtResource("5_u48da")
 
-[node name="EnergyBeam" type="Node2D" parent="EnergyPoints/Point4" index="3"]
+[node name="EnergyBeam" type="Node2D" parent="EnergyPoints/Point4"]
 visible = false
 
-[node name="ShowingRangeController" type="Control" parent="EnergyPoints/Point4/EnergyBeam" index="0"]
+[node name="ShowingRangeController" type="Control" parent="EnergyPoints/Point4/EnergyBeam"]
 clip_contents = true
 layout_mode = 3
 anchors_preset = 0
@@ -341,7 +341,7 @@ offset_right = 30.0
 offset_bottom = 7.5
 pivot_offset = Vector2(0, 7.5)
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="EnergyPoints/Point4/EnergyBeam/ShowingRangeController" index="0"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="EnergyPoints/Point4/EnergyBeam/ShowingRangeController"]
 z_index = 1
 scale = Vector2(5, 5)
 sprite_frames = SubResource("SpriteFrames_fc84j")
@@ -349,7 +349,7 @@ autoplay = "default"
 frame_progress = 0.0889699
 centered = false
 
-[node name="CrystallParticles4" type="CPUParticles2D" parent="EnergyPoints" index="7"]
+[node name="CrystallParticles4" type="CPUParticles2D" parent="EnergyPoints"]
 z_index = 1
 position = Vector2(0, -275)
 emitting = false
@@ -368,42 +368,44 @@ color = Color(0.784314, 0, 1, 0.784314)
 color_ramp = SubResource("Gradient_w3xr6")
 color_initial_ramp = SubResource("Gradient_p5fx4")
 
-[node name="WarningSprite" type="Sprite2D" parent="." index="2"]
+[node name="WarningSprite" type="Sprite2D" parent="."]
 position = Vector2(-2, -2)
 scale = Vector2(10, 10)
 texture = ExtResource("4_iwu4o")
 metadata/_edit_group_ = true
 
-[node name="ExplosiveArea" type="Area2D" parent="." index="3"]
+[node name="ExplosiveArea" type="Area2D" parent="."]
 visible = false
 collision_layer = 16
 collision_mask = 8
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ExplosiveArea" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExplosiveArea"]
 shape = SubResource("CircleShape2D_pbttr")
 disabled = true
 
-[node name="WearAcceleratingArea2D" type="Area2D" parent="." index="4"]
+[node name="WearAcceleratingArea2D" type="Area2D" parent="."]
 visible = false
 collision_layer = 0
 collision_mask = 8
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="WearAcceleratingArea2D" index="0"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="WearAcceleratingArea2D"]
 polygon = PackedVector2Array(-235, -95, -165, -95, -95, -165, -95, -235, 0, -325, 95, -235, 95, -165, 165, -95, 235, -95, 325, 0, 235, 95, 165, 95, 95, 165, 95, 235, 0, 325, -95, 235, -95, 165, -165, 95, -235, 95, -325, 0)
 
-[node name="CrystalBreaking" type="AudioStreamPlayer" parent="." index="5"]
+[node name="CrystalBreaking" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_hj7f4")
 volume_db = -6.0
-bus = &"CrossOther"
+bus = &"CrossSounds"
 
-[node name="ExplosionSignal" parent="." index="6"]
+[node name="ExplosionSignal" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("9_pifl3")
 volume_db = 5.0
+bus = &"CrossSounds"
 
-[node name="ExplosionSound" parent="." index="7"]
-stream = ExtResource("6_c6bnr")
+[node name="ExplosionSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_s8yf4")
+bus = &"CrossExplosion"
 
-[node name="ExplosionAnimation" parent="." index="8" instance=ExtResource("8_a6rgt")]
+[node name="ExplosionAnimation" parent="." instance=ExtResource("8_a6rgt")]
 scale = Vector2(18, 18)
 speed_scale = 0.8
 

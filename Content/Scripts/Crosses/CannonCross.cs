@@ -27,10 +27,7 @@ public partial class CannonCross : Path2D
             _frontWheel.Rotation -= _cannonSpeed / 20;
 
             if (_cannonPathFollow2D.ProgressRatio >= 0.95f)
-            {
-                GetNode<AudioStreamPlayer>("PathFollow2D/Cannon/Sounds/RollingCannon").Stop();
                 GetNode<AudioStreamPlayer>("PathFollow2D/Cannon/Sounds/Charge").Play();
-            }
         }
         else if (!_doCannonShoted)
         {

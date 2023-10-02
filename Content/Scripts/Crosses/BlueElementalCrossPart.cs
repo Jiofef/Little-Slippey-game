@@ -20,7 +20,7 @@ public partial class BlueElementalCrossPart : Node2D
         _sprite.Modulate = new Color(_sprite.Modulate.R, _sprite.Modulate.G, _sprite.Modulate.B, 0);
 
         var spawnSound = GetNode<AudioStreamPlayer>("SpawnSound");
-        spawnSound.Stream = ResourceLoader.Load<AudioStream>("res://Content/Sounds/Crosses/BlueElementalCrossPartSoundVar" + (random.Next(3) + 1) + ".wav");
+        spawnSound.Stream = ResourceLoader.Load<AudioStream>("res://Content/Sounds/Crosses/BlueElementalCrossPartSoundVar" + (random.Next(3) + 1) + ".mp3");
         spawnSound.Play();
     }
     public override void _PhysicsProcess(double delta)

@@ -19,7 +19,7 @@ public partial class OptionsMenu : Control
         GetNode<TextureButton>("CanvasLayer/Cancel").GrabFocus();
 
 
-        string[] SliderNames = { "GlobalSlider", "InterfaceSlider", "MusicSlider", "PlayerSlider", "CrossSnapSlider", "CrossOtherSlider", "CrossExplosionSlider", "LevelSoundsSlider" };
+        string[] SliderNames = { "GlobalSlider", "InterfaceSlider", "MusicSlider", "PlayerSlider", "CrossSoundsSlider", "CrossExplosionSlider", "LevelSoundsSlider" };
         for (int i = 0; i < SliderNames.Length; i++)
             GetNode<Slider>("CanvasLayer/Sound/VBoxContainer/" + SliderNames[i]).Value = Meta.Instance.BusVolumes[i];
 
@@ -68,7 +68,7 @@ public partial class OptionsMenu : Control
         AudioServer.SetBusMute(BusNubmer, value <= -30);
     }
 
-    public override void _Process(double delta)
+    public override void _PhysicsProcess(double delta)
     {
         _screenFormat.Selected = DisplayServer.WindowGetMode() == DisplayServer.WindowMode.Fullscreen ? 1 : 0;
         if (Input.IsActionJustPressed("Cancel"))

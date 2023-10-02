@@ -1,10 +1,9 @@
-[gd_scene load_steps=22 format=3 uid="uid://ddd7cqetjnrwf"]
+[gd_scene load_steps=21 format=3 uid="uid://ddd7cqetjnrwf"]
 
 [ext_resource type="Texture2D" uid="uid://b53a4snnwbhr1" path="res://Content/Sprites/Levels/Level9/SpitCross.png" id="1_1qgl2"]
-[ext_resource type="PackedScene" path="res://Content/Scenes/Crosses/CrossLayout.tscn" id="1_k80i8"]
 [ext_resource type="Script" path="res://Content/Scripts/Levels/Level9SpitCross.cs" id="2_5cjaf"]
 [ext_resource type="Texture2D" uid="uid://bv5jkxumbdvb2" path="res://Content/Sprites/Levels/Level9/SpitCrossWarning.png" id="2_p6oj2"]
-[ext_resource type="AudioStream" uid="uid://gj5ebhpdiyko" path="res://Content/Sounds/Crosses/MicroExplosion.wav" id="4_dwxab"]
+[ext_resource type="AudioStream" uid="uid://bia3ek48x2oph" path="res://Content/Sounds/Crosses/MicroExplosion.mp3" id="4_tb5im"]
 [ext_resource type="PackedScene" uid="uid://bt41vubjcqv8p" path="res://Content/Scenes/Crosses/ExplosionAnimation.tscn" id="5_3ikju"]
 [ext_resource type="Texture2D" uid="uid://bg2mvitb1ih7q" path="res://Content/Sprites/Other/Explosion.png" id="6_alr2a"]
 
@@ -103,36 +102,33 @@ animations = [{
 "speed": 15.0
 }]
 
-[node name="SpitCross" instance=ExtResource("1_k80i8")]
-scale = Vector2(1, 1)
+[node name="SpitCross" type="Node2D"]
+z_index = 2
 script = ExtResource("2_5cjaf")
 
-[node name="CrossSprite" type="Sprite2D" parent="." index="0"]
+[node name="CrossSprite" type="Sprite2D" parent="."]
 position = Vector2(-1.19209e-07, 0)
 scale = Vector2(10, 10)
 texture = ExtResource("1_1qgl2")
 
-[node name="WarningSprite" type="Sprite2D" parent="." index="1"]
+[node name="WarningSprite" type="Sprite2D" parent="."]
 position = Vector2(-2, -2)
 scale = Vector2(10, 10)
 texture = ExtResource("2_p6oj2")
 
-[node name="ExplosiveArea" type="Area2D" parent="." index="2"]
+[node name="ExplosiveArea" type="Area2D" parent="."]
 collision_layer = 16
 collision_mask = 8
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ExplosiveArea" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExplosiveArea"]
 shape = SubResource("CircleShape2D_1nct1")
 disabled = true
 
-[node name="ExplosionSignal" parent="." index="3"]
-bus = &"CrossSnap"
-
-[node name="ExplosionSound" parent="." index="4"]
-stream = ExtResource("4_dwxab")
+[node name="ExplosionSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_tb5im")
 bus = &"CrossExplosion"
 
-[node name="ExplosionAnimation" parent="." index="5" instance=ExtResource("5_3ikju")]
+[node name="ExplosionAnimation" parent="." instance=ExtResource("5_3ikju")]
 sprite_frames = SubResource("SpriteFrames_235ix")
 
 [connection signal="animation_finished" from="ExplosionAnimation" to="." method="queue_free"]

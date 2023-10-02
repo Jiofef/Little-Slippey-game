@@ -1,13 +1,12 @@
-[gd_scene load_steps=12 format=3 uid="uid://dq2imvbic058q"]
+[gd_scene load_steps=11 format=3 uid="uid://dq2imvbic058q"]
 
 [ext_resource type="Texture2D" uid="uid://bkuwiddwgfqo4" path="res://Content/Sprites/Crosses/CannonBarrel.png" id="2"]
+[ext_resource type="AudioStream" uid="uid://bql4va5bvejv5" path="res://Content/Sounds/Crosses/CannonChargingSound.mp3" id="2_2un0t"]
 [ext_resource type="Texture2D" uid="uid://f066ngoira7" path="res://Content/Sprites/Crosses/CannonWheel.png" id="3"]
+[ext_resource type="AudioStream" uid="uid://d5xg7ux58s7a" path="res://Content/Sounds/Crosses/CannonShot.mp3" id="3_rkcw1"]
 [ext_resource type="Script" path="res://Content/Scripts/Crosses/CannonCross.cs" id="4"]
 [ext_resource type="Texture2D" uid="uid://ojysa637ors8" path="res://Content/Sprites/Crosses/TornCannonBarrel.png" id="5"]
 [ext_resource type="Texture2D" uid="uid://wf2tjey7r0fu" path="res://Content/Sprites/Crosses/CannonBall.png" id="6"]
-[ext_resource type="AudioStream" uid="uid://cnlsin5w3w8xr" path="res://Content/Sounds/Crosses/RollingCannonSounds.wav" id="7"]
-[ext_resource type="AudioStream" uid="uid://cq4chw1mbchw1" path="res://Content/Sounds/Crosses/CannonChargingSound.wav" id="8"]
-[ext_resource type="AudioStream" uid="uid://dmkgagt1ps7j5" path="res://Content/Sounds/Crosses/CannonShot.wav" id="9"]
 
 [sub_resource type="Curve2D" id="1"]
 _data = {
@@ -37,17 +36,12 @@ scale = Vector2(4, 4)
 
 [node name="Sounds" type="Node" parent="PathFollow2D/Cannon"]
 
-[node name="RollingCannon" type="AudioStreamPlayer" parent="PathFollow2D/Cannon/Sounds"]
-stream = ExtResource("7")
-autoplay = true
-bus = &"CrossSnap"
-
 [node name="Charge" type="AudioStreamPlayer" parent="PathFollow2D/Cannon/Sounds"]
-stream = ExtResource("8")
-bus = &"CrossOther"
+stream = ExtResource("2_2un0t")
+bus = &"CrossSounds"
 
 [node name="Shot" type="AudioStreamPlayer" parent="PathFollow2D/Cannon/Sounds"]
-stream = ExtResource("9")
+stream = ExtResource("3_rkcw1")
 volume_db = -5.0
 bus = &"CrossExplosion"
 

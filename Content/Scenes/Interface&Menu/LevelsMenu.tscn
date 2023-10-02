@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bwpstpk1xmkah" path="res://Content/Scenes/Interface&Menu/Button.tscn" id="2_6jw0o"]
 [ext_resource type="Texture2D" uid="uid://bvogrd2bqhwmt" path="res://Content/Sprites/Other/OblivionNoise.png" id="2_d2goi"]
 [ext_resource type="Texture2D" uid="uid://d0sqlunqacimf" path="res://Content/Sprites/Interface/CancelButtonOutline.png" id="3_1uhey"]
-[ext_resource type="AudioStream" uid="uid://fvujnce467hn" path="res://Content/Sounds/Other/WhiteNoise.wav" id="3_oln2v"]
+[ext_resource type="AudioStream" uid="uid://dy6lncevmnf3o" path="res://Content/Sounds/Other/WhiteNoise.mp3" id="3_4foo2"]
 [ext_resource type="Texture2D" uid="uid://bs42vfh75wcnm" path="res://Content/Sprites/Interface/CancelButtonOutlinePressed.png" id="4_gwypa"]
 [ext_resource type="Texture2D" uid="uid://clg1i8k0880p3" path="res://Content/Sprites/Interface/CancelButtonCross.png" id="5_bj8ux"]
 [ext_resource type="Texture2D" uid="uid://c6v5r4xne78e0" path="res://Content/Sprites/Interface/LevelListScrollButtonOutline.png" id="6_jy5ym"]
@@ -461,7 +461,7 @@ speed_scale = 2.0
 centered = false
 
 [node name="Sound" type="AudioStreamPlayer" parent="Visual/LevelPresenterOutline/LevelPresenter/WhiteNoise"]
-stream = ExtResource("3_oln2v")
+stream = ExtResource("3_4foo2")
 volume_db = -5.0
 bus = &"Interface"
 

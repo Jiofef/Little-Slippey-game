@@ -1,17 +1,17 @@
 [gd_scene load_steps=45 format=3 uid="uid://dlscufxb5f1ca"]
 
 [ext_resource type="Script" path="res://Content/Scripts/Other/Player.cs" id="1"]
-[ext_resource type="AudioStream" uid="uid://y2jek6twhvve" path="res://Content/Sounds/Player/GroundHit.wav" id="3"]
-[ext_resource type="AudioStream" uid="uid://jkmxs0pdjtvc" path="res://Content/Sounds/Player/Climb.wav" id="8"]
+[ext_resource type="AudioStream" uid="uid://422y36f6ucnf" path="res://Content/Sounds/Player/Climb.mp3" id="2_bn55d"]
+[ext_resource type="AudioStream" uid="uid://ctpwmgkvyooy1" path="res://Content/Sounds/Player/Death.mp3" id="3_e2byo"]
+[ext_resource type="AudioStream" uid="uid://blkua1p6uqioe" path="res://Content/Sounds/Player/GroundHit.mp3" id="4_eqohp"]
+[ext_resource type="AudioStream" uid="uid://b3cwlsvshgdvx" path="res://Content/Sounds/Player/Jump.mp3" id="5_4c4de"]
+[ext_resource type="AudioStream" uid="uid://p26mliplwayb" path="res://Content/Sounds/Player/PullDown.mp3" id="6_ouqh1"]
 [ext_resource type="Texture2D" uid="uid://060bgiw5i00k" path="res://Content/Sprites/PlayerSkins/Slippey.png" id="8_36ypt"]
-[ext_resource type="AudioStream" uid="uid://dtbqcivkkem4g" path="res://Content/Sounds/Player/PullDown.wav" id="9"]
 [ext_resource type="Texture2D" uid="uid://nmw5orvjy6f8" path="res://Content/Sprites/Other/PlayerGhost.png" id="10"]
-[ext_resource type="AudioStream" uid="uid://cqkgwxdng8oby" path="res://Content/Sounds/Player/Jump.wav" id="11"]
+[ext_resource type="AudioStream" uid="uid://dy6lncevmnf3o" path="res://Content/Sounds/Other/WhiteNoise.mp3" id="12_jom63"]
 [ext_resource type="Script" path="res://Content/Scripts/Other/Camera.cs" id="13"]
 [ext_resource type="Texture2D" uid="uid://bvogrd2bqhwmt" path="res://Content/Sprites/Other/OblivionNoise.png" id="15"]
 [ext_resource type="FontFile" uid="uid://cp7vrks23tdh3" path="res://Content/Other/FFFFORWA.TTF" id="15_47p4f"]
-[ext_resource type="AudioStream" uid="uid://crtcoacg8vdmx" path="res://Content/Sounds/Player/Death.wav" id="16"]
-[ext_resource type="AudioStream" uid="uid://fvujnce467hn" path="res://Content/Sounds/Other/WhiteNoise.wav" id="17"]
 
 [sub_resource type="RectangleShape2D" id="1"]
 size = Vector2(40, 56)
@@ -293,29 +293,29 @@ shape = SubResource("2")
 
 [node name="Sounds" type="Node" parent="."]
 
+[node name="Climb" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("2_bn55d")
+volume_db = 5.0
+bus = &"Player"
+
+[node name="Death" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("3_e2byo")
+volume_db = 10.0
+bus = &"Player"
+
 [node name="PullDownHit" type="AudioStreamPlayer" parent="Sounds"]
-stream = ExtResource("3")
+stream = ExtResource("4_eqohp")
 volume_db = 6.0
 bus = &"Player"
 
 [node name="Jump" type="AudioStreamPlayer" parent="Sounds"]
-stream = ExtResource("11")
+stream = ExtResource("5_4c4de")
 volume_db = -3.0
 bus = &"Player"
 
-[node name="Climb" type="AudioStreamPlayer" parent="Sounds"]
-stream = ExtResource("8")
-volume_db = 5.0
-bus = &"Player"
-
 [node name="PullDown" type="AudioStreamPlayer" parent="Sounds"]
-stream = ExtResource("9")
+stream = ExtResource("6_ouqh1")
 volume_db = -10.0
-bus = &"Player"
-
-[node name="Death" type="AudioStreamPlayer" parent="Sounds"]
-stream = ExtResource("16")
-volume_db = 10.0
 bus = &"Player"
 
 [node name="Ghost" type="Sprite2D" parent="."]
@@ -437,7 +437,7 @@ sprite_frames = SubResource("37")
 frame_progress = 0.601279
 
 [node name="Sound" type="AudioStreamPlayer" parent="Camera2D/GUI/RestartNoise"]
-stream = ExtResource("17")
+stream = ExtResource("12_jom63")
 volume_db = -5.0
 bus = &"Player"
 

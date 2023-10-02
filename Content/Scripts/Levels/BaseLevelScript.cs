@@ -25,7 +25,7 @@ public partial class BaseLevelScript : Node2D
         Connect("LevelReload", new Callable(GetNode(".."), "LevelLoad"));
         GetNode<AudioStreamPlayer>("../../LevelMusicPlayer").StreamPaused = false;
         _player = GetNode<CharacterBody2D>("Player");
-        _isCrossesEnhanced = G.CurrentLevel == 10 || Meta.Instance.EnhancedCrossesAtAllLevels;
+        _isCrossesEnhanced = G.CurrentLevel == 10 && G.LevelAdditionalLink == "True"|| Meta.Instance.EnhancedCrossesAtAllLevels;
         for (int i = 0; i < _crosses.Length; i++)
             _crosses[i] = ResourceLoader.Load<PackedScene>("res://Content/Scenes/Crosses/" + (_isCrossesEnhanced ? "Enhanced" : "") + "Cross" + (i + 1) + ".tscn");
 
@@ -68,9 +68,7 @@ public partial class BaseLevelScript : Node2D
         {
             G.ResetTimer += _floatDelta;
             if (G.ResetTimer > 1.5f)
-            {
                 Reset();
-            }
         }
         else G.ResetTimer = G.ResetTimer > 0 ? G.ResetTimer - _floatDelta : 0;
 
@@ -192,6 +190,7 @@ public partial class BaseLevelScript : Node2D
         G.IsProgressPaused = false;
         G.CrossSpawnMultiplier = 1;
         UnchangableMeta.SaveRecords();
+        UnchangableMeta.SaveToFile();
         EmitSignal("LevelReload");
         QueueFree();
     }

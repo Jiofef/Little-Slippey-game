@@ -183,6 +183,23 @@ sources/1 = SubResource("TileSetAtlasSource_jub3u")
 offsets = PackedFloat32Array(0, 0.516556, 1)
 colors = PackedColorArray(1, 1, 1, 0, 0.602649, 0.602649, 0.602649, 1, 1, 1, 1, 0)
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_q048x"]
+texture = ExtResource("43_ubrpb")
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+
+[sub_resource type="TileSet" id="TileSet_hs3xr"]
+physics_layer_0/collision_layer = 4
+physics_layer_0/collision_mask = 0
+sources/1 = SubResource("TileSetAtlasSource_q048x")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pybpu"]
+size = Vector2(48, 64)
+
+[sub_resource type="Gradient" id="Gradient_lowrk"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
 [sub_resource type="Gradient" id="Gradient_11nw7"]
 colors = PackedColorArray(1, 0, 0, 1, 0.501961, 0, 0, 1)
 
@@ -3092,28 +3109,11 @@ size = Vector2(640, 128)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i2k4v"]
 size = Vector2(128, 384)
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_q048x"]
-texture = ExtResource("43_ubrpb")
-0:0/0 = 0
-0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-0:0/0/physics_layer_0/angular_velocity = 0.0
-
-[sub_resource type="TileSet" id="TileSet_hs3xr"]
-physics_layer_0/collision_layer = 4
-physics_layer_0/collision_mask = 0
-sources/1 = SubResource("TileSetAtlasSource_q048x")
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kecls"]
 size = Vector2(48, 80)
 
-[sub_resource type="Gradient" id="Gradient_lowrk"]
-colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fly8i"]
 size = Vector2(128, 788)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_pybpu"]
-size = Vector2(48, 64)
 
 [sub_resource type="Animation" id="Animation_mlu0y"]
 resource_name = "Dark"
@@ -3138,19 +3138,19 @@ step = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("YOU\'REDOOMEDTrigger/DoomDoor:position")
+tracks/0/path = NodePath("../TileMap/DoomDoor:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(2, 1),
 "update": 0,
-"values": [Vector2(-192, 320), Vector2(-192, 64)]
+"values": [Vector2(0, 336), Vector2(0, 272)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("YOU\'REDOOMEDTrigger/DoomDoor/CPUParticles2D:emitting")
+tracks/1/path = NodePath("../TileMap/DoomDoor/CPUParticles2D:emitting")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -3627,6 +3627,39 @@ scale_amount_min = 4.0
 scale_amount_max = 4.0
 color = Color(0.784314, 0.627451, 0, 1)
 color_ramp = SubResource("Gradient_lobvm")
+
+[node name="DoomDoor" type="AnimatableBody2D" parent="TileMap"]
+position = Vector2(0, 336)
+collision_layer = 4
+collision_mask = 0
+metadata/_edit_group_ = true
+
+[node name="TileMap" type="TileMap" parent="TileMap/DoomDoor"]
+tile_set = SubResource("TileSet_hs3xr")
+format = 2
+layer_0/tile_data = PackedInt32Array(-3, 1, 0, 65533, 1, 0, 131069, 1, 0, -2, 1, 0, 65534, 1, 0, 131070, 1, 0, -1, 1, 0, 65535, 1, 0, 131071, 1, 0, -65539, 1, 0, -65538, 1, 0, -65537, 1, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TileMap/DoomDoor"]
+position = Vector2(-24, 0)
+shape = SubResource("RectangleShape2D_pybpu")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="TileMap/DoomDoor"]
+position = Vector2(-24, -32)
+emitting = false
+amount = 16
+lifetime = 0.4
+one_shot = true
+explosiveness = 1.0
+emission_shape = 3
+emission_rect_extents = Vector2(24, 1)
+direction = Vector2(0, 1)
+spread = 90.0
+initial_velocity_min = 200.0
+initial_velocity_max = 200.0
+scale_amount_min = 4.0
+scale_amount_max = 4.0
+color = Color(1, 0, 0, 1)
+color_ramp = SubResource("Gradient_lowrk")
 
 [node name="JiofefHead" type="Node2D" parent="."]
 z_index = 1
@@ -4219,39 +4252,6 @@ scale = Vector2(0.25, 0.25)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlatformerSection/YOU\'REDOOMEDTrigger"]
 position = Vector2(0, -118)
 shape = SubResource("RectangleShape2D_fly8i")
-
-[node name="DoomDoor" type="AnimatableBody2D" parent="PlatformerSection/YOU\'REDOOMEDTrigger"]
-position = Vector2(-192, 320)
-scale = Vector2(4, 4)
-collision_layer = 4
-collision_mask = 0
-
-[node name="TileMap" type="TileMap" parent="PlatformerSection/YOU\'REDOOMEDTrigger/DoomDoor"]
-tile_set = SubResource("TileSet_hs3xr")
-format = 2
-layer_0/tile_data = PackedInt32Array(-3, 1, 0, 65533, 1, 0, 131069, 1, 0, -2, 1, 0, 65534, 1, 0, 131070, 1, 0, -1, 1, 0, 65535, 1, 0, 131071, 1, 0, -65539, 1, 0, -65538, 1, 0, -65537, 1, 0)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlatformerSection/YOU\'REDOOMEDTrigger/DoomDoor"]
-position = Vector2(-24, 0)
-shape = SubResource("RectangleShape2D_pybpu")
-
-[node name="CPUParticles2D" type="CPUParticles2D" parent="PlatformerSection/YOU\'REDOOMEDTrigger/DoomDoor"]
-position = Vector2(-24, -32)
-emitting = false
-amount = 16
-lifetime = 0.4
-one_shot = true
-explosiveness = 1.0
-emission_shape = 3
-emission_rect_extents = Vector2(24, 1)
-direction = Vector2(0, 1)
-spread = 90.0
-initial_velocity_min = 200.0
-initial_velocity_max = 200.0
-scale_amount_min = 4.0
-scale_amount_max = 4.0
-color = Color(1, 0, 0, 1)
-color_ramp = SubResource("Gradient_lowrk")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="PlatformerSection"]
 autoplay = "Dark"

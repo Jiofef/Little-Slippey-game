@@ -7,7 +7,7 @@ public partial class MainScript : Node2D
     public override void _Ready()
     {
         var levelMusicPlayer = GetNode<AudioStreamPlayer>("LevelMusicPlayer");
-        AudioStream Music = ResourceLoader.Load<AudioStream>("res://Content/Sounds/Soundtrack/Level" + G.CurrentLevel + ".wav");
+        AudioStream Music = ResourceLoader.Load<AudioStream>("res://Content/Sounds/Soundtrack/Level" + G.CurrentLevel + ".mp3");
         levelMusicPlayer.Stream = Music;
         levelMusicPlayer.Play();
     }

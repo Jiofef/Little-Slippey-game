@@ -113,7 +113,8 @@ public partial class Camera : Camera2D
 
     public void OptionsChanged()
     {
-        SetZoom(new Vector2(Meta.Instance.CameraZoom, Meta.Instance.CameraZoom));
+        float zoom = G.PlayerCorpseFlightTimer < 4 ? Meta.Instance.CameraZoom + G.PlayerCorpseFlightTimer * ((4.5f - Meta.Instance.CameraZoom) / 4) : 4.5f;
+        Zoom = new Vector2(zoom, zoom);
         _scores.Visible = Meta.Instance.ScoresShowingFormatIndex == 0;
     }
 }

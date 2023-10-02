@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Content/Scripts/Levels/Level6FlyingCar.cs" id="1_0duqf"]
 [ext_resource type="Texture2D" uid="uid://cim0cdx4secre" path="res://Content/Sprites/Levels/Level6/GieroFlyingCar.png" id="2_jjd8w"]
 [ext_resource type="PackedScene" uid="uid://bt41vubjcqv8p" path="res://Content/Scenes/Crosses/ExplosionAnimation.tscn" id="4_wsswu"]
-[ext_resource type="AudioStream" uid="uid://clx6n3ton256w" path="res://Content/Sounds/Crosses/Explosion.wav" id="5_ildig"]
+[ext_resource type="AudioStream" uid="uid://cceqrm4tkdmc2" path="res://Content/Sounds/Crosses/Explosion.mp3" id="4_y8kyn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_33feu"]
 size = Vector2(128, 64)
@@ -71,7 +71,7 @@ color = Color(1, 0.847059, 0.380392, 1)
 color_ramp = SubResource("Gradient_qa2ky")
 
 [node name="ExplosionSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("5_ildig")
+stream = ExtResource("4_y8kyn")
 bus = &"LevelSounds"
 
 [connection signal="area_entered" from="CarArea" to="." method="AreaEntered" unbinds=1]

@@ -1,8 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://dxnmuyu5wcsgv"]
+[gd_scene load_steps=6 format=3 uid="uid://dxnmuyu5wcsgv"]
 
 [ext_resource type="Script" path="res://Content/Scripts/Other/PlayPart.cs" id="1"]
 [ext_resource type="Script" path="res://Content/Scripts/Other/MainScript.cs" id="2"]
-[ext_resource type="AudioStream" uid="uid://bd600nupwwnkt" path="res://Content/Sounds/Soundtrack/Level7.wav" id="2_onyb5"]
 [ext_resource type="PackedScene" uid="uid://bwpstpk1xmkah" path="res://Content/Scenes/Interface&Menu/Button.tscn" id="6"]
 [ext_resource type="Texture2D" uid="uid://b74iy0kiw62iu" path="res://Content/Sprites/Interface/MenuButtonOutline.png" id="6_eqfpd"]
 [ext_resource type="Texture2D" uid="uid://emg8y7w217f1" path="res://Content/Sprites/Interface/PauseDesk.png" id="10"]
@@ -12,7 +11,6 @@ process_mode = 3
 script = ExtResource("2")
 
 [node name="LevelMusicPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("2_onyb5")
 volume_db = 20.0
 bus = &"Music"
 

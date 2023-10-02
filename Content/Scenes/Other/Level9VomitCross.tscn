@@ -1,9 +1,9 @@
 [gd_scene load_steps=22 format=3 uid="uid://gd2rt5ce45cx"]
 
-[ext_resource type="PackedScene" path="res://Content/Scenes/Crosses/CrossLayout.tscn" id="1_mvh8w"]
 [ext_resource type="Script" path="res://Content/Scripts/Levels/Level9VomitCross.cs" id="2_012gw"]
 [ext_resource type="Texture2D" uid="uid://b53a4snnwbhr1" path="res://Content/Sprites/Levels/Level9/SpitCross.png" id="3_jof67"]
 [ext_resource type="Texture2D" uid="uid://bv5jkxumbdvb2" path="res://Content/Sprites/Levels/Level9/SpitCrossWarning.png" id="4_2lxfp"]
+[ext_resource type="AudioStream" uid="uid://bia3ek48x2oph" path="res://Content/Sounds/Crosses/MicroExplosion.mp3" id="4_v2rgn"]
 [ext_resource type="PackedScene" uid="uid://bt41vubjcqv8p" path="res://Content/Scenes/Crosses/ExplosionAnimation.tscn" id="5_30vlq"]
 [ext_resource type="Texture2D" uid="uid://bg2mvitb1ih7q" path="res://Content/Sprites/Other/Explosion.png" id="6_jxgrm"]
 
@@ -106,38 +106,36 @@ animations = [{
 offsets = PackedFloat32Array(0, 0.25, 0.5, 0.75, 1)
 colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0)
 
-[node name="CrossLayout" instance=ExtResource("1_mvh8w")]
-scale = Vector2(1, 1)
+[node name="CrossLayout" type="Node2D"]
+z_index = 2
 script = ExtResource("2_012gw")
 
-[node name="CrossSprite" type="Sprite2D" parent="." index="0"]
+[node name="CrossSprite" type="Sprite2D" parent="."]
 position = Vector2(-1.19209e-07, 0)
 scale = Vector2(10, 10)
 texture = ExtResource("3_jof67")
 
-[node name="WarningSprite" type="Sprite2D" parent="." index="1"]
+[node name="WarningSprite" type="Sprite2D" parent="."]
 position = Vector2(-2, -2)
 scale = Vector2(10, 10)
 texture = ExtResource("4_2lxfp")
 
-[node name="ExplosiveArea" type="Area2D" parent="." index="2"]
+[node name="ExplosiveArea" type="Area2D" parent="."]
 collision_layer = 16
 collision_mask = 8
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ExplosiveArea" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExplosiveArea"]
 shape = SubResource("CircleShape2D_x3uqb")
 disabled = true
 
-[node name="ExplosionSignal" parent="." index="3"]
-bus = &"CrossSnap"
-
-[node name="ExplosionSound" parent="." index="4"]
+[node name="ExplosionSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_v2rgn")
 bus = &"CrossExplosion"
 
-[node name="ExplosionAnimation" parent="." index="5" instance=ExtResource("5_30vlq")]
+[node name="ExplosionAnimation" parent="." instance=ExtResource("5_30vlq")]
 sprite_frames = SubResource("SpriteFrames_chf6h")
 
-[node name="CPUParticles2D" type="CPUParticles2D" parent="." index="6"]
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 emission_shape = 1
 emission_sphere_radius = 55.0
 spread = 180.0

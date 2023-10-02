@@ -7,9 +7,13 @@
 [node name="EnhancedRestlessCross" instance=ExtResource("1_24dmb")]
 _isCrossEnhanced = true
 
-[node name="CrossSprite" parent="." index="3"]
+[node name="CrossSprite" parent="." index="2"]
 use_parent_material = true
 texture = ExtResource("2_oneab")
+
+[node name="WarningSprite" parent="." index="3"]
+use_parent_material = true
+texture = ExtResource("3_p6gne")
 
 [node name="PointingRect" type="Node2D" parent="." index="4"]
 
@@ -25,11 +29,7 @@ offset_bottom = 3.0
 grow_vertical = 2
 pivot_offset = Vector2(0, 5)
 
-[node name="WarningSprite" parent="." index="5"]
-use_parent_material = true
-texture = ExtResource("3_p6gne")
-
-[node name="ExplosionAnimation" parent="." index="7"]
+[node name="ExplosionAnimation" parent="." index="6"]
 use_parent_material = true
 
 [connection signal="draw" from="ExplosionAnimation" to="PointingRect/ColorRect" method="queue_free"]

@@ -7,9 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://3arwpxm41m0a" path="res://Content/Sprites/Levels/Level5/HomeSweetHome.png" id="3_7wxdf"]
 [ext_resource type="Texture2D" uid="uid://c1a8v62iy3ybh" path="res://Content/Sprites/Levels/WhyIsItStillRainingTileset.png" id="5_5oi6v"]
 [ext_resource type="Script" path="res://Content/Scripts/Levels/Level5Rain.cs" id="6_6d0yb"]
-[ext_resource type="AudioStream" uid="uid://dqc0vbb5n0mue" path="res://Content/Sounds/Levels/Level5Thunder.wav" id="7_n57c7"]
-[ext_resource type="AudioStream" uid="uid://1y7s1ielwra0" path="res://Content/Sounds/Levels/Level5Ambience1.wav" id="8_1upyt"]
-[ext_resource type="AudioStream" uid="uid://bb56wmhlog106" path="res://Content/Sounds/Levels/Level5Ambience2.wav" id="9_cr48p"]
+[ext_resource type="AudioStream" uid="uid://hqp1es4u8fk4" path="res://Content/Sounds/Levels/Level5Thunder.mp3" id="8_xdubp"]
+[ext_resource type="AudioStream" uid="uid://kus4k0ea0aj2" path="res://Content/Sounds/Levels/Level5Ambience1.mp3" id="9_rtch3"]
+[ext_resource type="AudioStream" uid="uid://bo64hggnj03vc" path="res://Content/Sounds/Levels/Level5Ambience2.mp3" id="10_n01k5"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_r08os"]
 texture = ExtResource("5_5oi6v")
@@ -243,16 +243,16 @@ offset_bottom = 720.0
 color = Color(1, 1, 1, 0)
 
 [node name="ThunderSound" type="AudioStreamPlayer" parent="Rain"]
-stream = ExtResource("7_n57c7")
+stream = ExtResource("8_xdubp")
 volume_db = 10.0
 bus = &"LevelSounds"
 
 [node name="AmbiencePlayer1" type="AudioStreamPlayer" parent="Rain"]
-stream = ExtResource("8_1upyt")
+stream = ExtResource("9_rtch3")
 bus = &"LevelSounds"
 
 [node name="AmbiencePlayer2" type="AudioStreamPlayer" parent="Rain"]
-stream = ExtResource("9_cr48p")
+stream = ExtResource("10_n01k5")
 volume_db = 10.0
 bus = &"LevelSounds"
 

@@ -40,7 +40,5 @@ public partial class G : Node
 		ResetTimer = 0;
 		AfterPlayerCorpseFlightTimer = 0;
 		Scores = 0;
-		UnchangableMeta.SaveRecords();
-		UnchangableMeta.SaveToFile();
 	}
 }
