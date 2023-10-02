@@ -91,7 +91,6 @@ colors = PackedColorArray(0.501407, 0.501406, 0.501406, 1, 1, 1, 1, 1)
 radius = 250.0
 
 [node name="EnhancedBlumCross" instance=ExtResource("1_315wj")]
-z_index = 2
 script = ExtResource("2_t11fp")
 
 [node name="CrossSprite" type="Sprite2D" parent="." index="0"]

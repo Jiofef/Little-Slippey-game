@@ -39,7 +39,7 @@ offset_left = -86.0
 offset_top = -86.0
 offset_right = 214.0
 offset_bottom = -80.0
-scale = Vector2(0.477454, 1)
+scale = Vector2(0.888224, 1)
 pivot_offset = Vector2(150, 3)
 color = Color(0.223529, 0.203922, 0.341176, 1)
 

@@ -1,8 +1,9 @@
-res://default_bus_layout.tres
 res://default_env.tres
-res://Content/Scenes/Crosses/HelicopterBomb.tscn
-res://Content/Other/StaticNoiseShader.gdshader
 res://Content/Scenes/Levels/FullParts/Level10True.tscn
+res://Content/Other/StaticNoiseShader.gdshader
+res://Content/Scenes/Crosses/EnhancedCross5.tscn
+res://Content/Scenes/Crosses/EnhancedCross1.tscn
+res://Content/Scenes/Crosses/EnhancedCross4.tscn
 res://Content/Other/G.cs
 res://Content/Other/Meta.cs
 res://Content/Other/UnchangableMeta.cs
@@ -53,3 +54,6 @@ res://Content/Scripts/Other/MainScript.cs
 res://Content/Scripts/Other/Player.cs
 res://Content/Scripts/Other/PlayPart.cs
 res://Content/Scripts/Other/StartupScene.cs
+res://Content/Scripts/Crosses/EnhancedDefaultCross.cs
+res://Content/Scenes/Crosses/Cross1.tscn
+res://Content/Scenes/Crosses/CrossLayout.tscn

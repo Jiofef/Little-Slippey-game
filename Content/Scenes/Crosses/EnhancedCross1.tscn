@@ -1,136 +1,31 @@
-[gd_scene load_steps=21 format=3 uid="uid://dipe3yh17sylm"]
+[gd_scene load_steps=5 format=3 uid="uid://yrhioex2qifj"]
 
-[ext_resource type="PackedScene" uid="uid://dbugo8fshahv7" path="res://Content/Scenes/Crosses/CrossLayout.tscn" id="1_ebjgs"]
-[ext_resource type="Script" path="res://Content/Scripts/Crosses/DefaultCross.cs" id="2_4gmpi"]
-[ext_resource type="Texture2D" uid="uid://53uh2aqy4q1p" path="res://Content/Sprites/Crosses/DefaultCross.png" id="3_3isei"]
-[ext_resource type="Texture2D" uid="uid://doeu7dyjmu0db" path="res://Content/Sprites/Crosses/DefaultCrossWarning.png" id="4_38eib"]
-[ext_resource type="PackedScene" uid="uid://bt41vubjcqv8p" path="res://Content/Scenes/Crosses/ExplosionAnimation.tscn" id="5_k0cg1"]
-[ext_resource type="Texture2D" uid="uid://bg2mvitb1ih7q" path="res://Content/Sprites/Other/Explosion.png" id="6_newgh"]
+[ext_resource type="PackedScene" uid="uid://ckv1q4rw8ybd3" path="res://Content/Scenes/Crosses/Cross1.tscn" id="1_qdcgx"]
+[ext_resource type="Script" path="res://Content/Scripts/Crosses/EnhancedDefaultCross.cs" id="2_jidna"]
+[ext_resource type="AudioStream" uid="uid://p4v0bt1bymm0" path="res://Content/Sounds/Crosses/EnhancedDefaultCrossWarning.mp3" id="3_yrjht"]
 
 [sub_resource type="CircleShape2D" id="1"]
-radius = 75.0
+radius = 78.0
 
-[sub_resource type="AtlasTexture" id="9"]
-atlas = ExtResource("6_newgh")
-region = Rect2(0, 0, 48, 48)
+[node name="EnhancedDefaultCross" instance=ExtResource("1_qdcgx")]
+script = ExtResource("2_jidna")
 
-[sub_resource type="AtlasTexture" id="10"]
-atlas = ExtResource("6_newgh")
-region = Rect2(49, 0, 48, 48)
-
-[sub_resource type="AtlasTexture" id="11"]
-atlas = ExtResource("6_newgh")
-region = Rect2(98, 0, 48, 48)
-
-[sub_resource type="AtlasTexture" id="12"]
-atlas = ExtResource("6_newgh")
-region = Rect2(0, 49, 48, 48)
-
-[sub_resource type="AtlasTexture" id="13"]
-atlas = ExtResource("6_newgh")
-region = Rect2(49, 49, 48, 48)
-
-[sub_resource type="AtlasTexture" id="14"]
-atlas = ExtResource("6_newgh")
-region = Rect2(98, 49, 48, 48)
-
-[sub_resource type="AtlasTexture" id="15"]
-atlas = ExtResource("6_newgh")
-region = Rect2(0, 98, 48, 48)
-
-[sub_resource type="AtlasTexture" id="16"]
-atlas = ExtResource("6_newgh")
-region = Rect2(49, 98, 48, 48)
-
-[sub_resource type="AtlasTexture" id="17"]
-atlas = ExtResource("6_newgh")
-region = Rect2(98, 98, 48, 48)
-
-[sub_resource type="AtlasTexture" id="18"]
-atlas = ExtResource("6_newgh")
-region = Rect2(0, 147, 48, 48)
-
-[sub_resource type="AtlasTexture" id="19"]
-atlas = ExtResource("6_newgh")
-region = Rect2(49, 147, 48, 48)
-
-[sub_resource type="AtlasTexture" id="20"]
-atlas = ExtResource("6_newgh")
-region = Rect2(98, 147, 48, 48)
-
-[sub_resource type="SpriteFrames" id="8"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("9")
-}, {
-"duration": 1.0,
-"texture": SubResource("10")
-}, {
-"duration": 1.0,
-"texture": SubResource("11")
-}, {
-"duration": 1.0,
-"texture": SubResource("12")
-}, {
-"duration": 1.0,
-"texture": SubResource("13")
-}, {
-"duration": 1.0,
-"texture": SubResource("14")
-}, {
-"duration": 1.0,
-"texture": SubResource("15")
-}, {
-"duration": 1.0,
-"texture": SubResource("16")
-}, {
-"duration": 1.0,
-"texture": SubResource("17")
-}, {
-"duration": 1.0,
-"texture": SubResource("18")
-}, {
-"duration": 1.0,
-"texture": SubResource("19")
-}, {
-"duration": 1.0,
-"texture": SubResource("20")
-}],
-"loop": false,
-"name": &"default",
-"speed": 15.0
-}]
-
-[node name="EnhancedDefaultCross" instance=ExtResource("1_ebjgs")]
-z_index = 2
-script = ExtResource("2_4gmpi")
-
-[node name="CrossSprite" type="Sprite2D" parent="." index="0"]
+[node name="CrossSprite" parent="." index="0"]
 use_parent_material = true
-position = Vector2(-1.19209e-07, 0)
-scale = Vector2(10, 10)
-texture = ExtResource("3_3isei")
 
-[node name="WarningSprite" type="Sprite2D" parent="." index="1"]
+[node name="WarningSprite" parent="." index="1"]
 use_parent_material = true
-position = Vector2(-2, -2)
-scale = Vector2(10, 10)
-texture = ExtResource("4_38eib")
 
-[node name="ExplosiveArea" type="Area2D" parent="." index="2"]
-collision_layer = 16
+[node name="TriggerArea" type="Area2D" parent="." index="3"]
+collision_layer = 0
 collision_mask = 8
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ExplosiveArea" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TriggerArea" index="0"]
 shape = SubResource("1")
 disabled = true
 
-[node name="ExplosionSignal" parent="." index="3"]
-volume_db = -15.0
+[node name="ExplosionSignal" parent="." index="4"]
+stream = ExtResource("3_yrjht")
+volume_db = 0.0
 
-[node name="ExplosionAnimation" parent="." index="5" instance=ExtResource("5_k0cg1")]
-use_parent_material = true
-sprite_frames = SubResource("8")
-
-[connection signal="animation_finished" from="ExplosionAnimation" to="." method="queue_free"]
+[connection signal="area_entered" from="TriggerArea" to="." method="TRIGGERED" unbinds=1]

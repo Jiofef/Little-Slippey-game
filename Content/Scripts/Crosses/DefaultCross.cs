@@ -2,7 +2,15 @@ using Godot;
 
 public partial class DefaultCross : Node2D
 {
+    Sprite2D _crossSprite, _warningSprite;
+
     private int _ticksToExplosion = 60;
+
+    public override void _Ready()
+    {
+        _crossSprite = GetNode<Sprite2D>("CrossSprite");
+        _warningSprite = GetNode<Sprite2D>("WarningSprite");
+    }
     public override void _PhysicsProcess(double delta)
     {
         if (Scale.X > 1 && Scale.Y > 1 && Modulate.A < 1)
@@ -12,16 +20,10 @@ public partial class DefaultCross : Node2D
         }
         else if (_ticksToExplosion > 0)
         {
-            if (_ticksToExplosion == 45 || _ticksToExplosion == 30 || _ticksToExplosion == 15)
-            {
-                GetNode<Sprite2D>("CrossSprite").Visible = false;
-                GetNode<AudioStreamPlayer>("ExplosionSignal").Play();
-            }
-            else if (_ticksToExplosion == 40 || _ticksToExplosion == 25 || _ticksToExplosion == 10)
-            {
-                GetNode<Sprite2D>("CrossSprite").Visible = true;
-            }
             _ticksToExplosion--;
+            _crossSprite.Modulate = new Color(_crossSprite.Modulate.R, _crossSprite.Modulate.G, _crossSprite.Modulate.B, _crossSprite.Modulate.A - 0.1f);
+            if (_ticksToExplosion == 45 || _ticksToExplosion == 30 || _ticksToExplosion == 15)
+                _crossSprite.Modulate = new Color(_crossSprite.Modulate.R, _crossSprite.Modulate.G, _crossSprite.Modulate.B, 1);
         }
         else
         {
@@ -38,8 +40,7 @@ public partial class DefaultCross : Node2D
             GetNode<AudioStreamPlayer>("ExplosionSound").Play();
             explosionAnimation.Visible = true;
             explosionAnimation.Play();
-            if (Material == null || Material.ResourceName != "StaticNoise")
-                explosiveArea.Disabled = false;
+            explosiveArea.Disabled = false;
 
             var Groups = GetGroups();
             for (int i = 0; i < Groups.Count; i++)

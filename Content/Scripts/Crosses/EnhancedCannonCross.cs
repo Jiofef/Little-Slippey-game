@@ -35,7 +35,14 @@ public partial class EnhancedCannonCross : Node2D
 		_velocity += (_movementGlobalPoint - GlobalPosition) / 500;
         GlobalTranslate(_velocity);
 		_velocity /= 1.1f;
-		_sprite2D.FlipH = _velocity.X < 0;
+
+		Scale = new Vector2(_velocity.X > 0 ? 1 : -1, 1);
+        RotationDegrees += _velocity.X / 5;
+		if (RotationDegrees > 20)
+			RotationDegrees = 20;
+		else if (RotationDegrees < -20)
+			RotationDegrees = -20;
+		RotationDegrees /= 1.1f;
 
         switch (_state)
 		{
@@ -60,18 +67,14 @@ public partial class EnhancedCannonCross : Node2D
 					if (_bombsLeft <= 0)
 					{
                         _state = State.FlyingAway;
-						_movementGlobalPoint = new Vector2(GlobalPosition.X, G.CameraLimits.X - 300);
+						_movementGlobalPoint = new Vector2(GlobalPosition.X, G.CameraLimits.X - 400);
                     }
                 }
                 break;
 
             case State.FlyingAway:
-				if (GlobalPosition.Y < G.CameraLimits.X - 300)
-				{
-
+				if (GlobalPosition.Y < G.CameraLimits.X - 250)
 					QueueFree();
-					GD.Print("s");
-				}
                 break;
         }
 	}
