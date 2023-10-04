@@ -6,8 +6,6 @@ public partial class OptionsMenu : Control
     [Signal]
     public delegate void OptionsClosingEventHandler();
 
-    private OptionButton _screenFormat;
-
     public override void _Ready()
     {
         Meta.OptionsReserve = Meta.Instance.Clone();
@@ -24,7 +22,6 @@ public partial class OptionsMenu : Control
             GetNode<Slider>("CanvasLayer/Sound/VBoxContainer/" + SliderNames[i]).Value = Meta.Instance.BusVolumes[i];
 
 
-        _screenFormat = GetNode<OptionButton>("CanvasLayer/Video/VBoxContainer/ScreenFormat");
         Meta.Instance.IsFullScreen = DisplayServer.WindowGetMode() == DisplayServer.WindowMode.Fullscreen;
         GetNode<OptionButton>("CanvasLayer/Video/VBoxContainer/ScoresShowingFormat").Selected = Meta.Instance.ScoresShowingFormatIndex;
 
@@ -70,7 +67,7 @@ public partial class OptionsMenu : Control
 
     public override void _PhysicsProcess(double delta)
     {
-        _screenFormat.Selected = DisplayServer.WindowGetMode() == DisplayServer.WindowMode.Fullscreen ? 1 : 0;
+        GetNode<OptionButton>("CanvasLayer/Video/VBoxContainer/ScreenFormat").Selected = DisplayServer.WindowGetMode() == DisplayServer.WindowMode.Fullscreen ? 1 : 0;
         if (Input.IsActionJustPressed("Cancel"))
             Cancel();
     }

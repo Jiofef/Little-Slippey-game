@@ -8,15 +8,16 @@ public partial class Level10DroneCapsule : Node2D
         if (!G._isLevel10Finaling && G.Scores > 150)
             G._isLevel10Finaling = true;
 
-        if (Input.IsActionPressed("Reset") && G._isLevel10Finaling || _isTrueFinaling)
-            G.ResetTimer += 0.003f;
-        else if (G.ResetTimer > 0)
-            G.ResetTimer -= 0.01f;
-        else if(G.ResetTimer != 0)
-            G.ResetTimer = 0;
-        if (G.ResetTimer >= 2f)
+        if (G._isLevel10Finaling)
         {
-            GetTree().ChangeSceneToFile("res://Content/Scenes/Interface&Menu/FinalLetter.tscn");
+            if (Input.IsActionPressed("Reset") || _isTrueFinaling)
+                G.ResetTimer += 0.003f;
+            else if (G.ResetTimer > 0)
+                G.ResetTimer -= 0.01f;
+            else if (G.ResetTimer != 0)
+                G.ResetTimer = 0;
+            if (G.ResetTimer >= 2f)
+                GetTree().ChangeSceneToFile("res://Content/Scenes/Interface&Menu/FinalLetter.tscn");
         }
     }
 

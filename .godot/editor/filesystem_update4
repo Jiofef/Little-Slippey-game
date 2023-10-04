@@ -1,8 +1,8 @@
 res://default_env.tres
 res://Content/Scenes/Levels/FullParts/Level10True.tscn
 res://Content/Other/StaticNoiseShader.gdshader
-res://Content/Scenes/Levels/FullParts/Level1.tscn
-res://Content/Scenes/Levels/Level8TileMaps/TileMap8.tscn
+res://Content/Scenes/Other/Player.tscn
+res://Content/Scenes/Interface&Menu/FinalLetter.tscn
 res://Content/Other/G.cs
 res://Content/Other/Meta.cs
 res://Content/Other/UnchangableMeta.cs
@@ -55,6 +55,6 @@ res://Content/Scripts/Other/MainScript.cs
 res://Content/Scripts/Other/Player.cs
 res://Content/Scripts/Other/PlayPart.cs
 res://Content/Scripts/Other/StartupScene.cs
-res://Content/Scenes/Other/Player.tscn
-res://Content/Scripts/Levels/Level10Finale.cs
-res://Content/Scenes/Interface&Menu/FinalLetter.tscn
+res://Content/Scenes/Levels/Level8TileMaps/TileMap8.tscn
+res://Content/Scenes/Interface&Menu/LevelsMenu.tscn
+res://Content/Scripts/Interface&Menu/FinalLetter.cs

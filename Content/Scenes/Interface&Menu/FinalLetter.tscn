@@ -1,8 +1,236 @@
-[gd_scene format=3 uid="uid://dqp6q1agu664i"]
+[gd_scene load_steps=11 format=3 uid="uid://dqp6q1agu664i"]
+
+[ext_resource type="Texture2D" uid="uid://dmdsc2hvi54tw" path="res://Content/Sprites/Interface/TheFinalLetter.png" id="1_3vvb0"]
+[ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/FinalLetter.cs" id="1_kdln6"]
+[ext_resource type="PackedScene" uid="uid://bwpstpk1xmkah" path="res://Content/Scenes/Interface&Menu/Button.tscn" id="2_yw24e"]
+[ext_resource type="Texture2D" uid="uid://d0sqlunqacimf" path="res://Content/Sprites/Interface/CancelButtonOutline.png" id="3_7ehks"]
+[ext_resource type="Texture2D" uid="uid://bs42vfh75wcnm" path="res://Content/Sprites/Interface/CancelButtonOutlinePressed.png" id="4_ocua5"]
+[ext_resource type="Texture2D" uid="uid://bajqg8ftdifa0" path="res://Content/Sprites/Interface/AcceptButton.png" id="5_buo5e"]
+[ext_resource type="AudioStream" uid="uid://dy05yi7funfgq" path="res://Content/Ultrakill OST - The fire is gone.mp3" id="7_mmu3p"]
+
+[sub_resource type="Animation" id="Animation_ema7o"]
+resource_name = "Appearing"
+length = 20.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Letter:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(5, 12),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Letter/Agree:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 15),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Letter/Agree:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 15),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Letter/Agree")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(15),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"grab_focus"
+}]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Letter/Agree:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(15, 20),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Music:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_auj5a"]
+resource_name = "Disappearing"
+length = 20.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Letter/Agree:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 2,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Letter/Agree:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Letter/Agree:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Letter:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 10),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Music:volume_db")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 20),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [15.0, -10.0]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(20),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"Close"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5c3wd"]
+_data = {
+"Appearing": SubResource("Animation_ema7o"),
+"Disappearing": SubResource("Animation_auj5a")
+}
 
 [node name="FinalLetter" type="Node2D"]
+script = ExtResource("1_kdln6")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_right = 1280.0
 offset_bottom = 720.0
 color = Color(0, 0, 0, 1)
+
+[node name="Letter" type="Node2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Letter"]
+position = Vector2(640, 360)
+scale = Vector2(4, 4)
+texture = ExtResource("1_3vvb0")
+
+[node name="Label" type="Label" parent="Letter"]
+offset_left = 260.0
+offset_top = 180.0
+offset_right = 1019.0
+offset_bottom = 539.0
+theme_override_colors/font_color = Color(0, 0, 0, 0.588235)
+theme_override_constants/line_spacing = 8
+text = "
+To the Board of Directors of Giero.
+I am glad to inform you that the testing and training of object 24
+(hereinafter referred to as the \"object\") was successful. The object is
+subject to further cloning and the use of clones for military purposes in
+accordance with Order N43 of 03/27/2039. Our laboratories will
+conduct additional testing and begin the cloning operation in
+the near future.
+With respect,
+The general manager of Giero Labs, Hiro Miyoshi."
+
+[node name="Agree" parent="Letter" instance=ExtResource("2_yw24e")]
+visible = false
+modulate = Color(1, 1, 1, 0)
+offset_left = 1160.0
+offset_top = 600.0
+offset_right = 1184.0
+offset_bottom = 624.0
+focus_neighbor_left = NodePath(".")
+disabled = true
+texture_normal = ExtResource("3_7ehks")
+texture_pressed = ExtResource("4_ocua5")
+
+[node name="Sprite2D" type="Sprite2D" parent="Letter/Agree"]
+position = Vector2(12, 12)
+scale = Vector2(0.999999, 1)
+texture = ExtResource("5_buo5e")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Letter"]
+root_node = NodePath("../..")
+autoplay = "Appearing"
+libraries = {
+"": SubResource("AnimationLibrary_5c3wd")
+}
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_mmu3p")
+volume_db = 15.0
+bus = &"Music"
+
+[connection signal="pressed" from="Letter/Agree" to="Letter/AnimationPlayer" method="play" flags=6 binds= ["Disappearing"]]
