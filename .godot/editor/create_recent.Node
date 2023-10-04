@@ -1,10 +1,12 @@
-Area2D
-AnimationPlayer
-AnimationTree
 ColorRect
 Timer
-CollisionShape2D
+Node2D
 Sprite2D
+AnimationPlayer
+Control
+Area2D
+AnimationTree
+CollisionShape2D
 AudioStreamPlayer2D
 ColorPickerButton
 AnimatableBody2D
@@ -16,8 +18,6 @@ CanvasLayer
 ParallaxBackground
 AnimatedSprite2D
 AudioStreamPlayer
-Node2D
-Control
 CPUParticles2D
 CollisionPolygon2D
 ShaderGlobalsOverride

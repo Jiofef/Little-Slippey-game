@@ -70,7 +70,7 @@ public partial class Camera : Camera2D
             float TimerX50 = G.PlayerCorpseFlightTimer * 50;
             LimitsChangingBy(false, -TimerX50 - IntPos2, TimerX50 + IntPos1, TimerX50 + IntPos2, -TimerX50 - IntPos1);
 
-            if (G.PlayerCorpseFlightTimer >= 4.5f)
+            if (G.PlayerCorpseFlightTimer >= 4.5f && !G._isLevel10Finaling)
             {
                 var emergingElements = GetNode<Node2D>("GUI/EmergingElements");
                 if (!emergingElements.Visible)

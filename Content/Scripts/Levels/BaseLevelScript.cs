@@ -63,14 +63,16 @@ public partial class BaseLevelScript : Node2D
         }
 
 
-
-        if (Input.IsActionPressed("Reset"))
+        if (!G._isLevel10Finaling)
         {
-            G.ResetTimer += _floatDelta;
-            if (G.ResetTimer > 1.5f)
-                Reset();
+            if (Input.IsActionPressed("Reset"))
+            {
+                G.ResetTimer += _floatDelta;
+                if (G.ResetTimer > 1.5f)
+                    Reset();
+            }
+            else G.ResetTimer = G.ResetTimer > 0 ? G.ResetTimer - _floatDelta : 0;
         }
-        else G.ResetTimer = G.ResetTimer > 0 ? G.ResetTimer - _floatDelta : 0;
 
         if (G.IsPlayerDead) return;
 

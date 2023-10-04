@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://dbydilcx0two4"]
+[gd_scene load_steps=34 format=3 uid="uid://dbydilcx0two4"]
 
 [ext_resource type="Script" path="res://Content/Scripts/Levels/BaseLevelScript.cs" id="1_5cxtw"]
 [ext_resource type="Texture2D" uid="uid://bif1cr6n4hvie" path="res://Content/Sprites/Levels/Level10/TestChamber.png" id="2_ndhi4"]
@@ -8,6 +8,10 @@
 [ext_resource type="Texture2D" uid="uid://bom6incv53ok1" path="res://Content/Sprites/Levels/Level10/Rail.png" id="5_uvnwq"]
 [ext_resource type="Script" path="res://Content/Scripts/Other/AnimationRandomizer.cs" id="6_04oyw"]
 [ext_resource type="Texture2D" uid="uid://bx0f1c20d2wai" path="res://Content/Sprites/Levels/DropesAndHeamsTileset.png" id="6_a4576"]
+[ext_resource type="Texture2D" uid="uid://dpf24jfhstqid" path="res://Content/Sprites/Levels/Level10/PortableControlledDroneCapsule.png" id="9_8a8rk"]
+[ext_resource type="Script" path="res://Content/Scripts/Levels/Level10DroneCapsule.cs" id="9_cnmny"]
+[ext_resource type="Texture2D" uid="uid://bvogrd2bqhwmt" path="res://Content/Sprites/Other/OblivionNoise.png" id="11_03181"]
+[ext_resource type="AudioStream" uid="uid://dy6lncevmnf3o" path="res://Content/Sounds/Other/WhiteNoise.mp3" id="13_eyo0p"]
 
 [sub_resource type="Animation" id="Animation_cj33v"]
 resource_name = "CapsulePassage"
@@ -528,10 +532,205 @@ tracks/0/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(2.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dxx2d"]
 _data = {
 "Blumxd": SubResource("Animation_qc6kh")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gciug"]
+atlas = ExtResource("11_03181")
+region = Rect2(0, 0, 320, 180)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_njar7"]
+atlas = ExtResource("11_03181")
+region = Rect2(0, 180, 320, 180)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pm50c"]
+atlas = ExtResource("11_03181")
+region = Rect2(0, 360, 320, 180)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0a0gk"]
+atlas = ExtResource("11_03181")
+region = Rect2(0, 540, 320, 180)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8icp0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gciug")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_njar7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pm50c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0a0gk")
+}],
+"loop": true,
+"name": &"default",
+"speed": 15.0
+}]
+
+[sub_resource type="Curve" id="Curve_x2stw"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.05, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Animation" id="Animation_ntmlj"]
+resource_name = "TakingSlippey"
+length = 16.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2, 3, 12, 13.8, 16),
+"transitions": PackedFloat32Array(1, 0.5, 1, 2, 1, 1),
+"update": 0,
+"values": [Vector2(-760, -114), Vector2(-126.667, -114), Vector2(0, -114), Vector2(0, -114), Vector2(200, -114), Vector2(800, -114)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Control/ManipulatorCord:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(3.5, 7, 8, 10.5, 11.5),
+"transitions": PackedFloat32Array(1, 1, -2, 2, 1),
+"update": 0,
+"values": [Vector2(96, -78), Vector2(96, 84), Vector2(96, 84), Vector2(96, -36), Vector2(96, -78)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MobilePart1:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(3.5, 4, 9.8, 10.3),
+"transitions": PackedFloat32Array(0.5, 1, 0.5, 1),
+"update": 0,
+"values": [Vector2(-16, 54), Vector2(-40, 46), Vector2(-40, 46), Vector2(-16, 54)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("MobilePart2:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(3.5, 4, 9.8, 10.3),
+"transitions": PackedFloat32Array(0.5, 1, 0.5, 1),
+"update": 0,
+"values": [Vector2(16, 54), Vector2(40, 46), Vector2(40, 46), Vector2(16, 54)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Control/ManipulatorCord/FirstJaw:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(6.4, 6.9, 8, 8.2, 10, 10.2, 11.3, 11.8),
+"transitions": PackedFloat32Array(1, 1, 2, 1, 1, 1, 2, 1),
+"update": 0,
+"values": [0.0, 0.523599, 0.523599, 0.0, 0.0, 0.523599, 0.523599, 0.0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Control/ManipulatorCord/SecondJaw:rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(6.5, 7, 8, 8.2, 10, 10.2, 11.3, 11.8),
+"transitions": PackedFloat32Array(1, 1, 2, 1, 1, 1, 2, 1),
+"update": 0,
+"values": [0.0, -0.523599, -0.523599, 0.0, 0.0, -0.523599, -0.523599, 0.0]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../../Player/AnimatedSprite2D:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(8, 10.5, 12, 13.8, 16),
+"transitions": PackedFloat32Array(-2, 1, 2, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -120), Vector2(0, -120), Vector2(200, -120), Vector2(800, -120)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("../../Player:z_index")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("../../Player/Camera2D:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(8, 10.5, 13),
+"transitions": PackedFloat32Array(-2, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -120), Vector2(0, -120)]
+}
+tracks/10/type = "method"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath(".")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(16),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"TrueFinale"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_urued"]
+_data = {
+"TakingSlippey": SubResource("Animation_ntmlj")
 }
 
 [node name="Level10" type="Node2D"]
@@ -651,3 +850,116 @@ modulate = Color(1, 1, 1, 0)
 offset_right = 1280.0
 offset_bottom = 720.0
 metadata/_edit_lock_ = true
+
+[node name="NoiseNoise" type="AnimatedSprite2D" parent="CanvasLayer"]
+modulate = Color(1, 1, 1, 0)
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_8icp0")
+centered = false
+
+[node name="Sound" type="AudioStreamPlayer" parent="CanvasLayer/NoiseNoise"]
+stream = ExtResource("13_eyo0p")
+volume_db = -5.0
+bus = &"Player"
+
+[node name="PositionCrutch" type="Node2D" parent="."]
+z_index = 3
+
+[node name="DroneCapsule" type="Node2D" parent="PositionCrutch"]
+visible = false
+z_index = 2
+position = Vector2(-760, -114)
+script = ExtResource("9_cnmny")
+metadata/_edit_group_ = true
+
+[node name="InnerPart" type="Sprite2D" parent="PositionCrutch/DroneCapsule"]
+z_index = -4
+position = Vector2(0, 14)
+scale = Vector2(4, 4)
+texture = ExtResource("9_8a8rk")
+region_enabled = true
+region_rect = Rect2(50, 0, 24, 25)
+
+[node name="Control" type="Control" parent="PositionCrutch/DroneCapsule"]
+clip_contents = true
+layout_mode = 3
+anchors_preset = 0
+offset_left = -96.0
+offset_top = -60.0
+offset_right = 96.0
+offset_bottom = 452.0
+
+[node name="ManipulatorCord" type="Sprite2D" parent="PositionCrutch/DroneCapsule/Control"]
+position = Vector2(96, -78)
+scale = Vector2(4, 4)
+texture = ExtResource("9_8a8rk")
+region_enabled = true
+region_rect = Rect2(94, 0, 2, 32)
+
+[node name="FirstJaw" type="Sprite2D" parent="PositionCrutch/DroneCapsule/Control/ManipulatorCord"]
+z_index = -3
+position = Vector2(0, 15)
+texture = ExtResource("9_8a8rk")
+offset = Vector2(-4, 5)
+region_enabled = true
+region_rect = Rect2(76, 0, 8, 11)
+
+[node name="SecondJaw" type="Sprite2D" parent="PositionCrutch/DroneCapsule/Control/ManipulatorCord"]
+position = Vector2(0, 14)
+texture = ExtResource("9_8a8rk")
+offset = Vector2(4, 6)
+region_enabled = true
+region_rect = Rect2(84, 0, 8, 11)
+
+[node name="AirBubbles" type="CPUParticles2D" parent="PositionCrutch/DroneCapsule"]
+amount = 30
+lifetime = 15.0
+preprocess = 10.0
+speed_scale = 5.0
+randomness = 1.0
+local_coords = true
+emission_shape = 3
+emission_rect_extents = Vector2(48, 36)
+direction = Vector2(0, -1)
+spread = 0.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 1.0
+initial_velocity_max = 1.0
+scale_amount_min = 4.0
+scale_amount_max = 4.0
+scale_amount_curve = SubResource("Curve_x2stw")
+color = Color(0, 1, 1, 0.117647)
+
+[node name="Body" type="Sprite2D" parent="PositionCrutch/DroneCapsule"]
+scale = Vector2(4, 4)
+texture = ExtResource("9_8a8rk")
+region_enabled = true
+region_rect = Rect2(0, 0, 48, 32)
+
+[node name="MobilePart1" type="Sprite2D" parent="PositionCrutch/DroneCapsule"]
+position = Vector2(-16, 54)
+scale = Vector2(4, 4)
+texture = ExtResource("9_8a8rk")
+region_enabled = true
+region_rect = Rect2(50, 27, 8, 5)
+
+[node name="MobilePart2" type="Sprite2D" parent="PositionCrutch/DroneCapsule"]
+position = Vector2(16, 54)
+scale = Vector2(4, 4)
+texture = ExtResource("9_8a8rk")
+region_enabled = true
+region_rect = Rect2(66, 27, 8, 5)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PositionCrutch/DroneCapsule"]
+libraries = {
+"": SubResource("AnimationLibrary_urued")
+}
+
+[node name="Timer" type="Timer" parent="PositionCrutch/DroneCapsule"]
+wait_time = 4.5
+one_shot = true
+
+[connection signal="area_entered" from="Player/Areas/PlayerDamageDetector" to="PositionCrutch/DroneCapsule/Timer" method="start" flags=6 unbinds=1]
+[connection signal="timeout" from="PositionCrutch/DroneCapsule/Timer" to="PositionCrutch/DroneCapsule" method="Departure"]
+
+[editable path="Player"]

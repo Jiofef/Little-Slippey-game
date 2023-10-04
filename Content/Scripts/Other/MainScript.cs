@@ -13,7 +13,7 @@ public partial class MainScript : Node2D
     }
     public override void _Process(double delta)
     {
-        if (Input.IsActionJustPressed("Cancel") && !_subMenusOpened)
+        if (Input.IsActionJustPressed("Cancel") && !_subMenusOpened && !G._isLevel10Finaling)
             UnPause();
     }
     public void UnPause()
