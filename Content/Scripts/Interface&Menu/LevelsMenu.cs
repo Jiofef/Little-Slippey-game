@@ -35,7 +35,7 @@ public partial class LevelsMenu : Control
     {
         if(_chosenLevel != value || additionalLinkValue != _additionalLevelLink)
         {
-            var noiseAnimationPlayer = GetNode<AnimationPlayer>("Visual/LevelPresenterOutline/LevelPresenter/WhiteNoise/AnimationPlayer");
+            var noiseAnimationPlayer = GetNode<AnimationPlayer>("Visual/LevelPresenter/WhiteNoise/AnimationPlayer");
             noiseAnimationPlayer.CurrentAnimation = null;
             noiseAnimationPlayer.Play("NoiseDisappearing");
             
@@ -110,10 +110,10 @@ public partial class LevelsMenu : Control
 
         _presentedLevel = (Node2D)ResourceLoader.Load<PackedScene>("res://Content/Scenes/Levels/PresentedParts/PresentedLevel" + _chosenLevel + _additionalLevelLink + ".tscn").Instantiate();
 
-        GetNode("Visual/LevelPresenterOutline/LevelPresenter/SubViewport").AddChild(_presentedLevel);
+        GetNode("Visual/LevelPresenter/SubViewport").AddChild(_presentedLevel);
 
-        GetNode<Label>("Visual/SubMenu/ColorRect/HardBestResult").Text = "Hard: " + UnchangableMeta.LevelRecords[0][_chosenLevel - 1];
-        GetNode<Label>("Visual/SubMenu/ColorRect/InsaneBestResult").Text = "Insane: " + UnchangableMeta.LevelRecords[1][_chosenLevel - 1];
-        GetNode<Label>("Visual/SubMenu/ColorRect/InfernalBestResult").Text = "Infernal: " + UnchangableMeta.LevelRecords[2][_chosenLevel - 1];
+        GetNode<Label>("Visual/Outline/ColorRect2/HardBestResult").Text = "Hard: " + UnchangableMeta.LevelRecords[0][_chosenLevel - 1];
+        GetNode<Label>("Visual/Outline/ColorRect3/InsaneBestResult").Text = "Insane: " + UnchangableMeta.LevelRecords[1][_chosenLevel - 1];
+        GetNode<Label>("Visual/Outline/ColorRect4/InfernalBestResult").Text = "Infernal: " + UnchangableMeta.LevelRecords[2][_chosenLevel - 1];
     }
 }

@@ -358,8 +358,7 @@ layer_0/tile_data = PackedInt32Array(5, 65536, 196608, 6, 65536, 65536, 15, 0, 1
 curve = SubResource("Curve2D_aw50m")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="CameraPath"]
-position = Vector2(2000, 320)
-progress = 1440.0
+position = Vector2(560, 320)
 rotates = false
 
 [node name="Camera2D" type="Camera2D" parent="CameraPath/PathFollow2D"]

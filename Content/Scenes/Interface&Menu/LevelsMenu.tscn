@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://c7dgo7tq8pfa8"]
+[gd_scene load_steps=41 format=3 uid="uid://c7dgo7tq8pfa8"]
 
 [ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/LevelsMenu.cs" id="1_d5t7a"]
 [ext_resource type="PackedScene" uid="uid://bwpstpk1xmkah" path="res://Content/Scenes/Interface&Menu/Button.tscn" id="2_6jw0o"]
@@ -16,6 +16,76 @@
 [ext_resource type="Texture2D" uid="uid://bppnbtehdr3md" path="res://Content/Sprites/Interface/LevelsIcons.png" id="12_lkhk3"]
 [ext_resource type="Texture2D" uid="uid://ba7grlwd3ygbr" path="res://Content/Sprites/Interface/LevelsMenuLevel5IconWindow.png" id="15_yae0y"]
 [ext_resource type="Texture2D" uid="uid://bajqg8ftdifa0" path="res://Content/Sprites/Interface/AcceptButton.png" id="16_kds2k"]
+
+[sub_resource type="Animation" id="Animation_sfao8"]
+resource_name = "TextShake"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-1, 1), Vector2(0, 0), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ojs51"]
+_data = {
+"TextShake": SubResource("Animation_sfao8")
+}
+
+[sub_resource type="Animation" id="Animation_xq444"]
+resource_name = "TextShake"
+length = 0.1
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-1, 1), Vector2(0, 0), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sje61"]
+_data = {
+"TextShake": SubResource("Animation_xq444")
+}
+
+[sub_resource type="Gradient" id="Gradient_kr0se"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="Animation" id="Animation_orvki"]
+resource_name = "TextShake"
+length = 0.1
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-3, 4), Vector2(0, 0), Vector2(3, 3)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jb4jw"]
+_data = {
+"TextShake": SubResource("Animation_orvki")
+}
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_m23ck"]
 atlas = ExtResource("2_d2goi")
@@ -96,68 +166,6 @@ tracks/2/keys = {
 _data = {
 "NoiseDisappearing": SubResource("Animation_13ry7")
 }
-
-[sub_resource type="Animation" id="Animation_t4qks"]
-resource_name = "HardTextShake"
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(0, 68), Vector2(0, 69)]
-}
-
-[sub_resource type="Animation" id="Animation_lrp3w"]
-resource_name = "TextShake"
-length = 0.09
-loop_mode = 1
-step = 0.03
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.03, 0.06),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(-4, 168), Vector2(0, 172), Vector2(-4, 176)]
-}
-
-[sub_resource type="Animation" id="Animation_1jag1"]
-resource_name = "InsaneTextShake"
-length = 0.15
-loop_mode = 1
-step = 0.05
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.1),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(-1, 119), Vector2(0, 120), Vector2(1, 119)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_5buc8"]
-_data = {
-"HardTextShake": SubResource("Animation_t4qks"),
-"InfernalTextShake": SubResource("Animation_lrp3w"),
-"InsaneTextShake": SubResource("Animation_1jag1")
-}
-
-[sub_resource type="Gradient" id="Gradient_kr0se"]
-colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
 [sub_resource type="Curve" id="Curve_a4o33"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.1, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -430,125 +438,86 @@ script = ExtResource("1_d5t7a")
 [node name="Background" type="ColorRect" parent="Visual"]
 offset_right = 1280.0
 offset_bottom = 720.0
-color = Color(0.501961, 0.501961, 0.501961, 1)
+color = Color(0.392157, 0.431373, 0.509804, 1)
 
-[node name="LevelPresenterOutline" type="ColorRect" parent="Visual"]
+[node name="Outline" type="ColorRect" parent="Visual"]
 offset_left = 170.0
-offset_top = 30.0
-offset_right = 930.0
-offset_bottom = 470.0
-color = Color(0.392157, 0.392157, 0.392157, 1)
-
-[node name="LevelPresenter" type="SubViewportContainer" parent="Visual/LevelPresenterOutline"]
-layout_mode = 0
-offset_left = 10.0
-offset_top = 10.0
-offset_right = 750.0
-offset_bottom = 430.0
-stretch = true
-
-[node name="SubViewport" type="SubViewport" parent="Visual/LevelPresenterOutline/LevelPresenter"]
-handle_input_locally = false
-canvas_item_default_texture_filter = 0
-size = Vector2i(740, 420)
-render_target_update_mode = 4
-
-[node name="WhiteNoise" type="AnimatedSprite2D" parent="Visual/LevelPresenterOutline/LevelPresenter"]
-scale = Vector2(2.3125, 2.33333)
-sprite_frames = SubResource("SpriteFrames_nihe6")
-autoplay = "default"
-speed_scale = 2.0
-centered = false
-
-[node name="Sound" type="AudioStreamPlayer" parent="Visual/LevelPresenterOutline/LevelPresenter/WhiteNoise"]
-stream = ExtResource("3_4foo2")
-volume_db = -5.0
-bus = &"Interface"
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Visual/LevelPresenterOutline/LevelPresenter/WhiteNoise"]
-libraries = {
-"": SubResource("AnimationLibrary_g0wyp")
-}
-
-[node name="SubMenu" type="ColorRect" parent="Visual"]
-offset_left = 930.0
 offset_top = 30.0
 offset_right = 1230.0
 offset_bottom = 470.0
-color = Color(0.392157, 0.392157, 0.392157, 1)
+color = Color(0.290196, 0.313726, 0.360784, 1)
 
-[node name="ColorRect" type="ColorRect" parent="Visual/SubMenu"]
+[node name="ColorRect" type="ColorRect" parent="Visual/Outline"]
 layout_mode = 0
+offset_left = 760.0
 offset_top = 10.0
-offset_right = 290.0
-offset_bottom = 430.0
-color = Color(0.501961, 0.501961, 0.501961, 1)
+offset_right = 1050.0
+offset_bottom = 70.0
+color = Color(0.230653, 0.261104, 0.313299, 1)
 
-[node name="BestResults" type="Label" parent="Visual/SubMenu/ColorRect"]
-layout_mode = 0
+[node name="BestResults" type="Label" parent="Visual/Outline/ColorRect"]
+layout_mode = 2
 offset_right = 148.0
 offset_bottom = 32.0
 scale = Vector2(2, 2)
+theme_override_colors/font_color = Color(0.705882, 0.705882, 0.784314, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 1
 text = "Best Results"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Border" type="ColorRect" parent="Visual/SubMenu/ColorRect"]
+[node name="ColorRect2" type="ColorRect" parent="Visual/Outline"]
 layout_mode = 0
-offset_top = 60.0
-offset_right = 290.0
-offset_bottom = 68.0
-color = Color(0.454902, 0.454902, 0.454902, 1)
+offset_left = 760.0
+offset_top = 78.0
+offset_right = 1050.0
+offset_bottom = 126.0
+color = Color(0.230653, 0.261104, 0.313299, 1)
 
-[node name="HardBestResult" type="Label" parent="Visual/SubMenu/ColorRect"]
-layout_mode = 0
-offset_top = 68.218
-offset_right = 197.0
-offset_bottom = 100.218
+[node name="HardBestResult" type="Label" parent="Visual/Outline/ColorRect2"]
+layout_mode = 2
+offset_left = -0.377854
+offset_top = 0.377854
+offset_right = 196.622
+offset_bottom = 32.3777
 scale = Vector2(1.5, 1.5)
-theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_color = Color(0.780392, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
 text = "Hard: 000000000"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Visual/SubMenu/ColorRect/HardBestResult"]
-autoplay = "HardTextShake"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Visual/Outline/ColorRect2/HardBestResult"]
+autoplay = "TextShake"
 libraries = {
-"": SubResource("AnimationLibrary_5buc8")
+"": SubResource("AnimationLibrary_ojs51")
 }
 
-[node name="Border2" type="ColorRect" parent="Visual/SubMenu/ColorRect"]
+[node name="ColorRect3" type="ColorRect" parent="Visual/Outline"]
 layout_mode = 0
-offset_top = 116.0
-offset_right = 290.0
-offset_bottom = 120.0
-color = Color(0.454902, 0.454902, 0.454902, 1)
+offset_left = 760.0
+offset_top = 130.0
+offset_right = 1050.0
+offset_bottom = 178.0
+color = Color(0.230653, 0.261104, 0.313299, 1)
 
-[node name="InsaneBestResult" type="Label" parent="Visual/SubMenu/ColorRect"]
-layout_mode = 0
-offset_left = 0.0696321
-offset_top = 119.0
-offset_right = 197.07
-offset_bottom = 151.004
+[node name="InsaneBestResult" type="Label" parent="Visual/Outline/ColorRect3"]
+layout_mode = 2
+offset_left = 0.461975
+offset_top = 0.461975
+offset_right = 197.462
+offset_bottom = 32.466
 scale = Vector2(1.5, 1.5)
-theme_override_colors/font_color = Color(0.784314, 0, 0.784314, 1)
+theme_override_colors/font_color = Color(0.686275, 0, 0.686275, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 8
 text = "Insane: 000000000"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Visual/SubMenu/ColorRect/InsaneBestResult"]
-autoplay = "InsaneTextShake"
-libraries = {
-"": SubResource("AnimationLibrary_5buc8")
-}
-
-[node name="CPUParticles2D" type="CPUParticles2D" parent="Visual/SubMenu/ColorRect/InsaneBestResult"]
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Visual/Outline/ColorRect3/InsaneBestResult"]
 position = Vector2(99, 16)
 amount = 4
 lifetime = 0.5
@@ -561,34 +530,35 @@ scale_amount_min = 4.0
 scale_amount_max = 4.0
 color = Color(0, 0.705882, 0.705882, 1)
 
-[node name="Border3" type="ColorRect" parent="Visual/SubMenu/ColorRect"]
-layout_mode = 0
-offset_top = 168.0
-offset_right = 290.0
-offset_bottom = 172.0
-color = Color(0.454902, 0.454902, 0.454902, 1)
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Visual/Outline/ColorRect3/InsaneBestResult"]
+autoplay = "TextShake"
+libraries = {
+"": SubResource("AnimationLibrary_sje61")
+}
 
-[node name="InfernalBestResult" type="Label" parent="Visual/SubMenu/ColorRect"]
+[node name="ColorRect4" type="ColorRect" parent="Visual/Outline"]
 layout_mode = 0
-offset_left = -4.0
-offset_top = 168.0
-offset_right = 196.0
-offset_bottom = 200.0
+offset_left = 760.0
+offset_top = 182.0
+offset_right = 1050.0
+offset_bottom = 230.0
+color = Color(0.230653, 0.261104, 0.313299, 1)
+
+[node name="InfernalBestResult" type="Label" parent="Visual/Outline/ColorRect4"]
+layout_mode = 2
+offset_left = 2.12912
+offset_top = 2.12912
+offset_right = 202.129
+offset_bottom = 34.1291
 scale = Vector2(1.5, 1.5)
-theme_override_colors/font_color = Color(1, 0.705882, 0, 1)
+theme_override_colors/font_color = Color(0.784314, 0.54902, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 24
 text = "Infernal: 000000000"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Visual/SubMenu/ColorRect/InfernalBestResult"]
-autoplay = "InfernalTextShake"
-libraries = {
-"": SubResource("AnimationLibrary_5buc8")
-}
-
-[node name="CPUParticles2D" type="CPUParticles2D" parent="Visual/SubMenu/ColorRect/InfernalBestResult"]
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Visual/Outline/ColorRect4/InfernalBestResult"]
 position = Vector2(99, 16)
 amount = 256
 lifetime = 0.3
@@ -603,12 +573,48 @@ scale_amount_max = 8.0
 color = Color(1, 0.501961, 0, 0.501961)
 color_ramp = SubResource("Gradient_kr0se")
 
-[node name="Border4" type="ColorRect" parent="Visual/SubMenu/ColorRect"]
-layout_mode = 0
-offset_top = 220.0
-offset_right = 290.0
-offset_bottom = 224.0
-color = Color(0.454902, 0.454902, 0.454902, 1)
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Visual/Outline/ColorRect4/InfernalBestResult"]
+libraries = {
+"": SubResource("AnimationLibrary_jb4jw")
+}
+
+[node name="LevelPresenter" type="SubViewportContainer" parent="Visual"]
+offset_left = 180.0
+offset_top = 40.0
+offset_right = 920.0
+offset_bottom = 460.0
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="Visual/LevelPresenter"]
+handle_input_locally = false
+canvas_item_default_texture_filter = 0
+size = Vector2i(740, 420)
+render_target_update_mode = 4
+
+[node name="WhiteNoise" type="AnimatedSprite2D" parent="Visual/LevelPresenter"]
+modulate = Color(1, 1, 1, 0.9)
+scale = Vector2(2.3125, 2.33333)
+sprite_frames = SubResource("SpriteFrames_nihe6")
+autoplay = "default"
+speed_scale = 2.0
+centered = false
+
+[node name="Sound" type="AudioStreamPlayer" parent="Visual/LevelPresenter/WhiteNoise"]
+stream = ExtResource("3_4foo2")
+volume_db = -5.25
+bus = &"Interface"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Visual/LevelPresenter/WhiteNoise"]
+libraries = {
+"": SubResource("AnimationLibrary_g0wyp")
+}
+
+[node name="CancelColorRect" type="ColorRect" parent="Visual"]
+offset_left = 42.0
+offset_top = 20.0
+offset_right = 154.0
+offset_bottom = 132.0
+color = Color(0.230653, 0.261104, 0.313299, 1)
 
 [node name="CancelButton" parent="." instance=ExtResource("2_6jw0o")]
 layout_mode = 0
@@ -635,7 +641,7 @@ offset_bottom = 695.0
 layout_mode = 0
 offset_right = 1180.0
 offset_bottom = 200.0
-color = Color(0.392157, 0.392157, 0.392157, 1)
+color = Color(0.230653, 0.261104, 0.313299, 1)
 
 [node name="LeftScrollButton" parent="LevelsList" instance=ExtResource("2_6jw0o")]
 layout_mode = 0
@@ -679,12 +685,6 @@ anchor_bottom = 0.05
 offset_left = 0.319992
 offset_right = 1000.32
 offset_bottom = 180.0
-
-[node name="ColorRect" type="ColorRect" parent="LevelsList/LevelsIconsContainer"]
-layout_mode = 0
-offset_right = 1000.0
-offset_bottom = 180.0
-color = Color(0.313726, 0.313726, 0.313726, 1)
 
 [node name="SubContainer" type="Control" parent="LevelsList/LevelsIconsContainer"]
 z_index = 1
