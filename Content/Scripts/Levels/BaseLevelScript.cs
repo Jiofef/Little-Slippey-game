@@ -79,14 +79,14 @@ public partial class BaseLevelScript : Node2D
         if (!G.IsProgressPaused)
         {
             G.Scores += _floatDelta;
-            _weightMultiplierExtenderToCurrentCross += (_floatDelta * CrossDefaultWeight[_lastAviableCrossNumber]) / 30 * 100;
+            _weightMultiplierExtenderToCurrentCross += (_floatDelta * CrossDefaultWeight[_lastAviableCrossNumber]) / 30;
         }
 
         if (G.IsCrossesEnabled)
         {
-            int RandomRange = (int)G.Scores < 150 ? 20 - (int)G.Scores / 30 - Meta.Instance.Dificulty * 5 : 15 - Meta.Instance.Dificulty * 5;
-            RandomRange -= (int)(RandomRange / 2 - G.PlayerMoveCoeff * RandomRange / 2);
-            RandomRange = (int)(RandomRange / G.CrossSpawnMultiplier);
+            int RandomRange = (15 - Meta.Instance.Dificulty * 5);
+            RandomRange = (int)((RandomRange - (RandomRange / 2 - G.PlayerMoveCoeff * RandomRange / 2)) / G.CrossSpawnMultiplier);
+
             if (_random.Next(RandomRange) == 0)
             {
                 if (!_doAllCrossWeigthsSetted)

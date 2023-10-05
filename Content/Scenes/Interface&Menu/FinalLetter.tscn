@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dqp6q1agu664i"]
+[gd_scene load_steps=10 format=3 uid="uid://dqp6q1agu664i"]
 
 [ext_resource type="Texture2D" uid="uid://dmdsc2hvi54tw" path="res://Content/Sprites/Interface/TheFinalLetter.png" id="1_3vvb0"]
 [ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/FinalLetter.cs" id="1_kdln6"]
@@ -6,7 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://d0sqlunqacimf" path="res://Content/Sprites/Interface/CancelButtonOutline.png" id="3_7ehks"]
 [ext_resource type="Texture2D" uid="uid://bs42vfh75wcnm" path="res://Content/Sprites/Interface/CancelButtonOutlinePressed.png" id="4_ocua5"]
 [ext_resource type="Texture2D" uid="uid://bajqg8ftdifa0" path="res://Content/Sprites/Interface/AcceptButton.png" id="5_buo5e"]
-[ext_resource type="AudioStream" uid="uid://dy05yi7funfgq" path="res://Content/Ultrakill OST - The fire is gone.mp3" id="7_mmu3p"]
 
 [sub_resource type="Animation" id="Animation_ema7o"]
 resource_name = "Appearing"
@@ -229,7 +228,6 @@ libraries = {
 }
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("7_mmu3p")
 volume_db = 15.0
 bus = &"Music"
 
