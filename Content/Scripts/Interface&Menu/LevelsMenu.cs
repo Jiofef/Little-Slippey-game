@@ -17,6 +17,15 @@ public partial class LevelsMenu : Control
         {
             GetNode<Node2D>("LevelsList/LevelsIconsContainer/SubContainer/Level5Button/WindowView").Visible = true;
             GetNode<AnimationPlayer>("LevelsList/LevelsIconsContainer/SubContainer/Level5Button/WindowView/AnimationPlayer").CurrentAnimation = "LightingAndBlackoutAnimation" + UnchangableMeta.LevelCompleteStatus[4];
+            if (UnchangableMeta.LevelCompleteStatus[4] >= 2)
+            {
+                string link = "LevelsList/LevelsIconsContainer/SubContainer/Level5Button/WindowView/";
+                GetNode<CpuParticles2D>(link + "Rain").Color = new Color(0.79f, 0, 0);
+                GetNode<CpuParticles2D>(link + "Window/Rain").Color = new Color(0.79f, 0, 0);
+                GetNode<CpuParticles2D>(link + "Fog").Color = new Color(1f, 0, 0);
+                GetNode<ColorRect>(link + "Fog?").Color = new Color(0.7f, 0, 0);
+                GetNode<ColorRect>(link + "Fog?Interior").Color = new Color(0.08f, 0.04f, 0.04f);
+            }
         }
     }
 

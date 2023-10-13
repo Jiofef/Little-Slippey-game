@@ -4,7 +4,7 @@ public partial class Level7MindTumor : Area2D
 {
     CharacterBody2D _player;
     Node2D _tumorSprites;
-    private Vector2 _defaultPosition, _defaultGlobalPosition, _cameraDiagonal = new Vector2(850, 480);
+    private Vector2 _defaultPosition, _defaultGlobalPosition, _cameraDiagonal = new Vector2(1024, 576);
     private int _limitTop, _limitRight, _limitBottom, _limitLeft;
     public override void _Ready()
     {
@@ -19,7 +19,7 @@ public partial class Level7MindTumor : Area2D
         _limitTop = (int)(Position.Y + _cameraDiagonal.Y / 2 - 25);
         _limitBottom = (int)(G.LevelXYSizes[G.CurrentLevel].Y + Position.Y - _cameraDiagonal.Y / 2 + 100);
 
-        GetNode<Node2D>("CanvasLayer/TumorSprites").Position = Position + new Vector2(425, 240);
+        GetNode<Node2D>("CanvasLayer/TumorSprites").GlobalPosition = GlobalPosition + new Vector2(512, 288);
     }
 
     public override void _PhysicsProcess(double delta)

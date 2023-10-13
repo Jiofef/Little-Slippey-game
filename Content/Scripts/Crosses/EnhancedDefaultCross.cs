@@ -25,8 +25,6 @@ public partial class EnhancedDefaultCross : Node2D
 
             if (_ticksToExplosion == 89)
                 GetNode<CollisionShape2D>("TriggerArea/CollisionShape2D").Disabled = false;
-            else if (_ticksToExplosion == 0)
-                GetNode<AudioStreamPlayer>("Warning").Play();
 
             _crossSprite.Modulate = new Color(_crossSprite.Modulate.R, _crossSprite.Modulate.G, _crossSprite.Modulate.B, _crossSprite.Modulate.A - 0.05f);
             if (_ticksToExplosion == 70 || _ticksToExplosion == 50 || _ticksToExplosion == 30 || _ticksToExplosion == 0)

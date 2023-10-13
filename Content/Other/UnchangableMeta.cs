@@ -24,7 +24,7 @@ public partial class UnchangableMeta : Node
         {
             LevelRecords[Meta.Instance.Dificulty][G.CurrentLevel - 1] = (int)G.Scores;
             G.IsNewRecordReached = true;
-            if (G.Scores > 150 && Meta.Instance.Dificulty + 1 > LevelCompleteStatus[G.CurrentLevel - 1])
+            if (G.Scores >= 150 && Meta.Instance.Dificulty + 1 > LevelCompleteStatus[G.CurrentLevel - 1])
                 LevelCompleteStatus[G.CurrentLevel - 1] = Meta.Instance.Dificulty + 1;
         }
     }

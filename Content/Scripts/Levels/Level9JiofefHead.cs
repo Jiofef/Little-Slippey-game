@@ -13,7 +13,7 @@ public partial class Level9JiofefHead : Node2D
     Random _random = new Random();
     private readonly int[] _attackWeight = { 10, 8, 6, 6, 3, 6, 6};
     private readonly string[] _attackAnimationsList = { "CrossSpit", "CrossVomit", "Spin", "Bite", "Spider", "EyeGouging", "BullUlt"};
-    private float _jiofefHeadSpeedMultiplier = 1, _initialDashStackedDirection = 0;
+    private float _jiofefHeadSpeedMultiplier = 1.5f, _initialDashStackedDirection = 0;
 	private string _previousAttack;
 	private bool _isPreparingForDash = false, _isBullDashing = false, _isUnpinned = false;
 
@@ -167,10 +167,10 @@ public partial class Level9JiofefHead : Node2D
 
 	public void SpeedMultiplayerUpdate()
 	{
-        _jiofefHeadSpeedMultiplier = 1.5f + G.Scores / 60;
+        _jiofefHeadSpeedMultiplier = 1.5f + G.Scores / 75;
         _animatedSprite2D.SpeedScale = _jiofefHeadSpeedMultiplier;
         _animationPlayer.SpeedScale = _jiofefHeadSpeedMultiplier;
-		G.CrossSpawnMultiplier = 1 / (1 + ((_jiofefHeadSpeedMultiplier - 1) / 3 * (1 - 0.5f * Meta.Instance.Dificulty)));
+		G.CrossSpawnMultiplier = 1 / (1 + ((_jiofefHeadSpeedMultiplier - 1) / 1.5f * (1 - 0.5f * Meta.Instance.Dificulty)));
     }
 
 

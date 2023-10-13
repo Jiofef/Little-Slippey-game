@@ -1,9 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://yrhioex2qifj"]
+[gd_scene load_steps=7 format=3 uid="uid://yrhioex2qifj"]
 
 [ext_resource type="PackedScene" uid="uid://ckv1q4rw8ybd3" path="res://Content/Scenes/Crosses/Cross1.tscn" id="1_qdcgx"]
 [ext_resource type="Script" path="res://Content/Scripts/Crosses/EnhancedDefaultCross.cs" id="2_jidna"]
 [ext_resource type="Texture2D" uid="uid://difs21c3ekcsl" path="res://Content/Sprites/Crosses/EnhancedDefaultCross.png" id="3_okrge"]
-[ext_resource type="AudioStream" uid="uid://p4v0bt1bymm0" path="res://Content/Sounds/Crosses/EnhancedDefaultCrossWarning.mp3" id="3_yrjht"]
 [ext_resource type="Texture2D" uid="uid://deoana6qfwjd3" path="res://Content/Sprites/Crosses/EnhancedDefaultCrossWarning.png" id="4_o3oaw"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mspml"]
@@ -33,9 +32,5 @@ collision_mask = 8
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TriggerArea" index="0"]
 shape = SubResource("1")
 disabled = true
-
-[node name="Warning" type="AudioStreamPlayer" parent="." index="4"]
-stream = ExtResource("3_yrjht")
-bus = &"CrossSounds"
 
 [connection signal="area_entered" from="TriggerArea" to="." method="TRIGGERED" unbinds=1]

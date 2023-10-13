@@ -7,7 +7,7 @@ public partial class Level4CircularSawScreechSound : AudioStreamPlayer
 	public override void _Ready()
 	{
 		for (int i = 0; i < _soundsQueue.Length; i++)
-			_soundsQueue[i] = ResourceLoader.Load<AudioStream>("res://Content/Sounds/Levels/Level4CircularSawScreech" + (i + 1) + ".wav");
+			_soundsQueue[i] = ResourceLoader.Load<AudioStream>("res://Content/Sounds/Levels/Level4CircularSawScreech" + (i + 1) + ".mp3");
 	}
 
 	public void PlayReccurentSound()

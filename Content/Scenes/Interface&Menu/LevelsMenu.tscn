@@ -167,7 +167,7 @@ _data = {
 "NoiseDisappearing": SubResource("Animation_13ry7")
 }
 
-[sub_resource type="Curve" id="Curve_a4o33"]
+[sub_resource type="Curve" id="Curve_40483"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.1, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 
@@ -264,7 +264,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0, 7, 10),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 0.501961), Color(1, 1, 1, 1), Color(1, 1, 1, 0.833091)]
+"values": [Color(1, 1, 1, 0.501961), Color(1, 1, 1, 1), Color(1, 1, 1, 1)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -276,7 +276,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0, 7, 10),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 0.25098), Color(1, 1, 1, 0.784314), Color(1, 1, 1, 0.685579)]
+"values": [Color(1, 1, 1, 0.25098), Color(1, 1, 1, 0.784314), Color(1, 1, 1, 0.784314)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -546,10 +546,10 @@ color = Color(0.230653, 0.261104, 0.313299, 1)
 
 [node name="InfernalBestResult" type="Label" parent="Visual/Outline/ColorRect4"]
 layout_mode = 2
-offset_left = 2.12912
-offset_top = 2.12912
-offset_right = 202.129
-offset_bottom = 34.1291
+offset_left = -2.92073
+offset_top = 3.89431
+offset_right = 197.079
+offset_bottom = 35.8943
 scale = Vector2(1.5, 1.5)
 theme_override_colors/font_color = Color(0.784314, 0.54902, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -574,6 +574,7 @@ color = Color(1, 0.501961, 0, 0.501961)
 color_ramp = SubResource("Gradient_kr0se")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Visual/Outline/ColorRect4/InfernalBestResult"]
+autoplay = "TextShake"
 libraries = {
 "": SubResource("AnimationLibrary_jb4jw")
 }
@@ -790,6 +791,7 @@ scale_amount_max = 4.0
 color = Color(0, 0.501961, 0.501961, 1)
 
 [node name="Fog" type="CPUParticles2D" parent="LevelsList/LevelsIconsContainer/SubContainer/Level5Button/WindowView"]
+modulate = Color(1, 1, 1, 0.0392157)
 position = Vector2(22.5, 22.5)
 amount = 96
 lifetime = 4.0
@@ -802,7 +804,6 @@ angle_min = -180.0
 angle_max = 180.0
 scale_amount_min = 64.0
 scale_amount_max = 64.0
-color = Color(1, 1, 1, 0.0392157)
 
 [node name="Fog?" type="ColorRect" parent="LevelsList/LevelsIconsContainer/SubContainer/Level5Button/WindowView"]
 offset_left = 1.0
@@ -838,7 +839,7 @@ initial_velocity_min = 1.0
 initial_velocity_max = 10.0
 scale_amount_min = 4.0
 scale_amount_max = 4.0
-scale_amount_curve = SubResource("Curve_a4o33")
+scale_amount_curve = SubResource("Curve_40483")
 color = Color(0, 0.501961, 0.501961, 0.313726)
 
 [node name="Fog?Interior" type="ColorRect" parent="LevelsList/LevelsIconsContainer/SubContainer/Level5Button/WindowView"]
