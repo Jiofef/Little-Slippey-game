@@ -161,7 +161,6 @@ scale = Vector2(2, 1.8)
 [node name="ScreenFormat" type="OptionButton" parent="CanvasLayer/Video/VBoxContainer"]
 layout_mode = 2
 focus_neighbor_top = NodePath("../../../Sound/VBoxContainer/CrossExplosionSlider")
-focus_neighbor_bottom = NodePath("../../../Gameplay/VBoxContainer/DificultyChange")
 item_count = 2
 selected = 0
 popup/item_0/text = "Standart"
@@ -179,52 +178,6 @@ popup/item_0/id = 0
 popup/item_1/text = "Label in the corner"
 popup/item_1/id = 1
 popup/item_2/text = "Hide"
-popup/item_2/id = 2
-
-[node name="Gameplay" type="Control" parent="CanvasLayer"]
-layout_mode = 3
-anchors_preset = 0
-offset_left = 710.0
-offset_right = 1060.0
-offset_bottom = 500.0
-scale = Vector2(0.8, 0.8)
-
-[node name="Label" type="Label" parent="CanvasLayer/Gameplay"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.046
-anchor_top = 0.038
-anchor_right = 1.207
-anchor_bottom = 0.217
-offset_left = -0.100002
-offset_right = -279.45
-offset_bottom = -61.5
-scale = Vector2(3.2, 3.2)
-text = "Gameplay"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Gameplay"]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.03
-anchor_bottom = 0.03
-offset_left = 30.0
-offset_top = 126.0
-offset_right = 218.0
-offset_bottom = 383.0
-scale = Vector2(2, 1.8)
-
-[node name="DificultyChange" type="OptionButton" parent="CanvasLayer/Gameplay/VBoxContainer"]
-layout_mode = 2
-focus_neighbor_top = NodePath("../../../Video/VBoxContainer/ScreenFormat")
-item_count = 3
-selected = 0
-popup/item_0/text = "Hard"
-popup/item_0/id = 0
-popup/item_1/text = "Insane"
-popup/item_1/id = 1
-popup/item_2/text = "Inferno"
 popup/item_2/id = 2
 
 [node name="Apply" parent="CanvasLayer" instance=ExtResource("13")]
@@ -250,6 +203,5 @@ texture_normal = ExtResource("7_c4sdx")
 [connection signal="value_changed" from="CanvasLayer/Sound/VBoxContainer/LevelSoundsSlider" to="." method="SoundChanging" binds= [6]]
 [connection signal="item_selected" from="CanvasLayer/Video/VBoxContainer/ScreenFormat" to="." method="ChangeScreenFormat"]
 [connection signal="item_selected" from="CanvasLayer/Video/VBoxContainer/ScoresShowingFormat" to="." method="ChangeScoresShowingFormat"]
-[connection signal="item_selected" from="CanvasLayer/Gameplay/VBoxContainer/DificultyChange" to="." method="DificultyChanged"]
 [connection signal="pressed" from="CanvasLayer/Apply" to="." method="Apply"]
 [connection signal="pressed" from="CanvasLayer/Cancel" to="." method="Cancel"]

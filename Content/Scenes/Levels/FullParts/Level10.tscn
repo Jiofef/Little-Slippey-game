@@ -171,19 +171,19 @@ size = Vector2(96, 96)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u4uc5"]
 size = Vector2(25472, 991)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_m23ck"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_2vw5w"]
 atlas = ExtResource("8_qacj1")
 region = Rect2(0, 0, 320, 180)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_2nkyg"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_s5leb"]
 atlas = ExtResource("8_qacj1")
 region = Rect2(0, 180, 320, 180)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_gjuy0"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_0r8k0"]
 atlas = ExtResource("8_qacj1")
 region = Rect2(0, 360, 320, 180)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_lr1hx"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_es4qd"]
 atlas = ExtResource("8_qacj1")
 region = Rect2(0, 540, 320, 180)
 
@@ -191,20 +191,20 @@ region = Rect2(0, 540, 320, 180)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_m23ck")
+"texture": SubResource("AtlasTexture_2vw5w")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_2nkyg")
+"texture": SubResource("AtlasTexture_s5leb")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_gjuy0")
+"texture": SubResource("AtlasTexture_0r8k0")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_lr1hx")
+"texture": SubResource("AtlasTexture_es4qd")
 }],
 "loop": false,
 "name": &"default",
-"speed": 8.0
+"speed": 16.0
 }]
 
 [sub_resource type="AudioStreamWAV" id="AudioStreamWAV_hms8y"]
@@ -215,16 +215,16 @@ format = 1
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_m23ck")
+"texture": SubResource("AtlasTexture_2vw5w")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_2nkyg")
+"texture": SubResource("AtlasTexture_s5leb")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_gjuy0")
+"texture": SubResource("AtlasTexture_0r8k0")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_lr1hx")
+"texture": SubResource("AtlasTexture_es4qd")
 }],
 "loop": true,
 "name": &"default",
@@ -552,7 +552,6 @@ visible = false
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_btcnq")
 autoplay = "default"
-speed_scale = 2.0
 centered = false
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="RealityDissector/CanvasLayer/WhiteNoiseGlitch"]
