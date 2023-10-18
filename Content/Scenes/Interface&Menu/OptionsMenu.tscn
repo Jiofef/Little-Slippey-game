@@ -48,13 +48,12 @@ offset_left = 33.0
 offset_top = 147.0
 offset_right = 245.0
 offset_bottom = 500.0
-scale = Vector2(1.556, 1.4)
+scale = Vector2(1.4, 1.4)
 alignment = 1
 
 [node name="Global" type="Label" parent="CanvasLayer/Sound/VBoxContainer"]
 layout_mode = 2
 text = "Global"
-uppercase = true
 
 [node name="GlobalSlider" type="HSlider" parent="CanvasLayer/Sound/VBoxContainer"]
 layout_mode = 2
@@ -64,7 +63,6 @@ max_value = 10.0
 [node name="Interface" type="Label" parent="CanvasLayer/Sound/VBoxContainer"]
 layout_mode = 2
 text = "Interface"
-uppercase = true
 
 [node name="InterfaceSlider" type="HSlider" parent="CanvasLayer/Sound/VBoxContainer"]
 layout_mode = 2
@@ -74,7 +72,6 @@ max_value = 10.0
 [node name="Music" type="Label" parent="CanvasLayer/Sound/VBoxContainer"]
 layout_mode = 2
 text = "Music"
-uppercase = true
 
 [node name="MusicSlider" type="HSlider" parent="CanvasLayer/Sound/VBoxContainer"]
 layout_mode = 2
@@ -84,7 +81,6 @@ max_value = 10.0
 [node name="Player" type="Label" parent="CanvasLayer/Sound/VBoxContainer"]
 layout_mode = 2
 text = "Player"
-uppercase = true
 
 [node name="PlayerSlider" type="HSlider" parent="CanvasLayer/Sound/VBoxContainer"]
 layout_mode = 2
@@ -94,7 +90,6 @@ max_value = 10.0
 [node name="CrossSounds" type="Label" parent="CanvasLayer/Sound/VBoxContainer"]
 layout_mode = 2
 text = "Cross Sounds"
-uppercase = true
 
 [node name="CrossSoundsSlider" type="HSlider" parent="CanvasLayer/Sound/VBoxContainer"]
 layout_mode = 2
@@ -104,7 +99,6 @@ max_value = 10.0
 [node name="CrossExplosion" type="Label" parent="CanvasLayer/Sound/VBoxContainer"]
 layout_mode = 2
 text = "Cross explosion"
-uppercase = true
 
 [node name="CrossExplosionSlider" type="HSlider" parent="CanvasLayer/Sound/VBoxContainer"]
 layout_mode = 2
@@ -115,7 +109,6 @@ max_value = 10.0
 [node name="LevelSounds" type="Label" parent="CanvasLayer/Sound/VBoxContainer"]
 layout_mode = 2
 text = "Level sounds"
-uppercase = true
 
 [node name="LevelSoundsSlider" type="HSlider" parent="CanvasLayer/Sound/VBoxContainer"]
 layout_mode = 2
@@ -156,7 +149,7 @@ offset_left = 30.0
 offset_top = 123.0
 offset_right = 221.0
 offset_bottom = 441.0
-scale = Vector2(2, 1.8)
+scale = Vector2(1.8, 1.8)
 
 [node name="ScreenFormat" type="OptionButton" parent="CanvasLayer/Video/VBoxContainer"]
 layout_mode = 2
@@ -179,6 +172,17 @@ popup/item_1/text = "Label in the corner"
 popup/item_1/id = 1
 popup/item_2/text = "Hide"
 popup/item_2/id = 2
+
+[node name="CameraZoom" type="Label" parent="CanvasLayer/Video/VBoxContainer"]
+layout_mode = 2
+text = "Camera Zoom"
+
+[node name="CameraZoomSlider" type="HSlider" parent="CanvasLayer/Video/VBoxContainer"]
+layout_mode = 2
+min_value = 1.25
+max_value = 2.0
+step = 0.15
+value = 1.25
 
 [node name="Apply" parent="CanvasLayer" instance=ExtResource("13")]
 offset_left = 871.689
@@ -203,5 +207,6 @@ texture_normal = ExtResource("7_c4sdx")
 [connection signal="value_changed" from="CanvasLayer/Sound/VBoxContainer/LevelSoundsSlider" to="." method="SoundChanging" binds= [6]]
 [connection signal="item_selected" from="CanvasLayer/Video/VBoxContainer/ScreenFormat" to="." method="ChangeScreenFormat"]
 [connection signal="item_selected" from="CanvasLayer/Video/VBoxContainer/ScoresShowingFormat" to="." method="ChangeScoresShowingFormat"]
+[connection signal="value_changed" from="CanvasLayer/Video/VBoxContainer/CameraZoomSlider" to="." method="CameraZoomChanged"]
 [connection signal="pressed" from="CanvasLayer/Apply" to="." method="Apply"]
 [connection signal="pressed" from="CanvasLayer/Cancel" to="." method="Cancel"]

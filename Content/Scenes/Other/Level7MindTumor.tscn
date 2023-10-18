@@ -29,9 +29,9 @@ disabled = true
 scale = Vector2(1.5, 1.5)
 transform = Transform2D(1.5, 0, 0, 1.5, 0, 0)
 
-[node name="TumorSprites" type="Node2D" parent="CanvasLayer"]
+[node name="TumorSprite" type="Node2D" parent="CanvasLayer"]
 
-[node name="TumorSprite" type="Sprite2D" parent="CanvasLayer/TumorSprites"]
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/TumorSprite"]
 scale = Vector2(0.05, 0.05)
 texture = ExtResource("2_qrpy6")
 

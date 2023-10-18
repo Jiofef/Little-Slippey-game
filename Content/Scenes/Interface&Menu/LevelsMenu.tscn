@@ -761,12 +761,14 @@ focus_mode = 0
 disabled = true
 
 [node name="Lock2" type="ColorRect" parent="Visual/AdittionalButtons"]
+layout_mode = 0
 offset_left = 69.0
 offset_right = 117.0
 offset_bottom = 48.0
 
 [node name="JiofefHead" type="Label" parent="Visual/AdittionalButtons"]
 visible = false
+layout_mode = 0
 offset_left = 132.0
 offset_top = -23.0
 offset_right = 210.0
@@ -779,6 +781,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="ToggleJiofefHeadButton" type="CheckBox" parent="Visual/AdittionalButtons"]
+layout_mode = 0
 offset_left = 130.0
 offset_right = 154.0
 offset_bottom = 24.0
@@ -787,6 +790,7 @@ focus_mode = 0
 disabled = true
 
 [node name="Lock3" type="ColorRect" parent="Visual/AdittionalButtons"]
+layout_mode = 0
 offset_left = 136.0
 offset_right = 184.0
 offset_bottom = 48.0
@@ -815,6 +819,7 @@ focus_mode = 0
 disabled = true
 
 [node name="Lock4" type="ColorRect" parent="Visual/AdittionalButtons"]
+layout_mode = 0
 offset_left = 204.0
 offset_right = 252.0
 offset_bottom = 48.0

@@ -23,6 +23,9 @@ public partial class OptionsMenu : Control
 
 
         Meta.Instance.IsFullScreen = DisplayServer.WindowGetMode() == DisplayServer.WindowMode.Fullscreen;
+
+        GetNode<Slider>("CanvasLayer/Video/VBoxContainer/CameraZoomSlider").Value = Meta.Instance.CameraZoom;
+        
         GetNode<OptionButton>("CanvasLayer/Video/VBoxContainer/ScoresShowingFormat").Selected = Meta.Instance.ScoresShowingFormatIndex;
     }
 
@@ -74,5 +77,9 @@ public partial class OptionsMenu : Control
     public void ChangeScoresShowingFormat(int index)
     {
         Meta.Instance.ScoresShowingFormatIndex = index;
+    }
+    public void CameraZoomChanged(float value)
+    {
+        Meta.Instance.CameraZoom = value;
     }
 }

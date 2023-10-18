@@ -29,7 +29,6 @@ public partial class Camera : Camera2D
 
         if (DoResetSmoothing)
             ResetSmoothing();
-
     }
     public override void _PhysicsProcess(double delta)
     {

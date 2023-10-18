@@ -39,6 +39,7 @@ public partial class Meta : Node
         ReturnMeta.Dificulty = Dificulty;
         ReturnMeta.IsFullScreen = IsFullScreen;
         ReturnMeta.ScoresShowingFormatIndex = ScoresShowingFormatIndex;
+        ReturnMeta.CameraZoom = CameraZoom;
         for (int i = 0; i < Instance.AdditionStatuses.Length; i++)
             ReturnMeta.AdditionStatuses[i] = AdditionStatuses[i];
         return ReturnMeta;
@@ -49,6 +50,7 @@ public partial class Meta : Node
         {
             {"bus_volumes", BusVolumes},
             {"scores_showing_format_index", ScoresShowingFormatIndex},
+            {"camera_zoom", CameraZoom},
             {"dificulty", Dificulty},
             {"addition_status0", AdditionStatuses[0]},
             {"addition_status1", AdditionStatuses[1]},
@@ -74,7 +76,8 @@ public partial class Meta : Node
             for (int i = 0; i < BusVolumesArray.Count; i++)
                 BusVolumes[i] = (float)BusVolumesArray[i];
 
-            ScoresShowingFormatIndex = Dificulty = (int)model["scores_showing_format_index"]; ;
+            ScoresShowingFormatIndex = (int)model["scores_showing_format_index"];
+            CameraZoom = (float)model["camera_zoom"];
 
             Dificulty = (int)model["dificulty"];
 

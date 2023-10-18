@@ -3,13 +3,15 @@ using Godot;
 public partial class Level7MindTumor : Area2D
 {
     CharacterBody2D _player;
-    Node2D _tumorSprites;
-    private Vector2 _defaultPosition, _defaultGlobalPosition, _cameraDiagonal = new Vector2(1024, 576);
+    Node2D _tumorSprite;
+    private Vector2 _defaultPosition, _defaultGlobalPosition, _cameraDiagonal = new Vector2(1024, 576) / (Meta.Instance.CameraZoom / 1.25f);
     private int _limitTop, _limitRight, _limitBottom, _limitLeft;
     public override void _Ready()
     {
+        GetNode<Sprite2D>("CanvasLayer/TumorSprite/Sprite2D").Scale = new Vector2(0.04f * Meta.Instance.CameraZoom, 0.04f * Meta.Instance.CameraZoom);
+        GD.Print(GetNode<Sprite2D>("CanvasLayer/TumorSprite/Sprite2D").Scale);
         _player = GetNode<CharacterBody2D>("..");
-        _tumorSprites = GetNode<Node2D>("CanvasLayer/TumorSprites");
+        _tumorSprite = GetNode<Node2D>("CanvasLayer/TumorSprite");
 
         _defaultPosition = Position;
         _defaultGlobalPosition = GlobalPosition;
@@ -19,7 +21,7 @@ public partial class Level7MindTumor : Area2D
         _limitTop = (int)(Position.Y + _cameraDiagonal.Y / 2 - 25);
         _limitBottom = (int)(G.LevelXYSizes[G.CurrentLevel].Y + Position.Y - _cameraDiagonal.Y / 2 + 100);
 
-        GetNode<Node2D>("CanvasLayer/TumorSprites").GlobalPosition = GlobalPosition + new Vector2(512, 288);
+        _tumorSprite.Position = Position / (Meta.Instance.CameraZoom - (Meta.Instance.CameraZoom - 1.25f) * 2) + new Vector2(430, 230);
     }
 
     public override void _PhysicsProcess(double delta)
@@ -41,7 +43,7 @@ public partial class Level7MindTumor : Area2D
         }
 
         Scale = new Vector2(Scale.X + 0.005f, Scale.Y + 0.005f);
-        _tumorSprites.Scale = new Vector2(Scale.X + 0.005f, Scale.Y + 0.005f);
+        _tumorSprite.Scale = new Vector2(Scale.X + 0.005f, Scale.Y + 0.005f);
     }
 
     public void n2evf7yUH3ZLT3x3N0___()

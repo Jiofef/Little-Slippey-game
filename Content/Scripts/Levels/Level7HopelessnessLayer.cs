@@ -18,10 +18,9 @@ public partial class Level7HopelessnessLayer : CanvasLayer
 			{
 				var mindTumor = ResourceLoader.Load<PackedScene>("res://Content/Scenes/Other/Level7MindTumor.tscn").Instantiate<Area2D>();
 				Random random = new Random();
-
                 mindTumor.Position = new Vector2(random.Next(-512, 512), random.Next(-288, 288));
                 GetNode<CharacterBody2D>("../Player").AddChild(mindTumor);
-			}
+            }
 		}
     }
 }
