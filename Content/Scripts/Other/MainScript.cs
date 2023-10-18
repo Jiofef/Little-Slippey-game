@@ -53,4 +53,9 @@ public partial class MainScript : Node2D
         GetNode<TextureButton>("Pause/Buttons/Resume").GrabFocus();
         _subMenusOpened = false;
     }
+
+    public void MusicFinished()
+    {
+        GetNode<AudioStreamPlayer>("LevelMusicPlayer").Play(0);
+    }
 }

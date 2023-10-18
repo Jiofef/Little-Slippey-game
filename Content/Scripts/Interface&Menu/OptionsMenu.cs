@@ -24,12 +24,6 @@ public partial class OptionsMenu : Control
 
         Meta.Instance.IsFullScreen = DisplayServer.WindowGetMode() == DisplayServer.WindowMode.Fullscreen;
         GetNode<OptionButton>("CanvasLayer/Video/VBoxContainer/ScoresShowingFormat").Selected = Meta.Instance.ScoresShowingFormatIndex;
-
-
-        var dificultyChange = GetNode<OptionButton>("CanvasLayer/Gameplay/VBoxContainer/DificultyChange");
-        dificultyChange.Selected = Meta.Instance.Dificulty;
-        if (G.CurrentLevel != 0)
-            dificultyChange.Disabled = true;
     }
 
     public void Cancel()
@@ -52,7 +46,6 @@ public partial class OptionsMenu : Control
         else
         {
             EmitSignal("OptionsClosing");
-
             QueueFree();
         }
     }
@@ -81,11 +74,5 @@ public partial class OptionsMenu : Control
     public void ChangeScoresShowingFormat(int index)
     {
         Meta.Instance.ScoresShowingFormatIndex = index;
-    }
-
-    //GameplayOptions
-    public void DificultyChanged(int index)
-    {
-        Meta.Instance.Dificulty = index;
     }
 }

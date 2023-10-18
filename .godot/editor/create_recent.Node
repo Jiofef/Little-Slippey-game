@@ -1,3 +1,4 @@
+CanvasLayer
 ColorRect
 Control
 CheckButton
@@ -20,7 +21,6 @@ Camera2D
 StaticBody2D
 ParallaxLayer
 TileMap
-CanvasLayer
 ParallaxBackground
 AnimatedSprite2D
 CPUParticles2D

@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://do46kgjf3a75v"]
+[gd_scene load_steps=19 format=3 uid="uid://do46kgjf3a75v"]
 
 [ext_resource type="Texture2D" uid="uid://08yjrts0y3be" path="res://Content/Sprites/Levels/Level5/Sky.png" id="1_l3ruj"]
 [ext_resource type="Texture2D" uid="uid://3arwpxm41m0a" path="res://Content/Sprites/Levels/Level5/HomeSweetHome.png" id="2_nbjc3"]
@@ -141,6 +141,10 @@ physics_layer_0/physics_material = SubResource("PhysicsMaterial_b41pk")
 sources/0 = SubResource("TileSetAtlasSource_mxbjq")
 sources/1 = SubResource("TileSetAtlasSource_odx4j")
 
+[sub_resource type="Curve" id="Curve_hjvj4"]
+_data = [Vector2(0, 10), 0.0, 0.0, 0, 1, Vector2(1, 10), 0.0, 0.0, 1, 0]
+point_count = 2
+
 [sub_resource type="Curve2D" id="Curve2D_sakh1"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 560, 320, 0, 0, 0, 0, 2000, 320)
@@ -249,36 +253,41 @@ autostart = true
 wait_time = 20.0
 autostart = true
 
-[node name="Particles" type="CPUParticles2D" parent="Rain"]
-position = Vector2(1100, -180)
-amount = 20000
-lifetime = 1.6
-preprocess = 0.7
+[node name="CanvasLayer" type="CanvasLayer" parent="Rain"]
+
+[node name="Particles" type="CPUParticles2D" parent="Rain/CanvasLayer"]
+position = Vector2(500, -32)
+amount = 10000
+lifetime = 1.2
+preprocess = 1.0
 speed_scale = 2.0
+local_coords = true
 emission_shape = 3
-emission_rect_extents = Vector2(1400, 50)
+emission_rect_extents = Vector2(780, 0)
 direction = Vector2(0.5, 1)
 spread = 0.0
 gravity = Vector2(0, 300)
-initial_velocity_min = 300.0
-initial_velocity_max = 350.0
-angle_min = -180.0
-angle_max = 180.0
-scale_amount_min = 4.0
-scale_amount_max = 4.0
-color = Color(0, 0.784314, 0.784314, 1)
+initial_velocity_min = 500.0
+initial_velocity_max = 600.0
+angle_max = 15.0
+scale_amount_min = 3.0
+scale_amount_max = 3.0
+split_scale = true
+scale_curve_x = null
+scale_curve_y = SubResource("Curve_hjvj4")
+color = Color(0, 0.709804, 0.709804, 0.501961)
 
-[node name="Fog?" type="ColorRect" parent="Rain"]
+[node name="Fog?" type="ColorRect" parent="Rain/CanvasLayer"]
 offset_left = -64.0
 offset_top = -64.0
-offset_right = 2624.0
+offset_right = 1280.0
 offset_bottom = 718.0
 color = Color(0, 0.121569, 0.121569, 0.701961)
 
-[node name="ThunderLight" type="ColorRect" parent="Rain"]
+[node name="ThunderLight" type="ColorRect" parent="Rain/CanvasLayer"]
 offset_left = -64.0
 offset_top = -64.0
-offset_right = 2624.0
+offset_right = 1280.0
 offset_bottom = 718.0
 color = Color(1, 1, 1, 0)
 
@@ -286,8 +295,7 @@ color = Color(1, 1, 1, 0)
 curve = SubResource("Curve2D_sakh1")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="CameraPath"]
-position = Vector2(2000, 320)
-progress = 1440.0
+position = Vector2(560, 320)
 rotates = false
 
 [node name="Camera2D" type="Camera2D" parent="CameraPath/PathFollow2D"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://c7dgo7tq8pfa8"]
+[gd_scene load_steps=49 format=3 uid="uid://c7dgo7tq8pfa8"]
 
 [ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/LevelsMenu.cs" id="1_d5t7a"]
 [ext_resource type="PackedScene" uid="uid://bwpstpk1xmkah" path="res://Content/Scenes/Interface&Menu/Button.tscn" id="2_6jw0o"]
@@ -168,6 +168,8 @@ tracks/0/keys = {
 _data = {
 "TextShake": SubResource("Animation_orvki")
 }
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_2rde5"]
 
 [sub_resource type="Curve" id="Curve_40483"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.1, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -647,6 +649,7 @@ layout_mode = 0
 offset_right = 24.0
 offset_bottom = 24.0
 scale = Vector2(2.5, 2.5)
+button_group = SubResource("ButtonGroup_2rde5")
 
 [node name="Insane" type="Label" parent="Visual/DifficultyButtons"]
 layout_mode = 0
@@ -665,6 +668,7 @@ offset_left = 92.0
 offset_right = 116.0
 offset_bottom = 24.0
 scale = Vector2(2.5, 2.5)
+button_group = SubResource("ButtonGroup_2rde5")
 
 [node name="Inferno" type="Label" parent="Visual/DifficultyButtons"]
 layout_mode = 0
@@ -684,6 +688,7 @@ offset_left = 184.0
 offset_right = 208.0
 offset_bottom = 24.0
 scale = Vector2(2.5, 2.5)
+button_group = SubResource("ButtonGroup_2rde5")
 
 [node name="Additions" type="Label" parent="Visual"]
 offset_left = 928.0
@@ -707,6 +712,7 @@ offset_right = 1184.0
 offset_bottom = 456.0
 
 [node name="Hard" type="Label" parent="Visual/AdittionalButtons"]
+layout_mode = 0
 offset_left = 6.0
 offset_top = -16.0
 offset_right = 54.0
@@ -717,6 +723,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="ToggleRainButton" type="CheckBox" parent="Visual/AdittionalButtons"]
+layout_mode = 0
 offset_right = 24.0
 offset_bottom = 24.0
 scale = Vector2(2.5, 2.5)
@@ -729,6 +736,7 @@ offset_right = 67.0
 offset_bottom = 52.0
 
 [node name="Insane" type="Label" parent="Visual/AdittionalButtons"]
+layout_mode = 0
 offset_left = 84.0
 offset_top = -16.0
 offset_right = 162.0
@@ -739,18 +747,21 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="ToggleOldFilmButton" type="CheckBox" parent="Visual/AdittionalButtons"]
+layout_mode = 0
 offset_left = 92.0
 offset_right = 116.0
 offset_bottom = 24.0
 scale = Vector2(2.5, 2.5)
 
 [node name="Lock2" type="ColorRect" parent="Visual/AdittionalButtons"]
+layout_mode = 0
 offset_left = 82.0
 offset_top = -26.0
 offset_right = 160.0
 offset_bottom = 52.0
 
 [node name="Inferno" type="Label" parent="Visual/AdittionalButtons"]
+layout_mode = 0
 offset_left = 180.0
 offset_top = -23.0
 offset_right = 276.0
@@ -763,12 +774,14 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="ToggleEnhancedCrossesButton" type="CheckBox" parent="Visual/AdittionalButtons"]
+layout_mode = 0
 offset_left = 184.0
 offset_right = 208.0
 offset_bottom = 24.0
 scale = Vector2(2.5, 2.5)
 
 [node name="Lock3" type="ColorRect" parent="Visual/AdittionalButtons"]
+layout_mode = 0
 offset_left = 175.0
 offset_top = -26.0
 offset_right = 253.0
@@ -1273,6 +1286,9 @@ bus = &"Interface"
 [connection signal="pressed" from="Visual/DifficultyButtons/HardModeButton" to="." method="SetDifficulty" binds= [0]]
 [connection signal="pressed" from="Visual/DifficultyButtons/InsaneModeButton" to="." method="SetDifficulty" binds= [1]]
 [connection signal="pressed" from="Visual/DifficultyButtons/InfernoModeButton" to="." method="SetDifficulty" binds= [2]]
+[connection signal="toggled" from="Visual/AdittionalButtons/ToggleRainButton" to="." method="SetAdditionStatus" binds= [0]]
+[connection signal="toggled" from="Visual/AdittionalButtons/ToggleOldFilmButton" to="." method="SetAdditionStatus" binds= [1]]
+[connection signal="toggled" from="Visual/AdittionalButtons/ToggleEnhancedCrossesButton" to="." method="SetAdditionStatus" binds= [2]]
 [connection signal="pressed" from="CancelButton" to="." method="Cancel"]
 [connection signal="pressed" from="LevelsList/LeftScrollButton" to="." method="ChangeLevelRowToPast"]
 [connection signal="pressed" from="LevelsList/RightScrollButton" to="." method="ChangeLevelRowToNext"]

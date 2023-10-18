@@ -4,6 +4,7 @@ public partial class LevelsMenu : Control
 {
     Node2D _presentedLevel;
 
+    private readonly string[] _dificultiesNames = { "Hard", "Insane", "Inferno" };
     private int _chosenLevel, _currentLevelsRow = 1;
     private string _additionalLevelLink;
 
@@ -11,38 +12,39 @@ public partial class LevelsMenu : Control
 	{
         GetNode<TextureButton>("LevelsList/LevelsIconsContainer/SubContainer/Level1Button").GrabFocus();
 
-        if (UnchangableMeta.LevelCompleteStatus[4] > 0)
+        string[] ButtonNames = { "Rain", "OldFilm", "EnhancedCrosses"};
+        int[] NeededLevelIndexes = { 4, 6, 9 };
+        for (int i = 0; i < ButtonNames.Length; i++)
         {
-            GetNode<ColorRect>("Visual/AdittionalButtons/Lock1").QueueFree();
-            GetNode<CheckBox>("Visual/AdittionalButtons/ToggleRainButton").Disabled = false;
-        }
-        else if (UnchangableMeta.LevelCompleteStatus[6] > 0)
-        {
-            GetNode<ColorRect>("Visual/AdittionalButtons/Lock2").QueueFree();
-            GetNode<CheckBox>("Visual/AdittionalButtons/ToggleOldFilmButton").Disabled = false;
-        }
-        else if (UnchangableMeta.LevelCompleteStatus[9] > 0)
-        {
-            GetNode<ColorRect>("Visual/AdittionalButtons/Lock3").QueueFree();
-            GetNode<CheckBox>("Visual/AdittionalButtons/ToggleEnhancedCrossesButton").Disabled = false;
+            if (UnchangableMeta.LevelCompleteStatus[NeededLevelIndexes[i]] > 0)
+            {
+                GetNode<ColorRect>("Visual/AdittionalButtons/Lock" + (i + 1)).QueueFree();
+                var toggleButton = GetNode<CheckBox>("Visual/AdittionalButtons/Toggle" + ButtonNames[i] + "Button");
+                toggleButton.Disabled = false;
+                toggleButton.ButtonPressed = Meta.Instance.AdditionStatuses[i];
+            }
         }
 
+        for (int i = 0; i < _dificultiesNames.Length; i++)
+            GetNode<CheckBox>("Visual/DifficultyButtons/" + _dificultiesNames[i] + "ModeButton").ButtonPressed = Meta.Instance.Dificulty == i;
+
         UpdateGUIForCurrentDificulty();
+
         for (int i = 0; i < G.LevelsInGameTotal; i++)
             if (UnchangableMeta.LevelCompleteStatus[i] > 0)
             GetNode<Sprite2D>("LevelsList/LevelsIconsContainer/SubContainer/Level" + (i + 1) + "Button/Sprite2D").RegionRect = new Rect2(new Vector2(45 * i, 45 * (UnchangableMeta.LevelCompleteStatus[i] - 1)), new Vector2(45, 45));
         if (UnchangableMeta.LevelCompleteStatus[4] > 0)
         {
-            GetNode<Node2D>("LevelsList/LevelsIconsContainer/SubContainer/Level5Button/WindowView").Visible = true;
-            GetNode<AnimationPlayer>("LevelsList/LevelsIconsContainer/SubContainer/Level5Button/WindowView/AnimationPlayer").CurrentAnimation = "LightingAndBlackoutAnimation" + UnchangableMeta.LevelCompleteStatus[4];
+            string link = "LevelsList/LevelsIconsContainer/SubContainer/Level5Button/WindowView";
+            GetNode<Node2D>(link).Visible = true;
+            GetNode<AnimationPlayer>(link + "/AnimationPlayer").CurrentAnimation = "LightingAndBlackoutAnimation" + UnchangableMeta.LevelCompleteStatus[4];
             if (UnchangableMeta.LevelCompleteStatus[4] >= 2)
             {
-                string link = "LevelsList/LevelsIconsContainer/SubContainer/Level5Button/WindowView/";
-                GetNode<CpuParticles2D>(link + "Rain").Color = new Color(0.79f, 0, 0);
-                GetNode<CpuParticles2D>(link + "Window/Rain").Color = new Color(0.79f, 0, 0);
-                GetNode<CpuParticles2D>(link + "Fog").Color = new Color(1f, 0, 0);
-                GetNode<ColorRect>(link + "Fog?").Color = new Color(0.7f, 0, 0);
-                GetNode<ColorRect>(link + "Fog?Interior").Color = new Color(0.08f, 0.04f, 0.04f);
+                GetNode<CpuParticles2D>(link + "/Rain").Color = new Color(0.79f, 0, 0);
+                GetNode<CpuParticles2D>(link + "/Window/Rain").Color = new Color(0.79f, 0, 0);
+                GetNode<CpuParticles2D>(link + "/Fog").Color = new Color(1f, 0, 0);
+                GetNode<ColorRect>(link + "/Fog?").Color = new Color(0.7f, 0, 0);
+                GetNode<ColorRect>(link + "/Fog?Interior").Color = new Color(0.08f, 0.04f, 0.04f);
             }
         }
     }
@@ -148,10 +150,8 @@ public partial class LevelsMenu : Control
         _presentedLevel = (Node2D)ResourceLoader.Load<PackedScene>("res://Content/Scenes/Levels/PresentedParts/PresentedLevel" + _chosenLevel + _additionalLevelLink + ".tscn").Instantiate();
 
         GetNode("Visual/LevelPresenter/SubViewport").AddChild(_presentedLevel);
-
-        GetNode<Label>("Visual/HardBestResult").Text = UnchangableMeta.LevelRecords[0][_chosenLevel - 1].ToString();
-        GetNode<Label>("Visual/InsaneBestResult").Text = UnchangableMeta.LevelRecords[1][_chosenLevel - 1].ToString();
-        GetNode<Label>("Visual/InfernoBestResult").Text = UnchangableMeta.LevelRecords[2][_chosenLevel - 1].ToString();
+        for (int i = 0; i < _dificultiesNames.Length; i++)
+            GetNode<Label>("Visual/" + _dificultiesNames[i] + "BestResult").Text = UnchangableMeta.LevelRecords[i][_chosenLevel - 1].ToString();
     }
 
     public void SetDifficulty(int value)
@@ -160,13 +160,14 @@ public partial class LevelsMenu : Control
         UpdateGUIForCurrentDificulty();
         Meta.Instance.SaveToFile();
     }
+    public void SetAdditionStatus(bool value, int AdditionIndex)
+    {
+        Meta.Instance.AdditionStatuses[AdditionIndex] = value;
+        Meta.Instance.SaveToFile();
+    }
     private void UpdateGUIForCurrentDificulty()
     {
-        var hardModeButton = GetNode<CheckBox>("Visual/DifficultyButtons/HardModeButton");
-        var insaneModeButton = GetNode<CheckBox>("Visual/DifficultyButtons/InsaneModeButton");
-        var infernoModeButton = GetNode<CheckBox>("Visual/DifficultyButtons/InfernoModeButton");
-        GetNode<Label>("Visual/HardBestResult").Visible = hardModeButton.ButtonPressed = hardModeButton.Disabled = Meta.Instance.Dificulty == 0;
-        GetNode<Label>("Visual/InsaneBestResult").Visible = insaneModeButton.ButtonPressed = insaneModeButton.Disabled = Meta.Instance.Dificulty == 1;
-        GetNode<Label>("Visual/InfernoBestResult").Visible = infernoModeButton.ButtonPressed = infernoModeButton.Disabled = Meta.Instance.Dificulty == 2;
+        for (int i = 0; i < _dificultiesNames.Length; i ++)
+            GetNode<Label>("Visual/" + _dificultiesNames[i] + "BestResult").Visible = Meta.Instance.Dificulty == i;
     }
 }

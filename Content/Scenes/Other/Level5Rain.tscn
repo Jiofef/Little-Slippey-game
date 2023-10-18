@@ -1,0 +1,87 @@
+[gd_scene load_steps=6 format=3 uid="uid://7oocby8a4s1s"]
+
+[ext_resource type="Script" path="res://Content/Scripts/Levels/Level5Rain.cs" id="1_r23l0"]
+[ext_resource type="AudioStream" uid="uid://hqp1es4u8fk4" path="res://Content/Sounds/Levels/Level5Thunder.mp3" id="2_6h37r"]
+[ext_resource type="AudioStream" uid="uid://kus4k0ea0aj2" path="res://Content/Sounds/Levels/Level5Ambience1.mp3" id="3_bybth"]
+[ext_resource type="AudioStream" uid="uid://bo64hggnj03vc" path="res://Content/Sounds/Levels/Level5Ambience2.mp3" id="4_dv01f"]
+
+[sub_resource type="Curve" id="Curve_q22lo"]
+_data = [Vector2(0, 10), 0.0, 0.0, 0, 1, Vector2(1, 10), 0.0, 0.0, 1, 0]
+point_count = 2
+
+[node name="Rain" type="Node2D"]
+z_index = 4
+script = ExtResource("1_r23l0")
+
+[node name="LightChangeTimer" type="Timer" parent="."]
+wait_time = 0.25
+autostart = true
+
+[node name="ThunderTimer" type="Timer" parent="."]
+wait_time = 20.0
+
+[node name="FogLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="Fog" type="ColorRect" parent="FogLayer"]
+offset_left = -192.0
+offset_top = -193.0
+offset_right = 2752.0
+offset_bottom = 897.0
+mouse_filter = 2
+color = Color(0, 0.352941, 0.352941, 0.588235)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Particles" type="CPUParticles2D" parent="CanvasLayer"]
+position = Vector2(500, -32)
+amount = 10000
+lifetime = 1.2
+preprocess = 1.0
+speed_scale = 2.0
+local_coords = true
+emission_shape = 3
+emission_rect_extents = Vector2(780, 0)
+direction = Vector2(0.5, 1)
+spread = 0.0
+gravity = Vector2(0, 300)
+initial_velocity_min = 500.0
+initial_velocity_max = 600.0
+angle_max = 15.0
+scale_amount_min = 4.0
+scale_amount_max = 4.0
+split_scale = true
+scale_curve_x = null
+scale_curve_y = SubResource("Curve_q22lo")
+color = Color(0, 0.709804, 0.709804, 0.501961)
+
+[node name="Fog?" type="ColorRect" parent="CanvasLayer"]
+offset_right = 1280.0
+offset_bottom = 720.0
+mouse_filter = 2
+color = Color(0, 0.12, 0.12, 0.7)
+metadata/_edit_use_anchors_ = true
+
+[node name="ThunderLight" type="ColorRect" parent="CanvasLayer"]
+offset_right = 1280.0
+offset_bottom = 720.0
+mouse_filter = 2
+color = Color(1, 1, 1, 0)
+metadata/_edit_use_anchors_ = true
+
+[node name="ThunderSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_6h37r")
+volume_db = 10.0
+bus = &"LevelSounds"
+
+[node name="AmbiencePlayer1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_bybth")
+bus = &"LevelSounds"
+
+[node name="AmbiencePlayer2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_dv01f")
+volume_db = 10.0
+bus = &"LevelSounds"
+
+[connection signal="timeout" from="LightChangeTimer" to="." method="LightChange"]
+[connection signal="timeout" from="ThunderTimer" to="." method="ThunderStart"]

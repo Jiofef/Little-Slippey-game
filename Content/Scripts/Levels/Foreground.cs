@@ -15,7 +15,6 @@ public partial class Foreground : Node2D
 	{
         _doHideForeground = true;
         SetPlayerCollidingWithFlyingCars(false);
-
     }
     public void Show()
     {

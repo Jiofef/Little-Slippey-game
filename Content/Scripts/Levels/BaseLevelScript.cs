@@ -25,12 +25,19 @@ public partial class BaseLevelScript : Node2D
         Connect("LevelReload", new Callable(GetNode(".."), "LevelLoad"));
         GetNode<AudioStreamPlayer>("../../LevelMusicPlayer").StreamPaused = false;
         _player = GetNode<CharacterBody2D>("Player");
-        _isCrossesEnhanced = G.CurrentLevel == 10 && G.LevelAdditionalLink == "True"|| Meta.Instance.EnhancedCrossesAtAllLevels;
-        for (int i = 0; i < _crosses.Length; i++)
-            _crosses[i] = ResourceLoader.Load<PackedScene>("res://Content/Scenes/Crosses/" + (_isCrossesEnhanced ? "Enhanced" : "") + "Cross" + (i + 1) + ".tscn");
+
+        if (G.CurrentLevel == 5 || Meta.Instance.AdditionStatuses[0])
+            AddChild((Node2D)ResourceLoader.Load<PackedScene>("res://Content/Scenes/Other/Level5Rain.tscn").Instantiate());
+        if (G.CurrentLevel == 7 || Meta.Instance.AdditionStatuses[1])
+            AddChild((CanvasLayer)ResourceLoader.Load<PackedScene>("res://Content/Scenes/Other/Level7HopelessnesLayer.tscn").Instantiate());
+
+        _isCrossesEnhanced = G.CurrentLevel == 10 && G.LevelAdditionalLink == "True" || Meta.Instance.AdditionStatuses[2];
 
         if (_isCrossesEnhanced)
-            CrossDefaultWeight = new int[] {150, 120, 20, 5, 10};
+            CrossDefaultWeight = new int[] { 150, 120, 20, 5, 10 };
+
+        for (int i = 0; i < _crosses.Length; i++)
+            _crosses[i] = ResourceLoader.Load<PackedScene>("res://Content/Scenes/Crosses/" + (_isCrossesEnhanced ? "Enhanced" : "") + "Cross" + (i + 1) + ".tscn");
     }
 
     private bool _crossesEnabledDebug = true;

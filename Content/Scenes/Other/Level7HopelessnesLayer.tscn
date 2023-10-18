@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://45vtxkc30vn7"]
+
+[ext_resource type="Script" path="res://Content/Scripts/Levels/Level7HopelessnessLayer.cs" id="1_52qy1"]
+[ext_resource type="VideoStream" path="res://Content/Other/VintageFilterVideo.ogv" id="2_rc8ov"]
+
+[node name="HopelessnessLayer" type="CanvasLayer"]
+layer = 3
+script = ExtResource("1_52qy1")
+
+[node name="VintageFilter" type="VideoStreamPlayer" parent="."]
+modulate = Color(0.988235, 0.831373, 0.568627, 0.784314)
+offset_right = 1300.0
+offset_bottom = 720.0
+mouse_filter = 2
+stream = ExtResource("2_rc8ov")
+autoplay = true
+expand = true
+
+[connection signal="finished" from="VintageFilter" to="VintageFilter" method="play"]

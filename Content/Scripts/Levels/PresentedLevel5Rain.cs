@@ -10,8 +10,8 @@ public partial class PresentedLevel5Rain : Node2D
 
     public override void _Ready()
     {
-        _fog = GetNode<ColorRect>("Fog?");
-        _thunderLight = GetNode<ColorRect>("ThunderLight");
+        _fog = GetNode<ColorRect>("CanvasLayer/Fog?");
+        _thunderLight = GetNode<ColorRect>("CanvasLayer/ThunderLight");
     }
 
     public override void _PhysicsProcess(double delta)
