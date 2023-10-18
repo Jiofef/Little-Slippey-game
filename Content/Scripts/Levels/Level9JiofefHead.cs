@@ -230,7 +230,7 @@ public partial class Level9JiofefHead : Node2D
 
     public void TeleportToRandomPoint()
 	{
-		GlobalPosition = new Vector2(_random.Next(2560), _random.Next(1280));
+		GlobalPosition = new Vector2(_random.Next((int)G.LevelXYSizes[G.CurrentLevel].X), _random.Next((int)G.LevelXYSizes[G.CurrentLevel].X));
 	}
 
 	private void Attack()

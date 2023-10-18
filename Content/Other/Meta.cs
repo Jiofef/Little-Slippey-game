@@ -20,7 +20,7 @@ public partial class Meta : Node
 
     //Gameplay
     public int Dificulty = 0;
-    public bool[] AdditionStatuses = new bool[3];
+    public bool[] AdditionStatuses = new bool[4];
 
     public void ApplyOptions()
     {
@@ -53,6 +53,7 @@ public partial class Meta : Node
             {"addition_status0", AdditionStatuses[0]},
             {"addition_status1", AdditionStatuses[1]},
             {"addition_status2", AdditionStatuses[2]},
+            {"addition_status3", AdditionStatuses[3]},
         };
     }
     public void SaveToFile()

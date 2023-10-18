@@ -29,9 +29,23 @@ public partial class BaseLevelScript : Node2D
         if (G.CurrentLevel == 5 || Meta.Instance.AdditionStatuses[0])
             AddChild((Node2D)ResourceLoader.Load<PackedScene>("res://Content/Scenes/Other/Level5Rain.tscn").Instantiate());
         if (G.CurrentLevel == 7 || Meta.Instance.AdditionStatuses[1])
-            AddChild((CanvasLayer)ResourceLoader.Load<PackedScene>("res://Content/Scenes/Other/Level7HopelessnesLayer.tscn").Instantiate());
+        {
+            var level7HopelessnesLayer = (CanvasLayer)ResourceLoader.Load<PackedScene>("res://Content/Scenes/Other/Level7HopelessnesLayer.tscn").Instantiate();
+            if (Meta.Instance.AdditionStatuses[0])
+                level7HopelessnesLayer.GetNode<VideoStreamPlayer>("VintageFilter").Modulate = new Color(1, 0.8f, 0.55f, 0.2f);
+            AddChild(level7HopelessnesLayer);
+        }
+        if (Meta.Instance.AdditionStatuses[2])
+        {
+            var level9JiofefHead = (Node2D)ResourceLoader.Load<PackedScene>("res://Content/Scenes/Other/Level9JiofefHead.tscn").Instantiate();
+            level9JiofefHead.Position = G.LevelXYSizes[G.CurrentLevel] / 2;
 
-        _isCrossesEnhanced = G.CurrentLevel == 10 && G.LevelAdditionalLink == "True" || Meta.Instance.AdditionStatuses[2];
+            if (G.CurrentLevel == 8)
+                level9JiofefHead.Position = new Vector2(1280, 320);
+
+            AddChild(level9JiofefHead);
+        }
+        _isCrossesEnhanced = G.CurrentLevel == 10 && G.LevelAdditionalLink == "True" || Meta.Instance.AdditionStatuses[3];
 
         if (_isCrossesEnhanced)
             CrossDefaultWeight = new int[] { 150, 120, 20, 5, 10 };
@@ -187,7 +201,7 @@ public partial class BaseLevelScript : Node2D
                 }
                 AddChild(Cross);
 
-                if (G.CurrentLevel == 9 || _isCrossesEnhanced)
+                if (G.CurrentLevel == 9 || Meta.Instance.AdditionStatuses[2] || _isCrossesEnhanced)
                     Cross.AddToGroup("Crosses");
             }
         }

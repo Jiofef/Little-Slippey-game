@@ -706,17 +706,19 @@ vertical_alignment = 1
 [node name="AdittionalButtons" type="Control" parent="Visual"]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 950.0
+offset_left = 945.0
 offset_top = 402.0
-offset_right = 1184.0
+offset_right = 1189.0
 offset_bottom = 456.0
 
-[node name="Hard" type="Label" parent="Visual/AdittionalButtons"]
+[node name="Rain" type="Label" parent="Visual/AdittionalButtons"]
+visible = false
 layout_mode = 0
-offset_left = 6.0
-offset_top = -16.0
-offset_right = 54.0
-offset_bottom = 9.0
+offset_left = 12.0
+offset_top = -12.0
+offset_right = 60.0
+offset_bottom = 13.0
+scale = Vector2(0.8, 0.8)
 theme_override_colors/font_color = Color(0.705882, 0.705882, 0.784314, 1)
 text = "Rain"
 horizontal_alignment = 1
@@ -727,20 +729,23 @@ layout_mode = 0
 offset_right = 24.0
 offset_bottom = 24.0
 scale = Vector2(2.5, 2.5)
+focus_mode = 0
+disabled = true
 
 [node name="Lock1" type="ColorRect" parent="Visual/AdittionalButtons"]
 layout_mode = 0
-offset_left = -11.0
-offset_top = -26.0
-offset_right = 67.0
-offset_bottom = 52.0
+offset_left = 2.0
+offset_right = 50.0
+offset_bottom = 48.0
 
-[node name="Insane" type="Label" parent="Visual/AdittionalButtons"]
+[node name="OldFilm" type="Label" parent="Visual/AdittionalButtons"]
+visible = false
 layout_mode = 0
-offset_left = 84.0
-offset_top = -16.0
-offset_right = 162.0
-offset_bottom = 9.0
+offset_left = 64.0
+offset_top = -12.0
+offset_right = 142.0
+offset_bottom = 13.0
+scale = Vector2(0.8, 0.8)
 theme_override_colors/font_color = Color(0.705882, 0.705882, 0.784314, 1)
 text = "Old film"
 horizontal_alignment = 1
@@ -748,23 +753,50 @@ vertical_alignment = 1
 
 [node name="ToggleOldFilmButton" type="CheckBox" parent="Visual/AdittionalButtons"]
 layout_mode = 0
-offset_left = 92.0
-offset_right = 116.0
+offset_left = 65.0
+offset_right = 89.0
 offset_bottom = 24.0
 scale = Vector2(2.5, 2.5)
+focus_mode = 0
+disabled = true
 
 [node name="Lock2" type="ColorRect" parent="Visual/AdittionalButtons"]
-layout_mode = 0
-offset_left = 82.0
-offset_top = -26.0
-offset_right = 160.0
-offset_bottom = 52.0
+offset_left = 69.0
+offset_right = 117.0
+offset_bottom = 48.0
 
-[node name="Inferno" type="Label" parent="Visual/AdittionalButtons"]
-layout_mode = 0
-offset_left = 180.0
+[node name="JiofefHead" type="Label" parent="Visual/AdittionalButtons"]
+visible = false
+offset_left = 132.0
 offset_top = -23.0
-offset_right = 276.0
+offset_right = 210.0
+offset_bottom = 27.0
+scale = Vector2(0.7, 0.7)
+theme_override_colors/font_color = Color(0.705882, 0.705882, 0.784314, 1)
+text = "Jiofef
+Head"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ToggleJiofefHeadButton" type="CheckBox" parent="Visual/AdittionalButtons"]
+offset_left = 130.0
+offset_right = 154.0
+offset_bottom = 24.0
+scale = Vector2(2.5, 2.5)
+focus_mode = 0
+disabled = true
+
+[node name="Lock3" type="ColorRect" parent="Visual/AdittionalButtons"]
+offset_left = 136.0
+offset_right = 184.0
+offset_bottom = 48.0
+
+[node name="EnhancedCrosses" type="Label" parent="Visual/AdittionalButtons"]
+visible = false
+layout_mode = 0
+offset_left = 192.0
+offset_top = -23.0
+offset_right = 288.0
 offset_bottom = 27.0
 scale = Vector2(0.7, 0.7)
 theme_override_colors/font_color = Color(0.705882, 0.705882, 0.784314, 1)
@@ -775,17 +807,17 @@ vertical_alignment = 1
 
 [node name="ToggleEnhancedCrossesButton" type="CheckBox" parent="Visual/AdittionalButtons"]
 layout_mode = 0
-offset_left = 184.0
-offset_right = 208.0
+offset_left = 194.0
+offset_right = 218.0
 offset_bottom = 24.0
 scale = Vector2(2.5, 2.5)
+focus_mode = 0
+disabled = true
 
-[node name="Lock3" type="ColorRect" parent="Visual/AdittionalButtons"]
-layout_mode = 0
-offset_left = 175.0
-offset_top = -26.0
-offset_right = 253.0
-offset_bottom = 52.0
+[node name="Lock4" type="ColorRect" parent="Visual/AdittionalButtons"]
+offset_left = 204.0
+offset_right = 252.0
+offset_bottom = 48.0
 
 [node name="CancelButton" parent="." instance=ExtResource("2_6jw0o")]
 layout_mode = 0
@@ -1288,7 +1320,8 @@ bus = &"Interface"
 [connection signal="pressed" from="Visual/DifficultyButtons/InfernoModeButton" to="." method="SetDifficulty" binds= [2]]
 [connection signal="toggled" from="Visual/AdittionalButtons/ToggleRainButton" to="." method="SetAdditionStatus" binds= [0]]
 [connection signal="toggled" from="Visual/AdittionalButtons/ToggleOldFilmButton" to="." method="SetAdditionStatus" binds= [1]]
-[connection signal="toggled" from="Visual/AdittionalButtons/ToggleEnhancedCrossesButton" to="." method="SetAdditionStatus" binds= [2]]
+[connection signal="toggled" from="Visual/AdittionalButtons/ToggleJiofefHeadButton" to="." method="SetAdditionStatus" binds= [2]]
+[connection signal="toggled" from="Visual/AdittionalButtons/ToggleEnhancedCrossesButton" to="." method="SetAdditionStatus" binds= [3]]
 [connection signal="pressed" from="CancelButton" to="." method="Cancel"]
 [connection signal="pressed" from="LevelsList/LeftScrollButton" to="." method="ChangeLevelRowToPast"]
 [connection signal="pressed" from="LevelsList/RightScrollButton" to="." method="ChangeLevelRowToNext"]

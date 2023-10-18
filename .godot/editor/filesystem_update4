@@ -64,3 +64,7 @@ res://Content/Scripts/Other/Player.cs
 res://Content/Scripts/Other/PlayPart.cs
 res://Content/Scripts/Other/StartupScene.cs
 res://Content/Scenes/Other/Level7HopelessnesLayer.tscn
+res://Content/Scenes/Levels/FullParts/Level9WithoutPlatformSection.tscn
+res://Content/Scenes/Levels/FullParts/Level9.tscn
+res://Content/Scenes/Other/Level9JiofefHead.tscn
+res://Content/Scenes/Levels/FullParts/Level8.tscn

@@ -12,17 +12,19 @@ public partial class LevelsMenu : Control
 	{
         GetNode<TextureButton>("LevelsList/LevelsIconsContainer/SubContainer/Level1Button").GrabFocus();
 
-        string[] ButtonNames = { "Rain", "OldFilm", "EnhancedCrosses"};
-        int[] NeededLevelIndexes = { 4, 6, 9 };
+        string[] ButtonNames = { "Rain", "OldFilm", "JiofefHead", "EnhancedCrosses"};
+        int[] NeededLevelIndexes = { 4, 6, 8, 9 };
         for (int i = 0; i < ButtonNames.Length; i++)
         {
             if (UnchangableMeta.LevelCompleteStatus[NeededLevelIndexes[i]] > 0)
             {
                 GetNode<ColorRect>("Visual/AdittionalButtons/Lock" + (i + 1)).QueueFree();
+                GetNode<Label>("Visual/AdittionalButtons/" + ButtonNames[i]).Visible = true;
                 var toggleButton = GetNode<CheckBox>("Visual/AdittionalButtons/Toggle" + ButtonNames[i] + "Button");
                 toggleButton.Disabled = false;
                 toggleButton.ButtonPressed = Meta.Instance.AdditionStatuses[i];
-            }
+                toggleButton.FocusMode = FocusModeEnum.All;
+            }   
         }
 
         for (int i = 0; i < _dificultiesNames.Length; i++)

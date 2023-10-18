@@ -8,7 +8,7 @@ layer = 3
 script = ExtResource("1_52qy1")
 
 [node name="VintageFilter" type="VideoStreamPlayer" parent="."]
-modulate = Color(0.988235, 0.831373, 0.568627, 0.784314)
+modulate = Color(1, 0.8, 0.55, 0.78)
 offset_right = 1300.0
 offset_bottom = 720.0
 mouse_filter = 2
