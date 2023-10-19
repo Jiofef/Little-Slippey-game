@@ -1,13 +1,13 @@
-CanvasLayer
 ColorRect
+AnimationPlayer
+Sprite2D
+CanvasLayer
 Control
 CheckButton
 OptionButton
 VisibleOnScreenEnabler2D
 Label
 CheckBox
-Sprite2D
-AnimationPlayer
 AudioStreamPlayer
 AnimationTree
 Node2D

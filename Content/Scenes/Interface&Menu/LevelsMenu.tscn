@@ -1,23 +1,63 @@
-[gd_scene load_steps=49 format=3 uid="uid://c7dgo7tq8pfa8"]
+[gd_scene load_steps=54 format=3 uid="uid://c7dgo7tq8pfa8"]
 
 [ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/LevelsMenu.cs" id="1_d5t7a"]
 [ext_resource type="PackedScene" uid="uid://bwpstpk1xmkah" path="res://Content/Scenes/Interface&Menu/Button.tscn" id="2_6jw0o"]
+[ext_resource type="Texture2D" uid="uid://bup1u0y7qgmvb" path="res://Content/Sprites/Interface/MenuBackground.png" id="2_ax5t5"]
 [ext_resource type="Texture2D" uid="uid://bvogrd2bqhwmt" path="res://Content/Sprites/Other/OblivionNoise.png" id="2_d2goi"]
 [ext_resource type="Texture2D" uid="uid://bv6ampi04qu7h" path="res://Content/Sprites/Interface/LevelsMenuPresenterBox.png" id="2_d7fu7"]
 [ext_resource type="Texture2D" uid="uid://d0sqlunqacimf" path="res://Content/Sprites/Interface/CancelButtonOutline.png" id="3_1uhey"]
 [ext_resource type="AudioStream" uid="uid://dy6lncevmnf3o" path="res://Content/Sounds/Other/WhiteNoise.mp3" id="3_4foo2"]
+[ext_resource type="Texture2D" uid="uid://bqony8evt35hm" path="res://Content/Sprites/Interface/MenuBackgroundPattern.png" id="3_k6xtn"]
 [ext_resource type="Texture2D" uid="uid://bs42vfh75wcnm" path="res://Content/Sprites/Interface/CancelButtonOutlinePressed.png" id="4_gwypa"]
+[ext_resource type="Shader" path="res://Content/Other/BlurShader.gdshader" id="4_p63au"]
 [ext_resource type="Texture2D" uid="uid://clg1i8k0880p3" path="res://Content/Sprites/Interface/CancelButtonCross.png" id="5_bj8ux"]
 [ext_resource type="Texture2D" uid="uid://c6v5r4xne78e0" path="res://Content/Sprites/Interface/LevelListScrollButtonOutline.png" id="6_jy5ym"]
 [ext_resource type="Texture2D" uid="uid://cy2lmvegkv1ri" path="res://Content/Sprites/Interface/LevelListScrollButtonOutlinePressed.png" id="7_fs4gw"]
 [ext_resource type="Texture2D" uid="uid://dk6qvinkosaoa" path="res://Content/Sprites/Interface/LevelListScrollButtonOutlineDisabled.png" id="8_x43tu"]
-[ext_resource type="Texture2D" uid="uid://bufypr86xc1vb" path="res://Content/Sprites/Interface/LevelListCrollButtonArrow.png" id="9_a1odr"]
 [ext_resource type="Texture2D" uid="uid://71vomw6byask" path="res://Content/Sprites/Interface/LevelIconButtonOutline.png" id="10_k5w04"]
 [ext_resource type="Texture2D" uid="uid://hejo03d51jgt" path="res://Content/Sprites/Interface/LevelIconButtonOutlinePressed.png" id="11_aoo2n"]
 [ext_resource type="Texture2D" uid="uid://bppnbtehdr3md" path="res://Content/Sprites/Interface/LevelsIcons.png" id="12_lkhk3"]
 [ext_resource type="Texture2D" uid="uid://ba7grlwd3ygbr" path="res://Content/Sprites/Interface/LevelsMenuLevel5IconWindow.png" id="15_yae0y"]
 [ext_resource type="Texture2D" uid="uid://bajqg8ftdifa0" path="res://Content/Sprites/Interface/AcceptButton.png" id="16_kds2k"]
 [ext_resource type="AudioStream" uid="uid://c7cirxpsrcayj" path="res://Content/Sounds/Other/FastWhiteNoise.mp3" id="17_75vx5"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ll11s"]
+shader = ExtResource("4_p63au")
+shader_parameter/lod = 2.5
+
+[sub_resource type="Animation" id="Animation_651af"]
+resource_name = "BackgroundAnimation"
+length = 12.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Background:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 12),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-800, -560), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BackgroundPattern:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 12),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-580, -580)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fo2ut"]
+_data = {
+"BackgroundAnimation": SubResource("Animation_651af")
+}
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_m23ck"]
 atlas = ExtResource("2_d2goi")
@@ -475,10 +515,38 @@ script = ExtResource("1_d5t7a")
 
 [node name="Visual" type="Node2D" parent="."]
 
+[node name="Background" type="Sprite2D" parent="Visual"]
+position = Vector2(-429.221, -300.455)
+scale = Vector2(4, 4)
+texture = ExtResource("2_ax5t5")
+centered = false
+
+[node name="BackgroundPattern" type="Sprite2D" parent="Visual"]
+position = Vector2(-268.815, -268.815)
+scale = Vector2(4, 4)
+texture = ExtResource("3_k6xtn")
+centered = false
+
+[node name="ColorRect" type="ColorRect" parent="Visual"]
+offset_right = 1280.0
+offset_bottom = 720.0
+color = Color(0.32549, 0.619608, 0.67451, 0.784314)
+
+[node name="Blur" type="ColorRect" parent="Visual"]
+material = SubResource("ShaderMaterial_ll11s")
+offset_right = 1280.0
+offset_bottom = 720.0
+
 [node name="Box" type="Sprite2D" parent="Visual"]
 scale = Vector2(4, 4)
 texture = ExtResource("2_d7fu7")
 centered = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Visual"]
+autoplay = "BackgroundAnimation"
+libraries = {
+"": SubResource("AnimationLibrary_fo2ut")
+}
 
 [node name="LevelPresenter" type="SubViewportContainer" parent="Visual"]
 offset_left = 180.0
@@ -516,8 +584,7 @@ offset_top = 40.0
 offset_right = 1076.0
 offset_bottom = 72.0
 scale = Vector2(2, 2)
-theme_override_colors/font_color = Color(0.705882, 0.705882, 0.784314, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
 theme_override_constants/outline_size = 1
 text = "Highest Time:"
 horizontal_alignment = 1
@@ -529,9 +596,7 @@ offset_top = 101.236
 offset_right = 1073.24
 offset_bottom = 133.236
 scale = Vector2(2, 2)
-theme_override_colors/font_color = Color(0.705882, 0.705882, 0.784314, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 4
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
 text = "000000000"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -618,8 +683,7 @@ offset_top = 184.0
 offset_right = 1093.0
 offset_bottom = 216.0
 scale = Vector2(1.75, 1.75)
-theme_override_colors/font_color = Color(0.705882, 0.705882, 0.784314, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
 theme_override_constants/outline_size = 1
 text = "Dificulties:"
 horizontal_alignment = 1
@@ -639,7 +703,7 @@ offset_left = 6.0
 offset_top = -16.0
 offset_right = 54.0
 offset_bottom = 9.0
-theme_override_colors/font_color = Color(0.705882, 0.705882, 0.784314, 1)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
 text = "Hard"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -657,7 +721,7 @@ offset_left = 90.0
 offset_top = -16.0
 offset_right = 156.0
 offset_bottom = 9.0
-theme_override_colors/font_color = Color(0.705882, 0.705882, 0.784314, 1)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
 text = "Insane"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -676,7 +740,7 @@ offset_left = 175.0
 offset_top = -14.0
 offset_right = 255.0
 offset_bottom = 11.0
-theme_override_colors/font_color = Color(0.705882, 0.705882, 0.784314, 1)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
 text = "Infernal
 "
 horizontal_alignment = 1
@@ -696,8 +760,7 @@ offset_top = 328.0
 offset_right = 1093.0
 offset_bottom = 360.0
 scale = Vector2(1.75, 1.75)
-theme_override_colors/font_color = Color(0.705882, 0.705882, 0.784314, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
 theme_override_constants/outline_size = 1
 text = "Additions:"
 horizontal_alignment = 1
@@ -719,7 +782,7 @@ offset_top = -12.0
 offset_right = 60.0
 offset_bottom = 13.0
 scale = Vector2(0.8, 0.8)
-theme_override_colors/font_color = Color(0.705882, 0.705882, 0.784314, 1)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
 text = "Rain"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -746,7 +809,7 @@ offset_top = -12.0
 offset_right = 142.0
 offset_bottom = 13.0
 scale = Vector2(0.8, 0.8)
-theme_override_colors/font_color = Color(0.705882, 0.705882, 0.784314, 1)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
 text = "Old film"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -774,7 +837,7 @@ offset_top = -23.0
 offset_right = 210.0
 offset_bottom = 27.0
 scale = Vector2(0.7, 0.7)
-theme_override_colors/font_color = Color(0.705882, 0.705882, 0.784314, 1)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
 text = "Jiofef
 Head"
 horizontal_alignment = 1
@@ -803,7 +866,7 @@ offset_top = -23.0
 offset_right = 288.0
 offset_bottom = 27.0
 scale = Vector2(0.7, 0.7)
-theme_override_colors/font_color = Color(0.705882, 0.705882, 0.784314, 1)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
 text = "Enhanced
 Crosses"
 horizontal_alignment = 1
@@ -834,10 +897,6 @@ focus_neighbor_left = NodePath(".")
 texture_normal = ExtResource("3_1uhey")
 texture_pressed = ExtResource("4_gwypa")
 
-[node name="CancelButtonCross" type="Sprite2D" parent="CancelButton"]
-position = Vector2(12, 12)
-texture = ExtResource("5_bj8ux")
-
 [node name="LevelsList" type="Control" parent="."]
 anchors_preset = 0
 offset_left = 50.0
@@ -848,34 +907,26 @@ offset_bottom = 695.0
 [node name="LeftScrollButton" parent="LevelsList" instance=ExtResource("2_6jw0o")]
 layout_mode = 0
 offset_left = 10.0
-offset_top = 10.0
+offset_top = 34.0
 offset_right = 26.0
-offset_bottom = 55.0
+offset_bottom = 67.0
 focus_neighbor_left = NodePath("../RightScrollButton")
 disabled = true
 texture_normal = ExtResource("6_jy5ym")
 texture_pressed = ExtResource("7_fs4gw")
 texture_disabled = ExtResource("8_x43tu")
 
-[node name="Arrow" type="Sprite2D" parent="LevelsList/LeftScrollButton"]
-position = Vector2(8, 22.5)
-texture = ExtResource("9_a1odr")
-
 [node name="RightScrollButton" parent="LevelsList" instance=ExtResource("2_6jw0o")]
 layout_mode = 0
 offset_left = 1106.0
-offset_top = 10.0
+offset_top = 35.0
 offset_right = 1122.0
-offset_bottom = 55.0
+offset_bottom = 68.0
 focus_neighbor_right = NodePath("../LeftScrollButton")
 texture_normal = ExtResource("6_jy5ym")
 texture_pressed = ExtResource("7_fs4gw")
 texture_disabled = ExtResource("8_x43tu")
-
-[node name="Arrow" type="Sprite2D" parent="LevelsList/RightScrollButton"]
-position = Vector2(8, 22.5)
-scale = Vector2(-1, 1)
-texture = ExtResource("9_a1odr")
+flip_h = true
 
 [node name="LevelsIconsContainer" type="Control" parent="LevelsList"]
 clip_contents = true
