@@ -1,10 +1,94 @@
-[gd_scene load_steps=6 format=3 uid="uid://dxnmuyu5wcsgv"]
+[gd_scene load_steps=7 format=3 uid="uid://dxnmuyu5wcsgv"]
 
-[ext_resource type="Script" path="res://Content/Scripts/Other/PlayPart.cs" id="1"]
 [ext_resource type="Script" path="res://Content/Scripts/Other/MainScript.cs" id="2"]
+[ext_resource type="AudioStream" uid="uid://cuvkdo1lyvynu" path="res://Content/Sounds/Other/EpicIntro.mp3" id="4_upcxf"]
 [ext_resource type="PackedScene" uid="uid://bwpstpk1xmkah" path="res://Content/Scenes/Interface&Menu/Button.tscn" id="6"]
 [ext_resource type="Texture2D" uid="uid://b74iy0kiw62iu" path="res://Content/Sprites/Interface/MenuButtonOutline.png" id="6_eqfpd"]
-[ext_resource type="Texture2D" uid="uid://emg8y7w217f1" path="res://Content/Sprites/Interface/PauseDesk.png" id="10"]
+
+[sub_resource type="Animation" id="Animation_gx3u0"]
+resource_name = "EpicIntro"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EpicIntro/TopRect:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2, 2.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 0), Vector2(0, -360)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("EpicIntro/BottomRect:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2, 2.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 360), Vector2(0, 360), Vector2(0, 720)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("EpicIntro/Glare:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2, 5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [true],
+"method": &"set_process"
+}]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"LevelLoad"
+}]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("LevelMusicPlayer:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(2),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_emurq"]
+_data = {
+"EpicIntro": SubResource("Animation_gx3u0")
+}
 
 [node name="Main" type="Node2D"]
 process_mode = 3
@@ -16,7 +100,6 @@ bus = &"Music"
 
 [node name="PlayPart" type="Node2D" parent="."]
 process_mode = 1
-script = ExtResource("1")
 
 [node name="Pause" type="CanvasLayer" parent="."]
 process_mode = 2
@@ -27,11 +110,6 @@ visible = false
 offset_right = 1280.0
 offset_bottom = 720.0
 color = Color(0, 0.439216, 0.439216, 0.588235)
-
-[node name="PauseDesk" type="Sprite2D" parent="Pause"]
-position = Vector2(640, 100)
-scale = Vector2(8, 8)
-texture = ExtResource("10")
 
 [node name="Buttons" type="Control" parent="Pause"]
 layout_mode = 3
@@ -49,6 +127,7 @@ layout_mode = 0
 offset_right = 96.0
 offset_bottom = 15.0
 texture_normal = ExtResource("6_eqfpd")
+_mode = 0
 
 [node name="Label" type="Label" parent="Pause/Buttons/Resume"]
 layout_mode = 0
@@ -68,6 +147,7 @@ offset_top = 60.0
 offset_right = 96.0
 offset_bottom = 75.0
 texture_normal = ExtResource("6_eqfpd")
+_mode = 0
 
 [node name="Label" type="Label" parent="Pause/Buttons/Options"]
 layout_mode = 0
@@ -88,6 +168,7 @@ offset_top = 120.0
 offset_right = 96.0001
 offset_bottom = 136.0
 texture_normal = ExtResource("6_eqfpd")
+_mode = 0
 
 [node name="Label" type="Label" parent="Pause/Buttons/Menu"]
 layout_mode = 0
@@ -101,7 +182,42 @@ text = "Menu
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="EpicIntro" type="CanvasLayer" parent="."]
+layer = 10
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="EpicIntro"]
+root_node = NodePath("../..")
+autoplay = "EpicIntro"
+libraries = {
+"": SubResource("AnimationLibrary_emurq")
+}
+
+[node name="Glare" type="ColorRect" parent="EpicIntro"]
+offset_right = 1280.0
+offset_bottom = 720.0
+mouse_filter = 2
+
+[node name="TopRect" type="ColorRect" parent="EpicIntro"]
+offset_right = 1280.0
+offset_bottom = 360.0
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="BottomRect" type="ColorRect" parent="EpicIntro"]
+offset_top = 360.0
+offset_right = 1280.0
+offset_bottom = 720.0
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="TurningOnSound" type="AudioStreamPlayer" parent="EpicIntro"]
+stream = ExtResource("4_upcxf")
+volume_db = 15.0
+autoplay = true
+bus = &"Interface"
+
 [connection signal="finished" from="LevelMusicPlayer" to="." method="MusicFinished"]
 [connection signal="pressed" from="Pause/Buttons/Resume" to="." method="UnPause"]
 [connection signal="pressed" from="Pause/Buttons/Options" to="." method="Options"]
 [connection signal="pressed" from="Pause/Buttons/Menu" to="." method="Menu"]
+[connection signal="animation_finished" from="EpicIntro/AnimationPlayer" to="EpicIntro" method="queue_free" unbinds=1]

@@ -9,7 +9,6 @@ public partial class Level7MindTumor : Area2D
     public override void _Ready()
     {
         GetNode<Sprite2D>("CanvasLayer/TumorSprite/Sprite2D").Scale = new Vector2(0.04f * Meta.Instance.CameraZoom, 0.04f * Meta.Instance.CameraZoom);
-        GD.Print(GetNode<Sprite2D>("CanvasLayer/TumorSprite/Sprite2D").Scale);
         _player = GetNode<CharacterBody2D>("..");
         _tumorSprite = GetNode<Node2D>("CanvasLayer/TumorSprite");
 
@@ -26,24 +25,9 @@ public partial class Level7MindTumor : Area2D
 
     public override void _PhysicsProcess(double delta)
     {
-        {
-            if (_player.Position.X < _cameraDiagonal.X / 2 - 25)
-                GlobalPosition = new Vector2(_limitLeft, GlobalPosition.Y);
-            else if (_player.Position.X > (G.LevelXYSizes[G.CurrentLevel].X - _cameraDiagonal.X / 2 + 25))
-                GlobalPosition = new Vector2(_limitRight, GlobalPosition.Y);
-            else
-                Position = new Vector2(_defaultPosition.X, Position.Y);
-
-            if (_player.Position.Y < _cameraDiagonal.Y / 2 - 25)
-                GlobalPosition = new Vector2(GlobalPosition.X, _limitTop);
-            else if (_player.Position.Y > (G.LevelXYSizes[G.CurrentLevel].Y - _cameraDiagonal.Y / 2 + 100))
-                GlobalPosition = new Vector2(GlobalPosition.X, _limitBottom);
-            else
-                Position = new Vector2(Position.X, _defaultPosition.Y);
-        }
-
-        Scale = new Vector2(Scale.X + 0.005f, Scale.Y + 0.005f);
-        _tumorSprite.Scale = new Vector2(Scale.X + 0.005f, Scale.Y + 0.005f);
+        Position = _defaultPosition;
+        GlobalPosition = new Vector2(Mathf.Clamp(GlobalPosition.X, _limitLeft, _limitRight), Mathf.Clamp(GlobalPosition.Y, _limitTop, _limitBottom));
+        Scale = _tumorSprite.Scale = new Vector2(Scale.X + 0.006f, Scale.Y + 0.006f);
     }
 
     public void n2evf7yUH3ZLT3x3N0___()

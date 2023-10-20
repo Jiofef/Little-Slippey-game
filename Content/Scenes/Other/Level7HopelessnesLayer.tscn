@@ -1,11 +1,21 @@
-[gd_scene load_steps=3 format=3 uid="uid://45vtxkc30vn7"]
+[gd_scene load_steps=4 format=3 uid="uid://45vtxkc30vn7"]
 
 [ext_resource type="Script" path="res://Content/Scripts/Levels/Level7HopelessnessLayer.cs" id="1_52qy1"]
 [ext_resource type="VideoStream" path="res://Content/Other/VintageFilterVideo.ogv" id="2_rc8ov"]
+[ext_resource type="AudioStream" uid="uid://dfy21dsuhqjdy" path="res://Content/Sounds/Levels/Level7FilmNoise.mp3" id="3_3ai6c"]
 
 [node name="HopelessnessLayer" type="CanvasLayer"]
 layer = 3
 script = ExtResource("1_52qy1")
+
+[node name="FogLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="Fog" type="ColorRect" parent="FogLayer"]
+offset_right = 1280.0
+offset_bottom = 720.0
+mouse_filter = 2
+color = Color(0, 0.352941, 0.352941, 0.588235)
 
 [node name="VintageFilter" type="VideoStreamPlayer" parent="."]
 modulate = Color(1, 0.8, 0.55, 0.78)
@@ -16,4 +26,16 @@ stream = ExtResource("2_rc8ov")
 autoplay = true
 expand = true
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("3_3ai6c")
+volume_db = 15.0
+autoplay = true
+bus = &"LevelSounds"
+
+[node name="CrutchTimer" type="Timer" parent="."]
+wait_time = 0.02
+autostart = true
+
 [connection signal="finished" from="VintageFilter" to="VintageFilter" method="play"]
+[connection signal="timeout" from="CrutchTimer" to="." method="AgeTheSound"]

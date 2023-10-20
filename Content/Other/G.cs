@@ -41,4 +41,15 @@ public partial class G : Node
 		AfterPlayerCorpseFlightTimer = 0;
 		Scores = 0;
 	}
+	public static void CompletelyResetValues()
+	{
+        ResetValues();
+        LevelAdditionalLink = null;
+        IsProgressPaused = false;
+        CrossSpawnMultiplier = 1;
+        IsCrossesEnabled = true;
+        CurrentLevel = 0;
+        AudioServer.SetBusEffectEnabled(2, 0, false);
+        AudioServer.SetBusEffectEnabled(6, 0, false);
+    }
 }

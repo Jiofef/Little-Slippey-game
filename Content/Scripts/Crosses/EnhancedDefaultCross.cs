@@ -30,9 +30,9 @@ public partial class EnhancedDefaultCross : Node2D
             if (_ticksToExplosion == 70 || _ticksToExplosion == 50 || _ticksToExplosion == 30 || _ticksToExplosion == 0)
                 _crossSprite.Modulate = new Color(_crossSprite.Modulate.R, _crossSprite.Modulate.G, _crossSprite.Modulate.B, 1);
         }
-        else if (_warningSprite.Scale > Vector2.Zero && _warningSprite.Modulate.A > 0)
+        else if (_warningSprite.Scale > Vector2.Zero)
         {
-            _crossSprite.Modulate = new Color(_crossSprite.Modulate.R, _crossSprite.Modulate.G, _crossSprite.Modulate.B, _crossSprite.Modulate.A - 0.05f);
+            _crossSprite.Modulate = new Color(_crossSprite.Modulate.R, _crossSprite.Modulate.G, _crossSprite.Modulate.B, _crossSprite.Modulate.A - 0.03f);
             _warningSprite.Scale -= new Vector2(1f * _warningSpriteFallSpeedMultiplier, 1f * _warningSpriteFallSpeedMultiplier);
             _warningSpriteFallSpeedMultiplier += 0.08f;
         }
@@ -63,7 +63,7 @@ public partial class EnhancedDefaultCross : Node2D
 
     public void TRIGGERED()
     {
-        _crossSprite.Visible = true;
+        _crossSprite.Modulate = new Color(_crossSprite.Modulate.R, _crossSprite.Modulate.G, _crossSprite.Modulate.B, 1);
         _ticksToExplosion = 0;
     }
 }

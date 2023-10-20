@@ -15,8 +15,9 @@ public partial class UnchangableMeta : Node
     //the values of the LevelsCompleteStatus array variables can be 0, 1, 2, 3. 0 means the level is not passed, 1 means it is passed at the minimum difficulty,
     //correspondingly 2 at the average and 3 at the maximum difficulty.
     public static int[] LevelCompleteStatus = new int[G.LevelsInGameTotal];
+    public static byte[] LevelPlayedStatus = new byte[G.LevelsInGameTotal]; //I made it as byte[] because of retard Godot that can't save a boolean array >:(
 
-    public static bool IsFirstTimePlayed, IsLevel9PlatformSectionFirstTimeCompleted, IsLevel9PlatformSectionSkipAllowed, IsFakeLevel10SkipAllowed;
+    public static bool IsLevel9PlatformSectionFirstTimeCompleted, IsLevel9PlatformSectionSkipAllowed, IsFakeLevel10SkipAllowed;
 
     public static void SaveRecords()
     {
@@ -37,10 +38,10 @@ public partial class UnchangableMeta : Node
             {"level_records1", LevelRecords[1]},
             {"level_records2", LevelRecords[2]},
             {"level_complete_status", LevelCompleteStatus},
-            {"is_first_time_played", IsFirstTimePlayed},
             {"is_level9_platform_section_first_time_completed", IsLevel9PlatformSectionFirstTimeCompleted},
             {"is_level9_platform_section_skip_is_allowed", IsLevel9PlatformSectionSkipAllowed},
             {"is_fake_level10_skip_allowed", IsFakeLevel10SkipAllowed},
+            {"level_played_status", LevelPlayedStatus}
         };
     }
     public static void SaveToFile()
@@ -66,27 +67,28 @@ public partial class UnchangableMeta : Node
                     {
                         LevelRecords[i][j] = Convert.ToInt32(LevelRecordsArrays[i][j].ToString());
                     }
-                }
-                catch { }
+                } catch {}
 
             Godot.Collections.Array LevelCompleteStatusArray = (Godot.Collections.Array)model["level_complete_status"];
             try
             {
                 for (int i = 0; i < LevelCompleteStatus.Length; i++)
-                {
                     LevelCompleteStatus[i] = Convert.ToInt32(LevelCompleteStatusArray[i].ToString());
-                }
+            } catch {}
+
+            try
+            {
+                for (int i = 0; i < LevelCompleteStatus.Length; i++)
+                    LevelCompleteStatus[i] = Convert.ToInt32(LevelCompleteStatusArray[i].ToString());
             }
             catch { }
 
 
-            IsFirstTimePlayed = (bool)model["is_first_time_played"];
             IsLevel9PlatformSectionFirstTimeCompleted = (bool)model["is_level9_platform_section_first_time_completed"];
             IsLevel9PlatformSectionSkipAllowed = (bool)model["is_level9_platform_section_skip_is_allowed"];
             IsFakeLevel10SkipAllowed = (bool)model["is_fake_level10_skip_allowed"];
 
             file.Close();
-        }
-        catch{}
+        } catch{}
     }
 }

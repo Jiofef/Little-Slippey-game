@@ -22,7 +22,7 @@ public partial class BaseLevelScript : Node2D
         G.ResetValues();
         Input.MouseMode = !GetTree().Paused ? Input.MouseModeEnum.Hidden : Input.MouseModeEnum.Visible;
         AudioServer.SetBusMute(2, Meta.Instance.BusVolumes[2] <= -30);
-        Connect("LevelReload", new Callable(GetNode(".."), "LevelLoad"));
+        Connect("LevelReload", new Callable(GetNode("../.."), "LevelLoad"));
         GetNode<AudioStreamPlayer>("../../LevelMusicPlayer").StreamPaused = false;
         _player = GetNode<CharacterBody2D>("Player");
 
@@ -31,7 +31,7 @@ public partial class BaseLevelScript : Node2D
         if (G.CurrentLevel == 7 || Meta.Instance.AdditionStatuses[1])
         {
             var level7HopelessnesLayer = (CanvasLayer)ResourceLoader.Load<PackedScene>("res://Content/Scenes/Other/Level7HopelessnesLayer.tscn").Instantiate();
-            if (Meta.Instance.AdditionStatuses[0])
+            if (G.CurrentLevel == 5 || Meta.Instance.AdditionStatuses[0])
                 level7HopelessnesLayer.GetNode<VideoStreamPlayer>("VintageFilter").Modulate = new Color(1, 0.8f, 0.55f, 0.2f);
             AddChild(level7HopelessnesLayer);
         }

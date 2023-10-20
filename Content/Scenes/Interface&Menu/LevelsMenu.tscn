@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://c7dgo7tq8pfa8"]
+[gd_scene load_steps=44 format=3 uid="uid://c7dgo7tq8pfa8"]
 
 [ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/LevelsMenu.cs" id="1_d5t7a"]
 [ext_resource type="PackedScene" uid="uid://bwpstpk1xmkah" path="res://Content/Scenes/Interface&Menu/Button.tscn" id="2_6jw0o"]
@@ -8,18 +8,12 @@
 [ext_resource type="Texture2D" uid="uid://d0sqlunqacimf" path="res://Content/Sprites/Interface/CancelButtonOutline.png" id="3_1uhey"]
 [ext_resource type="AudioStream" uid="uid://dy6lncevmnf3o" path="res://Content/Sounds/Other/WhiteNoise.mp3" id="3_4foo2"]
 [ext_resource type="Texture2D" uid="uid://bqony8evt35hm" path="res://Content/Sprites/Interface/MenuBackgroundPattern.png" id="3_k6xtn"]
-[ext_resource type="Texture2D" uid="uid://bs42vfh75wcnm" path="res://Content/Sprites/Interface/CancelButtonOutlinePressed.png" id="4_gwypa"]
 [ext_resource type="Shader" path="res://Content/Other/BlurShader.gdshader" id="4_p63au"]
-[ext_resource type="Texture2D" uid="uid://clg1i8k0880p3" path="res://Content/Sprites/Interface/CancelButtonCross.png" id="5_bj8ux"]
 [ext_resource type="Texture2D" uid="uid://c6v5r4xne78e0" path="res://Content/Sprites/Interface/LevelListScrollButtonOutline.png" id="6_jy5ym"]
-[ext_resource type="Texture2D" uid="uid://cy2lmvegkv1ri" path="res://Content/Sprites/Interface/LevelListScrollButtonOutlinePressed.png" id="7_fs4gw"]
 [ext_resource type="Texture2D" uid="uid://dk6qvinkosaoa" path="res://Content/Sprites/Interface/LevelListScrollButtonOutlineDisabled.png" id="8_x43tu"]
 [ext_resource type="Texture2D" uid="uid://71vomw6byask" path="res://Content/Sprites/Interface/LevelIconButtonOutline.png" id="10_k5w04"]
-[ext_resource type="Texture2D" uid="uid://hejo03d51jgt" path="res://Content/Sprites/Interface/LevelIconButtonOutlinePressed.png" id="11_aoo2n"]
 [ext_resource type="Texture2D" uid="uid://bppnbtehdr3md" path="res://Content/Sprites/Interface/LevelsIcons.png" id="12_lkhk3"]
 [ext_resource type="Texture2D" uid="uid://ba7grlwd3ygbr" path="res://Content/Sprites/Interface/LevelsMenuLevel5IconWindow.png" id="15_yae0y"]
-[ext_resource type="Texture2D" uid="uid://bajqg8ftdifa0" path="res://Content/Sprites/Interface/AcceptButton.png" id="16_kds2k"]
-[ext_resource type="AudioStream" uid="uid://c7cirxpsrcayj" path="res://Content/Sounds/Other/FastWhiteNoise.mp3" id="17_75vx5"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ll11s"]
 shader = ExtResource("4_p63au")
@@ -396,6 +390,8 @@ _data = {
 "LightingAndBlackoutAnimation3": SubResource("Animation_pxge4")
 }
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_hfbng"]
+
 [sub_resource type="Animation" id="Animation_eermi"]
 resource_name = "Scroll 1-2"
 length = 0.5
@@ -467,42 +463,6 @@ _data = {
 "Scroll 2-3": SubResource("Animation_egxn2"),
 "Scroll 3-2": SubResource("Animation_qp6ok")
 }
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_2vw5w"]
-atlas = ExtResource("2_d2goi")
-region = Rect2(0, 0, 320, 180)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_s5leb"]
-atlas = ExtResource("2_d2goi")
-region = Rect2(0, 180, 320, 180)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_0r8k0"]
-atlas = ExtResource("2_d2goi")
-region = Rect2(0, 360, 320, 180)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_es4qd"]
-atlas = ExtResource("2_d2goi")
-region = Rect2(0, 540, 320, 180)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_h7efq"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_2vw5w")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_s5leb")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_0r8k0")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_es4qd")
-}],
-"loop": false,
-"name": &"default",
-"speed": 12.0
-}]
 
 [node name="LevelsMenu" type="Control"]
 layout_mode = 3
@@ -644,10 +604,10 @@ libraries = {
 
 [node name="InfernoBestResult" type="Label" parent="Visual"]
 visible = false
-offset_left = 930.0
-offset_top = 102.0
-offset_right = 1074.0
-offset_bottom = 134.0
+offset_left = 926.0
+offset_top = 106.0
+offset_right = 1070.0
+offset_bottom = 138.0
 scale = Vector2(2, 2)
 theme_override_colors/font_color = Color(0.784314, 0.54902, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -668,7 +628,7 @@ initial_velocity_min = 50.0
 initial_velocity_max = 100.0
 scale_amount_min = 8.0
 scale_amount_max = 8.0
-color = Color(1, 0.501961, 0, 0.501961)
+color = Color(1, 0.501961, 0, 0.784314)
 color_ramp = SubResource("Gradient_kr0se")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Visual/InfernoBestResult"]
@@ -709,6 +669,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HardModeButton" type="CheckBox" parent="Visual/DifficultyButtons"]
+modulate = Color(0.588235, 0.588235, 0.588235, 1)
 layout_mode = 0
 offset_right = 24.0
 offset_bottom = 24.0
@@ -727,6 +688,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="InsaneModeButton" type="CheckBox" parent="Visual/DifficultyButtons"]
+modulate = Color(0.501961, 0, 1, 1)
 layout_mode = 0
 offset_left = 92.0
 offset_right = 116.0
@@ -747,6 +709,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="InfernoModeButton" type="CheckBox" parent="Visual/DifficultyButtons"]
+modulate = Color(1, 0.54902, 0, 1)
 layout_mode = 0
 offset_left = 184.0
 offset_right = 208.0
@@ -788,6 +751,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="ToggleRainButton" type="CheckBox" parent="Visual/AdittionalButtons"]
+modulate = Color(0, 0.34902, 0.34902, 1)
 layout_mode = 0
 offset_right = 24.0
 offset_bottom = 24.0
@@ -815,6 +779,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="ToggleOldFilmButton" type="CheckBox" parent="Visual/AdittionalButtons"]
+modulate = Color(1, 0.745098, 0.301961, 1)
 layout_mode = 0
 offset_left = 65.0
 offset_right = 89.0
@@ -844,6 +809,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="ToggleJiofefHeadButton" type="CheckBox" parent="Visual/AdittionalButtons"]
+modulate = Color(1, 0.301961, 0.301961, 1)
 layout_mode = 0
 offset_left = 130.0
 offset_right = 154.0
@@ -873,6 +839,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="ToggleEnhancedCrossesButton" type="CheckBox" parent="Visual/AdittionalButtons"]
+modulate = Color(0.301961, 0.580392, 1, 1)
 layout_mode = 0
 offset_left = 194.0
 offset_right = 218.0
@@ -895,7 +862,7 @@ offset_right = 72.0
 offset_bottom = 52.0
 focus_neighbor_left = NodePath(".")
 texture_normal = ExtResource("3_1uhey")
-texture_pressed = ExtResource("4_gwypa")
+_mode = 1
 
 [node name="LevelsList" type="Control" parent="."]
 anchors_preset = 0
@@ -913,8 +880,8 @@ offset_bottom = 67.0
 focus_neighbor_left = NodePath("../RightScrollButton")
 disabled = true
 texture_normal = ExtResource("6_jy5ym")
-texture_pressed = ExtResource("7_fs4gw")
 texture_disabled = ExtResource("8_x43tu")
+_mode = 1
 
 [node name="RightScrollButton" parent="LevelsList" instance=ExtResource("2_6jw0o")]
 layout_mode = 0
@@ -924,9 +891,9 @@ offset_right = 1122.0
 offset_bottom = 68.0
 focus_neighbor_right = NodePath("../LeftScrollButton")
 texture_normal = ExtResource("6_jy5ym")
-texture_pressed = ExtResource("7_fs4gw")
 texture_disabled = ExtResource("8_x43tu")
 flip_h = true
+_mode = 1
 
 [node name="LevelsIconsContainer" type="Control" parent="LevelsList"]
 clip_contents = true
@@ -951,8 +918,8 @@ layout_mode = 0
 offset_right = 45.0
 offset_bottom = 45.0
 texture_normal = ExtResource("10_k5w04")
-texture_pressed = ExtResource("11_aoo2n")
 PossibleGrabFocusRect = Rect2(140, 505, 1000, 180)
+_mode = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="LevelsList/LevelsIconsContainer/SubContainer/Level1Button"]
 z_index = -1
@@ -966,8 +933,8 @@ offset_left = 200.0
 offset_right = 245.0
 offset_bottom = 45.0
 texture_normal = ExtResource("10_k5w04")
-texture_pressed = ExtResource("11_aoo2n")
 PossibleGrabFocusRect = Rect2(140, 505, 1000, 180)
+_mode = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="LevelsList/LevelsIconsContainer/SubContainer/Level2Button"]
 z_index = -1
@@ -981,8 +948,8 @@ offset_left = 400.0
 offset_right = 445.0
 offset_bottom = 45.0
 texture_normal = ExtResource("10_k5w04")
-texture_pressed = ExtResource("11_aoo2n")
 PossibleGrabFocusRect = Rect2(140, 505, 1000, 180)
+_mode = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="LevelsList/LevelsIconsContainer/SubContainer/Level3Button"]
 z_index = -1
@@ -996,8 +963,8 @@ offset_left = 600.0
 offset_right = 645.0
 offset_bottom = 45.0
 texture_normal = ExtResource("10_k5w04")
-texture_pressed = ExtResource("11_aoo2n")
 PossibleGrabFocusRect = Rect2(140, 505, 1000, 180)
+_mode = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="LevelsList/LevelsIconsContainer/SubContainer/Level4Button"]
 z_index = -1
@@ -1011,8 +978,8 @@ offset_left = 800.0
 offset_right = 845.0
 offset_bottom = 45.0
 texture_normal = ExtResource("10_k5w04")
-texture_pressed = ExtResource("11_aoo2n")
 PossibleGrabFocusRect = Rect2(140, 505, 1000, 180)
+_mode = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="LevelsList/LevelsIconsContainer/SubContainer/Level5Button"]
 z_index = -1
@@ -1125,8 +1092,8 @@ offset_left = 1200.0
 offset_right = 1245.0
 offset_bottom = 45.0
 texture_normal = ExtResource("10_k5w04")
-texture_pressed = ExtResource("11_aoo2n")
 PossibleGrabFocusRect = Rect2(140, 505, 1000, 180)
+_mode = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="LevelsList/LevelsIconsContainer/SubContainer/Level6Button"]
 z_index = -1
@@ -1140,8 +1107,8 @@ offset_left = 1400.0
 offset_right = 1445.0
 offset_bottom = 45.0
 texture_normal = ExtResource("10_k5w04")
-texture_pressed = ExtResource("11_aoo2n")
 PossibleGrabFocusRect = Rect2(140, 505, 1000, 180)
+_mode = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="LevelsList/LevelsIconsContainer/SubContainer/Level7Button"]
 z_index = -1
@@ -1155,8 +1122,8 @@ offset_left = 1600.0
 offset_right = 1645.0
 offset_bottom = 45.0
 texture_normal = ExtResource("10_k5w04")
-texture_pressed = ExtResource("11_aoo2n")
 PossibleGrabFocusRect = Rect2(140, 505, 1000, 180)
+_mode = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="LevelsList/LevelsIconsContainer/SubContainer/Level8Button"]
 z_index = -1
@@ -1172,8 +1139,8 @@ offset_right = 1845.0
 offset_bottom = 45.0
 focus_neighbor_bottom = NodePath("StartOption/Yes")
 texture_normal = ExtResource("10_k5w04")
-texture_pressed = ExtResource("11_aoo2n")
 PossibleGrabFocusRect = Rect2(140, 505, 1000, 180)
+_mode = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="LevelsList/LevelsIconsContainer/SubContainer/Level9Button"]
 z_index = -1
@@ -1233,13 +1200,9 @@ focus_neighbor_top = NodePath("../..")
 focus_neighbor_right = NodePath("../No")
 disabled = true
 texture_normal = ExtResource("3_1uhey")
-texture_pressed = ExtResource("4_gwypa")
+texture_pressed = SubResource("CompressedTexture2D_hfbng")
 stretch_mode = 0
-
-[node name="Sprite2D" type="Sprite2D" parent="LevelsList/LevelsIconsContainer/SubContainer/Level9Button/StartOption/Yes"]
-position = Vector2(10, 10)
-scale = Vector2(0.833333, 0.833334)
-texture = ExtResource("16_kds2k")
+_mode = 1
 
 [node name="No" parent="LevelsList/LevelsIconsContainer/SubContainer/Level9Button/StartOption" instance=ExtResource("2_6jw0o")]
 layout_mode = 0
@@ -1251,13 +1214,9 @@ scale = Vector2(1, 1)
 focus_neighbor_top = NodePath("../..")
 disabled = true
 texture_normal = ExtResource("3_1uhey")
-texture_pressed = ExtResource("4_gwypa")
+texture_pressed = SubResource("CompressedTexture2D_hfbng")
 stretch_mode = 0
-
-[node name="Sprite2D" type="Sprite2D" parent="LevelsList/LevelsIconsContainer/SubContainer/Level9Button/StartOption/No"]
-position = Vector2(9.99999, 10)
-scale = Vector2(0.833334, 0.833334)
-texture = ExtResource("5_bj8ux")
+_mode = 1
 
 [node name="Level10Button" parent="LevelsList/LevelsIconsContainer/SubContainer" instance=ExtResource("2_6jw0o")]
 layout_mode = 0
@@ -1266,8 +1225,8 @@ offset_right = 2045.0
 offset_bottom = 45.0
 focus_neighbor_bottom = NodePath("StartOption/Yes")
 texture_normal = ExtResource("10_k5w04")
-texture_pressed = ExtResource("11_aoo2n")
 PossibleGrabFocusRect = Rect2(140, 505, 1000, 180)
+_mode = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="LevelsList/LevelsIconsContainer/SubContainer/Level10Button"]
 z_index = -1
@@ -1328,13 +1287,9 @@ focus_neighbor_top = NodePath("../..")
 focus_neighbor_right = NodePath("../No")
 disabled = true
 texture_normal = ExtResource("3_1uhey")
-texture_pressed = ExtResource("4_gwypa")
+texture_pressed = SubResource("CompressedTexture2D_hfbng")
 stretch_mode = 0
-
-[node name="Sprite2D" type="Sprite2D" parent="LevelsList/LevelsIconsContainer/SubContainer/Level10Button/StartOption/Yes"]
-position = Vector2(10, 10)
-scale = Vector2(0.833333, 0.833334)
-texture = ExtResource("16_kds2k")
+_mode = 1
 
 [node name="No" parent="LevelsList/LevelsIconsContainer/SubContainer/Level10Button/StartOption" instance=ExtResource("2_6jw0o")]
 layout_mode = 0
@@ -1346,30 +1301,14 @@ scale = Vector2(1, 1)
 focus_neighbor_top = NodePath("../..")
 disabled = true
 texture_normal = ExtResource("3_1uhey")
-texture_pressed = ExtResource("4_gwypa")
+texture_pressed = SubResource("CompressedTexture2D_hfbng")
 stretch_mode = 0
-
-[node name="Sprite2D" type="Sprite2D" parent="LevelsList/LevelsIconsContainer/SubContainer/Level10Button/StartOption/No"]
-position = Vector2(9.99999, 10)
-scale = Vector2(0.833334, 0.833334)
-texture = ExtResource("5_bj8ux")
+_mode = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="LevelsList/LevelsIconsContainer/SubContainer"]
 libraries = {
 "": SubResource("AnimationLibrary_lgy1q")
 }
-
-[node name="OpenLevelNoise" type="AnimatedSprite2D" parent="."]
-visible = false
-z_index = 1
-scale = Vector2(4, 4)
-sprite_frames = SubResource("SpriteFrames_h7efq")
-centered = false
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="OpenLevelNoise"]
-stream = ExtResource("17_75vx5")
-volume_db = -10.0
-bus = &"Interface"
 
 [connection signal="pressed" from="Visual/DifficultyButtons/HardModeButton" to="." method="SetDifficulty" binds= [0]]
 [connection signal="pressed" from="Visual/DifficultyButtons/InsaneModeButton" to="." method="SetDifficulty" binds= [1]]
@@ -1382,39 +1321,38 @@ bus = &"Interface"
 [connection signal="pressed" from="LevelsList/LeftScrollButton" to="." method="ChangeLevelRowToPast"]
 [connection signal="pressed" from="LevelsList/RightScrollButton" to="." method="ChangeLevelRowToNext"]
 [connection signal="focus_entered" from="LevelsList/LevelsIconsContainer/SubContainer/Level1Button" to="." method="SetPresentedLevel" binds= [1, ""]]
-[connection signal="pressed" from="LevelsList/LevelsIconsContainer/SubContainer/Level1Button" to="." method="TryToOpenLevel" binds= [1, "", false]]
+[connection signal="pressed" from="LevelsList/LevelsIconsContainer/SubContainer/Level1Button" to="." method="OpenLevel" binds= [1, "", false]]
 [connection signal="focus_entered" from="LevelsList/LevelsIconsContainer/SubContainer/Level2Button" to="." method="SetPresentedLevel" binds= [2, ""]]
-[connection signal="pressed" from="LevelsList/LevelsIconsContainer/SubContainer/Level2Button" to="." method="TryToOpenLevel" binds= [2, "", false]]
+[connection signal="pressed" from="LevelsList/LevelsIconsContainer/SubContainer/Level2Button" to="." method="OpenLevel" binds= [2, "", false]]
 [connection signal="focus_entered" from="LevelsList/LevelsIconsContainer/SubContainer/Level3Button" to="." method="SetPresentedLevel" binds= [3, ""]]
-[connection signal="pressed" from="LevelsList/LevelsIconsContainer/SubContainer/Level3Button" to="." method="TryToOpenLevel" binds= [3, "", false]]
+[connection signal="pressed" from="LevelsList/LevelsIconsContainer/SubContainer/Level3Button" to="." method="OpenLevel" binds= [3, "", false]]
 [connection signal="focus_entered" from="LevelsList/LevelsIconsContainer/SubContainer/Level4Button" to="." method="SetPresentedLevel" binds= [4, ""]]
-[connection signal="pressed" from="LevelsList/LevelsIconsContainer/SubContainer/Level4Button" to="." method="TryToOpenLevel" binds= [4, "", false]]
+[connection signal="pressed" from="LevelsList/LevelsIconsContainer/SubContainer/Level4Button" to="." method="OpenLevel" binds= [4, "", false]]
 [connection signal="focus_entered" from="LevelsList/LevelsIconsContainer/SubContainer/Level5Button" to="." method="SetPresentedLevel" binds= [5, ""]]
-[connection signal="pressed" from="LevelsList/LevelsIconsContainer/SubContainer/Level5Button" to="." method="TryToOpenLevel" binds= [5, "", false]]
+[connection signal="pressed" from="LevelsList/LevelsIconsContainer/SubContainer/Level5Button" to="." method="OpenLevel" binds= [5, "", false]]
 [connection signal="focus_entered" from="LevelsList/LevelsIconsContainer/SubContainer/Level6Button" to="." method="SetPresentedLevel" binds= [6, ""]]
-[connection signal="pressed" from="LevelsList/LevelsIconsContainer/SubContainer/Level6Button" to="." method="TryToOpenLevel" binds= [6, "", false]]
+[connection signal="pressed" from="LevelsList/LevelsIconsContainer/SubContainer/Level6Button" to="." method="OpenLevel" binds= [6, "", false]]
 [connection signal="focus_entered" from="LevelsList/LevelsIconsContainer/SubContainer/Level7Button" to="." method="SetPresentedLevel" binds= [7, ""]]
-[connection signal="pressed" from="LevelsList/LevelsIconsContainer/SubContainer/Level7Button" to="." method="TryToOpenLevel" binds= [7, "", false]]
+[connection signal="pressed" from="LevelsList/LevelsIconsContainer/SubContainer/Level7Button" to="." method="OpenLevel" binds= [7, "", false]]
 [connection signal="focus_entered" from="LevelsList/LevelsIconsContainer/SubContainer/Level8Button" to="." method="SetPresentedLevel" binds= [8, ""]]
-[connection signal="pressed" from="LevelsList/LevelsIconsContainer/SubContainer/Level8Button" to="." method="TryToOpenLevel" binds= [8, "", false]]
+[connection signal="pressed" from="LevelsList/LevelsIconsContainer/SubContainer/Level8Button" to="." method="OpenLevel" binds= [8, "", false]]
 [connection signal="focus_entered" from="LevelsList/LevelsIconsContainer/SubContainer/Level9Button" to="." method="SetPresentedLevel" binds= [9, ""]]
-[connection signal="pressed" from="LevelsList/LevelsIconsContainer/SubContainer/Level9Button" to="." method="TryToOpenLevel" binds= [9, "", true]]
+[connection signal="pressed" from="LevelsList/LevelsIconsContainer/SubContainer/Level9Button" to="." method="OpenLevel" binds= [9, "", true]]
 [connection signal="pressed" from="LevelsList/LevelsIconsContainer/SubContainer/Level9Button/StartOption/CloseOption" to="LevelsList/LevelsIconsContainer/SubContainer/Level9Button" method="set_disabled" binds= [false]]
 [connection signal="pressed" from="LevelsList/LevelsIconsContainer/SubContainer/Level9Button/StartOption/CloseOption" to="LevelsList/LevelsIconsContainer/SubContainer/Level9Button/StartOption" method="set_visible" binds= [false]]
 [connection signal="pressed" from="LevelsList/LevelsIconsContainer/SubContainer/Level9Button/StartOption/CloseOption" to="LevelsList/LevelsIconsContainer/SubContainer/Level9Button/StartOption/Yes" method="set_disabled" binds= [true]]
 [connection signal="pressed" from="LevelsList/LevelsIconsContainer/SubContainer/Level9Button/StartOption/CloseOption" to="LevelsList/LevelsIconsContainer/SubContainer/Level9Button/StartOption/No" method="set_disabled" binds= [true]]
 [connection signal="focus_entered" from="LevelsList/LevelsIconsContainer/SubContainer/Level9Button/StartOption/Yes" to="." method="SetPresentedLevel" binds= [9, "WithoutPlatformSection"]]
-[connection signal="pressed" from="LevelsList/LevelsIconsContainer/SubContainer/Level9Button/StartOption/Yes" to="." method="TryToOpenLevel" binds= [9, "WithoutPlatformSection", false]]
+[connection signal="pressed" from="LevelsList/LevelsIconsContainer/SubContainer/Level9Button/StartOption/Yes" to="." method="OpenLevel" binds= [9, "WithoutPlatformSection", false]]
 [connection signal="focus_entered" from="LevelsList/LevelsIconsContainer/SubContainer/Level9Button/StartOption/No" to="." method="SetPresentedLevel" binds= [9, ""]]
-[connection signal="pressed" from="LevelsList/LevelsIconsContainer/SubContainer/Level9Button/StartOption/No" to="." method="TryToOpenLevel" binds= [9, "", false]]
+[connection signal="pressed" from="LevelsList/LevelsIconsContainer/SubContainer/Level9Button/StartOption/No" to="." method="OpenLevel" binds= [9, "", false]]
 [connection signal="focus_entered" from="LevelsList/LevelsIconsContainer/SubContainer/Level10Button" to="." method="SetPresentedLevel" binds= [10, ""]]
-[connection signal="pressed" from="LevelsList/LevelsIconsContainer/SubContainer/Level10Button" to="." method="TryToOpenLevel" binds= [10, "", true]]
+[connection signal="pressed" from="LevelsList/LevelsIconsContainer/SubContainer/Level10Button" to="." method="OpenLevel" binds= [10, "", true]]
 [connection signal="pressed" from="LevelsList/LevelsIconsContainer/SubContainer/Level10Button/StartOption/CloseOption" to="LevelsList/LevelsIconsContainer/SubContainer/Level10Button" method="set_disabled" binds= [false]]
 [connection signal="pressed" from="LevelsList/LevelsIconsContainer/SubContainer/Level10Button/StartOption/CloseOption" to="LevelsList/LevelsIconsContainer/SubContainer/Level10Button/StartOption" method="set_visible" binds= [false]]
 [connection signal="pressed" from="LevelsList/LevelsIconsContainer/SubContainer/Level10Button/StartOption/CloseOption" to="LevelsList/LevelsIconsContainer/SubContainer/Level10Button/StartOption/Yes" method="set_disabled" binds= [true]]
 [connection signal="pressed" from="LevelsList/LevelsIconsContainer/SubContainer/Level10Button/StartOption/CloseOption" to="LevelsList/LevelsIconsContainer/SubContainer/Level10Button/StartOption/No" method="set_disabled" binds= [true]]
 [connection signal="focus_entered" from="LevelsList/LevelsIconsContainer/SubContainer/Level10Button/StartOption/Yes" to="." method="SetPresentedLevel" binds= [10, "True"]]
-[connection signal="pressed" from="LevelsList/LevelsIconsContainer/SubContainer/Level10Button/StartOption/Yes" to="." method="TryToOpenLevel" binds= [10, "True", false]]
+[connection signal="pressed" from="LevelsList/LevelsIconsContainer/SubContainer/Level10Button/StartOption/Yes" to="." method="OpenLevel" binds= [10, "True", false]]
 [connection signal="focus_entered" from="LevelsList/LevelsIconsContainer/SubContainer/Level10Button/StartOption/No" to="." method="SetPresentedLevel" binds= [10, ""]]
-[connection signal="pressed" from="LevelsList/LevelsIconsContainer/SubContainer/Level10Button/StartOption/No" to="." method="TryToOpenLevel" binds= [10, "", false]]
-[connection signal="animation_finished" from="OpenLevelNoise" to="." method="OpenLevel"]
+[connection signal="pressed" from="LevelsList/LevelsIconsContainer/SubContainer/Level10Button/StartOption/No" to="." method="OpenLevel" binds= [10, "", false]]

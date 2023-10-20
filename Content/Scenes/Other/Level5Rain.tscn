@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://7oocby8a4s1s"]
+[gd_scene load_steps=7 format=3 uid="uid://7oocby8a4s1s"]
 
 [ext_resource type="Script" path="res://Content/Scripts/Levels/Level5Rain.cs" id="1_r23l0"]
 [ext_resource type="AudioStream" uid="uid://hqp1es4u8fk4" path="res://Content/Sounds/Levels/Level5Thunder.mp3" id="2_6h37r"]
 [ext_resource type="AudioStream" uid="uid://kus4k0ea0aj2" path="res://Content/Sounds/Levels/Level5Ambience1.mp3" id="3_bybth"]
 [ext_resource type="AudioStream" uid="uid://bo64hggnj03vc" path="res://Content/Sounds/Levels/Level5Ambience2.mp3" id="4_dv01f"]
+[ext_resource type="AudioStream" uid="uid://cknqrul6rnn46" path="res://Content/Sounds/Levels/Level5Rain.mp3" id="5_tvq4x"]
 
 [sub_resource type="Curve" id="Curve_q22lo"]
 _data = [Vector2(0, 10), 0.0, 0.0, 0, 1, Vector2(1, 10), 0.0, 0.0, 1, 0]
@@ -24,10 +25,8 @@ wait_time = 20.0
 layer = -1
 
 [node name="Fog" type="ColorRect" parent="FogLayer"]
-offset_left = -192.0
-offset_top = -193.0
-offset_right = 2752.0
-offset_bottom = 897.0
+offset_right = 1280.0
+offset_bottom = 720.0
 mouse_filter = 2
 color = Color(0, 0.352941, 0.352941, 0.588235)
 
@@ -81,6 +80,13 @@ bus = &"LevelSounds"
 [node name="AmbiencePlayer2" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_dv01f")
 volume_db = 10.0
+bus = &"LevelSounds"
+
+[node name="RainSound" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("5_tvq4x")
+volume_db = 20.0
+autoplay = true
 bus = &"LevelSounds"
 
 [connection signal="timeout" from="LightChangeTimer" to="." method="LightChange"]

@@ -7,6 +7,11 @@ public partial class Level7HopelessnessLayer : CanvasLayer
 
 	private float _tumorSpawnTimer = 10;
 
+    public override void _ExitTree()
+    {
+        AudioServer.SetBusEffectEnabled(0, 0, false);
+    }
+
     public override void _PhysicsProcess(double delta)
     {
         _tumorSpawnTimer -= 0.016667f;
@@ -22,5 +27,9 @@ public partial class Level7HopelessnessLayer : CanvasLayer
                 GetNode<CharacterBody2D>("../Player").AddChild(mindTumor);
             }
 		}
+    }
+    public void AgeTheSound()
+    {
+        AudioServer.SetBusEffectEnabled(0, 0, true);
     }
 }

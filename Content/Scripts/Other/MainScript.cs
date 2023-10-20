@@ -6,10 +6,14 @@ public partial class MainScript : Node2D
 
     public override void _Ready()
     {
-        var levelMusicPlayer = GetNode<AudioStreamPlayer>("LevelMusicPlayer");
-        AudioStream Music = ResourceLoader.Load<AudioStream>("res://Content/Sounds/Soundtrack/Level" + G.CurrentLevel + ".mp3");
-        levelMusicPlayer.Stream = Music;
-        levelMusicPlayer.Play();
+        GetNode<AudioStreamPlayer>("LevelMusicPlayer").Stream = ResourceLoader.Load<AudioStream>("res://Content/Sounds/Soundtrack/Level" + G.CurrentLevel + ".mp3");
+        if (UnchangableMeta.LevelPlayedStatus[G.CurrentLevel - 1] != 1)
+        {
+            UnchangableMeta.LevelPlayedStatus[G.CurrentLevel - 1] = 1;
+            UnchangableMeta.SaveToFile();
+        }
+
+        SetProcess(false);
     }
     public override void _Process(double delta)
     {
@@ -19,6 +23,7 @@ public partial class MainScript : Node2D
     public void UnPause()
     {
         AudioServer.SetBusEffectEnabled(2, 0, !GetTree().Paused);
+        AudioServer.SetBusEffectEnabled(6, 0, !GetTree().Paused);
         GetNode<CanvasLayer>("Pause").Visible = !GetTree().Paused;
         GetNode<TextureButton>("Pause/Buttons/Resume").GrabFocus();
         Input.MouseMode = GetTree().Paused ? Input.MouseModeEnum.Hidden : Input.MouseModeEnum.Visible;
@@ -36,14 +41,8 @@ public partial class MainScript : Node2D
     {
         UnchangableMeta.SaveRecords();
         UnchangableMeta.SaveToFile();
-        G.ResetValues();
-        G.LevelAdditionalLink = null;
-        G.IsProgressPaused = false;
-        G.CrossSpawnMultiplier = 1;
-        G.IsCrossesEnabled = true;
-        G.CurrentLevel = 0;
+        G.CompletelyResetValues();
         GetTree().ChangeSceneToFile("res://Content/Scenes/Interface&Menu/Menu.tscn");
-        AudioServer.SetBusEffectEnabled(2, 0, false);
     }
     public void OptionsClosing()
     {
@@ -57,5 +56,9 @@ public partial class MainScript : Node2D
     public void MusicFinished()
     {
         GetNode<AudioStreamPlayer>("LevelMusicPlayer").Play(0);
+    }
+    public void LevelLoad()
+    {
+        GetNode("PlayPart").AddChild(ResourceLoader.Load<PackedScene>("res://Content/Scenes/Levels/FullParts/Level" + G.CurrentLevel + G.LevelAdditionalLink + ".tscn").Instantiate());
     }
 }

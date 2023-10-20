@@ -76,7 +76,7 @@ public partial class LevelsMenu : Control
         }
     }
 
-    public void TryToOpenLevel(int value, string additionalLevelLink = "", bool doOpenLevelPossibleStartOptions = false)
+    public void OpenLevel(int value, string additionalLevelLink = "", bool doOpenLevelPossibleStartOptions = false)
     {
         void OpenStartOptions(string link)
         {
@@ -99,16 +99,6 @@ public partial class LevelsMenu : Control
 
         G.LevelAdditionalLink = additionalLevelLink;
         G.CurrentLevel = value;
-        GetNode<Node2D>("Visual").QueueFree();
-        GetNode<TextureButton>("CancelButton").QueueFree();
-        GetNode<Control>("LevelsList").QueueFree();
-        var openLevelNoise = GetNode<AnimatedSprite2D>("OpenLevelNoise");
-        openLevelNoise.Visible = true;
-        openLevelNoise.Play();
-        GetNode<AudioStreamPlayer>("OpenLevelNoise/AudioStreamPlayer").Play();
-    }
-    private void OpenLevel()
-    {
         GetTree().ChangeSceneToFile("res://Content/Scenes/Other/Main.tscn");
     }
 

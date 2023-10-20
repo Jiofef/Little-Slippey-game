@@ -7,6 +7,7 @@
 radius = 30.0
 
 [node name="MindTumor" type="Area2D"]
+scale = Vector2(0.005, 0.005)
 collision_layer = 0
 collision_mask = 8
 script = ExtResource("1_bjhm2")
@@ -26,10 +27,12 @@ shape = SubResource("CircleShape2D_p6ola")
 disabled = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 3
 scale = Vector2(1.5, 1.5)
 transform = Transform2D(1.5, 0, 0, 1.5, 0, 0)
 
 [node name="TumorSprite" type="Node2D" parent="CanvasLayer"]
+scale = Vector2(0.005, 0.005)
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/TumorSprite"]
 scale = Vector2(0.05, 0.05)

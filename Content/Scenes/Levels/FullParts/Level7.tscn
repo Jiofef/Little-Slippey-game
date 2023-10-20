@@ -51,13 +51,6 @@ position = Vector2(150, 10)
 scale = Vector2(4, 4)
 texture = ExtResource("3_ejpux")
 
-[node name="Fog" type="ColorRect" parent="Background"]
-offset_left = -807.5
-offset_top = -418.333
-offset_right = 791.5
-offset_bottom = 287.667
-color = Color(0, 0.235294, 0.235294, 0.501961)
-
 [node name="Player" parent="." instance=ExtResource("2_oh4x7")]
 position = Vector2(640, 608)
 
