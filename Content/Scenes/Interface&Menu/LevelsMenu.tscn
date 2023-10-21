@@ -1,19 +1,21 @@
-[gd_scene load_steps=44 format=3 uid="uid://c7dgo7tq8pfa8"]
+[gd_scene load_steps=46 format=3 uid="uid://c7dgo7tq8pfa8"]
 
 [ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/LevelsMenu.cs" id="1_d5t7a"]
 [ext_resource type="PackedScene" uid="uid://bwpstpk1xmkah" path="res://Content/Scenes/Interface&Menu/Button.tscn" id="2_6jw0o"]
 [ext_resource type="Texture2D" uid="uid://bup1u0y7qgmvb" path="res://Content/Sprites/Interface/MenuBackground.png" id="2_ax5t5"]
 [ext_resource type="Texture2D" uid="uid://bvogrd2bqhwmt" path="res://Content/Sprites/Other/OblivionNoise.png" id="2_d2goi"]
 [ext_resource type="Texture2D" uid="uid://bv6ampi04qu7h" path="res://Content/Sprites/Interface/LevelsMenuPresenterBox.png" id="2_d7fu7"]
-[ext_resource type="Texture2D" uid="uid://d0sqlunqacimf" path="res://Content/Sprites/Interface/CancelButtonOutline.png" id="3_1uhey"]
 [ext_resource type="AudioStream" uid="uid://dy6lncevmnf3o" path="res://Content/Sounds/Other/WhiteNoise.mp3" id="3_4foo2"]
 [ext_resource type="Texture2D" uid="uid://bqony8evt35hm" path="res://Content/Sprites/Interface/MenuBackgroundPattern.png" id="3_k6xtn"]
 [ext_resource type="Shader" path="res://Content/Other/BlurShader.gdshader" id="4_p63au"]
-[ext_resource type="Texture2D" uid="uid://c6v5r4xne78e0" path="res://Content/Sprites/Interface/LevelListScrollButtonOutline.png" id="6_jy5ym"]
-[ext_resource type="Texture2D" uid="uid://dk6qvinkosaoa" path="res://Content/Sprites/Interface/LevelListScrollButtonOutlineDisabled.png" id="8_x43tu"]
-[ext_resource type="Texture2D" uid="uid://71vomw6byask" path="res://Content/Sprites/Interface/LevelIconButtonOutline.png" id="10_k5w04"]
-[ext_resource type="Texture2D" uid="uid://bppnbtehdr3md" path="res://Content/Sprites/Interface/LevelsIcons.png" id="12_lkhk3"]
+[ext_resource type="Texture2D" uid="uid://b2ay51k3qped" path="res://Content/Sprites/Interface/MicroLockSprite.png" id="8_veuoi"]
+[ext_resource type="Texture2D" uid="uid://1ua2wp4j8ce" path="res://Content/Sprites/Interface/LevelListScrollButtonLeft.png" id="10_nsyd5"]
+[ext_resource type="Texture2D" uid="uid://dk6qvinkosaoa" path="res://Content/Sprites/Interface/LevelListScrollButtonDisabled.png" id="11_ve2a8"]
+[ext_resource type="Texture2D" uid="uid://c6v5r4xne78e0" path="res://Content/Sprites/Interface/LevelListScrollButtonRight.png" id="12_fpxil"]
+[ext_resource type="PackedScene" uid="uid://c365fjpfqoj67" path="res://Content/Scenes/Interface&Menu/LevelButton.tscn" id="13_5l1by"]
 [ext_resource type="Texture2D" uid="uid://ba7grlwd3ygbr" path="res://Content/Sprites/Interface/LevelsMenuLevel5IconWindow.png" id="15_yae0y"]
+[ext_resource type="Texture2D" uid="uid://d0sqlunqacimf" path="res://Content/Sprites/Interface/CancelButton.png" id="16_nunlu"]
+[ext_resource type="Texture2D" uid="uid://c1d2p0ba42csh" path="res://Content/Sprites/Interface/AcceptButton.png" id="16_rxcum"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ll11s"]
 shader = ExtResource("4_p63au")
@@ -128,8 +130,49 @@ tracks/2/keys = {
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_jrcbu"]
+resource_name = "Noise"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sound:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-5.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sound:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_g0wyp"]
 _data = {
+"Noise": SubResource("Animation_jrcbu"),
 "NoiseDisappearing": SubResource("Animation_13ry7")
 }
 
@@ -390,8 +433,6 @@ _data = {
 "LightingAndBlackoutAnimation3": SubResource("Animation_pxge4")
 }
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_hfbng"]
-
 [sub_resource type="Animation" id="Animation_eermi"]
 resource_name = "Scroll 1-2"
 length = 0.5
@@ -476,13 +517,12 @@ script = ExtResource("1_d5t7a")
 [node name="Visual" type="Node2D" parent="."]
 
 [node name="Background" type="Sprite2D" parent="Visual"]
-position = Vector2(-429.221, -300.455)
+position = Vector2(-800, -560)
 scale = Vector2(4, 4)
 texture = ExtResource("2_ax5t5")
 centered = false
 
 [node name="BackgroundPattern" type="Sprite2D" parent="Visual"]
-position = Vector2(-268.815, -268.815)
 scale = Vector2(4, 4)
 texture = ExtResource("3_k6xtn")
 centered = false
@@ -490,7 +530,7 @@ centered = false
 [node name="ColorRect" type="ColorRect" parent="Visual"]
 offset_right = 1280.0
 offset_bottom = 720.0
-color = Color(0.32549, 0.619608, 0.67451, 0.784314)
+color = Color(0.152941, 0.686275, 0.666667, 0.784314)
 
 [node name="Blur" type="ColorRect" parent="Visual"]
 material = SubResource("ShaderMaterial_ll11s")
@@ -733,9 +773,9 @@ vertical_alignment = 1
 layout_mode = 3
 anchors_preset = 0
 offset_left = 945.0
-offset_top = 402.0
+offset_top = 400.0
 offset_right = 1189.0
-offset_bottom = 456.0
+offset_bottom = 454.0
 
 [node name="Rain" type="Label" parent="Visual/AdittionalButtons"]
 visible = false
@@ -759,11 +799,11 @@ scale = Vector2(2.5, 2.5)
 focus_mode = 0
 disabled = true
 
-[node name="Lock1" type="ColorRect" parent="Visual/AdittionalButtons"]
-layout_mode = 0
-offset_left = 2.0
-offset_right = 50.0
-offset_bottom = 48.0
+[node name="Lock1" type="Sprite2D" parent="Visual/AdittionalButtons"]
+position = Vector2(2, 0)
+scale = Vector2(4, 4)
+texture = ExtResource("8_veuoi")
+centered = false
 
 [node name="OldFilm" type="Label" parent="Visual/AdittionalButtons"]
 visible = false
@@ -788,11 +828,11 @@ scale = Vector2(2.5, 2.5)
 focus_mode = 0
 disabled = true
 
-[node name="Lock2" type="ColorRect" parent="Visual/AdittionalButtons"]
-layout_mode = 0
-offset_left = 69.0
-offset_right = 117.0
-offset_bottom = 48.0
+[node name="Lock2" type="Sprite2D" parent="Visual/AdittionalButtons"]
+position = Vector2(69, 0)
+scale = Vector2(4, 4)
+texture = ExtResource("8_veuoi")
+centered = false
 
 [node name="JiofefHead" type="Label" parent="Visual/AdittionalButtons"]
 visible = false
@@ -818,11 +858,11 @@ scale = Vector2(2.5, 2.5)
 focus_mode = 0
 disabled = true
 
-[node name="Lock3" type="ColorRect" parent="Visual/AdittionalButtons"]
-layout_mode = 0
-offset_left = 136.0
-offset_right = 184.0
-offset_bottom = 48.0
+[node name="Lock3" type="Sprite2D" parent="Visual/AdittionalButtons"]
+position = Vector2(136, 0)
+scale = Vector2(4, 4)
+texture = ExtResource("8_veuoi")
+centered = false
 
 [node name="EnhancedCrosses" type="Label" parent="Visual/AdittionalButtons"]
 visible = false
@@ -848,21 +888,11 @@ scale = Vector2(2.5, 2.5)
 focus_mode = 0
 disabled = true
 
-[node name="Lock4" type="ColorRect" parent="Visual/AdittionalButtons"]
-layout_mode = 0
-offset_left = 204.0
-offset_right = 252.0
-offset_bottom = 48.0
-
-[node name="CancelButton" parent="." instance=ExtResource("2_6jw0o")]
-layout_mode = 0
-offset_left = 48.0
-offset_top = 28.0
-offset_right = 72.0
-offset_bottom = 52.0
-focus_neighbor_left = NodePath(".")
-texture_normal = ExtResource("3_1uhey")
-_mode = 1
+[node name="Lock4" type="Sprite2D" parent="Visual/AdittionalButtons"]
+position = Vector2(204, 0)
+scale = Vector2(4, 4)
+texture = ExtResource("8_veuoi")
+centered = false
 
 [node name="LevelsList" type="Control" parent="."]
 anchors_preset = 0
@@ -879,9 +909,8 @@ offset_right = 26.0
 offset_bottom = 67.0
 focus_neighbor_left = NodePath("../RightScrollButton")
 disabled = true
-texture_normal = ExtResource("6_jy5ym")
-texture_disabled = ExtResource("8_x43tu")
-_mode = 1
+texture_normal = ExtResource("10_nsyd5")
+texture_disabled = ExtResource("11_ve2a8")
 
 [node name="RightScrollButton" parent="LevelsList" instance=ExtResource("2_6jw0o")]
 layout_mode = 0
@@ -890,10 +919,8 @@ offset_top = 35.0
 offset_right = 1122.0
 offset_bottom = 68.0
 focus_neighbor_right = NodePath("../LeftScrollButton")
-texture_normal = ExtResource("6_jy5ym")
-texture_disabled = ExtResource("8_x43tu")
-flip_h = true
-_mode = 1
+texture_normal = ExtResource("12_fpxil")
+texture_disabled = ExtResource("11_ve2a8")
 
 [node name="LevelsIconsContainer" type="Control" parent="LevelsList"]
 clip_contents = true
@@ -913,83 +940,41 @@ offset_left = 10.0
 offset_right = 990.0
 offset_bottom = 180.0
 
-[node name="Level1Button" parent="LevelsList/LevelsIconsContainer/SubContainer" instance=ExtResource("2_6jw0o")]
+[node name="Level1Button" parent="LevelsList/LevelsIconsContainer/SubContainer" instance=ExtResource("13_5l1by")]
 layout_mode = 0
-offset_right = 45.0
-offset_bottom = 45.0
-texture_normal = ExtResource("10_k5w04")
-PossibleGrabFocusRect = Rect2(140, 505, 1000, 180)
-_mode = 1
+disabled = false
 
-[node name="Sprite2D" type="Sprite2D" parent="LevelsList/LevelsIconsContainer/SubContainer/Level1Button"]
-z_index = -1
-texture = ExtResource("12_lkhk3")
-centered = false
-region_enabled = true
-
-[node name="Level2Button" parent="LevelsList/LevelsIconsContainer/SubContainer" instance=ExtResource("2_6jw0o")]
+[node name="Level2Button" parent="LevelsList/LevelsIconsContainer/SubContainer" instance=ExtResource("13_5l1by")]
 layout_mode = 0
 offset_left = 200.0
 offset_right = 245.0
-offset_bottom = 45.0
-texture_normal = ExtResource("10_k5w04")
-PossibleGrabFocusRect = Rect2(140, 505, 1000, 180)
-_mode = 1
 
-[node name="Sprite2D" type="Sprite2D" parent="LevelsList/LevelsIconsContainer/SubContainer/Level2Button"]
-z_index = -1
-texture = ExtResource("12_lkhk3")
-centered = false
-region_enabled = true
-
-[node name="Level3Button" parent="LevelsList/LevelsIconsContainer/SubContainer" instance=ExtResource("2_6jw0o")]
+[node name="Level3Button" parent="LevelsList/LevelsIconsContainer/SubContainer" instance=ExtResource("13_5l1by")]
 layout_mode = 0
 offset_left = 400.0
 offset_right = 445.0
-offset_bottom = 45.0
-texture_normal = ExtResource("10_k5w04")
-PossibleGrabFocusRect = Rect2(140, 505, 1000, 180)
-_mode = 1
 
-[node name="Sprite2D" type="Sprite2D" parent="LevelsList/LevelsIconsContainer/SubContainer/Level3Button"]
-z_index = -1
-texture = ExtResource("12_lkhk3")
-centered = false
-region_enabled = true
-
-[node name="Level4Button" parent="LevelsList/LevelsIconsContainer/SubContainer" instance=ExtResource("2_6jw0o")]
+[node name="Level4Button" parent="LevelsList/LevelsIconsContainer/SubContainer" instance=ExtResource("13_5l1by")]
 layout_mode = 0
 offset_left = 600.0
 offset_right = 645.0
-offset_bottom = 45.0
-texture_normal = ExtResource("10_k5w04")
-PossibleGrabFocusRect = Rect2(140, 505, 1000, 180)
-_mode = 1
 
-[node name="Sprite2D" type="Sprite2D" parent="LevelsList/LevelsIconsContainer/SubContainer/Level4Button"]
-z_index = -1
-texture = ExtResource("12_lkhk3")
-centered = false
-region_enabled = true
-
-[node name="Level5Button" parent="LevelsList/LevelsIconsContainer/SubContainer" instance=ExtResource("2_6jw0o")]
+[node name="Level5Button" parent="LevelsList/LevelsIconsContainer/SubContainer" instance=ExtResource("13_5l1by")]
 layout_mode = 0
 offset_left = 800.0
 offset_right = 845.0
-offset_bottom = 45.0
-texture_normal = ExtResource("10_k5w04")
-PossibleGrabFocusRect = Rect2(140, 505, 1000, 180)
-_mode = 1
 
-[node name="Sprite2D" type="Sprite2D" parent="LevelsList/LevelsIconsContainer/SubContainer/Level5Button"]
-z_index = -1
-texture = ExtResource("12_lkhk3")
-centered = false
-region_enabled = true
-
-[node name="WindowView" type="Node2D" parent="LevelsList/LevelsIconsContainer/SubContainer/Level5Button"]
+[node name="WindowView" type="Control" parent="LevelsList/LevelsIconsContainer/SubContainer/Level5Button"]
 visible = false
-z_index = -1
+clip_contents = true
+layout_mode = 3
+anchors_preset = 0
+offset_left = 3.0
+offset_top = 3.0
+offset_right = 48.0
+offset_bottom = 48.0
+scale = Vector2(0.866, 0.866)
+mouse_filter = 2
 
 [node name="Rain" type="CPUParticles2D" parent="LevelsList/LevelsIconsContainer/SubContainer/Level5Button/WindowView"]
 position = Vector2(32, 4)
@@ -1025,6 +1010,8 @@ scale_amount_min = 64.0
 scale_amount_max = 64.0
 
 [node name="Fog?" type="ColorRect" parent="LevelsList/LevelsIconsContainer/SubContainer/Level5Button/WindowView"]
+modulate = Color(1, 1, 1, 0.501961)
+layout_mode = 0
 offset_left = 1.0
 offset_top = 1.0
 offset_right = 44.0
@@ -1033,7 +1020,7 @@ mouse_filter = 2
 color = Color(0, 0.121569, 0.121569, 1)
 
 [node name="ThunderLight" type="ColorRect" parent="LevelsList/LevelsIconsContainer/SubContainer/Level5Button/WindowView"]
-modulate = Color(1, 1, 1, 0)
+layout_mode = 0
 offset_left = 1.0
 offset_top = 1.0
 offset_right = 44.0
@@ -1062,7 +1049,8 @@ scale_amount_curve = SubResource("Curve_40483")
 color = Color(0, 0.501961, 0.501961, 0.313726)
 
 [node name="Fog?Interior" type="ColorRect" parent="LevelsList/LevelsIconsContainer/SubContainer/Level5Button/WindowView"]
-modulate = Color(1, 1, 1, 0.784314)
+modulate = Color(1, 1, 1, 0.25098)
+layout_mode = 0
 offset_left = 1.0
 offset_top = 1.0
 offset_right = 44.0
@@ -1071,7 +1059,7 @@ mouse_filter = 2
 color = Color(0, 0.121569, 0.121569, 1)
 
 [node name="ThunderLightInterior" type="ColorRect" parent="LevelsList/LevelsIconsContainer/SubContainer/Level5Button/WindowView"]
-modulate = Color(1, 1, 1, 0.00997252)
+layout_mode = 0
 offset_left = 1.0
 offset_top = 1.0
 offset_right = 44.0
@@ -1086,67 +1074,25 @@ libraries = {
 "": SubResource("AnimationLibrary_80l7y")
 }
 
-[node name="Level6Button" parent="LevelsList/LevelsIconsContainer/SubContainer" instance=ExtResource("2_6jw0o")]
+[node name="Level6Button" parent="LevelsList/LevelsIconsContainer/SubContainer" instance=ExtResource("13_5l1by")]
 layout_mode = 0
 offset_left = 1200.0
 offset_right = 1245.0
-offset_bottom = 45.0
-texture_normal = ExtResource("10_k5w04")
-PossibleGrabFocusRect = Rect2(140, 505, 1000, 180)
-_mode = 1
 
-[node name="Sprite2D" type="Sprite2D" parent="LevelsList/LevelsIconsContainer/SubContainer/Level6Button"]
-z_index = -1
-texture = ExtResource("12_lkhk3")
-centered = false
-region_enabled = true
-
-[node name="Level7Button" parent="LevelsList/LevelsIconsContainer/SubContainer" instance=ExtResource("2_6jw0o")]
+[node name="Level7Button" parent="LevelsList/LevelsIconsContainer/SubContainer" instance=ExtResource("13_5l1by")]
 layout_mode = 0
 offset_left = 1400.0
 offset_right = 1445.0
-offset_bottom = 45.0
-texture_normal = ExtResource("10_k5w04")
-PossibleGrabFocusRect = Rect2(140, 505, 1000, 180)
-_mode = 1
 
-[node name="Sprite2D" type="Sprite2D" parent="LevelsList/LevelsIconsContainer/SubContainer/Level7Button"]
-z_index = -1
-texture = ExtResource("12_lkhk3")
-centered = false
-region_enabled = true
-
-[node name="Level8Button" parent="LevelsList/LevelsIconsContainer/SubContainer" instance=ExtResource("2_6jw0o")]
+[node name="Level8Button" parent="LevelsList/LevelsIconsContainer/SubContainer" instance=ExtResource("13_5l1by")]
 layout_mode = 0
 offset_left = 1600.0
 offset_right = 1645.0
-offset_bottom = 45.0
-texture_normal = ExtResource("10_k5w04")
-PossibleGrabFocusRect = Rect2(140, 505, 1000, 180)
-_mode = 1
 
-[node name="Sprite2D" type="Sprite2D" parent="LevelsList/LevelsIconsContainer/SubContainer/Level8Button"]
-z_index = -1
-texture = ExtResource("12_lkhk3")
-centered = false
-region_enabled = true
-
-[node name="Level9Button" parent="LevelsList/LevelsIconsContainer/SubContainer" instance=ExtResource("2_6jw0o")]
-clip_contents = false
+[node name="Level9Button" parent="LevelsList/LevelsIconsContainer/SubContainer" instance=ExtResource("13_5l1by")]
 layout_mode = 0
 offset_left = 1800.0
 offset_right = 1845.0
-offset_bottom = 45.0
-focus_neighbor_bottom = NodePath("StartOption/Yes")
-texture_normal = ExtResource("10_k5w04")
-PossibleGrabFocusRect = Rect2(140, 505, 1000, 180)
-_mode = 1
-
-[node name="Sprite2D" type="Sprite2D" parent="LevelsList/LevelsIconsContainer/SubContainer/Level9Button"]
-z_index = -1
-texture = ExtResource("12_lkhk3")
-centered = false
-region_enabled = true
 
 [node name="StartOption" type="Control" parent="LevelsList/LevelsIconsContainer/SubContainer/Level9Button"]
 visible = false
@@ -1196,13 +1142,10 @@ offset_top = 23.0
 offset_right = 22.0
 offset_bottom = 43.0
 scale = Vector2(1, 1)
-focus_neighbor_top = NodePath("../..")
 focus_neighbor_right = NodePath("../No")
 disabled = true
-texture_normal = ExtResource("3_1uhey")
-texture_pressed = SubResource("CompressedTexture2D_hfbng")
+texture_normal = ExtResource("16_rxcum")
 stretch_mode = 0
-_mode = 1
 
 [node name="No" parent="LevelsList/LevelsIconsContainer/SubContainer/Level9Button/StartOption" instance=ExtResource("2_6jw0o")]
 layout_mode = 0
@@ -1211,28 +1154,14 @@ offset_top = 23.0
 offset_right = 43.0
 offset_bottom = 43.0
 scale = Vector2(1, 1)
-focus_neighbor_top = NodePath("../..")
 disabled = true
-texture_normal = ExtResource("3_1uhey")
-texture_pressed = SubResource("CompressedTexture2D_hfbng")
+texture_normal = ExtResource("16_nunlu")
 stretch_mode = 0
-_mode = 1
 
-[node name="Level10Button" parent="LevelsList/LevelsIconsContainer/SubContainer" instance=ExtResource("2_6jw0o")]
+[node name="Level10Button" parent="LevelsList/LevelsIconsContainer/SubContainer" instance=ExtResource("13_5l1by")]
 layout_mode = 0
 offset_left = 2000.0
 offset_right = 2045.0
-offset_bottom = 45.0
-focus_neighbor_bottom = NodePath("StartOption/Yes")
-texture_normal = ExtResource("10_k5w04")
-PossibleGrabFocusRect = Rect2(140, 505, 1000, 180)
-_mode = 1
-
-[node name="Sprite2D" type="Sprite2D" parent="LevelsList/LevelsIconsContainer/SubContainer/Level10Button"]
-z_index = -1
-texture = ExtResource("12_lkhk3")
-centered = false
-region_enabled = true
 
 [node name="StartOption" type="Control" parent="LevelsList/LevelsIconsContainer/SubContainer/Level10Button"]
 visible = false
@@ -1283,13 +1212,10 @@ offset_top = 23.0
 offset_right = 22.0
 offset_bottom = 43.0
 scale = Vector2(1, 1)
-focus_neighbor_top = NodePath("../..")
 focus_neighbor_right = NodePath("../No")
 disabled = true
-texture_normal = ExtResource("3_1uhey")
-texture_pressed = SubResource("CompressedTexture2D_hfbng")
+texture_normal = ExtResource("16_rxcum")
 stretch_mode = 0
-_mode = 1
 
 [node name="No" parent="LevelsList/LevelsIconsContainer/SubContainer/Level10Button/StartOption" instance=ExtResource("2_6jw0o")]
 layout_mode = 0
@@ -1298,12 +1224,9 @@ offset_top = 23.0
 offset_right = 43.0
 offset_bottom = 43.0
 scale = Vector2(1, 1)
-focus_neighbor_top = NodePath("../..")
 disabled = true
-texture_normal = ExtResource("3_1uhey")
-texture_pressed = SubResource("CompressedTexture2D_hfbng")
+texture_normal = ExtResource("16_nunlu")
 stretch_mode = 0
-_mode = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="LevelsList/LevelsIconsContainer/SubContainer"]
 libraries = {
@@ -1317,7 +1240,6 @@ libraries = {
 [connection signal="toggled" from="Visual/AdittionalButtons/ToggleOldFilmButton" to="." method="SetAdditionStatus" binds= [1]]
 [connection signal="toggled" from="Visual/AdittionalButtons/ToggleJiofefHeadButton" to="." method="SetAdditionStatus" binds= [2]]
 [connection signal="toggled" from="Visual/AdittionalButtons/ToggleEnhancedCrossesButton" to="." method="SetAdditionStatus" binds= [3]]
-[connection signal="pressed" from="CancelButton" to="." method="Cancel"]
 [connection signal="pressed" from="LevelsList/LeftScrollButton" to="." method="ChangeLevelRowToPast"]
 [connection signal="pressed" from="LevelsList/RightScrollButton" to="." method="ChangeLevelRowToNext"]
 [connection signal="focus_entered" from="LevelsList/LevelsIconsContainer/SubContainer/Level1Button" to="." method="SetPresentedLevel" binds= [1, ""]]

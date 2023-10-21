@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d0sqlunqacimf"
-path="res://.godot/imported/CancelButtonOutline.png-4734dcea4414e8fb24d59574da7309a5.ctex"
+uid="uid://kaxj86lxg5nq"
+path="res://.godot/imported/LevelIconButtonDisabled.png-c1d4ca2cccc6643915cbddaa7cb65117.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Content/Sprites/Interface/CancelButtonOutline.png"
-dest_files=["res://.godot/imported/CancelButtonOutline.png-4734dcea4414e8fb24d59574da7309a5.ctex"]
+source_file="res://Content/Sprites/Interface/LevelIconButtonDisabled.png"
+dest_files=["res://.godot/imported/LevelIconButtonDisabled.png-c1d4ca2cccc6643915cbddaa7cb65117.ctex"]
 
 [params]
 

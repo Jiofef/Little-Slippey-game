@@ -18,7 +18,7 @@ public partial class LevelsMenu : Control
         {
             if (UnchangableMeta.LevelCompleteStatus[NeededLevelIndexes[i]] > 0)
             {
-                GetNode<ColorRect>("Visual/AdittionalButtons/Lock" + (i + 1)).QueueFree();
+                GetNode<Sprite2D>("Visual/AdittionalButtons/Lock" + (i + 1)).QueueFree();
                 GetNode<Label>("Visual/AdittionalButtons/" + ButtonNames[i]).Visible = true;
                 var toggleButton = GetNode<CheckBox>("Visual/AdittionalButtons/Toggle" + ButtonNames[i] + "Button");
                 toggleButton.Disabled = false;
@@ -32,13 +32,21 @@ public partial class LevelsMenu : Control
 
         UpdateGUIForCurrentDificulty();
 
-        for (int i = 0; i < G.LevelsInGameTotal; i++)
-            if (UnchangableMeta.LevelCompleteStatus[i] > 0)
-            GetNode<Sprite2D>("LevelsList/LevelsIconsContainer/SubContainer/Level" + (i + 1) + "Button/Sprite2D").RegionRect = new Rect2(new Vector2(45 * i, 45 * (UnchangableMeta.LevelCompleteStatus[i] - 1)), new Vector2(45, 45));
+        for (int i = 1; i < G.LevelsInGameTotal; i++)
+        {
+            if (UnchangableMeta.LevelCompleteStatus[i - 1] > 0)
+                GetNode<TextureButton>("LevelsList/LevelsIconsContainer/SubContainer/Level" + (i + 1) + "Button").Disabled = false;
+            else
+                break;
+        }
+
+        for (int i1 = 0; i1 < G.LevelsInGameTotal; i1++)
+            if (UnchangableMeta.LevelCompleteStatus[i1] > 0)
+            GetNode<Sprite2D>("LevelsList/LevelsIconsContainer/SubContainer/Level" + (i1 + 1) + "Button/Sprite2D").RegionRect = new Rect2(new Vector2(45 * i1, 45 * (UnchangableMeta.LevelCompleteStatus[i1] - 1)), new Vector2(45, 45));
         if (UnchangableMeta.LevelCompleteStatus[4] > 0)
         {
             string link = "LevelsList/LevelsIconsContainer/SubContainer/Level5Button/WindowView";
-            GetNode<Node2D>(link).Visible = true;
+            GetNode<Control>(link).Visible = true;
             GetNode<AnimationPlayer>(link + "/AnimationPlayer").CurrentAnimation = "LightingAndBlackoutAnimation" + UnchangableMeta.LevelCompleteStatus[4];
             if (UnchangableMeta.LevelCompleteStatus[4] >= 2)
             {
@@ -64,12 +72,12 @@ public partial class LevelsMenu : Control
 
     public void SetPresentedLevel(int value, string additionalLinkValue = "")
     {
-        if(_chosenLevel != value || additionalLinkValue != _additionalLevelLink)
+        if (_chosenLevel != value || additionalLinkValue != _additionalLevelLink)
         {
             var noiseAnimationPlayer = GetNode<AnimationPlayer>("Visual/LevelPresenter/WhiteNoise/AnimationPlayer");
             noiseAnimationPlayer.CurrentAnimation = null;
-            noiseAnimationPlayer.Play("NoiseDisappearing");
-            
+            noiseAnimationPlayer.Play(UnchangableMeta.LevelPlayedStatus[value - 1] == 1 ? "NoiseDisappearing" : "Noise");
+
             _chosenLevel = value;
             _additionalLevelLink = additionalLinkValue;
             LevelPresenterViewportUpdate();
@@ -138,7 +146,6 @@ public partial class LevelsMenu : Control
     {
         if (_presentedLevel != null)
             _presentedLevel.QueueFree();
-
         _presentedLevel = (Node2D)ResourceLoader.Load<PackedScene>("res://Content/Scenes/Levels/PresentedParts/PresentedLevel" + _chosenLevel + _additionalLevelLink + ".tscn").Instantiate();
 
         GetNode("Visual/LevelPresenter/SubViewport").AddChild(_presentedLevel);

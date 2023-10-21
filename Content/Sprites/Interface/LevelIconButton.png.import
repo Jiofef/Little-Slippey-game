@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dk6qvinkosaoa"
-path="res://.godot/imported/LevelListScrollButtonOutlineDisabled.png-aa5246b4cb92806526a07cd24ea3f8b8.ctex"
+uid="uid://71vomw6byask"
+path="res://.godot/imported/LevelIconButton.png-d2d15a15d106298350f634523ae259c6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Content/Sprites/Interface/LevelListScrollButtonOutlineDisabled.png"
-dest_files=["res://.godot/imported/LevelListScrollButtonOutlineDisabled.png-aa5246b4cb92806526a07cd24ea3f8b8.ctex"]
+source_file="res://Content/Sprites/Interface/LevelIconButton.png"
+dest_files=["res://.godot/imported/LevelIconButton.png-d2d15a15d106298350f634523ae259c6.ctex"]
 
 [params]
 

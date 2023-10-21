@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c6v5r4xne78e0"
-path="res://.godot/imported/LevelListScrollButtonOutline.png-904059dd80ab07be6a27bf8b421b5edc.ctex"
+path="res://.godot/imported/LevelListScrollButtonRight.png-2dfcd7489bf543b496238b0e4339a25e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Content/Sprites/Interface/LevelListScrollButtonOutline.png"
-dest_files=["res://.godot/imported/LevelListScrollButtonOutline.png-904059dd80ab07be6a27bf8b421b5edc.ctex"]
+source_file="res://Content/Sprites/Interface/LevelListScrollButtonRight.png"
+dest_files=["res://.godot/imported/LevelListScrollButtonRight.png-2dfcd7489bf543b496238b0e4339a25e.ctex"]
 
 [params]
 

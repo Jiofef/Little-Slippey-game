@@ -7,6 +7,6 @@ public partial class StartupScene : Node2D
 		Meta.Instance.LoadOptions();
 		Meta.Instance.ApplyOptions();
 		UnchangableMeta.LoadSave();
-		GetTree().ChangeSceneToFile("res://Content/Scenes/Interface&Menu/Menu.tscn");
-	}
+        GetTree().ChangeSceneToFile("res://Content/Scenes/Interface&Menu/LevelsMenu.tscn");
+    }
 }

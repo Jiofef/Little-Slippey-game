@@ -42,7 +42,8 @@ public partial class MainScript : Node2D
         UnchangableMeta.SaveRecords();
         UnchangableMeta.SaveToFile();
         G.CompletelyResetValues();
-        GetTree().ChangeSceneToFile("res://Content/Scenes/Interface&Menu/Menu.tscn");
+        GetTree().Paused = false;
+        GetTree().ChangeSceneToFile("res://Content/Scenes/Interface&Menu/WelcomeToGOS.tscn");
     }
     public void OptionsClosing()
     {

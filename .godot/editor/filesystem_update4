@@ -1,10 +1,9 @@
 res://default_bus_layout.tres
 res://default_env.tres
 res://Content/Scenes/Other/StartupScene.tscn
-res://Content/Other/StaticNoiseShader.gdshader
 res://Content/Other/BlurShader.gdshader
+res://Content/Other/StaticNoiseShader.gdshader
 res://Content/Scenes/Interface&Menu/LevelsMenu.tscn
-res://Content/Scenes/Interface&Menu/Button.tscn
 res://Content/Other/G.cs
 res://Content/Other/Meta.cs
 res://Content/Other/UnchangableMeta.cs
@@ -56,13 +55,12 @@ res://Content/Scripts/Other/AnimationRandomizer.cs
 res://Content/Scripts/Other/Camera.cs
 res://Content/Scripts/Other/MainScript.cs
 res://Content/Scripts/Other/Player.cs
-res://Content/Scripts/Other/PlayPart.cs
 res://Content/Scripts/Other/StartupScene.cs
 res://Content/Scenes/Interface&Menu/Menu.tscn
+res://Content/Scenes/Other/WelcomeToGOS.tscn
 res://Content/Scenes/Other/Main.tscn
-res://Content/Scenes/Other/Level5Rain.tscn
-res://Content/Scenes/Other/Level7MindTumor.tscn
-res://Content/Scenes/Other/Level7HopelessnesLayer.tscn
-res://Content/Scenes/Levels/FullParts/Level7.tscn
-res://Content/Scenes/Levels/FullParts/Level10.tscn
-res://Content/Scenes/Crosses/EnhancedCross1.tscn
+res://Content/Scenes/Interface&Menu/FinalLetter.tscn
+res://Content/Scenes/Interface&Menu/Button.tscn
+res://Content/Scenes/Interface&Menu/LevelButton.tscn
+res://Content/Scenes/LevelsMenu (2).tscn
+res://Content/Scenes/Interface&Menu/WelcomeToGOS.tscn

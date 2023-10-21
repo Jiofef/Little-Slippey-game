@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://71vomw6byask"
-path="res://.godot/imported/LevelIconButtonOutline.png-0de6f282055c9ce9f65b87e70533627c.ctex"
+uid="uid://c1d2p0ba42csh"
+path="res://.godot/imported/AcceptButton.png-38ecccaa8dff55ed8b714b820f63a3f0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Content/Sprites/Interface/LevelIconButtonOutline.png"
-dest_files=["res://.godot/imported/LevelIconButtonOutline.png-0de6f282055c9ce9f65b87e70533627c.ctex"]
+source_file="res://Content/Sprites/Interface/AcceptButton.png"
+dest_files=["res://.godot/imported/AcceptButton.png-38ecccaa8dff55ed8b714b820f63a3f0.ctex"]
 
 [params]
 

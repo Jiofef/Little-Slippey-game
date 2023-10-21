@@ -1,9 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://dxnmuyu5wcsgv"]
+[gd_scene load_steps=6 format=3 uid="uid://dxnmuyu5wcsgv"]
 
 [ext_resource type="Script" path="res://Content/Scripts/Other/MainScript.cs" id="2"]
 [ext_resource type="AudioStream" uid="uid://cuvkdo1lyvynu" path="res://Content/Sounds/Other/EpicIntro.mp3" id="4_upcxf"]
 [ext_resource type="PackedScene" uid="uid://bwpstpk1xmkah" path="res://Content/Scenes/Interface&Menu/Button.tscn" id="6"]
-[ext_resource type="Texture2D" uid="uid://b74iy0kiw62iu" path="res://Content/Sprites/Interface/MenuButtonOutline.png" id="6_eqfpd"]
 
 [sub_resource type="Animation" id="Animation_gx3u0"]
 resource_name = "EpicIntro"
@@ -126,8 +125,6 @@ offset_bottom = 50.16
 layout_mode = 0
 offset_right = 96.0
 offset_bottom = 15.0
-texture_normal = ExtResource("6_eqfpd")
-_mode = 0
 
 [node name="Label" type="Label" parent="Pause/Buttons/Resume"]
 layout_mode = 0
@@ -146,8 +143,6 @@ layout_mode = 0
 offset_top = 60.0
 offset_right = 96.0
 offset_bottom = 75.0
-texture_normal = ExtResource("6_eqfpd")
-_mode = 0
 
 [node name="Label" type="Label" parent="Pause/Buttons/Options"]
 layout_mode = 0
@@ -167,8 +162,6 @@ offset_left = 0.00012207
 offset_top = 120.0
 offset_right = 96.0001
 offset_bottom = 136.0
-texture_normal = ExtResource("6_eqfpd")
-_mode = 0
 
 [node name="Label" type="Label" parent="Pause/Buttons/Menu"]
 layout_mode = 0

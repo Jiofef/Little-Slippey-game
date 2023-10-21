@@ -19,6 +19,10 @@ public partial class UnchangableMeta : Node
 
     public static bool IsLevel9PlatformSectionFirstTimeCompleted, IsLevel9PlatformSectionSkipAllowed, IsFakeLevel10SkipAllowed;
 
+    public override void _PhysicsProcess(double delta)
+    {
+       
+    }
     public static void SaveRecords()
     {
         if ((int)G.Scores > LevelRecords[Meta.Instance.Dificulty][G.CurrentLevel - 1])
@@ -76,12 +80,12 @@ public partial class UnchangableMeta : Node
                     LevelCompleteStatus[i] = Convert.ToInt32(LevelCompleteStatusArray[i].ToString());
             } catch {}
 
+            Godot.Collections.Array LevelPlayedStatusArray = (Godot.Collections.Array)model["level_played_status"];
             try
             {
-                for (int i = 0; i < LevelCompleteStatus.Length; i++)
-                    LevelCompleteStatus[i] = Convert.ToInt32(LevelCompleteStatusArray[i].ToString());
-            }
-            catch { }
+                for (int i = 0; i < LevelPlayedStatus.Length; i++)
+                    LevelPlayedStatus[i] = Convert.ToByte(LevelPlayedStatusArray[i].ToString());
+            } catch { }
 
 
             IsLevel9PlatformSectionFirstTimeCompleted = (bool)model["is_level9_platform_section_first_time_completed"];

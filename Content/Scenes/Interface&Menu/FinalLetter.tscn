@@ -1,11 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://dqp6q1agu664i"]
+[gd_scene load_steps=8 format=3 uid="uid://dqp6q1agu664i"]
 
 [ext_resource type="Texture2D" uid="uid://dmdsc2hvi54tw" path="res://Content/Sprites/Interface/TheFinalLetter.png" id="1_3vvb0"]
 [ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/FinalLetter.cs" id="1_kdln6"]
 [ext_resource type="PackedScene" uid="uid://bwpstpk1xmkah" path="res://Content/Scenes/Interface&Menu/Button.tscn" id="2_yw24e"]
-[ext_resource type="Texture2D" uid="uid://d0sqlunqacimf" path="res://Content/Sprites/Interface/CancelButtonOutline.png" id="3_7ehks"]
-[ext_resource type="Texture2D" uid="uid://bs42vfh75wcnm" path="res://Content/Sprites/Interface/CancelButtonOutlinePressed.png" id="4_ocua5"]
-[ext_resource type="Texture2D" uid="uid://bajqg8ftdifa0" path="res://Content/Sprites/Interface/AcceptButton.png" id="5_buo5e"]
+[ext_resource type="Texture2D" uid="uid://c1d2p0ba42csh" path="res://Content/Sprites/Interface/AcceptButton.png" id="5_buo5e"]
 
 [sub_resource type="Animation" id="Animation_ema7o"]
 resource_name = "Appearing"
@@ -212,13 +210,7 @@ offset_right = 1184.0
 offset_bottom = 624.0
 focus_neighbor_left = NodePath(".")
 disabled = true
-texture_normal = ExtResource("3_7ehks")
-texture_pressed = ExtResource("4_ocua5")
-
-[node name="Sprite2D" type="Sprite2D" parent="Letter/Agree"]
-position = Vector2(12, 12)
-scale = Vector2(0.999999, 1)
-texture = ExtResource("5_buo5e")
+texture_normal = ExtResource("5_buo5e")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Letter"]
 root_node = NodePath("../..")
@@ -231,4 +223,4 @@ libraries = {
 volume_db = 15.0
 bus = &"Music"
 
-[connection signal="pressed" from="Letter/Agree" to="Letter/AnimationPlayer" method="play" flags=6 binds= ["Disappearing"]]
+[connection signal="button_down" from="Letter/Agree" to="Letter/AnimationPlayer" method="set_current_animation" flags=6 binds= ["Disappearing"]]

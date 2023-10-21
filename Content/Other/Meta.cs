@@ -10,7 +10,7 @@ public partial class Meta : Node
     public static Meta Instance = new Meta(); //And default Meta Instance
 
     //SoundsVolume
-    public float[] BusVolumes = { -8, 0, 0, 0, 0, 0, 0}; //in this array #0 is _master, #1 _interface, #2 _music, #3 _player, #4 _crossounds, #5 _crossexplosion
+    public float[] BusVolumes = { -10, 0, 0, 0, 0, 0, 0}; //in this array #0 is _master, #1 _interface, #2 _music, #3 _player, #4 _crossounds, #5 _crossexplosion
 
     //VideoOptions
     //Since this is the HTML version, it will be incorrect to save the full screen state, and this is the only non-saving variable in the meta
@@ -25,10 +25,7 @@ public partial class Meta : Node
     public void ApplyOptions()
     {
         for (int i = 0; i < Instance.BusVolumes.Length; i++)
-        {
             AudioServer.SetBusVolumeDb(i, Instance.BusVolumes[i]);
-            AudioServer.SetBusMute(i, Instance.BusVolumes[i] <= -30);
-        }
         DisplayServer.WindowSetMode(Instance.IsFullScreen ? DisplayServer.WindowMode.Fullscreen : DisplayServer.WindowMode.Windowed);
     }
     public Meta Clone()

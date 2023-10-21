@@ -14,7 +14,7 @@ script = ExtResource("2_j2ehd")
 
 [node name="FocusRect" type="ColorRect" parent="."]
 modulate = Color(1, 1, 1, 0)
-show_behind_parent = true
+z_index = 1
 layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0

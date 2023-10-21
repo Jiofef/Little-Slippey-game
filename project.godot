@@ -11,9 +11,14 @@ config_version=5
 [application]
 
 config/name="Little Slippey"
-run/main_scene="res://Content/Scenes/Other/StartupScene.tscn"
+run/main_scene="res://Content/Scenes/Interface&Menu/WelcomeToGOS.tscn"
 config/features=PackedStringArray("4.1", "C#")
 config/icon="res://icon.png"
+
+[audio]
+
+buses/channel_disable_threshold_db=-30.0
+buses/channel_disable_time=0.0
 
 [autoload]
 

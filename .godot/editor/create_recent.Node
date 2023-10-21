@@ -1,10 +1,11 @@
+Button
+Control
+Sprite2D
 AudioStreamPlayer
 Timer
 ColorRect
 CanvasLayer
 AnimationPlayer
-Sprite2D
-Control
 CheckButton
 OptionButton
 VisibleOnScreenEnabler2D

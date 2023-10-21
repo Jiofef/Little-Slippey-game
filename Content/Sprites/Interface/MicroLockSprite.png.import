@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b74iy0kiw62iu"
-path="res://.godot/imported/MenuButtonOutline.png-a0d835a088ffbd2882032ec3463c24de.ctex"
+uid="uid://b2ay51k3qped"
+path="res://.godot/imported/MicroLockSprite.png-bbefe04e321e24ba9beaa6c3d7394ca7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Content/Sprites/Interface/MenuButtonOutline.png"
-dest_files=["res://.godot/imported/MenuButtonOutline.png-a0d835a088ffbd2882032ec3463c24de.ctex"]
+source_file="res://Content/Sprites/Interface/MicroLockSprite.png"
+dest_files=["res://.godot/imported/MicroLockSprite.png-bbefe04e321e24ba9beaa6c3d7394ca7.ctex"]
 
 [params]
 
