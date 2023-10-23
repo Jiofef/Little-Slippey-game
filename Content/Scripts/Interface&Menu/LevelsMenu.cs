@@ -10,8 +10,7 @@ public partial class LevelsMenu : Control
 
     public override void _Ready()
 	{
-        GetNode<TextureButton>("LevelsList/LevelsIconsContainer/SubContainer/Level1Button").GrabFocus();
-
+        SetPresentedLevel(1, "");
         string[] ButtonNames = { "Rain", "OldFilm", "JiofefHead", "EnhancedCrosses"};
         int[] NeededLevelIndexes = { 4, 6, 8, 9 };
         for (int i = 0; i < ButtonNames.Length; i++)
@@ -84,7 +83,7 @@ public partial class LevelsMenu : Control
         }
     }
 
-    public void OpenLevel(int value, string additionalLevelLink = "", bool doOpenLevelPossibleStartOptions = false)
+    public void StartLevelOpening(int value, string additionalLevelLink = "", bool doOpenLevelPossibleStartOptions = false)
     {
         void OpenStartOptions(string link)
         {
@@ -107,6 +106,10 @@ public partial class LevelsMenu : Control
 
         G.LevelAdditionalLink = additionalLevelLink;
         G.CurrentLevel = value;
+        GetNode<AnimationPlayer>("Camera2D/AnimationPlayer").Play("OpenLevel");
+    }
+    public void OpenLevel()
+    {
         GetTree().ChangeSceneToFile("res://Content/Scenes/Other/Main.tscn");
     }
 

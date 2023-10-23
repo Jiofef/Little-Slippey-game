@@ -50,13 +50,13 @@ position = Vector2(2.42889e-06, 9.38773e-07)
 shape = SubResource("2")
 
 [node name="ExplosionSignal" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("5_1dola")
+stream = ExtResource("5_6l5wt")
 volume_db = 5.0
 pitch_scale = 0.25
 bus = &"CrossSounds"
 
 [node name="ExplosionSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("5_6l5wt")
+stream = ExtResource("5_1dola")
 bus = &"CrossExplosion"
 
 [node name="AbortButtonPressedSound" type="AudioStreamPlayer" parent="."]
