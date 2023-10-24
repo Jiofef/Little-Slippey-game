@@ -49,6 +49,17 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector2(0, 0), Vector2(-580, -580)]
 }
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Buttons/SkinsButton")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"values": []
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fo2ut"]
 _data = {
@@ -95,10 +106,22 @@ tracks/2/path = NodePath("Camera2D:enabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Buttons:process_mode")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
+"values": [0]
 }
 
 [sub_resource type="Animation" id="Animation_267tr"]
@@ -139,6 +162,32 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Buttons/LevelsMenuButton")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"grab_focus"
+}]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Buttons:process_mode")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [4, 0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_81kv7"]
@@ -198,7 +247,6 @@ offset_bottom = 720.0
 mouse_filter = 2
 
 [node name="InitializationBlackout" type="ColorRect" parent="MonitorEffects"]
-modulate = Color(1, 1, 1, 0)
 offset_right = 1280.0
 offset_bottom = 720.0
 mouse_filter = 2
@@ -209,6 +257,7 @@ stream = SubResource("AudioStreamMP3_tm2e3")
 volume_db = 10.0
 
 [node name="Buttons" type="Control" parent="."]
+process_mode = 4
 layout_mode = 3
 anchors_preset = 0
 mouse_filter = 2
@@ -301,6 +350,14 @@ text = "Recycle Bin"
 libraries = {
 "": SubResource("AnimationLibrary_81kv7")
 }
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(640, 360)
+enabled = false
+limit_left = 0
+limit_top = 0
+limit_right = 1280
+limit_bottom = 720
 
 [connection signal="pressed" from="Buttons/LevelsMenuButton" to="." method="IconClick" binds= [1]]
 [connection signal="pressed" from="Buttons/OptionsButton" to="." method="IconClick" binds= [2]]

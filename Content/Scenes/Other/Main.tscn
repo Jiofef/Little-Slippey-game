@@ -1,8 +1,46 @@
-[gd_scene load_steps=6 format=3 uid="uid://dxnmuyu5wcsgv"]
+[gd_scene load_steps=13 format=3 uid="uid://dxnmuyu5wcsgv"]
 
 [ext_resource type="Script" path="res://Content/Scripts/Other/MainScript.cs" id="2"]
+[ext_resource type="Texture2D" uid="uid://4udch8ejvu08" path="res://Content/Sprites/Interface/PauseButtonsFrame.png" id="2_6mvi6"]
+[ext_resource type="Texture2D" uid="uid://dhr0k5tpvpg7n" path="res://Content/Sprites/Interface/UnpauseButton.png" id="3_30esk"]
 [ext_resource type="AudioStream" uid="uid://cuvkdo1lyvynu" path="res://Content/Sounds/Other/EpicIntro.mp3" id="4_upcxf"]
+[ext_resource type="Texture2D" uid="uid://bqua21jbasqml" path="res://Content/Sprites/Interface/PauseRewindButton.png" id="5_db6pn"]
 [ext_resource type="PackedScene" uid="uid://bwpstpk1xmkah" path="res://Content/Scenes/Interface&Menu/Button.tscn" id="6"]
+[ext_resource type="Texture2D" uid="uid://be5mi0sdy4bep" path="res://Content/Sprites/Interface/PauseOptionsButton.png" id="6_cd33f"]
+[ext_resource type="Texture2D" uid="uid://blp8i7meimekf" path="res://Content/Sprites/Interface/PauseMenuButton.png" id="7_ikix5"]
+
+[sub_resource type="Animation" id="Animation_qdctp"]
+resource_name = "Pause"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Interface:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Interface/ButtonsFrame:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 720), Vector2(0, 520)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4p2pf"]
+_data = {
+"Pause": SubResource("Animation_qdctp")
+}
 
 [sub_resource type="Animation" id="Animation_gx3u0"]
 resource_name = "EpicIntro"
@@ -103,77 +141,74 @@ process_mode = 1
 [node name="Pause" type="CanvasLayer" parent="."]
 process_mode = 2
 layer = 2
-visible = false
 
-[node name="ColorRect" type="ColorRect" parent="Pause"]
+[node name="Interface" type="Control" parent="Pause"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 3
+anchors_preset = 0
 offset_right = 1280.0
 offset_bottom = 720.0
-color = Color(0, 0.439216, 0.439216, 0.588235)
 
-[node name="Buttons" type="Control" parent="Pause"]
-layout_mode = 3
-anchor_left = 0.35
-anchor_top = 0.417
-anchor_right = 0.65
-anchor_bottom = 0.672
-offset_left = -3.05176e-05
-offset_top = 49.76
-offset_right = -6.10352e-05
-offset_bottom = 50.16
-
-[node name="Resume" parent="Pause/Buttons" instance=ExtResource("6")]
+[node name="ColorRect" type="ColorRect" parent="Pause/Interface"]
 layout_mode = 0
-offset_right = 96.0
-offset_bottom = 15.0
+offset_right = 1280.0
+offset_bottom = 720.0
+color = Color(0, 0.501961, 0.501961, 0.196078)
 
-[node name="Label" type="Label" parent="Pause/Buttons/Resume"]
-layout_mode = 0
-offset_right = 240.0
-offset_bottom = 40.0
-scale = Vector2(0.4, 0.4)
-theme_override_colors/font_outline_color = Color(0.501961, 0.501961, 0.501961, 1)
-theme_override_constants/outline_size = 4
-text = "Resume
-"
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="ButtonsFrame" type="Control" parent="Pause/Interface"]
+anchors_preset = 0
+offset_top = 720.0
+offset_right = 1280.0
+offset_bottom = 920.0
 
-[node name="Options" parent="Pause/Buttons" instance=ExtResource("6")]
-layout_mode = 0
-offset_top = 60.0
-offset_right = 96.0
-offset_bottom = 75.0
+[node name="Sprite2D" type="Sprite2D" parent="Pause/Interface/ButtonsFrame"]
+scale = Vector2(4, 4)
+texture = ExtResource("2_6mvi6")
+centered = false
 
-[node name="Label" type="Label" parent="Pause/Buttons/Options"]
-layout_mode = 0
-offset_right = 240.0
-offset_bottom = 40.0
-scale = Vector2(0.4, 0.4)
-theme_override_colors/font_outline_color = Color(0.501961, 0.501961, 0.501961, 1)
-theme_override_constants/outline_size = 4
-text = "Options
-"
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="Resume" parent="Pause/Interface/ButtonsFrame" instance=ExtResource("6")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -398.0
+offset_top = -80.0
+offset_right = -358.0
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("3_30esk")
 
-[node name="Menu" parent="Pause/Buttons" instance=ExtResource("6")]
-layout_mode = 0
-offset_left = 0.00012207
-offset_top = 120.0
-offset_right = 96.0001
-offset_bottom = 136.0
+[node name="Rewind" parent="Pause/Interface/ButtonsFrame" instance=ExtResource("6")]
+layout_mode = 1
+offset_left = 454.0
+offset_top = 20.0
+offset_right = 494.0
+offset_bottom = 60.0
+texture_normal = ExtResource("5_db6pn")
 
-[node name="Label" type="Label" parent="Pause/Buttons/Menu"]
-layout_mode = 0
-offset_right = 240.0
-offset_bottom = 40.0
-scale = Vector2(0.4, 0.4)
-theme_override_colors/font_outline_color = Color(0.501961, 0.501961, 0.501961, 1)
-theme_override_constants/outline_size = 4
-text = "Menu
-"
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="Options" parent="Pause/Interface/ButtonsFrame" instance=ExtResource("6")]
+offset_left = 666.0
+offset_top = 20.0
+offset_right = 706.0
+offset_bottom = 60.0
+texture_normal = ExtResource("6_cd33f")
+
+[node name="Menu" parent="Pause/Interface/ButtonsFrame" instance=ExtResource("6")]
+offset_left = 878.0
+offset_top = 20.0
+offset_right = 918.0
+offset_bottom = 60.0
+texture_normal = ExtResource("7_ikix5")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Pause/Interface"]
+process_mode = 3
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_4p2pf")
+}
 
 [node name="EpicIntro" type="CanvasLayer" parent="."]
 layer = 10
@@ -210,7 +245,9 @@ autoplay = true
 bus = &"Interface"
 
 [connection signal="finished" from="LevelMusicPlayer" to="." method="MusicFinished"]
-[connection signal="pressed" from="Pause/Buttons/Resume" to="." method="UnPause"]
-[connection signal="pressed" from="Pause/Buttons/Options" to="." method="Options"]
-[connection signal="pressed" from="Pause/Buttons/Menu" to="." method="Menu"]
+[connection signal="pressed" from="Pause/Interface/ButtonsFrame/Resume" to="." method="UnPause"]
+[connection signal="button_down" from="Pause/Interface/ButtonsFrame/Rewind" to="." method="StartRewind"]
+[connection signal="button_up" from="Pause/Interface/ButtonsFrame/Rewind" to="." method="StopRewind"]
+[connection signal="pressed" from="Pause/Interface/ButtonsFrame/Options" to="." method="Options"]
+[connection signal="pressed" from="Pause/Interface/ButtonsFrame/Menu" to="." method="Menu"]
 [connection signal="animation_finished" from="EpicIntro/AnimationPlayer" to="EpicIntro" method="queue_free" unbinds=1]

@@ -12,7 +12,7 @@ public partial class Level6FlyingCarSpawner : Node2D
 
 	public override void _PhysicsProcess(double delta)
 	{
-		if (_random.Next(5) == 0)
+		if (_random.Next(8) == 0)
 		{
 			AnimatableBody2D flyingCar = _flyingCar.Instantiate<AnimatableBody2D>();
             flyingCar.Scale = new Vector2(_random.Next(100) >= 50 ? 1 : -1, 1);

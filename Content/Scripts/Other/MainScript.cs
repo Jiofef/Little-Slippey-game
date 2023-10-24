@@ -2,7 +2,7 @@ using Godot;
 
 public partial class MainScript : Node2D
 {
-    private bool _subMenusOpened;
+    private bool _subMenusOpened, _rewindState;
 
     public override void _Ready()
     {
@@ -15,19 +15,30 @@ public partial class MainScript : Node2D
 
         SetProcess(false);
     }
-    public override void _Process(double delta)
+    public override void _PhysicsProcess(double delta)
     {
         if (Input.IsActionJustPressed("Cancel") && !_subMenusOpened && !G._isLevel10Finaling)
             UnPause();
+        if (_rewindState)
+            G.ResetTimer += 0.016667f * 2;
+
     }
     public void UnPause()
     {
-        AudioServer.SetBusEffectEnabled(2, 0, !GetTree().Paused);
-        AudioServer.SetBusEffectEnabled(6, 0, !GetTree().Paused);
-        GetNode<CanvasLayer>("Pause").Visible = !GetTree().Paused;
-        GetNode<TextureButton>("Pause/Buttons/Resume").GrabFocus();
-        Input.MouseMode = GetTree().Paused ? Input.MouseModeEnum.Hidden : Input.MouseModeEnum.Visible;
-        GetTree().Paused = !GetTree().Paused;
+        bool IsPaused = GetTree().Paused;
+        AudioServer.SetBusEffectEnabled(2, 0, !IsPaused);
+        AudioServer.SetBusEffectEnabled(6, 0, !IsPaused);
+        GetNode<TextureButton>("Pause/Interface/ButtonsFrame/Resume").GrabFocus();
+
+        var animationPlayer = GetNode<AnimationPlayer>("Pause/Interface/AnimationPlayer");
+        if (!IsPaused)
+            animationPlayer.Play("Pause");
+        else
+            animationPlayer.PlayBackwards("Pause");
+
+        Input.MouseMode = IsPaused ? Input.MouseModeEnum.Hidden : Input.MouseModeEnum.Visible;
+
+        GetTree().Paused = !IsPaused;
     }
     public void Options()
     {
@@ -48,9 +59,9 @@ public partial class MainScript : Node2D
     public void OptionsClosing()
     {
         var pause = GetNode<CanvasLayer>("Pause");
-        pause.ProcessMode = ProcessModeEnum.Always;
+        pause.ProcessMode = ProcessModeEnum.WhenPaused;
         pause.Visible = true;
-        GetNode<TextureButton>("Pause/Buttons/Resume").GrabFocus();
+        GetNode<TextureButton>("Pause/Interface/ButtonsFrame/Options").GrabFocus();
         _subMenusOpened = false;
     }
 
@@ -61,5 +72,13 @@ public partial class MainScript : Node2D
     public void LevelLoad()
     {
         GetNode("PlayPart").AddChild(ResourceLoader.Load<PackedScene>("res://Content/Scenes/Levels/FullParts/Level" + G.CurrentLevel + G.LevelAdditionalLink + ".tscn").Instantiate());
+    }
+    public void StartRewind()
+    {
+        _rewindState = true;
+    }
+    public void StopRewind()
+    {
+        _rewindState = false;
     }
 }

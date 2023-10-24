@@ -6,6 +6,7 @@ public partial class Player : CharacterBody2D
     [Export] float _speed = 400, _gravity = 18.6f, _jumpForce = 600;
 
     [Signal] public delegate void CameraLimitsChangedEventHandler();
+    [Signal] public delegate void PlayerDiedEventHandler();
 
     // floats related to wall-jumping
     private float _wallDetectNumber, _inertion, _savedWallNumber, _wallJumpTimer = 0,
@@ -225,6 +226,8 @@ public partial class Player : CharacterBody2D
     public void Death()
     {
         ZIndex++;
+        Connect("PlayerDied", new Callable(GetParent(), "DisablePhysicsProcess"));
+        EmitSignal("PlayerDied");
         Random random = new Random();
         _corpseMotion.X = random.Next(100) > 50 ? -5 * (GlobalPosition.X / G.LevelXYSizes[G.CurrentLevel].X) : 5 * (1 - GlobalPosition.X / G.LevelXYSizes[G.CurrentLevel].X);
         if (G.CurrentLevel == 8 || GlobalPosition > G.LevelXYSizes[G.CurrentLevel] || GlobalPosition < Vector2.Zero)

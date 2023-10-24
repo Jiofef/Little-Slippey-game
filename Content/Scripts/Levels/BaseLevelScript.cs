@@ -83,25 +83,12 @@ public partial class BaseLevelScript : Node2D
             GD.Print("CrossesEnabled: " + G.IsCrossesEnabled);
         }
 
-
-        if (!G._isLevel10Finaling)
-        {
-            if (Input.IsActionPressed("Reset"))
-            {
-                G.ResetTimer += _floatDelta;
-                if (G.ResetTimer > 1.5f)
-                    Reset();
-            }
-            else G.ResetTimer = G.ResetTimer > 0 ? G.ResetTimer - _floatDelta : 0;
-        }
-
-        if (G.IsPlayerDead) return;
-
         if (!G.IsProgressPaused)
         {
             G.Scores += _floatDelta;
             _weightMultiplierExtenderToCurrentCross += (_floatDelta * CrossDefaultWeight[_lastAviableCrossNumber]) / 30;
         }
+
 
         if (G.IsCrossesEnabled)
         {
@@ -221,5 +208,10 @@ public partial class BaseLevelScript : Node2D
     public void SetCrossEnabled(bool value)
     {
         G.IsCrossesEnabled = value;
+    }
+
+    public void DisablePhysicsProcess()
+    {
+        SetPhysicsProcess(false);
     }
 }

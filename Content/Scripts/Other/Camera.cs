@@ -3,13 +3,14 @@ using System;
 
 public partial class Camera : Camera2D
 {
+    [Signal] public delegate void ResetEventHandler();
     AnimatedSprite2D _restartNoise;
     CharacterBody2D _player;
     Label _scores;
     public override void _Ready()
     {
         G.CameraLimits = new Vector4(0, G.LevelXYSizes[G.CurrentLevel].X, G.LevelXYSizes[G.CurrentLevel].Y, 0);
-        LimitsChangingBy(true, 0, 0, 0, 0);
+        LimitsChangingBy(true);
         ResetSmoothing();
 
         _restartNoise = GetNode<AnimatedSprite2D>("GUI/RestartNoise");
@@ -19,7 +20,7 @@ public partial class Camera : Camera2D
         SetZoom(new Vector2(Meta.Instance.CameraZoom, Meta.Instance.CameraZoom));
         _scores.Visible = Meta.Instance.ScoresShowingFormatIndex == 0;
     }
-    private void LimitsChangingBy(bool DoResetSmoothing = false, float plus1 = 0, float plus2 = 0, float plus3 = 0, float plus4 = 0)
+    public void LimitsChangingBy(bool DoResetSmoothing = false, float plus1 = 0, float plus2 = 0, float plus3 = 0, float plus4 = 0)
     {
         float[] Defaultlimits = {G.CameraLimits.X - 30, G.CameraLimits.Y + 30, G.CameraLimits.Z + 100, G.CameraLimits.W - 30};
         LimitTop = (int)(Defaultlimits[0] + plus1);
@@ -32,9 +33,21 @@ public partial class Camera : Camera2D
     }
     public override void _PhysicsProcess(double delta)
     {
+        if (Input.IsActionPressed("Reset"))
+            G.ResetTimer += 0.016667f;
+        else G.ResetTimer = G.ResetTimer > 0 ? G.ResetTimer - 0.016667f : 0;
+
+        if (G.ResetTimer > 1.5f)
+        {
+            Connect("Reset", new Callable(GetNode<Node2D>("../../"), "Reset"));
+            EmitSignal("Reset");
+        }
+
+
         if (_scores.Visible)
             _scores.Text = ((int)G.Scores).ToString();
-        float IntPos1 = 0, IntPos2 = 0;
+
+        Vector2 LimitsExpansion = Vector2.Zero;
         if (G.ResetTimer != 0)
         {
             if (!_restartNoise.IsPlaying())
@@ -46,11 +59,9 @@ public partial class Camera : Camera2D
             restartNoiseSound.VolumeDb = -5 + G.ResetTimer * 10;
 
             Random random = new Random();
-            float RndPos1 = random.Next(-50, 50) * G.ResetTimer, RndPos2 = random.Next(-50, 50) * G.ResetTimer;
-            IntPos1 = RndPos1;
-            IntPos2 = RndPos2;
-            Position = new Vector2(RndPos1, RndPos2);
-            LimitsChangingBy(true, IntPos1, IntPos1, IntPos2, IntPos2);
+            LimitsExpansion = new Vector2(random.Next(-50, 50) * G.ResetTimer, random.Next(-50, 50) * G.ResetTimer);
+            Position = new Vector2(LimitsExpansion.X, LimitsExpansion.Y);
+            LimitsChangingBy(true, LimitsExpansion.Y, LimitsExpansion.X, LimitsExpansion.Y, LimitsExpansion.X);
         }
         else if (_restartNoise.IsPlaying())
         {
@@ -58,16 +69,16 @@ public partial class Camera : Camera2D
             restartnoise.Stop();
             restartnoise.Modulate = new Color(restartnoise.Modulate.R, restartnoise.Modulate.G, restartnoise.Modulate.B, 0);
             GetNode<AudioStreamPlayer>("GUI/RestartNoise/Sound").Stop();
-            LimitsChangingBy(false, 0, 0, 0, 0);
-            IntPos1 = 0; IntPos2 = 0;
+            LimitsChangingBy();
+            LimitsExpansion = Vector2.Zero;
         }
 
         if (G.IsPlayerDead)
         {
             float zoom = G.PlayerCorpseFlightTimer < 4 ? Meta.Instance.CameraZoom + G.PlayerCorpseFlightTimer * ((4.5f - Meta.Instance.CameraZoom) / 4) : 4.5f;
             Zoom = new Vector2(zoom, zoom);
-            float TimerX50 = G.PlayerCorpseFlightTimer * 50;
-            LimitsChangingBy(false, -TimerX50 - IntPos2, TimerX50 + IntPos1, TimerX50 + IntPos2, -TimerX50 - IntPos1);
+            float PlayerCorpseFlightTimerX50 = G.PlayerCorpseFlightTimer * 50;
+            LimitsChangingBy(false, -PlayerCorpseFlightTimerX50 - LimitsExpansion.Y, PlayerCorpseFlightTimerX50 + LimitsExpansion.X, PlayerCorpseFlightTimerX50 + LimitsExpansion.Y, -PlayerCorpseFlightTimerX50 - LimitsExpansion.X);
 
             if (G.PlayerCorpseFlightTimer >= 4.5f && !G._isLevel10Finaling)
             {

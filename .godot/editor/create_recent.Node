@@ -1,15 +1,18 @@
+Control
+Sprite2D
+ColorRect
+TextureButton
+AnimationPlayer
+CollisionShape2D
+Area2D
+RayCast2D
 Camera2D
 AudioStreamPlayer
-AnimationPlayer
 Label
-Control
-ColorRect
 SubViewport
 SubViewportContainer
 CanvasLayer
 Node2D
-TextureButton
-Sprite2D
 Button
 Timer
 CheckButton
@@ -17,8 +20,6 @@ OptionButton
 VisibleOnScreenEnabler2D
 CheckBox
 AnimationTree
-Area2D
-CollisionShape2D
 AudioStreamPlayer2D
 ColorPickerButton
 AnimatableBody2D
@@ -29,4 +30,3 @@ ParallaxBackground
 AnimatedSprite2D
 CPUParticles2D
 CollisionPolygon2D
-ShaderGlobalsOverride

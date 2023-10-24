@@ -5,10 +5,11 @@ public partial class Level6FlyingCar : AnimatableBody2D
 {
 	[Export] bool _isPreSpawned = false;
 
-	private int _speed, _moveXVector;
+	private int _moveXVector, _carsAhead = 0;
     private bool _doExploded = false;
-    private float _carHalfsYMotion;
+    private float _carHalfsYMotion, _thisAndFrontCarHeightDifference = 0;
     private bool _iDKHowNameThisVar; // if false, car will appear and dissapear in the foreground. If true, car will do it in the background.
+    private Vector2 _velocity;
 
 	CollisionShape2D _collision, _areaCollision;
     Sprite2D _backHalf, _frontHalf;
@@ -17,7 +18,7 @@ public partial class Level6FlyingCar : AnimatableBody2D
     public override void _Ready()
     {
         _moveXVector = (int)Scale.X;
-        _speed = (3 + Meta.Instance.Dificulty) * _moveXVector;
+        _velocity.X = 4 * _moveXVector;
 
         Random random = new Random();
         _iDKHowNameThisVar = Convert.ToBoolean(random.Next(2));
@@ -50,7 +51,12 @@ public partial class Level6FlyingCar : AnimatableBody2D
             return;
         }
 
-		Translate(new Vector2(_speed, 0));
+        if (_carsAhead > 0)
+            _velocity.Y += MathF.Sign(_thisAndFrontCarHeightDifference) * 0.02f * (5 - Mathf.Abs(_velocity.Y));
+        else
+            _velocity.Y /= 1.1f;
+
+		Translate(_velocity);
 
         float DisAppearingCoeff = Position.X < 1280 ? (Position.X - 395) / 200 : (2100 - Position.X) / 200;
         if (DisAppearingCoeff <= 1)
@@ -96,4 +102,15 @@ public partial class Level6FlyingCar : AnimatableBody2D
 
         _carHalfsYMotion = -4;
 	}
+
+    public void TheCarAhead(Area2D area)
+    {
+        _carsAhead++;
+        _thisAndFrontCarHeightDifference = GlobalPosition.Y - area.GlobalPosition.Y;
+    }
+    
+    public void TheCarNoLongerAhead()
+    {
+        _carsAhead--;
+    }
 }

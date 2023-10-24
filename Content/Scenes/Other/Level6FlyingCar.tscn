@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://c8bud6raefbd"]
+[gd_scene load_steps=9 format=3 uid="uid://c8bud6raefbd"]
 
 [ext_resource type="Script" path="res://Content/Scripts/Levels/Level6FlyingCar.cs" id="1_0duqf"]
 [ext_resource type="Texture2D" uid="uid://cim0cdx4secre" path="res://Content/Sprites/Levels/Level6/GieroFlyingCar.png" id="2_jjd8w"]
@@ -13,6 +13,9 @@ size = Vector2(126, 62)
 
 [sub_resource type="Gradient" id="Gradient_qa2ky"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ke64n"]
+size = Vector2(256, 96)
 
 [node name="Level6FlyingCar" type="AnimatableBody2D"]
 collision_layer = 128
@@ -74,5 +77,15 @@ color_ramp = SubResource("Gradient_qa2ky")
 stream = ExtResource("4_y8kyn")
 bus = &"LevelSounds"
 
+[node name="CarDetector" type="Area2D" parent="."]
+position = Vector2(196, 0)
+collision_layer = 0
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CarDetector"]
+shape = SubResource("RectangleShape2D_ke64n")
+
 [connection signal="area_entered" from="CarArea" to="." method="AreaEntered" unbinds=1]
 [connection signal="animation_finished" from="ExplosionAnimation" to="." method="queue_free"]
+[connection signal="area_entered" from="CarDetector" to="." method="TheCarAhead"]
+[connection signal="area_exited" from="CarDetector" to="." method="TheCarNoLongerAhead" unbinds=1]
