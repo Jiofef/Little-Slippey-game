@@ -190,6 +190,7 @@ offset_bottom = 60.0
 texture_normal = ExtResource("5_db6pn")
 
 [node name="Options" parent="Pause/Interface/ButtonsFrame" instance=ExtResource("6")]
+layout_mode = 0
 offset_left = 666.0
 offset_top = 20.0
 offset_right = 706.0
@@ -197,6 +198,7 @@ offset_bottom = 60.0
 texture_normal = ExtResource("6_cd33f")
 
 [node name="Menu" parent="Pause/Interface/ButtonsFrame" instance=ExtResource("6")]
+layout_mode = 0
 offset_left = 878.0
 offset_top = 20.0
 offset_right = 918.0

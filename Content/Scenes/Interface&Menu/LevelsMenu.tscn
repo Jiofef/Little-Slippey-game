@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/LevelsMenu.cs" id="1_d5t7a"]
 [ext_resource type="PackedScene" uid="uid://bwpstpk1xmkah" path="res://Content/Scenes/Interface&Menu/Button.tscn" id="2_6jw0o"]
 [ext_resource type="Texture2D" uid="uid://bvogrd2bqhwmt" path="res://Content/Sprites/Other/OblivionNoise.png" id="2_d2goi"]
-[ext_resource type="Texture2D" uid="uid://bv6ampi04qu7h" path="res://Content/Sprites/Interface/LevelsMenuPresenterBox.png" id="2_d7fu7"]
+[ext_resource type="Texture2D" uid="uid://bv6ampi04qu7h" path="res://Content/Sprites/Interface/LevelsMenuBox.png" id="2_d7fu7"]
 [ext_resource type="AudioStream" uid="uid://dy6lncevmnf3o" path="res://Content/Sounds/Other/WhiteNoise.mp3" id="3_4foo2"]
 [ext_resource type="Texture2D" uid="uid://b2ay51k3qped" path="res://Content/Sprites/Interface/MicroLockSprite.png" id="8_veuoi"]
 [ext_resource type="Texture2D" uid="uid://1ua2wp4j8ce" path="res://Content/Sprites/Interface/LevelListScrollButtonLeft.png" id="10_nsyd5"]

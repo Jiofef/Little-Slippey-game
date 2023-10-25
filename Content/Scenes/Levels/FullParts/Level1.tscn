@@ -33,7 +33,6 @@ physics_layer_0/physics_material = SubResource("PhysicsMaterial_ylmhp")
 sources/0 = SubResource("TileSetAtlasSource_mxbjq")
 
 [node name="Level1" type="Node2D"]
-position = Vector2(0, -1)
 script = ExtResource("2")
 
 [node name="Background" type="ParallaxBackground" parent="."]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bhdk3hc3a3lwy"]
+[gd_scene load_steps=30 format=3 uid="uid://bhdk3hc3a3lwy"]
 
 [ext_resource type="Texture2D" uid="uid://duk32e0otnfky" path="res://Content/Sprites/Levels/FuckItVolume2Tileset.png" id="1_4iiti"]
 [ext_resource type="PackedScene" uid="uid://dgxxv3neagyw" path="res://Content/Scenes/Other/Level8DisposableButton.tscn" id="2_og6f4"]
@@ -96,15 +96,12 @@ texture = ExtResource("1_4iiti")
 1:3/0 = 0
 1:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 1:3/0/physics_layer_0/angular_velocity = 0.0
-1:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, -1, -8, -1)
 2:3/0 = 0
 2:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 2:3/0/physics_layer_0/angular_velocity = 0.0
-2:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, -1, 4, -1, 4, 8, -4, 8, -4, -1, -8, -1)
 3:3/0 = 0
 3:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 3:3/0/physics_layer_0/angular_velocity = 0.0
-3:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -8, 4, -8, 4, 8, -4, 8)
 0:4/0 = 0
 0:4/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:4/0/physics_layer_0/angular_velocity = 0.0
@@ -211,6 +208,7 @@ texture = ExtResource("1_4iiti")
 0:5/5/transpose = true
 0:5/5/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:5/5/physics_layer_0/angular_velocity = 0.0
+0:5/5/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 0:6/0 = 0
 0:6/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:6/0/physics_layer_0/angular_velocity = 0.0
@@ -370,6 +368,316 @@ sources/0 = SubResource("TileSetAtlasSource_y0abm")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f14ry"]
 size = Vector2(804.572, 1772.24)
 
+[sub_resource type="Animation" id="Animation_fkyqf"]
+resource_name = "Opening"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(2, 1),
+"update": 0,
+"values": [Vector2(8, 4), Vector2(40, 4)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_21yo4"]
+_data = {
+"Opening": SubResource("Animation_fkyqf")
+}
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_arrqn"]
+load_path = "res://.godot/imported/FuckItVolume2Tileset.png-e75c2328ece74a32f2b63fa14968c737.ctex"
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gwv78"]
+texture = SubResource("CompressedTexture2D_arrqn")
+0:0/next_alternative_id = 2
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/1 = 1
+0:0/1/transpose = true
+0:0/1/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/1/physics_layer_0/angular_velocity = 0.0
+1:0/next_alternative_id = 4
+1:0/0 = 0
+1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:0/0/physics_layer_0/angular_velocity = 0.0
+1:0/1 = 1
+1:0/1/transpose = true
+1:0/1/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:0/1/physics_layer_0/angular_velocity = 0.0
+1:0/2 = 2
+1:0/2/flip_h = true
+1:0/2/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:0/2/physics_layer_0/angular_velocity = 0.0
+1:0/3 = 3
+1:0/3/flip_v = true
+1:0/3/transpose = true
+1:0/3/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:0/3/physics_layer_0/angular_velocity = 0.0
+2:0/next_alternative_id = 4
+2:0/0 = 0
+2:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:0/0/physics_layer_0/angular_velocity = 0.0
+2:0/1 = 1
+2:0/1/flip_h = true
+2:0/1/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:0/1/physics_layer_0/angular_velocity = 0.0
+2:0/2 = 2
+2:0/2/flip_h = true
+2:0/2/flip_v = true
+2:0/2/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:0/2/physics_layer_0/angular_velocity = 0.0
+2:0/3 = 3
+2:0/3/flip_v = true
+2:0/3/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:0/3/physics_layer_0/angular_velocity = 0.0
+3:0/next_alternative_id = 4
+3:0/0 = 0
+3:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+3:0/0/physics_layer_0/angular_velocity = 0.0
+3:0/1 = 1
+3:0/1/transpose = true
+3:0/1/physics_layer_0/linear_velocity = Vector2(0, 0)
+3:0/1/physics_layer_0/angular_velocity = 0.0
+3:0/2 = 2
+3:0/2/flip_v = true
+3:0/2/physics_layer_0/linear_velocity = Vector2(0, 0)
+3:0/2/physics_layer_0/angular_velocity = 0.0
+3:0/3 = 3
+3:0/3/flip_h = true
+3:0/3/transpose = true
+3:0/3/physics_layer_0/linear_velocity = Vector2(0, 0)
+3:0/3/physics_layer_0/angular_velocity = 0.0
+0:1/0 = 0
+0:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:1/0/physics_layer_0/angular_velocity = 0.0
+1:1/0 = 0
+1:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:1/0/physics_layer_0/angular_velocity = 0.0
+2:1/0 = 0
+2:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:1/0/physics_layer_0/angular_velocity = 0.0
+1:3/0 = 0
+1:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:3/0/physics_layer_0/angular_velocity = 0.0
+2:3/0 = 0
+2:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:3/0/physics_layer_0/angular_velocity = 0.0
+3:3/0 = 0
+3:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+3:3/0/physics_layer_0/angular_velocity = 0.0
+0:4/0 = 0
+0:4/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:4/0/physics_layer_0/angular_velocity = 0.0
+0:2/0 = 0
+0:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:2/0/physics_layer_0/angular_velocity = 0.0
+3:1/0 = 0
+3:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+3:1/0/physics_layer_0/angular_velocity = 0.0
+1:2/0 = 0
+1:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:2/0/physics_layer_0/angular_velocity = 0.0
+2:2/0 = 0
+2:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:2/0/physics_layer_0/angular_velocity = 0.0
+3:2/0 = 0
+3:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+3:2/0/physics_layer_0/angular_velocity = 0.0
+0:3/0 = 0
+0:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:3/0/physics_layer_0/angular_velocity = 0.0
+1:4/0 = 0
+1:4/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:4/0/physics_layer_0/angular_velocity = 0.0
+2:4/0 = 0
+2:4/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:4/0/physics_layer_0/angular_velocity = 0.0
+3:4/next_alternative_id = 2
+3:4/0 = 0
+3:4/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+3:4/0/physics_layer_0/angular_velocity = 0.0
+3:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:4/1 = 1
+3:4/1/transpose = true
+3:4/1/physics_layer_0/linear_velocity = Vector2(0, 0)
+3:4/1/physics_layer_0/angular_velocity = 0.0
+3:4/1/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:5/next_alternative_id = 4
+3:5/0 = 0
+3:5/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+3:5/0/physics_layer_0/angular_velocity = 0.0
+3:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:5/1 = 1
+3:5/1/transpose = true
+3:5/1/physics_layer_0/linear_velocity = Vector2(0, 0)
+3:5/1/physics_layer_0/angular_velocity = 0.0
+3:5/1/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:5/2 = 2
+3:5/2/flip_v = true
+3:5/2/physics_layer_0/linear_velocity = Vector2(0, 0)
+3:5/2/physics_layer_0/angular_velocity = 0.0
+3:5/2/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:5/3 = 3
+3:5/3/flip_h = true
+3:5/3/transpose = true
+3:5/3/physics_layer_0/linear_velocity = Vector2(0, 0)
+3:5/3/physics_layer_0/angular_velocity = 0.0
+3:5/3/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:5/next_alternative_id = 3
+2:5/0 = 0
+2:5/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:5/0/physics_layer_0/angular_velocity = 0.0
+2:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:5/next_alternative_id = 4
+1:5/0 = 0
+1:5/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:5/0/physics_layer_0/angular_velocity = 0.0
+1:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:5/1 = 1
+1:5/1/flip_h = true
+1:5/1/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:5/1/physics_layer_0/angular_velocity = 0.0
+1:5/1/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:5/2 = 2
+1:5/2/flip_h = true
+1:5/2/flip_v = true
+1:5/2/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:5/2/physics_layer_0/angular_velocity = 0.0
+1:5/2/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:5/3 = 3
+1:5/3/flip_v = true
+1:5/3/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:5/3/physics_layer_0/angular_velocity = 0.0
+1:5/3/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:5/next_alternative_id = 6
+0:5/0 = 0
+0:5/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:5/0/physics_layer_0/angular_velocity = 0.0
+0:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:5/2 = 2
+0:5/2/flip_h = true
+0:5/2/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:5/2/physics_layer_0/angular_velocity = 0.0
+0:5/2/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:5/4 = 4
+0:5/4/transpose = true
+0:5/4/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:5/4/physics_layer_0/angular_velocity = 0.0
+0:5/4/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:5/5 = 5
+0:5/5/flip_v = true
+0:5/5/transpose = true
+0:5/5/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:5/5/physics_layer_0/angular_velocity = 0.0
+0:5/5/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:6/0 = 0
+0:6/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:6/0/physics_layer_0/angular_velocity = 0.0
+1:6/0 = 0
+1:6/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:6/0/physics_layer_0/angular_velocity = 0.0
+2:6/0 = 0
+2:6/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:6/0/physics_layer_0/angular_velocity = 0.0
+3:6/0 = 0
+3:6/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+3:6/0/physics_layer_0/angular_velocity = 0.0
+
+[sub_resource type="TileSet" id="TileSet_kg6r8"]
+physics_layer_0/collision_layer = 4
+physics_layer_0/collision_mask = 0
+sources/1 = SubResource("TileSetAtlasSource_gwv78")
+
+[sub_resource type="Animation" id="Animation_u1qcf"]
+resource_name = "Opening"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(2, 1),
+"update": 0,
+"values": [Vector2(128, -60), Vector2(128, -12)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lksg7"]
+_data = {
+"Opening": SubResource("Animation_u1qcf")
+}
+
+[sub_resource type="Animation" id="Animation_o3hvb"]
+resource_name = "Opening"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(2, 1),
+"update": 0,
+"values": [Vector2(104, -60), Vector2(56, -60)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hhu4q"]
+_data = {
+"Opening": SubResource("Animation_o3hvb")
+}
+
+[sub_resource type="Animation" id="Animation_vqvkn"]
+resource_name = "Opening"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(2, 1),
+"update": 0,
+"values": [Vector2(112, -60), Vector2(112, -28)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3j25n"]
+_data = {
+"Opening": SubResource("Animation_vqvkn")
+}
+
+[sub_resource type="Animation" id="Animation_nl1be"]
+resource_name = "Opening"
+length = 2.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.5),
+"transitions": PackedFloat32Array(-2, 1),
+"update": 0,
+"values": [Vector2(120, -60), Vector2(120, -108)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_d36to"]
+_data = {
+"Opening": SubResource("Animation_nl1be")
+}
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h77bd"]
 size = Vector2(224, 58)
 
@@ -407,19 +715,15 @@ layer_0/tile_data = PackedInt32Array(655360, 131073, 1, 720896, 65537, 1, 655361
 
 [node name="DecorationMap" type="TileMap" parent="."]
 modulate = Color(0.501961, 0.501961, 0.501961, 1)
-z_index = -2
+z_index = -4
 tile_set = SubResource("TileSet_8tpds")
 format = 2
-layer_0/tile_data = PackedInt32Array(29, 0, 6, 31, 0, 6, 25, 0, 6, 65561, 0, 6, 131097, 0, 6, 131100, 0, 6, 196636, 0, 6, 26, 0, 6, 65562, 0, 6, 131098, 0, 6, 196634, 0, 6, 262170, 0, 6, 327706, 0, 6, 393242, 0, 6, 458778, 0, 6, 23, 0, 6, 65559, 0, 6, 131095, 0, 6, 196631, 0, 6, 262167, 0, 6, 327703, 0, 6, 393239, 0, 6, 458775, 0, 6, 131082, 0, 6, 196618, 0, 6, 262154, 0, 6, 131083, 0, 6, 196619, 0, 6, 262155, 0, 6, 131084, 0, 6, 196620, 0, 6, 262156, 0, 6, 131085, 0, 6, 196621, 0, 6, 262157, 0, 6, 131086, 65536, 6, 196622, 0, 6, 262158, 0, 6, 131087, 0, 6, 196623, 0, 6, 262159, 0, 6, 131090, 131072, 6, 196626, 0, 6, 262162, 0, 6, 21, 0, 6, 65557, 0, 6, 131093, 0, 6, 22, 0, 6, 65558, 0, 6, 131094, 0, 6, 196629, 0, 6, 262165, 0, 6, 327701, 0, 6, 393237, 0, 6, 458773, 0, 6, 196630, 0, 6, 262166, 0, 6, 327702, 0, 6, 393238, 0, 6, 458774, 0, 6, 196632, 0, 6, 262168, 0, 6, 327704, 0, 6, 393240, 0, 6, 458776, 0, 6, 524309, 0, 6, 524310, 0, 6, 524312, 0, 6, 262169, 0, 6, 327705, 0, 6, 393241, 0, 6, 458777, 0, 6, 524313, 0, 6, 131088, 196608, 65540, 196624, 196608, 65540, 262160, 196608, 65540, 131081, 65536, 2, 196617, 196608, 65540, 262153, 196608, 65540, 524293, 0, 6, 589829, 0, 6, 524294, 0, 6, 589830, 0, 6, 589831, 0, 6, 589832, 0, 6, 458757, 196608, 6, 458758, 0, 6, 458759, 0, 6, 458760, 0, 6, 393221, 0, 6, 393222, 0, 6, 393223, 0, 6, 393224, 0, 6, 7, 0, 6, 65543, 0, 6, 131079, 0, 6, 196615, 0, 6, 262151, 0, 6, 327687, 0, 6, 8, 0, 6, 65544, 0, 6, 131080, 196608, 6, 196616, 0, 6, 262152, 0, 6, 327688, 0, 6, 5, 0, 6, 65541, 0, 6, 131077, 65536, 6, 196613, 0, 6, 262149, 0, 6, 6, 0, 6, 65542, 0, 6, 131078, 0, 6, 196614, 0, 6, 262150, 0, 6, 327692, 196608, 131077, 393228, 131072, 5, 458764, 131072, 5, 327693, 196608, 131077, 393229, 131072, 5, 458765, 131072, 5, 327694, 196608, 131077, 393230, 131072, 5, 458766, 131072, 5, 327695, 196608, 131077, 393231, 131072, 5, 458767, 131072, 5, 24, 0, 6, 65560, 0, 6, 131096, 0, 6, 27, 0, 6, 65563, 0, 6, 131099, 0, 6, 196635, 65536, 6, 262171, 0, 6, 327707, 0, 6, 393243, 0, 6, 458779, 0, 6, 524315, 0, 6, 589851, 0, 6, 524316, 0, 6, 589852, 0, 6, 524317, 0, 6, 589853, 0, 6, 524318, 0, 6, 589854, 0, 6, 524319, 0, 6, 589855, 0, 6, 524320, 0, 6, 589856, 0, 6, 524321, 0, 6, 589857, 0, 6, 524322, 0, 6, 589858, 0, 6, 589845, 0, 6, 589846, 0, 6, 589847, 0, 6, 589848, 0, 6, 589849, 0, 6, 589850, 0, 6, 393244, 0, 6, 458780, 0, 6, 393245, 0, 6, 458781, 0, 6, 393246, 0, 6, 458782, 0, 6, 393247, 0, 6, 458783, 0, 6, 393248, 0, 6, 458784, 65536, 6, 393249, 0, 6, 458785, 0, 6, 393250, 0, 6, 458786, 0, 6, 131101, 0, 6, 196637, 0, 6, 262173, 0, 6, 327709, 0, 6, 131102, 0, 6, 196638, 0, 6, 262174, 0, 6, 327710, 0, 6, 131103, 0, 6, 196639, 0, 6, 262175, 0, 6, 327711, 0, 6, 131104, 0, 6, 196640, 0, 6, 262176, 0, 6, 327712, 0, 6, 131105, 0, 6, 196641, 0, 6, 262177, 0, 6, 327713, 0, 6, 131106, 0, 6, 196642, 0, 6, 262178, 0, 6, 327714, 0, 6, 28, 0, 6, 30, 0, 6, 32, 0, 6, 33, 0, 6, 65569, 65536, 6, 65570, 0, 6, 34, 196608, 6, 131089, 0, 6, 196625, 0, 6, 262161, 0, 6, 524292, 196608, 65540, 589828, 196608, 65540, 393232, 131072, 5, 458768, 131072, 5, 393233, 131072, 5, 458769, 131072, 5, 393234, 131072, 5, 458770, 131072, 5, 393235, 131072, 5, 458771, 131072, 5, 393236, 196608, 65541, 458772, 196608, 65541, 35, 196608, 65540, 65571, 196608, 65540, 131107, 196608, 65540)
-
-[node name="ColorRect" type="ColorRect" parent="DecorationMap"]
-offset_left = 336.0
-offset_right = 560.0
-offset_bottom = 134.0
-color = Color(0, 1, 0, 0.196078)
+layer_0/tile_data = PackedInt32Array(29, 0, 6, 31, 0, 6, 25, 0, 6, 65561, 0, 6, 131097, 0, 6, 131100, 0, 6, 196636, 0, 6, 26, 0, 6, 65562, 0, 6, 131098, 0, 6, 196634, 0, 6, 262170, 0, 6, 327706, 0, 6, 393242, 0, 6, 458778, 0, 6, 23, 0, 6, 65559, 0, 6, 131095, 0, 6, 196631, 0, 6, 262167, 0, 6, 327703, 0, 6, 393239, 0, 6, 458775, 0, 6, 131082, 0, 6, 196618, 0, 6, 262154, 0, 6, 131083, 0, 6, 196619, 0, 6, 262155, 0, 6, 131084, 0, 6, 196620, 0, 6, 262156, 0, 6, 131085, 0, 6, 196621, 0, 6, 262157, 0, 6, 131086, 65536, 6, 196622, 0, 6, 262158, 0, 6, 131087, 0, 6, 196623, 0, 6, 262159, 0, 6, 131090, 131072, 6, 196626, 0, 6, 262162, 0, 6, 21, 0, 6, 65557, 0, 6, 131093, 0, 6, 22, 0, 6, 65558, 0, 6, 131094, 0, 6, 196629, 0, 6, 262165, 0, 6, 327701, 0, 6, 393237, 0, 6, 458773, 0, 6, 196630, 0, 6, 262166, 0, 6, 327702, 0, 6, 393238, 0, 6, 458774, 0, 6, 196632, 0, 6, 262168, 0, 6, 327704, 0, 6, 393240, 0, 6, 458776, 0, 6, 524309, 0, 6, 524310, 0, 6, 524312, 0, 6, 262169, 0, 6, 327705, 0, 6, 393241, 0, 6, 458777, 0, 6, 524313, 0, 6, 131088, 0, 6, 196624, 0, 6, 262160, 0, 6, 131081, 65536, 2, 196617, 0, 6, 262153, 0, 6, 524293, 0, 6, 589829, 0, 6, 524294, 0, 6, 589830, 0, 6, 589831, 0, 6, 589832, 0, 6, 458757, 196608, 6, 458758, 0, 6, 458759, 0, 6, 458760, 0, 6, 393221, 0, 6, 393222, 0, 6, 393223, 0, 6, 393224, 0, 6, 7, 0, 6, 65543, 0, 6, 131079, 0, 6, 196615, 0, 6, 262151, 0, 6, 327687, 0, 6, 8, 0, 6, 65544, 0, 6, 131080, 196608, 6, 196616, 0, 6, 262152, 0, 6, 327688, 0, 6, 5, 0, 6, 65541, 0, 6, 131077, 65536, 6, 196613, 0, 6, 262149, 0, 6, 6, 0, 6, 65542, 0, 6, 131078, 0, 6, 196614, 0, 6, 262150, 0, 6, 327692, 196608, 131077, 393228, 131072, 5, 458764, 131072, 5, 327693, 196608, 131077, 393229, 131072, 5, 458765, 131072, 5, 327694, 196608, 131077, 393230, 131072, 5, 458766, 131072, 5, 327695, 196608, 131077, 393231, 131072, 5, 458767, 131072, 5, 24, 0, 6, 65560, 0, 6, 131096, 0, 6, 27, 0, 6, 65563, 0, 6, 131099, 0, 6, 196635, 65536, 6, 262171, 0, 6, 327707, 0, 6, 393243, 0, 6, 458779, 0, 6, 524315, 0, 6, 589851, 0, 6, 524316, 0, 6, 589852, 0, 6, 524317, 0, 6, 589853, 0, 6, 524318, 0, 6, 589854, 0, 6, 524319, 0, 6, 589855, 0, 6, 524320, 0, 6, 589856, 0, 6, 524321, 0, 6, 589857, 0, 6, 524322, 0, 6, 589858, 0, 6, 589845, 0, 6, 589846, 0, 6, 589847, 0, 6, 589848, 0, 6, 589849, 0, 6, 589850, 0, 6, 393244, 0, 6, 458780, 0, 6, 393245, 0, 6, 458781, 0, 6, 393246, 0, 6, 458782, 0, 6, 393247, 0, 6, 458783, 0, 6, 393248, 0, 6, 458784, 65536, 6, 393249, 0, 6, 458785, 0, 6, 393250, 0, 6, 458786, 0, 6, 131101, 0, 6, 196637, 0, 6, 262173, 0, 6, 327709, 0, 6, 131102, 0, 6, 196638, 0, 6, 262174, 0, 6, 327710, 0, 6, 131103, 0, 6, 196639, 0, 6, 262175, 0, 6, 327711, 0, 6, 131104, 0, 6, 196640, 0, 6, 262176, 0, 6, 327712, 0, 6, 131105, 0, 6, 196641, 0, 6, 262177, 0, 6, 327713, 0, 6, 131106, 0, 6, 196642, 0, 6, 262178, 0, 6, 327714, 0, 6, 28, 0, 6, 30, 0, 6, 32, 0, 6, 33, 0, 6, 65569, 65536, 6, 65570, 0, 6, 34, 196608, 6, 131089, 0, 6, 196625, 0, 6, 262161, 0, 6, 524292, 0, 6, 589828, 0, 6, 393232, 131072, 5, 458768, 131072, 5, 393233, 131072, 5, 458769, 131072, 5, 393234, 131072, 5, 458770, 131072, 5, 393235, 131072, 5, 458771, 131072, 5, 393236, 196608, 65541, 458772, 196608, 65541, 35, 0, 6, 65571, 0, 6, 131107, 0, 6)
 
 [node name="DecorationMap2" type="TileMap" parent="."]
-modulate = Color(0.501961, 0.501961, 0.501961, 1)
+modulate = Color(0.501961, 0.501961, 0.501961, 0.501961)
+z_index = -3
+z_as_relative = false
 tile_set = SubResource("TileSet_sdcfh")
 format = 2
 layer_0/tile_data = PackedInt32Array(29, 196608, 3, 31, 196608, 3, 25, 196608, 3, 65561, 196608, 3, 131097, 196608, 3, 131100, 196608, 3, 196636, 196608, 3, 26, 196608, 3, 65562, 196608, 3, 131098, 196608, 3, 196634, 196608, 3, 262170, 196608, 3, 327706, 196608, 3, 393242, 196608, 3, 458778, 196608, 3, 23, 196608, 3, 65559, 196608, 3, 131095, 196608, 3, 196631, 196608, 3, 262167, 196608, 3, 327703, 196608, 3, 393239, 196608, 3, 458775, 196608, 3)
@@ -455,61 +759,92 @@ z_index = -1
 position = Vector2(296, 4)
 rotation = 3.14159
 
-[node name="DisposableButton" parent="." instance=ExtResource("2_og6f4")]
+[node name="OpenableTileMaps" type="Node2D" parent="."]
+
+[node name="DisposableButton" parent="OpenableTileMaps" instance=ExtResource("2_og6f4")]
 position = Vector2(60, 120)
 rotation = -1.5708
 
-[node name="TileMap" type="TileMap" parent="DisposableButton"]
-position = Vector2(120, -60)
+[node name="TileMap" type="TileMap" parent="OpenableTileMaps/DisposableButton"]
+z_index = -1
+position = Vector2(8, 4)
 rotation = 1.5708
 tile_set = SubResource("TileSet_gtmsj")
 format = 2
-layer_0/tile_data = PackedInt32Array(524292, 196609, 65540, 589828, 196609, 65540)
+layer_0/tile_data = PackedInt32Array(65536, 196609, 65540, 131072, 196609, 65540)
 
-[node name="DisposableButton2" parent="." instance=ExtResource("2_og6f4")]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="OpenableTileMaps/DisposableButton/TileMap"]
+libraries = {
+"": SubResource("AnimationLibrary_21yo4")
+}
+
+[node name="DisposableButton2" parent="OpenableTileMaps" instance=ExtResource("2_og6f4")]
 position = Vector2(112, 4)
 rotation = 3.14159
 
-[node name="TileMap" type="TileMap" parent="DisposableButton2"]
+[node name="TileMap" type="TileMap" parent="OpenableTileMaps/DisposableButton2"]
+z_index = -1
 position = Vector2(128, -60)
 rotation = 1.5708
-tile_set = SubResource("TileSet_gtmsj")
+tile_set = SubResource("TileSet_kg6r8")
 format = 2
 layer_0/tile_data = PackedInt32Array(1179647, 196609, 4, 1114112, 196609, 4, 1114113, 196609, 4, 720895, 196609, 4, 655360, 196609, 4, 655361, 196609, 4)
 
-[node name="DisposableButton3" parent="." instance=ExtResource("2_og6f4")]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="OpenableTileMaps/DisposableButton2/TileMap"]
+libraries = {
+"": SubResource("AnimationLibrary_lksg7")
+}
+
+[node name="DisposableButton3" parent="OpenableTileMaps" instance=ExtResource("2_og6f4")]
 position = Vector2(300, 56)
 rotation = -1.5708
 
-[node name="TileMap" type="TileMap" parent="DisposableButton3"]
+[node name="TileMap" type="TileMap" parent="OpenableTileMaps/DisposableButton3"]
+z_index = -1
 position = Vector2(104, -60)
 rotation = 1.5708
 tile_set = SubResource("TileSet_gtmsj")
 format = 2
 layer_0/tile_data = PackedInt32Array(589821, 196609, 131077, 655357, 131073, 5, 720893, 131073, 5, 589822, 196609, 131077, 655358, 131073, 5, 720894, 131073, 5, 589823, 196609, 131077, 655359, 131073, 5, 720895, 131073, 5, 524288, 196609, 131077, 589824, 131073, 5, 655360, 131073, 5)
 
-[node name="DisposableButton4" parent="." instance=ExtResource("2_og6f4")]
-z_index = -1
+[node name="AnimationPlayer" type="AnimationPlayer" parent="OpenableTileMaps/DisposableButton3/TileMap"]
+libraries = {
+"": SubResource("AnimationLibrary_hhu4q")
+}
+
+[node name="DisposableButton4" parent="OpenableTileMaps" instance=ExtResource("2_og6f4")]
+z_index = -2
 position = Vector2(208, 124)
 
-[node name="TileMap" type="TileMap" parent="DisposableButton4"]
-z_index = 1
+[node name="TileMap" type="TileMap" parent="OpenableTileMaps/DisposableButton4"]
+z_index = -1
 position = Vector2(112, -60)
 rotation = 1.5708
 tile_set = SubResource("TileSet_gtmsj")
 format = 2
 layer_0/tile_data = PackedInt32Array(-65534, 196609, 131077, 2, 131073, 5, 65538, 131073, 5, 131074, 131073, 5, 196610, 131073, 5, -65533, 196609, 131077, 3, 131073, 5, 65539, 131073, 5, 131075, 131073, 5, 196611, 131073, 5)
 
-[node name="DisposableButton5" parent="." instance=ExtResource("2_og6f4")]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="OpenableTileMaps/DisposableButton4/TileMap"]
+libraries = {
+"": SubResource("AnimationLibrary_3j25n")
+}
+
+[node name="DisposableButton5" parent="OpenableTileMaps" instance=ExtResource("2_og6f4")]
 position = Vector2(376, 4)
 rotation = 3.14159
 
-[node name="TileMap" type="TileMap" parent="DisposableButton5"]
+[node name="TileMap" type="TileMap" parent="OpenableTileMaps/DisposableButton5"]
+z_index = -1
 position = Vector2(120, -60)
 rotation = 1.5708
 tile_set = SubResource("TileSet_gtmsj")
 format = 2
 layer_0/tile_data = PackedInt32Array(1245186, 196609, 4, 1245187, 196609, 4, 1245185, 196609, 4)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="OpenableTileMaps/DisposableButton5/TileMap"]
+libraries = {
+"": SubResource("AnimationLibrary_d36to")
+}
 
 [node name="Acid" type="Node2D" parent="."]
 
@@ -527,37 +862,35 @@ tile_set = SubResource("TileSet_fqcl4")
 format = 2
 layer_0/tile_data = PackedInt32Array(524309, 131072, 0, 524310, 131072, 0, 524311, 131072, 0, 524312, 131072, 0, 524313, 131072, 0, 524314, 131072, 0, 524315, 131072, 0, 524316, 131072, 0, 524317, 131072, 0, 524318, 131072, 0, 524319, 131072, 0, 524320, 131072, 0, 524321, 131072, 0, 524322, 131072, 0, 589845, 131072, 1, 655381, 131072, 1, 720917, 131072, 1, 589846, 131072, 1, 655382, 131072, 1, 720918, 131072, 1, 589847, 131072, 1, 655383, 131072, 1, 720919, 131072, 1, 589848, 131072, 1, 655384, 131072, 1, 720920, 131072, 1, 589849, 131072, 1, 655385, 131072, 1, 720921, 131072, 1, 589850, 131072, 1, 655386, 131072, 1, 720922, 131072, 1, 589851, 131072, 1, 655387, 131072, 1, 720923, 131072, 1, 589852, 131072, 1, 655388, 131072, 1, 720924, 131072, 1, 589853, 131072, 1, 655389, 131072, 1, 720925, 131072, 1, 589854, 131072, 1, 655390, 131072, 1, 720926, 131072, 1, 589855, 131072, 1, 655391, 131072, 1, 720927, 131072, 1, 589856, 131072, 1, 655392, 131072, 1, 720928, 131072, 1, 589857, 131072, 1, 655393, 131072, 1, 720929, 131072, 1, 589858, 131072, 1, 655394, 131072, 1, 720930, 131072, 1)
 
-[node name="Fumes" type="Control" parent="Acid"]
-clip_contents = true
-layout_mode = 3
-anchors_preset = 0
-offset_left = 336.0
-offset_right = 560.0
-offset_bottom = 192.0
-
-[node name="CPUParticles2D" type="CPUParticles2D" parent="Acid/Fumes"]
-position = Vector2(112, 96)
+[node name="Fumes" type="CPUParticles2D" parent="Acid"]
+z_index = -4
+position = Vector2(448, 96)
 amount = 500
 lifetime = 5.0
 randomness = 1.0
 emission_shape = 3
-emission_rect_extents = Vector2(112, 96)
+emission_rect_extents = Vector2(120, 96)
 spread = 180.0
 gravity = Vector2(0, 0)
 initial_velocity_min = 1.0
 initial_velocity_max = 5.0
 angle_min = -720.0
 angle_max = 720.0
-scale_amount_min = 100.0
-scale_amount_max = 100.0
+scale_amount_min = 200.0
+scale_amount_max = 200.0
 color = Color(0, 1, 0, 0.0156863)
 color_ramp = SubResource("Gradient_ryyd1")
 
 [connection signal="draw" from="Secret/Sprite2D" to="Secret/Sprite2D/StaticBody2D/CollisionShape2D" method="set_disabled" flags=6 binds= [false]]
 [connection signal="ButtonPressed" from="Secret/DisposableButton" to="Secret/Sprite2D" method="show"]
 [connection signal="ButtonPressed" from="Secret/DisposableButton" to="Secret/Sprite2D/StaticBody2D/CollisionShape2D" method="set_deferred" binds= ["disabled", false]]
-[connection signal="ButtonPressed" from="DisposableButton" to="DisposableButton/TileMap" method="queue_free"]
-[connection signal="ButtonPressed" from="DisposableButton2" to="DisposableButton2/TileMap" method="queue_free"]
-[connection signal="ButtonPressed" from="DisposableButton3" to="DisposableButton3/TileMap" method="queue_free"]
-[connection signal="ButtonPressed" from="DisposableButton4" to="DisposableButton4/TileMap" method="queue_free"]
-[connection signal="ButtonPressed" from="DisposableButton5" to="DisposableButton5/TileMap" method="queue_free"]
+[connection signal="ButtonPressed" from="OpenableTileMaps/DisposableButton" to="OpenableTileMaps/DisposableButton/TileMap/AnimationPlayer" method="play" flags=6 binds= ["Opening"]]
+[connection signal="animation_finished" from="OpenableTileMaps/DisposableButton/TileMap/AnimationPlayer" to="OpenableTileMaps/DisposableButton/TileMap" method="queue_free" unbinds=1]
+[connection signal="ButtonPressed" from="OpenableTileMaps/DisposableButton2" to="OpenableTileMaps/DisposableButton2/TileMap/AnimationPlayer" method="play" flags=6 binds= ["Opening"]]
+[connection signal="animation_finished" from="OpenableTileMaps/DisposableButton2/TileMap/AnimationPlayer" to="OpenableTileMaps/DisposableButton2/TileMap" method="queue_free" unbinds=1]
+[connection signal="ButtonPressed" from="OpenableTileMaps/DisposableButton3" to="OpenableTileMaps/DisposableButton3/TileMap/AnimationPlayer" method="play" flags=6 binds= ["Opening"]]
+[connection signal="animation_finished" from="OpenableTileMaps/DisposableButton3/TileMap/AnimationPlayer" to="OpenableTileMaps/DisposableButton3/TileMap" method="queue_free" unbinds=1]
+[connection signal="ButtonPressed" from="OpenableTileMaps/DisposableButton4" to="OpenableTileMaps/DisposableButton4/TileMap/AnimationPlayer" method="play" flags=6 binds= ["Opening"]]
+[connection signal="animation_finished" from="OpenableTileMaps/DisposableButton4/TileMap/AnimationPlayer" to="OpenableTileMaps/DisposableButton4/TileMap" method="queue_free" unbinds=1]
+[connection signal="ButtonPressed" from="OpenableTileMaps/DisposableButton5" to="OpenableTileMaps/DisposableButton5/TileMap/AnimationPlayer" method="play" binds= ["Opening"]]
+[connection signal="animation_finished" from="OpenableTileMaps/DisposableButton5/TileMap/AnimationPlayer" to="OpenableTileMaps/DisposableButton5/TileMap" method="queue_free" unbinds=1]

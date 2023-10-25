@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bv6ampi04qu7h"
-path="res://.godot/imported/LevelsMenuPresenterBox.png-6cf7b68a13fcf7fa03286643ce5629d2.ctex"
+uid="uid://b80jw2mpdhli5"
+path="res://.godot/imported/DAaAAaAaArk.png-9a8dc4c75d338d712d44ae6dfb621d10.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Content/Sprites/Interface/LevelsMenuPresenterBox.png"
-dest_files=["res://.godot/imported/LevelsMenuPresenterBox.png-6cf7b68a13fcf7fa03286643ce5629d2.ctex"]
+source_file="res://Content/Sprites/Levels/Level9/DAaAAaAaArk.png"
+dest_files=["res://.godot/imported/DAaAAaAaArk.png-9a8dc4c75d338d712d44ae6dfb621d10.ctex"]
 
 [params]
 

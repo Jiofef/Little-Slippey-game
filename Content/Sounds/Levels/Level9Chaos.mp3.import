@@ -2,7 +2,7 @@
 
 importer="mp3"
 type="AudioStreamMP3"
-uid="uid://t7mmc2687hs0"
+uid="uid://bb57chgdorit5"
 path="res://.godot/imported/Level9Chaos.mp3-7f000c456192f74d6e27da0ebcfa846d.mp3str"
 
 [deps]
@@ -12,8 +12,8 @@ dest_files=["res://.godot/imported/Level9Chaos.mp3-7f000c456192f74d6e27da0ebcfa8
 
 [params]
 
-loop=true
-loop_offset=0.0
-bpm=0.0
+loop=false
+loop_offset=0
+bpm=0
 beat_count=0
 bar_beats=4

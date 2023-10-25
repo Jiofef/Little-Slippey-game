@@ -2733,10 +2733,10 @@ color = Color(1, 1, 1, 0)
 [node name="Hibernation" type="AudioStreamPlayer2D" parent="Sounds"]
 position = Vector2(1280, 640)
 stream = ExtResource("2_r1nrf")
-volume_db = 12.0
+volume_db = 4.0
 max_distance = 4000.0
 attenuation = 0.5
-bus = &"JiofefHead"
+bus = &"LevelSounds"
 
 [node name="TurningOn" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("3_740io")

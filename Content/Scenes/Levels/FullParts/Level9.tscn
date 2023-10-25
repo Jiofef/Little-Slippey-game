@@ -1,4 +1,4 @@
-[gd_scene load_steps=94 format=3 uid="uid://bs1p0ejy2t40w"]
+[gd_scene load_steps=95 format=3 uid="uid://bs1p0ejy2t40w"]
 
 [ext_resource type="Script" path="res://Content/Scripts/Levels/BaseLevelScript.cs" id="1_gw2dt"]
 [ext_resource type="Texture2D" uid="uid://q2j1uuqfjmos" path="res://Content/Sprites/Levels/BaseTileSet.png" id="1_tk1f8"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://d2gkb2n1pgjkq" path="res://Content/Sprites/Levels/Level9/VolcanoStalactites.png" id="4_tu3hq"]
 [ext_resource type="Texture2D" uid="uid://dgluki8hnwb62" path="res://Content/Sprites/Levels/Level8/AcidAndLavaTileset.png" id="6_lv5lb"]
 [ext_resource type="PackedScene" uid="uid://c3dqig02x5lyb" path="res://Content/Scenes/Other/Level9JiofefHead.tscn" id="9_lgxfu"]
+[ext_resource type="Texture2D" uid="uid://b80jw2mpdhli5" path="res://Content/Sprites/Levels/Level9/DAaAAaAaArk.png" id="19_3qowr"]
 [ext_resource type="Script" path="res://Content/Scripts/Levels/Level9PlatformerSection.cs" id="43_mh8uw"]
 [ext_resource type="Texture2D" uid="uid://dlx8ycfcvywk5" path="res://Content/Sprites/Levels/InMyHeadTileset.png" id="43_ubrpb"]
 [ext_resource type="PackedScene" uid="uid://d3u7pfig07yrs" path="res://Content/Scenes/Other/CrutchedArea2D.tscn" id="44_l3ibg"]
@@ -1033,32 +1034,63 @@ z_index = 3
 rotation = 1.5708
 
 [node name="ColorRect" type="ColorRect" parent="PlatformerSection/DisposableButton/Darkness"]
-offset_left = 11.9958
-offset_top = -48.0038
-offset_right = 107.996
-offset_bottom = 63.9962
+offset_left = 16.0
+offset_top = -52.0
+offset_right = 108.0
+offset_bottom = 68.0
 color = Color(0, 0, 0, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="PlatformerSection/DisposableButton/Darkness/ColorRect"]
+position = Vector2(-8, 120)
+rotation = -1.5708
+texture = ExtResource("19_3qowr")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 120, 8)
 
 [node name="ColorRect2" type="ColorRect" parent="PlatformerSection/DisposableButton/Darkness"]
-offset_left = -356.004
-offset_top = -48.0038
-offset_right = -260.004
-offset_bottom = 63.9962
+offset_left = -356.0
+offset_top = -52.0
+offset_right = -264.0
+offset_bottom = 68.0
 color = Color(0, 0, 0, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="PlatformerSection/DisposableButton/Darkness/ColorRect2"]
+position = Vector2(100, 0)
+rotation = 1.5708
+texture = ExtResource("19_3qowr")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 120, 8)
 
 [node name="ColorRect3" type="ColorRect" parent="PlatformerSection/DisposableButton/Darkness"]
-offset_left = -356.004
-offset_top = 63.9962
-offset_right = 107.996
-offset_bottom = 127.996
+offset_left = -356.0
+offset_top = 68.0
+offset_right = 108.0
+offset_bottom = 128.0
 color = Color(0, 0, 0, 1)
 
+[node name="Sprite2D" type="Sprite2D" parent="PlatformerSection/DisposableButton/Darkness/ColorRect3"]
+position = Vector2(92, -8)
+texture = ExtResource("19_3qowr")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 280, 8)
+
 [node name="ColorRect4" type="ColorRect" parent="PlatformerSection/DisposableButton/Darkness"]
-offset_left = -356.004
-offset_top = -112.004
-offset_right = 107.996
-offset_bottom = -48.0038
+offset_left = -356.0
+offset_top = -112.0
+offset_right = 108.0
+offset_bottom = -52.0
 color = Color(0, 0, 0, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="PlatformerSection/DisposableButton/Darkness/ColorRect4"]
+position = Vector2(372, 68)
+rotation = -3.14159
+texture = ExtResource("19_3qowr")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 280, 8)
 
 [node name="TileMap" type="TileMap" parent="PlatformerSection/DisposableButton"]
 position = Vector2(8, 4)
