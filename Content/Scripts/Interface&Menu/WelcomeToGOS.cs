@@ -38,4 +38,11 @@ public partial class WelcomeToGOS : Control
 		else
 			_openedMenuNumber = 0;
 	}
+
+	public void OpenedMenuClosed()
+	{
+		_openedMenu = null;
+		_openedMenuNumber = 0;
+		GetNode<TextureButton>("Buttons/LevelsMenuButton").GrabFocus();
+	}
 }

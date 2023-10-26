@@ -44,8 +44,8 @@ public partial class MainScript : Node2D
     {
         var pause = GetNode<CanvasLayer>("Pause");
         pause.ProcessMode = ProcessModeEnum.Disabled;
-        pause.Visible = false;
-        AddChild(ResourceLoader.Load<PackedScene>("res://Content/Scenes/Interface&Menu/OptionsMenu.tscn").Instantiate<Control>());
+        pause.AddChild(ResourceLoader.Load<PackedScene>("res://Content/Scenes/Interface&Menu/OptionsMenu.tscn").Instantiate<Control>());
+        GetNode<AnimationPlayer>("Pause/Interface/AnimationPlayer").Play("OpeningSubMenu");
         _subMenusOpened = true;
     }
     public void Menu()
@@ -58,10 +58,9 @@ public partial class MainScript : Node2D
     }
     public void OptionsClosing()
     {
-        var pause = GetNode<CanvasLayer>("Pause");
-        pause.ProcessMode = ProcessModeEnum.WhenPaused;
-        pause.Visible = true;
+        GetNode<CanvasLayer>("Pause").ProcessMode = ProcessModeEnum.WhenPaused;
         GetNode<TextureButton>("Pause/Interface/ButtonsFrame/Options").GrabFocus();
+        GetNode<AnimationPlayer>("Pause/Interface/AnimationPlayer").PlayBackwards("OpeningSubMenu");
         _subMenusOpened = false;
     }
 

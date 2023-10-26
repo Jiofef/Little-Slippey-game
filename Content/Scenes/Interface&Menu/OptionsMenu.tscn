@@ -1,8 +1,39 @@
-[gd_scene load_steps=2 format=3 uid="uid://dwuivxxfk4cbs"]
+[gd_scene load_steps=10 format=3 uid="uid://dwuivxxfk4cbs"]
 
+[ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/OptionsMenu.cs" id="1_kmdmx"]
 [ext_resource type="Texture2D" uid="uid://i15evt2viayu" path="res://Content/Sprites/Interface/OptionsMenuBox.png" id="1_trr7h"]
+[ext_resource type="PackedScene" uid="uid://bwpstpk1xmkah" path="res://Content/Scenes/Interface&Menu/Button.tscn" id="2_hr832"]
+[ext_resource type="Texture2D" uid="uid://c1d2p0ba42csh" path="res://Content/Sprites/Interface/AcceptButton.png" id="3_cxo48"]
+[ext_resource type="Texture2D" uid="uid://d0sqlunqacimf" path="res://Content/Sprites/Interface/CancelButton.png" id="4_kqtal"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_vfk1r"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_upid1"]
+
+[sub_resource type="Animation" id="Animation_fu4ro"]
+resource_name = "Appearance"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector2(1, 0), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_u8saj"]
+_data = {
+"Appearance": SubResource("Animation_fu4ro")
+}
 
 [node name="OptionsMenu" type="Control"]
+process_mode = 3
+z_index = 1
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -14,8 +45,292 @@ offset_bottom = -40.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+script = ExtResource("1_kmdmx")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(4, 4)
 texture = ExtResource("1_trr7h")
 centered = false
+
+[node name="AcceptButton" parent="." instance=ExtResource("2_hr832")]
+layout_mode = 0
+offset_left = 832.0
+offset_top = 524.0
+offset_right = 856.0
+offset_bottom = 548.0
+texture_normal = ExtResource("3_cxo48")
+
+[node name="DeclineButton" parent="." instance=ExtResource("2_hr832")]
+layout_mode = 0
+offset_left = 944.0
+offset_top = 524.0
+offset_right = 968.0
+offset_bottom = 548.0
+texture_normal = ExtResource("4_kqtal")
+
+[node name="Sound" type="Label" parent="."]
+layout_mode = 0
+offset_left = 220.0
+offset_top = 40.0
+offset_right = 282.0
+offset_bottom = 65.0
+scale = Vector2(2, 2)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+text = "Sound"
+
+[node name="SoundContainer" type="GridContainer" parent="."]
+layout_mode = 0
+offset_left = 56.0
+offset_top = 102.0
+offset_right = 288.0
+offset_bottom = 301.0
+scale = Vector2(2, 2)
+columns = 2
+
+[node name="Global" type="Label" parent="SoundContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+text = "Global"
+
+[node name="GlobalSlider" type="HSlider" parent="SoundContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+min_value = -30.0
+max_value = 10.0
+
+[node name="Interface" type="Label" parent="SoundContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+text = "Interface"
+
+[node name="InterfaceSlider" type="HSlider" parent="SoundContainer"]
+layout_mode = 2
+min_value = -30.0
+max_value = 10.0
+
+[node name="Music" type="Label" parent="SoundContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+text = "Music"
+
+[node name="MusicSlider" type="HSlider" parent="SoundContainer"]
+layout_mode = 2
+min_value = -30.0
+max_value = 10.0
+
+[node name="Player" type="Label" parent="SoundContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+text = "Player"
+
+[node name="PlayerSlider" type="HSlider" parent="SoundContainer"]
+layout_mode = 2
+min_value = -30.0
+max_value = 10.0
+
+[node name="Crosses" type="Label" parent="SoundContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+text = "Crosses
+"
+
+[node name="CrossesSlider" type="HSlider" parent="SoundContainer"]
+layout_mode = 2
+min_value = -30.0
+max_value = 10.0
+
+[node name="Explosions" type="Label" parent="SoundContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+text = "Explosions"
+
+[node name="ExplosionsSlider" type="HSlider" parent="SoundContainer"]
+layout_mode = 2
+min_value = -30.0
+max_value = 10.0
+
+[node name="Environment" type="Label" parent="SoundContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+text = "Environment"
+
+[node name="EnvironmentSlider" type="HSlider" parent="SoundContainer"]
+layout_mode = 2
+focus_neighbor_bottom = NodePath("../../AcceptButton")
+min_value = -30.0
+max_value = 10.0
+
+[node name="Video" type="Label" parent="."]
+layout_mode = 0
+offset_left = 716.0
+offset_top = 39.0
+offset_right = 778.0
+offset_bottom = 64.0
+scale = Vector2(2, 2)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+text = "Video"
+
+[node name="VideoContainer" type="GridContainer" parent="."]
+layout_mode = 0
+offset_left = 544.0
+offset_top = 102.0
+offset_right = 814.0
+offset_bottom = 300.0
+scale = Vector2(1.75, 1.75)
+columns = 2
+
+[node name="ScreenMode" type="Label" parent="VideoContainer"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+text = "Screen
+mode"
+horizontal_alignment = 1
+
+[node name="ScreenModeContainer" type="GridContainer" parent="VideoContainer"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+columns = 2
+
+[node name="Full" type="Label" parent="VideoContainer/ScreenModeContainer"]
+custom_minimum_size = Vector2(90, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+text = "Full"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Window" type="Label" parent="VideoContainer/ScreenModeContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+text = "Window"
+
+[node name="FullCheckBox" type="CheckBox" parent="VideoContainer/ScreenModeContainer"]
+modulate = Color(0.588235, 0.588235, 0.588235, 1)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+focus_neighbor_right = NodePath("../WindowCheckBox")
+button_group = SubResource("ButtonGroup_vfk1r")
+
+[node name="WindowCheckBox" type="CheckBox" parent="VideoContainer/ScreenModeContainer"]
+modulate = Color(0.588235, 0.588235, 0.588235, 1)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+focus_neighbor_left = NodePath("../FullCheckBox")
+button_group = SubResource("ButtonGroup_vfk1r")
+
+[node name="ScoresLabelMode" type="Label" parent="VideoContainer"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+text = "Scores
+label
+mode"
+horizontal_alignment = 1
+
+[node name="Control" type="Control" parent="VideoContainer"]
+layout_mode = 2
+
+[node name="Default" type="Label" parent="VideoContainer/Control"]
+custom_minimum_size = Vector2(83, 0)
+layout_mode = 2
+offset_top = 12.0
+offset_right = 83.0
+offset_bottom = 37.0
+scale = Vector2(0.85, 0.85)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+text = "Default"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Mini" type="Label" parent="VideoContainer/Control"]
+custom_minimum_size = Vector2(53, 0)
+layout_mode = 2
+offset_left = 76.0
+offset_top = 12.0
+offset_right = 129.0
+offset_bottom = 37.0
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+text = "Mini"
+
+[node name="Hide" type="Label" parent="VideoContainer/Control"]
+layout_mode = 2
+offset_left = 136.0
+offset_top = 12.0
+offset_right = 180.0
+offset_bottom = 37.0
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+text = "Hide"
+
+[node name="DefaultCheckBox" type="CheckBox" parent="VideoContainer/Control"]
+modulate = Color(0.588235, 0.588235, 0.588235, 1)
+layout_mode = 2
+offset_left = 24.0
+offset_top = 36.0
+offset_right = 48.0
+offset_bottom = 60.0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+button_group = SubResource("ButtonGroup_upid1")
+
+[node name="MiniCheckBox" type="CheckBox" parent="VideoContainer/Control"]
+modulate = Color(0.588235, 0.588235, 0.588235, 1)
+layout_mode = 2
+offset_left = 86.0
+offset_top = 36.0
+offset_right = 110.0
+offset_bottom = 60.0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+button_group = SubResource("ButtonGroup_upid1")
+
+[node name="HideCheckBox" type="CheckBox" parent="VideoContainer/Control"]
+modulate = Color(0.588235, 0.588235, 0.588235, 1)
+layout_mode = 2
+offset_left = 145.0
+offset_top = 36.0
+offset_right = 169.0
+offset_bottom = 60.0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+button_group = SubResource("ButtonGroup_upid1")
+
+[node name="CameraZoom" type="Label" parent="VideoContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+text = "Camera
+Zoom"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CameraZoomSlider" type="HSlider" parent="VideoContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+min_value = 1.25
+max_value = 2.0
+step = 0.15
+value = 1.25
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "Appearance"
+libraries = {
+"": SubResource("AnimationLibrary_u8saj")
+}
+
+[connection signal="pressed" from="AcceptButton" to="." method="Accept"]
+[connection signal="pressed" from="DeclineButton" to="." method="Cancel"]
+[connection signal="value_changed" from="SoundContainer/GlobalSlider" to="." method="SoundChanging" binds= [0]]
+[connection signal="value_changed" from="SoundContainer/InterfaceSlider" to="." method="SoundChanging" binds= [1]]
+[connection signal="value_changed" from="SoundContainer/MusicSlider" to="." method="SoundChanging" binds= [2]]
+[connection signal="value_changed" from="SoundContainer/PlayerSlider" to="." method="SoundChanging" binds= [3]]
+[connection signal="value_changed" from="SoundContainer/CrossesSlider" to="." method="SoundChanging" binds= [4]]
+[connection signal="value_changed" from="SoundContainer/ExplosionsSlider" to="." method="SoundChanging" binds= [5]]
+[connection signal="value_changed" from="SoundContainer/EnvironmentSlider" to="." method="SoundChanging" binds= [6]]
+[connection signal="pressed" from="VideoContainer/ScreenModeContainer/FullCheckBox" to="." method="ChangeScreenFormat" binds= [0]]
+[connection signal="pressed" from="VideoContainer/ScreenModeContainer/WindowCheckBox" to="." method="ChangeScreenFormat" binds= [1]]
+[connection signal="pressed" from="VideoContainer/Control/DefaultCheckBox" to="." method="ChangeScoresShowingFormat" binds= [0]]
+[connection signal="pressed" from="VideoContainer/Control/MiniCheckBox" to="." method="_on_mini_check_box_pressed" binds= [1]]
+[connection signal="pressed" from="VideoContainer/Control/HideCheckBox" to="." method="_on_hide_check_box_pressed" binds= [2]]
+[connection signal="value_changed" from="VideoContainer/CameraZoomSlider" to="." method="CameraZoomChanged"]

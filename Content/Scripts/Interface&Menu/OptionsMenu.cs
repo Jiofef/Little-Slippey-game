@@ -11,46 +11,40 @@ public partial class OptionsMenu : Control
         Meta.OptionsReserve = Meta.Instance.Clone();
         if (G.CurrentLevel != 0)
         {
-            Connect("OptionsClosing", new Callable(GetNode(".."), "OptionsClosing"));
-            Connect("OptionsClosing", new Callable(GetNode("../PlayPart/Level" + G.CurrentLevel + "/Player/Camera2D"), "OptionsChanged"));
+            Connect("OptionsClosing", new Callable(GetNode("../.."), "OptionsClosing"));
+            Connect("OptionsClosing", new Callable(GetNode("../../PlayPart/Level" + G.CurrentLevel + "/Player/Camera2D"), "OptionsChanged"));
+            GetNode<TextureButton>("DeclineButton").GrabFocus();
         }
-        GetNode<TextureButton>("CanvasLayer/Cancel").GrabFocus();
+        else
+            Connect("tree_exited", new Callable(GetParent(), "OpenedMenuClosed"));
 
-
-        string[] SliderNames = { "GlobalSlider", "InterfaceSlider", "MusicSlider", "PlayerSlider", "CrossSoundsSlider", "CrossExplosionSlider", "LevelSoundsSlider" };
+        string[] SliderNames = { "Global", "Interface", "Music", "Player", "Crosses", "Explosions", "Environment" };
         for (int i = 0; i < SliderNames.Length; i++)
-            GetNode<Slider>("CanvasLayer/Sound/VBoxContainer/" + SliderNames[i]).Value = Meta.Instance.BusVolumes[i];
+            GetNode<Slider>("SoundContainer/" + SliderNames[i] + "Slider").Value = Meta.Instance.BusVolumes[i];
 
 
         Meta.Instance.IsFullScreen = DisplayServer.WindowGetMode() == DisplayServer.WindowMode.Fullscreen;
 
-        GetNode<Slider>("CanvasLayer/Video/VBoxContainer/CameraZoomSlider").Value = Meta.Instance.CameraZoom;
-        
-        GetNode<OptionButton>("CanvasLayer/Video/VBoxContainer/ScoresShowingFormat").Selected = Meta.Instance.ScoresShowingFormatIndex;
+        string[] ScoresShowingFormats = {"Default", "Mini", "Hide"};
+        GetNode<CheckBox>("VideoContainer/Control/" + ScoresShowingFormats[Meta.Instance.ScoresShowingFormatIndex] + "CheckBox").ButtonPressed = true;
+
+        GetNode<Slider>("VideoContainer/CameraZoomSlider").Value = Meta.Instance.CameraZoom;
+
+        GetNode<AnimationPlayer>("AnimationPlayer").Play("Appearance");
     }
 
     public void Cancel()
     {
         Meta.Instance = Meta.OptionsReserve.Clone();
         Meta.Instance.ApplyOptions();
-        if (G.CurrentLevel == 0)
-            GetTree().ChangeSceneToFile("res://Content/Scenes/Interface&Menu/Menu.tscn");
-        else
-        {
-            EmitSignal("OptionsClosing");
-            QueueFree();
-        }
+        EmitSignal("OptionsClosing");
+        QueueFree();
     }
-    public void Apply()
+    public void Accept()
     {
         Meta.Instance.SaveToFile();
-        if (G.CurrentLevel == 0)
-            GetTree().ChangeSceneToFile("res://Content/Scenes/Interface&Menu/Menu.tscn");
-        else
-        {
-            EmitSignal("OptionsClosing");
-            QueueFree();
-        }
+        EmitSignal("OptionsClosing");
+        QueueFree();
     }
 
     //SoundOptions
@@ -63,7 +57,8 @@ public partial class OptionsMenu : Control
 
     public override void _PhysicsProcess(double delta)
     {
-        GetNode<OptionButton>("CanvasLayer/Video/VBoxContainer/ScreenFormat").Selected = DisplayServer.WindowGetMode() == DisplayServer.WindowMode.Fullscreen ? 1 : 0;
+        string[] WindowModes = { "Full", "Window" };
+        GetNode<CheckBox>("VideoContainer/ScreenModeContainer/" + WindowModes[DisplayServer.WindowGetMode() == DisplayServer.WindowMode.Fullscreen ? 0 : 1] + "CheckBox").ButtonPressed = true;
         if (Input.IsActionJustPressed("Cancel"))
             Cancel();
     }
@@ -72,7 +67,7 @@ public partial class OptionsMenu : Control
     public void ChangeScreenFormat(int index)
     {
         Meta.Instance.IsFullScreen = Convert.ToBoolean(index);
-        DisplayServer.WindowSetMode(index == 1 ? DisplayServer.WindowMode.Fullscreen : DisplayServer.WindowMode.Windowed);
+        DisplayServer.WindowSetMode(index == 0 ? DisplayServer.WindowMode.Fullscreen : DisplayServer.WindowMode.Windowed);
     }
     public void ChangeScoresShowingFormat(int index)
     {

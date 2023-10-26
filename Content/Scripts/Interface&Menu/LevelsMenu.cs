@@ -172,4 +172,12 @@ public partial class LevelsMenu : Control
         for (int i = 0; i < _dificultiesNames.Length; i ++)
             GetNode<Label>("Visual/" + _dificultiesNames[i] + "BestResult").Visible = Meta.Instance.Dificulty == i;
     }
+    public void _on_level_1_button_mouse_entered()
+    {
+        GD.Print("s");
+    }
+    public void _on_level_1_button_mouse_exited()
+    {
+        GD.Print("s");
+    }
 }
