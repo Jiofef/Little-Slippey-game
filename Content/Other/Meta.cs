@@ -21,6 +21,7 @@ public partial class Meta : Node
     //Gameplay
     public int Dificulty = 0;
     public bool[] AdditionStatuses = new bool[4];
+    public int ChosenSkinIndex = 0;
 
     public void ApplyOptions()
     {
@@ -53,6 +54,7 @@ public partial class Meta : Node
             {"addition_status1", AdditionStatuses[1]},
             {"addition_status2", AdditionStatuses[2]},
             {"addition_status3", AdditionStatuses[3]},
+            {"chosen_skin_index", ChosenSkinIndex},
         };
     }
     public void SaveToFile()
@@ -77,6 +79,8 @@ public partial class Meta : Node
             CameraZoom = (float)model["camera_zoom"];
 
             Dificulty = (int)model["dificulty"];
+
+            ChosenSkinIndex = (int)model["chosen_skin_index"];
 
             for (int i = 0; i < AdditionStatuses.Length; i++)
                 AdditionStatuses[i] = Convert.ToBoolean((string)model["addition_status" + i]);

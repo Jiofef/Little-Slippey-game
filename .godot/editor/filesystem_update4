@@ -1,4 +1,3 @@
-res://default_bus_layout.tres
 res://default_env.tres
 res://Content/Scenes/Interface&Menu/Button.tscn
 res://Content/Other/StaticNoiseShader.gdshader
@@ -6,7 +5,7 @@ res://Content/Other/BlurShader.gdshader
 res://Content/Other/CRT.gdshader
 res://Content/Other/PixelateShader.gdshader
 res://Content/Scenes/Interface&Menu/OptionsMenu.tscn
-res://Content/Scenes/Interface&Menu/OptionsMenus.tscn
+res://Content/Scenes/Other/Player.tscn
 res://Content/Other/G.cs
 res://Content/Other/Meta.cs
 res://Content/Other/UnchangableMeta.cs
@@ -58,6 +57,10 @@ res://Content/Scripts/Other/AnimationRandomizer.cs
 res://Content/Scripts/Other/Camera.cs
 res://Content/Scripts/Other/MainScript.cs
 res://Content/Scripts/Other/Player.cs
-res://Content/Scenes/Interface&Menu/LevelsMenu.tscn
+res://Content/Scenes/Levels/FullParts/Level1.tscn
 res://Content/Scenes/Interface&Menu/WelcomeToGOS.tscn
 res://Content/Scenes/Other/Main.tscn
+res://Content/Scenes/Interface&Menu/SkinsMenu.tscn
+res://Content/Scenes/Interface&Menu/Titles.tscn
+res://Content/Scenes/Interface&Menu/SkinButton.tscn
+res://Content/Scripts/Interface&Menu/SkinsMenu.cs

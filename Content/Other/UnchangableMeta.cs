@@ -18,11 +18,8 @@ public partial class UnchangableMeta : Node
     public static byte[] LevelPlayedStatus = new byte[G.LevelsInGameTotal]; //I made it as byte[] because of retard Godot that can't save a boolean array >:(
 
     public static bool IsLevel9PlatformSectionFirstTimeCompleted, IsLevel9PlatformSectionSkipAllowed, IsFakeLevel10SkipAllowed;
+    public static byte[] AchievementStatuses = new byte[12]; // A G A I N
 
-    public override void _PhysicsProcess(double delta)
-    {
-       
-    }
     public static void SaveRecords()
     {
         if ((int)G.Scores > LevelRecords[Meta.Instance.Dificulty][G.CurrentLevel - 1])
@@ -45,7 +42,8 @@ public partial class UnchangableMeta : Node
             {"is_level9_platform_section_first_time_completed", IsLevel9PlatformSectionFirstTimeCompleted},
             {"is_level9_platform_section_skip_is_allowed", IsLevel9PlatformSectionSkipAllowed},
             {"is_fake_level10_skip_allowed", IsFakeLevel10SkipAllowed},
-            {"level_played_status", LevelPlayedStatus}
+            {"level_played_status", LevelPlayedStatus},
+            {"achievement_statuses", AchievementStatuses},
         };
     }
     public static void SaveToFile()
@@ -85,12 +83,20 @@ public partial class UnchangableMeta : Node
             {
                 for (int i = 0; i < LevelPlayedStatus.Length; i++)
                     LevelPlayedStatus[i] = Convert.ToByte(LevelPlayedStatusArray[i].ToString());
-            } catch { }
+            } catch {}
 
 
             IsLevel9PlatformSectionFirstTimeCompleted = (bool)model["is_level9_platform_section_first_time_completed"];
             IsLevel9PlatformSectionSkipAllowed = (bool)model["is_level9_platform_section_skip_is_allowed"];
             IsFakeLevel10SkipAllowed = (bool)model["is_fake_level10_skip_allowed"];
+
+            Godot.Collections.Array AchievementStatusesArray = (Godot.Collections.Array)model["achievement_statuses"];
+            try
+            {
+                for (int i = 0; i < AchievementStatuses.Length; i++)
+                    AchievementStatuses[i] = Convert.ToByte(AchievementStatusesArray[i].ToString());
+            }
+            catch {}
 
             file.Close();
         } catch{}

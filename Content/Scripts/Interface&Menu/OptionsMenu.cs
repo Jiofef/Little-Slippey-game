@@ -12,11 +12,9 @@ public partial class OptionsMenu : Control
         if (G.CurrentLevel != 0)
         {
             Connect("OptionsClosing", new Callable(GetNode("../.."), "OptionsClosing"));
-            Connect("OptionsClosing", new Callable(GetNode("../../PlayPart/Level" + G.CurrentLevel + "/Player/Camera2D"), "OptionsChanged"));
+            Connect("OptionsClosing", new Callable(GetNode("../../PlayPart").GetChild(0).GetNode("Player/Camera2D"), "OptionsChanged"));
             GetNode<TextureButton>("DeclineButton").GrabFocus();
         }
-        else
-            Connect("tree_exited", new Callable(GetParent(), "OpenedMenuClosed"));
 
         string[] SliderNames = { "Global", "Interface", "Music", "Player", "Crosses", "Explosions", "Environment" };
         for (int i = 0; i < SliderNames.Length; i++)
@@ -37,12 +35,16 @@ public partial class OptionsMenu : Control
     {
         Meta.Instance = Meta.OptionsReserve.Clone();
         Meta.Instance.ApplyOptions();
+        if (G.CurrentLevel == 0)
+            Connect("OptionsClosing", new Callable(GetParent(), "OpenedMenuClosed"));
         EmitSignal("OptionsClosing");
         QueueFree();
     }
     public void Accept()
     {
         Meta.Instance.SaveToFile();
+        if (G.CurrentLevel == 0)
+            Connect("OptionsClosing", new Callable(GetParent(), "OpenedMenuClosed"));
         EmitSignal("OptionsClosing");
         QueueFree();
     }

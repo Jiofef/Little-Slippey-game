@@ -1,7 +1,13 @@
-ColorRect
-AnimationPlayer
+Label
+Sprite2D
 Control
 GridContainer
+ItemList
+ScrollContainer
+VScrollBar
+TextureButton
+AnimationPlayer
+ColorRect
 CheckBox
 HBoxContainer
 HSplitContainer
@@ -9,14 +15,11 @@ FlowContainer
 BoxContainer
 Panel
 Node2D
-Sprite2D
-TextureButton
 CollisionShape2D
 Area2D
 RayCast2D
 Camera2D
 AudioStreamPlayer
-Label
 SubViewport
 SubViewportContainer
 CanvasLayer
@@ -27,6 +30,3 @@ OptionButton
 VisibleOnScreenEnabler2D
 AnimationTree
 AudioStreamPlayer2D
-ColorPickerButton
-AnimatableBody2D
-StaticBody2D

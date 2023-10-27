@@ -37,7 +37,7 @@ public partial class WelcomeToGOS : Control
 		}
 		else
 			_openedMenuNumber = 0;
-	}
+    }
 
 	public void OpenedMenuClosed()
 	{

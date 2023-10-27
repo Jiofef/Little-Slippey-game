@@ -1,12 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://drl0i754vtq7r"]
+[gd_scene load_steps=4 format=3 uid="uid://drl0i754vtq7r"]
 
-[ext_resource type="PackedScene" uid="uid://bi3r8ko1akhe1" path="res://Content/Scenes/Interface&Menu/Button.tscn" id="1"]
-[ext_resource type="Texture2D" uid="uid://cem0vr4bvekgf" path="res://Content/Sprites/Interface/Menu/Other/TitlesCreen.png" id="2"]
-[ext_resource type="Texture2D" uid="uid://klm8gfasncuf" path="res://Content/Sprites/Interface/Menu/Options/OptionsBackground.png" id="3"]
-[ext_resource type="Texture2D" uid="uid://cwpcewk28vec5" path="res://Content/Sprites/Interface/Menu/Buttons/Default/Cancel.png" id="4"]
-[ext_resource type="Texture2D" uid="uid://bhs7korbvekxq" path="res://Content/Sprites/Interface/Menu/Buttons/Pressed/PressedCancel.png" id="5"]
+[ext_resource type="PackedScene" uid="uid://bwpstpk1xmkah" path="res://Content/Scenes/Interface&Menu/Button.tscn" id="1"]
 [ext_resource type="FontFile" uid="uid://cp7vrks23tdh3" path="res://Content/Other/FFFFORWA.TTF" id="5_r1mdf"]
-[ext_resource type="Texture2D" uid="uid://bslepnhric7fv" path="res://Content/Sprites/Interface/Menu/Buttons/Chosen/ChosenCancel.png" id="6"]
 [ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/Titles.cs" id="8"]
 
 [node name="Titles" type="Control"]
@@ -20,7 +15,6 @@ script = ExtResource("8")
 
 [node name="Background" type="Sprite2D" parent="."]
 position = Vector2(530, 300)
-texture = ExtResource("3")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 0
@@ -31,7 +25,6 @@ color = Color(0, 0.54902, 0.54902, 0.470588)
 [node name="TitlesCreen" type="Sprite2D" parent="."]
 position = Vector2(530, 300)
 scale = Vector2(3.37688, 3.415)
-texture = ExtResource("2")
 
 [node name="MainText" type="Label" parent="."]
 modulate = Color(1, 1, 1, 0.470588)
@@ -313,8 +306,5 @@ offset_top = 504.167
 offset_right = -180.457
 offset_bottom = -79.8334
 scale = Vector2(6, 6)
-texture_normal = ExtResource("4")
-texture_pressed = ExtResource("5")
-texture_focused = ExtResource("6")
 
 [connection signal="pressed" from="Cancel" to="." method="Cancel"]

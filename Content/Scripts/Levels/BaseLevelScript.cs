@@ -201,8 +201,8 @@ public partial class BaseLevelScript : Node2D
         G.CrossSpawnMultiplier = 1;
         UnchangableMeta.SaveRecords();
         UnchangableMeta.SaveToFile();
-        EmitSignal("LevelReload");
         QueueFree();
+        EmitSignal("LevelReload");
     }
 
     public void SetCrossEnabled(bool value)
