@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bwpstpk1xmkah" path="res://Content/Scenes/Interface&Menu/Button.tscn" id="2_oge4l"]
 [ext_resource type="Texture2D" uid="uid://060bgiw5i00k" path="res://Content/Sprites/PlayerSkins/Slippey.png" id="4_4fnp7"]
 [ext_resource type="Texture2D" uid="uid://cr6ilqqdmo4ug" path="res://Content/Sprites/Interface/SkinButtonDisabled.png" id="5_m7r3n"]
-[ext_resource type="Texture2D" uid="uid://cpuharl7u7alc" path="res://Content/Sprites/PlayerSkins/sus1.png" id="6_rmj3t"]
+[ext_resource type="Texture2D" uid="uid://bd15vnp18h7qk" path="res://Content/Sprites/PlayerSkins/Sanboy.png" id="7_o713s"]
 [ext_resource type="Texture2D" uid="uid://c6dydbtjseejl" path="res://Content/Sprites/PlayerSkins/sus3.png" id="7_ta506"]
 [ext_resource type="Texture2D" uid="uid://c5b66sxt1dnas" path="res://Content/Sprites/PlayerSkins/sus4.png" id="8_qv5bg"]
 [ext_resource type="Texture2D" uid="uid://d0uryn3d58xj4" path="res://Content/Sprites/PlayerSkins/sus5.png" id="9_a1g5k"]
@@ -103,7 +103,7 @@ texture_disabled = ExtResource("5_m7r3n")
 [node name="Sprite2D" type="Sprite2D" parent="SkinButtons/Button2"]
 position = Vector2(24, 19)
 scale = Vector2(2, 2)
-texture = ExtResource("6_rmj3t")
+texture = ExtResource("7_o713s")
 region_enabled = true
 region_rect = Rect2(2, 0, 12, 16)
 

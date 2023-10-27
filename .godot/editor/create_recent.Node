@@ -1,12 +1,14 @@
-Label
 Sprite2D
+CPUParticles2D
+AnimationPlayer
+AnimatedSprite2D
+Label
 Control
 GridContainer
 ItemList
 ScrollContainer
 VScrollBar
 TextureButton
-AnimationPlayer
 ColorRect
 CheckBox
 HBoxContainer
@@ -28,5 +30,3 @@ Timer
 CheckButton
 OptionButton
 VisibleOnScreenEnabler2D
-AnimationTree
-AudioStreamPlayer2D

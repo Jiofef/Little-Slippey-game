@@ -1,0 +1,355 @@
+[gd_scene load_steps=27 format=3 uid="uid://dsgkgs1vfcwxd"]
+
+[ext_resource type="Texture2D" uid="uid://bd15vnp18h7qk" path="res://Content/Sprites/PlayerSkins/Sanboy.png" id="1_yxxtr"]
+[ext_resource type="Script" path="res://Content/Scripts/Other/SanBoySkin.cs" id="2_t4gni"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s2mio"]
+atlas = ExtResource("1_yxxtr")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5figq"]
+atlas = ExtResource("1_yxxtr")
+region = Rect2(16, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i7rf5"]
+atlas = ExtResource("1_yxxtr")
+region = Rect2(32, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nv5cc"]
+atlas = ExtResource("1_yxxtr")
+region = Rect2(48, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pnfwk"]
+atlas = ExtResource("1_yxxtr")
+region = Rect2(64, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4bee5"]
+atlas = ExtResource("1_yxxtr")
+region = Rect2(48, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5syyx"]
+atlas = ExtResource("1_yxxtr")
+region = Rect2(64, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4d3om"]
+atlas = ExtResource("1_yxxtr")
+region = Rect2(16, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h85rp"]
+atlas = ExtResource("1_yxxtr")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_prk3f"]
+atlas = ExtResource("1_yxxtr")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k1ur5"]
+atlas = ExtResource("1_yxxtr")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iu1px"]
+atlas = ExtResource("1_yxxtr")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l6p8y"]
+atlas = ExtResource("1_yxxtr")
+region = Rect2(0, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_apmcx"]
+atlas = ExtResource("1_yxxtr")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v0j5v"]
+atlas = ExtResource("1_yxxtr")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0qdnm"]
+atlas = ExtResource("1_yxxtr")
+region = Rect2(32, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d1aym"]
+atlas = ExtResource("1_yxxtr")
+region = Rect2(48, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d510v"]
+atlas = ExtResource("1_yxxtr")
+region = Rect2(64, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_50xxq"]
+atlas = ExtResource("1_yxxtr")
+region = Rect2(32, 48, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7744s"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s2mio")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5figq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i7rf5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nv5cc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pnfwk")
+}],
+"loop": false,
+"name": &"Climb",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4bee5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5syyx")
+}],
+"loop": false,
+"name": &"Death",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4d3om")
+}],
+"loop": false,
+"name": &"Fall",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h85rp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_prk3f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k1ur5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iu1px")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l6p8y")
+}],
+"loop": false,
+"name": &"Jump",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_apmcx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v0j5v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0qdnm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d1aym")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d510v")
+}],
+"loop": true,
+"name": &"Walk",
+"speed": 7.5
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_50xxq")
+}],
+"loop": false,
+"name": &"WallCatch",
+"speed": 0.0
+}]
+
+[sub_resource type="Curve" id="Curve_14n3y"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.2, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_kk85n"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="Animation" id="Animation_fqx7t"]
+resource_name = "Death"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HeatParticles:amount")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [24, 256]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HeatParticles:explosiveness")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0.0, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("HeatParticles:initial_velocity_min")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(2, 1),
+"update": 1,
+"values": [3.0, 15.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("HeatParticles:initial_velocity_max")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(2, 1),
+"update": 1,
+"values": [3.0, 15.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:self_modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 4, 5),
+"transitions": PackedFloat32Array(1, 0.5, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(0.0784314, 0.0784314, 0.0784314, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("HeatParticles:emitting")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("LightParticles:emitting")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.1, 4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("LightParticles:modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 4, 5),
+"transitions": PackedFloat32Array(1, 0.5, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath(".:animation")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Death"]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath(".:frame")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nmx5j"]
+_data = {
+"Death": SubResource("Animation_fqx7t")
+}
+
+[node name="Sanboy" type="AnimatedSprite2D"]
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_7744s")
+animation = &"Idle"
+autoplay = "Idle"
+frame_progress = 0.817513
+script = ExtResource("2_t4gni")
+
+[node name="HeatParticles" type="CPUParticles2D" parent="."]
+show_behind_parent = true
+amount = 24
+lifetime = 1.5
+emission_shape = 1
+emission_sphere_radius = 6.0
+direction = Vector2(0, -1)
+gravity = Vector2(0, 0)
+initial_velocity_min = 3.0
+initial_velocity_max = 3.0
+scale_amount_min = 4.0
+scale_amount_max = 4.0
+scale_amount_curve = SubResource("Curve_14n3y")
+color = Color(1, 0.784314, 0, 0.156863)
+color_ramp = SubResource("Gradient_kk85n")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_nmx5j")
+}
+
+[node name="LightParticles" type="CPUParticles2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+emitting = false
+amount = 64
+local_coords = true
+emission_shape = 1
+emission_sphere_radius = 8.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 1.0
+initial_velocity_max = 1.0
+scale_amount_min = 10.0
+scale_amount_max = 10.0
+color = Color(1, 1, 1, 0.0392157)

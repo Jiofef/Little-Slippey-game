@@ -42,7 +42,11 @@ public partial class Player : CharacterBody2D
 
     public override void _Ready()
     {
-        _animatedSprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
+        GetNode("Sprite2D").QueueFree();
+        string[] SkinNames = {"Slippey", "Sanboy"};
+        _animatedSprite = (AnimatedSprite2D)ResourceLoader.Load<PackedScene>("res://Content/Scenes/PlayerSkins/" + SkinNames[Meta.Instance.ChosenSkinIndex] + ".tscn").Instantiate();
+        _animatedSprite.Connect("animation_finished", new Callable(this, "AnimationFinished"));
+        AddChild(_animatedSprite);
     }
 
     public override void _PhysicsProcess(double delta)
