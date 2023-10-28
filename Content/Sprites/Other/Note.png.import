@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://f7rgydpc0yqn"
-path="res://.godot/imported/sus2.png-8d1eee6b26678f4b5760e745b28e9e31.ctex"
+uid="uid://bau0b6quvib5h"
+path="res://.godot/imported/Note.png-8aa4f6b155de398083393bdcff584d6b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Content/Sprites/PlayerSkins/sus2.png"
-dest_files=["res://.godot/imported/sus2.png-8d1eee6b26678f4b5760e745b28e9e31.ctex"]
+source_file="res://Content/Sprites/Other/Note.png"
+dest_files=["res://.godot/imported/Note.png-8aa4f6b155de398083393bdcff584d6b.ctex"]
 
 [params]
 

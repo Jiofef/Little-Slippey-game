@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cpuharl7u7alc"
-path="res://.godot/imported/sus1.png-8efefcd7f2ea1cc0d21be352d4ff3542.ctex"
+uid="uid://b486fyylpidxt"
+path="res://.godot/imported/Strawman.png-f521d43d89dfdbc4ddb900885fd1b35f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Content/Sprites/PlayerSkins/sus1.png"
-dest_files=["res://.godot/imported/sus1.png-8efefcd7f2ea1cc0d21be352d4ff3542.ctex"]
+source_file="res://Content/Sprites/PlayerSkins/Strawman.png"
+dest_files=["res://.godot/imported/Strawman.png-f521d43d89dfdbc4ddb900885fd1b35f.ctex"]
 
 [params]
 

@@ -1,7 +1,7 @@
-[gd_scene load_steps=27 format=3 uid="uid://dsgkgs1vfcwxd"]
+[gd_scene load_steps=26 format=3 uid="uid://dsgkgs1vfcwxd"]
 
 [ext_resource type="Texture2D" uid="uid://bd15vnp18h7qk" path="res://Content/Sprites/PlayerSkins/Sanboy.png" id="1_yxxtr"]
-[ext_resource type="Script" path="res://Content/Scripts/Other/SanBoySkin.cs" id="2_t4gni"]
+[ext_resource type="Script" path="res://Content/Scripts/Other/DefaultSkinAPIXD.cs" id="2_t4gni"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s2mio"]
 atlas = ExtResource("1_yxxtr")
@@ -108,7 +108,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_5syyx")
 }],
-"loop": false,
+"loop": true,
 "name": &"Death",
 "speed": 0.0
 }, {
@@ -116,7 +116,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_4d3om")
 }],
-"loop": false,
+"loop": true,
 "name": &"Fall",
 "speed": 0.0
 }, {
@@ -141,7 +141,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_l6p8y")
 }],
-"loop": false,
+"loop": true,
 "name": &"Jump",
 "speed": 0.0
 }, {
@@ -169,14 +169,10 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_50xxq")
 }],
-"loop": false,
+"loop": true,
 "name": &"WallCatch",
 "speed": 0.0
 }]
-
-[sub_resource type="Curve" id="Curve_14n3y"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.2, 1), 0.0, 0.0, 0, 0]
-point_count = 2
 
 [sub_resource type="Gradient" id="Gradient_kk85n"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
@@ -330,8 +326,7 @@ initial_velocity_min = 3.0
 initial_velocity_max = 3.0
 scale_amount_min = 4.0
 scale_amount_max = 4.0
-scale_amount_curve = SubResource("Curve_14n3y")
-color = Color(1, 0.784314, 0, 0.156863)
+color = Color(1, 0.784314, 0, 0.392157)
 color_ramp = SubResource("Gradient_kk85n")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
