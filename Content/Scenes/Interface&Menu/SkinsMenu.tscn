@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://ufrdtjstxptm"]
+[gd_scene load_steps=30 format=3 uid="uid://ufrdtjstxptm"]
 
 [ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/SkinsMenu.cs" id="1_81lvq"]
 [ext_resource type="Texture2D" uid="uid://mr4rfhwjaa0c" path="res://Content/Sprites/Interface/SkinsMenuBox.png" id="1_ktj04"]
@@ -7,17 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://060bgiw5i00k" path="res://Content/Sprites/PlayerSkins/Slippey.png" id="4_4fnp7"]
 [ext_resource type="Texture2D" uid="uid://cr6ilqqdmo4ug" path="res://Content/Sprites/Interface/SkinButtonDisabled.png" id="5_m7r3n"]
 [ext_resource type="Texture2D" uid="uid://bd15vnp18h7qk" path="res://Content/Sprites/PlayerSkins/Sanboy.png" id="7_o713s"]
-[ext_resource type="Texture2D" uid="uid://c6dydbtjseejl" path="res://Content/Sprites/PlayerSkins/sus3.png" id="7_ta506"]
-[ext_resource type="Texture2D" uid="uid://c5b66sxt1dnas" path="res://Content/Sprites/PlayerSkins/sus4.png" id="8_qv5bg"]
-[ext_resource type="Texture2D" uid="uid://d0uryn3d58xj4" path="res://Content/Sprites/PlayerSkins/sus5.png" id="9_a1g5k"]
+[ext_resource type="Texture2D" uid="uid://vjcab56ymxqr" path="res://Content/Sprites/PlayerSkins/Pineplum.png" id="9_2om8k"]
 [ext_resource type="Texture2D" uid="uid://b486fyylpidxt" path="res://Content/Sprites/PlayerSkins/Strawman.png" id="9_osnja"]
-[ext_resource type="Texture2D" uid="uid://cawn7rg0hdq7u" path="res://Content/Sprites/PlayerSkins/sus6.png" id="10_xpiqe"]
-[ext_resource type="Texture2D" uid="uid://cchraaup5glcv" path="res://Content/Sprites/PlayerSkins/sus7.png" id="11_x232v"]
-[ext_resource type="Texture2D" uid="uid://cdaah1nvyxhxq" path="res://Content/Sprites/PlayerSkins/sus8.png" id="12_1gxbc"]
-[ext_resource type="Texture2D" uid="uid://di47wjmb2woj8" path="res://Content/Sprites/PlayerSkins/sus9.png" id="13_12yo4"]
-[ext_resource type="Texture2D" uid="uid://c67eyyp6481n" path="res://Content/Sprites/PlayerSkins/sus10.png" id="14_8gplr"]
-[ext_resource type="Texture2D" uid="uid://cvufc0e636jx3" path="res://Content/Sprites/PlayerSkins/sus.png" id="15_qnkcn"]
-[ext_resource type="Texture2D" uid="uid://daxt8dg7py7ke" path="res://Content/Sprites/PlayerSkins/sus11.png" id="17_bqxiy"]
+[ext_resource type="Texture2D" uid="uid://bbo5rgyrh6rwk" path="res://Content/Sprites/PlayerSkins/Bondey.png" id="10_t1dm6"]
 
 [sub_resource type="Animation" id="Animation_yy61y"]
 resource_name = "Opening"
@@ -112,7 +104,51 @@ animations = [{
 }],
 "loop": true,
 "name": &"default",
-"speed": 5.0
+"speed": 0.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t5q82"]
+atlas = ExtResource("9_2om8k")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kby6p"]
+atlas = ExtResource("9_2om8k")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_30lyp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t5q82")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kby6p")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3yp0h"]
+atlas = ExtResource("10_t1dm6")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wb8o3"]
+atlas = ExtResource("10_t1dm6")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3y8ak"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3yp0h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wb8o3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
 }]
 
 [node name="SkinsMenu" type="Control"]
@@ -156,20 +192,24 @@ button_group = SubResource("ButtonGroup_3j4fm")
 texture_normal = ExtResource("2_5tg7d")
 texture_disabled = ExtResource("5_m7r3n")
 
-[node name="Sprite2D" type="Sprite2D" parent="SkinButtons/Button1"]
-visible = false
-position = Vector2(24, 19)
-scale = Vector2(2, 2)
-texture = ExtResource("4_4fnp7")
-region_enabled = true
-region_rect = Rect2(2, 0, 12, 16)
-
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SkinButtons/Button1"]
 position = Vector2(24, 19)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_lnvn1")
 autoplay = "default"
 frame_progress = 0.533851
+
+[node name="SkinName" type="Label" parent="SkinButtons/Button1"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 36.0
+offset_right = 124.0
+offset_bottom = 61.0
+scale = Vector2(0.35, 0.35)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+text = "Slippey"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Button2" parent="SkinButtons" instance=ExtResource("2_oge4l")]
 layout_mode = 0
@@ -181,20 +221,23 @@ button_group = SubResource("ButtonGroup_3j4fm")
 texture_normal = ExtResource("2_5tg7d")
 texture_disabled = ExtResource("5_m7r3n")
 
-[node name="Sprite2D" type="Sprite2D" parent="SkinButtons/Button2"]
-visible = false
-position = Vector2(24, 19)
-scale = Vector2(2, 2)
-texture = ExtResource("7_o713s")
-region_enabled = true
-region_rect = Rect2(2, 0, 12, 16)
-
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SkinButtons/Button2"]
 position = Vector2(24, 19)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_ahirm")
 autoplay = "default"
 frame_progress = 0.422268
+
+[node name="SkinName" type="Label" parent="SkinButtons/Button2"]
+offset_left = 3.0
+offset_top = 36.0
+offset_right = 122.0
+offset_bottom = 61.0
+scale = Vector2(0.35, 0.35)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+text = "Sanboy"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Button3" parent="SkinButtons" instance=ExtResource("2_oge4l")]
 layout_mode = 0
@@ -206,19 +249,22 @@ button_group = SubResource("ButtonGroup_3j4fm")
 texture_normal = ExtResource("2_5tg7d")
 texture_disabled = ExtResource("5_m7r3n")
 
-[node name="Sprite2D" type="Sprite2D" parent="SkinButtons/Button3"]
-visible = false
-position = Vector2(24, 19)
-scale = Vector2(2, 2)
-texture = ExtResource("7_ta506")
-region_enabled = true
-region_rect = Rect2(2, 0, 12, 16)
-
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SkinButtons/Button3"]
 position = Vector2(24, 19)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_0iy5u")
 autoplay = "default"
+
+[node name="SkinName" type="Label" parent="SkinButtons/Button3"]
+offset_left = 3.0
+offset_top = 36.0
+offset_right = 123.0
+offset_bottom = 61.0
+scale = Vector2(0.35, 0.35)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+text = "Strawman"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Button4" parent="SkinButtons" instance=ExtResource("2_oge4l")]
 layout_mode = 0
@@ -230,12 +276,22 @@ button_group = SubResource("ButtonGroup_3j4fm")
 texture_normal = ExtResource("2_5tg7d")
 texture_disabled = ExtResource("5_m7r3n")
 
-[node name="Sprite2D" type="Sprite2D" parent="SkinButtons/Button4"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SkinButtons/Button4"]
 position = Vector2(24, 19)
 scale = Vector2(2, 2)
-texture = ExtResource("8_qv5bg")
-region_enabled = true
-region_rect = Rect2(2, 0, 12, 16)
+sprite_frames = SubResource("SpriteFrames_30lyp")
+autoplay = "default"
+
+[node name="SkinName" type="Label" parent="SkinButtons/Button4"]
+offset_left = 3.0
+offset_top = 36.0
+offset_right = 122.0
+offset_bottom = 61.0
+scale = Vector2(0.35, 0.35)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+text = "Pineplum"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Button5" parent="SkinButtons" instance=ExtResource("2_oge4l")]
 layout_mode = 0
@@ -247,12 +303,23 @@ button_group = SubResource("ButtonGroup_3j4fm")
 texture_normal = ExtResource("2_5tg7d")
 texture_disabled = ExtResource("5_m7r3n")
 
-[node name="Sprite2D" type="Sprite2D" parent="SkinButtons/Button5"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SkinButtons/Button5"]
 position = Vector2(24, 19)
 scale = Vector2(2, 2)
-texture = ExtResource("9_a1g5k")
-region_enabled = true
-region_rect = Rect2(2, 0, 12, 16)
+sprite_frames = SubResource("SpriteFrames_3y8ak")
+autoplay = "default"
+frame_progress = 0.52938
+
+[node name="SkinName" type="Label" parent="SkinButtons/Button5"]
+offset_left = 3.0
+offset_top = 36.0
+offset_right = 123.0
+offset_bottom = 61.0
+scale = Vector2(0.35, 0.35)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+text = "Bondey"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Button6" parent="SkinButtons" instance=ExtResource("2_oge4l")]
 layout_mode = 0
@@ -263,13 +330,6 @@ toggle_mode = true
 button_group = SubResource("ButtonGroup_3j4fm")
 texture_normal = ExtResource("2_5tg7d")
 texture_disabled = ExtResource("5_m7r3n")
-
-[node name="Sprite2D" type="Sprite2D" parent="SkinButtons/Button6"]
-position = Vector2(24, 19)
-scale = Vector2(2, 2)
-texture = ExtResource("10_xpiqe")
-region_enabled = true
-region_rect = Rect2(2, 0, 12, 16)
 
 [node name="Button7" parent="SkinButtons" instance=ExtResource("2_oge4l")]
 layout_mode = 0
@@ -282,13 +342,6 @@ button_group = SubResource("ButtonGroup_3j4fm")
 texture_normal = ExtResource("2_5tg7d")
 texture_disabled = ExtResource("5_m7r3n")
 
-[node name="Sprite2D" type="Sprite2D" parent="SkinButtons/Button7"]
-position = Vector2(24, 19)
-scale = Vector2(2, 2)
-texture = ExtResource("11_x232v")
-region_enabled = true
-region_rect = Rect2(2, 0, 12, 16)
-
 [node name="Button8" parent="SkinButtons" instance=ExtResource("2_oge4l")]
 layout_mode = 0
 offset_left = 400.0
@@ -299,13 +352,6 @@ toggle_mode = true
 button_group = SubResource("ButtonGroup_3j4fm")
 texture_normal = ExtResource("2_5tg7d")
 texture_disabled = ExtResource("5_m7r3n")
-
-[node name="Sprite2D" type="Sprite2D" parent="SkinButtons/Button8"]
-position = Vector2(24, 19)
-scale = Vector2(2, 2)
-texture = ExtResource("12_1gxbc")
-region_enabled = true
-region_rect = Rect2(2, 0, 12, 16)
 
 [node name="Button9" parent="SkinButtons" instance=ExtResource("2_oge4l")]
 layout_mode = 0
@@ -318,13 +364,6 @@ button_group = SubResource("ButtonGroup_3j4fm")
 texture_normal = ExtResource("2_5tg7d")
 texture_disabled = ExtResource("5_m7r3n")
 
-[node name="Sprite2D" type="Sprite2D" parent="SkinButtons/Button9"]
-position = Vector2(24, 19)
-scale = Vector2(2, 2)
-texture = ExtResource("13_12yo4")
-region_enabled = true
-region_rect = Rect2(2, 0, 12, 16)
-
 [node name="Button10" parent="SkinButtons" instance=ExtResource("2_oge4l")]
 layout_mode = 0
 offset_left = 800.0
@@ -336,13 +375,6 @@ button_group = SubResource("ButtonGroup_3j4fm")
 texture_normal = ExtResource("2_5tg7d")
 texture_disabled = ExtResource("5_m7r3n")
 
-[node name="Sprite2D" type="Sprite2D" parent="SkinButtons/Button10"]
-position = Vector2(24, 19)
-scale = Vector2(2, 2)
-texture = ExtResource("14_8gplr")
-region_enabled = true
-region_rect = Rect2(2, 0, 12, 16)
-
 [node name="Button11" parent="SkinButtons" instance=ExtResource("2_oge4l")]
 layout_mode = 0
 offset_top = 400.0
@@ -352,13 +384,6 @@ toggle_mode = true
 button_group = SubResource("ButtonGroup_3j4fm")
 texture_normal = ExtResource("2_5tg7d")
 texture_disabled = ExtResource("5_m7r3n")
-
-[node name="Sprite2D" type="Sprite2D" parent="SkinButtons/Button11"]
-position = Vector2(24, 19)
-scale = Vector2(2, 2)
-texture = ExtResource("15_qnkcn")
-region_enabled = true
-region_rect = Rect2(2, 0, 12, 16)
 
 [node name="Button12" parent="SkinButtons" instance=ExtResource("2_oge4l")]
 layout_mode = 0
@@ -371,12 +396,6 @@ button_group = SubResource("ButtonGroup_3j4fm")
 texture_normal = ExtResource("2_5tg7d")
 texture_disabled = ExtResource("5_m7r3n")
 
-[node name="Sprite2D" type="Sprite2D" parent="SkinButtons/Button12"]
-position = Vector2(24, 19)
-scale = Vector2(2, 2)
-region_enabled = true
-region_rect = Rect2(2, 0, 12, 16)
-
 [node name="Button13" parent="SkinButtons" instance=ExtResource("2_oge4l")]
 layout_mode = 0
 offset_left = 400.0
@@ -387,13 +406,6 @@ toggle_mode = true
 button_group = SubResource("ButtonGroup_3j4fm")
 texture_normal = ExtResource("2_5tg7d")
 texture_disabled = ExtResource("5_m7r3n")
-
-[node name="Sprite2D" type="Sprite2D" parent="SkinButtons/Button13"]
-position = Vector2(24, 19)
-scale = Vector2(2, 2)
-texture = ExtResource("17_bqxiy")
-region_enabled = true
-region_rect = Rect2(2, 0, 12, 16)
 
 [node name="SkinsUnlocked" type="Label" parent="."]
 layout_mode = 0

@@ -224,10 +224,8 @@ colors = PackedColorArray(0, 0.627451, 1, 0.784314, 1, 0.627451, 1, 0.784314, 0.
 [node name="Strawman" type="AnimatedSprite2D"]
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_a5dnx")
-animation = &"Climb"
+animation = &"Idle"
 autoplay = "Idle"
-frame = 4
-frame_progress = 1.0
 script = ExtResource("2_lclxa")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -295,3 +293,5 @@ color_initial_ramp = SubResource("Gradient_xyt55")
 stream = ExtResource("4_m2c72")
 volume_db = 5.0
 bus = &"Player"
+
+[connection signal="PlayerDeath" from="." to="AnimationPlayer" method="play" flags=6 binds= ["Death"]]

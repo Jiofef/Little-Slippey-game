@@ -1,12 +1,14 @@
 res://default_bus_layout.tres
 res://default_env.tres
-res://Content/Scenes/PlayerSkins/Sanboy.tscn
+res://Content/Scenes/Other/Player.tscn
 res://Content/Other/StaticNoiseShader.gdshader
 res://Content/Other/BlurShader.gdshader
 res://Content/Other/CRT.gdshader
 res://Content/Other/PixelateShader.gdshader
-res://Content/Scenes/PlayerSkins/Strawman.tscn
+res://Content/Scenes/Levels/FullParts/Level1.tscn
+res://Content/Scenes/PlayerSkins/PinePlum.tscn
 res://Content/Scenes/Interface&Menu/SkinsMenu.tscn
+res://Content/Scenes/PlayerSkins/Pineplum.tscn
 res://Content/Other/G.cs
 res://Content/Other/Meta.cs
 res://Content/Other/UnchangableMeta.cs
@@ -60,3 +62,8 @@ res://Content/Scripts/Other/Camera.cs
 res://Content/Scripts/Other/DefaultSkinAPIXD.cs
 res://Content/Scripts/Other/MainScript.cs
 res://Content/Scripts/Other/Player.cs
+res://Content/Scenes/PlayerSkins/Strawman.tscn
+res://Content/Scenes/PlayerSkins/Sanboy.tscn
+res://Content/Scenes/PlayerSkins/Slippey.tscn
+res://Content/Scenes/PlayerSkins/Bondey.tscn
+res://Content/Scenes/Other/Main.tscn

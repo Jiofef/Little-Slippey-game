@@ -1,6 +1,4 @@
 using Godot;
-using System;
-using System.Linq;
 
 public partial class SkinsMenu : Control
 {
@@ -13,7 +11,7 @@ public partial class SkinsMenu : Control
             if (UnchangableMeta.AchievementStatuses[NeededAchievementIndexes[i]] != 1)
             {
                 GetNode<TextureButton>("SkinButtons/Button" + (i + 2)).Disabled = true;
-                GetNode<Sprite2D>("SkinButtons/Button" + (i + 2) + "/Sprite2D").Modulate = new Color(0, 0, 0);
+                //GetNode<Sprite2D>("SkinButtons/Button" + (i + 2) + "/Sprite2D").Modulate = new Color(0, 0, 0);
             }
         }
         

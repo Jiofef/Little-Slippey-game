@@ -2,11 +2,13 @@ using Godot;
 
 public partial class MainScript : Node2D
 {
-    private bool _subMenusOpened, _rewindState;
+    private bool _subMenusOpened;
+    TextureButton _rewindButton;
 
     public override void _Ready()
     {
         GetNode<AudioStreamPlayer>("LevelMusicPlayer").Stream = ResourceLoader.Load<AudioStream>("res://Content/Sounds/Soundtrack/Level" + G.CurrentLevel + ".mp3");
+        _rewindButton = GetNode<TextureButton>("Pause/Interface/ButtonsFrame/Rewind");
         if (UnchangableMeta.LevelPlayedStatus[G.CurrentLevel - 1] != 1)
         {
             UnchangableMeta.LevelPlayedStatus[G.CurrentLevel - 1] = 1;
@@ -19,7 +21,7 @@ public partial class MainScript : Node2D
     {
         if (Input.IsActionJustPressed("Cancel") && !_subMenusOpened && !G._isLevel10Finaling)
             UnPause();
-        if (_rewindState)
+        if (_rewindButton.ButtonPressed)
             G.ResetTimer += 0.016667f * 2;
 
     }
@@ -71,13 +73,5 @@ public partial class MainScript : Node2D
     public void LevelLoad()
     {
         GetNode("PlayPart").AddChild(ResourceLoader.Load<PackedScene>("res://Content/Scenes/Levels/FullParts/Level" + G.CurrentLevel + G.LevelAdditionalLink + ".tscn").Instantiate());
-    }
-    public void StartRewind()
-    {
-        _rewindState = true;
-    }
-    public void StopRewind()
-    {
-        _rewindState = false;
     }
 }

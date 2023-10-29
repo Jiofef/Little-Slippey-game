@@ -3,13 +3,13 @@ using System;
 
 public partial class DefaultSkinAPIXD : AnimatedSprite2D
 {
-	// Called when the node enters the scene tree for the first time.
+	[Signal] public delegate void PlayerDeathEventHandler();
 	public override void _Ready()
 	{
 		GetParent().Connect("PlayerDied", new Callable(this, "PlayerDied"));
 	}
 	public void PlayerDied()
 	{
-		GetNode<AnimationPlayer>("AnimationPlayer").Play("Death");
+		EmitSignal("PlayerDeath");
     }
 }

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://daxt8dg7py7ke"
-path="res://.godot/imported/sus11.png-80bb6241446e25e328ffb24fbce790ac.ctex"
+uid="uid://vjcab56ymxqr"
+path="res://.godot/imported/Pineplum.png-ddcf72519625430a1bab0f5a86a09378.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Content/Sprites/PlayerSkins/sus11.png"
-dest_files=["res://.godot/imported/sus11.png-80bb6241446e25e328ffb24fbce790ac.ctex"]
+source_file="res://Content/Sprites/PlayerSkins/Pineplum.png"
+dest_files=["res://.godot/imported/Pineplum.png-ddcf72519625430a1bab0f5a86a09378.ctex"]
 
 [params]
 

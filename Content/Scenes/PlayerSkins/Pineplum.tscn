@@ -1,0 +1,250 @@
+[gd_scene load_steps=29 format=3 uid="uid://cx7c3g50pyio4"]
+
+[ext_resource type="Texture2D" uid="uid://vjcab56ymxqr" path="res://Content/Sprites/PlayerSkins/Pineplum.png" id="1_2n4ri"]
+[ext_resource type="Script" path="res://Content/Scripts/Other/DefaultSkinAPIXD.cs" id="2_bom76"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jcl41"]
+atlas = ExtResource("1_2n4ri")
+region = Rect2(0, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_volyi"]
+atlas = ExtResource("1_2n4ri")
+region = Rect2(16, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xl2nb"]
+atlas = ExtResource("1_2n4ri")
+region = Rect2(32, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_adm1h"]
+atlas = ExtResource("1_2n4ri")
+region = Rect2(0, 64, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ufnuk"]
+atlas = ExtResource("1_2n4ri")
+region = Rect2(16, 64, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ahba"]
+atlas = ExtResource("1_2n4ri")
+region = Rect2(32, 64, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7cr4t"]
+atlas = ExtResource("1_2n4ri")
+region = Rect2(64, 64, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qml35"]
+atlas = ExtResource("1_2n4ri")
+region = Rect2(64, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hvmhl"]
+atlas = ExtResource("1_2n4ri")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nnkpj"]
+atlas = ExtResource("1_2n4ri")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ksxjf"]
+atlas = ExtResource("1_2n4ri")
+region = Rect2(48, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4s5vx"]
+atlas = ExtResource("1_2n4ri")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_anlcq"]
+atlas = ExtResource("1_2n4ri")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ncma8"]
+atlas = ExtResource("1_2n4ri")
+region = Rect2(32, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_15i8b"]
+atlas = ExtResource("1_2n4ri")
+region = Rect2(48, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2djs5"]
+atlas = ExtResource("1_2n4ri")
+region = Rect2(64, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5egu2"]
+atlas = ExtResource("1_2n4ri")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kexvn"]
+atlas = ExtResource("1_2n4ri")
+region = Rect2(16, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l411c"]
+atlas = ExtResource("1_2n4ri")
+region = Rect2(32, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gnkxh"]
+atlas = ExtResource("1_2n4ri")
+region = Rect2(48, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i5ikf"]
+atlas = ExtResource("1_2n4ri")
+region = Rect2(64, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vv870"]
+atlas = ExtResource("1_2n4ri")
+region = Rect2(48, 64, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vfmv7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jcl41")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_volyi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xl2nb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_adm1h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ufnuk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ahba")
+}],
+"loop": false,
+"name": &"Climb",
+"speed": 20.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7cr4t")
+}],
+"loop": true,
+"name": &"Death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qml35")
+}],
+"loop": true,
+"name": &"Fall",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hvmhl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nnkpj")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ksxjf")
+}],
+"loop": true,
+"name": &"Jump",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4s5vx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_anlcq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ncma8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_15i8b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2djs5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5egu2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kexvn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l411c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gnkxh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i5ikf")
+}],
+"loop": true,
+"name": &"Walk",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vv870")
+}],
+"loop": true,
+"name": &"WallCatch",
+"speed": 0.0
+}]
+
+[sub_resource type="Gradient" id="Gradient_wcovp"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="Animation" id="Animation_rnhil"]
+resource_name = "Death"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BrokenGlass:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lejrn"]
+_data = {
+"Death": SubResource("Animation_rnhil")
+}
+
+[node name="Pineplum" type="AnimatedSprite2D"]
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_vfmv7")
+animation = &"Idle"
+autoplay = "Idle"
+script = ExtResource("2_bom76")
+
+[node name="BrokenGlass" type="CPUParticles2D" parent="."]
+position = Vector2(0, -3)
+emitting = false
+amount = 12
+one_shot = true
+explosiveness = 1.0
+local_coords = true
+emission_shape = 4
+emission_points = PackedVector2Array(-2, 0, 2, 0)
+emission_colors = PackedColorArray()
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 60.0
+initial_velocity_max = 60.0
+color = Color(0.137255, 0.137255, 0.176471, 1)
+color_ramp = SubResource("Gradient_wcovp")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_lejrn")
+}
+
+[connection signal="PlayerDeath" from="." to="AnimationPlayer" method="play" flags=6 binds= ["Death"]]

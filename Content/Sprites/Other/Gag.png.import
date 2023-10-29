@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c6dydbtjseejl"
-path="res://.godot/imported/sus3.png-ceab296d6694ec3f83da31c897c6080d.ctex"
+uid="uid://opd2bxl16861"
+path="res://.godot/imported/Gag.png-65ddb11d4e78f907fed57b08f68f8b9f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Content/Sprites/PlayerSkins/sus3.png"
-dest_files=["res://.godot/imported/sus3.png-ceab296d6694ec3f83da31c897c6080d.ctex"]
+source_file="res://Content/Sprites/Other/Gag.png"
+dest_files=["res://.godot/imported/Gag.png-65ddb11d4e78f907fed57b08f68f8b9f.ctex"]
 
 [params]
 

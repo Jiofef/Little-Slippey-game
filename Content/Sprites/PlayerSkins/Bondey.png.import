@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c67eyyp6481n"
-path="res://.godot/imported/sus10.png-69fc072b21c0abd942d0edf3245ea51d.ctex"
+uid="uid://bbo5rgyrh6rwk"
+path="res://.godot/imported/Bondey.png-5defc00e2030f9831edb096cb2f498d3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Content/Sprites/PlayerSkins/sus10.png"
-dest_files=["res://.godot/imported/sus10.png-69fc072b21c0abd942d0edf3245ea51d.ctex"]
+source_file="res://Content/Sprites/PlayerSkins/Bondey.png"
+dest_files=["res://.godot/imported/Bondey.png-5defc00e2030f9831edb096cb2f498d3.ctex"]
 
 [params]
 

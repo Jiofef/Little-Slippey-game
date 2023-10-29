@@ -232,6 +232,7 @@ offset_right = -358.0
 offset_bottom = -40.0
 grow_horizontal = 2
 grow_vertical = 2
+focus_neighbor_left = NodePath("../Menu")
 texture_normal = ExtResource("3_30esk")
 
 [node name="Rewind" parent="Pause/Interface/ButtonsFrame" instance=ExtResource("6")]
@@ -256,6 +257,7 @@ offset_left = 878.0
 offset_top = 20.0
 offset_right = 918.0
 offset_bottom = 60.0
+focus_neighbor_right = NodePath("../Resume")
 texture_normal = ExtResource("7_ikix5")
 
 [node name="SubMenuBackgroundRect" type="ColorRect" parent="Pause/Interface"]
@@ -309,8 +311,6 @@ bus = &"Interface"
 
 [connection signal="finished" from="LevelMusicPlayer" to="." method="MusicFinished"]
 [connection signal="pressed" from="Pause/Interface/ButtonsFrame/Resume" to="." method="UnPause"]
-[connection signal="button_down" from="Pause/Interface/ButtonsFrame/Rewind" to="." method="StartRewind"]
-[connection signal="button_up" from="Pause/Interface/ButtonsFrame/Rewind" to="." method="StopRewind"]
 [connection signal="pressed" from="Pause/Interface/ButtonsFrame/Options" to="." method="Options"]
 [connection signal="pressed" from="Pause/Interface/ButtonsFrame/Menu" to="." method="Menu"]
 [connection signal="animation_finished" from="EpicIntro/AnimationPlayer" to="EpicIntro" method="queue_free" unbinds=1]

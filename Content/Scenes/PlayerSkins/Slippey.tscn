@@ -197,5 +197,5 @@ animations = [{
 [node name="Slippey" type="AnimatedSprite2D"]
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_ha5cw")
-animation = &"Climb"
+animation = &"Idle"
 autoplay = "Idle"
