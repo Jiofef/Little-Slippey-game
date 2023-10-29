@@ -229,6 +229,7 @@ autoplay = "default"
 frame_progress = 0.422268
 
 [node name="SkinName" type="Label" parent="SkinButtons/Button2"]
+layout_mode = 0
 offset_left = 3.0
 offset_top = 36.0
 offset_right = 122.0
@@ -256,6 +257,7 @@ sprite_frames = SubResource("SpriteFrames_0iy5u")
 autoplay = "default"
 
 [node name="SkinName" type="Label" parent="SkinButtons/Button3"]
+layout_mode = 0
 offset_left = 3.0
 offset_top = 36.0
 offset_right = 123.0
@@ -283,6 +285,7 @@ sprite_frames = SubResource("SpriteFrames_30lyp")
 autoplay = "default"
 
 [node name="SkinName" type="Label" parent="SkinButtons/Button4"]
+layout_mode = 0
 offset_left = 3.0
 offset_top = 36.0
 offset_right = 122.0
@@ -311,6 +314,7 @@ autoplay = "default"
 frame_progress = 0.52938
 
 [node name="SkinName" type="Label" parent="SkinButtons/Button5"]
+layout_mode = 0
 offset_left = 3.0
 offset_top = 36.0
 offset_right = 123.0

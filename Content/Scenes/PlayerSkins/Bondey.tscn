@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bb1mgrg3u3fjx"]
+[gd_scene load_steps=24 format=3 uid="uid://bb1mgrg3u3fjx"]
 
 [ext_resource type="Texture2D" uid="uid://bbo5rgyrh6rwk" path="res://Content/Sprites/PlayerSkins/Bondey.png" id="2_lm8m3"]
 [ext_resource type="Script" path="res://Content/Scripts/Other/DefaultSkinAPIXD.cs" id="3_q8sv5"]
@@ -32,9 +32,17 @@ region = Rect2(32, 48, 16, 16)
 atlas = ExtResource("2_lm8m3")
 region = Rect2(64, 48, 16, 16)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_rcb56"]
+atlas = ExtResource("2_lm8m3")
+region = Rect2(64, 16, 16, 16)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_qyepv"]
 atlas = ExtResource("2_lm8m3")
 region = Rect2(64, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rhh3q"]
+atlas = ExtResource("2_lm8m3")
+region = Rect2(64, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_drnc4"]
 atlas = ExtResource("2_lm8m3")
@@ -47,6 +55,10 @@ region = Rect2(16, 0, 16, 16)
 [sub_resource type="AtlasTexture" id="AtlasTexture_7wflm"]
 atlas = ExtResource("2_lm8m3")
 region = Rect2(48, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nu4kc"]
+atlas = ExtResource("2_lm8m3")
+region = Rect2(48, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8s5ua"]
 atlas = ExtResource("2_lm8m3")
@@ -87,19 +99,25 @@ animations = [{
 }],
 "loop": false,
 "name": &"Climb",
-"speed": 20.0
+"speed": 16.0
 }, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_bba25")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rcb56")
 }],
-"loop": true,
+"loop": false,
 "name": &"Death",
-"speed": 5.0
+"speed": 0.4
 }, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_qyepv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rhh3q")
 }],
 "loop": true,
 "name": &"Fall",
@@ -119,6 +137,9 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_7wflm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nu4kc")
 }],
 "loop": true,
 "name": &"Jump",
@@ -156,6 +177,7 @@ sprite_frames = SubResource("SpriteFrames_2me0h")
 animation = &"Idle"
 autoplay = "Idle"
 script = ExtResource("3_q8sv5")
+_enableSecondJumpAndFallFrame = true
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 emitting = false

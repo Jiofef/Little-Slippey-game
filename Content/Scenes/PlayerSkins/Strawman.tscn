@@ -276,6 +276,7 @@ color = Color(1, 0.843137, 0.0784314, 1)
 color_ramp = SubResource("Gradient_52qlo")
 
 [node name="MusicParticles" type="CPUParticles2D" parent="."]
+position = Vector2(2, 0)
 emitting = false
 amount = 3
 lifetime = 2.5
