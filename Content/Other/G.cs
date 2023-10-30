@@ -20,20 +20,20 @@ public partial class G : Node
 		new Vector2(2560, 1280),
 		new Vector2(2560, 640),
 		new Vector2(2560, 1280),
-        new Vector2(1280, 640),
+		new Vector2(1280, 640),
 		new Vector2(999999999, 640),
 		new Vector2(2560, 1280),
 		new Vector2(2560, 1280)
-    };
-    public static float GetPlayerCorpseFlightTimerCoeff()
+	};
+	public static float GetPlayerCorpseFlightTimerCoeff()
 	{
 		return PlayerCorpseFlightTimer / 4.5f;
 	}
 	public static float GetReversedPlayerCorpseFlightTimerCoeff()
 	{
 		return 1 - GetPlayerCorpseFlightTimerCoeff();
-    }
-    public static void ResetValues()
+	}
+	public static void ResetValues()
 	{
 		IsNewRecordReached = false;
 		IsPlayerDead = false;
@@ -44,13 +44,34 @@ public partial class G : Node
 	}
 	public static void CompletelyResetValues()
 	{
-        ResetValues();
-        LevelAdditionalLink = null;
-        IsProgressPaused = false;
-        CrossSpawnMultiplier = 1;
-        IsCrossesEnabled = true;
-        CurrentLevel = 0;
-        AudioServer.SetBusEffectEnabled(2, 0, false);
-        AudioServer.SetBusEffectEnabled(6, 0, false);
-    }
+		ResetValues();
+		LevelAdditionalLink = null;
+		IsProgressPaused = false;
+		CrossSpawnMultiplier = 1;
+		IsCrossesEnabled = true;
+		CurrentLevel = 0;
+		AudioServer.SetBusEffectEnabled(2, 0, false);
+		AudioServer.SetBusEffectEnabled(6, 0, false);
+	}
+
+	//Achievements segment. WARNING. BEING HERE CAN CAUSE HEAD ACHE, DIZZINESS, VOMITING, AND ALSO CAN PROVOKE AIDS AND ACUTE FORM OF PROSTATE CANCER. You have been warned.
+	public static readonly int[][][] LevelCompletionAchievementNumbers =
+	{
+		new int[][] { new int[] {0}, new int[] {0}, new int[] {0}, new int[] {0}, new int[] {0}, new int[] {0}, new int[] {0}, new int[] {0}, new int[] {0}, new int[] {0}},
+		new int[][] { new int[] {0}, new int[] {0}, new int[] {0}, new int[] {0}, new int[] {0}, new int[] {0}, new int[] {0}, new int[] {0}, new int[] {0}, new int[] {0}},
+		new int[][] { new int[] {0, 0}, new int[] {0, 0}, new int[] {0, 0}, new int[] {0, 0}, new int[] {0, 0}, new int[] {0, 0}, new int[] {0, 0}, new int[] {0, 0}, new int[] {0, 0}, new int[] {0, 0}},
+	};
+	public static readonly bool[] IsAchievementHiden = { false, true, false, false, true, false, false, false, false, false, false, false, };
+	public static CanvasLayer CurrentPopupAchievementsLayer;
+	public static int AchievementPopupTimerMultiplier = 0;
+	public static void GetAchievement(int index)
+	{
+		if (UnchangableMeta.AchievementStatuses[index] == 1) return;
+		var achievement = ResourceLoader.Load<PackedScene>("res://Content/Scenes/Achievements/Achievement" + (index + 1) + ".tscn").Instantiate();
+        CurrentPopupAchievementsLayer.AddChild(achievement);
+        achievement.GetNode<Timer>("PopupVersionPart/PopupTimer").Start(0.05f + 0.3f * AchievementPopupTimerMultiplier);
+		UnchangableMeta.AchievementStatuses[index] = 1;
+		UnchangableMeta.SaveToFile();
+        AchievementPopupTimerMultiplier++;
+	}
 }

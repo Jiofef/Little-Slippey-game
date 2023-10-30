@@ -110,7 +110,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"Death",
-"speed": 0.4
+"speed": 0.2
 }, {
 "frames": [{
 "duration": 1.0,
@@ -174,8 +174,10 @@ colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 [node name="Bondey" type="AnimatedSprite2D"]
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_2me0h")
-animation = &"Idle"
+animation = &"Death"
 autoplay = "Idle"
+frame = 1
+frame_progress = 1.0
 script = ExtResource("3_q8sv5")
 _enableSecondJumpAndFallFrame = true
 

@@ -1,0 +1,67 @@
+[gd_scene load_steps=5 format=3 uid="uid://bbefvhpfglkty"]
+
+[ext_resource type="Texture2D" uid="uid://blm6syft6nu6e" path="res://Content/Sprites/Interface/AchievementsMenu.png" id="1_fxqph"]
+[ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/AchievementsMenu.cs" id="1_xte5a"]
+
+[sub_resource type="Animation" id="Animation_q7m3v"]
+resource_name = "Appearance"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector2(1, 0), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tgxxh"]
+_data = {
+"Appearance": SubResource("Animation_q7m3v")
+}
+
+[node name="AchievementsMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 145.0
+offset_top = 40.0
+offset_right = -135.0
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_xte5a")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(4, 4)
+texture = ExtResource("1_fxqph")
+centered = false
+
+[node name="AchievementsContainer" type="ScrollContainer" parent="."]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 12.0
+offset_right = 988.0
+offset_bottom = 628.0
+follow_focus = true
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="AchievementsContainer"]
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+columns = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "Appearance"
+libraries = {
+"": SubResource("AnimationLibrary_tgxxh")
+}

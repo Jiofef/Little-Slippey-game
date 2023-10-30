@@ -309,6 +309,9 @@ volume_db = 15.0
 autoplay = true
 bus = &"Interface"
 
+[node name="PopupAchievementsLayer" type="CanvasLayer" parent="."]
+layer = 100
+
 [connection signal="finished" from="LevelMusicPlayer" to="." method="MusicFinished"]
 [connection signal="pressed" from="Pause/Interface/ButtonsFrame/Resume" to="." method="UnPause"]
 [connection signal="pressed" from="Pause/Interface/ButtonsFrame/Options" to="." method="Options"]

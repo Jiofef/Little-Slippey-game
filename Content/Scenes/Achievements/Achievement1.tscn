@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://dnai0i0k4qyvu"]
+
+[ext_resource type="PackedScene" uid="uid://d27nwc3cdixbo" path="res://Content/Scenes/Achievements/DefaultAchievement.tscn" id="1_80p6w"]
+[ext_resource type="Texture2D" uid="uid://ce4oq2adhljwh" path="res://Content/Sprites/Interface/LevelsMenuIcon.png" id="2_rg8uw"]
+
+[node name="Achievement" instance=ExtResource("1_80p6w")]
+
+[node name="RewardSprite" parent="." index="1"]
+texture = ExtResource("2_rg8uw")
+
+[node name="Name" parent="." index="2"]
+text = "Kak"
+
+[node name="Text" parent="." index="4"]
+text = "Popoy ob kosyak"

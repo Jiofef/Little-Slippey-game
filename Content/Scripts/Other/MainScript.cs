@@ -7,6 +7,7 @@ public partial class MainScript : Node2D
 
     public override void _Ready()
     {
+        G.CurrentPopupAchievementsLayer = GetNode<CanvasLayer>("PopupAchievementsLayer");
         GetNode<AudioStreamPlayer>("LevelMusicPlayer").Stream = ResourceLoader.Load<AudioStream>("res://Content/Sounds/Soundtrack/Level" + G.CurrentLevel + ".mp3");
         _rewindButton = GetNode<TextureButton>("Pause/Interface/ButtonsFrame/Rewind");
         if (UnchangableMeta.LevelPlayedStatus[G.CurrentLevel - 1] != 1)

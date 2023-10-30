@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://dlscufxb5f1ca"]
+[gd_scene load_steps=24 format=3 uid="uid://dlscufxb5f1ca"]
 
 [ext_resource type="Script" path="res://Content/Scripts/Other/Player.cs" id="1"]
 [ext_resource type="AudioStream" uid="uid://422y36f6ucnf" path="res://Content/Sounds/Player/Climb.mp3" id="2_bn55d"]
@@ -8,6 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://p26mliplwayb" path="res://Content/Sounds/Player/PullDown.mp3" id="6_ouqh1"]
 [ext_resource type="Texture2D" uid="uid://060bgiw5i00k" path="res://Content/Sprites/PlayerSkins/Slippey.png" id="8_36ypt"]
 [ext_resource type="Texture2D" uid="uid://nmw5orvjy6f8" path="res://Content/Sprites/Other/PlayerGhost.png" id="10"]
+[ext_resource type="Texture2D" uid="uid://t73lfqyo0ovn" path="res://Content/Sprites/Other/Shine.png" id="10_3mkpq"]
 [ext_resource type="AudioStream" uid="uid://dy6lncevmnf3o" path="res://Content/Sounds/Other/WhiteNoise.mp3" id="12_jom63"]
 [ext_resource type="Script" path="res://Content/Scripts/Other/Camera.cs" id="13"]
 [ext_resource type="Texture2D" uid="uid://bvogrd2bqhwmt" path="res://Content/Sprites/Other/OblivionNoise.png" id="15"]
@@ -22,9 +23,12 @@ size = Vector2(40, 56)
 [sub_resource type="RectangleShape2D" id="2"]
 size = Vector2(4, 56)
 
-[sub_resource type="Gradient" id="Gradient_biahg"]
-offsets = PackedFloat32Array(0, 0.225166, 1)
-colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0)
+[sub_resource type="Gradient" id="Gradient_lmxa7"]
+offsets = PackedFloat32Array(0, 0.25, 0.75, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="Gradient" id="Gradient_4fxyx"]
+colors = PackedColorArray(1, 1, 1, 0.501961, 1, 1, 1, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gciug"]
 atlas = ExtResource("15")
@@ -68,6 +72,7 @@ platform_on_leave = 1
 platform_floor_layers = 132
 platform_wall_layers = 132
 script = ExtResource("1")
+metadata/_edit_group_ = true
 
 [node name="FullBodyCollider" type="CollisionShape2D" parent="."]
 position = Vector2(0, 4)
@@ -138,7 +143,6 @@ limit_smoothed = true
 position_smoothing_enabled = true
 editor_draw_limits = true
 script = ExtResource("13")
-metadata/_edit_lock_ = true
 
 [node name="GUI" type="CanvasLayer" parent="Camera2D"]
 offset = Vector2(600, 0)
@@ -194,31 +198,39 @@ text = "New Record!
 Score: 0"
 horizontal_alignment = 1
 
-[node name="Particles1" type="CPUParticles2D" parent="Camera2D/GUI/EmergingElements/NewRecordScores"]
+[node name="Shine1" type="CPUParticles2D" parent="Camera2D/GUI/EmergingElements/NewRecordScores"]
 position = Vector2(127, 8)
 emitting = false
-amount = 30
-lifetime = 3.0
+amount = 20
+lifetime = 6.0
+texture = ExtResource("10_3mkpq")
 emission_shape = 3
 emission_rect_extents = Vector2(64, 11)
 spread = 180.0
 gravity = Vector2(0, 0)
 initial_velocity_max = 1.0
-color = Color(0.980392, 0.894118, 0, 1)
-color_ramp = SubResource("Gradient_biahg")
+scale_amount_min = 0.25
+scale_amount_max = 0.25
+color = Color(1, 1, 0.501961, 0.501961)
+color_ramp = SubResource("Gradient_lmxa7")
+color_initial_ramp = SubResource("Gradient_4fxyx")
 
-[node name="Particles2" type="CPUParticles2D" parent="Camera2D/GUI/EmergingElements/NewRecordScores"]
+[node name="Shine2" type="CPUParticles2D" parent="Camera2D/GUI/EmergingElements/NewRecordScores"]
 position = Vector2(129, 33)
 emitting = false
-amount = 20
-lifetime = 3.0
+amount = 15
+lifetime = 6.0
+texture = ExtResource("10_3mkpq")
 emission_shape = 3
 emission_rect_extents = Vector2(55, 11)
 spread = 180.0
 gravity = Vector2(0, 0)
 initial_velocity_max = 1.0
-color = Color(0.980392, 0.894118, 0, 1)
-color_ramp = SubResource("Gradient_biahg")
+scale_amount_min = 0.25
+scale_amount_max = 0.25
+color = Color(1, 1, 0.501961, 0.501961)
+color_ramp = SubResource("Gradient_lmxa7")
+color_initial_ramp = SubResource("Gradient_4fxyx")
 
 [node name="Hold R" type="Label" parent="Camera2D/GUI/EmergingElements"]
 offset_left = -53.0

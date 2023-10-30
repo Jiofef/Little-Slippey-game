@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://buj5ooik0q3l0"]
+
+[ext_resource type="Script" path="res://Content/Scripts/Other/AchievementArea.cs" id="1_6mm4m"]
+
+[node name="AchievementArea" type="Area2D"]
+collision_layer = 0
+collision_mask = 8
+script = ExtResource("1_6mm4m")
+
+[connection signal="area_entered" from="." to="." method="AreaEntered" unbinds=1]

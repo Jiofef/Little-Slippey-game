@@ -92,8 +92,8 @@ public partial class Camera : Camera2D
                         var newRecordScores = GetNode<Label>(link);
                         newRecordScores.Text = "New Record!\nScore: " + (int)G.Scores;
                         newRecordScores.Visible = true;
-                        GetNode<CpuParticles2D>(link + "/Particles1").Emitting = true;
-                        GetNode<CpuParticles2D>(link + "/Particles2").Emitting = true;
+                        GetNode<CpuParticles2D>(link + "/Shine1").Emitting = true;
+                        GetNode<CpuParticles2D>(link + "/Shine2").Emitting = true;
                     }
                     else
                     {

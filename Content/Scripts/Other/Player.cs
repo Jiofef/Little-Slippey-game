@@ -223,8 +223,10 @@ public partial class Player : CharacterBody2D
     public void AnimationFinished()
     {
         if (_animationName == "Climb")
+        {
             _animationName = "Jump";
-        _animatedSprite.Play();
+            _animatedSprite.Play();
+        }
     }
 
     public void Death()
