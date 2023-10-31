@@ -1,7 +1,9 @@
+Sprite2D
+Node2D
+AnimationPlayer
 CollisionShape2D
 VBoxContainer
 RichTextLabel
-AnimationPlayer
 VScrollBar
 ScrollContainer
 GridContainer
@@ -9,11 +11,9 @@ Timer
 Area2D
 AudioStreamPlayer
 CPUParticles2D
-Node2D
 Node
 Label
 CanvasLayer
-Sprite2D
 ColorRect
 DirectionalLight2D
 PointLight2D

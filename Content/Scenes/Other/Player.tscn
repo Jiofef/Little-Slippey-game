@@ -73,6 +73,7 @@ platform_floor_layers = 132
 platform_wall_layers = 132
 script = ExtResource("1")
 metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
 
 [node name="FullBodyCollider" type="CollisionShape2D" parent="."]
 position = Vector2(0, 4)
