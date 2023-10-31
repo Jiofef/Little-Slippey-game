@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://ufrdtjstxptm"]
+[gd_scene load_steps=34 format=3 uid="uid://ufrdtjstxptm"]
 
 [ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/SkinsMenu.cs" id="1_81lvq"]
 [ext_resource type="Texture2D" uid="uid://mr4rfhwjaa0c" path="res://Content/Sprites/Interface/SkinsMenuBox.png" id="1_ktj04"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://vjcab56ymxqr" path="res://Content/Sprites/PlayerSkins/Pineplum.png" id="9_2om8k"]
 [ext_resource type="Texture2D" uid="uid://b486fyylpidxt" path="res://Content/Sprites/PlayerSkins/Strawman.png" id="9_osnja"]
 [ext_resource type="Texture2D" uid="uid://bbo5rgyrh6rwk" path="res://Content/Sprites/PlayerSkins/Bondey.png" id="10_t1dm6"]
+[ext_resource type="Texture2D" uid="uid://daeeo1lq7usi6" path="res://Content/Sprites/PlayerSkins/Hostey.png" id="11_jf18u"]
 
 [sub_resource type="Animation" id="Animation_yy61y"]
 resource_name = "Opening"
@@ -149,6 +150,28 @@ animations = [{
 "loop": true,
 "name": &"default",
 "speed": 1.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o8680"]
+atlas = ExtResource("11_jf18u")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ul5gc"]
+atlas = ExtResource("11_jf18u")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_plqb3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o8680")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ul5gc")
+}],
+"loop": true,
+"name": &"default",
+"speed": 0.66
 }]
 
 [node name="SkinsMenu" type="Control"]
@@ -345,6 +368,24 @@ toggle_mode = true
 button_group = SubResource("ButtonGroup_3j4fm")
 texture_normal = ExtResource("2_5tg7d")
 texture_disabled = ExtResource("5_m7r3n")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SkinButtons/Button7"]
+position = Vector2(24, 19)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_plqb3")
+autoplay = "default"
+frame_progress = 0.97506
+
+[node name="SkinName" type="Label" parent="SkinButtons/Button7"]
+offset_left = 3.0
+offset_top = 36.0
+offset_right = 123.0
+offset_bottom = 61.0
+scale = Vector2(0.35, 0.35)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+text = "???"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Button8" parent="SkinButtons" instance=ExtResource("2_oge4l")]
 layout_mode = 0

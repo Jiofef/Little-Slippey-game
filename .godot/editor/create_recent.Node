@@ -1,7 +1,9 @@
+CollisionShape2D
+AudioStreamPlayer
+CPUParticles2D
+AnimationPlayer
 Sprite2D
 Node2D
-AnimationPlayer
-CollisionShape2D
 VBoxContainer
 RichTextLabel
 VScrollBar
@@ -9,8 +11,6 @@ ScrollContainer
 GridContainer
 Timer
 Area2D
-AudioStreamPlayer
-CPUParticles2D
 Node
 Label
 CanvasLayer

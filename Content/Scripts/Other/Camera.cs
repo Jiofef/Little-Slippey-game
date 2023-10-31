@@ -18,7 +18,7 @@ public partial class Camera : Camera2D
         _scores = GetNode<Label>("GUI/Scores");
 
         SetZoom(new Vector2(Meta.Instance.CameraZoom, Meta.Instance.CameraZoom));
-        _scores.Visible = Meta.Instance.ScoresShowingFormatIndex == 0;
+        _scores.Visible = Meta.Instance.ScoresShowingFormatIndex == 0 && (G.CurrentLevel != 1 && G.LevelAdditionalLink != "Tutorial");
     }
     public void LimitsChangingBy(bool DoResetSmoothing = false, float plus1 = 0, float plus2 = 0, float plus3 = 0, float plus4 = 0)
     {
