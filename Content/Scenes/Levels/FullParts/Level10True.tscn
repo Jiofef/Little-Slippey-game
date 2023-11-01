@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://dbydilcx0two4"]
+[gd_scene load_steps=35 format=3 uid="uid://dbydilcx0two4"]
 
 [ext_resource type="Script" path="res://Content/Scripts/Levels/BaseLevelScript.cs" id="1_5cxtw"]
 [ext_resource type="Texture2D" uid="uid://bif1cr6n4hvie" path="res://Content/Sprites/Levels/Level10/TestChamber.png" id="2_ndhi4"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://dpf24jfhstqid" path="res://Content/Sprites/Levels/Level10/PortableControlledDroneCapsule.png" id="9_8a8rk"]
 [ext_resource type="Script" path="res://Content/Scripts/Levels/Level10DroneCapsule.cs" id="9_cnmny"]
 [ext_resource type="Texture2D" uid="uid://bvogrd2bqhwmt" path="res://Content/Sprites/Other/OblivionNoise.png" id="11_03181"]
+[ext_resource type="AudioStream" uid="uid://c0lbb7mb40ipw" path="res://Content/Sounds/Levels/Level10ManipulatorSound.mp3" id="13_b3bea"]
 [ext_resource type="AudioStream" uid="uid://dy6lncevmnf3o" path="res://Content/Sounds/Other/WhiteNoise.mp3" id="13_eyo0p"]
 
 [sub_resource type="Animation" id="Animation_cj33v"]
@@ -680,52 +681,64 @@ tracks/6/keys = {
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("../../Player/AnimatedSprite2D:position")
+tracks/7/path = NodePath("../../Player:z_index")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"times": PackedFloat32Array(8, 10.5, 12, 13.8, 16),
-"transitions": PackedFloat32Array(-2, 1, 2, 1, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(0, -120), Vector2(0, -120), Vector2(200, -120), Vector2(800, -120)]
-}
-tracks/8/type = "value"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("../../Player:z_index")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [2]
 }
-tracks/9/type = "value"
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/path = NodePath("../../Player/Camera2D:position")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/keys = {
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("../../Player/Camera2D:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
 "times": PackedFloat32Array(8, 10.5, 13),
 "transitions": PackedFloat32Array(-2, 1, 1),
 "update": 0,
 "values": [Vector2(0, 0), Vector2(0, -120), Vector2(0, -120)]
 }
-tracks/10/type = "method"
-tracks/10/imported = false
-tracks/10/enabled = true
-tracks/10/path = NodePath(".")
-tracks/10/interp = 1
-tracks/10/loop_wrap = true
-tracks/10/keys = {
+tracks/9/type = "method"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath(".")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
 "times": PackedFloat32Array(16),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
 "method": &"TrueFinale"
 }]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("../../Player/SkinContainer:position")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(8, 10.5, 12, 13.8, 16),
+"transitions": PackedFloat32Array(-2, 1, 2, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -120), Vector2(0, -120), Vector2(200, -120), Vector2(800, -120)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("ManipulatorSound:playing")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(6.4, 8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_urued"]
@@ -812,6 +825,7 @@ layer_1/z_index = 0
 layer_1/tile_data = PackedInt32Array(983069, 4, 1, 983070, 4, 1, 983071, 4, 1, 983074, 4, 1, 983075, 4, 1, 983076, 4, 1, 983077, 4, 1, 983078, 4, 1, 983059, 4, 1, 983060, 4, 1, 983061, 4, 1, 983062, 4, 1, 983058, 4, 1, 983057, 65540, 65537, 1048593, 4, 262145, 1114129, 4, 262145, 1179665, 4, 262145, 1245201, 4, 262145, 720908, 4, 1, 720909, 4, 1, 720910, 65540, 131073, 589838, 4, 262145, 655374, 4, 262145, 524302, 4, 262145, 393230, 4, 262145, 327694, 4, 262145, 262158, 4, 262145, 196622, 4, 262145, 131086, 4, 262145, 983043, 4, 262145, 1048579, 4, 262145, 12, 327684, 2, 30, 327684, 2, 852003, 327684, 2, 983063, 4, 1, 65550, 4, 262145, 14, 4, 262145)
 
 [node name="Player" parent="." instance=ExtResource("3_pealk")]
+z_index = 2
 position = Vector2(1280, 1248)
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -958,6 +972,9 @@ libraries = {
 [node name="Timer" type="Timer" parent="PositionCrutch/DroneCapsule"]
 wait_time = 4.5
 one_shot = true
+
+[node name="ManipulatorSound" type="AudioStreamPlayer" parent="PositionCrutch/DroneCapsule"]
+stream = ExtResource("13_b3bea")
 
 [connection signal="area_entered" from="Player/Areas/PlayerDamageDetector" to="PositionCrutch/DroneCapsule/Timer" method="start" flags=6 unbinds=1]
 [connection signal="timeout" from="PositionCrutch/DroneCapsule/Timer" to="PositionCrutch/DroneCapsule" method="Departure"]

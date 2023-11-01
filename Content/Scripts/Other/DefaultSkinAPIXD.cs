@@ -7,7 +7,7 @@ public partial class DefaultSkinAPIXD : AnimatedSprite2D
 	[Export] bool _enableSecondJumpAndFallFrame = false;
 	public override void _Ready()
 	{
-		GetParent().Connect("PlayerDied", new Callable(this, "PlayerDied"));
+		GetNode("../..").Connect("PlayerDied", new Callable(this, "PlayerDied"));
 		SetPhysicsProcess(_enableSecondJumpAndFallFrame);
 	}
     public override void _PhysicsProcess(double delta)

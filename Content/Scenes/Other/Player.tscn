@@ -257,7 +257,9 @@ stream = ExtResource("12_jom63")
 volume_db = -5.0
 bus = &"Player"
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="SkinContainer" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="SkinContainer"]
 scale = Vector2(4, 4)
 texture = ExtResource("8_36ypt")
 region_enabled = true

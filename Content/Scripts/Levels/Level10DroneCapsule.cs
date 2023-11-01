@@ -29,7 +29,7 @@ public partial class Level10DroneCapsule : Node2D
 
             var player = GetNode<CharacterBody2D>("../../Player");
             GetParent<Node2D>().GlobalPosition = player.GlobalPosition;
-            GetNode<AnimatedSprite2D>("../../Player/AnimatedSprite2D").Rotation = player.Rotation;
+            GetNode<Node2D>("../../Player/SkinContainer").Rotation = player.Rotation;
             player.Rotation = 0;
         }
     }

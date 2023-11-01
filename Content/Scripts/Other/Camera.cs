@@ -33,16 +33,18 @@ public partial class Camera : Camera2D
     }
     public override void _PhysicsProcess(double delta)
     {
-        if (Input.IsActionPressed("Reset"))
-            G.ResetTimer += 0.016667f;
-        else G.ResetTimer = G.ResetTimer > 0 ? G.ResetTimer - 0.016667f : 0;
-
-        if (G.ResetTimer > 1.5f)
+        if (!G._isLevel10Finaling)
         {
-            Connect("Reset", new Callable(GetNode<Node2D>("../../"), "Reset"));
-            EmitSignal("Reset");
-        }
+            if (Input.IsActionPressed("Reset"))
+                G.ResetTimer += 0.016667f;
+            else G.ResetTimer = G.ResetTimer > 0 ? G.ResetTimer - 0.016667f : 0;
 
+            if (G.ResetTimer > 1.5f)
+            {
+                Connect("Reset", new Callable(GetNode<Node2D>("../../"), "Reset"));
+                EmitSignal("Reset");
+            }
+        }
 
         if (_scores.Visible)
             _scores.Text = ((int)G.Scores).ToString();
