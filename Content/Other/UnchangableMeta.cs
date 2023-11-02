@@ -20,6 +20,14 @@ public partial class UnchangableMeta : Node
     public static bool IsLevel9PlatformSectionFirstTimeCompleted, IsLevel9PlatformSectionSkipAllowed, IsFakeLevel10SkipAllowed;
     public static byte[] AchievementStatuses = new byte[12]; // A G A I N
 
+    public static int AchievementsCount()
+    {
+        int AchievementsCount = 0;
+        for (int i = 0; i < AchievementStatuses.Length; i++)
+            AchievementsCount += AchievementStatuses[i];
+        return AchievementsCount;
+    }
+
     public static void SaveRecords()
     {
         if ((int)G.Scores > LevelRecords[Meta.Instance.Dificulty][G.CurrentLevel - 1])

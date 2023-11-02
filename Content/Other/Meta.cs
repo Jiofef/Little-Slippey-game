@@ -15,8 +15,8 @@ public partial class Meta : Node
     //VideoOptions
     //Since this is the HTML version, it will be incorrect to save the full screen state, and this is the only non-saving variable in the meta
     public bool IsFullScreen = false;
-    public int ScoresShowingFormatIndex = 0;
     public float CameraZoom = 1.25f;
+    public byte ScoresLabelLocationX = 0, ScoresLabelLocationY = 0, ScoresShowingFormatIndex = 0;
 
     //Gameplay
     public int Dificulty = 0;
@@ -38,8 +38,11 @@ public partial class Meta : Node
         ReturnMeta.IsFullScreen = IsFullScreen;
         ReturnMeta.ScoresShowingFormatIndex = ScoresShowingFormatIndex;
         ReturnMeta.CameraZoom = CameraZoom;
+        ReturnMeta.ScoresLabelLocationX = ScoresLabelLocationX;
+        ReturnMeta.ScoresLabelLocationY = ScoresLabelLocationY;
         for (int i = 0; i < Instance.AdditionStatuses.Length; i++)
             ReturnMeta.AdditionStatuses[i] = AdditionStatuses[i];
+        ReturnMeta.ChosenSkinIndex = ChosenSkinIndex;
         return ReturnMeta;
     }
     public Dictionary<string, Variant> GetJson()
@@ -48,6 +51,8 @@ public partial class Meta : Node
         {
             {"bus_volumes", BusVolumes},
             {"scores_showing_format_index", ScoresShowingFormatIndex},
+            {"scores_label_location_x", ScoresLabelLocationX},
+            {"scores_label_location_y", ScoresLabelLocationY},
             {"camera_zoom", CameraZoom},
             {"dificulty", Dificulty},
             {"addition_status0", AdditionStatuses[0]},
@@ -75,7 +80,9 @@ public partial class Meta : Node
             for (int i = 0; i < BusVolumesArray.Count; i++)
                 BusVolumes[i] = (float)BusVolumesArray[i];
 
-            ScoresShowingFormatIndex = (int)model["scores_showing_format_index"];
+            ScoresShowingFormatIndex = (byte)model["scores_showing_format_index"];
+            ScoresLabelLocationX = (byte)model["scores_label_location_x"];
+            ScoresLabelLocationY = (byte)model["scores_label_location_y"];
             CameraZoom = (float)model["camera_zoom"];
 
             Dificulty = (int)model["dificulty"];

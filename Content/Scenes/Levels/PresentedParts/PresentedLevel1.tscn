@@ -1,8 +1,12 @@
-[gd_scene load_steps=11 format=3 uid="uid://7nscuvf5qefr"]
+[gd_scene load_steps=25 format=3 uid="uid://7nscuvf5qefr"]
 
-[ext_resource type="Texture2D" uid="uid://da3lsq4mvhbrv" path="res://Content/Sprites/Levels/Level1/BackLayer.png" id="1_nafe2"]
+[ext_resource type="Texture2D" uid="uid://cjoa8meyv5ehu" path="res://Content/Sprites/Levels/Level1/Sky.png" id="1_nafe2"]
 [ext_resource type="Texture2D" uid="uid://iyc2n8rea3ew" path="res://Content/Sprites/Levels/Level1/FrontLayer.png" id="2_0q8vt"]
+[ext_resource type="Texture2D" uid="uid://qe6r82b6f7np" path="res://Content/Sprites/Levels/Level1/SunRaysAnimation.png" id="3_6dai4"]
 [ext_resource type="Texture2D" uid="uid://q2j1uuqfjmos" path="res://Content/Sprites/Levels/BaseTileSet.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://ua4neh4wkukk" path="res://Content/Sprites/Levels/Level1/BackClouds.png" id="4_7ug8n"]
+[ext_resource type="Texture2D" uid="uid://7bqjeef5asfb" path="res://Content/Sprites/Levels/Level1/Clouds.png" id="5_tu28h"]
+[ext_resource type="Texture2D" uid="uid://de74d3epufxbk" path="res://Content/Sprites/Levels/Level1/StreamAnimation.png" id="7_x1oxe"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mxbjq"]
 texture = ExtResource("4")
@@ -52,6 +56,107 @@ _data = {
 "RESET": SubResource("Animation_yfk10")
 }
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_6c1h1"]
+atlas = ExtResource("3_6dai4")
+region = Rect2(0, 0, 74, 75)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mdlje"]
+atlas = ExtResource("3_6dai4")
+region = Rect2(74, 0, 74, 75)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5fdcv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6c1h1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mdlje")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[sub_resource type="Animation" id="Animation_sycmi"]
+resource_name = "Rotation"
+length = 30.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 30),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.28319]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ku48g"]
+_data = {
+"Rotation": SubResource("Animation_sycmi")
+}
+
+[sub_resource type="Animation" id="Animation_yn5s4"]
+resource_name = "CloudsMoving"
+length = 90.0
+loop_mode = 1
+step = 45.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:motion_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 90),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(2560, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../BackClouds:motion_offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 90),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1280, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ul4do"]
+_data = {
+"CloudsMoving": SubResource("Animation_yn5s4")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ukheu"]
+atlas = ExtResource("7_x1oxe")
+region = Rect2(0, 0, 170, 72)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rv6l4"]
+atlas = ExtResource("7_x1oxe")
+region = Rect2(170, 0, 170, 72)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2sfi3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ukheu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rv6l4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
 [node name="PresentedLevel1" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -59,34 +164,6 @@ scale = Vector2(4, 4)
 tile_set = SubResource("TileSet_sqyjh")
 format = 2
 layer_0/tile_data = PackedInt32Array(-1, 65536, 0, -65536, 65536, 0, -65535, 65536, 0, -65534, 65536, 0, -65533, 65536, 0, -65532, 65536, 0, -65531, 65536, 0, -65522, 65536, 0, -65521, 65536, 0, 65535, 65536, 0, 131071, 65536, 0, 196607, 65536, 0, 262143, 65536, 0, 327679, 65536, 0, 393215, 65536, 0, 458751, 65536, 0, 524287, 65536, 0, 589823, 65536, 0, 655359, 65536, 0, 589844, 65536, 0, 524308, 65536, 0, 458772, 65536, 0, 327700, 65536, 0, 262164, 65536, 0, 196628, 65536, 0, 65556, 65536, 0, 20, 65536, 0, -65516, 65536, 0, -65520, 65536, 0, -65519, 65536, 0, -65518, 65536, 0, -65517, 65536, 0, 655380, 65536, 0, 655379, 65536, 0, 655378, 65536, 0, 655377, 65536, 0, 655376, 65536, 0, 655375, 65536, 0, 655374, 65536, 0, 655373, 65536, 0, 655366, 65536, 0, 655365, 65536, 0, 655364, 65536, 0, 655363, 65536, 0, 655362, 65536, 0, 655361, 65536, 0, 655360, 65536, 0, 720895, 65536, 0, 393236, 65536, 0, -65523, 65536, 0, -65529, 65536, 0, -65530, 65536, 0, 458765, 65536, 0, 393229, 65536, 0, 458771, 65536, 0, 458770, 65536, 0, 393235, 65536, 0, 458758, 65536, 0, 393222, 65536, 0, 327686, 65536, 0, 458757, 65536, 0, 327687, 65536, 0, 131092, 65536, 0, 393230, 65536, 0, 327693, 65536, 0, 262157, 65536, 0, 524307, 65536, 0, 589843, 65536, 0, 393231, 65536, 0, 262156, 65536, 0, 262146, 65536, 0, 196610, 65536, 0, 131079, 65536, 0, -65528, 65536, 0, -65527, 65536, 0, -65526, 65536, 0, -65525, 65536, 0, -65524, 65536, 0, 131085, 65536, 0, 131080, 65536, 0, 131086, 65536, 0, 131087, 65536, 0, 131090, 65536, 0, 65554, 65536, 0, 18, 65536, 0, 19, 65536, 0, 65555, 65536, 0, 131091, 65536, 0, 524289, 65536, 0, 524290, 65536, 0, 458754, 65536, 0, 131078, 65536, 0, 655372, 131072, 0, 655371, 131072, 0, 655370, 131072, 0, 655369, 131072, 0, 655368, 131072, 0, 655367, 131072, 0)
-
-[node name="Background2" type="ParallaxBackground" parent="."]
-
-[node name="Sky" type="ParallaxLayer" parent="Background2"]
-motion_scale = Vector2(0.5, 0.5)
-
-[node name="Sprite2D" type="Sprite2D" parent="Background2/Sky"]
-position = Vector2(640, 320)
-scale = Vector2(4, 4)
-texture = ExtResource("1_nafe2")
-
-[node name="Fog" type="ColorRect" parent="Background2"]
-offset_right = 1280.0
-offset_bottom = 720.0
-color = Color(1, 1, 1, 0.156863)
-
-[node name="FrontLayer" type="ParallaxLayer" parent="Background2"]
-motion_scale = Vector2(0.8, 0.6)
-
-[node name="Sprite2D" type="Sprite2D" parent="Background2/FrontLayer"]
-position = Vector2(640, 440)
-scale = Vector2(4, 4)
-texture = ExtResource("2_0q8vt")
-
-[node name="Fog2" type="ColorRect" parent="Background2"]
-offset_right = 1280.0
-offset_bottom = 720.0
-color = Color(0, 0.607843, 0.607843, 0.313726)
 
 [node name="CameraPath" type="Path2D" parent="."]
 curve = SubResource("Curve2D_jua4w")
@@ -103,3 +180,74 @@ autoplay = "CameraMoving1X1"
 libraries = {
 "": SubResource("AnimationLibrary_kli7e")
 }
+
+[node name="Background" type="ParallaxBackground" parent="."]
+
+[node name="Sky" type="ParallaxLayer" parent="Background"]
+motion_scale = Vector2(0.2, 0.2)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Sky"]
+position = Vector2(600, 320)
+scale = Vector2(4, 4)
+texture = ExtResource("1_nafe2")
+
+[node name="SunRays" type="AnimatedSprite2D" parent="Background/Sky"]
+position = Vector2(1084, 148)
+rotation = -1.94779
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_5fdcv")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Background/Sky/SunRays"]
+autoplay = "Rotation"
+libraries = {
+"": SubResource("AnimationLibrary_ku48g")
+}
+
+[node name="BackClouds" type="ParallaxLayer" parent="Background"]
+motion_scale = Vector2(0.5, 0.5)
+motion_mirroring = Vector2(1280, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/BackClouds"]
+scale = Vector2(4, 4)
+texture = ExtResource("4_7ug8n")
+centered = false
+
+[node name="Clouds" type="ParallaxLayer" parent="Background"]
+motion_scale = Vector2(0.6, 0.6)
+motion_mirroring = Vector2(1280, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Clouds"]
+scale = Vector2(4, 4)
+texture = ExtResource("5_tu28h")
+centered = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Background/Clouds"]
+autoplay = "CloudsMoving"
+libraries = {
+"": SubResource("AnimationLibrary_ul4do")
+}
+
+[node name="Fog" type="ColorRect" parent="Background"]
+offset_right = 1280.0
+offset_bottom = 720.0
+color = Color(1, 1, 1, 0.156863)
+
+[node name="FrontLayer" type="ParallaxLayer" parent="Background"]
+motion_scale = Vector2(0.9, 0.6)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/FrontLayer"]
+position = Vector2(640, 440)
+scale = Vector2(4, 4)
+texture = ExtResource("2_0q8vt")
+
+[node name="Stream" type="AnimatedSprite2D" parent="Background/FrontLayer"]
+position = Vector2(600, 472)
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_2sfi3")
+autoplay = "default"
+centered = false
+
+[node name="Fog2" type="ColorRect" parent="Background"]
+offset_right = 1280.0
+offset_bottom = 720.0
+color = Color(0, 0.607843, 0.607843, 0.313726)

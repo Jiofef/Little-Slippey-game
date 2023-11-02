@@ -1,10 +1,115 @@
-[gd_scene load_steps=9 format=3 uid="uid://uwe2kx00cwfa"]
+[gd_scene load_steps=23 format=3 uid="uid://uwe2kx00cwfa"]
 
 [ext_resource type="Script" path="res://Content/Scripts/Levels/BaseLevelScript.cs" id="2"]
 [ext_resource type="Texture2D" uid="uid://q2j1uuqfjmos" path="res://Content/Sprites/Levels/BaseTileSet.png" id="2_5coah"]
+[ext_resource type="Texture2D" uid="uid://cjoa8meyv5ehu" path="res://Content/Sprites/Levels/Level1/Sky.png" id="2_xqbfl"]
 [ext_resource type="PackedScene" uid="uid://dlscufxb5f1ca" path="res://Content/Scenes/Other/Player.tscn" id="3"]
-[ext_resource type="Texture2D" uid="uid://da3lsq4mvhbrv" path="res://Content/Sprites/Levels/Level1/BackLayer.png" id="3_1eqx8"]
+[ext_resource type="Texture2D" uid="uid://qe6r82b6f7np" path="res://Content/Sprites/Levels/Level1/SunRaysAnimation.png" id="3_th2o3"]
 [ext_resource type="Texture2D" uid="uid://iyc2n8rea3ew" path="res://Content/Sprites/Levels/Level1/FrontLayer.png" id="4_abssm"]
+[ext_resource type="Texture2D" uid="uid://ua4neh4wkukk" path="res://Content/Sprites/Levels/Level1/BackClouds.png" id="4_bng71"]
+[ext_resource type="Texture2D" uid="uid://7bqjeef5asfb" path="res://Content/Sprites/Levels/Level1/Clouds.png" id="4_gy5lc"]
+[ext_resource type="Texture2D" uid="uid://de74d3epufxbk" path="res://Content/Sprites/Levels/Level1/StreamAnimation.png" id="6_0stp4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6c1h1"]
+atlas = ExtResource("3_th2o3")
+region = Rect2(0, 0, 74, 75)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mdlje"]
+atlas = ExtResource("3_th2o3")
+region = Rect2(74, 0, 74, 75)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vdrw6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6c1h1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mdlje")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[sub_resource type="Animation" id="Animation_sycmi"]
+resource_name = "Rotation"
+length = 30.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 30),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.28319]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ku48g"]
+_data = {
+"Rotation": SubResource("Animation_sycmi")
+}
+
+[sub_resource type="Animation" id="Animation_yn5s4"]
+resource_name = "CloudsMoving"
+length = 90.0
+loop_mode = 1
+step = 45.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:motion_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 90),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(2560, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../BackClouds:motion_offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 90),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1280, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ul4do"]
+_data = {
+"CloudsMoving": SubResource("Animation_yn5s4")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ukheu"]
+atlas = ExtResource("6_0stp4")
+region = Rect2(0, 0, 170, 72)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rv6l4"]
+atlas = ExtResource("6_0stp4")
+region = Rect2(170, 0, 170, 72)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vnphf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ukheu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rv6l4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ylmhp"]
 
@@ -38,12 +143,49 @@ script = ExtResource("2")
 [node name="Background" type="ParallaxBackground" parent="."]
 
 [node name="Sky" type="ParallaxLayer" parent="Background"]
-motion_scale = Vector2(0.5, 0.5)
+motion_scale = Vector2(0.2, 0.2)
 
 [node name="Sprite2D" type="Sprite2D" parent="Background/Sky"]
 position = Vector2(560, 320)
 scale = Vector2(4, 4)
-texture = ExtResource("3_1eqx8")
+texture = ExtResource("2_xqbfl")
+
+[node name="SunRays" type="AnimatedSprite2D" parent="Background/Sky"]
+position = Vector2(1044, 148)
+rotation = 4.3354
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_vdrw6")
+frame_progress = 0.432256
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Background/Sky/SunRays"]
+autoplay = "Rotation"
+libraries = {
+"": SubResource("AnimationLibrary_ku48g")
+}
+
+[node name="BackClouds" type="ParallaxLayer" parent="Background"]
+motion_scale = Vector2(0.5, 0.5)
+motion_mirroring = Vector2(1280, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/BackClouds"]
+scale = Vector2(4, 4)
+texture = ExtResource("4_bng71")
+centered = false
+
+[node name="Clouds" type="ParallaxLayer" parent="Background"]
+motion_scale = Vector2(0.6, 0.6)
+motion_mirroring = Vector2(1280, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Clouds"]
+scale = Vector2(4, 4)
+texture = ExtResource("4_gy5lc")
+centered = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Background/Clouds"]
+autoplay = "CloudsMoving"
+libraries = {
+"": SubResource("AnimationLibrary_ul4do")
+}
 
 [node name="Fog" type="ColorRect" parent="Background"]
 offset_right = 1280.0
@@ -51,12 +193,20 @@ offset_bottom = 720.0
 color = Color(1, 1, 1, 0.156863)
 
 [node name="FrontLayer" type="ParallaxLayer" parent="Background"]
-motion_scale = Vector2(0.8, 0.6)
+motion_scale = Vector2(0.9, 0.6)
 
 [node name="Sprite2D" type="Sprite2D" parent="Background/FrontLayer"]
 position = Vector2(640, 440)
 scale = Vector2(4, 4)
 texture = ExtResource("4_abssm")
+
+[node name="Stream" type="AnimatedSprite2D" parent="Background/FrontLayer"]
+position = Vector2(600, 472)
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_vnphf")
+autoplay = "default"
+frame_progress = 0.741664
+centered = false
 
 [node name="Fog2" type="ColorRect" parent="Background"]
 offset_right = 1280.0

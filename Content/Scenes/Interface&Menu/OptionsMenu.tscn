@@ -1,14 +1,17 @@
-[gd_scene load_steps=10 format=3 uid="uid://dwuivxxfk4cbs"]
+[gd_scene load_steps=12 format=3 uid="uid://dwuivxxfk4cbs"]
 
 [ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/OptionsMenu.cs" id="1_kmdmx"]
 [ext_resource type="Texture2D" uid="uid://i15evt2viayu" path="res://Content/Sprites/Interface/OptionsMenuBox.png" id="1_trr7h"]
 [ext_resource type="PackedScene" uid="uid://bwpstpk1xmkah" path="res://Content/Scenes/Interface&Menu/Button.tscn" id="2_hr832"]
 [ext_resource type="Texture2D" uid="uid://c1d2p0ba42csh" path="res://Content/Sprites/Interface/AcceptButton.png" id="3_cxo48"]
 [ext_resource type="Texture2D" uid="uid://d0sqlunqacimf" path="res://Content/Sprites/Interface/CancelButton.png" id="4_kqtal"]
+[ext_resource type="Texture2D" uid="uid://cq66udhicgrdo" path="res://Content/Sprites/Interface/OptionsMenuVideoContainer.png" id="6_gcpn7"]
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_vfk1r"]
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_upid1"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_qiuqg"]
 
 [sub_resource type="Animation" id="Animation_fu4ro"]
 resource_name = "Appearance"
@@ -170,29 +173,39 @@ scale = Vector2(2, 2)
 theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
 text = "Video"
 
-[node name="VideoContainer" type="GridContainer" parent="."]
-layout_mode = 0
-offset_left = 544.0
-offset_top = 102.0
-offset_right = 814.0
-offset_bottom = 300.0
+[node name="VideoContainer" type="ScrollContainer" parent="."]
+layout_mode = 2
+offset_left = 540.0
+offset_top = 96.0
+offset_right = 807.0
+offset_bottom = 322.0
 scale = Vector2(1.75, 1.75)
+
+[node name="GridContainer" type="GridContainer" parent="VideoContainer"]
+custom_minimum_size = Vector2(260, 0)
+layout_mode = 2
 columns = 2
 
-[node name="ScreenMode" type="Label" parent="VideoContainer"]
+[node name="Sprite2D" type="Sprite2D" parent="VideoContainer/GridContainer"]
+scale = Vector2(2.3, 2.3)
+texture = ExtResource("6_gcpn7")
+centered = false
+
+[node name="ScreenMode" type="Label" parent="VideoContainer/GridContainer"]
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
 text = "Screen
 mode"
 horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="ScreenModeContainer" type="GridContainer" parent="VideoContainer"]
+[node name="ScreenModeContainer" type="GridContainer" parent="VideoContainer/GridContainer"]
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 columns = 2
 
-[node name="Full" type="Label" parent="VideoContainer/ScreenModeContainer"]
+[node name="Full" type="Label" parent="VideoContainer/GridContainer/ScreenModeContainer"]
 custom_minimum_size = Vector2(90, 0)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
@@ -200,12 +213,13 @@ text = "Full"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Window" type="Label" parent="VideoContainer/ScreenModeContainer"]
+[node name="Window" type="Label" parent="VideoContainer/GridContainer/ScreenModeContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
 text = "Window"
+vertical_alignment = 1
 
-[node name="FullCheckBox" type="CheckBox" parent="VideoContainer/ScreenModeContainer"]
+[node name="FullCheckBox" type="CheckBox" parent="VideoContainer/GridContainer/ScreenModeContainer"]
 modulate = Color(0.588235, 0.588235, 0.588235, 1)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -213,7 +227,7 @@ size_flags_vertical = 0
 focus_neighbor_right = NodePath("../WindowCheckBox")
 button_group = SubResource("ButtonGroup_vfk1r")
 
-[node name="WindowCheckBox" type="CheckBox" parent="VideoContainer/ScreenModeContainer"]
+[node name="WindowCheckBox" type="CheckBox" parent="VideoContainer/GridContainer/ScreenModeContainer"]
 modulate = Color(0.588235, 0.588235, 0.588235, 1)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -221,7 +235,7 @@ size_flags_vertical = 0
 focus_neighbor_left = NodePath("../FullCheckBox")
 button_group = SubResource("ButtonGroup_vfk1r")
 
-[node name="ScoresLabelMode" type="Label" parent="VideoContainer"]
+[node name="ScoresLabelMode" type="Label" parent="VideoContainer/GridContainer"]
 custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
@@ -230,10 +244,10 @@ label
 mode"
 horizontal_alignment = 1
 
-[node name="Control" type="Control" parent="VideoContainer"]
+[node name="ScoresLabelContainer" type="Control" parent="VideoContainer/GridContainer"]
 layout_mode = 2
 
-[node name="Default" type="Label" parent="VideoContainer/Control"]
+[node name="Default" type="Label" parent="VideoContainer/GridContainer/ScoresLabelContainer"]
 custom_minimum_size = Vector2(83, 0)
 layout_mode = 2
 offset_top = 12.0
@@ -245,7 +259,7 @@ text = "Default"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Mini" type="Label" parent="VideoContainer/Control"]
+[node name="Mini" type="Label" parent="VideoContainer/GridContainer/ScoresLabelContainer"]
 custom_minimum_size = Vector2(53, 0)
 layout_mode = 2
 offset_left = 76.0
@@ -255,16 +269,16 @@ offset_bottom = 37.0
 theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
 text = "Mini"
 
-[node name="Hide" type="Label" parent="VideoContainer/Control"]
+[node name="Hide" type="Label" parent="VideoContainer/GridContainer/ScoresLabelContainer"]
 layout_mode = 2
-offset_left = 136.0
+offset_left = 132.0
 offset_top = 12.0
-offset_right = 180.0
+offset_right = 176.0
 offset_bottom = 37.0
 theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
 text = "Hide"
 
-[node name="DefaultCheckBox" type="CheckBox" parent="VideoContainer/Control"]
+[node name="DefaultCheckBox" type="CheckBox" parent="VideoContainer/GridContainer/ScoresLabelContainer"]
 modulate = Color(0.588235, 0.588235, 0.588235, 1)
 layout_mode = 2
 offset_left = 24.0
@@ -275,7 +289,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 0
 button_group = SubResource("ButtonGroup_upid1")
 
-[node name="MiniCheckBox" type="CheckBox" parent="VideoContainer/Control"]
+[node name="MiniCheckBox" type="CheckBox" parent="VideoContainer/GridContainer/ScoresLabelContainer"]
 modulate = Color(0.588235, 0.588235, 0.588235, 1)
 layout_mode = 2
 offset_left = 86.0
@@ -286,18 +300,77 @@ size_flags_horizontal = 4
 size_flags_vertical = 0
 button_group = SubResource("ButtonGroup_upid1")
 
-[node name="HideCheckBox" type="CheckBox" parent="VideoContainer/Control"]
+[node name="HideCheckBox" type="CheckBox" parent="VideoContainer/GridContainer/ScoresLabelContainer"]
 modulate = Color(0.588235, 0.588235, 0.588235, 1)
 layout_mode = 2
-offset_left = 145.0
+offset_left = 141.0
 offset_top = 36.0
-offset_right = 169.0
+offset_right = 165.0
 offset_bottom = 60.0
 size_flags_horizontal = 4
 size_flags_vertical = 0
 button_group = SubResource("ButtonGroup_upid1")
 
-[node name="CameraZoom" type="Label" parent="VideoContainer"]
+[node name="ScoresLabelLocation" type="Label" parent="VideoContainer/GridContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+text = "Scores
+label
+location"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GridContainer" type="GridContainer" parent="VideoContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+columns = 3
+
+[node name="CheckBox1X1Y" type="CheckBox" parent="VideoContainer/GridContainer/GridContainer"]
+modulate = Color(0.588235, 0.588235, 0.588235, 1)
+layout_mode = 2
+button_group = SubResource("ButtonGroup_qiuqg")
+
+[node name="CheckBox2X1Y" type="CheckBox" parent="VideoContainer/GridContainer/GridContainer"]
+modulate = Color(0.588235, 0.588235, 0.588235, 1)
+layout_mode = 2
+button_group = SubResource("ButtonGroup_qiuqg")
+
+[node name="CheckBox3X1Y" type="CheckBox" parent="VideoContainer/GridContainer/GridContainer"]
+modulate = Color(0.588235, 0.588235, 0.588235, 1)
+layout_mode = 2
+button_group = SubResource("ButtonGroup_qiuqg")
+
+[node name="CheckBox1X2Y" type="CheckBox" parent="VideoContainer/GridContainer/GridContainer"]
+modulate = Color(0.588235, 0.588235, 0.588235, 1)
+layout_mode = 2
+button_group = SubResource("ButtonGroup_qiuqg")
+
+[node name="CheckBox2X2Y" type="CheckBox" parent="VideoContainer/GridContainer/GridContainer"]
+modulate = Color(0.588235, 0.588235, 0.588235, 1)
+layout_mode = 2
+button_group = SubResource("ButtonGroup_qiuqg")
+
+[node name="CheckBox3X2Y" type="CheckBox" parent="VideoContainer/GridContainer/GridContainer"]
+modulate = Color(0.588235, 0.588235, 0.588235, 1)
+layout_mode = 2
+button_group = SubResource("ButtonGroup_qiuqg")
+
+[node name="CheckBox1X3Y" type="CheckBox" parent="VideoContainer/GridContainer/GridContainer"]
+modulate = Color(0.588235, 0.588235, 0.588235, 1)
+layout_mode = 2
+button_group = SubResource("ButtonGroup_qiuqg")
+
+[node name="CheckBox2X3Y" type="CheckBox" parent="VideoContainer/GridContainer/GridContainer"]
+modulate = Color(0.588235, 0.588235, 0.588235, 1)
+layout_mode = 2
+button_group = SubResource("ButtonGroup_qiuqg")
+
+[node name="CheckBox3X3Y" type="CheckBox" parent="VideoContainer/GridContainer/GridContainer"]
+modulate = Color(0.588235, 0.588235, 0.588235, 1)
+layout_mode = 2
+button_group = SubResource("ButtonGroup_qiuqg")
+
+[node name="CameraZoom" type="Label" parent="VideoContainer/GridContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
 text = "Camera
@@ -305,7 +378,7 @@ Zoom"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="CameraZoomSlider" type="HSlider" parent="VideoContainer"]
+[node name="CameraZoomSlider" type="HSlider" parent="VideoContainer/GridContainer"]
 layout_mode = 2
 size_flags_vertical = 4
 min_value = 1.25
@@ -328,9 +401,18 @@ libraries = {
 [connection signal="value_changed" from="SoundContainer/CrossesSlider" to="." method="SoundChanging" binds= [4]]
 [connection signal="value_changed" from="SoundContainer/ExplosionsSlider" to="." method="SoundChanging" binds= [5]]
 [connection signal="value_changed" from="SoundContainer/EnvironmentSlider" to="." method="SoundChanging" binds= [6]]
-[connection signal="pressed" from="VideoContainer/ScreenModeContainer/FullCheckBox" to="." method="ChangeScreenFormat" binds= [0]]
-[connection signal="pressed" from="VideoContainer/ScreenModeContainer/WindowCheckBox" to="." method="ChangeScreenFormat" binds= [1]]
-[connection signal="pressed" from="VideoContainer/Control/DefaultCheckBox" to="." method="ChangeScoresShowingFormat" binds= [0]]
-[connection signal="pressed" from="VideoContainer/Control/MiniCheckBox" to="." method="_on_mini_check_box_pressed" binds= [1]]
-[connection signal="pressed" from="VideoContainer/Control/HideCheckBox" to="." method="_on_hide_check_box_pressed" binds= [2]]
-[connection signal="value_changed" from="VideoContainer/CameraZoomSlider" to="." method="CameraZoomChanged"]
+[connection signal="pressed" from="VideoContainer/GridContainer/ScreenModeContainer/FullCheckBox" to="." method="ChangeScreenFormat" binds= [0]]
+[connection signal="pressed" from="VideoContainer/GridContainer/ScreenModeContainer/WindowCheckBox" to="." method="ChangeScreenFormat" binds= [1]]
+[connection signal="pressed" from="VideoContainer/GridContainer/ScoresLabelContainer/DefaultCheckBox" to="." method="ChangeScoresShowingFormat" binds= [0]]
+[connection signal="pressed" from="VideoContainer/GridContainer/ScoresLabelContainer/MiniCheckBox" to="." method="ChangeScoresShowingFormat" binds= [1]]
+[connection signal="pressed" from="VideoContainer/GridContainer/ScoresLabelContainer/HideCheckBox" to="." method="ChangeScoresShowingFormat" binds= [2]]
+[connection signal="pressed" from="VideoContainer/GridContainer/GridContainer/CheckBox1X1Y" to="." method="ChangeScoresLabelLocation" binds= [0, 0]]
+[connection signal="pressed" from="VideoContainer/GridContainer/GridContainer/CheckBox2X1Y" to="." method="ChangeScoresLabelLocation" binds= [1, 0]]
+[connection signal="pressed" from="VideoContainer/GridContainer/GridContainer/CheckBox3X1Y" to="." method="ChangeScoresLabelLocation" binds= [2, 0]]
+[connection signal="pressed" from="VideoContainer/GridContainer/GridContainer/CheckBox1X2Y" to="." method="ChangeScoresLabelLocation" binds= [0, 1]]
+[connection signal="pressed" from="VideoContainer/GridContainer/GridContainer/CheckBox2X2Y" to="." method="ChangeScoresLabelLocation" binds= [1, 1]]
+[connection signal="pressed" from="VideoContainer/GridContainer/GridContainer/CheckBox3X2Y" to="." method="ChangeScoresLabelLocation" binds= [2, 1]]
+[connection signal="pressed" from="VideoContainer/GridContainer/GridContainer/CheckBox1X3Y" to="." method="ChangeScoresLabelLocation" binds= [0, 2]]
+[connection signal="pressed" from="VideoContainer/GridContainer/GridContainer/CheckBox2X3Y" to="." method="ChangeScoresLabelLocation" binds= [1, 2]]
+[connection signal="pressed" from="VideoContainer/GridContainer/GridContainer/CheckBox3X3Y" to="." method="ChangeScoresLabelLocation" binds= [2, 2]]
+[connection signal="value_changed" from="VideoContainer/GridContainer/CameraZoomSlider" to="." method="CameraZoomChanged"]

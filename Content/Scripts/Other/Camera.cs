@@ -17,8 +17,7 @@ public partial class Camera : Camera2D
         _player = GetNode<CharacterBody2D>("..");
         _scores = GetNode<Label>("GUI/Scores");
 
-        SetZoom(new Vector2(Meta.Instance.CameraZoom, Meta.Instance.CameraZoom));
-        _scores.Visible = Meta.Instance.ScoresShowingFormatIndex == 0 && (G.CurrentLevel != 1 && G.LevelAdditionalLink != "Tutorial");
+        ApplyGUIOptions(true);
     }
     public void LimitsChangingBy(bool DoResetSmoothing = false, float plus1 = 0, float plus2 = 0, float plus3 = 0, float plus4 = 0)
     {
@@ -123,10 +122,29 @@ public partial class Camera : Camera2D
         Zoom = value;
     }
 
-    public void OptionsChanged()
+    public void ApplyGUIOptions(bool IsLevelJustStarted)
     {
-        float zoom = G.PlayerCorpseFlightTimer < 4 ? Meta.Instance.CameraZoom + G.PlayerCorpseFlightTimer * ((4.5f - Meta.Instance.CameraZoom) / 4) : 4.5f;
-        Zoom = new Vector2(zoom, zoom);
-        _scores.Visible = Meta.Instance.ScoresShowingFormatIndex == 0;
+        if (IsLevelJustStarted)
+        {
+            _scores.Visible = Meta.Instance.ScoresShowingFormatIndex != 2 && (G.CurrentLevel != 1 || G.LevelAdditionalLink != "Tutorial");
+            Zoom = new Vector2(Meta.Instance.CameraZoom, Meta.Instance.CameraZoom);
+        }
+        else
+        {
+            _scores.Visible = Meta.Instance.ScoresShowingFormatIndex != 2 && !G.IsPlayerDead && (G.CurrentLevel != 1 || G.LevelAdditionalLink != "Tutorial");
+            float zoom = G.PlayerCorpseFlightTimer < 4 ? Meta.Instance.CameraZoom + G.PlayerCorpseFlightTimer * ((4.5f - Meta.Instance.CameraZoom) / 4) : 4.5f;
+            Zoom = new Vector2(zoom, zoom);
+        }
+
+        float ScoresScale = Meta.Instance.ScoresShowingFormatIndex == 0 ? 1.5f : 1;
+        Vector2 ScoresSize = Meta.Instance.ScoresShowingFormatIndex == 0 ? new Vector2(211, 120) : new Vector2(315, 175);
+        if (_scores.Visible)
+        {
+            _scores.Scale = new Vector2(ScoresScale, ScoresScale);
+            _scores.Size = ScoresSize;
+        }
+
+        _scores.HorizontalAlignment = (HorizontalAlignment)Meta.Instance.ScoresLabelLocationX;
+        _scores.VerticalAlignment = (VerticalAlignment)Meta.Instance.ScoresLabelLocationY;
     }
 }
