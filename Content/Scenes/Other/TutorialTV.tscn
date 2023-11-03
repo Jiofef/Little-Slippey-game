@@ -1,0 +1,290 @@
+[gd_scene load_steps=18 format=3 uid="uid://ft6jg1b0opm1"]
+
+[ext_resource type="Texture2D" uid="uid://tsjfmqs04lky" path="res://Content/Sprites/Levels/Level1/TutorialTV.png" id="1_l1djf"]
+[ext_resource type="Texture2D" uid="uid://bvogrd2bqhwmt" path="res://Content/Sprites/Other/OblivionNoise.png" id="2_ngcpk"]
+[ext_resource type="AudioStream" uid="uid://dy6lncevmnf3o" path="res://Content/Sounds/Other/WhiteNoise.mp3" id="3_sw2y0"]
+[ext_resource type="Texture2D" uid="uid://dws460j5wf0vm" path="res://Content/Sprites/Levels/Level1/SlSlLSLLSLSLlsLSLLSslsl.png" id="4_oj7wa"]
+[ext_resource type="Texture2D" uid="uid://doye5ecgh2jg7" path="res://Content/Sprites/Levels/Level1/DirtParticles.png" id="5_427ps"]
+[ext_resource type="AudioStream" uid="uid://du0ycpo1qy4w5" path="res://Content/Sounds/Levels/TutorialTVFallingSound.mp3" id="6_prcnp"]
+
+[sub_resource type="Animation" id="Animation_hw3a1"]
+resource_name = "BangerFilm"
+length = 3.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-16, -16)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3uffo"]
+_data = {
+"BangerFilm": SubResource("Animation_hw3a1")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m23ck"]
+atlas = ExtResource("2_ngcpk")
+region = Rect2(0, 0, 320, 180)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2nkyg"]
+atlas = ExtResource("2_ngcpk")
+region = Rect2(0, 180, 320, 180)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gjuy0"]
+atlas = ExtResource("2_ngcpk")
+region = Rect2(0, 360, 320, 180)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lr1hx"]
+atlas = ExtResource("2_ngcpk")
+region = Rect2(0, 540, 320, 180)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0gekv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m23ck")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2nkyg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gjuy0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lr1hx")
+}],
+"loop": true,
+"name": &"default",
+"speed": 7.0
+}]
+
+[sub_resource type="Animation" id="Animation_13ry7"]
+resource_name = "NoiseDisappearing"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sound:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sound:volume_db")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(2, 1),
+"update": 0,
+"values": [-5.0, -30.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_jrcbu"]
+resource_name = "FellDown"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sound:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-5.0, -30.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sound:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("WhiteNoise:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("WhiteNoise/Sound:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("WhiteNoise/Sound:volume_db")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-5.0, -30.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../FallingSound:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../Particles:emitting")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_g0wyp"]
+_data = {
+"FellDown": SubResource("Animation_jrcbu"),
+"NoiseDisappearing": SubResource("Animation_13ry7")
+}
+
+[sub_resource type="Gradient" id="Gradient_mywan"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[node name="TutorialTV" type="Node2D"]
+z_index = -1
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_l1djf")
+
+[node name="Screen" type="Control" parent="."]
+show_behind_parent = true
+clip_contents = true
+layout_mode = 3
+anchors_preset = 0
+offset_left = -44.0
+offset_top = -12.0
+offset_right = 36.0
+offset_bottom = 28.0
+mouse_filter = 2
+
+[node name="ColorRect" type="ColorRect" parent="Screen"]
+layout_mode = 0
+offset_right = 80.0
+offset_bottom = 40.0
+color = Color(0.784314, 1, 0.588235, 1)
+
+[node name="SlippeyHead" type="Sprite2D" parent="Screen"]
+modulate = Color(1, 1, 1, 0.25098)
+position = Vector2(-12.794, -12.794)
+texture = ExtResource("4_oj7wa")
+centered = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Screen/SlippeyHead"]
+autoplay = "BangerFilm"
+libraries = {
+"": SubResource("AnimationLibrary_3uffo")
+}
+
+[node name="Text" type="Label" parent="Screen"]
+layout_mode = 0
+offset_right = 242.0
+offset_bottom = 121.0
+scale = Vector2(0.33, 0.33)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WhiteNoise" type="AnimatedSprite2D" parent="Screen"]
+scale = Vector2(0.25, 0.222222)
+sprite_frames = SubResource("SpriteFrames_0gekv")
+autoplay = "default"
+frame_progress = 0.0934865
+speed_scale = 2.0
+centered = false
+
+[node name="Sound" type="AudioStreamPlayer" parent="Screen/WhiteNoise"]
+stream = ExtResource("3_sw2y0")
+volume_db = -5.0
+bus = &"Interface"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Screen"]
+libraries = {
+"": SubResource("AnimationLibrary_g0wyp")
+}
+
+[node name="Particles" type="CPUParticles2D" parent="."]
+position = Vector2(0, 32)
+emitting = false
+amount = 16
+lifetime = 0.75
+one_shot = true
+explosiveness = 1.0
+texture = ExtResource("5_427ps")
+emission_shape = 3
+emission_rect_extents = Vector2(48, 0)
+direction = Vector2(0, -1)
+initial_velocity_min = 400.0
+initial_velocity_max = 400.0
+angular_velocity_min = -300.0
+angular_velocity_max = 300.0
+angle_min = -180.0
+angle_max = 180.0
+scale_amount_min = 0.8
+scale_amount_max = 1.2
+color_ramp = SubResource("Gradient_mywan")
+
+[node name="FallingSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_prcnp")
+bus = &"Enviromnment"

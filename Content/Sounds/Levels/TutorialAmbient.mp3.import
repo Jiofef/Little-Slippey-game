@@ -12,8 +12,8 @@ dest_files=["res://.godot/imported/TutorialAmbient.mp3-10dd4a5bccb8b5a0b95ba045e
 
 [params]
 
-loop=false
-loop_offset=0
-bpm=0
+loop=true
+loop_offset=0.0
+bpm=0.0
 beat_count=0
 bar_beats=4

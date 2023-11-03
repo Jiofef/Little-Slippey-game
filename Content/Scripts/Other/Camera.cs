@@ -46,9 +46,12 @@ public partial class Camera : Camera2D
         }
 
         if (_scores.Visible)
+        {
             _scores.Text = ((int)G.Scores).ToString();
+            _scores.Modulate = new Color(_scores.Modulate.R, _scores.Modulate.G, _scores.Modulate.B, _player.Position.Y > G.CameraLimits.X + 200 ? 1 : _player.Position.Y / (G.CameraLimits.X + 200));
+        }
 
-        Vector2 LimitsExpansion = Vector2.Zero;
+            Vector2 LimitsExpansion = Vector2.Zero;
         if (G.ResetTimer != 0)
         {
             if (!_restartNoise.IsPlaying())
@@ -107,9 +110,6 @@ public partial class Camera : Camera2D
                     emergingElements.Modulate = new Color(emergingElements.Modulate.R, emergingElements.Modulate.G, emergingElements.Modulate.B, emergingElements.Modulate.A + 0.005f);
             }
         }
-        else
-            _scores.Modulate = new Color(_scores.Modulate.R, _scores.Modulate.G, _scores.Modulate.B, _player.Position.Y > G.CameraLimits.X + 200 ? 1 : _player.Position.Y / (G.CameraLimits.X + 200));
-
     }
     public void CameraZoom()
     {

@@ -108,7 +108,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"default",
-"speed": 1.0
+"speed": 2.0
 }]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ylmhp"]
@@ -205,7 +205,7 @@ position = Vector2(600, 472)
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_vnphf")
 autoplay = "default"
-frame_progress = 0.741664
+frame_progress = 0.424986
 centered = false
 
 [node name="Fog2" type="ColorRect" parent="Background"]
