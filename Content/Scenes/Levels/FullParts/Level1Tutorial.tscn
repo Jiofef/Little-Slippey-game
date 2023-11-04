@@ -167,6 +167,18 @@ tracks/8/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("TileMap/Ambient:playing")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(36),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_de8hc"]
 resource_name = "PostIntro"
@@ -496,7 +508,7 @@ size = Vector2(176, 32)
 
 [sub_resource type="Animation" id="Animation_541mw"]
 resource_name = "FallingDown"
-length = 0.5
+length = 4.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -504,7 +516,7 @@ tracks/0/path = NodePath(".:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(3.5, 4),
 "transitions": PackedFloat32Array(2, 1),
 "update": 0,
 "values": [Vector2(3600, 848), Vector2(3600, 976)]
@@ -516,10 +528,36 @@ tracks/1/path = NodePath("Screen/AnimationPlayer")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.5),
+"times": PackedFloat32Array(4),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": ["FellDown", -1, 1.0, false],
+"method": &"play"
+}]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Screen/WhiteNoise/Sound:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(3.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Screen/WhiteNoise")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"", 1.0, false],
 "method": &"play"
 }]
 }
@@ -1032,7 +1070,11 @@ pitch_scale = 5.0
 bus = &"Enviromnment"
 
 [node name="Player" parent="." instance=ExtResource("3_o6gni")]
-position = Vector2(14048, 3618)
+position = Vector2(624, 450)
+rotation = 0.174533
+
+[node name="Camera2D" parent="Player" index="4"]
+position_smoothing_enabled = false
 
 [node name="GUI" parent="Player/Camera2D" index="0"]
 visible = false
@@ -1096,8 +1138,8 @@ shape = SubResource("RectangleShape2D_mfb4c")
 [node name="TutorialTV" parent="TileMap" instance=ExtResource("14_vca5o")]
 position = Vector2(3600, 848)
 
-[node name="SlippeyHead" parent="TileMap/TutorialTV/Screen" index="1"]
-position = Vector2(0, 0)
+[node name="Text" parent="TileMap/TutorialTV/Screen" index="2"]
+text = "Press => to move"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="TileMap/TutorialTV"]
 libraries = {
@@ -1115,8 +1157,9 @@ position = Vector2(624, 470)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CameraLimitsSetTrigger"]
 shape = SubResource("RectangleShape2D_p6tx3")
 
-[connection signal="animation_finished" from="Rail/AnimationPlayer" to="Rail" method="queue_free"]
+[connection signal="animation_finished" from="Rail/AnimationPlayer" to="Rail" method="queue_free" unbinds=1]
 [connection signal="ButtonPressed" from="TileMap/CameraLimitsSetTrigger" to="Player" method="SetCameraLimits" flags=6 binds= [Vector4(3392, 1e+09, 4032, 13568), false]]
+[connection signal="ButtonPressed" from="TileMap/CameraLimitsSetTrigger" to="TileMap/TutorialTV/AnimationPlayer" method="play" flags=6 binds= ["FallingDown"]]
 [connection signal="ButtonPressed" from="CameraLimitsSetTrigger" to="Player" method="SetCameraLimits" flags=6 binds= [Vector4(-100000, 1e+06, 1e+06, -1e+07), true]]
 
 [editable path="Player"]

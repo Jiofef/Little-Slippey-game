@@ -106,27 +106,27 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id="Animation_jrcbu"]
 resource_name = "FellDown"
-length = 2.0
+length = 3.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sound:volume_db")
+tracks/0/path = NodePath("WhiteNoise:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 2),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(0.5, 1),
 "update": 0,
-"values": [-5.0, -30.0]
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sound:playing")
+tracks/1/path = NodePath("WhiteNoise/Sound:playing")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 2),
+"times": PackedFloat32Array(0, 3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
@@ -134,58 +134,34 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("WhiteNoise:modulate")
+tracks/2/path = NodePath("WhiteNoise/Sound:volume_db")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 2),
-"transitions": PackedFloat32Array(0.5, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("WhiteNoise/Sound:playing")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("WhiteNoise/Sound:volume_db")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 2),
+"times": PackedFloat32Array(0, 3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [-5.0, -30.0]
 }
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("../FallingSound:playing")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../FallingSound:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
 }
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("../Particles:emitting")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../Particles:emitting")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -227,7 +203,6 @@ color = Color(0.784314, 1, 0.588235, 1)
 
 [node name="SlippeyHead" type="Sprite2D" parent="Screen"]
 modulate = Color(1, 1, 1, 0.25098)
-position = Vector2(-12.794, -12.794)
 texture = ExtResource("4_oj7wa")
 centered = false
 
@@ -256,7 +231,7 @@ centered = false
 
 [node name="Sound" type="AudioStreamPlayer" parent="Screen/WhiteNoise"]
 stream = ExtResource("3_sw2y0")
-volume_db = -5.0
+volume_db = -15.0
 bus = &"Interface"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Screen"]
@@ -275,13 +250,13 @@ texture = ExtResource("5_427ps")
 emission_shape = 3
 emission_rect_extents = Vector2(48, 0)
 direction = Vector2(0, -1)
+gravity = Vector2(0, 700)
 initial_velocity_min = 400.0
 initial_velocity_max = 400.0
 angular_velocity_min = -300.0
 angular_velocity_max = 300.0
 angle_min = -180.0
 angle_max = 180.0
-scale_amount_min = 0.8
 scale_amount_max = 1.2
 color_ramp = SubResource("Gradient_mywan")
 
