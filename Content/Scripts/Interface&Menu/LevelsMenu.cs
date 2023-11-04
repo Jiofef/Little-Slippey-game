@@ -92,8 +92,12 @@ public partial class LevelsMenu : Control
             GetNode<TextureButton>(link + "/StartOption/Yes").Disabled = false;
             GetNode<TextureButton>(link + "/StartOption/No").Disabled = false;
         }
-
-        if (value == 9 && UnchangableMeta.IsLevel9PlatformSectionSkipAllowed && doOpenLevelPossibleStartOptions)
+        if (value == 1 && UnchangableMeta.IsTutorialPlayed && doOpenLevelPossibleStartOptions)
+        {
+            OpenStartOptions("LevelsList/LevelsIconsContainer/SubContainer/Level1Button");
+            return;
+        }
+        else if (value == 9 && UnchangableMeta.IsLevel9PlatformSectionSkipAllowed && doOpenLevelPossibleStartOptions)
         {
             OpenStartOptions("LevelsList/LevelsIconsContainer/SubContainer/Level9Button");
             return;
@@ -171,13 +175,5 @@ public partial class LevelsMenu : Control
     {
         for (int i = 0; i < _dificultiesNames.Length; i ++)
             GetNode<Label>("Visual/" + _dificultiesNames[i] + "BestResult").Visible = Meta.Instance.Dificulty == i;
-    }
-    public void _on_level_1_button_mouse_entered()
-    {
-        GD.Print("s");
-    }
-    public void _on_level_1_button_mouse_exited()
-    {
-        GD.Print("s");
     }
 }

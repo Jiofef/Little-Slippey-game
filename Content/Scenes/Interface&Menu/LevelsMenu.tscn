@@ -970,6 +970,71 @@ offset_bottom = 180.0
 layout_mode = 0
 disabled = false
 
+[node name="StartOption" type="Control" parent="LevelsList/LevelsIconsContainer/SubContainer/Level1Button"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 45.0
+offset_bottom = 45.0
+
+[node name="CloseOption" type="TextureButton" parent="LevelsList/LevelsIconsContainer/SubContainer/Level1Button/StartOption"]
+layout_mode = 0
+offset_right = 45.0
+offset_bottom = 45.0
+
+[node name="ColorRect" type="ColorRect" parent="LevelsList/LevelsIconsContainer/SubContainer/Level1Button/StartOption"]
+layout_mode = 0
+offset_right = 45.0
+offset_bottom = 45.0
+mouse_filter = 2
+color = Color(0.501961, 0.501961, 0.501961, 0.501961)
+
+[node name="ColorRect" type="ColorRect" parent="LevelsList/LevelsIconsContainer/SubContainer/Level1Button/StartOption/ColorRect"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 43.0
+offset_bottom = 23.0
+mouse_filter = 2
+color = Color(1, 1, 1, 0.501961)
+
+[node name="Label" type="Label" parent="LevelsList/LevelsIconsContainer/SubContainer/Level1Button/StartOption/ColorRect"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 70.0
+offset_bottom = 37.0
+scale = Vector2(0.6, 0.6)
+theme_override_font_sizes/font_size = 8
+text = "Start with
+tutorial?"
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+
+[node name="Yes" parent="LevelsList/LevelsIconsContainer/SubContainer/Level1Button/StartOption" instance=ExtResource("2_6jw0o")]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 23.0
+offset_right = 22.0
+offset_bottom = 43.0
+scale = Vector2(1, 1)
+focus_neighbor_right = NodePath("../No")
+disabled = true
+texture_normal = ExtResource("16_rxcum")
+stretch_mode = 0
+
+[node name="No" parent="LevelsList/LevelsIconsContainer/SubContainer/Level1Button/StartOption" instance=ExtResource("2_6jw0o")]
+layout_mode = 0
+offset_left = 23.0
+offset_top = 23.0
+offset_right = 43.0
+offset_bottom = 43.0
+scale = Vector2(1, 1)
+disabled = true
+texture_normal = ExtResource("16_nunlu")
+stretch_mode = 0
+
 [node name="Level2Button" parent="LevelsList/LevelsIconsContainer/SubContainer" instance=ExtResource("13_5l1by")]
 layout_mode = 0
 offset_left = 200.0
@@ -1292,7 +1357,15 @@ color = Color(0, 0, 0, 1)
 [connection signal="pressed" from="LevelsList/LeftScrollButton" to="." method="ChangeLevelRowToPast"]
 [connection signal="pressed" from="LevelsList/RightScrollButton" to="." method="ChangeLevelRowToNext"]
 [connection signal="focus_entered" from="LevelsList/LevelsIconsContainer/SubContainer/Level1Button" to="." method="SetPresentedLevel" binds= [1, ""]]
-[connection signal="pressed" from="LevelsList/LevelsIconsContainer/SubContainer/Level1Button" to="." method="StartLevelOpening" binds= [1, "", false]]
+[connection signal="pressed" from="LevelsList/LevelsIconsContainer/SubContainer/Level1Button" to="." method="StartLevelOpening" binds= [1, "Tutorial", true]]
+[connection signal="pressed" from="LevelsList/LevelsIconsContainer/SubContainer/Level1Button/StartOption/CloseOption" to="LevelsList/LevelsIconsContainer/SubContainer/Level1Button" method="set_disabled" binds= [false]]
+[connection signal="pressed" from="LevelsList/LevelsIconsContainer/SubContainer/Level1Button/StartOption/CloseOption" to="LevelsList/LevelsIconsContainer/SubContainer/Level1Button/StartOption" method="set_visible" binds= [false]]
+[connection signal="pressed" from="LevelsList/LevelsIconsContainer/SubContainer/Level1Button/StartOption/CloseOption" to="LevelsList/LevelsIconsContainer/SubContainer/Level1Button/StartOption/Yes" method="set_disabled" binds= [true]]
+[connection signal="pressed" from="LevelsList/LevelsIconsContainer/SubContainer/Level1Button/StartOption/CloseOption" to="LevelsList/LevelsIconsContainer/SubContainer/Level1Button/StartOption/No" method="set_disabled" binds= [true]]
+[connection signal="focus_entered" from="LevelsList/LevelsIconsContainer/SubContainer/Level1Button/StartOption/Yes" to="." method="SetPresentedLevel" binds= [1, "Tutorial"]]
+[connection signal="pressed" from="LevelsList/LevelsIconsContainer/SubContainer/Level1Button/StartOption/Yes" to="." method="StartLevelOpening" binds= [1, "Tutorial", false]]
+[connection signal="focus_entered" from="LevelsList/LevelsIconsContainer/SubContainer/Level1Button/StartOption/No" to="." method="SetPresentedLevel" binds= [1, ""]]
+[connection signal="pressed" from="LevelsList/LevelsIconsContainer/SubContainer/Level1Button/StartOption/No" to="." method="StartLevelOpening" binds= [1, "", false]]
 [connection signal="focus_entered" from="LevelsList/LevelsIconsContainer/SubContainer/Level2Button" to="." method="SetPresentedLevel" binds= [2, ""]]
 [connection signal="pressed" from="LevelsList/LevelsIconsContainer/SubContainer/Level2Button" to="." method="StartLevelOpening" binds= [2, "", false]]
 [connection signal="focus_entered" from="LevelsList/LevelsIconsContainer/SubContainer/Level3Button" to="." method="SetPresentedLevel" binds= [3, ""]]

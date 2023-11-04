@@ -1,13 +1,15 @@
-AudioStreamPlayer
+CollisionShape2D
 AnimationPlayer
-CPUParticles2D
 Label
+CanvasLayer
+AnimatedSprite2D
+TileMap
+AudioStreamPlayer
+CPUParticles2D
 RichTextLabel
 ColorRect
 Sprite2D
 Control
-AnimatedSprite2D
-CollisionShape2D
 ParallaxLayer
 GridContainer
 NinePatchRect
@@ -26,7 +28,5 @@ VScrollBar
 Timer
 Area2D
 Node
-CanvasLayer
 DirectionalLight2D
 PointLight2D
-ItemList

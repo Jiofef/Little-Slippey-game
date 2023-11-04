@@ -6,5 +6,6 @@
 collision_layer = 0
 collision_mask = 8
 script = ExtResource("1_dy1nh")
+metadata/_edit_group_ = true
 
 [connection signal="area_entered" from="." to="." method="AreaEntered" unbinds=1]

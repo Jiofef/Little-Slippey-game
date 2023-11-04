@@ -200,7 +200,6 @@ public partial class BaseLevelScript : Node2D
         G.IsProgressPaused = false;
         G.CrossSpawnMultiplier = 1;
         UnchangableMeta.SaveRecords();
-        UnchangableMeta.SaveToFile();
         QueueFree();
         EmitSignal("LevelReload");
     }

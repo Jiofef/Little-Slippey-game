@@ -1,6 +1,7 @@
+res://Content/Scripts/Levels
+res://Content/Sprites/Levels/Level1
 res://Content/Scenes/Other
 res://Content/Sprites/Levels/Level2
-res://Content/Sprites/Levels/Level1
 res://Content/Sprites/PlayerSkins
 res://Content/Scenes/PlayerSkins
 res://Content/Scripts/Interface&Menu
@@ -10,7 +11,6 @@ res://Content/Scenes/Interface&Menu
 res://Content
 res://Content/Other
 res://
-res://Content/Scripts/Levels
 res://Content/Scripts/Crosses
 res://Content/Scenes/Crosses
 res://Content/Sprites/Crosses
