@@ -63,3 +63,4 @@ res://Content/Scripts/Other/Player.cs
 res://Content/Scenes/Interface&Menu/LevelsMenu.tscn
 res://Content/Scenes/Levels/PresentedParts/PresentedLevel1Tutorial.tscn
 res://Content/Scenes/Other/CrutchedArea2D.tscn
+res://Content/Scenes/Levels/FullParts/Level10.tscn

@@ -89,8 +89,11 @@ public partial class LevelsMenu : Control
         {
             GetNode<Control>(link + "/StartOption").Visible = true;
             GetNode<TextureButton>(link).Disabled = true;
+            GetNode<TextureButton>(link).FocusMode = FocusModeEnum.None;
+            GetNode<TextureButton>(link + "/StartOption/CloseOption").Disabled = false;
             GetNode<TextureButton>(link + "/StartOption/Yes").Disabled = false;
             GetNode<TextureButton>(link + "/StartOption/No").Disabled = false;
+            GetNode<TextureButton>(link + "/StartOption/No").GrabFocus();
         }
         if (value == 1 && UnchangableMeta.IsTutorialPlayed && doOpenLevelPossibleStartOptions)
         {
@@ -115,6 +118,17 @@ public partial class LevelsMenu : Control
     public void OpenLevel()
     {
         GetTree().ChangeSceneToFile("res://Content/Scenes/Other/Main.tscn");
+    }
+    public void CloseStartOptions(int levelNumber)
+    {
+        string link = "LevelsList/LevelsIconsContainer/SubContainer/Level" + levelNumber + "Button";
+        GetNode<Control>(link + "/StartOption").Visible = false;
+        GetNode<TextureButton>(link + "/StartOption/CloseOption").Disabled = true;
+        GetNode<TextureButton>(link + "/StartOption/Yes").Disabled = true;
+        GetNode<TextureButton>(link + "/StartOption/No").Disabled = true;
+        GetNode<TextureButton>(link).FocusMode = FocusModeEnum.All;
+        GetNode<TextureButton>(link).Disabled = false;
+        GetNode<TextureButton>(link).GrabFocus();
     }
 
     public void ChangeLevelRowToPast()

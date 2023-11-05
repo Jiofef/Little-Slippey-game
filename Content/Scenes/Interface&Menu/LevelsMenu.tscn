@@ -977,10 +977,13 @@ anchors_preset = 0
 offset_right = 45.0
 offset_bottom = 45.0
 
-[node name="CloseOption" type="TextureButton" parent="LevelsList/LevelsIconsContainer/SubContainer/Level1Button/StartOption"]
+[node name="CloseOption" parent="LevelsList/LevelsIconsContainer/SubContainer/Level1Button/StartOption" instance=ExtResource("2_6jw0o")]
 layout_mode = 0
-offset_right = 45.0
-offset_bottom = 45.0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 12.25
+offset_bottom = 7.0
+disabled = true
 
 [node name="ColorRect" type="ColorRect" parent="LevelsList/LevelsIconsContainer/SubContainer/Level1Button/StartOption"]
 layout_mode = 0
@@ -1191,10 +1194,12 @@ anchors_preset = 0
 offset_right = 45.0
 offset_bottom = 45.0
 
-[node name="CloseOption" type="TextureButton" parent="LevelsList/LevelsIconsContainer/SubContainer/Level9Button/StartOption"]
-layout_mode = 0
-offset_right = 45.0
-offset_bottom = 45.0
+[node name="CloseOption" parent="LevelsList/LevelsIconsContainer/SubContainer/Level9Button/StartOption" instance=ExtResource("2_6jw0o")]
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 12.25
+offset_bottom = 7.0
+disabled = true
 
 [node name="ColorRect" type="ColorRect" parent="LevelsList/LevelsIconsContainer/SubContainer/Level9Button/StartOption"]
 layout_mode = 0
@@ -1261,10 +1266,12 @@ anchors_preset = 0
 offset_right = 45.0
 offset_bottom = 45.0
 
-[node name="CloseOption" type="TextureButton" parent="LevelsList/LevelsIconsContainer/SubContainer/Level10Button/StartOption"]
-layout_mode = 0
-offset_right = 45.0
-offset_bottom = 45.0
+[node name="CloseOption" parent="LevelsList/LevelsIconsContainer/SubContainer/Level10Button/StartOption" instance=ExtResource("2_6jw0o")]
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 12.25
+offset_bottom = 7.0
+disabled = true
 
 [node name="ColorRect" type="ColorRect" parent="LevelsList/LevelsIconsContainer/SubContainer/Level10Button/StartOption"]
 layout_mode = 0
@@ -1358,10 +1365,7 @@ color = Color(0, 0, 0, 1)
 [connection signal="pressed" from="LevelsList/RightScrollButton" to="." method="ChangeLevelRowToNext"]
 [connection signal="focus_entered" from="LevelsList/LevelsIconsContainer/SubContainer/Level1Button" to="." method="SetPresentedLevel" binds= [1, ""]]
 [connection signal="pressed" from="LevelsList/LevelsIconsContainer/SubContainer/Level1Button" to="." method="StartLevelOpening" binds= [1, "Tutorial", true]]
-[connection signal="pressed" from="LevelsList/LevelsIconsContainer/SubContainer/Level1Button/StartOption/CloseOption" to="LevelsList/LevelsIconsContainer/SubContainer/Level1Button" method="set_disabled" binds= [false]]
-[connection signal="pressed" from="LevelsList/LevelsIconsContainer/SubContainer/Level1Button/StartOption/CloseOption" to="LevelsList/LevelsIconsContainer/SubContainer/Level1Button/StartOption" method="set_visible" binds= [false]]
-[connection signal="pressed" from="LevelsList/LevelsIconsContainer/SubContainer/Level1Button/StartOption/CloseOption" to="LevelsList/LevelsIconsContainer/SubContainer/Level1Button/StartOption/Yes" method="set_disabled" binds= [true]]
-[connection signal="pressed" from="LevelsList/LevelsIconsContainer/SubContainer/Level1Button/StartOption/CloseOption" to="LevelsList/LevelsIconsContainer/SubContainer/Level1Button/StartOption/No" method="set_disabled" binds= [true]]
+[connection signal="pressed" from="LevelsList/LevelsIconsContainer/SubContainer/Level1Button/StartOption/CloseOption" to="." method="CloseStartOptions" binds= [1]]
 [connection signal="focus_entered" from="LevelsList/LevelsIconsContainer/SubContainer/Level1Button/StartOption/Yes" to="." method="SetPresentedLevel" binds= [1, "Tutorial"]]
 [connection signal="pressed" from="LevelsList/LevelsIconsContainer/SubContainer/Level1Button/StartOption/Yes" to="." method="StartLevelOpening" binds= [1, "Tutorial", false]]
 [connection signal="focus_entered" from="LevelsList/LevelsIconsContainer/SubContainer/Level1Button/StartOption/No" to="." method="SetPresentedLevel" binds= [1, ""]]
@@ -1382,20 +1386,14 @@ color = Color(0, 0, 0, 1)
 [connection signal="pressed" from="LevelsList/LevelsIconsContainer/SubContainer/Level8Button" to="." method="StartLevelOpening" binds= [8, "", false]]
 [connection signal="focus_entered" from="LevelsList/LevelsIconsContainer/SubContainer/Level9Button" to="." method="SetPresentedLevel" binds= [9, ""]]
 [connection signal="pressed" from="LevelsList/LevelsIconsContainer/SubContainer/Level9Button" to="." method="StartLevelOpening" binds= [9, "", true]]
-[connection signal="pressed" from="LevelsList/LevelsIconsContainer/SubContainer/Level9Button/StartOption/CloseOption" to="LevelsList/LevelsIconsContainer/SubContainer/Level9Button" method="set_disabled" binds= [false]]
-[connection signal="pressed" from="LevelsList/LevelsIconsContainer/SubContainer/Level9Button/StartOption/CloseOption" to="LevelsList/LevelsIconsContainer/SubContainer/Level9Button/StartOption" method="set_visible" binds= [false]]
-[connection signal="pressed" from="LevelsList/LevelsIconsContainer/SubContainer/Level9Button/StartOption/CloseOption" to="LevelsList/LevelsIconsContainer/SubContainer/Level9Button/StartOption/Yes" method="set_disabled" binds= [true]]
-[connection signal="pressed" from="LevelsList/LevelsIconsContainer/SubContainer/Level9Button/StartOption/CloseOption" to="LevelsList/LevelsIconsContainer/SubContainer/Level9Button/StartOption/No" method="set_disabled" binds= [true]]
+[connection signal="pressed" from="LevelsList/LevelsIconsContainer/SubContainer/Level9Button/StartOption/CloseOption" to="." method="CloseStartOptions" binds= [9]]
 [connection signal="focus_entered" from="LevelsList/LevelsIconsContainer/SubContainer/Level9Button/StartOption/Yes" to="." method="SetPresentedLevel" binds= [9, "WithoutPlatformSection"]]
 [connection signal="pressed" from="LevelsList/LevelsIconsContainer/SubContainer/Level9Button/StartOption/Yes" to="." method="StartLevelOpening" binds= [9, "WithoutPlatformSection", false]]
 [connection signal="focus_entered" from="LevelsList/LevelsIconsContainer/SubContainer/Level9Button/StartOption/No" to="." method="SetPresentedLevel" binds= [9, ""]]
 [connection signal="pressed" from="LevelsList/LevelsIconsContainer/SubContainer/Level9Button/StartOption/No" to="." method="StartLevelOpening" binds= [9, "", false]]
 [connection signal="focus_entered" from="LevelsList/LevelsIconsContainer/SubContainer/Level10Button" to="." method="SetPresentedLevel" binds= [10, ""]]
 [connection signal="pressed" from="LevelsList/LevelsIconsContainer/SubContainer/Level10Button" to="." method="StartLevelOpening" binds= [10, "", true]]
-[connection signal="pressed" from="LevelsList/LevelsIconsContainer/SubContainer/Level10Button/StartOption/CloseOption" to="LevelsList/LevelsIconsContainer/SubContainer/Level10Button" method="set_disabled" binds= [false]]
-[connection signal="pressed" from="LevelsList/LevelsIconsContainer/SubContainer/Level10Button/StartOption/CloseOption" to="LevelsList/LevelsIconsContainer/SubContainer/Level10Button/StartOption" method="set_visible" binds= [false]]
-[connection signal="pressed" from="LevelsList/LevelsIconsContainer/SubContainer/Level10Button/StartOption/CloseOption" to="LevelsList/LevelsIconsContainer/SubContainer/Level10Button/StartOption/Yes" method="set_disabled" binds= [true]]
-[connection signal="pressed" from="LevelsList/LevelsIconsContainer/SubContainer/Level10Button/StartOption/CloseOption" to="LevelsList/LevelsIconsContainer/SubContainer/Level10Button/StartOption/No" method="set_disabled" binds= [true]]
+[connection signal="pressed" from="LevelsList/LevelsIconsContainer/SubContainer/Level10Button/StartOption/CloseOption" to="." method="CloseStartOptions" binds= [10]]
 [connection signal="focus_entered" from="LevelsList/LevelsIconsContainer/SubContainer/Level10Button/StartOption/Yes" to="." method="SetPresentedLevel" binds= [10, "True"]]
 [connection signal="pressed" from="LevelsList/LevelsIconsContainer/SubContainer/Level10Button/StartOption/Yes" to="." method="StartLevelOpening" binds= [10, "True", false]]
 [connection signal="focus_entered" from="LevelsList/LevelsIconsContainer/SubContainer/Level10Button/StartOption/No" to="." method="SetPresentedLevel" binds= [10, ""]]

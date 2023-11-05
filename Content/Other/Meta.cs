@@ -16,7 +16,7 @@ public partial class Meta : Node
     //Since this is the HTML version, it will be incorrect to save the full screen state, and this is the only non-saving variable in the meta
     public bool IsFullScreen = false;
     public float CameraZoom = 1.25f;
-    public byte ScoresLabelLocationX = 0, ScoresLabelLocationY = 0, ScoresShowingFormatIndex = 0;
+    public byte ScoresLabelLocationX = 1, ScoresLabelLocationY = 0, ScoresShowingFormatIndex = 0;
 
     //Gameplay
     public int Dificulty = 0;

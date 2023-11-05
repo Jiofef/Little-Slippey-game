@@ -24,4 +24,11 @@ public partial class TutorialCanvasLayer : CanvasLayer
             SetPhysicsProcess(false);
         }
     }
+	public void Glitch()
+	{
+		var whiteNoiseGlitch = GetNode<AnimatedSprite2D>("WhiteNoiseGlitch");
+		whiteNoiseGlitch.Visible = true;
+		whiteNoiseGlitch.Play();
+		GetNode<AudioStreamPlayer>("WhiteNoiseGlitch/AudioStreamPlayer").Play();
+    }
 }

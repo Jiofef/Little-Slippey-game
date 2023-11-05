@@ -1,5 +1,5 @@
-CollisionShape2D
 AnimationPlayer
+CollisionShape2D
 Label
 CanvasLayer
 AnimatedSprite2D

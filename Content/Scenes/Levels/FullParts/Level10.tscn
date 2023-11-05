@@ -532,14 +532,12 @@ libraries = {
 
 [node name="CameraLimitsSetTrigger" parent="RealityDissector" instance=ExtResource("10_4e1pi")]
 position = Vector2(13856, 608)
-metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RealityDissector/CameraLimitsSetTrigger"]
 shape = SubResource("RectangleShape2D_i2jhq")
 
 [node name="CameraPositionSmoothingSpeedSetTrigger" parent="RealityDissector" instance=ExtResource("10_4e1pi")]
 position = Vector2(13824, 608)
-metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RealityDissector/CameraPositionSmoothingSpeedSetTrigger"]
 position = Vector2(0, 2560)
