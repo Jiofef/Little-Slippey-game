@@ -5,7 +5,6 @@ res://Content/Other/StaticNoiseShader.gdshader
 res://Content/Other/BlurShader.gdshader
 res://Content/Other/CRT.gdshader
 res://Content/Other/PixelateShader.gdshader
-res://Content/Scenes/Other/Level8DisposableButton.tscn
 res://Content/Other/G.cs
 res://Content/Other/Meta.cs
 res://Content/Other/UnchangableMeta.cs

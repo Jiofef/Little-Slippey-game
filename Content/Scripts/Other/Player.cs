@@ -238,6 +238,8 @@ public partial class Player : CharacterBody2D
         _corpseMotion.X = random.Next(100) > 50 ? -5 * (GlobalPosition.X / G.LevelXYSizes[G.CurrentLevel].X) : 5 * (1 - GlobalPosition.X / G.LevelXYSizes[G.CurrentLevel].X);
         if (G.CurrentLevel == 8 || GlobalPosition > G.LevelXYSizes[G.CurrentLevel] || GlobalPosition < Vector2.Zero)
             _corpseMotion.X = random.Next(100) > 50 ? -5 : +5;
+        if (G.CurrentLevel == 1 && G.LevelAdditionalLink == "Tutorial")
+            _corpseMotion.X *= 0.75f;
 
         _corpseMotion.Y = -8;
 

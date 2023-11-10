@@ -4,6 +4,7 @@ public partial class TutorialCanvasLayer : CanvasLayer
 {
 	public override void _Ready()
 	{
+		G.IsProgressPaused = true;
 		G.IsCrossesEnabled = false;
 		if (UnchangableMeta.IsTutorialPlayed)
             GetNode<AnimationPlayer>("Label/AnimationPlayer").Play("Disappearing");
@@ -31,4 +32,10 @@ public partial class TutorialCanvasLayer : CanvasLayer
 		whiteNoiseGlitch.Play();
 		GetNode<AudioStreamPlayer>("WhiteNoiseGlitch/AudioStreamPlayer").Play();
     }
+	public void TutorialCompleted()
+	{
+		G.LevelAdditionalLink = "";
+		G.IsCrossesEnabled = true;
+		G.CrossSpawnMultiplier = 10;
+	}
 }
