@@ -3381,7 +3381,7 @@ one_shot = true
 
 [node name="TutorialTV" parent="TileMap6" instance=ExtResource("14_vca5o")]
 modulate = Color(1, 1, 1, 0)
-position = Vector2(12458, -118)
+position = Vector2(12462, -118)
 scale = Vector2(0.75, 0.75)
 
 [node name="SlippeyHead" parent="TileMap6/TutorialTV/Screen" index="1"]
@@ -3696,6 +3696,7 @@ centered = false
 stream = SubResource("AudioStreamWAV_tdw56")
 
 [connection signal="animation_finished" from="Rail/AnimationPlayer" to="Rail" method="queue_free" unbinds=1]
+[connection signal="PlayerDied" from="Player" to="TutorialCanvasLayer" method="PlayerDied" flags=6]
 [connection signal="ButtonPressed" from="TileMap/CameraLimitsSetTrigger" to="Player" method="SetCameraLimits" flags=6 binds= [Vector4(3520, 15552, 4032, 13504), false]]
 [connection signal="ButtonPressed" from="TileMap/CameraLimitsSetTrigger" to="TileMap/TutorialTV/AnimationPlayer" method="play" flags=6 binds= ["FallingDown"]]
 [connection signal="ButtonPressed" from="TileMap/TeleporterArea" to="TileMap" method="queue_free" flags=6]

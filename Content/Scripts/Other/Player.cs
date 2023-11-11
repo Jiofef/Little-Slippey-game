@@ -232,17 +232,17 @@ public partial class Player : CharacterBody2D
     public void Death()
     {
         ZIndex++;
-        Connect("PlayerDied", new Callable(GetParent(), "DisablePhysicsProcess"));
-        EmitSignal("PlayerDied");
+
         Random random = new Random();
         _corpseMotion.X = random.Next(100) > 50 ? -5 * (GlobalPosition.X / G.LevelXYSizes[G.CurrentLevel].X) : 5 * (1 - GlobalPosition.X / G.LevelXYSizes[G.CurrentLevel].X);
         if (G.CurrentLevel == 8 || GlobalPosition > G.LevelXYSizes[G.CurrentLevel] || GlobalPosition < Vector2.Zero)
             _corpseMotion.X = random.Next(100) > 50 ? -5 : +5;
         if (G.CurrentLevel == 1 && G.LevelAdditionalLink == "Tutorial")
-            _corpseMotion.X *= 0.75f;
-
+            _corpseMotion.X *= 0.25f;
         _corpseMotion.Y = -8;
 
+        Connect("PlayerDied", new Callable(GetParent(), "DisablePhysicsProcess"));
+        EmitSignal("PlayerDied");
 
         PlaySound("Death");
         GetNode<AudioStreamPlayer>("../../../LevelMusicPlayer").StreamPaused = true;

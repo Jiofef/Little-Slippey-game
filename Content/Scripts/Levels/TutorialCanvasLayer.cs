@@ -34,8 +34,11 @@ public partial class TutorialCanvasLayer : CanvasLayer
     }
 	public void TutorialCompleted()
 	{
-		G.LevelAdditionalLink = "";
 		G.IsCrossesEnabled = true;
 		G.CrossSpawnMultiplier = 10;
+	}
+	public void PlayerDied()
+	{
+		G.LevelAdditionalLink = "";
 	}
 }
