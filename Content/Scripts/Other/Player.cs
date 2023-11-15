@@ -8,15 +8,13 @@ public partial class Player : CharacterBody2D
     [Signal] public delegate void CameraLimitsChangedEventHandler();
     [Signal] public delegate void PlayerDiedEventHandler();
 
-    // floats related to wall-jumping
-    private float _wallDetectNumber, _inertion, _savedWallNumber, _wallJumpTimer = 0,
+    private float _inertion, _wallJumpTimer = 0, //WallJumping
+          _climbTimer, _climbUncontrollingTimer, //Climbing
+          _moveCalculationTimer = 0; //Other
+    private int _wallDetectNumber, _nearWallsCount, _savedWallNumber, //WallJumping
+        _climbBufer = 3, _savedClimbWallNumber; //Climbing
 
-          // wall climbs
-          _climbBufer = 3, _climbTimer, _savedClimbWallNumber, _climbUncontrollingTimer,
-
-          // other
-          _moveCalculationTimer = 0;
-          readonly float _floatDelta = 0.016667f;
+    readonly float _floatDelta = 0.016667f;
 
     // other variable
     private bool _isFliph;
@@ -43,7 +41,7 @@ public partial class Player : CharacterBody2D
     public override void _Ready()
     {
         GetNode("SkinContainer/Sprite2D").QueueFree();
-        string[] SkinNames = {"Slippey", "Sanboy", "Strawman", "Pineplum", "Bondey", "", "Hostey"};
+        string[] SkinNames = {"Slippey", "Sanboy", "Strawman", "Pineplum", "Bondey", "Sleepy", "Hostey"};
         _animatedSprite = (AnimatedSprite2D)ResourceLoader.Load<PackedScene>("res://Content/Scenes/PlayerSkins/" + SkinNames[Meta.Instance.ChosenSkinIndex] + ".tscn").Instantiate();
         _animatedSprite.Connect("animation_finished", new Callable(this, "AnimationFinished"));
         GetNode("SkinContainer").AddChild(_animatedSprite);
@@ -256,16 +254,20 @@ public partial class Player : CharacterBody2D
     public void LeftWallDetect()
     {
         _wallDetectNumber = -1;
+        _nearWallsCount++;
     }
 
     public void RightWallDetect()
     {
         _wallDetectNumber = 1;
+        _nearWallsCount++;
     }
 
     public void WallUndetected()
     {
-        _wallDetectNumber = 0;
+        _nearWallsCount--;
+        if (_nearWallsCount <= 0)
+            _wallDetectNumber = 0;
     }
 
     public void SetCameraLimits(Vector4 value, bool DoResetSmoothing = false)

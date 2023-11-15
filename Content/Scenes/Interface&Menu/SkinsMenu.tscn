@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://ufrdtjstxptm"]
+[gd_scene load_steps=40 format=3 uid="uid://ufrdtjstxptm"]
 
 [ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/SkinsMenu.cs" id="1_81lvq"]
 [ext_resource type="Texture2D" uid="uid://mr4rfhwjaa0c" path="res://Content/Sprites/Interface/SkinsMenuBox.png" id="1_ktj04"]
@@ -10,7 +10,9 @@
 [ext_resource type="Texture2D" uid="uid://vjcab56ymxqr" path="res://Content/Sprites/PlayerSkins/Pineplum.png" id="9_2om8k"]
 [ext_resource type="Texture2D" uid="uid://b486fyylpidxt" path="res://Content/Sprites/PlayerSkins/Strawman.png" id="9_osnja"]
 [ext_resource type="Texture2D" uid="uid://bbo5rgyrh6rwk" path="res://Content/Sprites/PlayerSkins/Bondey.png" id="10_t1dm6"]
+[ext_resource type="Texture2D" uid="uid://d1lge7hswejye" path="res://Content/Sprites/PlayerSkins/Sleepy.png" id="11_j8a7d"]
 [ext_resource type="Texture2D" uid="uid://daeeo1lq7usi6" path="res://Content/Sprites/PlayerSkins/Hostey.png" id="11_jf18u"]
+[ext_resource type="Texture2D" uid="uid://c2f5fnganxvf6" path="res://Content/Sprites/Other/SleepyZ.png" id="12_2pgon"]
 
 [sub_resource type="Animation" id="Animation_yy61y"]
 resource_name = "Opening"
@@ -151,6 +153,29 @@ animations = [{
 "name": &"default",
 "speed": 1.0
 }]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5hj53"]
+atlas = ExtResource("11_j8a7d")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0jbav"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5hj53")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Curve" id="Curve_25byp"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.153846, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_c24sf"]
+offsets = PackedFloat32Array(0, 0.15, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_o8680"]
 atlas = ExtResource("11_jf18u")
@@ -358,6 +383,39 @@ button_group = SubResource("ButtonGroup_3j4fm")
 texture_normal = ExtResource("2_5tg7d")
 texture_disabled = ExtResource("5_m7r3n")
 
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SkinButtons/Button6"]
+position = Vector2(24, 19)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_0jbav")
+autoplay = "default"
+
+[node name="ZParticles" type="CPUParticles2D" parent="SkinButtons/Button6/AnimatedSprite2D"]
+position = Vector2(0, -2)
+amount = 4
+lifetime = 4.0
+texture = ExtResource("12_2pgon")
+direction = Vector2(1, -1)
+spread = 20.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 5.0
+initial_velocity_max = 5.0
+scale_amount_min = 4.0
+scale_amount_max = 4.0
+scale_amount_curve = SubResource("Curve_25byp")
+color_ramp = SubResource("Gradient_c24sf")
+
+[node name="SkinName" type="Label" parent="SkinButtons/Button6"]
+offset_left = 3.0
+offset_top = 36.0
+offset_right = 124.0
+offset_bottom = 61.0
+scale = Vector2(0.35, 0.35)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+text = "Sleepy
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Button7" parent="SkinButtons" instance=ExtResource("2_oge4l")]
 layout_mode = 0
 offset_left = 200.0
@@ -377,6 +435,7 @@ autoplay = "default"
 frame_progress = 0.97506
 
 [node name="SkinName" type="Label" parent="SkinButtons/Button7"]
+layout_mode = 0
 offset_left = 3.0
 offset_top = 36.0
 offset_right = 123.0

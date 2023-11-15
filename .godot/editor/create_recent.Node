@@ -1,9 +1,9 @@
-Camera2D
-CPUParticles2D
-AnimationPlayer
-AudioStreamPlayer
-AnimatedSprite2D
 Sprite2D
+AnimationPlayer
+CPUParticles2D
+AnimatedSprite2D
+Camera2D
+AudioStreamPlayer
 TileMap
 CollisionShape2D
 Area2D
@@ -30,4 +30,3 @@ RigidBody2D
 VBoxContainer
 VScrollBar
 Node
-DirectionalLight2D

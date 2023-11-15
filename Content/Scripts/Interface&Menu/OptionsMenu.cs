@@ -72,7 +72,7 @@ public partial class OptionsMenu : Control
     //VideoOptions
     public void ChangeScreenFormat(int index)
     {
-        Meta.Instance.IsFullScreen = Convert.ToBoolean(index);
+        Meta.Instance.IsFullScreen = index == 0 ? true : false;
         DisplayServer.WindowSetMode(index == 0 ? DisplayServer.WindowMode.Fullscreen : DisplayServer.WindowMode.Windowed);
     }
     public void ChangeScoresShowingFormat(int index)
