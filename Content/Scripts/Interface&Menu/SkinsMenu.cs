@@ -5,7 +5,7 @@ public partial class SkinsMenu : Control
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-        int[] NeededAchievementIndexes = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 };
+        int[] NeededAchievementIndexes = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12};
         for (int i = 0; i < NeededAchievementIndexes.Length; i++)
         {
             if (UnchangableMeta.AchievementStatuses[NeededAchievementIndexes[i]] != 1)

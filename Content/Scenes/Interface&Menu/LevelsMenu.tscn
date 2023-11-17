@@ -1195,6 +1195,7 @@ offset_right = 45.0
 offset_bottom = 45.0
 
 [node name="CloseOption" parent="LevelsList/LevelsIconsContainer/SubContainer/Level9Button/StartOption" instance=ExtResource("2_6jw0o")]
+layout_mode = 0
 offset_left = 2.0
 offset_top = 2.0
 offset_right = 12.25
@@ -1267,6 +1268,7 @@ offset_right = 45.0
 offset_bottom = 45.0
 
 [node name="CloseOption" parent="LevelsList/LevelsIconsContainer/SubContainer/Level10Button/StartOption" instance=ExtResource("2_6jw0o")]
+layout_mode = 0
 offset_left = 2.0
 offset_top = 2.0
 offset_right = 12.25

@@ -358,5 +358,6 @@ color_ramp = SubResource("Gradient_6ppe5")
 
 [node name="DeathSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_71kt4")
+bus = &"Player"
 
 [connection signal="PlayerDeath" from="." to="AnimationPlayer" method="play" flags=6 binds= ["Death"]]

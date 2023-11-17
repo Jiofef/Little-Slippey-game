@@ -58,17 +58,6 @@ public partial class LevelsMenu : Control
         }
     }
 
-    public override void _PhysicsProcess(double delta)
-    {
-        if (Input.IsActionJustPressed("Cancel"))
-            Cancel();
-    }
-
-    public void Cancel()
-    {
-        GetTree().ChangeSceneToFile("res://Content/Scenes/Interface&Menu/Menu.tscn");
-    }
-
     public void SetPresentedLevel(int value, string additionalLinkValue = "")
     {
         if (_chosenLevel != value || additionalLinkValue != _additionalLevelLink)

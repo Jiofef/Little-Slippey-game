@@ -8,14 +8,14 @@ public partial class DefaultSkinAPIXD : AnimatedSprite2D
 	public override void _Ready()
 	{
 		GetNode("../..").Connect("PlayerDied", new Callable(this, "PlayerDied"));
-		SetPhysicsProcess(_enableSecondJumpAndFallFrame || Meta.Instance.ChosenSkinIndex == 5);
+		SetPhysicsProcess(_enableSecondJumpAndFallFrame || Meta.Instance.ChosenSkinIndex == 6);
 	}
     public override void _PhysicsProcess(double delta)
     {
 		if (_enableSecondJumpAndFallFrame && (Animation == "Fall" || Animation == "Jump"))
 			Frame = Input.IsActionPressed("ui_right") || Input.IsActionPressed("ui_left") ? 1 : 0;
 
-		if (Meta.Instance.ChosenSkinIndex == 5)
+		if (Meta.Instance.ChosenSkinIndex == 6)
 		{
 			var zParticles = GetNode<CpuParticles2D>("ZParticles");
 			if (Animation == "Idle" && Frame == 2 && !zParticles.Emitting)

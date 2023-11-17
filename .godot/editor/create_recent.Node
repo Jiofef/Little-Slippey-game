@@ -1,9 +1,9 @@
+AudioStreamPlayer
 Sprite2D
+AnimatedSprite2D
 AnimationPlayer
 CPUParticles2D
-AnimatedSprite2D
 Camera2D
-AudioStreamPlayer
 TileMap
 CollisionShape2D
 Area2D

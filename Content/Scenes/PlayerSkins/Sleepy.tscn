@@ -392,7 +392,6 @@ scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_q3iq0")
 animation = &"Idle"
 autoplay = "Idle"
-speed_scale = 0.66
 flip_h = true
 script = ExtResource("2_nyu6p")
 
