@@ -4,7 +4,7 @@ res://Content/Other/StaticNoiseShader.gdshader
 res://Content/Other/BlurShader.gdshader
 res://Content/Other/CRT.gdshader
 res://Content/Other/PixelateShader.gdshader
-res://Content/Scenes/PlayerSkins/CompressPile.tscn
+res://Content/Scenes/PlayerSkins/JioYobaFefski.tscn
 res://Content/Other/G.cs
 res://Content/Other/Meta.cs
 res://Content/Other/UnchangableMeta.cs
@@ -61,3 +61,6 @@ res://Content/Scripts/Other/Camera.cs
 res://Content/Scripts/Other/DefaultSkinAPIXD.cs
 res://Content/Scripts/Other/MainScript.cs
 res://Content/Scripts/Other/Player.cs
+res://Content/Scenes/Other/Player.tscn
+res://Content/Scripts/Other/JioYobaFefskiSkinAnimationPlayer.cs
+res://Content/Scenes/PlayerSkins/Strawman.tscn

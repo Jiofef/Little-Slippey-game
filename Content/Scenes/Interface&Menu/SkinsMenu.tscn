@@ -587,6 +587,7 @@ texture_normal = ExtResource("2_5tg7d")
 texture_disabled = ExtResource("5_m7r3n")
 
 [node name="SkinName" type="Label" parent="SkinButtons/Button10"]
+layout_mode = 0
 offset_left = 3.0
 offset_top = 35.0
 offset_right = 154.0
@@ -613,6 +614,17 @@ toggle_mode = true
 button_group = SubResource("ButtonGroup_3j4fm")
 texture_normal = ExtResource("2_5tg7d")
 texture_disabled = ExtResource("5_m7r3n")
+
+[node name="SkinName" type="Label" parent="SkinButtons/Button11"]
+offset_left = 3.0
+offset_top = 35.0
+offset_right = 171.0
+offset_bottom = 75.0
+scale = Vector2(0.25, 0.25)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+text = "Jio Yoba Fefski"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Button12" parent="SkinButtons" instance=ExtResource("2_oge4l")]
 layout_mode = 0
