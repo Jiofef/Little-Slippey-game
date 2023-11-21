@@ -167,6 +167,7 @@ horizontal_alignment = 1
 [node name="EmergingElements" type="Node2D" parent="Camera2D/GUI"]
 visible = false
 modulate = Color(1, 1, 1, 0)
+z_index = -1
 
 [node name="Scores" type="Label" parent="Camera2D/GUI/EmergingElements"]
 visible = false

@@ -104,12 +104,17 @@ public partial class Player : CharacterBody2D
                     _savedWallNumber = _wallDetectNumber;
                     _motion.Y = -_jumpForce;
                     _inertion = 1.25f * -_savedWallNumber;
-                    _isFliph = _savedWallNumber == 1;
                     _state = State.Inerted;
                     PlaySound("Climb");
                 }
                 else if (!Input.IsActionPressed("WallCatch") && _lastXMoveVector == _wallDetectNumber && _wallDetectNumber != 0 && _climbTimer < 0 && _climbBufer > 0)
                 {
+                    if (Meta.Instance.ChosenSkinIndex == 10 && _animationName == "Climb")
+                    {
+                        var skinAnimationPlayer = GetNode<AnimationPlayer>("SkinContainer/JioYobaFefski/AnimationPlayer");
+                        skinAnimationPlayer.Stop();
+                        skinAnimationPlayer.Play("Climb");
+                    }
                     _climbTimer = 0.2f;
                     _climbBufer--;
                     _motion.Y = -_jumpForce * 0.7f;

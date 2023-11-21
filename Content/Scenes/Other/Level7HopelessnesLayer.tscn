@@ -5,7 +5,7 @@
 [ext_resource type="AudioStream" uid="uid://dfy21dsuhqjdy" path="res://Content/Sounds/Levels/Level7FilmNoise.mp3" id="3_3ai6c"]
 
 [node name="HopelessnessLayer" type="CanvasLayer"]
-layer = 3
+layer = 5
 script = ExtResource("1_52qy1")
 
 [node name="FogLayer" type="CanvasLayer" parent="."]
@@ -31,7 +31,6 @@ process_mode = 3
 stream = ExtResource("3_3ai6c")
 volume_db = 15.0
 autoplay = true
-bus = &"LevelSounds"
 
 [node name="CrutchTimer" type="Timer" parent="."]
 wait_time = 0.02

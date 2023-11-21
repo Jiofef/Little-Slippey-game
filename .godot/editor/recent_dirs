@@ -1,3 +1,4 @@
+res://Content/Sprites/Other
 res://Content/Sprites/PlayerSkins
 res://Content/Scripts/Other
 res://Content/Scenes/PlayerSkins
@@ -14,7 +15,6 @@ res://
 res://Content/Scripts/Crosses
 res://Content/Scenes/Crosses
 res://Content/Sprites/Crosses
-res://Content/Sprites/Other
 res://Content/Sprites/Levels/Level9
 res://Content/Scenes/Levels/PresentedParts
 res://Content/Scenes/Levels/FullParts

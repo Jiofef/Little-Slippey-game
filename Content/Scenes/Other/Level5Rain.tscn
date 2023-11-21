@@ -31,6 +31,7 @@ mouse_filter = 2
 color = Color(0, 0.352941, 0.352941, 0.588235)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 2
 
 [node name="Particles" type="CPUParticles2D" parent="CanvasLayer"]
 position = Vector2(500, -32)
@@ -71,23 +72,19 @@ metadata/_edit_use_anchors_ = true
 [node name="ThunderSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_6h37r")
 volume_db = 10.0
-bus = &"LevelSounds"
 
 [node name="AmbiencePlayer1" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_bybth")
-bus = &"LevelSounds"
 
 [node name="AmbiencePlayer2" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_dv01f")
 volume_db = 10.0
-bus = &"LevelSounds"
 
 [node name="RainSound" type="AudioStreamPlayer" parent="."]
 process_mode = 3
 stream = ExtResource("5_tvq4x")
 volume_db = 20.0
 autoplay = true
-bus = &"LevelSounds"
 
 [connection signal="timeout" from="LightChangeTimer" to="." method="LightChange"]
 [connection signal="timeout" from="ThunderTimer" to="." method="ThunderStart"]

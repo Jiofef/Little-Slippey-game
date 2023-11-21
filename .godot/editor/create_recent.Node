@@ -1,10 +1,11 @@
+AudioStreamPlayer
+AnimatedSprite2D
+CanvasLayer
+CPUParticles2D
 ColorRect
 AnimationPlayer
 Sprite2D
-AnimatedSprite2D
-AudioStreamPlayer
 AudioListener2D
-CPUParticles2D
 Camera2D
 TileMap
 CollisionShape2D
@@ -14,7 +15,6 @@ ParallaxLayer
 Timer
 AnimatableBody2D
 Label
-CanvasLayer
 RichTextLabel
 Control
 GridContainer

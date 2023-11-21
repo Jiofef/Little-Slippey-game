@@ -193,7 +193,7 @@ process_mode = 1
 
 [node name="Pause" type="CanvasLayer" parent="."]
 process_mode = 2
-layer = 2
+layer = 3
 
 [node name="Interface" type="Control" parent="Pause"]
 modulate = Color(1, 1, 1, 0)
