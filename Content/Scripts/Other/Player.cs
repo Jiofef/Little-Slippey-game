@@ -41,7 +41,7 @@ public partial class Player : CharacterBody2D
     public override void _Ready()
     {
         GetNode("SkinContainer/Sprite2D").QueueFree();
-        string[] SkinNames = {"Slippey", "Samey", "Sanboy", "Strawman", "Pineplum", "Bondey", "Sleepy", "Daley", "Hostey", "CompressPile", "JioYobaFefski"};
+        string[] SkinNames = {"Slippey", "Samey", "Sanboy", "Strawman", "Pineplum", "Bondey", "Sleepy", "Daley", "Hostey", "CompressPile", "JioYobaFefski", "SlippeyChad"};
         _animatedSprite = (AnimatedSprite2D)ResourceLoader.Load<PackedScene>("res://Content/Scenes/PlayerSkins/" + SkinNames[Meta.Instance.ChosenSkinIndex] + ".tscn").Instantiate();
         _animatedSprite.Connect("animation_finished", new Callable(this, "AnimationFinished"));
         GetNode("SkinContainer").AddChild(_animatedSprite);
@@ -54,6 +54,7 @@ public partial class Player : CharacterBody2D
             if (G.PlayerCorpseFlightTimer != 4.5f)
             {
                 G.PlayerCorpseFlightTimer = G.PlayerCorpseFlightTimer < 4.5f ? G.PlayerCorpseFlightTimer + 0.016667f : 4.5f;
+                if (Meta.Instance.ChosenSkinIndex == 11) return;
                 Position = new Vector2(Position.X + _corpseMotion.X * G.GetReversedPlayerCorpseFlightTimerCoeff(), Position.Y + _corpseMotion.Y * G.GetReversedPlayerCorpseFlightTimerCoeff());
                 Rotation += _corpseMotion.X / 50 * G.GetReversedPlayerCorpseFlightTimerCoeff();
                 _corpseMotion.Y += _gravity / 200;
@@ -238,11 +239,13 @@ public partial class Player : CharacterBody2D
 
         Random random = new Random();
         _corpseMotion.X = random.Next(100) > 50 ? -5 * (GlobalPosition.X / G.LevelXYSizes[G.CurrentLevel].X) : 5 * (1 - GlobalPosition.X / G.LevelXYSizes[G.CurrentLevel].X);
+        _corpseMotion.Y = -8;
         if (G.CurrentLevel == 8 || GlobalPosition > G.LevelXYSizes[G.CurrentLevel] || GlobalPosition < Vector2.Zero)
             _corpseMotion.X = random.Next(100) > 50 ? -5 : +5;
         if (G.CurrentLevel == 1 && G.LevelAdditionalLink == "Tutorial")
             _corpseMotion.X *= 0.25f;
-        _corpseMotion.Y = -8;
+        if (Meta.Instance.ChosenSkinIndex == 11)
+            _corpseMotion = Vector2.Zero;
 
         Connect("PlayerDied", new Callable(GetParent(), "DisablePhysicsProcess"));
         EmitSignal("PlayerDied");

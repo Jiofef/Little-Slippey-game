@@ -1104,6 +1104,7 @@ scale = Vector2(0.4, 0.4)
 sprite_frames = SubResource("SpriteFrames_68fvk")
 animation = &"Idle"
 autoplay = "Idle"
+frame_progress = 0.0957294
 
 [node name="Hand" type="AnimatedSprite2D" parent="."]
 show_behind_parent = true
@@ -1124,6 +1125,7 @@ texture = ExtResource("2_bpfdc")
 flip_h = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "Idle"
 libraries = {
 "": SubResource("AnimationLibrary_0xrdk")
 }

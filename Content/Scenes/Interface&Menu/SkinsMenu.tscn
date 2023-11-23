@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://ufrdtjstxptm"]
+[gd_scene load_steps=59 format=3 uid="uid://ufrdtjstxptm"]
 
 [ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/SkinsMenu.cs" id="1_81lvq"]
 [ext_resource type="Texture2D" uid="uid://mr4rfhwjaa0c" path="res://Content/Sprites/Interface/SkinsMenuBox.png" id="1_ktj04"]
@@ -16,6 +16,8 @@
 [ext_resource type="Texture2D" uid="uid://c2f5fnganxvf6" path="res://Content/Sprites/Other/SleepyZ.png" id="12_2pgon"]
 [ext_resource type="Texture2D" uid="uid://dwetbbrr6umbh" path="res://Content/Sprites/PlayerSkins/Daley.png" id="14_dh57a"]
 [ext_resource type="Texture2D" uid="uid://emmwsjgbgjod" path="res://Content/Sprites/PlayerSkins/CompressPile.png" id="16_mja0a"]
+[ext_resource type="PackedScene" uid="uid://c0oi6sksegxxi" path="res://Content/Scenes/PlayerSkins/JioYobaFefski.tscn" id="17_2vjuo"]
+[ext_resource type="Texture2D" uid="uid://ddbl3u1r26kie" path="res://Content/Sprites/PlayerSkins/SlippeyChad.png" id="18_n2prt"]
 
 [sub_resource type="Animation" id="Animation_yy61y"]
 resource_name = "Opening"
@@ -262,6 +264,40 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_tx2pf")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_naq8x"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7ksfc"]
+atlas = ExtResource("18_n2prt")
+region = Rect2(750, 0, 250, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ov0fl"]
+atlas = ExtResource("18_n2prt")
+region = Rect2(1000, 0, 250, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xky77"]
+atlas = ExtResource("18_n2prt")
+region = Rect2(1250, 0, 250, 300)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4g85l"]
+animations = [{
+"frames": [{
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_7ksfc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ov0fl")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_xky77")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ov0fl")
 }],
 "loop": true,
 "name": &"default",
@@ -615,6 +651,14 @@ button_group = SubResource("ButtonGroup_3j4fm")
 texture_normal = ExtResource("2_5tg7d")
 texture_disabled = ExtResource("5_m7r3n")
 
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SkinButtons/Button11"]
+position = Vector2(24, 23)
+sprite_frames = SubResource("SpriteFrames_naq8x")
+
+[node name="JioYobaFefski" parent="SkinButtons/Button11/AnimatedSprite2D" instance=ExtResource("17_2vjuo")]
+scale = Vector2(0.18, 0.18)
+frame_progress = 0.0520097
+
 [node name="SkinName" type="Label" parent="SkinButtons/Button11"]
 layout_mode = 0
 offset_left = 3.0
@@ -637,6 +681,24 @@ toggle_mode = true
 button_group = SubResource("ButtonGroup_3j4fm")
 texture_normal = ExtResource("2_5tg7d")
 texture_disabled = ExtResource("5_m7r3n")
+
+[node name="SkinName" type="Label" parent="SkinButtons/Button12"]
+offset_left = 3.0
+offset_top = 35.0
+offset_right = 123.0
+offset_bottom = 64.0
+scale = Vector2(0.35, 0.35)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+text = "Chad"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SkinButtons/Button12"]
+position = Vector2(24, 22)
+scale = Vector2(0.12, 0.12)
+sprite_frames = SubResource("SpriteFrames_4g85l")
+autoplay = "default"
+frame_progress = 0.937676
 
 [node name="Button13" parent="SkinButtons" instance=ExtResource("2_oge4l")]
 layout_mode = 0

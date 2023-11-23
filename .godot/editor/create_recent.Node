@@ -1,9 +1,9 @@
-AudioStreamPlayer
+AnimationPlayer
 AnimatedSprite2D
+AudioStreamPlayer
 CanvasLayer
 CPUParticles2D
 ColorRect
-AnimationPlayer
 Sprite2D
 AudioListener2D
 Camera2D

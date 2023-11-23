@@ -1,0 +1,303 @@
+[gd_scene load_steps=34 format=3 uid="uid://b3m6nctk376qm"]
+
+[ext_resource type="Texture2D" uid="uid://ddbl3u1r26kie" path="res://Content/Sprites/PlayerSkins/SlippeyChad.png" id="1_ae76r"]
+[ext_resource type="Script" path="res://Content/Scripts/Other/DefaultSkinAPIXD.cs" id="2_xusc5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5cx31"]
+atlas = ExtResource("1_ae76r")
+region = Rect2(250, 600, 250, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wsydh"]
+atlas = ExtResource("1_ae76r")
+region = Rect2(500, 600, 250, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kgf2v"]
+atlas = ExtResource("1_ae76r")
+region = Rect2(750, 600, 250, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tugq4"]
+atlas = ExtResource("1_ae76r")
+region = Rect2(1000, 600, 250, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fqecp"]
+atlas = ExtResource("1_ae76r")
+region = Rect2(1250, 600, 250, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pf1ky"]
+atlas = ExtResource("1_ae76r")
+region = Rect2(0, 900, 250, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cx7nk"]
+atlas = ExtResource("1_ae76r")
+region = Rect2(0, 1200, 250, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o3s04"]
+atlas = ExtResource("1_ae76r")
+region = Rect2(250, 1200, 250, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tp4qn"]
+atlas = ExtResource("1_ae76r")
+region = Rect2(500, 1200, 250, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1dqpo"]
+atlas = ExtResource("1_ae76r")
+region = Rect2(750, 1200, 250, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v5i7d"]
+atlas = ExtResource("1_ae76r")
+region = Rect2(1000, 1200, 250, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eg021"]
+atlas = ExtResource("1_ae76r")
+region = Rect2(1250, 1200, 250, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qkw63"]
+atlas = ExtResource("1_ae76r")
+region = Rect2(250, 900, 250, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kieqi"]
+atlas = ExtResource("1_ae76r")
+region = Rect2(750, 900, 250, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_417sx"]
+atlas = ExtResource("1_ae76r")
+region = Rect2(750, 0, 250, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i2fsf"]
+atlas = ExtResource("1_ae76r")
+region = Rect2(1000, 0, 250, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_58plx"]
+atlas = ExtResource("1_ae76r")
+region = Rect2(1250, 0, 250, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_77o16"]
+atlas = ExtResource("1_ae76r")
+region = Rect2(500, 900, 250, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_71dit"]
+atlas = ExtResource("1_ae76r")
+region = Rect2(250, 900, 250, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rqa6o"]
+atlas = ExtResource("1_ae76r")
+region = Rect2(0, 300, 250, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rx67i"]
+atlas = ExtResource("1_ae76r")
+region = Rect2(250, 300, 250, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d5c1s"]
+atlas = ExtResource("1_ae76r")
+region = Rect2(500, 300, 250, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w1by3"]
+atlas = ExtResource("1_ae76r")
+region = Rect2(750, 300, 250, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v8sx6"]
+atlas = ExtResource("1_ae76r")
+region = Rect2(1000, 300, 250, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a7cos"]
+atlas = ExtResource("1_ae76r")
+region = Rect2(1250, 300, 250, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a603n"]
+atlas = ExtResource("1_ae76r")
+region = Rect2(0, 600, 250, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6fev0"]
+atlas = ExtResource("1_ae76r")
+region = Rect2(1000, 900, 250, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_664t0"]
+atlas = ExtResource("1_ae76r")
+region = Rect2(1250, 900, 250, 300)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_b58yy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5cx31")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wsydh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kgf2v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tugq4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fqecp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pf1ky")
+}],
+"loop": false,
+"name": &"Climb",
+"speed": 20.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cx7nk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o3s04")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tp4qn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1dqpo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v5i7d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eg021")
+}],
+"loop": true,
+"name": &"Death",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 0.2,
+"texture": SubResource("AtlasTexture_qkw63")
+}, {
+"duration": 10000.0,
+"texture": SubResource("AtlasTexture_kieqi")
+}],
+"loop": true,
+"name": &"Fall",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_417sx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i2fsf")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_58plx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i2fsf")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_77o16")
+}, {
+"duration": 10000.0,
+"texture": SubResource("AtlasTexture_71dit")
+}],
+"loop": true,
+"name": &"Jump",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rqa6o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rx67i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d5c1s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w1by3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rqa6o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v8sx6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a7cos")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a603n")
+}],
+"loop": true,
+"name": &"Walk",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6fev0")
+}, {
+"duration": 10000.0,
+"texture": SubResource("AtlasTexture_664t0")
+}],
+"loop": true,
+"name": &"WallCatch",
+"speed": 4.0
+}]
+
+[sub_resource type="Animation" id="Animation_xkhnr"]
+resource_name = "Death"
+length = 11.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 9),
+"transitions": PackedFloat32Array(1.7411, 1),
+"update": 1,
+"values": [&"Death", &"Jump"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4, 6, 7, 8.5, 8.7, 9, 9.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 0, 1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 9, 9.8, 11),
+"transitions": PackedFloat32Array(1, 0.5, 2, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 0), Vector2(0, -128), Vector2(0, 256)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_r5na4"]
+_data = {
+"Death": SubResource("Animation_xkhnr")
+}
+
+[node name="SlippeyChad" type="AnimatedSprite2D"]
+scale = Vector2(0.3, 0.3)
+sprite_frames = SubResource("SpriteFrames_b58yy")
+animation = &"Idle"
+autoplay = "Idle"
+script = ExtResource("2_xusc5")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_r5na4")
+}
+
+[connection signal="PlayerDeath" from="." to="AnimationPlayer" method="play" flags=6 binds= ["Death"]]
