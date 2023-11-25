@@ -72,19 +72,23 @@ metadata/_edit_use_anchors_ = true
 [node name="ThunderSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_6h37r")
 volume_db = 10.0
+bus = &"Enviromnment"
 
 [node name="AmbiencePlayer1" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_bybth")
+bus = &"Enviromnment"
 
 [node name="AmbiencePlayer2" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_dv01f")
 volume_db = 10.0
+bus = &"Enviromnment"
 
 [node name="RainSound" type="AudioStreamPlayer" parent="."]
 process_mode = 3
 stream = ExtResource("5_tvq4x")
 volume_db = 20.0
 autoplay = true
+bus = &"Enviromnment"
 
 [connection signal="timeout" from="LightChangeTimer" to="." method="LightChange"]
 [connection signal="timeout" from="ThunderTimer" to="." method="ThunderStart"]

@@ -1,7 +1,7 @@
 [gd_scene load_steps=34 format=3 uid="uid://b3m6nctk376qm"]
 
 [ext_resource type="Texture2D" uid="uid://ddbl3u1r26kie" path="res://Content/Sprites/PlayerSkins/SlippeyChad.png" id="1_ae76r"]
-[ext_resource type="Script" path="res://Content/Scripts/Other/DefaultSkinAPIXD.cs" id="2_xusc5"]
+[ext_resource type="Script" path="res://Content/Scripts/Other/SkinScript.cs" id="2_xusc5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5cx31"]
 atlas = ExtResource("1_ae76r")

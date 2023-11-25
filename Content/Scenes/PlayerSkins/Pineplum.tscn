@@ -1,7 +1,7 @@
 [gd_scene load_steps=29 format=3 uid="uid://cx7c3g50pyio4"]
 
 [ext_resource type="Texture2D" uid="uid://vjcab56ymxqr" path="res://Content/Sprites/PlayerSkins/Pineplum.png" id="1_2n4ri"]
-[ext_resource type="Script" path="res://Content/Scripts/Other/DefaultSkinAPIXD.cs" id="2_bom76"]
+[ext_resource type="Script" path="res://Content/Scripts/Other/SkinScript.cs" id="2_bom76"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jcl41"]
 atlas = ExtResource("1_2n4ri")

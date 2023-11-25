@@ -1,13 +1,16 @@
 using Godot;
 
-public partial class DefaultSkinAPIXD : AnimatedSprite2D
+public partial class SkinScript : AnimatedSprite2D
 {
 	[Signal] public delegate void PlayerDeathEventHandler();
-	[Export] bool _enableSecondJumpAndFallFrame = false;
-	public override void _Ready()
+	[Export] bool _enableSecondJumpAndFallFrame = false, _enableAnimationPlayer = false;
+
+    public override void _Ready()
 	{
 		GetNode("../..").Connect("PlayerDied", new Callable(this, "PlayerDied"));
 		SetPhysicsProcess(_enableSecondJumpAndFallFrame || Meta.Instance.ChosenSkinIndex == 6);
+		if (_enableAnimationPlayer)
+			Connect("animation_changed", new Callable(this, "UpdateAnimationPlayer"));
 	}
     public override void _PhysicsProcess(double delta)
     {
@@ -23,12 +26,19 @@ public partial class DefaultSkinAPIXD : AnimatedSprite2D
 				zParticles.Emitting = false;
 		}
     }
+
     public void PlayerDied()
 	{
 		EmitSignal("PlayerDeath");
     }
+
 	public void SetGlobalRotationDegrees(float value)
 	{
 		GetParent<Node2D>().GlobalRotationDegrees = value;
 	}
+
+    public void UpdateAnimationPlayer()
+    {
+        GetNode<AnimationPlayer>("AnimationPlayer").Play(Animation);
+    }
 }

@@ -1,0 +1,130 @@
+[gd_scene load_steps=8 format=3 uid="uid://detui3qloy3kf"]
+
+[ext_resource type="Script" path="res://Content/Scripts/Other/MISSINGNO.cs" id="1_71m4q"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lwpf0"]
+animations = [{
+"frames": [],
+"loop": false,
+"name": &"Climb",
+"speed": 0.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"Death",
+"speed": 0.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"Fall",
+"speed": 0.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"Idle",
+"speed": 0.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"Jump",
+"speed": 0.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"Walk",
+"speed": 0.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"WallCatch",
+"speed": 0.0
+}]
+
+[sub_resource type="Animation" id="Animation_1vtst"]
+resource_name = "RegionGlitch1"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Rect2(0, 0, 13, 13), Rect2(27, 30, 20, 14)]
+}
+
+[sub_resource type="Animation" id="Animation_ht2kx"]
+resource_name = "RegionGlitch2"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Rect2(30, 8, 11, 9), Rect2(12, 0, 12, 12)]
+}
+
+[sub_resource type="Animation" id="Animation_opwea"]
+resource_name = "RegionGlitch3"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Rect2(3, 10, 24, 24), Rect2(40, 32, 24, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_35a7h"]
+_data = {
+"RegionGlitch1": SubResource("Animation_1vtst"),
+"RegionGlitch2": SubResource("Animation_ht2kx"),
+"RegionGlitch3": SubResource("Animation_opwea")
+}
+
+[sub_resource type="Gradient" id="Gradient_u1dru"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.7, 0.8, 0.9, 0.95)
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1)
+
+[node name="MISSINGNO" type="AnimatedSprite2D"]
+process_mode = 3
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_lwpf0")
+animation = &"Idle"
+autoplay = "Idle"
+script = ExtResource("1_71m4q")
+
+[node name="GlitchPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_35a7h")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+region_enabled = true
+region_rect = Rect2(0, 0, 13, 13)
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+z_index = 1
+amount = 2
+lifetime = 0.01
+emission_shape = 1
+emission_sphere_radius = 128.0
+gravity = Vector2(0, 0)
+scale_amount_max = 100.0
+color_initial_ramp = SubResource("Gradient_u1dru")
+
+[connection signal="animation_finished" from="GlitchPlayer" to="." method="GlitchedAnimationFinished"]

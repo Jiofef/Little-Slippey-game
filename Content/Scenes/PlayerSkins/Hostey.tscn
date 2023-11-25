@@ -1,7 +1,7 @@
 [gd_scene load_steps=34 format=3 uid="uid://ctfxv22vhkyya"]
 
 [ext_resource type="Texture2D" uid="uid://daeeo1lq7usi6" path="res://Content/Sprites/PlayerSkins/Hostey.png" id="1_t7ymd"]
-[ext_resource type="Script" path="res://Content/Scripts/Other/DefaultSkinAPIXD.cs" id="2_1qpmb"]
+[ext_resource type="Script" path="res://Content/Scripts/Other/SkinScript.cs" id="2_1qpmb"]
 [ext_resource type="AudioStream" uid="uid://bf7i2hkpxu2wp" path="res://Content/Sounds/Player/HosteyDeathSound.mp3" id="3_71kt4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_stovo"]

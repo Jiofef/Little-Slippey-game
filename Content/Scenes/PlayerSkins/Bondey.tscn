@@ -1,7 +1,7 @@
 [gd_scene load_steps=24 format=3 uid="uid://bb1mgrg3u3fjx"]
 
 [ext_resource type="Texture2D" uid="uid://bbo5rgyrh6rwk" path="res://Content/Sprites/PlayerSkins/Bondey.png" id="2_lm8m3"]
-[ext_resource type="Script" path="res://Content/Scripts/Other/DefaultSkinAPIXD.cs" id="3_q8sv5"]
+[ext_resource type="Script" path="res://Content/Scripts/Other/SkinScript.cs" id="3_q8sv5"]
 [ext_resource type="Texture2D" uid="uid://opd2bxl16861" path="res://Content/Sprites/Other/Gag.png" id="3_vl8lh"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_imf8n"]

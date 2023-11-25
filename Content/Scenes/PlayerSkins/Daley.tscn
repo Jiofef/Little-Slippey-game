@@ -1,7 +1,7 @@
 [gd_scene load_steps=35 format=3 uid="uid://dd2vvi3gnf6lv"]
 
 [ext_resource type="Texture2D" uid="uid://dwetbbrr6umbh" path="res://Content/Sprites/PlayerSkins/Daley.png" id="1_1w8lt"]
-[ext_resource type="Script" path="res://Content/Scripts/Other/DefaultSkinAPIXD.cs" id="2_bnfko"]
+[ext_resource type="Script" path="res://Content/Scripts/Other/SkinScript.cs" id="2_bnfko"]
 [ext_resource type="PackedScene" uid="uid://bt41vubjcqv8p" path="res://Content/Scenes/Crosses/ExplosionAnimation.tscn" id="3_4hwer"]
 [ext_resource type="AudioStream" uid="uid://dovfcup5nhwt3" path="res://Content/Sounds/Player/DaleyGlitchSound.mp3" id="4_m11pb"]
 [ext_resource type="AudioStream" uid="uid://cceqrm4tkdmc2" path="res://Content/Sounds/Crosses/Explosion.mp3" id="5_a36eo"]

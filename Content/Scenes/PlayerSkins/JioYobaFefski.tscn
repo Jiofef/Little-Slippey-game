@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://b6h1343aeq7e6" path="res://Content/Sprites/PlayerSkins/JioYobaFefskiHead.png" id="1_5er10"]
 [ext_resource type="Texture2D" uid="uid://cqf70mpnkx8ob" path="res://Content/Sprites/PlayerSkins/JioYobaFefskiLeg.png" id="2_bpfdc"]
 [ext_resource type="Texture2D" uid="uid://dve0odv51cuq7" path="res://Content/Sprites/PlayerSkins/JioYobaFefskiHand.png" id="2_qr2pn"]
-[ext_resource type="Script" path="res://Content/Scripts/Other/JioYobaFefskiSkinAnimationPlayer.cs" id="3_5bg6f"]
+[ext_resource type="Script" path="res://Content/Scripts/Other/SkinScript.cs" id="2_t3u54"]
 [ext_resource type="Texture2D" uid="uid://d2ri8coxk4odn" path="res://Content/Sprites/Other/JioYobaFefskiArtefact.png" id="5_7h0cg"]
 [ext_resource type="Texture2D" uid="uid://btkf2pyqd0m2s" path="res://Content/Sprites/Other/PleaseStandBy.png" id="6_q2pmu"]
 [ext_resource type="AudioStream" uid="uid://bvmsnl5i73c03" path="res://Content/Sounds/Other/ireyp.mp3" id="7_47sdx"]
@@ -1105,13 +1105,16 @@ sprite_frames = SubResource("SpriteFrames_68fvk")
 animation = &"Idle"
 autoplay = "Idle"
 frame_progress = 0.0957294
+script = ExtResource("2_t3u54")
+_enableAnimationPlayer = true
 
 [node name="Hand" type="AnimatedSprite2D" parent="."]
 show_behind_parent = true
-position = Vector2(-48, 20)
+position = Vector2(-56, -24)
 scale = Vector2(0.8, 0.8)
 sprite_frames = SubResource("SpriteFrames_w6w51")
 animation = &"Frames"
+frame = 2
 
 [node name="LeftLeg" type="Sprite2D" parent="."]
 show_behind_parent = true
@@ -1130,7 +1133,6 @@ libraries = {
 "": SubResource("AnimationLibrary_0xrdk")
 }
 next/Climb = &"Jump"
-script = ExtResource("3_5bg6f")
 
 [node name="Artefact" type="CPUParticles2D" parent="."]
 emitting = false
@@ -1159,5 +1161,3 @@ frame_progress = 0.500101
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="CanvasLayer/PleaseStandBy"]
 stream = ExtResource("7_47sdx")
 volume_db = -8.0
-
-[connection signal="animation_changed" from="." to="AnimationPlayer" method="SpriteAnimationChanged"]

@@ -385,6 +385,7 @@ min_value = 1.25
 max_value = 2.0
 step = 0.15
 value = 1.25
+scrollable = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "Appearance"

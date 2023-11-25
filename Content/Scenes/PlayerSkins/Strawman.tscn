@@ -1,7 +1,7 @@
 [gd_scene load_steps=27 format=3 uid="uid://b8dj0vej7f2vy"]
 
 [ext_resource type="Texture2D" uid="uid://b486fyylpidxt" path="res://Content/Sprites/PlayerSkins/Strawman.png" id="1_gkapj"]
-[ext_resource type="Script" path="res://Content/Scripts/Other/DefaultSkinAPIXD.cs" id="2_lclxa"]
+[ext_resource type="Script" path="res://Content/Scripts/Other/SkinScript.cs" id="2_lclxa"]
 [ext_resource type="Texture2D" uid="uid://bau0b6quvib5h" path="res://Content/Sprites/Other/Note.png" id="3_no3bw"]
 [ext_resource type="AudioStream" uid="uid://br6tvgd3qi7jp" path="res://Content/Sounds/Soundtrack/StrawMusic.mp3" id="4_m2c72"]
 

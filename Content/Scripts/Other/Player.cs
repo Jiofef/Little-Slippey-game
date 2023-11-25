@@ -41,7 +41,7 @@ public partial class Player : CharacterBody2D
     public override void _Ready()
     {
         GetNode("SkinContainer/Sprite2D").QueueFree();
-        string[] SkinNames = {"Slippey", "Samey", "Sanboy", "Strawman", "Pineplum", "Bondey", "Sleepy", "Daley", "Hostey", "CompressPile", "JioYobaFefski", "SlippeyChad"};
+        string[] SkinNames = {"Slippey", "Samey", "Sanboy", "Strawman", "Pineplum", "Bondey", "Sleepy", "Daley", "Hostey", "CompressPile", "JioYobaFefski", "SlippeyChad", "MISSINGNO", "Corey"};
         _animatedSprite = (AnimatedSprite2D)ResourceLoader.Load<PackedScene>("res://Content/Scenes/PlayerSkins/" + SkinNames[Meta.Instance.ChosenSkinIndex] + ".tscn").Instantiate();
         _animatedSprite.Connect("animation_finished", new Callable(this, "AnimationFinished"));
         GetNode("SkinContainer").AddChild(_animatedSprite);
@@ -110,7 +110,7 @@ public partial class Player : CharacterBody2D
                 }
                 else if (!Input.IsActionPressed("WallCatch") && _lastXMoveVector == _wallDetectNumber && _wallDetectNumber != 0 && _climbTimer < 0 && _climbBufer > 0)
                 {
-                    if (Meta.Instance.ChosenSkinIndex == 10 && _animationName == "Climb")
+                    if ((Meta.Instance.ChosenSkinIndex == 10 || Meta.Instance.ChosenSkinIndex == 12) && _animationName == "Climb")
                     {
                         var skinAnimationPlayer = GetNode<AnimationPlayer>("SkinContainer/JioYobaFefski/AnimationPlayer");
                         skinAnimationPlayer.Stop();

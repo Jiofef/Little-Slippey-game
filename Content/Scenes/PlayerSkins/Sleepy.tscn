@@ -1,7 +1,7 @@
 [gd_scene load_steps=36 format=3 uid="uid://dxgk2qjye0h45"]
 
 [ext_resource type="Texture2D" uid="uid://c2f5fnganxvf6" path="res://Content/Sprites/Other/SleepyZ.png" id="2_842n2"]
-[ext_resource type="Script" path="res://Content/Scripts/Other/DefaultSkinAPIXD.cs" id="2_nyu6p"]
+[ext_resource type="Script" path="res://Content/Scripts/Other/SkinScript.cs" id="2_nyu6p"]
 [ext_resource type="Texture2D" uid="uid://d1lge7hswejye" path="res://Content/Sprites/PlayerSkins/Sleepy.png" id="2_qacra"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3xkb3"]

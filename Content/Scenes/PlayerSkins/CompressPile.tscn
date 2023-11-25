@@ -1,7 +1,7 @@
 [gd_scene load_steps=26 format=3 uid="uid://b5vdhtg5rdda7"]
 
 [ext_resource type="Texture2D" uid="uid://emmwsjgbgjod" path="res://Content/Sprites/PlayerSkins/CompressPile.png" id="2_c3kwj"]
-[ext_resource type="Script" path="res://Content/Scripts/Other/DefaultSkinAPIXD.cs" id="2_cbd36"]
+[ext_resource type="Script" path="res://Content/Scripts/Other/SkinScript.cs" id="2_cbd36"]
 [ext_resource type="AudioStream" uid="uid://cxl4a0a34ne6j" path="res://Content/Sounds/Player/CompressPileDeathSound.mp3" id="2_rm667"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s4guf"]

@@ -1,7 +1,7 @@
 [gd_scene load_steps=26 format=3 uid="uid://dsgkgs1vfcwxd"]
 
 [ext_resource type="Texture2D" uid="uid://bd15vnp18h7qk" path="res://Content/Sprites/PlayerSkins/Sanboy.png" id="1_yxxtr"]
-[ext_resource type="Script" path="res://Content/Scripts/Other/DefaultSkinAPIXD.cs" id="2_t4gni"]
+[ext_resource type="Script" path="res://Content/Scripts/Other/SkinScript.cs" id="2_t4gni"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s2mio"]
 atlas = ExtResource("1_yxxtr")

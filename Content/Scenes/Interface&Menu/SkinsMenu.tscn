@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=3 uid="uid://ufrdtjstxptm"]
+[gd_scene load_steps=71 format=3 uid="uid://ufrdtjstxptm"]
 
 [ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/SkinsMenu.cs" id="1_81lvq"]
 [ext_resource type="Texture2D" uid="uid://mr4rfhwjaa0c" path="res://Content/Sprites/Interface/SkinsMenuBox.png" id="1_ktj04"]
@@ -18,6 +18,8 @@
 [ext_resource type="Texture2D" uid="uid://emmwsjgbgjod" path="res://Content/Sprites/PlayerSkins/CompressPile.png" id="16_mja0a"]
 [ext_resource type="PackedScene" uid="uid://c0oi6sksegxxi" path="res://Content/Scenes/PlayerSkins/JioYobaFefski.tscn" id="17_2vjuo"]
 [ext_resource type="Texture2D" uid="uid://ddbl3u1r26kie" path="res://Content/Sprites/PlayerSkins/SlippeyChad.png" id="18_n2prt"]
+[ext_resource type="Script" path="res://Content/Scripts/Other/MISSINGNO.cs" id="19_kn16d"]
+[ext_resource type="Texture2D" uid="uid://p8n66ul13xdu" path="res://Content/Sprites/PlayerSkins/Corey.png" id="20_jh25b"]
 
 [sub_resource type="Animation" id="Animation_yy61y"]
 resource_name = "Opening"
@@ -304,6 +306,152 @@ animations = [{
 "speed": 2.0
 }]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_8hhhk"]
+
+[sub_resource type="Animation" id="Animation_1vtst"]
+resource_name = "RegionGlitch1"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Rect2(0, 0, 13, 13), Rect2(27, 30, 20, 14)]
+}
+
+[sub_resource type="Animation" id="Animation_ht2kx"]
+resource_name = "RegionGlitch2"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Rect2(30, 8, 11, 9), Rect2(12, 0, 12, 12)]
+}
+
+[sub_resource type="Animation" id="Animation_opwea"]
+resource_name = "RegionGlitch3"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Rect2(3, 10, 24, 24), Rect2(40, 32, 24, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_35a7h"]
+_data = {
+"RegionGlitch1": SubResource("Animation_1vtst"),
+"RegionGlitch2": SubResource("Animation_ht2kx"),
+"RegionGlitch3": SubResource("Animation_opwea")
+}
+
+[sub_resource type="Gradient" id="Gradient_wy0j6"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.7, 0.8, 0.9, 0.95)
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tkcpg"]
+atlas = ExtResource("20_jh25b")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_d73gw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tkcpg")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_1enmt"]
+resource_name = "Idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(24, 19), Vector2(24, 21)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("LeftLeg:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-3, 7), Vector2(-3, 6)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("RightLeg:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(3, 7), Vector2(3, 6)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("LeftHand:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-5, 2), Vector2(-6, 2)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("RightHand:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(5, 2), Vector2(6, 2)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dqx3r"]
+_data = {
+"Idle": SubResource("Animation_1enmt")
+}
+
 [node name="SkinsMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -345,13 +493,6 @@ button_group = SubResource("ButtonGroup_3j4fm")
 texture_normal = ExtResource("2_5tg7d")
 texture_disabled = ExtResource("5_m7r3n")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SkinButtons/Button1"]
-position = Vector2(24, 19)
-scale = Vector2(2, 2)
-sprite_frames = SubResource("SpriteFrames_lnvn1")
-autoplay = "default"
-frame_progress = 0.533851
-
 [node name="SkinName" type="Label" parent="SkinButtons/Button1"]
 layout_mode = 0
 offset_left = 3.0
@@ -364,6 +505,13 @@ text = "Slippey"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SkinButtons/Button1"]
+position = Vector2(24, 19)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_lnvn1")
+autoplay = "default"
+frame_progress = 0.533851
+
 [node name="Button2" parent="SkinButtons" instance=ExtResource("2_oge4l")]
 layout_mode = 0
 offset_left = 200.0
@@ -373,12 +521,6 @@ toggle_mode = true
 button_group = SubResource("ButtonGroup_3j4fm")
 texture_normal = ExtResource("2_5tg7d")
 texture_disabled = ExtResource("5_m7r3n")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SkinButtons/Button2"]
-position = Vector2(24, 19)
-scale = Vector2(2, 2)
-sprite_frames = SubResource("SpriteFrames_7gedy")
-autoplay = "default"
 
 [node name="SkinName" type="Label" parent="SkinButtons/Button2"]
 layout_mode = 0
@@ -393,6 +535,12 @@ text = "Samey
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SkinButtons/Button2"]
+position = Vector2(24, 19)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_7gedy")
+autoplay = "default"
+
 [node name="Button3" parent="SkinButtons" instance=ExtResource("2_oge4l")]
 layout_mode = 0
 offset_left = 400.0
@@ -402,13 +550,6 @@ toggle_mode = true
 button_group = SubResource("ButtonGroup_3j4fm")
 texture_normal = ExtResource("2_5tg7d")
 texture_disabled = ExtResource("5_m7r3n")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SkinButtons/Button3"]
-position = Vector2(24, 19)
-scale = Vector2(2, 2)
-sprite_frames = SubResource("SpriteFrames_ahirm")
-autoplay = "default"
-frame_progress = 0.422268
 
 [node name="SkinName" type="Label" parent="SkinButtons/Button3"]
 layout_mode = 0
@@ -422,6 +563,13 @@ text = "Sanboy"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SkinButtons/Button3"]
+position = Vector2(24, 19)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_ahirm")
+autoplay = "default"
+frame_progress = 0.422268
+
 [node name="Button4" parent="SkinButtons" instance=ExtResource("2_oge4l")]
 layout_mode = 0
 offset_left = 600.0
@@ -431,12 +579,6 @@ toggle_mode = true
 button_group = SubResource("ButtonGroup_3j4fm")
 texture_normal = ExtResource("2_5tg7d")
 texture_disabled = ExtResource("5_m7r3n")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SkinButtons/Button4"]
-position = Vector2(24, 19)
-scale = Vector2(2, 2)
-sprite_frames = SubResource("SpriteFrames_0iy5u")
-autoplay = "default"
 
 [node name="SkinName" type="Label" parent="SkinButtons/Button4"]
 layout_mode = 0
@@ -450,6 +592,12 @@ text = "Strawman"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SkinButtons/Button4"]
+position = Vector2(24, 19)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_0iy5u")
+autoplay = "default"
+
 [node name="Button5" parent="SkinButtons" instance=ExtResource("2_oge4l")]
 layout_mode = 0
 offset_left = 800.0
@@ -459,12 +607,6 @@ toggle_mode = true
 button_group = SubResource("ButtonGroup_3j4fm")
 texture_normal = ExtResource("2_5tg7d")
 texture_disabled = ExtResource("5_m7r3n")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SkinButtons/Button5"]
-position = Vector2(24, 19)
-scale = Vector2(2, 2)
-sprite_frames = SubResource("SpriteFrames_30lyp")
-autoplay = "default"
 
 [node name="SkinName" type="Label" parent="SkinButtons/Button5"]
 layout_mode = 0
@@ -478,6 +620,12 @@ text = "Pineplum"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SkinButtons/Button5"]
+position = Vector2(24, 19)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_30lyp")
+autoplay = "default"
+
 [node name="Button6" parent="SkinButtons" instance=ExtResource("2_oge4l")]
 layout_mode = 0
 offset_top = 200.0
@@ -487,13 +635,6 @@ toggle_mode = true
 button_group = SubResource("ButtonGroup_3j4fm")
 texture_normal = ExtResource("2_5tg7d")
 texture_disabled = ExtResource("5_m7r3n")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SkinButtons/Button6"]
-position = Vector2(24, 19)
-scale = Vector2(2, 2)
-sprite_frames = SubResource("SpriteFrames_3y8ak")
-autoplay = "default"
-frame_progress = 0.52938
 
 [node name="SkinName" type="Label" parent="SkinButtons/Button6"]
 layout_mode = 0
@@ -507,6 +648,13 @@ text = "Bondey"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SkinButtons/Button6"]
+position = Vector2(24, 19)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_3y8ak")
+autoplay = "default"
+frame_progress = 0.52938
+
 [node name="Button7" parent="SkinButtons" instance=ExtResource("2_oge4l")]
 layout_mode = 0
 offset_left = 200.0
@@ -517,6 +665,18 @@ toggle_mode = true
 button_group = SubResource("ButtonGroup_3j4fm")
 texture_normal = ExtResource("2_5tg7d")
 texture_disabled = ExtResource("5_m7r3n")
+
+[node name="SkinName" type="Label" parent="SkinButtons/Button7"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 36.0
+offset_right = 124.0
+offset_bottom = 61.0
+scale = Vector2(0.35, 0.35)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+text = "Sleepy"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SkinButtons/Button7"]
 position = Vector2(24, 19)
@@ -540,18 +700,6 @@ scale_amount_max = 4.0
 scale_amount_curve = SubResource("Curve_25byp")
 color_ramp = SubResource("Gradient_c24sf")
 
-[node name="SkinName" type="Label" parent="SkinButtons/Button7"]
-layout_mode = 0
-offset_left = 3.0
-offset_top = 36.0
-offset_right = 124.0
-offset_bottom = 61.0
-scale = Vector2(0.35, 0.35)
-theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
-text = "Sleepy"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="Button8" parent="SkinButtons" instance=ExtResource("2_oge4l")]
 layout_mode = 0
 offset_left = 400.0
@@ -562,12 +710,6 @@ toggle_mode = true
 button_group = SubResource("ButtonGroup_3j4fm")
 texture_normal = ExtResource("2_5tg7d")
 texture_disabled = ExtResource("5_m7r3n")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SkinButtons/Button8"]
-position = Vector2(24, 19)
-scale = Vector2(2, 2)
-sprite_frames = SubResource("SpriteFrames_h3dqs")
-autoplay = "default"
 
 [node name="SkinName" type="Label" parent="SkinButtons/Button8"]
 layout_mode = 0
@@ -581,6 +723,12 @@ text = "Daley"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SkinButtons/Button8"]
+position = Vector2(24, 19)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_h3dqs")
+autoplay = "default"
+
 [node name="Button9" parent="SkinButtons" instance=ExtResource("2_oge4l")]
 layout_mode = 0
 offset_left = 600.0
@@ -591,13 +739,6 @@ toggle_mode = true
 button_group = SubResource("ButtonGroup_3j4fm")
 texture_normal = ExtResource("2_5tg7d")
 texture_disabled = ExtResource("5_m7r3n")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SkinButtons/Button9"]
-position = Vector2(24, 19)
-scale = Vector2(2, 2)
-sprite_frames = SubResource("SpriteFrames_plqb3")
-autoplay = "default"
-frame_progress = 0.97506
 
 [node name="SkinName" type="Label" parent="SkinButtons/Button9"]
 layout_mode = 0
@@ -610,6 +751,13 @@ theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
 text = "???"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SkinButtons/Button9"]
+position = Vector2(24, 19)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_plqb3")
+autoplay = "default"
+frame_progress = 0.97506
 
 [node name="Button10" parent="SkinButtons" instance=ExtResource("2_oge4l")]
 layout_mode = 0
@@ -651,14 +799,6 @@ button_group = SubResource("ButtonGroup_3j4fm")
 texture_normal = ExtResource("2_5tg7d")
 texture_disabled = ExtResource("5_m7r3n")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SkinButtons/Button11"]
-position = Vector2(24, 23)
-sprite_frames = SubResource("SpriteFrames_naq8x")
-
-[node name="JioYobaFefski" parent="SkinButtons/Button11/AnimatedSprite2D" instance=ExtResource("17_2vjuo")]
-scale = Vector2(0.18, 0.18)
-frame_progress = 0.0520097
-
 [node name="SkinName" type="Label" parent="SkinButtons/Button11"]
 layout_mode = 0
 offset_left = 3.0
@@ -670,6 +810,15 @@ theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
 text = "Jio Yoba Fefski"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SkinButtons/Button11"]
+position = Vector2(24, 23)
+sprite_frames = SubResource("SpriteFrames_naq8x")
+
+[node name="JioYobaFefski" parent="SkinButtons/Button11/AnimatedSprite2D" instance=ExtResource("17_2vjuo")]
+scale = Vector2(0.18, 0.18)
+frame_progress = 0.0520097
+script = null
 
 [node name="Button12" parent="SkinButtons" instance=ExtResource("2_oge4l")]
 layout_mode = 0
@@ -683,6 +832,7 @@ texture_normal = ExtResource("2_5tg7d")
 texture_disabled = ExtResource("5_m7r3n")
 
 [node name="SkinName" type="Label" parent="SkinButtons/Button12"]
+layout_mode = 0
 offset_left = 3.0
 offset_top = 35.0
 offset_right = 123.0
@@ -711,6 +861,41 @@ button_group = SubResource("ButtonGroup_3j4fm")
 texture_normal = ExtResource("2_5tg7d")
 texture_disabled = ExtResource("5_m7r3n")
 
+[node name="SkinName" type="Label" parent="SkinButtons/Button13"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 35.0
+offset_right = 143.0
+offset_bottom = 68.0
+scale = Vector2(0.3, 0.3)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+text = "MISSINGNO."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SkinButtons/Button13"]
+position = Vector2(24, 22)
+sprite_frames = SubResource("SpriteFrames_8hhhk")
+script = ExtResource("19_kn16d")
+
+[node name="GlitchPlayer" type="AnimationPlayer" parent="SkinButtons/Button13/AnimatedSprite2D"]
+libraries = {
+"": SubResource("AnimationLibrary_35a7h")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="SkinButtons/Button13/AnimatedSprite2D"]
+region_enabled = true
+region_rect = Rect2(0, 0, 13, 13)
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="SkinButtons/Button13/AnimatedSprite2D"]
+amount = 1
+lifetime = 0.01
+emission_shape = 1
+emission_sphere_radius = 48.0
+gravity = Vector2(0, 0)
+scale_amount_max = 100.0
+color_initial_ramp = SubResource("Gradient_wy0j6")
+
 [node name="Button14" parent="SkinButtons" instance=ExtResource("2_oge4l")]
 layout_mode = 0
 offset_left = 600.0
@@ -721,6 +906,54 @@ toggle_mode = true
 button_group = SubResource("ButtonGroup_3j4fm")
 texture_normal = ExtResource("2_5tg7d")
 texture_disabled = ExtResource("5_m7r3n")
+
+[node name="SkinName" type="Label" parent="SkinButtons/Button14"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 35.0
+offset_right = 123.0
+offset_bottom = 64.0
+scale = Vector2(0.35, 0.35)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+text = "Corey
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SkinButtons/Button14"]
+position = Vector2(24, 19)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_d73gw")
+
+[node name="LeftLeg" type="Sprite2D" parent="SkinButtons/Button14/AnimatedSprite2D"]
+position = Vector2(-3, 7)
+texture = ExtResource("20_jh25b")
+region_enabled = true
+region_rect = Rect2(19, 0, 2, 2)
+
+[node name="RightLeg" type="Sprite2D" parent="SkinButtons/Button14/AnimatedSprite2D"]
+position = Vector2(3, 7)
+texture = ExtResource("20_jh25b")
+region_enabled = true
+region_rect = Rect2(19, 0, 2, 2)
+
+[node name="LeftHand" type="Sprite2D" parent="SkinButtons/Button14/AnimatedSprite2D"]
+position = Vector2(-5, 2)
+texture = ExtResource("20_jh25b")
+region_enabled = true
+region_rect = Rect2(16, 0, 2, 2)
+
+[node name="RightHand" type="Sprite2D" parent="SkinButtons/Button14/AnimatedSprite2D"]
+position = Vector2(5, 2)
+texture = ExtResource("20_jh25b")
+region_enabled = true
+region_rect = Rect2(16, 0, 2, 2)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SkinButtons/Button14/AnimatedSprite2D"]
+autoplay = "Idle"
+libraries = {
+"": SubResource("AnimationLibrary_dqx3r")
+}
 
 [node name="SkinsUnlocked" type="Label" parent="."]
 layout_mode = 0

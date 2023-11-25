@@ -1,10 +1,10 @@
 AnimationPlayer
 AnimatedSprite2D
+Sprite2D
+CPUParticles2D
 AudioStreamPlayer
 CanvasLayer
-CPUParticles2D
 ColorRect
-Sprite2D
 AudioListener2D
 Camera2D
 TileMap
