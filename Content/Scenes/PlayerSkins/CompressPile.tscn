@@ -282,6 +282,8 @@ sprite_frames = SubResource("SpriteFrames_chcc5")
 animation = &"Idle"
 autoplay = "Idle"
 script = ExtResource("2_cbd36")
+metadata/HasAnimationPlayer = false
+metadata/HasDeathPlayerAnimation = true
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 show_behind_parent = true
@@ -334,5 +336,3 @@ libraries = {
 [node name="DeathSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_rm667")
 volume_db = 8.0
-
-[connection signal="PlayerDeath" from="." to="AnimationPlayer" method="play" flags=6 binds= ["Death"]]

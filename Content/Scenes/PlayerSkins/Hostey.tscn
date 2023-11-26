@@ -319,6 +319,8 @@ sprite_frames = SubResource("SpriteFrames_0j3go")
 animation = &"Death"
 autoplay = "Idle"
 script = ExtResource("2_1qpmb")
+metadata/HasAnimationPlayer = false
+metadata/HasDeathPlayerAnimation = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -359,5 +361,3 @@ color_ramp = SubResource("Gradient_6ppe5")
 [node name="DeathSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_71kt4")
 bus = &"Player"
-
-[connection signal="PlayerDeath" from="." to="AnimationPlayer" method="play" flags=6 binds= ["Death"]]

@@ -394,6 +394,8 @@ animation = &"Idle"
 autoplay = "Idle"
 flip_h = true
 script = ExtResource("2_nyu6p")
+metadata/HasAnimationPlayer = false
+metadata/HasDeathPlayerAnimation = true
 
 [node name="ZParticles" type="CPUParticles2D" parent="."]
 position = Vector2(0, -2)
@@ -423,5 +425,3 @@ position = Vector2(90, 0)
 texture = ExtResource("2_qacra")
 region_enabled = true
 region_rect = Rect2(48, 0, 24, 16)
-
-[connection signal="PlayerDeath" from="." to="AnimationPlayer" method="play" flags=6 binds= ["Death"]]

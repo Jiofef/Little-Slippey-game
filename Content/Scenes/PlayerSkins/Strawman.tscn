@@ -227,6 +227,8 @@ sprite_frames = SubResource("SpriteFrames_a5dnx")
 animation = &"Idle"
 autoplay = "Idle"
 script = ExtResource("2_lclxa")
+metadata/HasAnimationPlayer = false
+metadata/HasDeathPlayerAnimation = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -294,5 +296,3 @@ color_initial_ramp = SubResource("Gradient_xyt55")
 stream = ExtResource("4_m2c72")
 volume_db = 5.0
 bus = &"Player"
-
-[connection signal="PlayerDeath" from="." to="AnimationPlayer" method="play" flags=6 binds= ["Death"]]

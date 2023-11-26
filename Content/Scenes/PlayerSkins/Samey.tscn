@@ -199,3 +199,5 @@ scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_2elcl")
 animation = &"Climb"
 autoplay = "Idle"
+metadata/HasAnimationPlayer = false
+metadata/HasDeathPlayerAnimation = false

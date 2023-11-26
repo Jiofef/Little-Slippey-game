@@ -294,10 +294,10 @@ sprite_frames = SubResource("SpriteFrames_b58yy")
 animation = &"Idle"
 autoplay = "Idle"
 script = ExtResource("2_xusc5")
+metadata/HasAnimationPlayer = false
+metadata/HasDeathPlayerAnimation = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_r5na4")
 }
-
-[connection signal="PlayerDeath" from="." to="AnimationPlayer" method="play" flags=6 binds= ["Death"]]

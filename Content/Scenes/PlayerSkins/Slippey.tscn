@@ -27,9 +27,9 @@ region = Rect2(16, 64, 16, 16)
 atlas = ExtResource("1_6xh0i")
 region = Rect2(32, 64, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_dyops"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_aenk7"]
 atlas = ExtResource("1_6xh0i")
-region = Rect2(64, 48, 16, 16)
+region = Rect2(64, 64, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q78ft"]
 atlas = ExtResource("1_6xh0i")
@@ -118,7 +118,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_dyops")
+"texture": SubResource("AtlasTexture_aenk7")
 }],
 "loop": true,
 "name": &"Death",
@@ -198,6 +198,8 @@ animations = [{
 [node name="Slippey" type="AnimatedSprite2D"]
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_ha5cw")
-animation = &"Walk"
+animation = &"WallCatch"
 autoplay = "Idle"
 script = ExtResource("2_ktwy3")
+metadata/HasAnimationPlayer = false
+metadata/HasDeathPlayerAnimation = false

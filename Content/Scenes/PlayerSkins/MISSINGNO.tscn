@@ -107,6 +107,8 @@ sprite_frames = SubResource("SpriteFrames_lwpf0")
 animation = &"Idle"
 autoplay = "Idle"
 script = ExtResource("1_71m4q")
+metadata/HasAnimationPlayer = false
+metadata/HasDeathPlayerAnimation = false
 
 [node name="GlitchPlayer" type="AnimationPlayer" parent="."]
 libraries = {

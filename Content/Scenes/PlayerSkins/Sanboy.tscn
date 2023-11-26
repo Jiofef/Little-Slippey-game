@@ -313,6 +313,8 @@ animation = &"Idle"
 autoplay = "Idle"
 frame_progress = 0.817513
 script = ExtResource("2_t4gni")
+metadata/HasAnimationPlayer = false
+metadata/HasDeathPlayerAnimation = true
 
 [node name="HeatParticles" type="CPUParticles2D" parent="."]
 show_behind_parent = true
@@ -348,5 +350,3 @@ initial_velocity_max = 1.0
 scale_amount_min = 10.0
 scale_amount_max = 10.0
 color = Color(1, 1, 1, 0.0392157)
-
-[connection signal="PlayerDeath" from="." to="AnimationPlayer" method="play" flags=6 binds= ["Death"]]

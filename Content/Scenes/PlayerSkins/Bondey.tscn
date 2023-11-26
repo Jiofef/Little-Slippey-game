@@ -174,12 +174,12 @@ colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 [node name="Bondey" type="AnimatedSprite2D"]
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_2me0h")
-animation = &"Death"
+animation = &"Idle"
 autoplay = "Idle"
-frame = 1
-frame_progress = 1.0
 script = ExtResource("3_q8sv5")
 _enableSecondJumpAndFallFrame = true
+metadata/HasAnimationPlayer = false
+metadata/HasDeathPlayerAnimation = true
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 emitting = false
@@ -196,5 +196,3 @@ damping_max = 30.0
 scale_amount_min = 4.0
 scale_amount_max = 4.0
 color_ramp = SubResource("Gradient_w7ykq")
-
-[connection signal="PlayerDeath" from="." to="CPUParticles2D" method="set_emitting" flags=6 binds= [true]]

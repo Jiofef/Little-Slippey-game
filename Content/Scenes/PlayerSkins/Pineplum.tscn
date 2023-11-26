@@ -224,6 +224,8 @@ sprite_frames = SubResource("SpriteFrames_vfmv7")
 animation = &"Idle"
 autoplay = "Idle"
 script = ExtResource("2_bom76")
+metadata/HasAnimationPlayer = false
+metadata/HasDeathPlayerAnimation = true
 
 [node name="BrokenGlass" type="CPUParticles2D" parent="."]
 position = Vector2(0, -3)
@@ -246,5 +248,3 @@ color_ramp = SubResource("Gradient_wcovp")
 libraries = {
 "": SubResource("AnimationLibrary_lejrn")
 }
-
-[connection signal="PlayerDeath" from="." to="AnimationPlayer" method="play" flags=6 binds= ["Death"]]

@@ -17,7 +17,7 @@ public partial class Player : CharacterBody2D
     readonly float _floatDelta = 0.016667f;
 
     // other variable
-    private bool _isFliph;
+    private bool _isFliph, _skinAnimationPlayerEnabled;
 
     private string _animationName;
 
@@ -27,6 +27,7 @@ public partial class Player : CharacterBody2D
     State _state = State.Default;
 
     AnimatedSprite2D _animatedSprite;
+    AnimationPlayer _animationPlayer;
 
     Vector2 _motion = new Vector2();
     Vector2[] _savedPastPositions = new Vector2[11];
@@ -44,6 +45,11 @@ public partial class Player : CharacterBody2D
         string[] SkinNames = {"Slippey", "Samey", "Sanboy", "Strawman", "Pineplum", "Bondey", "Sleepy", "Daley", "Hostey", "CompressPile", "JioYobaFefski", "SlippeyChad", "MISSINGNO", "Corey"};
         _animatedSprite = (AnimatedSprite2D)ResourceLoader.Load<PackedScene>("res://Content/Scenes/PlayerSkins/" + SkinNames[Meta.Instance.ChosenSkinIndex] + ".tscn").Instantiate();
         _animatedSprite.Connect("animation_finished", new Callable(this, "AnimationFinished"));
+        if (Convert.ToBoolean((string)_animatedSprite.GetMeta("HasAnimationPlayer")))
+        {
+            _skinAnimationPlayerEnabled = true;
+            _animationPlayer = _animatedSprite.GetNode<AnimationPlayer>("AnimationPlayer");
+        }
         GetNode("SkinContainer").AddChild(_animatedSprite);
     }
 
@@ -110,12 +116,8 @@ public partial class Player : CharacterBody2D
                 }
                 else if (!Input.IsActionPressed("WallCatch") && _lastXMoveVector == _wallDetectNumber && _wallDetectNumber != 0 && _climbTimer < 0 && _climbBufer > 0)
                 {
-                    if ((Meta.Instance.ChosenSkinIndex == 10 || Meta.Instance.ChosenSkinIndex == 12) && _animationName == "Climb")
-                    {
-                        var skinAnimationPlayer = GetNode<AnimationPlayer>("SkinContainer/JioYobaFefski/AnimationPlayer");
-                        skinAnimationPlayer.Stop();
-                        skinAnimationPlayer.Play("Climb");
-                    }
+                    if (_skinAnimationPlayerEnabled)
+                        _animationPlayer.Play("Climb");
                     _climbTimer = 0.2f;
                     _climbBufer--;
                     _motion.Y = -_jumpForce * 0.7f;
@@ -184,7 +186,11 @@ public partial class Player : CharacterBody2D
                 _animationName = _motion.Y < 0 ? "Jump" : "Fall";
 
             if (_animatedSprite.Animation != _animationName)
+            {
                 _animatedSprite.Animation = _animationName;
+                if (_skinAnimationPlayerEnabled)
+                    _animationPlayer.Play(_animationName);
+            }
 
             if (_animationName == "Climb")
                 _isFliph = _savedClimbWallNumber == 1;
@@ -254,6 +260,8 @@ public partial class Player : CharacterBody2D
         GetNode<AudioStreamPlayer>("../../../LevelMusicPlayer").StreamPaused = true;
         GetNode<CollisionShape2D>("FullBodyCollider").SetDeferred("disabled", true);
         _animatedSprite.Animation = "Death";
+        if (Convert.ToBoolean((string)_animatedSprite.GetMeta("HasDeathPlayerAnimation")))
+            _animatedSprite.GetNode<AnimationPlayer>("AnimationPlayer").Play("Death");
         G.IsPlayerDead = true;
         UnchangableMeta.SaveRecords();
         UnchangableMeta.SaveToFile();

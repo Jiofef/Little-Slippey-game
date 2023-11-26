@@ -515,6 +515,8 @@ sprite_frames = SubResource("SpriteFrames_pb3cv")
 animation = &"Idle"
 autoplay = "Idle"
 script = ExtResource("2_bnfko")
+metadata/HasAnimationPlayer = false
+metadata/HasDeathPlayerAnimation = true
 
 [node name="SomethingLikeACamera" type="Sprite2D" parent="."]
 visible = false
@@ -563,5 +565,4 @@ libraries = {
 "": SubResource("AnimationLibrary_0rxsi")
 }
 
-[connection signal="PlayerDeath" from="." to="AnimationPlayer" method="play" flags=6 binds= ["Death"]]
 [connection signal="animation_finished" from="ExplosionAnimation" to="ExplosionAnimation" method="queue_free" flags=6]
