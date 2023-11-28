@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://uwe2kx00cwfa"]
+[gd_scene load_steps=24 format=3 uid="uid://uwe2kx00cwfa"]
 
 [ext_resource type="Script" path="res://Content/Scripts/Levels/BaseLevelScript.cs" id="2"]
 [ext_resource type="Texture2D" uid="uid://q2j1uuqfjmos" path="res://Content/Sprites/Levels/BaseTileSet.png" id="2_5coah"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://ua4neh4wkukk" path="res://Content/Sprites/Levels/Level1/BackClouds.png" id="4_bng71"]
 [ext_resource type="Texture2D" uid="uid://7bqjeef5asfb" path="res://Content/Sprites/Levels/Level1/Clouds.png" id="4_gy5lc"]
 [ext_resource type="Texture2D" uid="uid://de74d3epufxbk" path="res://Content/Sprites/Levels/Level1/StreamAnimation.png" id="6_0stp4"]
+[ext_resource type="PackedScene" uid="uid://buj5ooik0q3l0" path="res://Content/Scenes/Other/AchievementArea.tscn" id="10_uiaak"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6c1h1"]
 atlas = ExtResource("3_th2o3")
@@ -212,6 +213,9 @@ centered = false
 offset_right = 1280.0
 offset_bottom = 720.0
 color = Color(0, 0.607843, 0.607843, 0.313726)
+
+[node name="AchievementArea" parent="Background" instance=ExtResource("10_uiaak")]
+position = Vector2(856, 541)
 
 [node name="Player" parent="." instance=ExtResource("3")]
 position = Vector2(640, 375)

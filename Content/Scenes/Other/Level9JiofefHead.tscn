@@ -2736,7 +2736,6 @@ stream = ExtResource("2_r1nrf")
 volume_db = 4.0
 max_distance = 4000.0
 attenuation = 0.5
-bus = &"LevelSounds"
 
 [node name="TurningOn" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("3_740io")

@@ -213,4 +213,9 @@ public partial class BaseLevelScript : Node2D
     {
         SetPhysicsProcess(false);
     }
+
+    public void GiveAchievement(int index)
+    {
+        G.GetAchievement(index);
+    }
 }

@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://d27nwc3cdixbo"]
+[gd_scene load_steps=9 format=3 uid="uid://d27nwc3cdixbo"]
 
 [ext_resource type="Texture2D" uid="uid://w03njd07hf8e" path="res://Content/Sprites/Interface/AchievementBox.png" id="1_11rdp"]
 [ext_resource type="Script" path="res://Content/Scripts/Other/Achievement.cs" id="1_u1lly"]
 [ext_resource type="Texture2D" uid="uid://01o8bu8kwj2h" path="res://Content/Sprites/Other/AchievementStarParticle.png" id="2_tnofe"]
+[ext_resource type="AudioStream" uid="uid://ca1ra0emtaeth" path="res://Content/Sounds/Other/AchievementSound.mp3" id="4_338ko"]
 
 [sub_resource type="Gradient" id="Gradient_6pdph"]
 offsets = PackedFloat32Array(0, 0.03, 1)
@@ -133,11 +134,13 @@ libraries = {
 }
 
 [node name="Sound" type="AudioStreamPlayer" parent="PopupVersionPart"]
+stream = ExtResource("4_338ko")
 
 [node name="PopupTimer" type="Timer" parent="PopupVersionPart"]
 
 [node name="FocusRect" type="ColorRect" parent="."]
 modulate = Color(1, 1, 1, 0)
+layout_mode = 0
 offset_right = 480.0
 offset_bottom = 140.0
 mouse_filter = 2

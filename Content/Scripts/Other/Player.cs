@@ -42,7 +42,7 @@ public partial class Player : CharacterBody2D
     public override void _Ready()
     {
         GetNode("SkinContainer/Sprite2D").QueueFree();
-        string[] SkinNames = {"Slippey", "Samey", "Sanboy", "Strawman", "Pineplum", "Bondey", "Sleepy", "Daley", "Hostey", "CompressPile", "JioYobaFefski", "SlippeyChad", "MISSINGNO", "Corey"};
+        string[] SkinNames = {"Slippey", "Samey", "Sanboy", "Strawman", "Pineplum", "Bondey", "Sleepy", "Daley", "Hostey", "CompressPile", "JioYobaFefski", "SlippeyChad", "MISSINGNULL", "Corey"};
         _animatedSprite = (AnimatedSprite2D)ResourceLoader.Load<PackedScene>("res://Content/Scenes/PlayerSkins/" + SkinNames[Meta.Instance.ChosenSkinIndex] + ".tscn").Instantiate();
         _animatedSprite.Connect("animation_finished", new Callable(this, "AnimationFinished"));
         if (Convert.ToBoolean((string)_animatedSprite.GetMeta("HasAnimationPlayer")))

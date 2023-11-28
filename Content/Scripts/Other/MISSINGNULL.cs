@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class MISSINGNO : AnimatedSprite2D
+public partial class MISSINGNULL : AnimatedSprite2D
 {
 	Sprite2D _sprite2D;
 	AnimationPlayer _glitchPlayer;

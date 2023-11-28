@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://detui3qloy3kf"]
 
-[ext_resource type="Script" path="res://Content/Scripts/Other/MISSINGNO.cs" id="1_71m4q"]
+[ext_resource type="Script" path="res://Content/Scripts/Other/MISSINGNULL.cs" id="1_qgi0y"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_lwpf0"]
 animations = [{
@@ -100,13 +100,13 @@ interpolation_mode = 1
 offsets = PackedFloat32Array(0, 0.7, 0.8, 0.9, 0.95)
 colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1)
 
-[node name="MISSINGNO" type="AnimatedSprite2D"]
+[node name="MISSINGNULL" type="AnimatedSprite2D"]
 process_mode = 3
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_lwpf0")
 animation = &"Idle"
 autoplay = "Idle"
-script = ExtResource("1_71m4q")
+script = ExtResource("1_qgi0y")
 metadata/HasAnimationPlayer = false
 metadata/HasDeathPlayerAnimation = false
 

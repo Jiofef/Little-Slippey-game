@@ -2218,6 +2218,20 @@ tracks/9/keys = {
 "method": &"TutorialCompleted"
 }]
 }
+tracks/10/type = "method"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("../..")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0],
+"method": &"GiveAchievement"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tosue"]
 _data = {
@@ -3567,7 +3581,6 @@ position = Vector2(13544, 936)
 scale = Vector2(0.75, 0.75)
 
 [node name="Text" parent="TileMap7/TutorialTV/Screen" index="2"]
-modulate = Color(1, 1, 1, 0)
 text = "!YOU WIN!"
 
 [node name="Text2" type="Label" parent="TileMap7/TutorialTV/Screen" index="3"]

@@ -170,7 +170,8 @@ public partial class Level9JiofefHead : Node2D
         _jiofefHeadSpeedMultiplier = 1.5f + G.Scores / 75;
         _animatedSprite2D.SpeedScale = _jiofefHeadSpeedMultiplier;
         _animationPlayer.SpeedScale = _jiofefHeadSpeedMultiplier;
-		G.CrossSpawnMultiplier = 1 / (1 + ((_jiofefHeadSpeedMultiplier - 1) / 1.5f * (1 - 0.5f * Meta.Instance.Dificulty)));
+		G.CrossSpawnMultiplier = 1 / (_jiofefHeadSpeedMultiplier - 0.5f);
+		GD.Print(G.CrossSpawnMultiplier);
     }
 
 

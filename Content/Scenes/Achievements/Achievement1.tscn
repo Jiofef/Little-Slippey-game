@@ -9,7 +9,10 @@
 texture = ExtResource("2_rg8uw")
 
 [node name="Name" parent="." index="2"]
-text = "Kak"
+text = "Name"
 
 [node name="Text" parent="." index="4"]
-text = "Popoy ob kosyak"
+text = "Description"
+
+[node name="FocusRect" parent="." index="6"]
+layout_mode = 0
