@@ -1,15 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://dmujsgmnr53b7"]
+[gd_scene load_steps=2 format=3 uid="uid://dmujsgmnr53b7"]
 
 [ext_resource type="PackedScene" uid="uid://d27nwc3cdixbo" path="res://Content/Scenes/Achievements/DefaultAchievement.tscn" id="1_25204"]
-[ext_resource type="Texture2D" uid="uid://ce4oq2adhljwh" path="res://Content/Sprites/Interface/LevelsMenuIcon.png" id="2_p23e0"]
 
 [node name="Achievement" instance=ExtResource("1_25204")]
 
-[node name="RewardSprite" parent="." index="1"]
-texture = ExtResource("2_p23e0")
-
 [node name="Name" parent="." index="2"]
-text = "Tak"
+text = "-000-"
 
 [node name="Text" parent="." index="4"]
-text = "Skazal bednyak"
+text = "Using the accumulated knowledge about controlling, find a new, unplanned path at the tutorial"
