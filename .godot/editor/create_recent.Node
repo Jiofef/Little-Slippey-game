@@ -1,11 +1,12 @@
-AnimationPlayer
 Sprite2D
+AnimationPlayer
+Node2D
+AnimatedSprite2D
 CollisionShape2D
 AudioStreamPlayer
 ColorRect
 CanvasLayer
 CPUParticles2D
-AnimatedSprite2D
 AudioListener2D
 Camera2D
 TileMap
@@ -25,7 +26,6 @@ HSlider
 ScrollContainer
 PathFollow2D
 Path2D
-Node2D
 StaticBody2D
 RigidBody2D
 VBoxContainer

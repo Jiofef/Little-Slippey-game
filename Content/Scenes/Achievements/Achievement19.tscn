@@ -1,0 +1,37 @@
+[gd_scene load_steps=4 format=3 uid="uid://5hqti54mnm4t"]
+
+[ext_resource type="PackedScene" uid="uid://d27nwc3cdixbo" path="res://Content/Scenes/Achievements/DefaultAchievement.tscn" id="1_tpp5l"]
+[ext_resource type="Texture2D" uid="uid://bppnbtehdr3md" path="res://Content/Sprites/Interface/LevelsIcons.png" id="2_kd0a3"]
+[ext_resource type="Texture2D" uid="uid://vjcab56ymxqr" path="res://Content/Sprites/PlayerSkins/Pineplum.png" id="3_b7ccc"]
+
+[node name="Achievement" instance=ExtResource("1_tpp5l")]
+
+[node name="RewardBox1" parent="Sprite2D" index="0"]
+visible = true
+
+[node name="RewardSprite" parent="Sprite2D/RewardBox1" index="0"]
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("2_kd0a3")
+region_enabled = true
+region_rect = Rect2(90, 90, 45, 45)
+
+[node name="RewardBox2" parent="Sprite2D" index="1"]
+visible = true
+
+[node name="RewardSprite" parent="Sprite2D/RewardBox2" index="0"]
+texture = ExtResource("3_b7ccc")
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)
+
+[node name="Star2" parent="Sprite2D/Ratings" index="1"]
+visible = true
+
+[node name="Star3" parent="Sprite2D/Ratings" index="2"]
+visible = true
+
+[node name="Name" parent="." index="1"]
+text = "Kept treading – treading – till it seemed"
+
+[node name="Text" parent="." index="2"]
+offset_right = 272.0
+text = "Complete 3 level on \"Inferno\" difficulty"

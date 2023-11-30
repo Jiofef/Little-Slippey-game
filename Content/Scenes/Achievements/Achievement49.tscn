@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://cw33s06n42f6h"]
+
+[ext_resource type="PackedScene" uid="uid://d27nwc3cdixbo" path="res://Content/Scenes/Achievements/DefaultAchievement.tscn" id="1_cwaqe"]
+
+[node name="Achievement" instance=ExtResource("1_cwaqe")]
+
+[node name="Star1" parent="Sprite2D/Ratings" index="0"]
+modulate = Color(1, 0, 0, 1)
+
+[node name="Star2" parent="Sprite2D/Ratings" index="1"]
+visible = true
+modulate = Color(0.470588, 0, 0, 1)
+
+[node name="Star3" parent="Sprite2D/Ratings" index="2"]
+visible = true
+modulate = Color(0, 0, 0, 1)
+
+[node name="Name" parent="." index="1"]
+text = "A criminal against humanity"
+
+[node name="Text" parent="." index="2"]
+text = "Train the artificial life form \"Slippey\" to be used as a live weapon for military operations"

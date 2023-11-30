@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://droytgvtf3o2k"]
+
+[ext_resource type="PackedScene" uid="uid://d27nwc3cdixbo" path="res://Content/Scenes/Achievements/DefaultAchievement.tscn" id="1_pomvh"]
+
+[node name="Achievement" instance=ExtResource("1_pomvh")]
+
+[node name="Name" parent="." index="1"]
+text = "Eureka"
+
+[node name="Text" parent="." index="2"]
+offset_right = 356.0
+text = "Find one of the secret ways at level 8"

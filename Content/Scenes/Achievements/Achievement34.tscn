@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://bfrvhom0iatvg"]
+
+[ext_resource type="PackedScene" uid="uid://d27nwc3cdixbo" path="res://Content/Scenes/Achievements/DefaultAchievement.tscn" id="1_7mu46"]
+[ext_resource type="Texture2D" uid="uid://bppnbtehdr3md" path="res://Content/Sprites/Interface/LevelsIcons.png" id="2_f38s7"]
+
+[node name="Achievement" instance=ExtResource("1_7mu46")]
+
+[node name="RewardBox1" parent="Sprite2D" index="0"]
+visible = true
+
+[node name="RewardSprite" parent="Sprite2D/RewardBox1" index="0"]
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("2_f38s7")
+region_enabled = true
+region_rect = Rect2(315, 0, 45, 45)
+
+[node name="Name" parent="." index="1"]
+scale = Vector2(0.55, 0.55)
+text = "From the earth's loosened mould, the sapling draws its sustenance, and thrives"
+
+[node name="Text" parent="." index="2"]
+offset_right = 356.0
+text = "Complete 8 level on \"Hard\" difficulty"

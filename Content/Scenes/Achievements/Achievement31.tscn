@@ -1,0 +1,37 @@
+[gd_scene load_steps=4 format=3 uid="uid://droytgvtf3o2k"]
+
+[ext_resource type="PackedScene" uid="uid://d27nwc3cdixbo" path="res://Content/Scenes/Achievements/DefaultAchievement.tscn" id="1_8v8y0"]
+[ext_resource type="Texture2D" uid="uid://bppnbtehdr3md" path="res://Content/Sprites/Interface/LevelsIcons.png" id="2_flqev"]
+[ext_resource type="Texture2D" uid="uid://daeeo1lq7usi6" path="res://Content/Sprites/PlayerSkins/Hostey.png" id="3_0p4lu"]
+
+[node name="Achievement" instance=ExtResource("1_8v8y0")]
+
+[node name="RewardBox1" parent="Sprite2D" index="0"]
+visible = true
+
+[node name="RewardSprite" parent="Sprite2D/RewardBox1" index="0"]
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("2_flqev")
+region_enabled = true
+region_rect = Rect2(270, 90, 45, 45)
+
+[node name="RewardBox2" parent="Sprite2D" index="1"]
+visible = true
+
+[node name="RewardSprite" parent="Sprite2D/RewardBox2" index="0"]
+texture = ExtResource("3_0p4lu")
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)
+
+[node name="Star2" parent="Sprite2D/Ratings" index="1"]
+visible = true
+
+[node name="Star3" parent="Sprite2D/Ratings" index="2"]
+visible = true
+
+[node name="Name" parent="." index="1"]
+text = "Kept beating – beating – till I thought"
+
+[node name="Text" parent="." index="2"]
+offset_right = 272.0
+text = "Complete 7 level on \"Inferno\" difficulty"

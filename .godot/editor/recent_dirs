@@ -1,3 +1,4 @@
+res://Content/Scenes/Achievements
 res://Content/Sprites/PlayerSkins
 res://Content/Scenes/PlayerSkins
 res://Content/Scripts/Other
@@ -7,7 +8,6 @@ res://Content/Scripts/Levels
 res://Content/Scenes/Other
 res://Content/Sprites/Levels/Level2
 res://Content/Scripts/Interface&Menu
-res://Content/Scenes/Achievements
 res://Content/Scenes/Interface&Menu
 res://Content
 res://Content/Other

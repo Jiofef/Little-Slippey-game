@@ -4,8 +4,8 @@
 
 [node name="Achievement" instance=ExtResource("1_glvup")]
 
-[node name="Name" parent="." index="2"]
+[node name="Name" parent="." index="1"]
 text = "-000"
 
-[node name="Text" parent="." index="4"]
+[node name="Text" parent="." index="2"]
 text = "Using the accumulated knowledge about controlling, find a new, unplanned path at the tutorial"

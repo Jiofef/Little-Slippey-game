@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://dy310arld0arg"]
+
+[ext_resource type="PackedScene" uid="uid://d27nwc3cdixbo" path="res://Content/Scenes/Achievements/DefaultAchievement.tscn" id="1_7tkt7"]
+[ext_resource type="Texture2D" uid="uid://bppnbtehdr3md" path="res://Content/Sprites/Interface/LevelsIcons.png" id="2_h0adi"]
+
+[node name="Achievement" instance=ExtResource("1_7tkt7")]
+
+[node name="RewardBox1" parent="Sprite2D" index="0"]
+visible = true
+
+[node name="RewardSprite" parent="Sprite2D/RewardBox1" index="0"]
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("2_h0adi")
+region_enabled = true
+region_rect = Rect2(225, 45, 45, 45)
+
+[node name="Star2" parent="Sprite2D/Ratings" index="1"]
+visible = true
+
+[node name="Name" parent="." index="1"]
+text = "And dropped my eyes, unwilling to explain"
+
+[node name="Text" parent="." index="2"]
+offset_right = 356.0
+text = "Complete 6 level on \"Insane\" difficulty"

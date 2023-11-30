@@ -1,0 +1,45 @@
+[gd_scene load_steps=4 format=3 uid="uid://cw33s06n42f6h"]
+
+[ext_resource type="PackedScene" uid="uid://d27nwc3cdixbo" path="res://Content/Scenes/Achievements/DefaultAchievement.tscn" id="1_8l8hh"]
+
+[sub_resource type="Animation" id="Animation_ewv13"]
+resource_name = "GLTCHCHCHCHed"
+length = 0.25
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": ["%$809*&^467)0*)$&(", "H&)#@%))@#$($C", "@#$)#@$^@%#$)HFEW", "@#*(F*&J#$@D*#$(@&#&@
+", "*&)(J%@#$_#@$_&JF@"]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_egxmt"]
+_data = {
+"GLTCHCHCHCHed": SubResource("Animation_ewv13")
+}
+
+[node name="Achievement" instance=ExtResource("1_8l8hh")]
+
+[node name="Star1" parent="Sprite2D/Ratings" index="0"]
+modulate = Color(0.501961, 0, 1, 1)
+skew = -1.26885
+
+[node name="Name" parent="." index="1"]
+text = "You will regret it."
+
+[node name="Text" parent="." index="2"]
+text = "%$809*&^467)0*)$&("
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Text" index="1"]
+autoplay = "GLTCHCHCHCHed"
+libraries = {
+"": SubResource("AnimationLibrary_egxmt")
+}

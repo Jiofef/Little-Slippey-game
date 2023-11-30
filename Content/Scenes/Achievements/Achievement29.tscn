@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://d3bacsr0tfaaq"]
+
+[ext_resource type="PackedScene" uid="uid://d27nwc3cdixbo" path="res://Content/Scenes/Achievements/DefaultAchievement.tscn" id="1_5v5il"]
+[ext_resource type="Texture2D" uid="uid://bppnbtehdr3md" path="res://Content/Sprites/Interface/LevelsIcons.png" id="2_8tja5"]
+
+[node name="Achievement" instance=ExtResource("1_5v5il")]
+
+[node name="RewardBox1" parent="Sprite2D" index="0"]
+visible = true
+
+[node name="RewardSprite" parent="Sprite2D/RewardBox1" index="0"]
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("2_8tja5")
+region_enabled = true
+region_rect = Rect2(270, 0, 45, 45)
+
+[node name="RewardBox2" parent="Sprite2D" index="1"]
+visible = true
+
+[node name="Name" parent="." index="1"]
+text = "The coming-on of storms"
+
+[node name="Text" parent="." index="2"]
+offset_right = 272.0
+text = "Complete 7 level on \"Hard\" difficulty"

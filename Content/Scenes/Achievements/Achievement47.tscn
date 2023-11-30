@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://cdnx2n2mrukrp"]
+
+[ext_resource type="PackedScene" uid="uid://d27nwc3cdixbo" path="res://Content/Scenes/Achievements/DefaultAchievement.tscn" id="1_fkxbi"]
+
+[node name="Achievement" instance=ExtResource("1_fkxbi")]
+
+[node name="Star2" parent="Sprite2D/Ratings" index="1"]
+visible = true
+
+[node name="Star3" parent="Sprite2D/Ratings" index="2"]
+visible = true
+
+[node name="Name" parent="." index="1"]
+text = "Congratulations!"
+
+[node name="Text" parent="." index="2"]
+offset_right = 356.0
+text = "Pass the viability check"

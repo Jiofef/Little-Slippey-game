@@ -1,0 +1,59 @@
+[gd_scene load_steps=6 format=3 uid="uid://bexfvmi5dfsnw"]
+
+[ext_resource type="PackedScene" uid="uid://d27nwc3cdixbo" path="res://Content/Scenes/Achievements/DefaultAchievement.tscn" id="1_eeqrh"]
+[ext_resource type="Texture2D" uid="uid://bppnbtehdr3md" path="res://Content/Sprites/Interface/LevelsIcons.png" id="2_41wfu"]
+[ext_resource type="Texture2D" uid="uid://b6h1343aeq7e6" path="res://Content/Sprites/PlayerSkins/JioYobaFefskiHead.png" id="3_dxk8w"]
+[ext_resource type="Texture2D" uid="uid://cqf70mpnkx8ob" path="res://Content/Sprites/PlayerSkins/JioYobaFefskiLeg.png" id="4_33jra"]
+[ext_resource type="Texture2D" uid="uid://dve0odv51cuq7" path="res://Content/Sprites/PlayerSkins/JioYobaFefskiHand.png" id="5_0isxs"]
+
+[node name="Achievement" instance=ExtResource("1_eeqrh")]
+
+[node name="RewardBox1" parent="Sprite2D" index="0"]
+visible = true
+
+[node name="RewardSprite" parent="Sprite2D/RewardBox1" index="0"]
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("2_41wfu")
+region_enabled = true
+region_rect = Rect2(360, 90, 45, 45)
+
+[node name="RewardBox2" parent="Sprite2D" index="1"]
+visible = true
+
+[node name="RewardSprite" parent="Sprite2D/RewardBox2" index="0"]
+position = Vector2(0, -1)
+scale = Vector2(0.08, 0.08)
+texture = ExtResource("3_dxk8w")
+region_enabled = true
+region_rect = Rect2(0, 0, 100, 150)
+
+[node name="Sprite2D" type="Sprite2D" parent="Sprite2D/RewardBox2/RewardSprite" index="0"]
+show_behind_parent = true
+position = Vector2(-31.25, 65.625)
+texture = ExtResource("4_33jra")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Sprite2D/RewardBox2/RewardSprite" index="1"]
+show_behind_parent = true
+position = Vector2(34.375, 65.625)
+texture = ExtResource("4_33jra")
+flip_h = true
+
+[node name="Sprite2D3" type="Sprite2D" parent="Sprite2D/RewardBox2/RewardSprite" index="2"]
+show_behind_parent = true
+position = Vector2(-52, 32)
+texture = ExtResource("5_0isxs")
+region_enabled = true
+region_rect = Rect2(150, 0, 75, 100)
+
+[node name="Star2" parent="Sprite2D/Ratings" index="1"]
+visible = true
+
+[node name="Star3" parent="Sprite2D/Ratings" index="2"]
+visible = true
+
+[node name="Name" parent="." index="1"]
+text = "And then I heard them lift a Box"
+
+[node name="Text" parent="." index="2"]
+offset_right = 272.0
+text = "Complete 9 level on \"Inferno\" difficulty"

@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://cksrwskmirv74"]
+
+[ext_resource type="PackedScene" uid="uid://d27nwc3cdixbo" path="res://Content/Scenes/Achievements/DefaultAchievement.tscn" id="1_dok77"]
+[ext_resource type="Texture2D" uid="uid://bppnbtehdr3md" path="res://Content/Sprites/Interface/LevelsIcons.png" id="2_mv8jr"]
+
+[node name="Achievement" instance=ExtResource("1_dok77")]
+
+[node name="RewardBox1" parent="Sprite2D" index="0"]
+visible = true
+
+[node name="RewardSprite" parent="Sprite2D/RewardBox1" index="0"]
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("2_mv8jr")
+region_enabled = true
+region_rect = Rect2(45, 0, 45, 45)
+
+[node name="Name" parent="." index="1"]
+text = "Seed-time and harvest, has returned again"
+
+[node name="Text" parent="." index="2"]
+offset_right = 356.0
+text = "Complete 2 level on \"Hard\" difficulty"

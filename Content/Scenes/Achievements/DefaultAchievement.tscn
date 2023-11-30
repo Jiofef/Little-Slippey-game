@@ -1,9 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://d27nwc3cdixbo"]
+[gd_scene load_steps=11 format=3 uid="uid://d27nwc3cdixbo"]
 
 [ext_resource type="Texture2D" uid="uid://w03njd07hf8e" path="res://Content/Sprites/Interface/AchievementBox.png" id="1_11rdp"]
 [ext_resource type="Script" path="res://Content/Scripts/Other/Achievement.cs" id="1_u1lly"]
 [ext_resource type="Texture2D" uid="uid://01o8bu8kwj2h" path="res://Content/Sprites/Other/AchievementStarParticle.png" id="2_tnofe"]
+[ext_resource type="Texture2D" uid="uid://bpldglo3qd7mh" path="res://Content/Sprites/Interface/AchievementRewardBox.png" id="3_blldf"]
 [ext_resource type="AudioStream" uid="uid://ca1ra0emtaeth" path="res://Content/Sounds/Other/AchievementSound.mp3" id="4_338ko"]
+[ext_resource type="Texture2D" uid="uid://brgquvu7soyfx" path="res://Content/Sprites/Interface/AchievementStar.png" id="4_ndwic"]
 
 [sub_resource type="Gradient" id="Gradient_6pdph"]
 offsets = PackedFloat32Array(0, 0.03, 1)
@@ -73,34 +75,50 @@ scale = Vector2(4, 4)
 texture = ExtResource("1_11rdp")
 centered = false
 
-[node name="RewardSprite" type="Sprite2D" parent="."]
-position = Vector2(428, 88)
-scale = Vector2(4, 4)
+[node name="RewardBox1" type="Sprite2D" parent="Sprite2D"]
+visible = false
+position = Vector2(100, 22)
+texture = ExtResource("3_blldf")
+
+[node name="RewardSprite" type="Sprite2D" parent="Sprite2D/RewardBox1"]
+
+[node name="RewardBox2" type="Sprite2D" parent="Sprite2D"]
+visible = false
+position = Vector2(79, 22)
+texture = ExtResource("3_blldf")
+
+[node name="RewardSprite" type="Sprite2D" parent="Sprite2D/RewardBox2"]
+
+[node name="Ratings" type="Node2D" parent="Sprite2D"]
+
+[node name="Star1" type="Sprite2D" parent="Sprite2D/Ratings"]
+position = Vector2(114, 29.5)
+texture = ExtResource("4_ndwic")
+
+[node name="Star2" type="Sprite2D" parent="Sprite2D/Ratings"]
+visible = false
+position = Vector2(114, 22)
+texture = ExtResource("4_ndwic")
+
+[node name="Star3" type="Sprite2D" parent="Sprite2D/Ratings"]
+visible = false
+position = Vector2(114, 14.5)
+texture = ExtResource("4_ndwic")
 
 [node name="Name" type="Label" parent="."]
 layout_mode = 0
 offset_left = 8.0
 offset_top = 9.0
-offset_right = 372.0
+offset_right = 472.0
 offset_bottom = 31.0
 theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
-
-[node name="Reward" type="Label" parent="."]
-visible = false
-layout_mode = 0
-offset_left = 390.0
-offset_top = 9.0
-offset_right = 468.0
-offset_bottom = 34.0
-theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
-text = "Reward"
 
 [node name="Text" type="RichTextLabel" parent="."]
 clip_contents = false
 layout_mode = 0
 offset_left = 8.0
 offset_top = 44.0
-offset_right = 372.0
+offset_right = 438.0
 offset_bottom = 132.0
 mouse_filter = 2
 theme_override_colors/default_color = Color(0.196078, 0.196078, 0.196078, 1)
@@ -145,6 +163,7 @@ offset_right = 480.0
 offset_bottom = 140.0
 mouse_filter = 2
 color = Color(1, 1, 1, 0.501961)
+metadata/_edit_lock_ = true
 
 [connection signal="animation_finished" from="PopupVersionPart/AnimationPlayer" to="." method="queue_free" flags=6 unbinds=1]
 [connection signal="timeout" from="PopupVersionPart/PopupTimer" to="PopupVersionPart/PopupTimer" method="queue_free" flags=6]

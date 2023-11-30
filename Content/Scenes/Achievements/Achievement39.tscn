@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://bbr16eauc3knu"]
+
+[ext_resource type="PackedScene" uid="uid://d27nwc3cdixbo" path="res://Content/Scenes/Achievements/DefaultAchievement.tscn" id="1_g7f58"]
+[ext_resource type="Texture2D" uid="uid://bppnbtehdr3md" path="res://Content/Sprites/Interface/LevelsIcons.png" id="2_3jsev"]
+
+[node name="Achievement" instance=ExtResource("1_g7f58")]
+
+[node name="RewardBox1" parent="Sprite2D" index="0"]
+visible = true
+
+[node name="RewardSprite" parent="Sprite2D/RewardBox1" index="0"]
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("2_3jsev")
+region_enabled = true
+region_rect = Rect2(360, 0, 45, 45)
+
+[node name="RewardBox2" parent="Sprite2D" index="1"]
+visible = true
+
+[node name="Name" parent="." index="1"]
+scale = Vector2(0.95, 1)
+text = "Though stricken to the heart with winter's cold"
+
+[node name="Text" parent="." index="2"]
+offset_right = 272.0
+text = "Complete 9 level on \"Hard\" difficulty"

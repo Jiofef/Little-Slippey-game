@@ -61,7 +61,7 @@ public partial class G : Node
 		new int[][] { new int[] {0}, new int[] {0}, new int[] {0}, new int[] {0}, new int[] {0}, new int[] {0}, new int[] {0}, new int[] {0}, new int[] {0}, new int[] {0}},
 		new int[][] { new int[] {0, 0}, new int[] {0, 0}, new int[] {0, 0}, new int[] {0, 0}, new int[] {0, 0}, new int[] {0, 0}, new int[] {0, 0}, new int[] {0, 0}, new int[] {0, 0}, new int[] {0, 0}},
 	};
-	public static readonly bool[] IsAchievementHiden = { false, true, false, false, true, false, false, false, false, false, false, false, };
+	public static readonly bool[] IsAchievementHiden = { false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false};
 	public static CanvasLayer CurrentPopupAchievementsLayer;
 	public static int AchievementPopupTimerMultiplier = 0;
 	public static void GetAchievement(int index)

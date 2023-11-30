@@ -13,8 +13,10 @@ public partial class AchievementsMenu : Control
 			if (UnchangableMeta.AchievementStatuses[i] == 0)
 			{
                 achievement.GetNode<Label>("Name").QueueFree();
-                achievement.GetNode<Sprite2D>("RewardSprite").Modulate = new Color(0, 0, 0, 0.5f);
-				achievement.Modulate = new Color(0.5f, 0.5f, 0.5f);
+                achievement.GetNode<Node2D>("Sprite2D/Ratings").QueueFree();
+                achievement.GetNode<Sprite2D>("Sprite2D/RewardBox1/RewardSprite").Modulate = new Color(0, 0, 0, 0.5f);
+                achievement.GetNode<Sprite2D>("Sprite2D/RewardBox2/RewardSprite").Modulate = new Color(0, 0, 0, 0.5f);
+                achievement.Modulate = new Color(0.5f, 0.5f, 0.5f);
 				if (G.IsAchievementHiden[i])
                     achievement.GetNode<RichTextLabel>("Text").Text = "[HIDDEN]";
             }

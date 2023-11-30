@@ -1,15 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://cpjkp84t1ngil"]
+[gd_scene load_steps=2 format=3 uid="uid://cpjkp84t1ngil"]
 
 [ext_resource type="PackedScene" uid="uid://d27nwc3cdixbo" path="res://Content/Scenes/Achievements/DefaultAchievement.tscn" id="1_0e02s"]
-[ext_resource type="Texture2D" uid="uid://ce4oq2adhljwh" path="res://Content/Sprites/Interface/LevelsMenuIcon.png" id="2_swt8n"]
 
 [node name="Achievement" instance=ExtResource("1_0e02s")]
 
-[node name="RewardSprite" parent="." index="1"]
-texture = ExtResource("2_swt8n")
+[node name="Star1" parent="Sprite2D/Ratings" index="0"]
+modulate = Color(0.54902, 0.352941, 0, 1)
 
-[node name="Name" parent="." index="2"]
-text = "Zachem"
+[node name="Name" parent="." index="1"]
+text = "I'm no stranger to"
 
-[node name="Text" parent="." index="4"]
-text = "Za shkafom"
+[node name="Text" parent="." index="2"]
+text = "Die 35 times"

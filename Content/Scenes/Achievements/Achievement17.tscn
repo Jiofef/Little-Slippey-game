@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://djnu5orjajbrp"]
+
+[ext_resource type="PackedScene" uid="uid://d27nwc3cdixbo" path="res://Content/Scenes/Achievements/DefaultAchievement.tscn" id="1_s36km"]
+[ext_resource type="Texture2D" uid="uid://bppnbtehdr3md" path="res://Content/Sprites/Interface/LevelsIcons.png" id="2_sn0ks"]
+
+[node name="Achievement" instance=ExtResource("1_s36km")]
+
+[node name="RewardBox1" parent="Sprite2D" index="0"]
+visible = true
+
+[node name="RewardSprite" parent="Sprite2D/RewardBox1" index="0"]
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("2_sn0ks")
+region_enabled = true
+region_rect = Rect2(90, 0, 45, 45)
+
+[node name="Name" parent="." index="1"]
+scale = Vector2(0.9, 1)
+text = "T is sweet to visit the still wood, where springs"
+
+[node name="Text" parent="." index="2"]
+offset_right = 356.0
+text = "Complete 3 level on \"Hard\" difficulty"
