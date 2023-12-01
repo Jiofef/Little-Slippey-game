@@ -1,6 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://bo4jqtdxh3bia"]
+[gd_scene load_steps=14 format=3 uid="uid://bo4jqtdxh3bia"]
 
 [ext_resource type="Texture2D" uid="uid://duk32e0otnfky" path="res://Content/Sprites/Levels/FuckItVolume2Tileset.png" id="1_622f4"]
+[ext_resource type="PackedScene" uid="uid://buj5ooik0q3l0" path="res://Content/Scenes/Achievements/AchievementArea.tscn" id="2_4ddd2"]
 [ext_resource type="Script" path="res://Content/Scripts/Levels/Level4CircularSawScript.cs" id="2_43ctl"]
 [ext_resource type="Texture2D" uid="uid://oy0q0tel1241" path="res://Content/Sprites/Levels/Level4/BigSaw.png" id="3_8hif1"]
 [ext_resource type="Texture2D" uid="uid://dse3qddcaf5o4" path="res://Content/Sprites/Levels/Level4/TheMostOrdinaryUnremarkableSawWhichSurprisinglyCanKillAPlayerWithoutProblemsBecauseItHasAHitboxOnTheSameLayerAsTheExplosionOfCrossesThatsInShort.png" id="4_x0u2j"]
@@ -218,6 +219,9 @@ texture = ExtResource("1_622f4")
 [sub_resource type="TileSet" id="TileSet_sdcfh"]
 sources/0 = SubResource("TileSetAtlasSource_ua1ox")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6w1io"]
+size = Vector2(8, 32)
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_typ5x"]
 radius = 17.5
 
@@ -246,6 +250,13 @@ z_index = 1
 tile_set = SubResource("TileSet_sdcfh")
 format = 2
 layer_0/tile_data = PackedInt32Array(65542, 0, 65536, 131078, 0, 65536, 6, 196608, 196608)
+
+[node name="AchievementArea" parent="SecretShortCut" instance=ExtResource("2_4ddd2")]
+position = Vector2(104, 32)
+_achievementIndex = 31
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SecretShortCut/AchievementArea"]
+shape = SubResource("RectangleShape2D_6w1io")
 
 [node name="Saws" type="Node2D" parent="."]
 

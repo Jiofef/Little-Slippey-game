@@ -43,7 +43,7 @@ _data = {
 "Opening": SubResource("Animation_yy61y")
 }
 
-[sub_resource type="ButtonGroup" id="ButtonGroup_3j4fm"]
+[sub_resource type="ButtonGroup" id="ButtonGroup_o4cxx"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_daiar"]
 atlas = ExtResource("4_4fnp7")
@@ -512,7 +512,7 @@ layout_mode = 0
 offset_right = 48.0
 offset_bottom = 48.0
 toggle_mode = true
-button_group = SubResource("ButtonGroup_3j4fm")
+button_group = SubResource("ButtonGroup_o4cxx")
 texture_normal = ExtResource("2_5tg7d")
 texture_disabled = ExtResource("5_m7r3n")
 
@@ -537,7 +537,7 @@ frame_progress = 0.533851
 
 [node name="?" type="Sprite2D" parent="SkinButtons/Button1"]
 visible = false
-position = Vector2(24, 19.103)
+position = Vector2(24, 21)
 texture = ExtResource("7_onqfp")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="SkinButtons/Button1/?"]
@@ -552,7 +552,7 @@ offset_left = 200.0
 offset_right = 248.0
 offset_bottom = 48.0
 toggle_mode = true
-button_group = SubResource("ButtonGroup_3j4fm")
+button_group = SubResource("ButtonGroup_o4cxx")
 texture_normal = ExtResource("2_5tg7d")
 texture_disabled = ExtResource("5_m7r3n")
 
@@ -592,7 +592,7 @@ offset_left = 400.0
 offset_right = 448.0
 offset_bottom = 48.0
 toggle_mode = true
-button_group = SubResource("ButtonGroup_3j4fm")
+button_group = SubResource("ButtonGroup_o4cxx")
 texture_normal = ExtResource("2_5tg7d")
 texture_disabled = ExtResource("5_m7r3n")
 
@@ -632,7 +632,7 @@ offset_left = 600.0
 offset_right = 648.0
 offset_bottom = 48.0
 toggle_mode = true
-button_group = SubResource("ButtonGroup_3j4fm")
+button_group = SubResource("ButtonGroup_o4cxx")
 texture_normal = ExtResource("2_5tg7d")
 texture_disabled = ExtResource("5_m7r3n")
 
@@ -671,7 +671,7 @@ offset_left = 800.0
 offset_right = 848.0
 offset_bottom = 48.0
 toggle_mode = true
-button_group = SubResource("ButtonGroup_3j4fm")
+button_group = SubResource("ButtonGroup_o4cxx")
 texture_normal = ExtResource("2_5tg7d")
 texture_disabled = ExtResource("5_m7r3n")
 
@@ -710,7 +710,7 @@ offset_top = 200.0
 offset_right = 48.0
 offset_bottom = 248.0
 toggle_mode = true
-button_group = SubResource("ButtonGroup_3j4fm")
+button_group = SubResource("ButtonGroup_o4cxx")
 texture_normal = ExtResource("2_5tg7d")
 texture_disabled = ExtResource("5_m7r3n")
 
@@ -751,7 +751,7 @@ offset_top = 200.0
 offset_right = 248.0
 offset_bottom = 248.0
 toggle_mode = true
-button_group = SubResource("ButtonGroup_3j4fm")
+button_group = SubResource("ButtonGroup_o4cxx")
 texture_normal = ExtResource("2_5tg7d")
 texture_disabled = ExtResource("5_m7r3n")
 
@@ -807,7 +807,7 @@ offset_top = 200.0
 offset_right = 448.0
 offset_bottom = 248.0
 toggle_mode = true
-button_group = SubResource("ButtonGroup_3j4fm")
+button_group = SubResource("ButtonGroup_o4cxx")
 texture_normal = ExtResource("2_5tg7d")
 texture_disabled = ExtResource("5_m7r3n")
 
@@ -847,7 +847,7 @@ offset_top = 200.0
 offset_right = 648.0
 offset_bottom = 248.0
 toggle_mode = true
-button_group = SubResource("ButtonGroup_3j4fm")
+button_group = SubResource("ButtonGroup_o4cxx")
 texture_normal = ExtResource("2_5tg7d")
 texture_disabled = ExtResource("5_m7r3n")
 
@@ -888,7 +888,7 @@ offset_top = 200.0
 offset_right = 848.0
 offset_bottom = 248.0
 toggle_mode = true
-button_group = SubResource("ButtonGroup_3j4fm")
+button_group = SubResource("ButtonGroup_o4cxx")
 texture_normal = ExtResource("2_5tg7d")
 texture_disabled = ExtResource("5_m7r3n")
 
@@ -928,7 +928,7 @@ offset_top = 400.0
 offset_right = 48.0
 offset_bottom = 448.0
 toggle_mode = true
-button_group = SubResource("ButtonGroup_3j4fm")
+button_group = SubResource("ButtonGroup_o4cxx")
 texture_normal = ExtResource("2_5tg7d")
 texture_disabled = ExtResource("5_m7r3n")
 
@@ -971,7 +971,7 @@ offset_top = 400.0
 offset_right = 248.0
 offset_bottom = 448.0
 toggle_mode = true
-button_group = SubResource("ButtonGroup_3j4fm")
+button_group = SubResource("ButtonGroup_o4cxx")
 texture_normal = ExtResource("2_5tg7d")
 texture_disabled = ExtResource("5_m7r3n")
 
@@ -1012,7 +1012,7 @@ offset_top = 400.0
 offset_right = 448.0
 offset_bottom = 448.0
 toggle_mode = true
-button_group = SubResource("ButtonGroup_3j4fm")
+button_group = SubResource("ButtonGroup_o4cxx")
 texture_normal = ExtResource("2_5tg7d")
 texture_disabled = ExtResource("5_m7r3n")
 
@@ -1069,7 +1069,7 @@ offset_top = 400.0
 offset_right = 648.0
 offset_bottom = 448.0
 toggle_mode = true
-button_group = SubResource("ButtonGroup_3j4fm")
+button_group = SubResource("ButtonGroup_o4cxx")
 texture_normal = ExtResource("2_5tg7d")
 texture_disabled = ExtResource("5_m7r3n")
 

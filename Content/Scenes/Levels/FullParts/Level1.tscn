@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://ua4neh4wkukk" path="res://Content/Sprites/Levels/Level1/BackClouds.png" id="4_bng71"]
 [ext_resource type="Texture2D" uid="uid://7bqjeef5asfb" path="res://Content/Sprites/Levels/Level1/Clouds.png" id="4_gy5lc"]
 [ext_resource type="Texture2D" uid="uid://de74d3epufxbk" path="res://Content/Sprites/Levels/Level1/StreamAnimation.png" id="6_0stp4"]
-[ext_resource type="PackedScene" uid="uid://buj5ooik0q3l0" path="res://Content/Scenes/Other/AchievementArea.tscn" id="10_uiaak"]
+[ext_resource type="PackedScene" uid="uid://buj5ooik0q3l0" path="res://Content/Scenes/Achievements/AchievementArea.tscn" id="10_uiaak"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6c1h1"]
 atlas = ExtResource("3_th2o3")

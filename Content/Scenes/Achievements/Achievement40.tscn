@@ -22,4 +22,4 @@ text = "When far away an interrupted cry"
 
 [node name="Text" parent="." index="2"]
 offset_right = 356.0
-text = "Complete 9 level on \"Insane\" difficulty"
+text = "Complete level 9 on \"Insane\" difficulty"

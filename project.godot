@@ -38,6 +38,11 @@ window/vsync/vsync_mode=2
 
 project/assembly_name="Little Slippey"
 
+[filesystem]
+
+import/blender/enabled=false
+import/fbx/enabled=false
+
 [gui]
 
 fonts/dynamic_fonts/use_oversampling=false
@@ -157,6 +162,7 @@ common/enable_pause_aware_picking=true
 
 textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
+environment/glow/upscale_mode=0
 environment/defaults/default_environment="res://default_env.tres"
 vram_compression/import_etc=true
 quality/driver/driver_name="GLES2"

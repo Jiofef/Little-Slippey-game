@@ -5,18 +5,11 @@
 [node name="Achievement" instance=ExtResource("1_ag1cj")]
 
 [node name="Star1" parent="Sprite2D/Ratings" index="0"]
-modulate = Color(0.54902, 0.352941, 0, 1)
-
-[node name="Star2" parent="Sprite2D/Ratings" index="1"]
-visible = true
-modulate = Color(0.54902, 0.352941, 0, 1)
-
-[node name="Star3" parent="Sprite2D/Ratings" index="2"]
-visible = true
-modulate = Color(0.54902, 0.352941, 0, 1)
+modulate = Color(1, 1, 1, 0.501961)
 
 [node name="Name" parent="." index="1"]
-text = "Sansara"
+text = "You're getting somewhere"
 
 [node name="Text" parent="." index="2"]
-text = "Die 999 times"
+text = "Survive 50 seconds. 
+Try 150 to complete the level!"

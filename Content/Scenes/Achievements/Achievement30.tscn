@@ -22,4 +22,4 @@ text = "I have stood still"
 
 [node name="Text" parent="." index="2"]
 offset_right = 356.0
-text = "Complete 7 level on \"Insane\" difficulty"
+text = "Complete level 7 on \"Insane\" difficulty"

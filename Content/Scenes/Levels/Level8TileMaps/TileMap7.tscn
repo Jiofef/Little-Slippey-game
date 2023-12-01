@@ -1,5 +1,6 @@
-[gd_scene load_steps=26 format=3 uid="uid://8pub57isffbv"]
+[gd_scene load_steps=29 format=3 uid="uid://8pub57isffbv"]
 
+[ext_resource type="PackedScene" uid="uid://buj5ooik0q3l0" path="res://Content/Scenes/Achievements/AchievementArea.tscn" id="2_0hp2c"]
 [ext_resource type="PackedScene" uid="uid://dgxxv3neagyw" path="res://Content/Scenes/Other/Level8DisposableButton.tscn" id="2_5k45f"]
 [ext_resource type="Texture2D" uid="uid://duk32e0otnfky" path="res://Content/Sprites/Levels/FuckItVolume2Tileset.png" id="2_76mna"]
 [ext_resource type="PackedScene" uid="uid://bt41vubjcqv8p" path="res://Content/Scenes/Crosses/ExplosionAnimation.tscn" id="3_isuv8"]
@@ -237,6 +238,12 @@ sources/0 = SubResource("TileSetAtlasSource_wo38c")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iewxf"]
 size = Vector2(16, 32)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tpii1"]
+size = Vector2(72, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_36kcc"]
+size = Vector2(112, 32)
+
 [sub_resource type="AtlasTexture" id="9"]
 atlas = ExtResource("4_yow1n")
 region = Rect2(0, 0, 48, 48)
@@ -381,12 +388,27 @@ collision_mask = 0
 position = Vector2(216, 144)
 shape = SubResource("RectangleShape2D_iewxf")
 
+[node name="AchievementArea" parent="Secret (!)" instance=ExtResource("2_0hp2c")]
+position = Vector2(192, 144)
+_achievementIndex = 31
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Secret (!)/AchievementArea"]
+position = Vector2(8, 0)
+shape = SubResource("RectangleShape2D_tpii1")
+
 [node name="SecretShortCut" type="TileMap" parent="."]
 modulate = Color(1, 1, 1, 0.941176)
 z_index = 1
 tile_set = SubResource("TileSet_s0rms")
 format = 2
 layer_0/tile_data = PackedInt32Array(15, 65536, 1, 16, 65536, 1, 17, 65536, 1, 18, 65536, 1, 19, 65536, 1, 20, 65536, 1, 21, 65536, 1, 22, 65536, 1, 65552, 65536, 1, 65553, 65536, 1, 65554, 65536, 1, 65555, 65536, 1, 65556, 65536, 1, 65557, 65536, 1, 65558, 65536, 1, -65521, 65536, 1, -65520, 65536, 1, -65519, 65536, 1, -65518, 65536, 1, -65517, 65536, 1, -65516, 65536, 1, -65515, 65536, 1, -65514, 65536, 1)
+
+[node name="AchievementArea" parent="SecretShortCut" instance=ExtResource("2_0hp2c")]
+position = Vector2(304, 16)
+_achievementIndex = 31
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SecretShortCut/AchievementArea"]
+shape = SubResource("RectangleShape2D_36kcc")
 
 [node name="DisposableButton" parent="." instance=ExtResource("2_5k45f")]
 z_index = -1
@@ -424,7 +446,6 @@ color = Color(0.784314, 0.784314, 0.705882, 1)
 
 [node name="ExplosionSound" type="AudioStreamPlayer" parent="DisposableButton/Explosion"]
 stream = ExtResource("5_gfefn")
-bus = &"LevelSounds"
 
 [node name="DisposableButton2" parent="." instance=ExtResource("2_5k45f")]
 z_index = -1
@@ -462,7 +483,6 @@ color = Color(0.784314, 0.784314, 0.705882, 1)
 
 [node name="ExplosionSound" type="AudioStreamPlayer" parent="DisposableButton2/Explosion"]
 stream = ExtResource("5_gfefn")
-bus = &"LevelSounds"
 
 [node name="DisposableButton3" parent="." instance=ExtResource("2_5k45f")]
 z_index = -1
@@ -500,7 +520,6 @@ color = Color(0.784314, 0.784314, 0.705882, 1)
 
 [node name="ExplosionSound" type="AudioStreamPlayer" parent="DisposableButton3/Explosion"]
 stream = ExtResource("5_gfefn")
-bus = &"LevelSounds"
 
 [node name="DisposableButton4" parent="." instance=ExtResource("2_5k45f")]
 z_index = -1
@@ -538,7 +557,6 @@ color = Color(0.784314, 0.784314, 0.705882, 1)
 
 [node name="ExplosionSound" type="AudioStreamPlayer" parent="DisposableButton4/Explosion"]
 stream = ExtResource("5_gfefn")
-bus = &"LevelSounds"
 
 [connection signal="ButtonPressed" from="DisposableButton" to="DisposableButton/TileMap" method="queue_free"]
 [connection signal="ButtonPressed" from="DisposableButton" to="DisposableButton/Explosion/ExplosionAnimation" method="play"]

@@ -20,4 +20,4 @@ text = "T is sweet to visit the still wood, where springs"
 
 [node name="Text" parent="." index="2"]
 offset_right = 356.0
-text = "Complete 3 level on \"Hard\" difficulty"
+text = "Complete level 3 on \"Hard\" difficulty"

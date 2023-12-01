@@ -4,7 +4,8 @@ public partial class SkinsMenu : Control
 {
 	public override void _Ready()
 	{
-        int[] NeededAchievementIndexes = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12};
+        int[] NeededAchievementIndexes = { 3, 12, 15, 18, 21, 24, 27, 30, 35, 40, 43, 49, 50};
+        int SkinsUnlocked = 0;
         for (int i = 0; i < NeededAchievementIndexes.Length; i++)
         {
             if (UnchangableMeta.AchievementStatuses[NeededAchievementIndexes[i]] != 1)
@@ -15,13 +16,13 @@ public partial class SkinsMenu : Control
 				GetNode<Sprite2D>("SkinButtons/Button" + (i + 2) + "/?").Visible = true;
             }
 			else
+			{
                 GetNode<Sprite2D>("SkinButtons/Button" + (i + 2) + "/?").QueueFree();
+				SkinsUnlocked++;
+            }
         }
         
 		GetNode<TextureButton>("SkinButtons/Button" + (Meta.Instance.ChosenSkinIndex + 1)).ButtonPressed = true;
-		int SkinsUnlocked = 0;
-		for (int i = 0; i < UnchangableMeta.AchievementStatuses.Length; i++)
-			SkinsUnlocked += UnchangableMeta.AchievementStatuses[i];
 		GetNode<Label>("SkinsUnlocked").Text = "Skins: " + (SkinsUnlocked + 1) + "/" + (NeededAchievementIndexes.Length + 1);
 	}
 	public void SetSkin(int index)

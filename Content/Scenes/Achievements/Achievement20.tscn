@@ -19,4 +19,4 @@ text = "The first flower of the plain"
 
 [node name="Text" parent="." index="2"]
 offset_right = 356.0
-text = "Complete 4 level on \"Hard\" difficulty"
+text = "Complete level 4 on \"Hard\" difficulty"

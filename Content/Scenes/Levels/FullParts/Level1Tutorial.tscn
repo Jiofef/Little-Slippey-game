@@ -1,4 +1,4 @@
-[gd_scene load_steps=180 format=3 uid="uid://dectjputr4l2t"]
+[gd_scene load_steps=184 format=3 uid="uid://dectjputr4l2t"]
 
 [ext_resource type="Script" path="res://Content/Scripts/Levels/BaseLevelScript.cs" id="1_bk1up"]
 [ext_resource type="Texture2D" uid="uid://b44rk1g0wwsxv" path="res://Content/Sprites/Levels/Level1/TutorialBackLayer.png" id="1_dadje"]
@@ -19,6 +19,7 @@
 [ext_resource type="AudioStream" uid="uid://bv7hkm2wpfnhb" path="res://Content/Sounds/Levels/TutorialAmbient.mp3" id="15_qqjae"]
 [ext_resource type="Texture2D" uid="uid://bco73po5sb1jp" path="res://Content/Sprites/Levels/Level1/TheConsciousness.png" id="16_pbg6t"]
 [ext_resource type="Script" path="res://Content/Scripts/Levels/TutorialCanvasLayer.cs" id="17_fhgxn"]
+[ext_resource type="PackedScene" uid="uid://buj5ooik0q3l0" path="res://Content/Scenes/Achievements/AchievementArea.tscn" id="19_bmwbi"]
 [ext_resource type="Texture2D" uid="uid://cd6j7b3w6mw8d" path="res://Content/Sprites/Levels/Level1/WoodParticles.png" id="19_nan3p"]
 [ext_resource type="Script" path="res://Content/Scripts/Levels/Level8DisposableButton.cs" id="19_of7hb"]
 [ext_resource type="AudioStream" uid="uid://cumpwc1bemm6b" path="res://Content/Sounds/Levels/TutorialRockQuicking.mp3" id="19_rtfa8"]
@@ -898,6 +899,9 @@ sources/2 = SubResource("TileSetAtlasSource_4l6j7")
 sources/3 = SubResource("TileSetAtlasSource_mqmhy")
 pattern_0 = SubResource("TileMapPattern_1wcn4")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_62pp6"]
+size = Vector2(64.0001, 128)
+
 [sub_resource type="Animation" id="Animation_w65lh"]
 resource_name = "FallingDown"
 length = 0.5
@@ -1052,6 +1056,9 @@ animations = [{
 "name": &"default",
 "speed": 5.0
 }]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qrdyq"]
+size = Vector2(144, 160)
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_lavo8"]
 tile_data = PackedInt32Array(0, 1, 2, 65536, 1, 2, 196610, 1, 2, 4, 1, 2, 65540, 1, 2)
@@ -1660,6 +1667,9 @@ _data = {
 [sub_resource type="Gradient" id="Gradient_fw8ms"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q0s52"]
+size = Vector2(160, 118)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iy0xk"]
 size = Vector2(4096, 256)
 
@@ -2228,7 +2238,7 @@ tracks/10/keys = {
 "times": PackedFloat32Array(4),
 "transitions": PackedFloat32Array(1),
 "values": [{
-"args": [0],
+"args": [3],
 "method": &"GiveAchievement"
 }]
 }
@@ -2952,6 +2962,12 @@ tile_set = SubResource("TileSet_jidnq")
 format = 2
 layer_0/tile_data = PackedInt32Array(3539247, 1, 2, 3604783, 1, 2, 3670319, 1, 2, 3735855, 1, 2, 3801391, 1, 2, 3866927, 1, 2, 3932463, 1, 2, 3997999, 1, 2, 4063535, 1, 2, 3539248, 1, 2, 3604784, 1, 2, 3670320, 1, 2, 3735856, 1, 2, 3801392, 1, 2, 3866928, 1, 2, 3932464, 1, 2, 3998000, 1, 2, 4063536, 1, 2, 3539252, 1, 2, 3604788, 1, 2, 3670324, 1, 2, 3735860, 1, 2, 3801396, 1, 2, 3866932, 1, 2, 3932468, 1, 2, 3998004, 1, 2, 4063540, 1, 2, 3539253, 1, 2, 3604789, 1, 2, 3670325, 1, 2, 3735861, 1, 2, 3801397, 1, 2, 3866933, 1, 2, 3932469, 1, 2, 3998005, 1, 2, 4063541, 1, 2, 3408187, 1, 2, 3473723, 1, 2, 3539259, 1, 2, 3604795, 1, 2, 3670331, 1, 2, 3735867, 1, 2, 3801403, 1, 2, 3866939, 1, 2, 3932475, 1, 2, 3998011, 1, 2, 4063547, 1, 2, 3408188, 1, 2, 3473724, 1, 2, 3539260, 1, 2, 3604796, 1, 2, 3670332, 1, 2, 3735868, 1, 2, 3801404, 1, 2, 3866940, 1, 2, 3932476, 1, 2, 3998012, 1, 2, 4063548, 1, 2, 3539264, 1, 2, 3604800, 1, 2, 3670336, 1, 2, 3735872, 1, 2, 3801408, 1, 2, 3866944, 1, 2, 3932480, 1, 2, 3539265, 1, 2, 3604801, 1, 2, 3670337, 1, 2, 3735873, 1, 2, 3801409, 1, 2, 3866945, 1, 2, 3932481, 1, 2, 3998017, 1, 2, 3604806, 1, 2, 3670342, 1, 2, 3735878, 1, 2, 3801414, 1, 2, 3604807, 1, 2, 3670343, 1, 2, 3735879, 1, 2, 3801415, 1, 2, 3866951, 1, 2, 3932487, 1, 2, 3801418, 1, 2, 3866954, 1, 2, 3932490, 1, 2, 3998026, 1, 2, 3277099, 1, 2, 3342635, 1, 2, 3408171, 1, 2, 3473707, 1, 2, 3539243, 1, 2, 3604779, 1, 2, 3670315, 1, 2, 3735851, 1, 2, 3801387, 1, 2, 3866923, 1, 2, 3932459, 1, 2, 3997995, 1, 2, 4063531, 1, 2)
 
+[node name="AchievementArea" parent="TileMap3" instance=ExtResource("19_bmwbi")]
+position = Vector2(4768, 448)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TileMap3/AchievementArea"]
+shape = SubResource("RectangleShape2D_62pp6")
+
 [node name="TileMap4" type="TileMap" parent="."]
 scale = Vector2(4, 4)
 tile_set = SubResource("TileSet_0f6mf")
@@ -3041,6 +3057,13 @@ scale = Vector2(0.3, 0.3)
 sprite_frames = SubResource("SpriteFrames_qoy60")
 autoplay = "default"
 frame_progress = 0.866652
+
+[node name="AchievementArea" parent="TileMap4/ShowSecretArea" instance=ExtResource("19_bmwbi")]
+position = Vector2(72, -288)
+_achievementIndex = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TileMap4/ShowSecretArea/AchievementArea"]
+shape = SubResource("RectangleShape2D_qrdyq")
 
 [node name="TileMap5" type="TileMap" parent="."]
 scale = Vector2(4, 4)
@@ -3305,6 +3328,13 @@ color_ramp = SubResource("Gradient_fw8ms")
 
 [node name="TileMapBreakingSound" type="AudioStreamPlayer" parent="TileMap5/SecretActivationArea"]
 stream = ExtResource("29_duhwr")
+
+[node name="AchievementArea" parent="TileMap5/SecretActivationArea" instance=ExtResource("19_bmwbi")]
+position = Vector2(32, -107)
+_achievementIndex = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TileMap5/SecretActivationArea/AchievementArea"]
+shape = SubResource("RectangleShape2D_q0s52")
 
 [node name="ColorRect" type="ColorRect" parent="TileMap5"]
 visible = false
@@ -3581,6 +3611,7 @@ position = Vector2(13544, 936)
 scale = Vector2(0.75, 0.75)
 
 [node name="Text" parent="TileMap7/TutorialTV/Screen" index="2"]
+modulate = Color(1, 1, 1, 0)
 text = "!YOU WIN!"
 
 [node name="Text2" type="Label" parent="TileMap7/TutorialTV/Screen" index="3"]

@@ -34,4 +34,4 @@ text = "Kept treading – treading – till it seemed"
 
 [node name="Text" parent="." index="2"]
 offset_right = 272.0
-text = "Complete 3 level on \"Inferno\" difficulty"
+text = "Complete level 3 on \"Inferno\" difficulty"

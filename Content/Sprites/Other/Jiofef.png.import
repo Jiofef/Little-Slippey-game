@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dpy1qd8d3cdqj"
-path="res://.godot/imported/Jiofef.jpg-f143414ee81882511c304e8fd0e46247.ctex"
+uid="uid://cx42eys4hmvdl"
+path="res://.godot/imported/Jiofef.png-c45a84cf7b4b1b337756051091b5a711.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Content/Sprites/Other/Jiofef.jpg"
-dest_files=["res://.godot/imported/Jiofef.jpg-f143414ee81882511c304e8fd0e46247.ctex"]
+source_file="res://Content/Sprites/Other/Jiofef.png"
+dest_files=["res://.godot/imported/Jiofef.png-c45a84cf7b4b1b337756051091b5a711.ctex"]
 
 [params]
 

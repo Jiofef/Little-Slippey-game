@@ -34,4 +34,4 @@ text = "And Mourners to and fro"
 
 [node name="Text" parent="." index="2"]
 offset_right = 272.0
-text = "Complete 2 level on \"Inferno\" difficulty"
+text = "Complete level 2 on \"Inferno\" difficulty"

@@ -35,4 +35,4 @@ text = "And creak across my Soul..."
 
 [node name="Text" parent="." index="2"]
 offset_right = 272.0
-text = "Complete 10 level on \"Inferno\" difficulty"
+text = "Complete level 10 on \"Inferno\" difficulty"

@@ -1,9 +1,10 @@
-[gd_scene load_steps=30 format=3 uid="uid://bhdk3hc3a3lwy"]
+[gd_scene load_steps=32 format=3 uid="uid://bhdk3hc3a3lwy"]
 
 [ext_resource type="Texture2D" uid="uid://duk32e0otnfky" path="res://Content/Sprites/Levels/FuckItVolume2Tileset.png" id="1_4iiti"]
 [ext_resource type="PackedScene" uid="uid://dgxxv3neagyw" path="res://Content/Scenes/Other/Level8DisposableButton.tscn" id="2_og6f4"]
 [ext_resource type="Texture2D" uid="uid://bwf8xkvlnxt70" path="res://Content/Sprites/Levels/Level8/Gatcha.png" id="2_t7wd0"]
 [ext_resource type="Texture2D" uid="uid://be6qklxwpawql" path="res://Content/Sprites/Levels/Level8/Gotcha.png" id="3_tnkf2"]
+[ext_resource type="PackedScene" uid="uid://buj5ooik0q3l0" path="res://Content/Scenes/Achievements/AchievementArea.tscn" id="5_mu3p2"]
 [ext_resource type="Texture2D" uid="uid://dgluki8hnwb62" path="res://Content/Sprites/Levels/Level8/AcidAndLavaTileset.png" id="5_r11w0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wv2uq"]
@@ -367,6 +368,9 @@ sources/0 = SubResource("TileSetAtlasSource_y0abm")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f14ry"]
 size = Vector2(804.572, 1772.24)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3cqvc"]
+size = Vector2(16, 24)
 
 [sub_resource type="Animation" id="Animation_fkyqf"]
 resource_name = "Opening"
@@ -758,6 +762,13 @@ disabled = true
 z_index = -1
 position = Vector2(296, 4)
 rotation = 3.14159
+
+[node name="AchievementArea" parent="Secret" instance=ExtResource("5_mu3p2")]
+position = Vector2(296, 16)
+_achievementIndex = 31
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Secret/AchievementArea"]
+shape = SubResource("RectangleShape2D_3cqvc")
 
 [node name="OpenableTileMaps" type="Node2D" parent="."]
 

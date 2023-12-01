@@ -18,6 +18,7 @@ public partial class UnchangableMeta : Node
     public static byte[] LevelPlayedStatus = new byte[G.LevelsInGameTotal]; //I made it as byte[] because of retard Godot that can't save a boolean array >:(
 
     public static bool IsTutorialPlayed, IsLevel9PlatformSectionFirstTimeCompleted, IsLevel9PlatformSectionSkipAllowed, IsFakeLevel10SkipAllowed;
+    public static float DeathsNumber = 0;
     public static byte[] AchievementStatuses = new byte[51]; // A G A I N
 
     public static int AchievementsCount()
@@ -35,7 +36,19 @@ public partial class UnchangableMeta : Node
             LevelRecords[Meta.Instance.Dificulty][G.CurrentLevel - 1] = (int)G.Scores;
             G.IsNewRecordReached = true;
             if (G.Scores >= 150 && Meta.Instance.Dificulty + 1 > LevelCompleteStatus[G.CurrentLevel - 1])
+            {
                 LevelCompleteStatus[G.CurrentLevel - 1] = Meta.Instance.Dificulty + 1;
+                for (int i = 0; i <= Meta.Instance.Dificulty; i++)
+                    G.GetAchievement(G.LevelCompletionAchievementNumbers[i][G.CurrentLevel - 1]);
+            }
+        }
+        if (G.Scores >= 150 && Meta.Instance.CameraZoom >= 2)
+            G.GetAchievement(8);
+        if (G.Scores >= 150 && G.CurrentLevel == 10)
+        {
+            G.GetAchievement(45);
+            G.GetAchievement(46);
+            G.GetAchievement(47);
         }
     }
 

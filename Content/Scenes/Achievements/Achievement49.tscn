@@ -9,11 +9,11 @@ modulate = Color(1, 0, 0, 1)
 
 [node name="Star2" parent="Sprite2D/Ratings" index="1"]
 visible = true
-modulate = Color(0.470588, 0, 0, 1)
+modulate = Color(1, 0, 0, 1)
 
 [node name="Star3" parent="Sprite2D/Ratings" index="2"]
 visible = true
-modulate = Color(0, 0, 0, 1)
+modulate = Color(1, 0, 0, 1)
 
 [node name="Name" parent="." index="1"]
 text = "A criminal against humanity"

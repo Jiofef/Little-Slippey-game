@@ -22,6 +22,7 @@ public partial class Level9PlatformerSection : TileMap
     }
     public void AhahahSilly()
     {
+        G.GetAchievement(36);
         UnchangableMeta.IsLevel9PlatformSectionSkipAllowed = true;
         G.LevelAdditionalLink = "WithoutPlatformSection";
         Connect("Reset", new Callable(GetNode(".."), "Reset"));

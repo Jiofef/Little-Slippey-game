@@ -9,10 +9,15 @@ public partial class FinalLetter : Node2D
         UnchangableMeta.SaveRecords();
         UnchangableMeta.SaveToFile();
         G.CompletelyResetValues();
+        G.CurrentPopupAchievementsLayer = GetNode<CanvasLayer>("PopupAchievementsLayer");
     }
     public void Close()
     {
         G.CompletelyResetValues();
         GetTree().ChangeSceneToFile("res://Content/Scenes/Interface&Menu/WelcomeToGOS.tscn");
+    }
+    public void ACriminalAgainstHumanity()
+    {
+        G.GetAchievement(48);
     }
 }

@@ -241,6 +241,15 @@ public partial class Player : CharacterBody2D
 
     public void Death()
     {
+        UnchangableMeta.DeathsNumber++;
+        switch(UnchangableMeta.DeathsNumber)
+        {
+            case 2: G.GetAchievement(4); break;
+            case 35: G.GetAchievement(5); break;
+            case 273: G.GetAchievement(6); break;
+            case 999: G.GetAchievement(7); break;
+        }
+
         ZIndex++;
 
         Random random = new Random();

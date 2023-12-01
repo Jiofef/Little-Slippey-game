@@ -317,3 +317,5 @@ layer = 100
 [connection signal="pressed" from="Pause/Interface/ButtonsFrame/Options" to="." method="Options"]
 [connection signal="pressed" from="Pause/Interface/ButtonsFrame/Menu" to="." method="Menu"]
 [connection signal="animation_finished" from="EpicIntro/AnimationPlayer" to="EpicIntro" method="queue_free" unbinds=1]
+
+[editable path="Pause/Interface/ButtonsFrame/Menu"]

@@ -19,4 +19,4 @@ text = "Seed-time and harvest, has returned again"
 
 [node name="Text" parent="." index="2"]
 offset_right = 356.0
-text = "Complete 2 level on \"Hard\" difficulty"
+text = "Complete level 2 on \"Hard\" difficulty"

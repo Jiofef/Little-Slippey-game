@@ -843,7 +843,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="ToggleOldFilmButton" type="CheckBox" parent="Visual/AdittionalButtons"]
-modulate = Color(1, 0.745098, 0.301961, 1)
+modulate = Color(0.762639, 0.531746, 1.34766e-06, 1)
 layout_mode = 0
 offset_left = 65.0
 offset_right = 89.0
@@ -873,7 +873,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="ToggleJiofefHeadButton" type="CheckBox" parent="Visual/AdittionalButtons"]
-modulate = Color(1, 0.301961, 0.301961, 1)
+modulate = Color(0.784314, 0, 0, 1)
 layout_mode = 0
 offset_left = 130.0
 offset_right = 154.0
@@ -903,7 +903,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="ToggleEnhancedCrossesButton" type="CheckBox" parent="Visual/AdittionalButtons"]
-modulate = Color(0.301961, 0.580392, 1, 1)
+modulate = Color(0.54902, 0, 1, 1)
 layout_mode = 0
 offset_left = 194.0
 offset_right = 218.0
@@ -1355,6 +1355,7 @@ offset_right = 1280.0
 offset_bottom = 720.0
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
+metadata/_edit_lock_ = true
 
 [connection signal="pressed" from="Visual/DifficultyButtons/HardModeButton" to="." method="SetDifficulty" binds= [0]]
 [connection signal="pressed" from="Visual/DifficultyButtons/InsaneModeButton" to="." method="SetDifficulty" binds= [1]]

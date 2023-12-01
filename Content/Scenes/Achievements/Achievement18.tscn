@@ -22,4 +22,4 @@ text = "I have outwalked the furthest city light"
 
 [node name="Text" parent="." index="2"]
 offset_right = 356.0
-text = "Complete 3 level on \"Insane\" difficulty"
+text = "Complete level 3 on \"Insane\" difficulty"

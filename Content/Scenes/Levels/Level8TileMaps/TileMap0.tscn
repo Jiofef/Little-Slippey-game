@@ -1,5 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://12bn02q4rmta"]
+[gd_scene load_steps=10 format=3 uid="uid://12bn02q4rmta"]
 
+[ext_resource type="PackedScene" uid="uid://buj5ooik0q3l0" path="res://Content/Scenes/Achievements/AchievementArea.tscn" id="2_fekg1"]
 [ext_resource type="Texture2D" uid="uid://duk32e0otnfky" path="res://Content/Sprites/Levels/FuckItVolume2Tileset.png" id="2_vd1cr"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wv2uq"]
@@ -334,6 +335,9 @@ texture = ExtResource("2_vd1cr")
 [sub_resource type="TileSet" id="TileSet_8oww4"]
 sources/0 = SubResource("TileSetAtlasSource_vblaq")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yl6lk"]
+size = Vector2(48, 16)
+
 [node name="TileMap" type="TileMap"]
 scale = Vector2(4, 4)
 tile_set = SubResource("TileSet_gtmsj")
@@ -353,3 +357,11 @@ z_index = 1
 tile_set = SubResource("TileSet_8oww4")
 format = 2
 layer_0/tile_data = PackedInt32Array(589853, 65536, 1, 589854, 65536, 1, 589855, 65536, 1, 589852, 196608, 65540, 524317, 65536, 1, 524318, 65536, 1, 524319, 131072, 1, 524316, 196608, 65540)
+
+[node name="AchievementArea" parent="SecretShortCut" instance=ExtResource("2_fekg1")]
+position = Vector2(481.5, 152.5)
+_achievementIndex = 31
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SecretShortCut/AchievementArea"]
+position = Vector2(-1.5, -0.5)
+shape = SubResource("RectangleShape2D_yl6lk")

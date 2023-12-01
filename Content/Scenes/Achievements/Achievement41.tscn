@@ -56,4 +56,4 @@ text = "And then I heard them lift a Box"
 
 [node name="Text" parent="." index="2"]
 offset_right = 272.0
-text = "Complete 9 level on \"Inferno\" difficulty"
+text = "Complete level 9 on \"Inferno\" difficulty"

@@ -23,4 +23,4 @@ text = "When forest glades are teeming with bright forms"
 
 [node name="Text" parent="." index="2"]
 offset_right = 356.0
-text = "Complete 5 level on \"Insane\" difficulty"
+text = "Complete level 5 on \"Insane\" difficulty"

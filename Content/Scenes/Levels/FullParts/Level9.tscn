@@ -1,4 +1,4 @@
-[gd_scene load_steps=95 format=3 uid="uid://bs1p0ejy2t40w"]
+[gd_scene load_steps=96 format=3 uid="uid://bs1p0ejy2t40w"]
 
 [ext_resource type="Script" path="res://Content/Scripts/Levels/BaseLevelScript.cs" id="1_gw2dt"]
 [ext_resource type="Texture2D" uid="uid://q2j1uuqfjmos" path="res://Content/Sprites/Levels/BaseTileSet.png" id="1_tk1f8"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://dgluki8hnwb62" path="res://Content/Sprites/Levels/Level8/AcidAndLavaTileset.png" id="6_lv5lb"]
 [ext_resource type="PackedScene" uid="uid://c3dqig02x5lyb" path="res://Content/Scenes/Other/Level9JiofefHead.tscn" id="9_lgxfu"]
 [ext_resource type="Texture2D" uid="uid://b80jw2mpdhli5" path="res://Content/Sprites/Levels/Level9/DAaAAaAaArk.png" id="19_3qowr"]
+[ext_resource type="PackedScene" uid="uid://buj5ooik0q3l0" path="res://Content/Scenes/Achievements/AchievementArea.tscn" id="22_ltbri"]
 [ext_resource type="Script" path="res://Content/Scripts/Levels/Level9PlatformerSection.cs" id="43_mh8uw"]
 [ext_resource type="Texture2D" uid="uid://dlx8ycfcvywk5" path="res://Content/Sprites/Levels/InMyHeadTileset.png" id="43_ubrpb"]
 [ext_resource type="PackedScene" uid="uid://d3u7pfig07yrs" path="res://Content/Scenes/Other/CrutchedArea2D.tscn" id="44_l3ibg"]
@@ -1019,7 +1020,6 @@ layer_0/tile_data = PackedInt32Array(-262226, 1, 3, -196690, 65537, 2, -131154, 
 [node name="CameraLimitsSetTrigger" parent="PlatformerSection" instance=ExtResource("44_l3ibg")]
 position = Vector2(-1248, 0)
 scale = Vector2(0.25, 0.25)
-metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlatformerSection/CameraLimitsSetTrigger"]
 shape = SubResource("RectangleShape2D_33woj")
@@ -1128,21 +1128,17 @@ libraries = {
 "": SubResource("AnimationLibrary_a3tob")
 }
 
-[node name="StillThereIs" type="Area2D" parent="PlatformerSection/NoWayBro"]
-editor_description = "Link the achievement to this area when the achievement system is ready"
+[node name="AchievementArea" parent="PlatformerSection/NoWayBro" instance=ExtResource("22_ltbri")]
 position = Vector2(128, -32)
-collision_layer = 0
-collision_mask = 8
-script = ExtResource("46_qtf7s")
+_achievementIndex = 37
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlatformerSection/NoWayBro/StillThereIs"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlatformerSection/NoWayBro/AchievementArea"]
 position = Vector2(0, -40)
 shape = SubResource("RectangleShape2D_4us4l")
 
 [node name="CameraLimitsSetTrigger2" parent="PlatformerSection" instance=ExtResource("44_l3ibg")]
 position = Vector2(848, 320)
 scale = Vector2(0.25, 0.25)
-metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlatformerSection/CameraLimitsSetTrigger2"]
 shape = SubResource("RectangleShape2D_22bn6")

@@ -1,5 +1,4 @@
 using Godot;
-using System.Linq;
 
 public partial class AchievementsMenu : Control
 {
@@ -10,7 +9,9 @@ public partial class AchievementsMenu : Control
 		for (int i = 0; i < UnchangableMeta.AchievementStatuses.Length; i++)
 		{
 			var achievement = (Control)ResourceLoader.Load<PackedScene>("res://Content/Scenes/Achievements/Achievement" + (i + 1) + ".tscn").Instantiate();
-			if (UnchangableMeta.AchievementStatuses[i] == 0)
+			achievement.GetNode<Timer>("PopupVersionPart/PopupTimer").Disconnect("tree_exiting", new Callable(achievement, "TimerDeleted"));
+			achievement.GetNode<Node2D>("PopupVersionPart").QueueFree();
+            if (UnchangableMeta.AchievementStatuses[i] == 0)
 			{
                 achievement.GetNode<Label>("Name").QueueFree();
                 achievement.GetNode<Node2D>("Sprite2D/Ratings").QueueFree();

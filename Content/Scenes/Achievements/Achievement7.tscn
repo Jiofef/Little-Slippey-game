@@ -12,10 +12,9 @@ visible = true
 modulate = Color(0.54902, 0.352941, 0, 1)
 
 [node name="Name" parent="." index="1"]
-offset_right = 686.0
+offset_right = 471.0
 offset_bottom = 34.0
-text = "Over and over and over and over and over and over and over and over and over and over and over and over"
-clip_text = true
+text = "Over and over and over and over and over and "
 
 [node name="Text" parent="." index="2"]
 text = "Die 273 times"

@@ -20,4 +20,4 @@ text = "From the earth's loosened mould, the sapling draws its sustenance, and t
 
 [node name="Text" parent="." index="2"]
 offset_right = 356.0
-text = "Complete 8 level on \"Hard\" difficulty"
+text = "Complete level 8 on \"Hard\" difficulty"

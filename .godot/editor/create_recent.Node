@@ -1,11 +1,12 @@
+CanvasLayer
+CollisionShape2D
+CollisionPolygon2D
 Sprite2D
 AnimationPlayer
 Node2D
 AnimatedSprite2D
-CollisionShape2D
 AudioStreamPlayer
 ColorRect
-CanvasLayer
 CPUParticles2D
 AudioListener2D
 Camera2D
@@ -29,4 +30,3 @@ Path2D
 StaticBody2D
 RigidBody2D
 VBoxContainer
-VScrollBar

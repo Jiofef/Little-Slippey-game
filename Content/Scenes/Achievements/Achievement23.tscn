@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://ngsgpnke2ca4"]
+[gd_scene load_steps=4 format=3 uid="uid://ngsgpnke2ca4"]
 
 [ext_resource type="PackedScene" uid="uid://d27nwc3cdixbo" path="res://Content/Scenes/Achievements/DefaultAchievement.tscn" id="1_qqpll"]
 [ext_resource type="Texture2D" uid="uid://bppnbtehdr3md" path="res://Content/Sprites/Interface/LevelsIcons.png" id="2_rgdqp"]
+[ext_resource type="Texture2D" uid="uid://cgeg2sbqwpim2" path="res://Content/Sprites/Interface/AchievementAdditionKey.png" id="3_3cgoa"]
 
 [node name="Achievement" instance=ExtResource("1_qqpll")]
 
@@ -17,9 +18,13 @@ region_rect = Rect2(180, 0, 45, 45)
 [node name="RewardBox2" parent="Sprite2D" index="1"]
 visible = true
 
+[node name="RewardSprite" parent="Sprite2D/RewardBox2" index="0"]
+modulate = Color(0, 0.34902, 0.34902, 1)
+texture = ExtResource("3_3cgoa")
+
 [node name="Name" parent="." index="1"]
 text = "I love the season well"
 
 [node name="Text" parent="." index="2"]
 offset_right = 272.0
-text = "Complete 5 level on \"Hard\" difficulty"
+text = "Complete level 5 on \"Hard\" difficulty"
