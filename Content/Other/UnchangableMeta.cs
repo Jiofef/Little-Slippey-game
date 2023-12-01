@@ -42,6 +42,8 @@ public partial class UnchangableMeta : Node
                     G.GetAchievement(G.LevelCompletionAchievementNumbers[i][G.CurrentLevel - 1]);
             }
         }
+        if (G.Scores >= 50)
+            G.GetAchievement(7);
         if (G.Scores >= 150 && Meta.Instance.CameraZoom >= 2)
             G.GetAchievement(8);
         if (G.Scores >= 150 && G.CurrentLevel == 10)

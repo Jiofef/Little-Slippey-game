@@ -1,0 +1,355 @@
+[gd_scene load_steps=12 format=3 uid="uid://b4srh3us7jexg"]
+
+[ext_resource type="Texture2D" uid="uid://wpxl612ttbw5" path="res://Content/Sprites/Interface/RecycleBinContainer.png" id="1_7olll"]
+[ext_resource type="PackedScene" uid="uid://bwpstpk1xmkah" path="res://Content/Scenes/Interface&Menu/Button.tscn" id="2_cpq08"]
+[ext_resource type="Texture2D" uid="uid://c4vm1al1458fw" path="res://Content/Sprites/Interface/TXTFileIcon.png" id="3_hpaob"]
+[ext_resource type="Texture2D" uid="uid://sey4s4u68gsq" path="res://Content/Sprites/Interface/PictureIcon.png" id="4_hbnvg"]
+[ext_resource type="Texture2D" uid="uid://dvnx6uvqwda4a" path="res://Content/Sprites/Interface/BoostyIcon.png" id="5_h7g8x"]
+[ext_resource type="Texture2D" uid="uid://xrdfs0in8rkd" path="res://Content/Sprites/Interface/Discord.png" id="6_hnjhh"]
+[ext_resource type="Texture2D" uid="uid://vb7vdsdjg4xa" path="res://Content/Sprites/Interface/USADiscordFlag.png" id="7_vfq1x"]
+[ext_resource type="Texture2D" uid="uid://hcoc3411pyvj" path="res://Content/Sprites/Interface/RussiaDiscordFlag.png" id="8_7bxqy"]
+[ext_resource type="Texture2D" uid="uid://vrn404e8k71d" path="res://Content/Sprites/Interface/YoutubeIcon.png" id="9_hn5vf"]
+
+[sub_resource type="Animation" id="Animation_k2wbp"]
+resource_name = "Opening"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector2(1, 0), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_j3e8n"]
+_data = {
+"Opening": SubResource("Animation_k2wbp")
+}
+
+[node name="RecycleBinMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 164.0
+offset_top = 40.0
+offset_right = -156.0
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "Opening"
+libraries = {
+"": SubResource("AnimationLibrary_j3e8n")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(4, 4)
+texture = ExtResource("1_7olll")
+centered = false
+
+[node name="Icons" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 944.0
+offset_bottom = 623.0
+
+[node name="Button" parent="Icons" instance=ExtResource("2_cpq08")]
+layout_mode = 0
+texture_normal = ExtResource("3_hpaob")
+
+[node name="Txt" type="Label" parent="Icons"]
+offset_left = 4.0
+offset_top = 67.0
+offset_right = 102.0
+offset_bottom = 117.0
+scale = Vector2(0.6, 0.6)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+text = ".txt"
+horizontal_alignment = 1
+
+[node name="Button2" parent="Icons" instance=ExtResource("2_cpq08")]
+offset_left = 72.0
+offset_right = 88.0
+texture_normal = ExtResource("4_hbnvg")
+
+[node name="Img" type="Label" parent="Icons"]
+offset_left = 74.0
+offset_top = 67.0
+offset_right = 172.0
+offset_bottom = 117.0
+scale = Vector2(0.6, 0.6)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+text = ".img"
+horizontal_alignment = 1
+
+[node name="Button3" parent="Icons" instance=ExtResource("2_cpq08")]
+offset_left = 144.0
+offset_right = 160.0
+texture_normal = ExtResource("3_hpaob")
+
+[node name="Titles" type="Label" parent="Icons"]
+offset_left = 148.0
+offset_top = 67.0
+offset_right = 246.0
+offset_bottom = 117.0
+scale = Vector2(0.6, 0.6)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+text = "Titles.txt"
+horizontal_alignment = 1
+
+[node name="Button4" parent="Icons" instance=ExtResource("2_cpq08")]
+offset_left = 216.0
+offset_right = 232.0
+texture_normal = ExtResource("4_hbnvg")
+
+[node name="Img2" type="Label" parent="Icons"]
+offset_left = 218.0
+offset_top = 67.0
+offset_right = 316.0
+offset_bottom = 117.0
+scale = Vector2(0.6, 0.6)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+text = ".img"
+horizontal_alignment = 1
+
+[node name="Button5" parent="Icons" instance=ExtResource("2_cpq08")]
+offset_left = 288.0
+offset_right = 304.0
+texture_normal = ExtResource("4_hbnvg")
+
+[node name="Img3" type="Label" parent="Icons"]
+offset_left = 290.0
+offset_top = 67.0
+offset_right = 388.0
+offset_bottom = 117.0
+scale = Vector2(0.6, 0.6)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+text = ".img"
+horizontal_alignment = 1
+
+[node name="Button6" parent="Icons" instance=ExtResource("2_cpq08")]
+offset_left = 360.0
+offset_right = 376.0
+texture_normal = ExtResource("4_hbnvg")
+
+[node name="Img4" type="Label" parent="Icons"]
+offset_left = 362.0
+offset_top = 67.0
+offset_right = 460.0
+offset_bottom = 117.0
+scale = Vector2(0.6, 0.6)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+text = ".img"
+horizontal_alignment = 1
+
+[node name="Button7" parent="Icons" instance=ExtResource("2_cpq08")]
+offset_left = 432.0
+offset_right = 448.0
+texture_normal = ExtResource("3_hpaob")
+
+[node name="GratitudeDiaryTxt" type="Label" parent="Icons"]
+offset_left = 436.0
+offset_top = 67.0
+offset_right = 534.0
+offset_bottom = 117.0
+scale = Vector2(0.6, 0.6)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+text = "Gratitude
+Diary.txt
+"
+horizontal_alignment = 1
+
+[node name="Button8" parent="Icons" instance=ExtResource("2_cpq08")]
+offset_left = 504.0
+offset_right = 520.0
+texture_normal = ExtResource("4_hbnvg")
+
+[node name="Img5" type="Label" parent="Icons"]
+offset_left = 506.0
+offset_top = 67.0
+offset_right = 604.0
+offset_bottom = 117.0
+scale = Vector2(0.6, 0.6)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+text = ".img"
+horizontal_alignment = 1
+
+[node name="Button9" parent="Icons" instance=ExtResource("2_cpq08")]
+offset_left = 576.0
+offset_right = 592.0
+texture_normal = ExtResource("4_hbnvg")
+
+[node name="Img6" type="Label" parent="Icons"]
+offset_left = 578.0
+offset_top = 67.0
+offset_right = 676.0
+offset_bottom = 117.0
+scale = Vector2(0.6, 0.6)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+text = ".img"
+horizontal_alignment = 1
+
+[node name="Button10" parent="Icons" instance=ExtResource("2_cpq08")]
+offset_left = 648.0
+offset_right = 664.0
+texture_normal = ExtResource("4_hbnvg")
+
+[node name="Img7" type="Label" parent="Icons"]
+offset_left = 650.0
+offset_top = 67.0
+offset_right = 748.0
+offset_bottom = 117.0
+scale = Vector2(0.6, 0.6)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+text = ".img"
+horizontal_alignment = 1
+
+[node name="Button11" parent="Icons" instance=ExtResource("2_cpq08")]
+offset_left = 720.0
+offset_right = 736.0
+texture_normal = ExtResource("5_h7g8x")
+
+[node name="BoostyLink" type="Label" parent="Icons"]
+offset_left = 718.0
+offset_top = 67.0
+offset_right = 804.0
+offset_bottom = 117.0
+scale = Vector2(0.6, 0.6)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+text = "Boosty.link"
+horizontal_alignment = 1
+
+[node name="Button12" parent="Icons" instance=ExtResource("2_cpq08")]
+offset_left = 792.0
+offset_right = 808.0
+texture_normal = ExtResource("4_hbnvg")
+
+[node name="Img8" type="Label" parent="Icons"]
+offset_left = 794.0
+offset_top = 67.0
+offset_right = 892.0
+offset_bottom = 117.0
+scale = Vector2(0.6, 0.6)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+text = ".img"
+horizontal_alignment = 1
+
+[node name="Button13" parent="Icons" instance=ExtResource("2_cpq08")]
+offset_left = 864.0
+offset_right = 880.0
+texture_normal = ExtResource("4_hbnvg")
+
+[node name="Img9" type="Label" parent="Icons"]
+offset_left = 866.0
+offset_top = 67.0
+offset_right = 964.0
+offset_bottom = 117.0
+scale = Vector2(0.6, 0.6)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+text = ".img"
+horizontal_alignment = 1
+
+[node name="Button14" parent="Icons" instance=ExtResource("2_cpq08")]
+offset_top = 92.0
+offset_bottom = 108.0
+texture_normal = ExtResource("4_hbnvg")
+
+[node name="Img10" type="Label" parent="Icons"]
+offset_left = 8.0
+offset_top = 155.0
+offset_right = 94.0
+offset_bottom = 205.0
+scale = Vector2(0.6, 0.6)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+text = ".img"
+horizontal_alignment = 1
+
+[node name="Button15" parent="Icons" instance=ExtResource("2_cpq08")]
+offset_left = 72.0
+offset_top = 92.0
+offset_right = 88.0
+offset_bottom = 108.0
+texture_normal = ExtResource("6_hnjhh")
+
+[node name="USAFlag" type="Sprite2D" parent="Icons/Button15"]
+position = Vector2(8, 0)
+scale = Vector2(0.33, 0.33)
+texture = ExtResource("7_vfq1x")
+centered = false
+
+[node name="DiscordEngLink" type="Label" parent="Icons"]
+offset_left = 80.0
+offset_top = 155.0
+offset_right = 166.0
+offset_bottom = 205.0
+scale = Vector2(0.6, 0.6)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+text = "Discord
+Eng.link"
+horizontal_alignment = 1
+
+[node name="Button16" parent="Icons" instance=ExtResource("2_cpq08")]
+offset_left = 144.0
+offset_top = 92.0
+offset_right = 160.0
+offset_bottom = 108.0
+texture_normal = ExtResource("4_hbnvg")
+
+[node name="Img11" type="Label" parent="Icons"]
+offset_left = 150.0
+offset_top = 155.0
+offset_right = 236.0
+offset_bottom = 205.0
+scale = Vector2(0.6, 0.6)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+text = ".img"
+horizontal_alignment = 1
+
+[node name="Button17" parent="Icons" instance=ExtResource("2_cpq08")]
+offset_left = 216.0
+offset_top = 92.0
+offset_right = 232.0
+offset_bottom = 108.0
+texture_normal = ExtResource("6_hnjhh")
+
+[node name="RussianFlag" type="Sprite2D" parent="Icons/Button17"]
+position = Vector2(8, 0)
+scale = Vector2(0.33, 0.33)
+texture = ExtResource("8_7bxqy")
+centered = false
+
+[node name="DiscordRusLink" type="Label" parent="Icons"]
+offset_left = 224.0
+offset_top = 155.0
+offset_right = 310.0
+offset_bottom = 205.0
+scale = Vector2(0.6, 0.6)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+text = "Discord
+Rus.link"
+horizontal_alignment = 1
+
+[node name="Button18" parent="Icons" instance=ExtResource("2_cpq08")]
+offset_left = 288.0
+offset_top = 92.0
+offset_right = 304.0
+offset_bottom = 108.0
+texture_normal = ExtResource("9_hn5vf")
+
+[node name="DiscordRusLink2" type="Label" parent="Icons"]
+offset_left = 283.0
+offset_top = 155.0
+offset_right = 409.0
+offset_bottom = 205.0
+scale = Vector2(0.6, 0.6)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+text = "YouTube.link"
+horizontal_alignment = 1

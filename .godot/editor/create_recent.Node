@@ -1,8 +1,9 @@
+Sprite2D
+AnimationPlayer
+Control
 CanvasLayer
 CollisionShape2D
 CollisionPolygon2D
-Sprite2D
-AnimationPlayer
 Node2D
 AnimatedSprite2D
 AudioStreamPlayer
@@ -18,7 +19,6 @@ Timer
 AnimatableBody2D
 Label
 RichTextLabel
-Control
 GridContainer
 NinePatchRect
 CheckBox

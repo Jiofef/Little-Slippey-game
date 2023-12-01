@@ -1,8 +1,12 @@
+res://default_bus_layout.tres
 res://default_env.tres
-res://Content/Scenes/Interface&Menu/FinalLetter.tscn
+res://Content/Scenes/Interface&Menu/WelcomeToGOS.tscn
 res://Content/Other/StaticNoiseShader.gdshader
 res://Content/Other/BlurShader.gdshader
 res://Content/Other/CRT.gdshader
 res://Content/Other/PixelateShader.gdshader
-res://Content/Scenes/Other/Main.tscn
-res://Content/Scenes/Achievements/Achievement8.tscn
+res://Content/Scenes/Interface&Menu/RecycleBin.tscn
+res://Content/Scenes/Interface&Menu/SkinsMenu.tscn
+res://Content/Scenes/Interface&Menu/RecycleBinMenu.tscn
+res://Content/Scenes/Interface&Menu/Button.tscn
+res://Content/Scenes/Achievements/Achievement11.tscn

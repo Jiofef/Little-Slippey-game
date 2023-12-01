@@ -489,16 +489,16 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_81lvq")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(4, 4)
-texture = ExtResource("1_ktj04")
-centered = false
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "Opening"
 libraries = {
 "": SubResource("AnimationLibrary_qxbaw")
 }
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(4, 4)
+texture = ExtResource("1_ktj04")
+centered = false
 
 [node name="SkinButtons" type="Control" parent="."]
 anchors_preset = 0

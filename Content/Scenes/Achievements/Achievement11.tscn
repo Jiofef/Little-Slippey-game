@@ -19,4 +19,4 @@ text = "When the warm sun, that brings"
 
 [node name="Text" parent="." index="2"]
 offset_right = 356.0
-text = "Complete level 1 on \"Hard\" difficulty (to complete a level, survive 150 seconds)"
+text = "Complete level 1 on \"Hard\" difficulty"
