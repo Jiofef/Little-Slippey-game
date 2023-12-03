@@ -1,4 +1,5 @@
 Sprite2D
+Label
 AnimationPlayer
 Control
 CanvasLayer
@@ -17,7 +18,6 @@ ParallaxBackground
 ParallaxLayer
 Timer
 AnimatableBody2D
-Label
 RichTextLabel
 GridContainer
 NinePatchRect

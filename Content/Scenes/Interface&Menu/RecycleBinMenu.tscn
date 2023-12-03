@@ -1,6 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://b4srh3us7jexg"]
+[gd_scene load_steps=28 format=3 uid="uid://b4srh3us7jexg"]
 
 [ext_resource type="Texture2D" uid="uid://wpxl612ttbw5" path="res://Content/Sprites/Interface/RecycleBinContainer.png" id="1_7olll"]
+[ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/RecycleBinMenu.cs" id="1_a6dy1"]
 [ext_resource type="PackedScene" uid="uid://bwpstpk1xmkah" path="res://Content/Scenes/Interface&Menu/Button.tscn" id="2_cpq08"]
 [ext_resource type="Texture2D" uid="uid://c4vm1al1458fw" path="res://Content/Sprites/Interface/TXTFileIcon.png" id="3_hpaob"]
 [ext_resource type="Texture2D" uid="uid://sey4s4u68gsq" path="res://Content/Sprites/Interface/PictureIcon.png" id="4_hbnvg"]
@@ -9,6 +10,19 @@
 [ext_resource type="Texture2D" uid="uid://vb7vdsdjg4xa" path="res://Content/Sprites/Interface/USADiscordFlag.png" id="7_vfq1x"]
 [ext_resource type="Texture2D" uid="uid://hcoc3411pyvj" path="res://Content/Sprites/Interface/RussiaDiscordFlag.png" id="8_7bxqy"]
 [ext_resource type="Texture2D" uid="uid://vrn404e8k71d" path="res://Content/Sprites/Interface/YoutubeIcon.png" id="9_hn5vf"]
+[ext_resource type="Texture2D" uid="uid://b10vsjrgf7cdp" path="res://Content/Sprites/Interface/TXTFileBox.png" id="11_m33u8"]
+[ext_resource type="Texture2D" uid="uid://cm6fulwrltkeq" path="res://Content/Sprites/Interface/AchievementHeart.png" id="12_d2061"]
+[ext_resource type="Texture2D" uid="uid://cex2ep5xuxri7" path="res://Content/Sprites/Interface/ImageFileBox.png" id="12_jsxs2"]
+[ext_resource type="Texture2D" uid="uid://cds38uodpjth6" path="res://Content/Sprites/Interface/Dem01.jpg" id="13_00rjr"]
+[ext_resource type="Texture2D" uid="uid://bgj44t1ysu411" path="res://Content/Sprites/Interface/Dem02.jpg" id="14_f0qg6"]
+[ext_resource type="Texture2D" uid="uid://daei5x1ck5jj7" path="res://Content/Sprites/Interface/Dem03.jpg" id="15_s806g"]
+[ext_resource type="Texture2D" uid="uid://dxedg74f6xxu8" path="res://Content/Sprites/Interface/Dem04.jpg" id="16_xboqb"]
+[ext_resource type="Texture2D" uid="uid://pwonybf7j5mh" path="res://Content/Sprites/Interface/Dem05.jpg" id="17_kqxna"]
+[ext_resource type="Texture2D" uid="uid://cewa30mmexpwc" path="res://Content/Sprites/Interface/Memory1.jpg" id="18_qsuhx"]
+[ext_resource type="Texture2D" uid="uid://dmddbmpujb7bd" path="res://Content/Sprites/Interface/Memory2.jpg" id="19_epk1r"]
+[ext_resource type="Texture2D" uid="uid://o2ifde5e7hnf" path="res://Content/Sprites/Interface/Memory3.jpg" id="20_jmpmm"]
+[ext_resource type="Texture2D" uid="uid://dveghayrdn6a1" path="res://Content/Sprites/Interface/Memory4.jpg" id="21_basfh"]
+[ext_resource type="Texture2D" uid="uid://cgg2xfjcefbop" path="res://Content/Sprites/Interface/Eternity.jpg" id="22_g11jh"]
 
 [sub_resource type="Animation" id="Animation_k2wbp"]
 resource_name = "Opening"
@@ -31,6 +45,27 @@ _data = {
 "Opening": SubResource("Animation_k2wbp")
 }
 
+[sub_resource type="Animation" id="Animation_207cr"]
+resource_name = "Opening"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector2(4, 0), Vector2(4, 4)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bj0h5"]
+_data = {
+"Opening": SubResource("Animation_207cr")
+}
+
 [node name="RecycleBinMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -42,6 +77,7 @@ offset_right = -156.0
 offset_bottom = -40.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_a6dy1")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "Opening"
@@ -60,164 +96,187 @@ offset_left = 16.0
 offset_top = 16.0
 offset_right = 944.0
 offset_bottom = 623.0
+mouse_filter = 2
 
-[node name="Button" parent="Icons" instance=ExtResource("2_cpq08")]
+[node name="WereSorryTxt" parent="Icons" instance=ExtResource("2_cpq08")]
 layout_mode = 0
 texture_normal = ExtResource("3_hpaob")
 
-[node name="Txt" type="Label" parent="Icons"]
-offset_left = 4.0
+[node name="WereSorryTxtLabel" type="Label" parent="Icons"]
+layout_mode = 0
+offset_left = -3.0
 offset_top = 67.0
-offset_right = 102.0
+offset_right = 121.0
 offset_bottom = 117.0
 scale = Vector2(0.6, 0.6)
 theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
-text = ".txt"
+text = "We`re Sorry
+.txt"
 horizontal_alignment = 1
 
-[node name="Button2" parent="Icons" instance=ExtResource("2_cpq08")]
+[node name="))))Txt" parent="Icons" instance=ExtResource("2_cpq08")]
+layout_mode = 0
 offset_left = 72.0
 offset_right = 88.0
-texture_normal = ExtResource("4_hbnvg")
+texture_normal = ExtResource("3_hpaob")
 
-[node name="Img" type="Label" parent="Icons"]
+[node name="))))TxtLabel" type="Label" parent="Icons"]
+layout_mode = 0
 offset_left = 74.0
 offset_top = 67.0
 offset_right = 172.0
-offset_bottom = 117.0
+offset_bottom = 92.0
 scale = Vector2(0.6, 0.6)
 theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
-text = ".img"
+text = ":)))).txt"
 horizontal_alignment = 1
 
-[node name="Button3" parent="Icons" instance=ExtResource("2_cpq08")]
+[node name="Dem01" parent="Icons" instance=ExtResource("2_cpq08")]
+layout_mode = 0
 offset_left = 144.0
 offset_right = 160.0
-texture_normal = ExtResource("3_hpaob")
+texture_normal = ExtResource("4_hbnvg")
 
-[node name="Titles" type="Label" parent="Icons"]
+[node name="Dem01Label" type="Label" parent="Icons"]
+layout_mode = 0
 offset_left = 148.0
 offset_top = 67.0
 offset_right = 246.0
 offset_bottom = 117.0
 scale = Vector2(0.6, 0.6)
 theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
-text = "Titles.txt"
+text = "Dem01.img"
 horizontal_alignment = 1
 
-[node name="Button4" parent="Icons" instance=ExtResource("2_cpq08")]
+[node name="Dem02" parent="Icons" instance=ExtResource("2_cpq08")]
+layout_mode = 0
 offset_left = 216.0
 offset_right = 232.0
 texture_normal = ExtResource("4_hbnvg")
 
-[node name="Img2" type="Label" parent="Icons"]
+[node name="Dem02Label" type="Label" parent="Icons"]
+layout_mode = 0
 offset_left = 218.0
 offset_top = 67.0
 offset_right = 316.0
 offset_bottom = 117.0
 scale = Vector2(0.6, 0.6)
 theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
-text = ".img"
+text = "Dem02.img"
 horizontal_alignment = 1
 
-[node name="Button5" parent="Icons" instance=ExtResource("2_cpq08")]
+[node name="TitlesTxt" parent="Icons" instance=ExtResource("2_cpq08")]
+layout_mode = 0
 offset_left = 288.0
 offset_right = 304.0
-texture_normal = ExtResource("4_hbnvg")
+texture_normal = ExtResource("3_hpaob")
 
-[node name="Img3" type="Label" parent="Icons"]
+[node name="TitlesTxtLabel" type="Label" parent="Icons"]
+layout_mode = 0
 offset_left = 290.0
 offset_top = 67.0
 offset_right = 388.0
 offset_bottom = 117.0
 scale = Vector2(0.6, 0.6)
 theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
-text = ".img"
+text = "Titles.txt"
 horizontal_alignment = 1
 
-[node name="Button6" parent="Icons" instance=ExtResource("2_cpq08")]
+[node name="Dem03" parent="Icons" instance=ExtResource("2_cpq08")]
+layout_mode = 0
 offset_left = 360.0
 offset_right = 376.0
 texture_normal = ExtResource("4_hbnvg")
 
-[node name="Img4" type="Label" parent="Icons"]
+[node name="Dem03Label" type="Label" parent="Icons"]
+layout_mode = 0
 offset_left = 362.0
 offset_top = 67.0
 offset_right = 460.0
 offset_bottom = 117.0
 scale = Vector2(0.6, 0.6)
 theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
-text = ".img"
+text = "Dem03.img"
 horizontal_alignment = 1
 
-[node name="Button7" parent="Icons" instance=ExtResource("2_cpq08")]
+[node name="Dem04" parent="Icons" instance=ExtResource("2_cpq08")]
+layout_mode = 0
 offset_left = 432.0
 offset_right = 448.0
-texture_normal = ExtResource("3_hpaob")
+texture_normal = ExtResource("4_hbnvg")
 
-[node name="GratitudeDiaryTxt" type="Label" parent="Icons"]
+[node name="Dem04Label" type="Label" parent="Icons"]
+layout_mode = 0
 offset_left = 436.0
 offset_top = 67.0
 offset_right = 534.0
 offset_bottom = 117.0
 scale = Vector2(0.6, 0.6)
 theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
-text = "Gratitude
-Diary.txt
-"
+text = "Dem04.img"
 horizontal_alignment = 1
 
-[node name="Button8" parent="Icons" instance=ExtResource("2_cpq08")]
+[node name="Dem05" parent="Icons" instance=ExtResource("2_cpq08")]
+layout_mode = 0
 offset_left = 504.0
 offset_right = 520.0
 texture_normal = ExtResource("4_hbnvg")
 
-[node name="Img5" type="Label" parent="Icons"]
+[node name="Dem05Label" type="Label" parent="Icons"]
+layout_mode = 0
 offset_left = 506.0
 offset_top = 67.0
 offset_right = 604.0
 offset_bottom = 117.0
 scale = Vector2(0.6, 0.6)
 theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
-text = ".img"
+text = "Dem05.img"
 horizontal_alignment = 1
 
-[node name="Button9" parent="Icons" instance=ExtResource("2_cpq08")]
+[node name="Memory1" parent="Icons" instance=ExtResource("2_cpq08")]
+layout_mode = 0
 offset_left = 576.0
 offset_right = 592.0
 texture_normal = ExtResource("4_hbnvg")
 
-[node name="Img6" type="Label" parent="Icons"]
+[node name="Memory1Label" type="Label" parent="Icons"]
+layout_mode = 0
 offset_left = 578.0
 offset_top = 67.0
 offset_right = 676.0
 offset_bottom = 117.0
 scale = Vector2(0.6, 0.6)
 theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
-text = ".img"
+text = "Memory1
+.img"
 horizontal_alignment = 1
 
-[node name="Button10" parent="Icons" instance=ExtResource("2_cpq08")]
+[node name="Memory2" parent="Icons" instance=ExtResource("2_cpq08")]
+layout_mode = 0
 offset_left = 648.0
 offset_right = 664.0
 texture_normal = ExtResource("4_hbnvg")
 
-[node name="Img7" type="Label" parent="Icons"]
+[node name="Memory2Label" type="Label" parent="Icons"]
+layout_mode = 0
 offset_left = 650.0
 offset_top = 67.0
 offset_right = 748.0
 offset_bottom = 117.0
 scale = Vector2(0.6, 0.6)
 theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
-text = ".img"
+text = "Memory2
+.img"
 horizontal_alignment = 1
 
-[node name="Button11" parent="Icons" instance=ExtResource("2_cpq08")]
+[node name="BoostyLink" parent="Icons" instance=ExtResource("2_cpq08")]
+layout_mode = 0
 offset_left = 720.0
 offset_right = 736.0
 texture_normal = ExtResource("5_h7g8x")
 
-[node name="BoostyLink" type="Label" parent="Icons"]
+[node name="BoostyLinkLabel" type="Label" parent="Icons"]
+layout_mode = 0
 offset_left = 718.0
 offset_top = 67.0
 offset_right = 804.0
@@ -227,129 +286,501 @@ theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
 text = "Boosty.link"
 horizontal_alignment = 1
 
-[node name="Button12" parent="Icons" instance=ExtResource("2_cpq08")]
+[node name="Memory3" parent="Icons" instance=ExtResource("2_cpq08")]
+layout_mode = 0
 offset_left = 792.0
 offset_right = 808.0
 texture_normal = ExtResource("4_hbnvg")
 
-[node name="Img8" type="Label" parent="Icons"]
+[node name="Memory3Label" type="Label" parent="Icons"]
+layout_mode = 0
 offset_left = 794.0
 offset_top = 67.0
 offset_right = 892.0
 offset_bottom = 117.0
 scale = Vector2(0.6, 0.6)
 theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
-text = ".img"
+text = "Memory3
+.img"
 horizontal_alignment = 1
 
-[node name="Button13" parent="Icons" instance=ExtResource("2_cpq08")]
+[node name="Memory4" parent="Icons" instance=ExtResource("2_cpq08")]
+layout_mode = 0
 offset_left = 864.0
 offset_right = 880.0
 texture_normal = ExtResource("4_hbnvg")
 
-[node name="Img9" type="Label" parent="Icons"]
+[node name="Memory4Label" type="Label" parent="Icons"]
+layout_mode = 0
 offset_left = 866.0
 offset_top = 67.0
 offset_right = 964.0
 offset_bottom = 117.0
 scale = Vector2(0.6, 0.6)
 theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
-text = ".img"
+text = "Memory4
+.img"
 horizontal_alignment = 1
 
-[node name="Button14" parent="Icons" instance=ExtResource("2_cpq08")]
+[node name="YoutubeLink" parent="Icons" instance=ExtResource("2_cpq08")]
+layout_mode = 0
 offset_top = 92.0
 offset_bottom = 108.0
-texture_normal = ExtResource("4_hbnvg")
+texture_normal = ExtResource("9_hn5vf")
 
-[node name="Img10" type="Label" parent="Icons"]
-offset_left = 8.0
-offset_top = 155.0
-offset_right = 94.0
-offset_bottom = 205.0
+[node name="YoutubeLinkLabel" type="Label" parent="Icons"]
+layout_mode = 0
+offset_left = -7.0
+offset_top = 159.0
+offset_right = 123.0
+offset_bottom = 209.0
 scale = Vector2(0.6, 0.6)
 theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
-text = ".img"
+text = "YouTube.link"
 horizontal_alignment = 1
 
-[node name="Button15" parent="Icons" instance=ExtResource("2_cpq08")]
+[node name="DiscordEngLink" parent="Icons" instance=ExtResource("2_cpq08")]
+layout_mode = 0
 offset_left = 72.0
 offset_top = 92.0
 offset_right = 88.0
 offset_bottom = 108.0
 texture_normal = ExtResource("6_hnjhh")
 
-[node name="USAFlag" type="Sprite2D" parent="Icons/Button15"]
+[node name="USAFlag" type="Sprite2D" parent="Icons/DiscordEngLink"]
 position = Vector2(8, 0)
 scale = Vector2(0.33, 0.33)
 texture = ExtResource("7_vfq1x")
 centered = false
 
-[node name="DiscordEngLink" type="Label" parent="Icons"]
+[node name="DiscordEngLinkLabel" type="Label" parent="Icons"]
+layout_mode = 0
 offset_left = 80.0
-offset_top = 155.0
+offset_top = 159.0
 offset_right = 166.0
-offset_bottom = 205.0
+offset_bottom = 209.0
 scale = Vector2(0.6, 0.6)
 theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
 text = "Discord
 Eng.link"
 horizontal_alignment = 1
 
-[node name="Button16" parent="Icons" instance=ExtResource("2_cpq08")]
+[node name="Eternity" parent="Icons" instance=ExtResource("2_cpq08")]
+layout_mode = 0
 offset_left = 144.0
 offset_top = 92.0
 offset_right = 160.0
 offset_bottom = 108.0
 texture_normal = ExtResource("4_hbnvg")
 
-[node name="Img11" type="Label" parent="Icons"]
+[node name="EternityLabel" type="Label" parent="Icons"]
+layout_mode = 0
 offset_left = 150.0
-offset_top = 155.0
+offset_top = 159.0
 offset_right = 236.0
-offset_bottom = 205.0
+offset_bottom = 209.0
 scale = Vector2(0.6, 0.6)
 theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
-text = ".img"
+text = "Eternity
+.img"
 horizontal_alignment = 1
 
-[node name="Button17" parent="Icons" instance=ExtResource("2_cpq08")]
+[node name="DiscordRusLink" parent="Icons" instance=ExtResource("2_cpq08")]
+layout_mode = 0
 offset_left = 216.0
 offset_top = 92.0
 offset_right = 232.0
 offset_bottom = 108.0
 texture_normal = ExtResource("6_hnjhh")
 
-[node name="RussianFlag" type="Sprite2D" parent="Icons/Button17"]
+[node name="RussianFlag" type="Sprite2D" parent="Icons/DiscordRusLink"]
 position = Vector2(8, 0)
 scale = Vector2(0.33, 0.33)
 texture = ExtResource("8_7bxqy")
 centered = false
 
-[node name="DiscordRusLink" type="Label" parent="Icons"]
+[node name="DiscordRusLinkLabel" type="Label" parent="Icons"]
+layout_mode = 0
 offset_left = 224.0
-offset_top = 155.0
+offset_top = 159.0
 offset_right = 310.0
-offset_bottom = 205.0
+offset_bottom = 209.0
 scale = Vector2(0.6, 0.6)
 theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
 text = "Discord
 Rus.link"
 horizontal_alignment = 1
 
-[node name="Button18" parent="Icons" instance=ExtResource("2_cpq08")]
+[node name="GratitudeDiaryTxt" parent="Icons" instance=ExtResource("2_cpq08")]
+layout_mode = 0
 offset_left = 288.0
 offset_top = 92.0
 offset_right = 304.0
 offset_bottom = 108.0
-texture_normal = ExtResource("9_hn5vf")
+texture_normal = ExtResource("3_hpaob")
 
-[node name="DiscordRusLink2" type="Label" parent="Icons"]
-offset_left = 283.0
-offset_top = 155.0
-offset_right = 409.0
-offset_bottom = 205.0
+[node name="GratitudeDiaryTxtLabel" type="Label" parent="Icons"]
+layout_mode = 0
+offset_left = 280.0
+offset_top = 159.0
+offset_right = 410.0
+offset_bottom = 209.0
 scale = Vector2(0.6, 0.6)
 theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
-text = "YouTube.link"
+text = "The Test Is
+Over.txt"
 horizontal_alignment = 1
+
+[node name="TheTestIsOverTxt" parent="Icons" instance=ExtResource("2_cpq08")]
+offset_left = 360.0
+offset_top = 92.0
+offset_right = 376.0
+offset_bottom = 108.0
+texture_normal = ExtResource("3_hpaob")
+
+[node name="TheTestIsOverTxtLabel" type="Label" parent="Icons"]
+offset_left = 358.0
+offset_top = 159.0
+offset_right = 488.0
+offset_bottom = 209.0
+scale = Vector2(0.6, 0.6)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+text = "Gratitude
+Diary.txt"
+horizontal_alignment = 1
+
+[node name="FileBoxes" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 12.0
+offset_top = 228.0
+offset_right = 948.0
+offset_bottom = 628.0
+
+[node name="ManagementLetterTxt" type="Sprite2D" parent="FileBoxes"]
+visible = false
+scale = Vector2(4, 4)
+texture = ExtResource("11_m33u8")
+centered = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="FileBoxes/ManagementLetterTxt"]
+libraries = {
+"": SubResource("AnimationLibrary_bj0h5")
+}
+
+[node name="Label" type="Label" parent="FileBoxes/ManagementLetterTxt"]
+offset_left = 3.0
+offset_top = 4.0
+offset_right = 575.0
+offset_bottom = 154.0
+scale = Vector2(0.25, 0.25)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+text = "Dear employees. Due to the abuse of the Internet during working hours, we have disabled
+access to it on all office computers indefinitely. Treat this with understanding, it is 
+important for us to see you happy and rested, but it is also equally important to fulfill
+the work plan. Don't forget what a serious project you are working on.
+Sincerely, the administration of the third sector of Giero Labs."
+
+[node name="))))Txt" type="Sprite2D" parent="FileBoxes"]
+visible = false
+scale = Vector2(4, 4)
+texture = ExtResource("11_m33u8")
+centered = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="FileBoxes/))))Txt"]
+libraries = {
+"": SubResource("AnimationLibrary_bj0h5")
+}
+
+[node name="Label" type="Label" parent="FileBoxes/))))Txt"]
+offset_left = 3.0
+offset_top = 4.0
+offset_right = 575.0
+offset_bottom = 154.0
+scale = Vector2(0.25, 0.25)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+text = "From Mike777 to middle-level employees.
+I want to give special thanks to the geniuses who watched porn on office computers
+during working hours. MAY GOD BLESS YOU AND YOUR F*CKEN FAMILY"
+
+[node name="Dem01" type="Sprite2D" parent="FileBoxes"]
+visible = false
+scale = Vector2(4, 4)
+texture = ExtResource("12_jsxs2")
+centered = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="FileBoxes/Dem01"]
+libraries = {
+"": SubResource("AnimationLibrary_bj0h5")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="FileBoxes/Dem01"]
+position = Vector2(3, 3.00001)
+scale = Vector2(0.247826, 0.247368)
+texture = ExtResource("13_00rjr")
+centered = false
+
+[node name="Dem02" type="Sprite2D" parent="FileBoxes"]
+visible = false
+scale = Vector2(4, 4)
+texture = ExtResource("12_jsxs2")
+centered = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="FileBoxes/Dem02"]
+libraries = {
+"": SubResource("AnimationLibrary_bj0h5")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="FileBoxes/Dem02"]
+position = Vector2(3, 3.00001)
+scale = Vector2(0.247826, 0.247368)
+texture = ExtResource("14_f0qg6")
+centered = false
+
+[node name="TitlesTxt" type="Sprite2D" parent="FileBoxes"]
+visible = false
+scale = Vector2(4, 4)
+texture = ExtResource("11_m33u8")
+centered = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="FileBoxes/TitlesTxt"]
+libraries = {
+"": SubResource("AnimationLibrary_bj0h5")
+}
+
+[node name="Label" type="Label" parent="FileBoxes/TitlesTxt"]
+offset_left = 3.0
+offset_top = 4.0
+offset_right = 575.0
+offset_bottom = 154.0
+scale = Vector2(0.25, 0.25)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+text = "From Jiofef to You.
+For more than a year of development, I have not used almost any other people's assets.
+However, I couldn't create some things myself in the form I wanted, so I had to borrow.
+I want to thank:
+FFF Media Inc for the font.
+sfxBUZZ and SoundJay for some sounds.
+Pixabay for various assets, mostly sounds.
+The developers of Katana ZERO for the sound of laughter.
+
+Everything else was done by the only employee of the Paradise Underground studio under
+the nickname Jiofef
+
+
+
+All rights reserved btw ;p"
+
+[node name="Dem03" type="Sprite2D" parent="FileBoxes"]
+visible = false
+scale = Vector2(4, 4)
+texture = ExtResource("12_jsxs2")
+centered = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="FileBoxes/Dem03"]
+libraries = {
+"": SubResource("AnimationLibrary_bj0h5")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="FileBoxes/Dem03"]
+position = Vector2(3, 3.00001)
+scale = Vector2(0.247826, 0.247368)
+texture = ExtResource("15_s806g")
+centered = false
+
+[node name="Dem04" type="Sprite2D" parent="FileBoxes"]
+visible = false
+scale = Vector2(4, 4)
+texture = ExtResource("12_jsxs2")
+centered = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="FileBoxes/Dem04"]
+libraries = {
+"": SubResource("AnimationLibrary_bj0h5")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="FileBoxes/Dem04"]
+position = Vector2(3, 3.00001)
+scale = Vector2(0.247826, 0.247368)
+texture = ExtResource("16_xboqb")
+centered = false
+
+[node name="Dem05" type="Sprite2D" parent="FileBoxes"]
+visible = false
+scale = Vector2(4, 4)
+texture = ExtResource("12_jsxs2")
+centered = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="FileBoxes/Dem05"]
+libraries = {
+"": SubResource("AnimationLibrary_bj0h5")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="FileBoxes/Dem05"]
+position = Vector2(3, 3.00001)
+scale = Vector2(0.247826, 0.247368)
+texture = ExtResource("17_kqxna")
+centered = false
+
+[node name="Memory1" type="Sprite2D" parent="FileBoxes"]
+visible = false
+scale = Vector2(4, 4)
+texture = ExtResource("12_jsxs2")
+centered = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="FileBoxes/Memory1"]
+libraries = {
+"": SubResource("AnimationLibrary_bj0h5")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="FileBoxes/Memory1"]
+position = Vector2(69, 3)
+scale = Vector2(0.25, 0.246)
+texture = ExtResource("18_qsuhx")
+centered = false
+
+[node name="Memory2" type="Sprite2D" parent="FileBoxes"]
+visible = false
+scale = Vector2(4, 4)
+texture = ExtResource("12_jsxs2")
+centered = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="FileBoxes/Memory2"]
+libraries = {
+"": SubResource("AnimationLibrary_bj0h5")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="FileBoxes/Memory2"]
+position = Vector2(69, 3)
+scale = Vector2(0.247826, 0.247368)
+texture = ExtResource("19_epk1r")
+centered = false
+
+[node name="Memory3" type="Sprite2D" parent="FileBoxes"]
+visible = false
+scale = Vector2(4, 4)
+texture = ExtResource("12_jsxs2")
+centered = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="FileBoxes/Memory3"]
+libraries = {
+"": SubResource("AnimationLibrary_bj0h5")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="FileBoxes/Memory3"]
+position = Vector2(69, 3)
+scale = Vector2(0.247826, 0.247368)
+texture = ExtResource("20_jmpmm")
+centered = false
+
+[node name="Memory4" type="Sprite2D" parent="FileBoxes"]
+visible = false
+scale = Vector2(4, 4)
+texture = ExtResource("12_jsxs2")
+centered = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="FileBoxes/Memory4"]
+libraries = {
+"": SubResource("AnimationLibrary_bj0h5")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="FileBoxes/Memory4"]
+position = Vector2(69, 3)
+scale = Vector2(0.247826, 0.247368)
+texture = ExtResource("21_basfh")
+centered = false
+
+[node name="Eternity" type="Sprite2D" parent="FileBoxes"]
+visible = false
+scale = Vector2(4, 4)
+texture = ExtResource("12_jsxs2")
+centered = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="FileBoxes/Eternity"]
+libraries = {
+"": SubResource("AnimationLibrary_bj0h5")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="FileBoxes/Eternity"]
+position = Vector2(69, 3)
+scale = Vector2(0.247826, 0.247368)
+texture = ExtResource("22_g11jh")
+centered = false
+
+[node name="GratitudeDiaryTxt" type="Sprite2D" parent="FileBoxes"]
+visible = false
+scale = Vector2(4, 4)
+texture = ExtResource("11_m33u8")
+centered = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="FileBoxes/GratitudeDiaryTxt"]
+libraries = {
+"": SubResource("AnimationLibrary_bj0h5")
+}
+
+[node name="Label" type="Label" parent="FileBoxes/GratitudeDiaryTxt"]
+offset_left = 3.0
+offset_top = 4.0
+offset_right = 575.0
+offset_bottom = 154.0
+scale = Vector2(0.25, 0.25)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+text = "Huge Thanks from Jiofef to Alexandr Steif, Diana Steif, Tengi, Frontend Pashtet, 
+Factorio developers, Pizza Tower developers, Arsi \"Hakita\" Patala, Edmund McMillen,
+Gooseworx, Nelward, Toby Fox, Richard David James, Mike Paradinas, NikeTheHuman,
+Guk Svetlana, Alexey Panasenko, Dmitriy Pogodaev, Serbina Valentina, Konstanin Panov,
+Sergey HellYeah Belyakov, Roman Hudyakov, Elena Kishenko,
+Illya, my mom, and You, Player.
+
+Without you all this game wouldn't exist"
+
+[node name="ILoveYouAllGuys<3" type="Sprite2D" parent="FileBoxes/GratitudeDiaryTxt"]
+position = Vector2(110, 49)
+texture = ExtResource("12_d2061")
+
+[node name="TheTestIsOverTxt" type="Sprite2D" parent="FileBoxes"]
+visible = false
+scale = Vector2(4, 4)
+texture = ExtResource("11_m33u8")
+centered = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="FileBoxes/TheTestIsOverTxt"]
+libraries = {
+"": SubResource("AnimationLibrary_bj0h5")
+}
+
+[node name="Label" type="Label" parent="FileBoxes/TheTestIsOverTxt"]
+offset_left = 3.0
+offset_top = 3.0
+offset_right = 919.0
+offset_bottom = 243.0
+scale = Vector2(0.25, 0.25)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+theme_override_constants/line_spacing = 8
+text = "To the Board of Directors of Giero.
+I am glad to inform you that the testing and training of object 24 \"Slippey\" (hereinafter
+referred to as the \"object\") was successful. The object is subject to further cloning and
+the use of clones for military purposes in accordance with Order N43 of 03/27/2039.
+Our laboratories will conduct additional testing and begin the cloning operation in the
+near future.
+With respect,
+The general manager of Giero Labs, Hiro Miyoshi."
+
+[connection signal="pressed" from="Icons/WereSorryTxt" to="." method="OpenFile" binds= ["ManagementLetterTxt"]]
+[connection signal="pressed" from="Icons/))))Txt" to="." method="OpenFile" binds= ["))))Txt"]]
+[connection signal="pressed" from="Icons/Dem01" to="." method="OpenFile" binds= ["Dem01"]]
+[connection signal="pressed" from="Icons/Dem02" to="." method="OpenFile" binds= ["Dem02"]]
+[connection signal="pressed" from="Icons/TitlesTxt" to="." method="OpenFile" binds= ["TitlesTxt"]]
+[connection signal="pressed" from="Icons/Dem03" to="." method="OpenFile" binds= ["Dem03"]]
+[connection signal="pressed" from="Icons/Dem04" to="." method="OpenFile" binds= ["Dem04"]]
+[connection signal="pressed" from="Icons/Dem05" to="." method="OpenFile" binds= ["Dem05"]]
+[connection signal="pressed" from="Icons/Memory1" to="." method="OpenFile" binds= ["Memory1"]]
+[connection signal="pressed" from="Icons/Memory2" to="." method="OpenFile" binds= ["Memory2"]]
+[connection signal="pressed" from="Icons/BoostyLink" to="." method="OpenLink" binds= ["https://boosty.to/paradiseunderground"]]
+[connection signal="pressed" from="Icons/Memory3" to="." method="OpenFile" binds= ["Memory3"]]
+[connection signal="pressed" from="Icons/Memory4" to="." method="OpenFile" binds= ["Memory4"]]
+[connection signal="pressed" from="Icons/YoutubeLink" to="." method="OpenLink" binds= ["https://www.youtube.com/@paradiseunderground333"]]
+[connection signal="pressed" from="Icons/DiscordEngLink" to="." method="OpenLink" binds= ["https://discord.com/invite/K2TJZTfXt4"]]
+[connection signal="pressed" from="Icons/Eternity" to="." method="OpenFile" binds= ["Eternity"]]
+[connection signal="pressed" from="Icons/DiscordRusLink" to="." method="OpenLink" binds= ["https://discord.com/invite/Wjy3JNSdNa"]]
+[connection signal="pressed" from="Icons/GratitudeDiaryTxt" to="." method="OpenFile" binds= ["TheTestIsOverTxt"]]
+[connection signal="pressed" from="Icons/TheTestIsOverTxt" to="." method="OpenFile" binds= ["GratitudeDiaryTxt"]]
