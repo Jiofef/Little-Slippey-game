@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://dlscufxb5f1ca"]
+[gd_scene load_steps=23 format=3 uid="uid://dlscufxb5f1ca"]
 
 [ext_resource type="Script" path="res://Content/Scripts/Other/Player.cs" id="1"]
 [ext_resource type="AudioStream" uid="uid://422y36f6ucnf" path="res://Content/Sounds/Player/Climb.mp3" id="2_bn55d"]
@@ -12,7 +12,6 @@
 [ext_resource type="AudioStream" uid="uid://dy6lncevmnf3o" path="res://Content/Sounds/Other/WhiteNoise.mp3" id="12_jom63"]
 [ext_resource type="Script" path="res://Content/Scripts/Other/Camera.cs" id="13"]
 [ext_resource type="Texture2D" uid="uid://bvogrd2bqhwmt" path="res://Content/Sprites/Other/OblivionNoise.png" id="15"]
-[ext_resource type="FontFile" uid="uid://cp7vrks23tdh3" path="res://Content/Other/FFFFORWA.TTF" id="15_47p4f"]
 
 [sub_resource type="RectangleShape2D" id="1"]
 size = Vector2(40, 56)
@@ -160,7 +159,7 @@ scale = Vector2(1.5, 1.5)
 theme_override_colors/font_shadow_color = Color(0.223529, 0.203922, 0.341176, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 0
-theme_override_fonts/font = ExtResource("15_47p4f")
+theme_override_font_sizes/font_size = 22
 text = "000000000"
 horizontal_alignment = 1
 
@@ -173,15 +172,14 @@ z_index = -1
 visible = false
 offset_left = -130.0
 offset_top = 5.0
-offset_right = 126.0
-offset_bottom = 55.0
-scale = Vector2(1.1, 1.1)
+offset_right = 150.0
+offset_bottom = 45.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_shadow_color = Color(0.223529, 0.203922, 0.341176, 1)
 theme_override_constants/shadow_offset_y = 0
 theme_override_constants/shadow_outline_size = 4
-theme_override_fonts/font = ExtResource("15_47p4f")
-text = "Score: 0"
+theme_override_font_sizes/font_size = 22
+text = "Score: "
 horizontal_alignment = 1
 
 [node name="NewRecordScores" type="Label" parent="Camera2D/GUI/EmergingElements"]
@@ -195,9 +193,9 @@ theme_override_colors/font_color = Color(1, 1, 0, 1)
 theme_override_colors/font_shadow_color = Color(0.839216, 0.690196, 0, 1)
 theme_override_constants/shadow_offset_y = 0
 theme_override_constants/shadow_outline_size = 4
-theme_override_fonts/font = ExtResource("15_47p4f")
+theme_override_font_sizes/font_size = 22
 text = "New Record!
-Score: 0"
+Score: "
 horizontal_alignment = 1
 
 [node name="Shine1" type="CPUParticles2D" parent="Camera2D/GUI/EmergingElements/NewRecordScores"]
@@ -235,15 +233,15 @@ color_ramp = SubResource("Gradient_lmxa7")
 color_initial_ramp = SubResource("Gradient_4fxyx")
 
 [node name="Hold R" type="Label" parent="Camera2D/GUI/EmergingElements"]
-offset_left = -53.0
+offset_left = -150.0
 offset_top = 140.0
-offset_right = 24.0
-offset_bottom = 165.0
-scale = Vector2(1.7, 1.7)
+offset_right = 63.0
+offset_bottom = 171.0
+scale = Vector2(1.5, 1.5)
 theme_override_colors/font_shadow_color = Color(0.223529, 0.203922, 0.341176, 1)
 theme_override_constants/shadow_offset_y = 0
 theme_override_constants/shadow_outline_size = 4
-theme_override_fonts/font = ExtResource("15_47p4f")
+theme_override_font_sizes/font_size = 22
 text = "Hold R"
 horizontal_alignment = 1
 

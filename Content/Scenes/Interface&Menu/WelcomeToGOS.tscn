@@ -197,6 +197,7 @@ _data = {
 }
 
 [node name="WelcomeToGOS" type="Control"]
+clip_contents = true
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -278,6 +279,7 @@ offset_top = 97.0
 offset_right = 91.0
 offset_bottom = 122.0
 text = "Levels"
+horizontal_alignment = 1
 
 [node name="OptionsButton" parent="Buttons" instance=ExtResource("7_0t5ux")]
 layout_mode = 0
@@ -294,6 +296,7 @@ offset_top = 188.0
 offset_right = 96.0
 offset_bottom = 213.0
 text = "Options"
+horizontal_alignment = 1
 
 [node name="SkinsButton" parent="Buttons" instance=ExtResource("7_0t5ux")]
 layout_mode = 0
@@ -309,8 +312,8 @@ offset_left = 28.0
 offset_top = 280.0
 offset_right = 84.0
 offset_bottom = 305.0
-text = "Skins
-"
+text = "Skins"
+horizontal_alignment = 1
 
 [node name="AchievementsButton" parent="Buttons" instance=ExtResource("7_0t5ux")]
 layout_mode = 0
@@ -328,6 +331,7 @@ offset_right = 146.0
 offset_bottom = 397.0
 scale = Vector2(0.8, 0.8)
 text = "Achievements"
+horizontal_alignment = 1
 
 [node name="Titles" parent="Buttons" instance=ExtResource("7_0t5ux")]
 layout_mode = 0
@@ -344,6 +348,7 @@ offset_top = 464.0
 offset_right = 120.0
 offset_bottom = 489.0
 text = "Recycle Bin"
+horizontal_alignment = 1
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 

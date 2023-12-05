@@ -91,4 +91,10 @@ public partial class OptionsMenu : Control
         Meta.Instance.CameraZoom = value;
         EmitSignal("GUIOptionsChanged", false);
     }
+    public void SetLanguage(int languageNumber)
+    {
+        Meta.Instance.language = (Meta.Language)languageNumber;
+        TranslationServer.SetLocale(Meta.Instance.language.ToString());
+        ProjectSettings.SetSetting("gui/theme/custom_font", "FontPath");
+    }
 }

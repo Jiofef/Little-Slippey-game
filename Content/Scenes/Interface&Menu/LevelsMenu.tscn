@@ -720,9 +720,9 @@ offset_bottom = 312.0
 
 [node name="Hard" type="Label" parent="Visual/DifficultyButtons"]
 layout_mode = 0
-offset_left = 6.0
+offset_left = -20.0
 offset_top = -16.0
-offset_right = 54.0
+offset_right = 55.0
 offset_bottom = 9.0
 theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
 text = "Hard"
@@ -740,9 +740,9 @@ button_group = SubResource("ButtonGroup_2rde5")
 
 [node name="Insane" type="Label" parent="Visual/DifficultyButtons"]
 layout_mode = 0
-offset_left = 90.0
+offset_left = 64.0
 offset_top = -16.0
-offset_right = 156.0
+offset_right = 179.0
 offset_bottom = 9.0
 theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
 text = "Insane"
@@ -760,9 +760,9 @@ button_group = SubResource("ButtonGroup_2rde5")
 
 [node name="Inferno" type="Label" parent="Visual/DifficultyButtons"]
 layout_mode = 0
-offset_left = 175.0
+offset_left = 168.0
 offset_top = -14.0
-offset_right = 255.0
+offset_right = 270.0
 offset_bottom = 11.0
 theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
 text = "Inferno"
@@ -803,9 +803,9 @@ offset_bottom = 454.0
 [node name="Rain" type="Label" parent="Visual/AdittionalButtons"]
 visible = false
 layout_mode = 0
-offset_left = 12.0
+offset_left = 5.0
 offset_top = -12.0
-offset_right = 60.0
+offset_right = 61.0
 offset_bottom = 13.0
 scale = Vector2(0.8, 0.8)
 theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
@@ -861,9 +861,9 @@ centered = false
 [node name="JiofefHead" type="Label" parent="Visual/AdittionalButtons"]
 visible = false
 layout_mode = 0
-offset_left = 132.0
+offset_left = 125.0
 offset_top = -23.0
-offset_right = 210.0
+offset_right = 213.0
 offset_bottom = 27.0
 scale = Vector2(0.7, 0.7)
 theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)

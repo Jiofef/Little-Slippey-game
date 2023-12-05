@@ -1,14 +1,15 @@
-Sprite2D
-Label
-AnimationPlayer
 Control
+Label
+ColorRect
+RichTextLabel
+Sprite2D
+AnimationPlayer
 CanvasLayer
 CollisionShape2D
 CollisionPolygon2D
 Node2D
 AnimatedSprite2D
 AudioStreamPlayer
-ColorRect
 CPUParticles2D
 AudioListener2D
 Camera2D
@@ -18,7 +19,6 @@ ParallaxBackground
 ParallaxLayer
 Timer
 AnimatableBody2D
-RichTextLabel
 GridContainer
 NinePatchRect
 CheckBox

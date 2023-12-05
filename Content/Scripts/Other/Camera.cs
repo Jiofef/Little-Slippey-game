@@ -94,7 +94,7 @@ public partial class Camera : Camera2D
                     {
                         string link = "GUI/EmergingElements/NewRecordScores";
                         var newRecordScores = GetNode<Label>(link);
-                        newRecordScores.Text = "New Record!\nScore: " + (int)G.Scores;
+                        newRecordScores.Text = Tr("New Record!\nScore: ") + (int)G.Scores;
                         newRecordScores.Visible = true;
                         GetNode<CpuParticles2D>(link + "/Shine1").Emitting = true;
                         GetNode<CpuParticles2D>(link + "/Shine2").Emitting = true;
@@ -103,7 +103,7 @@ public partial class Camera : Camera2D
                     {
                         var emergingScores = GetNode<Label>("GUI/EmergingElements/Scores");
                         emergingScores.Visible = true;
-                        emergingScores.Text = Convert.ToString("Score: " + (int)G.Scores);
+                        emergingScores.Text = Convert.ToString(Tr("Score: ") + (int)G.Scores);
                     }
                 }
                 if (emergingElements.Modulate.A < 1)

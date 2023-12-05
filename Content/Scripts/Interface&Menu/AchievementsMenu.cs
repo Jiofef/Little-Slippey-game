@@ -4,7 +4,7 @@ public partial class AchievementsMenu : Control
 {
 	public override void _Ready()
 	{
-		GetNode<Label>("AchievementsCount").Text = "Achievements: " + UnchangableMeta.AchievementsCount() + "/" + UnchangableMeta.AchievementStatuses.Length;
+		GetNode<Label>("AchievementsCount").Text = Tr("Achievements: ") + UnchangableMeta.AchievementsCount() + "/" + UnchangableMeta.AchievementStatuses.Length;
 		var achievementsContainer = GetNode<GridContainer>("AchievementsContainer/GridContainer");
 		for (int i = 0; i < UnchangableMeta.AchievementStatuses.Length; i++)
 		{

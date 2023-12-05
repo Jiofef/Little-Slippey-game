@@ -17,7 +17,7 @@ public partial class UnchangableMeta : Node
     public static int[] LevelCompleteStatus = new int[G.LevelsInGameTotal];
     public static byte[] LevelPlayedStatus = new byte[G.LevelsInGameTotal]; //I made it as byte[] because of retard Godot that can't save a boolean array >:(
 
-    public static bool IsTutorialPlayed, IsLevel9PlatformSectionFirstTimeCompleted, IsLevel9PlatformSectionSkipAllowed, IsFakeLevel10SkipAllowed;
+    public static bool IsLanguageSetted = false, IsTutorialPlayed, IsLevel9PlatformSectionFirstTimeCompleted, IsLevel9PlatformSectionSkipAllowed, IsFakeLevel10SkipAllowed;
     public static float DeathsNumber = 0;
     public static byte[] AchievementStatuses = new byte[51]; // A G A I N
 
@@ -62,6 +62,7 @@ public partial class UnchangableMeta : Node
             {"level_records1", LevelRecords[1]},
             {"level_records2", LevelRecords[2]},
             {"level_complete_status", LevelCompleteStatus},
+            {"is_language_setted", IsLanguageSetted},
             {"is_tutorial_played", IsTutorialPlayed },
             {"is_level9_platform_section_first_time_completed", IsLevel9PlatformSectionFirstTimeCompleted},
             {"is_level9_platform_section_skip_is_allowed", IsLevel9PlatformSectionSkipAllowed},
@@ -109,7 +110,7 @@ public partial class UnchangableMeta : Node
                     LevelPlayedStatus[i] = Convert.ToByte(LevelPlayedStatusArray[i].ToString());
             } catch {}
 
-            
+            IsLanguageSetted = (bool)model["is_language_setted"];
             IsTutorialPlayed = (bool)model["is_tutorial_played"];
             IsLevel9PlatformSectionFirstTimeCompleted = (bool)model["is_level9_platform_section_first_time_completed"];
             IsLevel9PlatformSectionSkipAllowed = (bool)model["is_level9_platform_section_skip_is_allowed"];

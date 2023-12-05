@@ -17,6 +17,8 @@ public partial class Meta : Node
     public bool IsFullScreen = false;
     public float CameraZoom = 1.25f;
     public byte ScoresLabelLocationX = 1, ScoresLabelLocationY = 0, ScoresShowingFormatIndex = 0;
+    public enum Language {en, ru}
+    public Language language;
 
     //Gameplay
     public int Dificulty = 0;
@@ -28,6 +30,8 @@ public partial class Meta : Node
         for (int i = 0; i < Instance.BusVolumes.Length; i++)
             AudioServer.SetBusVolumeDb(i, Instance.BusVolumes[i]);
         DisplayServer.WindowSetMode(Instance.IsFullScreen ? DisplayServer.WindowMode.Fullscreen : DisplayServer.WindowMode.Windowed);
+        TranslationServer.SetLocale(language.ToString());
+        ProjectSettings.SetSetting("gui/theme/custom_font", "FontPath");
     }
     public Meta Clone()
     {
@@ -38,6 +42,7 @@ public partial class Meta : Node
         ReturnMeta.IsFullScreen = IsFullScreen;
         ReturnMeta.ScoresShowingFormatIndex = ScoresShowingFormatIndex;
         ReturnMeta.CameraZoom = CameraZoom;
+        ReturnMeta.language = language;
         ReturnMeta.ScoresLabelLocationX = ScoresLabelLocationX;
         ReturnMeta.ScoresLabelLocationY = ScoresLabelLocationY;
         for (int i = 0; i < Instance.AdditionStatuses.Length; i++)
@@ -54,6 +59,7 @@ public partial class Meta : Node
             {"scores_label_location_x", ScoresLabelLocationX},
             {"scores_label_location_y", ScoresLabelLocationY},
             {"camera_zoom", CameraZoom},
+            {"language", Convert.ToInt32(language)},
             {"dificulty", Dificulty},
             {"addition_status0", AdditionStatuses[0]},
             {"addition_status1", AdditionStatuses[1]},
@@ -84,6 +90,7 @@ public partial class Meta : Node
             ScoresLabelLocationX = (byte)model["scores_label_location_x"];
             ScoresLabelLocationY = (byte)model["scores_label_location_y"];
             CameraZoom = (float)model["camera_zoom"];
+            language = (Language)(int)(model["language"]);
 
             Dificulty = (int)model["dificulty"];
 

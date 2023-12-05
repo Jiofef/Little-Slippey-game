@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bbefvhpfglkty"]
+[gd_scene load_steps=6 format=3 uid="uid://bbefvhpfglkty"]
 
 [ext_resource type="Texture2D" uid="uid://blm6syft6nu6e" path="res://Content/Sprites/Interface/AchievementsMenu.png" id="1_fxqph"]
 [ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/AchievementsMenu.cs" id="1_xte5a"]
+[ext_resource type="Theme" uid="uid://cgvarj6mm8mm" path="res://Content/Other/Default.theme" id="3_e0nlk"]
 
 [sub_resource type="Animation" id="Animation_q7m3v"]
 resource_name = "Appearance"
@@ -50,6 +51,7 @@ offset_top = 586.0
 offset_right = 774.0
 offset_bottom = 611.0
 scale = Vector2(2, 2)
+theme = ExtResource("3_e0nlk")
 theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
 text = "Achievements: 0/0"
 horizontal_alignment = 1

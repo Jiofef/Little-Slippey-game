@@ -23,7 +23,7 @@ public partial class SkinsMenu : Control
         }
         
 		GetNode<TextureButton>("SkinButtons/Button" + (Meta.Instance.ChosenSkinIndex + 1)).ButtonPressed = true;
-		GetNode<Label>("SkinsUnlocked").Text = "Skins: " + (SkinsUnlocked + 1) + "/" + (NeededAchievementIndexes.Length + 1);
+		GetNode<Label>("SkinsUnlocked").Text = Tr("Skins: ") + (SkinsUnlocked + 1) + "/" + (NeededAchievementIndexes.Length + 1);
 	}
 	public void SetSkin(int index)
 	{

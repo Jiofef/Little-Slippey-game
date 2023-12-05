@@ -110,7 +110,7 @@ offset_right = 121.0
 offset_bottom = 117.0
 scale = Vector2(0.6, 0.6)
 theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
-text = "We`re Sorry
+text = "We're Sorry
 .txt"
 horizontal_alignment = 1
 
@@ -432,6 +432,7 @@ Over.txt"
 horizontal_alignment = 1
 
 [node name="TheTestIsOverTxt" parent="Icons" instance=ExtResource("2_cpq08")]
+layout_mode = 0
 offset_left = 360.0
 offset_top = 92.0
 offset_right = 376.0
@@ -439,6 +440,7 @@ offset_bottom = 108.0
 texture_normal = ExtResource("3_hpaob")
 
 [node name="TheTestIsOverTxtLabel" type="Label" parent="Icons"]
+layout_mode = 0
 offset_left = 358.0
 offset_top = 159.0
 offset_right = 488.0
@@ -467,14 +469,15 @@ libraries = {
 "": SubResource("AnimationLibrary_bj0h5")
 }
 
-[node name="Label" type="Label" parent="FileBoxes/ManagementLetterTxt"]
+[node name="Label" type="RichTextLabel" parent="FileBoxes/ManagementLetterTxt"]
 offset_left = 3.0
 offset_top = 4.0
-offset_right = 575.0
+offset_right = 922.0
 offset_bottom = 154.0
 scale = Vector2(0.25, 0.25)
-theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
-text = "Dear employees. Due to the abuse of the Internet during working hours, we have disabled
+theme_override_colors/default_color = Color(0.196078, 0.196078, 0.196078, 1)
+text = "
+Dear employees. Due to the abuse of the Internet during working hours, we have disabled
 access to it on all office computers indefinitely. Treat this with understanding, it is 
 important for us to see you happy and rested, but it is also equally important to fulfill
 the work plan. Don't forget what a serious project you are working on.
@@ -491,14 +494,15 @@ libraries = {
 "": SubResource("AnimationLibrary_bj0h5")
 }
 
-[node name="Label" type="Label" parent="FileBoxes/))))Txt"]
+[node name="Label" type="RichTextLabel" parent="FileBoxes/))))Txt"]
 offset_left = 3.0
 offset_top = 4.0
-offset_right = 575.0
+offset_right = 923.0
 offset_bottom = 154.0
 scale = Vector2(0.25, 0.25)
-theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
-text = "From Mike777 to middle-level employees.
+theme_override_colors/default_color = Color(0.196078, 0.196078, 0.196078, 1)
+text = "
+From Mike777 to middle-level employees.
 I want to give special thanks to the geniuses who watched porn on office computers
 during working hours. MAY GOD BLESS YOU AND YOUR F*CKEN FAMILY"
 
@@ -547,18 +551,19 @@ libraries = {
 "": SubResource("AnimationLibrary_bj0h5")
 }
 
-[node name="Label" type="Label" parent="FileBoxes/TitlesTxt"]
+[node name="Label" type="RichTextLabel" parent="FileBoxes/TitlesTxt"]
 offset_left = 3.0
 offset_top = 4.0
-offset_right = 575.0
-offset_bottom = 154.0
+offset_right = 923.0
+offset_bottom = 384.0
 scale = Vector2(0.25, 0.25)
-theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
-text = "From Jiofef to You.
+theme_override_colors/default_color = Color(0.196078, 0.196078, 0.196078, 1)
+text = "
+From Jiofef to everyone.
 For more than a year of development, I have not used almost any other people's assets.
 However, I couldn't create some things myself in the form I wanted, so I had to borrow.
 I want to thank:
-FFF Media Inc for the font.
+FFF Media Inc and Daymarius for the fonts.
 sfxBUZZ and SoundJay for some sounds.
 Pixabay for various assets, mostly sounds.
 The developers of Katana ZERO for the sound of laughter.
@@ -706,37 +711,6 @@ scale = Vector2(0.247826, 0.247368)
 texture = ExtResource("22_g11jh")
 centered = false
 
-[node name="GratitudeDiaryTxt" type="Sprite2D" parent="FileBoxes"]
-visible = false
-scale = Vector2(4, 4)
-texture = ExtResource("11_m33u8")
-centered = false
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="FileBoxes/GratitudeDiaryTxt"]
-libraries = {
-"": SubResource("AnimationLibrary_bj0h5")
-}
-
-[node name="Label" type="Label" parent="FileBoxes/GratitudeDiaryTxt"]
-offset_left = 3.0
-offset_top = 4.0
-offset_right = 575.0
-offset_bottom = 154.0
-scale = Vector2(0.25, 0.25)
-theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
-text = "Huge Thanks from Jiofef to Alexandr Steif, Diana Steif, Tengi, Frontend Pashtet, 
-Factorio developers, Pizza Tower developers, Arsi \"Hakita\" Patala, Edmund McMillen,
-Gooseworx, Nelward, Toby Fox, Richard David James, Mike Paradinas, NikeTheHuman,
-Guk Svetlana, Alexey Panasenko, Dmitriy Pogodaev, Serbina Valentina, Konstanin Panov,
-Sergey HellYeah Belyakov, Roman Hudyakov, Elena Kishenko,
-Illya, my mom, and You, Player.
-
-Without you all this game wouldn't exist"
-
-[node name="ILoveYouAllGuys<3" type="Sprite2D" parent="FileBoxes/GratitudeDiaryTxt"]
-position = Vector2(110, 49)
-texture = ExtResource("12_d2061")
-
 [node name="TheTestIsOverTxt" type="Sprite2D" parent="FileBoxes"]
 visible = false
 scale = Vector2(4, 4)
@@ -748,15 +722,15 @@ libraries = {
 "": SubResource("AnimationLibrary_bj0h5")
 }
 
-[node name="Label" type="Label" parent="FileBoxes/TheTestIsOverTxt"]
+[node name="Label" type="RichTextLabel" parent="FileBoxes/TheTestIsOverTxt"]
 offset_left = 3.0
 offset_top = 3.0
 offset_right = 919.0
-offset_bottom = 243.0
+offset_bottom = 387.0
 scale = Vector2(0.25, 0.25)
-theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
-theme_override_constants/line_spacing = 8
-text = "To the Board of Directors of Giero.
+theme_override_colors/default_color = Color(0.196078, 0.196078, 0.196078, 1)
+text = "
+To the Board of Directors of Giero.
 I am glad to inform you that the testing and training of object 24 \"Slippey\" (hereinafter
 referred to as the \"object\") was successful. The object is subject to further cloning and
 the use of clones for military purposes in accordance with Order N43 of 03/27/2039.
@@ -764,6 +738,38 @@ Our laboratories will conduct additional testing and begin the cloning operation
 near future.
 With respect,
 The general manager of Giero Labs, Hiro Miyoshi."
+
+[node name="GratitudeDiaryTxt" type="Sprite2D" parent="FileBoxes"]
+visible = false
+scale = Vector2(4, 1e-05)
+texture = ExtResource("11_m33u8")
+centered = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="FileBoxes/GratitudeDiaryTxt"]
+libraries = {
+"": SubResource("AnimationLibrary_bj0h5")
+}
+
+[node name="Label" type="RichTextLabel" parent="FileBoxes/GratitudeDiaryTxt"]
+offset_left = 3.0
+offset_top = 4.0
+offset_right = 923.0
+offset_bottom = 384.0
+scale = Vector2(0.25, 0.25)
+theme_override_colors/default_color = Color(0.196078, 0.196078, 0.196078, 1)
+text = "
+Huge Thanks from Jiofef to Alexandr Steif, Diana Steif, Tengi, Frontend Pashtet, 
+Factorio developers, Pizza Tower developers, Arsi \"Hakita\" Patala, Edmund McMillen,
+Gooseworx, Nelward, Toby Fox, Richard David James, Mike Paradinas, NikeTheHuman,
+Guk Svetlana, Alexey Panasenko, Dmitriy Pogodaev, Serbina Valentina, Konstanin Panov,
+Sergey HellYeah Belyakov, Roman Hudyakov, Elena Kishenko,
+Illya, my mom, and You, Player.
+
+Without you all this game wouldn't exist"
+
+[node name="ILoveYouAllGuys<3" type="Sprite2D" parent="FileBoxes/GratitudeDiaryTxt"]
+position = Vector2(110, 49)
+texture = ExtResource("12_d2061")
 
 [connection signal="pressed" from="Icons/WereSorryTxt" to="." method="OpenFile" binds= ["ManagementLetterTxt"]]
 [connection signal="pressed" from="Icons/))))Txt" to="." method="OpenFile" binds= ["))))Txt"]]

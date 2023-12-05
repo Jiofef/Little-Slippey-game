@@ -9,9 +9,6 @@ public partial class WelcomeToGOS : Control
 	{
 		if (!G.IsSystemInitiated)
 		{
-            Meta.Instance.LoadOptions();
-            Meta.Instance.ApplyOptions();
-            UnchangableMeta.LoadSave();
 			GetNode<AnimationPlayer>("AnimationPlayer").Play("Initialization");
 
             G.IsSystemInitiated = true;

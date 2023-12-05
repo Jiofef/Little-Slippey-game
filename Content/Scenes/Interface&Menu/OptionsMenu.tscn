@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dwuivxxfk4cbs"]
+[gd_scene load_steps=14 format=3 uid="uid://dwuivxxfk4cbs"]
 
 [ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/OptionsMenu.cs" id="1_kmdmx"]
 [ext_resource type="Texture2D" uid="uid://i15evt2viayu" path="res://Content/Sprites/Interface/OptionsMenuBox.png" id="1_trr7h"]
@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://c1d2p0ba42csh" path="res://Content/Sprites/Interface/AcceptButton.png" id="3_cxo48"]
 [ext_resource type="Texture2D" uid="uid://d0sqlunqacimf" path="res://Content/Sprites/Interface/CancelButton.png" id="4_kqtal"]
 [ext_resource type="Texture2D" uid="uid://cq66udhicgrdo" path="res://Content/Sprites/Interface/OptionsMenuVideoContainer.png" id="6_gcpn7"]
+[ext_resource type="Texture2D" uid="uid://vb7vdsdjg4xa" path="res://Content/Sprites/Interface/USADiscordFlag.png" id="7_3d3xi"]
+[ext_resource type="Texture2D" uid="uid://hcoc3411pyvj" path="res://Content/Sprites/Interface/RussiaDiscordFlag.png" id="8_42rvm"]
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_vfk1r"]
 
@@ -100,6 +102,7 @@ custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 min_value = -30.0
 max_value = 10.0
+scrollable = false
 
 [node name="Interface" type="Label" parent="SoundContainer"]
 layout_mode = 2
@@ -110,6 +113,7 @@ text = "Interface"
 layout_mode = 2
 min_value = -30.0
 max_value = 10.0
+scrollable = false
 
 [node name="Music" type="Label" parent="SoundContainer"]
 layout_mode = 2
@@ -120,6 +124,7 @@ text = "Music"
 layout_mode = 2
 min_value = -30.0
 max_value = 10.0
+scrollable = false
 
 [node name="Player" type="Label" parent="SoundContainer"]
 layout_mode = 2
@@ -130,17 +135,18 @@ text = "Player"
 layout_mode = 2
 min_value = -30.0
 max_value = 10.0
+scrollable = false
 
 [node name="Crosses" type="Label" parent="SoundContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
-text = "Crosses
-"
+text = "Crosses"
 
 [node name="CrossesSlider" type="HSlider" parent="SoundContainer"]
 layout_mode = 2
 min_value = -30.0
 max_value = 10.0
+scrollable = false
 
 [node name="Explosions" type="Label" parent="SoundContainer"]
 layout_mode = 2
@@ -151,6 +157,7 @@ text = "Explosions"
 layout_mode = 2
 min_value = -30.0
 max_value = 10.0
+scrollable = false
 
 [node name="Environment" type="Label" parent="SoundContainer"]
 layout_mode = 2
@@ -162,6 +169,7 @@ layout_mode = 2
 focus_neighbor_bottom = NodePath("../../AcceptButton")
 min_value = -30.0
 max_value = 10.0
+scrollable = false
 
 [node name="Video" type="Label" parent="."]
 layout_mode = 0
@@ -271,7 +279,7 @@ text = "Mini"
 
 [node name="Hide" type="Label" parent="VideoContainer/GridContainer/ScoresLabelContainer"]
 layout_mode = 2
-offset_left = 132.0
+offset_left = 127.0
 offset_top = 12.0
 offset_right = 176.0
 offset_bottom = 37.0
@@ -374,7 +382,7 @@ button_group = SubResource("ButtonGroup_qiuqg")
 layout_mode = 2
 theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
 text = "Camera
-Zoom"
+zoom"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -386,6 +394,38 @@ max_value = 2.0
 step = 0.15
 value = 1.25
 scrollable = false
+
+[node name="Language" type="Control" parent="VideoContainer/GridContainer"]
+custom_minimum_size = Vector2(84, 25)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VideoContainer/GridContainer/Language"]
+layout_mode = 2
+offset_right = 96.0
+offset_bottom = 58.0
+scale = Vector2(0.9, 0.9)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+text = "Language"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LanguageContainer" type="Control" parent="VideoContainer/GridContainer"]
+custom_minimum_size = Vector2(0, 52)
+layout_mode = 2
+
+[node name="English" parent="VideoContainer/GridContainer/LanguageContainer" instance=ExtResource("2_hr832")]
+layout_mode = 0
+offset_left = 4.0
+offset_right = 24.0
+offset_bottom = 13.0
+texture_normal = ExtResource("7_3d3xi")
+
+[node name="Russian" parent="VideoContainer/GridContainer/LanguageContainer" instance=ExtResource("2_hr832")]
+layout_mode = 0
+offset_left = 88.0
+offset_right = 108.0
+offset_bottom = 13.0
+texture_normal = ExtResource("8_42rvm")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "Appearance"
@@ -417,3 +457,5 @@ libraries = {
 [connection signal="pressed" from="VideoContainer/GridContainer/GridContainer/CheckBox2X3Y" to="." method="ChangeScoresLabelLocation" binds= [1, 2]]
 [connection signal="pressed" from="VideoContainer/GridContainer/GridContainer/CheckBox3X3Y" to="." method="ChangeScoresLabelLocation" binds= [2, 2]]
 [connection signal="value_changed" from="VideoContainer/GridContainer/CameraZoomSlider" to="." method="CameraZoomChanged"]
+[connection signal="pressed" from="VideoContainer/GridContainer/LanguageContainer/English" to="." method="SetLanguage" binds= [0]]
+[connection signal="pressed" from="VideoContainer/GridContainer/LanguageContainer/Russian" to="." method="SetLanguage" binds= [1]]

@@ -197,21 +197,19 @@ position = Vector2(640, 360)
 scale = Vector2(4, 4)
 texture = ExtResource("1_3vvb0")
 
-[node name="Label" type="Label" parent="Letter"]
+[node name="Label" type="RichTextLabel" parent="Letter"]
 offset_left = 260.0
 offset_top = 180.0
 offset_right = 1019.0
 offset_bottom = 539.0
-theme_override_colors/font_color = Color(0, 0, 0, 0.588235)
-theme_override_constants/line_spacing = 8
+theme_override_colors/default_color = Color(0.196078, 0.196078, 0.196078, 1)
 text = "
 To the Board of Directors of Giero.
-I am glad to inform you that the testing and training of object 24 \"Slippey\"
-(hereinafter referred to as the \"object\") was successful. The object is
-subject to further cloning and the use of clones for military purposes in
-accordance with Order N43 of 03/27/2039. Our laboratories will
-conduct additional testing and begin the cloning operation in
-the near future.
+I am glad to inform you that the testing and training of object 24 \"Slippey\" (hereinafter
+referred to as the \"object\") was successful. The object is subject to further cloning and
+the use of clones for military purposes in accordance with Order N43 of 03/27/2039.
+Our laboratories will conduct additional testing and begin the cloning operation in the
+near future.
 With respect,
 The general manager of Giero Labs, Hiro Miyoshi."
 
