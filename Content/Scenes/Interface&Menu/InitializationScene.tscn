@@ -1,16 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://3xejsd8j8fg7"]
+[gd_scene load_steps=5 format=3 uid="uid://3xejsd8j8fg7"]
 
 [ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/InitializationScene.cs" id="1_1rij5"]
-[ext_resource type="FontFile" uid="uid://cp7vrks23tdh3" path="res://Content/Other/FFFFORWA.TTF" id="2_884p5"]
 [ext_resource type="PackedScene" uid="uid://bwpstpk1xmkah" path="res://Content/Scenes/Interface&Menu/Button.tscn" id="2_xyfo0"]
 [ext_resource type="Texture2D" uid="uid://vb7vdsdjg4xa" path="res://Content/Sprites/Interface/USADiscordFlag.png" id="3_frocs"]
 [ext_resource type="Texture2D" uid="uid://hcoc3411pyvj" path="res://Content/Sprites/Interface/RussiaDiscordFlag.png" id="4_jwhtt"]
-
-[sub_resource type="FontVariation" id="FontVariation_4jcop"]
-base_font = ExtResource("2_884p5")
-
-[sub_resource type="FontVariation" id="FontVariation_hckyt"]
-base_font = ExtResource("2_884p5")
 
 [node name="InitializationScene" type="Control"]
 layout_mode = 3
@@ -42,17 +35,7 @@ offset_top = 240.0
 offset_right = 476.0
 offset_bottom = 265.0
 scale = Vector2(2, 2)
-theme_override_fonts/font = SubResource("FontVariation_4jcop")
-text = "Choose your language/"
-
-[node name="ChooseYourLanguageRusLabel" type="Label" parent="ChooseYourLanguage"]
-layout_mode = 0
-offset_left = 710.0
-offset_top = 240.0
-offset_right = 863.0
-offset_bottom = 266.0
-scale = Vector2(2, 2)
-text = "Выберите свой язык"
+text = "Choose your language/Выберите свой язык"
 
 [node name="ChooseYourLanguageEng" parent="ChooseYourLanguage" instance=ExtResource("2_xyfo0")]
 layout_mode = 0
@@ -76,17 +59,16 @@ texture_normal = ExtResource("4_jwhtt")
 layout_mode = 0
 offset_left = 410.0
 offset_top = 490.0
-offset_right = 482.0
+offset_right = 484.0
 offset_bottom = 515.0
 scale = Vector2(2, 2)
-theme_override_fonts/font = SubResource("FontVariation_hckyt")
 text = "English"
 
 [node name="Russian" type="Label" parent="ChooseYourLanguage"]
 layout_mode = 0
-offset_left = 740.0
+offset_left = 720.0
 offset_top = 490.0
-offset_right = 799.0
+offset_right = 806.0
 offset_bottom = 516.0
 scale = Vector2(2, 2)
 text = "Русский"

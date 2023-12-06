@@ -1,13 +1,52 @@
-[gd_scene load_steps=22 format=3 uid="uid://dy1hfd1bl0tpp"]
+[gd_scene load_steps=30 format=3 uid="uid://dy1hfd1bl0tpp"]
 
 [ext_resource type="Texture2D" uid="uid://cl251rqg2xbw0" path="res://Content/Sprites/Levels/Level6/Sky.png" id="2_uoe8d"]
+[ext_resource type="Texture2D" uid="uid://d1fsqrkn16u5n" path="res://Content/Sprites/Levels/Level6/BackgroundGieroFarFlyingCar.png" id="3_jjxvf"]
 [ext_resource type="Texture2D" uid="uid://dj5m4kmysh1li" path="res://Content/Sprites/Levels/Level6/BackCity.png" id="3_qdav7"]
 [ext_resource type="Script" path="res://Content/Scripts/Levels/Level6FlyingCarSpawner.cs" id="3_wesb5"]
 [ext_resource type="PackedScene" uid="uid://c8bud6raefbd" path="res://Content/Scenes/Other/Level6FlyingCar.tscn" id="4_40qb7"]
+[ext_resource type="Texture2D" uid="uid://dxr4mhlbsc3" path="res://Content/Sprites/Levels/Level6/BackgroundGieroFlyingCar.png" id="4_bgwu4"]
 [ext_resource type="Texture2D" uid="uid://cy1lov1ry2p21" path="res://Content/Sprites/Levels/Level6/MiddleCity.png" id="4_f451i"]
+[ext_resource type="Texture2D" uid="uid://7vgkaba3qbfp" path="res://Content/Sprites/Levels/Level6/BillboardsAnimation.png" id="5_rdfbh"]
 [ext_resource type="Texture2D" uid="uid://dvbdc2wlk062n" path="res://Content/Sprites/Levels/Level6/FrontCity.png" id="5_yopae"]
 [ext_resource type="Texture2D" uid="uid://q2j1uuqfjmos" path="res://Content/Sprites/Levels/BaseTileSet.png" id="6_tfqk5"]
 [ext_resource type="Texture2D" uid="uid://b1dppreruk7js" path="res://Content/Sprites/Levels/poliSiSagEtilEseT.png" id="7_f4egv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dsyb6"]
+atlas = ExtResource("5_rdfbh")
+region = Rect2(0, 0, 341, 240)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o57nh"]
+atlas = ExtResource("5_rdfbh")
+region = Rect2(0, 240, 341, 240)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_js5gn"]
+atlas = ExtResource("5_rdfbh")
+region = Rect2(0, 480, 341, 240)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6nm2x"]
+atlas = ExtResource("5_rdfbh")
+region = Rect2(0, 720, 341, 240)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_h0v68"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dsyb6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o57nh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_js5gn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6nm2x")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_k3gk7"]
 
@@ -215,6 +254,39 @@ position = Vector2(800, 490)
 scale = Vector2(4, 4)
 texture = ExtResource("3_qdav7")
 
+[node name="SkyTrafficFlow" type="CPUParticles2D" parent="Background/BackCity"]
+position = Vector2(90, 360)
+amount = 48
+lifetime = 15.0
+preprocess = 16.0
+local_coords = true
+texture = ExtResource("3_jjxvf")
+emission_shape = 3
+emission_rect_extents = Vector2(0, 320)
+spread = 15.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 125.0
+scale_amount_min = 3.0
+scale_amount_max = 4.0
+
+[node name="SkyTrafficFlow2" type="CPUParticles2D" parent="Background/BackCity"]
+position = Vector2(1485, 360)
+scale = Vector2(-1, 1)
+amount = 48
+lifetime = 15.0
+preprocess = 16.0
+local_coords = true
+texture = ExtResource("3_jjxvf")
+emission_shape = 3
+emission_rect_extents = Vector2(0, 320)
+spread = 15.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 125.0
+scale_amount_min = 3.0
+scale_amount_max = 4.0
+
 [node name="MiddleCity" type="ParallaxLayer" parent="Background"]
 motion_scale = Vector2(0.5, 0.5)
 
@@ -222,6 +294,45 @@ motion_scale = Vector2(0.5, 0.5)
 position = Vector2(800, 480)
 scale = Vector2(4, 4)
 texture = ExtResource("4_f451i")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Background/MiddleCity"]
+position = Vector2(808, 552)
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_h0v68")
+autoplay = "default"
+
+[node name="SkyTrafficFlow" type="CPUParticles2D" parent="Background/MiddleCity"]
+position = Vector2(160, 420)
+amount = 32
+lifetime = 14.0
+preprocess = 16.0
+local_coords = true
+texture = ExtResource("4_bgwu4")
+emission_shape = 3
+emission_rect_extents = Vector2(0, 640)
+spread = 15.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 125.0
+initial_velocity_max = 150.0
+scale_amount_min = 3.0
+scale_amount_max = 4.0
+
+[node name="SkyTrafficFlow2" type="CPUParticles2D" parent="Background/MiddleCity"]
+position = Vector2(1820, 420)
+scale = Vector2(-1, 1)
+amount = 32
+lifetime = 15.0
+preprocess = 16.0
+local_coords = true
+texture = ExtResource("4_bgwu4")
+emission_shape = 3
+emission_rect_extents = Vector2(0, 420)
+spread = 15.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 125.0
+initial_velocity_max = 150.0
+scale_amount_min = 3.0
+scale_amount_max = 4.0
 
 [node name="FrontCity" type="ParallaxLayer" parent="Background"]
 motion_scale = Vector2(0.75, 0.75)

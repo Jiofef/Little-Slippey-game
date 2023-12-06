@@ -1,11 +1,13 @@
-[gd_scene load_steps=26 format=3 uid="uid://c6ppvbrdxngie"]
+[gd_scene load_steps=30 format=3 uid="uid://c6ppvbrdxngie"]
 
 [ext_resource type="Texture2D" uid="uid://b5p3n4aaw5n7h" path="res://Content/Sprites/Levels/Level4/Background.png" id="1_j6e8y"]
 [ext_resource type="Script" path="res://Content/Scripts/Levels/BaseLevelScript.cs" id="1_mmyxu"]
 [ext_resource type="Texture2D" uid="uid://d3ctks0vyqrll" path="res://Content/Sprites/Levels/Level4/SawHolder.png" id="2_83sjg"]
 [ext_resource type="Texture2D" uid="uid://b0ejuh11wxt0y" path="res://Content/Sprites/Levels/Level4/DestroyedWall.png" id="3_r15du"]
 [ext_resource type="Texture2D" uid="uid://q2j1uuqfjmos" path="res://Content/Sprites/Levels/BaseTileSet.png" id="4_jltqf"]
+[ext_resource type="Texture2D" uid="uid://d03h2q54r8eox" path="res://Content/Sprites/Levels/Level4/SawPistonRod.png" id="4_l1gbi"]
 [ext_resource type="Texture2D" uid="uid://cfvp6wj1pwrjk" path="res://Content/Sprites/Levels/WorkingPleaseWaitTileset.png" id="5_dws4o"]
+[ext_resource type="Texture2D" uid="uid://ceenyhg3xfoon" path="res://Content/Sprites/Levels/Level4/SawPistonPart.png" id="5_ngbax"]
 [ext_resource type="Script" path="res://Content/Scripts/Levels/Level4CircularSawScript.cs" id="5_p70v5"]
 [ext_resource type="PackedScene" uid="uid://dlscufxb5f1ca" path="res://Content/Scenes/Other/Player.tscn" id="6_158dd"]
 [ext_resource type="Texture2D" uid="uid://dsukwby7alfd" path="res://Content/Sprites/Levels/Level4/UltraBigSaw.png" id="6_nx3qh"]
@@ -16,6 +18,75 @@
 [ext_resource type="Texture2D" uid="uid://op4k0tjuspxj" path="res://Content/Sprites/Levels/Level4/Stud.png" id="9_76ucj"]
 [ext_resource type="Script" path="res://Content/Scripts/Levels/Level4CircularSawScreechSound.cs" id="12_e268e"]
 [ext_resource type="Texture2D" uid="uid://kcd1m7tkh45l" path="res://Content/Sprites/Levels/NePeretrudilsyaTileset.png" id="14_eybje"]
+
+[sub_resource type="Animation" id="Animation_bhfph"]
+resource_name = "SawSpinning"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PistonRod:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, -0.785398, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PistonRod/PistonRod:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [-1.5708, -0.349066, -1.5708, -1.5708]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PistonRod/PistonRod2:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [-1.5708, -0.872665, -1.5708]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PistonRod2:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.5, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.261799, 0.0, 0.261799, 0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("PistonRod2/PistonRod2:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.5, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1.03526, 1),
+"update": 0,
+"values": [-1.5708, -1.309, -1.5708, -1.8326, -1.5708]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gf8ss"]
+_data = {
+"SawSpinning": SubResource("Animation_bhfph")
+}
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wn5uk"]
 radius = 25.0
@@ -152,13 +223,78 @@ texture = ExtResource("1_j6e8y")
 centered = false
 
 [node name="SawHolder" type="ParallaxLayer" parent="Background"]
-motion_scale = Vector2(0.7, 0.6)
+z_index = 1
+motion_scale = Vector2(0.85, 0.6)
 
 [node name="Sprite2D" type="Sprite2D" parent="Background/SawHolder"]
-position = Vector2(300, 8)
+position = Vector2(633, 8)
 scale = Vector2(5, 5)
 texture = ExtResource("2_83sjg")
 centered = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Background/SawHolder"]
+autoplay = "SawSpinning"
+libraries = {
+"": SubResource("AnimationLibrary_gf8ss")
+}
+
+[node name="PistonRod" type="Sprite2D" parent="Background/SawHolder"]
+position = Vector2(1430, 80)
+rotation = -0.195481
+scale = Vector2(4, 4)
+texture = ExtResource("4_l1gbi")
+offset = Vector2(-3, 0)
+region_enabled = true
+region_rect = Rect2(0, 0, 134, 16)
+
+[node name="PistonRod" type="Sprite2D" parent="Background/SawHolder/PistonRod"]
+position = Vector2(-62, 0)
+rotation = -1.5708
+texture = ExtResource("4_l1gbi")
+offset = Vector2(-48, 0)
+region_enabled = true
+region_rect = Rect2(0, 0, 96, 16)
+
+[node name="PistonRod2" type="Sprite2D" parent="Background/SawHolder/PistonRod"]
+position = Vector2(56, 0)
+rotation = -1.39704
+texture = ExtResource("4_l1gbi")
+offset = Vector2(-40, 0)
+region_enabled = true
+region_rect = Rect2(0, 0, 80, 16)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/SawHolder/PistonRod/PistonRod2"]
+z_index = -1
+position = Vector2(-75, 0)
+rotation = 1.5708
+scale = Vector2(0.8, 1.4)
+texture = ExtResource("5_ngbax")
+offset = Vector2(0, 32)
+
+[node name="PistonRod2" type="Sprite2D" parent="Background/SawHolder"]
+position = Vector2(1240, 850)
+rotation = 0.162901
+scale = Vector2(4, 4)
+texture = ExtResource("4_l1gbi")
+offset = Vector2(34, 0)
+region_enabled = true
+region_rect = Rect2(0, 0, 128, 16)
+
+[node name="PistonRod" type="Sprite2D" parent="Background/SawHolder/PistonRod2"]
+position = Vector2(-22, 0)
+rotation = 1.5708
+texture = ExtResource("4_l1gbi")
+offset = Vector2(-40, 0)
+region_enabled = true
+region_rect = Rect2(0, 0, 80, 16)
+
+[node name="PistonRod2" type="Sprite2D" parent="Background/SawHolder/PistonRod2"]
+position = Vector2(90, 0)
+rotation = -1.73703
+texture = ExtResource("4_l1gbi")
+offset = Vector2(-40, 0)
+region_enabled = true
+region_rect = Rect2(0, 0, 80, 16)
 
 [node name="BrokenWall" type="ParallaxLayer" parent="Background"]
 
@@ -221,7 +357,6 @@ texture = ExtResource("9_20rfd")
 
 [node name="ScreechSound" type="AudioStreamPlayer" parent="BackCircularSaw/Saw/MiddleCircularSaw"]
 volume_db = 20.0
-bus = &"LevelSounds"
 script = ExtResource("12_e268e")
 
 [node name="MetalSparks" type="CPUParticles2D" parent="BackCircularSaw/Saw/MiddleCircularSaw"]

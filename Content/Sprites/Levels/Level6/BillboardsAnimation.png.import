@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://emmwsjgbgjod"
-path="res://.godot/imported/CompressPile.png-08dd963b6fcf3303ef0426a80ee7d44f.ctex"
+uid="uid://7vgkaba3qbfp"
+path="res://.godot/imported/BillboardsAnimation.png-1aac6682d17d2c2a7ed8029f95f980d3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Content/Sprites/PlayerSkins/CompressPile.png"
-dest_files=["res://.godot/imported/CompressPile.png-08dd963b6fcf3303ef0426a80ee7d44f.ctex"]
+source_file="res://Content/Sprites/Levels/Level6/BillboardsAnimation.png"
+dest_files=["res://.godot/imported/BillboardsAnimation.png-1aac6682d17d2c2a7ed8029f95f980d3.ctex"]
 
 [params]
 

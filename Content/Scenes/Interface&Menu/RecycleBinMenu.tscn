@@ -99,252 +99,100 @@ offset_bottom = 623.0
 mouse_filter = 2
 
 [node name="WereSorryTxt" parent="Icons" instance=ExtResource("2_cpq08")]
+clip_contents = false
 layout_mode = 0
 texture_normal = ExtResource("3_hpaob")
 
-[node name="WereSorryTxtLabel" type="Label" parent="Icons"]
+[node name="WereSorryTxtLabel" type="Label" parent="Icons/WereSorryTxt"]
 layout_mode = 0
-offset_left = -3.0
-offset_top = 67.0
-offset_right = 121.0
-offset_bottom = 117.0
-scale = Vector2(0.6, 0.6)
+offset_left = -0.75
+offset_top = 16.75
+offset_right = 123.25
+offset_bottom = 66.75
+scale = Vector2(0.15, 0.15)
 theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
 text = "We're Sorry
 .txt"
 horizontal_alignment = 1
 
 [node name="))))Txt" parent="Icons" instance=ExtResource("2_cpq08")]
+clip_contents = false
 layout_mode = 0
 offset_left = 72.0
 offset_right = 88.0
 texture_normal = ExtResource("3_hpaob")
 
-[node name="))))TxtLabel" type="Label" parent="Icons"]
+[node name="))))TxtLabel" type="Label" parent="Icons/))))Txt"]
 layout_mode = 0
-offset_left = 74.0
-offset_top = 67.0
-offset_right = 172.0
-offset_bottom = 92.0
-scale = Vector2(0.6, 0.6)
+offset_left = 0.5
+offset_top = 16.75
+offset_right = 98.5
+offset_bottom = 41.75
+scale = Vector2(0.15, 0.15)
 theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
 text = ":)))).txt"
 horizontal_alignment = 1
 
-[node name="Dem01" parent="Icons" instance=ExtResource("2_cpq08")]
+[node name="TitlesTxt" parent="Icons" instance=ExtResource("2_cpq08")]
+clip_contents = false
 layout_mode = 0
 offset_left = 144.0
 offset_right = 160.0
-texture_normal = ExtResource("4_hbnvg")
-
-[node name="Dem01Label" type="Label" parent="Icons"]
-layout_mode = 0
-offset_left = 148.0
-offset_top = 67.0
-offset_right = 246.0
-offset_bottom = 117.0
-scale = Vector2(0.6, 0.6)
-theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
-text = "Dem01.img"
-horizontal_alignment = 1
-
-[node name="Dem02" parent="Icons" instance=ExtResource("2_cpq08")]
-layout_mode = 0
-offset_left = 216.0
-offset_right = 232.0
-texture_normal = ExtResource("4_hbnvg")
-
-[node name="Dem02Label" type="Label" parent="Icons"]
-layout_mode = 0
-offset_left = 218.0
-offset_top = 67.0
-offset_right = 316.0
-offset_bottom = 117.0
-scale = Vector2(0.6, 0.6)
-theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
-text = "Dem02.img"
-horizontal_alignment = 1
-
-[node name="TitlesTxt" parent="Icons" instance=ExtResource("2_cpq08")]
-layout_mode = 0
-offset_left = 288.0
-offset_right = 304.0
 texture_normal = ExtResource("3_hpaob")
 
-[node name="TitlesTxtLabel" type="Label" parent="Icons"]
+[node name="TitlesTxtLabel" type="Label" parent="Icons/TitlesTxt"]
 layout_mode = 0
-offset_left = 290.0
-offset_top = 67.0
-offset_right = 388.0
-offset_bottom = 117.0
-scale = Vector2(0.6, 0.6)
+offset_left = 0.5
+offset_top = 16.75
+offset_right = 98.5
+offset_bottom = 66.75
+scale = Vector2(0.15, 0.15)
 theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
 text = "Titles.txt"
 horizontal_alignment = 1
 
-[node name="Dem03" parent="Icons" instance=ExtResource("2_cpq08")]
-layout_mode = 0
-offset_left = 360.0
-offset_right = 376.0
-texture_normal = ExtResource("4_hbnvg")
-
-[node name="Dem03Label" type="Label" parent="Icons"]
-layout_mode = 0
-offset_left = 362.0
-offset_top = 67.0
-offset_right = 460.0
-offset_bottom = 117.0
-scale = Vector2(0.6, 0.6)
-theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
-text = "Dem03.img"
-horizontal_alignment = 1
-
-[node name="Dem04" parent="Icons" instance=ExtResource("2_cpq08")]
-layout_mode = 0
-offset_left = 432.0
-offset_right = 448.0
-texture_normal = ExtResource("4_hbnvg")
-
-[node name="Dem04Label" type="Label" parent="Icons"]
-layout_mode = 0
-offset_left = 436.0
-offset_top = 67.0
-offset_right = 534.0
-offset_bottom = 117.0
-scale = Vector2(0.6, 0.6)
-theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
-text = "Dem04.img"
-horizontal_alignment = 1
-
-[node name="Dem05" parent="Icons" instance=ExtResource("2_cpq08")]
-layout_mode = 0
-offset_left = 504.0
-offset_right = 520.0
-texture_normal = ExtResource("4_hbnvg")
-
-[node name="Dem05Label" type="Label" parent="Icons"]
-layout_mode = 0
-offset_left = 506.0
-offset_top = 67.0
-offset_right = 604.0
-offset_bottom = 117.0
-scale = Vector2(0.6, 0.6)
-theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
-text = "Dem05.img"
-horizontal_alignment = 1
-
-[node name="Memory1" parent="Icons" instance=ExtResource("2_cpq08")]
-layout_mode = 0
-offset_left = 576.0
-offset_right = 592.0
-texture_normal = ExtResource("4_hbnvg")
-
-[node name="Memory1Label" type="Label" parent="Icons"]
-layout_mode = 0
-offset_left = 578.0
-offset_top = 67.0
-offset_right = 676.0
-offset_bottom = 117.0
-scale = Vector2(0.6, 0.6)
-theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
-text = "Memory1
-.img"
-horizontal_alignment = 1
-
-[node name="Memory2" parent="Icons" instance=ExtResource("2_cpq08")]
-layout_mode = 0
-offset_left = 648.0
-offset_right = 664.0
-texture_normal = ExtResource("4_hbnvg")
-
-[node name="Memory2Label" type="Label" parent="Icons"]
-layout_mode = 0
-offset_left = 650.0
-offset_top = 67.0
-offset_right = 748.0
-offset_bottom = 117.0
-scale = Vector2(0.6, 0.6)
-theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
-text = "Memory2
-.img"
-horizontal_alignment = 1
-
 [node name="BoostyLink" parent="Icons" instance=ExtResource("2_cpq08")]
+clip_contents = false
 layout_mode = 0
-offset_left = 720.0
-offset_right = 736.0
+offset_left = 216.0
+offset_right = 232.0
 texture_normal = ExtResource("5_h7g8x")
 
-[node name="BoostyLinkLabel" type="Label" parent="Icons"]
+[node name="BoostyLinkLabel" type="Label" parent="Icons/BoostyLink"]
 layout_mode = 0
-offset_left = 718.0
-offset_top = 67.0
-offset_right = 804.0
-offset_bottom = 117.0
-scale = Vector2(0.6, 0.6)
+offset_left = 0.5
+offset_top = 16.75
+offset_right = 112.5
+offset_bottom = 66.75
+scale = Vector2(0.15, 0.15)
 theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
 text = "Boosty.link"
 horizontal_alignment = 1
 
-[node name="Memory3" parent="Icons" instance=ExtResource("2_cpq08")]
-layout_mode = 0
-offset_left = 792.0
-offset_right = 808.0
-texture_normal = ExtResource("4_hbnvg")
-
-[node name="Memory3Label" type="Label" parent="Icons"]
-layout_mode = 0
-offset_left = 794.0
-offset_top = 67.0
-offset_right = 892.0
-offset_bottom = 117.0
-scale = Vector2(0.6, 0.6)
-theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
-text = "Memory3
-.img"
-horizontal_alignment = 1
-
-[node name="Memory4" parent="Icons" instance=ExtResource("2_cpq08")]
-layout_mode = 0
-offset_left = 864.0
-offset_right = 880.0
-texture_normal = ExtResource("4_hbnvg")
-
-[node name="Memory4Label" type="Label" parent="Icons"]
-layout_mode = 0
-offset_left = 866.0
-offset_top = 67.0
-offset_right = 964.0
-offset_bottom = 117.0
-scale = Vector2(0.6, 0.6)
-theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
-text = "Memory4
-.img"
-horizontal_alignment = 1
-
 [node name="YoutubeLink" parent="Icons" instance=ExtResource("2_cpq08")]
+clip_contents = false
 layout_mode = 0
-offset_top = 92.0
-offset_bottom = 108.0
+offset_left = 288.0
+offset_right = 304.0
 texture_normal = ExtResource("9_hn5vf")
 
-[node name="YoutubeLinkLabel" type="Label" parent="Icons"]
+[node name="YoutubeLinkLabel" type="Label" parent="Icons/YoutubeLink"]
 layout_mode = 0
-offset_left = -7.0
-offset_top = 159.0
-offset_right = 123.0
-offset_bottom = 209.0
-scale = Vector2(0.6, 0.6)
+offset_left = -2.0
+offset_top = 16.75
+offset_right = 128.0
+offset_bottom = 66.75
+scale = Vector2(0.15, 0.15)
 theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
-text = "YouTube.link"
+text = "YouTube
+.link"
 horizontal_alignment = 1
 
 [node name="DiscordEngLink" parent="Icons" instance=ExtResource("2_cpq08")]
+clip_contents = false
 layout_mode = 0
-offset_left = 72.0
-offset_top = 92.0
-offset_right = 88.0
-offset_bottom = 108.0
+offset_left = 360.0
+offset_right = 376.0
 texture_normal = ExtResource("6_hnjhh")
 
 [node name="USAFlag" type="Sprite2D" parent="Icons/DiscordEngLink"]
@@ -353,44 +201,23 @@ scale = Vector2(0.33, 0.33)
 texture = ExtResource("7_vfq1x")
 centered = false
 
-[node name="DiscordEngLinkLabel" type="Label" parent="Icons"]
+[node name="DiscordEngLinkLabel" type="Label" parent="Icons/DiscordEngLink"]
 layout_mode = 0
-offset_left = 80.0
-offset_top = 159.0
-offset_right = 166.0
-offset_bottom = 209.0
-scale = Vector2(0.6, 0.6)
+offset_left = 0.5
+offset_top = 16.75
+offset_right = 86.5
+offset_bottom = 66.75
+scale = Vector2(0.15, 0.15)
 theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
 text = "Discord
 Eng.link"
 horizontal_alignment = 1
 
-[node name="Eternity" parent="Icons" instance=ExtResource("2_cpq08")]
-layout_mode = 0
-offset_left = 144.0
-offset_top = 92.0
-offset_right = 160.0
-offset_bottom = 108.0
-texture_normal = ExtResource("4_hbnvg")
-
-[node name="EternityLabel" type="Label" parent="Icons"]
-layout_mode = 0
-offset_left = 150.0
-offset_top = 159.0
-offset_right = 236.0
-offset_bottom = 209.0
-scale = Vector2(0.6, 0.6)
-theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
-text = "Eternity
-.img"
-horizontal_alignment = 1
-
 [node name="DiscordRusLink" parent="Icons" instance=ExtResource("2_cpq08")]
+clip_contents = false
 layout_mode = 0
-offset_left = 216.0
-offset_top = 92.0
-offset_right = 232.0
-offset_bottom = 108.0
+offset_left = 432.0
+offset_right = 448.0
 texture_normal = ExtResource("6_hnjhh")
 
 [node name="RussianFlag" type="Sprite2D" parent="Icons/DiscordRusLink"]
@@ -399,56 +226,249 @@ scale = Vector2(0.33, 0.33)
 texture = ExtResource("8_7bxqy")
 centered = false
 
-[node name="DiscordRusLinkLabel" type="Label" parent="Icons"]
+[node name="DiscordRusLinkLabel" type="Label" parent="Icons/DiscordRusLink"]
 layout_mode = 0
-offset_left = 224.0
-offset_top = 159.0
-offset_right = 310.0
-offset_bottom = 209.0
-scale = Vector2(0.6, 0.6)
+offset_left = 1.0
+offset_top = 16.75
+offset_right = 87.0
+offset_bottom = 66.75
+scale = Vector2(0.15, 0.15)
 theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
 text = "Discord
 Rus.link"
 horizontal_alignment = 1
 
-[node name="GratitudeDiaryTxt" parent="Icons" instance=ExtResource("2_cpq08")]
+[node name="TheTestIsOverTxt" parent="Icons" instance=ExtResource("2_cpq08")]
+clip_contents = false
 layout_mode = 0
-offset_left = 288.0
-offset_top = 92.0
-offset_right = 304.0
-offset_bottom = 108.0
+offset_left = 576.0
+offset_right = 592.0
 texture_normal = ExtResource("3_hpaob")
 
-[node name="GratitudeDiaryTxtLabel" type="Label" parent="Icons"]
+[node name="TheTestIsOverTxtLabel" type="Label" parent="Icons/TheTestIsOverTxt"]
 layout_mode = 0
-offset_left = 280.0
-offset_top = 159.0
-offset_right = 410.0
-offset_bottom = 209.0
-scale = Vector2(0.6, 0.6)
+offset_left = -6.5
+offset_top = 16.75
+offset_right = 180.5
+offset_bottom = 66.75
+scale = Vector2(0.15, 0.15)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+text = "Gratitude
+Diary.txt"
+horizontal_alignment = 1
+
+[node name="GratitudeDiaryTxt" parent="Icons" instance=ExtResource("2_cpq08")]
+clip_contents = false
+layout_mode = 0
+offset_left = 504.0
+offset_right = 520.0
+texture_normal = ExtResource("3_hpaob")
+
+[node name="GratitudeDiaryTxtLabel" type="Label" parent="Icons/GratitudeDiaryTxt"]
+layout_mode = 0
+offset_left = -5.5
+offset_top = 16.75
+offset_right = 161.5
+offset_bottom = 66.75
+scale = Vector2(0.15, 0.15)
 theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
 text = "The Test Is
 Over.txt"
 horizontal_alignment = 1
 
-[node name="TheTestIsOverTxt" parent="Icons" instance=ExtResource("2_cpq08")]
+[node name="Dem01" parent="Icons" instance=ExtResource("2_cpq08")]
+clip_contents = false
+layout_mode = 0
+offset_left = 648.0
+offset_right = 664.0
+texture_normal = ExtResource("4_hbnvg")
+
+[node name="Dem01Label" type="Label" parent="Icons/Dem01"]
+layout_mode = 0
+offset_left = 0.5
+offset_top = 16.75
+offset_right = 98.5
+offset_bottom = 66.75
+scale = Vector2(0.15, 0.15)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+text = "Dem01.img"
+horizontal_alignment = 1
+
+[node name="Dem02" parent="Icons" instance=ExtResource("2_cpq08")]
+clip_contents = false
+layout_mode = 0
+offset_left = 720.0
+offset_right = 736.0
+texture_normal = ExtResource("4_hbnvg")
+
+[node name="Dem02Label" type="Label" parent="Icons/Dem02"]
+layout_mode = 0
+offset_left = 0.75
+offset_top = 16.75
+offset_right = 98.75
+offset_bottom = 66.75
+scale = Vector2(0.15, 0.15)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+text = "Dem02.img"
+horizontal_alignment = 1
+
+[node name="Dem03" parent="Icons" instance=ExtResource("2_cpq08")]
+clip_contents = false
+layout_mode = 0
+offset_left = 792.0
+offset_right = 808.0
+texture_normal = ExtResource("4_hbnvg")
+
+[node name="Dem03Label" type="Label" parent="Icons/Dem03"]
+layout_mode = 0
+offset_left = 0.5
+offset_top = 16.75
+offset_right = 98.5
+offset_bottom = 66.75
+scale = Vector2(0.15, 0.15)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+text = "Dem03.img"
+horizontal_alignment = 1
+
+[node name="Dem04" parent="Icons" instance=ExtResource("2_cpq08")]
+clip_contents = false
+layout_mode = 0
+offset_left = 864.0
+offset_right = 880.0
+texture_normal = ExtResource("4_hbnvg")
+
+[node name="Dem04Label" type="Label" parent="Icons/Dem04"]
+layout_mode = 0
+offset_left = 0.5
+offset_top = 16.75
+offset_right = 98.5
+offset_bottom = 66.75
+scale = Vector2(0.15, 0.15)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+text = "Dem04.img"
+horizontal_alignment = 1
+
+[node name="Dem05" parent="Icons" instance=ExtResource("2_cpq08")]
+clip_contents = false
+layout_mode = 0
+offset_top = 92.0
+offset_bottom = 108.0
+texture_normal = ExtResource("4_hbnvg")
+
+[node name="Dem05Label" type="Label" parent="Icons/Dem05"]
+layout_mode = 0
+offset_left = 0.75
+offset_top = 16.75
+offset_right = 98.75
+offset_bottom = 66.75
+scale = Vector2(0.15, 0.15)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+text = "Dem05.img"
+horizontal_alignment = 1
+
+[node name="Memory1" parent="Icons" instance=ExtResource("2_cpq08")]
+clip_contents = false
+layout_mode = 0
+offset_left = 72.0
+offset_top = 92.0
+offset_right = 88.0
+offset_bottom = 108.0
+texture_normal = ExtResource("4_hbnvg")
+
+[node name="Memory1Label" type="Label" parent="Icons/Memory1"]
+layout_mode = 0
+offset_left = 0.5
+offset_top = 16.75
+offset_right = 98.5
+offset_bottom = 66.75
+scale = Vector2(0.15, 0.15)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+text = "Memory1
+.img"
+horizontal_alignment = 1
+
+[node name="Memory2" parent="Icons" instance=ExtResource("2_cpq08")]
+clip_contents = false
+layout_mode = 0
+offset_left = 144.0
+offset_top = 92.0
+offset_right = 160.0
+offset_bottom = 108.0
+texture_normal = ExtResource("4_hbnvg")
+
+[node name="Memory2Label" type="Label" parent="Icons/Memory2"]
+layout_mode = 0
+offset_left = 0.5
+offset_top = 16.75
+offset_right = 98.5
+offset_bottom = 66.75
+scale = Vector2(0.15, 0.15)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+text = "Memory2
+.img"
+horizontal_alignment = 1
+
+[node name="Memory3" parent="Icons" instance=ExtResource("2_cpq08")]
+clip_contents = false
+layout_mode = 0
+offset_left = 216.0
+offset_top = 92.0
+offset_right = 232.0
+offset_bottom = 108.0
+texture_normal = ExtResource("4_hbnvg")
+
+[node name="Memory3Label" type="Label" parent="Icons/Memory3"]
+layout_mode = 0
+offset_left = 0.5
+offset_top = 16.75
+offset_right = 98.5
+offset_bottom = 66.75
+scale = Vector2(0.15, 0.15)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+text = "Memory3
+.img"
+horizontal_alignment = 1
+
+[node name="Memory4" parent="Icons" instance=ExtResource("2_cpq08")]
+clip_contents = false
+layout_mode = 0
+offset_left = 288.0
+offset_top = 92.0
+offset_right = 304.0
+offset_bottom = 108.0
+texture_normal = ExtResource("4_hbnvg")
+
+[node name="Memory4Label" type="Label" parent="Icons/Memory4"]
+layout_mode = 0
+offset_left = 0.5
+offset_top = 16.75
+offset_right = 98.5
+offset_bottom = 66.75
+scale = Vector2(0.15, 0.15)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+text = "Memory4
+.img"
+horizontal_alignment = 1
+
+[node name="Eternity" parent="Icons" instance=ExtResource("2_cpq08")]
+clip_contents = false
 layout_mode = 0
 offset_left = 360.0
 offset_top = 92.0
 offset_right = 376.0
 offset_bottom = 108.0
-texture_normal = ExtResource("3_hpaob")
+texture_normal = ExtResource("4_hbnvg")
 
-[node name="TheTestIsOverTxtLabel" type="Label" parent="Icons"]
+[node name="EternityLabel" type="Label" parent="Icons/Eternity"]
 layout_mode = 0
-offset_left = 358.0
-offset_top = 159.0
-offset_right = 488.0
-offset_bottom = 209.0
-scale = Vector2(0.6, 0.6)
+offset_left = 0.25
+offset_top = 16.75
+offset_right = 86.25
+offset_bottom = 66.75
+scale = Vector2(0.15, 0.15)
 theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
-text = "Gratitude
-Diary.txt"
+text = "Eternity
+.img"
 horizontal_alignment = 1
 
 [node name="FileBoxes" type="Control" parent="."]
@@ -768,25 +788,29 @@ Illya, my mom, and You, Player.
 Without you all this game wouldn't exist"
 
 [node name="ILoveYouAllGuys<3" type="Sprite2D" parent="FileBoxes/GratitudeDiaryTxt"]
-position = Vector2(110, 49)
+position = Vector2(105, 48)
 texture = ExtResource("12_d2061")
 
 [connection signal="pressed" from="Icons/WereSorryTxt" to="." method="OpenFile" binds= ["ManagementLetterTxt"]]
 [connection signal="pressed" from="Icons/))))Txt" to="." method="OpenFile" binds= ["))))Txt"]]
+[connection signal="pressed" from="Icons/TitlesTxt" to="." method="OpenFile" binds= ["TitlesTxt"]]
+[connection signal="pressed" from="Icons/BoostyLink" to="." method="GiveRoyaltyAchievement"]
+[connection signal="pressed" from="Icons/BoostyLink" to="." method="OpenLink" binds= ["https://boosty.to/paradiseunderground"]]
+[connection signal="pressed" from="Icons/YoutubeLink" to="." method="GiveRoyaltyAchievement"]
+[connection signal="pressed" from="Icons/YoutubeLink" to="." method="OpenLink" binds= ["https://www.youtube.com/@paradiseunderground333"]]
+[connection signal="pressed" from="Icons/DiscordEngLink" to="." method="GiveRoyaltyAchievement"]
+[connection signal="pressed" from="Icons/DiscordEngLink" to="." method="OpenLink" binds= ["https://discord.com/invite/K2TJZTfXt4"]]
+[connection signal="pressed" from="Icons/DiscordRusLink" to="." method="GiveRoyaltyAchievement"]
+[connection signal="pressed" from="Icons/DiscordRusLink" to="." method="OpenLink" binds= ["https://discord.com/invite/Wjy3JNSdNa"]]
+[connection signal="pressed" from="Icons/TheTestIsOverTxt" to="." method="OpenFile" binds= ["GratitudeDiaryTxt"]]
+[connection signal="pressed" from="Icons/GratitudeDiaryTxt" to="." method="OpenFile" binds= ["TheTestIsOverTxt"]]
 [connection signal="pressed" from="Icons/Dem01" to="." method="OpenFile" binds= ["Dem01"]]
 [connection signal="pressed" from="Icons/Dem02" to="." method="OpenFile" binds= ["Dem02"]]
-[connection signal="pressed" from="Icons/TitlesTxt" to="." method="OpenFile" binds= ["TitlesTxt"]]
 [connection signal="pressed" from="Icons/Dem03" to="." method="OpenFile" binds= ["Dem03"]]
 [connection signal="pressed" from="Icons/Dem04" to="." method="OpenFile" binds= ["Dem04"]]
 [connection signal="pressed" from="Icons/Dem05" to="." method="OpenFile" binds= ["Dem05"]]
 [connection signal="pressed" from="Icons/Memory1" to="." method="OpenFile" binds= ["Memory1"]]
 [connection signal="pressed" from="Icons/Memory2" to="." method="OpenFile" binds= ["Memory2"]]
-[connection signal="pressed" from="Icons/BoostyLink" to="." method="OpenLink" binds= ["https://boosty.to/paradiseunderground"]]
 [connection signal="pressed" from="Icons/Memory3" to="." method="OpenFile" binds= ["Memory3"]]
 [connection signal="pressed" from="Icons/Memory4" to="." method="OpenFile" binds= ["Memory4"]]
-[connection signal="pressed" from="Icons/YoutubeLink" to="." method="OpenLink" binds= ["https://www.youtube.com/@paradiseunderground333"]]
-[connection signal="pressed" from="Icons/DiscordEngLink" to="." method="OpenLink" binds= ["https://discord.com/invite/K2TJZTfXt4"]]
 [connection signal="pressed" from="Icons/Eternity" to="." method="OpenFile" binds= ["Eternity"]]
-[connection signal="pressed" from="Icons/DiscordRusLink" to="." method="OpenLink" binds= ["https://discord.com/invite/Wjy3JNSdNa"]]
-[connection signal="pressed" from="Icons/GratitudeDiaryTxt" to="." method="OpenFile" binds= ["TheTestIsOverTxt"]]
-[connection signal="pressed" from="Icons/TheTestIsOverTxt" to="." method="OpenFile" binds= ["GratitudeDiaryTxt"]]

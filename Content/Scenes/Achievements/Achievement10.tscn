@@ -20,4 +20,4 @@ texture = ExtResource("2_3a1t2")
 text = "At least I got to hobnob with royalty"
 
 [node name="Text" parent="." index="2"]
-text = "Check the author's Boosty or Discord"
+text = "Check the author's Boosty, YouTube or Discord"

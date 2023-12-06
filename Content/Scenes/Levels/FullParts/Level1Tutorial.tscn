@@ -2878,8 +2878,11 @@ shape = SubResource("RectangleShape2D_mfb4c")
 position = Vector2(3600, 848)
 
 [node name="Text" parent="TileMap/TutorialTV/Screen" index="2"]
-text = "To walk, press <=
- and => or A and D"
+offset_right = 320.0
+offset_bottom = 160.0
+scale = Vector2(0.25, 0.25)
+text = "To walk, press 🠈
+ and 🠊 or A and D"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="TileMap/TutorialTV"]
 libraries = {
@@ -2908,19 +2911,10 @@ layer_0/tile_data = PackedInt32Array(3408119, 65536, 0, 3473655, 65536, 0, 35391
 position = Vector2(4064, 816)
 
 [node name="Text" parent="TileMap2/TutorialTV/Screen" index="2"]
-text = "To jump, press    or W"
-
-[node name="SubText" type="Label" parent="TileMap2/TutorialTV/Screen/Text" index="0"]
-layout_mode = 0
-offset_left = 161.0
-offset_top = 72.0
-offset_right = 187.0
-offset_bottom = 97.0
-rotation = -1.5708
-theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
-text = "=>"
-horizontal_alignment = 1
-vertical_alignment = 1
+offset_right = 320.0
+offset_bottom = 160.0
+scale = Vector2(0.25, 0.25)
+text = "To jump, press 🠉 or W"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="TileMap2/TutorialTV"]
 libraries = {
@@ -2990,21 +2984,12 @@ layer_0/tile_data = PackedInt32Array(3408282, 3, 0, 3408283, 3, 0, 3408284, 3, 0
 position = Vector2(6264, 608)
 
 [node name="Text" parent="TileMap4/TutorialTV/Screen" index="2"]
+offset_right = 320.0
+offset_bottom = 160.0
+scale = Vector2(0.25, 0.25)
 text = "To climb the wall,
-press    or W during
+press 🠉 or W during
 flight"
-
-[node name="SubText" type="Label" parent="TileMap4/TutorialTV/Screen/Text" index="0"]
-layout_mode = 0
-offset_left = 80.0
-offset_top = 70.0
-offset_right = 106.0
-offset_bottom = 95.0
-rotation = -1.5708
-theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
-text = "=>"
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="Particles" parent="TileMap4/TutorialTV" index="2"]
 texture = ExtResource("19_nan3p")
@@ -3084,6 +3069,10 @@ position = Vector2(8512, 1037)
 scale = Vector2(0.9, 0.9)
 
 [node name="Text" parent="TileMap5/TutorialTV/Screen" index="2"]
+offset_right = 356.0
+offset_bottom = 178.0
+scale = Vector2(0.225, 0.225)
+theme_override_font_sizes/font_size = 22
 text = "To wall-jump,
 hold Ctrl/Shift/LMB
 against the wall during
@@ -3171,9 +3160,12 @@ position = Vector2(8832, 760)
 scale = Vector2(0.75, 0.75)
 
 [node name="Text" parent="TileMap5/ShakyPlatform/TutorialTV/Screen" index="2"]
-text = "=> => =>
+offset_right = 320.0
+offset_bottom = 160.0
+scale = Vector2(0.25, 0.25)
+text = "🠊 🠊 🠊
 You need go right
-=> => =>"
+🠊 🠊 🠊"
 
 [node name="Text2" type="Label" parent="TileMap5/ShakyPlatform/TutorialTV/Screen" index="3"]
 visible = false
@@ -3182,6 +3174,7 @@ offset_right = 242.0
 offset_bottom = 121.0
 scale = Vector2(0.33, 0.33)
 theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+theme_override_font_sizes/font_size = 22
 text = "Oh..."
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -3442,20 +3435,11 @@ scale = Vector2(0.75, 0.75)
 position = Vector2(-3.73333, -3.73333)
 
 [node name="Text" parent="TileMap6/TutorialTV/Screen" index="2"]
+offset_right = 320.0
+offset_bottom = 160.0
+scale = Vector2(0.25, 0.25)
 text = "To pulldown, press
-  or S during flight"
-
-[node name="SubText" type="Label" parent="TileMap6/TutorialTV/Screen/Text" index="0"]
-layout_mode = 0
-offset_left = 38.0
-offset_top = 60.0
-offset_right = 64.0
-offset_bottom = 85.0
-rotation = 1.5708
-theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
-text = "=>"
-horizontal_alignment = 1
-vertical_alignment = 1
+🠋 or S during flight"
 
 [node name="WhiteNoise" parent="TileMap6/TutorialTV/Screen" index="3"]
 visible = false
@@ -3612,15 +3596,19 @@ scale = Vector2(0.75, 0.75)
 
 [node name="Text" parent="TileMap7/TutorialTV/Screen" index="2"]
 modulate = Color(1, 1, 1, 0)
+offset_right = 320.0
+offset_bottom = 160.0
+scale = Vector2(0.25, 0.25)
 text = "!YOU WIN!"
 
 [node name="Text2" type="Label" parent="TileMap7/TutorialTV/Screen" index="3"]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 0
-offset_right = 242.0
-offset_bottom = 121.0
-scale = Vector2(0.33, 0.33)
+offset_right = 320.0
+offset_bottom = 160.0
+scale = Vector2(0.25, 0.25)
 theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+theme_override_font_sizes/font_size = 22
 text = "You're probably
 wondering why you 
 need all this..."
@@ -3630,10 +3618,11 @@ vertical_alignment = 1
 [node name="Text3" type="Label" parent="TileMap7/TutorialTV/Screen" index="4"]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 0
-offset_right = 242.0
-offset_bottom = 121.0
-scale = Vector2(0.33, 0.33)
+offset_right = 320.0
+offset_bottom = 160.0
+scale = Vector2(0.25, 0.25)
 theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+theme_override_font_sizes/font_size = 22
 text = "Don't worry, this
 knowledge will be
 useful to you"
@@ -3643,10 +3632,11 @@ vertical_alignment = 1
 [node name="Text4" type="Label" parent="TileMap7/TutorialTV/Screen" index="5"]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 0
-offset_right = 242.0
-offset_bottom = 121.0
-scale = Vector2(0.33, 0.33)
+offset_right = 320.0
+offset_bottom = 160.0
+scale = Vector2(0.25, 0.25)
 theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+theme_override_font_sizes/font_size = 22
 text = "Just wait a few
 seconds."
 horizontal_alignment = 1
@@ -3655,10 +3645,11 @@ vertical_alignment = 1
 [node name="Text5" type="Label" parent="TileMap7/TutorialTV/Screen" index="6"]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 0
-offset_right = 242.0
-offset_bottom = 121.0
-scale = Vector2(0.33, 0.33)
+offset_right = 320.0
+offset_bottom = 160.0
+scale = Vector2(0.25, 0.25)
 theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+theme_override_font_sizes/font_size = 22
 text = "And where?.."
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -3666,10 +3657,11 @@ vertical_alignment = 1
 [node name="Text6" type="Label" parent="TileMap7/TutorialTV/Screen" index="7"]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 0
-offset_right = 242.0
-offset_bottom = 121.0
-scale = Vector2(0.33, 0.33)
+offset_right = 320.0
+offset_bottom = 160.0
+scale = Vector2(0.25, 0.25)
 theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+theme_override_font_sizes/font_size = 22
 text = "Oh, I almost forgot."
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -3677,10 +3669,11 @@ vertical_alignment = 1
 [node name="Text7" type="Label" parent="TileMap7/TutorialTV/Screen" index="8"]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 0
-offset_right = 242.0
-offset_bottom = 121.0
-scale = Vector2(0.33, 0.33)
+offset_right = 320.0
+offset_bottom = 160.0
+scale = Vector2(0.25, 0.25)
 theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+theme_override_font_sizes/font_size = 22
 text = "Done :)"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -3737,6 +3730,7 @@ offset_right = 640.0
 offset_bottom = 665.0
 scale = Vector2(2, 2)
 theme_override_colors/font_color = Color(0.788235, 0.788235, 0.788235, 1)
+theme_override_font_sizes/font_size = 22
 text = "Press F to skip intro"
 horizontal_alignment = 1
 

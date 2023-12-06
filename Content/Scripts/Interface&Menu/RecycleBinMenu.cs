@@ -6,9 +6,10 @@ public partial class RecycleBinMenu : Control
 	private string _openedFile = "";
     public override void _Ready()
     {
-        if (UnchangableMeta.LevelCompleteStatus[9] == 0)
+        GetNode<Sprite2D>("FileBoxes/GratitudeDiaryTxt/ILoveYouAllGuys<3").Position = new Vector2(Convert.ToInt32(Tr("GratitudeDiaryHeartXPos")), 48);
+        if (UnchangableMeta.AchievementStatuses[48] == 0)
         {
-            string[] NodesToHideNames = { "GratitudeDiaryTxt", "GratitudeDiaryTxtLabel", "TheTestIsOverTxt", "TheTestIsOverTxtLabel" };
+            string[] NodesToHideNames = { "TheTestIsOverTxt", "GratitudeDiaryTxt", "Dem01", "Dem02", "Dem03", "Dem04", "Dem05", "Memory1", "Memory2", "Memory3", "Memory4", "Eternity"};
             for (int i = 0; i < NodesToHideNames.Length; i++)
                 GetNode("Icons/" + NodesToHideNames[i]).QueueFree();
         }
@@ -42,4 +43,9 @@ public partial class RecycleBinMenu : Control
 	{
 		OS.ShellOpen(link);
 	}
+
+    public void GiveRoyaltyAchievement()
+    {
+        G.GetAchievement(9);
+    }
 }

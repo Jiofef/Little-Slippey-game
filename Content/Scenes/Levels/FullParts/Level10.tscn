@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://4rq2qv4xbcb1"]
+[gd_scene load_steps=50 format=3 uid="uid://4rq2qv4xbcb1"]
 
 [ext_resource type="Script" path="res://Content/Scripts/Levels/BaseLevelScript.cs" id="1_4x67j"]
 [ext_resource type="Script" path="res://Content/Scripts/Levels/Level10RealityDissector.cs" id="2_x0f02"]
@@ -294,6 +294,17 @@ texture = SubResource("CompressedTexture2D_bkcup")
 [sub_resource type="TileSet" id="TileSet_tw0dy"]
 sources/2 = SubResource("TileSetAtlasSource_o0u0w")
 sources/0 = SubResource("TileSetAtlasSource_3a1es")
+
+[sub_resource type="FontFile" id="FontFile_i8clp"]
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+
+[sub_resource type="Theme" id="Theme_k7n4i"]
+default_font = SubResource("FontFile_i8clp")
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_x5li7"]
 
@@ -676,6 +687,17 @@ color = Color(0, 0, 0, 0)
 [node name="CoolEasterEgg" type="Sprite2D" parent="."]
 position = Vector2(25088, -1863)
 texture = ExtResource("12_oe11w")
+
+[node name="Label" type="Label" parent="CoolEasterEgg"]
+offset_left = -100.0
+offset_top = -127.0
+offset_right = 100.0
+offset_bottom = -75.0
+theme = SubResource("Theme_k7n4i")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Sorry, there is no secret
+Take an apple :)"
+horizontal_alignment = 1
 
 [node name="Player" parent="." instance=ExtResource("7_0a07g")]
 position = Vector2(13856, 608)

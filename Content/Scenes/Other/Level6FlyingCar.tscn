@@ -75,7 +75,6 @@ color_ramp = SubResource("Gradient_qa2ky")
 
 [node name="ExplosionSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_y8kyn")
-bus = &"LevelSounds"
 
 [node name="CarDetector" type="Area2D" parent="."]
 position = Vector2(196, 0)

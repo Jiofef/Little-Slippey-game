@@ -1,79 +1,79 @@
 [gd_scene load_steps=26 format=3 uid="uid://b5vdhtg5rdda7"]
 
-[ext_resource type="Texture2D" uid="uid://emmwsjgbgjod" path="res://Content/Sprites/PlayerSkins/CompressPile.png" id="2_c3kwj"]
-[ext_resource type="Script" path="res://Content/Scripts/Other/SkinScript.cs" id="2_cbd36"]
-[ext_resource type="AudioStream" uid="uid://cxl4a0a34ne6j" path="res://Content/Sounds/Player/CompressPileDeathSound.mp3" id="2_rm667"]
+[ext_resource type="Texture2D" uid="uid://emmwsjgbgjod" path="res://Content/Sprites/PlayerSkins/CompressMass.png" id="1_5x6sv"]
+[ext_resource type="Script" path="res://Content/Scripts/Other/SkinScript.cs" id="2_60qb7"]
+[ext_resource type="AudioStream" uid="uid://cxl4a0a34ne6j" path="res://Content/Sounds/Player/CompressPileDeathSound.mp3" id="3_eg3kj"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s4guf"]
-atlas = ExtResource("2_c3kwj")
+atlas = ExtResource("1_5x6sv")
 region = Rect2(0, 32, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hh41i"]
-atlas = ExtResource("2_c3kwj")
+atlas = ExtResource("1_5x6sv")
 region = Rect2(16, 32, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j6dvb"]
-atlas = ExtResource("2_c3kwj")
+atlas = ExtResource("1_5x6sv")
 region = Rect2(32, 32, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mn4fb"]
-atlas = ExtResource("2_c3kwj")
+atlas = ExtResource("1_5x6sv")
 region = Rect2(0, 48, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_coq54"]
-atlas = ExtResource("2_c3kwj")
+atlas = ExtResource("1_5x6sv")
 region = Rect2(16, 48, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6tsbw"]
-atlas = ExtResource("2_c3kwj")
+atlas = ExtResource("1_5x6sv")
 region = Rect2(32, 48, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hmeqh"]
-atlas = ExtResource("2_c3kwj")
+atlas = ExtResource("1_5x6sv")
 region = Rect2(64, 48, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hl2qm"]
-atlas = ExtResource("2_c3kwj")
+atlas = ExtResource("1_5x6sv")
 region = Rect2(32, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_76p4c"]
-atlas = ExtResource("2_c3kwj")
+atlas = ExtResource("1_5x6sv")
 region = Rect2(64, 32, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_skj3q"]
-atlas = ExtResource("2_c3kwj")
+atlas = ExtResource("1_5x6sv")
 region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_805ry"]
-atlas = ExtResource("2_c3kwj")
+atlas = ExtResource("1_5x6sv")
 region = Rect2(16, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lvm0d"]
-atlas = ExtResource("2_c3kwj")
+atlas = ExtResource("1_5x6sv")
 region = Rect2(48, 32, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rdff6"]
-atlas = ExtResource("2_c3kwj")
+atlas = ExtResource("1_5x6sv")
 region = Rect2(0, 16, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pu0os"]
-atlas = ExtResource("2_c3kwj")
+atlas = ExtResource("1_5x6sv")
 region = Rect2(16, 16, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bnc3r"]
-atlas = ExtResource("2_c3kwj")
+atlas = ExtResource("1_5x6sv")
 region = Rect2(32, 16, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6rdlr"]
-atlas = ExtResource("2_c3kwj")
+atlas = ExtResource("1_5x6sv")
 region = Rect2(48, 16, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_finak"]
-atlas = ExtResource("2_c3kwj")
+atlas = ExtResource("1_5x6sv")
 region = Rect2(64, 16, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xbbsn"]
-atlas = ExtResource("2_c3kwj")
+atlas = ExtResource("1_5x6sv")
 region = Rect2(48, 48, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_chcc5"]
@@ -276,12 +276,12 @@ _data = {
 "Death": SubResource("Animation_6qilu")
 }
 
-[node name="CompressPile" type="AnimatedSprite2D"]
+[node name="CompressMass" type="AnimatedSprite2D"]
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_chcc5")
 animation = &"Idle"
 autoplay = "Idle"
-script = ExtResource("2_cbd36")
+script = ExtResource("2_60qb7")
 metadata/HasAnimationPlayer = false
 metadata/HasDeathPlayerAnimation = true
 
@@ -334,5 +334,5 @@ libraries = {
 }
 
 [node name="DeathSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("2_rm667")
+stream = ExtResource("3_eg3kj")
 volume_db = 8.0

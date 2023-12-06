@@ -1,16 +1,18 @@
-Control
-Label
-ColorRect
-RichTextLabel
 Sprite2D
+ColorRect
+Node3D
 AnimationPlayer
+AnimatedSprite2D
+CPUParticles2D
+Label
+GridContainer
 CanvasLayer
+RichTextLabel
+Control
 CollisionShape2D
 CollisionPolygon2D
 Node2D
-AnimatedSprite2D
 AudioStreamPlayer
-CPUParticles2D
 AudioListener2D
 Camera2D
 TileMap
@@ -19,7 +21,6 @@ ParallaxBackground
 ParallaxLayer
 Timer
 AnimatableBody2D
-GridContainer
 NinePatchRect
 CheckBox
 VSlider
@@ -29,4 +30,3 @@ PathFollow2D
 Path2D
 StaticBody2D
 RigidBody2D
-VBoxContainer

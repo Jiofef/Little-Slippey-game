@@ -258,6 +258,8 @@ color = Color(0, 0, 0, 1)
 stream = SubResource("AudioStreamMP3_tm2e3")
 volume_db = 10.0
 
+[node name="PopupAchievementsLayer" type="CanvasLayer" parent="."]
+
 [node name="Buttons" type="Control" parent="."]
 process_mode = 4
 layout_mode = 3
@@ -274,9 +276,8 @@ texture_normal = ExtResource("8_ftgus")
 
 [node name="Levels" type="Label" parent="Buttons"]
 layout_mode = 0
-offset_left = 25.0
 offset_top = 97.0
-offset_right = 91.0
+offset_right = 112.0
 offset_bottom = 122.0
 text = "Levels"
 horizontal_alignment = 1
@@ -291,9 +292,8 @@ texture_normal = ExtResource("9_byapo")
 
 [node name="Options" type="Label" parent="Buttons"]
 layout_mode = 0
-offset_left = 18.0
 offset_top = 188.0
-offset_right = 96.0
+offset_right = 112.0
 offset_bottom = 213.0
 text = "Options"
 horizontal_alignment = 1
@@ -308,9 +308,9 @@ texture_normal = ExtResource("10_6fao5")
 
 [node name="Skins" type="Label" parent="Buttons"]
 layout_mode = 0
-offset_left = 28.0
+offset_left = 17.0
 offset_top = 280.0
-offset_right = 84.0
+offset_right = 89.0
 offset_bottom = 305.0
 text = "Skins"
 horizontal_alignment = 1

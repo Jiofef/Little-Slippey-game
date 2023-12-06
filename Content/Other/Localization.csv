@@ -1,5 +1,4 @@
 ,en,ru
-FontPath,res://Content/Other/FFFFORWA.TTF,res://Content/Other/progresspixel_bold.ttf
 Levels,Levels,Уровни
 Options,Options,Настройки
 Skins,Skins,Скины
@@ -61,13 +60,15 @@ Slippey,Slippey,Слиппи
 Samey,Samey,Сэйми
 Sanboy,Sanboy,Сэнбой
 Strawman,Strawman,Страумен
-Pineplum,Pineplum,Пайнплам
+Pineplum,Pineplum,Пинплам
 Bondey,Bondey,Бонди
 Sleepy,Sleepy,Слипи
 Daley,Daley,Дэли
 ???,???,???
-Compress Pile,Compress Pile,Кучка Компресса
-Jio Yoba Fefski,Jio Yoba Fefski,Джио Иоба Фефский
+Compress Mass,Compress Mass,"Масса 
+Компресса"
+Jio Yoba Fefski,Jio Yoba Fefski,"Джио Иоба
+Фефский"
 Chad,Chad,Чад
 M7SSINGNULL,M7SSINGNULL,М7SSINGNULL
 Corey,Corey,Кори
@@ -91,76 +92,76 @@ Try 150 to complete the level!","Прожить 50 секунд.
 Проживи 150, чтобы пройти уровень!"
 "I Have No Eyes, and I Must Oversee","I Have No Eyes, and I Must Oversee","У меня нет глаз, но я должен глядеть"
 Complete a level with maximum camera zoom set in options,Complete a level with maximum camera zoom set in options,"Пройдите уровень с максимальным приближением камеры, выставленным в настройках"
-At least I got to hobnob with royalty,At least I got to hobnob with royalty,Ну я хотя-бы на хорошем счету у королевской семьи
-Check the author's Boosty or Discord,Check the author's Boosty or Discord,Перейдите на Бусти или Дискорд автора
+At least I got to hobnob with royalty,At least I got to hobnob with royalty,На хорошем счету у королевской семьи
+"Check the author's Boosty, YouTube or Discord","Check the author's Boosty, YouTube or Discord","Перейдите на Бусти, Ютуб или Дискорд автора"
 "When the warm sun, that brings","When the warm sun, that brings",Травка зеленеет
-"Complete level 1 on ""Hard"" difficulty","Complete level 1 on ""Hard"" difficulty","Пройдите 1 уровень на сложности ""Тяжело"""
+"Complete level 1 on ""Hard"" difficulty","Complete level 1 on ""Hard"" difficulty","Пройдите 1 уровень на сложности ""Сложная"""
 I have been one acquainted with the night,I have been one acquainted with the night,"Мне не спится, нет огня"
-"Complete level 1 on ""Insane"" difficulty","Complete level 1 on ""Insane"" difficulty","Пройдите 1 уровень на сложности ""Безумно"""
+"Complete level 1 on ""Insane"" difficulty","Complete level 1 on ""Insane"" difficulty","Пройдите 1 уровень на сложности ""Безумная"""
 "I felt a Funeral, in my Brain","I felt a Funeral, in my Brain",Придёт ужасный час... Твои небесны очи
-"Complete level 1 on ""Inferno"" difficulty","Complete level 1 on ""Inferno"" difficulty","Пройдите 1 уровень на сложности ""Инфернально"""
+"Complete level 1 on ""Inferno"" difficulty","Complete level 1 on ""Inferno"" difficulty","Пройдите 1 уровень на сложности ""Инферно"""
 "Seed-time and harvest, has returned again","Seed-time and harvest, has returned again",Солнышко блестит
-"Complete level 2 on ""Hard"" difficulty","Complete level 2 on ""Hard"" difficulty","Пройдите 2 уровень на сложности ""Тяжело"""
+"Complete level 2 on ""Hard"" difficulty","Complete level 2 on ""Hard"" difficulty","Пройдите 2 уровень на сложности ""Сложная"""
 I have walked out in rain—and back in rain,I have walked out in rain—and back in rain,Всюду мрак и сон доскучный
-"Complete level 2 on ""Insane"" difficulty","Complete level 2 on ""Insane"" difficulty","Пройдите 2 уровень на сложности ""Безумно"""
+"Complete level 2 on ""Insane"" difficulty","Complete level 2 on ""Insane"" difficulty","Пройдите 2 уровень на сложности ""Безумная"""
 And Mourners to and fro,And Mourners to and fro,"Покроются, друг мой, туманом вечной ночи"
-"Complete level 2 on ""Inferno"" difficulty","Complete level 2 on ""Inferno"" difficulty","Пройдите 2 уровень на сложности ""Инфернально"""
+"Complete level 2 on ""Inferno"" difficulty","Complete level 2 on ""Inferno"" difficulty","Пройдите 2 уровень на сложности ""Инферно"""
 "T is sweet to visit the still wood, where springs","T is sweet to visit the still wood, where springs",Ласточка с весною
-"Complete level 3 on ""Hard"" difficulty","Complete level 3 on ""Hard"" difficulty","Пройдите 3 уровень на сложности ""Тяжело"""
+"Complete level 3 on ""Hard"" difficulty","Complete level 3 on ""Hard"" difficulty","Пройдите 3 уровень на сложности ""Сложная"""
 I have outwalked the furthest city light,I have outwalked the furthest city light,Ход часов лишь однозвучный
-"Complete level 3 on ""Insane"" difficulty","Complete level 3 on ""Insane"" difficulty","Пройдите 3 уровень на сложности ""Безумно"""
+"Complete level 3 on ""Insane"" difficulty","Complete level 3 on ""Insane"" difficulty","Пройдите 3 уровень на сложности ""Безумная"""
 Kept treading – treading – till it seemed,Kept treading – treading – till it seemed,Молчанье вечное сомкнёт твои уста
-"Complete level 3 on ""Inferno"" difficulty","Complete level 3 on ""Inferno"" difficulty","Пройдите 3 уровень на сложности ""Инфернально"""
+"Complete level 3 on ""Inferno"" difficulty","Complete level 3 on ""Inferno"" difficulty","Пройдите 3 уровень на сложности ""Инферно"""
 The first flower of the plain,The first flower of the plain,В сени к нам летит
-"Complete level 4 on ""Hard"" difficulty","Complete level 4 on ""Hard"" difficulty","Пройдите 4 уровень на сложности ""Тяжело"""
+"Complete level 4 on ""Hard"" difficulty","Complete level 4 on ""Hard"" difficulty","Пройдите 4 уровень на сложности ""Сложная"""
 I have looked down the saddest city lane,I have looked down the saddest city lane,Раздаётся близ меня
-"Complete level 4 on ""Insane"" difficulty","Complete level 4 on ""Insane"" difficulty","Пройдите 4 уровень на сложности ""Безумно"""
+"Complete level 4 on ""Insane"" difficulty","Complete level 4 on ""Insane"" difficulty","Пройдите 4 уровень на сложности ""Безумная"""
 That Sense was breaking through,That Sense was breaking through,Ты навсегда сойдёшь в те мрачные места
-"Complete level 4 on ""Inferno"" difficulty","Complete level 4 on ""Inferno"" difficulty","Пройдите 4 уровень на сложности ""Инфернально"""
+"Complete level 4 on ""Inferno"" difficulty","Complete level 4 on ""Inferno"" difficulty","Пройдите 4 уровень на сложности ""Инферно"""
 I love the season well,I love the season well,С нею солнце краше
-"Complete level 5 on ""Hard"" difficulty","Complete level 5 on ""Hard"" difficulty","Пройдите 5 уровень на сложности ""Тяжело"""
+"Complete level 5 on ""Hard"" difficulty","Complete level 5 on ""Hard"" difficulty","Пройдите 5 уровень на сложности ""Сложная"""
 When forest glades are teeming with bright forms,When forest glades are teeming with bright forms,"Парки бабье лепетанье, спящей ночи трепетанье"
-"Complete level 5 on ""Insane"" difficulty","Complete level 5 on ""Insane"" difficulty","Пройдите 5 уровень на сложности ""Безумно"""
+"Complete level 5 on ""Insane"" difficulty","Complete level 5 on ""Insane"" difficulty","Пройдите 5 уровень на сложности ""Безумная"""
 And when they all were seated,And when they all were seated,Где прадедов твоих почиют моши хладны
-"Complete level 5 on ""Inferno"" difficulty","Complete level 5 on ""Inferno"" difficulty","Пройдите 5 уровень на сложности ""Инфернально"""
+"Complete level 5 on ""Inferno"" difficulty","Complete level 5 on ""Inferno"" difficulty","Пройдите 5 уровень на сложности ""Инферно"""
 Nor dark and many-folded clouds foretell,Nor dark and many-folded clouds foretell,И весна милей
-"Complete level 6 on ""Hard"" difficulty","Complete level 6 on ""Hard"" difficulty","Пройдите 6 уровень на сложности ""Тяжело"""
+"Complete level 6 on ""Hard"" difficulty","Complete level 6 on ""Hard"" difficulty","Пройдите 6 уровень на сложности ""Сложная"""
 "And dropped my eyes, unwilling to explain","And dropped my eyes, unwilling to explain","Жизни мышья беготня, что тревожишь ты меня"
-"Complete level 6 on ""Insane"" difficulty","Complete level 6 on ""Insane"" difficulty","Пройдите 6 уровень на сложности ""Безумно"""
+"Complete level 6 on ""Insane"" difficulty","Complete level 6 on ""Insane"" difficulty","Пройдите 6 уровень на сложности ""Безумная"""
 "A Service, like a Drum","A Service, like a Drum","Но я, дотоле твой поклонник безотрадный"
-"Complete level 6 on ""Inferno"" difficulty","Complete level 6 on ""Inferno"" difficulty","Пройдите 6 уровень на сложности ""Инфернально"""
+"Complete level 6 on ""Inferno"" difficulty","Complete level 6 on ""Inferno"" difficulty","Пройдите 6 уровень на сложности ""Инферно"""
 The coming-on of storms,The coming-on of storms,Прощебечь с дороги нам привет скорей
-"Complete level 7 on ""Hard"" difficulty","Complete level 7 on ""Hard"" difficulty","Пройдите 7 уровень на сложности ""Тяжело"""
+"Complete level 7 on ""Hard"" difficulty","Complete level 7 on ""Hard"" difficulty","Пройдите 7 уровень на сложности ""Сложная"""
 I have stood still,I have stood still,"Что ты знаешь, скучный шёпот"
-"Complete level 7 on ""Insane"" difficulty","Complete level 7 on ""Insane"" difficulty","Пройдите 7 уровень на сложности ""Безумно"""
-Kept beating – beating – till I thought,Kept beating – beating – till I thought,"И сяду близ тебя, печальный и немой, в обитель скорбную сойду я за тобой"
-"Complete level 7 on ""Inferno"" difficulty","Complete level 7 on ""Inferno"" difficulty","Пройдите 7 уровень на сложности ""Инфернально"""
+"Complete level 7 on ""Insane"" difficulty","Complete level 7 on ""Insane"" difficulty","Пройдите 7 уровень на сложности ""Безумная"""
+Kept beating – beating – till I thought,Kept beating – beating – till I thought,"И сяду близ тебя, печальный и немой"
+"Complete level 7 on ""Inferno"" difficulty","Complete level 7 on ""Inferno"" difficulty","Пройдите 7 уровень на сложности ""Инферно"""
 Eureka,Eureka,Эврика
 Find one of the secret ways at level 8,Find one of the secret ways at level 8,Найдите один из потайных ходов на 8 уровне
 Marathoner,Marathoner,Марафонец
 Run 512 blocks on level 8,Run 512 blocks on level 8,Пробегите 512 блоков на 8 уровне
 "From the earth's loosened mould, the sapling draws its sustenance, and thrives","From the earth's loosened mould, the sapling draws its sustenance, and thrives",Дам тебе я зёрен
-"Complete level 8 on ""Hard"" difficulty","Complete level 8 on ""Hard"" difficulty","Пройдите 8 уровень на сложности ""Тяжело"""
+"Complete level 8 on ""Hard"" difficulty","Complete level 8 on ""Hard"" difficulty","Пройдите 8 уровень на сложности ""Сложная"""
 And stopped the sound of feet,And stopped the sound of feet,"Укоризна, или ропот мной утраченного дня"
-"Complete level 8 on ""Insane"" difficulty","Complete level 8 on ""Insane"" difficulty","Пройдите 8 уровень на сложности ""Безумно"""
+"Complete level 8 on ""Insane"" difficulty","Complete level 8 on ""Insane"" difficulty","Пройдите 8 уровень на сложности ""Безумная"""
 My mind was going numb,My mind was going numb,"И сяду близ тебя, печальный и немой"
-"Complete level 8 on ""Inferno"" difficulty","Complete level 8 on ""Inferno"" difficulty","Пройдите 8 уровень на сложности ""Инфернально"""
-Are you really falling for this?,Are you really falling for this?,Вы реально повелись на это?
-"Ahah, such an idiot","Ahah, such an idiot","Хаха, ну и идиот"
+"Complete level 8 on ""Inferno"" difficulty","Complete level 8 on ""Inferno"" difficulty","Пройдите 8 уровень на сложности ""Инферно"""
+Are you really falling for this?,Are you really falling for this?,Ты реально на это повёлся?
+"Ahah, such an idiot","Ahah, such an idiot",Ну ты и дебил
 Laziness is our everything,Laziness is our everything,Лень - двигатель прогресса
 Skip the section with rising lava at level 9,Skip the section with rising lava at level 9,Избегите секции с поднимающейся лавой на 9 уровне
 Though stricken to the heart with winter's cold,Though stricken to the heart with winter's cold,А ты песню спой
-"Complete level 9 on ""Hard"" difficulty","Complete level 9 on ""Hard"" difficulty","Пройдите 9 уровень на сложности ""Тяжело"""
+"Complete level 9 on ""Hard"" difficulty","Complete level 9 on ""Hard"" difficulty","Пройдите 9 уровень на сложности ""Сложная"""
 When far away an interrupted cry,When far away an interrupted cry,"От чего меня ты хочешь, ты зовёшь или пророчешь"
-"Complete level 9 on ""Insane"" difficulty","Complete level 9 on ""Insane"" difficulty","Пройдите 9 уровень на сложности ""Безумно"""
-And then I heard them lift a Box,And then I heard them lift a Box,У милых ног твоих - себе их на колена сложу - и буду ждать печально... Но чего
-"Complete level 9 on ""Inferno"" difficulty","Complete level 9 on ""Inferno"" difficulty","Пройдите 9 уровень на сложности ""Инфернально"""
+"Complete level 9 on ""Insane"" difficulty","Complete level 9 on ""Insane"" difficulty","Пройдите 9 уровень на сложности ""Безумная"""
+And then I heard them lift a Box,And then I heard them lift a Box,У милых ног твоих - себе их на колена сложу
+"Complete level 9 on ""Inferno"" difficulty","Complete level 9 on ""Inferno"" difficulty","Пройдите 9 уровень на сложности ""Инферно"""
 The drooping tree revives.,The drooping tree revives.,"Что из стран далёких, принесла с собой."
-"Complete level 10 on ""Hard"" difficulty","Complete level 10 on ""Hard"" difficulty","Пройдите 10 уровень на сложности ""Тяжело"""
+"Complete level 10 on ""Hard"" difficulty","Complete level 10 on ""Hard"" difficulty","Пройдите 10 уровень на сложности ""Сложная"""
 Came over houses from another street.,Came over houses from another street.,"Я понять тебе хочу, смысла я в тебе ищу"
-"Complete level 10 on ""Insane"" difficulty","Complete level 10 on ""Insane"" difficulty","Пройдите 10 уровень на сложности ""Безумно"""
-And creak across my Soul...,And creak across my Soul...,Чтоб силою мечтанья моего...
-"Complete level 10 on ""Inferno"" difficulty","Complete level 10 on ""Inferno"" difficulty","Пройдите 10 уровень на сложности ""Инфернально"""
+"Complete level 10 on ""Insane"" difficulty","Complete level 10 on ""Insane"" difficulty","Пройдите 10 уровень на сложности ""Безумная"""
+And creak across my Soul...,And creak across my Soul...,и буду ждать печально... Но чего...
+"Complete level 10 on ""Inferno"" difficulty","Complete level 10 on ""Inferno"" difficulty","Пройдите 10 уровень на сложности ""Инферно"""
 Congratulations!,Congratulations!,Поздравляем!
 Complete every test,Complete every test,Завершить все испытания
 Pass the final exam,Pass the final exam,Завершить финальный тест
@@ -204,11 +205,13 @@ Dem05.img,Dem05.img,Дем05.img
 "The Test Is
 Over.txt","The Test Is
 Over.txt","Эксперимент
-окончен.txt"
+окончен    
+.txt"
 "Gratitude
 Diary.txt","Gratitude
 Diary.txt","Дневник
-Благодарностей"
+Благодарностей
+.txt"
 "
 Dear employees. Due to the abuse of the Internet during working hours, we have disabled
 access to it on all office computers indefinitely. Treat this with understanding, it is 
@@ -329,36 +332,47 @@ level part?","Skip fake
 level part?","Пропустить
 вступление?"
 Press F to skip intro,Press F to skip intro,Нажмите F чтобы пропустить вступление
-"To walk, press <=
- and => or A and D","To walk, press <=
- and => or A and D","Чтобы ходить, нажмите
-<= и => или A и D"
-"To jump, press    or W","To jump, press    or W","Чтобы прыгнуть, жми    или W"
+"To walk, press 🠈
+ and 🠊 or A and D","To walk, press 🠈
+ and 🠊 or A and D","Чтобы ходить, нажми
+🠈 и 🠊 или A и D"
+"To jump, press 🠉 or W","To jump, press 🠉 or W","Чтобы прыгнуть, жми 🠉 или W"
 "To climb the wall,
-press    or W during
+press 🠉 or W during
 flight","To climb the wall,
-press    or W during
+press 🠉 or W during
 flight","Чтобы взобраться на стену,
-нажмите    или W в полёте"
-"`=> => =>
+нажми 🠉 или W в полёте"
+"To wall-jump,
+hold Ctrl/Shift/LMB
+against the wall during
+flight and jump","To wall-jump,
+hold Ctrl/Shift/LMB
+against the wall during
+flight and jump","Чтобы отпрыгнуть от
+стены, зажми Ctrl, Shift
+или ЛКМ около стены во 
+время полёта и прыгни"
+"🠊 🠊 🠊
 You need go right
-=> => =>","`=> => =>
+🠊 🠊 🠊","🠊 🠊 🠊
 You need go right
-=> => =>","`=> => =>
+🠊 🠊 🠊","🠊 🠊 🠊
 Тебе надо направо
-=> => =>"
+🠊 🠊 🠊"
 Oh...,Oh...,Ой...
 "To pulldown, press
-  or S during flight","To pulldown, press
-  or S during flight","Для рывка вниз нажмите
-   или S в полёте"
+🠋 or S during flight","To pulldown, press
+🠋 or S during flight","Для рывка вниз нажмите
+🠋 или S в полёте"
 !YOU WIN!,!YOU WIN!,!ТЫ ПОБЕДИЛ!
 "You're probably
 wondering why you 
 need all this...","You're probably
 wondering why you 
-need all this...","Возможно ты думаешь
-зачем тебе всё это надо..."
+need all this...","Возможно ты
+думаешь зачем
+тебе всё это надо..."
 "Don't worry, this
 knowledge will be
 useful to you","Don't worry, this
@@ -373,10 +387,58 @@ seconds.","Просто подожди
 And where?..,And where?..,И где?..
 "Oh, I almost forgot.","Oh, I almost forgot.","А, я забыл."
 Done :),Done :),Готово :)
-Hold R,Hold R,Жмите R
+Hold R,Hold R,Зажмите R
 Score: ,Score: ,Очки: 
 "New Record!
 Score: ","New Record!
 Score: ","Новый Рекорд!
 Очки: "
 Language,Language,Язык
+GratitudeDiaryHeartXPos,106,124
+"AHA
+
+
+
+
+
+
+
+
+
+
+
+
+
+GOTCHA","AHA
+
+
+
+
+
+
+
+
+
+
+
+
+
+GOTCHA","АГА
+
+
+
+
+
+
+
+
+
+
+
+
+
+ПОПАЛСЯ"
+"Sorry, there is no secret
+Take an apple :)","Sorry, there is no secret
+Take an apple :)","Извини, пасхалки нет
+Держи яблочко :)"

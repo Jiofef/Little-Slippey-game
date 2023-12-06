@@ -17,10 +17,10 @@ public partial class Level6FlyingCar : AnimatableBody2D
 
     public override void _Ready()
     {
-        _moveXVector = (int)Scale.X;
-        _velocity.X = 4 * _moveXVector;
-
         Random random = new Random();
+        _moveXVector = (int)Scale.X;
+        _velocity.X = 4 * _moveXVector * (0.9f + (float)random.NextDouble() / 4);
+
         _iDKHowNameThisVar = Convert.ToBoolean(random.Next(2));
 
 		_collision = GetNode<CollisionShape2D>("CollisionShape2D");

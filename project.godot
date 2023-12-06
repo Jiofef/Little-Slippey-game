@@ -140,7 +140,8 @@ CrossesEnablingDebug={
 [internationalization]
 
 locale/translation_remaps={
-"res://Content/Other/AhahahSillyVideo.ogv": PackedStringArray("res://Content/Other/AhahahSillyVideoRussian.ogv:ru")
+"res://Content/Other/AhahahSillyVideo.ogv": PackedStringArray("res://Content/Other/AhahahSillyVideoRussian.ogv:ru"),
+"res://Content/Sprites/Levels/Level4/Background.png": PackedStringArray("res://Content/Sprites/Levels/Level4/BackgroundRu.png:ru")
 }
 locale/translations=PackedStringArray("res://Content/Other/Localization.en.translation", "res://Content/Other/Localization.ru.translation")
 locale/locale_filter_mode=1

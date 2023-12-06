@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://bhdk3hc3a3lwy"]
+[gd_scene load_steps=34 format=3 uid="uid://bhdk3hc3a3lwy"]
 
 [ext_resource type="Texture2D" uid="uid://duk32e0otnfky" path="res://Content/Sprites/Levels/FuckItVolume2Tileset.png" id="1_4iiti"]
 [ext_resource type="PackedScene" uid="uid://dgxxv3neagyw" path="res://Content/Scenes/Other/Level8DisposableButton.tscn" id="2_og6f4"]
@@ -365,6 +365,22 @@ texture = ExtResource("1_4iiti")
 
 [sub_resource type="TileSet" id="TileSet_sdcfh"]
 sources/0 = SubResource("TileSetAtlasSource_y0abm")
+
+[sub_resource type="FontFile" id="FontFile_dpt5s"]
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/glyphs/0/advance = Vector2(0, 0)
+cache/0/16/0/glyphs/0/offset = Vector2(0, 0)
+cache/0/16/0/glyphs/0/size = Vector2(0, 0)
+cache/0/16/0/glyphs/0/uv_rect = Rect2(0, 0, 0, 0)
+cache/0/16/0/glyphs/0/texture_idx = -1
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+
+[sub_resource type="Theme" id="Theme_qj0yi"]
+default_font = SubResource("FontFile_dpt5s")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f14ry"]
 size = Vector2(804.572, 1772.24)
@@ -749,6 +765,31 @@ position = Vector2(960.001, -64.613)
 scale = Vector2(0.7, 0.7)
 texture = ExtResource("3_tnkf2")
 
+[node name="Label" type="Label" parent="Secret/Sprite2D/Sprite2D"]
+offset_left = -822.857
+offset_top = -764.808
+offset_right = -731.857
+offset_bottom = -669.808
+scale = Vector2(18, 18)
+theme = SubResource("Theme_qj0yi")
+theme_override_colors/font_color = Color(0, 1, 0.501961, 1)
+text = "AHA
+
+
+
+
+
+
+
+
+
+
+
+
+
+GOTCHA"
+horizontal_alignment = 1
+
 [node name="StaticBody2D" type="StaticBody2D" parent="Secret/Sprite2D"]
 collision_layer = 4
 collision_mask = 0
@@ -756,7 +797,6 @@ collision_mask = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Secret/Sprite2D/StaticBody2D"]
 position = Vector2(0, -55.3828)
 shape = SubResource("RectangleShape2D_f14ry")
-disabled = true
 
 [node name="DisposableButton" parent="Secret" instance=ExtResource("2_og6f4")]
 z_index = -1
