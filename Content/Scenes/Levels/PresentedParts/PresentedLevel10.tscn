@@ -277,3 +277,10 @@ autoplay = "CameraMovingLolXXd"
 libraries = {
 "": SubResource("AnimationLibrary_s3t3c")
 }
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+offset_right = 1280.0
+offset_bottom = 720.0
+color = Color(1, 1, 1, 0.0588235)

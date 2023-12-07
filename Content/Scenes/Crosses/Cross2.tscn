@@ -14,17 +14,15 @@ light_mode = 1
 radius = 75.0
 
 [node name="RestlessCross" type="Node2D"]
-z_index = 2
+z_index = 3
 script = ExtResource("1")
 
 [node name="ExplosionSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_lph7f")
-bus = &"CrossExplosion"
 
 [node name="StartSignal" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_s8ftd")
 volume_db = -3.0
-bus = &"CrossSounds"
 
 [node name="CrossSprite" type="Sprite2D" parent="."]
 material = SubResource("CanvasItemMaterial_i2kqs")

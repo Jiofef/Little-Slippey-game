@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://dqp6q1agu664i"]
 
-[ext_resource type="Texture2D" uid="uid://dmdsc2hvi54tw" path="res://Content/Sprites/Interface/TheFinalLetter.png" id="1_3vvb0"]
 [ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/FinalLetter.cs" id="1_kdln6"]
+[ext_resource type="Texture2D" uid="uid://b10vsjrgf7cdp" path="res://Content/Sprites/Interface/TXTFileBox.png" id="2_4fh3w"]
 [ext_resource type="PackedScene" uid="uid://bwpstpk1xmkah" path="res://Content/Scenes/Interface&Menu/Button.tscn" id="2_yw24e"]
 [ext_resource type="Texture2D" uid="uid://c1d2p0ba42csh" path="res://Content/Sprites/Interface/AcceptButton.png" id="5_buo5e"]
 
@@ -195,13 +195,13 @@ modulate = Color(1, 1, 1, 0)
 [node name="Sprite2D" type="Sprite2D" parent="Letter"]
 position = Vector2(640, 360)
 scale = Vector2(4, 4)
-texture = ExtResource("1_3vvb0")
+texture = ExtResource("2_4fh3w")
 
 [node name="Label" type="RichTextLabel" parent="Letter"]
-offset_left = 260.0
-offset_top = 180.0
-offset_right = 1019.0
-offset_bottom = 539.0
+offset_left = 180.0
+offset_top = 164.0
+offset_right = 1104.0
+offset_bottom = 556.0
 theme_override_colors/default_color = Color(0.196078, 0.196078, 0.196078, 1)
 text = "
 To the Board of Directors of Giero.

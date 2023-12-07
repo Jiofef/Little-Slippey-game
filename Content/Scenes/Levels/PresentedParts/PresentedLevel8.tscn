@@ -224,11 +224,12 @@ position = Vector2(580, 320)
 scale = Vector2(4, 4)
 texture = ExtResource("2_o6ysa")
 
-[node name="ColorRect" type="ColorRect" parent="Background"]
+[node name="Fog" type="ColorRect" parent="Background"]
 offset_left = -60.0
+offset_top = -64.0
 offset_right = 1220.0
-offset_bottom = 720.0
-color = Color(0.117647, 0, 0, 0.392157)
+offset_bottom = 704.0
+color = Color(0.117647, 0, 0, 0.313726)
 
 [node name="TileMap" type="TileMap" parent="."]
 scale = Vector2(4, 4)
@@ -267,3 +268,10 @@ layer_0/tile_data = PackedInt32Array(196619, 0, 65536, 262155, 0, 65536, 327691,
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(576, 320)
 zoom = Vector2(0.6, 0.6)
+
+[node name="Fog?" type="ColorRect" parent="."]
+offset_left = -64.0
+offset_top = -64.0
+offset_right = 1220.0
+offset_bottom = 704.0
+color = Color(0.196078, 0, 0, 0.117647)

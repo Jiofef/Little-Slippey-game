@@ -1,7 +1,6 @@
 res://default_bus_layout.tres
 res://default_env.tres
-res://Content/Scenes/Levels/FullParts/Level4.tscn
-res://Content/Scripts/Levels/Level4CircularSawScreechSound.cs
+res://Content/Scenes/Levels/FullParts/Level3.tscn
 res://Content/Other/StaticNoiseShader.gdshader
 res://Content/Other/BlurShader.gdshader
 res://Content/Other/CRT.gdshader
@@ -36,6 +35,7 @@ res://Content/Scripts/Levels/BaseLevelScript.cs
 res://Content/Scripts/Levels/Foreground.cs
 res://Content/Scripts/Levels/Level10DroneCapsule.cs
 res://Content/Scripts/Levels/Level10RealityDissector.cs
+res://Content/Scripts/Levels/Level4CircularSawScreechSound.cs
 res://Content/Scripts/Levels/Level4CircularSawScript.cs
 res://Content/Scripts/Levels/Level5Rain.cs
 res://Content/Scripts/Levels/Level6FlyingCar.cs
@@ -64,3 +64,5 @@ res://Content/Scripts/Other/MainScript.cs
 res://Content/Scripts/Other/MISSINGNULL.cs
 res://Content/Scripts/Other/Player.cs
 res://Content/Scripts/Other/SkinScript.cs
+res://Content/Scenes/Levels/PresentedParts/PresentedLevel3.tscn
+res://Content/Scenes/Levels/FullParts/Level1.tscn

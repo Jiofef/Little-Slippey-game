@@ -1,14 +1,150 @@
-[gd_scene load_steps=19 format=3 uid="uid://cscmncrywwujn"]
+[gd_scene load_steps=37 format=3 uid="uid://cscmncrywwujn"]
 
 [ext_resource type="Script" path="res://Content/Scripts/Levels/BaseLevelScript.cs" id="1_fdlw2"]
 [ext_resource type="Texture2D" uid="uid://q2j1uuqfjmos" path="res://Content/Sprites/Levels/BaseTileSet.png" id="2_esejo"]
+[ext_resource type="Texture2D" uid="uid://c2tt0lg4jjgx0" path="res://Content/Sprites/Levels/Level3/BackClouds.png" id="3_2f8mt"]
 [ext_resource type="PackedScene" uid="uid://dlscufxb5f1ca" path="res://Content/Scenes/Other/Player.tscn" id="3_6876r"]
+[ext_resource type="Texture2D" uid="uid://t73lfqyo0ovn" path="res://Content/Sprites/Other/Shine.png" id="3_h5k3y"]
+[ext_resource type="Texture2D" uid="uid://b287cymmfbt4d" path="res://Content/Sprites/Levels/Level3/FrontClouds.png" id="4_3ps1i"]
 [ext_resource type="Texture2D" uid="uid://cfvp6wj1pwrjk" path="res://Content/Sprites/Levels/WorkingPleaseWaitTileset.png" id="4_iu5j4"]
 [ext_resource type="Texture2D" uid="uid://cr0lk5qipck6y" path="res://Content/Sprites/Levels/Level3/Sky.png" id="5_sgwec"]
-[ext_resource type="Texture2D" uid="uid://wixjoarsbqvb" path="res://Content/Sprites/Levels/Level3/Clouds.png" id="6_3p46s"]
 [ext_resource type="Texture2D" uid="uid://c8qk0xqcn6fc6" path="res://Content/Sprites/Levels/Level3/Sea.png" id="7_imrif"]
+[ext_resource type="Texture2D" uid="uid://b3qe45464w8st" path="res://Content/Sprites/Levels/Level3/SeaObjects.png" id="7_jjqf3"]
+[ext_resource type="Texture2D" uid="uid://bav4r4nw86irw" path="res://Content/Sprites/Levels/Level3/Yacht.png" id="8_5l1u0"]
 [ext_resource type="Texture2D" uid="uid://duk32e0otnfky" path="res://Content/Sprites/Levels/FuckItVolume2Tileset.png" id="8_eoaht"]
 [ext_resource type="Texture2D" uid="uid://cm4bhp47bpkw4" path="res://Content/Sprites/Levels/Level3/Grass.png" id="8_khgvm"]
+
+[sub_resource type="Curve" id="Curve_d65g1"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.3, 1), 0.0, 0.0, 0, 0, Vector2(0.7, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Gradient" id="Gradient_hjs7q"]
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1)
+
+[sub_resource type="Animation" id="Animation_su7vf"]
+resource_name = "CloudsMoving"
+length = 60.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:motion_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 60),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1280, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../FrontClouds:motion_offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 60),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(2560, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bwmv0"]
+_data = {
+"CloudsMoving": SubResource("Animation_su7vf")
+}
+
+[sub_resource type="Curve" id="Curve_d5boj"]
+max_value = 4.0
+_data = [Vector2(0, 4), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Curve" id="Curve_7tc0b"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Gradient" id="Gradient_fa8ja"]
+offsets = PackedFloat32Array(0, 0.3, 0.7, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="Gradient" id="Gradient_k1ugn"]
+colors = PackedColorArray(1, 1, 1, 0.0784314, 1, 1, 1, 0.196078)
+
+[sub_resource type="Animation" id="Animation_5kxcw"]
+resource_name = "Sailing"
+length = 90.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 16, 32, 40, 60, 80, 85, 90),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(299, 513), Vector2(700, 550), Vector2(1000, 490), Vector2(1100, 600), Vector2(700, 600), Vector2(400, 520), Vector2(320, 560), Vector2(299, 513)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 39, 40.1, 89, 90),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(4.5, 4.5), Vector2(4.5, 4.5), Vector2(-4.5, 4.5), Vector2(-4.5, 4.5), Vector2(4.5, 4.5)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../ParticlesContainer/YachtParticles:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 16, 32, 40, 60, 80, 85, 90),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(299, 35), Vector2(700, 72), Vector2(1000, 12), Vector2(1100, 122), Vector2(700, 122), Vector2(400, 42), Vector2(320, 82), Vector2(299, 35)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../ParticlesContainer/YachtParticles:direction")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.1, 40),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Vector2(-1, 0), Vector2(1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2um0l"]
+_data = {
+"Sailing": SubResource("Animation_5kxcw")
+}
+
+[sub_resource type="Curve" id="Curve_j6l31"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.25, 1), 0.0, 0.0, 0, 0, Vector2(0.75, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Curve" id="Curve_56v8e"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Curve" id="Curve_4f12b"]
+max_value = 128.0
+_data = [Vector2(0, 128), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Gradient" id="Gradient_1pfm5"]
+offsets = PackedFloat32Array(0, 0.25, 0.75, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
 
 [sub_resource type="Curve" id="Curve_7jy3q"]
 _data = [Vector2(0, 0.5), 0.0, 0.0, 0, 0, Vector2(0.5, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.5), 0.0, 0.0, 0, 0]
@@ -147,21 +283,124 @@ scale = Vector2(4, 4)
 texture = ExtResource("5_sgwec")
 centered = false
 
-[node name="Clouds" type="ParallaxLayer" parent="Background"]
-motion_scale = Vector2(0.15, 0.3)
+[node name="Stars" type="CPUParticles2D" parent="Background/Sky"]
+position = Vector2(600, 140)
+amount = 32
+lifetime = 16.0
+preprocess = 16.0
+local_coords = true
+texture = ExtResource("3_h5k3y")
+emission_shape = 3
+emission_rect_extents = Vector2(600, 140)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 5.0
+initial_velocity_max = 5.0
+angular_velocity_min = -5.0
+angular_velocity_max = 5.0
+angle_min = -720.0
+angle_max = 720.0
+scale_amount_min = 0.25
+scale_amount_curve = SubResource("Curve_d65g1")
+color = Color(1, 1, 1, 0.501961)
+color_ramp = SubResource("Gradient_hjs7q")
 
-[node name="Sprite2D" type="Sprite2D" parent="Background/Clouds"]
+[node name="BackClouds" type="ParallaxLayer" parent="Background"]
+motion_scale = Vector2(0.15, 0.3)
+motion_mirroring = Vector2(1280, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/BackClouds"]
 scale = Vector2(4.2, 4.2)
-texture = ExtResource("6_3p46s")
+texture = ExtResource("3_2f8mt")
+centered = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Background/BackClouds"]
+autoplay = "CloudsMoving"
+libraries = {
+"": SubResource("AnimationLibrary_bwmv0")
+}
+
+[node name="FrontClouds" type="ParallaxLayer" parent="Background"]
+motion_scale = Vector2(0.2, 0.3)
+motion_mirroring = Vector2(1280, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/FrontClouds"]
+scale = Vector2(4, 4)
+texture = ExtResource("4_3ps1i")
 centered = false
 
 [node name="Sea" type="ParallaxLayer" parent="Background"]
 motion_scale = Vector2(0.2, 0.3)
 
 [node name="Sprite2D" type="Sprite2D" parent="Background/Sea"]
-position = Vector2(0, -16)
+position = Vector2(0, -80)
 scale = Vector2(4.5, 4.5)
 texture = ExtResource("7_imrif")
+centered = false
+
+[node name="ParticlesContainer" type="Control" parent="Background/Sea"]
+clip_contents = true
+layout_mode = 3
+anchors_preset = 0
+offset_top = 478.0
+offset_right = 1351.0
+offset_bottom = 820.0
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Background/Sea/ParticlesContainer"]
+position = Vector2(675, 171)
+amount = 48
+lifetime = 16.0
+preprocess = 16.0
+local_coords = true
+emission_shape = 3
+emission_rect_extents = Vector2(675, 168)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 2.0
+initial_velocity_max = 7.5
+scale_amount_max = 4.0
+split_scale = true
+scale_curve_x = SubResource("Curve_d5boj")
+scale_curve_y = SubResource("Curve_7tc0b")
+color_ramp = SubResource("Gradient_fa8ja")
+color_initial_ramp = SubResource("Gradient_k1ugn")
+
+[node name="YachtParticles" type="CPUParticles2D" parent="Background/Sea/ParticlesContainer"]
+position = Vector2(299, 35)
+amount = 16
+lifetime = 4.0
+preprocess = 16.0
+local_coords = true
+direction = Vector2(-0.996008, 0)
+spread = 30.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 20.0
+initial_velocity_max = 20.0
+angle_min = -45.0
+angle_max = 45.0
+scale_amount_min = 2.0
+scale_amount_max = 4.0
+split_scale = true
+scale_curve_x = SubResource("Curve_d5boj")
+scale_curve_y = SubResource("Curve_7tc0b")
+color_ramp = SubResource("Gradient_fa8ja")
+color_initial_ramp = SubResource("Gradient_k1ugn")
+
+[node name="Yacht" type="Sprite2D" parent="Background/Sea"]
+position = Vector2(299, 513)
+scale = Vector2(4.5, 4.5)
+texture = ExtResource("8_5l1u0")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Background/Sea/Yacht"]
+autoplay = "Sailing"
+libraries = {
+"": SubResource("AnimationLibrary_2um0l")
+}
+
+[node name="Sprite2D2" type="Sprite2D" parent="Background/Sea"]
+position = Vector2(0, -80)
+scale = Vector2(4.5, 4.5)
+texture = ExtResource("7_jjqf3")
 centered = false
 
 [node name="Grass" type="ParallaxLayer" parent="Background"]
@@ -177,6 +416,37 @@ centered = false
 offset_right = 1280.0
 offset_bottom = 720.0
 color = Color(0.180392, 0.270588, 1, 0.117647)
+metadata/_edit_lock_ = true
+
+[node name="SunLightLayerContainer" type="ParallaxBackground" parent="."]
+layer = 0
+
+[node name="SunLightLayer" type="ParallaxLayer" parent="SunLightLayerContainer"]
+z_as_relative = false
+motion_scale = Vector2(0.1, 0.3)
+
+[node name="SunLight" type="CPUParticles2D" parent="SunLightLayerContainer/SunLightLayer"]
+position = Vector2(580, 431)
+amount = 128
+lifetime = 6.0
+preprocess = 6.0
+local_coords = true
+emission_shape = 1
+emission_sphere_radius = 128.0
+direction = Vector2(0, -1)
+gravity = Vector2(0, 0)
+angular_velocity_min = -2.5
+angular_velocity_max = 2.5
+angle_min = -720.0
+angle_max = 720.0
+scale_amount_min = 16.0
+scale_amount_max = 64.0
+scale_amount_curve = SubResource("Curve_j6l31")
+split_scale = true
+scale_curve_x = SubResource("Curve_56v8e")
+scale_curve_y = SubResource("Curve_4f12b")
+color = Color(1, 1, 0.501961, 0.0117647)
+color_ramp = SubResource("Gradient_1pfm5")
 
 [node name="Fireflies" type="CPUParticles2D" parent="."]
 position = Vector2(1280, 640)
@@ -208,8 +478,16 @@ modulate = Color(0.956863, 0.956863, 0.956863, 1)
 position = Vector2(1347, 286)
 
 [node name="TileMap" type="TileMap" parent="."]
-modulate = Color(0.952941, 0.952941, 0.952941, 1)
+modulate = Color(0.862745, 0.862745, 0.862745, 1)
 scale = Vector2(4, 4)
 tile_set = SubResource("TileSet_1btjh")
 format = 2
 layer_0/tile_data = PackedInt32Array(655359, 3, 0, 589823, 3, 0, 524287, 3, 0, 458751, 3, 0, 393215, 3, 0, 327679, 3, 0, 262143, 3, 0, 196607, 3, 0, 131071, 3, 0, 65535, 3, 0, -1, 3, 0, -65536, 3, 0, -65535, 3, 0, -65534, 3, 0, -65533, 3, 0, -65532, 3, 0, -65531, 3, 0, -65530, 3, 0, -65529, 3, 0, -65528, 3, 0, -65527, 3, 0, -65526, 3, 0, -65525, 3, 0, -65524, 3, 0, -65523, 3, 0, -65522, 3, 0, -65521, 3, 0, -65520, 3, 0, -65519, 3, 0, -65518, 3, 65537, -65517, 3, 65537, -65516, 3, 65537, -65515, 3, 65537, -65514, 3, 65537, -65513, 3, 65537, -65512, 3, 0, -65511, 3, 0, -65510, 3, 0, -65509, 3, 0, -65508, 3, 0, -65507, 3, 0, -65506, 3, 0, -65505, 3, 0, -65504, 3, 0, -65503, 3, 0, -65502, 3, 0, -65501, 3, 0, -65500, 3, 0, -65499, 3, 0, -65498, 3, 0, -65497, 3, 0, -65496, 3, 0, 983039, 3, 0, 1048575, 3, 0, 1179647, 3, 0, 1245183, 3, 0, 1310719, 3, 0, 1376255, 3, 0, 1441791, 1, 0, 1376296, 1, 0, 1376295, 1, 0, 1376294, 1, 0, 1376293, 1, 0, 1376292, 1, 0, 1376256, 1, 0, 1376257, 1, 0, 1376258, 1, 0, 1376259, 1, 0, 1376260, 1, 0, 1376261, 1, 0, 1376262, 1, 0, 1376263, 1, 0, 1376264, 1, 0, 1376265, 1, 0, 1376266, 1, 0, 1376267, 1, 0, 1376268, 1, 0, 1376269, 1, 0, 1376270, 1, 0, 1376271, 1, 0, 1376272, 1, 0, 1376273, 1, 0, 1376274, 1, 0, 1376275, 1, 0, 1376276, 1, 0, 1376277, 1, 0, 1376278, 1, 0, 1376279, 1, 0, 1376280, 1, 0, 1376281, 1, 0, 1376282, 1, 0, 1376283, 1, 0, 1376284, 1, 0, 1376285, 1, 0, 1376286, 1, 0, 1376287, 1, 0, 1376288, 1, 0, 1376289, 1, 0, 1376290, 1, 0, 1376291, 1, 0, 917544, 3, 0, 983080, 3, 0, 1048616, 3, 0, 1114152, 3, 0, 1179688, 3, 0, 1245224, 3, 0, 1310760, 3, 0, 1310720, 3, 0, 1310721, 3, 0, 1310722, 3, 0, 1310723, 3, 0, 1310724, 3, 0, 1310725, 3, 0, 1310726, 3, 0, 1310727, 3, 0, 1310728, 3, 0, 1310729, 3, 0, 1310730, 3, 0, 1310731, 3, 0, 1310732, 3, 0, 1310733, 3, 0, 1310734, 3, 0, 1310735, 3, 0, 1310736, 3, 0, 1310737, 3, 0, 1310738, 131073, 0, 1310739, 131073, 0, 1310740, 131073, 0, 1310741, 131073, 0, 1310742, 131073, 0, 1310743, 131073, 0, 1310744, 3, 0, 1310745, 3, 0, 1310746, 3, 0, 1310747, 3, 0, 1310748, 3, 0, 1310749, 3, 0, 1310750, 3, 0, 1310751, 3, 0, 1310752, 3, 0, 1310753, 3, 0, 1310754, 3, 0, 1310755, 3, 0, 1310756, 3, 0, 1310757, 3, 0, 1310758, 3, 0, 1310759, 3, 0, 720895, 3, 0, 786431, 3, 0, 851967, 3, 0, 917503, 3, 0, 40, 3, 0, 65576, 3, 0, 131112, 3, 0, 196648, 3, 0, 262184, 3, 0, 327720, 3, 0, 393256, 3, 0, 458792, 3, 0, 524328, 3, 0, 589864, 3, 0, 655400, 3, 0, 720936, 3, 0, 786472, 3, 0, 852008, 3, 0, 131074, 3, 0, 131075, 3, 0, 327683, 3, 0, 196610, 3, 0, 393218, 3, 0, 327684, 3, 0, 393219, 3, 0, 1114146, 3, 0, 1114147, 3, 0, 1114148, 3, 0, 1114149, 3, 0, 1048613, 3, 0, 983077, 3, 0, 917541, 3, 0, 589824, 3, 0, 720933, 3, 0, 655397, 3, 0, 589861, 3, 0, 524325, 3, 0, 458789, 3, 0, 458788, 3, 0, 458787, 3, 0, 458786, 3, 0, 917540, 3, 0, 720930, 3, 0, 262176, 3, 0, 262175, 3, 0, 131109, 3, 0, 196645, 3, 0, 131108, 3, 0, 131107, 3, 0, 131106, 3, 0, 327699, 3, 0, 327707, 3, 0, 393243, 3, 0, 458779, 3, 0, 720923, 3, 0, 786459, 3, 0, 1048602, 3, 1, 1048601, 3, 1, 1048603, 3, 1, 917533, 3, 1, 917534, 65539, 1, 1048605, 3, 0, 1114142, 3, 0, 1114143, 3, 0, 1114141, 3, 0, 458783, 3, 0, 458782, 3, 0, 524318, 3, 0, 589854, 3, 0, 655390, 3, 0, 655386, 131075, 0, 589850, 131075, 0, 458778, 3, 0, 720922, 3, 0, 589853, 3, 0, 327702, 3, 0, 327703, 3, 0, 327704, 3, 0, 458770, 65539, 1, 327698, 3, 0, 327697, 3, 0, 720906, 3, 0, 655370, 3, 0, 589834, 3, 0, 524298, 3, 0, 458762, 3, 0, 327690, 3, 0, 262154, 3, 0, 196618, 3, 0, 524300, 3, 0, 458764, 3, 0, 458763, 3, 0, 524299, 3, 0, 196619, 3, 0, 196620, 3, 0, 196621, 3, 0, 327692, 3, 0, 393228, 3, 0, 327688, 3, 0, 393224, 3, 0, 458760, 3, 0, 524296, 3, 0, 589832, 3, 0, 589827, 3, 0, 589828, 3, 0, 589829, 3, 0, 524293, 131075, 0, 1114111, 3, 0, 786466, 3, 0, 262168, 3, 0, 196632, 3, 0, 131096, 3, 0, 131097, 3, 0, 655374, 131075, 0, 852002, 3, 0, 655393, 3, 0, 655394, 3, 0, 131076, 3, 0, 327715, 131075, 1, 720926, 3, 0, 852001, 3, 0, 917542, 3, 0, 458790, 3, 0, 720921, 3, 0, 524312, 3, 0, 458776, 3, 0, 393240, 3, 0, 131100, 3, 0, 131101, 3, 0, 131102, 3, 0, 262177, 3, 0, 393252, 3, 0, 393251, 3, 0, 917532, 65539, 65537, 327708, 3, 0, 327685, 3, 0, 131077, 3, 0, 262152, 131075, 1, 131090, 3, 0, 65554, 3, 0, 65553, 3, 0, 917523, 65539, 1, 524305, 3, 0, 458769, 3, 0, 589841, 3, 0, 655377, 3, 0, 917522, 3, 1, 917521, 3, 0, 786449, 3, 0, 720913, 3, 0, 524304, 3, 0, 458768, 3, 0, 983057, 3, 0, 1048593, 3, 0, 1114129, 3, 0, 1114126, 3, 0, 1048590, 3, 0, 1048589, 3, 0, 1114125, 3, 0, 1048586, 3, 0, 983050, 3, 0, 917513, 3, 0, 917514, 3, 0, 917515, 3, 0, 917512, 3, 0, 1114122, 3, 0, 1114120, 3, 0, 1114118, 3, 0, 1048582, 3, 0, 983044, 3, 0, 983043, 3, 0, 1245189, 131075, 1, 1245187, 65539, 2, 1179651, 65539, 2, 1179649, 131075, 0, 1245185, 131075, 0, 1245184, 131075, 0, 1179648, 131075, 0, 1114112, 131075, 0, 1245186, 131075, 0, 786433, 3, 0, 786434, 3, 0, 786435, 3, 0, 786436, 3, 0, 786437, 3, 0, 786438, 3, 0, 786439, 3, 0, 786440, 3, 0, 786441, 3, 0, 786442, 3, 0, 786445, 3, 0, 851981, 3, 0, 720909, 3, 0, 720910, 3, 0, 720911, 3, 0, 1441832, 1, 0, 1441831, 1, 0, 1441830, 1, 0, 1441829, 1, 0, 1441828, 1, 0, 1441827, 1, 0, 1441826, 1, 0, 1441825, 1, 0, 1441824, 1, 0, 1441823, 1, 0, 1441822, 1, 0, 1441821, 1, 0, 1441820, 1, 0, 1441819, 1, 0, 1441818, 1, 0, 1441817, 1, 0, 1441816, 1, 0, 1441815, 1, 0, 1441814, 1, 0, 1441813, 1, 0, 1441812, 1, 0, 1441811, 1, 0, 1441810, 1, 0, 1441809, 1, 0, 1441808, 1, 0, 1441807, 1, 0, 1441806, 1, 0, 1441805, 1, 0, 1441804, 1, 0, 1441803, 1, 0, 1441802, 1, 0, 1441801, 1, 0, 1441800, 1, 0, 1441799, 1, 0, 1441798, 1, 0, 1441797, 1, 0, 1441796, 1, 0, 1441795, 1, 0, 1441794, 1, 0, 1441793, 1, 0, 1441792, 1, 0, 1507327, 1, 0, 1441789, 1, 0, 1441790, 1, 0, 1507326, 1, 0, 1507325, 1, 0, 1376254, 1, 0, 1376253, 1, 0, 1310761, 1, 0, 1310762, 1, 0, 1376297, 1, 0, 1441833, 1, 0, 1376298, 1, 0, 1441834, 1, 0, 589821, 65537, 0, 655357, 65537, 0, 720893, 65537, 0, 786429, 65537, 0, 851965, 65537, 0, 917501, 65537, 0, 983037, 65537, 0, 1048573, 65537, 0, 1114109, 65537, 0, 1179645, 65537, 0, 1245181, 65537, 0, 1310717, 65537, 0, 589822, 65537, 0, 655358, 65537, 0, 720894, 65537, 0, 786430, 65537, 0, 851966, 65537, 0, 917502, 65537, 0, 983038, 65537, 0, 1048574, 65537, 0, 1114110, 65537, 0, 1179646, 65537, 0, 1245182, 65537, 0, 1310718, 65537, 0, -3, 65537, 0, 65533, 65537, 0, 131069, 65537, 0, 196605, 65537, 0, 262141, 65537, 0, 327677, 65537, 0, 393213, 65537, 0, 458749, 65537, 0, 524285, 65537, 0, -2, 65537, 0, 65534, 65537, 0, 131070, 65537, 0, 196606, 65537, 0, 262142, 65537, 0, 327678, 65537, 0, 393214, 65537, 0, 458750, 65537, 0, 524286, 65537, 0, -65495, 65537, 0, 41, 65537, 0, 65577, 65537, 0, 131113, 65537, 0, 196649, 65537, 0, 262185, 65537, 0, 327721, 65537, 0, 393257, 65537, 0, 458793, 65537, 0, 524329, 65537, 0, 589865, 65537, 0, 655401, 65537, 0, 720937, 65537, 0, 786473, 65537, 0, 852009, 65537, 0, 917545, 65537, 0, 983081, 65537, 0, 1048617, 65537, 0, 1114153, 65537, 0, 1179689, 65537, 0, 1245225, 65537, 0, -65494, 65537, 0, 42, 65537, 0, 65578, 65537, 0, 131114, 65537, 0, 196650, 65537, 0, 262186, 65537, 0, 327722, 65537, 0, 393258, 65537, 0, 458794, 65537, 0, 524330, 65537, 0, 589866, 65537, 0, 655402, 65537, 0, 720938, 65537, 0, 786474, 65537, 0, 852010, 65537, 0, 917546, 65537, 0, 983082, 65537, 0, 1048618, 65537, 0, 1114154, 65537, 0, 1179690, 65537, 0, 1245226, 65537, 0, -196583, 65537, 0, -131047, 65537, 0, -196582, 65537, 0, -131046, 65537, 0, -196581, 65537, 0, -131045, 65537, 0, -196580, 65537, 0, -131044, 65537, 0, -196579, 65537, 0, -131043, 65537, 0, -196578, 65537, 0, -131042, 65537, 0, -196577, 65537, 0, -131041, 65537, 0, -196576, 65537, 0, -131040, 65537, 0, -196575, 65537, 0, -131039, 65537, 0, -196574, 65537, 0, -131038, 65537, 0, -196573, 65537, 0, -131037, 65537, 0, -196572, 65537, 0, -131036, 65537, 0, -196571, 65537, 0, -131035, 65537, 0, -196570, 65537, 0, -131034, 65537, 0, -196569, 65537, 0, -131033, 65537, 0, -196568, 65537, 0, -131032, 65537, 0, -196567, 65537, 0, -131031, 65537, 0, -196566, 65537, 0, -131030, 65537, 0, -65539, 65537, 0, -65538, 65537, 0, -65537, 65537, 0, -131072, 65537, 0, -131071, 65537, 0, -131070, 65537, 0, -131069, 65537, 0, -131068, 65537, 0, -131067, 65537, 0, -131066, 65537, 0, -131065, 65537, 0, -131064, 65537, 0, -131063, 65537, 0, -131062, 65537, 0, -131061, 65537, 0, -131060, 65537, 0, -131059, 65537, 0, -131058, 65537, 0, -131057, 65537, 0, -131056, 65537, 0, -131055, 65537, 0, -131075, 65537, 0, -131074, 65537, 0, -131073, 65537, 0, -196608, 65537, 0, -196607, 65537, 0, -196606, 65537, 0, -196605, 65537, 0, -196604, 65537, 0, -196603, 65537, 0, -196602, 65537, 0, -196601, 65537, 0, -196600, 65537, 0, -196599, 65537, 0, -196598, 65537, 0, -196597, 65537, 0, -196596, 65537, 0, -196595, 65537, 0, -196594, 65537, 0, -196593, 65537, 0, -196592, 65537, 0, -196591, 65537, 0, -196584, 65537, 0, -131048, 65537, 0)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Fog?" type="ColorRect" parent="CanvasLayer"]
+offset_right = 1280.0
+offset_bottom = 720.0
+color = Color(0.501961, 0, 0.627451, 0.0784314)
+metadata/_edit_lock_ = true

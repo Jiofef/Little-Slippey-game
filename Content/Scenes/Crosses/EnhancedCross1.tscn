@@ -33,4 +33,7 @@ collision_mask = 8
 shape = SubResource("1")
 disabled = true
 
+[node name="ExplosionSound" parent="." index="4"]
+bus = &"Master"
+
 [connection signal="area_entered" from="TriggerArea" to="." method="TRIGGERED" unbinds=1]

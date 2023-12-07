@@ -7,6 +7,12 @@
 [node name="EnhancedRestlessCross" instance=ExtResource("1_24dmb")]
 _isCrossEnhanced = true
 
+[node name="ExplosionSound" parent="." index="0"]
+bus = &"Master"
+
+[node name="StartSignal" parent="." index="1"]
+bus = &"Master"
+
 [node name="CrossSprite" parent="." index="2"]
 use_parent_material = true
 texture = ExtResource("2_oneab")

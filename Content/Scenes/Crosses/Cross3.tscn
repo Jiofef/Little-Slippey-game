@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://Content/Scripts/Crosses/ElementalCross.cs" id="3"]
 
 [node name="ElementalCross" type="Node2D"]
-z_index = 2
+z_index = 3
 script = ExtResource("3")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

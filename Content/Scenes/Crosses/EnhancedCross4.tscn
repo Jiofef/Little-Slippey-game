@@ -90,7 +90,7 @@ colors = PackedColorArray(0.501407, 0.501406, 0.501406, 1, 1, 1, 1, 1)
 radius = 250.0
 
 [node name="EnhancedBlumCross" type="Node2D"]
-z_index = 2
+z_index = 3
 script = ExtResource("2_t11fp")
 
 [node name="CrossSprite" type="Sprite2D" parent="."]
@@ -394,16 +394,13 @@ polygon = PackedVector2Array(-235, -95, -165, -95, -95, -165, -95, -235, 0, -325
 [node name="CrystalBreaking" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_hj7f4")
 volume_db = -6.0
-bus = &"CrossSounds"
 
 [node name="ExplosionSignal" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("9_pifl3")
 volume_db = 5.0
-bus = &"CrossSounds"
 
 [node name="ExplosionSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("9_s8yf4")
-bus = &"CrossExplosion"
 
 [node name="ExplosionAnimation" parent="." instance=ExtResource("8_a6rgt")]
 scale = Vector2(18, 18)

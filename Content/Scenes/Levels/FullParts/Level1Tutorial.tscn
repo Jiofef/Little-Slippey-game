@@ -3749,6 +3749,12 @@ centered = false
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="TutorialCanvasLayer/WhiteNoiseGlitch"]
 stream = SubResource("AudioStreamWAV_tdw56")
 
+[node name="Fog?" type="ColorRect" parent="TutorialCanvasLayer"]
+visible = false
+offset_right = 1280.0
+offset_bottom = 720.0
+color = Color(0, 1, 1, 0.0392157)
+
 [connection signal="animation_finished" from="Rail/AnimationPlayer" to="Rail" method="queue_free" unbinds=1]
 [connection signal="PlayerDied" from="Player" to="TutorialCanvasLayer" method="PlayerDied" flags=6]
 [connection signal="ButtonPressed" from="TileMap/CameraLimitsSetTrigger" to="Player" method="SetCameraLimits" flags=6 binds= [Vector4(3520, 15552, 4032, 13504), false]]

@@ -60,7 +60,7 @@ animations = [{
 }]
 
 [node name="EnhancedElementalCross" type="Node2D"]
-z_index = 2
+z_index = 3
 material = SubResource("ShaderMaterial_3aj87")
 script = ExtResource("1_cu7se")
 

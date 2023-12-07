@@ -16,7 +16,7 @@ size = Vector2(650, 650)
 size = Vector2(17, 17)
 
 [node name="BlumCross" type="Node2D"]
-z_index = 2
+z_index = 3
 script = ExtResource("6")
 
 [node name="CrossSprite" type="Sprite2D" parent="."]

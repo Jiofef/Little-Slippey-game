@@ -797,6 +797,7 @@ collision_mask = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Secret/Sprite2D/StaticBody2D"]
 position = Vector2(0, -55.3828)
 shape = SubResource("RectangleShape2D_f14ry")
+disabled = true
 
 [node name="DisposableButton" parent="Secret" instance=ExtResource("2_og6f4")]
 z_index = -1

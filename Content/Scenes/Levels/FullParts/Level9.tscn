@@ -1025,6 +1025,7 @@ scale = Vector2(0.25, 0.25)
 shape = SubResource("RectangleShape2D_33woj")
 
 [node name="DisposableButton" parent="PlatformerSection" instance=ExtResource("45_orbq5")]
+z_index = 3
 position = Vector2(-1060, -40)
 rotation = -1.5708
 metadata/_edit_group_ = true

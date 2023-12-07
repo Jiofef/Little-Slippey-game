@@ -1,11 +1,147 @@
-[gd_scene load_steps=19 format=3 uid="uid://bnhfvlxa24vr6"]
+[gd_scene load_steps=37 format=3 uid="uid://bnhfvlxa24vr6"]
 
 [ext_resource type="Texture2D" uid="uid://cr0lk5qipck6y" path="res://Content/Sprites/Levels/Level3/Sky.png" id="2_sknno"]
-[ext_resource type="Texture2D" uid="uid://wixjoarsbqvb" path="res://Content/Sprites/Levels/Level3/Clouds.png" id="3_7gfvk"]
+[ext_resource type="Texture2D" uid="uid://c2tt0lg4jjgx0" path="res://Content/Sprites/Levels/Level3/BackClouds.png" id="2_wnhdy"]
 [ext_resource type="Texture2D" uid="uid://cfvp6wj1pwrjk" path="res://Content/Sprites/Levels/WorkingPleaseWaitTileset.png" id="3_etsr8"]
+[ext_resource type="Texture2D" uid="uid://b287cymmfbt4d" path="res://Content/Sprites/Levels/Level3/FrontClouds.png" id="3_koqlk"]
 [ext_resource type="Texture2D" uid="uid://q2j1uuqfjmos" path="res://Content/Sprites/Levels/BaseTileSet.png" id="4_b31s4"]
 [ext_resource type="Texture2D" uid="uid://c8qk0xqcn6fc6" path="res://Content/Sprites/Levels/Level3/Sea.png" id="4_pghbd"]
 [ext_resource type="Texture2D" uid="uid://cm4bhp47bpkw4" path="res://Content/Sprites/Levels/Level3/Grass.png" id="5_824lq"]
+[ext_resource type="Texture2D" uid="uid://t73lfqyo0ovn" path="res://Content/Sprites/Other/Shine.png" id="6_r4vxo"]
+[ext_resource type="Texture2D" uid="uid://bav4r4nw86irw" path="res://Content/Sprites/Levels/Level3/Yacht.png" id="6_yxpvn"]
+[ext_resource type="Texture2D" uid="uid://b3qe45464w8st" path="res://Content/Sprites/Levels/Level3/SeaObjects.png" id="7_o4cnx"]
+
+[sub_resource type="Curve" id="Curve_dw7nl"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.3, 1), 0.0, 0.0, 0, 0, Vector2(0.7, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Gradient" id="Gradient_ctw2p"]
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1)
+
+[sub_resource type="Animation" id="Animation_su7vf"]
+resource_name = "CloudsMoving"
+length = 60.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:motion_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 60),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1280, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../FrontClouds:motion_offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 60),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(2560, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bwmv0"]
+_data = {
+"CloudsMoving": SubResource("Animation_su7vf")
+}
+
+[sub_resource type="Curve" id="Curve_1jyjc"]
+max_value = 4.0
+_data = [Vector2(0, 4), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Curve" id="Curve_av0vv"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Gradient" id="Gradient_qp0cg"]
+offsets = PackedFloat32Array(0, 0.3, 0.7, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="Gradient" id="Gradient_o0yi0"]
+colors = PackedColorArray(1, 1, 1, 0.0784314, 1, 1, 1, 0.196078)
+
+[sub_resource type="Animation" id="Animation_5kxcw"]
+resource_name = "Sailing"
+length = 90.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 16, 32, 40, 60, 80, 85, 90),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(299, 513), Vector2(700, 550), Vector2(1000, 490), Vector2(1100, 600), Vector2(700, 600), Vector2(400, 520), Vector2(320, 560), Vector2(299, 513)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 39, 40.1, 89, 90),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(4.5, 4.5), Vector2(4.5, 4.5), Vector2(-4.5, 4.5), Vector2(-4.5, 4.5), Vector2(4.5, 4.5)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../ParticlesContainer/YachtParticles:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 16, 32, 40, 60, 80, 85, 90),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(299, 35), Vector2(700, 72), Vector2(1000, 12), Vector2(1100, 122), Vector2(700, 122), Vector2(400, 42), Vector2(320, 82), Vector2(299, 35)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../ParticlesContainer/YachtParticles:direction")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.1, 40),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Vector2(-1, 0), Vector2(1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2um0l"]
+_data = {
+"Sailing": SubResource("Animation_5kxcw")
+}
+
+[sub_resource type="Curve" id="Curve_ase6t"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.25, 1), 0.0, 0.0, 0, 0, Vector2(0.75, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Curve" id="Curve_8211d"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Curve" id="Curve_jx1ml"]
+max_value = 128.0
+_data = [Vector2(0, 128), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Gradient" id="Gradient_l4xll"]
+offsets = PackedFloat32Array(0, 0.25, 0.75, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_i2m21"]
 texture = ExtResource("4_b31s4")
@@ -145,27 +281,134 @@ _data = {
 motion_scale = Vector2(0.1, 0.3)
 
 [node name="Sprite2D" type="Sprite2D" parent="Background/Sky"]
-position = Vector2(690, 450)
 scale = Vector2(4.6, 4.6)
 texture = ExtResource("2_sknno")
+centered = false
 
-[node name="Clouds" type="ParallaxLayer" parent="Background"]
+[node name="Stars" type="CPUParticles2D" parent="Background/Sky"]
+position = Vector2(690, 180)
+amount = 32
+lifetime = 16.0
+preprocess = 16.0
+local_coords = true
+texture = ExtResource("6_r4vxo")
+emission_shape = 3
+emission_rect_extents = Vector2(600, 180)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 5.0
+initial_velocity_max = 5.0
+angular_velocity_min = -5.0
+angular_velocity_max = 5.0
+angle_min = -720.0
+angle_max = 720.0
+scale_amount_min = 0.25
+scale_amount_curve = SubResource("Curve_dw7nl")
+color = Color(1, 1, 1, 0.501961)
+color_ramp = SubResource("Gradient_ctw2p")
+
+[node name="BackClouds" type="ParallaxLayer" parent="Background"]
 motion_scale = Vector2(0.15, 0.3)
+motion_mirroring = Vector2(1280, 0)
 
-[node name="Sprite2D" type="Sprite2D" parent="Background/Clouds"]
-position = Vector2(750, 500)
-scale = Vector2(5, 5)
-texture = ExtResource("3_7gfvk")
+[node name="Sprite2D" type="Sprite2D" parent="Background/BackClouds"]
+scale = Vector2(4.2, 4.2)
+texture = ExtResource("2_wnhdy")
+centered = false
 
-[node name="Sea" type="ParallaxLayer" parent="Background"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Background/BackClouds"]
+autoplay = "CloudsMoving"
+libraries = {
+"": SubResource("AnimationLibrary_bwmv0")
+}
+
+[node name="FrontClouds" type="ParallaxLayer" parent="Background"]
+motion_scale = Vector2(0.2, 0.3)
+motion_mirroring = Vector2(1280, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/FrontClouds"]
+scale = Vector2(4, 4)
+texture = ExtResource("3_koqlk")
+centered = false
+
+[node name="Sea2" type="ParallaxLayer" parent="Background"]
+position = Vector2(0, 89)
+scale = Vector2(1.111, 1.111)
 motion_scale = Vector2(0.2, 0.3)
 
-[node name="Sprite2D" type="Sprite2D" parent="Background/Sea"]
-position = Vector2(750, 500)
-scale = Vector2(5, 5)
+[node name="Sprite2D" type="Sprite2D" parent="Background/Sea2"]
+position = Vector2(0, -80)
+scale = Vector2(4.5, 4.5)
 texture = ExtResource("4_pghbd")
+centered = false
+
+[node name="ParticlesContainer" type="Control" parent="Background/Sea2"]
+clip_contents = true
+layout_mode = 3
+anchors_preset = 0
+offset_top = 478.0
+offset_right = 1351.0
+offset_bottom = 820.0
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Background/Sea2/ParticlesContainer"]
+position = Vector2(675, 171)
+amount = 48
+lifetime = 16.0
+preprocess = 16.0
+local_coords = true
+emission_shape = 3
+emission_rect_extents = Vector2(675, 168)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 2.0
+initial_velocity_max = 7.5
+scale_amount_max = 4.0
+split_scale = true
+scale_curve_x = SubResource("Curve_1jyjc")
+scale_curve_y = SubResource("Curve_av0vv")
+color_ramp = SubResource("Gradient_qp0cg")
+color_initial_ramp = SubResource("Gradient_o0yi0")
+
+[node name="YachtParticles" type="CPUParticles2D" parent="Background/Sea2/ParticlesContainer"]
+position = Vector2(299, 35)
+amount = 16
+lifetime = 4.0
+preprocess = 16.0
+local_coords = true
+direction = Vector2(-0.996008, 0)
+spread = 30.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 20.0
+initial_velocity_max = 20.0
+angle_min = -45.0
+angle_max = 45.0
+scale_amount_min = 2.0
+scale_amount_max = 4.0
+split_scale = true
+scale_curve_x = SubResource("Curve_1jyjc")
+scale_curve_y = SubResource("Curve_av0vv")
+color_ramp = SubResource("Gradient_qp0cg")
+color_initial_ramp = SubResource("Gradient_o0yi0")
+
+[node name="Yacht" type="Sprite2D" parent="Background/Sea2"]
+position = Vector2(299, 513)
+scale = Vector2(4.5, 4.5)
+texture = ExtResource("6_yxpvn")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Background/Sea2/Yacht"]
+autoplay = "Sailing"
+libraries = {
+"": SubResource("AnimationLibrary_2um0l")
+}
+
+[node name="Sprite2D2" type="Sprite2D" parent="Background/Sea2"]
+position = Vector2(0, -80)
+scale = Vector2(4.5, 4.5)
+texture = ExtResource("7_o4cnx")
+centered = false
 
 [node name="Grass" type="ParallaxLayer" parent="Background"]
+position = Vector2(648, 320)
 motion_scale = Vector2(0.625, 0.75)
 
 [node name="Sprite2D" type="Sprite2D" parent="Background/Grass"]
@@ -177,6 +420,36 @@ texture = ExtResource("5_824lq")
 offset_right = 1280.0
 offset_bottom = 720.0
 color = Color(0.180392, 0.270588, 1, 0.117647)
+
+[node name="SunLightLayerContainer" type="ParallaxBackground" parent="."]
+layer = 0
+
+[node name="SunLightLayer" type="ParallaxLayer" parent="SunLightLayerContainer"]
+z_as_relative = false
+motion_scale = Vector2(0.1, 0.3)
+
+[node name="SunLight" type="CPUParticles2D" parent="SunLightLayerContainer/SunLightLayer"]
+position = Vector2(670, 530)
+amount = 128
+lifetime = 6.0
+preprocess = 6.0
+local_coords = true
+emission_shape = 1
+emission_sphere_radius = 128.0
+direction = Vector2(0, -1)
+gravity = Vector2(0, 0)
+angular_velocity_min = -2.5
+angular_velocity_max = 2.5
+angle_min = -720.0
+angle_max = 720.0
+scale_amount_min = 16.0
+scale_amount_max = 64.0
+scale_amount_curve = SubResource("Curve_ase6t")
+split_scale = true
+scale_curve_x = SubResource("Curve_8211d")
+scale_curve_y = SubResource("Curve_jx1ml")
+color = Color(1, 1, 0.501961, 0.0117647)
+color_ramp = SubResource("Gradient_l4xll")
 
 [node name="TileMap" type="TileMap" parent="."]
 modulate = Color(0.952941, 0.952941, 0.952941, 1)
@@ -207,3 +480,10 @@ autoplay = "CameraMoving2X2"
 libraries = {
 "": SubResource("AnimationLibrary_kli7e")
 }
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Fog?" type="ColorRect" parent="CanvasLayer"]
+offset_right = 1280.0
+offset_bottom = 720.0
+color = Color(0.501961, 0, 0.627451, 0.0784314)
