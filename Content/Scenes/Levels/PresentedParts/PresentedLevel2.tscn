@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://b66eaywic6lo1"]
+[gd_scene load_steps=46 format=3 uid="uid://b66eaywic6lo1"]
 
 [ext_resource type="Texture2D" uid="uid://ba64m2i1e8tsn" path="res://Content/Sprites/Levels/Level2/Sky.png" id="1_ptacx"]
 [ext_resource type="Texture2D" uid="uid://ccgm5hyl1wawi" path="res://Content/Sprites/Levels/Level2/Clouds.png" id="2_rwtq5"]
@@ -578,6 +578,23 @@ _data = {
 "RESET": SubResource("Animation_yfk10")
 }
 
+[sub_resource type="Curve" id="Curve_w8w5q"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.25, 1), 0.0, 0.0, 0, 0, Vector2(0.75, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Curve" id="Curve_4ec6s"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Curve" id="Curve_di4tl"]
+max_value = 128.0
+_data = [Vector2(0, 128), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Gradient" id="Gradient_8k3t3"]
+offsets = PackedFloat32Array(0, 0.25, 0.75, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
 [node name="PresentedLevel2" type="Node2D"]
 
 [node name="Background" type="ParallaxBackground" parent="."]
@@ -773,3 +790,33 @@ autoplay = "CameraMoving2X1"
 libraries = {
 "": SubResource("AnimationLibrary_kli7e")
 }
+
+[node name="SunLightLayerContainer" type="ParallaxBackground" parent="."]
+layer = 0
+
+[node name="SunLightLayer" type="ParallaxLayer" parent="SunLightLayerContainer"]
+z_as_relative = false
+motion_scale = Vector2(0.2, 0)
+
+[node name="SunLight" type="CPUParticles2D" parent="SunLightLayerContainer/SunLightLayer"]
+position = Vector2(184, -217)
+amount = 128
+lifetime = 6.0
+preprocess = 6.0
+local_coords = true
+emission_shape = 1
+emission_sphere_radius = 128.0
+direction = Vector2(0, -1)
+gravity = Vector2(0, 0)
+angular_velocity_min = -2.5
+angular_velocity_max = 2.5
+angle_min = -720.0
+angle_max = 720.0
+scale_amount_min = 16.0
+scale_amount_max = 64.0
+scale_amount_curve = SubResource("Curve_w8w5q")
+split_scale = true
+scale_curve_x = SubResource("Curve_4ec6s")
+scale_curve_y = SubResource("Curve_di4tl")
+color = Color(1, 1, 0.501961, 0.0117647)
+color_ramp = SubResource("Gradient_8k3t3")

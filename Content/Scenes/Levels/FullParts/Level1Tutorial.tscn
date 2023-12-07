@@ -1,4 +1,4 @@
-[gd_scene load_steps=184 format=3 uid="uid://dectjputr4l2t"]
+[gd_scene load_steps=188 format=3 uid="uid://dectjputr4l2t"]
 
 [ext_resource type="Script" path="res://Content/Scripts/Levels/BaseLevelScript.cs" id="1_bk1up"]
 [ext_resource type="Texture2D" uid="uid://b44rk1g0wwsxv" path="res://Content/Sprites/Levels/Level1/TutorialBackLayer.png" id="1_dadje"]
@@ -73,6 +73,23 @@ tracks/1/keys = {
 _data = {
 "CloudsMoving": SubResource("Animation_dxr07")
 }
+
+[sub_resource type="Curve" id="Curve_0osns"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.25, 1), 0.0, 0.0, 0, 0, Vector2(0.75, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Curve" id="Curve_tvw81"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Curve" id="Curve_mdob3"]
+max_value = 128.0
+_data = [Vector2(0, 128), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Gradient" id="Gradient_u3svl"]
+offsets = PackedFloat32Array(0, 0.25, 0.75, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
 
 [sub_resource type="Animation" id="Animation_3l5bp"]
 resource_name = "Intro"
@@ -313,6 +330,18 @@ tracks/8/keys = {
 "transitions": PackedFloat32Array(-2, 1),
 "update": 0,
 "values": [Vector2(3536, 832), Vector2(3504, 832)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("SunLightLayerContainer/SunLightLayer/SunLight:modulate")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_l1b2c"]
@@ -2242,6 +2271,18 @@ tracks/10/keys = {
 "method": &"GiveAchievement"
 }]
 }
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("../../SunLightLayerContainer/SunLightLayer/SunLight:modulate")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(2, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tosue"]
 _data = {
@@ -2365,6 +2406,37 @@ centered = false
 offset_right = 1280.0
 offset_bottom = 720.0
 color = Color(0, 0.705882, 0.705882, 0.313726)
+
+[node name="SunLightLayerContainer" type="ParallaxBackground" parent="."]
+layer = 0
+
+[node name="SunLightLayer" type="ParallaxLayer" parent="SunLightLayerContainer"]
+z_as_relative = false
+motion_scale = Vector2(0, 0)
+
+[node name="SunLight" type="CPUParticles2D" parent="SunLightLayerContainer/SunLightLayer"]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(900, -192)
+amount = 128
+lifetime = 6.0
+preprocess = 6.0
+local_coords = true
+emission_shape = 1
+emission_sphere_radius = 128.0
+direction = Vector2(0, -1)
+gravity = Vector2(0, 0)
+angular_velocity_min = -2.5
+angular_velocity_max = 2.5
+angle_min = -720.0
+angle_max = 720.0
+scale_amount_min = 16.0
+scale_amount_max = 64.0
+scale_amount_curve = SubResource("Curve_0osns")
+split_scale = true
+scale_curve_x = SubResource("Curve_tvw81")
+scale_curve_y = SubResource("Curve_mdob3")
+color = Color(1, 1, 0.501961, 0.0117647)
+color_ramp = SubResource("Gradient_u3svl")
 
 [node name="Rail" type="Node2D" parent="."]
 position = Vector2(0, 320)
@@ -3775,6 +3847,7 @@ color = Color(0, 1, 1, 0.0392157)
 [connection signal="ButtonPressed" from="TileMap4/TVFallTrigger" to="TileMap4/TutorialTV/AnimationPlayer" method="play" flags=6 binds= ["FallingDown"]]
 [connection signal="ButtonPressed" from="TileMap4/TeleporterArea2" to="TileMap4" method="queue_free" flags=6]
 [connection signal="ButtonPressed" from="TileMap4/TeleporterArea2" to="TutorialCanvasLayer" method="Glitch"]
+[connection signal="ButtonPressed" from="TileMap4/TeleporterArea2" to="SunLightLayerContainer/SunLightLayer/SunLight" method="set_modulate" flags=6 binds= [Color(0, 0, 0, 0)]]
 [connection signal="ButtonPressed" from="TileMap4/TeleporterArea2" to="Player" method="set_position" flags=6 binds= [Vector2(27812, 4003)]]
 [connection signal="ButtonPressed" from="TileMap4/TeleporterArea2" to="Player" method="SetCameraLimits" flags=6 binds= [Vector4(-1e+06, 100000, 4032, 27584), true]]
 [connection signal="ButtonPressed" from="TileMap4/TeleporterArea2" to="TileMap5/ShakyPlatform/TutorialTV/Screen/SlippeyHead/AnimationPlayer" method="play" flags=6 binds= ["BangerFilm"]]

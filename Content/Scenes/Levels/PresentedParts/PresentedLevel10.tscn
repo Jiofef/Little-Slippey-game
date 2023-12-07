@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://d2fbski0gikpk"]
+[gd_scene load_steps=19 format=3 uid="uid://d2fbski0gikpk"]
 
 [ext_resource type="Texture2D" uid="uid://b3eihc4teio4x" path="res://Content/Sprites/Levels/Level10/Sky.png" id="1_88o6q"]
 [ext_resource type="Texture2D" uid="uid://dbduwv6h0rkr" path="res://Content/Sprites/Levels/Level10/Clouds.png" id="2_5fpgl"]
@@ -6,6 +6,23 @@
 [ext_resource type="Texture2D" uid="uid://datptqmcpau44" path="res://Content/Sprites/Levels/Level10/MiddleCloudLayer.png" id="4_8xtvx"]
 [ext_resource type="Texture2D" uid="uid://cgmqr4byx6tjy" path="res://Content/Sprites/Levels/Level10/FrontCloudLayer.png" id="5_xtjov"]
 [ext_resource type="Texture2D" uid="uid://cjieb76jdv80v" path="res://Content/Sprites/Levels/ANineGreetingsTileset.png" id="6_jxg23"]
+
+[sub_resource type="Curve" id="Curve_yekrf"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.25, 1), 0.0, 0.0, 0, 0, Vector2(0.75, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Curve" id="Curve_8dsuf"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Curve" id="Curve_gvxpa"]
+max_value = 128.0
+_data = [Vector2(0, 128), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Gradient" id="Gradient_iduir"]
+offsets = PackedFloat32Array(0, 0.25, 0.75, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_x5li7"]
 
@@ -221,6 +238,36 @@ modulate = Color(1, 1, 1, 0)
 offset_right = 1280.0
 offset_bottom = 720.0
 color = Color(0, 0, 0, 0)
+
+[node name="SunLightLayerContainer" type="ParallaxBackground" parent="."]
+layer = 0
+
+[node name="SunLightLayer" type="ParallaxLayer" parent="SunLightLayerContainer"]
+z_as_relative = false
+motion_scale = Vector2(0, 0)
+
+[node name="SunLight" type="CPUParticles2D" parent="SunLightLayerContainer/SunLightLayer"]
+position = Vector2(700, -217)
+amount = 128
+lifetime = 6.0
+preprocess = 6.0
+local_coords = true
+emission_shape = 1
+emission_sphere_radius = 128.0
+direction = Vector2(0, -1)
+gravity = Vector2(0, 0)
+angular_velocity_min = -2.5
+angular_velocity_max = 2.5
+angle_min = -720.0
+angle_max = 720.0
+scale_amount_min = 16.0
+scale_amount_max = 64.0
+scale_amount_curve = SubResource("Curve_yekrf")
+split_scale = true
+scale_curve_x = SubResource("Curve_8dsuf")
+scale_curve_y = SubResource("Curve_gvxpa")
+color = Color(1, 1, 0.501961, 0.0117647)
+color_ramp = SubResource("Gradient_iduir")
 
 [node name="TileMap" type="TileMap" parent="."]
 clip_children = 1

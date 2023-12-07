@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=3 uid="uid://4rq2qv4xbcb1"]
+[gd_scene load_steps=57 format=3 uid="uid://4rq2qv4xbcb1"]
 
 [ext_resource type="Script" path="res://Content/Scripts/Levels/BaseLevelScript.cs" id="1_4x67j"]
 [ext_resource type="Script" path="res://Content/Scripts/Levels/Level10RealityDissector.cs" id="2_x0f02"]
@@ -295,6 +295,23 @@ texture = SubResource("CompressedTexture2D_bkcup")
 [sub_resource type="TileSet" id="TileSet_tw0dy"]
 sources/2 = SubResource("TileSetAtlasSource_o0u0w")
 sources/0 = SubResource("TileSetAtlasSource_3a1es")
+
+[sub_resource type="Curve" id="Curve_0wxcu"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.25, 1), 0.0, 0.0, 0, 0, Vector2(0.75, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Curve" id="Curve_hhqtc"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Curve" id="Curve_e4vus"]
+max_value = 128.0
+_data = [Vector2(0, 128), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Gradient" id="Gradient_tayne"]
+offsets = PackedFloat32Array(0, 0.25, 0.75, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
 
 [sub_resource type="FontFile" id="FontFile_i8clp"]
 cache/0/16/0/ascent = 0.0
@@ -684,6 +701,36 @@ offset_right = 1280.0
 offset_bottom = 720.0
 color = Color(0, 0, 0, 0)
 
+[node name="SunLightLayerContainer" type="ParallaxBackground" parent="."]
+layer = 0
+
+[node name="SunLightLayer" type="ParallaxLayer" parent="SunLightLayerContainer"]
+z_as_relative = false
+motion_scale = Vector2(0, 0)
+
+[node name="SunLight" type="CPUParticles2D" parent="SunLightLayerContainer/SunLightLayer"]
+position = Vector2(700, -217)
+amount = 128
+lifetime = 6.0
+preprocess = 6.0
+local_coords = true
+emission_shape = 1
+emission_sphere_radius = 128.0
+direction = Vector2(0, -1)
+gravity = Vector2(0, 0)
+angular_velocity_min = -2.5
+angular_velocity_max = 2.5
+angle_min = -720.0
+angle_max = 720.0
+scale_amount_min = 16.0
+scale_amount_max = 64.0
+scale_amount_curve = SubResource("Curve_0wxcu")
+split_scale = true
+scale_curve_x = SubResource("Curve_hhqtc")
+scale_curve_y = SubResource("Curve_e4vus")
+color = Color(1, 1, 0.501961, 0.0117647)
+color_ramp = SubResource("Gradient_tayne")
+
 [node name="CoolEasterEgg" type="Sprite2D" parent="."]
 position = Vector2(25088, -1863)
 texture = ExtResource("12_oe11w")
@@ -814,6 +861,7 @@ color = Color(1, 1, 1, 0.0588235)
 [connection signal="ButtonPressed" from="RealityDissector/ByNoMeansArtificalBoundaries" to="RealityDissector/CanvasLayer/WhiteNoiseGlitch" method="set_visible" binds= [true]]
 [connection signal="ButtonPressed" from="RealityDissector/ByNoMeansArtificalBoundaries" to="Player" method="set_global_position" binds= [Vector2(13856, 608)]]
 [connection signal="ButtonPressed" from="RealityDissector/ByNoMeansArtificalBoundaries" to="Player" method="SetCameraLimits" binds= [Vector4(-100000, 100000, 100000, -100000), true]]
+[connection signal="ButtonPressed" from="RealityDissector/ByNoMeansArtificalBoundaries" to="SunLightLayerContainer/SunLightLayer/SunLight" method="set_visible" binds= [false]]
 [connection signal="area_entered" from="RealityDissector/ByNoMeansArtificalBoundaries" to="RealityDissector/ByNoMeansArtificalBoundaries" method="AreaEntered" unbinds=1]
 [connection signal="ButtonPressed" from="RealityDissector/CameraLimitsSetTrigger" to="Player" method="SetCameraLimits" flags=6 binds= [Vector4(-100000, 100000, 100000, -100000), true]]
 [connection signal="ButtonPressed" from="RealityDissector/CameraPositionSmoothingSpeedSetTrigger" to="Player" method="SetCameraPositionSmoothingSpeed" binds= [15.0]]

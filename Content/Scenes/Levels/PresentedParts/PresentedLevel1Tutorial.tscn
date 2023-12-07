@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dm0exyex0n85q"]
+[gd_scene load_steps=11 format=3 uid="uid://dm0exyex0n85q"]
 
 [ext_resource type="Texture2D" uid="uid://b44rk1g0wwsxv" path="res://Content/Sprites/Levels/Level1/TutorialBackLayer.png" id="1_2508x"]
 [ext_resource type="Texture2D" uid="uid://bg822kab2yxmo" path="res://Content/Sprites/Levels/Level1/TutorialBackClouds.png" id="2_84xpu"]
@@ -39,6 +39,23 @@ tracks/1/keys = {
 _data = {
 "CloudsMoving": SubResource("Animation_dxr07")
 }
+
+[sub_resource type="Curve" id="Curve_3nfru"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.25, 1), 0.0, 0.0, 0, 0, Vector2(0.75, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Curve" id="Curve_3ic8e"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Curve" id="Curve_f3qlc"]
+max_value = 128.0
+_data = [Vector2(0, 128), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Gradient" id="Gradient_mym3i"]
+offsets = PackedFloat32Array(0, 0.25, 0.75, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
 
 [node name="PresentedLevel1Tutorial" type="Node2D"]
 
@@ -88,3 +105,26 @@ color = Color(0, 0.705882, 0.705882, 0.313726)
 
 [node name="Camera2D" type="Camera2D" parent="Background"]
 zoom = Vector2(1.2, 1.2)
+
+[node name="SunLight" type="CPUParticles2D" parent="."]
+position = Vector2(794, -600)
+amount = 128
+lifetime = 6.0
+preprocess = 6.0
+local_coords = true
+emission_shape = 1
+emission_sphere_radius = 128.0
+direction = Vector2(0, -1)
+gravity = Vector2(0, 0)
+angular_velocity_min = -2.5
+angular_velocity_max = 2.5
+angle_min = -720.0
+angle_max = 720.0
+scale_amount_min = 16.0
+scale_amount_max = 64.0
+scale_amount_curve = SubResource("Curve_3nfru")
+split_scale = true
+scale_curve_x = SubResource("Curve_3ic8e")
+scale_curve_y = SubResource("Curve_f3qlc")
+color = Color(1, 1, 0.501961, 0.0117647)
+color_ramp = SubResource("Gradient_mym3i")

@@ -66,3 +66,12 @@ res://Content/Scripts/Other/Player.cs
 res://Content/Scripts/Other/SkinScript.cs
 res://Content/Scenes/Levels/PresentedParts/PresentedLevel3.tscn
 res://Content/Scenes/Levels/FullParts/Level1.tscn
+res://Content/Scenes/Levels/FullParts/Level1Tutorial.tscn
+res://Content/Scenes/Levels/FullParts/Level2.tscn
+res://Content/Scenes/Levels/PresentedParts/PresentedLevel1Tutorial.tscn
+res://Content/Scenes/Levels/PresentedParts/PresentedLevel2.tscn
+res://Content/Scenes/Levels/PresentedParts/PresentedLevel1.tscn
+res://Content/Scenes/Levels/FullParts/Level6.tscn
+res://Content/Scenes/Levels/PresentedParts/PresentedLevel6.tscn
+res://Content/Scenes/Levels/PresentedParts/PresentedLevel10.tscn
+res://Content/Scenes/Levels/FullParts/Level10.tscn

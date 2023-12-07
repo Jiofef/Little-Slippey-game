@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://chw67n0du3uqb"]
+[gd_scene load_steps=43 format=3 uid="uid://chw67n0du3uqb"]
 
 [ext_resource type="Script" path="res://Content/Scripts/Levels/BaseLevelScript.cs" id="1_5ed8v"]
 [ext_resource type="Texture2D" uid="uid://q2j1uuqfjmos" path="res://Content/Sprites/Levels/BaseTileSet.png" id="1_daoq4"]
@@ -297,6 +297,23 @@ tracks/8/keys = {
 _data = {
 "Default": SubResource("Animation_8sdl3")
 }
+
+[sub_resource type="Curve" id="Curve_05yxr"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.25, 1), 0.0, 0.0, 0, 0, Vector2(0.75, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Curve" id="Curve_kyfkd"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Curve" id="Curve_l2kuu"]
+max_value = 128.0
+_data = [Vector2(0, 128), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Gradient" id="Gradient_5q6se"]
+offsets = PackedFloat32Array(0, 0.25, 0.75, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_78it8"]
 texture = ExtResource("8_qc0ry")
@@ -739,6 +756,36 @@ libraries = {
 offset_right = 1280.0
 offset_bottom = 720.0
 color = Color(0.180392, 0.270588, 1, 0.152941)
+
+[node name="SunLightLayerContainer" type="ParallaxBackground" parent="."]
+layer = 0
+
+[node name="SunLightLayer" type="ParallaxLayer" parent="SunLightLayerContainer"]
+z_as_relative = false
+motion_scale = Vector2(0.2, 0)
+
+[node name="SunLight" type="CPUParticles2D" parent="SunLightLayerContainer/SunLightLayer"]
+position = Vector2(184, -217)
+amount = 128
+lifetime = 6.0
+preprocess = 6.0
+local_coords = true
+emission_shape = 1
+emission_sphere_radius = 128.0
+direction = Vector2(0, -1)
+gravity = Vector2(0, 0)
+angular_velocity_min = -2.5
+angular_velocity_max = 2.5
+angle_min = -720.0
+angle_max = 720.0
+scale_amount_min = 16.0
+scale_amount_max = 64.0
+scale_amount_curve = SubResource("Curve_05yxr")
+split_scale = true
+scale_curve_x = SubResource("Curve_kyfkd")
+scale_curve_y = SubResource("Curve_l2kuu")
+color = Color(1, 1, 0.501961, 0.0117647)
+color_ramp = SubResource("Gradient_5q6se")
 
 [node name="DecorationMap" type="TileMap" parent="."]
 modulate = Color(0.501961, 0.501961, 0.501961, 1)
