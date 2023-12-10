@@ -332,7 +332,7 @@ texture = ExtResource("3_koqlk")
 centered = false
 
 [node name="Sea2" type="ParallaxLayer" parent="Background"]
-position = Vector2(0, 89)
+position = Vector2(0, 32)
 scale = Vector2(1.111, 1.111)
 motion_scale = Vector2(0.2, 0.3)
 
