@@ -1,4 +1,4 @@
-[gd_scene load_steps=188 format=3 uid="uid://dectjputr4l2t"]
+[gd_scene load_steps=196 format=3 uid="uid://dectjputr4l2t"]
 
 [ext_resource type="Script" path="res://Content/Scripts/Levels/BaseLevelScript.cs" id="1_bk1up"]
 [ext_resource type="Texture2D" uid="uid://b44rk1g0wwsxv" path="res://Content/Sprites/Levels/Level1/TutorialBackLayer.png" id="1_dadje"]
@@ -38,6 +38,7 @@
 [ext_resource type="Texture2D" uid="uid://cq3f2ux2d4wal" path="res://Content/Sprites/Levels/Level1/TutorialTVHaloAnimation.png" id="33_k4l78"]
 [ext_resource type="Texture2D" uid="uid://t73lfqyo0ovn" path="res://Content/Sprites/Other/Shine.png" id="34_arujo"]
 [ext_resource type="AudioStream" uid="uid://bf54vxr64tyae" path="res://Content/Sounds/Levels/TutorialYOUWIN.mp3" id="35_nnfkj"]
+[ext_resource type="Script" path="res://Content/Scripts/Levels/Level1TutorialDarkeningAnimationPlayer.cs" id="36_qstxi"]
 
 [sub_resource type="Animation" id="Animation_dxr07"]
 resource_name = "CloudsMoving"
@@ -90,6 +91,12 @@ point_count = 1
 [sub_resource type="Gradient" id="Gradient_u3svl"]
 offsets = PackedFloat32Array(0, 0.25, 0.75, 1)
 colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p6tx3"]
+size = Vector2(128, 128)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ydec7"]
+size = Vector2(128, 128)
 
 [sub_resource type="Animation" id="Animation_3l5bp"]
 resource_name = "Intro"
@@ -1702,6 +1709,68 @@ size = Vector2(160, 118)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iy0xk"]
 size = Vector2(4096, 256)
 
+[sub_resource type="Animation" id="Animation_tmo5m"]
+resource_name = "Darkening"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../../TutorialCanvasLayer/Fog?:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(3),
+"transitions": PackedFloat32Array(1),
+"update": 2,
+"values": [Color(0, 0, 0, 0.294118)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../../SunLightLayerContainer/SunLightLayer/SunLight:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(3),
+"transitions": PackedFloat32Array(1),
+"update": 2,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_0n4vb"]
+resource_name = "Lightening"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../../TutorialCanvasLayer/Fog?:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(3),
+"transitions": PackedFloat32Array(1),
+"update": 2,
+"values": [Color(0, 1, 1, 0.0156863)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../../SunLightLayerContainer/SunLightLayer/SunLight:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(3),
+"transitions": PackedFloat32Array(1),
+"update": 2,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_j5qlx"]
+_data = {
+"Darkening": SubResource("Animation_tmo5m"),
+"Lightening": SubResource("Animation_0n4vb")
+}
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b1rgh"]
 size = Vector2(24, 16)
 
@@ -2114,6 +2183,68 @@ size = Vector2(128, 64)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j81mt"]
 size = Vector2(48, 16)
 
+[sub_resource type="Animation" id="Animation_gg1bb"]
+resource_name = "Darkening"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../../TutorialCanvasLayer/Fog?:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(3),
+"transitions": PackedFloat32Array(1),
+"update": 2,
+"values": [Color(0.27451, 0, 0.164706, 0.176471)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../../SunLightLayerContainer/SunLightLayer/SunLight:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(3),
+"transitions": PackedFloat32Array(1),
+"update": 2,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_lcs7e"]
+resource_name = "Lightening"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../../TutorialCanvasLayer/Fog?:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(3),
+"transitions": PackedFloat32Array(1),
+"update": 2,
+"values": [Color(0, 1, 1, 0.0156863)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../../SunLightLayerContainer/SunLightLayer/SunLight:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(3),
+"transitions": PackedFloat32Array(1),
+"update": 2,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ntu1s"]
+_data = {
+"Darkening": SubResource("Animation_gg1bb"),
+"Lightening": SubResource("Animation_lcs7e")
+}
+
 [sub_resource type="Curve" id="Curve_55cbv"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
 point_count = 1
@@ -2289,9 +2420,6 @@ _data = {
 "YOUWIN": SubResource("Animation_dsetv")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_p6tx3"]
-size = Vector2(128, 128)
-
 [sub_resource type="Animation" id="Animation_0w1hx"]
 resource_name = "Disappearing"
 length = 5.0
@@ -2441,6 +2569,18 @@ color_ramp = SubResource("Gradient_u3svl")
 [node name="Rail" type="Node2D" parent="."]
 position = Vector2(0, 320)
 
+[node name="CameraLimitsSetTrigger" parent="Rail" instance=ExtResource("7_8q8ma")]
+position = Vector2(624, 150)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Rail/CameraLimitsSetTrigger"]
+shape = SubResource("RectangleShape2D_p6tx3")
+
+[node name="StopMusicTrigger" parent="Rail" instance=ExtResource("7_8q8ma")]
+position = Vector2(624, 130)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Rail/StopMusicTrigger"]
+shape = SubResource("RectangleShape2D_ydec7")
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Rail"]
 root_node = NodePath("../..")
 autoplay = "Intro"
@@ -2450,7 +2590,7 @@ libraries = {
 next/Intro = &"PostIntro"
 
 [node name="Manipulator" type="Sprite2D" parent="Rail"]
-position = Vector2(624, 128)
+position = Vector2(14048, 3296)
 rotation = 0.174533
 scale = Vector2(4, 4)
 texture = ExtResource("3_sb2kh")
@@ -3417,6 +3557,20 @@ scale = Vector2(0.25, 0.25)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TileMap5/TeleporterArea2"]
 shape = SubResource("RectangleShape2D_iy0xk")
 
+[node name="DarkeningArea" type="Area2D" parent="TileMap5"]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="TileMap5/DarkeningArea"]
+visible = false
+polygon = PackedVector2Array(7804.25, 657.5, 8472.5, 659.25, 9006.75, 502.75, 9460, 502.75, 9460, 1044.5, 7534.5, 1044.5, 7568.25, 670.75)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TileMap5/DarkeningArea"]
+libraries = {
+"": SubResource("AnimationLibrary_j5qlx")
+}
+script = ExtResource("36_qstxi")
+
 [node name="TileMap6" type="TileMap" parent="."]
 scale = Vector2(4, 4)
 tile_set = SubResource("TileSet_jjq0k")
@@ -3649,6 +3803,20 @@ script = ExtResource("19_of7hb")
 shape = SubResource("RectangleShape2D_j81mt")
 disabled = true
 
+[node name="DarkeningArea" type="Area2D" parent="TileMap6"]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="TileMap6/DarkeningArea"]
+visible = false
+polygon = PackedVector2Array(11063, 702, 11995.8, -212.75, 13310.8, -216, 13315.3, 2940.5, 11052, 2928.5)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TileMap6/DarkeningArea"]
+libraries = {
+"": SubResource("AnimationLibrary_ntu1s")
+}
+script = ExtResource("36_qstxi")
+
 [node name="TileMap7" type="TileMap" parent="."]
 scale = Vector2(4, 4)
 tile_set = SubResource("TileSet_jjq0k")
@@ -3787,12 +3955,6 @@ libraries = {
 "": SubResource("AnimationLibrary_tosue")
 }
 
-[node name="CameraLimitsSetTrigger" parent="." instance=ExtResource("7_8q8ma")]
-position = Vector2(624, 470)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraLimitsSetTrigger"]
-shape = SubResource("RectangleShape2D_p6tx3")
-
 [node name="TutorialCanvasLayer" type="CanvasLayer" parent="."]
 script = ExtResource("17_fhgxn")
 
@@ -3822,17 +3984,19 @@ centered = false
 stream = SubResource("AudioStreamWAV_tdw56")
 
 [node name="Fog?" type="ColorRect" parent="TutorialCanvasLayer"]
-visible = false
 offset_right = 1280.0
 offset_bottom = 720.0
-color = Color(0, 1, 1, 0.0392157)
+color = Color(0.27451, 0, 0.164706, 0)
 
+[connection signal="ButtonPressed" from="Rail/CameraLimitsSetTrigger" to="Player" method="SetCameraLimits" flags=6 binds= [Vector4(-100000, 100000, 100000, -100000), true]]
+[connection signal="ButtonPressed" from="Rail/StopMusicTrigger" to="." method="StopMusic" binds= [0.0]]
 [connection signal="animation_finished" from="Rail/AnimationPlayer" to="Rail" method="queue_free" unbinds=1]
 [connection signal="PlayerDied" from="Player" to="TutorialCanvasLayer" method="PlayerDied" flags=6]
 [connection signal="ButtonPressed" from="TileMap/CameraLimitsSetTrigger" to="Player" method="SetCameraLimits" flags=6 binds= [Vector4(3520, 15552, 4032, 13504), false]]
 [connection signal="ButtonPressed" from="TileMap/CameraLimitsSetTrigger" to="TileMap/TutorialTV/AnimationPlayer" method="play" flags=6 binds= ["FallingDown"]]
 [connection signal="ButtonPressed" from="TileMap/TeleporterArea" to="TileMap" method="queue_free" flags=6]
 [connection signal="ButtonPressed" from="TileMap/TeleporterArea" to="TutorialCanvasLayer" method="Glitch" flags=6]
+[connection signal="ButtonPressed" from="TileMap/TeleporterArea" to="." method="PlayMusic" flags=6 binds= ["Level1Tutorial", 0.0, 0.0]]
 [connection signal="ButtonPressed" from="TileMap/TeleporterArea" to="Player" method="set_position" flags=6 binds= [Vector2(16296, 3864)]]
 [connection signal="ButtonPressed" from="TileMap/TeleporterArea" to="Player" method="SetCameraLimits" binds= [Vector4(3392, 18496, 4032, 16000), true]]
 [connection signal="ButtonPressed" from="TileMap/TeleporterArea" to="TileMap2/TutorialTV/AnimationPlayer" method="play" flags=6 binds= ["FallingDown"]]
@@ -3847,7 +4011,6 @@ color = Color(0, 1, 1, 0.0392157)
 [connection signal="ButtonPressed" from="TileMap4/TVFallTrigger" to="TileMap4/TutorialTV/AnimationPlayer" method="play" flags=6 binds= ["FallingDown"]]
 [connection signal="ButtonPressed" from="TileMap4/TeleporterArea2" to="TileMap4" method="queue_free" flags=6]
 [connection signal="ButtonPressed" from="TileMap4/TeleporterArea2" to="TutorialCanvasLayer" method="Glitch"]
-[connection signal="ButtonPressed" from="TileMap4/TeleporterArea2" to="SunLightLayerContainer/SunLightLayer/SunLight" method="set_modulate" flags=6 binds= [Color(0, 0, 0, 0)]]
 [connection signal="ButtonPressed" from="TileMap4/TeleporterArea2" to="Player" method="set_position" flags=6 binds= [Vector2(27812, 4003)]]
 [connection signal="ButtonPressed" from="TileMap4/TeleporterArea2" to="Player" method="SetCameraLimits" flags=6 binds= [Vector4(-1e+06, 100000, 4032, 27584), true]]
 [connection signal="ButtonPressed" from="TileMap4/TeleporterArea2" to="TileMap5/ShakyPlatform/TutorialTV/Screen/SlippeyHead/AnimationPlayer" method="play" flags=6 binds= ["BangerFilm"]]
@@ -3871,6 +4034,9 @@ color = Color(0, 1, 1, 0.0392157)
 [connection signal="ButtonPressed" from="TileMap5/TeleporterArea2" to="TutorialCanvasLayer" method="Glitch"]
 [connection signal="ButtonPressed" from="TileMap5/TeleporterArea2" to="Player" method="set_position" flags=6 binds= [Vector2(42776, 4000)]]
 [connection signal="ButtonPressed" from="TileMap5/TeleporterArea2" to="Player" method="SetCameraLimits" flags=6 binds= [Vector4(-100000, 100000, 4032, 42496), true]]
+[connection signal="ButtonPressed" from="TileMap5/TeleporterArea2" to="TutorialCanvasLayer/Fog?" method="set_color" flags=6 binds= [Color(0, 1, 1, 0.0156863)]]
+[connection signal="area_entered" from="TileMap5/DarkeningArea" to="TileMap5/DarkeningArea/AnimationPlayer" method="Darkening" unbinds=1]
+[connection signal="area_exited" from="TileMap5/DarkeningArea" to="TileMap5/DarkeningArea/AnimationPlayer" method="Lightening" unbinds=1]
 [connection signal="ButtonPressed" from="TileMap6/DisposableButton" to="TileMap6/DisposableButton/OpeningDoor/AnimationPlayer" method="play" binds= ["Opening"]]
 [connection signal="ButtonPressed" from="TileMap6/DisposableButton" to="TileMap6/TVAppearingTrigger/CollisionShape2D" method="set_disabled" flags=7 binds= [false]]
 [connection signal="area_entered" from="TileMap6/DisposableButton" to="TileMap6/DisposableButton" method="AreaEntered" unbinds=1]
@@ -3885,13 +4051,16 @@ color = Color(0, 1, 1, 0.0392157)
 [connection signal="area_entered" from="TileMap6/MovingTileMap/Area2D" to="TileMap6/MovingTileMap/Area2D" method="AreaEntered" unbinds=1]
 [connection signal="ButtonPressed" from="TileMap6/TeleporterArea" to="TileMap6" method="queue_free" flags=6]
 [connection signal="ButtonPressed" from="TileMap6/TeleporterArea" to="TutorialCanvasLayer" method="Glitch" flags=6]
+[connection signal="ButtonPressed" from="TileMap6/TeleporterArea" to="." method="StopMusic" flags=6 binds= [0.0]]
 [connection signal="ButtonPressed" from="TileMap6/TeleporterArea" to="Player" method="set_position" flags=6 binds= [Vector2(54176, 4000)]]
 [connection signal="ButtonPressed" from="TileMap6/TeleporterArea" to="Player" method="SetCameraLimits" flags=6 binds= [Vector4(3520, 54656, 4032, 53696), true]]
 [connection signal="ButtonPressed" from="TileMap6/TeleporterArea" to="TileMap7/TutorialTV/Screen/SlippeyHead/AnimationPlayer" method="play" flags=6 binds= ["BangerFilm"]]
 [connection signal="ButtonPressed" from="TileMap6/TeleporterArea" to="TileMap7/TutorialTV/AnimationPlayer" method="play" flags=6 binds= ["YOUWIN"]]
+[connection signal="ButtonPressed" from="TileMap6/TeleporterArea" to="TutorialCanvasLayer/Fog?" method="set_color" binds= [Color(0, 1, 1, 0.0156863)]]
 [connection signal="ButtonPressed" from="TileMap6/TVAppearingTrigger" to="TileMap6/TutorialTV/AnimationPlayer" method="play" flags=6 binds= ["Appearing"]]
 [connection signal="area_entered" from="TileMap6/TVAppearingTrigger" to="TileMap6/TVAppearingTrigger" method="AreaEntered" unbinds=1]
-[connection signal="ButtonPressed" from="CameraLimitsSetTrigger" to="Player" method="SetCameraLimits" flags=6 binds= [Vector4(-100000, 100000, 100000, -100000), true]]
+[connection signal="area_entered" from="TileMap6/DarkeningArea" to="TileMap6/DarkeningArea/AnimationPlayer" method="Darkening" unbinds=1]
+[connection signal="area_exited" from="TileMap6/DarkeningArea" to="TileMap6/DarkeningArea/AnimationPlayer" method="Lightening" unbinds=1]
 [connection signal="animation_finished" from="TutorialCanvasLayer/Label/AnimationPlayer" to="TutorialCanvasLayer/Label" method="queue_free" flags=6 unbinds=1]
 [connection signal="animation_finished" from="TutorialCanvasLayer/WhiteNoiseGlitch" to="TutorialCanvasLayer/WhiteNoiseGlitch" method="set_visible" binds= [false]]
 

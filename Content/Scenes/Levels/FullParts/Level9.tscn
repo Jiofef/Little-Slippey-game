@@ -1,4 +1,4 @@
-[gd_scene load_steps=96 format=3 uid="uid://bs1p0ejy2t40w"]
+[gd_scene load_steps=97 format=3 uid="uid://bs1p0ejy2t40w"]
 
 [ext_resource type="Script" path="res://Content/Scripts/Levels/BaseLevelScript.cs" id="1_gw2dt"]
 [ext_resource type="Texture2D" uid="uid://q2j1uuqfjmos" path="res://Content/Sprites/Levels/BaseTileSet.png" id="1_tk1f8"]
@@ -820,6 +820,9 @@ animations = [{
 "name": &"default",
 "speed": 24.0
 }]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dwwmf"]
+size = Vector2(128, 128)
 
 [node name="Level9" type="Node2D"]
 script = ExtResource("1_gw2dt")
@@ -1827,6 +1830,13 @@ scale = Vector2(4, 4.5)
 sprite_frames = SubResource("SpriteFrames_lxx6n")
 centered = false
 script = ExtResource("51_4mop4")
+
+[node name="StopMusicTrigger" parent="PlatformerSection" instance=ExtResource("44_l3ibg")]
+position = Vector2(-1248, 0)
+scale = Vector2(0.25, 0.25)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlatformerSection/StopMusicTrigger"]
+shape = SubResource("RectangleShape2D_dwwmf")
 
 [connection signal="ButtonPressed" from="PlatformerSection/CameraLimitsSetTrigger" to="Player" method="SetCameraLimits" flags=6 binds= [Vector4(-128, -12352, 384, -13504), true]]
 [connection signal="ButtonPressed" from="PlatformerSection/DisposableButton" to="PlatformerSection/DisposableButton/Darkness" method="queue_free" flags=18]

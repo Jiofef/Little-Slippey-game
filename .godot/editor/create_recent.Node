@@ -1,4 +1,7 @@
+CollisionShape2D
+Area2D
 AnimationPlayer
+CollisionPolygon2D
 TileMap
 LightOccluder2D
 PointLight2D
@@ -11,14 +14,11 @@ Control
 AnimatedSprite2D
 ColorRect
 CanvasLayer
-CollisionPolygon2D
-Area2D
 Node2D
 Node3D
 Label
 GridContainer
 RichTextLabel
-CollisionShape2D
 AudioStreamPlayer
 AudioListener2D
 Camera2D

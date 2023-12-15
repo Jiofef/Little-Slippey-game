@@ -9,45 +9,6 @@
 [ext_resource type="Texture2D" uid="uid://be5mi0sdy4bep" path="res://Content/Sprites/Interface/PauseOptionsButton.png" id="6_cd33f"]
 [ext_resource type="Texture2D" uid="uid://blp8i7meimekf" path="res://Content/Sprites/Interface/PauseMenuButton.png" id="7_ikix5"]
 
-[sub_resource type="Animation" id="Animation_n61s8"]
-resource_name = "MusicStopping"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:volume_db")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, -20.0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:playing")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".:stream")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(1),
-"transitions": PackedFloat32Array(1),
-"update": 2,
-"values": [null]
-}
-
 [sub_resource type="Animation" id="Animation_p3npb"]
 resource_name = "MusicStarting"
 tracks/0/type = "value"
@@ -62,17 +23,20 @@ tracks/0/keys = {
 "update": 0,
 "values": [-20.0, 0.0]
 }
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:playing")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
+
+[sub_resource type="Animation" id="Animation_n61s8"]
+resource_name = "MusicStopping"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -20.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jcmm3"]
@@ -257,7 +221,6 @@ process_mode = 3
 script = ExtResource("2")
 
 [node name="LevelMusicPlayer" type="AudioStreamPlayer" parent="."]
-volume_db = -20.0
 bus = &"Music"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="LevelMusicPlayer"]
@@ -390,6 +353,7 @@ bus = &"Interface"
 layer = 100
 
 [connection signal="finished" from="LevelMusicPlayer" to="." method="MusicFinished"]
+[connection signal="animation_finished" from="LevelMusicPlayer/AnimationPlayer" to="." method="MusicAnimationFinished"]
 [connection signal="pressed" from="Pause/Interface/ButtonsFrame/Resume" to="." method="UnPause"]
 [connection signal="pressed" from="Pause/Interface/ButtonsFrame/Options" to="." method="Options"]
 [connection signal="pressed" from="Pause/Interface/ButtonsFrame/Menu" to="." method="Menu"]

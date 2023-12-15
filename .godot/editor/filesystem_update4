@@ -66,3 +66,6 @@ res://Content/Scripts/Other/MainScript.cs
 res://Content/Scripts/Other/MISSINGNULL.cs
 res://Content/Scripts/Other/Player.cs
 res://Content/Scripts/Other/SkinScript.cs
+res://Content/Scenes/Levels/FullParts/Level1Tutorial.tscn
+res://Content/Scripts/Levels/Level1TutorialDarkeningAnimationPlayer.cs
+res://Content/Scenes/Levels/FullParts/Level9.tscn

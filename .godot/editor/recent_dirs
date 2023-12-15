@@ -1,3 +1,4 @@
+res://Content/Scripts/Levels
 res://Content/Sprites/Levels/Level3
 res://Content/Sprites/Levels/Level6
 res://Content/Sprites/Levels/Level4
@@ -10,7 +11,6 @@ res://Content/Scenes/PlayerSkins
 res://Content/Scripts/Other
 res://Content/Sprites/Other
 res://Content/Sprites/Levels/Level1
-res://Content/Scripts/Levels
 res://Content/Scenes/Other
 res://Content/Sprites/Levels/Level2
 res://Content/Scenes/Interface&Menu
