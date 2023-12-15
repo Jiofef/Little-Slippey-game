@@ -1,3 +1,4 @@
+AnimationPlayer
 TileMap
 LightOccluder2D
 PointLight2D
@@ -5,7 +6,6 @@ DirectionalLight2D
 ParallaxBackground
 ParallaxLayer
 CPUParticles2D
-AnimationPlayer
 Sprite2D
 Control
 AnimatedSprite2D

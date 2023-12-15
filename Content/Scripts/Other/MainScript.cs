@@ -3,13 +3,16 @@ using Godot;
 public partial class MainScript : Node2D
 {
     private bool _subMenusOpened;
+    private string _currentMusicName;
     TextureButton _rewindButton;
+    AudioStreamPlayer _levelMusicPlayer;
 
     public override void _Ready()
     {
         G.CurrentPopupAchievementsLayer = GetNode<CanvasLayer>("PopupAchievementsLayer");
         GetNode<AudioStreamPlayer>("LevelMusicPlayer").Stream = ResourceLoader.Load<AudioStream>("res://Content/Sounds/Soundtrack/Level" + G.CurrentLevel + ".mp3");
         _rewindButton = GetNode<TextureButton>("Pause/Interface/ButtonsFrame/Rewind");
+        _levelMusicPlayer = GetNode<AudioStreamPlayer>("LevelMusicPlayer");
         if (UnchangableMeta.LevelPlayedStatus[G.CurrentLevel - 1] != 1)
         {
             UnchangableMeta.LevelPlayedStatus[G.CurrentLevel - 1] = 1;
@@ -71,8 +74,37 @@ public partial class MainScript : Node2D
     {
         GetNode<AudioStreamPlayer>("LevelMusicPlayer").Play(0);
     }
+
     public void LevelLoad()
     {
         GetNode("PlayPart").AddChild(ResourceLoader.Load<PackedScene>("res://Content/Scenes/Levels/FullParts/Level" + G.CurrentLevel + G.LevelAdditionalLink + ".tscn").Instantiate());
+    }
+
+    public void PlayMusic(string MusicName, float StartingDuration)
+    {
+        var musicAnimationPlayer = GetNode<AnimationPlayer>("LevelMusicPlayer/AnimationPlayer");
+        if (MusicName != _currentMusicName)
+        {
+            _levelMusicPlayer.Stream = ResourceLoader.Load<AudioStream>("res://Content/Sounds/Soundtrack/" + MusicName + ".mp3");
+            _currentMusicName = MusicName;
+            if (StartingDuration > 0)
+                musicAnimationPlayer.Play("MusicStarting", -1, 1 / StartingDuration);
+            else
+                _levelMusicPlayer.VolumeDb = 0;
+        }
+    }
+
+    public void StopMusic(float StoppingDuration)
+    {
+        var musicAnimationPlayer = GetNode<AnimationPlayer>("LevelMusicPlayer/AnimationPlayer");
+        if (StoppingDuration > 0)
+            musicAnimationPlayer.Play("MusicStopping", -1, 1 / StoppingDuration);
+        else
+        {
+            musicAnimationPlayer.Stop();
+            _levelMusicPlayer.Stop();
+            _levelMusicPlayer.VolumeDb = -20;
+        }
+        _currentMusicName = "";
     }
 }

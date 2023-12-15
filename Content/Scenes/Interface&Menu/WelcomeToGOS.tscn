@@ -273,6 +273,7 @@ volume_db = 10.0
 [node name="PopupAchievementsLayer" type="CanvasLayer" parent="."]
 
 [node name="Buttons" type="Control" parent="."]
+process_mode = 4
 layout_mode = 3
 anchors_preset = 0
 mouse_filter = 2
@@ -373,7 +374,7 @@ libraries = {
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(640, 360)
-zoom = Vector2(2, 2)
+enabled = false
 limit_left = 0
 limit_top = 0
 limit_right = 1280
