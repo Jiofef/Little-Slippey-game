@@ -313,4 +313,4 @@ position = Vector2(640, 375)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayMusicTrigger"]
 shape = SubResource("RectangleShape2D_j4mno")
 
-[connection signal="ButtonPressed" from="PlayMusicTrigger" to="." method="PlayMusic" flags=6 binds= ["Level1", 0.0, 0.0]]
+[connection signal="ButtonPressed" from="PlayMusicTrigger" to="." method="PlayMusic" flags=6 binds= ["TNT For Breakfast", 17.5, 0.0]]

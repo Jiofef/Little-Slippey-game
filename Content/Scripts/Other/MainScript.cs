@@ -91,7 +91,7 @@ public partial class MainScript : Node2D
             if (StartingDuration > 0)
                 musicAnimationPlayer.Play("MusicStarting", -1, 1 / StartingDuration);
             else
-                _levelMusicPlayer.VolumeDb = 0;
+                _levelMusicPlayer.VolumeDb = 10;
             _levelMusicPlayer.Play();
         }
     }

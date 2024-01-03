@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://baxaaugq51qmk"
+path="res://.godot/imported/Base 314, Please Respond.mp3-78c4d06cdceb19cb7adec5b73b308ad2.mp3str"
+
+[deps]
+
+source_file="res://Content/Sounds/Soundtrack/Base 314, Please Respond.mp3"
+dest_files=["res://.godot/imported/Base 314, Please Respond.mp3-78c4d06cdceb19cb7adec5b73b308ad2.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

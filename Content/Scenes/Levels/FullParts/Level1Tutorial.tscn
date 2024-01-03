@@ -217,7 +217,7 @@ tracks/8/keys = {
 tracks/9/type = "value"
 tracks/9/imported = false
 tracks/9/enabled = true
-tracks/9/path = NodePath("TileMap/Ambient:playing")
+tracks/9/path = NodePath("Ambient:playing")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
@@ -2484,6 +2484,11 @@ format = 1
 [node name="Level1Tutorial" type="Node2D"]
 script = ExtResource("1_bk1up")
 
+[node name="Ambient" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("15_qqjae")
+volume_db = -5.0
+bus = &"Enviromnment"
+
 [node name="Background" type="ParallaxBackground" parent="."]
 scroll_limit_begin = Vector2(13696, 3520)
 
@@ -3101,11 +3106,6 @@ libraries = {
 "": SubResource("AnimationLibrary_u218g")
 }
 
-[node name="Ambient" type="AudioStreamPlayer" parent="TileMap"]
-stream = ExtResource("15_qqjae")
-volume_db = -5.0
-bus = &"Enviromnment"
-
 [node name="TeleporterArea" parent="TileMap" instance=ExtResource("7_8q8ma")]
 position = Vector2(3832, 944)
 scale = Vector2(0.25, 0.25)
@@ -3601,7 +3601,7 @@ layer_1/tile_data = PackedInt32Array(373, 1, 2, 65909, 1, 2, 131445, 1, 2, 19698
 
 [node name="DisposableButton" type="Area2D" parent="TileMap6"]
 z_index = -1
-position = Vector2(12448, -84)
+position = Vector2(12432, -84)
 collision_layer = 0
 collision_mask = 8
 script = ExtResource("19_of7hb")
@@ -3622,10 +3622,10 @@ region_enabled = true
 region_rect = Rect2(16, 0, 16, 8)
 
 [node name="OpeningDoor" type="TileMap" parent="TileMap6/DisposableButton"]
-position = Vector2(0, 4)
+position = Vector2(0, -44)
 tile_set = SubResource("TileSet_0tu43")
 format = 2
-layer_0/tile_data = PackedInt32Array(327679, 0, 2, 393215, 0, 2, 262144, 0, 2, 327680, 0, 2, 262143, 0, 2, 196608, 0, 2)
+layer_0/tile_data = PackedInt32Array(196608, 0, 2, 262144, 0, 2, 327680, 0, 2, 196609, 0, 2, 262145, 0, 2, 327681, 0, 2)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="TileMap6/DisposableButton/OpeningDoor"]
 root_node = NodePath("../../..")
@@ -3634,13 +3634,13 @@ libraries = {
 }
 
 [node name="ClosingDoor" type="TileMap" parent="TileMap6/DisposableButton"]
-position = Vector2(0, 4)
+position = Vector2(48, 4)
 tile_set = SubResource("TileSet_dl2ne")
 format = 2
-layer_0/tile_data = PackedInt32Array(131070, 0, 2, 131071, 0, 2, 65536, 0, 2, 65534, 65536, 2, 65535, 65536, 2, 0, 65536, 2)
+layer_0/tile_data = PackedInt32Array(131071, 0, 2, 65536, 0, 2, 65535, 65536, 2, 0, 65536, 2, 65537, 0, 2, 1, 65536, 2)
 
 [node name="FinalOpeningArea" type="Area2D" parent="TileMap6/DisposableButton"]
-position = Vector2(0, 76)
+position = Vector2(16, 76)
 collision_layer = 0
 collision_mask = 8
 script = ExtResource("19_of7hb")
@@ -3995,8 +3995,9 @@ color = Color(0.27451, 0, 0.164706, 0)
 [connection signal="ButtonPressed" from="TileMap/CameraLimitsSetTrigger" to="Player" method="SetCameraLimits" flags=6 binds= [Vector4(3520, 15552, 4032, 13504), false]]
 [connection signal="ButtonPressed" from="TileMap/CameraLimitsSetTrigger" to="TileMap/TutorialTV/AnimationPlayer" method="play" flags=6 binds= ["FallingDown"]]
 [connection signal="ButtonPressed" from="TileMap/TeleporterArea" to="TileMap" method="queue_free" flags=6]
+[connection signal="ButtonPressed" from="TileMap/TeleporterArea" to="Ambient" method="stop" flags=6]
 [connection signal="ButtonPressed" from="TileMap/TeleporterArea" to="TutorialCanvasLayer" method="Glitch" flags=6]
-[connection signal="ButtonPressed" from="TileMap/TeleporterArea" to="." method="PlayMusic" flags=6 binds= ["Level1Tutorial", 0.0, 0.0]]
+[connection signal="ButtonPressed" from="TileMap/TeleporterArea" to="." method="PlayMusic" flags=6 binds= ["Base 314, Please Respond", 0.0, 0.0]]
 [connection signal="ButtonPressed" from="TileMap/TeleporterArea" to="Player" method="set_position" flags=6 binds= [Vector2(16296, 3864)]]
 [connection signal="ButtonPressed" from="TileMap/TeleporterArea" to="Player" method="SetCameraLimits" binds= [Vector4(3392, 18496, 4032, 16000), true]]
 [connection signal="ButtonPressed" from="TileMap/TeleporterArea" to="TileMap2/TutorialTV/AnimationPlayer" method="play" flags=6 binds= ["FallingDown"]]
@@ -4049,6 +4050,7 @@ color = Color(0.27451, 0, 0.164706, 0)
 [connection signal="ButtonPressed" from="TileMap6/CameraLimitsSetter" to="TileMap6/CPUParticles2D" method="set_emitting" flags=6 binds= [true]]
 [connection signal="ButtonPressed" from="TileMap6/MovingTileMap/Area2D" to="TileMap6/MovingTileMap/AnimationPlayer" method="play" flags=6 binds= ["Its\"Not\"Over"]]
 [connection signal="area_entered" from="TileMap6/MovingTileMap/Area2D" to="TileMap6/MovingTileMap/Area2D" method="AreaEntered" unbinds=1]
+[connection signal="ButtonPressed" from="TileMap6/TeleporterArea" to="Ambient" method="play" flags=6]
 [connection signal="ButtonPressed" from="TileMap6/TeleporterArea" to="TileMap6" method="queue_free" flags=6]
 [connection signal="ButtonPressed" from="TileMap6/TeleporterArea" to="TutorialCanvasLayer" method="Glitch" flags=6]
 [connection signal="ButtonPressed" from="TileMap6/TeleporterArea" to="." method="StopMusic" flags=6 binds= [0.0]]
