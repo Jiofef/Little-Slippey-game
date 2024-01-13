@@ -221,7 +221,7 @@ process_mode = 3
 script = ExtResource("2")
 
 [node name="LevelMusicPlayer" type="AudioStreamPlayer" parent="."]
-volume_db = 20.0
+volume_db = -20.0
 bus = &"Music"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="LevelMusicPlayer"]
