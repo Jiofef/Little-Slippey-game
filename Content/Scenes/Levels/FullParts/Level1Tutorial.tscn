@@ -3622,7 +3622,7 @@ region_enabled = true
 region_rect = Rect2(16, 0, 16, 8)
 
 [node name="OpeningDoor" type="TileMap" parent="TileMap6/DisposableButton"]
-position = Vector2(0, -44)
+position = Vector2(0, 4)
 tile_set = SubResource("TileSet_0tu43")
 format = 2
 layer_0/tile_data = PackedInt32Array(196608, 0, 2, 262144, 0, 2, 327680, 0, 2, 196609, 0, 2, 262145, 0, 2, 327681, 0, 2)
@@ -3634,7 +3634,7 @@ libraries = {
 }
 
 [node name="ClosingDoor" type="TileMap" parent="TileMap6/DisposableButton"]
-position = Vector2(48, 4)
+position = Vector2(0, 4)
 tile_set = SubResource("TileSet_dl2ne")
 format = 2
 layer_0/tile_data = PackedInt32Array(131071, 0, 2, 65536, 0, 2, 65535, 65536, 2, 0, 65536, 2, 65537, 0, 2, 1, 65536, 2)

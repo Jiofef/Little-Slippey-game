@@ -1,13 +1,15 @@
-[gd_scene load_steps=17 format=3 uid="uid://dxnmuyu5wcsgv"]
+[gd_scene load_steps=20 format=3 uid="uid://5kfyvxsdpsk2"]
 
 [ext_resource type="Script" path="res://Content/Scripts/Other/MainScript.cs" id="2"]
 [ext_resource type="Texture2D" uid="uid://4udch8ejvu08" path="res://Content/Sprites/Interface/PauseButtonsFrame.png" id="2_6mvi6"]
+[ext_resource type="Shader" path="res://Content/Other/BrightnessShader.gdshader" id="2_i0xj5"]
 [ext_resource type="Texture2D" uid="uid://dhr0k5tpvpg7n" path="res://Content/Sprites/Interface/UnpauseButton.png" id="3_30esk"]
 [ext_resource type="AudioStream" uid="uid://cuvkdo1lyvynu" path="res://Content/Sounds/Other/EpicIntro.mp3" id="4_upcxf"]
 [ext_resource type="Texture2D" uid="uid://bqua21jbasqml" path="res://Content/Sprites/Interface/PauseRewindButton.png" id="5_db6pn"]
 [ext_resource type="PackedScene" uid="uid://bwpstpk1xmkah" path="res://Content/Scenes/Interface&Menu/Button.tscn" id="6"]
 [ext_resource type="Texture2D" uid="uid://be5mi0sdy4bep" path="res://Content/Sprites/Interface/PauseOptionsButton.png" id="6_cd33f"]
 [ext_resource type="Texture2D" uid="uid://blp8i7meimekf" path="res://Content/Sprites/Interface/PauseMenuButton.png" id="7_ikix5"]
+[ext_resource type="Script" path="res://Content/Scripts/Other/PostProcessingRect.cs" id="9_mh7p1"]
 
 [sub_resource type="Animation" id="Animation_p3npb"]
 resource_name = "MusicStarting"
@@ -133,7 +135,7 @@ _data = {
 
 [sub_resource type="Animation" id="Animation_gx3u0"]
 resource_name = "EpicIntro"
-length = 5.0
+length = 8.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -158,17 +160,19 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector2(0, 360), Vector2(0, 360), Vector2(0, 720)]
 }
-tracks/2/type = "value"
+tracks/2/type = "method"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("EpicIntro/Glare:modulate")
+tracks/2/path = NodePath(".")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 2, 5),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+"times": PackedFloat32Array(2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [true],
+"method": &"set_process"
+}]
 }
 tracks/3/type = "method"
 tracks/3/imported = false
@@ -180,41 +184,55 @@ tracks/3/keys = {
 "times": PackedFloat32Array(2),
 "transitions": PackedFloat32Array(1),
 "values": [{
-"args": [true],
-"method": &"set_process"
+"args": [],
+"method": &"LevelLoad"
 }]
 }
-tracks/4/type = "method"
+tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath(".")
+tracks/4/path = NodePath("LevelMusicPlayer:playing")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "times": PackedFloat32Array(2),
 "transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"LevelLoad"
-}]
+"update": 1,
+"values": [true]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("LevelMusicPlayer:playing")
+tracks/5/path = NodePath("EpicIntro/BrightnessRect:_value")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(2),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
+"times": PackedFloat32Array(0, 2, 8),
+"transitions": PackedFloat32Array(0, 0.5, 1),
+"update": 0,
+"values": [0.0, 4.0, 1.0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("EpicIntro/Glare:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 2, 5),
+"transitions": PackedFloat32Array(1, 0.5, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.501961), Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_emurq"]
 _data = {
 "EpicIntro": SubResource("Animation_gx3u0")
 }
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xv08t"]
+shader = ExtResource("2_i0xj5")
+shader_parameter/brightness = 1.0
 
 [node name="Main" type="Node2D"]
 process_mode = 3
@@ -326,7 +344,16 @@ libraries = {
 "": SubResource("AnimationLibrary_emurq")
 }
 
+[node name="BrightnessRect" type="ColorRect" parent="EpicIntro"]
+material = SubResource("ShaderMaterial_xv08t")
+offset_right = 1280.0
+offset_bottom = 720.0
+mouse_filter = 2
+script = ExtResource("9_mh7p1")
+_value = 0.0
+
 [node name="Glare" type="ColorRect" parent="EpicIntro"]
+modulate = Color(1, 1, 1, 0)
 offset_right = 1280.0
 offset_bottom = 720.0
 mouse_filter = 2

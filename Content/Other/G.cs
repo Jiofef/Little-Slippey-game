@@ -32,7 +32,7 @@ public partial class G : Node
 	{
 		return 1 - GetPlayerCorpseFlightTimerCoeff();
 	}
-	public static void ResetValues()
+    public static void ResetValues()
 	{
 		IsNewRecordReached = false;
 		IsPlayerDead = false;

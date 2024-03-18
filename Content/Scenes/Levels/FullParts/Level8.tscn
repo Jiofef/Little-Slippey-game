@@ -1,4 +1,4 @@
-[gd_scene load_steps=69 format=3 uid="uid://bgieatsx37byq"]
+[gd_scene load_steps=71 format=3 uid="uid://cfq0amsol7ik0"]
 
 [ext_resource type="PackedScene" uid="uid://dlscufxb5f1ca" path="res://Content/Scenes/Other/Player.tscn" id="1_qxhw6"]
 [ext_resource type="Script" path="res://Content/Scripts/Levels/BaseLevelScript.cs" id="1_t06hj"]
@@ -503,6 +503,31 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xykkc"]
 size = Vector2(128, 832)
 
+[sub_resource type="Shader" id="Shader_62m52"]
+code = "shader_type canvas_item;
+
+uniform sampler2D screen_texture : hint_screen_texture, repeat_disable, filter_nearest;
+
+uniform float brightness = 1.0;
+uniform float contrast = 1.0;
+uniform float saturation = 1.0;
+
+void fragment() {
+    vec3 c = textureLod(screen_texture, SCREEN_UV, 0.0).rgb;
+
+    c.rgb = mix(vec3(0.0), c.rgb, brightness);
+    c.rgb = mix(vec3(0.5), c.rgb, contrast);
+    c.rgb = mix(vec3(dot(vec3(1.0), c.rgb) * 0.33333), c.rgb, saturation);
+
+    COLOR.rgb = c;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_udgo0"]
+shader = SubResource("Shader_62m52")
+shader_parameter/brightness = 1.1
+shader_parameter/contrast = 1.2
+shader_parameter/saturation = 0.85
+
 [node name="Level8" type="Node2D"]
 script = ExtResource("1_t06hj")
 
@@ -737,5 +762,10 @@ shape = SubResource("RectangleShape2D_xykkc")
 offset_right = 1280.0
 offset_bottom = 720.0
 color = Color(0.196078, 0, 0, 0.117647)
+
+[node name="PostProcessingRect" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_udgo0")
+offset_right = 1280.0
+offset_bottom = 720.0
 
 [connection signal="TileMapSpawned" from="TileMapSpawner" to="WallOfCompress" method="UpdateWallSpeedModificator"]

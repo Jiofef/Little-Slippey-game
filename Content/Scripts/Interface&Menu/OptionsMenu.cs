@@ -58,7 +58,6 @@ public partial class OptionsMenu : Control
     {
         Meta.Instance.BusVolumes[BusNubmer] = value;
         AudioServer.SetBusVolumeDb(BusNubmer, value);
-        AudioServer.SetBusMute(BusNubmer, value <= -30);
     }
 
     public override void _PhysicsProcess(double delta)

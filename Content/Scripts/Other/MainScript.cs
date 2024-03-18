@@ -18,6 +18,8 @@ public partial class MainScript : Node2D
             UnchangableMeta.LevelPlayedStatus[G.CurrentLevel - 1] = 1;
             UnchangableMeta.SaveToFile();
         }
+        if (G.CurrentLevel == 5 || Meta.Instance.AdditionStatuses[0])
+            GetNode<ColorRect>("EpicIntro/BrightnessRect").Visible = false;
 
         SetProcess(false);
     }

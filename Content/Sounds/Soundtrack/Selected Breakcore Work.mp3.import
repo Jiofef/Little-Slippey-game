@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://ihh150mc1ool"
+path="res://.godot/imported/Selected Breakcore Work.mp3-9c37c42e56191dc957275ad7546f2918.mp3str"
+
+[deps]
+
+source_file="res://Content/Sounds/Soundtrack/Selected Breakcore Work.mp3"
+dest_files=["res://.godot/imported/Selected Breakcore Work.mp3-9c37c42e56191dc957275ad7546f2918.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

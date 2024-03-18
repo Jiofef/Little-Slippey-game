@@ -4,5 +4,6 @@ res://Content/Other/StaticNoiseShader.gdshader
 res://Content/Other/BlurShader.gdshader
 res://Content/Other/CRT.gdshader
 res://Content/Other/PixelateShader.gdshader
-res://Content/Scenes/Levels/FullParts/Level1Tutorial.tscn
-res://Content/Scenes/Other/Main.tscn
+res://Content/Other/BrightnessShader.gdshader
+res://Content/Other/SaturationShader.gdshader
+res://Content/Other/PostProcessing.gdshader
