@@ -1,4 +1,4 @@
-[gd_scene load_steps=97 format=3 uid="uid://bs1p0ejy2t40w"]
+[gd_scene load_steps=98 format=3 uid="uid://bs1p0ejy2t40w"]
 
 [ext_resource type="Script" path="res://Content/Scripts/Levels/BaseLevelScript.cs" id="1_gw2dt"]
 [ext_resource type="Texture2D" uid="uid://q2j1uuqfjmos" path="res://Content/Sprites/Levels/BaseTileSet.png" id="1_tk1f8"]
@@ -823,6 +823,10 @@ animations = [{
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dwwmf"]
 size = Vector2(128, 128)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_16p1l"]
+radius = 127.0
+height = 450.0
 
 [node name="Level9" type="Node2D"]
 script = ExtResource("1_gw2dt")
@@ -1838,15 +1842,23 @@ scale = Vector2(0.25, 0.25)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlatformerSection/StopMusicTrigger"]
 shape = SubResource("RectangleShape2D_dwwmf")
 
+[node name="PlayMusicTrigger" parent="." instance=ExtResource("44_l3ibg")]
+position = Vector2(1280, 640)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayMusicTrigger"]
+shape = SubResource("CapsuleShape2D_16p1l")
+
 [connection signal="ButtonPressed" from="PlatformerSection/CameraLimitsSetTrigger" to="Player" method="SetCameraLimits" flags=6 binds= [Vector4(-128, -12352, 384, -13504), true]]
 [connection signal="ButtonPressed" from="PlatformerSection/DisposableButton" to="PlatformerSection/DisposableButton/Darkness" method="queue_free" flags=18]
 [connection signal="ButtonPressed" from="PlatformerSection/DisposableButton" to="PlatformerSection/DisposableButton/TileMap" method="queue_free" flags=18]
+[connection signal="ButtonPressed" from="PlatformerSection/DisposableButton" to="." method="PlayMusic" flags=6 binds= ["Sky Theme", 18.0, 0.0]]
 [connection signal="ButtonPressed" from="PlatformerSection/DisposableButton" to="Player" method="SetCameraLimits" flags=6 binds= [Vector4(-1000, -4480, 4544, -17500), true]]
 [connection signal="ButtonPressed" from="PlatformerSection/DisposableButton" to="PlatformerSection/AnimationPlayer" method="play" flags=6 binds= ["FlashOfLight"]]
 [connection signal="ButtonPressed" from="PlatformerSection/NoWayBro" to="PlatformerSection/NoWayBro/AnimationPlayer" method="play" binds= ["NoWayBro"]]
 [connection signal="area_entered" from="PlatformerSection/NoWayBro" to="PlatformerSection/NoWayBro" method="AreaEntered" unbinds=1]
 [connection signal="ButtonPressed" from="PlatformerSection/CameraLimitsSetTrigger2" to="Player" method="SetCameraLimits" flags=6 binds= [Vector4(-1000, 2560, 4544, -17500), false]]
 [connection signal="ButtonPressed" from="PlatformerSection/ImpendingDoomTrigger" to="PlatformerSection/CanvasLayer/DoomApproachesAnimation" method="play" flags=6]
+[connection signal="ButtonPressed" from="PlatformerSection/ImpendingDoomTrigger" to="." method="StopMusic" flags=6 binds= [10.0]]
 [connection signal="ButtonPressed" from="PlatformerSection/ImpendingDoomTrigger" to="Player" method="SetCameraLimits" flags=6 binds= [Vector4(768, 2560, 1216, -3392), false]]
 [connection signal="ButtonPressed" from="PlatformerSection/ImpendingDoomTrigger" to="PlatformerSection/AnimationPlayer" method="play" flags=6 binds= ["FrontDoorClosing"]]
 [connection signal="ButtonPressed" from="PlatformerSection/ImpendingDoomTrigger" to="PlatformerSection/CanvasLayer/DoomApproachesAnimation" method="set_physics_process" flags=6 binds= [true]]
@@ -1867,3 +1879,4 @@ shape = SubResource("RectangleShape2D_dwwmf")
 [connection signal="area_entered" from="PlatformerSection/FragileTiles/FragileTile8/Area2D" to="PlatformerSection/FragileTiles/FragileTile8/Area2D" method="AreaEntered" flags=6 unbinds=1]
 [connection signal="ButtonPressed" from="PlatformerSection/FlyingUpStone/Area2D" to="PlatformerSection/FlyingUpStone/AnimationPlayer" method="play" flags=6 binds= ["FlyingUp"]]
 [connection signal="area_entered" from="PlatformerSection/FlyingUpStone/Area2D" to="PlatformerSection/FlyingUpStone/Area2D" method="AreaEntered" flags=6 unbinds=1]
+[connection signal="ButtonPressed" from="PlayMusicTrigger" to="." method="PlayMusic" flags=6 binds= ["Nergis cuspair", 0.0, 5.0]]

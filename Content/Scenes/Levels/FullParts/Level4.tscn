@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://c6ppvbrdxngie"]
+[gd_scene load_steps=39 format=3 uid="uid://c6ppvbrdxngie"]
 
 [ext_resource type="Texture2D" uid="uid://b5p3n4aaw5n7h" path="res://Content/Sprites/Levels/Level4/Background.png" id="1_j6e8y"]
 [ext_resource type="Script" path="res://Content/Scripts/Levels/BaseLevelScript.cs" id="1_mmyxu"]
@@ -16,6 +16,7 @@
 [ext_resource type="Script" path="res://Content/Scripts/Levels/Level4CircularSawScreechSound.cs" id="12_e268e"]
 [ext_resource type="Texture2D" uid="uid://kcd1m7tkh45l" path="res://Content/Sprites/Levels/NePeretrudilsyaTileset.png" id="14_eybje"]
 [ext_resource type="Shader" path="res://Content/Other/PostProcessing.gdshader" id="17_8d48e"]
+[ext_resource type="PackedScene" uid="uid://d3u7pfig07yrs" path="res://Content/Scenes/Other/CrutchedArea2D.tscn" id="18_suoyp"]
 [ext_resource type="Script" path="res://Content/Scripts/Levels/Foreground.cs" id="20_bmryy"]
 
 [sub_resource type="Animation" id="Animation_bhfph"]
@@ -247,6 +248,9 @@ shader_parameter/brightness = 1.15
 shader_parameter/contrast = 1.35
 shader_parameter/saturation = 0.8
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yv5wh"]
+size = Vector2(128, 128)
+
 [node name="Level4" type="Node2D"]
 script = ExtResource("1_mmyxu")
 
@@ -469,7 +473,14 @@ offset_right = 1280.0
 offset_bottom = 720.0
 mouse_filter = 2
 
+[node name="PlayMusicTrigger" parent="." instance=ExtResource("18_suoyp")]
+position = Vector2(1312, 672)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayMusicTrigger"]
+shape = SubResource("RectangleShape2D_yv5wh")
+
 [connection signal="CirclePassed" from="BackCircularSaw" to="BackCircularSaw/Saw/MiddleCircularSaw/ScreechSound" method="PlayReccurentSound"]
 [connection signal="CirclePassed" from="BackCircularSaw" to="BackCircularSaw/Saw/MiddleCircularSaw/MetalSparks" method="set_emitting" binds= [true]]
 [connection signal="body_entered" from="WallForeground/DecorationMap/Area2D" to="WallForeground" method="Hide" unbinds=1]
 [connection signal="body_exited" from="WallForeground/DecorationMap/Area2D" to="WallForeground" method="Show" unbinds=1]
+[connection signal="ButtonPressed" from="PlayMusicTrigger" to="." method="PlayMusic" flags=6 binds= ["Hygienic Perforator", 11.9, 0.0]]

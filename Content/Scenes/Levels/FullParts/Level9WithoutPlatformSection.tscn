@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://vtbg6l876n02"]
+[gd_scene load_steps=26 format=3 uid="uid://vtbg6l876n02"]
 
 [ext_resource type="Script" path="res://Content/Scripts/Levels/BaseLevelScript.cs" id="1_w53sw"]
 [ext_resource type="Texture2D" uid="uid://dsbmsydekaqyb" path="res://Content/Sprites/Levels/Level9/VolcanoInterior.png" id="2_t6lej"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dgluki8hnwb62" path="res://Content/Sprites/Levels/Level8/AcidAndLavaTileset.png" id="4_jnlg4"]
 [ext_resource type="Texture2D" uid="uid://d2gkb2n1pgjkq" path="res://Content/Sprites/Levels/Level9/VolcanoStalactites.png" id="4_n53b5"]
 [ext_resource type="PackedScene" uid="uid://c3dqig02x5lyb" path="res://Content/Scenes/Other/Level9JiofefHead.tscn" id="9_k14a3"]
+[ext_resource type="PackedScene" uid="uid://d3u7pfig07yrs" path="res://Content/Scenes/Other/CrutchedArea2D.tscn" id="10_tuvyt"]
 [ext_resource type="Texture2D" uid="uid://dlx8ycfcvywk5" path="res://Content/Sprites/Levels/InMyHeadTileset.png" id="42_jrydc"]
 [ext_resource type="PackedScene" uid="uid://dlscufxb5f1ca" path="res://Content/Scenes/Other/Player.tscn" id="52_t4hct"]
 
@@ -133,6 +134,10 @@ sources/1 = SubResource("TileSetAtlasSource_jub3u")
 offsets = PackedFloat32Array(0, 0.516556, 1)
 colors = PackedColorArray(1, 1, 1, 0, 0.602649, 0.602649, 0.602649, 1, 1, 1, 1, 0)
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_l6rnk"]
+radius = 127.0
+height = 450.0
+
 [node name="Level9" type="Node2D"]
 script = ExtResource("1_w53sw")
 
@@ -225,3 +230,11 @@ color = Color(0.784314, 0.627451, 0, 1)
 color_ramp = SubResource("Gradient_a508u")
 
 [node name="JiofefHead" parent="." instance=ExtResource("9_k14a3")]
+
+[node name="PlayMusicTrigger" parent="." instance=ExtResource("10_tuvyt")]
+position = Vector2(1280, 640)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayMusicTrigger"]
+shape = SubResource("CapsuleShape2D_l6rnk")
+
+[connection signal="ButtonPressed" from="PlayMusicTrigger" to="." method="PlayMusic" flags=6 binds= ["Nergis cuspair", 0.0, 5.0]]

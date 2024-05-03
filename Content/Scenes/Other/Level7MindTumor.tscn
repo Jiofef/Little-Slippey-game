@@ -27,7 +27,7 @@ shape = SubResource("CircleShape2D_p6ola")
 disabled = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-layer = 3
+layer = 6
 scale = Vector2(1.5, 1.5)
 transform = Transform2D(1.5, 0, 0, 1.5, 0, 0)
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://cscmncrywwujn"]
+[gd_scene load_steps=39 format=3 uid="uid://cscmncrywwujn"]
 
 [ext_resource type="Script" path="res://Content/Scripts/Levels/BaseLevelScript.cs" id="1_fdlw2"]
 [ext_resource type="Texture2D" uid="uid://q2j1uuqfjmos" path="res://Content/Sprites/Levels/BaseTileSet.png" id="2_esejo"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://bav4r4nw86irw" path="res://Content/Sprites/Levels/Level3/Yacht.png" id="8_5l1u0"]
 [ext_resource type="Texture2D" uid="uid://duk32e0otnfky" path="res://Content/Sprites/Levels/FuckItVolume2Tileset.png" id="8_eoaht"]
 [ext_resource type="Texture2D" uid="uid://cm4bhp47bpkw4" path="res://Content/Sprites/Levels/Level3/Grass.png" id="8_khgvm"]
+[ext_resource type="PackedScene" uid="uid://d3u7pfig07yrs" path="res://Content/Scenes/Other/CrutchedArea2D.tscn" id="14_lgest"]
 
 [sub_resource type="Curve" id="Curve_d65g1"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.3, 1), 0.0, 0.0, 0, 0, Vector2(0.7, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -270,6 +271,9 @@ physics_layer_0/collision_mask = 0
 sources/1 = SubResource("TileSetAtlasSource_i2m21")
 sources/3 = SubResource("TileSetAtlasSource_hivhj")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4o23b"]
+size = Vector2(128, 128)
+
 [node name="Level3" type="Node2D"]
 script = ExtResource("1_fdlw2")
 
@@ -491,3 +495,11 @@ offset_right = 1280.0
 offset_bottom = 720.0
 color = Color(0.501961, 0, 0.627451, 0.0784314)
 metadata/_edit_lock_ = true
+
+[node name="PlayMusicTrigger" parent="." instance=ExtResource("14_lgest")]
+position = Vector2(1347, 286)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayMusicTrigger"]
+shape = SubResource("RectangleShape2D_4o23b")
+
+[connection signal="ButtonPressed" from="PlayMusicTrigger" to="." method="PlayMusic" flags=6 binds= ["My Love Letter To Mike And Rich", 30.5, 0.0]]

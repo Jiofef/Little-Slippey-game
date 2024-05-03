@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bkivva7gxk0ga"
+path="res://.godot/imported/Clair De Phare.mp3-5aaf5b1ad278a49b53429d18de7c7dc4.mp3str"
+
+[deps]
+
+source_file="res://Content/Sounds/Soundtrack/Clair De Phare.mp3"
+dest_files=["res://.godot/imported/Clair De Phare.mp3-5aaf5b1ad278a49b53429d18de7c7dc4.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

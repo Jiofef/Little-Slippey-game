@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cqod5gpr41ke1"
+path="res://.godot/imported/The MytoboloKater.mp3-232aa8e2d581bd75a2a6d89067b28365.mp3str"
+
+[deps]
+
+source_file="res://Content/Sounds/Soundtrack/The MytoboloKater.mp3"
+dest_files=["res://.godot/imported/The MytoboloKater.mp3-232aa8e2d581bd75a2a6d89067b28365.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

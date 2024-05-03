@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://4rq2qv4xbcb1"]
+[gd_scene load_steps=58 format=3 uid="uid://4rq2qv4xbcb1"]
 
 [ext_resource type="Script" path="res://Content/Scripts/Levels/BaseLevelScript.cs" id="1_4x67j"]
 [ext_resource type="Script" path="res://Content/Scripts/Levels/Level10RealityDissector.cs" id="2_x0f02"]
@@ -533,6 +533,9 @@ texture = ExtResource("17_gtgee")
 [sub_resource type="TileSet" id="TileSet_huswe"]
 sources/0 = SubResource("TileSetAtlasSource_4bdfn")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pgrru"]
+size = Vector2(128, 128)
+
 [node name="Level10" type="Node2D"]
 script = ExtResource("1_4x67j")
 
@@ -854,17 +857,25 @@ offset_right = 1280.0
 offset_bottom = 720.0
 color = Color(1, 1, 1, 0.0588235)
 
+[node name="PlayMusicTrigger" parent="." instance=ExtResource("10_4e1pi")]
+position = Vector2(13856, 608)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayMusicTrigger"]
+shape = SubResource("RectangleShape2D_pgrru")
+
 [connection signal="LevelReset" from="RealityDissector" to="." method="Reset"]
 [connection signal="ButtonPressed" from="RealityDissector/ByNoMeansArtificalBoundaries" to="RealityDissector/CanvasLayer/WhiteNoiseGlitch" method="play"]
 [connection signal="ButtonPressed" from="RealityDissector/ByNoMeansArtificalBoundaries" to="RealityDissector/CanvasLayer/WhiteNoiseGlitch/AudioStreamPlayer" method="play"]
+[connection signal="ButtonPressed" from="RealityDissector/ByNoMeansArtificalBoundaries" to="." method="PlayMusic" binds= ["Matter Porn", 44.0, 0.0]]
 [connection signal="ButtonPressed" from="RealityDissector/ByNoMeansArtificalBoundaries" to="RealityDissector/ByNoMeansArtificalBoundaries/AnimationPlayer" method="play" flags=6 binds= ["RealityTumor"]]
 [connection signal="ButtonPressed" from="RealityDissector/ByNoMeansArtificalBoundaries" to="RealityDissector/CanvasLayer/WhiteNoiseGlitch" method="set_visible" binds= [true]]
+[connection signal="ButtonPressed" from="RealityDissector/ByNoMeansArtificalBoundaries" to="SunLightLayerContainer/SunLightLayer/SunLight" method="set_visible" binds= [false]]
 [connection signal="ButtonPressed" from="RealityDissector/ByNoMeansArtificalBoundaries" to="Player" method="set_global_position" binds= [Vector2(13856, 608)]]
 [connection signal="ButtonPressed" from="RealityDissector/ByNoMeansArtificalBoundaries" to="Player" method="SetCameraLimits" binds= [Vector4(-100000, 100000, 100000, -100000), true]]
-[connection signal="ButtonPressed" from="RealityDissector/ByNoMeansArtificalBoundaries" to="SunLightLayerContainer/SunLightLayer/SunLight" method="set_visible" binds= [false]]
 [connection signal="area_entered" from="RealityDissector/ByNoMeansArtificalBoundaries" to="RealityDissector/ByNoMeansArtificalBoundaries" method="AreaEntered" unbinds=1]
 [connection signal="ButtonPressed" from="RealityDissector/CameraLimitsSetTrigger" to="Player" method="SetCameraLimits" flags=6 binds= [Vector4(-100000, 100000, 100000, -100000), true]]
 [connection signal="ButtonPressed" from="RealityDissector/CameraPositionSmoothingSpeedSetTrigger" to="Player" method="SetCameraPositionSmoothingSpeed" binds= [15.0]]
 [connection signal="animation_finished" from="RealityDissector/CanvasLayer/WhiteNoiseGlitch" to="RealityDissector/CanvasLayer/WhiteNoiseGlitch" method="set_visible" binds= [false]]
 [connection signal="ButtonPressed" from="Boundaries/FloorTouchDetector" to="Boundaries/FloorTouchDetector/AnimationPlayer" method="play" flags=6 binds= ["HereYouAre"]]
 [connection signal="area_entered" from="Boundaries/FloorTouchDetector" to="Boundaries/FloorTouchDetector" method="AreaEntered" unbinds=1]
+[connection signal="ButtonPressed" from="PlayMusicTrigger" to="." method="PlayMusic" flags=6 binds= ["On Second Volume", 61.9, 0.0]]

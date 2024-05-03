@@ -1289,6 +1289,18 @@ tracks/25/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/26/type = "value"
+tracks/26/imported = false
+tracks/26/enabled = true
+tracks/26/path = NodePath("Sounds/PreBullUlt:playing")
+tracks/26/interp = 1
+tracks/26/loop_wrap = true
+tracks/26/keys = {
+"times": PackedFloat32Array(3.2),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_x45o8"]
 resource_name = "CrossSpitAttack"
@@ -1669,7 +1681,7 @@ tracks/13/keys = {
 tracks/14/type = "value"
 tracks/14/imported = false
 tracks/14/enabled = true
-tracks/14/path = NodePath("Sounds/D_E_A_T_H:playing")
+tracks/14/path = NodePath("ScreenEffects/D_E_A_T_H:playing")
 tracks/14/interp = 1
 tracks/14/loop_wrap = true
 tracks/14/keys = {
@@ -2726,7 +2738,12 @@ metadata/_edit_lock_ = true
 [node name="HeadEffectsFog" type="ColorRect" parent="ScreenEffects"]
 offset_right = 1280.0
 offset_bottom = 720.0
-color = Color(1, 1, 1, 0)
+color = Color(0, 0, 0, 0)
+
+[node name="D_E_A_T_H" type="AudioStreamPlayer" parent="ScreenEffects"]
+stream = ExtResource("33_qqbf7")
+volume_db = -8.0
+bus = &"JiofefHead"
 
 [node name="Sounds" type="Node" parent="."]
 
@@ -2739,33 +2756,36 @@ attenuation = 0.5
 
 [node name="TurningOn" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("3_740io")
-volume_db = 10.0
+volume_db = 8.0
 bus = &"JiofefHead"
 
 [node name="PreSpit" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("4_7r62f")
-volume_db = 4.0
 bus = &"JiofefHead"
 
 [node name="Spit" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("5_780xu")
-volume_db = 4.0
+volume_db = 2.0
 bus = &"JiofefHead"
 
 [node name="PreVomit" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("6_e2kgw")
+volume_db = 2.0
 bus = &"JiofefHead"
 
 [node name="Vomit" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("7_6vxe2")
+volume_db = -1.0
 bus = &"JiofefHead"
 
 [node name="PrePreSpin" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("8_f38m1")
+volume_db = -2.0
 bus = &"JiofefHead"
 
 [node name="PreSpin" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("9_mgngl")
+volume_db = -2.0
 bus = &"JiofefHead"
 
 [node name="Spin" type="AudioStreamPlayer" parent="Sounds"]
@@ -2782,6 +2802,7 @@ bus = &"JiofefHead"
 
 [node name="Bite" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("13_05fa7")
+volume_db = -2.0
 bus = &"JiofefHead"
 
 [node name="AfterBite" type="AudioStreamPlayer" parent="Sounds"]
@@ -2790,18 +2811,22 @@ bus = &"JiofefHead"
 
 [node name="PrePrePrePreSpider" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("15_pd7s1")
+volume_db = -6.0
 bus = &"JiofefHead"
 
 [node name="PrePrePreSpider" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("16_hcgin")
+volume_db = -4.0
 bus = &"JiofefHead"
 
 [node name="PrePreSpider" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("17_ju0by")
+volume_db = -6.0
 bus = &"JiofefHead"
 
 [node name="PreSpider" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("18_r6wh5")
+volume_db = -6.0
 bus = &"JiofefHead"
 
 [node name="Spider" type="AudioStreamPlayer" parent="Sounds"]
@@ -2810,64 +2835,67 @@ bus = &"JiofefHead"
 
 [node name="SpiderDash" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("20_tj7e1")
+volume_db = -5.0
 bus = &"JiofefHead"
 
 [node name="PreEyeGouging" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("21_ln1jf")
+volume_db = -4.0
 bus = &"JiofefHead"
 
 [node name="EyeGouging" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("22_vshx0")
+volume_db = -4.0
 bus = &"JiofefHead"
 
 [node name="PrePrePreBullUlt" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("23_xbxfb")
-volume_db = -20.0
+volume_db = -4.0
 bus = &"JiofefHead"
 
 [node name="PrePreBullUlt" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("24_k4i44")
+volume_db = -4.0
 bus = &"JiofefHead"
 
 [node name="PreBullUlt" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("25_6unt5")
+volume_db = -4.0
 bus = &"JiofefHead"
 
 [node name="BullDashWarning" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("26_lgiml")
-volume_db = 8.0
+volume_db = -1.0
 bus = &"JiofefHead"
 
 [node name="BullDash" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("27_srbdk")
+volume_db = -1.0
 bus = &"JiofefHead"
 
 [node name="BullDashBraking" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("28_b1qr1")
+volume_db = -4.0
 bus = &"JiofefHead"
 
 [node name="Laugh" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("29_2nwli")
-volume_db = 6.0
+volume_db = 2.0
 bus = &"JiofefHead"
 
 [node name="UnpinningCrunch1" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("30_ykji2")
-volume_db = 15.0
+volume_db = 12.0
 bus = &"JiofefHead"
 
 [node name="UnpinningCrunch2" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("31_nlfvg")
-volume_db = 15.0
+volume_db = 8.0
 bus = &"JiofefHead"
 
 [node name="UnpinningCrunch3" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("32_rdpjy")
-volume_db = 15.0
-bus = &"JiofefHead"
-
-[node name="D_E_A_T_H" type="AudioStreamPlayer" parent="Sounds"]
-stream = ExtResource("33_qqbf7")
+volume_db = 8.0
 bus = &"JiofefHead"
 
 [node name="SpiderParticles" type="CPUParticles2D" parent="."]

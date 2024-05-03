@@ -1,18 +1,18 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1708381824
-default_bus_layout.tres::AudioBusLayout::5491450156466921558::1708381825::0::1::::<><>::
-default_env.tres::Environment::9038263142653210561::1708381826::0::1::::<><>::
+::res://::1714702299
+default_bus_layout.tres::AudioBusLayout::5491450156466921558::1714688755::0::1::::<><>::
+default_env.tres::Environment::9038263142653210561::1714702299::0::1::::<><>::
 export_presets.cfg::TextFile::-1::1706056799::0::1::::<><>::
 icon.png::CompressedTexture2D::3916059988824051122::1670150219::1701362567::1::::<><>::
 README.md::TextFile::-1::1698159925::0::1::::<><>::
 дневник вдохновений.txt::TextFile::-1::1702599054::0::1::::<><>::
 ::res://Content/::1701738685
-::res://Content/Other/::1707692578
+::res://Content/Other/::1714702299
 AhahahSillyVideo.ogv::VideoStreamTheora::-1::1694090016::0::1::::<><>::
 AhahahSillyVideoRussian.ogv::VideoStreamTheora::-1::1694090016::0::1::::<><>::
-BlurShader.gdshader::Shader::-1::1707692578::0::1::::<><>::
-BrightnessShader.gdshader::Shader::-1::1707692578::0::1::::<><>::
-CRT.gdshader::Shader::-1::1707692578::0::1::::<><>::
+BlurShader.gdshader::Shader::-1::1714702299::0::1::::<><>::
+BrightnessShader.gdshader::Shader::-1::1714702299::0::1::::<><>::
+CRT.gdshader::Shader::-1::1714702299::0::1::::<><>::
 Default.theme::Theme::154039918873755752::1701741255::0::1::::<><>::uid://cw7y82t02txrj
 FFFFORWA.TTF::FontFile::5893040079735984974::1678199551::1701362565::1::::<><>::
 G.cs::CSharpScript::-1::1705246341::0::1::::<><>::
@@ -20,11 +20,11 @@ Localization.csv::Translation::8524608220035255998::1701794911::1701794911::1:::
 Localization.en.translation::OptimizedTranslation::9112928905360871720::1701794911::0::1::::<><>::
 Localization.ru.translation::OptimizedTranslation::5505580896967338292::1701794911::0::1::::<><>::
 Meta.cs::CSharpScript::-1::1701732246::0::1::::<><>::
-PixelateShader.gdshader::Shader::-1::1707692578::0::1::::<><>::
-PostProcessing.gdshader::Shader::-1::1707692578::0::1::::<><>::
+PixelateShader.gdshader::Shader::-1::1714702299::0::1::::<><>::
+PostProcessing.gdshader::Shader::-1::1714702299::0::1::::<><>::
 Retro_Gaming.ttf::FontFile::6384573603232562511::1701738679::1701738686::1::::<><>::
-SaturationShader.gdshader::Shader::-1::1707692578::0::1::::<><>::
-StaticNoiseShader.gdshader::Shader::-1::1707692578::0::1::::<><>::
+SaturationShader.gdshader::Shader::-1::1714702299::0::1::::<><>::
+StaticNoiseShader.gdshader::Shader::-1::1714702299::0::1::::<><>::
 UnchangableMeta.cs::CSharpScript::-1::1701723411::0::1::::<><>::
 VintageFilterVideo.ogv::VideoStreamTheora::-1::1690385134::0::1::::<><>::
 ::res://Content/Scenes/::1698688494
@@ -111,20 +111,20 @@ RecycleBinMenu.tscn::PackedScene::4460102140614332204::1701792484::0::1::::<><>:
 SkinsMenu.tscn::PackedScene::1415137320480733622::1701782535::0::1::::<><>::res://Content/Scripts/Interface&Menu/SkinsMenu.cs<>uid://mr4rfhwjaa0c
 WelcomeToGOS.tscn::PackedScene::7877740284134627985::1704379784::0::1::::<><>::uid://bup1u0y7qgmvb
 ::res://Content/Scenes/Levels/::1699659717
-::res://Content/Scenes/Levels/FullParts/::1707263934
-Level1.tscn::PackedScene::1449484829689862018::1707263934::0::1::::<><>::res://Content/Scripts/Levels/BaseLevelScript.cs<>uid://q2j1uuqfjmos::::res://Content/Sprites/Levels/BaseTileSet.png<>uid://cjoa8meyv5ehu::::res://Content/Sprites/Levels/Level1/Sky.png<>uid://dlscufxb5f1ca::::res://Content/Scenes/Other/Player.tscn<>uid://qe6r82b6f7np::::res://Content/Sprites/Levels/Level1/SunRaysAnimation.png<>uid://iyc2n8rea3ew::::res://Content/Sprites/Levels/Level1/FrontLayer.png<>uid://ua4neh4wkukk::::res://Content/Sprites/Levels/Level1/BackClouds.png<>uid://7bqjeef5asfb::::res://Content/Sprites/Levels/Level1/Clouds.png<>uid://de74d3epufxbk::::res://Content/Sprites/Levels/Level1/StreamAnimation.png<>uid://b830neidt3avy::::res://Content/Sprites/Levels/Mort'sTileset.png<>uid://buj5ooik0q3l0::::res://Content/Scenes/Achievements/AchievementArea.tscn<>uid://lb7nl781jkgt::::res://Content/Sprites/Levels/FallenDawnTileset.png<>uid://d3u7pfig07yrs::::res://Content/Scenes/Other/CrutchedArea2D.tscn
+::res://Content/Scenes/Levels/FullParts/::1714702299
+Level1.tscn::PackedScene::1449484829689862018::1714702298::0::1::::<><>::res://Content/Scripts/Levels/BaseLevelScript.cs<>uid://q2j1uuqfjmos::::res://Content/Sprites/Levels/BaseTileSet.png<>uid://cjoa8meyv5ehu::::res://Content/Sprites/Levels/Level1/Sky.png<>uid://dlscufxb5f1ca::::res://Content/Scenes/Other/Player.tscn<>uid://qe6r82b6f7np::::res://Content/Sprites/Levels/Level1/SunRaysAnimation.png<>uid://iyc2n8rea3ew::::res://Content/Sprites/Levels/Level1/FrontLayer.png<>uid://ua4neh4wkukk::::res://Content/Sprites/Levels/Level1/BackClouds.png<>uid://7bqjeef5asfb::::res://Content/Sprites/Levels/Level1/Clouds.png<>uid://de74d3epufxbk::::res://Content/Sprites/Levels/Level1/StreamAnimation.png<>uid://b830neidt3avy::::res://Content/Sprites/Levels/Mort'sTileset.png<>uid://buj5ooik0q3l0::::res://Content/Scenes/Achievements/AchievementArea.tscn<>uid://lb7nl781jkgt::::res://Content/Sprites/Levels/FallenDawnTileset.png<>uid://d3u7pfig07yrs::::res://Content/Scenes/Other/CrutchedArea2D.tscn
 Level1Tutorial.tscn::PackedScene::7445316695780743853::1705247157::0::1::::<><>::res://Content/Scripts/Levels/BaseLevelScript.cs<>uid://b44rk1g0wwsxv
-Level2.tscn::PackedScene::5311519677210280369::1705247156::0::1::::<><>::res://Content/Scripts/Levels/BaseLevelScript.cs<>uid://q2j1uuqfjmos
-Level3.tscn::PackedScene::6041121260041978847::1702169519::0::1::::<><>::res://Content/Scripts/Levels/BaseLevelScript.cs<>uid://q2j1uuqfjmos
-Level4.tscn::PackedScene::6980609521992187812::1705244878::0::1::::<><>::uid://b5p3n4aaw5n7h
-Level5.tscn::PackedScene::4653746177805727970::1701910968::0::1::::<><>::res://Content/Scripts/Levels/BaseLevelScript.cs<>uid://q2j1uuqfjmos
-Level6.tscn::PackedScene::9184265695103807383::1705244001::0::1::::<><>::res://Content/Scripts/Levels/BaseLevelScript.cs<>uid://q2j1uuqfjmos
-Level7.tscn::PackedScene::6005531920819681881::1701910968::0::1::::<><>::res://Content/Scripts/Levels/BaseLevelScript.cs<>uid://jf522wbk7t1h
+Level2.tscn::PackedScene::5311519677210280369::1714700020::0::1::::<><>::res://Content/Scripts/Levels/BaseLevelScript.cs<>uid://q2j1uuqfjmos::::res://Content/Sprites/Levels/BaseTileSet.png<>uid://dlscufxb5f1ca::::res://Content/Scenes/Other/Player.tscn<>uid://ba64m2i1e8tsn::::res://Content/Sprites/Levels/Level2/Sky.png<>uid://chvrmr1armlb4::::res://Content/Sprites/Levels/Level2/BackClouds.png<>uid://ccgm5hyl1wawi::::res://Content/Sprites/Levels/Level2/Clouds.png<>uid://cgxe628gayb6::::res://Content/Sprites/Levels/Level2/FieldBackLayer.png<>uid://dxxqxy5rj1wb5::::res://Content/Sprites/Levels/Level2/Combine.png<>uid://djl0os2aumwrv::::res://Content/Sprites/Levels/Level2/FieldMiddleLayer.png<>uid://b5rhwso34agae::::res://Content/Sprites/Levels/Level2/FieldFrontLayer.png<>uid://b830neidt3avy::::res://Content/Sprites/Levels/Mort'sTileset.png<>uid://cerokowoh71s2::::res://Content/Sprites/Levels/Level2/SmokeAnimation.png<>uid://46e35tif3q1r::::res://Content/Sprites/Levels/Level2/wtf.png<>uid://b2eyigkc1t4fw::::res://Content/Sprites/Levels/Level2/ShOatAnimation.png<>uid://d3u7pfig07yrs::::res://Content/Scenes/Other/CrutchedArea2D.tscn
+Level3.tscn::PackedScene::6041121260041978847::1714695469::0::1::::<><>::res://Content/Scripts/Levels/BaseLevelScript.cs<>uid://q2j1uuqfjmos::::res://Content/Sprites/Levels/BaseTileSet.png<>uid://c2tt0lg4jjgx0::::res://Content/Sprites/Levels/Level3/BackClouds.png<>uid://dlscufxb5f1ca::::res://Content/Scenes/Other/Player.tscn<>uid://t73lfqyo0ovn::::res://Content/Sprites/Other/Shine.png<>uid://b287cymmfbt4d::::res://Content/Sprites/Levels/Level3/FrontClouds.png<>uid://cfvp6wj1pwrjk::::res://Content/Sprites/Levels/WorkingPleaseWaitTileset.png<>uid://cr0lk5qipck6y::::res://Content/Sprites/Levels/Level3/Sky.png<>uid://c8qk0xqcn6fc6::::res://Content/Sprites/Levels/Level3/Sea.png<>uid://b3qe45464w8st::::res://Content/Sprites/Levels/Level3/SeaObjects.png<>uid://bav4r4nw86irw::::res://Content/Sprites/Levels/Level3/Yacht.png<>uid://duk32e0otnfky::::res://Content/Sprites/Levels/FuckItVolume2Tileset.png<>uid://cm4bhp47bpkw4::::res://Content/Sprites/Levels/Level3/Grass.png<>uid://d3u7pfig07yrs::::res://Content/Scenes/Other/CrutchedArea2D.tscn
+Level4.tscn::PackedScene::6980609521992187812::1714692119::0::1::::<><>::uid://b5p3n4aaw5n7h::::res://Content/Sprites/Levels/Level4/Background.png<>res://Content/Scripts/Levels/BaseLevelScript.cs<>uid://d3ctks0vyqrll::::res://Content/Sprites/Levels/Level4/SawHolder.png<>uid://d03h2q54r8eox::::res://Content/Sprites/Levels/Level4/SawPistonRod.png<>uid://ceenyhg3xfoon::::res://Content/Sprites/Levels/Level4/SawPistonPart.png<>res://Content/Scripts/Levels/Level4CircularSawScript.cs<>uid://dlscufxb5f1ca::::res://Content/Scenes/Other/Player.tscn<>uid://dsukwby7alfd::::res://Content/Sprites/Levels/Level4/UltraBigSaw.png<>uid://dse3qddcaf5o4::::res://Content/Sprites/Levels/Level4/TheMostOrdinaryUnremarkableSawWhichSurprisinglyCanKillAPlayerWithoutProblemsBecauseItHasAHitboxOnTheSameLayerAsTheExplosionOfCrossesThatsInShort.png<>uid://oy0q0tel1241::::res://Content/Sprites/Levels/Level4/BigSaw.png<>uid://cfic0bnuc1ocj::::res://Content/Sprites/Levels/Level4/BigSawStud.png<>uid://cekfjaqu85oq2::::res://Content/Sprites/Levels/Level4/UltraBigSawStud.png<>uid://op4k0tjuspxj::::res://Content/Sprites/Levels/Level4/Stud.png<>res://Content/Scripts/Levels/Level4CircularSawScreechSound.cs<>uid://kcd1m7tkh45l::::res://Content/Sprites/Levels/NePeretrudilsyaTileset.png<>res://Content/Other/PostProcessing.gdshader<>uid://d3u7pfig07yrs::::res://Content/Scenes/Other/CrutchedArea2D.tscn<>res://Content/Scripts/Levels/Foreground.cs
+Level5.tscn::PackedScene::4653746177805727970::1714691810::0::1::::<><>::res://Content/Scripts/Levels/BaseLevelScript.cs<>uid://q2j1uuqfjmos::::res://Content/Sprites/Levels/BaseTileSet.png<>uid://dlscufxb5f1ca::::res://Content/Scenes/Other/Player.tscn<>uid://08yjrts0y3be::::res://Content/Sprites/Levels/Level5/Sky.png<>uid://3arwpxm41m0a::::res://Content/Sprites/Levels/Level5/HomeSweetHome.png<>uid://c1a8v62iy3ybh::::res://Content/Sprites/Levels/WhyIsItStillRainingTileset.png<>uid://d3u7pfig07yrs::::res://Content/Scenes/Other/CrutchedArea2D.tscn<>res://Content/Scripts/Levels/Level5MusicStarter.cs
+Level6.tscn::PackedScene::9184265695103807383::1714692119::0::1::::<><>::res://Content/Scripts/Levels/BaseLevelScript.cs<>uid://q2j1uuqfjmos::::res://Content/Sprites/Levels/BaseTileSet.png<>uid://cy1lov1ry2p21::::res://Content/Sprites/Levels/Level6/MiddleCity.png<>uid://dlscufxb5f1ca::::res://Content/Scenes/Other/Player.tscn<>uid://cl251rqg2xbw0::::res://Content/Sprites/Levels/Level6/Sky.png<>uid://dj5m4kmysh1li::::res://Content/Sprites/Levels/Level6/BackCity.png<>uid://dvbdc2wlk062n::::res://Content/Sprites/Levels/Level6/FrontCity.png<>uid://d1fsqrkn16u5n::::res://Content/Sprites/Levels/Level6/BackgroundGieroFarFlyingCar.png<>uid://b1dppreruk7js::::res://Content/Sprites/Levels/poliSiSagEtilEseT.png<>res://Content/Scripts/Levels/Foreground.cs<>uid://dxr4mhlbsc3::::res://Content/Sprites/Levels/Level6/BackgroundGieroFlyingCar.png<>uid://c8bud6raefbd::::res://Content/Scenes/Other/Level6FlyingCar.tscn<>uid://7vgkaba3qbfp::::res://Content/Sprites/Levels/Level6/BillboardsAnimation.png<>res://Content/Scripts/Levels/Level6FlyingCarSpawner.cs<>uid://d3u7pfig07yrs::::res://Content/Scenes/Other/CrutchedArea2D.tscn
+Level7.tscn::PackedScene::6005531920819681881::1714692119::0::1::::<><>::res://Content/Scripts/Levels/BaseLevelScript.cs<>uid://jf522wbk7t1h::::res://Content/Sprites/Levels/Level7/BackLayer.png<>uid://dlscufxb5f1ca::::res://Content/Scenes/Other/Player.tscn<>uid://dgbqetimrygb0::::res://Content/Sprites/Levels/Level7/FrontLayer.png<>uid://3dmk0kl75t76::::res://Content/Sprites/Levels/FuckItTileset.png<>uid://d3u7pfig07yrs::::res://Content/Scenes/Other/CrutchedArea2D.tscn
 Level8.tscn::PackedScene::5158334213199226237::1705244879::0::1::::<><>::uid://dlscufxb5f1ca
-Level9.tscn::PackedScene::3704449315646310244::1702605361::0::1::::<><>::res://Content/Scripts/Levels/BaseLevelScript.cs<>uid://q2j1uuqfjmos
-Level9WithoutPlatformSection.tscn::PackedScene::1513261972242080761::1701910968::0::1::::<><>::res://Content/Scripts/Levels/BaseLevelScript.cs<>uid://dsbmsydekaqyb
-Level10.tscn::PackedScene::2071591449804550684::1701913417::0::1::::<><>::res://Content/Scripts/Levels/BaseLevelScript.cs<>res://Content/Scripts/Levels/Level10RealityDissector.cs<>res://Content/Other/StaticNoiseShader.gdshader<>uid://dlscufxb5f1ca
-Level10True.tscn::PackedScene::7279192980069965017::1701910968::0::1::::<><>::res://Content/Scripts/Levels/BaseLevelScript.cs<>uid://bif1cr6n4hvie
+Level9.tscn::PackedScene::3704449315646310244::1714700722::0::1::::<><>::res://Content/Scripts/Levels/BaseLevelScript.cs<>uid://q2j1uuqfjmos::::res://Content/Sprites/Levels/BaseTileSet.png<>uid://dsbmsydekaqyb::::res://Content/Sprites/Levels/Level9/VolcanoInterior.png<>uid://cwlb2ggj7gmuh::::res://Content/Sprites/Levels/Level9/VulcanInteriorLavaAnimation.png<>uid://dlscufxb5f1ca::::res://Content/Scenes/Other/Player.tscn<>uid://d2gkb2n1pgjkq::::res://Content/Sprites/Levels/Level9/VolcanoStalactites.png<>uid://dgluki8hnwb62::::res://Content/Sprites/Levels/Level8/AcidAndLavaTileset.png<>uid://c3dqig02x5lyb::::res://Content/Scenes/Other/Level9JiofefHead.tscn<>uid://b80jw2mpdhli5::::res://Content/Sprites/Levels/Level9/DAaAAaAaArk.png<>uid://buj5ooik0q3l0::::res://Content/Scenes/Achievements/AchievementArea.tscn<>res://Content/Scripts/Levels/Level9PlatformerSection.cs<>uid://dlx8ycfcvywk5::::res://Content/Sprites/Levels/InMyHeadTileset.png<>uid://d3u7pfig07yrs::::res://Content/Scenes/Other/CrutchedArea2D.tscn<>uid://bfuhg3cpar3xt::::res://Content/Sprites/Levels/Level9/Hell.png<>uid://bjeikbnsrvbn6::::res://Content/Sprites/Levels/Level9/HellHorizon.png<>uid://dgxxv3neagyw::::res://Content/Scenes/Other/Level8DisposableButton.tscn<>uid://btcdg2r3xc3mr::::res://Content/Sprites/Levels/Level9/Volcano.png<>res://Content/Scripts/Levels/Level8DisposableButton.cs<>uid://c1748jvidnif::::res://Content/Sprites/Levels/Level9/NoWayBro.png<>uid://b5xgijs68t8r::::res://Content/Sprites/Levels/Level9/HellGround.png<>res://Content/Scripts/Levels/Level8FragileTile.cs<>uid://02x0pnqhruvm::::res://Content/Sprites/Levels/Level9/HellVolcanoSmokeAnimation.png<>uid://duk32e0otnfky::::res://Content/Sprites/Levels/FuckItVolume2Tileset.png<>uid://dum4qduobam4q::::res://Content/Sprites/Levels/Level9/DoomApproachesAnimation.png<>res://Content/Scripts/Levels/Level9DoomApproachesAnimation.cs
+Level9WithoutPlatformSection.tscn::PackedScene::1513261972242080761::1714700722::0::1::::<><>::res://Content/Scripts/Levels/BaseLevelScript.cs<>uid://dsbmsydekaqyb::::res://Content/Sprites/Levels/Level9/VolcanoInterior.png<>uid://cwlb2ggj7gmuh::::res://Content/Sprites/Levels/Level9/VulcanInteriorLavaAnimation.png<>uid://q2j1uuqfjmos::::res://Content/Sprites/Levels/BaseTileSet.png<>uid://dgluki8hnwb62::::res://Content/Sprites/Levels/Level8/AcidAndLavaTileset.png<>uid://d2gkb2n1pgjkq::::res://Content/Sprites/Levels/Level9/VolcanoStalactites.png<>uid://c3dqig02x5lyb::::res://Content/Scenes/Other/Level9JiofefHead.tscn<>uid://d3u7pfig07yrs::::res://Content/Scenes/Other/CrutchedArea2D.tscn<>uid://dlx8ycfcvywk5::::res://Content/Sprites/Levels/InMyHeadTileset.png<>uid://dlscufxb5f1ca::::res://Content/Scenes/Other/Player.tscn
+Level10.tscn::PackedScene::2071591449804550684::1714702299::0::1::::<><>::res://Content/Scripts/Levels/BaseLevelScript.cs<>res://Content/Scripts/Levels/Level10RealityDissector.cs<>res://Content/Other/StaticNoiseShader.gdshader<>uid://dlscufxb5f1ca::::res://Content/Scenes/Other/Player.tscn<>uid://b3eihc4teio4x::::res://Content/Sprites/Levels/Level10/Sky.png<>uid://bvogrd2bqhwmt::::res://Content/Sprites/Other/OblivionNoise.png<>res://Content/Scripts/Levels/Level8DisposableButton.cs<>uid://co1mpijobgmvi::::res://Content/Sprites/Levels/Level10/BackCloudLayer.png<>uid://dbduwv6h0rkr::::res://Content/Sprites/Levels/Level10/Clouds.png<>uid://d3u7pfig07yrs::::res://Content/Scenes/Other/CrutchedArea2D.tscn<>uid://datptqmcpau44::::res://Content/Sprites/Levels/Level10/MiddleCloudLayer.png<>uid://cgmqr4byx6tjy::::res://Content/Sprites/Levels/Level10/FrontCloudLayer.png<>uid://cjieb76jdv80v::::res://Content/Sprites/Levels/ANineGreetingsTileset.png<>uid://d2ynxw1edp8w0::::res://Content/Sprites/Levels/Level10/CoolEasterEgg.png<>uid://x0nebyfepo5c::::res://Content/Sounds/Levels/Level10HereYouAre.mp3<>uid://cuvkdo1lyvynu::::res://Content/Sounds/Other/EpicIntro.mp3<>uid://bx0f1c20d2wai::::res://Content/Sprites/Levels/DropesAndHeamsTileset.png
+Level10True.tscn::PackedScene::7279192980069965017::1714702299::0::1::::<><>::res://Content/Scripts/Levels/BaseLevelScript.cs<>uid://bif1cr6n4hvie::::res://Content/Sprites/Levels/Level10/TestChamber.png<>res://Content/Scripts/Levels/Level10MusicController.cs<>uid://vymh2b710qgl::::res://Content/Sprites/Levels/Level10/ForePipes.png<>uid://cp7kra2fyq5jn::::res://Content/Sprites/Levels/Level10/BackPipes.png<>uid://dlscufxb5f1ca::::res://Content/Scenes/Other/Player.tscn<>uid://bom6incv53ok1::::res://Content/Sprites/Levels/Level10/Rail.png<>res://Content/Scripts/Other/AnimationRandomizer.cs<>uid://bx0f1c20d2wai::::res://Content/Sprites/Levels/DropesAndHeamsTileset.png<>uid://dpf24jfhstqid::::res://Content/Sprites/Levels/Level10/PortableControlledDroneCapsule.png<>res://Content/Scripts/Levels/Level10DroneCapsule.cs<>uid://bvogrd2bqhwmt::::res://Content/Sprites/Other/OblivionNoise.png<>uid://c0lbb7mb40ipw::::res://Content/Sounds/Levels/Level10ManipulatorSound.mp3<>uid://dy6lncevmnf3o::::res://Content/Sounds/Other/WhiteNoise.mp3
 ::res://Content/Scenes/Levels/Level8TileMaps/::1701910968
 TileMap0.tscn::PackedScene::1880733421821862094::1701380615::0::1::::<><>::uid://buj5ooik0q3l0
 TileMap1.tscn::PackedScene::7722406879314399131::1701910968::0::1::::<><>::uid://duk32e0otnfky
@@ -150,20 +150,20 @@ PresentedLevel9.tscn::PackedScene::8504972863549515511::1701910968::0::1::::<><>
 PresentedLevel9WithoutPlatformSection.tscn::PackedScene::6808738368724450185::1701910968::0::1::::<><>::uid://dsbmsydekaqyb
 PresentedLevel10.tscn::PackedScene::9064776118095697904::1701913416::0::1::::<><>::uid://b3eihc4teio4x
 PresentedLevel10True.tscn::PackedScene::304435217530099046::1701910968::0::1::::<><>::uid://bif1cr6n4hvie
-::res://Content/Scenes/Other/::1705455651
-CrutchedArea2D.tscn::PackedScene::9167807233984998788::1699134299::0::1::::<><>::res://Content/Scripts/Levels/Level8DisposableButton.cs
+::res://Content/Scenes/Other/::1714702299
+CrutchedArea2D.tscn::PackedScene::9167807233984998788::1714695469::0::1::::<><>::res://Content/Scripts/Levels/Level8DisposableButton.cs
 Level5Rain.tscn::PackedScene::2275797985559600086::1700773626::0::1::::<><>::res://Content/Scripts/Levels/Level5Rain.cs<>uid://hqp1es4u8fk4
 Level6FlyingCar.tscn::PackedScene::208598792262454329::1701910968::0::1::::<><>::res://Content/Scripts/Levels/Level6FlyingCar.cs<>uid://cim0cdx4secre
 Level7HopelessnesLayer.tscn::PackedScene::2098718008671414262::1700764919::0::1::::<><>::res://Content/Scripts/Levels/Level7HopelessnessLayer.cs<>res://Content/Other/VintageFilterVideo.ogv<>uid://dfy21dsuhqjdy
-Level7MindTumor.tscn::PackedScene::6118227472637907295::1701910968::0::1::::<><>::res://Content/Scripts/Levels/Level7MindTumor.cs<>uid://dk3kpbxaofddl
+Level7MindTumor.tscn::PackedScene::6118227472637907295::1714692120::0::1::::<><>::res://Content/Scripts/Levels/Level7MindTumor.cs<>uid://dk3kpbxaofddl::::res://Content/Sprites/Levels/Level7/MindTumor.png
 Level8DisposableButton.tscn::PackedScene::224391508372787390::1701910968::0::1::::<><>::res://Content/Scripts/Levels/Level8DisposableButton.cs<>uid://nlwphmf6wah0
 Level9AhahahSilly.tscn::PackedScene::3030040011343641808::1701729417::0::1::::<><>::res://Content/Other/AhahahSillyVideo.ogv
 Level9JiofefEye.tscn::PackedScene::8153769195709836620::1701910968::0::1::::<><>::res://Content/Scripts/Levels/Level9JiofefEye.cs<>uid://c3plfjipt2uqv
-Level9JiofefHead.tscn::PackedScene::6745308235767686877::1701379853::0::1::::<><>::res://Content/Scripts/Levels/Level9JiofefHead.cs<>uid://c76u7p63yub80
+Level9JiofefHead.tscn::PackedScene::6745308235767686877::1714700723::0::1::::<><>::res://Content/Scripts/Levels/Level9JiofefHead.cs<>uid://c76u7p63yub80::::res://Content/Sounds/Levels/Level9Hibernation.mp3<>uid://bfua2l1sq2crb::::res://Content/Sounds/Levels/Level9TurningOn.mp3<>uid://5jxx0m85kg31::::res://Content/Sounds/Levels/Level9PreSpit.mp3<>uid://c50wt8gr2xwj2::::res://Content/Sounds/Levels/Level9Spit.mp3<>uid://c1dtex3tfgnc1::::res://Content/Sounds/Levels/Level9PreVomit.mp3<>uid://jx8kp8o35wn4::::res://Content/Sounds/Levels/Level9Vomit.mp3<>uid://cgoirvtc6gbw::::res://Content/Sounds/Levels/Level9PrePreSpin.mp3<>uid://cdixe6g07aneg::::res://Content/Sounds/Levels/Level9PreSpin.mp3<>uid://843f3er6bd4l::::res://Content/Sounds/Levels/Level9Spin.mp3<>uid://cgxiuogi8yptx::::res://Content/Sounds/Levels/Level9PrePreBite.mp3<>uid://bbvieonbo43hi::::res://Content/Sounds/Levels/Level9PreBite.mp3<>uid://cx50lqwk0ta3b::::res://Content/Sounds/Levels/Level9Bite.mp3<>uid://bbli6la5s5avt::::res://Content/Sounds/Levels/Level9AfterBite.mp3<>uid://beoenmfnqdtyb::::res://Content/Sounds/Levels/Level9PrePrePrePreSpider.mp3<>uid://cj3ln2ygtteh1::::res://Content/Sounds/Levels/Level9PrePrePreSpider.mp3<>uid://d2petbfxv70b4::::res://Content/Sounds/Levels/Level9PrePreSpider.mp3<>uid://cnis02iigdqug::::res://Content/Sounds/Levels/Level9PreSpider.mp3<>uid://bhp5iicrqnhxy::::res://Content/Sounds/Levels/Level9Spider.mp3<>uid://b3j3c3qqt8d1t::::res://Content/Sounds/Levels/Level9SpiderDash.mp3<>uid://bxdk3wbylo0ff::::res://Content/Sounds/Levels/Level9PreEyeGouging.mp3<>uid://b0a58a2ws568o::::res://Content/Sounds/Levels/Level9EyeGouging.mp3<>uid://cjgh1rubmuegl::::res://Content/Sounds/Levels/Level9PrePrePreBullUlt.mp3<>uid://bctfe8324afnb::::res://Content/Sounds/Levels/Level9PrePreBullUlt.mp3<>uid://cpje33b88rnvr::::res://Content/Sounds/Levels/Level9PreBullUlt.mp3<>uid://cc2geqtaxri8x::::res://Content/Sounds/Levels/Level9BullDashWarning.mp3<>uid://csgsf0xguw2f4::::res://Content/Sounds/Levels/Level9BullDash.mp3<>uid://48bslaf2ccfu::::res://Content/Sounds/Levels/Level9BrakingHead.mp3<>uid://dl6kkpeoy8786::::res://Content/Sounds/Levels/Level9Jiofef(V)Laugh.mp3<>uid://dk1mbskwwoo0k::::res://Content/Sounds/Levels/Level9UnpinningCrunch1.mp3<>uid://bmxssvm0wjcg0::::res://Content/Sounds/Levels/Level9UnpinningCrunch2.mp3<>uid://bjttvhebuv2kx::::res://Content/Sounds/Levels/Level9UnpinningCrunch.mp3<>uid://bfxxlc285y3ib::::res://Content/Sounds/Levels/Level9D_E_A_T_H.mp3<>uid://dxd8sjpbxlk4r::::res://Content/Sprites/Levels/Level9/JiofefHeadSpriteList.png<>uid://drfhwrg4p7ivv::::res://Content/Sprites/Levels/Level9/BullDashZone.png<>uid://fmqvkabh71d2::::res://Content/Sprites/Levels/Level9/JiofefHandSpriteList.png<>uid://dlt3qs0r7tnyi::::res://Content/Sprites/Levels/Level9/FOCUSPOCUS.png
 Level9JiofefHeadDeathParticles.tscn::PackedScene::8850364128636456527::1693423528::0::1::::<><>::res://Content/Scripts/Levels/Level9JiofefHeadDeathParticles.cs<>uid://t7mmc2687hs0
 Level9SpitCross.tscn::PackedScene::7377969078040567693::1701910968::0::1::::<><>::uid://b53a4snnwbhr1
 Level9VomitCross.tscn::PackedScene::428996956776627387::1701910968::0::1::::<><>::res://Content/Scripts/Levels/Level9VomitCross.cs<>uid://b53a4snnwbhr1
-Main.tscn::PackedScene::2126656670042431071::1705455651::0::1::::<><>::res://Content/Scripts/Other/MainScript.cs<>uid://4udch8ejvu08
+Main.tscn::PackedScene::2126656670042431071::1714702299::0::1::::<><>::res://Content/Scripts/Other/MainScript.cs<>uid://4udch8ejvu08::::res://Content/Sprites/Interface/PauseButtonsFrame.png<>res://Content/Other/BrightnessShader.gdshader<>uid://dhr0k5tpvpg7n::::res://Content/Sprites/Interface/UnpauseButton.png<>uid://cuvkdo1lyvynu::::res://Content/Sounds/Other/EpicIntro.mp3<>uid://bqua21jbasqml::::res://Content/Sprites/Interface/PauseRewindButton.png<>uid://bwpstpk1xmkah::::res://Content/Scenes/Interface&Menu/Button.tscn<>uid://be5mi0sdy4bep::::res://Content/Sprites/Interface/PauseOptionsButton.png<>uid://blp8i7meimekf::::res://Content/Sprites/Interface/PauseMenuButton.png<>res://Content/Scripts/Other/PostProcessingRect.cs
 Player.tscn::PackedScene::7968655578767370644::1701778103::0::1::::<><>::res://Content/Scripts/Other/Player.cs<>uid://422y36f6ucnf
 TutorialTV.tscn::PackedScene::392066049822629646::1701910968::0::1::::<><>::uid://tsjfmqs04lky
 ::res://Content/Scenes/PlayerSkins/::1701783272
@@ -207,11 +207,11 @@ RecycleBinMenu.cs::CSharpScript::-1::1701792480::0::1::::<><>::
 SkinsMenu.cs::CSharpScript::-1::1701732452::0::1::::<><>::
 Titles.cs::CSharpScript::-1::1680338616::0::1::::<><>::
 WelcomeToGOS.cs::CSharpScript::-1::1701787179::0::1::::<><>::
-::res://Content/Scripts/Levels/::1706057021
+::res://Content/Scripts/Levels/::1714702296
 BaseLevelScript.cs::CSharpScript::-1::1702606227::0::1::::<><>::
 Foreground.cs::CSharpScript::-1::1697643567::0::1::::<><>::
 Level1TutorialDarkeningAnimationPlayer.cs::CSharpScript::-1::1702605087::0::1::::<><>::
-Level4CircularSawScreechSound.cs::CSharpScript::-1::1706057021::0::1::::<><>::
+Level4CircularSawScreechSound.cs::CSharpScript::-1::1714689819::0::1::::<><>::
 Level4CircularSawScript.cs::CSharpScript::-1::1695150963::0::1::::<><>::
 Level5Rain.cs::CSharpScript::-1::1697650709::0::1::::<><>::
 Level6FlyingCar.cs::CSharpScript::-1::1701801921::0::1::::<><>::
@@ -233,13 +233,15 @@ Level9VomitCross.cs::CSharpScript::-1::1691785457::0::1::::<><>::
 Level10DroneCapsule.cs::CSharpScript::-1::1698879354::0::1::::<><>::
 Level10RealityDissector.cs::CSharpScript::-1::1695929940::0::1::::<><>::
 PresentedLevel5Rain.cs::CSharpScript::-1::1697653456::0::1::::<><>::
+Level5MusicStarter.cs::CSharpScript::-1::1714691156::0::1::::<><>::
+Level10MusicController.cs::CSharpScript::-1::1714702296::0::1::::<><>::
 TutorialCanvasLayer.cs::CSharpScript::-1::1699660335::0::1::::<><>::
-::res://Content/Scripts/Other/::1705247501
+::res://Content/Scripts/Other/::1714701884
 Achievement.cs::CSharpScript::-1::1701355633::0::1::::<><>::
 AchievementArea.cs::CSharpScript::-1::1698699220::0::1::::<><>::
 AnimationRandomizer.cs::CSharpScript::-1::1696105480::0::1::::<><>::
 Camera.cs::CSharpScript::-1::1701740597::0::1::::<><>::
-MainScript.cs::CSharpScript::-1::1705247501::0::1::::<><>::
+MainScript.cs::CSharpScript::-1::1714701884::0::1::::<><>::
 MISSINGNULL.cs::CSharpScript::-1::1703195965::0::1::::<><>::
 Player.cs::CSharpScript::-1::1701782650::0::1::::<><>::
 PostProcessingRect.cs::CSharpScript::-1::1705242995::0::1::::<><>::
@@ -341,18 +343,22 @@ GroundHit.mp3::AudioStreamMP3::3180357471322417760::1696287209::1701362565::1:::
 HosteyDeathSound.mp3::AudioStreamMP3::2803959326215320023::1698792376::1701362565::1::::<><>::
 Jump.mp3::AudioStreamMP3::4357193457328570765::1696287215::1701362565::1::::<><>::
 PullDown.mp3::AudioStreamMP3::1110475101045102321::1696287222::1701362565::1::::<><>::
-::res://Content/Sounds/Soundtrack/::1708133080
+::res://Content/Sounds/Soundtrack/::1714702372
 Base 314, Please Respond.mp3::AudioStreamMP3::2433902432540402962::1704228762::1704228763::1::::<><>::
+Clair De Phare.mp3::AudioStreamMP3::3106136750363513392::1714688805::1714688806::1::::<><>::
+Envelope.mp3::AudioStreamMP3::1386550604257799960::1714688805::1714688806::1::::<><>::
+Explosive Is Gone.mp3::AudioStreamMP3::4837795591984889374::1714688805::1714688806::1::::<><>::
 GieroOfficeTheme.mp3::AudioStreamMP3::4409838874811257004::1702167188::1702167258::1::::<><>::
-Level3.mp3::AudioStreamMP3::1697476579675944392::1696288751::1701362565::1::::<><>::
-Level4.mp3::AudioStreamMP3::7675315583150869937::1696288756::1701362565::1::::<><>::
-Level5.mp3::AudioStreamMP3::2926444445571199332::1697832543::1701362565::1::::<><>::
-Level6.mp3::AudioStreamMP3::8318709325619842286::1696288767::1701362565::1::::<><>::
-Level8.mp3::AudioStreamMP3::3916693769357697946::1696288772::1701362565::1::::<><>::
-Level9.mp3::AudioStreamMP3::4069506258941849663::1696288778::1701362565::1::::<><>::
-Level10.mp3::AudioStreamMP3::5266070092646607506::1696288784::1701362565::1::::<><>::
+Hopes And Dreams.mp3::AudioStreamMP3::3030017708761970685::1714702372::1714702373::1::::<><>::
+Hygienic Perforator.mp3::AudioStreamMP3::6701089037644167245::1714688805::1714688806::1::::<><>::
+Matter Porn.mp3::AudioStreamMP3::1266271545989135756::1714688805::1714688806::1::::<><>::
+My Love Letter To Mike And Rich.mp3::AudioStreamMP3::1961999021580132326::1714688805::1714688806::1::::<><>::
+Nergis cuspair.mp3::AudioStreamMP3::8738497982994745033::1714698471::1714698786::1::::<><>::
+On Second Volume.mp3::AudioStreamMP3::5704678366918283655::1714688805::1714688806::1::::<><>::
 Selected Breakcore Work.mp3::AudioStreamMP3::576434457843121103::1705238285::1705238285::1::::<><>::
+Sky Theme.mp3::AudioStreamMP3::631903795591324374::1714688805::1714688806::1::::<><>::
 StrawMusic.mp3::AudioStreamMP3::3644818181518509377::1698511286::1701362565::1::::<><>::
+The MytoboloKater.mp3::AudioStreamMP3::5925000218071360074::1714691929::1714691930::1::::<><>::
 TNT For Breakfast.mp3::AudioStreamMP3::1815762129615726659::1704228762::1704228763::1::::<><>::
 ::res://Content/Sprites/::1701910968
 ::res://Content/Sprites/Crosses/::1704227137

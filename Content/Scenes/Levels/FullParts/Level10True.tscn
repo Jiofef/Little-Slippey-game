@@ -1,7 +1,8 @@
-[gd_scene load_steps=35 format=3 uid="uid://dbydilcx0two4"]
+[gd_scene load_steps=36 format=3 uid="uid://dbydilcx0two4"]
 
 [ext_resource type="Script" path="res://Content/Scripts/Levels/BaseLevelScript.cs" id="1_5cxtw"]
 [ext_resource type="Texture2D" uid="uid://bif1cr6n4hvie" path="res://Content/Sprites/Levels/Level10/TestChamber.png" id="2_ndhi4"]
+[ext_resource type="Script" path="res://Content/Scripts/Levels/Level10MusicController.cs" id="2_ossvm"]
 [ext_resource type="Texture2D" uid="uid://vymh2b710qgl" path="res://Content/Sprites/Levels/Level10/ForePipes.png" id="3_bar8g"]
 [ext_resource type="Texture2D" uid="uid://cp7kra2fyq5jn" path="res://Content/Sprites/Levels/Level10/BackPipes.png" id="3_nbbox"]
 [ext_resource type="PackedScene" uid="uid://dlscufxb5f1ca" path="res://Content/Scenes/Other/Player.tscn" id="3_pealk"]
@@ -748,6 +749,9 @@ _data = {
 
 [node name="Level10" type="Node2D"]
 script = ExtResource("1_5cxtw")
+
+[node name="MusicController" type="Node" parent="."]
+script = ExtResource("2_ossvm")
 
 [node name="Background" type="ParallaxBackground" parent="."]
 
