@@ -1,3 +1,4 @@
+AudioStreamPlayer
 Node
 ColorRect
 CanvasLayer
@@ -20,7 +21,6 @@ Node3D
 Label
 GridContainer
 RichTextLabel
-AudioStreamPlayer
 AudioListener2D
 Camera2D
 Timer
@@ -30,4 +30,3 @@ CheckBox
 VSlider
 HSlider
 ScrollContainer
-PathFollow2D

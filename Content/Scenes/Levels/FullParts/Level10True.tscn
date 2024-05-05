@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://dbydilcx0two4"]
+[gd_scene load_steps=37 format=3 uid="uid://dbydilcx0two4"]
 
 [ext_resource type="Script" path="res://Content/Scripts/Levels/BaseLevelScript.cs" id="1_5cxtw"]
 [ext_resource type="Texture2D" uid="uid://bif1cr6n4hvie" path="res://Content/Sprites/Levels/Level10/TestChamber.png" id="2_ndhi4"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://bx0f1c20d2wai" path="res://Content/Sprites/Levels/DropesAndHeamsTileset.png" id="6_a4576"]
 [ext_resource type="Texture2D" uid="uid://dpf24jfhstqid" path="res://Content/Sprites/Levels/Level10/PortableControlledDroneCapsule.png" id="9_8a8rk"]
 [ext_resource type="Script" path="res://Content/Scripts/Levels/Level10DroneCapsule.cs" id="9_cnmny"]
+[ext_resource type="AudioStream" uid="uid://byjljrba2hdri" path="res://Content/Sounds/Levels/Level10LampBulp.mp3" id="10_558ev"]
 [ext_resource type="Texture2D" uid="uid://bvogrd2bqhwmt" path="res://Content/Sprites/Other/OblivionNoise.png" id="11_03181"]
 [ext_resource type="AudioStream" uid="uid://c0lbb7mb40ipw" path="res://Content/Sounds/Levels/Level10ManipulatorSound.mp3" id="13_b3bea"]
 [ext_resource type="AudioStream" uid="uid://dy6lncevmnf3o" path="res://Content/Sounds/Other/WhiteNoise.mp3" id="13_eyo0p"]
@@ -864,10 +865,14 @@ libraries = {
 }
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
-modulate = Color(1, 1, 1, 0)
 offset_right = 1280.0
 offset_bottom = 720.0
 metadata/_edit_lock_ = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="CanvasLayer/ColorRect"]
+stream = ExtResource("10_558ev")
+volume_db = 6.0
+autoplay = true
 
 [node name="NoiseNoise" type="AnimatedSprite2D" parent="CanvasLayer"]
 modulate = Color(1, 1, 1, 0)

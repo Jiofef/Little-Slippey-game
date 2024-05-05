@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bjf07janxpuxx"
+path="res://.godot/imported/Placebo Hope.mp3-e7e6850f3e09e862d03e1d7e8f363b83.mp3str"
+
+[deps]
+
+source_file="res://Content/Sounds/Soundtrack/Placebo Hope.mp3"
+dest_files=["res://.godot/imported/Placebo Hope.mp3-e7e6850f3e09e862d03e1d7e8f363b83.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

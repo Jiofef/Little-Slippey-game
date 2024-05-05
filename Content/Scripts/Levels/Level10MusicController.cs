@@ -7,10 +7,10 @@ public partial class Level10MusicController : Node
 	public override void _Ready()
 	{
 		MusicPlayer = GetNode<AudioStreamPlayer>("../../../LevelMusicPlayer");
-		if (MusicPlayer.Stream != ResourceLoader.Load<AudioStream>("res://Content/Sounds/Soundtrack/Hopes And Dreams.mp3"))
+		if (MusicPlayer.Stream != ResourceLoader.Load<AudioStream>("res://Content/Sounds/Soundtrack/Placebo Hope.mp3"))
 		{
             MusicPlayer.VolumeDb = 10;
-            MusicPlayer.Stream = ResourceLoader.Load<AudioStream>("res://Content/Sounds/Soundtrack/Hopes And Dreams.mp3");
+            MusicPlayer.Stream = ResourceLoader.Load<AudioStream>("res://Content/Sounds/Soundtrack/Placebo Hope.mp3");
             MusicPlayer.Play();
         }
     }
