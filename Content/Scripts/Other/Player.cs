@@ -265,7 +265,7 @@ public partial class Player : CharacterBody2D
         EmitSignal("PlayerDied");
 
         PlaySound("Death");
-        GetNode<AudioStreamPlayer>("../../../LevelMusicPlayer").StreamPaused = true;
+        GetNode<AudioStreamPlayer>("../../LevelMusicPlayer").StreamPaused = true;
         GetNode<CollisionShape2D>("FullBodyCollider").SetDeferred("disabled", true);
         _animatedSprite.Animation = "Death";
         if (Convert.ToBoolean((string)_animatedSprite.GetMeta("HasDeathPlayerAnimation")))

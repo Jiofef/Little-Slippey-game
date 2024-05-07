@@ -3,8 +3,6 @@ using Godot;
 public partial class MainScript : Node2D
 {
     private bool _subMenusOpened;
-    private string _currentMusicName;
-    private float _trackRestartPosition = 0;
     TextureButton _rewindButton;
     AudioStreamPlayer _levelMusicPlayer;
 
@@ -13,13 +11,18 @@ public partial class MainScript : Node2D
         G.CurrentPopupAchievementsLayer = GetNode<CanvasLayer>("PopupAchievementsLayer");
         _rewindButton = GetNode<TextureButton>("Pause/Interface/ButtonsFrame/Rewind");
         _levelMusicPlayer = GetNode<AudioStreamPlayer>("LevelMusicPlayer");
+        if (G.DidLevelIntroPassed)
+        {
+            GetNode<CanvasLayer>("EpicIntro").QueueFree();
+            GetNode<Node2D>("Level").ProcessMode = ProcessModeEnum.Pausable;
+            //GetNode<AudioStreamPlayer>("LevelMusicPlayer").QueueFree();
+            //AddChild(G.LevelMusicPlayerBuffer);
+        }
         if (UnchangableMeta.LevelPlayedStatus[G.CurrentLevel - 1] != 1)
         {
             UnchangableMeta.LevelPlayedStatus[G.CurrentLevel - 1] = 1;
             UnchangableMeta.SaveToFile();
         }
-        if (G.CurrentLevel == 5 || Meta.Instance.AdditionStatuses[0])
-            GetNode<ColorRect>("EpicIntro/BrightnessRect").Visible = false;
 
         SetProcess(false);
     }
@@ -71,47 +74,10 @@ public partial class MainScript : Node2D
         GetNode<AnimationPlayer>("Pause/Interface/AnimationPlayer").PlayBackwards("OpeningSubMenu");
         _subMenusOpened = false;
     }
-
-    public void MusicFinished()
+    public void LoadScene(string ScenePath)
     {
-        GetNode<AudioStreamPlayer>("LevelMusicPlayer").Play(_trackRestartPosition);
+        GetTree().ChangeSceneToFile(ScenePath);
     }
-
-    public void LevelLoad()
-    {
-        GetNode("PlayPart").AddChild(ResourceLoader.Load<PackedScene>("res://Content/Scenes/Levels/FullParts/Level" + G.CurrentLevel + G.LevelAdditionalLink + ".tscn").Instantiate());
-    }
-
-    public void PlayMusic(string MusicName, float TrackRestartPosition = 0, float StartingDuration = 0)
-    {
-        var musicAnimationPlayer = GetNode<AnimationPlayer>("LevelMusicPlayer/AnimationPlayer");
-        if (MusicName != _currentMusicName)
-        {
-            _levelMusicPlayer.Stream = ResourceLoader.Load<AudioStream>("res://Content/Sounds/Soundtrack/" + MusicName + ".mp3");
-            _currentMusicName = MusicName;
-            _trackRestartPosition = TrackRestartPosition;
-            if (StartingDuration > 0)
-                musicAnimationPlayer.Play("MusicStarting", -1, 1 / StartingDuration);
-            else
-                _levelMusicPlayer.VolumeDb = 10;
-            _levelMusicPlayer.Play();
-        }
-    }
-
-    public void StopMusic(float StoppingDuration = 0)
-    {
-        var musicAnimationPlayer = GetNode<AnimationPlayer>("LevelMusicPlayer/AnimationPlayer");
-        if (StoppingDuration > 0)
-            musicAnimationPlayer.Play("MusicStopping", -1, 1 / StoppingDuration);
-        else
-        {
-            musicAnimationPlayer.Stop();
-            _levelMusicPlayer.Stop();
-            _levelMusicPlayer.VolumeDb = -20;
-        }
-        _currentMusicName = "";
-    }
-
     public void MusicAnimationFinished(string animation)
     {
         if (animation == "MusicStopping")

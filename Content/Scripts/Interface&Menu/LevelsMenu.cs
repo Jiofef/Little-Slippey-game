@@ -106,7 +106,8 @@ public partial class LevelsMenu : Control
     }
     public void OpenLevel()
     {
-        GetTree().ChangeSceneToFile("res://Content/Scenes/Other/Main.tscn");
+        G.DidLevelIntroPassed = false;
+        GetTree().ChangeSceneToFile("res://Content/Scenes/Levels/FullParts/Level" + G.CurrentLevel + G.LevelAdditionalLink + ".tscn");
     }
     public void CloseStartOptions(int levelNumber)
     {

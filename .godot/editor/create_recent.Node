@@ -1,8 +1,9 @@
+Node2D
+CollisionShape2D
 AudioStreamPlayer
 Node
 ColorRect
 CanvasLayer
-CollisionShape2D
 Area2D
 AnimationPlayer
 CollisionPolygon2D
@@ -16,7 +17,6 @@ CPUParticles2D
 Sprite2D
 Control
 AnimatedSprite2D
-Node2D
 Node3D
 Label
 GridContainer

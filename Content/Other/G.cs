@@ -3,17 +3,19 @@ using Godot;
 public partial class G : Node
 {
 	// G is gameplay singleton, that having importal information which may be needed in various places of the game. They will not save by exiting the game
-	public static bool IsSystemInitiated, IsPlayerDead, IsNewRecordReached, IsProgressPaused = false, IsCrossesEnabled = true, _isLevel10Finaling = false;
+	public static bool IsSystemInitiated, IsPlayerDead, IsNewRecordReached, IsProgressPaused = false, IsCrossesEnabled = true, _isLevel10Finaling = false, DidLevelIntroPassed;
 	public static float PlayerMoveCoeff = 1, Scores = 0, ResetTimer, PlayerCorpseFlightTimer, AfterPlayerCorpseFlightTimer, CrossSpawnMultiplier = 1;
 	public static int CurrentLevel;
 	public static string LevelAdditionalLink;
 	public static Vector4 CameraLimits;
 	public static readonly int LevelsInGameTotal = 10, CrossesInGameTotal = 5, DificultiesInGameTotal = 3;
+	//public static AudioStreamPlayer LevelMusicPlayerBuffer;
     // These variables are designed to expand the capabilities in level scripting, including for modders. It is primarily created to store data remaining after exiting a level,
 	// after restarting, or after moving to another level.
     public static bool[] TransitiveBool = new bool[16];
     public static int[] TransitiveInt = new int[16];
     public static float[] TransitiveFloat = new float[16];
+	public static Variant[] TransitiveVariant = new Variant[16];
     public static readonly Vector2[] LevelXYSizes =
 	{
 		//Level sizes starts from Vector2 with index "1", Vector2 with index "0" is the minimal level size

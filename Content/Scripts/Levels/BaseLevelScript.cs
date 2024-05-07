@@ -5,8 +5,6 @@ using System.Linq;
 public partial class BaseLevelScript : Node2D
 {
     [Signal] public delegate void LevelReloadEventHandler();
-    [Signal] public delegate void PlayMusicSignalEventHandler(string MusicName, float TrackRestartPosition = 0, float StartingDuration = 0);
-    [Signal] public delegate void StopMusicSignalEventHandler(float StoppingDuration = 0);
     PackedScene[] _crosses = new PackedScene[G.CrossesInGameTotal];
     CharacterBody2D _player;
 
@@ -24,10 +22,8 @@ public partial class BaseLevelScript : Node2D
         G.ResetValues();
         Input.MouseMode = !GetTree().Paused ? Input.MouseModeEnum.Hidden : Input.MouseModeEnum.Visible;
         AudioServer.SetBusMute(2, Meta.Instance.BusVolumes[2] <= -30);
-        Connect("LevelReload", new Callable(GetNode("../.."), "LevelLoad"));
-        GetNode<AudioStreamPlayer>("../../LevelMusicPlayer").StreamPaused = false;
-        Connect("PlayMusicSignal", new Callable(GetNode("../.."), "PlayMusic"));
-        Connect("StopMusicSignal", new Callable(GetNode("../.."), "StopMusic"));
+        Connect("LevelReload", new Callable(GetNode(".."), "LoadScene"));
+        GetNode<AudioStreamPlayer>("../LevelMusicPlayer").StreamPaused = false;
         _player = GetNode<CharacterBody2D>("Player");
 
         if (G.CurrentLevel == 5 || Meta.Instance.AdditionStatuses[0])
@@ -204,8 +200,9 @@ public partial class BaseLevelScript : Node2D
         G.IsProgressPaused = false;
         G.CrossSpawnMultiplier = 1;
         UnchangableMeta.SaveRecords();
+        //G.LevelMusicPlayerBuffer = GetNode<AudioStreamPlayer>("../LevelMusicPlayer");
         QueueFree();
-        EmitSignal("LevelReload");
+        EmitSignal("LevelReload", "res://Content/Scenes/Levels/FullParts/Level" + G.CurrentLevel + G.LevelAdditionalLink + ".tscn");
     }
 
     public void SetCrossEnabled(bool value)
@@ -221,15 +218,5 @@ public partial class BaseLevelScript : Node2D
     public void GiveAchievement(int index)
     {
         G.GetAchievement(index);
-    }
-
-    public void PlayMusic(string MusicName, float TrackRestartPosition = 0, float StartingDuration = 0)
-    {
-        EmitSignal("PlayMusicSignal", MusicName, TrackRestartPosition, StartingDuration);
-    }
-
-    public void StopMusic(float StoppingDuration)
-    {
-        EmitSignal("StopMusicSignal", StoppingDuration);
     }
 }
