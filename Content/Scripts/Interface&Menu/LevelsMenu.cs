@@ -107,6 +107,9 @@ public partial class LevelsMenu : Control
     public void OpenLevel()
     {
         G.DidLevelIntroPassed = false;
+        G.MusicRestartPosition = 0;
+        G.MusicStopTimeCode = 0;
+        G.MusicName = "";
         GetTree().ChangeSceneToFile("res://Content/Scenes/Levels/FullParts/Level" + G.CurrentLevel + G.LevelAdditionalLink + ".tscn");
     }
     public void CloseStartOptions(int levelNumber)

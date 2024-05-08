@@ -178,6 +178,9 @@ size = Vector2(128, 128)
 
 [node name="Level" instance=ExtResource("1_t253m")]
 
+[node name="Level" parent="." index="1"]
+process_mode = 4
+
 [node name="Background" type="ParallaxBackground" parent="Level" index="0"]
 
 [node name="Sky" type="ParallaxLayer" parent="Level/Background" index="0"]
@@ -312,6 +315,12 @@ position = Vector2(640, 375)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/PlayMusicTrigger" index="0"]
 shape = SubResource("RectangleShape2D_x02e7")
+
+[node name="BrightnessRect" parent="EpicIntro" index="1"]
+_value = 0.0
+
+[node name="Glare" parent="EpicIntro" index="2"]
+modulate = Color(1, 1, 1, 0)
 
 [connection signal="ButtonPressed" from="Level/PlayMusicTrigger" to="LevelMusicPlayer" method="PlayMusic" flags=6 binds= ["TNT For Breakfast", 17.5, 0.0]]
 

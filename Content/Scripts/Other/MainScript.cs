@@ -8,6 +8,9 @@ public partial class MainScript : Node2D
 
     public override void _Ready()
     {
+        GetTree().Paused = false;
+        AudioServer.SetBusEffectEnabled(2, 0, false);
+        AudioServer.SetBusEffectEnabled(6, 0, false);
         G.CurrentPopupAchievementsLayer = GetNode<CanvasLayer>("PopupAchievementsLayer");
         _rewindButton = GetNode<TextureButton>("Pause/Interface/ButtonsFrame/Rewind");
         _levelMusicPlayer = GetNode<AudioStreamPlayer>("LevelMusicPlayer");

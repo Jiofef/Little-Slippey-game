@@ -200,7 +200,6 @@ public partial class BaseLevelScript : Node2D
         G.IsProgressPaused = false;
         G.CrossSpawnMultiplier = 1;
         UnchangableMeta.SaveRecords();
-        //G.LevelMusicPlayerBuffer = GetNode<AudioStreamPlayer>("../LevelMusicPlayer");
         QueueFree();
         EmitSignal("LevelReload", "res://Content/Scenes/Levels/FullParts/Level" + G.CurrentLevel + G.LevelAdditionalLink + ".tscn");
     }

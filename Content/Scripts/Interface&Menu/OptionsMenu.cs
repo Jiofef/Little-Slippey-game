@@ -14,7 +14,7 @@ public partial class OptionsMenu : Control
         if (G.CurrentLevel != 0)
         {
             Connect("OptionsClosing", new Callable(GetNode("../.."), "OptionsClosing"));
-            Connect("GUIOptionsChanged", new Callable(GetNode("../../PlayPart").GetChild(0).GetNode("Player/Camera2D"), "ApplyGUIOptions"));
+            Connect("GUIOptionsChanged", new Callable(GetNode("../../Level/Player/Camera2D"), "ApplyGUIOptions"));
             GetNode<TextureButton>("DeclineButton").GrabFocus();
         }
 

@@ -4,12 +4,11 @@ public partial class G : Node
 {
 	// G is gameplay singleton, that having importal information which may be needed in various places of the game. They will not save by exiting the game
 	public static bool IsSystemInitiated, IsPlayerDead, IsNewRecordReached, IsProgressPaused = false, IsCrossesEnabled = true, _isLevel10Finaling = false, DidLevelIntroPassed;
-	public static float PlayerMoveCoeff = 1, Scores = 0, ResetTimer, PlayerCorpseFlightTimer, AfterPlayerCorpseFlightTimer, CrossSpawnMultiplier = 1;
+	public static float PlayerMoveCoeff = 1, Scores = 0, ResetTimer, PlayerCorpseFlightTimer, AfterPlayerCorpseFlightTimer, CrossSpawnMultiplier = 1, MusicStopTimeCode = 0, MusicRestartPosition = 0;
 	public static int CurrentLevel;
-	public static string LevelAdditionalLink;
+	public static string LevelAdditionalLink, MusicName = "";
 	public static Vector4 CameraLimits;
 	public static readonly int LevelsInGameTotal = 10, CrossesInGameTotal = 5, DificultiesInGameTotal = 3;
-	//public static AudioStreamPlayer LevelMusicPlayerBuffer;
     // These variables are designed to expand the capabilities in level scripting, including for modders. It is primarily created to store data remaining after exiting a level,
 	// after restarting, or after moving to another level.
     public static bool[] TransitiveBool = new bool[16];
