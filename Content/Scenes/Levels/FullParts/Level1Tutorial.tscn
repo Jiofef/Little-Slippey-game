@@ -4333,6 +4333,7 @@ libraries = {
 script = ExtResource("48_knw17")
 
 [node name="BrightnessRect" type="ColorRect" parent="EpicIntro"]
+visible = false
 material = SubResource("ShaderMaterial_xv08t")
 offset_right = 1280.0
 offset_bottom = 720.0
@@ -4342,6 +4343,7 @@ _value = 4.0
 metadata/_edit_lock_ = true
 
 [node name="Glare" type="ColorRect" parent="EpicIntro"]
+visible = false
 modulate = Color(1, 1, 1, 0.501961)
 offset_right = 1280.0
 offset_bottom = 720.0
@@ -4372,6 +4374,7 @@ bus = &"Interface"
 [node name="PopupAchievementsLayer" type="CanvasLayer" parent="."]
 layer = 100
 
+[connection signal="ready" from="." to="." method="SetTransitiveValue" flags=6 binds= [0, true]]
 [connection signal="animation_finished" from="LevelMusicPlayer/AnimationPlayer" to="." method="MusicAnimationFinished" flags=18]
 [connection signal="ButtonPressed" from="Level/Rail/CameraLimitsSetTrigger" to="Level/Player" method="SetCameraLimits" flags=6 binds= [Vector4(-100000, 100000, 100000, -100000), true]]
 [connection signal="animation_finished" from="Level/Rail/AnimationPlayer" to="Level/Rail" method="queue_free" flags=18 unbinds=1]
@@ -4437,7 +4440,7 @@ layer = 100
 [connection signal="ButtonPressed" from="Level/TileMap6/TeleporterArea" to="Level/Ambient" method="play" flags=22]
 [connection signal="ButtonPressed" from="Level/TileMap6/TeleporterArea" to="Level/TileMap6" method="queue_free" flags=22]
 [connection signal="ButtonPressed" from="Level/TileMap6/TeleporterArea" to="Level/TutorialCanvasLayer" method="Glitch" flags=22]
-[connection signal="ButtonPressed" from="Level/TileMap6/TeleporterArea" to="Level" method="StopMusic" flags=22 binds= [0.0]]
+[connection signal="ButtonPressed" from="Level/TileMap6/TeleporterArea" to="LevelMusicPlayer" method="StopMusic" flags=6 binds= [0.0]]
 [connection signal="ButtonPressed" from="Level/TileMap6/TeleporterArea" to="Level/Player" method="set_position" flags=22 binds= [Vector2(54176, 4000)]]
 [connection signal="ButtonPressed" from="Level/TileMap6/TeleporterArea" to="Level/Player" method="SetCameraLimits" flags=22 binds= [Vector4(3520, 54656, 4032, 53696), true]]
 [connection signal="ButtonPressed" from="Level/TileMap6/TeleporterArea" to="Level/TileMap7/TutorialTV/Screen/SlippeyHead/AnimationPlayer" method="play" flags=22 binds= ["BangerFilm"]]
@@ -4452,6 +4455,7 @@ layer = 100
 [connection signal="pressed" from="Pause/Interface/ButtonsFrame/Resume" to="." method="UnPause" flags=18]
 [connection signal="pressed" from="Pause/Interface/ButtonsFrame/Options" to="." method="Options" flags=18]
 [connection signal="pressed" from="Pause/Interface/ButtonsFrame/Menu" to="." method="Menu" flags=18]
+[connection signal="pressed" from="Pause/Interface/ButtonsFrame/Menu" to="." method="ResetTransitiveValue" flags=6 binds= [0]]
 [connection signal="animation_finished" from="EpicIntro/AnimationPlayer" to="EpicIntro" method="queue_free" flags=18 unbinds=1]
 
 [editable path="Level/Player"]

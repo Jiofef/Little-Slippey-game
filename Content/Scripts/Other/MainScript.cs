@@ -102,4 +102,21 @@ public partial class MainScript : Node2D
             _levelMusicPlayer.Stop();
         }
     }
+    public void DebugTransitiveValue(int index)
+    {
+        GD.Print(G.TransitiveVariant[index]);
+    }
+    public void SetTransitiveValue(int index, Variant value)
+    {
+        G.TransitiveVariant[index] = value;
+    }
+    public void ResetTransitiveValue(int index)
+    {
+        G.TransitiveVariant[index] = "";
+    }
+    public void ResetAllTransitiveValues()
+    {
+        for (int i = 0; i < G.TransitiveVariant.Length; i++)
+            G.TransitiveVariant[i] = "";
+    }
 }

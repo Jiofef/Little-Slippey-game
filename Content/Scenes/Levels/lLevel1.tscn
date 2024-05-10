@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://dlx8yjd3gp608"]
+[gd_scene load_steps=35 format=3 uid="uid://dlx8yjd3gp608"]
 
 [ext_resource type="PackedScene" uid="uid://5kfyvxsdpsk2" path="res://Content/Scenes/Other/LevelLayout.tscn" id="1_t253m"]
 [ext_resource type="Texture2D" uid="uid://q2j1uuqfjmos" path="res://Content/Sprites/Levels/BaseTileSet.png" id="2_5coah"]
@@ -13,9 +13,6 @@
 [ext_resource type="PackedScene" uid="uid://buj5ooik0q3l0" path="res://Content/Scenes/Achievements/AchievementArea.tscn" id="10_uiaak"]
 [ext_resource type="Texture2D" uid="uid://lb7nl781jkgt" path="res://Content/Sprites/Levels/FallenDawnTileset.png" id="12_mapxc"]
 [ext_resource type="PackedScene" uid="uid://d3u7pfig07yrs" path="res://Content/Scenes/Other/CrutchedArea2D.tscn" id="13_4r1fn"]
-[ext_resource type="Shader" path="res://Content/Other/BrightnessShader.gdshader" id="14_xtgka"]
-[ext_resource type="Script" path="res://Content/Scripts/Other/PostProcessingRect.cs" id="15_xfrww"]
-[ext_resource type="Script" path="res://Content/Scripts/Levels/Level1AdditionalBrightnessAnimationPlayer.cs" id="16_qypfv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6c1h1"]
 atlas = ExtResource("3_th2o3")
@@ -179,43 +176,6 @@ sources/1 = SubResource("TileSetAtlasSource_mnnu6")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x02e7"]
 size = Vector2(128, 128)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_xv08t"]
-shader = ExtResource("14_xtgka")
-shader_parameter/brightness = 1.0
-
-[sub_resource type="Animation" id="Animation_2bi7u"]
-resource_name = "Brightening"
-length = 6.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../AdditionalBrightnessLayer/AdditionalBrightnessRect:_value")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.1, 6),
-"transitions": PackedFloat32Array(0.5, 1),
-"update": 0,
-"values": [4.0, 1.0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../AdditionalBrightnessLayer/Glare:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 2),
-"transitions": PackedFloat32Array(0.5, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0.501961), Color(1, 1, 1, 0)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_487s0"]
-_data = {
-"Brightening": SubResource("Animation_2bi7u")
-}
-
 [node name="Level" instance=ExtResource("1_t253m")]
 
 [node name="Level" parent="." index="1"]
@@ -361,32 +321,5 @@ _value = 0.0
 
 [node name="Glare" parent="EpicIntro" index="2"]
 modulate = Color(1, 1, 1, 0)
-
-[node name="AdditionalBrightnessLayer" type="CanvasLayer" parent="." index="4"]
-
-[node name="Glare" type="ColorRect" parent="AdditionalBrightnessLayer" index="0"]
-modulate = Color(1, 1, 1, 0.501961)
-offset_right = 1280.0
-offset_bottom = 720.0
-mouse_filter = 2
-metadata/_edit_lock_ = true
-
-[node name="AdditionalBrightnessRect" type="ColorRect" parent="AdditionalBrightnessLayer" index="1"]
-material = SubResource("ShaderMaterial_xv08t")
-offset_right = 1280.0
-offset_bottom = 720.0
-mouse_filter = 2
-script = ExtResource("15_xfrww")
-_value = 4.0
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="AdditionalBrightnessLayer/AdditionalBrightnessRect" index="0"]
-root_node = NodePath("../../../Level")
-libraries = {
-"": SubResource("AnimationLibrary_487s0")
-}
-script = ExtResource("16_qypfv")
-
-[connection signal="ButtonPressed" from="Level/PlayMusicTrigger" to="LevelMusicPlayer" method="PlayMusic" flags=6 binds= ["TNT For Breakfast", 17.5, 0.0]]
-[connection signal="animation_finished" from="AdditionalBrightnessLayer/AdditionalBrightnessRect/AnimationPlayer" to="AdditionalBrightnessLayer/AdditionalBrightnessRect" method="queue_free" flags=6 unbinds=1]
 
 [editable path="Pause/Interface/ButtonsFrame/Menu"]

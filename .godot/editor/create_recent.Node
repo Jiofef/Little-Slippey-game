@@ -1,11 +1,11 @@
+CanvasLayer
+AnimationPlayer
 Node2D
 CollisionShape2D
 AudioStreamPlayer
 Node
 ColorRect
-CanvasLayer
 Area2D
-AnimationPlayer
 CollisionPolygon2D
 TileMap
 LightOccluder2D

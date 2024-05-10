@@ -81,3 +81,4 @@ res://Content/Scripts/Other/Player.cs
 res://Content/Scripts/Other/PostProcessingRect.cs
 res://Content/Scripts/Other/SkinScript.cs
 res://Content/Scenes/Levels/FullParts/llLevel2.tscn
+res://Content/Scripts/Levels/Level1AdditionalBrightnessAnimationPlayer.cs

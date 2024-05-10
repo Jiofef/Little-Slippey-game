@@ -264,6 +264,7 @@ public partial class Player : CharacterBody2D
         G.IsCrossesEnabled = false;
         G.IsProgressPaused = true;
 
+        EmitSignal("PlayerDied");
         PlaySound("Death");
         GetNode<AudioStreamPlayer>("../../LevelMusicPlayer").StreamPaused = true;
         GetNode<CollisionShape2D>("FullBodyCollider").SetDeferred("disabled", true);
