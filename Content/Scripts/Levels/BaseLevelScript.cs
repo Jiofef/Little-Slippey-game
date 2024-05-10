@@ -4,7 +4,6 @@ using System.Linq;
 
 public partial class BaseLevelScript : Node2D
 {
-    [Signal] public delegate void LevelReloadEventHandler();
     PackedScene[] _crosses = new PackedScene[G.CrossesInGameTotal];
     CharacterBody2D _player;
 
@@ -22,7 +21,6 @@ public partial class BaseLevelScript : Node2D
         G.ResetValues();
         Input.MouseMode = !GetTree().Paused ? Input.MouseModeEnum.Hidden : Input.MouseModeEnum.Visible;
         AudioServer.SetBusMute(2, Meta.Instance.BusVolumes[2] <= -30);
-        Connect("LevelReload", new Callable(GetNode(".."), "LoadScene"));
         GetNode<AudioStreamPlayer>("../LevelMusicPlayer").StreamPaused = false;
         _player = GetNode<CharacterBody2D>("Player");
 
@@ -53,8 +51,6 @@ public partial class BaseLevelScript : Node2D
         for (int i = 0; i < _crosses.Length; i++)
             _crosses[i] = ResourceLoader.Load<PackedScene>("res://Content/Scenes/Crosses/" + (_isCrossesEnhanced ? "Enhanced" : "") + "Cross" + (i + 1) + ".tscn");
     }
-
-    private bool _crossesEnabledDebug = true;
 
     public override void _PhysicsProcess(double delta)
     {
@@ -194,24 +190,9 @@ public partial class BaseLevelScript : Node2D
         }
     }
 
-    public void Reset()
-    {
-        G.IsCrossesEnabled = true;
-        G.IsProgressPaused = false;
-        G.CrossSpawnMultiplier = 1;
-        UnchangableMeta.SaveRecords();
-        QueueFree();
-        EmitSignal("LevelReload", "res://Content/Scenes/Levels/FullParts/Level" + G.CurrentLevel + G.LevelAdditionalLink + ".tscn");
-    }
-
     public void SetCrossEnabled(bool value)
     {
         G.IsCrossesEnabled = value;
-    }
-
-    public void DisablePhysicsProcess()
-    {
-        SetPhysicsProcess(false);
     }
 
     public void GiveAchievement(int index)

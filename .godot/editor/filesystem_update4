@@ -1,6 +1,6 @@
 res://default_bus_layout.tres
 res://default_env.tres
-res://Content/Scenes/Levels/FullParts/Levell1.tscn
+res://Content/Scenes/Levels/FullParts/Level1Tutorial.tscn
 res://Content/Other/BrightnessShader.gdshader
 res://Content/Other/StaticNoiseShader.gdshader
 res://Content/Other/BlurShader.gdshader
@@ -8,8 +8,13 @@ res://Content/Other/CRT.gdshader
 res://Content/Other/PixelateShader.gdshader
 res://Content/Other/SaturationShader.gdshader
 res://Content/Other/PostProcessing.gdshader
-res://Content/Scenes/Levels/FullParts/Level1.tscn
 res://Content/Scenes/Other/LevelLayout.tscn
+res://Content/Scenes/Levels/FullParts/Level1.tscn
+res://Content/Scenes/Other/Player.tscn
+res://Content/Scenes/Levels/FullParts/Level2.tscn
+res://Content/Scenes/Levels/FullParts/lLevel2.tscn
+res://Content/Scenes/Levels/FullParts/lLevel3.tscn
+res://Content/Scenes/Levels/FullParts/lLevel1Tutorial.tscn
 res://Content/Other/G.cs
 res://Content/Other/Meta.cs
 res://Content/Other/UnchangableMeta.cs
@@ -75,3 +80,4 @@ res://Content/Scripts/Other/MISSINGNULL.cs
 res://Content/Scripts/Other/Player.cs
 res://Content/Scripts/Other/PostProcessingRect.cs
 res://Content/Scripts/Other/SkinScript.cs
+res://Content/Scenes/Levels/FullParts/llLevel2.tscn

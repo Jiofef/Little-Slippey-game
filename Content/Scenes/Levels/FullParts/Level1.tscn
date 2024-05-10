@@ -322,6 +322,4 @@ _value = 0.0
 [node name="Glare" parent="EpicIntro" index="2"]
 modulate = Color(1, 1, 1, 0)
 
-[connection signal="ButtonPressed" from="Level/PlayMusicTrigger" to="LevelMusicPlayer" method="PlayMusic" flags=6 binds= ["TNT For Breakfast", 17.5, 0.0]]
-
 [editable path="Pause/Interface/ButtonsFrame/Menu"]

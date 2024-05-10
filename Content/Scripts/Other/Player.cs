@@ -261,8 +261,8 @@ public partial class Player : CharacterBody2D
         if (Meta.Instance.ChosenSkinIndex == 11)
             _corpseMotion = Vector2.Zero;
 
-        Connect("PlayerDied", new Callable(GetParent(), "DisablePhysicsProcess"));
-        EmitSignal("PlayerDied");
+        G.IsCrossesEnabled = false;
+        G.IsProgressPaused = true;
 
         PlaySound("Death");
         GetNode<AudioStreamPlayer>("../../LevelMusicPlayer").StreamPaused = true;

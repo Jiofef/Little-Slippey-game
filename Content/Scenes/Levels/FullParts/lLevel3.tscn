@@ -501,5 +501,3 @@ position = Vector2(1347, 286)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayMusicTrigger"]
 shape = SubResource("RectangleShape2D_4o23b")
-
-[connection signal="ButtonPressed" from="PlayMusicTrigger" to="." method="PlayMusic" flags=6 binds= ["My Love Letter To Mike And Rich", 30.5, 0.0]]
