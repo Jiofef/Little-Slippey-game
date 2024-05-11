@@ -1,28 +1,28 @@
-[gd_scene load_steps=73 format=3 uid="uid://cfq0amsol7ik0"]
+[gd_scene load_steps=73 format=3 uid="uid://d1r7h4t8wdh0"]
 
-[ext_resource type="PackedScene" uid="uid://dlscufxb5f1ca" path="res://Content/Scenes/Other/Player.tscn" id="1_qxhw6"]
-[ext_resource type="Script" path="res://Content/Scripts/Levels/BaseLevelScript.cs" id="1_t06hj"]
-[ext_resource type="Script" path="res://Content/Scripts/Levels/Level8WallOfCompress.cs" id="4_r5rba"]
-[ext_resource type="Texture2D" uid="uid://duk32e0otnfky" path="res://Content/Sprites/Levels/FuckItVolume2Tileset.png" id="4_rpou3"]
-[ext_resource type="Texture2D" uid="uid://clf8q6lcjkchp" path="res://Content/Sprites/Levels/Level8/CompressHost.png" id="4_wgbvc"]
-[ext_resource type="Texture2D" uid="uid://c44den1mklg56" path="res://Content/Sprites/Levels/Level8/CompressProjectorAnimation.png" id="5_bdrxy"]
-[ext_resource type="Script" path="res://Content/Scripts/Levels/Level4CircularSawScript.cs" id="5_ykq17"]
-[ext_resource type="Texture2D" uid="uid://cnx2it3wlmviv" path="res://Content/Sprites/Levels/Level8/Projection.png" id="6_o3hb7"]
-[ext_resource type="Texture2D" uid="uid://dse3qddcaf5o4" path="res://Content/Sprites/Levels/Level4/TheMostOrdinaryUnremarkableSawWhichSurprisinglyCanKillAPlayerWithoutProblemsBecauseItHasAHitboxOnTheSameLayerAsTheExplosionOfCrossesThatsInShort.png" id="6_ux8qh"]
-[ext_resource type="Script" path="res://Content/Scripts/Levels/Level8Host.cs" id="6_xhhy7"]
-[ext_resource type="Texture2D" uid="uid://op4k0tjuspxj" path="res://Content/Sprites/Levels/Level4/Stud.png" id="7_71ljj"]
-[ext_resource type="Texture2D" uid="uid://ras7giq74rsn" path="res://Content/Sprites/Levels/Level8/CompressEyesAnimation.png" id="7_adhko"]
-[ext_resource type="Script" path="res://Content/Scripts/Levels/Level8TileMapSpawner.cs" id="8_e8osd"]
-[ext_resource type="Texture2D" uid="uid://boyg80qmk1fn3" path="res://Content/Sprites/Levels/Level8/CompressMouthsAnimation.png" id="8_si8py"]
-[ext_resource type="PackedScene" uid="uid://d3u7pfig07yrs" path="res://Content/Scenes/Other/CrutchedArea2D.tscn" id="8_sm2u4"]
-[ext_resource type="Texture2D" uid="uid://clft1m28fij1k" path="res://Content/Sprites/Levels/Level8/CompressPimplesAnimation.png" id="9_031ff"]
-[ext_resource type="Texture2D" uid="uid://cx6qktapp8l80" path="res://Content/Sprites/Levels/Level8/CompressFleshAnimation.png" id="10_jp6fw"]
-[ext_resource type="Texture2D" uid="uid://blju7km18lxu0" path="res://Content/Sprites/Levels/Level8/BackLayer.png" id="17_uj868"]
-[ext_resource type="Texture2D" uid="uid://dmrf7wrobrp34" path="res://Content/Sprites/Levels/Level8/FrontLayer.png" id="18_2jtiw"]
-[ext_resource type="PackedScene" uid="uid://buj5ooik0q3l0" path="res://Content/Scenes/Achievements/AchievementArea.tscn" id="19_eu81e"]
+[ext_resource type="PackedScene" uid="uid://5kfyvxsdpsk2" path="res://Content/Scenes/Other/LevelLayout.tscn" id="1_vycfr"]
+[ext_resource type="Texture2D" uid="uid://blju7km18lxu0" path="res://Content/Sprites/Levels/Level8/BackLayer.png" id="2_p6g40"]
+[ext_resource type="Texture2D" uid="uid://dmrf7wrobrp34" path="res://Content/Sprites/Levels/Level8/FrontLayer.png" id="3_e633r"]
+[ext_resource type="Script" path="res://Content/Scripts/Levels/Level8TileMapSpawner.cs" id="4_a482v"]
+[ext_resource type="Texture2D" uid="uid://duk32e0otnfky" path="res://Content/Sprites/Levels/FuckItVolume2Tileset.png" id="5_xwpld"]
+[ext_resource type="PackedScene" uid="uid://dlscufxb5f1ca" path="res://Content/Scenes/Other/Player.tscn" id="6_f43mb"]
+[ext_resource type="PackedScene" uid="uid://buj5ooik0q3l0" path="res://Content/Scenes/Achievements/AchievementArea.tscn" id="7_e7up1"]
+[ext_resource type="Script" path="res://Content/Scripts/Levels/Level8WallOfCompress.cs" id="8_1q6ct"]
+[ext_resource type="Script" path="res://Content/Scripts/Levels/Level4CircularSawScript.cs" id="9_8k651"]
+[ext_resource type="Texture2D" uid="uid://dse3qddcaf5o4" path="res://Content/Sprites/Levels/Level4/TheMostOrdinaryUnremarkableSawWhichSurprisinglyCanKillAPlayerWithoutProblemsBecauseItHasAHitboxOnTheSameLayerAsTheExplosionOfCrossesThatsInShort.png" id="10_jjeb2"]
+[ext_resource type="Texture2D" uid="uid://op4k0tjuspxj" path="res://Content/Sprites/Levels/Level4/Stud.png" id="11_5myqr"]
+[ext_resource type="Texture2D" uid="uid://c44den1mklg56" path="res://Content/Sprites/Levels/Level8/CompressProjectorAnimation.png" id="12_qv74w"]
+[ext_resource type="Texture2D" uid="uid://cnx2it3wlmviv" path="res://Content/Sprites/Levels/Level8/Projection.png" id="13_7k8sr"]
+[ext_resource type="Texture2D" uid="uid://clf8q6lcjkchp" path="res://Content/Sprites/Levels/Level8/CompressHost.png" id="14_cfs2y"]
+[ext_resource type="Script" path="res://Content/Scripts/Levels/Level8Host.cs" id="15_10tbv"]
+[ext_resource type="Texture2D" uid="uid://ras7giq74rsn" path="res://Content/Sprites/Levels/Level8/CompressEyesAnimation.png" id="16_igb1r"]
+[ext_resource type="Texture2D" uid="uid://boyg80qmk1fn3" path="res://Content/Sprites/Levels/Level8/CompressMouthsAnimation.png" id="17_85d8f"]
+[ext_resource type="Texture2D" uid="uid://clft1m28fij1k" path="res://Content/Sprites/Levels/Level8/CompressPimplesAnimation.png" id="18_325kt"]
+[ext_resource type="Texture2D" uid="uid://cx6qktapp8l80" path="res://Content/Sprites/Levels/Level8/CompressFleshAnimation.png" id="19_7v02o"]
+[ext_resource type="PackedScene" uid="uid://d3u7pfig07yrs" path="res://Content/Scenes/Other/CrutchedArea2D.tscn" id="20_j8dm3"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4su74"]
-texture = ExtResource("4_rpou3")
+texture = ExtResource("5_xwpld")
 0:0/next_alternative_id = 2
 0:0/0 = 0
 0:0/1 = 1
@@ -72,7 +72,7 @@ texture = ExtResource("4_rpou3")
 sources/0 = SubResource("TileSetAtlasSource_4su74")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wv2uq"]
-texture = ExtResource("4_rpou3")
+texture = ExtResource("5_xwpld")
 0:0/next_alternative_id = 3
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -202,23 +202,20 @@ sources/1 = SubResource("TileSetAtlasSource_wv2uq")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rmh6m"]
 size = Vector2(144, 16)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_47qvc"]
-size = Vector2(128, 128)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_w5p32"]
-atlas = ExtResource("5_bdrxy")
+atlas = ExtResource("12_qv74w")
 region = Rect2(0, 0, 16, 12)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_x5xbk"]
-atlas = ExtResource("5_bdrxy")
+atlas = ExtResource("12_qv74w")
 region = Rect2(16, 0, 16, 12)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_830pc"]
-atlas = ExtResource("5_bdrxy")
+atlas = ExtResource("12_qv74w")
 region = Rect2(32, 0, 16, 12)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_regom"]
-atlas = ExtResource("5_bdrxy")
+atlas = ExtResource("12_qv74w")
 region = Rect2(48, 0, 16, 12)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_r87h5"]
@@ -242,43 +239,43 @@ animations = [{
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5tp0o"]
-atlas = ExtResource("4_wgbvc")
+atlas = ExtResource("14_cfs2y")
 region = Rect2(0, 0, 64, 20)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lah41"]
-atlas = ExtResource("4_wgbvc")
+atlas = ExtResource("14_cfs2y")
 region = Rect2(64, 0, 64, 20)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_go0mk"]
-atlas = ExtResource("4_wgbvc")
+atlas = ExtResource("14_cfs2y")
 region = Rect2(128, 0, 64, 20)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_boqgt"]
-atlas = ExtResource("4_wgbvc")
+atlas = ExtResource("14_cfs2y")
 region = Rect2(192, 0, 64, 20)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_oxq6p"]
-atlas = ExtResource("4_wgbvc")
+atlas = ExtResource("14_cfs2y")
 region = Rect2(256, 0, 64, 20)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j3mq0"]
-atlas = ExtResource("4_wgbvc")
+atlas = ExtResource("14_cfs2y")
 region = Rect2(256, 0, 64, 20)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fb12y"]
-atlas = ExtResource("4_wgbvc")
+atlas = ExtResource("14_cfs2y")
 region = Rect2(192, 0, 64, 20)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_53ywi"]
-atlas = ExtResource("4_wgbvc")
+atlas = ExtResource("14_cfs2y")
 region = Rect2(128, 0, 64, 20)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_v57t3"]
-atlas = ExtResource("4_wgbvc")
+atlas = ExtResource("14_cfs2y")
 region = Rect2(64, 0, 64, 20)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4bxss"]
-atlas = ExtResource("4_wgbvc")
+atlas = ExtResource("14_cfs2y")
 region = Rect2(0, 0, 64, 20)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_25mcy"]
@@ -326,19 +323,19 @@ height = 50.0
 size = Vector2(128, 256)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_titme"]
-atlas = ExtResource("7_adhko")
+atlas = ExtResource("16_igb1r")
 region = Rect2(0, 0, 128, 256)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cabwq"]
-atlas = ExtResource("7_adhko")
+atlas = ExtResource("16_igb1r")
 region = Rect2(128, 0, 128, 256)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jsqa4"]
-atlas = ExtResource("7_adhko")
+atlas = ExtResource("16_igb1r")
 region = Rect2(256, 0, 128, 256)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tlisi"]
-atlas = ExtResource("7_adhko")
+atlas = ExtResource("16_igb1r")
 region = Rect2(384, 0, 128, 256)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_pju6c"]
@@ -362,31 +359,31 @@ animations = [{
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b3uxd"]
-atlas = ExtResource("8_si8py")
+atlas = ExtResource("17_85d8f")
 region = Rect2(0, 0, 128, 256)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ut7jn"]
-atlas = ExtResource("8_si8py")
+atlas = ExtResource("17_85d8f")
 region = Rect2(128, 0, 128, 256)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lckfn"]
-atlas = ExtResource("8_si8py")
+atlas = ExtResource("17_85d8f")
 region = Rect2(256, 0, 128, 256)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j48d4"]
-atlas = ExtResource("8_si8py")
+atlas = ExtResource("17_85d8f")
 region = Rect2(384, 0, 128, 256)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_a5ota"]
-atlas = ExtResource("8_si8py")
+atlas = ExtResource("17_85d8f")
 region = Rect2(512, 0, 128, 256)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yu1bn"]
-atlas = ExtResource("8_si8py")
+atlas = ExtResource("17_85d8f")
 region = Rect2(640, 0, 128, 256)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_o3f0u"]
-atlas = ExtResource("8_si8py")
+atlas = ExtResource("17_85d8f")
 region = Rect2(768, 0, 128, 256)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_cd4hr"]
@@ -419,19 +416,19 @@ animations = [{
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8hrl6"]
-atlas = ExtResource("9_031ff")
+atlas = ExtResource("18_325kt")
 region = Rect2(0, 0, 128, 256)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_uy888"]
-atlas = ExtResource("9_031ff")
+atlas = ExtResource("18_325kt")
 region = Rect2(128, 0, 128, 256)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_u5tq0"]
-atlas = ExtResource("9_031ff")
+atlas = ExtResource("18_325kt")
 region = Rect2(256, 0, 128, 256)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_x0jfy"]
-atlas = ExtResource("9_031ff")
+atlas = ExtResource("18_325kt")
 region = Rect2(384, 0, 128, 256)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_8v7ok"]
@@ -455,27 +452,27 @@ animations = [{
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_weljk"]
-atlas = ExtResource("10_jp6fw")
+atlas = ExtResource("19_7v02o")
 region = Rect2(0, 0, 128, 256)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1nwig"]
-atlas = ExtResource("10_jp6fw")
+atlas = ExtResource("19_7v02o")
 region = Rect2(128, 0, 128, 256)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6b5qr"]
-atlas = ExtResource("10_jp6fw")
+atlas = ExtResource("19_7v02o")
 region = Rect2(256, 0, 128, 256)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_r1kma"]
-atlas = ExtResource("10_jp6fw")
+atlas = ExtResource("19_7v02o")
 region = Rect2(384, 0, 128, 256)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s628r"]
-atlas = ExtResource("10_jp6fw")
+atlas = ExtResource("19_7v02o")
 region = Rect2(512, 0, 128, 256)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ld1ti"]
-atlas = ExtResource("10_jp6fw")
+atlas = ExtResource("19_7v02o")
 region = Rect2(640, 0, 128, 256)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_n5ec8"]
@@ -532,81 +529,83 @@ shader_parameter/brightness = 1.1
 shader_parameter/contrast = 1.2
 shader_parameter/saturation = 0.85
 
-[node name="Level8" type="Node2D"]
-script = ExtResource("1_t06hj")
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_47qvc"]
+size = Vector2(128, 128)
 
-[node name="Background" type="ParallaxBackground" parent="."]
+[node name="Main" instance=ExtResource("1_vycfr")]
 
-[node name="BackLayer" type="ParallaxLayer" parent="Background"]
+[node name="Background" type="ParallaxBackground" parent="Level" index="0"]
+
+[node name="BackLayer" type="ParallaxLayer" parent="Level/Background" index="0"]
 motion_scale = Vector2(0.7, 1)
 motion_mirroring = Vector2(1280, 0)
 
-[node name="Sprite2D" type="Sprite2D" parent="Background/BackLayer"]
+[node name="Sprite2D" type="Sprite2D" parent="Level/Background/BackLayer" index="0"]
 position = Vector2(640, 320)
 scale = Vector2(4, 4)
-texture = ExtResource("17_uj868")
+texture = ExtResource("2_p6g40")
 
-[node name="FrontLayer" type="ParallaxLayer" parent="Background"]
+[node name="FrontLayer" type="ParallaxLayer" parent="Level/Background" index="1"]
 motion_scale = Vector2(0.8, 1)
 motion_mirroring = Vector2(1280, 0)
 
-[node name="Sprite2D" type="Sprite2D" parent="Background/FrontLayer"]
+[node name="Sprite2D" type="Sprite2D" parent="Level/Background/FrontLayer" index="0"]
 position = Vector2(640, 320)
 scale = Vector2(4, 4)
-texture = ExtResource("18_2jtiw")
+texture = ExtResource("3_e633r")
 
-[node name="Fog" type="ColorRect" parent="Background"]
+[node name="Fog" type="ColorRect" parent="Level/Background" index="2"]
 offset_right = 1280.0
 offset_bottom = 720.0
 color = Color(0.117647, 0, 0, 0.313726)
 
-[node name="TileMapSpawner" type="Node2D" parent="."]
-script = ExtResource("8_e8osd")
+[node name="TileMapSpawner" type="Node2D" parent="Level" index="1"]
+script = ExtResource("4_a482v")
 
-[node name="DecorationMap" type="TileMap" parent="."]
+[node name="DecorationMap" type="TileMap" parent="Level" index="2"]
 modulate = Color(0.392157, 0.392157, 0.392157, 1)
 scale = Vector2(4, 4)
 tile_set = SubResource("TileSet_sdcfh")
 format = 2
 layer_0/tile_data = PackedInt32Array(131099, 65536, 2, 131100, 65536, 2, 131101, 65536, 2, 131102, 65536, 2, 196638, 65536, 2, 262174, 65536, 2, 327710, 65536, 2, 393246, 65536, 2, 393247, 65536, 2, 393248, 65536, 2, 393249, 65536, 2, 393250, 65536, 2, 327714, 65536, 2, 262178, 65536, 2, 262177, 65536, 2, 262176, 65536, 2, 196640, 65536, 2, 131104, 65536, 2, 65568, 65536, 2, 65569, 65536, 2, 65570, 65536, 2, 65571, 65536, 2)
 
-[node name="DecorationMap2" type="TileMap" parent="."]
+[node name="DecorationMap2" type="TileMap" parent="Level" index="3"]
 modulate = Color(0.588235, 0.588235, 0.588235, 1)
 scale = Vector2(4, 4)
 tile_set = SubResource("TileSet_sdcfh")
 format = 2
 layer_0/tile_data = PackedInt32Array(21, 0, 3, 65557, 65536, 2, 196629, 65536, 2, 262165, 65536, 2, 327701, 65536, 2, 393237, 0, 0, 458773, 65536, 2, 524309, 65536, 2, 589845, 65536, 2, 22, 65536, 2, 65558, 65536, 2, 131094, 65536, 2, 196630, 65536, 2, 262166, 131072, 2, 327702, 65536, 2, 393238, 0, 0, 458774, 65536, 2, 524310, 131072, 2, 589846, 65536, 2, 23, 65536, 2, 65559, 65536, 2, 131095, 65536, 2, 196631, 65536, 2, 262167, 65536, 2, 327703, 65536, 2, 24, 131072, 2, 65560, 65536, 2, 131096, 131072, 2, 196632, 65536, 2, 262168, 65536, 2, 327704, 65536, 2, 25, 65536, 2, 65561, 65536, 2, 196633, 65536, 2, 262169, 65536, 2, 327705, 65536, 2, 26, 0, 3, 65562, 65536, 2, 196634, 65536, 2, 327706, 131072, 2, 393241, 0, 0, 458777, 65536, 2, 524313, 65536, 2, 589849, 65536, 2, 393242, 0, 0, 458778, 65536, 2, 524314, 196608, 2, 589850, 65536, 2, 458775, 196608, 196608, 524311, 196608, 196608, 589847, 196608, 196608, 458776, 196608, 65536, 524312, 196608, 65536, 589848, 196608, 65536, 196628, 0, 65536, 262164, 0, 65536, 327700, 0, 65536, 131098, 196608, 2, 262170, 65536, 2, 131093, 65536, 2, 131097, 65536, 2)
 
-[node name="Player" parent="." instance=ExtResource("1_qxhw6")]
+[node name="Player" parent="Level" index="4" instance=ExtResource("6_f43mb")]
 position = Vector2(832, 352)
 
-[node name="TileMap" type="TileMap" parent="."]
+[node name="TileMap" type="TileMap" parent="Level" index="5"]
 scale = Vector2(4, 4)
 tile_set = SubResource("TileSet_gtmsj")
 format = 2
 layer_0/tile_data = PackedInt32Array(-65516, 131073, 131072, -65517, 65537, 1, -65518, 65537, 1, -65519, 65537, 1, -65520, 65537, 1, -65521, 65537, 1, -65522, 65537, 1, -65523, 65537, 1, -65524, 65537, 1, -65525, 65537, 1, -65526, 65537, 1, -65527, 65537, 1, -65528, 65537, 1, -65529, 65537, 1, -65530, 65537, 1, -65531, 65537, 1, -65532, 65537, 1, -65533, 65537, 1, -65534, 65537, 1, -65535, 65537, 1, -65536, 65537, 1, -1, 65537, 1, 65535, 196609, 65536, 131071, 196609, 65536, 196607, 196609, 65536, 262143, 196609, 65536, 327679, 196609, 65536, 393215, 196609, 65536, 458751, 196609, 65536, 524287, 196609, 65536, 589823, 196609, 65536, 655359, 196609, 65536, 720895, 131073, 1, 655374, 131073, 1, 655376, 131073, 1, 655377, 131073, 1, 655378, 131073, 1, 655379, 131073, 1, 720916, 65537, 1, 720915, 65537, 1, 720914, 65537, 1, 720913, 65537, 1, 720912, 65537, 1, 720911, 65537, 1, 720910, 65537, 1, 786431, 65537, 1, -131052, 65537, 1, -131053, 65537, 1, -131054, 65537, 1, -131055, 65537, 1, -131056, 65537, 1, -131057, 65537, 1, -131058, 65537, 1, -131059, 65537, 1, -131060, 65537, 1, -131061, 65537, 1, -131062, 65537, 1, -131063, 65537, 1, -131064, 65537, 1, -131065, 65537, 1, -131066, 65537, 1, -131067, 65537, 1, -131068, 65537, 1, -131069, 65537, 1, -131070, 65537, 1, -131071, 65537, 1, -131072, 65537, 1, -65537, 65537, 1, -131073, 65537, 1, -196608, 65537, 1, -196607, 65537, 1, -196606, 65537, 1, -196605, 65537, 1, -196604, 65537, 1, -196603, 65537, 1, -196602, 65537, 1, -196601, 65537, 1, -196600, 65537, 1, -196599, 65537, 1, -196598, 65537, 1, -196597, 65537, 1, -196596, 65537, 1, -196595, 65537, 1, -196594, 65537, 1, -196593, 65537, 1, -196592, 65537, 1, -196591, 65537, 1, -196590, 65537, 1, -196589, 65537, 1, -196588, 65537, 1, 851967, 65537, 1, 786432, 65537, 1, 786434, 65537, 1, 786433, 65537, 1, 786436, 65537, 1, 786435, 65537, 1, 786439, 65537, 1, 786440, 65537, 1, 786438, 65537, 1, 786437, 65537, 1, 786441, 65537, 1, 786442, 65537, 1, 786446, 65537, 1, 786445, 65537, 1, 786444, 65537, 1, 786448, 65537, 1, 786447, 65537, 1, 786443, 65537, 1, 786449, 65537, 1, 786451, 65537, 1, 786450, 65537, 1, 786452, 65537, 1, 655396, 131073, 1, 655397, 131073, 1, 655398, 131073, 1, 655399, 131073, 1, 393228, 65537, 3, 393229, 65537, 3, 393230, 131073, 3, 393231, 65537, 3, 393232, 65537, 3, 393233, 131073, 3, 393234, 65537, 3, 393235, 65537, 3, 393236, 196609, 196608, 589844, 1, 65536, 524308, 1, 65536, 458772, 1, 65536, 20, 1, 65536, 65556, 1, 65536, 131092, 1, 65536, 458766, 196609, 3, 524302, 196609, 3, 589838, 196609, 3, 458769, 196609, 3, 524305, 196609, 3, 589841, 196609, 3, -65515, 196609, 131072, -65514, 196609, 131072, -65513, 196609, 131072, -65512, 196609, 131072, -65511, 196609, 131072, -65510, 196609, 131072, -65509, 196609, 131072, -65508, 196609, 131072, -65507, 196609, 131072, -65506, 196609, 131072, -65505, 196609, 131072, -65504, 196609, 131072, -65503, 196609, 131072, -65502, 196609, 131072, -65501, 131073, 196608, -65500, 65537, 1, -65499, 65537, 1, -65498, 65537, 1, -65497, 65537, 1, -131051, 65537, 1, -131050, 65537, 1, -131049, 65537, 1, -196584, 65537, 1, -196583, 65537, 1, -196582, 65537, 1, -196581, 65537, 1, -196580, 65537, 1, -196579, 65537, 1, -196578, 65537, 1, -196577, 65537, 1, -196576, 65537, 1, -196575, 65537, 1, -196574, 65537, 1, -196573, 65537, 1, -196572, 65537, 1, -196571, 65537, 1, -196570, 65537, 1, -196569, 65537, 1, -131033, 65537, 1, -131034, 65537, 1, -131035, 65537, 1, -131036, 65537, 1, -131037, 65537, 1, -131038, 65537, 1, -131039, 65537, 1, -131040, 65537, 1, -131041, 65537, 1, -131042, 65537, 1, -131043, 65537, 1, -131044, 65537, 1, -131045, 65537, 1, -131047, 65537, 1, -131048, 65537, 1, -131046, 65537, 1, -196587, 65537, 1, -196586, 65537, 1, -196585, 65537, 1, 393239, 196609, 131072, 393240, 196609, 131072, 393243, 196609, 196608, 262171, 196609, 196608, 196635, 131073, 131072, 720917, 65537, 1, 786453, 65537, 1, 720918, 65537, 1, 786454, 65537, 1, 720919, 65537, 1, 786455, 65537, 1, 720920, 65537, 1, 786456, 65537, 1, 720921, 65537, 1, 786457, 65537, 1, 720922, 65537, 1, 786458, 65537, 1, 720923, 65537, 1, 786459, 65537, 1, 720924, 65537, 1, 786460, 65537, 1, 720925, 65537, 1, 786461, 65537, 1, 720926, 65537, 1, 786462, 65537, 1, 720927, 65537, 1, 786463, 65537, 1, 720928, 65537, 1, 786464, 65537, 1, 720929, 65537, 1, 786465, 65537, 1, 720930, 65537, 1, 786466, 65537, 1, 720931, 65537, 1, 786467, 65537, 1, 720932, 65537, 1, 786468, 65537, 1, 720933, 65537, 1, 786469, 65537, 1, 720934, 65537, 1, 786470, 65537, 1, 720935, 65537, 1, 786471, 65537, 1, 65563, 131073, 65536, 65564, 196609, 0, 65565, 196609, 0, 65566, 196609, 0, 196636, 196609, 131072, 196637, 131073, 196608, 262173, 196609, 65536, 327709, 196609, 65536, 65567, 196609, 65536, 131103, 1, 65536, 196639, 1, 65536, 262175, 1, 65536, 327711, 131073, 65536, 393245, 196609, 65536, 327712, 1, 0, 327713, 65537, 0, 327715, 1, 65536, 262179, 1, 65536, 196643, 196609, 65536, 131107, 131073, 196608, 131106, 196609, 131072, 196642, 196609, 0, 27, 196609, 196608, 28, 1, 1, 29, 1, 1, 30, 1, 1, 31, 1, 1, 33, 196609, 0, 34, 196609, 0, 35, 131073, 0, 262172, 1, 1, 327708, 1, 1, 393244, 1, 1, 32, 196609, 0, 327707, 196609, 196608, 589859, 196609, 65536, -131075, 65537, 1, -65539, 65537, 1, -3, 65537, 1, 65533, 1, 1, 131069, 1, 1, 196605, 1, 1, 262141, 1, 1, 327677, 1, 1, 393213, 1, 1, 458749, 1, 1, 524285, 1, 1, 589821, 1, 1, 655357, 1, 1, 720893, 131073, 1, 786429, 65537, 1, 851965, 65537, 1, -131074, 65537, 1, -65538, 65537, 1, -2, 65537, 1, 65534, 1, 1, 131070, 1, 1, 196606, 1, 1, 262142, 1, 1, 327678, 1, 1, 393214, 1, 1, 458750, 1, 1, 524286, 1, 1, 589822, 1, 1, 655358, 1, 1, 720894, 131073, 1, 786430, 65537, 1, 851966, 65537, 1, -131076, 65537, 1, -65540, 65537, 1, -4, 65537, 1, 65532, 1, 1, 131068, 1, 1, 196604, 1, 1, 262140, 1, 1, 327676, 1, 1, 393212, 1, 1, 458748, 1, 1, 524284, 1, 1, 589820, 1, 1, 655356, 1, 1, 720892, 131073, 1, 786428, 65537, 1, 851964, 65537, 1, 655375, 131073, 1, 655360, 131073, 1, 720896, 65537, 1, 655361, 131073, 1, 720897, 65537, 1, 655362, 131073, 1, 720898, 65537, 1, 655363, 131073, 1, 720899, 65537, 1, 655364, 131073, 1, 720900, 65537, 1, 655365, 131073, 1, 720901, 65537, 1, 655366, 131073, 1, 720902, 65537, 1, 655367, 131073, 1, 720903, 65537, 1, 655368, 131073, 1, 720904, 65537, 1, 655369, 131073, 1, 720905, 65537, 1, 655370, 131073, 1, 720906, 65537, 1, 655371, 131073, 1, 720907, 65537, 1, 655372, 131073, 1, 720908, 65537, 1, 655373, 131073, 1, 720909, 65537, 1, 589851, 196609, 196608, 393251, 1, 65536, 458787, 196609, 65536, 458786, 196609, 131072, 458785, 196609, 131072, 458784, 196609, 131072, 458783, 196609, 131072, 458782, 196609, 131072, 458781, 1, 1, 458780, 1, 1, 458779, 196609, 196608, 131105, 131073, 131072, 196641, 131073, 65536, 655387, 196609, 0, 655388, 196609, 0, 655389, 196609, 0, 655390, 196609, 0, 655391, 196609, 0, 655392, 196609, 0, 655393, 196609, 0, 655394, 196609, 0, 589852, 1, 1, 589853, 1, 1, 589854, 1, 1, 589855, 1, 1, 589856, 1, 1, 589857, 1, 1, 589858, 1, 1, 655386, 1, 0, 655385, 1, 0, 655384, 1, 0, 655383, 1, 0, 655382, 1, 0, 655381, 1, 0, 655380, 131073, 65536, 655395, 131073, 0)
 
-[node name="SecretShortCut" type="TileMap" parent="TileMap"]
+[node name="SecretShortCut" type="TileMap" parent="Level/TileMap" index="0"]
 modulate = Color(1, 1, 1, 0.941176)
 z_index = 1
 tile_set = SubResource("TileSet_sdcfh")
 format = 2
 layer_0/tile_data = PackedInt32Array(524315, 196608, 196608, 524316, 0, 1, 524317, 0, 1, 524318, 0, 1, 524319, 0, 1, 524320, 0, 1, 524321, 0, 1, 524322, 0, 1, 524323, 196608, 65536, 458779, 196608, 196608, 458780, 0, 1, 458781, 0, 1, 458782, 196608, 131072, 458783, 196608, 131072, 458784, 196608, 131072, 458785, 196608, 131072, 458786, 196608, 131072, 458787, 196608, 65536)
 
-[node name="AchievementArea" parent="TileMap/SecretShortCut" instance=ExtResource("19_eu81e")]
+[node name="AchievementArea" parent="Level/TileMap/SecretShortCut" index="0" instance=ExtResource("7_e7up1")]
 position = Vector2(504, 136)
 _achievementIndex = 31
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TileMap/SecretShortCut/AchievementArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/TileMap/SecretShortCut/AchievementArea" index="0"]
 shape = SubResource("RectangleShape2D_rmh6m")
 
-[node name="Railings" type="TileMap" parent="TileMap"]
+[node name="Railings" type="TileMap" parent="Level/TileMap" index="1"]
 z_index = 1
 tile_set = SubResource("TileSet_sdcfh")
 format = 2
 layer_0/tile_data = PackedInt32Array(327694, 0, 4, 327695, 0, 4, 327696, 0, 4, 327697, 0, 4, 327698, 0, 4, 327699, 0, 4)
 
-[node name="CollapsingBridge" type="TileMap" parent="TileMap"]
+[node name="CollapsingBridge" type="TileMap" parent="Level/TileMap" index="2"]
 show_behind_parent = true
 position = Vector2(8, -6)
 rotation = -1.0472
@@ -614,170 +613,171 @@ tile_set = SubResource("TileSet_sdcfh")
 format = 2
 layer_0/tile_data = PackedInt32Array(917503, 65536, 3)
 
-[node name="PlayMusicTrigger" parent="TileMap" instance=ExtResource("8_sm2u4")]
-position = Vector2(208, 88)
-scale = Vector2(0.25, 0.25)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TileMap/PlayMusicTrigger"]
-shape = SubResource("RectangleShape2D_47qvc")
-
-[node name="WallOfCompress" type="Node2D" parent="."]
+[node name="WallOfCompress" type="Node2D" parent="Level" index="6"]
 z_index = 2
 position = Vector2(256, 320)
-script = ExtResource("4_r5rba")
+script = ExtResource("8_1q6ct")
 
-[node name="HiddenSaws" type="Node2D" parent="WallOfCompress"]
+[node name="HiddenSaws" type="Node2D" parent="Level/WallOfCompress" index="0"]
 scale = Vector2(2, 2)
 
-[node name="FrontCircularSaw" type="Node2D" parent="WallOfCompress/HiddenSaws"]
+[node name="FrontCircularSaw" type="Node2D" parent="Level/WallOfCompress/HiddenSaws" index="0"]
 position = Vector2(-53.75, -109.5)
-script = ExtResource("5_ykq17")
+script = ExtResource("9_8k651")
 _rotationSpeed = 0.3
 metadata/_edit_group_ = true
 
-[node name="Saw" type="Sprite2D" parent="WallOfCompress/HiddenSaws/FrontCircularSaw"]
+[node name="Saw" type="Sprite2D" parent="Level/WallOfCompress/HiddenSaws/FrontCircularSaw" index="0"]
 scale = Vector2(2, 2)
-texture = ExtResource("6_ux8qh")
+texture = ExtResource("10_jjeb2")
 
-[node name="Stud" type="Sprite2D" parent="WallOfCompress/HiddenSaws/FrontCircularSaw"]
+[node name="Stud" type="Sprite2D" parent="Level/WallOfCompress/HiddenSaws/FrontCircularSaw" index="1"]
 scale = Vector2(2, 2)
-texture = ExtResource("7_71ljj")
+texture = ExtResource("11_5myqr")
 
-[node name="FrontCircularSaw2" type="Node2D" parent="WallOfCompress/HiddenSaws"]
+[node name="FrontCircularSaw2" type="Node2D" parent="Level/WallOfCompress/HiddenSaws" index="1"]
 position = Vector2(-59.75, -28.5)
-script = ExtResource("5_ykq17")
+script = ExtResource("9_8k651")
 _rotationSpeed = 0.3
 metadata/_edit_group_ = true
 
-[node name="Saw" type="Sprite2D" parent="WallOfCompress/HiddenSaws/FrontCircularSaw2"]
+[node name="Saw" type="Sprite2D" parent="Level/WallOfCompress/HiddenSaws/FrontCircularSaw2" index="0"]
 scale = Vector2(2, 2)
-texture = ExtResource("6_ux8qh")
+texture = ExtResource("10_jjeb2")
 
-[node name="Stud" type="Sprite2D" parent="WallOfCompress/HiddenSaws/FrontCircularSaw2"]
+[node name="Stud" type="Sprite2D" parent="Level/WallOfCompress/HiddenSaws/FrontCircularSaw2" index="1"]
 scale = Vector2(2, 2)
-texture = ExtResource("7_71ljj")
+texture = ExtResource("11_5myqr")
 
-[node name="FrontCircularSaw3" type="Node2D" parent="WallOfCompress/HiddenSaws"]
+[node name="FrontCircularSaw3" type="Node2D" parent="Level/WallOfCompress/HiddenSaws" index="2"]
 position = Vector2(-46.75, 62.5)
-script = ExtResource("5_ykq17")
+script = ExtResource("9_8k651")
 _rotationSpeed = 0.3
 metadata/_edit_group_ = true
 
-[node name="Saw" type="Sprite2D" parent="WallOfCompress/HiddenSaws/FrontCircularSaw3"]
+[node name="Saw" type="Sprite2D" parent="Level/WallOfCompress/HiddenSaws/FrontCircularSaw3" index="0"]
 scale = Vector2(2, 2)
-texture = ExtResource("6_ux8qh")
+texture = ExtResource("10_jjeb2")
 
-[node name="Stud" type="Sprite2D" parent="WallOfCompress/HiddenSaws/FrontCircularSaw3"]
+[node name="Stud" type="Sprite2D" parent="Level/WallOfCompress/HiddenSaws/FrontCircularSaw3" index="1"]
 scale = Vector2(2, 2)
-texture = ExtResource("7_71ljj")
+texture = ExtResource("11_5myqr")
 
-[node name="FrontCircularSaw4" type="Node2D" parent="WallOfCompress/HiddenSaws"]
+[node name="FrontCircularSaw4" type="Node2D" parent="Level/WallOfCompress/HiddenSaws" index="3"]
 position = Vector2(-57.75, 116.5)
-script = ExtResource("5_ykq17")
+script = ExtResource("9_8k651")
 _rotationSpeed = 0.3
 metadata/_edit_group_ = true
 
-[node name="Saw" type="Sprite2D" parent="WallOfCompress/HiddenSaws/FrontCircularSaw4"]
+[node name="Saw" type="Sprite2D" parent="Level/WallOfCompress/HiddenSaws/FrontCircularSaw4" index="0"]
 scale = Vector2(2, 2)
-texture = ExtResource("6_ux8qh")
+texture = ExtResource("10_jjeb2")
 
-[node name="Stud" type="Sprite2D" parent="WallOfCompress/HiddenSaws/FrontCircularSaw4"]
+[node name="Stud" type="Sprite2D" parent="Level/WallOfCompress/HiddenSaws/FrontCircularSaw4" index="1"]
 scale = Vector2(2, 2)
-texture = ExtResource("7_71ljj")
+texture = ExtResource("11_5myqr")
 
-[node name="Projector" type="AnimatedSprite2D" parent="WallOfCompress"]
+[node name="Projector" type="AnimatedSprite2D" parent="Level/WallOfCompress" index="1"]
 position = Vector2(-352, 0)
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_r87h5")
 autoplay = "default"
 
-[node name="Projection" type="Sprite2D" parent="WallOfCompress/Projector"]
+[node name="Projection" type="Sprite2D" parent="Level/WallOfCompress/Projector" index="0"]
 position = Vector2(32, 0)
-texture = ExtResource("6_o3hb7")
+texture = ExtResource("13_7k8sr")
 
-[node name="Host" type="AnimatedSprite2D" parent="WallOfCompress"]
+[node name="Host" type="AnimatedSprite2D" parent="Level/WallOfCompress" index="2"]
 position = Vector2(200, 24)
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_25mcy")
 autoplay = "default"
 offset = Vector2(24, 0)
-script = ExtResource("6_xhhy7")
+script = ExtResource("15_10tbv")
 
-[node name="DeathZone" type="Area2D" parent="WallOfCompress/Host"]
+[node name="DeathZone" type="Area2D" parent="Level/WallOfCompress/Host" index="0"]
 collision_layer = 16
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WallOfCompress/Host/DeathZone"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/WallOfCompress/Host/DeathZone" index="0"]
 position = Vector2(30, 0)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_aiy6r")
 
-[node name="FrontCircularSaw" type="Node2D" parent="WallOfCompress/Host"]
+[node name="FrontCircularSaw" type="Node2D" parent="Level/WallOfCompress/Host" index="1"]
 show_behind_parent = true
 position = Vector2(38, 0)
 scale = Vector2(0.1, 0.1)
-script = ExtResource("5_ykq17")
+script = ExtResource("9_8k651")
 _rotationSpeed = 0.3
 metadata/_edit_group_ = true
 
-[node name="Saw" type="Sprite2D" parent="WallOfCompress/Host/FrontCircularSaw"]
+[node name="Saw" type="Sprite2D" parent="Level/WallOfCompress/Host/FrontCircularSaw" index="0"]
 scale = Vector2(2, 2)
-texture = ExtResource("6_ux8qh")
+texture = ExtResource("10_jjeb2")
 
-[node name="Stud" type="Sprite2D" parent="WallOfCompress/Host/FrontCircularSaw"]
+[node name="Stud" type="Sprite2D" parent="Level/WallOfCompress/Host/FrontCircularSaw" index="1"]
 scale = Vector2(2, 2)
-texture = ExtResource("7_71ljj")
+texture = ExtResource("11_5myqr")
 
-[node name="DeathZone" type="Area2D" parent="WallOfCompress"]
+[node name="DeathZone" type="Area2D" parent="Level/WallOfCompress" index="3"]
 scale = Vector2(4, 4)
 collision_layer = 16
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WallOfCompress/DeathZone"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/WallOfCompress/DeathZone" index="0"]
 shape = SubResource("RectangleShape2D_q5xpk")
 
-[node name="WallOfCompress" type="Node2D" parent="WallOfCompress"]
+[node name="WallOfCompress" type="Node2D" parent="Level/WallOfCompress" index="4"]
 scale = Vector2(4, 4)
 
-[node name="Eyes" type="AnimatedSprite2D" parent="WallOfCompress/WallOfCompress"]
+[node name="Eyes" type="AnimatedSprite2D" parent="Level/WallOfCompress/WallOfCompress" index="0"]
 sprite_frames = SubResource("SpriteFrames_pju6c")
 autoplay = "default"
 frame = 3
 frame_progress = 1.0
 
-[node name="Mouths" type="AnimatedSprite2D" parent="WallOfCompress/WallOfCompress"]
+[node name="Mouths" type="AnimatedSprite2D" parent="Level/WallOfCompress/WallOfCompress" index="1"]
 sprite_frames = SubResource("SpriteFrames_cd4hr")
 autoplay = "default"
 
-[node name="Pimples" type="AnimatedSprite2D" parent="WallOfCompress/WallOfCompress"]
+[node name="Pimples" type="AnimatedSprite2D" parent="Level/WallOfCompress/WallOfCompress" index="2"]
 sprite_frames = SubResource("SpriteFrames_8v7ok")
 autoplay = "default"
 frame_progress = 0.963169
 
-[node name="Flesh" type="AnimatedSprite2D" parent="WallOfCompress/WallOfCompress"]
+[node name="Flesh" type="AnimatedSprite2D" parent="Level/WallOfCompress/WallOfCompress" index="3"]
 sprite_frames = SubResource("SpriteFrames_n5ec8")
 autoplay = "default"
 frame_progress = 0.359743
 
-[node name="AchievementArea" parent="." instance=ExtResource("19_eu81e")]
+[node name="AchievementArea" parent="Level" index="7" instance=ExtResource("7_e7up1")]
 position = Vector2(32481, 403)
 _achievementIndex = 32
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AchievementArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/AchievementArea" index="0"]
 position = Vector2(-33, 13)
 shape = SubResource("RectangleShape2D_xykkc")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="Level" index="8"]
 
-[node name="Fog?" type="ColorRect" parent="CanvasLayer"]
+[node name="Fog?" type="ColorRect" parent="Level/CanvasLayer" index="0"]
 offset_right = 1280.0
 offset_bottom = 720.0
 color = Color(0.196078, 0, 0, 0.117647)
 
-[node name="PostProcessingRect" type="ColorRect" parent="CanvasLayer"]
+[node name="PostProcessingRect" type="ColorRect" parent="Level/CanvasLayer" index="1"]
 material = SubResource("ShaderMaterial_udgo0")
 offset_right = 1280.0
 offset_bottom = 720.0
 
-[connection signal="TileMapSpawned" from="TileMapSpawner" to="WallOfCompress" method="UpdateWallSpeedModificator"]
-[connection signal="ButtonPressed" from="TileMap/PlayMusicTrigger" to="." method="PlayMusic" flags=6 binds= ["the Atropy of frontal Cortex", 0.0, 0.0]]
+[node name="PlayMusicTrigger" parent="Level" index="9" instance=ExtResource("20_j8dm3")]
+position = Vector2(832, 352)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/PlayMusicTrigger" index="0"]
+shape = SubResource("RectangleShape2D_47qvc")
+
+[connection signal="TileMapSpawned" from="Level/TileMapSpawner" to="Level/WallOfCompress" method="UpdateWallSpeedModificator" flags=18]
+[connection signal="ButtonPressed" from="Level/PlayMusicTrigger" to="LevelMusicPlayer" method="PlayMusic" flags=6 binds= ["the Atropy of frontal Cortex", 0.0, 0.0]]
+
+[editable path="Pause/Interface/ButtonsFrame/Menu"]

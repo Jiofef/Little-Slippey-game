@@ -1,35 +1,35 @@
-[gd_scene load_steps=38 format=3 uid="uid://d336rqms8o70f"]
+[gd_scene load_steps=38 format=3 uid="uid://cb5qp5c88hxxs"]
 
-[ext_resource type="Script" path="res://Content/Scripts/Levels/BaseLevelScript.cs" id="1_g0fg0"]
-[ext_resource type="Texture2D" uid="uid://q2j1uuqfjmos" path="res://Content/Sprites/Levels/BaseTileSet.png" id="2_7lt5b"]
-[ext_resource type="Texture2D" uid="uid://cy1lov1ry2p21" path="res://Content/Sprites/Levels/Level6/MiddleCity.png" id="2_ahikw"]
-[ext_resource type="PackedScene" uid="uid://dlscufxb5f1ca" path="res://Content/Scenes/Other/Player.tscn" id="2_ltb8i"]
-[ext_resource type="Texture2D" uid="uid://cl251rqg2xbw0" path="res://Content/Sprites/Levels/Level6/Sky.png" id="2_nqfh5"]
-[ext_resource type="Texture2D" uid="uid://dj5m4kmysh1li" path="res://Content/Sprites/Levels/Level6/BackCity.png" id="2_q5h8r"]
-[ext_resource type="Texture2D" uid="uid://dvbdc2wlk062n" path="res://Content/Sprites/Levels/Level6/FrontCity.png" id="3_dlc8r"]
-[ext_resource type="Texture2D" uid="uid://d1fsqrkn16u5n" path="res://Content/Sprites/Levels/Level6/BackgroundGieroFarFlyingCar.png" id="4_qulr2"]
-[ext_resource type="Texture2D" uid="uid://b1dppreruk7js" path="res://Content/Sprites/Levels/poliSiSagEtilEseT.png" id="5_wgand"]
-[ext_resource type="Script" path="res://Content/Scripts/Levels/Foreground.cs" id="6_4r1sy"]
-[ext_resource type="Texture2D" uid="uid://dxr4mhlbsc3" path="res://Content/Sprites/Levels/Level6/BackgroundGieroFlyingCar.png" id="6_cqeyq"]
-[ext_resource type="PackedScene" uid="uid://c8bud6raefbd" path="res://Content/Scenes/Other/Level6FlyingCar.tscn" id="7_gju5d"]
-[ext_resource type="Texture2D" uid="uid://7vgkaba3qbfp" path="res://Content/Sprites/Levels/Level6/BillboardsAnimation.png" id="8_7x0wb"]
-[ext_resource type="Script" path="res://Content/Scripts/Levels/Level6FlyingCarSpawner.cs" id="9_43wb8"]
-[ext_resource type="PackedScene" uid="uid://d3u7pfig07yrs" path="res://Content/Scenes/Other/CrutchedArea2D.tscn" id="15_g4hu2"]
+[ext_resource type="PackedScene" uid="uid://5kfyvxsdpsk2" path="res://Content/Scenes/Other/LevelLayout.tscn" id="1_k46p1"]
+[ext_resource type="Texture2D" uid="uid://cl251rqg2xbw0" path="res://Content/Sprites/Levels/Level6/Sky.png" id="2_suw6p"]
+[ext_resource type="Texture2D" uid="uid://dj5m4kmysh1li" path="res://Content/Sprites/Levels/Level6/BackCity.png" id="3_cqcgm"]
+[ext_resource type="Texture2D" uid="uid://d1fsqrkn16u5n" path="res://Content/Sprites/Levels/Level6/BackgroundGieroFarFlyingCar.png" id="4_7bagj"]
+[ext_resource type="Texture2D" uid="uid://cy1lov1ry2p21" path="res://Content/Sprites/Levels/Level6/MiddleCity.png" id="5_jgavc"]
+[ext_resource type="Texture2D" uid="uid://7vgkaba3qbfp" path="res://Content/Sprites/Levels/Level6/BillboardsAnimation.png" id="6_1miky"]
+[ext_resource type="Texture2D" uid="uid://dxr4mhlbsc3" path="res://Content/Sprites/Levels/Level6/BackgroundGieroFlyingCar.png" id="7_1657n"]
+[ext_resource type="Texture2D" uid="uid://dvbdc2wlk062n" path="res://Content/Sprites/Levels/Level6/FrontCity.png" id="8_bedts"]
+[ext_resource type="PackedScene" uid="uid://dlscufxb5f1ca" path="res://Content/Scenes/Other/Player.tscn" id="9_aum6r"]
+[ext_resource type="Texture2D" uid="uid://q2j1uuqfjmos" path="res://Content/Sprites/Levels/BaseTileSet.png" id="10_gawwt"]
+[ext_resource type="Texture2D" uid="uid://b1dppreruk7js" path="res://Content/Sprites/Levels/poliSiSagEtilEseT.png" id="11_fgsae"]
+[ext_resource type="Script" path="res://Content/Scripts/Levels/Foreground.cs" id="12_ib3hj"]
+[ext_resource type="Script" path="res://Content/Scripts/Levels/Level6FlyingCarSpawner.cs" id="13_528ge"]
+[ext_resource type="PackedScene" uid="uid://c8bud6raefbd" path="res://Content/Scenes/Other/Level6FlyingCar.tscn" id="14_b2d1u"]
+[ext_resource type="PackedScene" uid="uid://d3u7pfig07yrs" path="res://Content/Scenes/Other/CrutchedArea2D.tscn" id="15_uy6ib"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dsyb6"]
-atlas = ExtResource("8_7x0wb")
+atlas = ExtResource("6_1miky")
 region = Rect2(0, 0, 341, 240)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_o57nh"]
-atlas = ExtResource("8_7x0wb")
+atlas = ExtResource("6_1miky")
 region = Rect2(0, 240, 341, 240)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_js5gn"]
-atlas = ExtResource("8_7x0wb")
+atlas = ExtResource("6_1miky")
 region = Rect2(0, 480, 341, 240)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6nm2x"]
-atlas = ExtResource("8_7x0wb")
+atlas = ExtResource("6_1miky")
 region = Rect2(0, 720, 341, 240)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_fnpwm"]
@@ -72,7 +72,7 @@ colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_cuf44"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mxbjq"]
-texture = ExtResource("2_7lt5b")
+texture = ExtResource("10_gawwt")
 0:0/next_alternative_id = 8
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -90,7 +90,7 @@ texture = ExtResource("2_7lt5b")
 2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_v11dt"]
-texture = ExtResource("5_wgand")
+texture = ExtResource("11_fgsae")
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:0/0/physics_layer_0/angular_velocity = 0.0
@@ -182,13 +182,13 @@ sources/0 = SubResource("TileSetAtlasSource_mxbjq")
 sources/2 = SubResource("TileSetAtlasSource_v11dt")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mjv4l"]
-texture = ExtResource("2_7lt5b")
+texture = ExtResource("10_gawwt")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_meifs"]
-texture = ExtResource("5_wgand")
+texture = ExtResource("11_fgsae")
 0:0/next_alternative_id = 2
 0:0/0 = 0
 0:0/1 = 1
@@ -241,36 +241,35 @@ shader_parameter/saturation = 0.9
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ftna0"]
 size = Vector2(128, 128)
 
-[node name="Level6" type="Node2D"]
-script = ExtResource("1_g0fg0")
+[node name="Main" instance=ExtResource("1_k46p1")]
 
-[node name="Background" type="ParallaxBackground" parent="."]
+[node name="Background" type="ParallaxBackground" parent="Level" index="0"]
 
-[node name="Sky" type="ParallaxLayer" parent="Background"]
+[node name="Sky" type="ParallaxLayer" parent="Level/Background" index="0"]
 motion_scale = Vector2(0.1, 0.1)
 
-[node name="Sprite2D" type="Sprite2D" parent="Background/Sky"]
+[node name="Sprite2D" type="Sprite2D" parent="Level/Background/Sky" index="0"]
 position = Vector2(0, -80)
 scale = Vector2(4, 4)
-texture = ExtResource("2_nqfh5")
+texture = ExtResource("2_suw6p")
 centered = false
 
-[node name="BackCity" type="ParallaxLayer" parent="Background"]
+[node name="BackCity" type="ParallaxLayer" parent="Level/Background" index="1"]
 motion_scale = Vector2(0.3, 0.3)
 
-[node name="Sprite2D" type="Sprite2D" parent="Background/BackCity"]
+[node name="Sprite2D" type="Sprite2D" parent="Level/Background/BackCity" index="0"]
 position = Vector2(800, 420)
 scale = Vector2(4, 4)
-texture = ExtResource("2_q5h8r")
+texture = ExtResource("3_cqcgm")
 
-[node name="SkyTrafficFlow" type="CPUParticles2D" parent="Background/BackCity"]
+[node name="SkyTrafficFlow" type="CPUParticles2D" parent="Level/Background/BackCity" index="1"]
 position = Vector2(90, 360)
 amount = 48
 lifetime = 15.0
 preprocess = 16.0
 speed_scale = 1.5
 local_coords = true
-texture = ExtResource("4_qulr2")
+texture = ExtResource("4_7bagj")
 emission_shape = 3
 emission_rect_extents = Vector2(0, 320)
 spread = 15.0
@@ -280,7 +279,7 @@ initial_velocity_max = 125.0
 scale_amount_min = 3.0
 scale_amount_max = 4.0
 
-[node name="SkyTrafficFlow2" type="CPUParticles2D" parent="Background/BackCity"]
+[node name="SkyTrafficFlow2" type="CPUParticles2D" parent="Level/Background/BackCity" index="2"]
 position = Vector2(1485, 360)
 scale = Vector2(-1, 1)
 amount = 48
@@ -288,7 +287,7 @@ lifetime = 15.0
 preprocess = 16.0
 speed_scale = 1.5
 local_coords = true
-texture = ExtResource("4_qulr2")
+texture = ExtResource("4_7bagj")
 emission_shape = 3
 emission_rect_extents = Vector2(0, 320)
 spread = 15.0
@@ -298,29 +297,29 @@ initial_velocity_max = 125.0
 scale_amount_min = 3.0
 scale_amount_max = 4.0
 
-[node name="MiddleCity" type="ParallaxLayer" parent="Background"]
+[node name="MiddleCity" type="ParallaxLayer" parent="Level/Background" index="2"]
 motion_scale = Vector2(0.5, 0.5)
 
-[node name="Sprite2D" type="Sprite2D" parent="Background/MiddleCity"]
+[node name="Sprite2D" type="Sprite2D" parent="Level/Background/MiddleCity" index="0"]
 position = Vector2(800, 380)
 scale = Vector2(4, 4)
-texture = ExtResource("2_ahikw")
+texture = ExtResource("5_jgavc")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Background/MiddleCity"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Level/Background/MiddleCity" index="1"]
 position = Vector2(808, 452)
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_fnpwm")
 autoplay = "default"
 frame_progress = 0.606947
 
-[node name="SkyTrafficFlow" type="CPUParticles2D" parent="Background/MiddleCity"]
+[node name="SkyTrafficFlow" type="CPUParticles2D" parent="Level/Background/MiddleCity" index="2"]
 position = Vector2(160, 420)
 amount = 32
 lifetime = 14.0
 preprocess = 16.0
 speed_scale = 1.5
 local_coords = true
-texture = ExtResource("6_cqeyq")
+texture = ExtResource("7_1657n")
 emission_shape = 3
 emission_rect_extents = Vector2(0, 640)
 spread = 15.0
@@ -330,7 +329,7 @@ initial_velocity_max = 150.0
 scale_amount_min = 3.0
 scale_amount_max = 4.0
 
-[node name="SkyTrafficFlow2" type="CPUParticles2D" parent="Background/MiddleCity"]
+[node name="SkyTrafficFlow2" type="CPUParticles2D" parent="Level/Background/MiddleCity" index="3"]
 position = Vector2(1820, 420)
 scale = Vector2(-1, 1)
 amount = 32
@@ -338,7 +337,7 @@ lifetime = 15.0
 preprocess = 16.0
 speed_scale = 1.5
 local_coords = true
-texture = ExtResource("6_cqeyq")
+texture = ExtResource("7_1657n")
 emission_shape = 3
 emission_rect_extents = Vector2(0, 420)
 spread = 15.0
@@ -348,27 +347,27 @@ initial_velocity_max = 150.0
 scale_amount_min = 3.0
 scale_amount_max = 4.0
 
-[node name="FrontCity" type="ParallaxLayer" parent="Background"]
+[node name="FrontCity" type="ParallaxLayer" parent="Level/Background" index="3"]
 motion_scale = Vector2(0.75, 0.75)
 
-[node name="Sprite2D" type="Sprite2D" parent="Background/FrontCity"]
+[node name="Sprite2D" type="Sprite2D" parent="Level/Background/FrontCity" index="0"]
 position = Vector2(1000, 500)
 scale = Vector2(4, 4)
-texture = ExtResource("3_dlc8r")
+texture = ExtResource("8_bedts")
 
-[node name="Fog" type="ColorRect" parent="Background"]
+[node name="Fog" type="ColorRect" parent="Level/Background" index="4"]
 offset_right = 1280.0
 offset_bottom = 720.0
 color = Color(0, 0.980392, 0.980392, 0.0588235)
 
-[node name="SunLightLayerContainer" type="ParallaxBackground" parent="."]
+[node name="SunLightLayerContainer" type="ParallaxBackground" parent="Level" index="1"]
 layer = 0
 
-[node name="SunLightLayer" type="ParallaxLayer" parent="SunLightLayerContainer"]
+[node name="SunLightLayer" type="ParallaxLayer" parent="Level/SunLightLayerContainer" index="0"]
 z_as_relative = false
 motion_scale = Vector2(0.2, 0)
 
-[node name="SunLight" type="CPUParticles2D" parent="SunLightLayerContainer/SunLightLayer"]
+[node name="SunLight" type="CPUParticles2D" parent="Level/SunLightLayerContainer/SunLightLayer" index="0"]
 position = Vector2(900, -217)
 amount = 128
 lifetime = 6.0
@@ -392,133 +391,135 @@ scale_curve_y = SubResource("Curve_qvp02")
 color = Color(1, 1, 0.501961, 0.0117647)
 color_ramp = SubResource("Gradient_ya28m")
 
-[node name="Player" parent="." instance=ExtResource("2_ltb8i")]
+[node name="Player" parent="Level" index="2" instance=ExtResource("9_aum6r")]
 position = Vector2(1280, 250)
 
-[node name="TileMap" type="TileMap" parent="."]
+[node name="TileMap" type="TileMap" parent="Level" index="3"]
 scale = Vector2(4, 4)
 tile_set = SubResource("TileSet_6qmag")
 format = 2
 layer_0/tile_data = PackedInt32Array(65535, 2, 262146, 131071, 2, 131073, 196607, 2, 131073, 262143, 2, 131073, 327679, 2, 131073, 458751, 2, 262146, 524287, 2, 131073, 589823, 2, 131073, 655359, 2, 131073, 720895, 2, 131073, 786431, 2, 131073, 851967, 2, 262146, 917503, 2, 131073, 983039, 2, 131073, 1048575, 2, 131073, 1114111, 2, 262146, 1179647, 2, 131073, 1245183, 2, 262146, 1310719, 2, 131073, 1310724, 2, 131073, 1310754, 2, 131073, 40, 2, 2, 65576, 2, 131073, 131112, 2, 131073, 196648, 2, 131073, 262184, 2, 2, 327720, 2, 131073, 393256, 2, 131073, 458792, 2, 2, 524328, 2, 131073, 589864, 2, 2, 655400, 2, 131073, 720936, 2, 131073, 786472, 2, 131073, 852008, 2, 2, 917544, 2, 131073, 983080, 2, 2, 1048616, 2, 131073, 1114152, 2, 131073, 1179688, 2, 131073, 1245224, 2, 131073, 1310760, 2, 131073, 1048576, 2, 1, 1048577, 2, 1, 1048578, 2, 1, 1048579, 2, 1, 1048580, 131074, 196609, 1114116, 2, 131073, 1179652, 2, 131073, 1245188, 2, 131073, 983075, 2, 1, 983076, 2, 1, 983077, 2, 1, 983078, 2, 1, 983079, 2, 1, 983074, 131074, 131073, 1048610, 2, 131073, 1114146, 2, 131073, 1179682, 2, 262146, 1245218, 2, 131073, 1441790, 65536, 0, 1507325, 65536, 0, 1245181, 65536, 0, 1310717, 65536, 0, 1376253, 65536, 0, 1441789, 65536, 0, 1245182, 65536, 0, 1310718, 65536, 0, 1376254, 65536, 0, 1507326, 65536, 0, 1376260, 2, 131073, 1441796, 2, 2, 1376290, 2, 131073, 1441826, 2, 262146, 1376296, 2, 131073, 1441832, 2, 131073, 1310761, 65536, 0, 1310762, 65536, 0, 1376297, 65536, 0, 1441833, 65536, 0, 1376298, 65536, 0, 1441834, 65536, 0, -3, 65536, 0, 65533, 65536, 0, 131069, 65536, 0, 196605, 65536, 0, 262141, 65536, 0, 327677, 65536, 0, 393213, 65536, 0, 458749, 65536, 0, 524285, 65536, 0, 589821, 65536, 0, 655357, 65536, 0, 720893, 65536, 0, 786429, 65536, 0, 851965, 65536, 0, 917501, 65536, 0, 983037, 65536, 0, 1048573, 65536, 0, 1114109, 65536, 0, 1179645, 65536, 0, -2, 65536, 0, 65534, 65536, 0, 131070, 65536, 0, 196606, 65536, 0, 262142, 65536, 0, 327678, 65536, 0, 393214, 65536, 0, 458750, 65536, 0, 524286, 65536, 0, 589822, 65536, 0, 655358, 65536, 0, 720894, 65536, 0, 786430, 65536, 0, 851966, 65536, 0, 917502, 65536, 0, 983038, 65536, 0, 1048574, 65536, 0, 1114110, 65536, 0, 1179646, 65536, 0, -65495, 65536, 0, 41, 65536, 0, 65577, 65536, 0, 131113, 65536, 0, 196649, 65536, 0, 262185, 65536, 0, 327721, 65536, 0, 393257, 65536, 0, 458793, 65536, 0, 524329, 65536, 0, 589865, 65536, 0, 655401, 65536, 0, 720937, 65536, 0, 786473, 65536, 0, 852009, 65536, 0, 917545, 65536, 0, 983081, 65536, 0, 1048617, 65536, 0, 1114153, 65536, 0, 1179689, 65536, 0, 1245225, 65536, 0, -65494, 65536, 0, 42, 65536, 0, 65578, 65536, 0, 131114, 65536, 0, 196650, 65536, 0, 262186, 65536, 0, 327722, 65536, 0, 393258, 65536, 0, 458794, 65536, 0, 524330, 65536, 0, 589866, 65536, 0, 655402, 65536, 0, 720938, 65536, 0, 786474, 65536, 0, 852010, 65536, 0, 917546, 65536, 0, 983082, 65536, 0, 1048618, 65536, 0, 1114154, 65536, 0, 1179690, 65536, 0, 1245226, 65536, 0, 851972, 2, 131073, 786436, 2, 131073, 786434, 131074, 1, 786433, 2, 1, 786432, 2, 1, 720900, 2, 131073, 655364, 2, 131073, 589828, 2, 131073, 524292, 2, 2, 458756, 2, 131073, 393220, 2, 131073, 393217, 65538, 1, 393216, 2, 1, 917505, 65538, 196609, 917507, 2, 1, 917508, 131074, 1, 720898, 2, 131073, 655362, 65538, 262145, 524291, 2, 1, 524290, 65538, 196609, 327684, 2, 131073, 262148, 131074, 196609, 262147, 2, 1, 262146, 65538, 196609, 786466, 65538, 196609, 786467, 2, 1, 786468, 2, 1, 786469, 131074, 1, 852007, 65538, 196609, 720934, 65538, 1, 589863, 65538, 196609, 458791, 2, 1, 458790, 2, 1, 458789, 65538, 196609, 589861, 65538, 262145, 655397, 2, 131073, 720933, 2, 262146, 655395, 65538, 131073, 589859, 2, 131073, 524323, 2, 131073, 458787, 131074, 196609, 458786, 65538, 196609, 262180, 2, 1, 262181, 2, 1, 262182, 2, 1, 262183, 2, 1, 917506, 2, 1, 0, 2, 1, 1, 2, 1, 2, 2, 1, 3, 2, 1, 4, 2, 2, 65540, 65538, 131073, 1376255, 2, 131073, 1441791, 2, 131073, 1507327, 2, 131073, 1179683, 2, 1, 1179684, 2, 1, 1179685, 2, 1, 1179686, 131074, 196609, 1245222, 2, 131073, 1310758, 2, 131073, 1376294, 65538, 131073, 1441827, 2, 1, 1441828, 131074, 1, 1376292, 65538, 262145, 1179649, 2, 327682, 1245185, 2, 131073, 1310721, 131074, 262145, 1310722, 65538, 1, 1441794, 2, 1, 1441795, 2, 1, 1441793, 65538, 196609, 1179648, 2, 1, 1179650, 65538, 1, 393215, 2, 131073, 196642, 2, 131073, 131106, 2, 131073, 65570, 2, 131073, 34, 2, 262146, 262179, 2, 1, 262178, 131074, 262145, -131075, 65536, 0, -65539, 65536, 0, -131074, 65536, 0, -65538, 65536, 0, -196567, 65536, 0, -131031, 65536, 0, -196566, 65536, 0, -131030, 65536, 0, -196604, 65536, 0, -131068, 2, 2, -65532, 2, 131073, -131073, 65536, 0, -65537, 2, 131073, -1, 2, 131073, -131069, 2, 1, -131070, 131074, 262145, -196606, 65536, 0, -196603, 65536, 0, -196602, 65536, 0, -196601, 65536, 0, -196600, 65536, 0, -196599, 65536, 0, -196598, 65536, 0, -196597, 65536, 0, -196596, 65536, 0, -196595, 65536, 0, -196594, 65536, 0, -196593, 65536, 0, -196592, 65536, 0, -196591, 65536, 0, -196590, 65536, 0, -196589, 65536, 0, -196588, 65536, 0, -196587, 65536, 0, -196586, 65536, 0, -196585, 65536, 0, -196584, 65536, 0, -196583, 65536, 0, -196582, 65536, 0, -196581, 65536, 0, -196580, 65536, 0, -196579, 65536, 0, -196578, 65536, 0, -196577, 65536, 0, -196576, 65536, 0, -196575, 65536, 0, -196574, 65536, 0, -196573, 65536, 0, -196572, 65536, 0, -196571, 65536, 0, -196570, 65536, 0, -196569, 65536, 0, -196568, 65536, 0, -196608, 65536, 0, -196607, 65536, 0, -196605, 65536, 0, -131038, 2, 131073, -65502, 2, 131073, -131032, 2, 131073, -65496, 2, 131073, 35, 2, 1, 36, 2, 1, 37, 2, 1, 38, 2, 196610, 39, 2, 1, -65498, 2, 131073, -131034, 2, 131073)
 
-[node name="BuildingForeground" type="Node2D" parent="."]
+[node name="BuildingForeground" type="Node2D" parent="Level" index="4"]
 modulate = Color(1, 1, 1, 0.784314)
-script = ExtResource("6_4r1sy")
+script = ExtResource("12_ib3hj")
 
-[node name="TileMap" type="TileMap" parent="BuildingForeground"]
+[node name="TileMap" type="TileMap" parent="Level/BuildingForeground" index="0"]
 modulate = Color(0.501961, 0.501961, 0.501961, 1)
 scale = Vector2(4, 4)
 tile_set = SubResource("TileSet_7xnum")
 format = 2
 layer_0/tile_data = PackedInt32Array(1245188, 1, 65536, 1179652, 1, 65536, 1114116, 1, 65536, 1048580, 1, 65536, 983044, 1, 65536, 983043, 65537, 0, 917507, 131073, 0, 851971, 65537, 0, 786434, 65537, 0, 720898, 65537, 0, 655362, 65537, 0, 589826, 65537, 0, 524289, 65537, 0, 458753, 65537, 0, 393217, 65537, 0, 327681, 65537, 0, 262144, 65537, 0, 0, 65537, 0, 65536, 65537, 0, 131072, 65537, 0, 196608, 65537, 0, 327680, 65537, 0, 393216, 65537, 0, 458752, 65537, 0, 524288, 65537, 0, 589824, 65537, 0, 655360, 65537, 0, 720896, 65537, 0, 786432, 65537, 0, 851968, 65537, 0, 917504, 65537, 0, 983040, 65537, 0, 1048576, 65537, 0, 1114112, 65537, 0, 1179648, 65537, 0, 1245184, 65537, 0, 1, 65537, 0, 65537, 65537, 0, 131073, 65537, 0, 196609, 65537, 0, 262145, 65537, 0, 589825, 65537, 0, 655361, 65537, 0, 720897, 65537, 0, 786433, 65537, 0, 851969, 65537, 0, 917505, 65537, 0, 983041, 65537, 0, 1048577, 65537, 0, 1114113, 65537, 0, 1179649, 65537, 0, 1245185, 65537, 0, 2, 65537, 0, 65538, 65537, 0, 131074, 65537, 0, 196610, 65537, 0, 262146, 65537, 0, 327682, 65537, 0, 393218, 65537, 0, 458754, 65537, 0, 524290, 65537, 0, 851970, 65537, 0, 917506, 65537, 0, 983042, 65537, 0, 1048578, 65537, 0, 1114114, 65537, 0, 1179650, 65537, 0, 1245186, 65537, 0, 3, 65537, 0, 65539, 65537, 0, 131075, 131073, 0, 196611, 65537, 0, 262147, 65537, 0, 327683, 131073, 0, 393219, 65537, 0, 458755, 65537, 0, 524291, 131073, 0, 589827, 65537, 0, 655363, 65537, 0, 720899, 131073, 0, 786435, 65537, 0, 1048579, 65537, 0, 1114115, 131073, 0, 1179651, 65537, 0, 1245187, 65537, 0, 4, 1, 65536, 65540, 1, 65536, 131076, 1, 65536, 196612, 1, 65536, 262148, 1, 65536, 327684, 1, 65536, 393220, 1, 65536, 458756, 1, 65536, 524292, 1, 65536, 589828, 1, 65536, 655364, 1, 65536, 720900, 1, 65536, 786436, 1, 65536, 851972, 1, 65536, 917508, 1, 65536, 35, 65537, 0, 65571, 65537, 0, 131107, 131073, 0, 196643, 65537, 0, 262179, 65537, 0, 458787, 65537, 0, 524323, 65537, 0, 589859, 65537, 0, 655395, 65537, 0, 786467, 65537, 0, 852003, 65537, 0, 917539, 65537, 0, 983075, 65537, 0, 1048611, 131073, 0, 1114147, 65537, 0, 1179683, 65537, 0, 1245219, 65537, 0, 36, 65537, 0, 65572, 65537, 0, 131108, 65537, 0, 196644, 65537, 0, 262180, 65537, 0, 393252, 65537, 0, 458788, 65537, 0, 524324, 65537, 0, 589860, 65537, 0, 655396, 65537, 0, 720932, 65537, 0, 786468, 65537, 0, 852004, 65537, 0, 917540, 65537, 0, 983076, 65537, 0, 1048612, 65537, 0, 1114148, 65537, 0, 1179684, 65537, 0, 1245220, 65537, 0, 37, 65537, 0, 65573, 65537, 0, 131109, 65537, 0, 196645, 65537, 0, 262181, 65537, 0, 458789, 65537, 0, 524325, 65537, 0, 589861, 65537, 0, 655397, 65537, 0, 720933, 65537, 0, 786469, 65537, 0, 852005, 65537, 0, 917541, 65537, 0, 983077, 65537, 0, 1048613, 65537, 0, 1114149, 65537, 0, 1179685, 65537, 0, 1245221, 65537, 0, 38, 65537, 0, 65574, 65537, 0, 131110, 131073, 0, 196646, 65537, 0, 262182, 65537, 0, 393254, 131073, 0, 458790, 65537, 0, 524326, 65537, 0, 589862, 65537, 0, 655398, 65537, 0, 786470, 65537, 0, 852006, 65537, 0, 917542, 65537, 0, 983078, 65537, 0, 1048614, 131073, 0, 1114150, 65537, 0, 1179686, 65537, 0, 1245222, 65537, 0, 39, 65537, 0, 65575, 65537, 0, 131111, 65537, 0, 196647, 65537, 0, 262183, 65537, 0, 327719, 65537, 0, 393255, 65537, 0, 458791, 65537, 0, 524327, 65537, 0, 589863, 65537, 0, 655399, 65537, 0, 720935, 65537, 0, 786471, 65537, 0, 852007, 65537, 0, 917543, 65537, 0, 983079, 65537, 0, 1048615, 65537, 0, 1114151, 65537, 0, 1179687, 65537, 0, 1245223, 65537, 0, 34, 1, 0, 65570, 1, 0, 131106, 1, 0, 196642, 1, 0, 262178, 1, 0, 327714, 1, 0, 393250, 1, 0, 458786, 1, 0, 524322, 1, 0, 589858, 1, 0, 655394, 1, 0, 720930, 1, 0, 786466, 1, 0, 852002, 1, 0, 917538, 1, 0, 983074, 1, 0, 1048610, 1, 0, 1114146, 1, 0, 1179682, 1, 0, 1245218, 1, 0, 393251, 131073, 0, 720931, 131073, 0, 720934, 131073, 0, 1310723, 131073, 0, 1376291, 131073, 0, 1376294, 131073, 0, 1310754, 1, 0, 1376290, 1, 0, 1441826, 1, 0, 1310755, 65537, 0, 1441827, 65537, 0, 1310756, 65537, 0, 1376292, 65537, 0, 1441828, 65537, 0, 1310757, 65537, 0, 1376293, 65537, 0, 1441829, 65537, 0, 1310758, 65537, 0, 1441830, 65537, 0, 1310759, 65537, 0, 1376295, 65537, 0, 1441831, 65537, 0, 1310720, 65537, 0, 1376256, 65537, 0, 1441792, 65537, 0, 1310721, 65537, 0, 1376257, 65537, 0, 1441793, 65537, 0, 1310722, 65537, 0, 1376258, 65537, 0, 1441794, 65537, 0, 1376259, 65537, 0, 1441795, 65537, 0, 1310724, 1, 65536, 1376260, 1, 65536, 1441796, 1, 65536, 327715, 65537, 0, 327716, 65537, 0, 327717, 65537, 0, 327718, 65537, 0, 393253, 65537, 0, 65535, 65537, 0, 131071, 65537, 0, 196607, 65537, 0, 262143, 65537, 0, 327679, 65537, 0, 393215, 65537, 0, 458751, 65537, 0, 524287, 65537, 0, 589823, 65537, 0, 655359, 65537, 0, 720895, 65537, 0, 786431, 65537, 0, 851967, 65537, 0, 917503, 65537, 0, 983039, 65537, 0, 1048575, 65537, 0, 1114111, 65537, 0, 1179647, 65537, 0, 1245183, 65537, 0, 1310719, 65537, 0, 1376255, 65537, 0, 1441791, 65537, 0, 1507327, 65537, 0, 1441832, 65537, 0, 1376296, 65537, 0, 1310760, 65537, 0, 1245224, 65537, 0, 1179688, 65537, 0, 1114152, 65537, 0, 1048616, 65537, 0, 983080, 65537, 0, 917544, 65537, 0, 852008, 65537, 0, 786472, 65537, 0, 720936, 65537, 0, 655400, 65537, 0, 589864, 65537, 0, 524328, 65537, 0, 458792, 65537, 0, 393256, 65537, 0, 327720, 65537, 0, 262184, 65537, 0, 196648, 65537, 0, 131112, 65537, 0, 65576, 65537, 0, 40, 65537, 0, -131038, 1, 0, -65502, 1, 0, -131032, 1, 65536, -65496, 1, 65536, -196568, 1, 65536, -196574, 1, 0, -196573, 65537, 0, -131037, 131073, 0, -65501, 65537, 0, -196572, 65537, 0, -131036, 65537, 0, -65500, 65537, 0, -196571, 65537, 0, -131035, 65537, 0, -65499, 65537, 0, -196570, 65537, 0, -131034, 131073, 0, -65498, 65537, 0, -196569, 65537, 0, -131033, 65537, 0, -65497, 65537, 0, -131069, 131073, 0, -65536, 65537, 0, -65535, 65537, 0, -65534, 65537, 0, -65533, 65537, 0, -131072, 65537, 0, -131071, 65537, 0, -131070, 65537, 0, -131068, 1, 65536, -65532, 1, 65536, -65537, 1, 0, -1, 1, 0)
 
-[node name="ForegroundArea" type="Area2D" parent="BuildingForeground/TileMap"]
+[node name="ForegroundArea" type="Area2D" parent="Level/BuildingForeground/TileMap" index="0"]
 scale = Vector2(0.25, 0.25)
 collision_layer = 64
 
-[node name="CollisionShape1" type="CollisionShape2D" parent="BuildingForeground/TileMap/ForegroundArea"]
+[node name="CollisionShape1" type="CollisionShape2D" parent="Level/BuildingForeground/TileMap/ForegroundArea" index="0"]
 position = Vector2(160.5, 576)
 shape = SubResource("RectangleShape2D_juenn")
 
-[node name="CollisionShape2" type="CollisionShape2D" parent="BuildingForeground/TileMap/ForegroundArea"]
+[node name="CollisionShape2" type="CollisionShape2D" parent="Level/BuildingForeground/TileMap/ForegroundArea" index="1"]
 position = Vector2(2367.5, 576)
 shape = SubResource("RectangleShape2D_1m1eg")
 
-[node name="DeathZone" type="Area2D" parent="."]
+[node name="DeathZone" type="Area2D" parent="Level" index="5"]
 position = Vector2(1280, 1280)
 collision_layer = 16
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DeathZone"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/DeathZone" index="0"]
 position = Vector2(-32, 32)
 shape = SubResource("RectangleShape2D_4tgqd")
 
-[node name="ColorRect" type="ColorRect" parent="DeathZone"]
+[node name="ColorRect" type="ColorRect" parent="Level/DeathZone" index="1"]
 offset_left = -1472.0
 offset_right = 1472.0
 offset_bottom = 192.0
 color = Color(1, 0, 0, 0.392157)
 
-[node name="FlyingCarSpawner" type="Node2D" parent="."]
-script = ExtResource("9_43wb8")
+[node name="FlyingCarSpawner" type="Node2D" parent="Level" index="6"]
+script = ExtResource("13_528ge")
 
-[node name="FlyingCar" parent="FlyingCarSpawner" instance=ExtResource("7_gju5d")]
+[node name="FlyingCar" parent="Level/FlyingCarSpawner" index="0" instance=ExtResource("14_b2d1u")]
 position = Vector2(1100, 650)
 _isPreSpawned = true
 
-[node name="FlyingCar2" parent="FlyingCarSpawner" instance=ExtResource("7_gju5d")]
+[node name="FlyingCar2" parent="Level/FlyingCarSpawner" index="1" instance=ExtResource("14_b2d1u")]
 position = Vector2(1975, 650)
 scale = Vector2(-1, 1)
 _isPreSpawned = true
 
-[node name="FlyingCar3" parent="FlyingCarSpawner" instance=ExtResource("7_gju5d")]
+[node name="FlyingCar3" parent="Level/FlyingCarSpawner" index="2" instance=ExtResource("14_b2d1u")]
 position = Vector2(757, 489)
 scale = Vector2(-1, 1)
 _isPreSpawned = true
 
-[node name="FlyingCar4" parent="FlyingCarSpawner" instance=ExtResource("7_gju5d")]
+[node name="FlyingCar4" parent="Level/FlyingCarSpawner" index="3" instance=ExtResource("14_b2d1u")]
 position = Vector2(1931, 1222)
 scale = Vector2(-1, 1)
 _isPreSpawned = true
 
-[node name="FlyingCar5" parent="FlyingCarSpawner" instance=ExtResource("7_gju5d")]
+[node name="FlyingCar5" parent="Level/FlyingCarSpawner" index="4" instance=ExtResource("14_b2d1u")]
 position = Vector2(1281, 186)
 scale = Vector2(-1, 1)
 _isPreSpawned = true
 
-[node name="FlyingCar6" parent="FlyingCarSpawner" instance=ExtResource("7_gju5d")]
+[node name="FlyingCar6" parent="Level/FlyingCarSpawner" index="5" instance=ExtResource("14_b2d1u")]
 position = Vector2(729, 783)
 scale = Vector2(-1, 1)
 _isPreSpawned = true
 
-[node name="FlyingCar7" parent="FlyingCarSpawner" instance=ExtResource("7_gju5d")]
+[node name="FlyingCar7" parent="Level/FlyingCarSpawner" index="6" instance=ExtResource("14_b2d1u")]
 position = Vector2(1264, 888)
 scale = Vector2(-1, 1)
 _isPreSpawned = true
 
-[node name="FlyingCar8" parent="FlyingCarSpawner" instance=ExtResource("7_gju5d")]
+[node name="FlyingCar8" parent="Level/FlyingCarSpawner" index="7" instance=ExtResource("14_b2d1u")]
 position = Vector2(2000, 450)
 scale = Vector2(-1, 1)
 _isPreSpawned = true
 
-[node name="FlyingCar9" parent="FlyingCarSpawner" instance=ExtResource("7_gju5d")]
+[node name="FlyingCar9" parent="Level/FlyingCarSpawner" index="8" instance=ExtResource("14_b2d1u")]
 position = Vector2(950, 1026)
 _isPreSpawned = true
 
-[node name="FlyingCar10" parent="FlyingCarSpawner" instance=ExtResource("7_gju5d")]
+[node name="FlyingCar10" parent="Level/FlyingCarSpawner" index="9" instance=ExtResource("14_b2d1u")]
 position = Vector2(1555, 1064)
 _isPreSpawned = true
 
-[node name="FlyingCar11" parent="FlyingCarSpawner" instance=ExtResource("7_gju5d")]
+[node name="FlyingCar11" parent="Level/FlyingCarSpawner" index="10" instance=ExtResource("14_b2d1u")]
 position = Vector2(560, 1119)
 _isPreSpawned = true
 
-[node name="FlyingCar12" parent="FlyingCarSpawner" instance=ExtResource("7_gju5d")]
+[node name="FlyingCar12" parent="Level/FlyingCarSpawner" index="11" instance=ExtResource("14_b2d1u")]
 position = Vector2(1924, 212)
 
-[node name="FlyingCar13" parent="FlyingCarSpawner" instance=ExtResource("7_gju5d")]
+[node name="FlyingCar13" parent="Level/FlyingCarSpawner" index="12" instance=ExtResource("14_b2d1u")]
 position = Vector2(581, 298)
 _isPreSpawned = true
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="Level" index="7"]
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+[node name="ColorRect" type="ColorRect" parent="Level/CanvasLayer" index="0"]
 offset_right = 1280.0
 offset_bottom = 720.0
 mouse_filter = 2
 color = Color(0, 1, 1, 0.0588235)
 
-[node name="PostProcessingRect" type="ColorRect" parent="CanvasLayer"]
+[node name="PostProcessingRect" type="ColorRect" parent="Level/CanvasLayer" index="1"]
 material = SubResource("ShaderMaterial_0j46r")
 offset_right = 1280.0
 offset_bottom = 720.0
 
-[node name="PlayMusicTrigger" parent="." instance=ExtResource("15_g4hu2")]
+[node name="PlayMusicTrigger" parent="Level" index="8" instance=ExtResource("15_uy6ib")]
 position = Vector2(1280, 250)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayMusicTrigger"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/PlayMusicTrigger" index="0"]
 shape = SubResource("RectangleShape2D_ftna0")
 
-[connection signal="body_entered" from="BuildingForeground/TileMap/ForegroundArea" to="BuildingForeground" method="Hide" unbinds=1]
-[connection signal="body_exited" from="BuildingForeground/TileMap/ForegroundArea" to="BuildingForeground" method="Show" unbinds=1]
-[connection signal="ButtonPressed" from="PlayMusicTrigger" to="." method="PlayMusic" flags=6 binds= ["Clair De Phare", 10.19, 0.0]]
+[connection signal="body_entered" from="Level/BuildingForeground/TileMap/ForegroundArea" to="Level/BuildingForeground" method="Hide" flags=18 unbinds=1]
+[connection signal="body_exited" from="Level/BuildingForeground/TileMap/ForegroundArea" to="Level/BuildingForeground" method="Show" flags=18 unbinds=1]
+[connection signal="ButtonPressed" from="Level/PlayMusicTrigger" to="LevelMusicPlayer" method="PlayMusic" flags=6 binds= ["Clair De Phare", 10.19, 0.0]]
+
+[editable path="Pause/Interface/ButtonsFrame/Menu"]

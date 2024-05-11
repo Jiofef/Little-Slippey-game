@@ -249,7 +249,7 @@ _data = {
 shader = ExtResource("2_i0xj5")
 shader_parameter/brightness = 1.0
 
-[node name="Level" type="Node2D"]
+[node name="Main" type="Node2D"]
 process_mode = 3
 script = ExtResource("2")
 metadata/_edit_vertical_guides_ = [-234.0]

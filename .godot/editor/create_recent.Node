@@ -1,5 +1,5 @@
-CanvasLayer
 AnimationPlayer
+CanvasLayer
 Node2D
 CollisionShape2D
 AudioStreamPlayer

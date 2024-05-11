@@ -588,7 +588,7 @@ sources/0 = SubResource("TileSetAtlasSource_hl1pk")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_14w2j"]
 size = Vector2(128, 128)
 
-[node name="Level" instance=ExtResource("1_xrr5q")]
+[node name="Main" instance=ExtResource("1_xrr5q")]
 
 [node name="Background" type="ParallaxBackground" parent="Level" index="0"]
 

@@ -216,7 +216,7 @@ _data = {
 "Brightening": SubResource("Animation_2bi7u")
 }
 
-[node name="Level" instance=ExtResource("1_t253m")]
+[node name="Main" instance=ExtResource("1_t253m")]
 
 [node name="Level" parent="." index="1"]
 process_mode = 4

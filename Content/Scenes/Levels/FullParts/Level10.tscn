@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://cma82s1tmg4rd"]
+
+[ext_resource type="PackedScene" uid="uid://5kfyvxsdpsk2" path="res://Content/Scenes/Other/LevelLayout.tscn" id="1_j7pxu"]
+
+[node name="Main" instance=ExtResource("1_j7pxu")]
+
+[editable path="Pause/Interface/ButtonsFrame/Menu"]

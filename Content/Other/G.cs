@@ -27,10 +27,6 @@ public partial class G : Node
 		new Vector2(2560, 1280),
 		new Vector2(2560, 1280)
 	};
-    public override void _Process(double delta)
-    {
-		GD.Print(TransitiveVariant[0]);
-    }
     public static float GetPlayerCorpseFlightTimerCoeff()
 	{
 		return PlayerCorpseFlightTimer / 4.5f;

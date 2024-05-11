@@ -5,7 +5,7 @@ public partial class Level1AdditionalBrightnessAnimationPlayer : AnimationPlayer
 {
 	public override void _Ready()
 	{
-		if ((bool)G.TransitiveVariant[0] || true)
+		if ((bool)G.TransitiveVariant[0])
 		{
 			G.TransitiveVariant[0] = "";
 			Play("Brightening");
