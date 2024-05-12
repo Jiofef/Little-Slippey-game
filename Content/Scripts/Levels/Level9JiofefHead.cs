@@ -4,6 +4,7 @@ using System.Linq;
 
 public partial class Level9JiofefHead : Node2D
 {
+	[Signal] public delegate void HeadDeadEventHandler();
 	AnimationPlayer _animationPlayer;
 	AnimatedSprite2D _animatedSprite2D;
 	CharacterBody2D _player;
@@ -162,6 +163,7 @@ public partial class Level9JiofefHead : Node2D
 			_animationPlayer.Play("D E A T H");
 			_animationPlayer.SpeedScale = 1;
 			G.IsCrossesEnabled = false;
+			EmitSignal("HeadDead");
 		}
 	}
 

@@ -590,6 +590,9 @@ size = Vector2(128, 128)
 
 [node name="Main" instance=ExtResource("1_xrr5q")]
 
+[node name="Level" parent="." index="1"]
+process_mode = 4
+
 [node name="Background" type="ParallaxBackground" parent="Level" index="0"]
 
 [node name="Sky" type="ParallaxLayer" parent="Level/Background" index="0"]
@@ -805,6 +808,12 @@ position = Vector2(1440, 288)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/PlayMusicTrigger" index="0"]
 shape = SubResource("RectangleShape2D_14w2j")
+
+[node name="BrightnessRect" parent="EpicIntro" index="1"]
+_value = 0.0
+
+[node name="Glare" parent="EpicIntro" index="2"]
+modulate = Color(1, 1, 1, 0)
 
 [connection signal="ButtonPressed" from="Level/PlayMusicTrigger" to="LevelMusicPlayer" method="PlayMusic" flags=6 binds= ["Selected Breakcore Work", 18.35, 0.0]]
 

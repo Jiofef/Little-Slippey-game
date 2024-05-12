@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://dydgg68xlbmyx"]
 
 [ext_resource type="Script" path="res://Content/Scripts/Levels/Level9JiofefHeadDeathParticles.cs" id="1_5djou"]
-[ext_resource type="AudioStream" uid="uid://t7mmc2687hs0" path="res://Content/Sounds/Levels/Level9Chaos.mp3" id="2_cncxe"]
+[ext_resource type="AudioStream" uid="uid://bb57chgdorit5" path="res://Content/Sounds/Levels/Level9Chaos.mp3" id="2_cncxe"]
 [ext_resource type="AudioStream" uid="uid://j3eptu8vfa8h" path="res://Content/Sounds/Levels/Level9ChaosIsOver.mp3" id="3_putbu"]
 
 [sub_resource type="Gradient" id="Gradient_v7153"]
@@ -52,11 +52,9 @@ autostart = true
 [node name="Chaos" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_cncxe")
 autoplay = true
-bus = &"LevelSounds"
 
 [node name="ChaosIsOver" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_putbu")
-bus = &"LevelSounds"
 
 [connection signal="timeout" from="Timer" to="." method="OnTimerTimeout"]
 [connection signal="timeout" from="ParticlesEmittingTimer" to="." method="ChaosIsOver"]

@@ -3,7 +3,7 @@ using System;
 
 public partial class Level10RealityDissector : Node
 {
-    [Signal] public delegate void LevelResetEventHandler();
+    [Signal] public delegate void ChangeSceneEventHandler();
 
     CharacterBody2D _player;
 	public override void _Ready()
@@ -31,6 +31,6 @@ public partial class Level10RealityDissector : Node
 		if (!UnchangableMeta.IsFakeLevel10SkipAllowed)
 			UnchangableMeta.IsFakeLevel10SkipAllowed = true;
 		G.LevelAdditionalLink = "True";
-		EmitSignal("LevelReset");
+		EmitSignal("ChangeScene");
     }
 }
