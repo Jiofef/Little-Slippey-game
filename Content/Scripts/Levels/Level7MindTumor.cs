@@ -34,6 +34,6 @@ public partial class Level7MindTumor : Area2D
     {
         UnchangableMeta.SaveRecords();
         UnchangableMeta.SaveToFile();
-        GetNode("../../../..").QueueFree();
+        GetNode("../../..").QueueFree();
     }
 }

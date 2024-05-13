@@ -803,7 +803,7 @@ tracks/4/keys = {
 "times": PackedFloat32Array(0, 2, 8),
 "transitions": PackedFloat32Array(0, 0.5, 1),
 "update": 0,
-"values": [0.0, 4.0, 1.0]
+"values": [0.0, 4.0, 1.15]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
@@ -824,10 +824,10 @@ tracks/6/path = NodePath("Level:process_mode")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0, 2),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [4, 1]
+"values": [4]
 }
 tracks/7/type = "method"
 tracks/7/imported = false
@@ -841,6 +841,20 @@ tracks/7/keys = {
 "values": [{
 "args": [true],
 "method": &"Set"
+}]
+}
+tracks/8/type = "method"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Level")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"StartLevel"
 }]
 }
 
@@ -1192,7 +1206,7 @@ offset_right = 1280.0
 offset_bottom = 720.0
 mouse_filter = 2
 script = ExtResource("7_fj1rh")
-_value = 1.1
+_value = 1.15
 metadata/_edit_lock_ = true
 
 [node name="PlayMusicTrigger" parent="Level" instance=ExtResource("4_a6s5x")]

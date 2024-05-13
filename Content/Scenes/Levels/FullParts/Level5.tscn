@@ -349,10 +349,10 @@ tracks/4/path = NodePath("../Level:process_mode")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 2),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [4, 1]
+"values": [4]
 }
 tracks/5/type = "method"
 tracks/5/imported = false
@@ -366,6 +366,20 @@ tracks/5/keys = {
 "values": [{
 "args": [true],
 "method": &"Set"
+}]
+}
+tracks/6/type = "method"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../Level")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"StartLevel"
 }]
 }
 
@@ -539,16 +553,17 @@ libraries = {
 script = ExtResource("17_mjowy")
 
 [node name="TopRect" type="ColorRect" parent="EpicIntro"]
+offset_top = -180.0
 offset_right = 1280.0
-offset_bottom = 360.0
+offset_bottom = 180.0
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
 metadata/_edit_lock_ = true
 
 [node name="BottomRect" type="ColorRect" parent="EpicIntro"]
-offset_top = 360.0
+offset_top = 540.0
 offset_right = 1280.0
-offset_bottom = 720.0
+offset_bottom = 900.0
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
 metadata/_edit_lock_ = true

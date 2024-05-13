@@ -969,7 +969,7 @@ bus = &"Music"
 script = ExtResource("2_1fwqt")
 
 [node name="Level" type="Node2D" parent="."]
-process_mode = 1
+process_mode = 4
 script = ExtResource("2_8e3wu")
 
 [node name="Background" type="ParallaxBackground" parent="Level"]
@@ -1305,11 +1305,11 @@ offset_right = 1280.0
 offset_bottom = 720.0
 mouse_filter = 2
 script = ExtResource("25_duxyh")
-_value = 4.0
+_value = 0.0
 metadata/_edit_lock_ = true
 
 [node name="Glare" type="ColorRect" parent="EpicIntro"]
-modulate = Color(1, 1, 1, 0.501961)
+modulate = Color(1, 1, 1, 0)
 offset_right = 1280.0
 offset_bottom = 720.0
 mouse_filter = 2
@@ -1339,6 +1339,8 @@ bus = &"Interface"
 [node name="PopupAchievementsLayer" type="CanvasLayer" parent="."]
 layer = 100
 
+[connection signal="ready" from="." to="." method="SetProgressPaused" flags=6 binds= [false]]
+[connection signal="ready" from="." to="." method="SetCrossesEnabled" flags=6 binds= [true]]
 [connection signal="area_entered" from="Level/Player/Areas/PlayerDamageDetector" to="Level/PositionCrutch/DroneCapsule/Timer" method="start" flags=22 unbinds=1]
 [connection signal="timeout" from="Level/PositionCrutch/DroneCapsule/Timer" to="Level/PositionCrutch/DroneCapsule" method="Departure" flags=18]
 [connection signal="pressed" from="Pause/Interface/ButtonsFrame/Resume" to="." method="UnPause" flags=18]

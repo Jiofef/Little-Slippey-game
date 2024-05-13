@@ -102,6 +102,23 @@ public partial class MainScript : Node2D
             _levelMusicPlayer.Stop();
         }
     }
+
+    public void SetCrossesEnabled(bool value)
+    {
+        G.IsCrossesEnabled = value;
+    }
+    public void SetCrossesSpawnMultiplier(float value)
+    {
+        G.CrossSpawnMultiplier = value;
+    }
+    public void SetProgressPaused(bool value)
+    {
+        G.IsProgressPaused = value;
+    }
+    public void GiveAchievement(int index)
+    {
+        G.GetAchievement(index);
+    }
     public void DebugTransitiveValue(int index)
     {
         GD.Print(G.TransitiveVariant[index]);

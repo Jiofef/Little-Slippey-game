@@ -220,10 +220,10 @@ tracks/6/path = NodePath("Level:process_mode")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0, 2),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [4, 1]
+"values": [4]
 }
 tracks/7/type = "method"
 tracks/7/imported = false
@@ -237,6 +237,20 @@ tracks/7/keys = {
 "values": [{
 "args": [true],
 "method": &"Set"
+}]
+}
+tracks/8/type = "method"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Level")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"StartLevel"
 }]
 }
 
@@ -264,7 +278,7 @@ libraries = {
 }
 
 [node name="Level" type="Node2D" parent="."]
-process_mode = 1
+process_mode = 4
 script = ExtResource("3_mid8o")
 
 [node name="Pause" type="CanvasLayer" parent="."]
@@ -370,11 +384,11 @@ offset_right = 1280.0
 offset_bottom = 720.0
 mouse_filter = 2
 script = ExtResource("9_mh7p1")
-_value = 4.0
+_value = 0.0
 metadata/_edit_lock_ = true
 
 [node name="Glare" type="ColorRect" parent="EpicIntro"]
-modulate = Color(1, 1, 1, 0.501961)
+modulate = Color(1, 1, 1, 0)
 offset_right = 1280.0
 offset_bottom = 720.0
 mouse_filter = 2

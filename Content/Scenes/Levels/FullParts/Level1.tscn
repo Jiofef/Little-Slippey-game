@@ -218,9 +218,6 @@ _data = {
 
 [node name="Main" instance=ExtResource("1_t253m")]
 
-[node name="Level" parent="." index="1"]
-process_mode = 4
-
 [node name="Background" type="ParallaxBackground" parent="Level" index="0"]
 
 [node name="Sky" type="ParallaxLayer" parent="Level/Background" index="0"]
@@ -355,12 +352,6 @@ position = Vector2(640, 375)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/PlayMusicTrigger" index="0"]
 shape = SubResource("RectangleShape2D_x02e7")
-
-[node name="BrightnessRect" parent="EpicIntro" index="1"]
-_value = 0.0
-
-[node name="Glare" parent="EpicIntro" index="2"]
-modulate = Color(1, 1, 1, 0)
 
 [node name="AdditionalBrightnessLayer" type="CanvasLayer" parent="." index="4"]
 
