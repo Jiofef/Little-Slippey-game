@@ -52,7 +52,7 @@ public partial class BaseLevelScript : Node2D
         if (!G.IsProgressPaused)
         {
             G.Scores += _floatDelta;
-            _weightMultiplierExtenderToCurrentCross += (_floatDelta * CrossDefaultWeight[_lastAviableCrossNumber]) / 30;
+            _weightMultiplierExtenderToCurrentCross += (_floatDelta * CrossDefaultWeight[_lastAviableCrossNumber]) / 30 * G.CrossesProgressCoeff;
         }
 
 

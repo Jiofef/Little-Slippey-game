@@ -4,7 +4,7 @@ public partial class G : Node
 {
 	// G is gameplay singleton, that having importal information which may be needed in various places of the game. They will not save by exiting the game
 	public static bool IsSystemInitiated, IsPlayerDead, IsNewRecordReached, IsProgressPaused = false, IsCrossesEnabled = true, _isLevel10Finaling = false, DidLevelIntroPassed;
-	public static float PlayerMoveCoeff = 1, Scores = 0, ResetTimer, PlayerCorpseFlightTimer, AfterPlayerCorpseFlightTimer, CrossSpawnMultiplier = 1, MusicStopTimeCode = 0, MusicRestartPosition = 0;
+	public static float PlayerMoveCoeff = 1, Scores = 0, ResetTimer, PlayerCorpseFlightTimer, AfterPlayerCorpseFlightTimer, CrossSpawnMultiplier = 1, CrossesProgressCoeff = 1, MusicStopTimeCode = 0, MusicRestartPosition = 0;
 	public static int CurrentLevel;
 	public static string LevelAdditionalLink, MusicName = "";
 	public static Vector4 CameraLimits;
@@ -27,6 +27,10 @@ public partial class G : Node
 		new Vector2(2560, 1280),
 		new Vector2(2560, 1280)
 	};
+    public override void _PhysicsProcess(double delta)
+    {
+		//GD.Print();
+    }
     public static float GetPlayerCorpseFlightTimerCoeff()
 	{
 		return PlayerCorpseFlightTimer / 4.5f;
@@ -51,8 +55,13 @@ public partial class G : Node
 		IsProgressPaused = false;
 		CrossSpawnMultiplier = 1;
 		IsCrossesEnabled = true;
+		CrossesProgressCoeff = 1;
 		CurrentLevel = 0;
-		AudioServer.SetBusEffectEnabled(2, 0, false);
+        DidLevelIntroPassed = false;
+        MusicRestartPosition = 0;
+        MusicStopTimeCode = 0;
+        MusicName = "";
+        AudioServer.SetBusEffectEnabled(2, 0, false);
 		AudioServer.SetBusEffectEnabled(6, 0, false);
 	}
 

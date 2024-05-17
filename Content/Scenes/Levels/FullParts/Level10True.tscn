@@ -1,8 +1,9 @@
-[gd_scene load_steps=54 format=3 uid="uid://c2nxiddufnutu"]
+[gd_scene load_steps=55 format=3 uid="uid://c2nxiddufnutu"]
 
 [ext_resource type="Script" path="res://Content/Scripts/Other/MainScript.cs" id="1_52yug"]
 [ext_resource type="Script" path="res://Content/Scripts/Levels/Level10MusicPlayer.cs" id="2_1fwqt"]
 [ext_resource type="Script" path="res://Content/Scripts/Levels/BaseLevelScript.cs" id="2_8e3wu"]
+[ext_resource type="Script" path="res://Content/Scripts/Levels/Level10ScientistScript.cs" id="4_dq252"]
 [ext_resource type="Texture2D" uid="uid://bif1cr6n4hvie" path="res://Content/Sprites/Levels/Level10/TestChamber.png" id="4_i3a5a"]
 [ext_resource type="Texture2D" uid="uid://cp7kra2fyq5jn" path="res://Content/Sprites/Levels/Level10/BackPipes.png" id="5_rf2xq"]
 [ext_resource type="Texture2D" uid="uid://vymh2b710qgl" path="res://Content/Sprites/Levels/Level10/ForePipes.png" id="6_m6e61"]
@@ -929,10 +930,10 @@ tracks/6/path = NodePath("Level:process_mode")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0, 2),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [4, 1]
+"values": [4]
 }
 tracks/7/type = "method"
 tracks/7/imported = false
@@ -946,6 +947,20 @@ tracks/7/keys = {
 "values": [{
 "args": [true],
 "method": &"Set"
+}]
+}
+tracks/8/type = "method"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Level")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"StartLevel"
 }]
 }
 
@@ -971,6 +986,11 @@ script = ExtResource("2_1fwqt")
 [node name="Level" type="Node2D" parent="."]
 process_mode = 4
 script = ExtResource("2_8e3wu")
+
+[node name="ScientistNode" type="Node2D" parent="Level"]
+script = ExtResource("4_dq252")
+
+[node name="Gramophone" type="AudioStreamPlayer2D" parent="Level/ScientistNode"]
 
 [node name="Background" type="ParallaxBackground" parent="Level"]
 
@@ -1076,12 +1096,6 @@ layer_2/tile_data = PackedInt32Array(786447, 65540, 2, 851983, 65540, 2, 786448,
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Level"]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Level/CanvasLayer"]
-autoplay = "Blumxd"
-libraries = {
-"": SubResource("AnimationLibrary_dxx2d")
-}
-
 [node name="ColorRect" type="ColorRect" parent="Level/CanvasLayer"]
 offset_right = 1280.0
 offset_bottom = 720.0
@@ -1091,6 +1105,13 @@ metadata/_edit_lock_ = true
 stream = ExtResource("11_i50es")
 volume_db = 6.0
 autoplay = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Level/CanvasLayer/ColorRect"]
+root_node = NodePath("../..")
+autoplay = "Blumxd"
+libraries = {
+"": SubResource("AnimationLibrary_dxx2d")
+}
 
 [node name="NoiseNoise" type="AnimatedSprite2D" parent="Level/CanvasLayer"]
 modulate = Color(1, 1, 1, 0)
@@ -1339,13 +1360,17 @@ bus = &"Interface"
 [node name="PopupAchievementsLayer" type="CanvasLayer" parent="."]
 layer = 100
 
-[connection signal="ready" from="." to="." method="SetProgressPaused" flags=6 binds= [false]]
 [connection signal="ready" from="." to="." method="SetCrossesEnabled" flags=6 binds= [true]]
+[connection signal="ready" from="." to="." method="SetCrossesSpawnMultiplier" flags=6 binds= [1.0]]
+[connection signal="ready" from="." to="." method="SetProgressPaused" flags=6 binds= [false]]
+[connection signal="ready" from="." to="." method="SetCrossesProgressCoeff" flags=6 binds= [0.5]]
+[connection signal="PlayerDied" from="Level/Player" to="Level/ScientistNode" method="PlayerDied" flags=6]
 [connection signal="area_entered" from="Level/Player/Areas/PlayerDamageDetector" to="Level/PositionCrutch/DroneCapsule/Timer" method="start" flags=22 unbinds=1]
 [connection signal="timeout" from="Level/PositionCrutch/DroneCapsule/Timer" to="Level/PositionCrutch/DroneCapsule" method="Departure" flags=18]
 [connection signal="pressed" from="Pause/Interface/ButtonsFrame/Resume" to="." method="UnPause" flags=18]
 [connection signal="pressed" from="Pause/Interface/ButtonsFrame/Options" to="." method="Options" flags=18]
 [connection signal="pressed" from="Pause/Interface/ButtonsFrame/Menu" to="." method="Menu" flags=18]
+[connection signal="pressed" from="Pause/Interface/ButtonsFrame/Menu" to="." method="ResetTransitiveValue" flags=6 binds= [1]]
 [connection signal="animation_finished" from="EpicIntro/AnimationPlayer" to="EpicIntro" method="queue_free" flags=18 unbinds=1]
 
 [editable path="Level/Player"]

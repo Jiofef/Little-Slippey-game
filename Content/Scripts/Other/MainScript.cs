@@ -111,6 +111,10 @@ public partial class MainScript : Node2D
     {
         G.CrossSpawnMultiplier = value;
     }
+    public void SetCrossesProgressCoeff(float value)
+    {
+        G.CrossesProgressCoeff = value;
+    }
     public void SetProgressPaused(bool value)
     {
         G.IsProgressPaused = value;
