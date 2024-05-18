@@ -71,27 +71,23 @@ public partial class Camera : Camera2D
             float PlayerCorpseFlightTimerX50 = G.PlayerCorpseFlightTimer * 50;
             LimitsChangingBy(false, -PlayerCorpseFlightTimerX50 - LimitsExpansion.Y, PlayerCorpseFlightTimerX50 + LimitsExpansion.X, PlayerCorpseFlightTimerX50 + LimitsExpansion.Y, -PlayerCorpseFlightTimerX50 - LimitsExpansion.X);
 
-            if (G.PlayerCorpseFlightTimer >= 4.5f && !G._isLevel10Finaling)
+            if (G.PlayerCorpseFlightTimer >= 4.5f)
             {
                 var emergingElements = GetNode<Node2D>("GUI/EmergingElements");
-                if (!emergingElements.Visible)
+                if (G.IsNewRecordReached)
                 {
-                    emergingElements.Visible = true;
-                    if (G.IsNewRecordReached)
-                    {
-                        string link = "GUI/EmergingElements/NewRecordScores";
-                        var newRecordScores = GetNode<Label>(link);
-                        newRecordScores.Text = Tr("New Record!\nScore: ") + (int)G.Scores;
-                        newRecordScores.Visible = true;
-                        GetNode<CpuParticles2D>(link + "/Shine1").Emitting = true;
-                        GetNode<CpuParticles2D>(link + "/Shine2").Emitting = true;
-                    }
-                    else
-                    {
-                        var emergingScores = GetNode<Label>("GUI/EmergingElements/Scores");
-                        emergingScores.Visible = true;
-                        emergingScores.Text = Convert.ToString(Tr("Score: ") + (int)G.Scores);
-                    }
+                    string link = "GUI/EmergingElements/NewRecordScores";
+                    var newRecordScores = GetNode<Label>(link);
+                    newRecordScores.Text = Tr("New Record!\nScore: ") + (int)G.Scores;
+                    newRecordScores.Visible = true;
+                    GetNode<CpuParticles2D>(link + "/Shine1").Emitting = true;
+                    GetNode<CpuParticles2D>(link + "/Shine2").Emitting = true;
+                }
+                else
+                {
+                    var emergingScores = GetNode<Label>("GUI/EmergingElements/Scores");
+                    emergingScores.Visible = true;
+                    emergingScores.Text = Convert.ToString(Tr("Score: ") + (int)G.Scores);
                 }
                 if (emergingElements.Modulate.A < 1)
                     emergingElements.Modulate = new Color(emergingElements.Modulate.R, emergingElements.Modulate.G, emergingElements.Modulate.B, emergingElements.Modulate.A + 0.005f);

@@ -4393,6 +4393,7 @@ layer = 100
 [connection signal="ButtonPressed" from="Level/Rail/CameraLimitsSetTrigger" to="Level/Player" method="SetCameraLimits" flags=6 binds= [Vector4(-100000, 100000, 100000, -100000), true]]
 [connection signal="animation_finished" from="Level/Rail/AnimationPlayer" to="Level/Rail" method="queue_free" flags=18 unbinds=1]
 [connection signal="PlayerDied" from="Level/Player" to="Level/TutorialCanvasLayer" method="PlayerDied" flags=22]
+[connection signal="PlayerDied" from="Level/Player" to="Level/Player" method="SetCorpseMotionMultiplierX" flags=6 binds= [0.25]]
 [connection signal="ButtonPressed" from="Level/TileMap/CameraLimitsSetTrigger" to="Level/Player" method="SetCameraLimits" flags=22 binds= [Vector4(3520, 15552, 4032, 13504), false]]
 [connection signal="ButtonPressed" from="Level/TileMap/CameraLimitsSetTrigger" to="Level/TileMap/TutorialTV/AnimationPlayer" method="play" flags=22 binds= ["FallingDown"]]
 [connection signal="ButtonPressed" from="Level/TileMap/TeleporterArea" to="Level/Ambient" method="stop" flags=22]

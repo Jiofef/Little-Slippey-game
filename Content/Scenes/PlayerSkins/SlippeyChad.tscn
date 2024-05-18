@@ -1,7 +1,8 @@
-[gd_scene load_steps=34 format=3 uid="uid://b3m6nctk376qm"]
+[gd_scene load_steps=35 format=3 uid="uid://b3m6nctk376qm"]
 
 [ext_resource type="Texture2D" uid="uid://ddbl3u1r26kie" path="res://Content/Sprites/PlayerSkins/SlippeyChad.png" id="1_ae76r"]
 [ext_resource type="Script" path="res://Content/Scripts/Other/SkinScript.cs" id="2_xusc5"]
+[ext_resource type="Script" path="res://Content/Scripts/Other/SlippeyChadCorpseMotionMultiplierCrutch.cs" id="3_dtkvy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5cx31"]
 atlas = ExtResource("1_ae76r")
@@ -291,7 +292,7 @@ _data = {
 [node name="SlippeyChad" type="AnimatedSprite2D"]
 scale = Vector2(0.3, 0.3)
 sprite_frames = SubResource("SpriteFrames_b58yy")
-animation = &"Idle"
+animation = &"Death"
 autoplay = "Idle"
 script = ExtResource("2_xusc5")
 metadata/HasAnimationPlayer = false
@@ -301,3 +302,6 @@ metadata/HasDeathPlayerAnimation = true
 libraries = {
 "": SubResource("AnimationLibrary_r5na4")
 }
+
+[node name="CorpseMotionCrutchNode" type="Node" parent="."]
+script = ExtResource("3_dtkvy")

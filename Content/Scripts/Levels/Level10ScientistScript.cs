@@ -32,5 +32,14 @@ public partial class Level10ScientistScript : Node2D
     public void PlayerDied()
     {
         G.TransitiveVariant[1] = (int)G.TransitiveVariant[1] + 1;
+        if (G.Scores > 150)
+        {
+            G.IsPlayerDead = false;
+        }
+        if (G.Scores > 300)
+        {
+            GetNode<Node2D>("../Player/Camera2D/GUI/EmergingElements").Visible = false;
+            GetNode<Node2D>("../../").SetPhysicsProcess(false);
+        }
     }
 }

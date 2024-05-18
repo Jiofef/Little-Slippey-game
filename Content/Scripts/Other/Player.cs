@@ -32,7 +32,7 @@ public partial class Player : CharacterBody2D
     Vector2 _motion = new Vector2();
     Vector2[] _savedPastPositions = new Vector2[11];
 
-    Vector2 _corpseMotion;
+    Vector2 _corpseMotion, _corpseMotionMultiplier = new Vector2(1, 1);
 
     private void PlaySound(string SoundName)
     {
@@ -61,7 +61,7 @@ public partial class Player : CharacterBody2D
             {
                 G.PlayerCorpseFlightTimer = G.PlayerCorpseFlightTimer < 4.5f ? G.PlayerCorpseFlightTimer + 0.016667f : 4.5f;
                 if (Meta.Instance.ChosenSkinIndex == 11) return;
-                Position = new Vector2(Position.X + _corpseMotion.X * G.GetReversedPlayerCorpseFlightTimerCoeff(), Position.Y + _corpseMotion.Y * G.GetReversedPlayerCorpseFlightTimerCoeff());
+                Position += (_corpseMotion * G.GetReversedPlayerCorpseFlightTimerCoeff() * _corpseMotionMultiplier);
                 Rotation += _corpseMotion.X / 50 * G.GetReversedPlayerCorpseFlightTimerCoeff();
                 _corpseMotion.Y += _gravity / 200;
             }
@@ -254,12 +254,8 @@ public partial class Player : CharacterBody2D
         Random random = new Random();
         _corpseMotion.X = random.Next(100) > 50 ? -5 * (GlobalPosition.X / G.LevelXYSizes[G.CurrentLevel].X) : 5 * (1 - GlobalPosition.X / G.LevelXYSizes[G.CurrentLevel].X);
         _corpseMotion.Y = -8;
-        if (G.CurrentLevel == 8 || GlobalPosition > G.LevelXYSizes[G.CurrentLevel] || GlobalPosition < Vector2.Zero)
+        if (G.LevelXYSizes[G.CurrentLevel].X > 12800 || G.LevelXYSizes[G.CurrentLevel].Y > 12800 || GlobalPosition > G.LevelXYSizes[G.CurrentLevel] || GlobalPosition < Vector2.Zero)
             _corpseMotion.X = random.Next(100) > 50 ? -5 : +5;
-        if (G.CurrentLevel == 1 && G.LevelAdditionalLink == "Tutorial")
-            _corpseMotion.X *= 0.25f;
-        if (Meta.Instance.ChosenSkinIndex == 11)
-            _corpseMotion = Vector2.Zero;
 
         G.IsCrossesEnabled = false;
         G.IsProgressPaused = true;
@@ -304,5 +300,15 @@ public partial class Player : CharacterBody2D
     public void SetCameraPositionSmoothingSpeed (float value)
     {
         GetNode<Camera2D>("Camera2D").PositionSmoothingSpeed = value;
+    }
+
+    public void SetCorpseMotionMultiplierX(float value)
+    {
+        _corpseMotionMultiplier.X = value;
+    }
+
+    public void SetCorpseMotionMultiplierY(float value)
+    {
+        _corpseMotionMultiplier.Y = value;
     }
 }

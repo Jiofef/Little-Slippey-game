@@ -4,7 +4,6 @@ public partial class FinalLetter : Node2D
 {
     public override void _Ready()
     {
-        G._isLevel10Finaling = false;
         Input.MouseMode = Input.MouseModeEnum.Visible;
         UnchangableMeta.SaveRecords();
         UnchangableMeta.SaveToFile();

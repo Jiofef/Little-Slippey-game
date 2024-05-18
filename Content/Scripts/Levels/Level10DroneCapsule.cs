@@ -5,10 +5,7 @@ public partial class Level10DroneCapsule : Node2D
     bool _isTrueFinaling;
     public override void _PhysicsProcess(double delta)
     {
-        if (!G._isLevel10Finaling && G.Scores > 150)
-            G._isLevel10Finaling = true;
-
-        if (G._isLevel10Finaling)
+        if (G.Scores > 300)
         {
             if (Input.IsActionPressed("Reset") || _isTrueFinaling)
                 G.ResetTimer += 0.003f;
@@ -23,7 +20,7 @@ public partial class Level10DroneCapsule : Node2D
 
     public void Departure()
     {
-        if (G._isLevel10Finaling)
+        if (G.Scores > 300)
         {
             GetNode<AnimationPlayer>("AnimationPlayer").Play("TakingSlippey");
 

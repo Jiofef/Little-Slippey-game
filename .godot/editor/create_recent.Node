@@ -1,10 +1,10 @@
+Node
 AudioStreamPlayer2D
 Node2D
 AnimationPlayer
 CanvasLayer
 CollisionShape2D
 AudioStreamPlayer
-Node
 ColorRect
 Area2D
 CollisionPolygon2D
@@ -30,4 +30,3 @@ NinePatchRect
 CheckBox
 VSlider
 HSlider
-ScrollContainer

@@ -29,25 +29,22 @@ public partial class MainScript : Node2D
     }
     public override void _PhysicsProcess(double delta)
     {
-        if (Input.IsActionJustPressed("Cancel") && !_subMenusOpened && !G._isLevel10Finaling && G.DidLevelIntroPassed)
+        if (Input.IsActionJustPressed("Cancel") && !_subMenusOpened && G.DidLevelIntroPassed)
             UnPause();
         if (_rewindButton.ButtonPressed)
             G.ResetTimer += 0.016667f * 2;
 
-        if (!G._isLevel10Finaling)
-        {
-            if (Input.IsActionPressed("Reset") && G.DidLevelIntroPassed)
-                G.ResetTimer += 0.016667f;
-            else G.ResetTimer = G.ResetTimer > 0 ? G.ResetTimer - 0.016667f : 0;
+        if (Input.IsActionPressed("Reset") && G.DidLevelIntroPassed)
+           G.ResetTimer += 0.016667f;
+        else G.ResetTimer = G.ResetTimer > 0 ? G.ResetTimer - 0.016667f : 0;
 
-            if (G.ResetTimer > 1.5f)
-            {
-                G.IsCrossesEnabled = true;
-                G.IsProgressPaused = false;
-                G.CrossSpawnMultiplier = 1;
-                UnchangableMeta.SaveRecords();
-                LoadScene("res://Content/Scenes/Levels/FullParts/Level" + G.CurrentLevel + G.LevelAdditionalLink + ".tscn");
-            }
+        if (G.ResetTimer > 1.5f)
+        {
+            G.IsCrossesEnabled = true;
+            G.IsProgressPaused = false;
+            G.CrossSpawnMultiplier = 1;
+            UnchangableMeta.SaveRecords();
+            LoadScene("res://Content/Scenes/Levels/FullParts/Level" + G.CurrentLevel + G.LevelAdditionalLink + ".tscn");
         }
     }
     public void UnPause()
