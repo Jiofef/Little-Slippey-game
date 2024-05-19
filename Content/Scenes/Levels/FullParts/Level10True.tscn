@@ -988,6 +988,7 @@ process_mode = 4
 script = ExtResource("2_8e3wu")
 
 [node name="ScientistNode" type="Node2D" parent="Level"]
+process_priority = 1
 script = ExtResource("4_dq252")
 
 [node name="Gramophone" type="AudioStreamPlayer2D" parent="Level/ScientistNode"]
@@ -1361,9 +1362,9 @@ bus = &"Interface"
 layer = 100
 
 [connection signal="ready" from="." to="." method="SetCrossesEnabled" flags=6 binds= [true]]
-[connection signal="ready" from="." to="." method="SetCrossesSpawnMultiplier" flags=6 binds= [1.0]]
 [connection signal="ready" from="." to="." method="SetProgressPaused" flags=6 binds= [false]]
 [connection signal="ready" from="." to="." method="SetCrossesProgressCoeff" flags=6 binds= [0.5]]
+[connection signal="ready" from="." to="." method="SetCrossesSpawnMultiplier" flags=6 binds= [1.0]]
 [connection signal="PlayerDied" from="Level/Player" to="Level/ScientistNode" method="PlayerDied" flags=6]
 [connection signal="area_entered" from="Level/Player/Areas/PlayerDamageDetector" to="Level/PositionCrutch/DroneCapsule/Timer" method="start" flags=22 unbinds=1]
 [connection signal="timeout" from="Level/PositionCrutch/DroneCapsule/Timer" to="Level/PositionCrutch/DroneCapsule" method="Departure" flags=18]

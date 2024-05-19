@@ -9,7 +9,7 @@ public partial class BaseLevelScript : Node2D
 
     Random _random = new Random();
 
-    private int[] CrossDefaultWeight = { 100, 40, 20, 10, 30 };
+    private int[] _crossDefaultWeight = { 100, 40, 20, 10, 30 };
     private float[] _crossWeight = new float[G.CrossesInGameTotal];
     private int _lastAviableCrossNumber = 0;
     private float _weightMultiplierExtenderToCurrentCross = 0;
@@ -28,7 +28,10 @@ public partial class BaseLevelScript : Node2D
             _player.GlobalPosition = GetGlobalMousePosition();
 
         if (Input.IsActionJustReleased("ScoreDebug"))
+        {
             G.Scores += 5;
+            RecalculateCrossWeight();
+        }
 
         if (Input.IsActionJustPressed("InvincibilityDebug"))
         {
@@ -52,7 +55,7 @@ public partial class BaseLevelScript : Node2D
         if (!G.IsProgressPaused)
         {
             G.Scores += _floatDelta;
-            _weightMultiplierExtenderToCurrentCross += (_floatDelta * CrossDefaultWeight[_lastAviableCrossNumber]) / 30 * G.CrossesProgressCoeff;
+            _weightMultiplierExtenderToCurrentCross += (_floatDelta * _crossDefaultWeight[_lastAviableCrossNumber]) / 30 * G.CrossesProgressCoeff;
         }
 
 
@@ -65,14 +68,14 @@ public partial class BaseLevelScript : Node2D
             {
                 if (!_doAllCrossWeigthsSetted)
                 {
-                    if (_crossWeight[_lastAviableCrossNumber] + _weightMultiplierExtenderToCurrentCross < CrossDefaultWeight[_lastAviableCrossNumber])
+                    if (_crossWeight[_lastAviableCrossNumber] + _weightMultiplierExtenderToCurrentCross < _crossDefaultWeight[_lastAviableCrossNumber])
                     {
                         _crossWeight[_lastAviableCrossNumber] += _weightMultiplierExtenderToCurrentCross;
                         _weightMultiplierExtenderToCurrentCross = 0;
                     }
                     else
                     {
-                        _crossWeight[_lastAviableCrossNumber] = CrossDefaultWeight[_lastAviableCrossNumber];
+                        _crossWeight[_lastAviableCrossNumber] = _crossDefaultWeight[_lastAviableCrossNumber];
                         _lastAviableCrossNumber++;
                         _weightMultiplierExtenderToCurrentCross = 0;
                     }
@@ -87,12 +90,12 @@ public partial class BaseLevelScript : Node2D
                 int RandomNumber = _random.Next((int)_crossWeight.Sum());
                 for (int i = 0; ; i++)
                 {
-                    if (RandomNumber < CrossDefaultWeight[i])
+                    if (RandomNumber < _crossDefaultWeight[i])
                     {
                         SelectedCrossNumber = i;
                         break;
                     }
-                    else RandomNumber -= CrossDefaultWeight[i];
+                    else RandomNumber -= _crossDefaultWeight[i];
                 }
 
                 Node2D Cross = (Node2D)_crosses[SelectedCrossNumber].Instantiate();
@@ -188,10 +191,36 @@ public partial class BaseLevelScript : Node2D
         }
         _isCrossesEnhanced = G.CurrentLevel == 10 && G.LevelAdditionalLink == "True" || Meta.Instance.AdditionStatuses[3];
         if (_isCrossesEnhanced)
-            CrossDefaultWeight = new int[] { 150, 120, 20, 5, 10 };
+            _crossDefaultWeight = new int[] { 150, 120, 20, 5, 10 };
         for (int i = 0; i < _crosses.Length; i++)
             _crosses[i] = ResourceLoader.Load<PackedScene>("res://Content/Scenes/Crosses/" + (_isCrossesEnhanced ? "Enhanced" : "") + "Cross" + (i + 1) + ".tscn");
 
         ProcessMode = ProcessModeEnum.Pausable;
+    }
+    public void RecalculateCrossWeight()
+    {
+        float _weightMultiplierExtender = G.Scores / 30 * G.CrossesProgressCoeff;
+        _crossWeight = new float[G.CrossesInGameTotal];
+        _lastAviableCrossNumber = 0;
+        for (int i = 0; _weightMultiplierExtender > 0; i++)
+        {
+            if (i >= 5)
+            {
+                _doAllCrossWeigthsSetted = true;
+                _lastAviableCrossNumber = 4;
+                break;
+            }
+            if (_crossWeight[_lastAviableCrossNumber] + _weightMultiplierExtender * _crossDefaultWeight[_lastAviableCrossNumber] < _crossDefaultWeight[_lastAviableCrossNumber])
+            {
+                _crossWeight[_lastAviableCrossNumber] += _weightMultiplierExtender * _crossDefaultWeight[_lastAviableCrossNumber];
+                _weightMultiplierExtender = 0;
+            }
+            else
+            {
+                _crossWeight[_lastAviableCrossNumber] = _crossDefaultWeight[_lastAviableCrossNumber];
+                _lastAviableCrossNumber++;
+                _weightMultiplierExtender -= G.CrossesProgressCoeff;
+            }
+        }
     }
 }

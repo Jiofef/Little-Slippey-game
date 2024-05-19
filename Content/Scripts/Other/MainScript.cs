@@ -2,18 +2,24 @@ using Godot;
 
 public partial class MainScript : Node2D
 {
-    private bool _subMenusOpened;
+    [Signal] public delegate void RecalculateCrossWeightEventHandler();
+    private bool _subMenusOpened, _isPauseDisabled = false, _isResetDisabled;
     TextureButton _rewindButton;
     AudioStreamPlayer _levelMusicPlayer;
 
     public override void _Ready()
     {
         GetTree().Paused = false;
+
         AudioServer.SetBusEffectEnabled(2, 0, false);
         AudioServer.SetBusEffectEnabled(6, 0, false);
+
         G.CurrentPopupAchievementsLayer = GetNode<CanvasLayer>("PopupAchievementsLayer");
         _rewindButton = GetNode<TextureButton>("Pause/Interface/ButtonsFrame/Rewind");
         _levelMusicPlayer = GetNode<AudioStreamPlayer>("LevelMusicPlayer");
+
+        Connect("RecalculateCrossWeight", new Callable(GetNode("Level"), "RecalculateCrossWeight"));
+
         if (G.DidLevelIntroPassed)
         {
             GetNode<CanvasLayer>("EpicIntro").QueueFree();
@@ -29,7 +35,7 @@ public partial class MainScript : Node2D
     }
     public override void _PhysicsProcess(double delta)
     {
-        if (Input.IsActionJustPressed("Cancel") && !_subMenusOpened && G.DidLevelIntroPassed)
+        if (Input.IsActionJustPressed("Cancel") && !_subMenusOpened && G.DidLevelIntroPassed && !_isPauseDisabled)
             UnPause();
         if (_rewindButton.ButtonPressed)
             G.ResetTimer += 0.016667f * 2;
@@ -53,6 +59,7 @@ public partial class MainScript : Node2D
         AudioServer.SetBusEffectEnabled(2, 0, !IsPaused);
         AudioServer.SetBusEffectEnabled(6, 0, !IsPaused);
         GetNode<TextureButton>("Pause/Interface/ButtonsFrame/Resume").GrabFocus();
+        GetNode<TextureButton>("Pause/Interface/ButtonsFrame/Rewind").Disabled = _isResetDisabled;
 
         var animationPlayer = GetNode<AnimationPlayer>("Pause/Interface/AnimationPlayer");
         if (!IsPaused)
@@ -87,10 +94,7 @@ public partial class MainScript : Node2D
         GetNode<AnimationPlayer>("Pause/Interface/AnimationPlayer").PlayBackwards("OpeningSubMenu");
         _subMenusOpened = false;
     }
-    public void LoadScene(string ScenePath)
-    {
-        GetTree().ChangeSceneToFile(ScenePath);
-    }
+
     public void MusicAnimationFinished(string animation)
     {
         if (animation == "MusicStopping")
@@ -100,6 +104,18 @@ public partial class MainScript : Node2D
         }
     }
 
+    public void GiveAchievement(int index)
+    {
+        G.GetAchievement(index);
+    }
+
+    //Methods from above are actively used in game scripts and their sloppy use can break some processes, use at your own risk.
+    //The methods below are made specifically for modding, use them however you want.
+
+    public void LoadScene(string ScenePath)
+    {
+        GetTree().ChangeSceneToFile(ScenePath);
+    }
     public void SetCrossesEnabled(bool value)
     {
         G.IsCrossesEnabled = value;
@@ -115,10 +131,6 @@ public partial class MainScript : Node2D
     public void SetProgressPaused(bool value)
     {
         G.IsProgressPaused = value;
-    }
-    public void GiveAchievement(int index)
-    {
-        G.GetAchievement(index);
     }
     public void DebugTransitiveValue(int index)
     {
@@ -136,5 +148,18 @@ public partial class MainScript : Node2D
     {
         for (int i = 0; i < G.TransitiveVariant.Length; i++)
             G.TransitiveVariant[i] = "";
+    }
+    public void SetScores(float value)
+    {
+        G.Scores = value;
+        EmitSignal("RecalculateCrossWeight");
+    }
+    public void SetPauseDisabled(bool value)
+    {
+        _isPauseDisabled = value;
+    }
+    public void SetResetDisabled(bool value)
+    {
+        _isResetDisabled = value;
     }
 }
