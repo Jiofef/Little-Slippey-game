@@ -18,10 +18,14 @@ public partial class Level10ScientistScript : Node2D
         else
             GetNode<ColorRect>("../CanvasLayer/ColorRect").QueueFree();
 
-        if (true)
+        if ((bool)G.TransitiveVariant[3])
         {
             Connect("SetScores", new Callable(GetNode("../.."), "SetScores"));
             CallDeferred("emit_signal", "SetScores", G.TransitiveVariant[4]);
+            var whiteNoiseGlitch = GetNode<AnimatedSprite2D>("../CanvasLayer/WhiteNoiseGlitch");
+            whiteNoiseGlitch.Visible = true;
+            whiteNoiseGlitch.Play();
+            GetNode<AudioStreamPlayer>("../CanvasLayer/WhiteNoiseGlitch/AudioStreamPlayer").Play();
         }
     }
     public override void _PhysicsProcess(double delta)
@@ -41,17 +45,19 @@ public partial class Level10ScientistScript : Node2D
     public void PlayerDied()
     {
         G.TransitiveVariant[1] = (int)G.TransitiveVariant[1] + 1;
-        if (G.Scores > 150 || (bool)G.TransitiveVariant[3])
-        {
-            EmitSignal("SetResetDisabled", true);
-            G.TransitiveVariant[3] = true;
-            G.TransitiveVariant[4] = G.Scores;
-            GetTree().ReloadCurrentScene();
-        }
         if (G.Scores > 300)
         {
             GetNode<Node2D>("../Player/Camera2D/GUI/EmergingElements").Visible = false;
             GetNode<Node2D>("../../").SetPhysicsProcess(false);
         }
+        else if (G.Scores > 150 || (bool)G.TransitiveVariant[3])
+        {
+            EmitSignal("SetResetDisabled", true);
+            G.TransitiveVariant[3] = true;
+            Random random = new Random();
+            G.TransitiveVariant[4] = G.Scores - random.Next(5, 15);
+            GetTree().ReloadCurrentScene();
+        }
+
     }
 }

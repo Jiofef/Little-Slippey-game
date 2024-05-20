@@ -1,7 +1,7 @@
+AnimationPlayer
 Node
 AudioStreamPlayer2D
 Node2D
-AnimationPlayer
 CanvasLayer
 CollisionShape2D
 AudioStreamPlayer

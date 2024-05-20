@@ -219,7 +219,7 @@ public partial class BaseLevelScript : Node2D
             {
                 _crossWeight[_lastAviableCrossNumber] = _crossDefaultWeight[_lastAviableCrossNumber];
                 _lastAviableCrossNumber++;
-                _weightMultiplierExtender -= G.CrossesProgressCoeff;
+                _weightMultiplierExtender -= 1;
             }
         }
     }

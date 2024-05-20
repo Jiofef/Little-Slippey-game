@@ -3,18 +3,41 @@ using System;
 
 public partial class Level10MusicPlayer : AudioStreamPlayer
 {
-	public override void _Ready()
+    private float _position => GetPlaybackPosition();
+    private float[,] _partsTimeCodes = new float[,]
+    {
+        { 67.5f, 180 },
+        { 265.35f, 384.5f },
+        { 384.5f, 2730}
+    };
+    private int[] _partsRelatedScores = { 150, 290, 999999999};
+    public override void _Ready()
 	{
-        if (Stream != ResourceLoader.Load<AudioStream>("res://Content/Sounds/Soundtrack/Placebo Hope.mp3"))
-        {
-            VolumeDb = 10;
-            Stream = ResourceLoader.Load<AudioStream>("res://Content/Sounds/Soundtrack/Placebo Hope.mp3");
-                Play();
-        }
+        if (G.DidLevelIntroPassed)
+            StartPlaying();
     }
 
-	public override void _PhysicsProcess(double delta)
-	{
+    public void StartPlaying()
+    {
+        Stream = ResourceLoader.Load<AudioStream>("res://Content/Sounds/Soundtrack/Placebo Hope.mp3");
+        Play(G.MusicStopTimeCode);
+    }
 
+    public void SaveTimeCode()
+    {
+        G.MusicStopTimeCode = _position;
+    }
+
+    public override void _PhysicsProcess(double delta)
+	{
+        if (G.Scores > _partsRelatedScores[(int)G.TransitiveVariant[5]])
+        {
+            G.TransitiveVariant[5] = (int)G.TransitiveVariant[5] + 1;
+            Play(_partsTimeCodes[(int)G.TransitiveVariant[5] - 1, 1]);
+        }
+        if (_position >= _partsTimeCodes[(int)G.TransitiveVariant[5], 1])
+        {
+            Play(_partsTimeCodes[(int)G.TransitiveVariant[5], 0]);
+        }
 	}
 }

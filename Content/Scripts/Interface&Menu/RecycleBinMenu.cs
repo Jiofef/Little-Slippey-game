@@ -6,7 +6,7 @@ public partial class RecycleBinMenu : Control
 	private string _openedFile = "";
     public override void _Ready()
     {
-        GetNode<Sprite2D>("FileBoxes/GratitudeDiaryTxt/ILoveYouAllGuys<3").Position = new Vector2(Convert.ToInt32(Tr("GratitudeDiaryHeartXPos")), 48);
+        GetNode<Sprite2D>("FileBoxes/GratitudeDiaryTxt/ILoveYouAllGuys<3").Position = new Vector2(Convert.ToInt32(Tr("GratitudeDiaryHeartXPos")), Convert.ToInt32(Tr("GratitudeDiaryHeartYPos")));
         if (UnchangableMeta.AchievementStatuses[48] == 0)
         {
             string[] NodesToHideNames = { "TheTestIsOverTxt", "GratitudeDiaryTxt", "Dem01", "Dem02", "Dem03", "Dem04", "Dem05", "Memory1", "Memory2", "Memory3", "Memory4", "Eternity"};
