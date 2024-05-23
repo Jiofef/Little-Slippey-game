@@ -1,3 +1,4 @@
+res://Content/Other/Localization.Eu.translation
 res://default_env.tres
 res://Content/Scenes/Levels/FullParts/Level10True.tscn
 res://Content/Other/BrightnessShader.gdshader
@@ -76,7 +77,7 @@ res://Content/Scripts/Other/Player.cs
 res://Content/Scripts/Other/PostProcessingRect.cs
 res://Content/Scripts/Other/SkinScript.cs
 res://Content/Scripts/Other/SlippeyChadCorpseMotionMultiplierCrutch.cs
-res://Content/Scenes/Interface&Menu/FinalLetter.tscn
-res://Content/Scenes/Interface&Menu/RecycleBinMenu.tscn
+res://Content/Other/Localization.En.translation
 res://Content/Other/Localization.en.translation
 res://Content/Other/Localization.ru.translation
+res://Content/Other/Localization.Ru.translation

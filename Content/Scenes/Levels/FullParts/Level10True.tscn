@@ -1054,7 +1054,11 @@ script = ExtResource("2_8e3wu")
 process_priority = 1
 script = ExtResource("4_dq252")
 
-[node name="Gramophone" type="AudioStreamPlayer2D" parent="Level/ScientistNode"]
+[node name="Megaphone" type="AudioStreamPlayer2D" parent="Level/ScientistNode"]
+position = Vector2(1280, 0)
+volume_db = 18.0
+max_distance = 6000.0
+bus = &"Enviromnment"
 
 [node name="Background" type="ParallaxBackground" parent="Level"]
 
@@ -1439,10 +1443,12 @@ bus = &"Interface"
 [node name="PopupAchievementsLayer" type="CanvasLayer" parent="."]
 layer = 100
 
+[connection signal="LevelReseting" from="." to="Level/ScientistNode" method="OnLevelReset" flags=6]
 [connection signal="ready" from="." to="." method="SetProgressPaused" flags=7 binds= [false]]
-[connection signal="ready" from="." to="." method="SetCrossesProgressCoeff" flags=7 binds= [0.5]]
 [connection signal="ready" from="." to="." method="SetCrossesEnabled" flags=7 binds= [true]]
 [connection signal="ready" from="." to="." method="SetCrossesSpawnMultiplier" flags=7 binds= [1.0]]
+[connection signal="ready" from="." to="." method="SetCrossesProgressCoeff" flags=7 binds= [0.5]]
+[connection signal="finished" from="Level/ScientistNode/Megaphone" to="Level/ScientistNode" method="PhraseFinished"]
 [connection signal="PlayerDied" from="Level/Player" to="LevelMusicPlayer" method="SaveTimeCode" flags=6]
 [connection signal="PlayerDied" from="Level/Player" to="Level/ScientistNode" method="PlayerDied" flags=6]
 [connection signal="area_entered" from="Level/Player/Areas/PlayerDamageDetector" to="Level/PositionCrutch/DroneCapsule/Timer" method="start" flags=22 unbinds=1]

@@ -9,6 +9,14 @@ public partial class G : Node
 	public static string LevelAdditionalLink, MusicName = "";
 	public static Vector4 CameraLimits;
 	public static readonly int LevelsInGameTotal = 10, CrossesInGameTotal = 5, DificultiesInGameTotal = 3;
+	public static string GetLanguagePrefix()
+	{
+		if (Meta.Instance.language == Meta.Language.en)
+			return "";
+        var value = Meta.Instance.language.ToString();
+        value = char.ToUpper(value[0]) + value.Substring(1);
+        return value;
+    }
     // These variables are designed to expand the capabilities in level scripting, including for modders. It is primarily created to store data remaining after exiting a level,
 	// after restarting, or after moving to another level.
 	public static Variant[] TransitiveVariant = new Variant[32];

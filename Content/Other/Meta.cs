@@ -19,7 +19,6 @@ public partial class Meta : Node
     public byte ScoresLabelLocationX = 1, ScoresLabelLocationY = 0, ScoresShowingFormatIndex = 0;
     public enum Language {en, ru}
     public Language language;
-
     //Gameplay
     public int Dificulty = 0;
     public bool[] AdditionStatuses = new bool[4];

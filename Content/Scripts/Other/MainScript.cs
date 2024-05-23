@@ -3,6 +3,7 @@ using Godot;
 public partial class MainScript : Node2D
 {
     [Signal] public delegate void RecalculateCrossWeightEventHandler();
+    [Signal] public delegate void LevelResetingEventHandler();
     private bool _subMenusOpened, _isPauseDisabled = false, _isResetDisabled;
     TextureButton _rewindButton;
     AudioStreamPlayer _levelMusicPlayer;
@@ -37,10 +38,10 @@ public partial class MainScript : Node2D
     {
         if (Input.IsActionJustPressed("Cancel") && !_subMenusOpened && G.DidLevelIntroPassed && !_isPauseDisabled)
             UnPause();
-        if (_rewindButton.ButtonPressed)
+        if (_rewindButton.ButtonPressed && !_isResetDisabled)
             G.ResetTimer += 0.016667f * 2;
 
-        if (Input.IsActionPressed("Reset") && G.DidLevelIntroPassed)
+        if (Input.IsActionPressed("Reset") && G.DidLevelIntroPassed && !_isResetDisabled)
            G.ResetTimer += 0.016667f;
         else G.ResetTimer = G.ResetTimer > 0 ? G.ResetTimer - 0.016667f : 0;
 
@@ -50,6 +51,7 @@ public partial class MainScript : Node2D
             G.IsProgressPaused = false;
             G.CrossSpawnMultiplier = 1;
             UnchangableMeta.SaveRecords();
+            EmitSignal("LevelReseting");
             LoadScene("res://Content/Scenes/Levels/FullParts/Level" + G.CurrentLevel + G.LevelAdditionalLink + ".tscn");
         }
     }
