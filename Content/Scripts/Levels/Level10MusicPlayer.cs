@@ -8,9 +8,10 @@ public partial class Level10MusicPlayer : AudioStreamPlayer
     {
         { 67.5f, 180 },
         { 265.35f, 384.5f },
-        { 384.5f, 2730}
+        {384.5f, 395.1f },
+        { 395.1f, 2730}
     };
-    private int[] _partsRelatedScores = { 150, 290, 999999999};
+    private int[] _partsRelatedScores = { 150, 290, 300, 999999999};
     public override void _Ready()
 	{
         if (G.DidLevelIntroPassed)

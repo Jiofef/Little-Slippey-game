@@ -1,8 +1,9 @@
+RichTextLabel
+CanvasLayer
 AnimationPlayer
 Node
 AudioStreamPlayer2D
 Node2D
-CanvasLayer
 CollisionShape2D
 AudioStreamPlayer
 ColorRect
@@ -21,7 +22,6 @@ AnimatedSprite2D
 Node3D
 Label
 GridContainer
-RichTextLabel
 AudioListener2D
 Camera2D
 Timer

@@ -1,6 +1,9 @@
 using Godot;
 using System;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Threading.Channels;
+using System.Threading;
 
 public partial class Level10ScientistScript : Node2D
 {
@@ -11,19 +14,89 @@ public partial class Level10ScientistScript : Node2D
     CharacterBody2D _player;
     private float _megaphonePhraseTimer = 0;
     private float[] _scriptedPhrasesTimeCodes = {3, 50, 150, 250, 290, 300};
-    //private float[,] _phrasesTimeCodes =
-    //{
-    //    {
-            
-    //    }
-    //};
-    //private string[,] _phrasesSubtitles =
-    //{
-    //    {
+    Random random = new Random();
+    private float[,] _phrasesTimeCodes =
+    {
+        {
 
-    //    }
-    //};
-    
+        }
+    };
+    private string[][] _phrasesEngSubtitles =
+    {
+        new string[]
+        {
+            "Hey! Listen. I pulled you out of the previous test.", "The bad guys who are keeping you here wanted to make you go through a handful more test chambers,",
+            "but I can see that you've suffered enough.", "Hold on, I'll try to break this test and get you free.", "I will be able to do this only after three hundred seconds,",
+            "that's how long it takes to pass this chamber.",
+            "It's a lot, but don't worry, I'll figure out how to help you.",
+            "As for now...",
+            "JUST LIVE!"
+        },
+        new string[]
+        {
+            "Listen, I think there's an opportunity to break the timer here.",
+            "This will stop it from zeroing out every time a bomb hits you.",
+            "He's got some kind of twisted security system here, but I'll figure something out.",
+            "Just live for now!"
+        },
+        new string[]
+        {
+            "YES! I DID IT! LIVE, SLIPPEY, LIVE!",
+            "YOU HAVE EVERY CHANCE TO LIVE UP TO THREE HUNDRED SECONDS!"
+        },
+        new string[]
+        {
+            "JUST A LITTLE BIT! DOO IT!"
+        },
+        new string[]
+        {
+            "10 SECONDS!!!"
+        },
+        new string[]
+        {
+            "YEAH! YOU DID IT!",
+            "Congratulations!",
+            "Well, I'm gonna...",
+            "Hey, wha...",
+            "the timer was... fixed?",
+            "I don't understand...",
+            "I-I can't co...",
+            "I can't control the crosses, hey, what's with them ;)"
+        },
+        new string[]
+        {
+            "Come on, I'll push the crosses out from you so it won't be so hard!"
+        },
+        new string[]
+        {
+            "Come on, hold on!"
+        },
+        new string[]
+        {
+            "I'm rooting for you!"
+        },
+        new string[]
+        {
+            "Don't give up!"
+        },
+        new string[]
+        {
+            "You'll slip away!"
+        },
+        new string[]
+        {
+            "I'm with you, my friend!"
+        },
+        new string[]
+        {
+            "I believe in you!"
+        },
+        new string[]
+        {
+            "Hold on, it will be over soon!"
+        }
+    };
+
     public override void _Ready()
     {
         Connect("SetResetDisabled", new Callable(GetNode("../../"), "SetResetDisabled"));
@@ -62,6 +135,18 @@ public partial class Level10ScientistScript : Node2D
     }
     public override void _PhysicsProcess(double delta)
     {
+        if ((bool)G.TransitiveVariant[13])
+        {
+            G.CrossSpawnMultiplier *= 1.01f;
+        }
+        if (G.Scores >= 300 && (bool)G.TransitiveVariant[12] != true)
+        {
+            G.TransitiveVariant[12] = true;
+            G.IsCrossesEnabled = false;
+            var AllCrossesOnScreen = GetTree().GetNodesInGroup("Crosses");
+            for (int i = 0; AllCrossesOnScreen.Count > i; i++)
+                AllCrossesOnScreen[i].QueueFree();
+        }
         _megaphonePhraseTimer -= 0.01667f;
         if (_megaphone.Playing && _musicPlayer.VolumeDb > 4)
             _musicPlayer.VolumeDb -= 0.2f;
@@ -78,26 +163,30 @@ public partial class Level10ScientistScript : Node2D
                 LastCross.Position -= LastCross.GlobalPosition.DirectionTo(_player.GlobalPosition) * 5;
             }
         }
-        if (_scriptedPhrasesTimeCodes.Length > (int)G.TransitiveVariant[7] + 1 && G.Scores >= _scriptedPhrasesTimeCodes[(int)G.TransitiveVariant[7] + 1])
+        bool MegaphoneDefaultCondition = !_megaphone.Playing && _megaphonePhraseTimer <= 0 && _scriptedPhrasesTimeCodes.Length > (int)G.TransitiveVariant[7] + 1 && !G.IsPlayerDead;
+        if (MegaphoneDefaultCondition && G.Scores >= _scriptedPhrasesTimeCodes[(int)G.TransitiveVariant[7] + 1])
         {
             PlayMegaphonePhrase("Scripted" + ((int)G.TransitiveVariant[7] + 2));
             if ((int)G.TransitiveVariant[7] == 1)
                 EmitSignal("SetResetDisabled", true);
             G.TransitiveVariant[7] = (int)G.TransitiveVariant[7] + 1;
         }
-        if (!_megaphone.Playing && _megaphonePhraseTimer <= 0 && (int)G.TransitiveVariant[1] >= 5 && (bool)G.TransitiveVariant[6] != true && !G.IsPlayerDead)
+        else if (MegaphoneDefaultCondition && (int)G.TransitiveVariant[1] >= 5 && (bool)G.TransitiveVariant[6] != true)
         {
             G.TransitiveVariant[6] = true;
             PlayMegaphonePhrase("FiveDeaths");
         }
-        //if (!_megaphone.Playing && _megaphonePhraseTimer <= 0 && _scriptedPhrasesTimeCodes[(int)G.TransitiveVariant[7] + 1] - G.Scores > 10 && !G.IsPlayerDead && G.Scores > 5)
-        //{
-        //    Random random = new Random();
-        //    if (random.Next(1) == 0)
-        //    {
-        //        PlayMegaphonePhrase("Random" + random.Next(1, 5));
-        //    }
-        //}
+        else if (MegaphoneDefaultCondition && _scriptedPhrasesTimeCodes[(int)G.TransitiveVariant[7] + 1] - G.Scores > 10 && !G.IsPlayerDead && G.Scores > 5)
+        {
+            if (random.Next(2500) == 0)
+            {
+                int i = random.Next(1, 8);
+                while (i == (int)G.TransitiveVariant[13])
+                    i = random.Next(1, 8);
+                PlayMegaphonePhrase("Random" + i);
+                G.TransitiveVariant[13] = i;
+            }
+        }
     }
     public void PlayerDied()
     {
@@ -108,8 +197,8 @@ public partial class Level10ScientistScript : Node2D
         }
         else if (G.Scores > 150 || (bool)G.TransitiveVariant[3])
         {
+            OnLevelReset();
             G.TransitiveVariant[3] = true;
-            Random random = new Random();
             G.TransitiveVariant[4] = G.Scores - random.Next(5, 15);
             if ((float)G.TransitiveVariant[4] < 0)
                 G.TransitiveVariant[4] = 0;
@@ -134,9 +223,7 @@ public partial class Level10ScientistScript : Node2D
     }
     public void PhraseFinished()
     {
-        GD.Print(_megaphonePhraseTimer);
         _megaphone.Stream = null;
         _megaphonePhraseTimer = 10;
-        GD.Print(_megaphonePhraseTimer);
     }
 }

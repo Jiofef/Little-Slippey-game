@@ -12,7 +12,7 @@ public partial class LevelMusicPlayer : AudioStreamPlayer
         if (RestartMusicWhenItFinished) 
             Connect("finished", new Callable(this, "MusicFinished"));
         if (SaveTimeCodeWhenLevelResets)
-            Connect("tree_exiting", new Callable(this, "SaveTimeCode"));
+            GetNode("../").Connect("LevelReseting", new Callable(this, "SaveTimeCode"));
         if (SavePlayingWhenLevelResets && G.MusicName != "")
             PlayMusic(G.MusicName, G.MusicRestartPosition);
     }

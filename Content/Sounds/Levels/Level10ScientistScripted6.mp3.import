@@ -13,7 +13,7 @@ dest_files=["res://.godot/imported/Level10ScientistScripted6.mp3-fac5c8cced7a43e
 [params]
 
 loop=false
-loop_offset=0
-bpm=0
+loop_offset=0.0
+bpm=0.0
 beat_count=0
 bar_beats=4
