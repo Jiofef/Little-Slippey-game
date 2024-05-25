@@ -1,12 +1,12 @@
+AnimationPlayer
+ColorRect
 RichTextLabel
 CanvasLayer
-AnimationPlayer
 Node
 AudioStreamPlayer2D
 Node2D
 CollisionShape2D
 AudioStreamPlayer
-ColorRect
 Area2D
 CollisionPolygon2D
 TileMap

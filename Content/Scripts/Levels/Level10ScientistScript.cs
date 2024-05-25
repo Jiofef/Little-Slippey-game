@@ -1,27 +1,138 @@
 using Godot;
 using System;
 using System.Linq;
-using System.Security.Cryptography;
-using System.Threading.Channels;
-using System.Threading;
 
 public partial class Level10ScientistScript : Node2D
 {
     [Signal] public delegate void SetScoresEventHandler();
     [Signal] public delegate void SetResetDisabledEventHandler();
+    [Signal] public delegate void ShowTextQueueEventHandler();
+    [Signal] public delegate void ClearTextEventHandler();
     AudioStreamPlayer2D _megaphone;
     AudioStreamPlayer _musicPlayer;
     CharacterBody2D _player;
     private float _megaphonePhraseTimer = 0;
     private float[] _scriptedPhrasesTimeCodes = {3, 50, 150, 250, 290, 300};
     Random random = new Random();
-    private float[,] _phrasesTimeCodes =
+    private float[][] _phrasesTimeCodes =
     {
+        new float[]
         {
-
-        }
+            0, 4.4f, 9.15f, 11.5f, 15, 18.3f, 20.75f,24.7f, 25.55f, 27
+        },
+        new float[]
+        {
+            0,3.6f, 7.1f, 11.7f, 13.4f
+        },
+        new float[]
+        {
+            0, 3.7f, 7
+        },
+        new float[]
+        {
+            0, 3
+        },
+        new float[]
+        {
+            0, 2
+        },
+        new float[]
+        {
+            0, 2.3f, 4.3f, 6.35f, 8.1f, 11, 13.5f, 15.8f, 20
+        },
+        new float[]
+        {
+            0, 4.4f
+        },
+        new float[]
+        {
+            0, 2
+        },
+        new float[]
+        {
+            0, 2
+        },
+        new float[]
+        {
+            0, 2
+        },
+        new float[]
+        {
+            0, 2
+        },
+        new float[]
+        {
+            0, 2
+        },
+        new float[]
+        {
+            0, 2
+        },
+        new float[]
+        {
+            0, 2.5f
+        },
     };
-    private string[][] _phrasesEngSubtitles =
+    private float[][] _phrasesTimeCodesRu =
+    {
+        new float[]
+        {
+            0.25f, 4.5f, 9.3f, 11.4f, 15.1f, 17.8f, 19.85f,23.65f, 24.15f, 26
+        },
+        new float[]
+        {
+            0, 2.9f, 6.25f, 9.9f, 12
+        },
+        new float[]
+        {
+            0, 3.9f, 7
+        },
+        new float[]
+        {
+            0, 2.5f
+        },
+        new float[]
+        {
+            0, 2
+        },
+        new float[]
+        {
+            0, 2.4f, 3.9f, 6.25f, 8.15f, 9.7f, 10.8f, 13.2f, 17
+        },
+        new float[]
+        {
+            0, 4
+        },
+        new float[]
+        {
+            0, 2
+        },
+        new float[]
+        {
+            0, 2
+        },
+        new float[]
+        {
+            0, 2
+        },
+        new float[]
+        {
+            0, 1.5f
+        },
+        new float[]
+        {
+            0, 2.3f
+        },
+        new float[]
+        {
+            0, 2
+        },
+        new float[]
+        {
+            0, 2.5f
+        },
+    };
+    private string[][] _phrasesSubtitles =
     {
         new string[]
         {
@@ -57,10 +168,10 @@ public partial class Level10ScientistScript : Node2D
             "YEAH! YOU DID IT!",
             "Congratulations!",
             "Well, I'm gonna...",
-            "Hey, wha...",
+            "he... hey, wha...",
             "the timer was... fixed?",
-            "I don't understand...",
-            "I-I can't co...",
+            "I... I don't understand...",
+            "I ca... I can't... I can't contro...*laugh*",
             "I can't control the crosses, hey, what's with them ;)"
         },
         new string[]
@@ -99,6 +210,8 @@ public partial class Level10ScientistScript : Node2D
 
     public override void _Ready()
     {
+        Connect("ShowTextQueue", new Callable(GetNode("CanvasLayer/Subtitles"), "ShowTextQueue"));
+        Connect("ClearText", new Callable(GetNode("CanvasLayer/Subtitles"), "ClearText"));
         Connect("SetResetDisabled", new Callable(GetNode("../../"), "SetResetDisabled"));
         if ((bool)G.TransitiveVariant[3])
             EmitSignal("SetResetDisabled", true);
@@ -132,10 +245,16 @@ public partial class Level10ScientistScript : Node2D
             whiteNoiseGlitch.Play();
             GetNode<AudioStreamPlayer>("../CanvasLayer/WhiteNoiseGlitch/AudioStreamPlayer").Play();
         }
+        if (G.DidLevelIntroPassed)
+        {
+            GetNode("CanvasLayer").QueueFree();
+            var PackedCanvasLayer = (PackedScene)G.TransitiveVariant[15];
+            AddChild(PackedCanvasLayer.Instantiate<CanvasLayer>());
+        }
     }
     public override void _PhysicsProcess(double delta)
     {
-        if ((bool)G.TransitiveVariant[13])
+        if ((bool)G.TransitiveVariant[14])
         {
             G.CrossSpawnMultiplier *= 1.01f;
         }
@@ -167,6 +286,7 @@ public partial class Level10ScientistScript : Node2D
         if (MegaphoneDefaultCondition && G.Scores >= _scriptedPhrasesTimeCodes[(int)G.TransitiveVariant[7] + 1])
         {
             PlayMegaphonePhrase("Scripted" + ((int)G.TransitiveVariant[7] + 2));
+            EmitSignal("ShowTextQueue", _phrasesSubtitles[(int)G.TransitiveVariant[7] + 1], Meta.Instance.language == Meta.Language.en ? _phrasesTimeCodes[(int)G.TransitiveVariant[7] + 1] : _phrasesTimeCodesRu[(int)G.TransitiveVariant[7] + 1], 1);
             if ((int)G.TransitiveVariant[7] == 1)
                 EmitSignal("SetResetDisabled", true);
             G.TransitiveVariant[7] = (int)G.TransitiveVariant[7] + 1;
@@ -175,15 +295,17 @@ public partial class Level10ScientistScript : Node2D
         {
             G.TransitiveVariant[6] = true;
             PlayMegaphonePhrase("FiveDeaths");
+            EmitSignal("ShowTextQueue", _phrasesSubtitles[6], Meta.Instance.language == Meta.Language.en ? _phrasesTimeCodes[6] : _phrasesTimeCodesRu[6], 1);
         }
         else if (MegaphoneDefaultCondition && _scriptedPhrasesTimeCodes[(int)G.TransitiveVariant[7] + 1] - G.Scores > 10 && !G.IsPlayerDead && G.Scores > 5)
         {
-            if (random.Next(2500) == 0)
+            if (random.Next(2000) == 0)
             {
                 int i = random.Next(1, 8);
                 while (i == (int)G.TransitiveVariant[13])
                     i = random.Next(1, 8);
                 PlayMegaphonePhrase("Random" + i);
+                EmitSignal("ShowTextQueue", _phrasesSubtitles[i + 6], Meta.Instance.language == Meta.Language.en ? _phrasesTimeCodes[i + 6] : _phrasesTimeCodesRu[i + 6], 1);
                 G.TransitiveVariant[13] = i;
             }
         }
@@ -202,6 +324,18 @@ public partial class Level10ScientistScript : Node2D
             G.TransitiveVariant[4] = G.Scores - random.Next(5, 15);
             if ((float)G.TransitiveVariant[4] < 0)
                 G.TransitiveVariant[4] = 0;
+
+            //var packedCanvasLayer = new PackedScene();
+            //var canvasLayer = GetNode<CanvasLayer>("CanvasLayer");
+            //var subtitlesColorRect = GetNode<ColorRect>("CanvasLayer/ColorRect");
+            //canvasLayer.AddChild(subtitlesColorRect);
+            //var subtitlesColorRectAnimationPlayer = GetNode<AnimationPlayer>("");
+            //subtitlesColorRect.AddChild(subtitlesColorRectAnimationPlayer);
+            //var subtitles = GetNode<Subtitles>("CanvasLayer/Subtitles");
+            //canvasLayer.AddChild(subtitles);
+            //packedCanvasLayer.Pack(canvasLayer);
+            //G.TransitiveVariant[15] = packedCanvasLayer;
+
             GetTree().ReloadCurrentScene();
         }
 
@@ -219,11 +353,24 @@ public partial class Level10ScientistScript : Node2D
         G.TransitiveVariant[9] = _megaphonePhraseTimer;
         G.TransitiveVariant[10] = _musicPlayer.VolumeDb;
         G.TransitiveVariant[11] = _megaphone.GetPlaybackPosition();
+
+        //var packedCanvasLayer = new PackedScene();
+        //var canvasLayer = GetNode<CanvasLayer>("CanvasLayer");
+        //var subtitlesColorRect = GetNode<ColorRect>("CanvasLayer/ColorRect");
+        //canvasLayer.AddChild(subtitlesColorRect);
+        //var subtitlesColorRectAnimationPlayer = GetNode<AnimationPlayer>("");
+        //subtitlesColorRect.AddChild(subtitlesColorRectAnimationPlayer);
+        //var subtitles = GetNode<Subtitles>("CanvasLayer/Subtitles");
+        //canvasLayer.AddChild(subtitles);
+        //packedCanvasLayer.Pack(canvasLayer);
+        //G.TransitiveVariant[15] = packedCanvasLayer;
+        
         G.MusicStopTimeCode = _musicPlayer.GetPlaybackPosition();
     }
     public void PhraseFinished()
     {
         _megaphone.Stream = null;
         _megaphonePhraseTimer = 10;
+        EmitSignal("ClearText");
     }
 }

@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=3 uid="uid://c2nxiddufnutu"]
+[gd_scene load_steps=67 format=3 uid="uid://c2nxiddufnutu"]
 
 [ext_resource type="Script" path="res://Content/Scripts/Other/MainScript.cs" id="1_52yug"]
 [ext_resource type="Script" path="res://Content/Scripts/Levels/Level10MusicPlayer.cs" id="2_1fwqt"]
@@ -28,6 +28,42 @@
 [ext_resource type="Shader" path="res://Content/Other/BrightnessShader.gdshader" id="24_neuu2"]
 [ext_resource type="Script" path="res://Content/Scripts/Other/PostProcessingRect.cs" id="25_duxyh"]
 [ext_resource type="AudioStream" uid="uid://cuvkdo1lyvynu" path="res://Content/Sounds/Other/EpicIntro.mp3" id="26_gylqo"]
+
+[sub_resource type="Animation" id="Animation_lixp7"]
+resource_name = "Appearing"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_r25rs"]
+resource_name = "Disappearing"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pai8u"]
+_data = {
+"Appearing": SubResource("Animation_lixp7"),
+"Disappearing": SubResource("Animation_r25rs")
+}
 
 [sub_resource type="Animation" id="Animation_cj33v"]
 resource_name = "CapsulePassage"
@@ -1062,14 +1098,28 @@ max_distance = 6000.0
 bus = &"Enviromnment"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Level/ScientistNode"]
-layer = 11
+
+[node name="ColorRect" type="ColorRect" parent="Level/ScientistNode/CanvasLayer"]
+modulate = Color(1, 1, 1, 0)
+offset_left = 236.0
+offset_top = 596.0
+offset_right = 1044.0
+offset_bottom = 720.0
+mouse_filter = 2
+color = Color(0.117647, 0.117647, 0.117647, 0.352941)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Level/ScientistNode/CanvasLayer/ColorRect"]
+libraries = {
+"": SubResource("AnimationLibrary_pai8u")
+}
 
 [node name="Subtitles" type="RichTextLabel" parent="Level/ScientistNode/CanvasLayer"]
 offset_left = 240.0
 offset_top = 600.0
-offset_right = 1020.0
-offset_bottom = 720.0
-text = "gfd"
+offset_right = 773.0
+offset_bottom = 680.0
+scale = Vector2(1.5, 1.5)
+mouse_filter = 2
 script = ExtResource("5_2idil")
 
 [node name="Background" type="ParallaxBackground" parent="Level"]
@@ -1456,11 +1506,13 @@ bus = &"Interface"
 layer = 100
 
 [connection signal="LevelReseting" from="." to="Level/ScientistNode" method="OnLevelReset" flags=6]
-[connection signal="ready" from="." to="." method="SetCrossesEnabled" flags=7 binds= [true]]
-[connection signal="ready" from="." to="." method="SetCrossesSpawnMultiplier" flags=7 binds= [1.0]]
 [connection signal="ready" from="." to="." method="SetCrossesProgressCoeff" flags=7 binds= [0.5]]
 [connection signal="ready" from="." to="." method="SetProgressPaused" flags=7 binds= [false]]
+[connection signal="ready" from="." to="." method="SetCrossesSpawnMultiplier" flags=7 binds= [1.0]]
+[connection signal="ready" from="." to="." method="SetCrossesEnabled" flags=7 binds= [true]]
 [connection signal="finished" from="Level/ScientistNode/Megaphone" to="Level/ScientistNode" method="PhraseFinished" flags=3]
+[connection signal="TextAppearing" from="Level/ScientistNode/CanvasLayer/Subtitles" to="Level/ScientistNode/CanvasLayer/ColorRect/AnimationPlayer" method="play" binds= ["Appearing"]]
+[connection signal="TextClearing" from="Level/ScientistNode/CanvasLayer/Subtitles" to="Level/ScientistNode/CanvasLayer/ColorRect/AnimationPlayer" method="play" binds= ["Disappearing"]]
 [connection signal="PlayerDied" from="Level/Player" to="LevelMusicPlayer" method="SaveTimeCode" flags=6]
 [connection signal="PlayerDied" from="Level/Player" to="Level/ScientistNode" method="PlayerDied" flags=6]
 [connection signal="area_entered" from="Level/Player/Areas/PlayerDamageDetector" to="Level/PositionCrutch/DroneCapsule/Timer" method="start" flags=22 unbinds=1]
