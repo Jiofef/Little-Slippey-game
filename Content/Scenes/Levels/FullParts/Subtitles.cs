@@ -6,15 +6,18 @@ public partial class Subtitles : RichTextLabel
 {
 	[Signal] public delegate void TextAppearingEventHandler();
 	[Signal] public delegate void TextClearingEventHandler();
-    private string _textToDraw = "";
-    private float _timeToDraw = 0;
-	private float _timer = 0;
 
-    private string[] _textsQueue;
-    private float[] _textTimeCodes;
-    private bool _isTextQueued = false;
-	private float _textSavingTime = 0;
-	private int _currentQueueNumber = -1;
+    //I have made these fields public so that their values can be saved after the level is reloaded.
+    public string _textToDraw = "";
+    public float _timeToDraw = 0;
+    public float _timer = 0;
+
+    public string[] _textsQueue;
+    public float[] _textTimeCodes;
+    public bool _isTextQueued = false;
+    public float _textSavingTime = 0;
+    public int _currentQueueNumber = -1;
+	//
 
     public override void _Ready()
 	{

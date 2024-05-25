@@ -247,9 +247,7 @@ public partial class Level10ScientistScript : Node2D
         }
         if (G.DidLevelIntroPassed)
         {
-            GetNode("CanvasLayer").QueueFree();
-            var PackedCanvasLayer = (PackedScene)G.TransitiveVariant[15];
-            AddChild(PackedCanvasLayer.Instantiate<CanvasLayer>());
+            LoadSubtitlesSavedState();
         }
     }
     public override void _PhysicsProcess(double delta)
@@ -325,16 +323,7 @@ public partial class Level10ScientistScript : Node2D
             if ((float)G.TransitiveVariant[4] < 0)
                 G.TransitiveVariant[4] = 0;
 
-            //var packedCanvasLayer = new PackedScene();
-            //var canvasLayer = GetNode<CanvasLayer>("CanvasLayer");
-            //var subtitlesColorRect = GetNode<ColorRect>("CanvasLayer/ColorRect");
-            //canvasLayer.AddChild(subtitlesColorRect);
-            //var subtitlesColorRectAnimationPlayer = GetNode<AnimationPlayer>("");
-            //subtitlesColorRect.AddChild(subtitlesColorRectAnimationPlayer);
-            //var subtitles = GetNode<Subtitles>("CanvasLayer/Subtitles");
-            //canvasLayer.AddChild(subtitles);
-            //packedCanvasLayer.Pack(canvasLayer);
-            //G.TransitiveVariant[15] = packedCanvasLayer;
+            SaveSubtitlesState();
 
             GetTree().ReloadCurrentScene();
         }
@@ -354,17 +343,8 @@ public partial class Level10ScientistScript : Node2D
         G.TransitiveVariant[10] = _musicPlayer.VolumeDb;
         G.TransitiveVariant[11] = _megaphone.GetPlaybackPosition();
 
-        //var packedCanvasLayer = new PackedScene();
-        //var canvasLayer = GetNode<CanvasLayer>("CanvasLayer");
-        //var subtitlesColorRect = GetNode<ColorRect>("CanvasLayer/ColorRect");
-        //canvasLayer.AddChild(subtitlesColorRect);
-        //var subtitlesColorRectAnimationPlayer = GetNode<AnimationPlayer>("");
-        //subtitlesColorRect.AddChild(subtitlesColorRectAnimationPlayer);
-        //var subtitles = GetNode<Subtitles>("CanvasLayer/Subtitles");
-        //canvasLayer.AddChild(subtitles);
-        //packedCanvasLayer.Pack(canvasLayer);
-        //G.TransitiveVariant[15] = packedCanvasLayer;
-        
+        SaveSubtitlesState();
+
         G.MusicStopTimeCode = _musicPlayer.GetPlaybackPosition();
     }
     public void PhraseFinished()
@@ -372,5 +352,43 @@ public partial class Level10ScientistScript : Node2D
         _megaphone.Stream = null;
         _megaphonePhraseTimer = 10;
         EmitSignal("ClearText");
+    }
+    public void SaveSubtitlesState()
+    {
+        var subtitles = GetNode<Subtitles>("CanvasLayer/Subtitles");
+        G.TransitiveVariant[16] = subtitles._textToDraw;
+        G.TransitiveVariant[17] = subtitles._timeToDraw;
+        G.TransitiveVariant[18] = subtitles._timer;
+
+        G.TransitiveVariant[19] = subtitles._textsQueue;
+        G.TransitiveVariant[20] = subtitles._textTimeCodes;
+        G.TransitiveVariant[21] = subtitles._isTextQueued;
+        G.TransitiveVariant[22] = subtitles._textSavingTime;
+        G.TransitiveVariant[23] = subtitles._currentQueueNumber;
+
+        G.TransitiveVariant[24] = GetNode<ColorRect>("CanvasLayer/ColorRect").Modulate;
+        G.TransitiveVariant[25] = GetNode<AnimationPlayer>("CanvasLayer/ColorRect/AnimationPlayer").CurrentAnimation;
+        G.TransitiveVariant[26] = subtitles.IsPhysicsProcessing();
+        G.TransitiveVariant[27] = subtitles.Text;
+        G.TransitiveVariant[28] = subtitles.VisibleRatio;
+    }
+    public void LoadSubtitlesSavedState()
+    {
+        var subtitles = GetNode<Subtitles>("CanvasLayer/Subtitles");
+        subtitles._textToDraw = (string)G.TransitiveVariant[16];
+        subtitles._timeToDraw = (float)G.TransitiveVariant[17];
+        subtitles._timer = (float)G.TransitiveVariant[18];
+
+        subtitles._textsQueue = (string[])G.TransitiveVariant[19];
+        subtitles._textTimeCodes = (float[])G.TransitiveVariant[20];
+        subtitles._isTextQueued = (bool)G.TransitiveVariant[21];
+        subtitles._textSavingTime = (float)G.TransitiveVariant[22];
+        subtitles._currentQueueNumber = (int)G.TransitiveVariant[23];
+        GetNode<ColorRect>("CanvasLayer/ColorRect").Modulate = (Color)G.TransitiveVariant[24];
+        if ((string)G.TransitiveVariant[25] != "")
+            GetNode<AnimationPlayer>("CanvasLayer/ColorRect/AnimationPlayer").Play((string)G.TransitiveVariant[25]);
+        subtitles.SetPhysicsProcess((bool)G.TransitiveVariant[26]);
+        subtitles.Text = (string)G.TransitiveVariant[27];
+        subtitles.VisibleRatio = (float)G.TransitiveVariant[28];
     }
 }

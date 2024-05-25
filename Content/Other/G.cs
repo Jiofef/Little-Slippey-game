@@ -19,7 +19,7 @@ public partial class G : Node
     }
     // These variables are designed to expand the capabilities in level scripting, including for modders. It is primarily created to store data remaining after exiting a level,
 	// after restarting, or after moving to another level.
-	public static Variant[] TransitiveVariant = new Variant[32];
+	public static Variant[] TransitiveVariant = new Variant[64];
     public static readonly Vector2[] LevelXYSizes =
 	{
 		//Level sizes starts from Vector2 with index "1", Vector2 with index "0" is the minimal level size
