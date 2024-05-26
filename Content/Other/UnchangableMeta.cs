@@ -17,9 +17,9 @@ public partial class UnchangableMeta : Node
     public static int[] LevelCompleteStatus = new int[G.LevelsInGameTotal];
     public static byte[] LevelPlayedStatus = new byte[G.LevelsInGameTotal]; //I made it as byte[] because of retard Godot that can't save a boolean array >:(
 
-    public static bool IsLanguageSetted = false, IsTutorialPlayed, IsLevel9PlatformSectionFirstTimeCompleted, IsLevel9PlatformSectionSkipAllowed, IsFakeLevel10SkipAllowed;
+    public static bool IsLanguageSetted = false, IsTutorialPlayed, IsLevel9PlatformSectionFirstTimeCompleted, IsLevel9PlatformSectionSkipAllowed, IsFakeLevel10SkipAllowed, IsThereNewContentInRecycleBin = true;
     public static float DeathsNumber = 0;
-    public static byte[] AchievementStatuses = new byte[51]; // A G A I N
+    public static byte[] AchievementStatuses = new byte[52]; // A G A I N
 
     public static int AchievementsCount()
     {
@@ -35,7 +35,7 @@ public partial class UnchangableMeta : Node
         {
             LevelRecords[Meta.Instance.Dificulty][G.CurrentLevel - 1] = (int)G.Scores;
             G.IsNewRecordReached = true;
-            if (G.Scores >= 150 && Meta.Instance.Dificulty + 1 > LevelCompleteStatus[G.CurrentLevel - 1])
+            if (G.Scores >= G.LevelCompleteTime && Meta.Instance.Dificulty + 1 > LevelCompleteStatus[G.CurrentLevel - 1])
             {
                 LevelCompleteStatus[G.CurrentLevel - 1] = Meta.Instance.Dificulty + 1;
                 for (int i = 0; i <= Meta.Instance.Dificulty; i++)
@@ -46,12 +46,6 @@ public partial class UnchangableMeta : Node
             G.GetAchievement(7);
         if (G.Scores >= 150 && Meta.Instance.CameraZoom >= 2)
             G.GetAchievement(8);
-        if (G.Scores >= 150 && G.CurrentLevel == 10)
-        {
-            G.GetAchievement(45);
-            G.GetAchievement(46);
-            G.GetAchievement(47);
-        }
     }
 
     public static Dictionary<string, Variant> GetJson()
@@ -67,6 +61,7 @@ public partial class UnchangableMeta : Node
             {"is_level9_platform_section_first_time_completed", IsLevel9PlatformSectionFirstTimeCompleted},
             {"is_level9_platform_section_skip_is_allowed", IsLevel9PlatformSectionSkipAllowed},
             {"is_fake_level10_skip_allowed", IsFakeLevel10SkipAllowed},
+            {"is_there_new_content_in_recycle_bin", IsThereNewContentInRecycleBin},
             {"level_played_status", LevelPlayedStatus},
             {"achievement_statuses", AchievementStatuses},
         };
@@ -115,6 +110,7 @@ public partial class UnchangableMeta : Node
             IsLevel9PlatformSectionFirstTimeCompleted = (bool)model["is_level9_platform_section_first_time_completed"];
             IsLevel9PlatformSectionSkipAllowed = (bool)model["is_level9_platform_section_skip_is_allowed"];
             IsFakeLevel10SkipAllowed = (bool)model["is_fake_level10_skip_allowed"];
+            IsThereNewContentInRecycleBin = (bool)model["is_there_new_content_in_recycle_bin"];
 
             Godot.Collections.Array AchievementStatusesArray = (Godot.Collections.Array)model["achievement_statuses"];
             try

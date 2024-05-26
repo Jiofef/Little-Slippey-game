@@ -1,12 +1,12 @@
-[gd_scene load_steps=67 format=3 uid="uid://c2nxiddufnutu"]
+[gd_scene load_steps=68 format=3 uid="uid://c2nxiddufnutu"]
 
 [ext_resource type="Script" path="res://Content/Scripts/Other/MainScript.cs" id="1_52yug"]
 [ext_resource type="Script" path="res://Content/Scripts/Levels/Level10MusicPlayer.cs" id="2_1fwqt"]
 [ext_resource type="Script" path="res://Content/Scripts/Levels/BaseLevelScript.cs" id="2_8e3wu"]
 [ext_resource type="Script" path="res://Content/Scripts/Levels/Level10ScientistScript.cs" id="4_dq252"]
 [ext_resource type="Texture2D" uid="uid://bif1cr6n4hvie" path="res://Content/Sprites/Levels/Level10/TestChamber.png" id="4_i3a5a"]
-[ext_resource type="Script" path="res://Content/Scenes/Levels/FullParts/Subtitles.cs" id="5_2idil"]
 [ext_resource type="Texture2D" uid="uid://cp7kra2fyq5jn" path="res://Content/Sprites/Levels/Level10/BackPipes.png" id="5_rf2xq"]
+[ext_resource type="Script" path="res://Content/Scripts/Levels/Subtitles.cs" id="5_rw6aw"]
 [ext_resource type="Texture2D" uid="uid://vymh2b710qgl" path="res://Content/Sprites/Levels/Level10/ForePipes.png" id="6_m6e61"]
 [ext_resource type="Texture2D" uid="uid://bom6incv53ok1" path="res://Content/Sprites/Levels/Level10/Rail.png" id="7_ave4d"]
 [ext_resource type="Script" path="res://Content/Scripts/Other/AnimationRandomizer.cs" id="8_hunrt"]
@@ -17,6 +17,7 @@
 [ext_resource type="AudioStream" uid="uid://dy6lncevmnf3o" path="res://Content/Sounds/Other/WhiteNoise.mp3" id="13_ailj6"]
 [ext_resource type="Script" path="res://Content/Scripts/Levels/Level10DroneCapsule.cs" id="14_qp2rg"]
 [ext_resource type="Texture2D" uid="uid://dpf24jfhstqid" path="res://Content/Sprites/Levels/Level10/PortableControlledDroneCapsule.png" id="15_h6grn"]
+[ext_resource type="AudioStream" uid="uid://cfsrycvyi23la" path="res://Content/Sounds/Levels/Level10ElectronicBroken.mp3" id="16_frlwx"]
 [ext_resource type="AudioStream" uid="uid://c0lbb7mb40ipw" path="res://Content/Sounds/Levels/Level10ManipulatorSound.mp3" id="16_mt6pq"]
 [ext_resource type="Texture2D" uid="uid://4udch8ejvu08" path="res://Content/Sprites/Interface/PauseButtonsFrame.png" id="17_t8ssq"]
 [ext_resource type="PackedScene" uid="uid://bwpstpk1xmkah" path="res://Content/Scenes/Interface&Menu/Button.tscn" id="18_iki0q"]
@@ -839,6 +840,20 @@ tracks/11/keys = {
 "update": 1,
 "values": [true, true]
 }
+tracks/12/type = "method"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("../../..")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(16),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [48],
+"method": &"GiveAchievement"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_urued"]
 _data = {
@@ -1114,13 +1129,14 @@ libraries = {
 }
 
 [node name="Subtitles" type="RichTextLabel" parent="Level/ScientistNode/CanvasLayer"]
+clip_contents = false
 offset_left = 240.0
 offset_top = 600.0
 offset_right = 773.0
 offset_bottom = 680.0
 scale = Vector2(1.5, 1.5)
 mouse_filter = 2
-script = ExtResource("5_2idil")
+script = ExtResource("5_rw6aw")
 
 [node name="Background" type="ParallaxBackground" parent="Level"]
 
@@ -1227,6 +1243,7 @@ layer_2/tile_data = PackedInt32Array(786447, 65540, 2, 851983, 65540, 2, 786448,
 [node name="CanvasLayer" type="CanvasLayer" parent="Level"]
 
 [node name="ColorRect" type="ColorRect" parent="Level/CanvasLayer"]
+modulate = Color(1, 1, 1, 0)
 offset_right = 1280.0
 offset_bottom = 720.0
 metadata/_edit_lock_ = true
@@ -1234,11 +1251,9 @@ metadata/_edit_lock_ = true
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Level/CanvasLayer/ColorRect"]
 stream = ExtResource("11_i50es")
 volume_db = 6.0
-autoplay = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Level/CanvasLayer/ColorRect"]
 root_node = NodePath("../..")
-autoplay = "Blumxd"
 libraries = {
 "": SubResource("AnimationLibrary_dxx2d")
 }
@@ -1268,6 +1283,9 @@ centered = false
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Level/CanvasLayer/WhiteNoiseGlitch"]
 stream = SubResource("AudioStreamWAV_7qoqx")
 volume_db = -5.0
+
+[node name="TimerBroken" type="AudioStreamPlayer" parent="Level/CanvasLayer"]
+stream = ExtResource("16_frlwx")
 
 [node name="PositionCrutch" type="Node2D" parent="Level"]
 z_index = 3
@@ -1506,10 +1524,10 @@ bus = &"Interface"
 layer = 100
 
 [connection signal="LevelReseting" from="." to="Level/ScientistNode" method="OnLevelReset" flags=6]
-[connection signal="ready" from="." to="." method="SetCrossesEnabled" flags=7 binds= [true]]
-[connection signal="ready" from="." to="." method="SetCrossesSpawnMultiplier" flags=7 binds= [1.0]]
 [connection signal="ready" from="." to="." method="SetCrossesProgressCoeff" flags=7 binds= [0.5]]
 [connection signal="ready" from="." to="." method="SetProgressPaused" flags=7 binds= [false]]
+[connection signal="ready" from="." to="." method="SetCrossesEnabled" flags=7 binds= [true]]
+[connection signal="ready" from="." to="." method="SetCrossesSpawnMultiplier" flags=7 binds= [1.0]]
 [connection signal="finished" from="Level/ScientistNode/Megaphone" to="Level/ScientistNode" method="PhraseFinished" flags=3]
 [connection signal="TextAppearing" from="Level/ScientistNode/CanvasLayer/Subtitles" to="Level/ScientistNode/CanvasLayer/ColorRect/AnimationPlayer" method="play" binds= ["Appearing"]]
 [connection signal="TextClearing" from="Level/ScientistNode/CanvasLayer/Subtitles" to="Level/ScientistNode/CanvasLayer/ColorRect/AnimationPlayer" method="play" binds= ["Disappearing"]]

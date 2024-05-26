@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://cb5qp5c88hxxs"]
+[gd_scene load_steps=39 format=3 uid="uid://cb5qp5c88hxxs"]
 
 [ext_resource type="PackedScene" uid="uid://5kfyvxsdpsk2" path="res://Content/Scenes/Other/LevelLayout.tscn" id="1_k46p1"]
 [ext_resource type="Texture2D" uid="uid://cl251rqg2xbw0" path="res://Content/Sprites/Levels/Level6/Sky.png" id="2_suw6p"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://q2j1uuqfjmos" path="res://Content/Sprites/Levels/BaseTileSet.png" id="10_gawwt"]
 [ext_resource type="Texture2D" uid="uid://b1dppreruk7js" path="res://Content/Sprites/Levels/poliSiSagEtilEseT.png" id="11_fgsae"]
 [ext_resource type="Script" path="res://Content/Scripts/Levels/Foreground.cs" id="12_ib3hj"]
+[ext_resource type="Script" path="res://Content/Scripts/Levels/Level6SneakyAssArea.cs" id="13_8nggt"]
 [ext_resource type="Script" path="res://Content/Scripts/Levels/Level6FlyingCarSpawner.cs" id="13_528ge"]
 [ext_resource type="PackedScene" uid="uid://c8bud6raefbd" path="res://Content/Scenes/Other/Level6FlyingCar.tscn" id="14_b2d1u"]
 [ext_resource type="PackedScene" uid="uid://d3u7pfig07yrs" path="res://Content/Scenes/Other/CrutchedArea2D.tscn" id="15_uy6ib"]
@@ -414,6 +415,7 @@ layer_0/tile_data = PackedInt32Array(1245188, 1, 65536, 1179652, 1, 65536, 11141
 [node name="ForegroundArea" type="Area2D" parent="Level/BuildingForeground/TileMap" index="0"]
 scale = Vector2(0.25, 0.25)
 collision_layer = 64
+script = ExtResource("13_8nggt")
 
 [node name="CollisionShape1" type="CollisionShape2D" parent="Level/BuildingForeground/TileMap/ForegroundArea" index="0"]
 position = Vector2(160.5, 576)
@@ -519,7 +521,11 @@ position = Vector2(1280, 250)
 shape = SubResource("RectangleShape2D_ftna0")
 
 [connection signal="body_entered" from="Level/BuildingForeground/TileMap/ForegroundArea" to="Level/BuildingForeground" method="Hide" flags=18 unbinds=1]
+[connection signal="body_entered" from="Level/BuildingForeground/TileMap/ForegroundArea" to="Level/BuildingForeground/TileMap/ForegroundArea" method="Entered" unbinds=1]
 [connection signal="body_exited" from="Level/BuildingForeground/TileMap/ForegroundArea" to="Level/BuildingForeground" method="Show" flags=18 unbinds=1]
+[connection signal="body_exited" from="Level/BuildingForeground/TileMap/ForegroundArea" to="Level/BuildingForeground/TileMap/ForegroundArea" method="Exited" unbinds=1]
+[connection signal="ButtonPressed" from="Level/PlayMusicTrigger" to="." method="SetProgressPaused" flags=6 binds= [false]]
+[connection signal="ButtonPressed" from="Level/PlayMusicTrigger" to="." method="SetCrossesSpawnMultiplier" flags=6 binds= [0.65]]
 [connection signal="ButtonPressed" from="Level/PlayMusicTrigger" to="LevelMusicPlayer" method="PlayMusic" flags=6 binds= ["Clair De Phare", 10.19, 0.0]]
 
 [editable path="Pause/Interface/ButtonsFrame/Menu"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://dkibh4v7pkdaf"]
+[gd_scene load_steps=24 format=3 uid="uid://dkibh4v7pkdaf"]
 
 [ext_resource type="Texture2D" uid="uid://bup1u0y7qgmvb" path="res://Content/Sprites/Interface/MenuBackground.png" id="1_gbq5h"]
 [ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/WelcomeToGOS.cs" id="1_u85jq"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://bmjwiuppf6tyy" path="res://Content/Sprites/Interface/AchievementsIcon.png" id="11_bbjhw"]
 [ext_resource type="Texture2D" uid="uid://d03ehdak28vnl" path="res://Content/Sprites/Interface/TitlesIcon.png" id="12_galhh"]
 [ext_resource type="AudioStream" uid="uid://b33fnwxr3ykiu" path="res://Content/Sounds/Soundtrack/GieroOfficeTheme.mp3" id="13_26the"]
+[ext_resource type="Texture2D" uid="uid://b163nftflfm82" path="res://Content/Sprites/Interface/RecycleBinNotify.png" id="13_dkta7"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4v4vt"]
 shader = ExtResource("5_h17kw")
@@ -285,6 +286,7 @@ offset_bottom = 720.0
 mouse_filter = 2
 
 [node name="InitializationBlackout" type="ColorRect" parent="MonitorEffects"]
+modulate = Color(1, 1, 1, 0)
 offset_right = 1280.0
 offset_bottom = 720.0
 mouse_filter = 2
@@ -297,7 +299,6 @@ volume_db = 10.0
 [node name="PopupAchievementsLayer" type="CanvasLayer" parent="."]
 
 [node name="Buttons" type="Control" parent="."]
-process_mode = 4
 layout_mode = 3
 anchors_preset = 0
 mouse_filter = 2
@@ -377,6 +378,10 @@ offset_right = 40.0
 offset_bottom = 413.0
 texture_normal = ExtResource("12_galhh")
 
+[node name="Notify" type="Sprite2D" parent="Buttons/Titles"]
+position = Vector2(12, 14)
+texture = ExtResource("13_dkta7")
+
 [node name="RecycleBin" type="Label" parent="Buttons"]
 layout_mode = 0
 offset_left = 2.0
@@ -388,7 +393,7 @@ horizontal_alignment = 1
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("13_26the")
-volume_db = -10.0
+volume_db = 6.0
 bus = &"Music"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -409,3 +414,4 @@ limit_bottom = 720
 [connection signal="pressed" from="Buttons/SkinsButton" to="." method="IconClick" binds= [3]]
 [connection signal="pressed" from="Buttons/AchievementsButton" to="." method="IconClick" binds= [4]]
 [connection signal="pressed" from="Buttons/Titles" to="." method="IconClick" binds= [5]]
+[connection signal="pressed" from="Buttons/Titles" to="Buttons/Titles/Notify" method="set_visible" flags=6 binds= [false]]

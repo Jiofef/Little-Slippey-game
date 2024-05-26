@@ -32,5 +32,6 @@ public partial class Level10RealityDissector : Node
 			UnchangableMeta.IsFakeLevel10SkipAllowed = true;
 		G.LevelAdditionalLink = "True";
 		EmitSignal("ChangeScene");
+		G.MusicStopTimeCode = 0;
     }
 }

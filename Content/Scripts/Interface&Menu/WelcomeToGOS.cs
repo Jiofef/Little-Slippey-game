@@ -8,6 +8,7 @@ public partial class WelcomeToGOS : Control
 	public override void _Ready()
 	{
 		G.CurrentPopupAchievementsLayer = GetNode<CanvasLayer>("PopupAchievementsLayer");
+		GetNode<Sprite2D>("Buttons/Titles/Notify").Visible = UnchangableMeta.IsThereNewContentInRecycleBin;
 		if (!G.IsSystemInitiated)
 		{
 			GetNode<AnimationPlayer>("AnimationPlayer").Play("Initialization");

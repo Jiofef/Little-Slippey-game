@@ -8,6 +8,8 @@ public partial class Level10ScientistScript : Node2D
     [Signal] public delegate void SetResetDisabledEventHandler();
     [Signal] public delegate void ShowTextQueueEventHandler();
     [Signal] public delegate void ClearTextEventHandler();
+    [Signal] public delegate void SetCrossesProgressCoeffEventHandler();
+    [Signal] public delegate void RecalculateCrossWeightEventHandler();
     AudioStreamPlayer2D _megaphone;
     AudioStreamPlayer _musicPlayer;
     CharacterBody2D _player;
@@ -210,6 +212,7 @@ public partial class Level10ScientistScript : Node2D
 
     public override void _Ready()
     {
+        G.LevelCompleteTime = 300;
         Connect("ShowTextQueue", new Callable(GetNode("CanvasLayer/Subtitles"), "ShowTextQueue"));
         Connect("ClearText", new Callable(GetNode("CanvasLayer/Subtitles"), "ClearText"));
         Connect("SetResetDisabled", new Callable(GetNode("../../"), "SetResetDisabled"));
@@ -219,11 +222,13 @@ public partial class Level10ScientistScript : Node2D
         _musicPlayer = GetNode<AudioStreamPlayer>("../../LevelMusicPlayer");
         _player = GetNode<CharacterBody2D>("../Player");
         if ((bool)G.TransitiveVariant[0] == true)
+        {
             G.TransitiveVariant[0] = "";
-        else
-            GetNode<ColorRect>("../CanvasLayer/ColorRect").QueueFree();
+            GetNode<AnimationPlayer>("../CanvasLayer/ColorRect/AnimationPlayer").Play("Blumxd");
+            GetNode<AudioStreamPlayer>("../CanvasLayer/ColorRect/AudioStreamPlayer").Play();
+        }
 
-        if (!G.DidLevelIntroPassed)
+        if (!G.DidLevelIntroPassed || (bool)G.TransitiveVariant[29])
         {
             G.TransitiveVariant[7] = -1;
             _megaphonePhraseTimer = 3;
@@ -252,17 +257,43 @@ public partial class Level10ScientistScript : Node2D
     }
     public override void _PhysicsProcess(double delta)
     {
-        if ((bool)G.TransitiveVariant[14])
-        {
-            G.CrossSpawnMultiplier *= 1.01f;
-        }
         if (G.Scores >= 300 && (bool)G.TransitiveVariant[12] != true)
         {
             G.TransitiveVariant[12] = true;
             G.IsCrossesEnabled = false;
+            G.CrossSpawnMultiplier = 0.25f;
             var AllCrossesOnScreen = GetTree().GetNodesInGroup("Crosses");
             for (int i = 0; AllCrossesOnScreen.Count > i; i++)
                 AllCrossesOnScreen[i].QueueFree();
+            GetNode<AnimationPlayer>("../CanvasLayer/ColorRect/AnimationPlayer").Play("Blumxd");
+            GetNode<AudioStreamPlayer>("../CanvasLayer/ColorRect/AudioStreamPlayer").Play();
+            if (UnchangableMeta.LevelCompleteStatus[9] == 0)
+            {
+                G.GetAchievement(41 + Meta.Instance.Dificulty);
+                G.GetAchievement(44);
+                G.GetAchievement(45);
+                G.GetAchievement(46);
+                G.GetAchievement(47);
+                UnchangableMeta.IsThereNewContentInRecycleBin = true;
+                UnchangableMeta.SaveToFile();
+            }
+            Connect("SetCrossesProgressCoeff", new Callable(GetNode("../.."), "SetCrossesProgressCoeff"));
+            EmitSignal("SetCrossesProgressCoeff", 0.01f);
+            Connect("RecalculateCrossWeight", new Callable(GetNode(".."), "RecalculateCrossWeight"));
+            EmitSignal("RecalculateCrossWeight");
+        }
+        else if (G.Scores >= 315)
+        {
+            if (!G.IsPlayerDead)
+            {
+                G.IsCrossesEnabled = true;
+                G.CrossSpawnMultiplier *= 1.01f;
+            }
+            else
+            {
+                G.IsCrossesEnabled = false;
+                SetPhysicsProcess(false);
+            }
         }
         _megaphonePhraseTimer -= 0.01667f;
         if (_megaphone.Playing && _musicPlayer.VolumeDb > 4)
@@ -286,7 +317,13 @@ public partial class Level10ScientistScript : Node2D
             PlayMegaphonePhrase("Scripted" + ((int)G.TransitiveVariant[7] + 2));
             EmitSignal("ShowTextQueue", _phrasesSubtitles[(int)G.TransitiveVariant[7] + 1], Meta.Instance.language == Meta.Language.en ? _phrasesTimeCodes[(int)G.TransitiveVariant[7] + 1] : _phrasesTimeCodesRu[(int)G.TransitiveVariant[7] + 1], 1);
             if ((int)G.TransitiveVariant[7] == 1)
+            {
                 EmitSignal("SetResetDisabled", true);
+                GetNode<AnimationPlayer>("../CanvasLayer/ColorRect/AnimationPlayer").Play("Blumxd");
+                GetNode<AudioStreamPlayer>("../CanvasLayer/TimerBroken").Play();
+            }
+            else if ((int)G.TransitiveVariant[7] == 3)
+                _megaphonePhraseTimer = 0;
             G.TransitiveVariant[7] = (int)G.TransitiveVariant[7] + 1;
         }
         else if (MegaphoneDefaultCondition && (int)G.TransitiveVariant[1] >= 5 && (bool)G.TransitiveVariant[6] != true)
@@ -310,10 +347,12 @@ public partial class Level10ScientistScript : Node2D
     }
     public void PlayerDied()
     {
+        G.TransitiveVariant[29] = false;
         if (G.Scores > 300)
         {
             GetNode<Node2D>("../Player/Camera2D/GUI/EmergingElements").Visible = false;
             GetNode<Node2D>("../../").SetPhysicsProcess(false);
+
         }
         else if (G.Scores > 150 || (bool)G.TransitiveVariant[3])
         {
@@ -342,6 +381,7 @@ public partial class Level10ScientistScript : Node2D
         G.TransitiveVariant[9] = _megaphonePhraseTimer;
         G.TransitiveVariant[10] = _musicPlayer.VolumeDb;
         G.TransitiveVariant[11] = _megaphone.GetPlaybackPosition();
+        G.TransitiveVariant[29] = false;
 
         SaveSubtitlesState();
 
@@ -384,6 +424,7 @@ public partial class Level10ScientistScript : Node2D
         subtitles._isTextQueued = (bool)G.TransitiveVariant[21];
         subtitles._textSavingTime = (float)G.TransitiveVariant[22];
         subtitles._currentQueueNumber = (int)G.TransitiveVariant[23];
+        if ((string)G.TransitiveVariant[24] != "")
         GetNode<ColorRect>("CanvasLayer/ColorRect").Modulate = (Color)G.TransitiveVariant[24];
         if ((string)G.TransitiveVariant[25] != "")
             GetNode<AnimationPlayer>("CanvasLayer/ColorRect/AnimationPlayer").Play((string)G.TransitiveVariant[25]);

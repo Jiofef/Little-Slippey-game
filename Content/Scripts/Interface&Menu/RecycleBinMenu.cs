@@ -6,6 +6,8 @@ public partial class RecycleBinMenu : Control
 	private string _openedFile = "";
     public override void _Ready()
     {
+        UnchangableMeta.IsThereNewContentInRecycleBin = false;
+        UnchangableMeta.SaveToFile();
         GetNode<Sprite2D>("FileBoxes/GratitudeDiaryTxt/ILoveYouAllGuys<3").Position = new Vector2(Convert.ToInt32(Tr("GratitudeDiaryHeartXPos")), Convert.ToInt32(Tr("GratitudeDiaryHeartYPos")));
         if (UnchangableMeta.AchievementStatuses[48] == 0)
         {

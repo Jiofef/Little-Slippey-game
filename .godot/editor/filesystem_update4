@@ -1,5 +1,6 @@
+res://default_bus_layout.tres
 res://default_env.tres
-res://Content/Scenes/Interface&Menu/InitializationScene.tscn
+res://Content/Scenes/Interface&Menu/WelcomeToGOS.tscn
 res://Content/Other/BrightnessShader.gdshader
 res://Content/Other/StaticNoiseShader.gdshader
 res://Content/Other/BlurShader.gdshader
@@ -7,7 +8,6 @@ res://Content/Other/CRT.gdshader
 res://Content/Other/PixelateShader.gdshader
 res://Content/Other/SaturationShader.gdshader
 res://Content/Other/PostProcessing.gdshader
-res://Content/Scenes/Levels/FullParts/Level10True.tscn
 res://Content/Other/G.cs
 res://Content/Other/Meta.cs
 res://Content/Other/UnchangableMeta.cs
@@ -77,3 +77,16 @@ res://Content/Scripts/Other/Player.cs
 res://Content/Scripts/Other/PostProcessingRect.cs
 res://Content/Scripts/Other/SkinScript.cs
 res://Content/Scripts/Other/SlippeyChadCorpseMotionMultiplierCrutch.cs
+res://Content/Scenes/Other/LevelLayout.tscn
+res://Content/Scenes/Levels/FullParts/Level10True.tscn
+res://Content/Scenes/Interface&Menu/InitializationScene.tscn
+res://Content/Scripts/Levels/Subtitles.cs
+res://Content/Scenes/Achievements/Achievement49.tscn
+res://Content/Scenes/Levels/FullParts/Level10.tscn
+res://Content/Other/Localization.en.translation
+res://Content/Other/Localization.ru.translation
+res://Content/Scenes/Levels/FullParts/Level4.tscn
+res://Content/Scenes/Interface&Menu/SkinsMenu.tscn
+res://Content/Scenes/Levels/FullParts/Level6.tscn
+res://Content/Scenes/Levels/FullParts/Level9WithoutPlatformSection.tscn
+res://Content/Scripts/Levels/Level6SneakyAssArea.cs

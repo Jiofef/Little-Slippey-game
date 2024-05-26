@@ -4,7 +4,7 @@ public partial class SkinsMenu : Control
 {
 	public override void _Ready()
 	{
-        int[] NeededAchievementIndexes = { 3, 12, 15, 18, 21, 24, 27, 30, 35, 40, 43, 49, 50};
+        int[] NeededAchievementIndexes = { 3, 12, 15, 18, 21, 24, 27, 30, 35, 40, 43, 50, 51};
         int SkinsUnlocked = 0;
         for (int i = 0; i < NeededAchievementIndexes.Length; i++)
         {

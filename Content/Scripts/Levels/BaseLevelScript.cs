@@ -24,33 +24,33 @@ public partial class BaseLevelScript : Node2D
 
     public override void _PhysicsProcess(double delta)
     {
-        if (Input.IsActionPressed("TeleportDebug"))
-            _player.GlobalPosition = GetGlobalMousePosition();
+        //if (Input.IsActionPressed("TeleportDebug"))
+        //    _player.GlobalPosition = GetGlobalMousePosition();
 
-        if (Input.IsActionJustReleased("ScoreDebug"))
-        {
-            G.Scores += 5;
-            RecalculateCrossWeight();
-        }
+        //if (Input.IsActionJustReleased("ScoreDebug"))
+        //{
+        //    G.Scores += 5;
+        //    RecalculateCrossWeight();
+        //}
 
-        if (Input.IsActionJustPressed("InvincibilityDebug"))
-        {
-            var playerDamageDetector = GetNode<Area2D>("Player/Areas/PlayerDamageDetector");
-            playerDamageDetector.Monitoring = !playerDamageDetector.Monitoring;
-            GD.Print("Invinciblity: " + !playerDamageDetector.Monitoring);
-        }
+        //if (Input.IsActionJustPressed("InvincibilityDebug"))
+        //{
+        //    var playerDamageDetector = GetNode<Area2D>("Player/Areas/PlayerDamageDetector");
+        //    playerDamageDetector.Monitoring = !playerDamageDetector.Monitoring;
+        //    GD.Print("Invinciblity: " + !playerDamageDetector.Monitoring);
+        //}
 
-        if (Input.IsActionJustPressed("PlayerPhysicsDebug"))
-        {
-            _player.SetPhysicsProcess(!_player.IsPhysicsProcessing());
-            GD.Print("PlayerPhysics: " + _player.IsPhysicsProcessing());
-        }
+        //if (Input.IsActionJustPressed("PlayerPhysicsDebug"))
+        //{
+        //    _player.SetPhysicsProcess(!_player.IsPhysicsProcessing());
+        //    GD.Print("PlayerPhysics: " + _player.IsPhysicsProcessing());
+        //}
 
-        if (Input.IsActionJustPressed("CrossesEnablingDebug"))
-        {
-            G.IsCrossesEnabled = !G.IsCrossesEnabled;
-            GD.Print("CrossesEnabled: " + G.IsCrossesEnabled);
-        }
+        //if (Input.IsActionJustPressed("CrossesEnablingDebug"))
+        //{
+        //    G.IsCrossesEnabled = !G.IsCrossesEnabled;
+        //    GD.Print("CrossesEnabled: " + G.IsCrossesEnabled);
+        //}
 
         if (!G.IsProgressPaused)
         {

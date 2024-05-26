@@ -482,6 +482,7 @@ shape = SubResource("RectangleShape2D_yv5wh")
 [connection signal="CirclePassed" from="Level/BackCircularSaw" to="Level/BackCircularSaw/Saw/MiddleCircularSaw/MetalSparks" method="set_emitting" flags=18 binds= [true]]
 [connection signal="body_entered" from="Level/WallForeground/DecorationMap/Area2D" to="Level/WallForeground" method="Hide" flags=18 unbinds=1]
 [connection signal="body_exited" from="Level/WallForeground/DecorationMap/Area2D" to="Level/WallForeground" method="Show" flags=18 unbinds=1]
+[connection signal="ButtonPressed" from="Level/PlayMusicTrigger" to="." method="SetCrossesSpawnMultiplier" flags=6 binds= [0.75]]
 [connection signal="ButtonPressed" from="Level/PlayMusicTrigger" to="LevelMusicPlayer" method="PlayMusic" flags=6 binds= ["Hygienic Perforator", 11.9, 0.0]]
 
 [editable path="Pause/Interface/ButtonsFrame/Menu"]

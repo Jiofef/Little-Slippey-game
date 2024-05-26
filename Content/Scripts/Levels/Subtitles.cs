@@ -41,7 +41,7 @@ public partial class Subtitles : RichTextLabel
 
                 if (VisibleRatio < 1 && _currentQueueNumber < _textsQueue.Length)
 				{
-					if (_textTimeCodes[_currentQueueNumber + 1] - _textTimeCodes[_currentQueueNumber] - _textSavingTime > 0)
+					if (_currentQueueNumber >= 0 && _textTimeCodes[_currentQueueNumber + 1] - _textTimeCodes[_currentQueueNumber] - _textSavingTime > 0)
 						VisibleRatio = (_timer - _textTimeCodes[_currentQueueNumber]) / (_textTimeCodes[_currentQueueNumber + 1] - _textTimeCodes[_currentQueueNumber] - _textSavingTime);
 					else VisibleRatio = 1;
 				}

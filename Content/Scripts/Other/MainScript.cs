@@ -164,4 +164,8 @@ public partial class MainScript : Node2D
     {
         _isResetDisabled = value;
     }
+    public void SetLevelCompleteTime(float value)
+    {
+        G.LevelCompleteTime = value;
+    }
 }

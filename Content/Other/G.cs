@@ -4,7 +4,7 @@ public partial class G : Node
 {
 	// G is gameplay singleton, that having importal information which may be needed in various places of the game. They will not save by exiting the game
 	public static bool IsSystemInitiated, IsPlayerDead, IsNewRecordReached, IsProgressPaused = false, IsCrossesEnabled = true, DidLevelIntroPassed;
-	public static float PlayerMoveCoeff = 1, Scores = 0, ResetTimer, PlayerCorpseFlightTimer, AfterPlayerCorpseFlightTimer, CrossSpawnMultiplier = 1, CrossesProgressCoeff = 1, MusicStopTimeCode = 0, MusicRestartPosition = 0;
+	public static float PlayerMoveCoeff = 1, Scores = 0, ResetTimer, PlayerCorpseFlightTimer, AfterPlayerCorpseFlightTimer, CrossSpawnMultiplier = 1, CrossesProgressCoeff = 1, MusicStopTimeCode = 0, MusicRestartPosition = 0, LevelCompleteTime = 150;
 	public static int CurrentLevel;
 	public static string LevelAdditionalLink, MusicName = "";
 	public static Vector4 CameraLimits;
@@ -69,6 +69,7 @@ public partial class G : Node
         MusicRestartPosition = 0;
         MusicStopTimeCode = 0;
         MusicName = "";
+		LevelCompleteTime = 150;
         AudioServer.SetBusEffectEnabled(2, 0, false);
 		AudioServer.SetBusEffectEnabled(6, 0, false);
 	}
@@ -80,7 +81,7 @@ public partial class G : Node
         new int[] {11, 14, 17, 20, 23, 26, 29, 34, 39, 42},
         new int[] {12, 15, 18, 21, 24, 27, 30, 35, 40, 43}
     };
-	public static readonly bool[] IsAchievementHiden = { false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true, false, false, false, false, false, false, false, true, true, true, true, true, false, false};
+	public static readonly bool[] IsAchievementHiden = { false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true, false, false, false, false, false, false, false, true, true, true, true, true, true, false, false};
 	public static CanvasLayer CurrentPopupAchievementsLayer;
 	public static int AchievementPopupTimerMultiplier = 0;
 	public static void GetAchievement(int index)
@@ -96,6 +97,6 @@ public partial class G : Node
         AchievementPopupTimerMultiplier++;
 
 		if (UnchangableMeta.AchievementsCount() == (UnchangableMeta.AchievementStatuses.Length - 1))
-			GetAchievement(50);
+			GetAchievement(51);
 	}
 }
