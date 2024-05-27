@@ -7,6 +7,17 @@ public partial class OptionsMenu : Control
     public delegate void OptionsClosingEventHandler();
     [Signal]
     public delegate void GUIOptionsChangedEventHandler();
+    private Vector2I[] _windowSizes =
+    {
+        new Vector2I (640, 360),
+        new Vector2I (854, 480),
+        new Vector2I (960, 540),
+        new Vector2I (1280, 720),
+        new Vector2I (1600, 900),
+        new Vector2I (1920, 1080),
+        new Vector2I (2560, 1440),
+        new Vector2I (3840, 2160)
+    };
 
     public override void _Ready()
     {
@@ -24,6 +35,10 @@ public partial class OptionsMenu : Control
 
 
         Meta.Instance.IsFullScreen = DisplayServer.WindowGetMode() == DisplayServer.WindowMode.Fullscreen;
+        var windowSizeSlider = GetNode<Slider>("VideoContainer/GridContainer/WindowSizesContainer/WindowSizeSlider");
+        for (int i = 0; i <= windowSizeSlider.MaxValue; i++)
+            if (Meta.Instance.WindowSize == _windowSizes[i])
+                windowSizeSlider.Value = i;
 
         string[] ScoresShowingFormats = {"Default", "Mini", "Hide"};
         GetNode<CheckBox>("VideoContainer/GridContainer/ScoresLabelContainer/" + ScoresShowingFormats[Meta.Instance.ScoresShowingFormatIndex] + "CheckBox").ButtonPressed = true;
@@ -46,6 +61,7 @@ public partial class OptionsMenu : Control
     }
     public void Accept()
     {
+        DisplayServer.WindowSetSize(Meta.Instance.WindowSize);
         Meta.Instance.SaveToFile();
         if (G.CurrentLevel == 0)
             Connect("OptionsClosing", new Callable(GetParent(), "OpenedMenuClosed"));
@@ -73,6 +89,11 @@ public partial class OptionsMenu : Control
     {
         Meta.Instance.IsFullScreen = index == 0 ? true : false;
         DisplayServer.WindowSetMode(index == 0 ? DisplayServer.WindowMode.Fullscreen : DisplayServer.WindowMode.Windowed);
+    }
+    public void ChangeWindowSize(int index)
+    {
+        Meta.Instance.WindowSize = _windowSizes[index];
+        GetNode<Label>("VideoContainer/GridContainer/WindowSizesContainer/Label").Text = Meta.Instance.WindowSize.X + "X" + Meta.Instance.WindowSize.Y;
     }
     public void ChangeScoresShowingFormat(int index)
     {

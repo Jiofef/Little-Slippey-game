@@ -13,8 +13,8 @@ public partial class Meta : Node
     public float[] BusVolumes = { -10, 0, 0, 0, 0, 0, 0}; //in this array #0 is _master, #1 _interface, #2 _music, #3 _player, #4 _crossounds, #5 _crossexplosion
 
     //VideoOptions
-    //Since this is the HTML version, it will be incorrect to save the full screen state, and this is the only non-saving variable in the meta
     public bool IsFullScreen = false;
+    public Vector2I WindowSize = new Vector2I(1280, 720);
     public float CameraZoom = 1.25f;
     public byte ScoresLabelLocationX = 1, ScoresLabelLocationY = 0, ScoresShowingFormatIndex = 0;
     public enum Language {en, ru}
@@ -29,6 +29,7 @@ public partial class Meta : Node
         for (int i = 0; i < Instance.BusVolumes.Length; i++)
             AudioServer.SetBusVolumeDb(i, Instance.BusVolumes[i]);
         DisplayServer.WindowSetMode(Instance.IsFullScreen ? DisplayServer.WindowMode.Fullscreen : DisplayServer.WindowMode.Windowed);
+        DisplayServer.WindowSetSize(Instance.WindowSize);
         TranslationServer.SetLocale(language.ToString());
         ProjectSettings.SetSetting("gui/theme/custom_font", "FontPath");
     }
@@ -39,6 +40,7 @@ public partial class Meta : Node
             ReturnMeta.BusVolumes[i] = BusVolumes[i];
         ReturnMeta.Dificulty = Dificulty;
         ReturnMeta.IsFullScreen = IsFullScreen;
+        ReturnMeta.WindowSize = WindowSize;
         ReturnMeta.ScoresShowingFormatIndex = ScoresShowingFormatIndex;
         ReturnMeta.CameraZoom = CameraZoom;
         ReturnMeta.language = language;
@@ -54,6 +56,9 @@ public partial class Meta : Node
         return new Dictionary<string, Variant>()
         {
             {"bus_volumes", BusVolumes},
+            {"is_full_screen", IsFullScreen},
+            {"window_size_x", WindowSize.X},
+            {"window_size_y", WindowSize.Y},
             {"scores_showing_format_index", ScoresShowingFormatIndex},
             {"scores_label_location_x", ScoresLabelLocationX},
             {"scores_label_location_y", ScoresLabelLocationY},
@@ -85,6 +90,8 @@ public partial class Meta : Node
             for (int i = 0; i < BusVolumesArray.Count; i++)
                 BusVolumes[i] = (float)BusVolumesArray[i];
 
+            IsFullScreen = (bool)model["is_full_screen"];
+            WindowSize = new Vector2I((int)model["window_size_x"], (int)model["window_size_y"]);
             ScoresShowingFormatIndex = (byte)model["scores_showing_format_index"];
             ScoresLabelLocationX = (byte)model["scores_label_location_x"];
             ScoresLabelLocationY = (byte)model["scores_label_location_y"];

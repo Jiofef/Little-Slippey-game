@@ -1,8 +1,10 @@
+Sprite2D
+AnimationPlayer
+Label
+Control
 AudioStreamPlayer
 CollisionShape2D
 Area2D
-Sprite2D
-AnimationPlayer
 ColorRect
 RichTextLabel
 CanvasLayer
@@ -17,10 +19,8 @@ DirectionalLight2D
 ParallaxBackground
 ParallaxLayer
 CPUParticles2D
-Control
 AnimatedSprite2D
 Node3D
-Label
 GridContainer
 AudioListener2D
 Camera2D

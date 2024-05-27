@@ -35,6 +35,10 @@ mode","Режим
 экрана"
 Full,Full,Полный
 Window,Window,Оконный
+"Window
+size","Window
+size","Размер
+окна"
 "Scores
 label
 mode","Scores
@@ -479,3 +483,7 @@ You'll slip away!,You'll slip away!,Ты вырвешься!
 I believe in you!,I believe in you!,Я верю в тебя!
 "Hold on, it will be over soon!","Hold on, it will be over soon!","Держись, это скоро закончится!"
 you were deceived.,you were deceived.,вас обманули.
+"Are you sure you
+want to leave?","Are you sure you
+want to leave?","Вы уверены что
+хотите выйти?"

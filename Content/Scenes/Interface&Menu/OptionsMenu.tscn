@@ -243,6 +243,37 @@ size_flags_vertical = 0
 focus_neighbor_left = NodePath("../FullCheckBox")
 button_group = SubResource("ButtonGroup_vfk1r")
 
+[node name="WindowSize" type="Label" parent="VideoContainer/GridContainer"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+text = "Window
+size"
+horizontal_alignment = 1
+
+[node name="WindowSizesContainer" type="Control" parent="VideoContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VideoContainer/GridContainer/WindowSizesContainer"]
+layout_mode = 0
+offset_right = 160.0
+offset_bottom = 24.0
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+text = "1280X720"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WindowSizeSlider" type="HSlider" parent="VideoContainer/GridContainer/WindowSizesContainer"]
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+offset_top = 24.0
+offset_right = 160.0
+offset_bottom = 40.0
+size_flags_vertical = 4
+max_value = 7.0
+value = 3.0
+scrollable = false
+
 [node name="ScoresLabelMode" type="Label" parent="VideoContainer/GridContainer"]
 custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
@@ -444,6 +475,7 @@ libraries = {
 [connection signal="value_changed" from="SoundContainer/EnvironmentSlider" to="." method="SoundChanging" binds= [6]]
 [connection signal="pressed" from="VideoContainer/GridContainer/ScreenModeContainer/FullCheckBox" to="." method="ChangeScreenFormat" binds= [0]]
 [connection signal="pressed" from="VideoContainer/GridContainer/ScreenModeContainer/WindowCheckBox" to="." method="ChangeScreenFormat" binds= [1]]
+[connection signal="value_changed" from="VideoContainer/GridContainer/WindowSizesContainer/WindowSizeSlider" to="." method="ChangeWindowSize"]
 [connection signal="pressed" from="VideoContainer/GridContainer/ScoresLabelContainer/DefaultCheckBox" to="." method="ChangeScoresShowingFormat" binds= [0]]
 [connection signal="pressed" from="VideoContainer/GridContainer/ScoresLabelContainer/MiniCheckBox" to="." method="ChangeScoresShowingFormat" binds= [1]]
 [connection signal="pressed" from="VideoContainer/GridContainer/ScoresLabelContainer/HideCheckBox" to="." method="ChangeScoresShowingFormat" binds= [2]]

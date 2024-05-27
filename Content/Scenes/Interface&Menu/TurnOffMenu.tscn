@@ -1,0 +1,81 @@
+[gd_scene load_steps=8 format=3 uid="uid://hsan4k7aad1k"]
+
+[ext_resource type="Texture2D" uid="uid://cdh8bcaew8h6o" path="res://Content/Sprites/Interface/TurnOffBox.png" id="1_2an5l"]
+[ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/TurnOffMenu.cs" id="1_ai8b4"]
+[ext_resource type="PackedScene" uid="uid://bwpstpk1xmkah" path="res://Content/Scenes/Interface&Menu/Button.tscn" id="3_jajao"]
+[ext_resource type="Texture2D" uid="uid://c1d2p0ba42csh" path="res://Content/Sprites/Interface/AcceptButton.png" id="4_lr5ag"]
+[ext_resource type="Texture2D" uid="uid://d0sqlunqacimf" path="res://Content/Sprites/Interface/CancelButton.png" id="5_nxnt3"]
+
+[sub_resource type="Animation" id="Animation_5j2kk"]
+resource_name = "Opening"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector2(1, 0), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6aakg"]
+_data = {
+"Opening": SubResource("Animation_5j2kk")
+}
+
+[node name="TurnOffMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -384.0
+offset_bottom = -272.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1, 1e-05)
+mouse_filter = 2
+script = ExtResource("1_ai8b4")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "Opening"
+libraries = {
+"": SubResource("AnimationLibrary_6aakg")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(640, 360)
+scale = Vector2(4, 4)
+texture = ExtResource("1_2an5l")
+
+[node name="Global" type="Label" parent="."]
+offset_left = 456.0
+offset_top = 241.0
+offset_right = 751.0
+offset_bottom = 321.0
+scale = Vector2(1.25, 1.25)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+text = "Are you sure you
+want to leave?"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AcceptButton" parent="." instance=ExtResource("3_jajao")]
+offset_left = 488.0
+offset_top = 360.0
+offset_right = 512.0
+offset_bottom = 384.0
+texture_normal = ExtResource("4_lr5ag")
+
+[node name="DeclineButton" parent="." instance=ExtResource("3_jajao")]
+offset_left = 696.0
+offset_top = 360.0
+offset_right = 720.0
+offset_bottom = 384.0
+texture_normal = ExtResource("5_nxnt3")
+
+[connection signal="pressed" from="AcceptButton" to="." method="Accept"]
+[connection signal="pressed" from="DeclineButton" to="." method="Cancel"]
