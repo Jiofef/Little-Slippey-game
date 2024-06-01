@@ -1,3 +1,4 @@
+ColorRect
 Sprite2D
 AnimationPlayer
 Label
@@ -5,7 +6,6 @@ Control
 AudioStreamPlayer
 CollisionShape2D
 Area2D
-ColorRect
 RichTextLabel
 CanvasLayer
 Node

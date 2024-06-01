@@ -126,6 +126,7 @@ disabled = true
 
 [node name="ExplosionSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_jfxsp")
+bus = &"Explosions"
 
 [node name="ExplosionAnimation" parent="." instance=ExtResource("5")]
 sprite_frames = SubResource("8")

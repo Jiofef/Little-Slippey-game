@@ -17,7 +17,7 @@ script = ExtResource("2_hrhph")
 
 [node name="ExplosionSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_gvc14")
-bus = &"CrossExplosion"
+bus = &"Explosions"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(4, 4)

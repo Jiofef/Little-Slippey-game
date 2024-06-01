@@ -191,11 +191,11 @@ script = ExtResource("3")
 stream = ExtResource("2_7vkob")
 volume_db = -10.0
 autoplay = true
-bus = &"CrossSounds"
+bus = &"Crosses"
 
 [node name="ExplosionSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_llx6o")
-bus = &"CrossExplosion"
+bus = &"Explosions"
 
 [node name="Path2D" type="Path2D" parent="."]
 curve = SubResource("1")

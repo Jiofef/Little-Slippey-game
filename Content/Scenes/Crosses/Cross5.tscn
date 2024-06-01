@@ -38,10 +38,12 @@ scale = Vector2(4, 4)
 
 [node name="Charge" type="AudioStreamPlayer" parent="PathFollow2D/Cannon/Sounds"]
 stream = ExtResource("2_2un0t")
+bus = &"Crosses"
 
 [node name="Shot" type="AudioStreamPlayer" parent="PathFollow2D/Cannon/Sounds"]
 stream = ExtResource("3_rkcw1")
 volume_db = -5.0
+bus = &"Explosions"
 
 [node name="Sprites" type="Node2D" parent="PathFollow2D/Cannon"]
 scale = Vector2(1, -1)

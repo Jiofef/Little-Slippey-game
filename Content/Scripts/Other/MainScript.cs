@@ -168,4 +168,8 @@ public partial class MainScript : Node2D
     {
         G.LevelCompleteTime = value;
     }
+    public void SetDebugEnabled(bool value)
+    {
+        G.IsDebugEnabled = value;
+    }
 }

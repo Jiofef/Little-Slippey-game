@@ -53,13 +53,16 @@ shape = SubResource("2")
 stream = ExtResource("5_6l5wt")
 volume_db = -5.0
 pitch_scale = 0.25
+bus = &"Crosses"
 
 [node name="ExplosionSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_1dola")
+bus = &"Explosions"
 
 [node name="AbortButtonPressedSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_n4818")
 volume_db = -7.0
+bus = &"Crosses"
 
 [node name="ExplosionAnimation" parent="." instance=ExtResource("5")]
 scale = Vector2(18, 18)
