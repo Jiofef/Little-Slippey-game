@@ -80,3 +80,5 @@ res://Content/Scripts/Other/Player.cs
 res://Content/Scripts/Other/PostProcessingRect.cs
 res://Content/Scripts/Other/SkinScript.cs
 res://Content/Scripts/Other/SlippeyChadCorpseMotionMultiplierCrutch.cs
+res://Content/Scenes/Levels/FullParts/Level9WithoutPlatformSection.tscn
+res://Content/Scenes/Levels/FullParts/Level9.tscn

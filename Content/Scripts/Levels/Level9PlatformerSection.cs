@@ -2,7 +2,7 @@ using Godot;
 
 public partial class Level9PlatformerSection : TileMap
 {
-    [Signal] public delegate void ResetEventHandler();
+    [Signal] public delegate void LoadSceneEventHandler();
     public override void _Ready()
     {
         if (UnchangableMeta.IsLevel9PlatformSectionFirstTimeCompleted && !UnchangableMeta.IsLevel9PlatformSectionSkipAllowed)
@@ -22,10 +22,9 @@ public partial class Level9PlatformerSection : TileMap
     }
     public void AhahahSilly()
     {
-        G.GetAchievement(36);
         UnchangableMeta.IsLevel9PlatformSectionSkipAllowed = true;
         G.LevelAdditionalLink = "WithoutPlatformSection";
-        Connect("Reset", new Callable(GetNode(".."), "Reset"));
-        EmitSignal("Reset");
+        Connect("LoadScene", new Callable(GetNode("../.."), "LoadScene"));
+        EmitSignal("LoadScene", "res://Content/Scenes/Levels/FullParts/Level" + G.CurrentLevel + G.LevelAdditionalLink + ".tscn");
     }
 }
