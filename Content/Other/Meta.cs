@@ -15,6 +15,7 @@ public partial class Meta : Node
     //VideoOptions
     public bool IsFullScreen = false;
     public Vector2I WindowSize = new Vector2I(1280, 720);
+    public bool VSyncOn = false;
     public float CameraZoom = 1.25f;
     public byte ScoresLabelLocationX = 1, ScoresLabelLocationY = 0, ScoresShowingFormatIndex = 0;
     public enum Language {en, ru}
@@ -30,6 +31,7 @@ public partial class Meta : Node
             AudioServer.SetBusVolumeDb(i, Instance.BusVolumes[i]);
         DisplayServer.WindowSetMode(Instance.IsFullScreen ? DisplayServer.WindowMode.Fullscreen : DisplayServer.WindowMode.Windowed);
         DisplayServer.WindowSetSize(Instance.WindowSize);
+        DisplayServer.WindowSetVsyncMode(Instance.VSyncOn ? DisplayServer.VSyncMode.Enabled : DisplayServer.VSyncMode.Disabled);
         TranslationServer.SetLocale(language.ToString());
         ProjectSettings.SetSetting("gui/theme/custom_font", "FontPath");
     }
@@ -41,6 +43,7 @@ public partial class Meta : Node
         ReturnMeta.Dificulty = Dificulty;
         ReturnMeta.IsFullScreen = IsFullScreen;
         ReturnMeta.WindowSize = WindowSize;
+        ReturnMeta.VSyncOn = VSyncOn;
         ReturnMeta.ScoresShowingFormatIndex = ScoresShowingFormatIndex;
         ReturnMeta.CameraZoom = CameraZoom;
         ReturnMeta.language = language;
@@ -59,6 +62,7 @@ public partial class Meta : Node
             {"is_full_screen", IsFullScreen},
             {"window_size_x", WindowSize.X},
             {"window_size_y", WindowSize.Y},
+            {"v_sync_on", VSyncOn},
             {"scores_showing_format_index", ScoresShowingFormatIndex},
             {"scores_label_location_x", ScoresLabelLocationX},
             {"scores_label_location_y", ScoresLabelLocationY},
@@ -92,6 +96,7 @@ public partial class Meta : Node
 
             IsFullScreen = (bool)model["is_full_screen"];
             WindowSize = new Vector2I((int)model["window_size_x"], (int)model["window_size_y"]);
+            VSyncOn = (bool)model["v_sync_on"];
             ScoresShowingFormatIndex = (byte)model["scores_showing_format_index"];
             ScoresLabelLocationX = (byte)model["scores_label_location_x"];
             ScoresLabelLocationY = (byte)model["scores_label_location_y"];

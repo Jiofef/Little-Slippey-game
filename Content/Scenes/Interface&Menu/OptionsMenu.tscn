@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dwuivxxfk4cbs"]
+[gd_scene load_steps=15 format=3 uid="uid://dwuivxxfk4cbs"]
 
 [ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/OptionsMenu.cs" id="1_kmdmx"]
 [ext_resource type="Texture2D" uid="uid://i15evt2viayu" path="res://Content/Sprites/Interface/OptionsMenuBox.png" id="1_trr7h"]
@@ -10,6 +10,8 @@
 [ext_resource type="Texture2D" uid="uid://hcoc3411pyvj" path="res://Content/Sprites/Interface/RussiaDiscordFlag.png" id="8_42rvm"]
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_vfk1r"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_kert5"]
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_upid1"]
 
@@ -105,6 +107,7 @@ max_value = 10.0
 scrollable = false
 
 [node name="Interface" type="Label" parent="SoundContainer"]
+custom_minimum_size = Vector2(0, 26)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
 text = "Interface"
@@ -116,6 +119,7 @@ max_value = 10.0
 scrollable = false
 
 [node name="Music" type="Label" parent="SoundContainer"]
+custom_minimum_size = Vector2(0, 25)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
 text = "Music"
@@ -127,6 +131,7 @@ max_value = 10.0
 scrollable = false
 
 [node name="Player" type="Label" parent="SoundContainer"]
+custom_minimum_size = Vector2(0, 27)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
 text = "Player"
@@ -149,6 +154,7 @@ max_value = 10.0
 scrollable = false
 
 [node name="Explosions" type="Label" parent="SoundContainer"]
+custom_minimum_size = Vector2(0, 26)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
 text = "Explosions"
@@ -274,8 +280,58 @@ max_value = 7.0
 value = 3.0
 scrollable = false
 
+[node name="VerticalSync" type="Label" parent="VideoContainer/GridContainer"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+text = "Vertical
+Sync"
+horizontal_alignment = 1
+
+[node name="VerticalSyncContainer" type="Control" parent="VideoContainer/GridContainer"]
+layout_mode = 2
+
+[node name="On" type="Label" parent="VideoContainer/GridContainer/VerticalSyncContainer"]
+custom_minimum_size = Vector2(72, 0)
+offset_left = 28.0
+offset_right = 100.0
+offset_bottom = 25.0
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+text = "On"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Off" type="Label" parent="VideoContainer/GridContainer/VerticalSyncContainer"]
+offset_left = 108.0
+offset_right = 140.0
+offset_bottom = 24.0
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+text = "Off"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="OnCheckBox" type="CheckBox" parent="VideoContainer/GridContainer/VerticalSyncContainer"]
+modulate = Color(0.588235, 0.588235, 0.588235, 1)
+offset_left = 52.0
+offset_top = 24.0
+offset_right = 76.0
+offset_bottom = 48.0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+button_group = SubResource("ButtonGroup_kert5")
+
+[node name="OffCheckBox" type="CheckBox" parent="VideoContainer/GridContainer/VerticalSyncContainer"]
+modulate = Color(0.588235, 0.588235, 0.588235, 1)
+offset_left = 112.0
+offset_top = 24.0
+offset_right = 136.0
+offset_bottom = 48.0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+button_pressed = true
+button_group = SubResource("ButtonGroup_kert5")
+
 [node name="ScoresLabelMode" type="Label" parent="VideoContainer/GridContainer"]
-custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
 text = "Scores
@@ -326,6 +382,7 @@ offset_right = 48.0
 offset_bottom = 60.0
 size_flags_horizontal = 4
 size_flags_vertical = 0
+button_pressed = true
 button_group = SubResource("ButtonGroup_upid1")
 
 [node name="MiniCheckBox" type="CheckBox" parent="VideoContainer/GridContainer/ScoresLabelContainer"]
@@ -351,6 +408,7 @@ size_flags_vertical = 0
 button_group = SubResource("ButtonGroup_upid1")
 
 [node name="ScoresLabelLocation" type="Label" parent="VideoContainer/GridContainer"]
+custom_minimum_size = Vector2(0, 88)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
 text = "Scores
@@ -417,8 +475,22 @@ zoom"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="CameraZoomSlider" type="HSlider" parent="VideoContainer/GridContainer"]
+[node name="CameraZoomContainer" type="Control" parent="VideoContainer/GridContainer"]
 layout_mode = 2
+
+[node name="CameraZoom" type="Label" parent="VideoContainer/GridContainer/CameraZoomContainer"]
+offset_right = 160.0
+offset_bottom = 24.0
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+text = "X1.25"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CameraZoomSlider" type="HSlider" parent="VideoContainer/GridContainer/CameraZoomContainer"]
+layout_mode = 2
+offset_top = 24.0
+offset_right = 163.0
+offset_bottom = 40.0
 size_flags_vertical = 4
 min_value = 1.25
 max_value = 2.0
@@ -476,6 +548,8 @@ libraries = {
 [connection signal="pressed" from="VideoContainer/GridContainer/ScreenModeContainer/FullCheckBox" to="." method="ChangeScreenFormat" binds= [0]]
 [connection signal="pressed" from="VideoContainer/GridContainer/ScreenModeContainer/WindowCheckBox" to="." method="ChangeScreenFormat" binds= [1]]
 [connection signal="value_changed" from="VideoContainer/GridContainer/WindowSizesContainer/WindowSizeSlider" to="." method="ChangeWindowSize"]
+[connection signal="pressed" from="VideoContainer/GridContainer/VerticalSyncContainer/OnCheckBox" to="." method="ChangeVSync" binds= [0]]
+[connection signal="pressed" from="VideoContainer/GridContainer/VerticalSyncContainer/OffCheckBox" to="." method="ChangeVSync" binds= [1]]
 [connection signal="pressed" from="VideoContainer/GridContainer/ScoresLabelContainer/DefaultCheckBox" to="." method="ChangeScoresShowingFormat" binds= [0]]
 [connection signal="pressed" from="VideoContainer/GridContainer/ScoresLabelContainer/MiniCheckBox" to="." method="ChangeScoresShowingFormat" binds= [1]]
 [connection signal="pressed" from="VideoContainer/GridContainer/ScoresLabelContainer/HideCheckBox" to="." method="ChangeScoresShowingFormat" binds= [2]]
@@ -488,6 +562,6 @@ libraries = {
 [connection signal="pressed" from="VideoContainer/GridContainer/GridContainer/CheckBox1X3Y" to="." method="ChangeScoresLabelLocation" binds= [0, 2]]
 [connection signal="pressed" from="VideoContainer/GridContainer/GridContainer/CheckBox2X3Y" to="." method="ChangeScoresLabelLocation" binds= [1, 2]]
 [connection signal="pressed" from="VideoContainer/GridContainer/GridContainer/CheckBox3X3Y" to="." method="ChangeScoresLabelLocation" binds= [2, 2]]
-[connection signal="value_changed" from="VideoContainer/GridContainer/CameraZoomSlider" to="." method="CameraZoomChanged"]
+[connection signal="value_changed" from="VideoContainer/GridContainer/CameraZoomContainer/CameraZoomSlider" to="." method="CameraZoomChanged"]
 [connection signal="pressed" from="VideoContainer/GridContainer/LanguageContainer/English" to="." method="SetLanguage" binds= [0]]
 [connection signal="pressed" from="VideoContainer/GridContainer/LanguageContainer/Russian" to="." method="SetLanguage" binds= [1]]

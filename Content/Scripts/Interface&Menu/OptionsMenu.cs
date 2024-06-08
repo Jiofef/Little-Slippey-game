@@ -40,11 +40,14 @@ public partial class OptionsMenu : Control
             if (Meta.Instance.WindowSize == _windowSizes[i])
                 windowSizeSlider.Value = i;
 
+        GetNode<CheckBox>("VideoContainer/GridContainer/VerticalSyncContainer/" + (Meta.Instance.VSyncOn ? "On" : "Off") + "CheckBox").ButtonPressed = true;
+
         string[] ScoresShowingFormats = {"Default", "Mini", "Hide"};
         GetNode<CheckBox>("VideoContainer/GridContainer/ScoresLabelContainer/" + ScoresShowingFormats[Meta.Instance.ScoresShowingFormatIndex] + "CheckBox").ButtonPressed = true;
         GetNode<CheckBox>("VideoContainer/GridContainer/GridContainer/CheckBox" + (Meta.Instance.ScoresLabelLocationX + 1) + "X" + (Meta.Instance.ScoresLabelLocationY + 1) + "Y").ButtonPressed = true;
 
-        GetNode<Slider>("VideoContainer/GridContainer/CameraZoomSlider").Value = Meta.Instance.CameraZoom;
+        GetNode<Slider>("VideoContainer/GridContainer/CameraZoomContainer/CameraZoomSlider").Value = Meta.Instance.CameraZoom;
+        GetNode<Label>("VideoContainer/GridContainer/CameraZoomContainer/CameraZoom").Text = "X" + Meta.Instance.CameraZoom;
 
         GetNode<AnimationPlayer>("AnimationPlayer").Play("Appearance");
     }
@@ -89,6 +92,7 @@ public partial class OptionsMenu : Control
     {
         Meta.Instance.IsFullScreen = index == 0 ? true : false;
         DisplayServer.WindowSetMode(index == 0 ? DisplayServer.WindowMode.Fullscreen : DisplayServer.WindowMode.Windowed);
+        DisplayServer.WindowSetSize(Meta.Instance.WindowSize);
     }
     public void ChangeWindowSize(int index)
     {
@@ -100,6 +104,11 @@ public partial class OptionsMenu : Control
         Meta.Instance.ScoresShowingFormatIndex = (byte)index;
         EmitSignal("GUIOptionsChanged", false);
     }
+    public void ChangeVSync(int index)
+    {
+        Meta.Instance.VSyncOn = index == 0 ? true : false;
+        DisplayServer.WindowSetVsyncMode(Meta.Instance.VSyncOn ? DisplayServer.VSyncMode.Enabled : DisplayServer.VSyncMode.Disabled);
+    }
     public void ChangeScoresLabelLocation(int indexX, int indexY)
     {
         Meta.Instance.ScoresLabelLocationX = (byte)indexX;
@@ -109,6 +118,7 @@ public partial class OptionsMenu : Control
     public void CameraZoomChanged(float value)
     {
         Meta.Instance.CameraZoom = value;
+        GetNode<Label>("VideoContainer/GridContainer/CameraZoomContainer/CameraZoom").Text = "X" + Meta.Instance.CameraZoom;
         EmitSignal("GUIOptionsChanged", false);
     }
     public void SetLanguage(int languageNumber)

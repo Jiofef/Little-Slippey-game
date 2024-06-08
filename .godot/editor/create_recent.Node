@@ -1,3 +1,4 @@
+CheckBox
 ColorRect
 Sprite2D
 AnimationPlayer
@@ -27,6 +28,5 @@ Camera2D
 Timer
 AnimatableBody2D
 NinePatchRect
-CheckBox
 VSlider
 HSlider
