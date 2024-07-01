@@ -1,13 +1,17 @@
-[gd_scene load_steps=15 format=3 uid="uid://dwuivxxfk4cbs"]
+[gd_scene load_steps=21 format=3 uid="uid://dwuivxxfk4cbs"]
 
 [ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/OptionsMenu.cs" id="1_kmdmx"]
 [ext_resource type="Texture2D" uid="uid://i15evt2viayu" path="res://Content/Sprites/Interface/OptionsMenuBox.png" id="1_trr7h"]
 [ext_resource type="PackedScene" uid="uid://bwpstpk1xmkah" path="res://Content/Scenes/Interface&Menu/Button.tscn" id="2_hr832"]
 [ext_resource type="Texture2D" uid="uid://c1d2p0ba42csh" path="res://Content/Sprites/Interface/AcceptButton.png" id="3_cxo48"]
 [ext_resource type="Texture2D" uid="uid://d0sqlunqacimf" path="res://Content/Sprites/Interface/CancelButton.png" id="4_kqtal"]
+[ext_resource type="Texture2D" uid="uid://1ateuoq4ybsb" path="res://Content/Sprites/Interface/ControlsButton.png" id="6_8j7i4"]
 [ext_resource type="Texture2D" uid="uid://cq66udhicgrdo" path="res://Content/Sprites/Interface/OptionsMenuVideoContainer.png" id="6_gcpn7"]
 [ext_resource type="Texture2D" uid="uid://vb7vdsdjg4xa" path="res://Content/Sprites/Interface/USADiscordFlag.png" id="7_3d3xi"]
 [ext_resource type="Texture2D" uid="uid://hcoc3411pyvj" path="res://Content/Sprites/Interface/RussiaDiscordFlag.png" id="8_42rvm"]
+[ext_resource type="Texture2D" uid="uid://dqdsspefb6520" path="res://Content/Sprites/Interface/ControlsBox.png" id="10_orj3k"]
+[ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/ScrollableContainer.cs" id="11_qsm8k"]
+[ext_resource type="Texture2D" uid="uid://ce4oq2adhljwh" path="res://Content/Sprites/Interface/LevelsMenuIcon.png" id="12_balti"]
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_vfk1r"]
 
@@ -38,6 +42,27 @@ _data = {
 "Appearance": SubResource("Animation_fu4ro")
 }
 
+[sub_resource type="Animation" id="Animation_kaqri"]
+resource_name = "Appearence"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector2(1, 0), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nja3y"]
+_data = {
+"Appearence": SubResource("Animation_kaqri")
+}
+
 [node name="OptionsMenu" type="Control"]
 process_mode = 3
 z_index = 1
@@ -65,6 +90,10 @@ offset_left = 832.0
 offset_top = 524.0
 offset_right = 856.0
 offset_bottom = 548.0
+focus_neighbor_left = NodePath("../ControlsButton")
+focus_neighbor_top = NodePath("../VideoContainer/GridContainer/LanguageContainer/English")
+focus_neighbor_right = NodePath("../DeclineButton")
+focus_neighbor_bottom = NodePath("../VideoContainer/GridContainer/ScreenModeContainer/FullCheckBox")
 texture_normal = ExtResource("3_cxo48")
 
 [node name="DeclineButton" parent="." instance=ExtResource("2_hr832")]
@@ -73,7 +102,32 @@ offset_left = 944.0
 offset_top = 524.0
 offset_right = 968.0
 offset_bottom = 548.0
+focus_neighbor_left = NodePath("../AcceptButton")
+focus_neighbor_top = NodePath("../VideoContainer/GridContainer/LanguageContainer/English")
+focus_neighbor_bottom = NodePath("../VideoContainer/GridContainer/ScreenModeContainer/FullCheckBox")
 texture_normal = ExtResource("4_kqtal")
+
+[node name="ControlsButton" parent="." instance=ExtResource("2_hr832")]
+offset_left = 21.0
+offset_top = 524.0
+offset_right = 45.0
+offset_bottom = 548.0
+focus_neighbor_top = NodePath("../SoundContainer/EnvironmentSlider")
+focus_neighbor_right = NodePath("../AcceptButton")
+focus_neighbor_bottom = NodePath("../SoundContainer/GlobalSlider")
+texture_normal = ExtResource("6_8j7i4")
+
+[node name="ViewControls" type="Label" parent="."]
+offset_left = 134.0
+offset_top = 524.0
+offset_right = 223.0
+offset_bottom = 572.0
+scale = Vector2(2, 2)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+text = "View
+controls"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Sound" type="Label" parent="."]
 layout_mode = 0
@@ -102,6 +156,7 @@ text = "Global"
 [node name="GlobalSlider" type="HSlider" parent="SoundContainer"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
+focus_neighbor_top = NodePath("../../ControlsButton")
 min_value = -30.0
 max_value = 10.0
 scrollable = false
@@ -172,7 +227,7 @@ text = "Environment"
 
 [node name="EnvironmentSlider" type="HSlider" parent="SoundContainer"]
 layout_mode = 2
-focus_neighbor_bottom = NodePath("../../AcceptButton")
+focus_neighbor_bottom = NodePath("../../ControlsButton")
 min_value = -30.0
 max_value = 10.0
 scrollable = false
@@ -194,6 +249,8 @@ offset_top = 96.0
 offset_right = 807.0
 offset_bottom = 322.0
 scale = Vector2(1.75, 1.75)
+focus_mode = 2
+follow_focus = true
 
 [node name="GridContainer" type="GridContainer" parent="VideoContainer"]
 custom_minimum_size = Vector2(260, 0)
@@ -238,6 +295,7 @@ modulate = Color(0.588235, 0.588235, 0.588235, 1)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
+focus_neighbor_top = NodePath("../../../../AcceptButton")
 focus_neighbor_right = NodePath("../WindowCheckBox")
 button_group = SubResource("ButtonGroup_vfk1r")
 
@@ -247,6 +305,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
 focus_neighbor_left = NodePath("../FullCheckBox")
+focus_neighbor_top = NodePath("../../../../AcceptButton")
 button_group = SubResource("ButtonGroup_vfk1r")
 
 [node name="WindowSize" type="Label" parent="VideoContainer/GridContainer"]
@@ -293,6 +352,7 @@ layout_mode = 2
 
 [node name="On" type="Label" parent="VideoContainer/GridContainer/VerticalSyncContainer"]
 custom_minimum_size = Vector2(72, 0)
+layout_mode = 0
 offset_left = 28.0
 offset_right = 100.0
 offset_bottom = 25.0
@@ -302,6 +362,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Off" type="Label" parent="VideoContainer/GridContainer/VerticalSyncContainer"]
+layout_mode = 0
 offset_left = 108.0
 offset_right = 140.0
 offset_bottom = 24.0
@@ -312,6 +373,7 @@ vertical_alignment = 1
 
 [node name="OnCheckBox" type="CheckBox" parent="VideoContainer/GridContainer/VerticalSyncContainer"]
 modulate = Color(0.588235, 0.588235, 0.588235, 1)
+layout_mode = 0
 offset_left = 52.0
 offset_top = 24.0
 offset_right = 76.0
@@ -322,6 +384,7 @@ button_group = SubResource("ButtonGroup_kert5")
 
 [node name="OffCheckBox" type="CheckBox" parent="VideoContainer/GridContainer/VerticalSyncContainer"]
 modulate = Color(0.588235, 0.588235, 0.588235, 1)
+layout_mode = 0
 offset_left = 112.0
 offset_top = 24.0
 offset_right = 136.0
@@ -479,6 +542,7 @@ vertical_alignment = 1
 layout_mode = 2
 
 [node name="CameraZoom" type="Label" parent="VideoContainer/GridContainer/CameraZoomContainer"]
+layout_mode = 0
 offset_right = 160.0
 offset_bottom = 24.0
 theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
@@ -504,7 +568,7 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="VideoContainer/GridContainer/Language"]
 layout_mode = 2
-offset_right = 96.0
+offset_right = 98.0
 offset_bottom = 58.0
 scale = Vector2(0.9, 0.9)
 theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
@@ -521,6 +585,7 @@ layout_mode = 0
 offset_left = 4.0
 offset_right = 24.0
 offset_bottom = 13.0
+focus_neighbor_bottom = NodePath("../../../../AcceptButton")
 texture_normal = ExtResource("7_3d3xi")
 
 [node name="Russian" parent="VideoContainer/GridContainer/LanguageContainer" instance=ExtResource("2_hr832")]
@@ -528,6 +593,7 @@ layout_mode = 0
 offset_left = 88.0
 offset_right = 108.0
 offset_bottom = 13.0
+focus_neighbor_bottom = NodePath("../../../../AcceptButton")
 texture_normal = ExtResource("8_42rvm")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -536,8 +602,143 @@ libraries = {
 "": SubResource("AnimationLibrary_u8saj")
 }
 
+[node name="ControlsMenu" type="Control" parent="."]
+visible = false
+anchors_preset = 0
+offset_right = 1060.0
+offset_bottom = 512.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ControlsMenu"]
+libraries = {
+"": SubResource("AnimationLibrary_nja3y")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="ControlsMenu"]
+scale = Vector2(4, 4)
+texture = ExtResource("10_orj3k")
+centered = false
+
+[node name="Moving" type="Label" parent="ControlsMenu"]
+offset_left = 185.0
+offset_top = 414.0
+offset_right = 413.0
+offset_bottom = 486.0
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+text = "Left and right - move
+up - jump
+down - pulldown"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WallCatch" type="Label" parent="ControlsMenu"]
+offset_left = 501.0
+offset_top = 37.0
+offset_right = 605.0
+offset_bottom = 61.0
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+text = "Wall catch"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LevelReset" type="Label" parent="ControlsMenu"]
+offset_left = 499.0
+offset_top = 190.0
+offset_right = 603.0
+offset_bottom = 214.0
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+text = "Level reset"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PauseOrCancel" type="Label" parent="ControlsMenu"]
+offset_left = 498.0
+offset_top = 99.0
+offset_right = 589.0
+offset_bottom = 147.0
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+text = "Pause or
+cancel"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Jump" type="Label" parent="ControlsMenu"]
+offset_left = 499.0
+offset_top = 234.0
+offset_right = 549.0
+offset_bottom = 258.0
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+text = "Jump"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MoveScrollbars" type="Label" parent="ControlsMenu"]
+offset_left = 497.0
+offset_top = 264.0
+offset_right = 547.0
+offset_bottom = 288.0
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+text = "Move scrollbars
+(just try it)"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="ControlsMenu"]
+layout_mode = 0
+offset_left = 529.0
+offset_top = 314.0
+offset_right = 625.0
+offset_bottom = 410.0
+scroll_horizontal = 84
+scroll_vertical = 84
+script = ExtResource("11_qsm8k")
+
+[node name="SpriteControl" type="Control" parent="ControlsMenu/ScrollContainer"]
+custom_minimum_size = Vector2(256, 256)
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="ControlsMenu/ScrollContainer/SpriteControl"]
+layout_mode = 0
+offset_right = 256.0
+offset_bottom = 256.0
+color = Color(0.184314, 0.180392, 0.192157, 0.117647)
+
+[node name="Sprite2D" type="Sprite2D" parent="ControlsMenu/ScrollContainer/SpriteControl"]
+scale = Vector2(16, 16)
+texture = ExtResource("12_balti")
+centered = false
+
+[node name="_(" type="Label" parent="ControlsMenu"]
+offset_left = 658.0
+offset_top = 418.0
+offset_right = 1045.0
+offset_bottom = 490.0
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+text = "There is no way to change the control 
+settings yet
+Maybe in 1000 years"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="KeyboardMovement" type="Label" parent="ControlsMenu"]
+offset_left = 667.0
+offset_top = 35.0
+offset_right = 937.0
+offset_bottom = 227.0
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+text = "Keyboard controls:
+
+Jump - Space, up, W
+Move - right, D, left, A
+Pull down - down, S
+Wall catch - Ctrl, Shift, LMB
+Level reset - R
+Pause or cancel - Esc
+"
+vertical_alignment = 1
+
 [connection signal="pressed" from="AcceptButton" to="." method="Accept"]
 [connection signal="pressed" from="DeclineButton" to="." method="Cancel"]
+[connection signal="pressed" from="ControlsButton" to="." method="Controls"]
 [connection signal="value_changed" from="SoundContainer/GlobalSlider" to="." method="SoundChanging" binds= [0]]
 [connection signal="value_changed" from="SoundContainer/InterfaceSlider" to="." method="SoundChanging" binds= [1]]
 [connection signal="value_changed" from="SoundContainer/MusicSlider" to="." method="SoundChanging" binds= [2]]

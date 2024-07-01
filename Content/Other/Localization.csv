@@ -39,6 +39,12 @@ Window,Window,Оконный
 size","Window
 size","Размер
 окна"
+"Vertical
+Sync","Vertical
+Sync","Вертикальная
+синхронизация"
+On,On,Вкл
+Off,Off,Выкл
 "Scores
 label
 mode","Scores
@@ -60,6 +66,62 @@ location","Расположение
 zoom","Camera
 zoom","Приближение
 камеры"
+"View
+controls","View
+controls","Посмотреть
+управление"
+"There is no way to change the control 
+settings yet
+Maybe in 1000 years","There is no way to change the control 
+settings yet
+Maybe in 1000 years","Возможности менять управление
+пока нет
+Подождите 1000 лет"
+Wall catch,Wall catch,"Ухватиться
+за стену"
+"Pause or
+cancel","Pause or
+cancel","Пауза или
+отмена"
+Level reset,Level reset,"Перезапуск
+уровня"
+Jump,Jump,Прыжок
+"Move scrollbars
+(just try it)","Move scrollbars
+(just try it)","Движение ползунков
+(попробуй)"
+"Left and right - move
+up - jump
+down - pulldown","Left and right - move
+up - jump
+down - pulldown","Вправо и влево - движение
+Вверх - прыжок
+Вниз - рывок вниз"
+"Keyboard controls:
+
+Jump - Space, up, W
+Move - right, D, left, A
+Pull down - down, S
+Wall catch - Ctrl, Shift, LMB
+Level reset - R
+Pause or cancel - Esc
+","Keyboard controls:
+
+Jump - Space, up, W
+Move - right, D, left, A
+Pull down - down, S
+Wall catch - Ctrl, Shift, LMB
+Level reset - R
+Pause or cancel - Esc
+","Управление клавиатурой:
+
+Прыжок - Пробел, Вверх, W
+Движение - вправо, D, влево, A
+Рывок вниз - вниз, S
+Ухватиться за стену - Ctrl, Shift, ЛКМ
+Перезапуск уровня - R
+Пауза или отмена - Esc"
+,,
 Slippey,Slippey,Слиппи
 Samey,Samey,Сэйми
 Sanboy,Sanboy,Сэнбой
@@ -399,7 +461,7 @@ Score: ,Score: ,Очки:
 Score: ","New Record!
 Score: ","Новый Рекорд!
 Очки: "
-Language,Language,Язык
+Language,Language,          Язык
 GratitudeDiaryHeartXPos,106,124
 GratitudeDiaryHeartYPos,48,54
 "AHA

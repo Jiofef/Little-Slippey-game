@@ -60,8 +60,6 @@ public partial class Player : CharacterBody2D
             if (G.PlayerCorpseFlightTimer != 4.5f)
             {
                 G.PlayerCorpseFlightTimer = G.PlayerCorpseFlightTimer < 4.5f ? G.PlayerCorpseFlightTimer + 0.016667f : 4.5f;
-                if (!G.IsProgressPaused)
-                    G.IsProgressPaused = true;
                 if (Meta.Instance.ChosenSkinIndex == 11) return;
                 Position += (_corpseMotion * G.GetReversedPlayerCorpseFlightTimerCoeff() * _corpseMotionMultiplier);
                 Rotation += _corpseMotion.X / 50 * G.GetReversedPlayerCorpseFlightTimerCoeff();

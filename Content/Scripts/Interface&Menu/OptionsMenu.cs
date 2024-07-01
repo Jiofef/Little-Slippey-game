@@ -18,9 +18,11 @@ public partial class OptionsMenu : Control
         new Vector2I (2560, 1440),
         new Vector2I (3840, 2160)
     };
+    ScrollContainer _videoContainer;
 
     public override void _Ready()
     {
+        _videoContainer = GetNode<ScrollContainer>("VideoContainer");
         Meta.OptionsReserve = Meta.Instance.Clone();
         if (G.CurrentLevel != 0)
         {
@@ -71,6 +73,17 @@ public partial class OptionsMenu : Control
         EmitSignal("OptionsClosing");
         QueueFree();
     }
+    public void Controls()
+    {
+        var controlsMenu = GetNode<Control>("ControlsMenu");
+        if (controlsMenu.Visible && controlsMenu.Scale.X != 0)
+            controlsMenu.Visible = false;
+        else
+        {
+            GetNode<AnimationPlayer>("ControlsMenu/AnimationPlayer").Play("Appearence");
+            controlsMenu.Visible = true;
+        }
+    }
 
     //SoundOptions
     public void SoundChanging(float value, int BusNubmer)
@@ -85,6 +98,9 @@ public partial class OptionsMenu : Control
         GetNode<CheckBox>("VideoContainer/GridContainer/ScreenModeContainer/" + WindowModes[DisplayServer.WindowGetMode() == DisplayServer.WindowMode.Fullscreen ? 0 : 1] + "CheckBox").ButtonPressed = true;
         if (Input.IsActionJustPressed("Cancel"))
             Cancel();
+
+        _videoContainer.ScrollVertical += (int)(Input.GetActionStrength("ui_scroll_down") * 5) - (int)(Input.GetActionStrength("ui_scroll_up") * 5);
+        _videoContainer.ScrollHorizontal += (int)(Input.GetActionStrength("ui_scroll_right") * 5) - (int)(Input.GetActionStrength("ui_scroll_left") * 5);
     }
 
     //VideoOptions

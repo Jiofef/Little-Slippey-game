@@ -1,2 +1,0 @@
-﻿64230
-C:/Program Files/Godot C#/Godot.exe

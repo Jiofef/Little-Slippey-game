@@ -1,9 +1,11 @@
-CheckBox
 ColorRect
 Sprite2D
-AnimationPlayer
-Label
 Control
+TextureRect
+ScrollContainer
+AnimationPlayer
+CheckBox
+Label
 AudioStreamPlayer
 CollisionShape2D
 Area2D
@@ -28,5 +30,3 @@ Camera2D
 Timer
 AnimatableBody2D
 NinePatchRect
-VSlider
-HSlider
