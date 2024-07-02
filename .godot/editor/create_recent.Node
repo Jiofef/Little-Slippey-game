@@ -1,6 +1,8 @@
+Control
+HFlowContainer
+GridContainer
 ColorRect
 Sprite2D
-Control
 TextureRect
 ScrollContainer
 AnimationPlayer
@@ -24,9 +26,7 @@ ParallaxLayer
 CPUParticles2D
 AnimatedSprite2D
 Node3D
-GridContainer
 AudioListener2D
 Camera2D
 Timer
 AnimatableBody2D
-NinePatchRect

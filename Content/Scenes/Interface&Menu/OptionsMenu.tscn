@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://dwuivxxfk4cbs"]
+[gd_scene load_steps=22 format=3 uid="uid://dwuivxxfk4cbs"]
 
 [ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/OptionsMenu.cs" id="1_kmdmx"]
 [ext_resource type="Texture2D" uid="uid://i15evt2viayu" path="res://Content/Sprites/Interface/OptionsMenuBox.png" id="1_trr7h"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://d0sqlunqacimf" path="res://Content/Sprites/Interface/CancelButton.png" id="4_kqtal"]
 [ext_resource type="Texture2D" uid="uid://1ateuoq4ybsb" path="res://Content/Sprites/Interface/ControlsButton.png" id="6_8j7i4"]
 [ext_resource type="Texture2D" uid="uid://cq66udhicgrdo" path="res://Content/Sprites/Interface/OptionsMenuVideoContainer.png" id="6_gcpn7"]
+[ext_resource type="Texture2D" uid="uid://6364lktejv61" path="res://Content/Sprites/Interface/SettingResetButton.png" id="6_jifs0"]
 [ext_resource type="Texture2D" uid="uid://vb7vdsdjg4xa" path="res://Content/Sprites/Interface/USADiscordFlag.png" id="7_3d3xi"]
 [ext_resource type="Texture2D" uid="uid://hcoc3411pyvj" path="res://Content/Sprites/Interface/RussiaDiscordFlag.png" id="8_42rvm"]
 [ext_resource type="Texture2D" uid="uid://dqdsspefb6520" path="res://Content/Sprites/Interface/ControlsBox.png" id="10_orj3k"]
@@ -107,7 +108,32 @@ focus_neighbor_top = NodePath("../VideoContainer/GridContainer/LanguageContainer
 focus_neighbor_bottom = NodePath("../VideoContainer/GridContainer/ScreenModeContainer/FullCheckBox")
 texture_normal = ExtResource("4_kqtal")
 
+[node name="SetByDefaultButton" parent="." instance=ExtResource("2_hr832")]
+custom_minimum_size = Vector2(24, 24)
+offset_left = 400.0
+offset_top = 524.0
+offset_right = 424.0
+offset_bottom = 548.0
+focus_neighbor_top = NodePath("../SoundContainer/EnvironmentSlider")
+focus_neighbor_right = NodePath("../AcceptButton")
+focus_neighbor_bottom = NodePath("../SoundContainer/GlobalSlider")
+texture_normal = ExtResource("6_jifs0")
+
+[node name="SetByDefault" type="Label" parent="."]
+offset_left = 512.0
+offset_top = 524.0
+offset_right = 601.0
+offset_bottom = 572.0
+scale = Vector2(2, 2)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+text = "Set by
+default"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="ControlsButton" parent="." instance=ExtResource("2_hr832")]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 0
 offset_left = 21.0
 offset_top = 524.0
 offset_right = 45.0
@@ -118,6 +144,7 @@ focus_neighbor_bottom = NodePath("../SoundContainer/GlobalSlider")
 texture_normal = ExtResource("6_8j7i4")
 
 [node name="ViewControls" type="Label" parent="."]
+layout_mode = 0
 offset_left = 134.0
 offset_top = 524.0
 offset_right = 223.0
@@ -157,6 +184,7 @@ text = "Global"
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 focus_neighbor_top = NodePath("../../ControlsButton")
+focus_neighbor_right = NodePath("../../VideoContainer/GridContainer/ScreenModeContainer/FullCheckBox")
 min_value = -30.0
 max_value = 10.0
 scrollable = false
@@ -169,6 +197,7 @@ text = "Interface"
 
 [node name="InterfaceSlider" type="HSlider" parent="SoundContainer"]
 layout_mode = 2
+focus_neighbor_right = NodePath("../../VideoContainer/GridContainer/ScreenModeContainer/FullCheckBox")
 min_value = -30.0
 max_value = 10.0
 scrollable = false
@@ -181,6 +210,7 @@ text = "Music"
 
 [node name="MusicSlider" type="HSlider" parent="SoundContainer"]
 layout_mode = 2
+focus_neighbor_right = NodePath("../../VideoContainer/GridContainer/ScreenModeContainer/FullCheckBox")
 min_value = -30.0
 max_value = 10.0
 scrollable = false
@@ -193,6 +223,7 @@ text = "Player"
 
 [node name="PlayerSlider" type="HSlider" parent="SoundContainer"]
 layout_mode = 2
+focus_neighbor_right = NodePath("../../VideoContainer/GridContainer/ScreenModeContainer/FullCheckBox")
 min_value = -30.0
 max_value = 10.0
 scrollable = false
@@ -204,6 +235,7 @@ text = "Crosses"
 
 [node name="CrossesSlider" type="HSlider" parent="SoundContainer"]
 layout_mode = 2
+focus_neighbor_right = NodePath("../../VideoContainer/GridContainer/ScreenModeContainer/FullCheckBox")
 min_value = -30.0
 max_value = 10.0
 scrollable = false
@@ -216,6 +248,7 @@ text = "Explosions"
 
 [node name="ExplosionsSlider" type="HSlider" parent="SoundContainer"]
 layout_mode = 2
+focus_neighbor_right = NodePath("../../VideoContainer/GridContainer/ScreenModeContainer/FullCheckBox")
 min_value = -30.0
 max_value = 10.0
 scrollable = false
@@ -227,6 +260,7 @@ text = "Environment"
 
 [node name="EnvironmentSlider" type="HSlider" parent="SoundContainer"]
 layout_mode = 2
+focus_neighbor_right = NodePath("../../VideoContainer/GridContainer/ScreenModeContainer/FullCheckBox")
 focus_neighbor_bottom = NodePath("../../ControlsButton")
 min_value = -30.0
 max_value = 10.0
@@ -619,10 +653,11 @@ texture = ExtResource("10_orj3k")
 centered = false
 
 [node name="Moving" type="Label" parent="ControlsMenu"]
-offset_left = 185.0
-offset_top = 414.0
-offset_right = 413.0
-offset_bottom = 486.0
+layout_mode = 0
+offset_left = 473.0
+offset_top = 412.0
+offset_right = 701.0
+offset_bottom = 484.0
 theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
 text = "Left and right - move
 up - jump
@@ -631,30 +666,33 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="WallCatch" type="Label" parent="ControlsMenu"]
-offset_left = 501.0
-offset_top = 37.0
-offset_right = 605.0
-offset_bottom = 61.0
+layout_mode = 0
+offset_left = 877.0
+offset_top = 30.0
+offset_right = 981.0
+offset_bottom = 54.0
 theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
 text = "Wall catch"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="LevelReset" type="Label" parent="ControlsMenu"]
-offset_left = 499.0
-offset_top = 190.0
-offset_right = 603.0
-offset_bottom = 214.0
+layout_mode = 0
+offset_left = 873.0
+offset_top = 187.0
+offset_right = 991.0
+offset_bottom = 211.0
 theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
 text = "Level reset"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="PauseOrCancel" type="Label" parent="ControlsMenu"]
-offset_left = 498.0
-offset_top = 99.0
-offset_right = 589.0
-offset_bottom = 147.0
+layout_mode = 0
+offset_left = 870.0
+offset_top = 82.0
+offset_right = 961.0
+offset_bottom = 130.0
 theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
 text = "Pause or
 cancel"
@@ -662,20 +700,22 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Jump" type="Label" parent="ControlsMenu"]
-offset_left = 499.0
-offset_top = 234.0
-offset_right = 549.0
-offset_bottom = 258.0
+layout_mode = 0
+offset_left = 871.0
+offset_top = 235.0
+offset_right = 921.0
+offset_bottom = 259.0
 theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
 text = "Jump"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="MoveScrollbars" type="Label" parent="ControlsMenu"]
-offset_left = 497.0
-offset_top = 264.0
-offset_right = 547.0
-offset_bottom = 288.0
+layout_mode = 0
+offset_left = 831.0
+offset_top = 272.0
+offset_right = 996.0
+offset_bottom = 320.0
 theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
 text = "Move scrollbars
 (just try it)"
@@ -684,17 +724,19 @@ vertical_alignment = 1
 
 [node name="ScrollContainer" type="ScrollContainer" parent="ControlsMenu"]
 layout_mode = 0
-offset_left = 529.0
-offset_top = 314.0
-offset_right = 625.0
-offset_bottom = 410.0
+offset_left = 869.0
+offset_top = 320.0
+offset_right = 965.0
+offset_bottom = 416.0
 scroll_horizontal = 84
 scroll_vertical = 84
 script = ExtResource("11_qsm8k")
+metadata/_edit_group_ = true
 
 [node name="SpriteControl" type="Control" parent="ControlsMenu/ScrollContainer"]
 custom_minimum_size = Vector2(256, 256)
 layout_mode = 2
+metadata/_edit_group_ = true
 
 [node name="ColorRect" type="ColorRect" parent="ControlsMenu/ScrollContainer/SpriteControl"]
 layout_mode = 0
@@ -708,22 +750,23 @@ texture = ExtResource("12_balti")
 centered = false
 
 [node name="_(" type="Label" parent="ControlsMenu"]
-offset_left = 658.0
-offset_top = 418.0
-offset_right = 1045.0
-offset_bottom = 490.0
+layout_mode = 0
+offset_left = 13.0
+offset_top = 429.0
+offset_right = 400.0
+offset_bottom = 501.0
 theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
 text = "There is no way to change the control 
 settings yet
 Maybe in 1000 years"
-horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="KeyboardMovement" type="Label" parent="ControlsMenu"]
-offset_left = 667.0
-offset_top = 35.0
-offset_right = 937.0
-offset_bottom = 227.0
+layout_mode = 0
+offset_left = 15.0
+offset_top = 18.0
+offset_right = 285.0
+offset_bottom = 210.0
 theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
 text = "Keyboard controls:
 
@@ -738,6 +781,7 @@ vertical_alignment = 1
 
 [connection signal="pressed" from="AcceptButton" to="." method="Accept"]
 [connection signal="pressed" from="DeclineButton" to="." method="Cancel"]
+[connection signal="pressed" from="SetByDefaultButton" to="." method="SetByDefault"]
 [connection signal="pressed" from="ControlsButton" to="." method="Controls"]
 [connection signal="value_changed" from="SoundContainer/GlobalSlider" to="." method="SoundChanging" binds= [0]]
 [connection signal="value_changed" from="SoundContainer/InterfaceSlider" to="." method="SoundChanging" binds= [1]]

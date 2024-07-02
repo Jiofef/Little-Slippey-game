@@ -76,6 +76,21 @@ public partial class Meta : Node
             {"chosen_skin_index", ChosenSkinIndex},
         };
     }
+    public static Meta GetDefaultSettings()
+    {
+        Meta ReturnMeta = new Meta();
+        ReturnMeta.BusVolumes = new float[] { -10, 0, 0, 0, 0, 0, 0 };
+        ReturnMeta.IsFullScreen = false;
+        ReturnMeta.WindowSize = new Vector2I(1280, 720);
+        ReturnMeta.VSyncOn = false;
+        ReturnMeta.CameraZoom = 1.25f;
+        ReturnMeta.ScoresLabelLocationX = 1;
+        ReturnMeta.ScoresLabelLocationY = 0;
+        ReturnMeta.ScoresShowingFormatIndex = 0;
+        ReturnMeta.language = Language.en;
+
+        return ReturnMeta;
+    }
     public void SaveToFile()
     {
         using FileAccess file = FileAccess.Open("user://options.json", FileAccess.ModeFlags.Write);

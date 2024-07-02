@@ -19,9 +19,11 @@ public partial class OptionsMenu : Control
         new Vector2I (3840, 2160)
     };
     ScrollContainer _videoContainer;
+    HSlider _lastFocusedSlider;
 
     public override void _Ready()
     {
+        GetViewport().GuiFocusChanged += GuiFocusChanged => WhenFocusChanged(GuiFocusChanged);
         _videoContainer = GetNode<ScrollContainer>("VideoContainer");
         Meta.OptionsReserve = Meta.Instance.Clone();
         if (G.CurrentLevel != 0)
@@ -31,27 +33,7 @@ public partial class OptionsMenu : Control
             GetNode<TextureButton>("DeclineButton").GrabFocus();
         }
 
-        string[] SliderNames = { "Global", "Interface", "Music", "Player", "Crosses", "Explosions", "Environment" };
-        for (int i = 0; i < SliderNames.Length; i++)
-            GetNode<Slider>("SoundContainer/" + SliderNames[i] + "Slider").Value = Meta.Instance.BusVolumes[i];
-
-
-        Meta.Instance.IsFullScreen = DisplayServer.WindowGetMode() == DisplayServer.WindowMode.Fullscreen;
-        var windowSizeSlider = GetNode<Slider>("VideoContainer/GridContainer/WindowSizesContainer/WindowSizeSlider");
-        for (int i = 0; i <= windowSizeSlider.MaxValue; i++)
-            if (Meta.Instance.WindowSize == _windowSizes[i])
-                windowSizeSlider.Value = i;
-
-        GetNode<CheckBox>("VideoContainer/GridContainer/VerticalSyncContainer/" + (Meta.Instance.VSyncOn ? "On" : "Off") + "CheckBox").ButtonPressed = true;
-
-        string[] ScoresShowingFormats = {"Default", "Mini", "Hide"};
-        GetNode<CheckBox>("VideoContainer/GridContainer/ScoresLabelContainer/" + ScoresShowingFormats[Meta.Instance.ScoresShowingFormatIndex] + "CheckBox").ButtonPressed = true;
-        GetNode<CheckBox>("VideoContainer/GridContainer/GridContainer/CheckBox" + (Meta.Instance.ScoresLabelLocationX + 1) + "X" + (Meta.Instance.ScoresLabelLocationY + 1) + "Y").ButtonPressed = true;
-
-        GetNode<Slider>("VideoContainer/GridContainer/CameraZoomContainer/CameraZoomSlider").Value = Meta.Instance.CameraZoom;
-        GetNode<Label>("VideoContainer/GridContainer/CameraZoomContainer/CameraZoom").Text = "X" + Meta.Instance.CameraZoom;
-
-        GetNode<AnimationPlayer>("AnimationPlayer").Play("Appearance");
+        UpdateSettingsGUI();
     }
 
     public void Cancel()
@@ -73,6 +55,13 @@ public partial class OptionsMenu : Control
         EmitSignal("OptionsClosing");
         QueueFree();
     }
+    public void SetByDefault()
+    {
+        Meta.Instance = Meta.GetDefaultSettings();
+        Meta.Instance.ApplyOptions();
+        EmitSignal("GUIOptionsChanged", false);
+        UpdateSettingsGUI();
+    }
     public void Controls()
     {
         var controlsMenu = GetNode<Control>("ControlsMenu");
@@ -83,6 +72,53 @@ public partial class OptionsMenu : Control
             GetNode<AnimationPlayer>("ControlsMenu/AnimationPlayer").Play("Appearence");
             controlsMenu.Visible = true;
         }
+    }
+    private void WhenFocusChanged(Control node)
+    {
+        if (_lastFocusedSlider != null)
+            _lastFocusedSlider.Editable = true;
+        if (node.GetClass() == "HSlider")
+        {
+            ((HSlider)node).Editable = false;
+            _lastFocusedSlider = (HSlider)node;
+        }
+
+        CanvasItem Node = node;
+        while (Node != this)
+        {
+            if (Node.Name == "SoundContainer" || Node.Name == "VideoContainer")
+            {
+                GetNode<Control>("ControlsMenu").Visible = false;
+                break;
+            }
+            else if (Node.GetParent() != GetTree().Root)
+                Node = Node.GetParent<CanvasItem>();
+            else
+                break;
+        }
+    }
+    private void UpdateSettingsGUI()
+    {
+        string[] SliderNames = { "Global", "Interface", "Music", "Player", "Crosses", "Explosions", "Environment" };
+        for (int i = 0; i < SliderNames.Length; i++)
+            GetNode<Slider>("SoundContainer/" + SliderNames[i] + "Slider").Value = Meta.Instance.BusVolumes[i];
+
+
+        Meta.Instance.IsFullScreen = DisplayServer.WindowGetMode() == DisplayServer.WindowMode.Fullscreen;
+        var windowSizeSlider = GetNode<Slider>("VideoContainer/GridContainer/WindowSizesContainer/WindowSizeSlider");
+        for (int i = 0; i <= windowSizeSlider.MaxValue; i++)
+            if (Meta.Instance.WindowSize == _windowSizes[i])
+                windowSizeSlider.Value = i;
+
+
+        GetNode<CheckBox>("VideoContainer/GridContainer/VerticalSyncContainer/" + (Meta.Instance.VSyncOn ? "On" : "Off") + "CheckBox").ButtonPressed = true;
+
+        string[] ScoresShowingFormats = { "Default", "Mini", "Hide" };
+        GetNode<CheckBox>("VideoContainer/GridContainer/ScoresLabelContainer/" + ScoresShowingFormats[Meta.Instance.ScoresShowingFormatIndex] + "CheckBox").ButtonPressed = true;
+        GetNode<CheckBox>("VideoContainer/GridContainer/GridContainer/CheckBox" + (Meta.Instance.ScoresLabelLocationX + 1) + "X" + (Meta.Instance.ScoresLabelLocationY + 1) + "Y").ButtonPressed = true;
+
+        GetNode<Slider>("VideoContainer/GridContainer/CameraZoomContainer/CameraZoomSlider").Value = Meta.Instance.CameraZoom;
+        GetNode<Label>("VideoContainer/GridContainer/CameraZoomContainer/CameraZoom").Text = "X" + Meta.Instance.CameraZoom;
     }
 
     //SoundOptions
@@ -98,6 +134,10 @@ public partial class OptionsMenu : Control
         GetNode<CheckBox>("VideoContainer/GridContainer/ScreenModeContainer/" + WindowModes[DisplayServer.WindowGetMode() == DisplayServer.WindowMode.Fullscreen ? 0 : 1] + "CheckBox").ButtonPressed = true;
         if (Input.IsActionJustPressed("Cancel"))
             Cancel();
+
+        Control focusOwner = GetWindow().GuiGetFocusOwner();
+        if (Input.IsActionJustPressed("ui_accept") && focusOwner != null && focusOwner.GetClass() == "HSlider")
+            ((HSlider)focusOwner).Editable = !((HSlider)focusOwner).Editable;
 
         _videoContainer.ScrollVertical += (int)(Input.GetActionStrength("ui_scroll_down") * 5) - (int)(Input.GetActionStrength("ui_scroll_up") * 5);
         _videoContainer.ScrollHorizontal += (int)(Input.GetActionStrength("ui_scroll_right") * 5) - (int)(Input.GetActionStrength("ui_scroll_left") * 5);
