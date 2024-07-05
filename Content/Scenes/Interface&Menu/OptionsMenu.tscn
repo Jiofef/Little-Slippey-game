@@ -110,6 +110,7 @@ texture_normal = ExtResource("4_kqtal")
 
 [node name="SetByDefaultButton" parent="." instance=ExtResource("2_hr832")]
 custom_minimum_size = Vector2(24, 24)
+layout_mode = 0
 offset_left = 400.0
 offset_top = 524.0
 offset_right = 424.0
@@ -120,6 +121,7 @@ focus_neighbor_bottom = NodePath("../SoundContainer/GlobalSlider")
 texture_normal = ExtResource("6_jifs0")
 
 [node name="SetByDefault" type="Label" parent="."]
+layout_mode = 0
 offset_left = 512.0
 offset_top = 524.0
 offset_right = 601.0

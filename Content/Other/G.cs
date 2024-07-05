@@ -17,8 +17,8 @@ public partial class G : Node
         value = char.ToUpper(value[0]) + value.Substring(1);
         return value;
     }
-    // These variables are designed to expand the capabilities in level scripting, including for modders. It is primarily created to store data remaining after exiting a level,
-	// after restarting, or after moving to another level.
+	public static string TypeOfUsedController = "Keyboard";
+    // These variables are designed to expand the capabilities in level scripting, including for modders. It is primarily created to store data remaining after restarting a level, or after changing the scene.
 	public static Variant[] TransitiveVariant = new Variant[64];
     public static readonly Vector2[] LevelXYSizes =
 	{
@@ -35,9 +35,23 @@ public partial class G : Node
 		new Vector2(2560, 1280),
 		new Vector2(2560, 1280)
 	};
-    public override void _PhysicsProcess(double delta)
+    public override void _Input(InputEvent @event)
     {
-		//GD.Print();
+        if (@event is InputEventKey)
+        {
+			TypeOfUsedController = "Keyboard";
+        }
+        else if (@event is InputEventJoypadButton || @event is InputEventJoypadMotion)
+        {
+			string JoyName = Input.GetJoyName(0);
+			if (JoyName == "") return;
+			if (JoyName[0] == 'P' && JoyName[1] == 'S')
+				TypeOfUsedController = "PS Gamepad";
+			else if (JoyName == "XInput Gamepad")
+				TypeOfUsedController = "XInput Gamepad";
+			else TypeOfUsedController = "XInput Gamepad"; //Maybe I'll add more gamepads soon
+        }
+		GD.Print(TypeOfUsedController);
     }
     public static float GetPlayerCorpseFlightTimerCoeff()
 	{

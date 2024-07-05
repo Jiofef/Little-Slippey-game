@@ -1,13 +1,14 @@
+VisibleOnScreenNotifier2D
+Label
+Sprite2D
 Control
 HFlowContainer
 GridContainer
 ColorRect
-Sprite2D
 TextureRect
 ScrollContainer
 AnimationPlayer
 CheckBox
-Label
 AudioStreamPlayer
 CollisionShape2D
 Area2D

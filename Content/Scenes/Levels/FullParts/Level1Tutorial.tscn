@@ -1,4 +1,4 @@
-[gd_scene load_steps=216 format=3 uid="uid://bdgksx0p0ar7"]
+[gd_scene load_steps=230 format=3 uid="uid://bdgksx0p0ar7"]
 
 [ext_resource type="Script" path="res://Content/Scripts/Other/MainScript.cs" id="1_ejqbl"]
 [ext_resource type="Script" path="res://Content/Scripts/Other/LevelMusicPlayer.cs" id="2_okxpt"]
@@ -19,11 +19,19 @@
 [ext_resource type="Texture2D" uid="uid://duk32e0otnfky" path="res://Content/Sprites/Levels/FuckItVolume2Tileset.png" id="17_ic8as"]
 [ext_resource type="Texture2D" uid="uid://c1a8v62iy3ybh" path="res://Content/Sprites/Levels/WhyIsItStillRainingTileset.png" id="18_wud24"]
 [ext_resource type="PackedScene" uid="uid://ft6jg1b0opm1" path="res://Content/Scenes/Other/TutorialTV.tscn" id="19_wvjhm"]
+[ext_resource type="Script" path="res://Content/Scripts/Levels/TutorialTvScreen.cs" id="20_15uq2"]
 [ext_resource type="Texture2D" uid="uid://bco73po5sb1jp" path="res://Content/Sprites/Levels/Level1/TheConsciousness.png" id="20_r1fit"]
+[ext_resource type="Texture2D" uid="uid://b4ony5g6he1yu" path="res://Content/Sprites/Interface/KeyboardButton.png" id="21_1o634"]
 [ext_resource type="PackedScene" uid="uid://buj5ooik0q3l0" path="res://Content/Scenes/Achievements/AchievementArea.tscn" id="21_7v6rx"]
+[ext_resource type="Texture2D" uid="uid://cnnpcerf5mxsf" path="res://Content/Sprites/Interface/XControllerX.png" id="22_40vsc"]
 [ext_resource type="Texture2D" uid="uid://cd6j7b3w6mw8d" path="res://Content/Sprites/Levels/Level1/WoodParticles.png" id="22_hhw8g"]
 [ext_resource type="Script" path="res://Content/Scripts/Levels/Level8DisposableButton.cs" id="23_0kf46"]
+[ext_resource type="Texture2D" uid="uid://bwv5w81qtjxia" path="res://Content/Sprites/Interface/ControllerDPadRight.png" id="23_3pfrb"]
+[ext_resource type="Texture2D" uid="uid://cd0h48ic4qjej" path="res://Content/Sprites/Interface/ControllerDPadUp.png" id="23_hkb6i"]
+[ext_resource type="Texture2D" uid="uid://befygohfywkbs" path="res://Content/Sprites/Interface/ControllerDPadLeft.png" id="24_6hekp"]
+[ext_resource type="Texture2D" uid="uid://0ljljn46telv" path="res://Content/Sprites/Interface/ControllerStick.png" id="24_8kia7"]
 [ext_resource type="Texture2D" uid="uid://cjieb76jdv80v" path="res://Content/Sprites/Levels/ANineGreetingsTileset.png" id="24_o28it"]
+[ext_resource type="Texture2D" uid="uid://c87yqwkeb2phg" path="res://Content/Sprites/Interface/PSControllerX.png" id="25_8i6le"]
 [ext_resource type="Texture2D" uid="uid://kan57g8qq778" path="res://Content/Sprites/Levels/Level1/TheMatter.png" id="25_qwhbf"]
 [ext_resource type="Texture2D" uid="uid://g66sf1mneucj" path="res://Content/Sprites/Levels/Level1/RockyDirtParticles.png" id="26_aoaf2"]
 [ext_resource type="AudioStream" uid="uid://cumpwc1bemm6b" path="res://Content/Sounds/Levels/TutorialRockQuicking.mp3" id="27_3q6pp"]
@@ -33,10 +41,15 @@
 [ext_resource type="Texture2D" uid="uid://doye5ecgh2jg7" path="res://Content/Sprites/Levels/Level1/DirtParticles.png" id="31_wh8s0"]
 [ext_resource type="AudioStream" uid="uid://dbeiap81asy2m" path="res://Content/Sounds/Levels/TutorialTileMapBreaking.mp3" id="32_ltdvp"]
 [ext_resource type="Script" path="res://Content/Scripts/Levels/Level1TutorialDarkeningAnimationPlayer.cs" id="33_etq6e"]
+[ext_resource type="Texture2D" uid="uid://dtohw0ae1520p" path="res://Content/Sprites/Interface/KeyboardBigButton.png" id="34_dcq2s"]
 [ext_resource type="Texture2D" uid="uid://nlwphmf6wah0" path="res://Content/Sprites/Levels/Level8/Button.png" id="34_wjm2x"]
+[ext_resource type="Texture2D" uid="uid://cyxxfc376ljom" path="res://Content/Sprites/Interface/LeftMouseButton.png" id="35_vki57"]
 [ext_resource type="Texture2D" uid="uid://t73lfqyo0ovn" path="res://Content/Sprites/Other/Shine.png" id="35_ylt62"]
+[ext_resource type="Texture2D" uid="uid://5pffdpclqqdn" path="res://Content/Sprites/Interface/ControllerR2Button.png" id="36_g8kx4"]
 [ext_resource type="AudioStream" uid="uid://brmligonirrig" path="res://Content/Sounds/Levels/TutorialAngelicTVSound.mp3" id="36_ohtn7"]
 [ext_resource type="Texture2D" uid="uid://bpgam8b6sar31" path="res://Content/Sprites/Levels/Level1/TutorialTVWings.png" id="37_ld4ye"]
+[ext_resource type="Texture2D" uid="uid://ceyujm73q8vfi" path="res://Content/Sprites/Interface/XControllerB.png" id="37_w750q"]
+[ext_resource type="Texture2D" uid="uid://de8b7e22fjuxd" path="res://Content/Sprites/Interface/PSControllerSquare.png" id="38_8thb2"]
 [ext_resource type="Texture2D" uid="uid://cq3f2ux2d4wal" path="res://Content/Sprites/Levels/Level1/TutorialTVHaloAnimation.png" id="38_75ow4"]
 [ext_resource type="AudioStream" uid="uid://bf54vxr64tyae" path="res://Content/Sounds/Levels/TutorialYOUWIN.mp3" id="39_c31vs"]
 [ext_resource type="Script" path="res://Content/Scripts/Levels/TutorialCanvasLayer.cs" id="40_3l25n"]
@@ -47,6 +60,7 @@
 [ext_resource type="Texture2D" uid="uid://bqua21jbasqml" path="res://Content/Sprites/Interface/PauseRewindButton.png" id="45_hxp0y"]
 [ext_resource type="Texture2D" uid="uid://be5mi0sdy4bep" path="res://Content/Sprites/Interface/PauseOptionsButton.png" id="46_j6rd0"]
 [ext_resource type="Texture2D" uid="uid://blp8i7meimekf" path="res://Content/Sprites/Interface/PauseMenuButton.png" id="47_0cvso"]
+[ext_resource type="Texture2D" uid="uid://sg857imuto1q" path="res://Content/Sprites/Interface/ControllerDPadDown.png" id="48_4c1fj"]
 [ext_resource type="Script" path="res://Content/Scripts/Other/DidLevelIntroPassedSet.cs" id="48_knw17"]
 [ext_resource type="Shader" path="res://Content/Other/BrightnessShader.gdshader" id="49_rg8pl"]
 [ext_resource type="Script" path="res://Content/Scripts/Other/PostProcessingRect.cs" id="50_xmuo4"]
@@ -3352,12 +3366,118 @@ shape = SubResource("RectangleShape2D_mfb4c")
 [node name="TutorialTV" parent="Level/TileMap" instance=ExtResource("19_wvjhm")]
 position = Vector2(3600, 848)
 
+[node name="Screen" parent="Level/TileMap/TutorialTV" index="1"]
+script = ExtResource("20_15uq2")
+_isThereASecondSpriteForGamepad = false
+
 [node name="Text" parent="Level/TileMap/TutorialTV/Screen" index="2"]
 offset_right = 320.0
 offset_bottom = 160.0
 scale = Vector2(0.25, 0.25)
-text = "To walk, press 🠈
- and 🠊 or A and D"
+text = "To walk, pressㅤ
+ and     or     and     "
+
+[node name="Button2" type="Sprite2D" parent="Level/TileMap/TutorialTV/Screen/Text" index="0"]
+position = Vector2(238, 67)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("21_1o634")
+
+[node name="Label" type="Label" parent="Level/TileMap/TutorialTV/Screen/Text/Button2"]
+offset_left = -3.0
+offset_top = -3.0
+offset_right = 12.0
+offset_bottom = 23.0
+scale = Vector2(0.4, 0.4)
+theme_override_colors/font_color = Color(0.780392, 0.764706, 0.909804, 1)
+text = "🠈"
+
+[node name="Sprite2D2" type="Sprite2D" parent="Level/TileMap/TutorialTV/Screen/Text/Button2"]
+position = Vector2(-77, 16)
+texture = ExtResource("21_1o634")
+
+[node name="Label" type="Label" parent="Level/TileMap/TutorialTV/Screen/Text/Button2/Sprite2D2"]
+offset_left = -3.0
+offset_top = -3.0
+offset_right = 12.0
+offset_bottom = 23.0
+scale = Vector2(0.4, 0.4)
+theme_override_colors/font_color = Color(0.780392, 0.764706, 0.909804, 1)
+text = "🠊"
+
+[node name="Sprite2D3" type="Sprite2D" parent="Level/TileMap/TutorialTV/Screen/Text/Button2"]
+position = Vector2(-43, 16)
+texture = ExtResource("21_1o634")
+
+[node name="Label" type="Label" parent="Level/TileMap/TutorialTV/Screen/Text/Button2/Sprite2D3"]
+offset_left = -3.0
+offset_top = -3.0
+offset_right = 12.0
+offset_bottom = 23.0
+scale = Vector2(0.4, 0.4)
+theme_override_colors/font_color = Color(0.780392, 0.764706, 0.909804, 1)
+text = "A"
+
+[node name="Sprite2D4" type="Sprite2D" parent="Level/TileMap/TutorialTV/Screen/Text/Button2"]
+position = Vector2(3, 16)
+texture = ExtResource("21_1o634")
+
+[node name="Label" type="Label" parent="Level/TileMap/TutorialTV/Screen/Text/Button2/Sprite2D4"]
+offset_left = -3.0
+offset_top = -3.0
+offset_right = 12.0
+offset_bottom = 23.0
+scale = Vector2(0.4, 0.4)
+theme_override_colors/font_color = Color(0.780392, 0.764706, 0.909804, 1)
+text = "D"
+
+[node name="GamepadText" type="Label" parent="Level/TileMap/TutorialTV/Screen" index="3"]
+visible = false
+layout_mode = 0
+offset_right = 320.0
+offset_bottom = 160.0
+scale = Vector2(0.25, 0.25)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+text = "To walk, pressㅤ
+and      or      and    "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Sprite2D" parent="Level/TileMap/TutorialTV/Screen/GamepadText"]
+position = Vector2(238, 65)
+scale = Vector2(2, 2)
+texture = ExtResource("24_8kia7")
+
+[node name="Label" type="Label" parent="Level/TileMap/TutorialTV/Screen/GamepadText/Button"]
+offset_left = -3.0
+offset_top = -3.0
+offset_right = 12.0
+offset_bottom = 23.0
+scale = Vector2(0.4, 0.4)
+theme_override_colors/font_color = Color(0.780392, 0.764706, 0.909804, 1)
+text = "🠈"
+
+[node name="Sprite2D2" type="Sprite2D" parent="Level/TileMap/TutorialTV/Screen/GamepadText/Button"]
+position = Vector2(-59, 13)
+texture = ExtResource("24_8kia7")
+
+[node name="Label" type="Label" parent="Level/TileMap/TutorialTV/Screen/GamepadText/Button/Sprite2D2"]
+offset_left = -3.0
+offset_top = -3.0
+offset_right = 12.0
+offset_bottom = 23.0
+scale = Vector2(0.4, 0.4)
+theme_override_colors/font_color = Color(0.780392, 0.764706, 0.909804, 1)
+text = "🠊"
+
+[node name="Sprite2D3" type="Sprite2D" parent="Level/TileMap/TutorialTV/Screen/GamepadText/Button"]
+position = Vector2(-31, 14)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("23_3pfrb")
+
+[node name="Sprite2D4" type="Sprite2D" parent="Level/TileMap/TutorialTV/Screen/GamepadText/Button"]
+position = Vector2(7, 14)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("24_6hekp")
 
 [node name="Sound" parent="Level/TileMap/TutorialTV/Screen/WhiteNoise" index="0"]
 volume_db = -5.0
@@ -3366,6 +3486,10 @@ volume_db = -5.0
 libraries = {
 "": SubResource("AnimationLibrary_u218g")
 }
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="Level/TileMap/TutorialTV"]
+position = Vector2(-0.000255585, 8)
+scale = Vector2(4.79997, 2.4)
 
 [node name="TeleporterArea" parent="Level/TileMap" instance=ExtResource("9_chanx")]
 position = Vector2(3832, 944)
@@ -3381,18 +3505,135 @@ format = 2
 layer_0/tile_data = PackedInt32Array(3408119, 65536, 0, 3473655, 65536, 0, 3539191, 65536, 0, 3604727, 65536, 0, 3670263, 65536, 0, 3735799, 65536, 0, 3801335, 65536, 0, 3866871, 65536, 0, 3932407, 65536, 0, 3997943, 65536, 0, 4063479, 65536, 0, 4129015, 65536, 0, 4194551, 65536, 0, 4260087, 65536, 0, 3408120, 65536, 0, 3473656, 65536, 0, 3539192, 65536, 0, 3604728, 65536, 0, 3670264, 65536, 0, 3735800, 65536, 0, 3801336, 65536, 0, 3866872, 65536, 0, 3932408, 65536, 0, 3997944, 65536, 0, 4063480, 65536, 0, 4129016, 65536, 0, 4194552, 65536, 0, 4260088, 65536, 0, 3408121, 65536, 0, 3473657, 65536, 0, 3539193, 65536, 0, 3604729, 65536, 0, 3670265, 65536, 0, 3735801, 65536, 0, 3801337, 65536, 0, 3866873, 65536, 0, 3932409, 65536, 0, 3997945, 65536, 0, 4063481, 65536, 0, 4129017, 65536, 0, 4194553, 65536, 0, 4260089, 65536, 0, 3408122, 65536, 0, 4194554, 0, 0, 4260090, 0, 0, 3408123, 65536, 0, 4260091, 0, 0, 3408124, 65536, 0, 4260092, 0, 0, 3408125, 65536, 0, 4260093, 0, 0, 3408126, 65536, 0, 4260094, 0, 0, 3408127, 65536, 0, 4260095, 0, 0, 3408128, 65536, 0, 4260096, 0, 0, 3408129, 65536, 0, 4260097, 0, 0, 3408130, 65536, 0, 4260098, 0, 0, 3408131, 65536, 0, 4129027, 1, 2, 4194563, 1, 2, 4260099, 1, 2, 3408132, 65536, 0, 4129028, 1, 2, 4194564, 1, 2, 4260100, 1, 2, 3408133, 65536, 0, 4260101, 0, 0, 3408134, 65536, 0, 4260102, 0, 0, 3408135, 65536, 0, 4260103, 0, 0, 3408136, 65536, 0, 4260104, 0, 0, 3408137, 65536, 0, 4260105, 0, 0, 3408138, 65536, 0, 4260106, 0, 0, 3408139, 65536, 0, 4260107, 0, 0, 3408140, 65536, 0, 4260108, 0, 0, 3408141, 65536, 0, 4129037, 1, 2, 4194573, 1, 2, 4260109, 1, 2, 3408142, 65536, 0, 4129038, 1, 2, 4194574, 1, 2, 4260110, 1, 2, 3408143, 65536, 0, 4260111, 0, 0, 3408144, 65536, 0, 4260112, 0, 0, 3408145, 65536, 0, 4260113, 0, 0, 3408146, 65536, 0, 4260114, 0, 0, 3408147, 65536, 0, 4063507, 1, 2, 4129043, 1, 2, 4194579, 1, 2, 4260115, 1, 2, 3408148, 65536, 0, 4063508, 1, 2, 4129044, 1, 2, 4194580, 1, 2, 4260116, 1, 2, 3408149, 65536, 0, 4194581, 0, 0, 4260117, 0, 0, 3408150, 65536, 0, 4194582, 0, 0, 4260118, 0, 0, 3408151, 65536, 0, 4194583, 0, 0, 4260119, 0, 0, 3408152, 65536, 0, 4194584, 0, 0, 4260120, 0, 0, 3408153, 65536, 0, 3932441, 1, 2, 3997977, 1, 2, 4063513, 1, 2, 4129049, 1, 2, 4194585, 1, 2, 4260121, 1, 2, 3408154, 65536, 0, 3932442, 1, 2, 3997978, 1, 2, 4063514, 1, 2, 4129050, 1, 2, 4194586, 1, 2, 4260122, 1, 2, 3408155, 65536, 0, 4260123, 0, 0, 3408156, 65536, 0, 4260124, 0, 0, 3408157, 65536, 0, 4260125, 0, 0, 3408158, 65536, 0, 4260126, 0, 0, 3408159, 65536, 0, 4260127, 0, 0, 3408160, 65536, 0, 4260128, 0, 0, 3408161, 65536, 0, 3473697, 65536, 0, 3539233, 65536, 0, 3604769, 65536, 0, 3670305, 65536, 0, 3735841, 65536, 0, 3801377, 65536, 0, 3866913, 65536, 0, 3932449, 65536, 0, 3997985, 65536, 0, 4063521, 65536, 0, 4129057, 65536, 0, 4194593, 65536, 0, 4260129, 65536, 0, 3408162, 65536, 0, 3473698, 65536, 0, 3539234, 65536, 0, 3604770, 65536, 0, 3670306, 65536, 0, 3735842, 65536, 0, 3801378, 65536, 0, 3866914, 65536, 0, 3932450, 65536, 0, 3997986, 65536, 0, 4063522, 65536, 0, 4129058, 65536, 0, 4194594, 65536, 0, 4260130, 65536, 0, 3408163, 65536, 0, 3473699, 65536, 0, 3539235, 65536, 0, 3604771, 65536, 0, 3670307, 65536, 0, 3735843, 65536, 0, 3801379, 65536, 0, 3866915, 65536, 0, 3932451, 65536, 0, 3997987, 65536, 0, 4063523, 65536, 0, 4129059, 65536, 0, 4194595, 65536, 0, 4260131, 65536, 0, 3277047, 65536, 0, 3342583, 65536, 0, 3277048, 65536, 0, 3342584, 65536, 0, 3277049, 65536, 0, 3342585, 65536, 0, 3277050, 65536, 0, 3342586, 65536, 0, 4129018, 131072, 0, 3277051, 65536, 0, 3342587, 65536, 0, 4129019, 131072, 0, 4194555, 0, 0, 3277052, 65536, 0, 3342588, 65536, 0, 4129020, 131072, 0, 4194556, 0, 0, 3277053, 65536, 0, 3342589, 65536, 0, 4129021, 131072, 0, 4194557, 0, 0, 3277054, 65536, 0, 3342590, 65536, 0, 4129022, 131072, 0, 4194558, 0, 0, 3277055, 65536, 0, 3342591, 65536, 0, 4129023, 131072, 0, 4194559, 0, 0, 3277056, 65536, 0, 3342592, 65536, 0, 4129024, 131072, 0, 4194560, 0, 0, 3277057, 65536, 0, 3342593, 65536, 0, 4129025, 131072, 0, 4194561, 0, 0, 3277058, 65536, 0, 3342594, 65536, 0, 4129026, 131072, 0, 4194562, 0, 0, 3277059, 65536, 0, 3342595, 65536, 0, 3997955, 1, 2, 4063491, 1, 2, 3277060, 65536, 0, 3342596, 65536, 0, 3997956, 1, 2, 4063492, 1, 2, 3277061, 65536, 0, 3342597, 65536, 0, 4129029, 131072, 0, 4194565, 0, 0, 3277062, 65536, 0, 3342598, 65536, 0, 4129030, 131072, 0, 4194566, 0, 0, 3277063, 65536, 0, 3342599, 65536, 0, 4129031, 131072, 0, 4194567, 0, 0, 3277064, 65536, 0, 3342600, 65536, 0, 4129032, 131072, 0, 4194568, 0, 0, 3277065, 65536, 0, 3342601, 65536, 0, 4129033, 131072, 0, 4194569, 0, 0, 3277066, 65536, 0, 3342602, 65536, 0, 4129034, 131072, 0, 4194570, 0, 0, 3277067, 65536, 0, 3342603, 65536, 0, 4129035, 131072, 0, 4194571, 0, 0, 3277068, 65536, 0, 3342604, 65536, 0, 4129036, 131072, 0, 4194572, 0, 0, 3277069, 65536, 0, 3342605, 65536, 0, 3997965, 1, 2, 4063501, 1, 2, 3277070, 65536, 0, 3342606, 65536, 0, 3997966, 1, 2, 4063502, 1, 2, 3277071, 65536, 0, 3342607, 65536, 0, 4129039, 131072, 0, 4194575, 0, 0, 3277072, 65536, 0, 3342608, 65536, 0, 4129040, 131072, 0, 4194576, 0, 0, 3277073, 65536, 0, 3342609, 65536, 0, 4129041, 131072, 0, 4194577, 0, 0, 3277074, 65536, 0, 3342610, 65536, 0, 4129042, 131072, 0, 4194578, 0, 0, 3277075, 65536, 0, 3342611, 65536, 0, 3932435, 1, 2, 3997971, 1, 2, 3277076, 65536, 0, 3342612, 65536, 0, 3932436, 1, 2, 3997972, 1, 2, 3277077, 65536, 0, 3342613, 65536, 0, 4063509, 131072, 0, 4129045, 0, 0, 3277078, 65536, 0, 3342614, 65536, 0, 4063510, 131072, 0, 4129046, 0, 0, 3277079, 65536, 0, 3342615, 65536, 0, 4063511, 131072, 0, 4129047, 0, 0, 3277080, 65536, 0, 3342616, 65536, 0, 4063512, 131072, 0, 4129048, 0, 0, 3277081, 65536, 0, 3342617, 65536, 0, 3801369, 1, 2, 3866905, 1, 2, 3277082, 65536, 0, 3342618, 65536, 0, 3801370, 1, 2, 3866906, 1, 2, 3277083, 65536, 0, 3342619, 65536, 0, 4129051, 131072, 0, 4194587, 0, 0, 3277084, 65536, 0, 3342620, 65536, 0, 4129052, 131072, 0, 4194588, 0, 0, 3277085, 65536, 0, 3342621, 65536, 0, 4129053, 131072, 0, 4194589, 0, 0, 3277086, 65536, 0, 3342622, 65536, 0, 4129054, 131072, 0, 4194590, 0, 0, 3277087, 65536, 0, 3342623, 65536, 0, 4129055, 131072, 0, 4194591, 0, 0, 3277088, 65536, 0, 3342624, 65536, 0, 4129056, 131072, 0, 4194592, 0, 0, 3277089, 65536, 0, 3342625, 65536, 0, 3277090, 65536, 0, 3342626, 65536, 0, 3277091, 65536, 0, 3342627, 65536, 0)
 
 [node name="TutorialTV" parent="Level/TileMap2" instance=ExtResource("19_wvjhm")]
+z_index = -2
 position = Vector2(4064, 816)
+
+[node name="Sprite2D" parent="Level/TileMap2/TutorialTV" index="0"]
+z_index = 1
+
+[node name="Screen" parent="Level/TileMap2/TutorialTV" index="1"]
+z_index = 1
+script = ExtResource("20_15uq2")
 
 [node name="Text" parent="Level/TileMap2/TutorialTV/Screen" index="2"]
 offset_right = 320.0
 offset_bottom = 160.0
 scale = Vector2(0.25, 0.25)
-text = "To jump, press 🠉 or W"
+text = "To jump, press     or    "
+
+[node name="Button" type="Sprite2D" parent="Level/TileMap2/TutorialTV/Screen/Text" index="0"]
+position = Vector2(212, 80)
+scale = Vector2(1.6, 1.6)
+texture = ExtResource("21_1o634")
+
+[node name="Label" type="Label" parent="Level/TileMap2/TutorialTV/Screen/Text/Button"]
+offset_left = -3.0
+offset_top = -3.0
+offset_right = 12.0
+offset_bottom = 23.0
+scale = Vector2(0.4, 0.4)
+theme_override_colors/font_color = Color(0.780392, 0.764706, 0.909804, 1)
+text = "🠉"
+
+[node name="Sprite2D2" type="Sprite2D" parent="Level/TileMap2/TutorialTV/Screen/Text/Button"]
+position = Vector2(32, 0)
+texture = ExtResource("21_1o634")
+
+[node name="Label" type="Label" parent="Level/TileMap2/TutorialTV/Screen/Text/Button/Sprite2D2"]
+offset_left = -3.0
+offset_top = -3.0
+offset_right = 12.0
+offset_bottom = 23.0
+scale = Vector2(0.4, 0.4)
+theme_override_colors/font_color = Color(0.780392, 0.764706, 0.909804, 1)
+text = "W"
+
+[node name="GamepadText" type="Label" parent="Level/TileMap2/TutorialTV/Screen" index="3"]
+visible = false
+layout_mode = 0
+offset_right = 320.0
+offset_bottom = 160.0
+scale = Vector2(0.25, 0.25)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+text = "To jump, press     ,       or  "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="XBoxButton" type="Sprite2D" parent="Level/TileMap2/TutorialTV/Screen/GamepadText"]
+position = Vector2(194, 80)
+scale = Vector2(1.6, 1.6)
+texture = ExtResource("22_40vsc")
+
+[node name="Label" type="Label" parent="Level/TileMap2/TutorialTV/Screen/GamepadText/XBoxButton"]
+offset_left = -3.0
+offset_top = -3.0
+offset_right = 12.0
+offset_bottom = 23.0
+scale = Vector2(0.4, 0.4)
+theme_override_colors/font_color = Color(0.780392, 0.764706, 0.909804, 1)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Level/TileMap2/TutorialTV/Screen/GamepadText/XBoxButton"]
+position = Vector2(24, 0)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("23_hkb6i")
+
+[node name="Sprite2D3" type="Sprite2D" parent="Level/TileMap2/TutorialTV/Screen/GamepadText/XBoxButton"]
+position = Vector2(63, 0)
+scale = Vector2(1.25, 1.25)
+texture = ExtResource("24_8kia7")
+
+[node name="Label" type="Label" parent="Level/TileMap2/TutorialTV/Screen/GamepadText/XBoxButton/Sprite2D3"]
+offset_left = -3.0
+offset_top = -4.0
+offset_right = 12.0
+offset_bottom = 22.0
+scale = Vector2(0.4, 0.4)
+theme_override_colors/font_color = Color(0.780392, 0.764706, 0.909804, 1)
+text = "🠉"
+
+[node name="PSButton" type="Sprite2D" parent="Level/TileMap2/TutorialTV/Screen/GamepadText"]
+visible = false
+position = Vector2(194, 80)
+scale = Vector2(1.6, 1.6)
+texture = ExtResource("25_8i6le")
+
+[node name="Label" type="Label" parent="Level/TileMap2/TutorialTV/Screen/GamepadText/PSButton"]
+offset_left = -3.0
+offset_top = -3.0
+offset_right = 12.0
+offset_bottom = 23.0
+scale = Vector2(0.4, 0.4)
+theme_override_colors/font_color = Color(0.780392, 0.764706, 0.909804, 1)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Level/TileMap2/TutorialTV/Screen/GamepadText/PSButton"]
+position = Vector2(24, 0)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("23_hkb6i")
+
+[node name="Sprite2D3" type="Sprite2D" parent="Level/TileMap2/TutorialTV/Screen/GamepadText/PSButton"]
+position = Vector2(63, 0)
+scale = Vector2(1.25, 1.25)
+texture = ExtResource("24_8kia7")
+
+[node name="Label" type="Label" parent="Level/TileMap2/TutorialTV/Screen/GamepadText/PSButton/Sprite2D3"]
+offset_left = -3.0
+offset_top = -4.0
+offset_right = 12.0
+offset_bottom = 22.0
+scale = Vector2(0.4, 0.4)
+theme_override_colors/font_color = Color(0.780392, 0.764706, 0.909804, 1)
+text = "🠉"
+
+[node name="Sprite2D" type="Sprite2D" parent="Level/TileMap2/TutorialTV/Screen" index="6"]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Level/TileMap2/TutorialTV"]
 libraries = {
 "": SubResource("AnimationLibrary_mch4p")
 }
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="Level/TileMap2/TutorialTV"]
+position = Vector2(-0.000255585, 8)
+scale = Vector2(4.79997, 2.4)
 
 [node name="TeleporterArea" parent="Level/TileMap2" instance=ExtResource("9_chanx")]
 position = Vector2(4576, 992)
@@ -3456,13 +3697,132 @@ layer_0/tile_data = PackedInt32Array(3408282, 3, 0, 3408283, 3, 0, 3408284, 3, 0
 [node name="TutorialTV" parent="Level/TileMap4" instance=ExtResource("19_wvjhm")]
 position = Vector2(6264, 608)
 
+[node name="Screen" parent="Level/TileMap4/TutorialTV" index="1"]
+script = ExtResource("20_15uq2")
+
 [node name="Text" parent="Level/TileMap4/TutorialTV/Screen" index="2"]
 offset_right = 320.0
 offset_bottom = 160.0
 scale = Vector2(0.25, 0.25)
 text = "To climb the wall,
-press 🠉 or W during
+press     or     during
 flight"
+
+[node name="Button" type="Sprite2D" parent="Level/TileMap4/TutorialTV/Screen/Text" index="0"]
+position = Vector2(131, 79)
+scale = Vector2(1.6, 1.6)
+texture = ExtResource("21_1o634")
+
+[node name="Label" type="Label" parent="Level/TileMap4/TutorialTV/Screen/Text/Button"]
+offset_left = -3.0
+offset_top = -3.0
+offset_right = 12.0
+offset_bottom = 23.0
+scale = Vector2(0.4, 0.4)
+theme_override_colors/font_color = Color(0.780392, 0.764706, 0.909804, 1)
+text = "🠉"
+
+[node name="Sprite2D2" type="Sprite2D" parent="Level/TileMap4/TutorialTV/Screen/Text/Button"]
+position = Vector2(33, 0)
+texture = ExtResource("21_1o634")
+
+[node name="Label" type="Label" parent="Level/TileMap4/TutorialTV/Screen/Text/Button/Sprite2D2"]
+offset_left = -3.0
+offset_top = -3.0
+offset_right = 12.0
+offset_bottom = 23.0
+scale = Vector2(0.4, 0.4)
+theme_override_colors/font_color = Color(0.780392, 0.764706, 0.909804, 1)
+text = "W"
+
+[node name="GamepadText" type="Label" parent="Level/TileMap4/TutorialTV/Screen" index="3"]
+visible = false
+layout_mode = 0
+offset_right = 320.0
+offset_bottom = 160.0
+scale = Vector2(0.25, 0.25)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+text = "To climb the wall,
+press     ,      or      during
+flight"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="XBoxButton" type="Sprite2D" parent="Level/TileMap4/TutorialTV/Screen/GamepadText"]
+visible = false
+position = Vector2(110, 79)
+scale = Vector2(1.6, 1.6)
+texture = ExtResource("22_40vsc")
+
+[node name="Label" type="Label" parent="Level/TileMap4/TutorialTV/Screen/GamepadText/XBoxButton"]
+offset_left = -3.0
+offset_top = -3.0
+offset_right = 12.0
+offset_bottom = 23.0
+scale = Vector2(0.4, 0.4)
+theme_override_colors/font_color = Color(0.780392, 0.764706, 0.909804, 1)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Level/TileMap4/TutorialTV/Screen/GamepadText/XBoxButton"]
+position = Vector2(23, -2)
+scale = Vector2(0.55, 0.55)
+texture = ExtResource("23_hkb6i")
+
+[node name="Sprite2D3" type="Sprite2D" parent="Level/TileMap4/TutorialTV/Screen/GamepadText/XBoxButton"]
+position = Vector2(58, 0)
+scale = Vector2(1.25, 1.25)
+texture = ExtResource("24_8kia7")
+
+[node name="Label" type="Label" parent="Level/TileMap4/TutorialTV/Screen/GamepadText/XBoxButton/Sprite2D3"]
+offset_left = -3.0
+offset_top = -4.0
+offset_right = 12.0
+offset_bottom = 22.0
+scale = Vector2(0.4, 0.4)
+theme_override_colors/font_color = Color(0.780392, 0.764706, 0.909804, 1)
+text = "🠉"
+
+[node name="PSButton" type="Sprite2D" parent="Level/TileMap4/TutorialTV/Screen/GamepadText"]
+visible = false
+position = Vector2(110, 79)
+scale = Vector2(1.6, 1.6)
+texture = ExtResource("25_8i6le")
+
+[node name="Label" type="Label" parent="Level/TileMap4/TutorialTV/Screen/GamepadText/PSButton"]
+offset_left = -3.0
+offset_top = -3.0
+offset_right = 12.0
+offset_bottom = 23.0
+scale = Vector2(0.4, 0.4)
+theme_override_colors/font_color = Color(0.780392, 0.764706, 0.909804, 1)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Level/TileMap4/TutorialTV/Screen/GamepadText/PSButton"]
+position = Vector2(23, -2)
+scale = Vector2(0.55, 0.55)
+texture = ExtResource("23_hkb6i")
+
+[node name="Label" type="Label" parent="Level/TileMap4/TutorialTV/Screen/GamepadText/PSButton/Sprite2D2"]
+visible = false
+offset_left = -3.0
+offset_top = -3.0
+offset_right = 12.0
+offset_bottom = 23.0
+scale = Vector2(0.4, 0.4)
+theme_override_colors/font_color = Color(0.780392, 0.764706, 0.909804, 1)
+text = "W"
+
+[node name="Sprite2D3" type="Sprite2D" parent="Level/TileMap4/TutorialTV/Screen/GamepadText/PSButton"]
+position = Vector2(58, 0)
+scale = Vector2(1.25, 1.25)
+texture = ExtResource("24_8kia7")
+
+[node name="Label" type="Label" parent="Level/TileMap4/TutorialTV/Screen/GamepadText/PSButton/Sprite2D3"]
+offset_left = -3.0
+offset_top = -4.0
+offset_right = 12.0
+offset_bottom = 22.0
+scale = Vector2(0.4, 0.4)
+theme_override_colors/font_color = Color(0.780392, 0.764706, 0.909804, 1)
+text = "🠉"
 
 [node name="Particles" parent="Level/TileMap4/TutorialTV" index="2"]
 texture = ExtResource("22_hhw8g")
@@ -3471,6 +3831,10 @@ texture = ExtResource("22_hhw8g")
 libraries = {
 "": SubResource("AnimationLibrary_3y4p8")
 }
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="Level/TileMap4/TutorialTV"]
+position = Vector2(-0.000255585, 8)
+scale = Vector2(4.79997, 2.4)
 
 [node name="TVFallTrigger" parent="Level/TileMap4" instance=ExtResource("9_chanx")]
 position = Vector2(6264, 920)
@@ -3541,15 +3905,86 @@ shape = SubResource("RectangleShape2D_in1fr")
 position = Vector2(8512, 1037)
 scale = Vector2(0.9, 0.9)
 
+[node name="Screen" parent="Level/TileMap5/TutorialTV" index="1"]
+script = ExtResource("20_15uq2")
+
 [node name="Text" parent="Level/TileMap5/TutorialTV/Screen" index="2"]
+visible = false
 offset_right = 356.0
 offset_bottom = 178.0
 scale = Vector2(0.225, 0.225)
 theme_override_font_sizes/font_size = 22
 text = "To wall-jump,
-hold Ctrl/Shift/LMB
+holdㅤㅤㅤ,ㅤㅤ    orㅤㅤ
 against the wall during
 flight and jump"
+
+[node name="Button" type="Sprite2D" parent="Level/TileMap5/TutorialTV/Screen/Text" index="0"]
+position = Vector2(130, 70)
+scale = Vector2(2.25, 2.25)
+texture = ExtResource("34_dcq2s")
+
+[node name="Label" type="Label" parent="Level/TileMap5/TutorialTV/Screen/Text/Button"]
+offset_left = -8.0
+offset_top = -3.0
+offset_right = 32.0
+offset_bottom = 23.0
+scale = Vector2(0.4, 0.4)
+theme_override_colors/font_color = Color(0.780392, 0.764706, 0.909804, 1)
+text = "Ctrl"
+
+[node name="Sprite2D2" type="Sprite2D" parent="Level/TileMap5/TutorialTV/Screen/Text/Button"]
+position = Vector2(32, 0)
+texture = ExtResource("34_dcq2s")
+
+[node name="Label" type="Label" parent="Level/TileMap5/TutorialTV/Screen/Text/Button/Sprite2D2"]
+offset_left = -10.0
+offset_top = -3.0
+offset_right = 39.0
+offset_bottom = 23.0
+scale = Vector2(0.4, 0.4)
+theme_override_colors/font_color = Color(0.780392, 0.764706, 0.909804, 1)
+text = "Shift"
+
+[node name="Sprite2D3" type="Sprite2D" parent="Level/TileMap5/TutorialTV/Screen/Text/Button"]
+position = Vector2(73, 0)
+scale = Vector2(1.25, 1.25)
+texture = ExtResource("35_vki57")
+
+[node name="GamepadText" type="Label" parent="Level/TileMap5/TutorialTV/Screen" index="3"]
+layout_mode = 0
+offset_right = 356.0
+offset_bottom = 178.0
+scale = Vector2(0.225, 0.225)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+theme_override_font_sizes/font_size = 22
+text = "To wall-jump,
+hold   ㅤ or ㅤㅤ
+against the wall during
+flight and jump"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="XBoxButton" type="Sprite2D" parent="Level/TileMap5/TutorialTV/Screen/GamepadText"]
+visible = false
+position = Vector2(168, 70)
+scale = Vector2(3, 3)
+texture = ExtResource("36_g8kx4")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Level/TileMap5/TutorialTV/Screen/GamepadText/XBoxButton"]
+position = Vector2(25, 0)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("37_w750q")
+
+[node name="PSButton" type="Sprite2D" parent="Level/TileMap5/TutorialTV/Screen/GamepadText"]
+position = Vector2(168, 70)
+scale = Vector2(3, 3)
+texture = ExtResource("36_g8kx4")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Level/TileMap5/TutorialTV/Screen/GamepadText/PSButton"]
+position = Vector2(25, 0)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("38_8thb2")
 
 [node name="Particles" parent="Level/TileMap5/TutorialTV" index="2"]
 position = Vector2(0, -32)
@@ -3559,6 +3994,10 @@ texture = ExtResource("26_aoaf2")
 libraries = {
 "": SubResource("AnimationLibrary_0wmiw")
 }
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="Level/TileMap5/TutorialTV"]
+position = Vector2(-0.000255585, 8)
+scale = Vector2(4.79997, 2.4)
 
 [node name="QuickRock" type="TileMap" parent="Level/TileMap5"]
 show_behind_parent = true
@@ -3918,6 +4357,10 @@ modulate = Color(1, 1, 1, 0)
 position = Vector2(12462, -118)
 scale = Vector2(0.75, 0.75)
 
+[node name="Screen" parent="Level/TileMap6/TutorialTV" index="1"]
+script = ExtResource("20_15uq2")
+_isThereASecondSpriteForGamepad = false
+
 [node name="SlippeyHead" parent="Level/TileMap6/TutorialTV/Screen" index="1"]
 position = Vector2(-3.73333, -3.73333)
 
@@ -3926,9 +4369,67 @@ offset_right = 320.0
 offset_bottom = 160.0
 scale = Vector2(0.25, 0.25)
 text = "To pulldown, press
-🠋 or S during flight"
+    or     during flight"
 
-[node name="WhiteNoise" parent="Level/TileMap6/TutorialTV/Screen" index="3"]
+[node name="Button" type="Sprite2D" parent="Level/TileMap6/TutorialTV/Screen/Text" index="0"]
+position = Vector2(68, 89)
+scale = Vector2(1.6, 1.6)
+texture = ExtResource("21_1o634")
+
+[node name="Label" type="Label" parent="Level/TileMap6/TutorialTV/Screen/Text/Button"]
+offset_left = -3.0
+offset_top = -3.0
+offset_right = 12.0
+offset_bottom = 23.0
+scale = Vector2(0.4, 0.4)
+theme_override_colors/font_color = Color(0.780392, 0.764706, 0.909804, 1)
+text = "🠋"
+
+[node name="Sprite2D2" type="Sprite2D" parent="Level/TileMap6/TutorialTV/Screen/Text/Button"]
+position = Vector2(31, 0)
+texture = ExtResource("21_1o634")
+
+[node name="Label" type="Label" parent="Level/TileMap6/TutorialTV/Screen/Text/Button/Sprite2D2"]
+offset_left = -3.0
+offset_top = -3.0
+offset_right = 12.0
+offset_bottom = 23.0
+scale = Vector2(0.4, 0.4)
+theme_override_colors/font_color = Color(0.780392, 0.764706, 0.909804, 1)
+text = "S"
+
+[node name="GamepadText" type="Label" parent="Level/TileMap6/TutorialTV/Screen" index="3"]
+visible = false
+layout_mode = 0
+offset_right = 320.0
+offset_bottom = 160.0
+scale = Vector2(0.25, 0.25)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+text = "To pulldown, press
+    or      during flight"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Sprite2D" parent="Level/TileMap6/TutorialTV/Screen/GamepadText"]
+position = Vector2(66, 89)
+scale = Vector2(1.6, 1.6)
+texture = ExtResource("24_8kia7")
+
+[node name="Label" type="Label" parent="Level/TileMap6/TutorialTV/Screen/GamepadText/Button"]
+offset_left = -3.0
+offset_top = -3.0
+offset_right = 12.0
+offset_bottom = 23.0
+scale = Vector2(0.4, 0.4)
+theme_override_colors/font_color = Color(0.780392, 0.764706, 0.909804, 1)
+text = "🠋"
+
+[node name="Sprite2D2" type="Sprite2D" parent="Level/TileMap6/TutorialTV/Screen/GamepadText/Button"]
+position = Vector2(34, 0)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("48_4c1fj")
+
+[node name="WhiteNoise" parent="Level/TileMap6/TutorialTV/Screen" index="4"]
 visible = false
 
 [node name="Particles" parent="Level/TileMap6/TutorialTV" index="2"]
@@ -3975,6 +4476,10 @@ frame_progress = 0.00624641
 libraries = {
 "": SubResource("AnimationLibrary_hmjwf")
 }
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="Level/TileMap6/TutorialTV"]
+position = Vector2(-0.000255585, 8)
+scale = Vector2(4.79997, 2.4)
 
 [node name="RightSkewedBlocks" type="TileMap" parent="Level/TileMap6"]
 show_behind_parent = true
@@ -4396,30 +4901,34 @@ layer = 100
 [connection signal="PlayerDied" from="Level/Player" to="Level/Player" method="SetCorpseMotionMultiplierX" flags=6 binds= [0.25]]
 [connection signal="ButtonPressed" from="Level/TileMap/CameraLimitsSetTrigger" to="Level/Player" method="SetCameraLimits" flags=22 binds= [Vector4(3520, 15552, 4032, 13504), false]]
 [connection signal="ButtonPressed" from="Level/TileMap/CameraLimitsSetTrigger" to="Level/TileMap/TutorialTV/AnimationPlayer" method="play" flags=22 binds= ["FallingDown"]]
+[connection signal="screen_entered" from="Level/TileMap/TutorialTV/VisibleOnScreenNotifier2D" to="Level/TileMap/TutorialTV/Screen" method="UpdateScreen"]
 [connection signal="ButtonPressed" from="Level/TileMap/TeleporterArea" to="Level/Ambient" method="stop" flags=22]
 [connection signal="ButtonPressed" from="Level/TileMap/TeleporterArea" to="Level/TileMap" method="queue_free" flags=22]
 [connection signal="ButtonPressed" from="Level/TileMap/TeleporterArea" to="Level/TutorialCanvasLayer" method="Glitch" flags=22]
 [connection signal="ButtonPressed" from="Level/TileMap/TeleporterArea" to="LevelMusicPlayer" method="PlayMusic" flags=6 binds= ["Base 314, Please Respond", 0.0, 0.0]]
-[connection signal="ButtonPressed" from="Level/TileMap/TeleporterArea" to="Level/Player" method="set_position" flags=22 binds= [Vector2(16296, 3864)]]
 [connection signal="ButtonPressed" from="Level/TileMap/TeleporterArea" to="Level/Player" method="SetCameraLimits" flags=18 binds= [Vector4(3392, 18496, 4032, 16000), true]]
+[connection signal="ButtonPressed" from="Level/TileMap/TeleporterArea" to="Level/Player" method="set_position" flags=22 binds= [Vector2(16296, 3864)]]
 [connection signal="ButtonPressed" from="Level/TileMap/TeleporterArea" to="Level/TileMap2/TutorialTV/AnimationPlayer" method="play" flags=22 binds= ["FallingDown"]]
+[connection signal="screen_entered" from="Level/TileMap2/TutorialTV/VisibleOnScreenNotifier2D" to="Level/TileMap2/TutorialTV/Screen" method="UpdateScreen"]
 [connection signal="ButtonPressed" from="Level/TileMap2/TeleporterArea" to="Level/TileMap2" method="queue_free" flags=22]
 [connection signal="ButtonPressed" from="Level/TileMap2/TeleporterArea" to="Level/TutorialCanvasLayer" method="Glitch" flags=18]
-[connection signal="ButtonPressed" from="Level/TileMap2/TeleporterArea" to="Level/Player" method="set_position" flags=22 binds= [Vector2(19296, 3864)]]
 [connection signal="ButtonPressed" from="Level/TileMap2/TeleporterArea" to="Level/Player" method="SetCameraLimits" flags=22 binds= [Vector4(1536, 21376, 4032, 18944), true]]
+[connection signal="ButtonPressed" from="Level/TileMap2/TeleporterArea" to="Level/Player" method="set_position" flags=22 binds= [Vector2(19296, 3864)]]
 [connection signal="ButtonPressed" from="Level/TileMap3/TeleporterArea" to="Level/TileMap3" method="queue_free" flags=22]
 [connection signal="ButtonPressed" from="Level/TileMap3/TeleporterArea" to="Level/TutorialCanvasLayer" method="Glitch" flags=18]
-[connection signal="ButtonPressed" from="Level/TileMap3/TeleporterArea" to="Level/Player" method="set_position" flags=22 binds= [Vector2(21984, 3864)]]
 [connection signal="ButtonPressed" from="Level/TileMap3/TeleporterArea" to="Level/Player" method="SetCameraLimits" flags=22 binds= [Vector4(-100000, 27136, 4032, 21824), true]]
+[connection signal="ButtonPressed" from="Level/TileMap3/TeleporterArea" to="Level/Player" method="set_position" flags=22 binds= [Vector2(21984, 3864)]]
+[connection signal="screen_entered" from="Level/TileMap4/TutorialTV/VisibleOnScreenNotifier2D" to="Level/TileMap4/TutorialTV/Screen" method="UpdateScreen"]
 [connection signal="ButtonPressed" from="Level/TileMap4/TVFallTrigger" to="Level/TileMap4/TutorialTV/AnimationPlayer" method="play" flags=22 binds= ["FallingDown"]]
 [connection signal="ButtonPressed" from="Level/TileMap4/TeleporterArea2" to="Level/TileMap4" method="queue_free" flags=22]
 [connection signal="ButtonPressed" from="Level/TileMap4/TeleporterArea2" to="Level/TutorialCanvasLayer" method="Glitch" flags=18]
-[connection signal="ButtonPressed" from="Level/TileMap4/TeleporterArea2" to="Level/Player" method="set_position" flags=22 binds= [Vector2(27812, 4003)]]
 [connection signal="ButtonPressed" from="Level/TileMap4/TeleporterArea2" to="Level/Player" method="SetCameraLimits" flags=22 binds= [Vector4(-1e+06, 100000, 4032, 27584), true]]
+[connection signal="ButtonPressed" from="Level/TileMap4/TeleporterArea2" to="Level/Player" method="set_position" flags=22 binds= [Vector2(27812, 4003)]]
 [connection signal="ButtonPressed" from="Level/TileMap4/TeleporterArea2" to="Level/TileMap5/ShakyPlatform/TutorialTV/Screen/SlippeyHead/AnimationPlayer" method="play" flags=22 binds= ["BangerFilm"]]
 [connection signal="ButtonPressed" from="Level/TileMap4/ShowSecretArea" to="Level/TileMap4/ShowSecretArea/AnimationPlayer" method="play" flags=22 binds= ["Appearing"]]
 [connection signal="area_entered" from="Level/TileMap4/ShowSecretArea" to="Level/TileMap4/ShowSecretArea" method="AreaEntered" flags=18 unbinds=1]
 [connection signal="ButtonPressed" from="Level/TileMap5/TVFallTrigger" to="Level/TileMap5/TutorialTV/AnimationPlayer" method="play" flags=22 binds= ["RisingUp"]]
+[connection signal="screen_entered" from="Level/TileMap5/TutorialTV/VisibleOnScreenNotifier2D" to="Level/TileMap5/TutorialTV/Screen" method="UpdateScreen"]
 [connection signal="ButtonPressed" from="Level/TileMap5/QuickRock/Area2D" to="Level/TileMap5/QuickRock/AnimationPlayer" method="play" flags=22 binds= ["Quicking"]]
 [connection signal="area_entered" from="Level/TileMap5/QuickRock/Area2D" to="Level/TileMap5/QuickRock/Area2D" method="AreaEntered" flags=22 unbinds=1]
 [connection signal="animation_finished" from="Level/TileMap5/QuickRock/AnimationPlayer" to="Level/TileMap5/QuickRock" method="queue_free" flags=18 unbinds=1]
@@ -4435,8 +4944,8 @@ layer = 100
 [connection signal="timeout" from="Level/TileMap5/SecretActivationArea/Timer" to="Level/TileMap5/SecretActivationArea/AnimationPlayer" method="play" flags=22 binds= ["PlatformCrashing"]]
 [connection signal="ButtonPressed" from="Level/TileMap5/TeleporterArea2" to="Level/TileMap5" method="queue_free" flags=22]
 [connection signal="ButtonPressed" from="Level/TileMap5/TeleporterArea2" to="Level/TutorialCanvasLayer" method="Glitch" flags=18]
-[connection signal="ButtonPressed" from="Level/TileMap5/TeleporterArea2" to="Level/Player" method="set_position" flags=22 binds= [Vector2(42776, 4000)]]
 [connection signal="ButtonPressed" from="Level/TileMap5/TeleporterArea2" to="Level/Player" method="SetCameraLimits" flags=22 binds= [Vector4(-100000, 100000, 4032, 42496), true]]
+[connection signal="ButtonPressed" from="Level/TileMap5/TeleporterArea2" to="Level/Player" method="set_position" flags=22 binds= [Vector2(42776, 4000)]]
 [connection signal="ButtonPressed" from="Level/TileMap5/TeleporterArea2" to="Level/TutorialCanvasLayer/Fog?" method="set_color" flags=22 binds= [Color(0, 1, 1, 0.0156863)]]
 [connection signal="area_entered" from="Level/TileMap5/DarkeningArea" to="Level/TileMap5/DarkeningArea/AnimationPlayer" method="Darkening" flags=18 unbinds=1]
 [connection signal="area_exited" from="Level/TileMap5/DarkeningArea" to="Level/TileMap5/DarkeningArea/AnimationPlayer" method="Lightening" flags=18 unbinds=1]
@@ -4448,6 +4957,7 @@ layer = 100
 [connection signal="ButtonPressed" from="Level/TileMap6/DisposableButton/FinalOpeningArea" to="Level/TileMap6/DisposableButton/OpeningDoor/AnimationPlayer" method="play" flags=22 binds= ["FinalOpening"]]
 [connection signal="area_entered" from="Level/TileMap6/DisposableButton/FinalOpeningArea" to="Level/TileMap6/DisposableButton/FinalOpeningArea" method="AreaEntered" flags=18 unbinds=1]
 [connection signal="timeout" from="Level/TileMap6/DisposableButton/Timer" to="Level/TileMap6/DisposableButton/OpeningDoor/AnimationPlayer" method="play" flags=18 binds= ["Closing"]]
+[connection signal="screen_entered" from="Level/TileMap6/TutorialTV/VisibleOnScreenNotifier2D" to="Level/TileMap6/TutorialTV/Screen" method="UpdateScreen"]
 [connection signal="ButtonPressed" from="Level/TileMap6/CameraLimitsSetter" to="Level/Player" method="SetCameraLimits" flags=22 binds= [Vector4(-100000, 100000, 1e+06, -100000), false]]
 [connection signal="ButtonPressed" from="Level/TileMap6/CameraLimitsSetter" to="Level/TileMap6/CPUParticles2D" method="set_emitting" flags=22 binds= [true]]
 [connection signal="ButtonPressed" from="Level/TileMap6/MovingTileMap/Area2D" to="Level/TileMap6/MovingTileMap/AnimationPlayer" method="play" flags=22 binds= ["Its\"Not\"Over"]]
@@ -4456,8 +4966,8 @@ layer = 100
 [connection signal="ButtonPressed" from="Level/TileMap6/TeleporterArea" to="Level/TileMap6" method="queue_free" flags=22]
 [connection signal="ButtonPressed" from="Level/TileMap6/TeleporterArea" to="Level/TutorialCanvasLayer" method="Glitch" flags=22]
 [connection signal="ButtonPressed" from="Level/TileMap6/TeleporterArea" to="LevelMusicPlayer" method="StopMusic" flags=6 binds= [0.0]]
-[connection signal="ButtonPressed" from="Level/TileMap6/TeleporterArea" to="Level/Player" method="set_position" flags=22 binds= [Vector2(54176, 4000)]]
 [connection signal="ButtonPressed" from="Level/TileMap6/TeleporterArea" to="Level/Player" method="SetCameraLimits" flags=22 binds= [Vector4(3520, 54656, 4032, 53696), true]]
+[connection signal="ButtonPressed" from="Level/TileMap6/TeleporterArea" to="Level/Player" method="set_position" flags=22 binds= [Vector2(54176, 4000)]]
 [connection signal="ButtonPressed" from="Level/TileMap6/TeleporterArea" to="Level/TileMap7/TutorialTV/Screen/SlippeyHead/AnimationPlayer" method="play" flags=22 binds= ["BangerFilm"]]
 [connection signal="ButtonPressed" from="Level/TileMap6/TeleporterArea" to="Level/TileMap7/TutorialTV/AnimationPlayer" method="play" flags=22 binds= ["YOUWIN"]]
 [connection signal="ButtonPressed" from="Level/TileMap6/TeleporterArea" to="Level/TutorialCanvasLayer/Fog?" method="set_color" flags=18 binds= [Color(0, 1, 1, 0.0156863)]]

@@ -77,7 +77,7 @@ public partial class OptionsMenu : Control
     {
         if (_lastFocusedSlider != null)
             _lastFocusedSlider.Editable = true;
-        if (node.GetClass() == "HSlider")
+        if (node.GetClass() == "HSlider" && !Input.IsMouseButtonPressed(MouseButton.Left))
         {
             ((HSlider)node).Editable = false;
             _lastFocusedSlider = (HSlider)node;
