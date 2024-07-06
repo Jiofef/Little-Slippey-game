@@ -31,6 +31,7 @@
 [ext_resource type="Texture2D" uid="uid://befygohfywkbs" path="res://Content/Sprites/Interface/ControllerDPadLeft.png" id="24_6hekp"]
 [ext_resource type="Texture2D" uid="uid://0ljljn46telv" path="res://Content/Sprites/Interface/ControllerStick.png" id="24_8kia7"]
 [ext_resource type="Texture2D" uid="uid://cjieb76jdv80v" path="res://Content/Sprites/Levels/ANineGreetingsTileset.png" id="24_o28it"]
+[ext_resource type="Texture2D" uid="uid://b4ufj034gcd5u" path="res://Content/Sprites/Interface/XControllerAmogus.png" id="25_2gp0k"]
 [ext_resource type="Texture2D" uid="uid://c87yqwkeb2phg" path="res://Content/Sprites/Interface/PSControllerX.png" id="25_8i6le"]
 [ext_resource type="Texture2D" uid="uid://kan57g8qq778" path="res://Content/Sprites/Levels/Level1/TheMatter.png" id="25_qwhbf"]
 [ext_resource type="Texture2D" uid="uid://g66sf1mneucj" path="res://Content/Sprites/Levels/Level1/RockyDirtParticles.png" id="26_aoaf2"]
@@ -48,7 +49,6 @@
 [ext_resource type="Texture2D" uid="uid://5pffdpclqqdn" path="res://Content/Sprites/Interface/ControllerR2Button.png" id="36_g8kx4"]
 [ext_resource type="AudioStream" uid="uid://brmligonirrig" path="res://Content/Sounds/Levels/TutorialAngelicTVSound.mp3" id="36_ohtn7"]
 [ext_resource type="Texture2D" uid="uid://bpgam8b6sar31" path="res://Content/Sprites/Levels/Level1/TutorialTVWings.png" id="37_ld4ye"]
-[ext_resource type="Texture2D" uid="uid://ceyujm73q8vfi" path="res://Content/Sprites/Interface/XControllerB.png" id="37_w750q"]
 [ext_resource type="Texture2D" uid="uid://de8b7e22fjuxd" path="res://Content/Sprites/Interface/PSControllerSquare.png" id="38_8thb2"]
 [ext_resource type="Texture2D" uid="uid://cq3f2ux2d4wal" path="res://Content/Sprites/Levels/Level1/TutorialTVHaloAnimation.png" id="38_75ow4"]
 [ext_resource type="AudioStream" uid="uid://bf54vxr64tyae" path="res://Content/Sounds/Levels/TutorialYOUWIN.mp3" id="39_c31vs"]
@@ -3366,11 +3366,34 @@ shape = SubResource("RectangleShape2D_mfb4c")
 [node name="TutorialTV" parent="Level/TileMap" instance=ExtResource("19_wvjhm")]
 position = Vector2(3600, 848)
 
-[node name="Screen" parent="Level/TileMap/TutorialTV" index="1"]
-script = ExtResource("20_15uq2")
-_isThereASecondSpriteForGamepad = false
+[node name="Text2" type="RichTextLabel" parent="Level/TileMap/TutorialTV/Screen" index="2"]
+layout_mode = 0
+offset_right = 320.0
+offset_bottom = 160.0
+scale = Vector2(0.25, 0.25)
+theme_override_colors/default_color = Color(0.196078, 0.196078, 0.196078, 1)
+bbcode_enabled = true
+text = "
 
-[node name="Text" parent="Level/TileMap/TutorialTV/Screen" index="2"]
+
+[center]To walk, press [img]res://Content/Sprites/Interface/KeyboardButtonLeft.png[/img]
+ and [img]res://Content/Sprites/Interface/KeyboardButtonRight.png[/img] or [img]res://Content/Sprites/Interface/KeyboardButtonA.png[/img] and [img]res://Content/Sprites/Interface/KeyboardButtonD.png[/img][/center]"
+
+[node name="XBoxText" type="RichTextLabel" parent="Level/TileMap/TutorialTV/Screen" index="3"]
+visible = false
+offset_right = 320.0
+offset_bottom = 160.0
+scale = Vector2(0.25, 0.25)
+theme_override_colors/default_color = Color(0.196078, 0.196078, 0.196078, 1)
+bbcode_enabled = true
+text = "
+
+
+[center]To walk, press [img]res://Content/Sprites/Interface/ControllerStickLeft.png[/img]
+ and [img]res://Content/Sprites/Interface/ControllerStickRight.png[/img] or [img]res://Content/Sprites/Interface/ControllerDPadLeft.png[/img] and [img]res://Content/Sprites/Interface/ControllerDPadRight.png[/img][/center]"
+
+[node name="Text" parent="Level/TileMap/TutorialTV/Screen" index="4"]
+visible = false
 offset_right = 320.0
 offset_bottom = 160.0
 scale = Vector2(0.25, 0.25)
@@ -3430,7 +3453,7 @@ scale = Vector2(0.4, 0.4)
 theme_override_colors/font_color = Color(0.780392, 0.764706, 0.909804, 1)
 text = "D"
 
-[node name="GamepadText" type="Label" parent="Level/TileMap/TutorialTV/Screen" index="3"]
+[node name="GamepadText" type="Label" parent="Level/TileMap/TutorialTV/Screen" index="5"]
 visible = false
 layout_mode = 0
 offset_right = 320.0
@@ -3515,7 +3538,43 @@ z_index = 1
 z_index = 1
 script = ExtResource("20_15uq2")
 
-[node name="Text" parent="Level/TileMap2/TutorialTV/Screen" index="2"]
+[node name="Text2" type="RichTextLabel" parent="Level/TileMap2/TutorialTV/Screen" index="2"]
+offset_right = 320.0
+offset_bottom = 160.0
+scale = Vector2(0.25, 0.25)
+theme_override_colors/default_color = Color(0.196078, 0.196078, 0.196078, 1)
+bbcode_enabled = true
+text = "
+
+
+[center]To jump press [img]res://Content/Sprites/Interface/KeyboardButtonUp.png[/img] or [img]res://Content/Sprites/Interface/KeyboardButtonW.png[/img][/center]"
+
+[node name="XBoxText" type="RichTextLabel" parent="Level/TileMap2/TutorialTV/Screen" index="3"]
+visible = false
+offset_right = 320.0
+offset_bottom = 160.0
+scale = Vector2(0.25, 0.25)
+theme_override_colors/default_color = Color(0.196078, 0.196078, 0.196078, 1)
+bbcode_enabled = true
+text = "
+
+
+[center]To jump, press [img]res://Content/Sprites/Interface/XControllerAmogus.png[/img], [img]res://Content/Sprites/Interface/ControllerDPadUp.png[/img] or [img]res://Content/Sprites/Interface/ControllerStickUp.png[/img][/center]"
+
+[node name="PSText" type="RichTextLabel" parent="Level/TileMap2/TutorialTV/Screen" index="4"]
+visible = false
+offset_right = 320.0
+offset_bottom = 160.0
+scale = Vector2(0.25, 0.25)
+theme_override_colors/default_color = Color(0.196078, 0.196078, 0.196078, 1)
+bbcode_enabled = true
+text = "
+
+
+[center]To jump, press [img]res://Content/Sprites/Interface/PSControllerX.png[/img], [img]res://Content/Sprites/Interface/ControllerDPadUp.png[/img] or [img]res://Content/Sprites/Interface/ControllerStickUp.png[/img][/center]"
+
+[node name="Text" parent="Level/TileMap2/TutorialTV/Screen" index="5"]
+visible = false
 offset_right = 320.0
 offset_bottom = 160.0
 scale = Vector2(0.25, 0.25)
@@ -3548,7 +3607,7 @@ scale = Vector2(0.4, 0.4)
 theme_override_colors/font_color = Color(0.780392, 0.764706, 0.909804, 1)
 text = "W"
 
-[node name="GamepadText" type="Label" parent="Level/TileMap2/TutorialTV/Screen" index="3"]
+[node name="GamepadText" type="Label" parent="Level/TileMap2/TutorialTV/Screen" index="6"]
 visible = false
 layout_mode = 0
 offset_right = 320.0
@@ -3562,7 +3621,7 @@ vertical_alignment = 1
 [node name="XBoxButton" type="Sprite2D" parent="Level/TileMap2/TutorialTV/Screen/GamepadText"]
 position = Vector2(194, 80)
 scale = Vector2(1.6, 1.6)
-texture = ExtResource("22_40vsc")
+texture = ExtResource("25_2gp0k")
 
 [node name="Label" type="Label" parent="Level/TileMap2/TutorialTV/Screen/GamepadText/XBoxButton"]
 offset_left = -3.0
@@ -3624,7 +3683,7 @@ scale = Vector2(0.4, 0.4)
 theme_override_colors/font_color = Color(0.780392, 0.764706, 0.909804, 1)
 text = "🠉"
 
-[node name="Sprite2D" type="Sprite2D" parent="Level/TileMap2/TutorialTV/Screen" index="6"]
+[node name="Sprite2D" type="Sprite2D" parent="Level/TileMap2/TutorialTV/Screen" index="9"]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Level/TileMap2/TutorialTV"]
 libraries = {
@@ -3700,7 +3759,46 @@ position = Vector2(6264, 608)
 [node name="Screen" parent="Level/TileMap4/TutorialTV" index="1"]
 script = ExtResource("20_15uq2")
 
-[node name="Text" parent="Level/TileMap4/TutorialTV/Screen" index="2"]
+[node name="Text2" type="RichTextLabel" parent="Level/TileMap4/TutorialTV/Screen" index="2"]
+offset_right = 320.0
+offset_bottom = 160.0
+scale = Vector2(0.25, 0.25)
+theme_override_colors/default_color = Color(0.196078, 0.196078, 0.196078, 1)
+bbcode_enabled = true
+text = "
+
+[center]To climb the wall,
+press [img]res://Content/Sprites/Interface/KeyboardButtonUp.png[/img] or [img]res://Content/Sprites/Interface/KeyboardButtonW.png[/img] during
+flight[/center]"
+
+[node name="XBoxText" type="RichTextLabel" parent="Level/TileMap4/TutorialTV/Screen" index="3"]
+visible = false
+offset_right = 320.0
+offset_bottom = 160.0
+scale = Vector2(0.25, 0.25)
+theme_override_colors/default_color = Color(0.196078, 0.196078, 0.196078, 1)
+bbcode_enabled = true
+text = "
+
+[center]To climb the wall,
+press [img]res://Content/Sprites/Interface/XControllerAmogus.png[/img], [img]res://Content/Sprites/Interface/ControllerStickUp.png[/img] or [img]res://Content/Sprites/Interface/ControllerDPadUp.png[/img]
+during flight[/center]"
+
+[node name="PSText" type="RichTextLabel" parent="Level/TileMap4/TutorialTV/Screen" index="4"]
+visible = false
+offset_right = 320.0
+offset_bottom = 160.0
+scale = Vector2(0.25, 0.25)
+theme_override_colors/default_color = Color(0.196078, 0.196078, 0.196078, 1)
+bbcode_enabled = true
+text = "
+
+[center]To climb the wall,
+press [img]res://Content/Sprites/Interface/PSControllerX.png[/img], [img]res://Content/Sprites/Interface/ControllerStickUp.png[/img] or [img]res://Content/Sprites/Interface/ControllerDPadUp.png[/img]
+during flight[/center]"
+
+[node name="Text" parent="Level/TileMap4/TutorialTV/Screen" index="5"]
+visible = false
 offset_right = 320.0
 offset_bottom = 160.0
 scale = Vector2(0.25, 0.25)
@@ -3735,7 +3833,7 @@ scale = Vector2(0.4, 0.4)
 theme_override_colors/font_color = Color(0.780392, 0.764706, 0.909804, 1)
 text = "W"
 
-[node name="GamepadText" type="Label" parent="Level/TileMap4/TutorialTV/Screen" index="3"]
+[node name="GamepadText" type="Label" parent="Level/TileMap4/TutorialTV/Screen" index="6"]
 visible = false
 layout_mode = 0
 offset_right = 320.0
@@ -3752,7 +3850,7 @@ vertical_alignment = 1
 visible = false
 position = Vector2(110, 79)
 scale = Vector2(1.6, 1.6)
-texture = ExtResource("22_40vsc")
+texture = ExtResource("25_2gp0k")
 
 [node name="Label" type="Label" parent="Level/TileMap4/TutorialTV/Screen/GamepadText/XBoxButton"]
 offset_left = -3.0
@@ -3908,7 +4006,48 @@ scale = Vector2(0.9, 0.9)
 [node name="Screen" parent="Level/TileMap5/TutorialTV" index="1"]
 script = ExtResource("20_15uq2")
 
-[node name="Text" parent="Level/TileMap5/TutorialTV/Screen" index="2"]
+[node name="Text2" type="RichTextLabel" parent="Level/TileMap5/TutorialTV/Screen" index="2"]
+offset_right = 320.0
+offset_bottom = 160.0
+scale = Vector2(0.25, 0.25)
+theme_override_colors/default_color = Color(0.196078, 0.196078, 0.196078, 1)
+bbcode_enabled = true
+text = "
+
+[center]To wall-jump,
+hold [img]res://Content/Sprites/Interface/KeyboardBigButtonCtrl.png[/img], [img]res://Content/Sprites/Interface/KeyboardBigButtonShift.png[/img] or [img]res://Content/Sprites/Interface/LeftMouseButton.png[/img]
+against the wall during
+flight and jump[/center]"
+
+[node name="XBoxText" type="RichTextLabel" parent="Level/TileMap5/TutorialTV/Screen" index="3"]
+visible = false
+offset_right = 320.0
+offset_bottom = 160.0
+scale = Vector2(0.25, 0.25)
+theme_override_colors/default_color = Color(0.196078, 0.196078, 0.196078, 1)
+bbcode_enabled = true
+text = "
+
+[center]To wall-jump,
+hold [img]res://Content/Sprites/Interface/XControllerX.png[/img] or [img]res://Content/Sprites/Interface/ControllerR2Button.png[/img]
+against the wall during
+flight and jump[/center]"
+
+[node name="PSText" type="RichTextLabel" parent="Level/TileMap5/TutorialTV/Screen" index="4"]
+visible = false
+offset_right = 320.0
+offset_bottom = 160.0
+scale = Vector2(0.25, 0.25)
+theme_override_colors/default_color = Color(0.196078, 0.196078, 0.196078, 1)
+bbcode_enabled = true
+text = "
+
+[center]To wall-jump,
+hold [img]res://Content/Sprites/Interface/PSControllerSquare.png[/img] or [img]res://Content/Sprites/Interface/ControllerR2Button.png[/img]
+against the wall during
+flight and jump[/center]"
+
+[node name="Text" parent="Level/TileMap5/TutorialTV/Screen" index="5"]
 visible = false
 offset_right = 356.0
 offset_bottom = 178.0
@@ -3951,7 +4090,8 @@ position = Vector2(73, 0)
 scale = Vector2(1.25, 1.25)
 texture = ExtResource("35_vki57")
 
-[node name="GamepadText" type="Label" parent="Level/TileMap5/TutorialTV/Screen" index="3"]
+[node name="GamepadText" type="Label" parent="Level/TileMap5/TutorialTV/Screen" index="6"]
+visible = false
 layout_mode = 0
 offset_right = 356.0
 offset_bottom = 178.0
@@ -3974,7 +4114,7 @@ texture = ExtResource("36_g8kx4")
 [node name="Sprite2D2" type="Sprite2D" parent="Level/TileMap5/TutorialTV/Screen/GamepadText/XBoxButton"]
 position = Vector2(25, 0)
 scale = Vector2(0.75, 0.75)
-texture = ExtResource("37_w750q")
+texture = ExtResource("22_40vsc")
 
 [node name="PSButton" type="Sprite2D" parent="Level/TileMap5/TutorialTV/Screen/GamepadText"]
 position = Vector2(168, 70)
@@ -4364,7 +4504,33 @@ _isThereASecondSpriteForGamepad = false
 [node name="SlippeyHead" parent="Level/TileMap6/TutorialTV/Screen" index="1"]
 position = Vector2(-3.73333, -3.73333)
 
-[node name="Text" parent="Level/TileMap6/TutorialTV/Screen" index="2"]
+[node name="Text2" type="RichTextLabel" parent="Level/TileMap6/TutorialTV/Screen" index="2"]
+offset_right = 320.0
+offset_bottom = 160.0
+scale = Vector2(0.25, 0.25)
+theme_override_colors/default_color = Color(0.196078, 0.196078, 0.196078, 1)
+bbcode_enabled = true
+text = "
+
+
+[center]To pulldown, press 
+[img]res://Content/Sprites/Interface/KeyboardButtonDown.png[/img] or [img]res://Content/Sprites/Interface/KeyboardButtonS.png[/img] during flight[/center]"
+
+[node name="GamepadText2" type="RichTextLabel" parent="Level/TileMap6/TutorialTV/Screen" index="3"]
+visible = false
+offset_right = 320.0
+offset_bottom = 160.0
+scale = Vector2(0.25, 0.25)
+theme_override_colors/default_color = Color(0.196078, 0.196078, 0.196078, 1)
+bbcode_enabled = true
+text = "
+
+
+[center]To pulldown, press 
+[img]res://Content/Sprites/Interface/ControllerStickDown.png[/img] or [img]res://Content/Sprites/Interface/ControllerDPadDown.png[/img] during flight[/center]"
+
+[node name="Text" parent="Level/TileMap6/TutorialTV/Screen" index="4"]
+visible = false
 offset_right = 320.0
 offset_bottom = 160.0
 scale = Vector2(0.25, 0.25)
@@ -4398,7 +4564,7 @@ scale = Vector2(0.4, 0.4)
 theme_override_colors/font_color = Color(0.780392, 0.764706, 0.909804, 1)
 text = "S"
 
-[node name="GamepadText" type="Label" parent="Level/TileMap6/TutorialTV/Screen" index="3"]
+[node name="GamepadText" type="Label" parent="Level/TileMap6/TutorialTV/Screen" index="5"]
 visible = false
 layout_mode = 0
 offset_right = 320.0
@@ -4428,9 +4594,6 @@ text = "🠋"
 position = Vector2(34, 0)
 scale = Vector2(0.6, 0.6)
 texture = ExtResource("48_4c1fj")
-
-[node name="WhiteNoise" parent="Level/TileMap6/TutorialTV/Screen" index="4"]
-visible = false
 
 [node name="Particles" parent="Level/TileMap6/TutorialTV" index="2"]
 position = Vector2(0, 0)

@@ -30,7 +30,6 @@ public partial class TutorialTvScreen : Control
                     GetNode<Sprite2D>("GamepadText/XBoxButton").Visible = true;
                     GetNode<Sprite2D>("GamepadText/PSButton").Visible = false;
                 }
-                GD.Print("s");
                 break;
         }
     }

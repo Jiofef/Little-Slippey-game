@@ -51,7 +51,6 @@ public partial class G : Node
 				TypeOfUsedController = "XInput Gamepad";
 			else TypeOfUsedController = "XInput Gamepad"; //Maybe I'll add more gamepads soon
         }
-		GD.Print(TypeOfUsedController);
     }
     public static float GetPlayerCorpseFlightTimerCoeff()
 	{

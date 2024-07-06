@@ -1,3 +1,4 @@
+RichTextLabel
 VisibleOnScreenNotifier2D
 Label
 Sprite2D
@@ -12,7 +13,6 @@ CheckBox
 AudioStreamPlayer
 CollisionShape2D
 Area2D
-RichTextLabel
 CanvasLayer
 Node
 AudioStreamPlayer2D
@@ -30,4 +30,3 @@ Node3D
 AudioListener2D
 Camera2D
 Timer
-AnimatableBody2D

@@ -403,27 +403,43 @@ level part?","Skip fake
 level part?","Пропустить
 вступление?"
 Press F to skip intro,Press F to skip intro,Нажмите F чтобы пропустить вступление
-"To walk, press 🠈
- and 🠊 or A and D","To walk, press 🠈
- and 🠊 or A and D","Чтобы ходить, нажми
+"To walk, pressㅤ
+ and     or     and     ","To walk, pressㅤ
+ and     or     and     ","Чтобы ходить, нажми
 🠈 и 🠊 или A и D"
-"To jump, press 🠉 or W","To jump, press 🠉 or W","Чтобы прыгнуть, жми 🠉 или W"
+"To walk, pressㅤ
+and      or      and    ","To walk, pressㅤ
+and      or      and    ",
+"To jump, press     or    ","To jump, press     or    ","Чтобы прыгнуть, жми 🠉 или W"
+"To jump, press     ,       or  ","To jump, press     ,       or  ",
 "To climb the wall,
-press 🠉 or W during
+press     or     during
 flight","To climb the wall,
-press 🠉 or W during
+press     or     during
 flight","Чтобы взобраться на стену,
 нажми 🠉 или W в полёте"
+"To climb the wall,
+press     ,      or      during
+flight","To climb the wall,
+press     ,      or      during
+flight",
 "To wall-jump,
-hold Ctrl/Shift/LMB
+holdㅤㅤㅤ,ㅤㅤ    orㅤㅤ
 against the wall during
 flight and jump","To wall-jump,
-hold Ctrl/Shift/LMB
+holdㅤㅤㅤ,ㅤㅤ    orㅤㅤ
 against the wall during
 flight and jump","Чтобы отпрыгнуть от
 стены, зажми Ctrl, Shift
 или ЛКМ около стены во 
 время полёта и прыгни"
+"To wall-jump,
+hold   ㅤ or ㅤㅤ
+against the wall during
+flight and jump","To wall-jump,
+hold   ㅤ or ㅤㅤ
+against the wall during
+flight and jump",
 "🠊 🠊 🠊
 You need go right
 🠊 🠊 🠊","🠊 🠊 🠊
@@ -433,9 +449,24 @@ You need go right
 🠊 🠊 🠊"
 Oh...,Oh...,Ой...
 "To pulldown, press
-🠋 or S during flight","To pulldown, press
-🠋 or S during flight","Для рывка вниз нажмите
+    or     during flight","To pulldown, press
+    or     during flight","Для рывка вниз нажмите
 🠋 или S в полёте"
+"To pulldown, press
+    or      during flight","To pulldown, press
+    or      during flight",
+,,
+,,
+,,
+,,
+,,
+,,
+,,
+,,
+,,
+,,
+,,
+,,
 !YOU WIN!,!YOU WIN!,!ТЫ ПОБЕДИЛ!
 "You're probably
 wondering why you 
