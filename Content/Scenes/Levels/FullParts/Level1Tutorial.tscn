@@ -1,4 +1,4 @@
-[gd_scene load_steps=230 format=3 uid="uid://bdgksx0p0ar7"]
+[gd_scene load_steps=232 format=3 uid="uid://bdgksx0p0ar7"]
 
 [ext_resource type="Script" path="res://Content/Scripts/Other/MainScript.cs" id="1_ejqbl"]
 [ext_resource type="Script" path="res://Content/Scripts/Other/LevelMusicPlayer.cs" id="2_okxpt"]
@@ -21,18 +21,10 @@
 [ext_resource type="PackedScene" uid="uid://ft6jg1b0opm1" path="res://Content/Scenes/Other/TutorialTV.tscn" id="19_wvjhm"]
 [ext_resource type="Script" path="res://Content/Scripts/Levels/TutorialTvScreen.cs" id="20_15uq2"]
 [ext_resource type="Texture2D" uid="uid://bco73po5sb1jp" path="res://Content/Sprites/Levels/Level1/TheConsciousness.png" id="20_r1fit"]
-[ext_resource type="Texture2D" uid="uid://b4ony5g6he1yu" path="res://Content/Sprites/Interface/KeyboardButton.png" id="21_1o634"]
 [ext_resource type="PackedScene" uid="uid://buj5ooik0q3l0" path="res://Content/Scenes/Achievements/AchievementArea.tscn" id="21_7v6rx"]
-[ext_resource type="Texture2D" uid="uid://cnnpcerf5mxsf" path="res://Content/Sprites/Interface/XControllerX.png" id="22_40vsc"]
 [ext_resource type="Texture2D" uid="uid://cd6j7b3w6mw8d" path="res://Content/Sprites/Levels/Level1/WoodParticles.png" id="22_hhw8g"]
 [ext_resource type="Script" path="res://Content/Scripts/Levels/Level8DisposableButton.cs" id="23_0kf46"]
-[ext_resource type="Texture2D" uid="uid://bwv5w81qtjxia" path="res://Content/Sprites/Interface/ControllerDPadRight.png" id="23_3pfrb"]
-[ext_resource type="Texture2D" uid="uid://cd0h48ic4qjej" path="res://Content/Sprites/Interface/ControllerDPadUp.png" id="23_hkb6i"]
-[ext_resource type="Texture2D" uid="uid://befygohfywkbs" path="res://Content/Sprites/Interface/ControllerDPadLeft.png" id="24_6hekp"]
-[ext_resource type="Texture2D" uid="uid://0ljljn46telv" path="res://Content/Sprites/Interface/ControllerStick.png" id="24_8kia7"]
 [ext_resource type="Texture2D" uid="uid://cjieb76jdv80v" path="res://Content/Sprites/Levels/ANineGreetingsTileset.png" id="24_o28it"]
-[ext_resource type="Texture2D" uid="uid://b4ufj034gcd5u" path="res://Content/Sprites/Interface/XControllerAmogus.png" id="25_2gp0k"]
-[ext_resource type="Texture2D" uid="uid://c87yqwkeb2phg" path="res://Content/Sprites/Interface/PSControllerX.png" id="25_8i6le"]
 [ext_resource type="Texture2D" uid="uid://kan57g8qq778" path="res://Content/Sprites/Levels/Level1/TheMatter.png" id="25_qwhbf"]
 [ext_resource type="Texture2D" uid="uid://g66sf1mneucj" path="res://Content/Sprites/Levels/Level1/RockyDirtParticles.png" id="26_aoaf2"]
 [ext_resource type="AudioStream" uid="uid://cumpwc1bemm6b" path="res://Content/Sounds/Levels/TutorialRockQuicking.mp3" id="27_3q6pp"]
@@ -42,25 +34,24 @@
 [ext_resource type="Texture2D" uid="uid://doye5ecgh2jg7" path="res://Content/Sprites/Levels/Level1/DirtParticles.png" id="31_wh8s0"]
 [ext_resource type="AudioStream" uid="uid://dbeiap81asy2m" path="res://Content/Sounds/Levels/TutorialTileMapBreaking.mp3" id="32_ltdvp"]
 [ext_resource type="Script" path="res://Content/Scripts/Levels/Level1TutorialDarkeningAnimationPlayer.cs" id="33_etq6e"]
-[ext_resource type="Texture2D" uid="uid://dtohw0ae1520p" path="res://Content/Sprites/Interface/KeyboardBigButton.png" id="34_dcq2s"]
 [ext_resource type="Texture2D" uid="uid://nlwphmf6wah0" path="res://Content/Sprites/Levels/Level8/Button.png" id="34_wjm2x"]
-[ext_resource type="Texture2D" uid="uid://cyxxfc376ljom" path="res://Content/Sprites/Interface/LeftMouseButton.png" id="35_vki57"]
 [ext_resource type="Texture2D" uid="uid://t73lfqyo0ovn" path="res://Content/Sprites/Other/Shine.png" id="35_ylt62"]
-[ext_resource type="Texture2D" uid="uid://5pffdpclqqdn" path="res://Content/Sprites/Interface/ControllerR2Button.png" id="36_g8kx4"]
 [ext_resource type="AudioStream" uid="uid://brmligonirrig" path="res://Content/Sounds/Levels/TutorialAngelicTVSound.mp3" id="36_ohtn7"]
 [ext_resource type="Texture2D" uid="uid://bpgam8b6sar31" path="res://Content/Sprites/Levels/Level1/TutorialTVWings.png" id="37_ld4ye"]
-[ext_resource type="Texture2D" uid="uid://de8b7e22fjuxd" path="res://Content/Sprites/Interface/PSControllerSquare.png" id="38_8thb2"]
 [ext_resource type="Texture2D" uid="uid://cq3f2ux2d4wal" path="res://Content/Sprites/Levels/Level1/TutorialTVHaloAnimation.png" id="38_75ow4"]
 [ext_resource type="AudioStream" uid="uid://bf54vxr64tyae" path="res://Content/Sounds/Levels/TutorialYOUWIN.mp3" id="39_c31vs"]
 [ext_resource type="Script" path="res://Content/Scripts/Levels/TutorialCanvasLayer.cs" id="40_3l25n"]
+[ext_resource type="Texture2D" uid="uid://tsjfmqs04lky" path="res://Content/Sprites/Levels/Level1/TutorialTV.png" id="41_h543a"]
 [ext_resource type="Texture2D" uid="uid://bvogrd2bqhwmt" path="res://Content/Sprites/Other/OblivionNoise.png" id="41_jupmj"]
+[ext_resource type="Texture2D" uid="uid://dws460j5wf0vm" path="res://Content/Sprites/Levels/Level1/SlSlLSLLSLSLlsLSLLSslsl.png" id="42_lqx2m"]
 [ext_resource type="Texture2D" uid="uid://4udch8ejvu08" path="res://Content/Sprites/Interface/PauseButtonsFrame.png" id="42_rbsgg"]
 [ext_resource type="PackedScene" uid="uid://bwpstpk1xmkah" path="res://Content/Scenes/Interface&Menu/Button.tscn" id="43_l3ghu"]
+[ext_resource type="AudioStream" uid="uid://dy6lncevmnf3o" path="res://Content/Sounds/Other/WhiteNoise.mp3" id="44_6mcov"]
 [ext_resource type="Texture2D" uid="uid://dhr0k5tpvpg7n" path="res://Content/Sprites/Interface/UnpauseButton.png" id="44_rfbyl"]
 [ext_resource type="Texture2D" uid="uid://bqua21jbasqml" path="res://Content/Sprites/Interface/PauseRewindButton.png" id="45_hxp0y"]
+[ext_resource type="AudioStream" uid="uid://du0ycpo1qy4w5" path="res://Content/Sounds/Levels/TutorialTVFallingSound.mp3" id="46_6hxhb"]
 [ext_resource type="Texture2D" uid="uid://be5mi0sdy4bep" path="res://Content/Sprites/Interface/PauseOptionsButton.png" id="46_j6rd0"]
 [ext_resource type="Texture2D" uid="uid://blp8i7meimekf" path="res://Content/Sprites/Interface/PauseMenuButton.png" id="47_0cvso"]
-[ext_resource type="Texture2D" uid="uid://sg857imuto1q" path="res://Content/Sprites/Interface/ControllerDPadDown.png" id="48_4c1fj"]
 [ext_resource type="Script" path="res://Content/Scripts/Other/DidLevelIntroPassedSet.cs" id="48_knw17"]
 [ext_resource type="Shader" path="res://Content/Other/BrightnessShader.gdshader" id="49_rg8pl"]
 [ext_resource type="Script" path="res://Content/Scripts/Other/PostProcessingRect.cs" id="50_xmuo4"]
@@ -1620,6 +1611,190 @@ tracks/6/keys = {
 _data = {
 "FallingDown": SubResource("Animation_5etp8")
 }
+
+[sub_resource type="Animation" id="Animation_hw3a1"]
+resource_name = "BangerFilm"
+length = 3.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-16, -16)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3uffo"]
+_data = {
+"BangerFilm": SubResource("Animation_hw3a1")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m23ck"]
+atlas = ExtResource("41_jupmj")
+region = Rect2(0, 0, 320, 180)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2nkyg"]
+atlas = ExtResource("41_jupmj")
+region = Rect2(0, 180, 320, 180)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gjuy0"]
+atlas = ExtResource("41_jupmj")
+region = Rect2(0, 360, 320, 180)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lr1hx"]
+atlas = ExtResource("41_jupmj")
+region = Rect2(0, 540, 320, 180)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0gekv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m23ck")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2nkyg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gjuy0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lr1hx")
+}],
+"loop": true,
+"name": &"default",
+"speed": 7.0
+}]
+
+[sub_resource type="Animation" id="Animation_jrcbu"]
+resource_name = "FellDown"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WhiteNoise:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WhiteNoise/Sound:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("WhiteNoise/Sound:volume_db")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-5.0, -30.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../FallingSound:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../Particles:emitting")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("SlippeyHead/AnimationPlayer")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": ["BangerFilm", -1, 1.0, false],
+"method": &"play"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_13ry7"]
+resource_name = "NoiseDisappearing"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sound:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sound:volume_db")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(2, 1),
+"update": 0,
+"values": [-5.0, -30.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_g0wyp"]
+_data = {
+"FellDown": SubResource("Animation_jrcbu"),
+"NoiseDisappearing": SubResource("Animation_13ry7")
+}
+
+[sub_resource type="Gradient" id="Gradient_mywan"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
 [sub_resource type="Gradient" id="Gradient_esn6c"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
@@ -3366,7 +3541,11 @@ shape = SubResource("RectangleShape2D_mfb4c")
 [node name="TutorialTV" parent="Level/TileMap" instance=ExtResource("19_wvjhm")]
 position = Vector2(3600, 848)
 
-[node name="Text2" type="RichTextLabel" parent="Level/TileMap/TutorialTV/Screen" index="2"]
+[node name="Screen" parent="Level/TileMap/TutorialTV" index="1"]
+script = ExtResource("20_15uq2")
+_isThereASecondSpriteForGamepad = false
+
+[node name="Text" type="RichTextLabel" parent="Level/TileMap/TutorialTV/Screen" index="2"]
 layout_mode = 0
 offset_right = 320.0
 offset_bottom = 160.0
@@ -3379,8 +3558,9 @@ text = "
 [center]To walk, press [img]res://Content/Sprites/Interface/KeyboardButtonLeft.png[/img]
  and [img]res://Content/Sprites/Interface/KeyboardButtonRight.png[/img] or [img]res://Content/Sprites/Interface/KeyboardButtonA.png[/img] and [img]res://Content/Sprites/Interface/KeyboardButtonD.png[/img][/center]"
 
-[node name="XBoxText" type="RichTextLabel" parent="Level/TileMap/TutorialTV/Screen" index="3"]
+[node name="GamepadText" type="RichTextLabel" parent="Level/TileMap/TutorialTV/Screen" index="3"]
 visible = false
+layout_mode = 0
 offset_right = 320.0
 offset_bottom = 160.0
 scale = Vector2(0.25, 0.25)
@@ -3391,116 +3571,6 @@ text = "
 
 [center]To walk, press [img]res://Content/Sprites/Interface/ControllerStickLeft.png[/img]
  and [img]res://Content/Sprites/Interface/ControllerStickRight.png[/img] or [img]res://Content/Sprites/Interface/ControllerDPadLeft.png[/img] and [img]res://Content/Sprites/Interface/ControllerDPadRight.png[/img][/center]"
-
-[node name="Text" parent="Level/TileMap/TutorialTV/Screen" index="4"]
-visible = false
-offset_right = 320.0
-offset_bottom = 160.0
-scale = Vector2(0.25, 0.25)
-text = "To walk, pressㅤ
- and     or     and     "
-
-[node name="Button2" type="Sprite2D" parent="Level/TileMap/TutorialTV/Screen/Text" index="0"]
-position = Vector2(238, 67)
-scale = Vector2(1.5, 1.5)
-texture = ExtResource("21_1o634")
-
-[node name="Label" type="Label" parent="Level/TileMap/TutorialTV/Screen/Text/Button2"]
-offset_left = -3.0
-offset_top = -3.0
-offset_right = 12.0
-offset_bottom = 23.0
-scale = Vector2(0.4, 0.4)
-theme_override_colors/font_color = Color(0.780392, 0.764706, 0.909804, 1)
-text = "🠈"
-
-[node name="Sprite2D2" type="Sprite2D" parent="Level/TileMap/TutorialTV/Screen/Text/Button2"]
-position = Vector2(-77, 16)
-texture = ExtResource("21_1o634")
-
-[node name="Label" type="Label" parent="Level/TileMap/TutorialTV/Screen/Text/Button2/Sprite2D2"]
-offset_left = -3.0
-offset_top = -3.0
-offset_right = 12.0
-offset_bottom = 23.0
-scale = Vector2(0.4, 0.4)
-theme_override_colors/font_color = Color(0.780392, 0.764706, 0.909804, 1)
-text = "🠊"
-
-[node name="Sprite2D3" type="Sprite2D" parent="Level/TileMap/TutorialTV/Screen/Text/Button2"]
-position = Vector2(-43, 16)
-texture = ExtResource("21_1o634")
-
-[node name="Label" type="Label" parent="Level/TileMap/TutorialTV/Screen/Text/Button2/Sprite2D3"]
-offset_left = -3.0
-offset_top = -3.0
-offset_right = 12.0
-offset_bottom = 23.0
-scale = Vector2(0.4, 0.4)
-theme_override_colors/font_color = Color(0.780392, 0.764706, 0.909804, 1)
-text = "A"
-
-[node name="Sprite2D4" type="Sprite2D" parent="Level/TileMap/TutorialTV/Screen/Text/Button2"]
-position = Vector2(3, 16)
-texture = ExtResource("21_1o634")
-
-[node name="Label" type="Label" parent="Level/TileMap/TutorialTV/Screen/Text/Button2/Sprite2D4"]
-offset_left = -3.0
-offset_top = -3.0
-offset_right = 12.0
-offset_bottom = 23.0
-scale = Vector2(0.4, 0.4)
-theme_override_colors/font_color = Color(0.780392, 0.764706, 0.909804, 1)
-text = "D"
-
-[node name="GamepadText" type="Label" parent="Level/TileMap/TutorialTV/Screen" index="5"]
-visible = false
-layout_mode = 0
-offset_right = 320.0
-offset_bottom = 160.0
-scale = Vector2(0.25, 0.25)
-theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
-text = "To walk, pressㅤ
-and      or      and    "
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Button" type="Sprite2D" parent="Level/TileMap/TutorialTV/Screen/GamepadText"]
-position = Vector2(238, 65)
-scale = Vector2(2, 2)
-texture = ExtResource("24_8kia7")
-
-[node name="Label" type="Label" parent="Level/TileMap/TutorialTV/Screen/GamepadText/Button"]
-offset_left = -3.0
-offset_top = -3.0
-offset_right = 12.0
-offset_bottom = 23.0
-scale = Vector2(0.4, 0.4)
-theme_override_colors/font_color = Color(0.780392, 0.764706, 0.909804, 1)
-text = "🠈"
-
-[node name="Sprite2D2" type="Sprite2D" parent="Level/TileMap/TutorialTV/Screen/GamepadText/Button"]
-position = Vector2(-59, 13)
-texture = ExtResource("24_8kia7")
-
-[node name="Label" type="Label" parent="Level/TileMap/TutorialTV/Screen/GamepadText/Button/Sprite2D2"]
-offset_left = -3.0
-offset_top = -3.0
-offset_right = 12.0
-offset_bottom = 23.0
-scale = Vector2(0.4, 0.4)
-theme_override_colors/font_color = Color(0.780392, 0.764706, 0.909804, 1)
-text = "🠊"
-
-[node name="Sprite2D3" type="Sprite2D" parent="Level/TileMap/TutorialTV/Screen/GamepadText/Button"]
-position = Vector2(-31, 14)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("23_3pfrb")
-
-[node name="Sprite2D4" type="Sprite2D" parent="Level/TileMap/TutorialTV/Screen/GamepadText/Button"]
-position = Vector2(7, 14)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("24_6hekp")
 
 [node name="Sound" parent="Level/TileMap/TutorialTV/Screen/WhiteNoise" index="0"]
 volume_db = -5.0
@@ -3538,7 +3608,8 @@ z_index = 1
 z_index = 1
 script = ExtResource("20_15uq2")
 
-[node name="Text2" type="RichTextLabel" parent="Level/TileMap2/TutorialTV/Screen" index="2"]
+[node name="Text" type="RichTextLabel" parent="Level/TileMap2/TutorialTV/Screen" index="2"]
+layout_mode = 0
 offset_right = 320.0
 offset_bottom = 160.0
 scale = Vector2(0.25, 0.25)
@@ -3547,10 +3618,12 @@ bbcode_enabled = true
 text = "
 
 
-[center]To jump press [img]res://Content/Sprites/Interface/KeyboardButtonUp.png[/img] or [img]res://Content/Sprites/Interface/KeyboardButtonW.png[/img][/center]"
+[center]To jump press [img]res://Content/Sprites/Interface/KeyboardButtonUp.png[/img], 
+[img]res://Content/Sprites/Interface/KeyboardButtonW.png[/img] or [img]res://Content/Sprites/Interface/KeyboardUltraBigButtonSpace.png[/img][/center]"
 
 [node name="XBoxText" type="RichTextLabel" parent="Level/TileMap2/TutorialTV/Screen" index="3"]
 visible = false
+layout_mode = 0
 offset_right = 320.0
 offset_bottom = 160.0
 scale = Vector2(0.25, 0.25)
@@ -3563,6 +3636,7 @@ text = "
 
 [node name="PSText" type="RichTextLabel" parent="Level/TileMap2/TutorialTV/Screen" index="4"]
 visible = false
+layout_mode = 0
 offset_right = 320.0
 offset_bottom = 160.0
 scale = Vector2(0.25, 0.25)
@@ -3573,117 +3647,7 @@ text = "
 
 [center]To jump, press [img]res://Content/Sprites/Interface/PSControllerX.png[/img], [img]res://Content/Sprites/Interface/ControllerDPadUp.png[/img] or [img]res://Content/Sprites/Interface/ControllerStickUp.png[/img][/center]"
 
-[node name="Text" parent="Level/TileMap2/TutorialTV/Screen" index="5"]
-visible = false
-offset_right = 320.0
-offset_bottom = 160.0
-scale = Vector2(0.25, 0.25)
-text = "To jump, press     or    "
-
-[node name="Button" type="Sprite2D" parent="Level/TileMap2/TutorialTV/Screen/Text" index="0"]
-position = Vector2(212, 80)
-scale = Vector2(1.6, 1.6)
-texture = ExtResource("21_1o634")
-
-[node name="Label" type="Label" parent="Level/TileMap2/TutorialTV/Screen/Text/Button"]
-offset_left = -3.0
-offset_top = -3.0
-offset_right = 12.0
-offset_bottom = 23.0
-scale = Vector2(0.4, 0.4)
-theme_override_colors/font_color = Color(0.780392, 0.764706, 0.909804, 1)
-text = "🠉"
-
-[node name="Sprite2D2" type="Sprite2D" parent="Level/TileMap2/TutorialTV/Screen/Text/Button"]
-position = Vector2(32, 0)
-texture = ExtResource("21_1o634")
-
-[node name="Label" type="Label" parent="Level/TileMap2/TutorialTV/Screen/Text/Button/Sprite2D2"]
-offset_left = -3.0
-offset_top = -3.0
-offset_right = 12.0
-offset_bottom = 23.0
-scale = Vector2(0.4, 0.4)
-theme_override_colors/font_color = Color(0.780392, 0.764706, 0.909804, 1)
-text = "W"
-
-[node name="GamepadText" type="Label" parent="Level/TileMap2/TutorialTV/Screen" index="6"]
-visible = false
-layout_mode = 0
-offset_right = 320.0
-offset_bottom = 160.0
-scale = Vector2(0.25, 0.25)
-theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
-text = "To jump, press     ,       or  "
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="XBoxButton" type="Sprite2D" parent="Level/TileMap2/TutorialTV/Screen/GamepadText"]
-position = Vector2(194, 80)
-scale = Vector2(1.6, 1.6)
-texture = ExtResource("25_2gp0k")
-
-[node name="Label" type="Label" parent="Level/TileMap2/TutorialTV/Screen/GamepadText/XBoxButton"]
-offset_left = -3.0
-offset_top = -3.0
-offset_right = 12.0
-offset_bottom = 23.0
-scale = Vector2(0.4, 0.4)
-theme_override_colors/font_color = Color(0.780392, 0.764706, 0.909804, 1)
-
-[node name="Sprite2D2" type="Sprite2D" parent="Level/TileMap2/TutorialTV/Screen/GamepadText/XBoxButton"]
-position = Vector2(24, 0)
-scale = Vector2(0.75, 0.75)
-texture = ExtResource("23_hkb6i")
-
-[node name="Sprite2D3" type="Sprite2D" parent="Level/TileMap2/TutorialTV/Screen/GamepadText/XBoxButton"]
-position = Vector2(63, 0)
-scale = Vector2(1.25, 1.25)
-texture = ExtResource("24_8kia7")
-
-[node name="Label" type="Label" parent="Level/TileMap2/TutorialTV/Screen/GamepadText/XBoxButton/Sprite2D3"]
-offset_left = -3.0
-offset_top = -4.0
-offset_right = 12.0
-offset_bottom = 22.0
-scale = Vector2(0.4, 0.4)
-theme_override_colors/font_color = Color(0.780392, 0.764706, 0.909804, 1)
-text = "🠉"
-
-[node name="PSButton" type="Sprite2D" parent="Level/TileMap2/TutorialTV/Screen/GamepadText"]
-visible = false
-position = Vector2(194, 80)
-scale = Vector2(1.6, 1.6)
-texture = ExtResource("25_8i6le")
-
-[node name="Label" type="Label" parent="Level/TileMap2/TutorialTV/Screen/GamepadText/PSButton"]
-offset_left = -3.0
-offset_top = -3.0
-offset_right = 12.0
-offset_bottom = 23.0
-scale = Vector2(0.4, 0.4)
-theme_override_colors/font_color = Color(0.780392, 0.764706, 0.909804, 1)
-
-[node name="Sprite2D2" type="Sprite2D" parent="Level/TileMap2/TutorialTV/Screen/GamepadText/PSButton"]
-position = Vector2(24, 0)
-scale = Vector2(0.75, 0.75)
-texture = ExtResource("23_hkb6i")
-
-[node name="Sprite2D3" type="Sprite2D" parent="Level/TileMap2/TutorialTV/Screen/GamepadText/PSButton"]
-position = Vector2(63, 0)
-scale = Vector2(1.25, 1.25)
-texture = ExtResource("24_8kia7")
-
-[node name="Label" type="Label" parent="Level/TileMap2/TutorialTV/Screen/GamepadText/PSButton/Sprite2D3"]
-offset_left = -3.0
-offset_top = -4.0
-offset_right = 12.0
-offset_bottom = 22.0
-scale = Vector2(0.4, 0.4)
-theme_override_colors/font_color = Color(0.780392, 0.764706, 0.909804, 1)
-text = "🠉"
-
-[node name="Sprite2D" type="Sprite2D" parent="Level/TileMap2/TutorialTV/Screen" index="9"]
+[node name="Sprite2D" type="Sprite2D" parent="Level/TileMap2/TutorialTV/Screen" index="7"]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Level/TileMap2/TutorialTV"]
 libraries = {
@@ -3759,7 +3723,8 @@ position = Vector2(6264, 608)
 [node name="Screen" parent="Level/TileMap4/TutorialTV" index="1"]
 script = ExtResource("20_15uq2")
 
-[node name="Text2" type="RichTextLabel" parent="Level/TileMap4/TutorialTV/Screen" index="2"]
+[node name="Text" type="RichTextLabel" parent="Level/TileMap4/TutorialTV/Screen" index="2"]
+layout_mode = 0
 offset_right = 320.0
 offset_bottom = 160.0
 scale = Vector2(0.25, 0.25)
@@ -3768,11 +3733,12 @@ bbcode_enabled = true
 text = "
 
 [center]To climb the wall,
-press [img]res://Content/Sprites/Interface/KeyboardButtonUp.png[/img] or [img]res://Content/Sprites/Interface/KeyboardButtonW.png[/img] during
-flight[/center]"
+press [img]res://Content/Sprites/Interface/KeyboardButtonUp.png[/img], [img]res://Content/Sprites/Interface/KeyboardButtonW.png[/img] or [img]res://Content/Sprites/Interface/KeyboardUltraBigButtonSpace.png[/img]
+during flight[/center]"
 
 [node name="XBoxText" type="RichTextLabel" parent="Level/TileMap4/TutorialTV/Screen" index="3"]
 visible = false
+layout_mode = 0
 offset_right = 320.0
 offset_bottom = 160.0
 scale = Vector2(0.25, 0.25)
@@ -3786,6 +3752,7 @@ during flight[/center]"
 
 [node name="PSText" type="RichTextLabel" parent="Level/TileMap4/TutorialTV/Screen" index="4"]
 visible = false
+layout_mode = 0
 offset_right = 320.0
 offset_bottom = 160.0
 scale = Vector2(0.25, 0.25)
@@ -3796,131 +3763,6 @@ text = "
 [center]To climb the wall,
 press [img]res://Content/Sprites/Interface/PSControllerX.png[/img], [img]res://Content/Sprites/Interface/ControllerStickUp.png[/img] or [img]res://Content/Sprites/Interface/ControllerDPadUp.png[/img]
 during flight[/center]"
-
-[node name="Text" parent="Level/TileMap4/TutorialTV/Screen" index="5"]
-visible = false
-offset_right = 320.0
-offset_bottom = 160.0
-scale = Vector2(0.25, 0.25)
-text = "To climb the wall,
-press     or     during
-flight"
-
-[node name="Button" type="Sprite2D" parent="Level/TileMap4/TutorialTV/Screen/Text" index="0"]
-position = Vector2(131, 79)
-scale = Vector2(1.6, 1.6)
-texture = ExtResource("21_1o634")
-
-[node name="Label" type="Label" parent="Level/TileMap4/TutorialTV/Screen/Text/Button"]
-offset_left = -3.0
-offset_top = -3.0
-offset_right = 12.0
-offset_bottom = 23.0
-scale = Vector2(0.4, 0.4)
-theme_override_colors/font_color = Color(0.780392, 0.764706, 0.909804, 1)
-text = "🠉"
-
-[node name="Sprite2D2" type="Sprite2D" parent="Level/TileMap4/TutorialTV/Screen/Text/Button"]
-position = Vector2(33, 0)
-texture = ExtResource("21_1o634")
-
-[node name="Label" type="Label" parent="Level/TileMap4/TutorialTV/Screen/Text/Button/Sprite2D2"]
-offset_left = -3.0
-offset_top = -3.0
-offset_right = 12.0
-offset_bottom = 23.0
-scale = Vector2(0.4, 0.4)
-theme_override_colors/font_color = Color(0.780392, 0.764706, 0.909804, 1)
-text = "W"
-
-[node name="GamepadText" type="Label" parent="Level/TileMap4/TutorialTV/Screen" index="6"]
-visible = false
-layout_mode = 0
-offset_right = 320.0
-offset_bottom = 160.0
-scale = Vector2(0.25, 0.25)
-theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
-text = "To climb the wall,
-press     ,      or      during
-flight"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="XBoxButton" type="Sprite2D" parent="Level/TileMap4/TutorialTV/Screen/GamepadText"]
-visible = false
-position = Vector2(110, 79)
-scale = Vector2(1.6, 1.6)
-texture = ExtResource("25_2gp0k")
-
-[node name="Label" type="Label" parent="Level/TileMap4/TutorialTV/Screen/GamepadText/XBoxButton"]
-offset_left = -3.0
-offset_top = -3.0
-offset_right = 12.0
-offset_bottom = 23.0
-scale = Vector2(0.4, 0.4)
-theme_override_colors/font_color = Color(0.780392, 0.764706, 0.909804, 1)
-
-[node name="Sprite2D2" type="Sprite2D" parent="Level/TileMap4/TutorialTV/Screen/GamepadText/XBoxButton"]
-position = Vector2(23, -2)
-scale = Vector2(0.55, 0.55)
-texture = ExtResource("23_hkb6i")
-
-[node name="Sprite2D3" type="Sprite2D" parent="Level/TileMap4/TutorialTV/Screen/GamepadText/XBoxButton"]
-position = Vector2(58, 0)
-scale = Vector2(1.25, 1.25)
-texture = ExtResource("24_8kia7")
-
-[node name="Label" type="Label" parent="Level/TileMap4/TutorialTV/Screen/GamepadText/XBoxButton/Sprite2D3"]
-offset_left = -3.0
-offset_top = -4.0
-offset_right = 12.0
-offset_bottom = 22.0
-scale = Vector2(0.4, 0.4)
-theme_override_colors/font_color = Color(0.780392, 0.764706, 0.909804, 1)
-text = "🠉"
-
-[node name="PSButton" type="Sprite2D" parent="Level/TileMap4/TutorialTV/Screen/GamepadText"]
-visible = false
-position = Vector2(110, 79)
-scale = Vector2(1.6, 1.6)
-texture = ExtResource("25_8i6le")
-
-[node name="Label" type="Label" parent="Level/TileMap4/TutorialTV/Screen/GamepadText/PSButton"]
-offset_left = -3.0
-offset_top = -3.0
-offset_right = 12.0
-offset_bottom = 23.0
-scale = Vector2(0.4, 0.4)
-theme_override_colors/font_color = Color(0.780392, 0.764706, 0.909804, 1)
-
-[node name="Sprite2D2" type="Sprite2D" parent="Level/TileMap4/TutorialTV/Screen/GamepadText/PSButton"]
-position = Vector2(23, -2)
-scale = Vector2(0.55, 0.55)
-texture = ExtResource("23_hkb6i")
-
-[node name="Label" type="Label" parent="Level/TileMap4/TutorialTV/Screen/GamepadText/PSButton/Sprite2D2"]
-visible = false
-offset_left = -3.0
-offset_top = -3.0
-offset_right = 12.0
-offset_bottom = 23.0
-scale = Vector2(0.4, 0.4)
-theme_override_colors/font_color = Color(0.780392, 0.764706, 0.909804, 1)
-text = "W"
-
-[node name="Sprite2D3" type="Sprite2D" parent="Level/TileMap4/TutorialTV/Screen/GamepadText/PSButton"]
-position = Vector2(58, 0)
-scale = Vector2(1.25, 1.25)
-texture = ExtResource("24_8kia7")
-
-[node name="Label" type="Label" parent="Level/TileMap4/TutorialTV/Screen/GamepadText/PSButton/Sprite2D3"]
-offset_left = -3.0
-offset_top = -4.0
-offset_right = 12.0
-offset_bottom = 22.0
-scale = Vector2(0.4, 0.4)
-theme_override_colors/font_color = Color(0.780392, 0.764706, 0.909804, 1)
-text = "🠉"
 
 [node name="Particles" parent="Level/TileMap4/TutorialTV" index="2"]
 texture = ExtResource("22_hhw8g")
@@ -4006,7 +3848,8 @@ scale = Vector2(0.9, 0.9)
 [node name="Screen" parent="Level/TileMap5/TutorialTV" index="1"]
 script = ExtResource("20_15uq2")
 
-[node name="Text2" type="RichTextLabel" parent="Level/TileMap5/TutorialTV/Screen" index="2"]
+[node name="Text" type="RichTextLabel" parent="Level/TileMap5/TutorialTV/Screen" index="2"]
+layout_mode = 0
 offset_right = 320.0
 offset_bottom = 160.0
 scale = Vector2(0.25, 0.25)
@@ -4021,6 +3864,7 @@ flight and jump[/center]"
 
 [node name="XBoxText" type="RichTextLabel" parent="Level/TileMap5/TutorialTV/Screen" index="3"]
 visible = false
+layout_mode = 0
 offset_right = 320.0
 offset_bottom = 160.0
 scale = Vector2(0.25, 0.25)
@@ -4035,6 +3879,7 @@ flight and jump[/center]"
 
 [node name="PSText" type="RichTextLabel" parent="Level/TileMap5/TutorialTV/Screen" index="4"]
 visible = false
+layout_mode = 0
 offset_right = 320.0
 offset_bottom = 160.0
 scale = Vector2(0.25, 0.25)
@@ -4046,85 +3891,6 @@ text = "
 hold [img]res://Content/Sprites/Interface/PSControllerSquare.png[/img] or [img]res://Content/Sprites/Interface/ControllerR2Button.png[/img]
 against the wall during
 flight and jump[/center]"
-
-[node name="Text" parent="Level/TileMap5/TutorialTV/Screen" index="5"]
-visible = false
-offset_right = 356.0
-offset_bottom = 178.0
-scale = Vector2(0.225, 0.225)
-theme_override_font_sizes/font_size = 22
-text = "To wall-jump,
-holdㅤㅤㅤ,ㅤㅤ    orㅤㅤ
-against the wall during
-flight and jump"
-
-[node name="Button" type="Sprite2D" parent="Level/TileMap5/TutorialTV/Screen/Text" index="0"]
-position = Vector2(130, 70)
-scale = Vector2(2.25, 2.25)
-texture = ExtResource("34_dcq2s")
-
-[node name="Label" type="Label" parent="Level/TileMap5/TutorialTV/Screen/Text/Button"]
-offset_left = -8.0
-offset_top = -3.0
-offset_right = 32.0
-offset_bottom = 23.0
-scale = Vector2(0.4, 0.4)
-theme_override_colors/font_color = Color(0.780392, 0.764706, 0.909804, 1)
-text = "Ctrl"
-
-[node name="Sprite2D2" type="Sprite2D" parent="Level/TileMap5/TutorialTV/Screen/Text/Button"]
-position = Vector2(32, 0)
-texture = ExtResource("34_dcq2s")
-
-[node name="Label" type="Label" parent="Level/TileMap5/TutorialTV/Screen/Text/Button/Sprite2D2"]
-offset_left = -10.0
-offset_top = -3.0
-offset_right = 39.0
-offset_bottom = 23.0
-scale = Vector2(0.4, 0.4)
-theme_override_colors/font_color = Color(0.780392, 0.764706, 0.909804, 1)
-text = "Shift"
-
-[node name="Sprite2D3" type="Sprite2D" parent="Level/TileMap5/TutorialTV/Screen/Text/Button"]
-position = Vector2(73, 0)
-scale = Vector2(1.25, 1.25)
-texture = ExtResource("35_vki57")
-
-[node name="GamepadText" type="Label" parent="Level/TileMap5/TutorialTV/Screen" index="6"]
-visible = false
-layout_mode = 0
-offset_right = 356.0
-offset_bottom = 178.0
-scale = Vector2(0.225, 0.225)
-theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
-theme_override_font_sizes/font_size = 22
-text = "To wall-jump,
-hold   ㅤ or ㅤㅤ
-against the wall during
-flight and jump"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="XBoxButton" type="Sprite2D" parent="Level/TileMap5/TutorialTV/Screen/GamepadText"]
-visible = false
-position = Vector2(168, 70)
-scale = Vector2(3, 3)
-texture = ExtResource("36_g8kx4")
-
-[node name="Sprite2D2" type="Sprite2D" parent="Level/TileMap5/TutorialTV/Screen/GamepadText/XBoxButton"]
-position = Vector2(25, 0)
-scale = Vector2(0.75, 0.75)
-texture = ExtResource("22_40vsc")
-
-[node name="PSButton" type="Sprite2D" parent="Level/TileMap5/TutorialTV/Screen/GamepadText"]
-position = Vector2(168, 70)
-scale = Vector2(3, 3)
-texture = ExtResource("36_g8kx4")
-
-[node name="Sprite2D2" type="Sprite2D" parent="Level/TileMap5/TutorialTV/Screen/GamepadText/PSButton"]
-position = Vector2(25, 0)
-scale = Vector2(0.75, 0.75)
-texture = ExtResource("38_8thb2")
 
 [node name="Particles" parent="Level/TileMap5/TutorialTV" index="2"]
 position = Vector2(0, -32)
@@ -4207,19 +3973,55 @@ libraries = {
 "": SubResource("AnimationLibrary_i5p2o")
 }
 
-[node name="TutorialTV" parent="Level/TileMap5/ShakyPlatform" instance=ExtResource("19_wvjhm")]
+[node name="TutorialTV" type="Node2D" parent="Level/TileMap5/ShakyPlatform"]
+z_index = -1
 position = Vector2(8832, 760)
 scale = Vector2(0.75, 0.75)
+metadata/_edit_group_ = true
 
-[node name="Text" parent="Level/TileMap5/ShakyPlatform/TutorialTV/Screen" index="2"]
+[node name="Sprite2D" type="Sprite2D" parent="Level/TileMap5/ShakyPlatform/TutorialTV"]
+texture = ExtResource("41_h543a")
+
+[node name="Screen" type="Control" parent="Level/TileMap5/ShakyPlatform/TutorialTV"]
+show_behind_parent = true
+clip_contents = true
+layout_mode = 3
+anchors_preset = 0
+offset_left = -44.0
+offset_top = -12.0
+offset_right = 36.0
+offset_bottom = 28.0
+mouse_filter = 2
+
+[node name="ColorRect" type="ColorRect" parent="Level/TileMap5/ShakyPlatform/TutorialTV/Screen"]
+layout_mode = 0
+offset_right = 80.0
+offset_bottom = 40.0
+color = Color(0.784314, 1, 0.588235, 1)
+
+[node name="SlippeyHead" type="Sprite2D" parent="Level/TileMap5/ShakyPlatform/TutorialTV/Screen"]
+modulate = Color(1, 1, 1, 0.25098)
+texture = ExtResource("42_lqx2m")
+centered = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Level/TileMap5/ShakyPlatform/TutorialTV/Screen/SlippeyHead"]
+libraries = {
+"": SubResource("AnimationLibrary_3uffo")
+}
+
+[node name="Text" type="Label" parent="Level/TileMap5/ShakyPlatform/TutorialTV/Screen"]
+layout_mode = 0
 offset_right = 320.0
 offset_bottom = 160.0
 scale = Vector2(0.25, 0.25)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
 text = "🠊 🠊 🠊
 You need go right
 🠊 🠊 🠊"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Text2" type="Label" parent="Level/TileMap5/ShakyPlatform/TutorialTV/Screen" index="3"]
+[node name="Text2" type="Label" parent="Level/TileMap5/ShakyPlatform/TutorialTV/Screen"]
 visible = false
 layout_mode = 0
 offset_right = 242.0
@@ -4231,8 +4033,53 @@ text = "Oh..."
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="WhiteNoise" parent="Level/TileMap5/ShakyPlatform/TutorialTV/Screen" index="4"]
+[node name="WhiteNoise" type="AnimatedSprite2D" parent="Level/TileMap5/ShakyPlatform/TutorialTV/Screen"]
 visible = false
+scale = Vector2(0.25, 0.222222)
+sprite_frames = SubResource("SpriteFrames_0gekv")
+autoplay = "default"
+frame_progress = 0.0934865
+speed_scale = 2.0
+centered = false
+
+[node name="Sound" type="AudioStreamPlayer" parent="Level/TileMap5/ShakyPlatform/TutorialTV/Screen/WhiteNoise"]
+stream = ExtResource("44_6mcov")
+volume_db = -15.0
+bus = &"Interface"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Level/TileMap5/ShakyPlatform/TutorialTV/Screen"]
+libraries = {
+"": SubResource("AnimationLibrary_g0wyp")
+}
+
+[node name="Particles" type="CPUParticles2D" parent="Level/TileMap5/ShakyPlatform/TutorialTV"]
+position = Vector2(0, 32)
+emitting = false
+amount = 16
+lifetime = 0.75
+one_shot = true
+explosiveness = 1.0
+local_coords = true
+texture = ExtResource("31_wh8s0")
+emission_shape = 3
+emission_rect_extents = Vector2(48, 0)
+direction = Vector2(0, -1)
+spread = 40.0
+gravity = Vector2(0, 500)
+initial_velocity_min = 325.0
+initial_velocity_max = 350.0
+angular_velocity_min = -300.0
+angular_velocity_max = 300.0
+angle_min = -180.0
+angle_max = 180.0
+scale_amount_min = 0.75
+color_ramp = SubResource("Gradient_mywan")
+
+[node name="FallingSound" type="AudioStreamPlayer" parent="Level/TileMap5/ShakyPlatform/TutorialTV"]
+stream = ExtResource("46_6hxhb")
+volume_db = 5.0
+pitch_scale = 0.9
+bus = &"Enviromnment"
 
 [node name="ExplosionAnimation" parent="Level/TileMap5/ShakyPlatform" instance=ExtResource("28_p563d")]
 position = Vector2(8832, 760)
@@ -4504,7 +4351,8 @@ _isThereASecondSpriteForGamepad = false
 [node name="SlippeyHead" parent="Level/TileMap6/TutorialTV/Screen" index="1"]
 position = Vector2(-3.73333, -3.73333)
 
-[node name="Text2" type="RichTextLabel" parent="Level/TileMap6/TutorialTV/Screen" index="2"]
+[node name="Text" type="RichTextLabel" parent="Level/TileMap6/TutorialTV/Screen" index="2"]
+layout_mode = 0
 offset_right = 320.0
 offset_bottom = 160.0
 scale = Vector2(0.25, 0.25)
@@ -4516,8 +4364,9 @@ text = "
 [center]To pulldown, press 
 [img]res://Content/Sprites/Interface/KeyboardButtonDown.png[/img] or [img]res://Content/Sprites/Interface/KeyboardButtonS.png[/img] during flight[/center]"
 
-[node name="GamepadText2" type="RichTextLabel" parent="Level/TileMap6/TutorialTV/Screen" index="3"]
+[node name="GamepadText" type="RichTextLabel" parent="Level/TileMap6/TutorialTV/Screen" index="3"]
 visible = false
+layout_mode = 0
 offset_right = 320.0
 offset_bottom = 160.0
 scale = Vector2(0.25, 0.25)
@@ -4529,74 +4378,16 @@ text = "
 [center]To pulldown, press 
 [img]res://Content/Sprites/Interface/ControllerStickDown.png[/img] or [img]res://Content/Sprites/Interface/ControllerDPadDown.png[/img] during flight[/center]"
 
-[node name="Text" parent="Level/TileMap6/TutorialTV/Screen" index="4"]
+[node name="WhiteNoise" parent="Level/TileMap6/TutorialTV/Screen" index="4"]
 visible = false
-offset_right = 320.0
-offset_bottom = 160.0
-scale = Vector2(0.25, 0.25)
-text = "To pulldown, press
-    or     during flight"
 
-[node name="Button" type="Sprite2D" parent="Level/TileMap6/TutorialTV/Screen/Text" index="0"]
-position = Vector2(68, 89)
-scale = Vector2(1.6, 1.6)
-texture = ExtResource("21_1o634")
-
-[node name="Label" type="Label" parent="Level/TileMap6/TutorialTV/Screen/Text/Button"]
-offset_left = -3.0
-offset_top = -3.0
-offset_right = 12.0
-offset_bottom = 23.0
-scale = Vector2(0.4, 0.4)
-theme_override_colors/font_color = Color(0.780392, 0.764706, 0.909804, 1)
-text = "🠋"
-
-[node name="Sprite2D2" type="Sprite2D" parent="Level/TileMap6/TutorialTV/Screen/Text/Button"]
-position = Vector2(31, 0)
-texture = ExtResource("21_1o634")
-
-[node name="Label" type="Label" parent="Level/TileMap6/TutorialTV/Screen/Text/Button/Sprite2D2"]
-offset_left = -3.0
-offset_top = -3.0
-offset_right = 12.0
-offset_bottom = 23.0
-scale = Vector2(0.4, 0.4)
-theme_override_colors/font_color = Color(0.780392, 0.764706, 0.909804, 1)
-text = "S"
-
-[node name="GamepadText" type="Label" parent="Level/TileMap6/TutorialTV/Screen" index="5"]
-visible = false
-layout_mode = 0
-offset_right = 320.0
-offset_bottom = 160.0
-scale = Vector2(0.25, 0.25)
-theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
-text = "To pulldown, press
-    or      during flight"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Button" type="Sprite2D" parent="Level/TileMap6/TutorialTV/Screen/GamepadText"]
-position = Vector2(66, 89)
-scale = Vector2(1.6, 1.6)
-texture = ExtResource("24_8kia7")
-
-[node name="Label" type="Label" parent="Level/TileMap6/TutorialTV/Screen/GamepadText/Button"]
-offset_left = -3.0
-offset_top = -3.0
-offset_right = 12.0
-offset_bottom = 23.0
-scale = Vector2(0.4, 0.4)
-theme_override_colors/font_color = Color(0.780392, 0.764706, 0.909804, 1)
-text = "🠋"
-
-[node name="Sprite2D2" type="Sprite2D" parent="Level/TileMap6/TutorialTV/Screen/GamepadText/Button"]
-position = Vector2(34, 0)
-scale = Vector2(0.6, 0.6)
-texture = ExtResource("48_4c1fj")
+[node name="Sound" parent="Level/TileMap6/TutorialTV/Screen/WhiteNoise" index="0"]
+volume_db = -5.0
+stream_paused = true
 
 [node name="Particles" parent="Level/TileMap6/TutorialTV" index="2"]
 position = Vector2(0, 0)
+emitting = true
 lifetime = 2.5
 explosiveness = 0.5
 texture = ExtResource("35_ylt62")
@@ -4759,18 +4550,54 @@ tile_set = SubResource("TileSet_jidnq")
 format = 2
 layer_0/tile_data = PackedInt32Array(3998540, 1, 2, 4064076, 1, 2, 3998541, 1, 2, 4064077, 1, 2, 3998542, 1, 2, 4064078, 1, 2, 3998543, 1, 2, 4064079, 1, 2, 3998544, 1, 2, 4064080, 1, 2)
 
-[node name="TutorialTV" parent="Level/TileMap7" instance=ExtResource("19_wvjhm")]
+[node name="TutorialTV" type="Node2D" parent="Level/TileMap7"]
+z_index = -1
 position = Vector2(13544, 936)
 scale = Vector2(0.75, 0.75)
+metadata/_edit_group_ = true
 
-[node name="Text" parent="Level/TileMap7/TutorialTV/Screen" index="2"]
+[node name="Sprite2D" type="Sprite2D" parent="Level/TileMap7/TutorialTV"]
+texture = ExtResource("41_h543a")
+
+[node name="Screen" type="Control" parent="Level/TileMap7/TutorialTV"]
+show_behind_parent = true
+clip_contents = true
+layout_mode = 3
+anchors_preset = 0
+offset_left = -44.0
+offset_top = -12.0
+offset_right = 36.0
+offset_bottom = 28.0
+mouse_filter = 2
+
+[node name="ColorRect" type="ColorRect" parent="Level/TileMap7/TutorialTV/Screen"]
+layout_mode = 0
+offset_right = 80.0
+offset_bottom = 40.0
+color = Color(0.784314, 1, 0.588235, 1)
+
+[node name="SlippeyHead" type="Sprite2D" parent="Level/TileMap7/TutorialTV/Screen"]
+modulate = Color(1, 1, 1, 0.25098)
+texture = ExtResource("42_lqx2m")
+centered = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Level/TileMap7/TutorialTV/Screen/SlippeyHead"]
+libraries = {
+"": SubResource("AnimationLibrary_3uffo")
+}
+
+[node name="Text" type="Label" parent="Level/TileMap7/TutorialTV/Screen"]
 modulate = Color(1, 1, 1, 0)
+layout_mode = 0
 offset_right = 320.0
 offset_bottom = 160.0
 scale = Vector2(0.25, 0.25)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
 text = "!YOU WIN!"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Text2" type="Label" parent="Level/TileMap7/TutorialTV/Screen" index="3"]
+[node name="Text2" type="Label" parent="Level/TileMap7/TutorialTV/Screen"]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 offset_right = 320.0
@@ -4784,7 +4611,7 @@ need all this..."
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Text3" type="Label" parent="Level/TileMap7/TutorialTV/Screen" index="4"]
+[node name="Text3" type="Label" parent="Level/TileMap7/TutorialTV/Screen"]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 offset_right = 320.0
@@ -4798,7 +4625,7 @@ useful to you"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Text4" type="Label" parent="Level/TileMap7/TutorialTV/Screen" index="5"]
+[node name="Text4" type="Label" parent="Level/TileMap7/TutorialTV/Screen"]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 offset_right = 320.0
@@ -4811,7 +4638,7 @@ seconds."
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Text5" type="Label" parent="Level/TileMap7/TutorialTV/Screen" index="6"]
+[node name="Text5" type="Label" parent="Level/TileMap7/TutorialTV/Screen"]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 offset_right = 320.0
@@ -4823,7 +4650,7 @@ text = "And where?.."
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Text6" type="Label" parent="Level/TileMap7/TutorialTV/Screen" index="7"]
+[node name="Text6" type="Label" parent="Level/TileMap7/TutorialTV/Screen"]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 offset_right = 320.0
@@ -4835,7 +4662,7 @@ text = "Oh, I almost forgot."
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Text7" type="Label" parent="Level/TileMap7/TutorialTV/Screen" index="8"]
+[node name="Text7" type="Label" parent="Level/TileMap7/TutorialTV/Screen"]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 offset_right = 320.0
@@ -4847,8 +4674,53 @@ text = "Done :)"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="WhiteNoise" parent="Level/TileMap7/TutorialTV/Screen" index="9"]
+[node name="WhiteNoise" type="AnimatedSprite2D" parent="Level/TileMap7/TutorialTV/Screen"]
 visible = false
+scale = Vector2(0.25, 0.222222)
+sprite_frames = SubResource("SpriteFrames_0gekv")
+autoplay = "default"
+frame_progress = 0.0934865
+speed_scale = 2.0
+centered = false
+
+[node name="Sound" type="AudioStreamPlayer" parent="Level/TileMap7/TutorialTV/Screen/WhiteNoise"]
+stream = ExtResource("44_6mcov")
+volume_db = -15.0
+bus = &"Interface"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Level/TileMap7/TutorialTV/Screen"]
+libraries = {
+"": SubResource("AnimationLibrary_g0wyp")
+}
+
+[node name="Particles" type="CPUParticles2D" parent="Level/TileMap7/TutorialTV"]
+position = Vector2(0, 32)
+emitting = false
+amount = 16
+lifetime = 0.75
+one_shot = true
+explosiveness = 1.0
+local_coords = true
+texture = ExtResource("31_wh8s0")
+emission_shape = 3
+emission_rect_extents = Vector2(48, 0)
+direction = Vector2(0, -1)
+spread = 40.0
+gravity = Vector2(0, 500)
+initial_velocity_min = 325.0
+initial_velocity_max = 350.0
+angular_velocity_min = -300.0
+angular_velocity_max = 300.0
+angle_min = -180.0
+angle_max = 180.0
+scale_amount_min = 0.75
+color_ramp = SubResource("Gradient_mywan")
+
+[node name="FallingSound" type="AudioStreamPlayer" parent="Level/TileMap7/TutorialTV"]
+stream = ExtResource("46_6hxhb")
+volume_db = 5.0
+pitch_scale = 0.9
+bus = &"Enviromnment"
 
 [node name="YOUWIN" type="AudioStreamPlayer" parent="Level/TileMap7/TutorialTV"]
 stream = ExtResource("39_c31vs")
@@ -5151,7 +5023,5 @@ layer = 100
 [editable path="Level/TileMap2/TutorialTV"]
 [editable path="Level/TileMap4/TutorialTV"]
 [editable path="Level/TileMap5/TutorialTV"]
-[editable path="Level/TileMap5/ShakyPlatform/TutorialTV"]
 [editable path="Level/TileMap6/TutorialTV"]
-[editable path="Level/TileMap7/TutorialTV"]
 [editable path="Pause/Interface/ButtonsFrame/Menu"]

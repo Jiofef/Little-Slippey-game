@@ -6,31 +6,15 @@ public partial class TutorialTvScreen : Control
     [Export] bool _isThereASecondSpriteForGamepad = true;
     public void UpdateScreen()
     {
-        GD.Print("s");
-        switch (G.TypeOfUsedController)
+        GetNode<RichTextLabel>("Text").Visible = G.TypeOfUsedController == "Keyboard";
+        if (_isThereASecondSpriteForGamepad)
         {
-            case "Keyboard":
-                GetNode<Label>("Text").Visible = true;
-                GetNode<Label>("GamepadText").Visible = false;
-                break;
-            case "PS Gamepad":
-                GetNode<Label>("Text").Visible = false;
-                GetNode<Label>("GamepadText").Visible = true;
-                if (_isThereASecondSpriteForGamepad)
-                {
-                    GetNode<Sprite2D>("GamepadText/XBoxButton").Visible = false;
-                    GetNode<Sprite2D>("GamepadText/PSButton").Visible = true;
-                }
-                break;
-            case "XInput Gamepad":
-                GetNode<Label>("Text").Visible = false;
-                GetNode<Label>("GamepadText").Visible = true;
-                if (_isThereASecondSpriteForGamepad)
-                {
-                    GetNode<Sprite2D>("GamepadText/XBoxButton").Visible = true;
-                    GetNode<Sprite2D>("GamepadText/PSButton").Visible = false;
-                }
-                break;
+            GetNode<RichTextLabel>("XBoxText").Visible = G.TypeOfUsedController == "XInput Gamepad";
+            GetNode<RichTextLabel>("PSText").Visible = G.TypeOfUsedController == "PS Gamepad";
         }
+        else
+            GetNode<RichTextLabel>("GamepadText").Visible = G.TypeOfUsedController == "XInput Gamepad" || G.TypeOfUsedController == "PS Gamepad";
+        if (G.TypeOfUsedController != "Keyboard" && G.TypeOfUsedController != "XInput Gamepad" && G.TypeOfUsedController != "PS Gamepad")
+            GetNode<RichTextLabel>(_isThereASecondSpriteForGamepad ? "XBoxText" : "GamepadText").Visible = true;
     }
 }
