@@ -7,18 +7,36 @@ public partial class TutorialCanvasLayer : CanvasLayer
 		G.IsProgressPaused = true;
 		G.IsCrossesEnabled = false;
 		if (UnchangableMeta.IsTutorialPlayed)
-            GetNode<AnimationPlayer>("Label/AnimationPlayer").Play("Disappearing");
+		{
+			GetNode<AnimationPlayer>("Label/AnimationPlayer").Play("Disappearing");
+            void SetHoldIMG(string ImageName)
+            {
+                GetNode<RichTextLabel>("Label").Text = "[center]Press [img]res://Content/Sprites/Interface/" + ImageName + ".png[/img] to skip intro";
+            }
+            switch (G.TypeOfUsedController)
+            {
+                case "Keyboard":
+                    SetHoldIMG("KeyboardButtonBigF");
+                    break;
+                case "PS Gamepad":
+                    SetHoldIMG("PSControllerBigX");
+                    break;
+                default:
+                    SetHoldIMG("XControllerBigAmogus");
+                    break;
+            }
+        }
 		else
 		{
 			SetPhysicsProcess(false);
-            UnchangableMeta.IsTutorialPlayed = true;
+			UnchangableMeta.IsTutorialPlayed = true;
 			UnchangableMeta.SaveToFile();
 			GetNode<Label>("Label").QueueFree();
-        }
+		}
 	}
     public override void _PhysicsProcess(double delta)
     {
-        if (Input.IsPhysicalKeyPressed(Key.F))
+        if (Input.IsPhysicalKeyPressed(Key.F) || Input.IsJoyButtonPressed(0, JoyButton.A))
 		{
 			GetNode<AnimationPlayer>("../Rail/AnimationPlayer").SpeedScale = 5;
             GetNode<AudioStreamPlayer>("../Rail/Ambient").PitchScale = 5;

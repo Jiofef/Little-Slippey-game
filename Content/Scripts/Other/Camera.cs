@@ -91,6 +91,23 @@ public partial class Camera : Camera2D
                 }
                 if (emergingElements.Modulate.A < 1)
                     emergingElements.Modulate = new Color(emergingElements.Modulate.R, emergingElements.Modulate.G, emergingElements.Modulate.B, emergingElements.Modulate.A + 0.005f);
+
+                void SetHoldIMG(string ImageName)
+                {
+                    GetNode<RichTextLabel>("GUI/EmergingElements/Hold R").Text = "[center]Hold [img]res://Content/Sprites/Interface/" + ImageName + ".png[/img]";
+                }
+                switch (G.TypeOfUsedController)
+                {
+                    case "Keyboard":
+                        SetHoldIMG("KeyboardButtonBigR");
+                        break;
+                    case "PS Gamepad":
+                        SetHoldIMG("PSControllerBigTriangle");
+                        break;
+                    default:
+                        SetHoldIMG("XControllerBigY");
+                        break;
+                }
             }
         }
     }

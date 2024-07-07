@@ -4383,7 +4383,6 @@ visible = false
 
 [node name="Sound" parent="Level/TileMap6/TutorialTV/Screen/WhiteNoise" index="0"]
 volume_db = -5.0
-stream_paused = true
 
 [node name="Particles" parent="Level/TileMap6/TutorialTV" index="2"]
 position = Vector2(0, 0)
@@ -4759,15 +4758,16 @@ libraries = {
 [node name="TutorialCanvasLayer" type="CanvasLayer" parent="Level"]
 script = ExtResource("40_3l25n")
 
-[node name="Label" type="Label" parent="Level/TutorialCanvasLayer"]
+[node name="Label" type="RichTextLabel" parent="Level/TutorialCanvasLayer"]
+clip_contents = false
 offset_top = 640.0
 offset_right = 640.0
-offset_bottom = 665.0
+offset_bottom = 680.0
 scale = Vector2(2, 2)
-theme_override_colors/font_color = Color(0.788235, 0.788235, 0.788235, 1)
-theme_override_font_sizes/font_size = 22
-text = "Press F to skip intro"
-horizontal_alignment = 1
+theme_override_colors/default_color = Color(0.788235, 0.788235, 0.788235, 1)
+theme_override_font_sizes/normal_font_size = 22
+bbcode_enabled = true
+text = "[center]Press [img]res://Content/Sprites/Interface/KeyboardButtonBigF.png[/img] to skip intro"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Level/TutorialCanvasLayer/Label"]
 libraries = {
@@ -5010,7 +5010,7 @@ layer = 100
 [connection signal="area_entered" from="Level/TileMap6/TVAppearingTrigger" to="Level/TileMap6/TVAppearingTrigger" method="AreaEntered" flags=18 unbinds=1]
 [connection signal="area_entered" from="Level/TileMap6/DarkeningArea" to="Level/TileMap6/DarkeningArea/AnimationPlayer" method="Darkening" flags=18 unbinds=1]
 [connection signal="area_exited" from="Level/TileMap6/DarkeningArea" to="Level/TileMap6/DarkeningArea/AnimationPlayer" method="Lightening" flags=18 unbinds=1]
-[connection signal="animation_finished" from="Level/TutorialCanvasLayer/Label/AnimationPlayer" to="Level/TutorialCanvasLayer/Label" method="queue_free" flags=22 unbinds=1]
+[connection signal="animation_finished" from="Level/TutorialCanvasLayer/Label/AnimationPlayer" to="Level/TutorialCanvasLayer/Label" method="queue_free" flags=6 unbinds=1]
 [connection signal="animation_finished" from="Level/TutorialCanvasLayer/WhiteNoiseGlitch" to="Level/TutorialCanvasLayer/WhiteNoiseGlitch" method="set_visible" flags=18 binds= [false]]
 [connection signal="pressed" from="Pause/Interface/ButtonsFrame/Resume" to="." method="UnPause" flags=18]
 [connection signal="pressed" from="Pause/Interface/ButtonsFrame/Options" to="." method="Options" flags=18]
