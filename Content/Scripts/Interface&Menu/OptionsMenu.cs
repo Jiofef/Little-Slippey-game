@@ -84,7 +84,7 @@ public partial class OptionsMenu : Control
         }
 
         CanvasItem Node = node;
-        while (Node != this)
+        while (Node.Name != Name && Node.GetParent() is CanvasItem)
         {
             if (Node.Name == "SoundContainer" || Node.Name == "VideoContainer")
             {

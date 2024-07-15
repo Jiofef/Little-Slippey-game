@@ -9,7 +9,7 @@ public partial class BaseLevelScript : Node2D
 
     Random _random = new Random();
 
-    private int[] _crossDefaultWeight = { 100, 40, 20, 10, 30 };
+    private int[] _crossDefaultWeight = { 600, 170, 80, 40, 110 };
     private float[] _crossWeight = new float[G.CrossesInGameTotal];
     private int _lastAviableCrossNumber = 0;
     private float _weightMultiplierExtenderToCurrentCross = 0;
@@ -196,7 +196,7 @@ public partial class BaseLevelScript : Node2D
         }
         _isCrossesEnhanced = G.CurrentLevel == 10 && G.LevelAdditionalLink == "True" || Meta.Instance.AdditionStatuses[3];
         if (_isCrossesEnhanced)
-            _crossDefaultWeight = new int[] { 150, 120, 20, 5, 10 };
+            _crossDefaultWeight = new int[] { 650, 265, 45, 15, 25 };
         for (int i = 0; i < _crosses.Length; i++)
             _crosses[i] = ResourceLoader.Load<PackedScene>("res://Content/Scenes/Crosses/" + (_isCrossesEnhanced ? "Enhanced" : "") + "Cross" + (i + 1) + ".tscn");
 

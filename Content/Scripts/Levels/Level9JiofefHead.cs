@@ -169,7 +169,7 @@ public partial class Level9JiofefHead : Node2D
 
 	public void SpeedMultiplayerUpdate()
 	{
-        _jiofefHeadSpeedMultiplier = 1.5f + G.Scores / 75;
+        _jiofefHeadSpeedMultiplier = 1.5f + G.Scores / 125;
         _animatedSprite2D.SpeedScale = _jiofefHeadSpeedMultiplier;
         _animationPlayer.SpeedScale = _jiofefHeadSpeedMultiplier;
 		G.CrossSpawnMultiplier = 1 / (_jiofefHeadSpeedMultiplier * 2 - 1);

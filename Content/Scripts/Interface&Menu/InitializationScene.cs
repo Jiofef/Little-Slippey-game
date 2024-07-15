@@ -1,9 +1,11 @@
 using Godot;
+using System.IO;
 
 public partial class InitializationScene : Control
 {
 	public override void _Ready()
 	{
+        Directory.CreateDirectory(System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData) + @"\Godot\app_userdata\Little Slippey\mods\");
         Meta.Instance.LoadOptions();
         Meta.Instance.ApplyOptions();
         UnchangableMeta.LoadSave();

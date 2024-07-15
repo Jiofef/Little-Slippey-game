@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://dkibh4v7pkdaf"]
+[gd_scene load_steps=26 format=3 uid="uid://dkibh4v7pkdaf"]
 
 [ext_resource type="Texture2D" uid="uid://bup1u0y7qgmvb" path="res://Content/Sprites/Interface/MenuBackground.png" id="1_gbq5h"]
 [ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/WelcomeToGOS.cs" id="1_u85jq"]
@@ -15,6 +15,7 @@
 [ext_resource type="AudioStream" uid="uid://b33fnwxr3ykiu" path="res://Content/Sounds/Soundtrack/GieroOfficeTheme.mp3" id="13_26the"]
 [ext_resource type="Texture2D" uid="uid://b163nftflfm82" path="res://Content/Sprites/Interface/RecycleBinNotify.png" id="13_dkta7"]
 [ext_resource type="Texture2D" uid="uid://cscw1i3huf5fv" path="res://Content/Sprites/Interface/TurnOffIcon.png" id="14_51aon"]
+[ext_resource type="Texture2D" uid="uid://cgmokiqdm6i3q" path="res://Content/Sprites/Interface/WorkShop.png" id="15_ch334"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4v4vt"]
 shader = ExtResource("5_h17kw")
@@ -400,6 +401,23 @@ offset_right = 40.0
 offset_bottom = 645.0
 texture_normal = ExtResource("14_51aon")
 
+[node name="WorkshopButton" parent="Buttons" instance=ExtResource("7_0t5ux")]
+layout_mode = 0
+offset_left = 1164.0
+offset_top = 29.0
+offset_right = 1180.0
+offset_bottom = 45.0
+texture_normal = ExtResource("15_ch334")
+
+[node name="Workshop" type="Label" parent="Buttons"]
+layout_mode = 0
+offset_left = 1140.0
+offset_top = 93.0
+offset_right = 1252.0
+offset_bottom = 118.0
+text = "WorkShop"
+horizontal_alignment = 1
+
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("13_26the")
 volume_db = 6.0
@@ -425,3 +443,4 @@ limit_bottom = 720
 [connection signal="pressed" from="Buttons/Titles" to="." method="IconClick" binds= [5]]
 [connection signal="pressed" from="Buttons/Titles" to="Buttons/Titles/Notify" method="set_visible" flags=6 binds= [false]]
 [connection signal="pressed" from="Buttons/TurnOffButton" to="." method="IconClick" binds= [6]]
+[connection signal="pressed" from="Buttons/WorkshopButton" to="." method="IconClick" binds= [7]]

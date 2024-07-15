@@ -31,7 +31,7 @@ public partial class TutorialCanvasLayer : CanvasLayer
 			SetPhysicsProcess(false);
 			UnchangableMeta.IsTutorialPlayed = true;
 			UnchangableMeta.SaveToFile();
-			GetNode<Label>("Label").QueueFree();
+			GetNode<RichTextLabel>("Label").QueueFree();
 		}
 	}
     public override void _PhysicsProcess(double delta)

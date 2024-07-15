@@ -1,4 +1,7 @@
 RichTextLabel
+VBoxContainer
+ScrollContainer
+VScrollBar
 VisibleOnScreenNotifier2D
 Label
 Sprite2D
@@ -7,7 +10,6 @@ HFlowContainer
 GridContainer
 ColorRect
 TextureRect
-ScrollContainer
 AnimationPlayer
 CheckBox
 AudioStreamPlayer
@@ -28,5 +30,3 @@ CPUParticles2D
 AnimatedSprite2D
 Node3D
 AudioListener2D
-Camera2D
-Timer

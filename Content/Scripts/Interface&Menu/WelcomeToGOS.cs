@@ -29,7 +29,7 @@ public partial class WelcomeToGOS : Control
 
 		if (iconNumber != _openedMenuNumber)
 		{
-			string[] MenuNames = {"Levels", "Options", "Skins", "Achievements", "RecycleBin", "TurnOff"};
+			string[] MenuNames = {"Levels", "Options", "Skins", "Achievements", "RecycleBin", "TurnOff", "WorkShop"};
 			_openedMenu = (Control)ResourceLoader.Load<PackedScene>("res://Content/Scenes/Interface&Menu/" + MenuNames[iconNumber - 1] + "Menu.tscn").Instantiate();
             AddChild(_openedMenu);
 			_openedMenuNumber = iconNumber;
