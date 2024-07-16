@@ -1,14 +1,14 @@
+ColorRect
+Sprite2D
+Control
 RichTextLabel
 VBoxContainer
 ScrollContainer
 VScrollBar
 VisibleOnScreenNotifier2D
 Label
-Sprite2D
-Control
 HFlowContainer
 GridContainer
-ColorRect
 TextureRect
 AnimationPlayer
 CheckBox

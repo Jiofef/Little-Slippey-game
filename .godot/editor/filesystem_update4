@@ -1,6 +1,5 @@
-res://default_bus_layout.tres
 res://default_env.tres
-res://Content/Scenes/Interface&Menu/WelcomeToGOS.tscn
+res://Content/Scenes/Interface&Menu/WorkShopMenu.tscn
 res://Content/Other/BlurShader.gdshader
 res://Content/Other/PixelateShader.gdshader
 res://Content/Other/CRT.gdshader
@@ -8,7 +7,7 @@ res://Content/Other/BrightnessShader.gdshader
 res://Content/Other/StaticNoiseShader.gdshader
 res://Content/Other/SaturationShader.gdshader
 res://Content/Other/PostProcessing.gdshader
-res://Content/Scenes/Interface&Menu/WorkshopMenu.tscn
+res://Content/Scenes/Interface&Menu/WelcomeToGOS.tscn
 res://Content/Scenes/Other/LevelLayout.tscn
 res://Content/Other/G.cs
 res://Content/Other/Meta.cs
@@ -84,4 +83,5 @@ res://Content/Scripts/Other/Player.cs
 res://Content/Scripts/Other/PostProcessingRect.cs
 res://Content/Scripts/Other/SkinScript.cs
 res://Content/Scripts/Other/SlippeyChadCorpseMotionMultiplierCrutch.cs
-res://Content/Scenes/Interface&Menu/WorkShopMenu.tscn
+res://Content/Scenes/Interface&Menu/ModButton.tscn
+res://Content/Scripts/Interface&Menu/ScrollableRichTextLabel.cs

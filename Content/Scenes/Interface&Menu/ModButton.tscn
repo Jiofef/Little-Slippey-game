@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=3 uid="uid://duv6361wgul0d"]
+
+[ext_resource type="PackedScene" uid="uid://bwpstpk1xmkah" path="res://Content/Scenes/Interface&Menu/Button.tscn" id="1_ben1t"]
+[ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/ScrollableRichTextLabel.cs" id="2_avp7q"]
+
+[node name="Button" instance=ExtResource("1_ben1t")]
+custom_minimum_size = Vector2(471, 40)
+
+[node name="SelectRect" type="ColorRect" parent="." index="0"]
+visible = false
+layout_mode = 0
+offset_right = 471.0
+offset_bottom = 40.0
+color = Color(0, 0, 0, 0.156863)
+
+[node name="Name" type="RichTextLabel" parent="." index="4"]
+clip_contents = false
+custom_minimum_size = Vector2(560, 48)
+offset_top = 4.0
+offset_right = 560.0
+offset_bottom = 52.0
+scale = Vector2(0.75, 0.75)
+mouse_filter = 1
+theme_override_colors/default_color = Color(0.196078, 0.196078, 0.196078, 1)
+theme_override_font_sizes/normal_font_size = 33
+script = ExtResource("2_avp7q")
+
+[node name="ModType" type="Sprite2D" parent="." index="5"]
+position = Vector2(431, 0)
+scale = Vector2(4, 4)
+centered = false

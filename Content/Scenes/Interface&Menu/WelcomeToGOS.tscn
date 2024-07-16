@@ -437,6 +437,7 @@ limit_right = 1280
 limit_bottom = 720
 
 [connection signal="pressed" from="Buttons/LevelsMenuButton" to="." method="IconClick" binds= [1]]
+[connection signal="ready" from="Buttons/LevelsMenuButton" to="Buttons/LevelsMenuButton" method="grab_focus" flags=6]
 [connection signal="pressed" from="Buttons/OptionsButton" to="." method="IconClick" binds= [2]]
 [connection signal="pressed" from="Buttons/SkinsButton" to="." method="IconClick" binds= [3]]
 [connection signal="pressed" from="Buttons/AchievementsButton" to="." method="IconClick" binds= [4]]

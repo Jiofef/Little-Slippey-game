@@ -1,13 +1,12 @@
-[gd_scene load_steps=13 format=3 uid="uid://dhpudi781np1e"]
+[gd_scene load_steps=10 format=3 uid="uid://dhpudi781np1e"]
 
 [ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/WorkshopMenu.cs" id="1_y8ofb"]
 [ext_resource type="Texture2D" uid="uid://dwloy3yjsqa53" path="res://Content/Sprites/Interface/WorkShopBox.png" id="2_y6w1l"]
+[ext_resource type="PackedScene" uid="uid://duv6361wgul0d" path="res://Content/Scenes/Interface&Menu/ModButton.tscn" id="3_ujc5x"]
 [ext_resource type="PackedScene" uid="uid://bwpstpk1xmkah" path="res://Content/Scenes/Interface&Menu/Button.tscn" id="3_wh83q"]
 [ext_resource type="Texture2D" uid="uid://cwxoq374yceom" path="res://Content/Sprites/Interface/OpenTheDirectoryButton.png" id="4_faqv8"]
 [ext_resource type="Texture2D" uid="uid://bmldgxs7k8p6" path="res://Content/Sprites/Interface/OpenInEditorButton.png" id="5_tmdrm"]
-[ext_resource type="Texture2D" uid="uid://dqdsspefb6520" path="res://Content/Sprites/Interface/ControlsBox.png" id="6_3ddv0"]
-[ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/ScrollableContainer.cs" id="7_owqj6"]
-[ext_resource type="Texture2D" uid="uid://ce4oq2adhljwh" path="res://Content/Sprites/Interface/LevelsMenuIcon.png" id="8_6dcuh"]
+[ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/ScrollableRichTextLabel.cs" id="7_lmrig"]
 
 [sub_resource type="Animation" id="Animation_fu4ro"]
 resource_name = "Appearance"
@@ -28,27 +27,6 @@ tracks/0/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_u8saj"]
 _data = {
 "Appearance": SubResource("Animation_fu4ro")
-}
-
-[sub_resource type="Animation" id="Animation_kaqri"]
-resource_name = "Appearence"
-length = 0.3
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3),
-"transitions": PackedFloat32Array(0.5, 1),
-"update": 0,
-"values": [Vector2(1, 0), Vector2(1, 1)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_nja3y"]
-_data = {
-"Appearence": SubResource("Animation_kaqri")
 }
 
 [node name="WorkshopMenu" type="Control"]
@@ -79,57 +57,32 @@ offset_top = 36.0
 offset_right = 524.0
 offset_bottom = 496.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ModsScrollContainer"]
+[node name="ModsScrollVBoxContainer" type="VBoxContainer" parent="ModsScrollContainer"]
 layout_mode = 2
 
-[node name="Button" parent="ModsScrollContainer/VBoxContainer" instance=ExtResource("3_wh83q")]
-custom_minimum_size = Vector2(471, 48)
+[node name="Button" parent="ModsScrollContainer/ModsScrollVBoxContainer" instance=ExtResource("3_ujc5x")]
 layout_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="ModsScrollContainer/VBoxContainer/Button"]
-custom_minimum_size = Vector2(128, 48)
+[node name="Name" parent="ModsScrollContainer/ModsScrollVBoxContainer/Button" index="4"]
 layout_mode = 0
-offset_right = 128.0
+offset_top = 0.0
 offset_bottom = 48.0
-theme_override_colors/default_color = Color(0.196078, 0.196078, 0.196078, 1)
-theme_override_font_sizes/normal_font_size = 33
-text = "ffGEq"
+text = "Default_2.7.3"
 
 [node name="OpenTheDirectoryButton" parent="." instance=ExtResource("3_wh83q")]
 layout_mode = 0
-offset_left = 374.0
+offset_left = 40.0
 offset_top = 524.0
-offset_right = 398.0
+offset_right = 64.0
 offset_bottom = 548.0
 focus_neighbor_right = NodePath("../OpenInEditorButton")
 texture_normal = ExtResource("4_faqv8")
 
-[node name="OpenInEditorButton" parent="." instance=ExtResource("3_wh83q")]
+[node name="OpenTheDirectory" type="Label" parent="."]
 layout_mode = 0
-offset_left = 718.0
+offset_left = 152.0
 offset_top = 524.0
-offset_right = 742.0
-offset_bottom = 548.0
-focus_neighbor_left = NodePath("../OpenTheDirectoryButton")
-texture_normal = ExtResource("5_tmdrm")
-
-[node name="SetByDefault" type="Label" parent="."]
-layout_mode = 0
-offset_left = 830.0
-offset_top = 524.0
-offset_right = 940.0
-offset_bottom = 572.0
-scale = Vector2(2, 2)
-theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
-text = "Open in
-editor"
-vertical_alignment = 1
-
-[node name="ViewControls" type="Label" parent="."]
-layout_mode = 0
-offset_left = 486.0
-offset_top = 524.0
-offset_right = 590.0
+offset_right = 256.0
 offset_bottom = 572.0
 scale = Vector2(2, 2)
 theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
@@ -138,154 +91,52 @@ directory
 "
 vertical_alignment = 1
 
+[node name="OpenInEditorButton" parent="." instance=ExtResource("3_wh83q")]
+layout_mode = 0
+offset_left = 374.0
+offset_top = 524.0
+offset_right = 398.0
+offset_bottom = 548.0
+focus_neighbor_left = NodePath("../OpenTheDirectoryButton")
+texture_normal = ExtResource("5_tmdrm")
+
+[node name="OpenInEditor" type="Label" parent="."]
+layout_mode = 0
+offset_left = 486.0
+offset_top = 524.0
+offset_right = 596.0
+offset_bottom = 572.0
+scale = Vector2(2, 2)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+text = "Open in
+editor"
+vertical_alignment = 1
+
+[node name="ModDescription" type="Control" parent="."]
+clip_contents = true
+anchors_preset = 0
+offset_left = 536.0
+offset_top = 36.0
+offset_right = 1008.0
+offset_bottom = 496.0
+
+[node name="Description" type="RichTextLabel" parent="ModDescription"]
+custom_minimum_size = Vector2(581, 48)
+layout_mode = 0
+offset_top = 4.0
+offset_right = 629.0
+offset_bottom = 316.0
+scale = Vector2(0.75, 0.75)
+mouse_filter = 1
+theme_override_colors/default_color = Color(0.196078, 0.196078, 0.196078, 1)
+theme_override_font_sizes/normal_font_size = 33
+text = "Note: Before starting the construction of a test chamber, it is necessary to ensure the integrity, effectiveness and sufficient cruelty of its concept. In the workshop, you can design your own test chambers, activate the simulation in them, and also try out test chambers made by other scientists."
+script = ExtResource("7_lmrig")
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "Appearance"
 libraries = {
 "": SubResource("AnimationLibrary_u8saj")
 }
 
-[node name="ControlsMenu" type="Control" parent="."]
-visible = false
-anchors_preset = 0
-offset_right = 1060.0
-offset_bottom = 512.0
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="ControlsMenu"]
-libraries = {
-"": SubResource("AnimationLibrary_nja3y")
-}
-
-[node name="Sprite2D" type="Sprite2D" parent="ControlsMenu"]
-scale = Vector2(4, 4)
-texture = ExtResource("6_3ddv0")
-centered = false
-
-[node name="Moving" type="Label" parent="ControlsMenu"]
-layout_mode = 0
-offset_left = 473.0
-offset_top = 412.0
-offset_right = 701.0
-offset_bottom = 484.0
-theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
-text = "Left and right - move
-up - jump
-down - pulldown"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="WallCatch" type="Label" parent="ControlsMenu"]
-layout_mode = 0
-offset_left = 877.0
-offset_top = 30.0
-offset_right = 981.0
-offset_bottom = 54.0
-theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
-text = "Wall catch"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="LevelReset" type="Label" parent="ControlsMenu"]
-layout_mode = 0
-offset_left = 873.0
-offset_top = 187.0
-offset_right = 991.0
-offset_bottom = 211.0
-theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
-text = "Level reset"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="PauseOrCancel" type="Label" parent="ControlsMenu"]
-layout_mode = 0
-offset_left = 870.0
-offset_top = 82.0
-offset_right = 961.0
-offset_bottom = 130.0
-theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
-text = "Pause or
-cancel"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Jump" type="Label" parent="ControlsMenu"]
-layout_mode = 0
-offset_left = 871.0
-offset_top = 235.0
-offset_right = 921.0
-offset_bottom = 259.0
-theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
-text = "Jump"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="MoveScrollbars" type="Label" parent="ControlsMenu"]
-layout_mode = 0
-offset_left = 831.0
-offset_top = 272.0
-offset_right = 996.0
-offset_bottom = 320.0
-theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
-text = "Move scrollbars
-(just try it)"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="ScrollContainer" type="ScrollContainer" parent="ControlsMenu"]
-layout_mode = 0
-offset_left = 869.0
-offset_top = 320.0
-offset_right = 965.0
-offset_bottom = 416.0
-scroll_horizontal = 84
-scroll_vertical = 84
-script = ExtResource("7_owqj6")
-metadata/_edit_group_ = true
-
-[node name="SpriteControl" type="Control" parent="ControlsMenu/ScrollContainer"]
-custom_minimum_size = Vector2(256, 256)
-layout_mode = 2
-metadata/_edit_group_ = true
-
-[node name="ColorRect" type="ColorRect" parent="ControlsMenu/ScrollContainer/SpriteControl"]
-layout_mode = 0
-offset_right = 256.0
-offset_bottom = 256.0
-color = Color(0.184314, 0.180392, 0.192157, 0.117647)
-
-[node name="Sprite2D" type="Sprite2D" parent="ControlsMenu/ScrollContainer/SpriteControl"]
-scale = Vector2(16, 16)
-texture = ExtResource("8_6dcuh")
-centered = false
-
-[node name="_(" type="Label" parent="ControlsMenu"]
-layout_mode = 0
-offset_left = 13.0
-offset_top = 429.0
-offset_right = 400.0
-offset_bottom = 501.0
-theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
-text = "There is no way to change the control 
-settings yet
-Maybe in 1000 years"
-vertical_alignment = 1
-
-[node name="KeyboardMovement" type="Label" parent="ControlsMenu"]
-layout_mode = 0
-offset_left = 15.0
-offset_top = 18.0
-offset_right = 285.0
-offset_bottom = 210.0
-theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
-text = "Keyboard controls:
-
-Jump - Space, up, W
-Move - right, D, left, A
-Pull down - down, S
-Wall catch - Ctrl, Shift, LMB
-Level reset - R
-Pause or cancel - Esc
-"
-vertical_alignment = 1
-
-[connection signal="pressed" from="OpenTheDirectoryButton" to="." method="Accept"]
-[connection signal="pressed" from="OpenInEditorButton" to="." method="Cancel"]
+[editable path="ModsScrollContainer/ModsScrollVBoxContainer/Button"]
