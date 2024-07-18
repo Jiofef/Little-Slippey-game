@@ -26,7 +26,7 @@ public partial class MainScript : Node2D
             GetNode<CanvasLayer>("EpicIntro").QueueFree();
             GetNode<Node2D>("Level").ProcessMode = ProcessModeEnum.Pausable;
         }
-        if (UnchangableMeta.LevelPlayedStatus[G.CurrentLevel - 1] != 1)
+        if (G.IsLevelVanilla && UnchangableMeta.LevelPlayedStatus[G.CurrentLevel - 1] != 1)
         {
             UnchangableMeta.LevelPlayedStatus[G.CurrentLevel - 1] = 1;
             UnchangableMeta.SaveToFile();

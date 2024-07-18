@@ -1,5 +1,6 @@
+res://default_bus_layout.tres
 res://default_env.tres
-res://Content/Scenes/Interface&Menu/WorkShopMenu.tscn
+res://Content/Scenes/Interface&Menu/WelcomeToGOS.tscn
 res://Content/Other/BlurShader.gdshader
 res://Content/Other/PixelateShader.gdshader
 res://Content/Other/CRT.gdshader
@@ -7,8 +8,7 @@ res://Content/Other/BrightnessShader.gdshader
 res://Content/Other/StaticNoiseShader.gdshader
 res://Content/Other/SaturationShader.gdshader
 res://Content/Other/PostProcessing.gdshader
-res://Content/Scenes/Interface&Menu/WelcomeToGOS.tscn
-res://Content/Scenes/Other/LevelLayout.tscn
+res://Content/Scenes/Interface&Menu/ModButton.tscn
 res://Content/Other/G.cs
 res://Content/Other/Meta.cs
 res://Content/Other/UnchangableMeta.cs
@@ -29,10 +29,12 @@ res://Content/Scripts/Interface&Menu/AchievementsMenu.cs
 res://Content/Scripts/Interface&Menu/Button.cs
 res://Content/Scripts/Interface&Menu/FinalLetter.cs
 res://Content/Scripts/Interface&Menu/InitializationScene.cs
+res://Content/Scripts/Interface&Menu/LevelEditor.cs
 res://Content/Scripts/Interface&Menu/LevelsMenu.cs
 res://Content/Scripts/Interface&Menu/OptionsMenu.cs
 res://Content/Scripts/Interface&Menu/RecycleBinMenu.cs
 res://Content/Scripts/Interface&Menu/ScrollableContainer.cs
+res://Content/Scripts/Interface&Menu/ScrollableRichTextLabel.cs
 res://Content/Scripts/Interface&Menu/SkinsMenu.cs
 res://Content/Scripts/Interface&Menu/Titles.cs
 res://Content/Scripts/Interface&Menu/TurnOffMenu.cs
@@ -83,5 +85,6 @@ res://Content/Scripts/Other/Player.cs
 res://Content/Scripts/Other/PostProcessingRect.cs
 res://Content/Scripts/Other/SkinScript.cs
 res://Content/Scripts/Other/SlippeyChadCorpseMotionMultiplierCrutch.cs
-res://Content/Scenes/Interface&Menu/ModButton.tscn
-res://Content/Scripts/Interface&Menu/ScrollableRichTextLabel.cs
+res://Content/Scenes/Interface&Menu/WorkShopMenu.tscn
+res://Content/Scenes/Interface&Menu/LevelEditor.tscn
+res://Content/Scenes/Other/UserLevelLayout.tscn

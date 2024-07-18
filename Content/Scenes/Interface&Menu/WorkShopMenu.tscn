@@ -60,11 +60,10 @@ offset_bottom = 496.0
 [node name="ModsScrollVBoxContainer" type="VBoxContainer" parent="ModsScrollContainer"]
 layout_mode = 2
 
-[node name="Button" parent="ModsScrollContainer/ModsScrollVBoxContainer" instance=ExtResource("3_ujc5x")]
+[node name="DefaultMod" parent="ModsScrollContainer/ModsScrollVBoxContainer" instance=ExtResource("3_ujc5x")]
 layout_mode = 2
 
-[node name="Name" parent="ModsScrollContainer/ModsScrollVBoxContainer/Button" index="4"]
-layout_mode = 0
+[node name="Name" parent="ModsScrollContainer/ModsScrollVBoxContainer/DefaultMod" index="4"]
 offset_top = 0.0
 offset_bottom = 48.0
 text = "Default_2.7.3"
@@ -139,4 +138,6 @@ libraries = {
 "": SubResource("AnimationLibrary_u8saj")
 }
 
-[editable path="ModsScrollContainer/ModsScrollVBoxContainer/Button"]
+[connection signal="pressed" from="OpenInEditorButton" to="." method="OpenInEditor" flags=6]
+
+[editable path="ModsScrollContainer/ModsScrollVBoxContainer/DefaultMod"]

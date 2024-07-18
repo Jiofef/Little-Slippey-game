@@ -7,7 +7,8 @@ public partial class WorkshopMenu : Control
 {
     private readonly string _defaultPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData) + @"\Godot\app_userdata\Little Slippey\mods\";
     private Dictionary[] _modsInfo;
-    private int _selectedMod;
+    private int _selectedMod = -1;
+    private TextureButton _selectedModButton;
     public override void _Ready()
     {
         GetViewport().GuiFocusChanged += GuiFocusChanged => WhenFocusChanged(GuiFocusChanged);
@@ -34,34 +35,43 @@ public partial class WorkshopMenu : Control
                 
                 int crutch = i; //For some fucking reason, if you put i in the function, then it will send the PRESENT value of i from the cycle (for example 3 if there is 2 mods). From a cycle that has long passed at the time of sending the signal. I'm in a awe.
                 ModButton.FocusEntered += () => ShowModInfo(crutch);
-                ModButton.FocusExited += () => SelectMod(crutch);
-                ModButton.Pressed += () => SelectMod(crutch);
+                ModButton.Pressed += () => SelectMod(crutch, ModButton);
                 GetNode("ModsScrollContainer/ModsScrollVBoxContainer").AddChild(ModButton);
             }
         }
+        var defaultModButton = GetNode<TextureButton>("ModsScrollContainer/ModsScrollVBoxContainer/DefaultMod");
+        defaultModButton.FocusEntered += () => ShowDefaultModInfo();
+        defaultModButton.Pressed += () => SelectMod(-1, defaultModButton);
     }
-
-    public void ShowModInfo(int index)
+    private void ShowDefaultModInfo()
+    {
+        GetNode<RichTextLabel>("ModDescription/Description").Text = "Core. DON'T DISABLE IT.";
+    }
+    private void ShowModInfo(int index)
     {
         GetNode<RichTextLabel>("ModDescription/Description").Text = _modsInfo[index]["description"].ToString();
     }
-    public void SelectMod(int index)
+    private void SelectMod(int index, TextureButton button)
     {
+        if (_selectedModButton != null)
+            _selectedModButton.GetNode<ColorRect>("SelectRect").Visible = false;
+        _selectedModButton = button;
         _selectedMod = index;
-        GetNode<ColorRect>("ModsScrollContainer/ModsScrollVBoxContainer/Button" + (_selectedMod + 2) + "/SelectRect").Visible = true;
-    }
-    public void WhenFocusExited(Control node)
-    {
-        if (node.GetParentOrNull<Node>() != null && node.GetParent().Name == "ModsScrollVBoxContainer")
-        {
-            node.GetNode<ColorRect>("SelectRect").Visible = false;
-        }
+        button.GetNode<ColorRect>("SelectRect").Visible = true;
     }
     private void WhenFocusChanged(Control node)
     {
         if (node.GetParentOrNull<Node>() != null && node.GetParent().Name != "ModsScrollVBoxContainer")
         {
-            ShowModInfo(_selectedMod);
+            if (_selectedMod == -1)
+                ShowDefaultModInfo();
+            else
+                ShowModInfo(_selectedMod);
         }
+    }
+
+    public void OpenInEditor()
+    {
+        GetTree().ChangeSceneToFile("res://Content/Scenes/Interface&Menu/LevelEditor.tscn");
     }
 }
