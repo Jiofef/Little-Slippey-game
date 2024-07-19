@@ -9,11 +9,13 @@ public partial class WorkshopMenu : Control
     private Dictionary[] _modsInfo;
     private int _selectedMod = -1;
     private TextureButton _selectedModButton;
+    private Control _lastFocusOwner;
     public override void _Ready()
     {
-        GetViewport().GuiFocusChanged += GuiFocusChanged => WhenFocusChanged(GuiFocusChanged);
         string[] Directories = Directory.GetDirectories(_defaultPath);
         _modsInfo = new Dictionary[Directories.Length];
+        _lastFocusOwner = GetViewport().GuiGetFocusOwner();
+        _selectedModButton = GetNode<TextureButton>("ModsScrollContainer/ModsScrollVBoxContainer/DefaultMod");
 
         Dictionary ModTypeIcons = new Dictionary
         {
@@ -42,6 +44,14 @@ public partial class WorkshopMenu : Control
         var defaultModButton = GetNode<TextureButton>("ModsScrollContainer/ModsScrollVBoxContainer/DefaultMod");
         defaultModButton.FocusEntered += () => ShowDefaultModInfo();
         defaultModButton.Pressed += () => SelectMod(-1, defaultModButton);
+    }
+    public override void _PhysicsProcess(double delta)
+    {
+        if (GetViewport().GuiGetFocusOwner() != _lastFocusOwner)
+        {
+            _lastFocusOwner = GetViewport().GuiGetFocusOwner();
+            WhenFocusChanged(_lastFocusOwner);
+        }
     }
     private void ShowDefaultModInfo()
     {

@@ -63,6 +63,9 @@ layout_mode = 2
 [node name="DefaultMod" parent="ModsScrollContainer/ModsScrollVBoxContainer" instance=ExtResource("3_ujc5x")]
 layout_mode = 2
 
+[node name="SelectRect" parent="ModsScrollContainer/ModsScrollVBoxContainer/DefaultMod" index="0"]
+visible = true
+
 [node name="Name" parent="ModsScrollContainer/ModsScrollVBoxContainer/DefaultMod" index="4"]
 offset_top = 0.0
 offset_bottom = 48.0

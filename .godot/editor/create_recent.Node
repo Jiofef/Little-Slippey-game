@@ -1,15 +1,15 @@
+VBoxContainer
+TextureButton
 Button
 CanvasLayer
 HBoxContainer
 ScrollContainer
 ColorRect
-TextureButton
 Control
 Camera2D
 TileMap
 Sprite2D
 RichTextLabel
-VBoxContainer
 VScrollBar
 VisibleOnScreenNotifier2D
 Label
