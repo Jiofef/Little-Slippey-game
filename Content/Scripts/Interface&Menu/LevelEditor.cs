@@ -1,41 +1,38 @@
 using Godot;
 using System;
-using System.Reflection;
+using System.Linq;
 
 public partial class LevelEditor : Control
 {
+	private bool _isMiddleButtonPressed = false;
 	Node2D _level;
-	TileMap _selectedTileMap, _previousChangedGUITileMap;
 	Camera2D _camera;
-	private Vector2I _selectedTile = new Vector2I(0, 0);
-	private int _selectedAtlas = 0, _selectedAlternativeTile = 0;
+    Godot.Collections.Array<Node> _allTheNodes = new Godot.Collections.Array<Node>();
+
 	public override void _Ready()
 	{
 		G.IsLevelVanilla = false;
 		_level = (Node2D)ResourceLoader.Load<PackedScene>("res://Content/Scenes/Other/UserLevelLayout.tscn").Instantiate();
 		_level.ProcessMode = ProcessModeEnum.Disabled;
 		_level.GetNode("Level").ProcessMode = ProcessModeEnum.Disabled;
-		AddChild(_level);
+		GetNode("LevelContainer").AddChild(_level);
 		_selectedTileMap = _level.GetNode<TileMap>("Level/TileMap");
 		_camera = GetNode<Camera2D>("Camera2D");
 		_level.GetNode<CanvasLayer>("EpicIntro").Visible = false;
-		UpdateVisibleTileSet();
-		UpdateVisibleAtlases();	
-	}
+		_assistiveTileMap = GetNode<TileMap>("AssistiveTileMap");
+        _erasingAssistiveTileMap = GetNode<TileMap>("ErasingAssistiveTileMap");
+        UpdateVisibleTileMapsLayers();
+        UpdateVisibleAtlases();
+        UpdateVisibleTileSet();
+        UpdateVisibleTileMaps();
+		_assistiveTileMap.TileSet = _selectedTileMap.TileSet;
+    }
 
 	public override void _PhysicsProcess(double delta)
 	{
 		Vector2 MousePos = GetGlobalMousePosition();
-		Vector2I SelectedTilePos = (Vector2I)MousePos / 64 + new Vector2I(MousePos.X < 0 ? -1 : 0, MousePos.Y < 0 ? -1 : 0);
-		var placeTileButton = GetNode<TextureButton>("CanvasLayer/Control/PlaceTileButton");
-
-		if (placeTileButton.ButtonPressed)
-		{
-            if (Input.IsMouseButtonPressed(MouseButton.Left))
-                _selectedTileMap.SetCell(0, SelectedTilePos, _selectedAtlas, _selectedTile, _selectedAlternativeTile);
-            else if (Input.IsMouseButtonPressed(MouseButton.Right))
-                _selectedTileMap.SetCell(0, SelectedTilePos, _selectedAtlas, new Vector2I(-1, -1));
-        }
+		Vector2I SelectedTilePos = new Vector2I((int)(MousePos.X / (16 * _selectedTileMap.Scale.X)),(int)(MousePos.Y / (16 * _selectedTileMap.Scale.Y))) + new Vector2I(MousePos.X < 0 ? -1 : 0, MousePos.Y < 0 ? -1 : 0);
+		var placeTileButton = GetNode<TextureButton>("CanvasLayer/TileModeGUI/PlaceTileButton");
 
 		if (Input.IsActionJustPressed("MouseWheelScrollUp"))
 			SetSelectedTile(_selectedTile.X + _selectedTile.Y * GetCurrentAtlas().GetAtlasGridSize().X + 1);
@@ -45,21 +42,116 @@ public partial class LevelEditor : Control
         _camera.Position += new Vector2(
 			Input.GetActionStrength("ui_right") - Input.GetActionStrength("ui_left"), 
 			Input.GetActionStrength("ui_down") - Input.GetActionStrength("ui_up"))
-			* (Input.IsKeyPressed(Key.Shift) ? 30 : 15);
+			* (Input.IsKeyPressed(Key.Shift) ? 30 : 15
+			);
+		if (Input.IsMouseButtonPressed(MouseButton.Middle))
+		{
+			if (!_isMiddleButtonPressed)
+			{
+                SetSelectedTile(_previousTileIndex);
+				_isMiddleButtonPressed = true;
+            }
+        }
+		else
+		_isMiddleButtonPressed = false;
 
+		{
+            _assistiveTileMap.Clear();
+            _erasingAssistiveTileMap.Clear();
+			if (Input.IsMouseButtonPressed(MouseButton.Right))
+				_erasingAssistiveTileMap.SetCell(0, SelectedTilePos, 0, Vector2I.Zero);
+			else
+				_assistiveTileMap.SetCell(0, SelectedTilePos, _selectedAtlas, _selectedTile, _selectedAlternativeTile);
+
+            _lastFrameMousePointedTile = SelectedTilePos;
+		}
+
+		switch (_tileInstrument)
+		{
+			case TileInstrument.Brush:
+                if (placeTileButton.ButtonPressed)
+                {
+                    if (Input.IsMouseButtonPressed(MouseButton.Left))
+                        _selectedTileMap.SetCell(_selectedLayer, SelectedTilePos, _selectedAtlas, _selectedTile, _selectedAlternativeTile);
+                    else if (Input.IsMouseButtonPressed(MouseButton.Right))
+                        _selectedTileMap.SetCell(_selectedLayer, SelectedTilePos, _selectedAtlas, new Vector2I(-1, -1));
+                }
+                break;
+
+			case TileInstrument.Rectangle:
+                Rect2I GetBlockRect()
+                {
+                    Rect2I BlockRect = new Rect2I();
+                    BlockRect = _tileRect;
+                    BlockRect.Position = new Vector2I(BlockRect.Size.X > 0 ? BlockRect.Position.X : BlockRect.Position.X + BlockRect.Size.X, BlockRect.Size.Y > 0 ? BlockRect.Position.Y : BlockRect.Position.Y + BlockRect.Size.Y);
+                    BlockRect.Size = new Vector2I(Math.Abs(BlockRect.Size.X), Math.Abs(BlockRect.Size.Y));
+                    return BlockRect;
+                }
+                if (placeTileButton.ButtonPressed)
+				{
+                    if (!_isRectStarted)
+					{
+						_isRectStarted = true;
+                        _tileRect.Position = SelectedTilePos;
+						_isRectErasing = Input.IsMouseButtonPressed(MouseButton.Right);
+                    }
+					_tileRect.Size = SelectedTilePos - _tileRect.Position;
+					Rect2I BlockRect = GetBlockRect();
+					for (int i = 0; i < BlockRect.Size.Y + 1; i++)
+						for (int  j = 0; j < BlockRect.Size.X + 1; j++)
+						{
+							if (!_isRectErasing)
+								_assistiveTileMap.SetCell(0, BlockRect.Position + new Vector2I(j, i), _selectedAtlas, _selectedTile, _selectedAlternativeTile);
+							else
+								_erasingAssistiveTileMap.SetCell(0, BlockRect.Position + new Vector2I(j, i), 0, Vector2I.Zero);
+                        }
+				}
+				else if (_isRectStarted)
+				{
+					_isRectStarted = false;
+
+                    Rect2I BlockRect = GetBlockRect();
+                    for (int i = 0; i < BlockRect.Size.Y + 1; i++)
+                        for (int j = 0; j < BlockRect.Size.X + 1; j++)
+                            _selectedTileMap.SetCell(_selectedLayer, BlockRect.Position + new Vector2I(j, i), _selectedAtlas, _isRectErasing ? new Vector2I(-1, -1) : _selectedTile, _selectedAlternativeTile);
+
+                    _tileRect = new Rect2I();
+				}
+			break;
+
+			case TileInstrument.Filling:
+				
+			break;
+		}
     }
-	public void SetSelectedTile(int index)
+
+
+    // TileMode Section
+
+    TileMap _selectedTileMap, _previousChangedGUITileMap, _assistiveTileMap, _erasingAssistiveTileMap;
+    private Vector2I _selectedTile = new Vector2I(0, 0), _lastFrameMousePointedTile = new Vector2I(0, 0);
+    private int _selectedLayer = 0, _selectedAtlas = 0, _selectedAlternativeTile = 0, _previousTileIndex = 0;
+    Godot.Collections.Array<TileMap> _allTheTileMaps = new Godot.Collections.Array<TileMap>();
+	enum TileInstrument {Brush, Rectangle, Filling}
+	TileInstrument _tileInstrument = TileInstrument.Brush;
+	Rect2I _tileRect = new Rect2I();
+	private bool _isRectStarted = false, _isRectErasing = false;
+    public void SetSelectedTile(int index)
 	{
+		if (_previousTileIndex != index && _previousChangedGUITileMap != null)
+            _previousChangedGUITileMap.SetCell(0, new Vector2I(0, 0), _selectedAtlas, _selectedTile, 0);
+		_previousTileIndex = index;
+
 		Vector2I PreviousSelectedTile = _selectedTile;
 
-		Vector2I AtlasSize = ((TileSetAtlasSource) _selectedTileMap.TileSet.GetSource(_selectedAtlas)).GetAtlasGridSize();
+		Vector2I AtlasSize = GetCurrentAtlas().GetAtlasGridSize();
 		if (index >= 0 && index < AtlasSize.X * AtlasSize.Y)
         _selectedTile.Y = Math.DivRem(index, AtlasSize.X, out _selectedTile.X);
 
 		if (PreviousSelectedTile == _selectedTile)
 			_selectedAlternativeTile = _selectedAlternativeTile + 1 < GetCurrentAtlas().GetAlternativeTilesCount(_selectedTile) ? _selectedAlternativeTile + 1 : 0;
 		else _selectedAlternativeTile = 0;
-
+		_assistiveTileMap.TileSet = _selectedTileMap.TileSet;
     }
 	public void SetSelectedAtlas(int index)
 	{
@@ -69,9 +161,23 @@ public partial class LevelEditor : Control
             UpdateVisibleTileSet();
         }
 	}
+	public void SetSelectedTileMap(int index)
+	{
+		_selectedLayer = 0;
+        _selectedTileMap = _allTheTileMaps[index];
+        UpdateVisibleTileMapsLayers();
+		UpdateVisibleAtlases();
+		UpdateVisibleTileSet();
+        _assistiveTileMap.TileSet = _selectedTileMap.TileSet;
+	}
+	public void SetTileInstrument(int index)
+	{
+		_tileInstrument = (TileInstrument)index;
+	}
 	public void UpdateVisibleTileSet()
 	{
-		var tileButtonsContainer = GetNode("CanvasLayer/Control/TileButtonsContainer/HBoxContainer");
+		_previousChangedGUITileMap = null;
+		var tileButtonsContainer = GetNode("CanvasLayer/TileModeGUI/TileButtonsContainer/HBoxContainer");
 		var tileButtonsContainerChildren = tileButtonsContainer.GetChildren();
         for (int i = 0; i < tileButtonsContainerChildren.Count; i++)
 			tileButtonsContainerChildren[i].QueueFree();
@@ -82,22 +188,18 @@ public partial class LevelEditor : Control
 		ButtonGroup buttonGroup = new ButtonGroup();
 		for (int i = 0; i < AtlasSize.X * AtlasSize.Y; i++)
         {
-			Vector2I TileCoords = new Vector2I(i % AtlasSize.X, (i - i % AtlasSize.X) / AtlasSize.Y);
-
+			Vector2I TileCoords;
+			TileCoords.Y = Math.DivRem(i, AtlasSize.X, out TileCoords.X);
             if (GetCurrentAtlas().HasTile(TileCoords))
 			{
-                var button = new Godot.Button();
-                button.CustomMinimumSize = new Vector2(32, 32);
+				var button = MakeAButton(new Vector2(32, 32), buttonGroup);
                 int crutch = i;
                 button.Pressed += () => SetSelectedTile(crutch);
-				button.ToggleMode = true;
-                button.ButtonGroup = buttonGroup;
-				button.FocusMode = FocusModeEnum.None;
 
-				var tileMap = new TileMap();
+                var tileMap = new TileMap();
 				tileMap.TileSet = _selectedTileMap.TileSet;
 				tileMap.SetCell(0, new Vector2I(0, 0), _selectedAtlas, TileCoords);
-				button.Pressed += () => UpdateAlternativeTileInGUI(tileMap);
+				button.Pressed += () => UpdateAlternativeTileInGUI(tileMap, _selectedAlternativeTile);
 				tileMap.Position = new Vector2(8, 8);
 				button.AddChild(tileMap);
 
@@ -107,12 +209,12 @@ public partial class LevelEditor : Control
                     button.ButtonPressed = true;
             }
 		}
-
-
+		if (_previousTileIndex != 0)
+			SetSelectedTile(0);
     }
 	public void UpdateVisibleAtlases()
 	{
-		var atlasButtonsContainer = GetNode("CanvasLayer/Control/AtlasButtonsContainer/VBoxContainer");
+		var atlasButtonsContainer = GetNode("CanvasLayer/TileModeGUI/AtlasButtonsContainer/VBoxContainer");
 		var AtlasButtonsContainerChildren = atlasButtonsContainer.GetChildren();
 		for (int i = 0; i < AtlasButtonsContainerChildren.Count; i++)
 			AtlasButtonsContainerChildren[i].QueueFree();
@@ -123,14 +225,11 @@ public partial class LevelEditor : Control
 		ButtonGroup buttonGroup = new ButtonGroup();
 		for (int i = 0; i < AtlasesCount; i++)
 		{
-			var button = new Godot.Button();
-			button.CustomMinimumSize = new Vector2(32, 32);
-			int crutch = i;
-			button.Pressed += () => SetSelectedAtlas(crutch);
-			button.ButtonGroup = buttonGroup;
-			button.ToggleMode = true;
-			button.FocusMode = FocusModeEnum.None;
-			var sprite = new Sprite2D();
+            var button = MakeAButton(new Vector2(32, 32), buttonGroup);
+            int crutch = i;
+            button.Pressed += () => SetSelectedAtlas(crutch);
+
+            var sprite = new Sprite2D();
 			sprite.Texture = ((TileSetAtlasSource)_selectedTileMap.TileSet.GetSource(i)).Texture;
 			sprite.RegionEnabled = true;
 			sprite.RegionRect = new Rect2(0, 0, 16, 16);
@@ -142,16 +241,92 @@ public partial class LevelEditor : Control
 				button.ButtonPressed = true;
 		}
 	}
-
-	private TileSetAtlasSource GetCurrentAtlas()
+	public void UpdateVisibleTileMaps()
 	{
-		return (TileSetAtlasSource)_selectedTileMap.TileSet.GetSource(_selectedAtlas);
+        var TileMapsButtonsContainer = GetNode("CanvasLayer/TileModeGUI/TileMapsButtonsContainer/VBoxContainer");
+        var TileMapsButtonsContainerChildren = TileMapsButtonsContainer.GetChildren();
+        for (int i = 0; i < TileMapsButtonsContainerChildren.Count; i++)
+            TileMapsButtonsContainerChildren[i].QueueFree();
+
+		UpdateAllTheTileMaps();
+
+        ButtonGroup buttonGroup = new ButtonGroup();
+        for (int i = 0; i < _allTheTileMaps.Count; i++)
+        {
+            var button = MakeAButton(new Vector2(32, 32), buttonGroup);
+            int crutch = i;
+            button.Pressed += () => SetSelectedTileMap(crutch);
+
+            TileMapsButtonsContainer.AddChild(button);
+
+            if (i == 0)
+                button.ButtonPressed = true;
+        }
     }
-	private void UpdateAlternativeTileInGUI(TileMap tileMap)
+	public void UpdateVisibleTileMapsLayers()
+	{
+        var TileMapsLayersContainer = GetNode("CanvasLayer/TileModeGUI/TileMapsLayersContainer/VBoxContainer");
+        var TileMapsLayersContainerChildren = TileMapsLayersContainer.GetChildren();
+        for (int i = 0; i < TileMapsLayersContainerChildren.Count; i++)
+            TileMapsLayersContainerChildren[i].QueueFree();
+
+		int LayersCount = _selectedTileMap.GetLayersCount();
+
+        ButtonGroup buttonGroup = new ButtonGroup();
+        for (int i = 0; i < LayersCount; i++)
+		{
+            var button = MakeAButton(new Vector2(16, 16), buttonGroup);
+			int crutch = i;
+			button.Pressed += () => _selectedLayer = crutch;
+
+            TileMapsLayersContainer.AddChild(button);
+
+			if (i == 0)
+				button.ButtonPressed = true;
+        }
+    }
+	private void UpdateAlternativeTileInGUI(TileMap tileMap, int alternativeTileIndex)
 	{
 		_previousChangedGUITileMap = tileMap;
         Vector2I AtlasSize = GetCurrentAtlas().GetAtlasGridSize();
-        tileMap.SetCell(0, new Vector2I(0, 0), _selectedAtlas, _selectedTile, _selectedAlternativeTile);
+        tileMap.SetCell(0, new Vector2I(0, 0), _selectedAtlas, _selectedTile, alternativeTileIndex);
     }
+	private void UpdateAllNodesArray()
+	{
+		void Recursion(Node rootNode)
+		{
+            foreach (Node node in rootNode.GetChildren())
+            {
+                _allTheNodes.Add(node);
+                Recursion(node);
+            }
+        }
+		_allTheNodes.Clear();
+		Recursion(_level);
+    }
+	private void UpdateAllTheTileMaps()
+	{
+		UpdateAllNodesArray();
+		_allTheTileMaps.Clear();
+        foreach (Node node in _allTheNodes)
+        {
+            if (node is TileMap)
+                _allTheTileMaps.Add((TileMap)node);
+        }
+    }
+    private TileSetAtlasSource GetCurrentAtlas()
+    {
+        return (TileSetAtlasSource)_selectedTileMap.TileSet.GetSource(_selectedAtlas);
+    }
+    private Godot.Button MakeAButton(Vector2 minimumSize = new Vector2(), ButtonGroup buttonGroup = null)
+	{
+        Godot.Button button = new Godot.Button();
+        button.CustomMinimumSize = minimumSize;
+        button.ToggleMode = true;
+		if (buttonGroup != null)
+			button.ButtonGroup = buttonGroup;
+        button.FocusMode = FocusModeEnum.None;
 
+		return button;
+    }
 }

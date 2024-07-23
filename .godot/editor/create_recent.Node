@@ -1,13 +1,14 @@
+Node2D
+Button
+TileMap
 VBoxContainer
 TextureButton
-Button
 CanvasLayer
 HBoxContainer
 ScrollContainer
 ColorRect
 Control
 Camera2D
-TileMap
 Sprite2D
 RichTextLabel
 VScrollBar
@@ -23,7 +24,6 @@ CollisionShape2D
 Area2D
 Node
 AudioStreamPlayer2D
-Node2D
 CollisionPolygon2D
 LightOccluder2D
 PointLight2D
