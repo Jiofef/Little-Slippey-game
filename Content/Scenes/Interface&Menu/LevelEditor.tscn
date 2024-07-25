@@ -106,6 +106,7 @@ button_pressed = true
 button_group = SubResource("ButtonGroup_k521p")
 
 [node name="Rectangle" type="Button" parent="CanvasLayer/TileModeGUI"]
+layout_mode = 0
 offset_left = 272.0
 offset_right = 288.0
 offset_bottom = 16.0
@@ -115,6 +116,7 @@ toggle_mode = true
 button_group = SubResource("ButtonGroup_k521p")
 
 [node name="Filling" type="Button" parent="CanvasLayer/TileModeGUI"]
+layout_mode = 0
 offset_left = 336.0
 offset_right = 352.0
 offset_bottom = 16.0
@@ -123,6 +125,28 @@ focus_mode = 0
 toggle_mode = true
 button_group = SubResource("ButtonGroup_k521p")
 
+[node name="SmartFilling" type="Button" parent="CanvasLayer/TileModeGUI"]
+layout_mode = 0
+offset_left = 400.0
+offset_right = 416.0
+offset_bottom = 16.0
+scale = Vector2(4, 4)
+focus_mode = 0
+toggle_mode = true
+button_group = SubResource("ButtonGroup_k521p")
+
+[node name="TileChangeProbability" type="SpinBox" parent="CanvasLayer/TileModeGUI"]
+layout_mode = 0
+offset_left = 468.0
+offset_top = 17.0
+offset_right = 541.438
+offset_bottom = 46.0
+min_value = 1.0
+value = 1.0
+update_on_text_changed = true
+
 [connection signal="pressed" from="CanvasLayer/TileModeGUI/Brush" to="." method="SetTileInstrument" binds= [0]]
 [connection signal="pressed" from="CanvasLayer/TileModeGUI/Rectangle" to="." method="SetTileInstrument" binds= [1]]
 [connection signal="pressed" from="CanvasLayer/TileModeGUI/Filling" to="." method="SetTileInstrument" binds= [2]]
+[connection signal="pressed" from="CanvasLayer/TileModeGUI/SmartFilling" to="." method="SetTileInstrument" binds= [3]]
+[connection signal="value_changed" from="CanvasLayer/TileModeGUI/TileChangeProbability" to="." method="SetTileChangeProbability"]

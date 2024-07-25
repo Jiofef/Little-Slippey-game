@@ -31,14 +31,9 @@ public partial class LevelEditor : Control
 	public override void _PhysicsProcess(double delta)
 	{
 		Vector2 MousePos = GetGlobalMousePosition();
-		Vector2I SelectedTilePos = new Vector2I((int)(MousePos.X / (16 * _selectedTileMap.Scale.X)),(int)(MousePos.Y / (16 * _selectedTileMap.Scale.Y))) + new Vector2I(MousePos.X < 0 ? -1 : 0, MousePos.Y < 0 ? -1 : 0);
+	    _mouseTilePos = new Vector2I((int)(MousePos.X / (16 * _selectedTileMap.Scale.X)),(int)(MousePos.Y / (16 * _selectedTileMap.Scale.Y))) + new Vector2I(MousePos.X < 0 ? -1 : 0, MousePos.Y < 0 ? -1 : 0);
 		var placeTileButton = GetNode<TextureButton>("CanvasLayer/TileModeGUI/PlaceTileButton");
 
-		if (Input.IsActionJustPressed("MouseWheelScrollUp"))
-			SetSelectedTile(_selectedTile.X + _selectedTile.Y * GetCurrentAtlas().GetAtlasGridSize().X + 1);
-
-        if (Input.IsActionJustPressed("MouseWheelScrollDown"))
-            SetSelectedTile(_selectedTile.X + _selectedTile.Y * GetCurrentAtlas().GetAtlasGridSize().X - 1);
         _camera.Position += new Vector2(
 			Input.GetActionStrength("ui_right") - Input.GetActionStrength("ui_left"), 
 			Input.GetActionStrength("ui_down") - Input.GetActionStrength("ui_up"))
@@ -49,90 +44,161 @@ public partial class LevelEditor : Control
 			if (!_isMiddleButtonPressed)
 			{
                 SetSelectedTile(_previousTileIndex);
+				UpdateAlternativeTileInGUI(_previousChangedGUITileMap, _selectedAlternativeTile);
 				_isMiddleButtonPressed = true;
             }
         }
 		else
 		_isMiddleButtonPressed = false;
 
+		if (_mouseLastFrameTilePos != _mouseTilePos || Input.IsActionJustPressed("MouseClick") || Input.IsActionJustReleased("MouseClick"))
 		{
+			_mouseLastFrameTilePos = _mouseTilePos;
             _assistiveTileMap.Clear();
             _erasingAssistiveTileMap.Clear();
-			if (Input.IsMouseButtonPressed(MouseButton.Right))
-				_erasingAssistiveTileMap.SetCell(0, SelectedTilePos, 0, Vector2I.Zero);
+			if (Input.IsMouseButtonPressed(MouseButton.Right) && !Input.IsMouseButtonPressed(MouseButton.Left))
+				_erasingAssistiveTileMap.SetCell(0, _mouseTilePos, 0, Vector2I.Zero);
 			else
-				_assistiveTileMap.SetCell(0, SelectedTilePos, _selectedAtlas, _selectedTile, _selectedAlternativeTile);
-
-            _lastFrameMousePointedTile = SelectedTilePos;
-		}
-
-		switch (_tileInstrument)
-		{
-			case TileInstrument.Brush:
-                if (placeTileButton.ButtonPressed)
-                {
-                    if (Input.IsMouseButtonPressed(MouseButton.Left))
-                        _selectedTileMap.SetCell(_selectedLayer, SelectedTilePos, _selectedAtlas, _selectedTile, _selectedAlternativeTile);
-                    else if (Input.IsMouseButtonPressed(MouseButton.Right))
-                        _selectedTileMap.SetCell(_selectedLayer, SelectedTilePos, _selectedAtlas, new Vector2I(-1, -1));
-                }
-                break;
-
-			case TileInstrument.Rectangle:
-                Rect2I GetBlockRect()
-                {
-                    Rect2I BlockRect = new Rect2I();
-                    BlockRect = _tileRect;
-                    BlockRect.Position = new Vector2I(BlockRect.Size.X > 0 ? BlockRect.Position.X : BlockRect.Position.X + BlockRect.Size.X, BlockRect.Size.Y > 0 ? BlockRect.Position.Y : BlockRect.Position.Y + BlockRect.Size.Y);
-                    BlockRect.Size = new Vector2I(Math.Abs(BlockRect.Size.X), Math.Abs(BlockRect.Size.Y));
-                    return BlockRect;
-                }
-                if (placeTileButton.ButtonPressed)
-				{
-                    if (!_isRectStarted)
-					{
-						_isRectStarted = true;
-                        _tileRect.Position = SelectedTilePos;
-						_isRectErasing = Input.IsMouseButtonPressed(MouseButton.Right);
+				_assistiveTileMap.SetCell(0, _mouseTilePos, _selectedAtlas, _selectedTile, _selectedAlternativeTile);
+            Random random = new Random();
+            switch (_tileInstrument)
+            {
+                case TileInstrument.Brush:
+                    if (placeTileButton.ButtonPressed && random.Next(_tileChangeProbability) == 0)
+                    {
+                        if (Input.IsMouseButtonPressed(MouseButton.Left))
+                            _selectedTileMap.SetCell(_selectedLayer, _mouseTilePos, _selectedAtlas, _selectedTile, _selectedAlternativeTile);
+                        else if (Input.IsMouseButtonPressed(MouseButton.Right))
+                            _selectedTileMap.SetCell(_selectedLayer, _mouseTilePos, _selectedAtlas, new Vector2I(-1, -1));
                     }
-					_tileRect.Size = SelectedTilePos - _tileRect.Position;
-					Rect2I BlockRect = GetBlockRect();
-					for (int i = 0; i < BlockRect.Size.Y + 1; i++)
-						for (int  j = 0; j < BlockRect.Size.X + 1; j++)
-						{
-							if (!_isRectErasing)
-								_assistiveTileMap.SetCell(0, BlockRect.Position + new Vector2I(j, i), _selectedAtlas, _selectedTile, _selectedAlternativeTile);
-							else
-								_erasingAssistiveTileMap.SetCell(0, BlockRect.Position + new Vector2I(j, i), 0, Vector2I.Zero);
+                    break;
+
+                case TileInstrument.Rectangle:
+                    Rect2I GetBlockRect()
+                    {
+                        Rect2I BlockRect = new Rect2I();
+                        BlockRect = _tileRect;
+                        BlockRect.Position = new Vector2I(BlockRect.Size.X > 0 ? BlockRect.Position.X : BlockRect.Position.X + BlockRect.Size.X, BlockRect.Size.Y > 0 ? BlockRect.Position.Y : BlockRect.Position.Y + BlockRect.Size.Y);
+                        BlockRect.Size = new Vector2I(Math.Abs(BlockRect.Size.X), Math.Abs(BlockRect.Size.Y));
+                        return BlockRect;
+                    }
+                    if (placeTileButton.ButtonPressed)
+                    {
+                        if (!_isRectStarted)
+                        {
+                            _isRectStarted = true;
+                            _tileRect.Position = _mouseTilePos;
+                            _isRectErasing = Input.IsMouseButtonPressed(MouseButton.Right);
                         }
-				}
-				else if (_isRectStarted)
-				{
-					_isRectStarted = false;
+                        _tileRect.Size = _mouseTilePos - _tileRect.Position;
+                        Rect2I BlockRect = GetBlockRect();
+                        for (int i = 0; i < BlockRect.Size.Y + 1; i++)
+                            for (int j = 0; j < BlockRect.Size.X + 1; j++)
+                            {
+                                    if (!_isRectErasing)
+                                        _assistiveTileMap.SetCell(0, BlockRect.Position + new Vector2I(j, i), _selectedAtlas, _selectedTile, _selectedAlternativeTile);
+                                    else
+                                        _erasingAssistiveTileMap.SetCell(0, BlockRect.Position + new Vector2I(j, i), 0, Vector2I.Zero);
+                            }
+                    }
+                    else if (_isRectStarted)
+                    {
+                        _isRectStarted = false;
 
-                    Rect2I BlockRect = GetBlockRect();
-                    for (int i = 0; i < BlockRect.Size.Y + 1; i++)
-                        for (int j = 0; j < BlockRect.Size.X + 1; j++)
-                            _selectedTileMap.SetCell(_selectedLayer, BlockRect.Position + new Vector2I(j, i), _selectedAtlas, _isRectErasing ? new Vector2I(-1, -1) : _selectedTile, _selectedAlternativeTile);
+                        Rect2I BlockRect = GetBlockRect();
+                        for (int i = 0; i < BlockRect.Size.Y + 1; i++)
+                            for (int j = 0; j < BlockRect.Size.X + 1; j++)
+                                if (random.Next(_tileChangeProbability) == 0)
+                                    _selectedTileMap.SetCell(_selectedLayer, BlockRect.Position + new Vector2I(j, i), _selectedAtlas, _isRectErasing ? new Vector2I(-1, -1) : _selectedTile, _selectedAlternativeTile);
 
-                    _tileRect = new Rect2I();
-				}
-			break;
+                        _isRectErasing = false;
+                        _tileRect = new Rect2I();
+                    }
+                    break;
 
-			case TileInstrument.Filling:
-				
-			break;
-		}
+                case TileInstrument.Filling:
+                    {
+                        Rect2I UsedRect = _selectedTileMap.GetUsedRect();
+
+                        Vector2I SelectedCellAtlasPos = _selectedTileMap.GetCellAtlasCoords(_selectedLayer, _mouseTilePos);
+                        int SelectedCellAltTile = _selectedTileMap.GetCellAlternativeTile(_selectedLayer, _mouseTilePos);
+
+                        Vector2I TilePos;
+                        if (_mouseTilePos.X >= UsedRect.Position.X && _mouseTilePos.X < UsedRect.Position.X + UsedRect.Size.X && _mouseTilePos.Y >= UsedRect.Position.Y && _mouseTilePos.Y < UsedRect.Position.Y + UsedRect.Size.Y)
+                        {
+                            if (placeTileButton.ButtonPressed && Input.IsActionJustPressed("MouseClick"))
+                            {
+                                bool IsFillingErasing = Input.IsActionJustPressed("MouseClick") && Input.IsMouseButtonPressed(MouseButton.Right) && !Input.IsMouseButtonPressed(MouseButton.Left);
+                                for (int i = 0; i < UsedRect.Size.Y; i++)
+                                    for (int j = 0; j < UsedRect.Size.X; j++)
+                                    {
+                                        TilePos = UsedRect.Position + new Vector2I(j, i);
+                                        if (random.Next(_tileChangeProbability) == 0)
+                                        if (_selectedTileMap.GetCellAtlasCoords(_selectedLayer, TilePos) == SelectedCellAtlasPos && _selectedTileMap.GetCellAlternativeTile(_selectedLayer, TilePos) == SelectedCellAltTile)
+                                            _selectedTileMap.SetCell(_selectedLayer, TilePos, _selectedAtlas, IsFillingErasing ? new Vector2I(-1, -1) : _selectedTile, _selectedAlternativeTile);
+                                    }
+                            }
+                            else
+                            {
+                                for (int i = 0; i < UsedRect.Size.Y; i++)
+                                    for (int j = 0; j < UsedRect.Size.X; j++)
+                                    {
+                                        TilePos = UsedRect.Position + new Vector2I(j, i);
+                                        if (_selectedTileMap.GetCellAtlasCoords(_selectedLayer, TilePos) == SelectedCellAtlasPos && _selectedTileMap.GetCellAlternativeTile(_selectedLayer, TilePos) == SelectedCellAltTile)
+                                            _assistiveTileMap.SetCell(0, TilePos, _selectedAtlas, _selectedTile, _selectedAlternativeTile);
+                                    }
+                            }
+                        }
+                    }
+                    break;
+                case TileInstrument.SmartFilling:
+                    //YEAH TELL EVERYONE HOW JIOFEF DUPLICATES THE CODE PIECES, I KNOW YOU WANT TO
+                    {
+                        Rect2I UsedRect = _selectedTileMap.GetUsedRect();
+
+                        Vector2I SelectedCellAtlasPos = _selectedTileMap.GetCellAtlasCoords(_selectedLayer, _mouseTilePos);
+                        int SelectedCellAltTile = _selectedTileMap.GetCellAlternativeTile(_selectedLayer, _mouseTilePos);
+
+                        Vector2I TilePos;
+                        if (_mouseTilePos.X >= UsedRect.Position.X && _mouseTilePos.X < UsedRect.Position.X + UsedRect.Size.X && _mouseTilePos.Y >= UsedRect.Position.Y && _mouseTilePos.Y < UsedRect.Position.Y + UsedRect.Size.Y)
+                        {
+                            if (placeTileButton.ButtonPressed && Input.IsActionJustPressed("MouseClick"))
+                            {
+                                bool IsFillingErasing = Input.IsActionJustPressed("MouseClick") && Input.IsMouseButtonPressed(MouseButton.Right) && !Input.IsMouseButtonPressed(MouseButton.Left);
+                                for (int i = 0; i < UsedRect.Size.Y; i++)
+                                    for (int j = 0; j < UsedRect.Size.X; j++)
+                                    {
+                                        TilePos = UsedRect.Position + new Vector2I(j, i);
+                                        if (random.Next(_tileChangeProbability) == 0)
+                                        if (_selectedTileMap.GetCellAtlasCoords(_selectedLayer, TilePos) == SelectedCellAtlasPos && _selectedTileMap.GetCellAlternativeTile(_selectedLayer, TilePos) == SelectedCellAltTile)
+                                            _selectedTileMap.SetCell(_selectedLayer, TilePos, _selectedAtlas, IsFillingErasing ? new Vector2I(-1, -1) : _selectedTile, _selectedAlternativeTile);
+                                    }
+                            }
+                            else
+                            {
+                                for (int i = 0; i < UsedRect.Size.Y; i++)
+                                    for (int j = 0; j < UsedRect.Size.X; j++)
+                                    {
+                                        TilePos = UsedRect.Position + new Vector2I(j, i);
+                                        if (_selectedTileMap.GetCellAtlasCoords(_selectedLayer, TilePos) == SelectedCellAtlasPos && _selectedTileMap.GetCellAlternativeTile(_selectedLayer, TilePos) == SelectedCellAltTile)
+                                            _assistiveTileMap.SetCell(0, TilePos, _selectedAtlas, _selectedTile, _selectedAlternativeTile);
+                                    }
+                            }
+                        }
+                    }
+                    break;
+            }
+        }
     }
 
 
     // TileMode Section
 
     TileMap _selectedTileMap, _previousChangedGUITileMap, _assistiveTileMap, _erasingAssistiveTileMap;
-    private Vector2I _selectedTile = new Vector2I(0, 0), _lastFrameMousePointedTile = new Vector2I(0, 0);
-    private int _selectedLayer = 0, _selectedAtlas = 0, _selectedAlternativeTile = 0, _previousTileIndex = 0;
+    private Vector2I _selectedTile = new Vector2I(0, 0), _mouseTilePos, _mouseLastFrameTilePos;
+    private int _selectedLayer = 0, _selectedAtlas = 0, _selectedAlternativeTile = 0, _previousTileIndex = 0, _tileChangeProbability = 1;
     Godot.Collections.Array<TileMap> _allTheTileMaps = new Godot.Collections.Array<TileMap>();
-	enum TileInstrument {Brush, Rectangle, Filling}
+	enum TileInstrument {Brush, Rectangle, Filling, SmartFilling}
 	TileInstrument _tileInstrument = TileInstrument.Brush;
 	Rect2I _tileRect = new Rect2I();
 	private bool _isRectStarted = false, _isRectErasing = false;
@@ -174,8 +240,13 @@ public partial class LevelEditor : Control
 	{
 		_tileInstrument = (TileInstrument)index;
 	}
+    public void SetTileChangeProbability(int value)
+    {
+        _tileChangeProbability = value;
+    }
 	public void UpdateVisibleTileSet()
 	{
+        _selectedTile = new Vector2I(0, 0);
 		_previousChangedGUITileMap = null;
 		var tileButtonsContainer = GetNode("CanvasLayer/TileModeGUI/TileButtonsContainer/HBoxContainer");
 		var tileButtonsContainerChildren = tileButtonsContainer.GetChildren();
@@ -206,11 +277,16 @@ public partial class LevelEditor : Control
                 tileButtonsContainer.AddChild(button);
 
                 if (i == 0)
+				{
+					_previousChangedGUITileMap = tileMap;
+					UpdateAlternativeTileInGUI(tileMap, _selectedAlternativeTile);
                     button.ButtonPressed = true;
+                }
             }
 		}
 		if (_previousTileIndex != 0)
 			SetSelectedTile(0);
+        _selectedAlternativeTile = 0;
     }
 	public void UpdateVisibleAtlases()
 	{
