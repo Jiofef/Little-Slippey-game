@@ -1,4 +1,4 @@
-[gd_scene load_steps=75 format=3 uid="uid://ugapo2ny55bq"]
+[gd_scene load_steps=76 format=3 uid="uid://ugapo2ny55bq"]
 
 [ext_resource type="Script" path="res://Content/Scripts/Other/MainScript.cs" id="1_q56u5"]
 [ext_resource type="Script" path="res://Content/Scripts/Other/LevelMusicPlayer.cs" id="2_6ioiu"]
@@ -26,6 +26,7 @@
 [ext_resource type="AudioStream" uid="uid://cuvkdo1lyvynu" path="res://Content/Sounds/Other/EpicIntro.mp3" id="13_p6f8a"]
 [ext_resource type="Texture2D" uid="uid://kcd1m7tkh45l" path="res://Content/Sprites/Levels/NePeretrudilsyaTileset.png" id="14_c2p12"]
 [ext_resource type="Texture2D" uid="uid://b1dppreruk7js" path="res://Content/Sprites/Levels/poliSiSagEtilEseT.png" id="15_xjndr"]
+[ext_resource type="PackedScene" uid="uid://dlscufxb5f1ca" path="res://Content/Scenes/Other/Player.tscn" id="17_5hmvf"]
 
 [sub_resource type="Animation" id="Animation_p3npb"]
 resource_name = "MusicStarting"
@@ -2976,6 +2977,9 @@ scale = Vector2(4, 4)
 tile_set = SubResource("TileSet_rn3ua")
 format = 2
 
+[node name="Player" parent="Level" instance=ExtResource("17_5hmvf")]
+position = Vector2(640, 352)
+
 [node name="Pause" type="CanvasLayer" parent="."]
 process_mode = 2
 layer = 3
@@ -3117,8 +3121,8 @@ layer = 100
 [connection signal="animation_finished" from="LevelMusicPlayer/AnimationPlayer" to="." method="MusicAnimationFinished"]
 [connection signal="pressed" from="Pause/Interface/ButtonsFrame/Resume" to="." method="UnPause"]
 [connection signal="pressed" from="Pause/Interface/ButtonsFrame/Options" to="." method="Options"]
-[connection signal="pressed" from="Pause/Interface/ButtonsFrame/Menu" to="." method="Menu"]
 [connection signal="pressed" from="Pause/Interface/ButtonsFrame/Menu" to="." method="ResetAllTransitiveValues" flags=6]
+[connection signal="pressed" from="Pause/Interface/ButtonsFrame/Menu" to="." method="Menu"]
 [connection signal="animation_finished" from="EpicIntro/AnimationPlayer" to="EpicIntro" method="queue_free" unbinds=1]
 
 [editable path="Pause/Interface/ButtonsFrame/Menu"]

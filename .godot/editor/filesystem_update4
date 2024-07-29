@@ -3,11 +3,12 @@ res://Content/Scenes/Interface&Menu/WelcomeToGOS.tscn
 res://Content/Other/BlurShader.gdshader
 res://Content/Other/PixelateShader.gdshader
 res://Content/Other/CRT.gdshader
-res://Content/Other/StaticNoiseShader.gdshader
 res://Content/Other/BrightnessShader.gdshader
+res://Content/Other/StaticNoiseShader.gdshader
 res://Content/Other/SaturationShader.gdshader
 res://Content/Other/PostProcessing.gdshader
 res://Content/Scenes/Interface&Menu/LevelEditor.tscn
+res://Content/Scenes/Other/UserLevelLayout.tscn
 res://Content/Other/G.cs
 res://Content/Other/Meta.cs
 res://Content/Other/UnchangableMeta.cs
@@ -84,4 +85,3 @@ res://Content/Scripts/Other/Player.cs
 res://Content/Scripts/Other/PostProcessingRect.cs
 res://Content/Scripts/Other/SkinScript.cs
 res://Content/Scripts/Other/SlippeyChadCorpseMotionMultiplierCrutch.cs
-res://Content/Scenes/Other/UserLevelLayout.tscn

@@ -40,19 +40,19 @@ layer_0/modulate = Color(1, 1, 1, 0.501961)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="TileModeGUI" type="Control" parent="CanvasLayer"]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 1280.0
-offset_bottom = 720.0
-
-[node name="PlaceTileButton" type="TextureButton" parent="CanvasLayer/TileModeGUI"]
-layout_mode = 0
+[node name="ScreenButton" type="TextureButton" parent="CanvasLayer"]
 offset_right = 1280.0
 offset_bottom = 720.0
 focus_mode = 0
 mouse_filter = 1
 button_mask = 3
+
+[node name="TileModeGUI" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+mouse_filter = 2
 
 [node name="TileButtonsContainer" type="ScrollContainer" parent="CanvasLayer/TileModeGUI"]
 layout_mode = 0
@@ -145,8 +145,90 @@ min_value = 1.0
 value = 1.0
 update_on_text_changed = true
 
+[node name="NodeModeGUI" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+mouse_filter = 2
+
+[node name="NodesButtonsTree" type="Tree" parent="CanvasLayer/NodeModeGUI"]
+layout_mode = 2
+offset_right = 256.0
+offset_bottom = 592.0
+columns = 2
+
+[node name="PropertiesGridContainer" type="ScrollContainer" parent="CanvasLayer/NodeModeGUI"]
+layout_mode = 0
+offset_left = 1024.0
+offset_right = 1280.0
+offset_bottom = 592.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/NodeModeGUI/PropertiesGridContainer"]
+layout_mode = 2
+
+[node name="PropertiesGrid" type="GridContainer" parent="CanvasLayer/NodeModeGUI/PropertiesGridContainer/VBoxContainer"]
+custom_minimum_size = Vector2(256, 592)
+layout_mode = 2
+columns = 2
+
+[node name="CodeModeGUI" type="Control" parent="CanvasLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+mouse_filter = 2
+
+[node name="Button" type="Button" parent="CanvasLayer/CodeModeGUI"]
+layout_mode = 0
+offset_left = 163.0
+offset_top = 127.0
+offset_right = 284.0
+offset_bottom = 243.0
+
+[node name="EditorModes" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 552.0
+offset_right = 744.0
+offset_bottom = 64.0
+
+[node name="TileMode" type="Button" parent="CanvasLayer/EditorModes"]
+layout_mode = 0
+offset_right = 16.0
+offset_bottom = 16.0
+scale = Vector2(4, 4)
+focus_mode = 0
+toggle_mode = true
+button_group = SubResource("ButtonGroup_k521p")
+
+[node name="NodeMode" type="Button" parent="CanvasLayer/EditorModes"]
+layout_mode = 0
+offset_left = 64.0
+offset_right = 80.0
+offset_bottom = 16.0
+scale = Vector2(4, 4)
+focus_mode = 0
+toggle_mode = true
+button_group = SubResource("ButtonGroup_k521p")
+
+[node name="CodeMode" type="Button" parent="CanvasLayer/EditorModes"]
+layout_mode = 0
+offset_left = 128.0
+offset_right = 144.0
+offset_bottom = 16.0
+scale = Vector2(4, 4)
+focus_mode = 0
+toggle_mode = true
+button_group = SubResource("ButtonGroup_k521p")
+
 [connection signal="pressed" from="CanvasLayer/TileModeGUI/Brush" to="." method="SetTileInstrument" binds= [0]]
 [connection signal="pressed" from="CanvasLayer/TileModeGUI/Rectangle" to="." method="SetTileInstrument" binds= [1]]
 [connection signal="pressed" from="CanvasLayer/TileModeGUI/Filling" to="." method="SetTileInstrument" binds= [2]]
 [connection signal="pressed" from="CanvasLayer/TileModeGUI/SmartFilling" to="." method="SetTileInstrument" binds= [3]]
 [connection signal="value_changed" from="CanvasLayer/TileModeGUI/TileChangeProbability" to="." method="SetTileChangeProbability"]
+[connection signal="button_clicked" from="CanvasLayer/NodeModeGUI/NodesButtonsTree" to="." method="SelectItem"]
+[connection signal="pressed" from="CanvasLayer/EditorModes/TileMode" to="." method="SetEditorMode" binds= [0]]
+[connection signal="pressed" from="CanvasLayer/EditorModes/NodeMode" to="." method="SetEditorMode" binds= [1]]
+[connection signal="pressed" from="CanvasLayer/EditorModes/CodeMode" to="." method="SetEditorMode" binds= [2]]
