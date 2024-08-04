@@ -1,19 +1,26 @@
 using Godot;
-using Godot.NativeInterop;
 using System;
 using System.Linq;
 
 public partial class LevelEditor : Control
 {
-    private bool _isMiddleButtonPressed = false;
+    [Signal] public delegate void NodeMovedByMouseEventHandler();
+    NodeMovedByMouseEventHandler _lastConnectedPositionPropertyUpdate;
+    NodeMovedByMouseEventHandler _lastConnectedGlobalPositionPropertyUpdate;
     Node2D _level;
     Camera2D _camera;
     Node[] _allTheNodes = new Node[0];
-    enum EditorMode { TileMode, NodeMode, CodeMode }
     TextureButton _screenButton = new TextureButton();
+
+    enum EditorMode { TileMode, NodeMode, CodeMode }
     EditorMode _editorMode = EditorMode.TileMode;
+
+    private bool _isMiddleButtonPressed = false;
+    private string _mapPath = "";
     public override void _Ready()
     {
+        _mapPath = (string)G.InGameTransitiveValue;
+        GD.Print(_mapPath);
         G.IsLevelVanilla = false;
         _level = (Node2D)ResourceLoader.Load<PackedScene>("res://Content/Scenes/Other/UserLevelLayout.tscn").Instantiate();
         _level.ProcessMode = ProcessModeEnum.Disabled;
@@ -250,11 +257,19 @@ public partial class LevelEditor : Control
                         ((Node2D)_selectedNode).Position -= _mouseLastFramePos - MousePos;
                     else if (_selectedNode is Control)
                         ((Control)_selectedNode).Position -= _mouseLastFramePos - MousePos;
+                    EmitSignal("NodeMovedByMouse");
                 }
                 break;
         }
 
         _mouseLastFramePos = MousePos;
+    }
+
+    public void SaveLevel()
+    {
+        var ToSave = new PackedScene();
+        ToSave.Pack(_level);
+        ResourceSaver.Save(ToSave, _mapPath);
     }
 
     public void SetEditorMode(int value)
@@ -270,15 +285,24 @@ public partial class LevelEditor : Control
             UpdateVisibleNodesButtons();
     }
 
+    private void KILLCHILDREN(Node node)
+    {
+        foreach (Node child in node.GetChildren())
+            child.QueueFree();
+    }
 
     // TileMode Section
     TileMap _selectedTileMap, _previousChangedGUITileMap, _assistiveTileMap, _erasingAssistiveTileMap;
-    private Vector2I _selectedTile = new Vector2I(0, 0), _mouseTilePos, _mouseLastFrameTilePos;
-    private int _selectedLayer = 0, _selectedAtlas = 0, _selectedAlternativeTile = 0, _previousTileIndex = 0, _tileChangeProbability = 1;
+    Rect2I _tileRect = new Rect2I();
     Godot.Collections.Array<TileMap> _allTheTileMaps = new Godot.Collections.Array<TileMap>();
+
+    private Vector2I _selectedTile = new Vector2I(0, 0), _mouseTilePos, _mouseLastFrameTilePos;
     enum TileInstrument { Brush, Rectangle, Filling, SmartFilling }
     TileInstrument _tileInstrument = TileInstrument.Brush;
-    Rect2I _tileRect = new Rect2I();
+
+    private int _selectedLayer = 0, _selectedAtlas = 0, _selectedAlternativeTile = 0, _previousTileIndex = 0, _tileChangeProbability = 1;
+
+
     private bool _isRectStarted = false, _isRectErasing = false;
     public void SetSelectedTile(int index)
     {
@@ -327,10 +351,8 @@ public partial class LevelEditor : Control
         _selectedTile = new Vector2I(0, 0);
         _previousChangedGUITileMap = null;
         var tileButtonsContainer = GetNode("CanvasLayer/TileModeGUI/TileButtonsContainer/HBoxContainer");
-        var tileButtonsContainerChildren = tileButtonsContainer.GetChildren();
-        for (int i = 0; i < tileButtonsContainerChildren.Count; i++)
-            tileButtonsContainerChildren[i].QueueFree();
 
+        KILLCHILDREN(tileButtonsContainer);
 
         Vector2I AtlasSize = GetCurrentAtlas().GetAtlasGridSize();
 
@@ -369,9 +391,8 @@ public partial class LevelEditor : Control
     public void UpdateVisibleAtlases()
     {
         var atlasButtonsContainer = GetNode("CanvasLayer/TileModeGUI/AtlasButtonsContainer/VBoxContainer");
-        var AtlasButtonsContainerChildren = atlasButtonsContainer.GetChildren();
-        for (int i = 0; i < AtlasButtonsContainerChildren.Count; i++)
-            AtlasButtonsContainerChildren[i].QueueFree();
+
+        KILLCHILDREN(atlasButtonsContainer);
 
 
         int AtlasesCount = _selectedTileMap.TileSet.GetSourceCount();
@@ -398,9 +419,8 @@ public partial class LevelEditor : Control
     public void UpdateVisibleTileMaps()
     {
         var TileMapsButtonsContainer = GetNode("CanvasLayer/TileModeGUI/TileMapsButtonsContainer/VBoxContainer");
-        var TileMapsButtonsContainerChildren = TileMapsButtonsContainer.GetChildren();
-        for (int i = 0; i < TileMapsButtonsContainerChildren.Count; i++)
-            TileMapsButtonsContainerChildren[i].QueueFree();
+
+        KILLCHILDREN(TileMapsButtonsContainer);
 
         UpdateAllTheTileMaps();
 
@@ -420,9 +440,8 @@ public partial class LevelEditor : Control
     public void UpdateVisibleTileMapsLayers()
     {
         var TileMapsLayersContainer = GetNode("CanvasLayer/TileModeGUI/TileMapsLayersContainer/VBoxContainer");
-        var TileMapsLayersContainerChildren = TileMapsLayersContainer.GetChildren();
-        for (int i = 0; i < TileMapsLayersContainerChildren.Count; i++)
-            TileMapsLayersContainerChildren[i].QueueFree();
+
+        KILLCHILDREN(TileMapsLayersContainer);
 
         int LayersCount = _selectedTileMap.GetLayersCount();
 
@@ -478,9 +497,10 @@ public partial class LevelEditor : Control
     {
         _selectedNode = node;
     }
-    private void SelectItem(TreeItem item, int column, int id, int mouseButtonId)
+    private void SelectItem()
     {
-        _selectedNode = _allTheNodes[item.GetIndex() + 1];
+        var NodesButtonsContainer = GetNode<Tree>("CanvasLayer/NodeModeGUI/NodesButtonsTree");
+        _selectedNode = (Node)NodesButtonsContainer.GetSelected().GetMeta("CorrespondingNode");
         UpdateVisibleProperties();
     }
     private void UpdateAllNodesArray()
@@ -499,48 +519,172 @@ public partial class LevelEditor : Control
     private void UpdateVisibleNodesButtons()
     {
         var NodesButtonsContainer = GetNode<Tree>("CanvasLayer/NodeModeGUI/NodesButtonsTree");
-        var NodesButtonsContainerChildren = NodesButtonsContainer.GetChildren();
-        for (int i = 0; i < NodesButtonsContainerChildren.Count; i++)
-            NodesButtonsContainerChildren[i].QueueFree();
+
+        KILLCHILDREN(NodesButtonsContainer);
 
         ButtonGroup buttonGroup = new ButtonGroup();
         var texture = ResourceLoader.Load<Texture2D>("res://Content/Sprites/Interface/AcceptButton.png");
-        for (int i = 0; i < _allTheNodes.Length; i++)
-        {
-            var Item = NodesButtonsContainer.CreateItem();
-            Item.SetText(0, _allTheNodes[i].Name);
-            NodesButtonsContainer.GetSelected();
-            Item.AddButton(1, texture);
 
-            int crutch = i;
+        void Recursion(Node rootNode, TreeItem item)
+        {
+            foreach (Node node in rootNode.GetChildren())
+            {
+                var NextItem = item.CreateChild();
+                NextItem.SetText(0, node.Name);
+                NextItem.SetMeta("CorrespondingNode", node);
+                _allTheNodes = _allTheNodes.Append(node).ToArray();
+                Recursion(node, NextItem);
+            }
         }
+        var Item = NodesButtonsContainer.CreateItem();
+        Item.SetText(0, _level.Name);
+        Item.SetMeta("CorrespondingNode", _level);
+        Recursion(_level, Item);
     }
     private void UpdateVisibleProperties()
     {
         var propertiesGrid = GetNode<GridContainer>("CanvasLayer/NodeModeGUI/PropertiesGridContainer/VBoxContainer/PropertiesGrid");
-        var propertiesGridChildren = propertiesGrid.GetChildren();
 
-        for (int i = 0; i < propertiesGridChildren.Count; i++)
-            propertiesGridChildren[i].QueueFree();
+        KILLCHILDREN(propertiesGrid);
 
         var properties = _selectedNode.GetPropertyList();
+        properties.Reverse();
 
-        for (int i = 0; i < properties.Count; i ++)
+        foreach (Godot.Collections.Dictionary item in properties)
         {
-            int crutch = i;
-            var item = properties[i];
-
             var text = new Label();
-            text.Text = item["name"].ToString();
+            text.Text = item["name"].ToString().Capitalize();
 
             propertiesGrid.AddChild(text);
 
-            var line = new LineEdit();
+            var propertyValue = _selectedNode.Get(item["name"].ToString());
+            var propertyType = (Variant.Type)(int)item["type"];
+            switch (propertyType)
+            {
+                case Variant.Type.Bool:
+                    var checkBox = new CheckBox();
+                    checkBox.ButtonPressed = (bool)propertyValue;
+                    checkBox.Toggled += (value) => SetProperty(_selectedNode, item["name"].ToString(), Variant.Type.Bool, value);
+                    propertiesGrid.AddChild(checkBox);
+                    break;
+                case Variant.Type.Int or Variant.Type.Float:
+                    var spinBox = new SpinBox();
+                    spinBox.Rounded = false;
+                    spinBox.Step = propertyType == Variant.Type.Float ? 0.000001 : 1;
+                    spinBox.Value = propertyType == Variant.Type.Float ? (float)propertyValue : (int)propertyValue;
+                    spinBox.MinValue = -1000;
+                    spinBox.AllowGreater = true;
+                    spinBox.AllowLesser = true;
+                    spinBox.ValueChanged += (value) => SetProperty(_selectedNode, item["name"].ToString(), Variant.Type.Float, value);
+                    propertiesGrid.AddChild(spinBox);
+                    break;
+                case Variant.Type.String or Variant.Type.StringName:
+                    var lineEdit = new LineEdit();
+                    lineEdit.Text = (string)propertyValue;
+                    lineEdit.TextChanged += (value) => SetProperty(_selectedNode, item["name"].ToString(), Variant.Type.String, value);
+                    propertiesGrid.AddChild(lineEdit);
+                    break;
 
-            line.Text = _selectedNode.Get(item["name"].ToString()).ToString();
+                case Variant.Type.Vector2 or Variant.Type.Vector2I:
+                    {
+                        var vectorSpinBoxX = new SpinBox();
+                        vectorSpinBoxX.Rounded = false;
+                        vectorSpinBoxX.Step = propertyType == Variant.Type.Float ? 0.000001 : 1;
+                        vectorSpinBoxX.MinValue = -1000;
+                        vectorSpinBoxX.AllowGreater = true;
+                        vectorSpinBoxX.AllowLesser = true;
+                        var vectorSpinBoxY = (SpinBox)vectorSpinBoxX.Duplicate();
+                        vectorSpinBoxX.Value = ((Vector2)propertyValue).X;
+                        vectorSpinBoxY.Value = ((Vector2)propertyValue).Y;
+                        vectorSpinBoxX.ValueChanged += (value) => SetProperty(_selectedNode, item["name"].ToString(), Variant.Type.Vector2, value, "X");
+                        vectorSpinBoxY.ValueChanged += (value) => SetProperty(_selectedNode, item["name"].ToString(), Variant.Type.Vector2, value, "Y");
+                        propertiesGrid.AddChild(new Control());
+                        propertiesGrid.AddChild(vectorSpinBoxX);
+                        propertiesGrid.AddChild(vectorSpinBoxY);
+                        NodeMovedByMouseEventHandler UpdatePositionProperty = () =>
+                        {
+                            vectorSpinBoxX.Value = ((Vector2)_selectedNode.Get(item["name"].ToString())).X;
+                            vectorSpinBoxY.Value = ((Vector2)_selectedNode.Get(item["name"].ToString())).Y;
+                        };
+                        if (item["name"].ToString() == "position")
+                        {
+                            if (_lastConnectedPositionPropertyUpdate != null)
+                                NodeMovedByMouse -= _lastConnectedPositionPropertyUpdate;
+                            _lastConnectedPositionPropertyUpdate = UpdatePositionProperty;
+                            NodeMovedByMouse += UpdatePositionProperty;
+                        }
+                        else if (item["name"].ToString() == "global_position")
+                        {
+                            if (_lastConnectedGlobalPositionPropertyUpdate != null)
+                                NodeMovedByMouse -= _lastConnectedGlobalPositionPropertyUpdate;
+                            _lastConnectedGlobalPositionPropertyUpdate = UpdatePositionProperty;
+                            NodeMovedByMouse += UpdatePositionProperty;
+                        }
+                    }
 
-            propertiesGrid.AddChild(line);
-
+                    break;
+                case Variant.Type.Rect2 or Variant.Type.Rect2I:
+                    {
+                        var RectSpinBoxX = new SpinBox();
+                        RectSpinBoxX.Rounded = false;
+                        RectSpinBoxX.Step = propertyType == Variant.Type.Float ? 0.000001 : 1;
+                        RectSpinBoxX.MinValue = -1000;
+                        RectSpinBoxX.AllowGreater = true;
+                        RectSpinBoxX.AllowLesser = true;
+                        var RectSpinBoxY = (SpinBox)RectSpinBoxX.Duplicate();
+                        var RectSpinBoxXPos = (SpinBox)RectSpinBoxX.Duplicate();
+                        var RectSpinBoxYPos = (SpinBox)RectSpinBoxX.Duplicate();
+                        RectSpinBoxX.Value = ((Rect2)propertyValue).Position.X;
+                        RectSpinBoxY.Value = ((Rect2)propertyValue).Position.Y;
+                        RectSpinBoxXPos.Value = ((Rect2)propertyValue).Size.X;
+                        RectSpinBoxYPos.Value = ((Rect2)propertyValue).Size.Y;
+                        RectSpinBoxX.ValueChanged += (value) => SetProperty(_selectedNode, item["name"].ToString(), Variant.Type.Vector2, value, "X");
+                        RectSpinBoxY.ValueChanged += (value) => SetProperty(_selectedNode, item["name"].ToString(), Variant.Type.Vector2, value, "Y");
+                        RectSpinBoxXPos.ValueChanged += (value) => SetProperty(_selectedNode, item["name"].ToString(), Variant.Type.Vector2, value, "XPos");
+                        RectSpinBoxYPos.ValueChanged += (value) => SetProperty(_selectedNode, item["name"].ToString(), Variant.Type.Vector2, value, "YPos");
+                        propertiesGrid.AddChild(new Control());
+                        propertiesGrid.AddChild(RectSpinBoxX);
+                        propertiesGrid.AddChild(RectSpinBoxY);
+                        propertiesGrid.AddChild(RectSpinBoxXPos);
+                        propertiesGrid.AddChild(RectSpinBoxYPos);
+                    }
+                    break;
+                default:
+                    propertiesGrid.AddChild(new Control());
+                    break;
+            }
         }
+    }
+    private void SetProperty(Node node, string name, Variant.Type varType, Variant value, string VectorOrRectDesiredValue = "")
+    {
+        var currentValue = node.Get(name);
+        if (varType == Variant.Type.Vector2 || varType == Variant.Type.Vector2)
+            switch (VectorOrRectDesiredValue)
+            {
+                case "X":
+                    node.Set(name, new Vector2((float)value, ((Vector2)currentValue).Y));
+                    break;
+                case "Y":
+                    node.Set(name, new Vector2(((Vector2)currentValue).X, (float)value));
+                    break;
+            }
+        else if (varType == Variant.Type.Rect2 || varType == Variant.Type.Rect2I)
+            switch (VectorOrRectDesiredValue)
+            {
+                case "X":
+                    node.Set(name, new Rect2(new Vector2((float)value, ((Rect2)currentValue).Position.Y), new Vector2(((Rect2)currentValue).Size.X, ((Rect2)currentValue).Size.Y)));
+                    break;
+                case "Y":
+                    node.Set(name, new Rect2(new Vector2(((Rect2)currentValue).Position.X, (float)value), new Vector2(((Rect2)currentValue).Size.X, ((Rect2)currentValue).Size.Y)));
+                    break;
+                case "XPos":
+                    node.Set(name, new Rect2(new Vector2(((Rect2)currentValue).Position.X, ((Rect2)currentValue).Position.Y), new Vector2((float)value, ((Rect2)currentValue).Size.Y)));
+                    break;
+                case "YPos":
+                    node.Set(name, new Rect2(new Vector2(((Rect2)currentValue).Position.X, ((Rect2)currentValue).Position.Y), new Vector2(((Rect2)currentValue).Size.X, (float)value)));
+                    break;
+            }
+        else
+            node.Set(name, value);
     }
 }

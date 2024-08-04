@@ -146,6 +146,7 @@ value = 1.0
 update_on_text_changed = true
 
 [node name="NodeModeGUI" type="Control" parent="CanvasLayer"]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1280.0
@@ -154,13 +155,13 @@ mouse_filter = 2
 
 [node name="NodesButtonsTree" type="Tree" parent="CanvasLayer/NodeModeGUI"]
 layout_mode = 2
-offset_right = 256.0
+offset_right = 312.0
 offset_bottom = 592.0
 columns = 2
 
 [node name="PropertiesGridContainer" type="ScrollContainer" parent="CanvasLayer/NodeModeGUI"]
 layout_mode = 0
-offset_left = 1024.0
+offset_left = 968.0
 offset_right = 1280.0
 offset_bottom = 592.0
 
@@ -229,6 +230,7 @@ button_group = SubResource("ButtonGroup_k521p")
 [connection signal="pressed" from="CanvasLayer/TileModeGUI/SmartFilling" to="." method="SetTileInstrument" binds= [3]]
 [connection signal="value_changed" from="CanvasLayer/TileModeGUI/TileChangeProbability" to="." method="SetTileChangeProbability"]
 [connection signal="button_clicked" from="CanvasLayer/NodeModeGUI/NodesButtonsTree" to="." method="SelectItem"]
+[connection signal="item_selected" from="CanvasLayer/NodeModeGUI/NodesButtonsTree" to="." method="SelectItem"]
 [connection signal="pressed" from="CanvasLayer/EditorModes/TileMode" to="." method="SetEditorMode" binds= [0]]
 [connection signal="pressed" from="CanvasLayer/EditorModes/NodeMode" to="." method="SetEditorMode" binds= [1]]
 [connection signal="pressed" from="CanvasLayer/EditorModes/CodeMode" to="." method="SetEditorMode" binds= [2]]

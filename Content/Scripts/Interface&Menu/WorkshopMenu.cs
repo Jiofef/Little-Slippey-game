@@ -8,6 +8,7 @@ public partial class WorkshopMenu : Control
     private readonly string _defaultPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData) + @"\Godot\app_userdata\Little Slippey\mods\";
     private Dictionary[] _modsInfo;
     private int _selectedMod = -1;
+    private string _selectedModFolder;
     private TextureButton _selectedModButton;
     private Control _lastFocusOwner;
     public override void _Ready()
@@ -35,9 +36,13 @@ public partial class WorkshopMenu : Control
                 if (ModTypeIcons.TryGetValue(model["mod_type"], out Variant value))
                     ModButton.GetNode<Sprite2D>("ModType").Texture = (Texture2D)value;
                 
-                int crutch = i; //For some fucking reason, if you put i in the function, then it will send the PRESENT value of i from the cycle (for example 3 if there is 2 mods). From a cycle that has long passed at the time of sending the signal. I'm in a awe.
+                int crutch = i; //For some fucking reason, if you put i in the signal, then it will send the PRESENT value of i from the cycle (for example 3 if there is 2 mods). From a cycle that has long passed at the time of sending the signal. I'm in a awe.
                 ModButton.FocusEntered += () => ShowModInfo(crutch);
-                ModButton.Pressed += () => SelectMod(crutch, ModButton);
+                ModButton.Pressed += () =>
+                {
+                    SelectMod(crutch, ModButton);
+                    _selectedModFolder = Directories[crutch];
+                };
                 GetNode("ModsScrollContainer/ModsScrollVBoxContainer").AddChild(ModButton);
             }
         }
@@ -82,6 +87,7 @@ public partial class WorkshopMenu : Control
 
     public void OpenInEditor()
     {
+        G.InGameTransitiveValue = _selectedModFolder + @"\MainScene.tscn";
         GetTree().ChangeSceneToFile("res://Content/Scenes/Interface&Menu/LevelEditor.tscn");
     }
 }

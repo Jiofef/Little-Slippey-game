@@ -1,3 +1,6 @@
+Button
+SpinBox
+CheckBox
 VBoxContainer
 ScrollContainer
 GridContainer
@@ -7,9 +10,7 @@ ItemList
 ColorRect
 Tree
 RichTextLabel
-Button
 Control
-SpinBox
 Node2D
 TileMap
 TextureButton
@@ -23,7 +24,6 @@ Label
 HFlowContainer
 TextureRect
 AnimationPlayer
-CheckBox
 AudioStreamPlayer
 CollisionShape2D
 Area2D
