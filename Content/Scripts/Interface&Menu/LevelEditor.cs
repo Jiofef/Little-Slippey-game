@@ -22,7 +22,7 @@ public partial class LevelEditor : Control
         _mapPath = (string)G.InGameTransitiveValue;
         GD.Print(_mapPath);
         G.IsLevelVanilla = false;
-        _level = (Node2D)ResourceLoader.Load<PackedScene>("res://Content/Scenes/Other/UserLevelLayout.tscn").Instantiate();
+        _level = (Node2D)ResourceLoader.Load<PackedScene>(_mapPath).Instantiate();
         _level.ProcessMode = ProcessModeEnum.Disabled;
         _level.GetNode("Level").ProcessMode = ProcessModeEnum.Disabled;
         GetNode("LevelContainer").AddChild(_level);

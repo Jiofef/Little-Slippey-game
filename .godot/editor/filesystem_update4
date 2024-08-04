@@ -1,3 +1,4 @@
+res://default_bus_layout.tres
 res://default_env.tres
 res://Content/Scenes/Interface&Menu/WelcomeToGOS.tscn
 res://Content/Other/BlurShader.gdshader
@@ -9,6 +10,7 @@ res://Content/Other/SaturationShader.gdshader
 res://Content/Other/PostProcessing.gdshader
 res://Content/Scenes/Interface&Menu/LevelEditor.tscn
 res://Content/Scenes/Other/UserLevelLayout.tscn
+res://Content/Sprites/Interface/MainScene.tscn
 res://Content/Other/G.cs
 res://Content/Other/Meta.cs
 res://Content/Other/UnchangableMeta.cs

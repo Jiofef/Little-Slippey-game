@@ -224,6 +224,12 @@ focus_mode = 0
 toggle_mode = true
 button_group = SubResource("ButtonGroup_k521p")
 
+[node name="Button" type="Button" parent="CanvasLayer"]
+offset_left = 986.0
+offset_top = 492.0
+offset_right = 1114.0
+offset_bottom = 638.0
+
 [connection signal="pressed" from="CanvasLayer/TileModeGUI/Brush" to="." method="SetTileInstrument" binds= [0]]
 [connection signal="pressed" from="CanvasLayer/TileModeGUI/Rectangle" to="." method="SetTileInstrument" binds= [1]]
 [connection signal="pressed" from="CanvasLayer/TileModeGUI/Filling" to="." method="SetTileInstrument" binds= [2]]
@@ -234,3 +240,4 @@ button_group = SubResource("ButtonGroup_k521p")
 [connection signal="pressed" from="CanvasLayer/EditorModes/TileMode" to="." method="SetEditorMode" binds= [0]]
 [connection signal="pressed" from="CanvasLayer/EditorModes/NodeMode" to="." method="SetEditorMode" binds= [1]]
 [connection signal="pressed" from="CanvasLayer/EditorModes/CodeMode" to="." method="SetEditorMode" binds= [2]]
+[connection signal="pressed" from="CanvasLayer/Button" to="." method="SaveLevel"]
