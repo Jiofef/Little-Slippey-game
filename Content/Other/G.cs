@@ -113,6 +113,6 @@ public partial class G : Node
 			GetAchievement(51);
 	}
 
-    // This variable is used when switching between scenes in the game menu. Don't touch it if you don't want to break anything.
+    // This variable is used when switching between some scenes in the game menu. Don't touch it if you don't want to break anything.
     public static Variant InGameTransitiveValue;
 }

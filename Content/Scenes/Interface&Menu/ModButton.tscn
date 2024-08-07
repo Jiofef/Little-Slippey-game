@@ -7,7 +7,6 @@
 custom_minimum_size = Vector2(471, 40)
 
 [node name="SelectRect" type="ColorRect" parent="." index="0"]
-visible = false
 layout_mode = 0
 offset_right = 471.0
 offset_bottom = 40.0
@@ -27,6 +26,6 @@ theme_override_font_sizes/normal_font_size = 33
 script = ExtResource("2_avp7q")
 
 [node name="ModType" type="Sprite2D" parent="." index="5"]
-position = Vector2(431, 0)
+position = Vector2(424, 0)
 scale = Vector2(4, 4)
 centered = false
