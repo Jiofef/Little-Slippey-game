@@ -42,6 +42,8 @@ public partial class WorkshopMenu : Control
             _lastFocusOwner = GetViewport().GuiGetFocusOwner();
             WhenFocusChanged(_lastFocusOwner);
         }
+        if (Input.IsActionJustPressed("Cancel") && GetNode<Control>("EditModInfo").Visible)
+            GetNode<TextureButton>("EditModInfo/DeclineButton").GrabFocus();
     }
     public TextureButton AddModButton(string path, int modIndex)
     {
@@ -86,7 +88,7 @@ public partial class WorkshopMenu : Control
     }
     private void WhenFocusChanged(Control node)
     {
-        if (node.GetParentOrNull<Node>() != null && node.GetParent().Name != "ModsScrollVBoxContainer")
+        if (node != null && node.GetParentOrNull<Node>() != null && node.GetParent().Name != "ModsScrollVBoxContainer")
         {
             if (_selectedMod == -1)
                 ShowDefaultModInfo();
@@ -97,6 +99,12 @@ public partial class WorkshopMenu : Control
 
     public void OpenInEditor()
     {
+        if (G.TypeOfUsedController != "Keyboard" && GetNode<Control>("WARNING").Visible == false)
+        {
+            GetNode<AnimationPlayer>("WARNING/AnimationPlayer").Play("WARNING");
+            return;
+        }
+
         G.InGameTransitiveValue = _selectedModFolder + @"\MainScene.tscn";
         GetTree().ChangeSceneToFile("res://Content/Scenes/Interface&Menu/LevelEditor.tscn");
     }
@@ -124,25 +132,59 @@ public partial class WorkshopMenu : Control
     }
 
     //Mod Info Editing Section
-
+    string _settedModName, _settedModFolderName, _settedModDescription;
     public void EditModInfo()
     {
         var editModInfo = GetNode<Control>("EditModInfo");
         editModInfo.Visible = true;
         GetNode<AnimationPlayer>("EditModInfo/AnimationPlayer").Play("Appearance");
-        GetNode("ActionButtons").ProcessMode = ProcessModeEnum.Disabled;
-        GetNode("ModsScrollContainer").ProcessMode = ProcessModeEnum.Disabled;
+        GetNode<TextureButton>("EditModInfo/DeclineButton").GrabFocus();
+        GetNode<TextureButton>("ActionButtons/EditInfoButton").Disabled = true;
+
+        GetNode<TextEdit>("EditModInfo/ScrollContainer/VBoxContainer/CrutchControl/ModNameText").Text = _settedModName = _modsInfo[_selectedMod]["name"].ToString();
+        GetNode<LineEdit>("EditModInfo/ScrollContainer/VBoxContainer/CrutchControl/LineEdit").Text = _settedModFolderName = _selectedModFolder.Remove(0, _defaultPath.Length);
+        GetNode<TextEdit>("EditModInfo/ScrollContainer/VBoxContainer/CrutchControl/DescriptionText").Text = _settedModDescription = _modsInfo[_selectedMod]["description"].ToString();
     }
     public void Cancel()
     {
-        GetNode("ActionButtons").ProcessMode = ProcessModeEnum.Inherit;
-        GetNode("ModsScrollContainer").ProcessMode = ProcessModeEnum.Inherit;
         GetNode<Control>("EditModInfo").Visible = false;
+        var editInfoButton = GetNode<TextureButton>("ActionButtons/EditInfoButton");
+        editInfoButton.GrabFocus();
+        editInfoButton.Disabled = false;
     }
     public void Accept()
     {
-        GetNode("ActionButtons").ProcessMode = ProcessModeEnum.Inherit;
-        GetNode("ModsScrollContainer").ProcessMode = ProcessModeEnum.Inherit;
         GetNode<Control>("EditModInfo").Visible = false;
+        var editInfoButton = GetNode<TextureButton>("ActionButtons/EditInfoButton");
+        editInfoButton.GrabFocus();
+        editInfoButton.Disabled = false;
+
+        _modsInfo[_selectedMod]["name"] = _settedModName;
+        _modsInfo[_selectedMod]["description"] = _settedModDescription;
+        if (_selectedModFolder != _defaultPath + _settedModFolderName)
+        {
+            Directory.Move(_selectedModFolder, _defaultPath + _settedModFolderName);
+            _selectedModFolder = _defaultPath + _settedModFolderName;
+            _directories[_selectedMod] = _selectedModFolder;
+        }
+
+        using Godot.FileAccess file = Godot.FileAccess.Open(_selectedModFolder + @"\mod_info.json", Godot.FileAccess.ModeFlags.Write);
+        file.StoreString(_modsInfo[_selectedMod].ToString());
+        file.Close();
+
+        _selectedModButton.GetNode<RichTextLabel>("Name").Text = _settedModName;
+        GetNode<RichTextLabel>("ModDescription/Description").Text = _settedModDescription;
+    }
+    public void ModNameChanged()
+    {
+        _settedModName = GetNode<TextEdit>("EditModInfo/ScrollContainer/VBoxContainer/CrutchControl/ModNameText").Text;
+    }
+    public void ModFolderNameChanged(string value)
+    {
+        _settedModFolderName = value;
+    }
+    public void ModDescriptionChanged()
+    {
+        _settedModDescription = GetNode<TextEdit>("EditModInfo/ScrollContainer/VBoxContainer/CrutchControl/DescriptionText").Text;
     }
 }

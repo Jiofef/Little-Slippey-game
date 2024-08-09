@@ -776,7 +776,7 @@ offset_left = 184.0
 offset_right = 208.0
 offset_bottom = 24.0
 scale = Vector2(2.5, 2.5)
-focus_neighbor_left = NodePath(".")
+focus_neighbor_left = NodePath("../InsaneModeButton")
 focus_neighbor_right = NodePath("../HardModeButton")
 button_group = SubResource("ButtonGroup_2rde5")
 
@@ -925,7 +925,6 @@ offset_left = 50.0
 offset_top = 495.0
 offset_right = 1230.0
 offset_bottom = 695.0
-mouse_filter = 2
 
 [node name="LeftScrollButton" parent="LevelsList" instance=ExtResource("2_6jw0o")]
 layout_mode = 0

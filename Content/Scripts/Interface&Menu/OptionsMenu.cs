@@ -138,9 +138,6 @@ public partial class OptionsMenu : Control
         Control focusOwner = GetWindow().GuiGetFocusOwner();
         if (Input.IsActionJustPressed("ui_accept") && focusOwner != null && focusOwner.GetClass() == "HSlider")
             ((HSlider)focusOwner).Editable = !((HSlider)focusOwner).Editable;
-
-        _videoContainer.ScrollVertical += (int)(Input.GetActionStrength("ui_scroll_down") * 5) - (int)(Input.GetActionStrength("ui_scroll_up") * 5);
-        _videoContainer.ScrollHorizontal += (int)(Input.GetActionStrength("ui_scroll_right") * 5) - (int)(Input.GetActionStrength("ui_scroll_left") * 5);
     }
 
     //VideoOptions

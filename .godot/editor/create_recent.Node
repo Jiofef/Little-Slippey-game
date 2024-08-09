@@ -1,9 +1,12 @@
+TileMap
+ColorRect
+LineEdit
+AnimationPlayer
+Sprite2D
 Control
 VBoxContainer
 ScrollContainer
 TextEdit
-AnimationPlayer
-Sprite2D
 Button
 SpinBox
 CheckBox
@@ -11,11 +14,9 @@ GridContainer
 CodeEdit
 GraphEdit
 ItemList
-ColorRect
 Tree
 RichTextLabel
 Node2D
-TileMap
 TextureButton
 CanvasLayer
 HBoxContainer
@@ -29,4 +30,3 @@ AudioStreamPlayer
 CollisionShape2D
 Area2D
 Node
-AudioStreamPlayer2D

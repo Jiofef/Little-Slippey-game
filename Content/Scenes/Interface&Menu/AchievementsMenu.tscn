@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://bbefvhpfglkty"]
+[gd_scene load_steps=7 format=3 uid="uid://bbefvhpfglkty"]
 
 [ext_resource type="Texture2D" uid="uid://blm6syft6nu6e" path="res://Content/Sprites/Interface/AchievementsMenu.png" id="1_fxqph"]
 [ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/AchievementsMenu.cs" id="1_xte5a"]
 [ext_resource type="Theme" uid="uid://cgvarj6mm8mm" path="res://Content/Other/Default.theme" id="3_e0nlk"]
+[ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/ScrollableContainer.cs" id="4_rv65g"]
 
 [sub_resource type="Animation" id="Animation_q7m3v"]
 resource_name = "Appearance"
@@ -66,6 +67,8 @@ offset_bottom = 560.0
 follow_focus = true
 horizontal_scroll_mode = 0
 vertical_scroll_mode = 2
+script = ExtResource("4_rv65g")
+_scrollingSpeed = Vector2(5, 20)
 
 [node name="GridContainer" type="GridContainer" parent="AchievementsContainer"]
 clip_contents = true

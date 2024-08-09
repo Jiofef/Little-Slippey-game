@@ -287,6 +287,7 @@ offset_bottom = 322.0
 scale = Vector2(1.75, 1.75)
 focus_mode = 2
 follow_focus = true
+script = ExtResource("11_qsm8k")
 
 [node name="GridContainer" type="GridContainer" parent="VideoContainer"]
 custom_minimum_size = Vector2(260, 0)
