@@ -564,6 +564,14 @@ script = ExtResource("1_d5t7a")
 
 [node name="Visual" type="Node2D" parent="."]
 
+[node name="youcantopenworkshophere" type="Control" parent="Visual"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 168.0
+offset_top = 28.0
+offset_right = 1228.0
+offset_bottom = 472.0
+
 [node name="Box" type="Sprite2D" parent="Visual"]
 scale = Vector2(4, 4)
 texture = ExtResource("2_d7fu7")

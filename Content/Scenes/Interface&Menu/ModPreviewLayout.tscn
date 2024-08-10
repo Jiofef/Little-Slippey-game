@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://3pxsh7u8scxi"]
+
+[ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/ModPreview.cs" id="1_y23h1"]
+
+[node name="ModPreview" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_y23h1")
+metadata/_edit_horizontal_guides_ = [199.0]
+
+[node name="PreviewPicture" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 118.0
+offset_bottom = 59.0
+scale = Vector2(4, 4)
+expand_mode = 1

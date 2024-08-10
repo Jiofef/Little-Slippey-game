@@ -20,7 +20,6 @@ public partial class LevelEditor : Control
     public override void _Ready()
     {
         _mapPath = (string)G.InGameTransitiveValue;
-        GD.Print(_mapPath);
         G.IsLevelVanilla = false;
         _level = (Node2D)ResourceLoader.Load<PackedScene>(_mapPath).Instantiate();
         _level.ProcessMode = ProcessModeEnum.Disabled;

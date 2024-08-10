@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dhpudi781np1e"]
+[gd_scene load_steps=19 format=3 uid="uid://dhpudi781np1e"]
 
 [ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/WorkshopMenu.cs" id="1_y8ofb"]
 [ext_resource type="Texture2D" uid="uid://dwloy3yjsqa53" path="res://Content/Sprites/Interface/WorkShopBox.png" id="2_y6w1l"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/ScrollableRichTextLabel.cs" id="7_lmrig"]
 [ext_resource type="Texture2D" uid="uid://c1d2p0ba42csh" path="res://Content/Sprites/Interface/AcceptButton.png" id="8_4njlo"]
 [ext_resource type="Texture2D" uid="uid://d0sqlunqacimf" path="res://Content/Sprites/Interface/CancelButton.png" id="9_casy6"]
+[ext_resource type="PackedScene" uid="uid://3pxsh7u8scxi" path="res://Content/Scenes/Interface&Menu/ModPreviewLayout.tscn" id="10_xw0ix"]
 [ext_resource type="Texture2D" uid="uid://cdh8bcaew8h6o" path="res://Content/Sprites/Interface/TurnOffBox.png" id="10_ypwju"]
 
 [sub_resource type="Animation" id="Animation_fu4ro"]
@@ -223,6 +224,9 @@ offset_left = 536.0
 offset_top = 36.0
 offset_right = 1008.0
 offset_bottom = 496.0
+
+[node name="ModPreview" parent="ModDescription" instance=ExtResource("10_xw0ix")]
+layout_mode = 1
 
 [node name="Description" type="RichTextLabel" parent="ModDescription"]
 custom_minimum_size = Vector2(581, 48)

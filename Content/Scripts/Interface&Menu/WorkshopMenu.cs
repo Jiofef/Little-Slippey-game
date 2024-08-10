@@ -1,7 +1,9 @@
 using Godot;
 using Godot.Collections;
+using System;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 
 public partial class WorkshopMenu : Control
 {
@@ -9,9 +11,9 @@ public partial class WorkshopMenu : Control
     private Dictionary[] _modsInfo;
     private int _selectedMod = -1;
     private string _selectedModFolder;
-    private string[] _directories;
+    private string[] _directories, _gdDirectories;
     private TextureButton _selectedModButton;
-    private Control _lastFocusOwner;
+    private Control _lastFocusOwner, _currentModPreview;
     public override void _Ready()
     {
         _directories = Directory.GetDirectories(_defaultPath);
@@ -34,6 +36,8 @@ public partial class WorkshopMenu : Control
         var defaultModButton = GetNode<TextureButton>("ModsScrollContainer/ModsScrollVBoxContainer/DefaultMod");
         defaultModButton.FocusEntered += () => ShowDefaultModInfo();
         defaultModButton.Pressed += () => SelectMod(-1, defaultModButton);
+
+        _currentModPreview = GetNode<Control>("ModDescription/ModPreview");
     }
     public override void _PhysicsProcess(double delta)
     {
@@ -56,7 +60,11 @@ public partial class WorkshopMenu : Control
         using Godot.FileAccess ModInfo = Godot.FileAccess.Open(path + @"\mod_info.json", Godot.FileAccess.ModeFlags.Read);
         var text = ModInfo.GetAsText();
         var model = Json.ParseString(ModInfo.GetAsText()).Obj as Dictionary;
-        _modsInfo[modIndex] = model;
+        if (modIndex < _modsInfo.Length)
+            _modsInfo[modIndex] = model;
+        else
+            _modsInfo = _modsInfo.Append(model).ToArray();
+
         ModButton.GetNode<RichTextLabel>("Name").Text = model["name"].ToString();
         if (ModTypeIcons.TryGetValue(model["mod_type"], out Variant value))
             ModButton.GetNode<Sprite2D>("ModType").Texture = (Texture2D)value;
@@ -77,6 +85,10 @@ public partial class WorkshopMenu : Control
     private void ShowModInfo(int index)
     {
         GetNode<RichTextLabel>("ModDescription/Description").Text = _modsInfo[index]["description"].ToString();
+        if (_currentModPreview != null)
+            _currentModPreview.QueueFree();
+        _currentModPreview = (Control)ResourceLoader.Load<PackedScene>(_directories[index] + "/ModPreview.tscn").Instantiate();
+        GetNode("ModDescription").AddChild(_currentModPreview);
     }
     private void SelectMod(int index, TextureButton button)
     {
@@ -116,9 +128,17 @@ public partial class WorkshopMenu : Control
             var SuggestedPath = _defaultPath + "CustomMap" + i;
             if (!Directory.Exists(SuggestedPath))
             {
-                _directories.Append(SuggestedPath);
+                _directories = _directories.Append(SuggestedPath).ToArray();
                 Directory.CreateDirectory(SuggestedPath);
-                DirAccess.CopyAbsolute("res://Content/Scenes/Other/UserLevelLayout.tscn", SuggestedPath + @"\MainScene.tscn");
+                DirAccess.CopyAbsolute("res://Content/Scenes/Other/UserLevelLayout.tscn", SuggestedPath + @"\MainScene.tscn"); 
+                DirAccess.CopyAbsolute("res://Content/Sprites/Interface/CustomMapDefaultPreview.png", SuggestedPath + @"\PreviewPicture.png");
+
+                var modPreview = (ModPreview)ResourceLoader.Load<PackedScene>("res://Content/Scenes/Interface&Menu/ModPreviewLayout.tscn").Instantiate();
+                modPreview._resourcePath = SuggestedPath + @"\PreviewPicture.png";
+                var ToSave = new PackedScene();
+                ToSave.Pack(modPreview);
+                ResourceSaver.Save(ToSave, SuggestedPath + @"\ModPreview.tscn");
+
                 using Godot.FileAccess file = Godot.FileAccess.Open(SuggestedPath + @"\mod_info.json", Godot.FileAccess.ModeFlags.Write);
                 file.StoreString("{\r\n  \"name\": \"CustomMap\",\r\n  \"mod_type\":  \"map\",\r\n  \"description\": \"\"\r\n}");
                 file.Close();

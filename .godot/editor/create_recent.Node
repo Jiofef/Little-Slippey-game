@@ -1,9 +1,10 @@
+Control
+TextureRect
 TileMap
 ColorRect
 LineEdit
 AnimationPlayer
 Sprite2D
-Control
 VBoxContainer
 ScrollContainer
 TextEdit
@@ -25,7 +26,6 @@ VScrollBar
 VisibleOnScreenNotifier2D
 Label
 HFlowContainer
-TextureRect
 AudioStreamPlayer
 CollisionShape2D
 Area2D
