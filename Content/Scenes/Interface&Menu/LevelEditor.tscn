@@ -230,6 +230,12 @@ offset_top = 492.0
 offset_right = 1114.0
 offset_bottom = 638.0
 
+[node name="Button2" type="Button" parent="CanvasLayer"]
+offset_left = 995.0
+offset_top = 340.0
+offset_right = 1123.0
+offset_bottom = 486.0
+
 [connection signal="pressed" from="CanvasLayer/TileModeGUI/Brush" to="." method="SetTileInstrument" binds= [0]]
 [connection signal="pressed" from="CanvasLayer/TileModeGUI/Rectangle" to="." method="SetTileInstrument" binds= [1]]
 [connection signal="pressed" from="CanvasLayer/TileModeGUI/Filling" to="." method="SetTileInstrument" binds= [2]]
@@ -241,3 +247,4 @@ offset_bottom = 638.0
 [connection signal="pressed" from="CanvasLayer/EditorModes/NodeMode" to="." method="SetEditorMode" binds= [1]]
 [connection signal="pressed" from="CanvasLayer/EditorModes/CodeMode" to="." method="SetEditorMode" binds= [2]]
 [connection signal="pressed" from="CanvasLayer/Button" to="." method="SaveLevel"]
+[connection signal="pressed" from="CanvasLayer/Button2" to="." method="TestLevel"]

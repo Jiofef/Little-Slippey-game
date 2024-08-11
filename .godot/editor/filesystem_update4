@@ -34,6 +34,7 @@ res://Content/Scripts/Interface&Menu/FinalLetter.cs
 res://Content/Scripts/Interface&Menu/InitializationScene.cs
 res://Content/Scripts/Interface&Menu/LevelEditor.cs
 res://Content/Scripts/Interface&Menu/LevelsMenu.cs
+res://Content/Scripts/Interface&Menu/ModPreview.cs
 res://Content/Scripts/Interface&Menu/OptionsMenu.cs
 res://Content/Scripts/Interface&Menu/RecycleBinMenu.cs
 res://Content/Scripts/Interface&Menu/ScrollableContainer.cs
@@ -88,4 +89,5 @@ res://Content/Scripts/Other/Player.cs
 res://Content/Scripts/Other/PostProcessingRect.cs
 res://Content/Scripts/Other/SkinScript.cs
 res://Content/Scripts/Other/SlippeyChadCorpseMotionMultiplierCrutch.cs
-res://Content/Scripts/Interface&Menu/ModPreview.cs
+res://Content/Scenes/Interface&Menu/LevelEditor.tscn
+res://Content/Scenes/Other/UserLevelLayout.tscn

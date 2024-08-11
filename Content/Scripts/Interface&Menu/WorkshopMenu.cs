@@ -1,5 +1,6 @@
 using Godot;
 using Godot.Collections;
+using Godot.NativeInterop;
 using System;
 using System.IO;
 using System.Linq;
@@ -14,8 +15,11 @@ public partial class WorkshopMenu : Control
     private string[] _directories, _gdDirectories;
     private TextureButton _selectedModButton;
     private Control _lastFocusOwner, _currentModPreview;
+
     public override void _Ready()
     {
+        GetTree().Root.FilesDropped += FileDropped;
+        TreeExiting += () => GetTree().Root.FilesDropped -= FileDropped;
         _directories = Directory.GetDirectories(_defaultPath);
         _modsInfo = new Dictionary[_directories.Length];
         _lastFocusOwner = GetViewport().GuiGetFocusOwner();
@@ -152,7 +156,7 @@ public partial class WorkshopMenu : Control
     }
 
     //Mod Info Editing Section
-    string _settedModName, _settedModFolderName, _settedModDescription;
+    string _settedModName, _settedModFolderName, _settedModDescription, _settedImagePath;
     public void EditModInfo()
     {
         var editModInfo = GetNode<Control>("EditModInfo");
@@ -164,7 +168,37 @@ public partial class WorkshopMenu : Control
         GetNode<TextEdit>("EditModInfo/ScrollContainer/VBoxContainer/CrutchControl/ModNameText").Text = _settedModName = _modsInfo[_selectedMod]["name"].ToString();
         GetNode<LineEdit>("EditModInfo/ScrollContainer/VBoxContainer/CrutchControl/LineEdit").Text = _settedModFolderName = _selectedModFolder.Remove(0, _defaultPath.Length);
         GetNode<TextEdit>("EditModInfo/ScrollContainer/VBoxContainer/CrutchControl/DescriptionText").Text = _settedModDescription = _modsInfo[_selectedMod]["description"].ToString();
+
+        var previewPicture = _currentModPreview.GetNodeOrNull<TextureRect>("PreviewPicture");
+        if (previewPicture != null)
+            GetNode<TextureRect>("EditModInfo/PreviewPicture").Texture = previewPicture.Texture;
     }
+
+    public void ChangeThePicture()
+    {
+        GetNode<FileDialog>("EditModInfo/ChangeThePictureDialog").Popup();
+    }
+    public void SetPicture(string path)
+    {
+        if (!path.EndsWith(".png"))
+            return;
+
+        _settedImagePath = path;
+        Image image = new Image();
+        image.Load(path);
+        ImageTexture texture = new ImageTexture();
+        texture.SetImage(image);
+        
+        GetNode<TextureRect>("EditModInfo/PreviewPicture").Texture = texture;
+    }
+    public void FileDropped(string[] files)
+    {
+        var previewPictureRect = GetNode<TextureRect>("EditModInfo/PreviewPicture").GetRect();
+        var MouseGlobalPos = GetGlobalMousePosition();
+        if (GetNode<TextureRect>("EditModInfo/PreviewPicture").Visible && MouseGlobalPos.X > previewPictureRect.Position.X && MouseGlobalPos.Y > previewPictureRect.Position.Y && MouseGlobalPos.X < previewPictureRect.Position.X + previewPictureRect.Size.X && MouseGlobalPos.Y < previewPictureRect.Position.Y + previewPictureRect.Size.Y)
+            SetPicture(files[0]);
+    }
+
     public void Cancel()
     {
         GetNode<Control>("EditModInfo").Visible = false;
@@ -193,7 +227,9 @@ public partial class WorkshopMenu : Control
         file.Close();
 
         _selectedModButton.GetNode<RichTextLabel>("Name").Text = _settedModName;
-        GetNode<RichTextLabel>("ModDescription/Description").Text = _settedModDescription;
+
+        DirAccess.CopyAbsolute(_settedImagePath, _selectedModFolder + @"\PreviewPicture.png");
+        ShowModInfo(_selectedMod);
     }
     public void ModNameChanged()
     {

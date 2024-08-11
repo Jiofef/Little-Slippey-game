@@ -2983,7 +2983,6 @@ position = Vector2(640, 352)
 [node name="Pause" type="CanvasLayer" parent="."]
 process_mode = 2
 layer = 3
-visible = false
 
 [node name="Interface" type="Control" parent="Pause"]
 modulate = Color(1, 1, 1, 0)

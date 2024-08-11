@@ -7,11 +7,21 @@ public partial class ModPreview : Control
     public override void _Ready()
 	{
 		var previewPicture = GetNodeOrNull<TextureRect>("PreviewPicture");
-		if (previewPicture != null)
+		if (previewPicture != null && FileAccess.FileExists(_resourcePath))
 		{
-			Image image = new Image();
-            image.Load(_resourcePath);
-            previewPicture.Texture = GD.Load(_resourcePath) as ImageTexture;
+			if (_resourcePath.Substr(0, 6) != "res://")
+			{
+                Image image = new Image();
+                image.Load(_resourcePath);
+                ImageTexture texture = new ImageTexture();
+                texture.SetImage(image);
+
+                previewPicture.Texture = texture;
+            }
+			else
+			{
+                previewPicture.Texture = (Texture2D)GD.Load(_resourcePath);
+            }
         }
 	}
 }

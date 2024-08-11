@@ -17,17 +17,22 @@ public partial class LevelEditor : Control
 
     private bool _isMiddleButtonPressed = false;
     private string _mapPath = "";
+
     public override void _Ready()
     {
         _mapPath = (string)G.InGameTransitiveValue;
         G.IsLevelVanilla = false;
         _level = (Node2D)ResourceLoader.Load<PackedScene>(_mapPath).Instantiate();
-        _level.ProcessMode = ProcessModeEnum.Disabled;
-        _level.GetNode("Level").ProcessMode = ProcessModeEnum.Disabled;
+        if (_editorCrutches[0])
+            _level.ProcessMode = ProcessModeEnum.Disabled;
+        if (_editorCrutches[1])
+            _level.GetNode<CanvasLayer>("Pause").Visible = false;
+        if (_editorCrutches[2])
+            _level.GetNode<CanvasLayer>("EpicIntro").Visible = false;
+
         GetNode("LevelContainer").AddChild(_level);
         _selectedTileMap = _level.GetNode<TileMap>("Level/TileMap");
         _camera = GetNode<Camera2D>("Camera2D");
-        _level.GetNode<CanvasLayer>("EpicIntro").Visible = false;
         _assistiveTileMap = GetNode<TileMap>("AssistiveTileMap");
         _erasingAssistiveTileMap = GetNode<TileMap>("ErasingAssistiveTileMap");
         _screenButton = GetNode<TextureButton>("CanvasLayer/ScreenButton");
@@ -264,11 +269,9 @@ public partial class LevelEditor : Control
         _mouseLastFramePos = MousePos;
     }
 
-    public void SaveLevel()
+    public void TestLevel()
     {
-        var ToSave = new PackedScene();
-        ToSave.Pack(_level);
-        ResourceSaver.Save(ToSave, _mapPath);
+        GetTree().ChangeSceneToFile(_mapPath);
     }
 
     public void SetEditorMode(int value)
@@ -685,5 +688,22 @@ public partial class LevelEditor : Control
             }
         else
             node.Set(name, value);
+    }
+
+    // Save Section
+    private bool[] _editorCrutches = { true, true, true };
+    public void SaveLevel()
+    {
+        var ToSave = new PackedScene();
+        var LevelClone = _level.Duplicate();
+        if (_editorCrutches[0])
+            LevelClone.ProcessMode = ProcessModeEnum.Always;
+        if (_editorCrutches[1])
+            LevelClone.GetNode<CanvasLayer>("Pause").Visible = true;
+        if (_editorCrutches[2])
+            LevelClone.GetNode<CanvasLayer>("EpicIntro").Visible = true;
+
+        ToSave.Pack(LevelClone);
+        ResourceSaver.Save(ToSave, _mapPath);
     }
 }
