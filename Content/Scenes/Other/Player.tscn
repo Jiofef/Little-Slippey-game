@@ -264,7 +264,6 @@ texture = ExtResource("8_36ypt")
 region_enabled = true
 region_rect = Rect2(0, 0, 16, 16)
 
-[connection signal="CameraLimitsChanged" from="." to="Camera2D" method="LimitsChangingBy"]
 [connection signal="area_entered" from="Areas/PlayerDamageDetector" to="." method="Death" flags=6 unbinds=1]
 [connection signal="area_entered" from="Areas/PlayerDamageDetector" to="Camera2D" method="CameraZoom" flags=6 unbinds=1]
 [connection signal="body_entered" from="Areas/WallDirectionLeftDetector" to="." method="LeftWallDetect" unbinds=1]

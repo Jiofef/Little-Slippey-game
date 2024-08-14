@@ -12,7 +12,7 @@ public partial class WorkshopMenu : Control
     private Dictionary[] _modsInfo;
     private int _selectedMod = -1;
     private string _selectedModFolder;
-    private string[] _directories, _gdDirectories;
+    private string[] _directories;
     private TextureButton _selectedModButton;
     private Control _lastFocusOwner, _currentModPreview;
 
@@ -122,6 +122,7 @@ public partial class WorkshopMenu : Control
         }
 
         G.InGameTransitiveValue = _selectedModFolder + @"\MainScene.tscn";
+        G.ModMapPath = _selectedModFolder.Remove(0, _defaultPath.Length) + @"\MainScene.tscn";
         GetTree().ChangeSceneToFile("res://Content/Scenes/Interface&Menu/LevelEditor.tscn");
     }
 
@@ -220,6 +221,7 @@ public partial class WorkshopMenu : Control
             Directory.Move(_selectedModFolder, _defaultPath + _settedModFolderName);
             _selectedModFolder = _defaultPath + _settedModFolderName;
             _directories[_selectedMod] = _selectedModFolder;
+            ((ModPreview)_currentModPreview)._resourcePath = _selectedModFolder;
         }
 
         using Godot.FileAccess file = Godot.FileAccess.Open(_selectedModFolder + @"\mod_info.json", Godot.FileAccess.ModeFlags.Write);
@@ -228,7 +230,9 @@ public partial class WorkshopMenu : Control
 
         _selectedModButton.GetNode<RichTextLabel>("Name").Text = _settedModName;
 
-        DirAccess.CopyAbsolute(_settedImagePath, _selectedModFolder + @"\PreviewPicture.png");
+        if (_settedImagePath != null)
+            DirAccess.CopyAbsolute(_settedImagePath, _selectedModFolder + @"\PreviewPicture.png");
+        _settedImagePath = null;
         ShowModInfo(_selectedMod);
     }
     public void ModNameChanged()

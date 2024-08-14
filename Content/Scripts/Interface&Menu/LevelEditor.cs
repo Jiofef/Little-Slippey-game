@@ -5,6 +5,8 @@ using System.Linq;
 public partial class LevelEditor : Control
 {
     [Signal] public delegate void NodeMovedByMouseEventHandler();
+    PackedScene _packedLevel;
+
     NodeMovedByMouseEventHandler _lastConnectedPositionPropertyUpdate;
     NodeMovedByMouseEventHandler _lastConnectedGlobalPositionPropertyUpdate;
     Node2D _level;
@@ -20,7 +22,7 @@ public partial class LevelEditor : Control
 
     public override void _Ready()
     {
-        _mapPath = (string)G.InGameTransitiveValue;
+        _mapPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData) + @"\Godot\app_userdata\Little Slippey\mods\" + G.ModMapPath;
         G.IsLevelVanilla = false;
         _level = (Node2D)ResourceLoader.Load<PackedScene>(_mapPath).Instantiate();
         if (_editorCrutches[0])
@@ -271,7 +273,8 @@ public partial class LevelEditor : Control
 
     public void TestLevel()
     {
-        GetTree().ChangeSceneToFile(_mapPath);
+        SaveLevel();
+        GetTree().ChangeSceneToPacked(_packedLevel);
     }
 
     public void SetEditorMode(int value)
@@ -694,7 +697,7 @@ public partial class LevelEditor : Control
     private bool[] _editorCrutches = { true, true, true };
     public void SaveLevel()
     {
-        var ToSave = new PackedScene();
+        _packedLevel = new PackedScene();
         var LevelClone = _level.Duplicate();
         if (_editorCrutches[0])
             LevelClone.ProcessMode = ProcessModeEnum.Always;
@@ -703,7 +706,7 @@ public partial class LevelEditor : Control
         if (_editorCrutches[2])
             LevelClone.GetNode<CanvasLayer>("EpicIntro").Visible = true;
 
-        ToSave.Pack(LevelClone);
-        ResourceSaver.Save(ToSave, _mapPath);
+        _packedLevel.Pack(LevelClone);
+        ResourceSaver.Save(_packedLevel, _mapPath);
     }
 }

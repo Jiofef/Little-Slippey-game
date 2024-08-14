@@ -28,6 +28,3 @@ volume_db = 10.0
 [node name="UpSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_vw7ai")
 volume_db = 10.0
-
-[connection signal="button_down" from="." to="DownSound" method="play"]
-[connection signal="button_up" from="." to="UpSound" method="play"]

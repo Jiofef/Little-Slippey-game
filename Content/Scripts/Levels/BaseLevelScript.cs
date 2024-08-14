@@ -22,6 +22,42 @@ public partial class BaseLevelScript : Node2D
             StartLevel();
     }
 
+    public void StartLevel()
+    {
+        G.ResetValues();
+        Input.MouseMode = !GetTree().Paused ? Input.MouseModeEnum.Hidden : Input.MouseModeEnum.Visible;
+        AudioServer.SetBusMute(2, Meta.Instance.BusVolumes[2] <= -30);
+        GetNode<AudioStreamPlayer>("../LevelMusicPlayer").StreamPaused = false;
+        _player = GetNode<CharacterBody2D>("Player");
+
+        if (G.CurrentLevel == 5 || Meta.Instance.AdditionStatuses[0])
+            AddChild((Node2D)ResourceLoader.Load<PackedScene>("res://Content/Scenes/Other/Level5Rain.tscn").Instantiate());
+        if (G.CurrentLevel == 7 || Meta.Instance.AdditionStatuses[1])
+        {
+            var level7HopelessnesLayer = (CanvasLayer)ResourceLoader.Load<PackedScene>("res://Content/Scenes/Other/Level7HopelessnesLayer.tscn").Instantiate();
+            if (G.CurrentLevel == 5 || Meta.Instance.AdditionStatuses[0])
+                level7HopelessnesLayer.GetNode<VideoStreamPlayer>("VintageFilter").Modulate = new Color(1, 0.8f, 0.55f, 0.2f);
+            AddChild(level7HopelessnesLayer);
+        }
+        if (Meta.Instance.AdditionStatuses[2])
+        {
+            var level9JiofefHead = (Node2D)ResourceLoader.Load<PackedScene>("res://Content/Scenes/Other/Level9JiofefHead.tscn").Instantiate();
+            level9JiofefHead.Position = G.LevelXYSizes[G.CurrentLevel] / 2;
+
+            if (G.CurrentLevel == 8)
+                level9JiofefHead.Position = new Vector2(1280, 320);
+
+            AddChild(level9JiofefHead);
+        }
+        _isCrossesEnhanced = G.CurrentLevel == 10 && G.LevelAdditionalLink == "True" || Meta.Instance.AdditionStatuses[3];
+        if (_isCrossesEnhanced)
+            _crossDefaultWeight = new int[] { 650, 265, 45, 15, 25 };
+        for (int i = 0; i < _crosses.Length; i++)
+            _crosses[i] = ResourceLoader.Load<PackedScene>("res://Content/Scenes/Crosses/" + (_isCrossesEnhanced ? "Enhanced" : "") + "Cross" + (i + 1) + ".tscn");
+
+        ProcessMode = ProcessModeEnum.Pausable;
+    }
+
     public override void _PhysicsProcess(double delta)
     {
         if (G.IsDebugEnabled)
@@ -166,41 +202,6 @@ public partial class BaseLevelScript : Node2D
                     Cross.AddToGroup("Crosses");
             }
         }
-    }
-    public void StartLevel()
-    {
-        G.ResetValues();
-        Input.MouseMode = !GetTree().Paused ? Input.MouseModeEnum.Hidden : Input.MouseModeEnum.Visible;
-        AudioServer.SetBusMute(2, Meta.Instance.BusVolumes[2] <= -30);
-        GetNode<AudioStreamPlayer>("../LevelMusicPlayer").StreamPaused = false;
-        _player = GetNode<CharacterBody2D>("Player");
-
-        if (G.CurrentLevel == 5 || Meta.Instance.AdditionStatuses[0])
-            AddChild((Node2D)ResourceLoader.Load<PackedScene>("res://Content/Scenes/Other/Level5Rain.tscn").Instantiate());
-        if (G.CurrentLevel == 7 || Meta.Instance.AdditionStatuses[1])
-        {
-            var level7HopelessnesLayer = (CanvasLayer)ResourceLoader.Load<PackedScene>("res://Content/Scenes/Other/Level7HopelessnesLayer.tscn").Instantiate();
-            if (G.CurrentLevel == 5 || Meta.Instance.AdditionStatuses[0])
-                level7HopelessnesLayer.GetNode<VideoStreamPlayer>("VintageFilter").Modulate = new Color(1, 0.8f, 0.55f, 0.2f);
-            AddChild(level7HopelessnesLayer);
-        }
-        if (Meta.Instance.AdditionStatuses[2])
-        {
-            var level9JiofefHead = (Node2D)ResourceLoader.Load<PackedScene>("res://Content/Scenes/Other/Level9JiofefHead.tscn").Instantiate();
-            level9JiofefHead.Position = G.LevelXYSizes[G.CurrentLevel] / 2;
-
-            if (G.CurrentLevel == 8)
-                level9JiofefHead.Position = new Vector2(1280, 320);
-
-            AddChild(level9JiofefHead);
-        }
-        _isCrossesEnhanced = G.CurrentLevel == 10 && G.LevelAdditionalLink == "True" || Meta.Instance.AdditionStatuses[3];
-        if (_isCrossesEnhanced)
-            _crossDefaultWeight = new int[] { 650, 265, 45, 15, 25 };
-        for (int i = 0; i < _crosses.Length; i++)
-            _crosses[i] = ResourceLoader.Load<PackedScene>("res://Content/Scenes/Crosses/" + (_isCrossesEnhanced ? "Enhanced" : "") + "Cross" + (i + 1) + ".tscn");
-
-        ProcessMode = ProcessModeEnum.Pausable;
     }
     public void RecalculateCrossWeight()
     {

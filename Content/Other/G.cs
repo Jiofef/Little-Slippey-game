@@ -6,7 +6,7 @@ public partial class G : Node
 	public static bool IsSystemInitiated, IsPlayerDead, IsNewRecordReached, IsProgressPaused = false, IsCrossesEnabled = true, DidLevelIntroPassed, IsLevelVanilla = true, IsDebugEnabled = false;
 	public static float PlayerMoveCoeff = 1, Scores = 0, ResetTimer, PlayerCorpseFlightTimer, AfterPlayerCorpseFlightTimer, CrossSpawnMultiplier = 1, CrossesProgressCoeff = 1, MusicStopTimeCode = 0, MusicRestartPosition = 0, LevelCompleteTime = 150;
 	public static int CurrentLevel;
-	public static string LevelAdditionalLink, MusicName = "";
+	public static string LevelAdditionalLink, MusicName = "", ModMapPath;
 	public static Vector4 CameraLimits;
 	public static readonly int LevelsInGameTotal = 10, CrossesInGameTotal = 5, DificultiesInGameTotal = 3;
 	public static string GetLanguagePrefix()

@@ -26,12 +26,14 @@ public partial class OptionsMenu : Control
         GetViewport().GuiFocusChanged += GuiFocusChanged => WhenFocusChanged(GuiFocusChanged);
         _videoContainer = GetNode<ScrollContainer>("VideoContainer");
         Meta.OptionsReserve = Meta.Instance.Clone();
-        if (G.CurrentLevel != 0)
+        if (G.CurrentLevel != 0 || !G.IsLevelVanilla)
         {
             Connect("OptionsClosing", new Callable(GetNode("../.."), "OptionsClosing"));
             Connect("GUIOptionsChanged", new Callable(GetNode("../../Level/Player/Camera2D"), "ApplyGUIOptions"));
             GetNode<TextureButton>("DeclineButton").GrabFocus();
         }
+        else
+            Connect("OptionsClosing", new Callable(GetParent(), "OpenedMenuClosed"));
 
         UpdateSettingsGUI();
     }
@@ -40,8 +42,6 @@ public partial class OptionsMenu : Control
     {
         Meta.Instance = Meta.OptionsReserve.Clone();
         Meta.Instance.ApplyOptions();
-        if (G.CurrentLevel == 0)
-            Connect("OptionsClosing", new Callable(GetParent(), "OpenedMenuClosed"));
         EmitSignal("OptionsClosing");
         EmitSignal("GUIOptionsChanged", false);
         QueueFree();
@@ -50,8 +50,6 @@ public partial class OptionsMenu : Control
     {
         DisplayServer.WindowSetSize(Meta.Instance.WindowSize);
         Meta.Instance.SaveToFile();
-        if (G.CurrentLevel == 0)
-            Connect("OptionsClosing", new Callable(GetParent(), "OpenedMenuClosed"));
         EmitSignal("OptionsClosing");
         QueueFree();
     }

@@ -9,7 +9,15 @@ public partial class Button : TextureButton
 	{
         _focusRect = GetNode<ColorRect>("FocusRect");
         _focusRect.Size = Size;
-	}
+
+		var downSoundCallable = new Callable(GetNode<AudioStreamPlayer>("DownSound"), "play");
+        if (!IsConnected("button_down", downSoundCallable))
+		Connect("button_down", downSoundCallable);
+
+        var upSoundCallable = new Callable(GetNode<AudioStreamPlayer>("UpSound"), "play");
+        if (!IsConnected("button_up", upSoundCallable))
+            Connect("button_up", upSoundCallable);
+    }
 
 	public override void _PhysicsProcess(double delta)
 	{

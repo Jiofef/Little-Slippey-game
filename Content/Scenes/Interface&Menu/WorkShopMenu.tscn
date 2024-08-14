@@ -458,6 +458,8 @@ If you don't care about the warnings, click again"
 script = ExtResource("7_lmrig")
 
 [connection signal="pressed" from="ModsScrollContainer/ModsScrollVBoxContainer/CreateMapButton" to="." method="CreateANewMap"]
+[connection signal="button_down" from="ModsScrollContainer/ModsScrollVBoxContainer/DefaultMod" to="ModsScrollContainer/ModsScrollVBoxContainer/DefaultMod/DownSound" method="play" flags=18]
+[connection signal="button_up" from="ModsScrollContainer/ModsScrollVBoxContainer/DefaultMod" to="ModsScrollContainer/ModsScrollVBoxContainer/DefaultMod/UpSound" method="play" flags=18]
 [connection signal="pressed" from="ActionButtons/OpenInEditorButton" to="." method="OpenInEditor"]
 [connection signal="pressed" from="ActionButtons/EditInfoButton" to="." method="EditModInfo"]
 [connection signal="pressed" from="EditModInfo/AcceptButton" to="." method="Accept"]

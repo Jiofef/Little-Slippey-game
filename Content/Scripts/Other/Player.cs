@@ -51,6 +51,10 @@ public partial class Player : CharacterBody2D
             _animationPlayer = _animatedSprite.GetNode<AnimationPlayer>("AnimationPlayer");
         }
         GetNode("SkinContainer").AddChild(_animatedSprite);
+
+        var cameraCallable = new Callable(GetNode("Camera2D"), "LimitsChangingBy");
+        if (!IsConnected("CameraLimitsChanged", cameraCallable))
+            Connect("CameraLimitsChanged", cameraCallable);
     }
 
     public override void _PhysicsProcess(double delta)

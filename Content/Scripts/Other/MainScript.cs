@@ -50,9 +50,16 @@ public partial class MainScript : Node2D
             G.IsCrossesEnabled = true;
             G.IsProgressPaused = false;
             G.CrossSpawnMultiplier = 1;
-            UnchangableMeta.SaveRecords();
             EmitSignal("LevelReseting");
-            LoadScene("res://Content/Scenes/Levels/FullParts/Level" + G.CurrentLevel + G.LevelAdditionalLink + ".tscn");
+            if (G.IsLevelVanilla)
+            {
+                UnchangableMeta.SaveRecords();
+                LoadScene("res://Content/Scenes/Levels/FullParts/Level" + G.CurrentLevel + G.LevelAdditionalLink + ".tscn");
+            }
+            else
+            {
+                LoadScene(G.ModMapPath);
+            }
         }
     }
     public void UnPause()
@@ -116,7 +123,13 @@ public partial class MainScript : Node2D
 
     public void LoadScene(string ScenePath)
     {
-        GetTree().ChangeSceneToFile(ScenePath);
+        if (G.IsLevelVanilla)
+            GetTree().ChangeSceneToFile(ScenePath);
+        else
+        {
+            G.ModMapPath = ScenePath;
+            GetTree().ChangeSceneToFile(System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData) + @"\Godot\app_userdata\Little Slippey\mods\" + G.ModMapPath);
+        }
     }
     public void SetCrossesEnabled(bool value)
     {
@@ -171,5 +184,10 @@ public partial class MainScript : Node2D
     public void SetDebugEnabled(bool value)
     {
         G.IsDebugEnabled = value;
+    }
+    public void SetMapScenePath(string value)
+    {
+        //The path starts from "mods/" folder. For example, value can be "MyMod/MainScene.tscn" or "SomeMod/Directory/Scene1.tscn"
+        G.ModMapPath = value;
     }
 }
