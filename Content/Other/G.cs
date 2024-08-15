@@ -3,7 +3,7 @@ using Godot;
 public partial class G : Node
 {
 	// G is gameplay singleton, that having importal information which may be needed in various places of the game. They will not save after exiting the game
-	public static bool IsSystemInitiated, IsPlayerDead, IsNewRecordReached, IsProgressPaused = false, IsCrossesEnabled = true, DidLevelIntroPassed, IsLevelVanilla = true, IsDebugEnabled = false;
+	public static bool IsSystemInitiated, IsPlayerDead, IsNewRecordReached, IsProgressPaused = false, IsCrossesEnabled = true, DidLevelIntroPassed, IsLevelVanilla = true, IsDebugEnabled = true;
 	public static float PlayerMoveCoeff = 1, Scores = 0, ResetTimer, PlayerCorpseFlightTimer, AfterPlayerCorpseFlightTimer, CrossSpawnMultiplier = 1, CrossesProgressCoeff = 1, MusicStopTimeCode = 0, MusicRestartPosition = 0, LevelCompleteTime = 150;
 	public static int CurrentLevel;
 	public static string LevelAdditionalLink, MusicName = "", ModMapPath;

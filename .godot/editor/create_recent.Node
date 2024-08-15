@@ -1,3 +1,13 @@
+PopupMenu
+Line2D
+Node2D
+RemoteTransform2D
+LightOccluder2D
+PointLight2D
+CanvasModulate
+Sprite2D
+ParallaxLayer
+ParallaxBackground
 Button
 FileDialog
 Control
@@ -6,7 +16,6 @@ TileMap
 ColorRect
 LineEdit
 AnimationPlayer
-Sprite2D
 VBoxContainer
 ScrollContainer
 TextEdit
@@ -18,15 +27,7 @@ GraphEdit
 ItemList
 Tree
 RichTextLabel
-Node2D
 TextureButton
 CanvasLayer
 HBoxContainer
 Camera2D
-VScrollBar
-VisibleOnScreenNotifier2D
-Label
-HFlowContainer
-AudioStreamPlayer
-CollisionShape2D
-Area2D

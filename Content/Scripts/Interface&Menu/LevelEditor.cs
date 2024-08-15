@@ -17,7 +17,7 @@ public partial class LevelEditor : Control
     enum EditorMode { TileMode, NodeMode, CodeMode }
     EditorMode _editorMode = EditorMode.TileMode;
 
-    private bool _isMiddleButtonPressed = false;
+    private bool _isMiddleButtonPressed = false, _isRightButtonPressed = false;
     private string _mapPath = "";
 
     public override void _Ready()
@@ -507,6 +507,25 @@ public partial class LevelEditor : Control
         var NodesButtonsContainer = GetNode<Tree>("CanvasLayer/NodeModeGUI/NodesButtonsTree");
         _selectedNode = (Node)NodesButtonsContainer.GetSelected().GetMeta("CorrespondingNode");
         UpdateVisibleProperties();
+
+        if (Input.IsMouseButtonPressed(MouseButton.Right))
+        {
+            var nodePopupMenu = GetNode<PopupMenu>("CanvasLayer/NodeModeGUI/NodePopupMenu");
+            nodePopupMenu.Position = (Vector2I)GetLocalMousePosition();
+            nodePopupMenu.Popup();
+        }
+    }
+    public void NodePopupAction(int actionIndex)
+    {
+        switch(actionIndex)
+        {
+            case 8:
+                _selectedNode.QueueFree();
+                _selectedNode = null;
+                var NodesButtonsContainer = GetNode<Tree>("CanvasLayer/NodeModeGUI/NodesButtonsTree");
+                NodesButtonsContainer.GetSelected().Free();
+                break;
+        }
     }
     private void UpdateAllNodesArray()
     {

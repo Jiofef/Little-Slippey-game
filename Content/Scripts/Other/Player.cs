@@ -246,12 +246,6 @@ public partial class Player : CharacterBody2D
     public void Death()
     {
         UnchangableMeta.DeathsNumber++;
-        switch(UnchangableMeta.DeathsNumber)
-        {
-            case 2: G.GetAchievement(4); break;
-            case 35: G.GetAchievement(5); break;
-            case 273: G.GetAchievement(6); break;
-        }
 
         ZIndex++;
 
@@ -272,8 +266,18 @@ public partial class Player : CharacterBody2D
         if (Convert.ToBoolean((string)_animatedSprite.GetMeta("HasDeathPlayerAnimation")))
             _animatedSprite.GetNode<AnimationPlayer>("AnimationPlayer").Play("Death");
         G.IsPlayerDead = true;
-        UnchangableMeta.SaveRecords();
-        UnchangableMeta.SaveToFile();
+
+        if (G.IsLevelVanilla)
+        {
+            switch (UnchangableMeta.DeathsNumber)
+            {
+                case 2: G.GetAchievement(4); break;
+                case 35: G.GetAchievement(5); break;
+                case 273: G.GetAchievement(6); break;
+            }
+            UnchangableMeta.SaveRecords();
+            UnchangableMeta.SaveToFile();
+        }
     }
 
     public void LeftWallDetect()

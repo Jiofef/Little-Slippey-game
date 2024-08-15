@@ -95,7 +95,7 @@ public partial class BaseLevelScript : Node2D
         {
             G.Scores += _floatDelta;
             _weightMultiplierExtenderToCurrentCross += (_floatDelta * _crossDefaultWeight[_lastAviableCrossNumber]) / 30 * G.CrossesProgressCoeff;
-            if(G.Scores > G.LevelCompleteTime && UnchangableMeta.LevelCompleteStatus[G.CurrentLevel - 1] < 1 + Meta.Instance.Dificulty)
+            if(G.Scores > G.LevelCompleteTime && UnchangableMeta.LevelCompleteStatus[G.CurrentLevel - 1] < 1 + Meta.Instance.Dificulty && G.IsLevelVanilla)
                 UnchangableMeta.SaveRecords();
         }
 

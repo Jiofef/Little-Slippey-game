@@ -90,11 +90,18 @@ public partial class MainScript : Node2D
     }
     public void Menu()
     {
-        UnchangableMeta.SaveRecords();
-        UnchangableMeta.SaveToFile();
+        if (G.IsLevelVanilla)
+        {
+            UnchangableMeta.SaveRecords();
+            UnchangableMeta.SaveToFile(); 
+            GetTree().ChangeSceneToFile("res://Content/Scenes/Interface&Menu/WelcomeToGOS.tscn");
+        }
+        else
+        {
+            GetTree().ChangeSceneToFile("res://Content/Scenes/Interface&Menu/LevelEditor.tscn");
+        }
         G.CompletelyResetValues();
         GetTree().Paused = false;
-        GetTree().ChangeSceneToFile("res://Content/Scenes/Interface&Menu/WelcomeToGOS.tscn");
     }
     public void OptionsClosing()
     {
