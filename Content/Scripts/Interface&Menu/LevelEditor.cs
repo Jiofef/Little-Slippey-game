@@ -517,12 +517,20 @@ public partial class LevelEditor : Control
     }
     public void NodePopupAction(int actionIndex)
     {
-        switch(actionIndex)
+        var NodesButtonsContainer = GetNode<Tree>("CanvasLayer/NodeModeGUI/NodesButtonsTree");
+        switch (actionIndex)
         {
+            case 2:
+                G.NodeCopyBuffer[0] = _selectedNode.Duplicate();
+                break;
+            case 3:
+                _selectedNode.AddChild(G.NodeCopyBuffer[0].Duplicate());
+                var treeItem = 0;
+                NodesButtonsContainer.GetSelected().CreateChild();
+                break;
             case 8:
                 _selectedNode.QueueFree();
                 _selectedNode = null;
-                var NodesButtonsContainer = GetNode<Tree>("CanvasLayer/NodeModeGUI/NodesButtonsTree");
                 NodesButtonsContainer.GetSelected().Free();
                 break;
         }

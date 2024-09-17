@@ -9,6 +9,7 @@ public partial class G : Node
 	public static string LevelAdditionalLink, MusicName = "", ModMapPath;
 	public static Vector4 CameraLimits;
 	public static readonly int LevelsInGameTotal = 10, CrossesInGameTotal = 5, DificultiesInGameTotal = 3;
+	public static Node[] NodeCopyBuffer = new Node[0];
 	public static string GetLanguagePrefix()
 	{
 		if (Meta.Instance.language == Meta.Language.en)
