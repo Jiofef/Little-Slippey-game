@@ -15,7 +15,7 @@ public partial class InitializationScene : Control
             GetNode<TextureButton>("ChooseYourLanguage/ChooseYourLanguageEng").GrabFocus();
         }
         else
-            GetTree().ChangeSceneToFile("res://Content/Scenes/Interface&Menu/WelcomeToGOS.tscn");
+            GetTree().CallDeferred("change_scene_to_file", "res://Content/Scenes/Interface&Menu/WelcomeToGOS.tscn");
     }
 
     public void SetLanguage(int languageNumber)

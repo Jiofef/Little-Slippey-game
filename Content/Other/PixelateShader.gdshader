@@ -1,5 +1,5 @@
 shader_type canvas_item;
- 
+
 uniform float pixelFactor : hint_range(0, 1) = 0.5;
 void fragment()
 {

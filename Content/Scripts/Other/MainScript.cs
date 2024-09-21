@@ -90,6 +90,7 @@ public partial class MainScript : Node2D
     }
     public void Menu()
     {
+        GetTree().Paused = false;
         if (G.IsLevelVanilla)
         {
             UnchangableMeta.SaveRecords();
@@ -101,7 +102,6 @@ public partial class MainScript : Node2D
             GetTree().ChangeSceneToFile("res://Content/Scenes/Interface&Menu/LevelEditor.tscn");
         }
         G.CompletelyResetValues();
-        GetTree().Paused = false;
     }
     public void OptionsClosing()
     {

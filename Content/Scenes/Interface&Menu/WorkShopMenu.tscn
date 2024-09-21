@@ -242,10 +242,10 @@ text = "Note: Before starting the construction of a test chamber, it is necessar
 script = ExtResource("7_lmrig")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "Appearance"
 libraries = {
 "": SubResource("AnimationLibrary_u8saj")
 }
+autoplay = "Appearance"
 
 [node name="EditModInfo" type="Control" parent="."]
 process_mode = 3
@@ -407,7 +407,7 @@ vertical_alignment = 1
 title = "Open a File"
 initial_position = 1
 size = Vector2i(505, 505)
-ok_button_text = "Открыть"
+ok_button_text = "Open"
 file_mode = 0
 access = 2
 filters = PackedStringArray("*.png ; PNG images")
@@ -458,8 +458,8 @@ If you don't care about the warnings, click again"
 script = ExtResource("7_lmrig")
 
 [connection signal="pressed" from="ModsScrollContainer/ModsScrollVBoxContainer/CreateMapButton" to="." method="CreateANewMap"]
-[connection signal="button_down" from="ModsScrollContainer/ModsScrollVBoxContainer/DefaultMod" to="ModsScrollContainer/ModsScrollVBoxContainer/DefaultMod/DownSound" method="play" flags=18]
-[connection signal="button_up" from="ModsScrollContainer/ModsScrollVBoxContainer/DefaultMod" to="ModsScrollContainer/ModsScrollVBoxContainer/DefaultMod/UpSound" method="play" flags=18]
+[connection signal="button_down" from="ModsScrollContainer/ModsScrollVBoxContainer/DefaultMod" to="ModsScrollContainer/ModsScrollVBoxContainer/DefaultMod/DownSound" method="play"]
+[connection signal="button_up" from="ModsScrollContainer/ModsScrollVBoxContainer/DefaultMod" to="ModsScrollContainer/ModsScrollVBoxContainer/DefaultMod/UpSound" method="play"]
 [connection signal="pressed" from="ActionButtons/OpenInEditorButton" to="." method="OpenInEditor"]
 [connection signal="pressed" from="ActionButtons/EditInfoButton" to="." method="EditModInfo"]
 [connection signal="pressed" from="EditModInfo/AcceptButton" to="." method="Accept"]

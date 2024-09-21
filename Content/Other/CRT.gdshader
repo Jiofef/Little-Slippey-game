@@ -6,7 +6,7 @@ vec2 warp(vec2 uv){
 	float delta2 = dot(delta.xy, delta.xy);
 	float delta4 = delta2 * delta2;
 	float delta_offset = delta4 * 0.2;
-	
+
 	return uv + delta * delta_offset;
 }
 
@@ -31,27 +31,27 @@ void fragment()
 	vec2 text_uv = uv;
 	vec2 roll_uv = vec2(0.0);
 	float time = TIME;
-	
+
 	float roll_line = 0.0;
 	roll_line = smoothstep(0.3, 0.9, sin(uv.y * 15.0 - (time * 8.0) ) );
 	roll_line *= roll_line * smoothstep(0.3, 0.9, sin(uv.y * 15.0 * 1.8 - (time * 8.0 * 1.8) ) );
 	roll_uv = vec2(( roll_line * 0.001 * (1.-UV.x)), 0.0);
-	
+
 	vec4 text;
 	text.r = texture(SCREEN_TEXTURE, text_uv + roll_uv * 0.8).r;
 	text.g = texture(SCREEN_TEXTURE, text_uv + roll_uv * 1.2).g;
 	text.b = texture(SCREEN_TEXTURE, text_uv + roll_uv).b;
 	text.a = 1.0;
-	
+
 	uv = warp(UV);
 
 	float scanlines = 0.5;
 	scanlines = smoothstep(0.0, 0.5, abs(sin(uv.y * (480.0 * 3.14159265))));
 	text.rgb = mix(text.rgb, text.rgb * vec3(scanlines), 0.1);
-	
-	
+
+
 	text.rgb *= border(uv);
 	text.rgb *= vignette(uv);
-	
+
 	COLOR = text;
 }

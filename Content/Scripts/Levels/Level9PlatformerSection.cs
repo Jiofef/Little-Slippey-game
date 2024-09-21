@@ -23,6 +23,7 @@ public partial class Level9PlatformerSection : TileMap
     public void AhahahSilly()
     {
         UnchangableMeta.IsLevel9PlatformSectionSkipAllowed = true;
+        UnchangableMeta.SaveToFile();
         G.LevelAdditionalLink = "WithoutPlatformSection";
         Connect("LoadScene", new Callable(GetNode("../.."), "LoadScene"));
         EmitSignal("LoadScene", "res://Content/Scenes/Levels/FullParts/Level" + G.CurrentLevel + G.LevelAdditionalLink + ".tscn");

@@ -191,79 +191,43 @@ sources/2 = SubResource("TileSetAtlasSource_bga7a")
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_i2m21"]
 texture = ExtResource("11_fletv")
 0:0/0 = 0
-0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-0:0/0/physics_layer_0/angular_velocity = 0.0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 1:0/0 = 0
-1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-1:0/0/physics_layer_0/angular_velocity = 0.0
 1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 8, 8, 8, 8, -8, -8, -8)
 2:0/0 = 0
-2:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-2:0/0/physics_layer_0/angular_velocity = 0.0
 2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, -8, 8, 8, 8, 8, -8)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hivhj"]
 texture = ExtResource("10_dgdpc")
 0:0/0 = 0
-0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-0:0/0/physics_layer_0/angular_velocity = 0.0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 1:0/0 = 0
-1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-1:0/0/physics_layer_0/angular_velocity = 0.0
 2:0/0 = 0
-2:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-2:0/0/physics_layer_0/angular_velocity = 0.0
 2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 3:0/0 = 0
-3:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-3:0/0/physics_layer_0/angular_velocity = 0.0
 0:1/next_alternative_id = 2
 0:1/0 = 0
-0:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-0:1/0/physics_layer_0/angular_velocity = 0.0
 0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, -6, -8, -6)
 0:1/1 = 1
 0:1/1/flip_v = true
-0:1/1/physics_layer_0/linear_velocity = Vector2(0, 0)
-0:1/1/physics_layer_0/angular_velocity = 0.0
 0:1/1/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 6, 8, 6, 8, 8, -8, 8)
 1:1/next_alternative_id = 2
 1:1/0 = 0
-1:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-1:1/0/physics_layer_0/angular_velocity = 0.0
 1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, -6, -8, -6)
 1:1/1 = 1
 1:1/1/flip_h = true
-1:1/1/physics_layer_0/linear_velocity = Vector2(0, 0)
-1:1/1/physics_layer_0/angular_velocity = 0.0
 1:1/1/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, -6, -8, -6)
 2:1/0 = 0
-2:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-2:1/0/physics_layer_0/angular_velocity = 0.0
 2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 3:1/0 = 0
-3:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-3:1/0/physics_layer_0/angular_velocity = 0.0
 0:2/next_alternative_id = 2
 0:2/0 = 0
-0:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-0:2/0/physics_layer_0/angular_velocity = 0.0
 0:2/1 = 1
 0:2/1/flip_h = true
-0:2/1/physics_layer_0/linear_velocity = Vector2(0, 0)
-0:2/1/physics_layer_0/angular_velocity = 0.0
 1:2/0 = 0
-1:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-1:2/0/physics_layer_0/angular_velocity = 0.0
 1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 2:2/0 = 0
-2:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-2:2/0/physics_layer_0/angular_velocity = 0.0
 3:2/0 = 0
-3:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-3:2/0/physics_layer_0/angular_velocity = 0.0
 
 [sub_resource type="TileSet" id="TileSet_g2jqv"]
 physics_layer_0/collision_layer = 4
@@ -318,10 +282,10 @@ texture = ExtResource("4_mues3")
 centered = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Level/Background/BackClouds" index="1"]
-autoplay = "CloudsMoving"
 libraries = {
 "": SubResource("AnimationLibrary_bwmv0")
 }
+autoplay = "CloudsMoving"
 
 [node name="FrontClouds" type="ParallaxLayer" parent="Level/Background" index="2"]
 motion_scale = Vector2(0.2, 0.3)
@@ -395,10 +359,10 @@ scale = Vector2(4.5, 4.5)
 texture = ExtResource("7_id1r3")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Level/Background/Sea/Yacht" index="0"]
-autoplay = "Sailing"
 libraries = {
 "": SubResource("AnimationLibrary_2um0l")
 }
+autoplay = "Sailing"
 
 [node name="Sprite2D2" type="Sprite2D" parent="Level/Background/Sea" index="3"]
 position = Vector2(0, -80)
