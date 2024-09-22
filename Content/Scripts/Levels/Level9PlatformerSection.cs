@@ -1,6 +1,6 @@
 using Godot;
 
-public partial class Level9PlatformerSection : TileMap
+public partial class Level9PlatformerSection : Node2D
 {
     [Signal] public delegate void LoadSceneEventHandler();
     public override void _Ready()

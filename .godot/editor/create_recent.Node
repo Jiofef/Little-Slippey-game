@@ -1,4 +1,5 @@
 Node2D
+TileMapLayer
 Parallax2D
 PopupMenu
 Line2D
@@ -11,4 +12,3 @@ ParallaxLayer
 ParallaxBackground
 Button
 FileDialog
-Control

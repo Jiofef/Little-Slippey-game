@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=4 uid="uid://biit1jgjtou15"]
+[gd_scene load_steps=47 format=4 uid="uid://biit1jgjtou15"]
 
 [ext_resource type="PackedScene" uid="uid://5kfyvxsdpsk2" path="res://Content/Scenes/Other/LevelLayout.tscn" id="1_yi0hb"]
 [ext_resource type="Texture2D" uid="uid://b5p3n4aaw5n7h" path="res://Content/Sprites/Levels/Level4/Background.png" id="2_ao0lm"]
@@ -18,6 +18,42 @@
 [ext_resource type="Script" path="res://Content/Scripts/Levels/Foreground.cs" id="16_yd5fs"]
 [ext_resource type="Shader" path="res://Content/Other/PostProcessing.gdshader" id="17_61d51"]
 [ext_resource type="PackedScene" uid="uid://d3u7pfig07yrs" path="res://Content/Scenes/Other/CrutchedArea2D.tscn" id="18_axctq"]
+
+[sub_resource type="Animation" id="Animation_p3npb"]
+resource_name = "MusicStarting"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 10.0]
+}
+
+[sub_resource type="Animation" id="Animation_n61s8"]
+resource_name = "MusicStopping"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [10.0, -20.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jcmm3"]
+_data = {
+&"MusicStopping": SubResource("Animation_n61s8"),
+&"MusicStarting": SubResource("Animation_p3npb")
+}
 
 [sub_resource type="Animation" id="Animation_bhfph"]
 resource_name = "SawSpinning"
@@ -85,7 +121,7 @@ tracks/4/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_gf8ss"]
 _data = {
-"SawSpinning": SubResource("Animation_bhfph")
+&"SawSpinning": SubResource("Animation_bhfph")
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wn5uk"]
@@ -199,7 +235,221 @@ shader_parameter/saturation = 0.8
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yv5wh"]
 size = Vector2(128, 128)
 
+[sub_resource type="Animation" id="Animation_gr4ul"]
+resource_name = "OpeningSubMenu"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Interface/SubMenuBackgroundRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Interface:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Interface/ButtonsFrame:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 520), Vector2(0, 520)]
+}
+
+[sub_resource type="Animation" id="Animation_qdctp"]
+resource_name = "Pause"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Interface:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Interface/ButtonsFrame:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 720), Vector2(0, 520)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Interface/SubMenuBackgroundRect:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4p2pf"]
+_data = {
+&"Pause": SubResource("Animation_qdctp"),
+&"OpeningSubMenu": SubResource("Animation_gr4ul")
+}
+
+[sub_resource type="Animation" id="Animation_gx3u0"]
+resource_name = "EpicIntro"
+length = 8.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EpicIntro/TopRect:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2, 2.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 0), Vector2(0, -360)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("EpicIntro/BottomRect:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2, 2.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 360), Vector2(0, 360), Vector2(0, 720)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [true],
+"method": &"set_process"
+}]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("LevelMusicPlayer:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(2),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("EpicIntro/BrightnessRect:_value")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 2, 8),
+"transitions": PackedFloat32Array(0, 0.5, 1),
+"update": 0,
+"values": [0.0, 4.0, 1.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("EpicIntro/Glare:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 2, 5),
+"transitions": PackedFloat32Array(1, 0.5, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.501961), Color(1, 1, 1, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Level:process_mode")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+tracks/7/type = "method"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("EpicIntro/AnimationPlayer")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [true],
+"method": &"Set"
+}]
+}
+tracks/8/type = "method"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Level")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"StartLevel"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_emurq"]
+_data = {
+&"EpicIntro": SubResource("Animation_gx3u0")
+}
+
 [node name="Main" instance=ExtResource("1_yi0hb")]
+
+[node name="AnimationPlayer" parent="LevelMusicPlayer" index="0"]
+libraries = {
+&"": SubResource("AnimationLibrary_jcmm3")
+}
 
 [node name="Background" type="ParallaxBackground" parent="Level" index="0"]
 
@@ -223,7 +473,7 @@ centered = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Level/Background/SawHolder" index="1"]
 libraries = {
-"": SubResource("AnimationLibrary_gf8ss")
+&"": SubResource("AnimationLibrary_gf8ss")
 }
 autoplay = "SawSpinning"
 speed_scale = 1.5
@@ -425,6 +675,16 @@ position = Vector2(1312, 672)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/PlayMusicTrigger" index="0"]
 shape = SubResource("RectangleShape2D_yv5wh")
+
+[node name="AnimationPlayer" parent="Pause/Interface" index="3"]
+libraries = {
+&"": SubResource("AnimationLibrary_4p2pf")
+}
+
+[node name="AnimationPlayer" parent="EpicIntro" index="0"]
+libraries = {
+&"": SubResource("AnimationLibrary_emurq")
+}
 
 [connection signal="CirclePassed" from="Level/BackCircularSaw" to="Level/BackCircularSaw/Saw/MiddleCircularSaw/ScreechSound" method="PlayReccurentSound"]
 [connection signal="CirclePassed" from="Level/BackCircularSaw" to="Level/BackCircularSaw/Saw/MiddleCircularSaw/MetalSparks" method="set_emitting" binds= [true]]

@@ -7,7 +7,7 @@ public partial class Level8TileMapSpawner : Node2D
 
     PackedScene[] _tileMaps = new PackedScene[10];
     CharacterBody2D _player;
-	TileMap[] _previousTileMaps = new TileMap[2];
+	TileMapLayer[] _previousTileMaps = new TileMapLayer[2];
 
     private float _spawnedTileMapsNumber = 0, _tileMapsPassed = 1;
 	private int _lastTileMapID;
@@ -17,7 +17,7 @@ public partial class Level8TileMapSpawner : Node2D
 		_player = GetNode<CharacterBody2D>("../Player");
 		for (int i = 0; i < _tileMaps.Length; i++)
 			_tileMaps[i] = ResourceLoader.Load<PackedScene>("res://Content/Scenes/Levels/Level8TileMaps/TileMap" + i + ".tscn");
-		_previousTileMaps[0] = GetNode<TileMap>("../TileMap");
+		_previousTileMaps[0] = GetNode<TileMapLayer>("../TileMap");
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -35,7 +35,7 @@ public partial class Level8TileMapSpawner : Node2D
 					break;
 				}
             }
-            TileMap tileMap = (TileMap)_tileMaps[_lastTileMapID].Instantiate();
+            TileMapLayer tileMap = (TileMapLayer)_tileMaps[_lastTileMapID].Instantiate();
             tileMap.Position = new Vector2(2560 + _spawnedTileMapsNumber * 2560, 0);
 			AddChild(tileMap);
             _spawnedTileMapsNumber++;

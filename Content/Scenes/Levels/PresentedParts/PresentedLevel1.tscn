@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://7nscuvf5qefr"]
+[gd_scene load_steps=35 format=4 uid="uid://7nscuvf5qefr"]
 
 [ext_resource type="Texture2D" uid="uid://cjoa8meyv5ehu" path="res://Content/Sprites/Levels/Level1/Sky.png" id="1_nafe2"]
 [ext_resource type="Texture2D" uid="uid://iyc2n8rea3ew" path="res://Content/Sprites/Levels/Level1/FrontLayer.png" id="2_0q8vt"]
@@ -16,25 +16,17 @@
 texture = ExtResource("4")
 0:0/next_alternative_id = 8
 0:0/0 = 0
-0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-0:0/0/physics_layer_0/angular_velocity = 0.0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 1:0/next_alternative_id = 8
 1:0/0 = 0
-1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-1:0/0/physics_layer_0/angular_velocity = 0.0
 1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 2:0/next_alternative_id = 8
 2:0/0 = 0
-2:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-2:0/0/physics_layer_0/angular_velocity = 0.0
 2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mnnu6"]
 texture = ExtResource("2_hijj5")
 0:2/0 = 0
-0:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-0:2/0/physics_layer_0/angular_velocity = 0.0
 0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
 [sub_resource type="TileSet" id="TileSet_qeks3"]
@@ -75,9 +67,9 @@ length = 0.001
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kli7e"]
 _data = {
-"CameraMoving1X1": SubResource("Animation_qnl8m"),
-"CameraMoving2X1": SubResource("Animation_2yfre"),
-"RESET": SubResource("Animation_yfk10")
+&"RESET": SubResource("Animation_yfk10"),
+&"CameraMoving1X1": SubResource("Animation_qnl8m"),
+&"CameraMoving2X1": SubResource("Animation_2yfre")
 }
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6c1h1"]
@@ -121,7 +113,7 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ku48g"]
 _data = {
-"Rotation": SubResource("Animation_sycmi")
+&"Rotation": SubResource("Animation_sycmi")
 }
 
 [sub_resource type="Animation" id="Animation_yn5s4"]
@@ -156,7 +148,7 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ul4do"]
 _data = {
-"CloudsMoving": SubResource("Animation_yn5s4")
+&"CloudsMoving": SubResource("Animation_yn5s4")
 }
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ukheu"]
@@ -207,11 +199,11 @@ sources/2 = SubResource("TileSetAtlasSource_4uqr8")
 
 [node name="PresentedLevel1" type="Node2D"]
 
-[node name="TileMap" type="TileMap" parent="."]
+[node name="TileMap" type="TileMapLayer" parent="."]
+use_parent_material = true
 scale = Vector2(4, 4)
+tile_map_data = PackedByteArray("AAD/////AAABAAAAAAAAAP//AAABAAAAAAABAP//AAABAAAAAAACAP//AAABAAAAAAADAP//AAABAAAAAAAEAP//AAABAAAAAAAFAP//AAABAAAAAAAOAP//AAABAAAAAAAPAP//AAABAAAAAAD//wAAAAABAAAAAAD//wEAAAABAAAAAAD//wIAAAABAAAAAAD//wMAAAABAAAAAAD//wQAAAABAAAAAAD//wUAAAABAAAAAAD//wYAAAABAAAAAAD//wcAAAABAAAAAAD//wgAAAABAAAAAAD//wkAAAABAAAAAAAUAP//AAABAAAAAAAQAP//AAABAAAAAAARAP//AAABAAAAAAASAP//AAABAAAAAAATAP//AAABAAAAAAAUAAoAAAABAAAAAAATAAoAAAABAAAAAAASAAoAAAABAAAAAAARAAoAAAACAAAAAAAQAAoAAAACAAAAAAAPAAoAAAACAAAAAAAOAAoAAAACAAAAAAANAAoAAAACAAAAAAAGAAoAAAACAAAAAAAFAAoAAAACAAAAAAAEAAoAAAACAAAAAAADAAoAAAACAAAAAAACAAoAAAABAAAAAAABAAoAAAABAAAAAAAAAAoAAAABAAAAAAD//woAAAABAAAAAAANAP//AAABAAAAAAAHAP//AAABAAAAAAAGAP//AAABAAAAAAAIAP//AAABAAAAAAAJAP//AAABAAAAAAAKAP//AAABAAAAAAALAP//AAABAAAAAAAMAP//AAABAAAAAAAMAAoAAAACAAAAAAALAAoAAAACAAAAAAAKAAoAAAACAAAAAAAJAAoAAAACAAAAAAAIAAoAAAACAAAAAAAHAAoAAAACAAAAAAAUAAAAAAABAAAAAAAUAAEAAAABAAAAAAAUAAIAAAABAAAAAAAUAAcAAAABAAAAAAASAAAAAAABAAAAAAASAAEAAAABAAAAAAASAAIAAAABAAAAAAASAAcAAAABAAAAAAATAAAAAAABAAAAAAATAAEAAAABAAAAAAATAAIAAAABAAAAAAATAAcAAAABAAAAAAATAAgAAAABAAAAAAATAAkAAAABAAAAAAAUAAMAAAABAAAAAAAUAAQAAAABAAAAAAAUAAUAAAABAAAAAAAUAAYAAAABAAAAAAAUAAgAAAABAAAAAAAUAAkAAAABAAAAAAABAAgAAAABAAAAAAAAAAgAAAABAAAAAAAAAAkAAAABAAAAAAABAAkAAAABAAAAAAAAAAIAAAABAAAAAAAAAAAAAAABAAAAAAAAAAEAAAABAAAAAAABAAMAAAABAAAAAAABAAQAAAABAAAAAAAAAAMAAAABAAAAAAAAAAQAAAABAAAAAAAMAAUAAQAAAAIAAAABAAAAAAABAAAAAAABAAEAAAABAAAAAAABAAIAAAABAAAAAAACAAkAAAABAAAAAAACAAgAAAABAAAAAAASAAgAAAABAAAAAAASAAkAAAABAAAAAAAPAAUAAQAAAAIAAAAGAAIAAQAAAAIAAAAGAAYAAQAAAAIAAAAHAAIAAQAAAAIAAAAHAAYAAQAAAAIAAAAHAAcAAQAAAAIAAAAFAAYAAQAAAAIAAAAFAAIAAQAAAAIAAAANAAQAAQAAAAIAAAAOAAQAAQAAAAIAAAAPAAYAAQAAAAIAAAAMAAQAAQAAAAIAAAAPAAQAAQAAAAIAAAANAAUAAQAAAAIAAAAOAAUAAQAAAAIAAAAOAAYAAQAAAAIAAAAMAAYAAQAAAAIAAAANAAYAAQAAAAIAAAA=")
 tile_set = SubResource("TileSet_qeks3")
-format = 2
-layer_0/tile_data = PackedInt32Array(-1, 65536, 0, -65536, 65536, 0, -65535, 65536, 0, -65534, 65536, 0, -65533, 65536, 0, -65532, 65536, 0, -65531, 65536, 0, -65522, 65536, 0, -65521, 65536, 0, 65535, 65536, 0, 131071, 65536, 0, 196607, 65536, 0, 262143, 65536, 0, 327679, 65536, 0, 393215, 65536, 0, 458751, 65536, 0, 524287, 65536, 0, 589823, 65536, 0, 655359, 65536, 0, -65516, 65536, 0, -65520, 65536, 0, -65519, 65536, 0, -65518, 65536, 0, -65517, 65536, 0, 655380, 65536, 0, 655379, 65536, 0, 655378, 65536, 0, 655377, 131072, 0, 655376, 131072, 0, 655375, 131072, 0, 655374, 131072, 0, 655373, 131072, 0, 655366, 131072, 0, 655365, 131072, 0, 655364, 131072, 0, 655363, 131072, 0, 655362, 65536, 0, 655361, 65536, 0, 655360, 65536, 0, 720895, 65536, 0, -65523, 65536, 0, -65529, 65536, 0, -65530, 65536, 0, -65528, 65536, 0, -65527, 65536, 0, -65526, 65536, 0, -65525, 65536, 0, -65524, 65536, 0, 655372, 131072, 0, 655371, 131072, 0, 655370, 131072, 0, 655369, 131072, 0, 655368, 131072, 0, 655367, 131072, 0, 20, 65536, 0, 65556, 65536, 0, 131092, 65536, 0, 458772, 65536, 0, 18, 65536, 0, 65554, 65536, 0, 131090, 65536, 0, 458770, 65536, 0, 19, 65536, 0, 65555, 65536, 0, 131091, 65536, 0, 458771, 65536, 0, 524307, 65536, 0, 589843, 65536, 0, 196628, 65536, 0, 262164, 65536, 0, 327700, 65536, 0, 393236, 65536, 0, 524308, 65536, 0, 589844, 65536, 0, 524289, 65536, 0, 524288, 65536, 0, 589824, 65536, 0, 589825, 65536, 0, 131072, 65536, 0, 0, 65536, 0, 65536, 65536, 0, 196609, 65536, 0, 262145, 65536, 0, 196608, 65536, 0, 262144, 65536, 0, 327692, 1, 2, 1, 65536, 0, 65537, 65536, 0, 131073, 65536, 0, 589826, 65536, 0, 524290, 65536, 0, 524306, 65536, 0, 589842, 65536, 0, 327695, 1, 2, 131078, 1, 2, 393222, 1, 2, 131079, 1, 2, 393223, 1, 2, 458759, 1, 2, 393221, 1, 2, 131077, 1, 2, 262157, 1, 2, 262158, 1, 2, 393231, 1, 2, 262156, 1, 2, 262159, 1, 2, 327693, 1, 2, 327694, 1, 2, 393230, 1, 2, 393228, 1, 2, 393229, 1, 2)
 
 [node name="CameraPath" type="Path2D" parent="."]
 curve = SubResource("Curve2D_jua4w")
@@ -224,10 +216,10 @@ rotates = false
 zoom = Vector2(0.6, 0.6)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CameraPath/PathFollow2D"]
-autoplay = "CameraMoving1X1"
 libraries = {
-"": SubResource("AnimationLibrary_kli7e")
+&"": SubResource("AnimationLibrary_kli7e")
 }
+autoplay = "CameraMoving1X1"
 
 [node name="Background" type="ParallaxBackground" parent="."]
 
@@ -246,10 +238,10 @@ scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_5fdcv")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Background/Sky/SunRays"]
-autoplay = "Rotation"
 libraries = {
-"": SubResource("AnimationLibrary_ku48g")
+&"": SubResource("AnimationLibrary_ku48g")
 }
+autoplay = "Rotation"
 
 [node name="BackClouds" type="ParallaxLayer" parent="Background"]
 motion_scale = Vector2(0.5, 0.5)
@@ -270,10 +262,10 @@ texture = ExtResource("5_tu28h")
 centered = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Background/Clouds"]
-autoplay = "CloudsMoving"
 libraries = {
-"": SubResource("AnimationLibrary_ul4do")
+&"": SubResource("AnimationLibrary_ul4do")
 }
+autoplay = "CloudsMoving"
 
 [node name="Fog" type="ColorRect" parent="Background"]
 offset_right = 1280.0
@@ -337,8 +329,8 @@ offset_right = 1280.0
 offset_bottom = 720.0
 color = Color(0, 1, 1, 0.0313726)
 
-[node name="CrutchTileMap" type="TileMap" parent="."]
+[node name="CrutchTileMap" type="TileMapLayer" parent="."]
+use_parent_material = true
 scale = Vector2(4, 4)
+tile_map_data = PackedByteArray("AAAFAAAAAgACAAIAAAAFAAEAAgACAAIAAAAHAAAAAgACAAIAAAAHAAEAAgACAAIAAAAGAAMAAgACAAIAAAAGAAQAAgACAAIAAAAGAAUAAgACAAIAAAAMAAAAAgACAAIAAAAMAAEAAgACAAIAAAAMAAIAAgACAAIAAAAMAAMAAgACAAIAAAAPAAAAAgACAAIAAAAPAAEAAgACAAIAAAAPAAIAAgACAAIAAAAPAAMAAgACAAIAAAAPAAcAAgACAAIAAAAPAAgAAgACAAIAAAAPAAkAAgACAAIAAAAFAAcAAgACAAIAAAAFAAgAAgACAAIAAAAFAAkAAgACAAIAAAA=")
 tile_set = SubResource("TileSet_kn2dc")
-format = 2
-layer_0/tile_data = PackedInt32Array(5, 131074, 2, 65541, 131074, 2, 7, 131074, 2, 65543, 131074, 2, 196614, 131074, 2, 262150, 131074, 2, 327686, 131074, 2, 12, 131074, 2, 65548, 131074, 2, 131084, 131074, 2, 196620, 131074, 2, 15, 131074, 2, 65551, 131074, 2, 131087, 131074, 2, 196623, 131074, 2, 458767, 131074, 2, 524303, 131074, 2, 589839, 131074, 2, 458757, 131074, 2, 524293, 131074, 2, 589829, 131074, 2)

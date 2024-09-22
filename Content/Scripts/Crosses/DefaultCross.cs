@@ -17,6 +17,9 @@ public partial class DefaultCross : Node2D
         {
             Scale = new Vector2(Scale.X - 0.05f, Scale.Y - 0.05f);
             Modulate = new Color(Modulate.R, Modulate.G, Modulate.B, Modulate.A + 0.025f);
+            //            Scale = new Vector2(Scale.X - 0.05f * Scale.X / 2, Scale.Y - 0.05f * Scale.Y / 2);
+            //              Modulate = new Color(Modulate.R, Modulate.G, Modulate.B, Modulate.A + 0.025f / Scale.X / 2);
+            //try test
         }
         else if (_ticksToExplosion > 0)
         {
