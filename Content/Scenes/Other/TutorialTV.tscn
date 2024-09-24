@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://ft6jg1b0opm1"]
+[gd_scene load_steps=17 format=3 uid="uid://ft6jg1b0opm1"]
 
 [ext_resource type="Texture2D" uid="uid://tsjfmqs04lky" path="res://Content/Sprites/Levels/Level1/TutorialTV.png" id="1_l1djf"]
 [ext_resource type="Texture2D" uid="uid://bvogrd2bqhwmt" path="res://Content/Sprites/Other/OblivionNoise.png" id="2_ngcpk"]
@@ -26,7 +26,7 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3uffo"]
 _data = {
-"BangerFilm": SubResource("Animation_hw3a1")
+&"BangerFilm": SubResource("Animation_hw3a1")
 }
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_m23ck"]
@@ -143,49 +143,9 @@ tracks/5/keys = {
 }]
 }
 
-[sub_resource type="Animation" id="Animation_13ry7"]
-resource_name = "NoiseDisappearing"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sound:playing")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sound:volume_db")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(2, 1),
-"update": 0,
-"values": [-5.0, -30.0]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".:modulate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_g0wyp"]
 _data = {
-"FellDown": SubResource("Animation_jrcbu"),
-"NoiseDisappearing": SubResource("Animation_13ry7")
+&"FellDown": SubResource("Animation_jrcbu")
 }
 
 [sub_resource type="Gradient" id="Gradient_mywan"]
@@ -222,7 +182,7 @@ centered = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Screen/SlippeyHead"]
 libraries = {
-"": SubResource("AnimationLibrary_3uffo")
+&"": SubResource("AnimationLibrary_3uffo")
 }
 
 [node name="WhiteNoise" type="AnimatedSprite2D" parent="Screen"]
@@ -235,12 +195,12 @@ centered = false
 
 [node name="Sound" type="AudioStreamPlayer" parent="Screen/WhiteNoise"]
 stream = ExtResource("3_sw2y0")
-volume_db = -15.0
+volume_db = -5.0
 bus = &"Interface"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Screen"]
 libraries = {
-"": SubResource("AnimationLibrary_g0wyp")
+&"": SubResource("AnimationLibrary_g0wyp")
 }
 
 [node name="Particles" type="CPUParticles2D" parent="."]

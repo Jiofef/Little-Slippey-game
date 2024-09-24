@@ -21,21 +21,6 @@
 [ext_resource type="Texture2D" uid="uid://cx6qktapp8l80" path="res://Content/Sprites/Levels/Level8/CompressFleshAnimation.png" id="19_7v02o"]
 [ext_resource type="PackedScene" uid="uid://d3u7pfig07yrs" path="res://Content/Scenes/Other/CrutchedArea2D.tscn" id="20_j8dm3"]
 
-[sub_resource type="Animation" id="Animation_n61s8"]
-resource_name = "MusicStopping"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:volume_db")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [10.0, -20.0]
-}
-
 [sub_resource type="Animation" id="Animation_p3npb"]
 resource_name = "MusicStarting"
 tracks/0/type = "value"
@@ -51,10 +36,25 @@ tracks/0/keys = {
 "values": [0.0, 10.0]
 }
 
+[sub_resource type="Animation" id="Animation_n61s8"]
+resource_name = "MusicStopping"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [10.0, -20.0]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jcmm3"]
 _data = {
-&"MusicStopping": SubResource("Animation_n61s8"),
-&"MusicStarting": SubResource("Animation_p3npb")
+&"MusicStarting": SubResource("Animation_p3npb"),
+&"MusicStopping": SubResource("Animation_n61s8")
 }
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wv2uq"]

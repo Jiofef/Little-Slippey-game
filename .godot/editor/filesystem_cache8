@@ -247,7 +247,7 @@ Level9DoomApproachesAnimation.cs::CSharpScript::-1::0::0::1::::<>AnimatedSprite2
 Level9JiofefEye.cs::CSharpScript::-1::0::0::1::::<>Node2D<>::
 Level9JiofefHead.cs::CSharpScript::-1::0::0::1::::<>Node2D<>::
 Level9JiofefHeadDeathParticles.cs::CSharpScript::-1::0::0::1::::<>CpuParticles2D<>::
-Level9PlatformerSection.cs::CSharpScript::-1::0::0::1::::<>TileMap<>::
+Level9PlatformerSection.cs::CSharpScript::-1::0::0::1::::<>Node2D<>::
 Level9SpitCross.cs::CSharpScript::-1::0::0::1::::<>Node2D<>::
 Level9VomitCross.cs::CSharpScript::-1::0::0::1::::<>Node2D<>::
 Level10DroneCapsule.cs::CSharpScript::-1::0::0::1::::<>Node2D<>::
