@@ -10,12 +10,26 @@ public partial class ElementalCross : Node2D
     private readonly int _defaultTicksToNextElementSpawn = 7;
     private float _xSpriteMotion, _ySpriteMotion = -3, _gravity = 9.8f;
 
+    private float _defaultTicksToAppear = 120;
+    private float _ticksToAppear = 0;
+
+    private float _defaultRotation;
+    private float _rotationDirection;
+
     private Random _random = new Random();
     private PackedScene _summonableElemental;
     private Sprite2D _sprite;
 
     public override void _Ready()
     {
+        _ticksToAppear = _defaultTicksToAppear;
+
+        Random random = new Random();
+        _defaultRotation = random.Next(-30, 30);
+        _rotationDirection = random.Next(-40, 40) / 10f;
+
+        RotationDegrees = _defaultRotation;
+
         _sprite = GetNode<Sprite2D>("Sprite2D");
         _sprite.SelfModulate = new Color(_sprite.SelfModulate.R, _sprite.SelfModulate.G, _sprite.SelfModulate.B, 0);
         _elementsToSpawn = _random.Next(6, 11);
@@ -24,9 +38,15 @@ public partial class ElementalCross : Node2D
     }
     public override void _PhysicsProcess(double delta)
     {
-        if (Scale.X > 1 && Scale.Y > 1 && _sprite.SelfModulate.A < 1)
+        if (_ticksToAppear > 0)
         {
-            Scale = new Vector2(Scale.X - 0.025f, Scale.Y - 0.025f);
+            _ticksToAppear--;
+            float TicksCoeff = 1 - (_ticksToAppear / _defaultTicksToAppear);
+            TicksCoeff = Mathf.Lerp(0.0f, 1.0f, 1 - (1 - TicksCoeff) * (1 - TicksCoeff) * (1 - TicksCoeff));
+
+            RotationDegrees += _rotationDirection * Mathf.Sqrt(_ticksToAppear / _defaultTicksToAppear);
+            Scale = new Vector2(3 - 2 * TicksCoeff, 3 - 2 * TicksCoeff);
+            Modulate = new Color(Modulate.R, Modulate.G, Modulate.B, TicksCoeff);
             _sprite.Modulate = new Color((float)_random.NextDouble(), (float)_random.NextDouble(), (float)_random.NextDouble());
             _sprite.SelfModulate = new Color(_sprite.SelfModulate.R, _sprite.SelfModulate.G, _sprite.SelfModulate.B, _sprite.SelfModulate.A + 0.0125f);
         }
@@ -80,8 +100,7 @@ public partial class ElementalCross : Node2D
     {
         _isLastElementExploded = true;
 
-        var Groups = GetGroups();
-        for (int i = 0; i < Groups.Count; i++)
-            RemoveFromGroup(Groups[i]);
+        foreach (var group in GetGroups())
+            RemoveFromGroup(group);
     }
 }

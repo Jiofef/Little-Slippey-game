@@ -51,23 +51,23 @@ public partial class BlumCross : Node2D
         {
             var explosionAnimation = GetNode<AnimatedSprite2D>("ExplosionAnimation");
             var explosiveArea = GetNode<CollisionShape2D>("ExplosiveArea/CollisionShape2D");
-            if (explosionAnimation.IsPlaying())
+
+            if (!explosionAnimation.IsPlaying())
             {
-                explosiveArea.Disabled = true;
-                SetPhysicsProcess(false);
+                GetNode<Sprite2D>("CrossSprite").QueueFree();
+                GetNode<Sprite2D>("WarningSprite").QueueFree();
+                GetNode<AudioStreamPlayer>("ExplosionSound").Play();
+                explosionAnimation.Visible = true;
+                explosionAnimation.Play();
+                explosiveArea.Disabled = false;
                 return;
             }
-            _crossSprite.QueueFree();
-            _warningSprite.QueueFree();
-            _abortButton.QueueFree();
-            GetNode<AudioStreamPlayer>("ExplosionSound").Play();
-            explosionAnimation.Visible = true;
-            explosionAnimation.Play();
-            explosiveArea.Disabled = false;
 
-            var Groups = GetGroups();
-            for (int i = 0; i < Groups.Count; i++)
-                RemoveFromGroup(Groups[i]);
+            explosiveArea.Disabled = true;
+            SetPhysicsProcess(false);
+
+            foreach (var group in GetGroups())
+                RemoveFromGroup(group);
         }
     }
 

@@ -5,22 +5,39 @@ public partial class RestlessCross : Node2D
 {
     [Export] bool _isCrossEnhanced;
     private int _ticksToExplosion = 60;
+    private float _defaultTicksToAppear = 60;
+    private float _ticksToAppear = 0;
+
+    private float defaultRotation;
+    private float rotationGoal;
+
     private bool _isSignaled;
     private float _timerToExplosion;
+
     public override void _Ready()
     {
+        _ticksToAppear = _defaultTicksToAppear;
+
         Random random = new Random();
-        RotationDegrees = random.Next(-180, 180);
+        defaultRotation = random.Next(-75, 75);
+        rotationGoal = random.Next(-30, 30);
+
+        RotationDegrees = defaultRotation;
     }
 
     public override void _PhysicsProcess(double delta)
     {
-        if (Scale.X > 1 && Scale.Y > 1 && Modulate.A < 1)
+        if (_ticksToAppear > 0)
         {
-            Scale = new Vector2(Scale.X - 0.05f, Scale.Y - 0.05f);
-            Modulate = new Color(Modulate.R, Modulate.G, Modulate.B, Modulate.A + 0.025f);
+            _ticksToAppear--;
+            float TicksCoeff = 1 - (_ticksToAppear / _defaultTicksToAppear);
+            TicksCoeff = Mathf.Lerp(0.0f, 1.0f, 1 - (1 - TicksCoeff) * (1 - TicksCoeff) * (1 - TicksCoeff));
+
+            RotationDegrees = defaultRotation + rotationGoal * TicksCoeff;
+            Scale = new Vector2(3 - 2 * TicksCoeff, 3 - 2 * TicksCoeff);
+            Modulate = new Color(Modulate.R, Modulate.G, Modulate.B, TicksCoeff);
         }
-        else if (_ticksToExplosion > 0)
+        if (_ticksToExplosion > 0 && (_ticksToAppear <= 0 || _ticksToAppear <= 30))
         {
             if (!_isSignaled)
             {
@@ -48,27 +65,27 @@ public partial class RestlessCross : Node2D
             _timerToExplosion += 0.016667f;
             _ticksToExplosion--;
         }
-        else
+        else if (_ticksToExplosion <= 0)
         {
             var explosionAnimation = GetNode<AnimatedSprite2D>("ExplosionAnimation");
             var explosiveArea = GetNode<CollisionShape2D>("ExplosiveArea/CollisionShape2D");
-            if (explosionAnimation.IsPlaying())
+
+            if (!explosionAnimation.IsPlaying())
             {
-                explosiveArea.Disabled = true;
-                SetPhysicsProcess(false);
+                GetNode<Sprite2D>("CrossSprite").QueueFree();
+                GetNode<Sprite2D>("WarningSprite").QueueFree();
+                GetNode<AudioStreamPlayer>("ExplosionSound").Play();
+                explosionAnimation.Visible = true;
+                explosionAnimation.Play();
+                explosiveArea.Disabled = false;
                 return;
             }
-            GetNode<Sprite2D>("CrossSprite").QueueFree();
-            GetNode<Sprite2D>("WarningSprite").QueueFree();
-            GetNode<AudioStreamPlayer>("ExplosionSound").Play();
-            explosionAnimation.Visible = true;
-            explosionAnimation.Play();
-            if (Material == null || Material.ResourceName != "StaticNoise")
-                explosiveArea.Disabled = false;
 
-            var Groups = GetGroups();
-            for (int i = 0; i < Groups.Count; i++)
-                RemoveFromGroup(Groups[i]);
+            explosiveArea.Disabled = true;
+            SetPhysicsProcess(false);
+
+            foreach (var group in GetGroups())
+                RemoveFromGroup(group);
         }
     }
 }

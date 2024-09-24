@@ -1,53 +1,72 @@
 using Godot;
+using System;
 
 public partial class DefaultCross : Node2D
 {
     Sprite2D _crossSprite, _warningSprite;
 
     private int _ticksToExplosion = 60;
+    private float _defaultTicksToAppear = 60;
+    private float _ticksToAppear = 0;
+
+    private float _defaultRotation;
+    private float _rotationGoal;
+
 
     public override void _Ready()
     {
+        _ticksToAppear = _defaultTicksToAppear;
+
+        Random random = new Random();
+        _defaultRotation = random.Next(-75, 75);
+        _rotationGoal = random.Next(-30, 30);
+
+        RotationDegrees = _defaultRotation;
+
         _crossSprite = GetNode<Sprite2D>("CrossSprite");
         _warningSprite = GetNode<Sprite2D>("WarningSprite");
     }
     public override void _PhysicsProcess(double delta)
     {
-        if (Scale.X > 1 && Scale.Y > 1 && Modulate.A < 1)
+        if (_ticksToAppear > 0)
         {
-            Scale = new Vector2(Scale.X - 0.05f, Scale.Y - 0.05f);
-            Modulate = new Color(Modulate.R, Modulate.G, Modulate.B, Modulate.A + 0.025f);
-            //            Scale = new Vector2(Scale.X - 0.05f * Scale.X / 2, Scale.Y - 0.05f * Scale.Y / 2);
-            //              Modulate = new Color(Modulate.R, Modulate.G, Modulate.B, Modulate.A + 0.025f / Scale.X / 2);
-            //try test
+            _ticksToAppear--;
+            float TicksCoeff = 1 - (_ticksToAppear / _defaultTicksToAppear);
+            TicksCoeff = Mathf.Lerp(0.0f, 1.0f, 1 - (1 - TicksCoeff) * (1 - TicksCoeff) * (1 - TicksCoeff));
+
+            RotationDegrees = _defaultRotation + _rotationGoal * TicksCoeff;
+            Scale = new Vector2(3 - 2 * TicksCoeff, 3 - 2 * TicksCoeff);
+            Modulate = new Color(Modulate.R, Modulate.G, Modulate.B, TicksCoeff);
         }
-        else if (_ticksToExplosion > 0)
+        if (_ticksToExplosion > 0 && (_ticksToAppear <= 0 || _ticksToAppear <= 30))
         {
             _ticksToExplosion--;
             _crossSprite.Modulate = new Color(_crossSprite.Modulate.R, _crossSprite.Modulate.G, _crossSprite.Modulate.B, _crossSprite.Modulate.A - 0.1f);
-            if (_ticksToExplosion == 45 || _ticksToExplosion == 30 || _ticksToExplosion == 15)
+
+            if (_ticksToExplosion % 15 == 0)
                 _crossSprite.Modulate = new Color(_crossSprite.Modulate.R, _crossSprite.Modulate.G, _crossSprite.Modulate.B, 1);
         }
-        else
+        else if (_ticksToExplosion <= 0)
         {
             var explosionAnimation = GetNode<AnimatedSprite2D>("ExplosionAnimation");
             var explosiveArea = GetNode<CollisionShape2D>("ExplosiveArea/CollisionShape2D");
-            if (explosionAnimation.IsPlaying())
+
+            if (!explosionAnimation.IsPlaying())
             {
-                explosiveArea.Disabled = true;
-                SetPhysicsProcess(false);
+                GetNode<Sprite2D>("CrossSprite").QueueFree();
+                GetNode<Sprite2D>("WarningSprite").QueueFree();
+                GetNode<AudioStreamPlayer>("ExplosionSound").Play();
+                explosionAnimation.Visible = true;
+                explosionAnimation.Play();
+                explosiveArea.Disabled = false;
                 return;
             }
-            GetNode<Sprite2D>("CrossSprite").QueueFree();
-            GetNode<Sprite2D>("WarningSprite").QueueFree();
-            GetNode<AudioStreamPlayer>("ExplosionSound").Play();
-            explosionAnimation.Visible = true;
-            explosionAnimation.Play();
-            explosiveArea.Disabled = false;
 
-            var Groups = GetGroups();
-            for (int i = 0; i < Groups.Count; i++)
-                RemoveFromGroup(Groups[i]);
+            explosiveArea.Disabled = true;
+            SetPhysicsProcess(false);
+
+            foreach (var group in GetGroups())
+                RemoveFromGroup(group);
         }
     }
 }
