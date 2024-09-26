@@ -1,4 +1,5 @@
 Node2D
+CPUParticles2D
 TileMapLayer
 Parallax2D
 PopupMenu
@@ -11,4 +12,3 @@ Sprite2D
 ParallaxLayer
 ParallaxBackground
 Button
-FileDialog

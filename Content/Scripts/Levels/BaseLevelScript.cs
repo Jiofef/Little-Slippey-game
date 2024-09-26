@@ -165,7 +165,6 @@ public partial class BaseLevelScript : Node2D
                         break;
 
                     case "ElementalCross":
-                        Cross.GetChild<Sprite2D>(0).Modulate = new Color(1, 1, 1, 0);
                         Cross.Scale = new Vector2(3, 3);
                         break;
 

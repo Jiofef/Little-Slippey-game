@@ -9,6 +9,7 @@ public partial class BlumCross : Node2D
     private AudioStreamPlayer _explosiveSignal;
     private bool _abortButtonPressed = false;
     private Random _random = new Random();
+    private Vector2 _startPosition;
 
     public override void _Ready()
     {
@@ -22,10 +23,13 @@ public partial class BlumCross : Node2D
         _explosiveSignal.Play();
 
         _xSpriteMotion = _random.Next(-2, 3);
+
+        _startPosition = _crossSprite.GlobalPosition;
     }
 
     public override void _PhysicsProcess(double delta)
     {
+        GlobalPosition = _startPosition + new Vector2(_random.Next(22 - _cyclesToExplosion * 2), _random.Next(22 - _cyclesToExplosion * 2));
         if (_abortButtonPressed)
         {
             if (Modulate.A > 0)
@@ -60,6 +64,7 @@ public partial class BlumCross : Node2D
                 explosionAnimation.Visible = true;
                 explosionAnimation.Play();
                 explosiveArea.Disabled = false;
+                _abortButton.QueueFree();
                 return;
             }
 

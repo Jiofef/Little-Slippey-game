@@ -5,34 +5,40 @@ public partial class ElementalCross : Node2D
 {
     private enum ElementalType { Red = 0, Green = 1, Blue = 2 };
     private ElementalType _elementalType;
-    private int _ticksToNextSpawn, _elementsToSpawn;
+    private int _ticksToNextSpawn, _elementsToSpawn, _defaultElementsToSpawn;
     private bool _isLastElementExploded = false;
     private readonly int _defaultTicksToNextElementSpawn = 7;
     private float _xSpriteMotion, _ySpriteMotion = -3, _gravity = 9.8f;
 
-    private float _defaultTicksToAppear = 120;
+    private float _defaultTicksToAppear = 90;
     private float _ticksToAppear = 0;
 
     private float _defaultRotation;
     private float _rotationDirection;
 
     private Random _random = new Random();
+    private Color _currentDefaultColor;
     private PackedScene _summonableElemental;
-    private Sprite2D _sprite;
+    private Sprite2D _core;
+    private Node2D _sprites;
 
     public override void _Ready()
     {
+        Random random = new Random();
+        _elementalType = (ElementalType)random.Next(0, 3);
+
         _ticksToAppear = _defaultTicksToAppear;
 
-        Random random = new Random();
         _defaultRotation = random.Next(-30, 30);
-        _rotationDirection = random.Next(-40, 40) / 10f;
+        _rotationDirection = random.Next(2) == 0 ? 2 : -2;
 
         RotationDegrees = _defaultRotation;
 
-        _sprite = GetNode<Sprite2D>("Sprite2D");
-        _sprite.SelfModulate = new Color(_sprite.SelfModulate.R, _sprite.SelfModulate.G, _sprite.SelfModulate.B, 0);
+        _core = GetNode<Sprite2D>("Sprites/Core");
+        _sprites = GetNode<Node2D>("Sprites");
+        _sprites.Modulate = new Color(_core.SelfModulate.R, _core.SelfModulate.G, _core.SelfModulate.B, 0);
         _elementsToSpawn = _random.Next(6, 11);
+        _defaultElementsToSpawn = _elementsToSpawn;
         _ticksToNextSpawn = _defaultTicksToNextElementSpawn;
         _xSpriteMotion = _random.Next(-2, 3);
     }
@@ -46,31 +52,21 @@ public partial class ElementalCross : Node2D
 
             RotationDegrees += _rotationDirection * Mathf.Sqrt(_ticksToAppear / _defaultTicksToAppear);
             Scale = new Vector2(3 - 2 * TicksCoeff, 3 - 2 * TicksCoeff);
+
             Modulate = new Color(Modulate.R, Modulate.G, Modulate.B, TicksCoeff);
-            _sprite.Modulate = new Color((float)_random.NextDouble(), (float)_random.NextDouble(), (float)_random.NextDouble());
-            _sprite.SelfModulate = new Color(_sprite.SelfModulate.R, _sprite.SelfModulate.G, _sprite.SelfModulate.B, _sprite.SelfModulate.A + 0.0125f);
+            _sprites.Modulate = new Color(_core.SelfModulate.R, _core.SelfModulate.G, _core.SelfModulate.B, _sprites.SelfModulate.A + 0.0125f);
+
+            if ((_ticksToAppear + 1) % 30 == 0)
+            {
+                _rotationDirection *= -1.25f;
+                ChangeElementType();
+            }
         }
         else if (_summonableElemental == null)
         {
             Modulate = new Color(1, 1, 1);
-            _elementalType = (ElementalType)_random.Next(3);
-
-            if (G.CurrentLevel == 5)
-                _elementalType = ElementalType.Blue;
-
+            ChangeElementType();
             _summonableElemental = ResourceLoader.Load<PackedScene>("res://Content/Scenes/Crosses/" + _elementalType.ToString() + "ElementalCrossPart.tscn");
-            switch (_elementalType)
-            { 
-                case ElementalType.Red:
-                    _sprite.Modulate = new Color(1, 0, 0);
-                    break;
-                case ElementalType.Green:
-                    _sprite.Modulate = new Color(0, 1, 0);
-                    break;
-                case ElementalType.Blue:
-                    _sprite.Modulate = new Color(0, 0, 1);
-                    break;
-            }
         }
         else if (_elementsToSpawn > 0)
         {
@@ -79,20 +75,29 @@ public partial class ElementalCross : Node2D
             {
                 _elementsToSpawn--;
                 Node2D element = (Node2D)_summonableElemental.Instantiate();
-                element.Position = new Vector2(_random.Next(-30, 30), _random.Next(-30, 30));
                 if (_elementsToSpawn == 0)
                     element.Connect("ElementExploded", new Callable(this, "LastElementExploded"));
                 AddChild(element);
+                element.GlobalRotation = 0;
+                element.Position = new Vector2(_random.Next(-30, 30), _random.Next(-30, 30));
+
+                _core.Modulate += (new Color(1, 1, 1) - _currentDefaultColor) / _defaultElementsToSpawn;
+
+                if (_elementsToSpawn <= 0)
+                {
+                    GetNode("Sprites/Core").QueueFree();
+                    GetNode<CpuParticles2D>("Sprites/CoreDestrucionParticles").Emitting = true;
+                }
             }
         }
         else if (_isLastElementExploded)
         {
-            _sprite.Modulate = new Color(_sprite.Modulate.R, _sprite.Modulate.G, _sprite.Modulate.B, _sprite.Modulate.A - 0.02f);
-            _sprite.Translate(new Vector2(_xSpriteMotion, _ySpriteMotion));
+            _sprites.Modulate = new Color(_sprites.Modulate.R, _sprites.Modulate.G, _sprites.Modulate.B, _sprites.Modulate.A - 0.02f);
+            _sprites.GlobalTranslate(new Vector2(_xSpriteMotion, _ySpriteMotion));
             _ySpriteMotion += _gravity / 100;
-            _sprite.Rotation += 0.04f;
+            _sprites.GlobalRotation += 0.04f;
              
-            if (_sprite.Modulate.A <= 0)
+            if (_sprites.Modulate.A <= 0)
                 QueueFree();
         }
     }
@@ -102,5 +107,30 @@ public partial class ElementalCross : Node2D
 
         foreach (var group in GetGroups())
             RemoveFromGroup(group);
+    }
+
+    private void ChangeElementType()
+    {
+        _elementalType += 1;
+        if ((int)_elementalType > 2)
+            _elementalType = 0;
+
+        if (G.CurrentLevel == 5)
+            _elementalType = ElementalType.Blue;
+
+        switch (_elementalType)
+        {
+            case ElementalType.Red:
+                _core.Modulate = new Color(1, 0.302f, 0.408f);
+                break;
+            case ElementalType.Green:
+                _core.Modulate = new Color(0.631f, 1, 0.353f);
+                break;
+            case ElementalType.Blue:
+                _core.Modulate = new Color(0.067f, 0.678f, 1);
+                break;
+        }
+        _currentDefaultColor = _core.Modulate;
+        GetNode<CpuParticles2D>("ChangeElementParticles").Emitting = true;
     }
 }
