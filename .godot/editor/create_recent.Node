@@ -1,5 +1,6 @@
-Node2D
 CPUParticles2D
+AudioStreamPlayer2D
+Node2D
 TileMapLayer
 Parallax2D
 PopupMenu
@@ -11,4 +12,3 @@ CanvasModulate
 Sprite2D
 ParallaxLayer
 ParallaxBackground
-Button

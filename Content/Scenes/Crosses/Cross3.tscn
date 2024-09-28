@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cddpgkqkd7y6f"]
+[gd_scene load_steps=9 format=3 uid="uid://cddpgkqkd7y6f"]
 
 [ext_resource type="Texture2D" uid="uid://c0itqenhjy70i" path="res://Content/Sprites/Crosses/ElementalCrossRedPart.png" id="2_e3oq0"]
 [ext_resource type="Script" path="res://Content/Scripts/Crosses/ElementalCross.cs" id="3"]
@@ -9,6 +9,11 @@
 [sub_resource type="Curve" id="Curve_q3xr2"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.297753, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_nb8l3"]
+offsets = PackedFloat32Array(0, 0.3, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0)
+metadata/_snap_enabled = true
 
 [sub_resource type="Gradient" id="Gradient_y2u2h"]
 interpolation_mode = 1
@@ -29,10 +34,9 @@ scale = Vector2(7, 7)
 texture = ExtResource("2_e3oq0")
 
 [node name="BluePart" type="Sprite2D" parent="Sprites"]
-position = Vector2(3.5, -21)
+position = Vector2(31.5, 17.5)
 scale = Vector2(7, 7)
 texture = ExtResource("3_sl8ky")
-centered = false
 
 [node name="GreenPart" type="Sprite2D" parent="Sprites"]
 position = Vector2(-28, 14)
@@ -51,20 +55,21 @@ one_shot = true
 explosiveness = 1.0
 spread = 180.0
 gravity = Vector2(0, 0)
-initial_velocity_min = 300.0
-initial_velocity_max = 300.0
+initial_velocity_min = 400.0
+initial_velocity_max = 400.0
 angular_velocity_min = -360.0
 angular_velocity_max = 360.0
 orbit_velocity_min = -1.0
 orbit_velocity_max = 1.0
-scale_amount_min = 21.0
-scale_amount_max = 21.0
+scale_amount_min = 42.0
+scale_amount_max = 42.0
 scale_amount_curve = SubResource("Curve_q3xr2")
+color_ramp = SubResource("Gradient_nb8l3")
 
 [node name="ChangeElementParticles" type="CPUParticles2D" parent="."]
 emitting = false
 amount = 4
-lifetime = 0.5
+lifetime = 0.3
 one_shot = true
 explosiveness = 1.0
 spread = 180.0

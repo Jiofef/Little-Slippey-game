@@ -1,11 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://dq2imvbic058q"]
+[gd_scene load_steps=12 format=3 uid="uid://dq2imvbic058q"]
 
 [ext_resource type="Texture2D" uid="uid://bkuwiddwgfqo4" path="res://Content/Sprites/Crosses/CannonBarrel.png" id="2"]
 [ext_resource type="AudioStream" uid="uid://bql4va5bvejv5" path="res://Content/Sounds/Crosses/CannonChargingSound.mp3" id="2_2un0t"]
 [ext_resource type="Texture2D" uid="uid://f066ngoira7" path="res://Content/Sprites/Crosses/CannonWheel.png" id="3"]
 [ext_resource type="AudioStream" uid="uid://d5xg7ux58s7a" path="res://Content/Sounds/Crosses/CannonShot.mp3" id="3_rkcw1"]
 [ext_resource type="Script" path="res://Content/Scripts/Crosses/CannonCross.cs" id="4"]
-[ext_resource type="Texture2D" uid="uid://ojysa637ors8" path="res://Content/Sprites/Crosses/TornCannonBarrel.png" id="5"]
 [ext_resource type="Texture2D" uid="uid://wf2tjey7r0fu" path="res://Content/Sprites/Crosses/CannonBall.png" id="6"]
 
 [sub_resource type="Curve2D" id="1"]
@@ -19,6 +18,12 @@ colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
 [sub_resource type="CircleShape2D" id="3"]
 radius = 6.66
+
+[sub_resource type="Gradient" id="Gradient_3xuh7"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="Gradient" id="Gradient_340iu"]
+colors = PackedColorArray(0.968627, 0.894118, 0.462745, 1, 0.976471, 0.572549, 0.321569, 1)
 
 [node name="CannonCross" type="Path2D"]
 z_index = 3
@@ -54,14 +59,10 @@ position = Vector2(0, 6.667)
 texture = ExtResource("3")
 
 [node name="Barrel" type="Sprite2D" parent="PathFollow2D/Cannon/Sprites"]
-rotation = -1.0472
+position = Vector2(0.480448, 6.58494)
+rotation = -2.0944
 texture = ExtResource("2")
-
-[node name="TornBarrel" type="Sprite2D" parent="PathFollow2D/Cannon/Sprites"]
-visible = false
-position = Vector2(0.25, -0.5)
-rotation = -1.0472
-texture = ExtResource("5")
+offset = Vector2(5, -6)
 
 [node name="FrontWheel" type="Sprite2D" parent="PathFollow2D/Cannon/Sprites"]
 modulate = Color(0.870588, 0.870588, 0.870588, 1)
@@ -72,14 +73,17 @@ texture = ExtResource("3")
 position = Vector2(-7.25, 4.25)
 emitting = false
 amount = 12
+lifetime = 0.5
 one_shot = true
 explosiveness = 1.0
 randomness = 1.0
 emission_shape = 1
 emission_sphere_radius = 5.0
-spread = 180.0
+direction = Vector2(-1, 0)
+spread = 90.0
 gravity = Vector2(0, 100)
-initial_velocity_max = 50.0
+initial_velocity_min = 25.0
+initial_velocity_max = 150.0
 scale_amount_min = 4.0
 scale_amount_max = 4.0
 color = Color(1, 0.737255, 0.0352941, 1)
@@ -99,3 +103,21 @@ collision_mask = 8
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PathFollow2D/Cannon/Ball/Hitbox"]
 shape = SubResource("3")
 disabled = true
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="PathFollow2D/Cannon/Ball"]
+show_behind_parent = true
+emitting = false
+amount = 6
+lifetime = 0.3
+emission_shape = 1
+emission_sphere_radius = 5.0
+direction = Vector2(0, 1)
+gravity = Vector2(0, 0)
+initial_velocity_min = 40.0
+initial_velocity_max = 40.0
+damping_min = 100.0
+damping_max = 200.0
+scale_amount_min = 16.0
+scale_amount_max = 16.0
+color_ramp = SubResource("Gradient_3xuh7")
+color_initial_ramp = SubResource("Gradient_340iu")
