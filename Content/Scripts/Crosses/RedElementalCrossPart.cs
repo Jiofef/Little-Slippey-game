@@ -6,7 +6,6 @@ public partial class RedElementalCrossPart : Node2D
     [Signal] public delegate void ElementExplodedEventHandler();
     private Sprite2D _sprite;
     private PathFollow2D _pathFollow2D;
-    private const float _elementSlowdown = 0.03f;
     private float _elementSpeed = 4.5f;
     public override void _Ready()
     {
@@ -24,7 +23,7 @@ public partial class RedElementalCrossPart : Node2D
         if (_pathFollow2D.ProgressRatio < 0.98f)
         {
             _pathFollow2D.Progress += _elementSpeed;
-            _elementSpeed -= _elementSlowdown;
+            _elementSpeed -= 0.03f;
             _sprite.Modulate = new Color(_sprite.Modulate.R, _sprite.Modulate.G, _sprite.Modulate.B, _sprite.Modulate.A + 0.1f);
         }
         else

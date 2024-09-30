@@ -1,4 +1,5 @@
 CPUParticles2D
+Sprite2D
 AudioStreamPlayer2D
 Node2D
 TileMapLayer
@@ -9,6 +10,5 @@ RemoteTransform2D
 LightOccluder2D
 PointLight2D
 CanvasModulate
-Sprite2D
 ParallaxLayer
 ParallaxBackground

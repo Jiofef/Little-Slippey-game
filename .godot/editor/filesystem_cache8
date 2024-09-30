@@ -99,7 +99,7 @@ EnhancedCross4.tscn::PackedScene::5520316719386197547::0::0::1::::<><>::res://Co
 EnhancedCross4CrystalParticles.tscn::PackedScene::6571180083599881656::0::0::1::::<><>::
 EnhancedCross5.tscn::PackedScene::1733392445259053272::0::0::1::::<><>::res://Content/Scripts/Crosses/EnhancedCannonCross.cs<>uid://dxgtoqpjnurps::::res://Content/Sprites/Crosses/Helicopter.png
 ExplosionAnimation.tscn::PackedScene::3781492863591433797::0::0::1::::<><>::uid://bg2mvitb1ih7q::::res://Content/Sprites/Other/Explosion.png
-GreenElementalCrossPart.tscn::PackedScene::1505690371645961626::0::0::1::::<><>::uid://n120rila20ry::::res://Content/Sprites/Crosses/GreenElementCrossVineAnimation.png<>uid://daf6vfh6akpiv::::res://Content/Sounds/Crosses/GreenElementalCrossSpawnSound.mp3<>res://Content/Scripts/Crosses/GreenElementalCrossPart.cs<>uid://bia3ek48x2oph::::res://Content/Sounds/Crosses/MicroExplosion.mp3<>uid://dclk66snfbku6::::res://Content/Sprites/Crosses/GreenElementalCrossPartVar4.png<>uid://bt41vubjcqv8p::::res://Content/Scenes/Crosses/ExplosionAnimation.tscn<>uid://bg2mvitb1ih7q::::res://Content/Sprites/Other/Explosion.png
+GreenElementalCrossPart.tscn::PackedScene::1505690371645961626::0::0::1::::<><>::uid://daf6vfh6akpiv::::res://Content/Sounds/Crosses/GreenElementalCrossSpawnSound.mp3<>res://Content/Scripts/Crosses/GreenElementalCrossPart.cs<>uid://bia3ek48x2oph::::res://Content/Sounds/Crosses/MicroExplosion.mp3<>uid://covatekkrpqu3::::res://Content/Sprites/Crosses/GreenElementCrossVine.png<>uid://dclk66snfbku6::::res://Content/Sprites/Crosses/GreenElementalCrossPartVar4.png<>uid://bt41vubjcqv8p::::res://Content/Scenes/Crosses/ExplosionAnimation.tscn<>uid://bg2mvitb1ih7q::::res://Content/Sprites/Other/Explosion.png
 HelicopterBomb.tscn::PackedScene::4060246916888496497::0::0::1::::<><>::uid://cceqrm4tkdmc2::::res://Content/Sounds/Crosses/Explosion.mp3<>res://Content/Scripts/Crosses/HelicopterBomb.cs<>uid://bt41vubjcqv8p::::res://Content/Scenes/Crosses/ExplosionAnimation.tscn<>uid://0tt2fv11qvro::::res://Content/Sprites/Crosses/HelicopterBomb.png
 RedElementalCrossPart.tscn::PackedScene::3745351843106605918::0::0::1::::<><>::uid://djemtqgignvr::::res://Content/Sprites/Crosses/RedElementalCrossPart.png<>uid://do0uifwll8alm::::res://Content/Sounds/Crosses/RedElementalCrossSpawnSound.mp3<>res://Content/Scripts/Crosses/RedElementalCrossPart.cs<>uid://bia3ek48x2oph::::res://Content/Sounds/Crosses/MicroExplosion.mp3<>uid://bt41vubjcqv8p::::res://Content/Scenes/Crosses/ExplosionAnimation.tscn
 ::res://Content/Scenes/Interface&Menu/::0
@@ -451,7 +451,7 @@ GreenElementalCrossPartVar1.png::CompressedTexture2D::7539470633348822001::0::0:
 GreenElementalCrossPartVar2.png::CompressedTexture2D::4526655963815109246::0::0::1::::<><>::
 GreenElementalCrossPartVar3.png::CompressedTexture2D::8617611018371061179::0::0::1::::<><>::
 GreenElementalCrossPartVar4.png::CompressedTexture2D::7323012079816469607::0::0::1::::<><>::
-GreenElementCrossVineAnimation.png::CompressedTexture2D::967813698308560246::0::0::1::::<><>::
+GreenElementCrossVine.png::CompressedTexture2D::5798871267257229260::0::0::1::::<><>::
 Helicopter.png::CompressedTexture2D::8787171209228404004::0::0::1::::<><>::
 HelicopterBomb.png::CompressedTexture2D::1795146403850303300::0::0::1::::<><>::
 RedElementalCrossPart.png::CompressedTexture2D::229411251142637951::0::0::1::::<><>::

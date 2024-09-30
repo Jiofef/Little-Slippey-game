@@ -19,21 +19,6 @@
 [ext_resource type="Shader" path="res://Content/Other/PostProcessing.gdshader" id="17_61d51"]
 [ext_resource type="PackedScene" uid="uid://d3u7pfig07yrs" path="res://Content/Scenes/Other/CrutchedArea2D.tscn" id="18_axctq"]
 
-[sub_resource type="Animation" id="Animation_p3npb"]
-resource_name = "MusicStarting"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:volume_db")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, 10.0]
-}
-
 [sub_resource type="Animation" id="Animation_n61s8"]
 resource_name = "MusicStopping"
 tracks/0/type = "value"
@@ -49,10 +34,25 @@ tracks/0/keys = {
 "values": [10.0, -20.0]
 }
 
+[sub_resource type="Animation" id="Animation_p3npb"]
+resource_name = "MusicStarting"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 10.0]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jcmm3"]
 _data = {
-&"MusicStopping": SubResource("Animation_n61s8"),
-&"MusicStarting": SubResource("Animation_p3npb")
+&"MusicStarting": SubResource("Animation_p3npb"),
+&"MusicStopping": SubResource("Animation_n61s8")
 }
 
 [sub_resource type="Animation" id="Animation_bhfph"]
@@ -235,46 +235,6 @@ shader_parameter/saturation = 0.8
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yv5wh"]
 size = Vector2(128, 128)
 
-[sub_resource type="Animation" id="Animation_gr4ul"]
-resource_name = "OpeningSubMenu"
-length = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Interface/SubMenuBackgroundRect:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Interface:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Interface/ButtonsFrame:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(0, 520), Vector2(0, 520)]
-}
-
 [sub_resource type="Animation" id="Animation_qdctp"]
 resource_name = "Pause"
 length = 0.1
@@ -313,6 +273,46 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_gr4ul"]
+resource_name = "OpeningSubMenu"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Interface/SubMenuBackgroundRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Interface:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Interface/ButtonsFrame:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 520), Vector2(0, 520)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4p2pf"]
@@ -587,7 +587,6 @@ self_modulate = Color(0.901961, 0.901961, 0.901961, 1)
 texture = ExtResource("11_b28h6")
 
 [node name="ScreechSound" type="AudioStreamPlayer" parent="Level/BackCircularSaw/Saw/MiddleCircularSaw" index="2"]
-volume_db = 20.0
 script = ExtResource("12_epg78")
 
 [node name="MetalSparks" type="CPUParticles2D" parent="Level/BackCircularSaw/Saw/MiddleCircularSaw" index="3"]

@@ -7,6 +7,4 @@ res://Content/Other/PixelateShader.gdshader
 res://Content/Other/BrightnessShader.gdshader
 res://Content/Other/SaturationShader.gdshader
 res://Content/Other/PostProcessing.gdshader
-res://Content/Scenes/Crosses/Cross1.tscn
-res://Content/Scenes/Crosses/Cross3.tscn
-res://Content/Scenes/Crosses/Cross5.tscn
+res://Content/Scenes/Interface&Menu/LevelEditor.tscn

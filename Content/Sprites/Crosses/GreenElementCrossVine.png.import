@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://n120rila20ry"
-path="res://.godot/imported/GreenElementCrossVineAnimation.png-cfc9167ffaba32f816a0cb2be3595f5c.ctex"
+uid="uid://covatekkrpqu3"
+path="res://.godot/imported/GreenElementCrossVine.png-fbcc17f859ce7f06a8ef160e855bf4ad.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Content/Sprites/Crosses/GreenElementCrossVineAnimation.png"
-dest_files=["res://.godot/imported/GreenElementCrossVineAnimation.png-cfc9167ffaba32f816a0cb2be3595f5c.ctex"]
+source_file="res://Content/Sprites/Crosses/GreenElementCrossVine.png"
+dest_files=["res://.godot/imported/GreenElementCrossVine.png-fbcc17f859ce7f06a8ef160e855bf4ad.ctex"]
 
 [params]
 
