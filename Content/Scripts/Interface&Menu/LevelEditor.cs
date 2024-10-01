@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 public partial class LevelEditor : Control
@@ -12,6 +13,7 @@ public partial class LevelEditor : Control
     Node2D _level;
     Camera2D _camera;
     Node[] _allTheNodes = new Node[0];
+    Timer _guiDelayTimer;
     TextureButton _screenButton = new TextureButton();
 
     enum EditorMode { TileMode, NodeMode, CodeMode }
@@ -38,20 +40,42 @@ public partial class LevelEditor : Control
         _assistiveTileMap = GetNode<TileMap>("AssistiveTileMap");
         _erasingAssistiveTileMap = GetNode<TileMap>("ErasingAssistiveTileMap");
         _screenButton = GetNode<TextureButton>("CanvasLayer/ScreenButton");
+        _guiDelayTimer = GetNode<Timer>("CanvasLayer/GUIDelayTimer");
         UpdateVisibleTileMapsLayers();
         UpdateVisibleAtlases();
         UpdateVisibleTileSet();
         UpdateVisibleTileMaps();
         _assistiveTileMap.TileSet = _selectedTileMap.TileSet;
+
+
+         GetNode<Tree>("CanvasLayer/NodeModeGUI/NodesButtonsTree").Connect( "gui_input", new Callable(this, "OnTreeGuiInput"));
+
+        foreach (string nodename in GetAllNodeTypes())
+            GD.Print(nodename);
     }
 
     public override void _PhysicsProcess(double delta)
     {
+        if (Input.IsActionJustPressed("MouseClick") && Input.IsMouseButtonPressed(MouseButton.Right))
+        {
+            var nodePopupMenu = GetNode<PopupMenu>("CanvasLayer/NodeModeGUI/NodePopupMenu");
+            if (nodePopupMenu.Visible && _guiDelayTimer.IsStopped())
+            {
+                nodePopupMenu.CallDeferred("hide");
+            }
+        }
         _camera.Position += new Vector2(
          Input.GetActionStrength("ui_right") - Input.GetActionStrength("ui_left"),
         Input.GetActionStrength("ui_down") - Input.GetActionStrength("ui_up"))
-        * (Input.IsKeyPressed(Key.Shift) ? 30 : 15
+        * ((Input.IsKeyPressed(Key.Shift) ? 30 : 15) * 1 / _camera.Zoom.X
         );
+        if (_screenButton.IsHovered())
+        {
+            if (Input.IsActionJustPressed("MouseWheelScrollDown"))
+                ChangeZoom(0.8f);
+            else if (Input.IsActionJustPressed("MouseWheelScrollUp"))
+                ChangeZoom(1.25f);
+        }
 
         Vector2 MousePos = GetGlobalMousePosition();
         switch (_editorMode)
@@ -265,10 +289,20 @@ public partial class LevelEditor : Control
                         ((Control)_selectedNode).Position -= _mouseLastFramePos - MousePos;
                     EmitSignal("NodeMovedByMouse");
                 }
+                var nodesButtonsTree = GetNode<Tree>("CanvasLayer/NodeModeGUI/NodesButtonsTree");
+                if (Input.IsActionJustPressed("MouseClick") && GetNode<PopupMenu>("CanvasLayer/NodeModeGUI/NodePopupMenu").Visible && !GetNode<PopupMenu>("CanvasLayer/NodeModeGUI/NodePopupMenu").GetVisibleRect().HasPoint(GetGlobalMousePosition())) ;
+                    //GetNode<PopupMenu>("CanvasLayer/NodeModeGUI/NodePopupMenu").Hide();
+
                 break;
         }
 
         _mouseLastFramePos = MousePos;
+    }
+
+    public void ChangeZoom(float value)
+    {
+        float NewZoom = Mathf.Clamp(_camera.Zoom.X * value, 1f / 16, 1 * 16);
+        _camera.Zoom = new Vector2(NewZoom, NewZoom);
     }
 
     public void TestLevel()
@@ -511,22 +545,64 @@ public partial class LevelEditor : Control
         if (Input.IsMouseButtonPressed(MouseButton.Right))
         {
             var nodePopupMenu = GetNode<PopupMenu>("CanvasLayer/NodeModeGUI/NodePopupMenu");
-            nodePopupMenu.Position = (Vector2I)GetLocalMousePosition();
+            
+            nodePopupMenu.Position = (Vector2I)GetNode<Control>("CanvasLayer/NodeModeGUI").GetLocalMousePosition();
             nodePopupMenu.Popup();
+            _guiDelayTimer.Start(0.02f);
         }
     }
     public void NodePopupAction(int actionIndex)
     {
         var NodesButtonsContainer = GetNode<Tree>("CanvasLayer/NodeModeGUI/NodesButtonsTree");
+        Node node;
+        TreeItem Item;
+        void CreateItem(Node itemNode)
+        {
+            Item = NodesButtonsContainer.CreateItem(NodesButtonsContainer.GetSelected());
+            Item.SetText(0, itemNode.Name);
+            Item.SetMeta("CorrespondingNode", itemNode);
+        }
         switch (actionIndex)
         {
+            case 0:
+                string TypeName = "Sprite2D";
+                node = CreateNodeWithType(TypeName);
+                _selectedNode.AddChild(node);
+                node.Name = TypeName;
+
+                CreateItem(node);
+                break;
+            case 1:
+                G.NodeCopyBuffer.Clear();
+                G.NodeCopyBuffer.Add(_selectedNode.Duplicate());
+                _selectedNode.QueueFree();
+                _selectedNode = null;
+                NodesButtonsContainer.GetSelected().Free();
+                break;
             case 2:
-                G.NodeCopyBuffer[0] = _selectedNode.Duplicate();
+                G.NodeCopyBuffer.Clear();
+                G.NodeCopyBuffer.Add(_selectedNode.Duplicate());
                 break;
             case 3:
-                _selectedNode.AddChild(G.NodeCopyBuffer[0].Duplicate());
-                var treeItem = 0;
-                NodesButtonsContainer.GetSelected().CreateChild();
+                node = G.NodeCopyBuffer[0].Duplicate();
+                _selectedNode.AddChild(node);
+                node.Name = G.NodeCopyBuffer[0].Name;
+
+                CreateItem(node);
+                break;
+            case 4:
+                break;
+            case 5:
+                var Duplicate = _selectedNode.Duplicate();
+                _selectedNode.GetParent().AddChild(Duplicate);
+                Duplicate.Name = _selectedNode.Name;
+
+                CreateItem(Duplicate);
+                break;
+            case 6:
+                break;
+            case 7:
+                DisplayServer.ClipboardSet(_level.GetPathTo(_selectedNode));
                 break;
             case 8:
                 _selectedNode.QueueFree();
@@ -552,7 +628,7 @@ public partial class LevelEditor : Control
     {
         var NodesButtonsContainer = GetNode<Tree>("CanvasLayer/NodeModeGUI/NodesButtonsTree");
 
-        KILLCHILDREN(NodesButtonsContainer);
+        NodesButtonsContainer.Clear();
 
         ButtonGroup buttonGroup = new ButtonGroup();
         var texture = ResourceLoader.Load<Texture2D>("res://Content/Sprites/Interface/AcceptButton.png");
@@ -718,6 +794,44 @@ public partial class LevelEditor : Control
             }
         else
             node.Set(name, value);
+    }
+    private void OnTreeGuiInput(InputEvent @event)
+    {
+        if (@event is InputEventMouseButton mouseEvent)
+        {
+            if (mouseEvent.ButtonIndex == MouseButton.Right && mouseEvent.Pressed)
+            {
+                var tree = GetNode<Tree>("CanvasLayer/NodeModeGUI/NodesButtonsTree");
+                TreeItem clickedItem = tree.GetItemAtPosition(mouseEvent.Position);
+
+                if (clickedItem != null)
+                {
+                    tree.SetSelected(clickedItem, 0);
+
+                    var popupMenu = GetNode<PopupMenu>("CanvasLayer/NodeModeGUI/NodePopupMenu");
+                    popupMenu.SetPosition((Vector2I)mouseEvent.GlobalPosition);
+                    popupMenu.CallDeferred("popup");
+                }
+            }
+        }
+    }
+    private List<string> GetAllNodeTypes()
+    {
+        List<string> nodeTypes = new List<string>();
+
+        foreach (string className in ClassDB.GetClassList())
+        {
+            if (ClassDB.IsParentClass(className, "Node"))
+            {
+                nodeTypes.Add(className);
+            }
+        }
+
+        return nodeTypes;
+    }
+    public Node CreateNodeWithType(string className)
+    {
+        return (Node)ClassDB.Instantiate(className);
     }
 
     // Save Section

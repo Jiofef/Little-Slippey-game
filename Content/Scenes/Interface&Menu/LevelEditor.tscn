@@ -24,7 +24,7 @@ mouse_filter = 2
 script = ExtResource("1_03doe")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-anchor_mode = 0
+position = Vector2(640, 360)
 
 [node name="LevelContainer" type="Node2D" parent="."]
 
@@ -159,6 +159,7 @@ layout_mode = 2
 offset_right = 312.0
 offset_bottom = 592.0
 columns = 2
+allow_reselect = true
 allow_rmb_select = true
 
 [node name="PropertiesGridContainer" type="ScrollContainer" parent="CanvasLayer/NodeModeGUI"]
@@ -179,7 +180,6 @@ columns = 2
 size = Vector2i(219, 233)
 item_count = 9
 item_0/text = "Add child node"
-item_0/id = 0
 item_1/text = "Cut"
 item_1/id = 1
 item_2/text = "Copy"
@@ -249,16 +249,22 @@ toggle_mode = true
 button_group = SubResource("ButtonGroup_k521p")
 
 [node name="Button" type="Button" parent="CanvasLayer"]
+visible = false
 offset_left = 986.0
 offset_top = 492.0
 offset_right = 1114.0
 offset_bottom = 638.0
 
 [node name="Button2" type="Button" parent="CanvasLayer"]
+visible = false
 offset_left = 995.0
 offset_top = 340.0
 offset_right = 1123.0
 offset_bottom = 486.0
+
+[node name="GUIDelayTimer" type="Timer" parent="CanvasLayer"]
+process_mode = 3
+one_shot = true
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
@@ -281,7 +287,6 @@ default_color = Color(0.501961, 0.501961, 0.501961, 0.156863)
 [connection signal="pressed" from="CanvasLayer/TileModeGUI/Filling" to="." method="SetTileInstrument" binds= [2]]
 [connection signal="pressed" from="CanvasLayer/TileModeGUI/SmartFilling" to="." method="SetTileInstrument" binds= [3]]
 [connection signal="value_changed" from="CanvasLayer/TileModeGUI/TileChangeProbability" to="." method="SetTileChangeProbability"]
-[connection signal="button_clicked" from="CanvasLayer/NodeModeGUI/NodesButtonsTree" to="." method="SelectItem"]
 [connection signal="item_selected" from="CanvasLayer/NodeModeGUI/NodesButtonsTree" to="." method="SelectItem"]
 [connection signal="id_pressed" from="CanvasLayer/NodeModeGUI/NodePopupMenu" to="." method="NodePopupAction"]
 [connection signal="pressed" from="CanvasLayer/EditorModes/TileMode" to="." method="SetEditorMode" binds= [0]]

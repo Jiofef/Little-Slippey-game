@@ -6,7 +6,7 @@ public partial class CannonCross : Path2D
     PathFollow2D _cannonPathFollow2D;
     Sprite2D _frontWheel, _backWheel, _barrel, _ballSprite;
     AudioStreamPlayer _chargeSound;
-    private float _ballYBound = G.LevelXYSizes[G.CurrentLevel].Y + 100, _ballYMotion = 0.5f, _appearedCoeff = 0, _afterShotCoeff = 0;
+    private float _ballYBound = G.LevelXYSizes[G.CurrentLevel].Y + 256, _ballYMotion = 0.5f, _appearedCoeff = 0, _afterShotCoeff = 0;
     private bool _doCannonShoted;
     public override void _Ready()
     {
@@ -55,7 +55,7 @@ public partial class CannonCross : Path2D
                         RemoveFromGroup(Groups[i]);
                 }
             }
-            else if (_ball.GlobalPosition.Y < _ballYBound && G.CurrentLevel != 8 || _ball.GlobalPosition.Y < 800 && _ball.GlobalPosition.Y > -100 && G.CurrentLevel == 8)
+            else if (_ball.GlobalPosition.Y < _ballYBound && G.CurrentLevel != 8 || G.CurrentLevel == 8 && _ball.GlobalPosition.Y < 800 && _ball.GlobalPosition.Y > -100)
             {
                 if (G.CurrentLevel != 8)
                     _ball.Translate(new Vector2(-1.75f, _ballYMotion));

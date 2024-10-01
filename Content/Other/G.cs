@@ -1,4 +1,5 @@
 using Godot;
+using System.Collections.Generic;
 
 public partial class G : Node
 {
@@ -9,7 +10,6 @@ public partial class G : Node
 	public static string LevelAdditionalLink, MusicName = "", ModMapPath;
 	public static Vector4 CameraLimits;
 	public static readonly int LevelsInGameTotal = 10, CrossesInGameTotal = 5, DificultiesInGameTotal = 3;
-	public static Node[] NodeCopyBuffer = new Node[0];
 	public static string GetLanguagePrefix()
 	{
 		if (Meta.Instance.language == Meta.Language.en)
@@ -41,6 +41,12 @@ public partial class G : Node
         if (@event is InputEventKey)
         {
 			TypeOfUsedController = "Keyboard";
+			if (Input.IsKeyPressed(Key.F11))
+			{
+				Meta.Instance.IsFullScreen = !Meta.Instance.IsFullScreen;
+				Meta.Instance.ApplyOptions();
+				Meta.Instance.SaveToFile();
+			}
         }
         else if (@event is InputEventJoypadButton || @event is InputEventJoypadMotion)
         {
@@ -116,4 +122,6 @@ public partial class G : Node
 
     // This variable is used when switching between some scenes in the game menu. Don't touch it if you don't want to break anything.
     public static Variant InGameTransitiveValue;
+    // This array used in level editor. Don't touch it either
+    public static Godot.Collections.Array<Node> NodeCopyBuffer = new Godot.Collections.Array<Node>();
 }
