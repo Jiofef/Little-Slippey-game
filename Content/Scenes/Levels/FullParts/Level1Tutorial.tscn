@@ -89,8 +89,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jcmm3"]
 _data = {
-&"MusicStarting": SubResource("Animation_p3npb"),
-&"MusicStopping": SubResource("Animation_n61s8")
+"MusicStarting": SubResource("Animation_p3npb"),
+"MusicStopping": SubResource("Animation_n61s8")
 }
 
 [sub_resource type="Animation" id="Animation_dxr07"]
@@ -125,7 +125,7 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vyn6q"]
 _data = {
-&"CloudsMoving": SubResource("Animation_dxr07")
+"CloudsMoving": SubResource("Animation_dxr07")
 }
 
 [sub_resource type="Curve" id="Curve_0osns"]
@@ -391,8 +391,8 @@ tracks/9/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_l1b2c"]
 _data = {
-&"Intro": SubResource("Animation_3l5bp"),
-&"PostIntro": SubResource("Animation_de8hc")
+"Intro": SubResource("Animation_3l5bp"),
+"PostIntro": SubResource("Animation_de8hc")
 }
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_o3kg5"]
@@ -655,7 +655,7 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3uffo"]
 _data = {
-&"BangerFilm": SubResource("Animation_hw3a1")
+"BangerFilm": SubResource("Animation_hw3a1")
 }
 
 [sub_resource type="Animation" id="Animation_jrcbu"]
@@ -738,7 +738,7 @@ tracks/5/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_g0wyp"]
 _data = {
-&"FellDown": SubResource("Animation_jrcbu")
+"FellDown": SubResource("Animation_jrcbu")
 }
 
 [sub_resource type="Animation" id="Animation_541mw"]
@@ -799,7 +799,7 @@ tracks/3/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_u218g"]
 _data = {
-&"FallingDown": SubResource("Animation_541mw")
+"FallingDown": SubResource("Animation_541mw")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kyrmi"]
@@ -863,7 +863,7 @@ tracks/3/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mch4p"]
 _data = {
-&"FallingDown": SubResource("Animation_joxlj")
+"FallingDown": SubResource("Animation_joxlj")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ep101"]
@@ -1055,7 +1055,7 @@ tracks/3/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3y4p8"]
 _data = {
-&"FallingDown": SubResource("Animation_w65lh")
+"FallingDown": SubResource("Animation_w65lh")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vafgi"]
@@ -1107,7 +1107,7 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1857e"]
 _data = {
-&"Appearing": SubResource("Animation_j5qhe")
+"Appearing": SubResource("Animation_j5qhe")
 }
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fmfkk"]
@@ -1338,7 +1338,7 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0wmiw"]
 _data = {
-&"RisingUp": SubResource("Animation_lr00t")
+"RisingUp": SubResource("Animation_lr00t")
 }
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ua1ox"]
@@ -1403,7 +1403,7 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_nvwj4"]
 _data = {
-&"Quicking": SubResource("Animation_3m78f")
+"Quicking": SubResource("Animation_3m78f")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oxrkg"]
@@ -1492,7 +1492,7 @@ tracks/5/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_i5p2o"]
 _data = {
-&"FallingDown": SubResource("Animation_5etp8")
+"FallingDown": SubResource("Animation_5etp8")
 }
 
 [sub_resource type="Animation" id="Animation_xh1as"]
@@ -1514,7 +1514,7 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_sdj3l"]
 _data = {
-&"BangerFilm": SubResource("Animation_xh1as")
+"BangerFilm": SubResource("Animation_xh1as")
 }
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_m23ck"]
@@ -1672,8 +1672,8 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_peutq"]
 _data = {
-&"FellDown": SubResource("Animation_4xbwr"),
-&"NoiseDisappearing": SubResource("Animation_i01qk")
+"FellDown": SubResource("Animation_4xbwr"),
+"NoiseDisappearing": SubResource("Animation_i01qk")
 }
 
 [sub_resource type="Gradient" id="Gradient_mywan"]
@@ -1802,7 +1802,7 @@ tracks/5/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8uty2"]
 _data = {
-&"PlatformCrashing": SubResource("Animation_p12lv")
+"PlatformCrashing": SubResource("Animation_p12lv")
 }
 
 [sub_resource type="Gradient" id="Gradient_fw8ms"]
@@ -1813,35 +1813,6 @@ size = Vector2(160, 118)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iy0xk"]
 size = Vector2(4096, 256)
-
-[sub_resource type="Animation" id="Animation_0n4vb"]
-resource_name = "Lightening"
-length = 3.0
-capture_included = true
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../../TutorialCanvasLayer/Fog?:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(3),
-"transitions": PackedFloat32Array(1),
-"update": 2,
-"values": [Color(0, 1, 1, 0.0156863)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../../SunLightLayerContainer/SunLightLayer/SunLight:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(3),
-"transitions": PackedFloat32Array(1),
-"update": 2,
-"values": [Color(1, 1, 1, 1)]
-}
 
 [sub_resource type="Animation" id="Animation_tmo5m"]
 resource_name = "Darkening"
@@ -1872,10 +1843,39 @@ tracks/1/keys = {
 "values": [Color(1, 1, 1, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_0n4vb"]
+resource_name = "Lightening"
+length = 3.0
+capture_included = true
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../../TutorialCanvasLayer/Fog?:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(3),
+"transitions": PackedFloat32Array(1),
+"update": 2,
+"values": [Color(0, 1, 1, 0.0156863)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../../SunLightLayerContainer/SunLightLayer/SunLight:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(3),
+"transitions": PackedFloat32Array(1),
+"update": 2,
+"values": [Color(1, 1, 1, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_j5qlx"]
 _data = {
-&"Darkening": SubResource("Animation_tmo5m"),
-&"Lightening": SubResource("Animation_0n4vb")
+"Darkening": SubResource("Animation_tmo5m"),
+"Lightening": SubResource("Animation_0n4vb")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b1rgh"]
@@ -1958,70 +1958,6 @@ tracks/4/keys = {
 "values": [Vector2(0, 4)]
 }
 
-[sub_resource type="Animation" id="Animation_lw551"]
-resource_name = "Closing"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("DisposableButton/Pressed:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("DisposableButton:monitoring")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("DisposableButton/OpeningDoor:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(0.5, 1),
-"update": 0,
-"values": [Vector2(0, -44), Vector2(0, 4)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("DisposableButton/ClosingDoor:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(0.5, 1),
-"update": 0,
-"values": [Vector2(48, 4), Vector2(0, 4)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("DisposableButton/Unpressed:visible")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-
 [sub_resource type="Animation" id="Animation_2emxc"]
 resource_name = "Opening"
 length = 0.5
@@ -2086,11 +2022,75 @@ tracks/4/keys = {
 "values": [false]
 }
 
+[sub_resource type="Animation" id="Animation_lw551"]
+resource_name = "Closing"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DisposableButton/Pressed:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DisposableButton:monitoring")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("DisposableButton/OpeningDoor:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector2(0, -44), Vector2(0, 4)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("DisposableButton/ClosingDoor:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector2(48, 4), Vector2(0, 4)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("DisposableButton/Unpressed:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_osxh4"]
 _data = {
-&"FinalOpening": SubResource("Animation_x0fi0"),
-&"Opening": SubResource("Animation_2emxc"),
-&"Closing": SubResource("Animation_lw551")
+"Closing": SubResource("Animation_lw551"),
+"FinalOpening": SubResource("Animation_x0fi0"),
+"Opening": SubResource("Animation_2emxc")
 }
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lnwsm"]
@@ -2240,7 +2240,7 @@ tracks/5/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hmjwf"]
 _data = {
-&"Appearing": SubResource("Animation_cf40m")
+"Appearing": SubResource("Animation_cf40m")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f6tr4"]
@@ -2271,7 +2271,7 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jdlyw"]
 _data = {
-&"Its\"Not\"Over": SubResource("Animation_omm3e")
+"Its\"Not\"Over": SubResource("Animation_omm3e")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c2udf"]
@@ -2282,35 +2282,6 @@ size = Vector2(128, 64)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j81mt"]
 size = Vector2(48, 16)
-
-[sub_resource type="Animation" id="Animation_lcs7e"]
-resource_name = "Lightening"
-length = 3.0
-capture_included = true
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../../TutorialCanvasLayer/Fog?:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(3),
-"transitions": PackedFloat32Array(1),
-"update": 2,
-"values": [Color(0, 1, 1, 0.0156863)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../../SunLightLayerContainer/SunLightLayer/SunLight:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(3),
-"transitions": PackedFloat32Array(1),
-"update": 2,
-"values": [Color(1, 1, 1, 1)]
-}
 
 [sub_resource type="Animation" id="Animation_gg1bb"]
 resource_name = "Darkening"
@@ -2341,10 +2312,39 @@ tracks/1/keys = {
 "values": [Color(1, 1, 1, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_lcs7e"]
+resource_name = "Lightening"
+length = 3.0
+capture_included = true
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../../TutorialCanvasLayer/Fog?:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(3),
+"transitions": PackedFloat32Array(1),
+"update": 2,
+"values": [Color(0, 1, 1, 0.0156863)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../../SunLightLayerContainer/SunLightLayer/SunLight:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(3),
+"transitions": PackedFloat32Array(1),
+"update": 2,
+"values": [Color(1, 1, 1, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ntu1s"]
 _data = {
-&"Darkening": SubResource("Animation_gg1bb"),
-&"Lightening": SubResource("Animation_lcs7e")
+"Darkening": SubResource("Animation_gg1bb"),
+"Lightening": SubResource("Animation_lcs7e")
 }
 
 [sub_resource type="Curve" id="Curve_55cbv"]
@@ -2519,7 +2519,7 @@ tracks/11/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tosue"]
 _data = {
-&"YOUWIN": SubResource("Animation_dsetv")
+"YOUWIN": SubResource("Animation_dsetv")
 }
 
 [sub_resource type="Animation" id="Animation_0w1hx"]
@@ -2540,7 +2540,7 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0l5ac"]
 _data = {
-&"Disappearing": SubResource("Animation_0w1hx")
+"Disappearing": SubResource("Animation_0w1hx")
 }
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2vw5w"]
@@ -2665,8 +2665,8 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4p2pf"]
 _data = {
-&"Pause": SubResource("Animation_qdctp"),
-&"OpeningSubMenu": SubResource("Animation_gr4ul")
+"OpeningSubMenu": SubResource("Animation_gr4ul"),
+"Pause": SubResource("Animation_qdctp")
 }
 
 [sub_resource type="Animation" id="Animation_gx3u0"]
@@ -2789,7 +2789,7 @@ tracks/8/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_emurq"]
 _data = {
-&"EpicIntro": SubResource("Animation_gx3u0")
+"EpicIntro": SubResource("Animation_gx3u0")
 }
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xv08t"]
@@ -2809,7 +2809,7 @@ SavePlayingWhenLevelResets = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="LevelMusicPlayer"]
 libraries = {
-&"": SubResource("AnimationLibrary_jcmm3")
+"": SubResource("AnimationLibrary_jcmm3")
 }
 
 [node name="Level" type="Node2D" parent="."]
@@ -2853,7 +2853,7 @@ centered = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Level/Background/Clouds"]
 libraries = {
-&"": SubResource("AnimationLibrary_vyn6q")
+"": SubResource("AnimationLibrary_vyn6q")
 }
 autoplay = "CloudsMoving"
 
@@ -2915,7 +2915,7 @@ shape = SubResource("RectangleShape2D_p6tx3")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Level/Rail"]
 root_node = NodePath("../..")
 libraries = {
-&"": SubResource("AnimationLibrary_l1b2c")
+"": SubResource("AnimationLibrary_l1b2c")
 }
 autoplay = "Intro"
 next/Intro = &"PostIntro"
@@ -3425,7 +3425,7 @@ _isThereASecondSpriteForGamepad = false
 
 [node name="AnimationPlayer" parent="Level/TileMap/TutorialTV/Screen/SlippeyHead" index="0"]
 libraries = {
-&"": SubResource("AnimationLibrary_3uffo")
+"": SubResource("AnimationLibrary_3uffo")
 }
 
 [node name="Text" type="RichTextLabel" parent="Level/TileMap/TutorialTV/Screen" index="2"]
@@ -3455,17 +3455,14 @@ text = "
 [center]To walk, press [img]res://Content/Sprites/Interface/ControllerStickLeft.png[/img]
  and [img]res://Content/Sprites/Interface/ControllerStickRight.png[/img] or [img]res://Content/Sprites/Interface/ControllerDPadLeft.png[/img] and [img]res://Content/Sprites/Interface/ControllerDPadRight.png[/img][/center]"
 
-[node name="Sound" parent="Level/TileMap/TutorialTV/Screen/WhiteNoise" index="0"]
-volume_db = -5.0
-
 [node name="AnimationPlayer" parent="Level/TileMap/TutorialTV/Screen" index="5"]
 libraries = {
-&"": SubResource("AnimationLibrary_g0wyp")
+"": SubResource("AnimationLibrary_g0wyp")
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Level/TileMap/TutorialTV"]
 libraries = {
-&"": SubResource("AnimationLibrary_u218g")
+"": SubResource("AnimationLibrary_u218g")
 }
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="Level/TileMap/TutorialTV"]
@@ -3498,7 +3495,7 @@ script = ExtResource("20_15uq2")
 
 [node name="AnimationPlayer" parent="Level/TileMap2/TutorialTV/Screen/SlippeyHead" index="0"]
 libraries = {
-&"": SubResource("AnimationLibrary_3uffo")
+"": SubResource("AnimationLibrary_3uffo")
 }
 
 [node name="Text" type="RichTextLabel" parent="Level/TileMap2/TutorialTV/Screen" index="2"]
@@ -3540,12 +3537,9 @@ text = "
 
 [center]To jump, press [img]res://Content/Sprites/Interface/PSControllerX.png[/img], [img]res://Content/Sprites/Interface/ControllerDPadUp.png[/img] or [img]res://Content/Sprites/Interface/ControllerStickUp.png[/img][/center]"
 
-[node name="Sound" parent="Level/TileMap2/TutorialTV/Screen/WhiteNoise" index="0"]
-volume_db = -5.0
-
 [node name="AnimationPlayer" parent="Level/TileMap2/TutorialTV/Screen" index="6"]
 libraries = {
-&"": SubResource("AnimationLibrary_g0wyp")
+"": SubResource("AnimationLibrary_g0wyp")
 }
 
 [node name="Sprite2D" type="Sprite2D" parent="Level/TileMap2/TutorialTV/Screen" index="7"]
@@ -3555,7 +3549,7 @@ emitting = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Level/TileMap2/TutorialTV"]
 libraries = {
-&"": SubResource("AnimationLibrary_mch4p")
+"": SubResource("AnimationLibrary_mch4p")
 }
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="Level/TileMap2/TutorialTV"]
@@ -3629,7 +3623,7 @@ script = ExtResource("20_15uq2")
 
 [node name="AnimationPlayer" parent="Level/TileMap4/TutorialTV/Screen/SlippeyHead" index="0"]
 libraries = {
-&"": SubResource("AnimationLibrary_3uffo")
+"": SubResource("AnimationLibrary_3uffo")
 }
 
 [node name="Text" type="RichTextLabel" parent="Level/TileMap4/TutorialTV/Screen" index="2"]
@@ -3675,7 +3669,7 @@ during flight[/center]"
 
 [node name="AnimationPlayer" parent="Level/TileMap4/TutorialTV/Screen" index="6"]
 libraries = {
-&"": SubResource("AnimationLibrary_g0wyp")
+"": SubResource("AnimationLibrary_g0wyp")
 }
 
 [node name="Particles" parent="Level/TileMap4/TutorialTV" index="2"]
@@ -3683,7 +3677,7 @@ texture = ExtResource("22_hhw8g")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Level/TileMap4/TutorialTV"]
 libraries = {
-&"": SubResource("AnimationLibrary_3y4p8")
+"": SubResource("AnimationLibrary_3y4p8")
 }
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="Level/TileMap4/TutorialTV"]
@@ -3723,7 +3717,7 @@ tile_set = SubResource("TileSet_pa55k")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Level/TileMap4/ShowSecretArea"]
 libraries = {
-&"": SubResource("AnimationLibrary_1857e")
+"": SubResource("AnimationLibrary_1857e")
 }
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Level/TileMap4/ShowSecretArea"]
@@ -3764,7 +3758,7 @@ script = ExtResource("20_15uq2")
 
 [node name="AnimationPlayer" parent="Level/TileMap5/TutorialTV/Screen/SlippeyHead" index="0"]
 libraries = {
-&"": SubResource("AnimationLibrary_3uffo")
+"": SubResource("AnimationLibrary_3uffo")
 }
 
 [node name="Text" type="RichTextLabel" parent="Level/TileMap5/TutorialTV/Screen" index="2"]
@@ -3813,7 +3807,7 @@ flight and jump[/center]"
 
 [node name="AnimationPlayer" parent="Level/TileMap5/TutorialTV/Screen" index="6"]
 libraries = {
-&"": SubResource("AnimationLibrary_g0wyp")
+"": SubResource("AnimationLibrary_g0wyp")
 }
 
 [node name="Particles" parent="Level/TileMap5/TutorialTV" index="2"]
@@ -3822,7 +3816,7 @@ texture = ExtResource("26_aoaf2")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Level/TileMap5/TutorialTV"]
 libraries = {
-&"": SubResource("AnimationLibrary_0wmiw")
+"": SubResource("AnimationLibrary_0wmiw")
 }
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="Level/TileMap5/TutorialTV"]
@@ -3839,7 +3833,7 @@ use_kinematic_bodies = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Level/TileMap5/QuickRock"]
 libraries = {
-&"": SubResource("AnimationLibrary_nvwj4")
+"": SubResource("AnimationLibrary_nvwj4")
 }
 
 [node name="Particles" type="CPUParticles2D" parent="Level/TileMap5/QuickRock"]
@@ -3894,7 +3888,7 @@ shape = SubResource("RectangleShape2D_58ksh")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Level/TileMap5/ShakyPlatform"]
 libraries = {
-&"": SubResource("AnimationLibrary_i5p2o")
+"": SubResource("AnimationLibrary_i5p2o")
 }
 
 [node name="TutorialTV" type="Node2D" parent="Level/TileMap5/ShakyPlatform"]
@@ -3930,7 +3924,7 @@ centered = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Level/TileMap5/ShakyPlatform/TutorialTV/Screen/SlippeyHead"]
 libraries = {
-&"": SubResource("AnimationLibrary_sdj3l")
+"": SubResource("AnimationLibrary_sdj3l")
 }
 
 [node name="Text" type="Label" parent="Level/TileMap5/ShakyPlatform/TutorialTV/Screen"]
@@ -3973,7 +3967,7 @@ bus = &"Interface"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Level/TileMap5/ShakyPlatform/TutorialTV/Screen"]
 libraries = {
-&"": SubResource("AnimationLibrary_peutq")
+"": SubResource("AnimationLibrary_peutq")
 }
 
 [node name="Particles" type="CPUParticles2D" parent="Level/TileMap5/ShakyPlatform/TutorialTV"]
@@ -4102,7 +4096,7 @@ tile_set = SubResource("TileSet_jjq0k")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Level/TileMap5/SecretActivationArea"]
 libraries = {
-&"": SubResource("AnimationLibrary_8uty2")
+"": SubResource("AnimationLibrary_8uty2")
 }
 
 [node name="DirtParticles" type="CPUParticles2D" parent="Level/TileMap5/SecretActivationArea"]
@@ -4178,7 +4172,7 @@ polygon = PackedVector2Array(7804.25, 657.5, 8472.5, 659.25, 9006.75, 502.75, 94
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Level/TileMap5/DarkeningArea"]
 libraries = {
-&"": SubResource("AnimationLibrary_j5qlx")
+"": SubResource("AnimationLibrary_j5qlx")
 }
 script = ExtResource("33_etq6e")
 
@@ -4242,7 +4236,7 @@ tile_set = SubResource("TileSet_0tu43")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Level/TileMap6/DisposableButton/OpeningDoor"]
 root_node = NodePath("../../..")
 libraries = {
-&"": SubResource("AnimationLibrary_osxh4")
+"": SubResource("AnimationLibrary_osxh4")
 }
 
 [node name="ClosingDoor" type="TileMapLayer" parent="Level/TileMap6/DisposableButton"]
@@ -4278,7 +4272,7 @@ position = Vector2(-3.73333, -3.73333)
 
 [node name="AnimationPlayer" parent="Level/TileMap6/TutorialTV/Screen/SlippeyHead" index="0"]
 libraries = {
-&"": SubResource("AnimationLibrary_3uffo")
+"": SubResource("AnimationLibrary_3uffo")
 }
 
 [node name="Text" type="RichTextLabel" parent="Level/TileMap6/TutorialTV/Screen" index="2"]
@@ -4311,12 +4305,9 @@ text = "
 [node name="WhiteNoise" parent="Level/TileMap6/TutorialTV/Screen" index="4"]
 visible = false
 
-[node name="Sound" parent="Level/TileMap6/TutorialTV/Screen/WhiteNoise" index="0"]
-volume_db = -5.0
-
 [node name="AnimationPlayer" parent="Level/TileMap6/TutorialTV/Screen" index="5"]
 libraries = {
-&"": SubResource("AnimationLibrary_g0wyp")
+"": SubResource("AnimationLibrary_g0wyp")
 }
 
 [node name="Particles" parent="Level/TileMap6/TutorialTV" index="2"]
@@ -4362,7 +4353,7 @@ frame_progress = 0.00624641
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Level/TileMap6/TutorialTV"]
 libraries = {
-&"": SubResource("AnimationLibrary_hmjwf")
+"": SubResource("AnimationLibrary_hmjwf")
 }
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="Level/TileMap6/TutorialTV"]
@@ -4430,7 +4421,7 @@ shape = SubResource("RectangleShape2D_ijor7")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Level/TileMap6/MovingTileMap"]
 libraries = {
-&"": SubResource("AnimationLibrary_jdlyw")
+"": SubResource("AnimationLibrary_jdlyw")
 }
 
 [node name="TeleporterArea" parent="Level/TileMap6" instance=ExtResource("9_chanx")]
@@ -4465,7 +4456,7 @@ polygon = PackedVector2Array(11063, 702, 11995.8, -212.75, 13310.8, -216, 13315.
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Level/TileMap6/DarkeningArea"]
 libraries = {
-&"": SubResource("AnimationLibrary_ntu1s")
+"": SubResource("AnimationLibrary_ntu1s")
 }
 script = ExtResource("33_etq6e")
 
@@ -4515,7 +4506,7 @@ centered = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Level/TileMap7/TutorialTV/Screen/SlippeyHead"]
 libraries = {
-&"": SubResource("AnimationLibrary_sdj3l")
+"": SubResource("AnimationLibrary_sdj3l")
 }
 
 [node name="Text" type="Label" parent="Level/TileMap7/TutorialTV/Screen"]
@@ -4622,7 +4613,7 @@ bus = &"Interface"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Level/TileMap7/TutorialTV/Screen"]
 libraries = {
-&"": SubResource("AnimationLibrary_peutq")
+"": SubResource("AnimationLibrary_peutq")
 }
 
 [node name="Particles" type="CPUParticles2D" parent="Level/TileMap7/TutorialTV"]
@@ -4685,7 +4676,7 @@ color_initial_ramp = SubResource("Gradient_0kulf")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Level/TileMap7/TutorialTV"]
 libraries = {
-&"": SubResource("AnimationLibrary_tosue")
+"": SubResource("AnimationLibrary_tosue")
 }
 
 [node name="TutorialCanvasLayer" type="CanvasLayer" parent="Level"]
@@ -4704,7 +4695,7 @@ text = "[center]Press [img]res://Content/Sprites/Interface/KeyboardButtonBigF.pn
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Level/TutorialCanvasLayer/Label"]
 libraries = {
-&"": SubResource("AnimationLibrary_0l5ac")
+"": SubResource("AnimationLibrary_0l5ac")
 }
 
 [node name="WhiteNoiseGlitch" type="AnimatedSprite2D" parent="Level/TutorialCanvasLayer"]
@@ -4805,7 +4796,7 @@ color = Color(0, 0, 0, 0.156863)
 process_mode = 3
 root_node = NodePath("../..")
 libraries = {
-&"": SubResource("AnimationLibrary_4p2pf")
+"": SubResource("AnimationLibrary_4p2pf")
 }
 
 [node name="EpicIntro" type="CanvasLayer" parent="."]
@@ -4814,7 +4805,7 @@ layer = 10
 [node name="AnimationPlayer" type="AnimationPlayer" parent="EpicIntro"]
 root_node = NodePath("../..")
 libraries = {
-&"": SubResource("AnimationLibrary_emurq")
+"": SubResource("AnimationLibrary_emurq")
 }
 autoplay = "EpicIntro"
 script = ExtResource("48_knw17")

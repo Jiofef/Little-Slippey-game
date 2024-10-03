@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://c5j62v1sjf4l6"]
+
+[ext_resource type="Texture2D" uid="uid://b830neidt3avy" path="res://Content/Sprites/Levels/Mort'sTileset.png" id="1_5d066"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wyy1f"]
+size = Vector2(64, 64)
+
+[node name="DefaultRigidBody" type="RigidBody2D"]
+position = Vector2(516, 320)
+collision_layer = 256
+collision_mask = 389
+mass = 0.3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_wyy1f")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(4, 4)
+texture = ExtResource("1_5d066")
+region_enabled = true
+region_rect = Rect2(32, 16, 16, 16)

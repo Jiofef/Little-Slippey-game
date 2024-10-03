@@ -228,6 +228,7 @@ locale/language_filter=["en", "ru"]
 2d_physics/layer_6="BlumCrossButton"
 2d_physics/layer_7="ForegroundArea"
 2d_physics/layer_8="Level6FlyingCar"
+2d_physics/layer_9="RigidBodies"
 
 [mono]
 

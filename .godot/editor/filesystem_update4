@@ -1,5 +1,6 @@
+res://default_bus_layout.tres
 res://default_env.tres
-res://Content/Scenes/Interface&Menu/InitializationScene.tscn
+res://Content/Scenes/Levels/FullParts/Level1.tscn
 res://Content/Other/BrightnessShader.gdshader
 res://Content/Other/StaticNoiseShader.gdshader
 res://Content/Other/BlurShader.gdshader
@@ -7,9 +8,10 @@ res://Content/Other/CRT.gdshader
 res://Content/Other/PixelateShader.gdshader
 res://Content/Other/SaturationShader.gdshader
 res://Content/Other/PostProcessing.gdshader
+res://Content/Scenes/Interface&Menu/InitializationScene.tscn
 res://Content/Scenes/Interface&Menu/LevelEditor.tscn
 res://Content/Scenes/Other/UserLevelLayout.tscn
-res://Content/Scenes/PlayerSkins/Slippey.tscn
+res://Content/Scenes/Levels/FullParts/Level1Tutorial.tscn
 res://Content/Scripts/Other/DidLevelIntroPassedSet.cs
 res://Content/Scripts/Crosses/ElementalCross.cs
 res://Content/Scripts/Levels/Level6FlyingCar.cs
@@ -88,3 +90,4 @@ res://Content/Scripts/Interface&Menu/FinalLetter.cs
 res://Content/Scripts/Levels/BaseLevelScript.cs
 res://Content/Scripts/Levels/Level8TileMapSpawner.cs
 res://Content/Scripts/Levels/Level8DisposableButton.cs
+res://Content/Scenes/Other/CrutchedArea2D.tscn

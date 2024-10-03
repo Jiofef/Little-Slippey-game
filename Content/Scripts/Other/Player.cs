@@ -3,7 +3,8 @@ using System;
 
 public partial class Player : CharacterBody2D
 {
-    [Export] float _speed = 400, _gravity = 18.6f, _jumpForce = 600;
+    [Export] float _speed = 400, _gravity = 18.6f, _jumpForce = 600, _pushForce = 8;
+    [Export] bool _enableRigidBodyPhysics = false;
 
     [Signal] public delegate void CameraLimitsChangedEventHandler();
     [Signal] public delegate void PlayerDiedEventHandler();
@@ -224,6 +225,17 @@ public partial class Player : CharacterBody2D
             Velocity = _motion;
             MoveAndSlide();
             Velocity = new Vector2(0, Velocity.Y);
+
+            if (_enableRigidBodyPhysics)
+            {
+                for (int i = 0; i < GetSlideCollisionCount(); i++)
+                {
+                    var collision = GetSlideCollision(i);
+                    if (collision.GetCollider() is RigidBody2D)
+                        ((RigidBody2D)collision.GetCollider()).ApplyCentralImpulse(-collision.GetNormal() * _pushForce);
+                }
+            }
+
         }
 
         //BOO

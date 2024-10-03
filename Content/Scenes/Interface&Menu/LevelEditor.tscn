@@ -1,8 +1,25 @@
-[gd_scene load_steps=7 format=3 uid="uid://c1b6qyg17m3f1"]
+[gd_scene load_steps=26 format=3 uid="uid://c1b6qyg17m3f1"]
 
 [ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/LevelEditor.cs" id="1_03doe"]
 [ext_resource type="Texture2D" uid="uid://d284tqsj2yp0w" path="res://Content/Sprites/Interface/Cross.png" id="2_0sxv6"]
 [ext_resource type="Texture2D" uid="uid://begcejlgxi8vb" path="res://Content/Sprites/Interface/LevelEditorChunk.png" id="3_is8cq"]
+[ext_resource type="PackedScene" uid="uid://bwpstpk1xmkah" path="res://Content/Scenes/Interface&Menu/Button.tscn" id="3_wdnfh"]
+[ext_resource type="Texture2D" uid="uid://c2oim5v4o8wh6" path="res://Content/Sprites/Interface/LevelEditor/NodeButton.png" id="4_uf0bb"]
+[ext_resource type="Texture2D" uid="uid://bx7ylmwls0u3b" path="res://Content/Sprites/Interface/LevelEditor/Node2D.png" id="5_2kmmy"]
+[ext_resource type="Texture2D" uid="uid://b1yvdl7jwsm2i" path="res://Content/Sprites/Interface/LevelEditor/Node.png" id="5_8n2gy"]
+[ext_resource type="Texture2D" uid="uid://cq6ok61no1qlr" path="res://Content/Sprites/Interface/LevelEditor/Sprite2D.png" id="7_kcma0"]
+[ext_resource type="Texture2D" uid="uid://dkscfivq8c814" path="res://Content/Sprites/Interface/LevelEditor/AnimatedSprite2D.png" id="8_06qfi"]
+[ext_resource type="Texture2D" uid="uid://dyv2csygb2l8v" path="res://Content/Sprites/Interface/LevelEditor/TileMapLayer.png" id="8_n7fqe"]
+[ext_resource type="Texture2D" uid="uid://dcdlcab5xodw6" path="res://Content/Sprites/Interface/LevelEditor/AudioStreamPlayer.png" id="9_nmsu2"]
+[ext_resource type="Texture2D" uid="uid://cfc28xydsuxqi" path="res://Content/Sprites/Interface/LevelEditor/AudioStreamPlayer2D.png" id="10_wodf3"]
+[ext_resource type="Texture2D" uid="uid://bxlr1x4qchnne" path="res://Content/Sprites/Interface/LevelEditor/Area2D.png" id="11_x7i7q"]
+[ext_resource type="Texture2D" uid="uid://c13iluvke2mck" path="res://Content/Sprites/Interface/LevelEditor/StaticBody2D.png" id="12_b8lnn"]
+[ext_resource type="Texture2D" uid="uid://qmagw6nqfpry" path="res://Content/Sprites/Interface/LevelEditor/Timer.png" id="12_bgqii"]
+[ext_resource type="Texture2D" uid="uid://biraqjyb8dhn7" path="res://Content/Sprites/Interface/LevelEditor/CPUParticles2D.png" id="12_wttbg"]
+[ext_resource type="Texture2D" uid="uid://bve8pw1q8qg84" path="res://Content/Sprites/Interface/LevelEditor/Path2D.png" id="14_easg4"]
+[ext_resource type="Texture2D" uid="uid://cwimhnhs122xs" path="res://Content/Sprites/Interface/LevelEditor/RigidBody2D.png" id="16_yksuj"]
+[ext_resource type="Texture2D" uid="uid://d1g53o432okdn" path="res://Content/Sprites/Interface/LevelEditor/ColorRect.png" id="18_7l5cp"]
+[ext_resource type="Texture2D" uid="uid://dq3onblu5j2rl" path="res://Content/Sprites/Interface/LevelEditor/TextureRect.png" id="19_eoacx"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_u6r4h"]
 texture = ExtResource("2_0sxv6")
@@ -12,6 +29,12 @@ texture = ExtResource("2_0sxv6")
 sources/0 = SubResource("TileSetAtlasSource_u6r4h")
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_k521p"]
+
+[sub_resource type="Gradient" id="Gradient_hh0p1"]
+colors = PackedColorArray(0.501407, 0.501406, 0.501406, 1, 0.501407, 0.501406, 0.501406, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_crqmt"]
+gradient = SubResource("Gradient_hh0p1")
 
 [node name="LevelEditor" type="Control"]
 layout_mode = 3
@@ -147,7 +170,6 @@ value = 1.0
 update_on_text_changed = true
 
 [node name="NodeModeGUI" type="Control" parent="CanvasLayer"]
-visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1280.0
@@ -175,6 +197,293 @@ layout_mode = 2
 custom_minimum_size = Vector2(256, 592)
 layout_mode = 2
 columns = 2
+
+[node name="NodeCreateMenu" type="Control" parent="CanvasLayer/NodeModeGUI"]
+custom_minimum_size = Vector2(768, 576)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu"]
+custom_minimum_size = Vector2(768, 576)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -384.0
+offset_top = -288.0
+offset_right = 384.0
+offset_bottom = 288.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture1D_crqmt")
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/TextureRect"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu"]
+custom_minimum_size = Vector2(768, 576)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -384.0
+offset_top = -288.0
+offset_right = 384.0
+offset_bottom = 288.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 16
+
+[node name="VScrollBar" type="VScrollBar" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer"]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer"]
+layout_mode = 2
+scroll_vertical = 144
+
+[node name="NodesContainer" type="FlowContainer" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer"]
+custom_minimum_size = Vector2(688, 0)
+layout_mode = 2
+theme_override_constants/h_separation = 16
+theme_override_constants/v_separation = 16
+
+[node name="Button" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer" instance=ExtResource("3_wdnfh")]
+custom_minimum_size = Vector2(160, 160)
+layout_mode = 2
+texture_normal = ExtResource("4_uf0bb")
+stretch_mode = 0
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/Button"]
+layout_mode = 1
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(4, 4)
+mouse_filter = 2
+texture = ExtResource("5_8n2gy")
+stretch_mode = 3
+
+[node name="Button2" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer" instance=ExtResource("3_wdnfh")]
+custom_minimum_size = Vector2(160, 160)
+layout_mode = 2
+texture_normal = ExtResource("4_uf0bb")
+stretch_mode = 0
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/Button2"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(4, 4)
+mouse_filter = 2
+texture = ExtResource("5_2kmmy")
+stretch_mode = 3
+
+[node name="Button3" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer" instance=ExtResource("3_wdnfh")]
+custom_minimum_size = Vector2(160, 160)
+layout_mode = 2
+texture_normal = ExtResource("4_uf0bb")
+stretch_mode = 0
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/Button3"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(4, 4)
+mouse_filter = 2
+texture = ExtResource("7_kcma0")
+stretch_mode = 3
+
+[node name="Button13" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer" instance=ExtResource("3_wdnfh")]
+custom_minimum_size = Vector2(160, 160)
+layout_mode = 2
+texture_normal = ExtResource("4_uf0bb")
+stretch_mode = 0
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/Button13"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(4, 4)
+mouse_filter = 2
+texture = ExtResource("8_06qfi")
+stretch_mode = 3
+
+[node name="Button5" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer" instance=ExtResource("3_wdnfh")]
+custom_minimum_size = Vector2(160, 160)
+layout_mode = 2
+texture_normal = ExtResource("4_uf0bb")
+stretch_mode = 0
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/Button5"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(4, 4)
+mouse_filter = 2
+texture = ExtResource("9_nmsu2")
+stretch_mode = 3
+
+[node name="Button6" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer" instance=ExtResource("3_wdnfh")]
+custom_minimum_size = Vector2(160, 160)
+layout_mode = 2
+texture_normal = ExtResource("4_uf0bb")
+stretch_mode = 0
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/Button6"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(4, 4)
+mouse_filter = 2
+texture = ExtResource("10_wodf3")
+stretch_mode = 3
+
+[node name="Button11" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer" instance=ExtResource("3_wdnfh")]
+custom_minimum_size = Vector2(160, 160)
+layout_mode = 2
+texture_normal = ExtResource("4_uf0bb")
+stretch_mode = 0
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/Button11"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(4, 4)
+mouse_filter = 2
+texture = ExtResource("12_b8lnn")
+stretch_mode = 3
+
+[node name="Button4" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer" instance=ExtResource("3_wdnfh")]
+custom_minimum_size = Vector2(160, 160)
+layout_mode = 2
+texture_normal = ExtResource("4_uf0bb")
+stretch_mode = 0
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/Button4"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(4, 4)
+mouse_filter = 2
+texture = ExtResource("8_n7fqe")
+stretch_mode = 3
+
+[node name="Button9" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer" instance=ExtResource("3_wdnfh")]
+custom_minimum_size = Vector2(160, 160)
+layout_mode = 2
+texture_normal = ExtResource("4_uf0bb")
+stretch_mode = 0
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/Button9"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(4, 4)
+mouse_filter = 2
+texture = ExtResource("12_bgqii")
+stretch_mode = 3
+
+[node name="Button8" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer" instance=ExtResource("3_wdnfh")]
+custom_minimum_size = Vector2(160, 160)
+layout_mode = 2
+texture_normal = ExtResource("4_uf0bb")
+stretch_mode = 0
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/Button8"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(4, 4)
+mouse_filter = 2
+texture = ExtResource("12_wttbg")
+stretch_mode = 3
+
+[node name="Button12" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer" instance=ExtResource("3_wdnfh")]
+custom_minimum_size = Vector2(160, 160)
+layout_mode = 2
+texture_normal = ExtResource("4_uf0bb")
+stretch_mode = 0
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/Button12"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(4, 4)
+mouse_filter = 2
+texture = ExtResource("16_yksuj")
+stretch_mode = 3
+
+[node name="Button7" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer" instance=ExtResource("3_wdnfh")]
+custom_minimum_size = Vector2(160, 160)
+layout_mode = 2
+texture_normal = ExtResource("4_uf0bb")
+stretch_mode = 0
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/Button7"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(4, 4)
+mouse_filter = 2
+texture = ExtResource("11_x7i7q")
+stretch_mode = 3
+
+[node name="Button10" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer" instance=ExtResource("3_wdnfh")]
+custom_minimum_size = Vector2(160, 160)
+layout_mode = 2
+texture_normal = ExtResource("4_uf0bb")
+stretch_mode = 0
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/Button10"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(4, 4)
+mouse_filter = 2
+texture = ExtResource("14_easg4")
+stretch_mode = 3
+
+[node name="Button14" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer" instance=ExtResource("3_wdnfh")]
+custom_minimum_size = Vector2(160, 160)
+layout_mode = 2
+texture_normal = ExtResource("4_uf0bb")
+stretch_mode = 0
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/Button14"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(4, 4)
+mouse_filter = 2
+texture = ExtResource("18_7l5cp")
+stretch_mode = 3
+
+[node name="Button15" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer" instance=ExtResource("3_wdnfh")]
+custom_minimum_size = Vector2(160, 160)
+layout_mode = 2
+texture_normal = ExtResource("4_uf0bb")
+stretch_mode = 0
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/Button15"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(4, 4)
+mouse_filter = 2
+texture = ExtResource("19_eoacx")
+stretch_mode = 3
 
 [node name="NodePopupMenu" type="PopupMenu" parent="CanvasLayer/NodeModeGUI"]
 size = Vector2i(219, 233)
@@ -248,14 +557,14 @@ focus_mode = 0
 toggle_mode = true
 button_group = SubResource("ButtonGroup_k521p")
 
-[node name="Button" type="Button" parent="CanvasLayer"]
+[node name="SaveLevelButton" type="Button" parent="CanvasLayer"]
 visible = false
 offset_left = 986.0
 offset_top = 492.0
 offset_right = 1114.0
 offset_bottom = 638.0
 
-[node name="Button2" type="Button" parent="CanvasLayer"]
+[node name="TestLevelButton" type="Button" parent="CanvasLayer"]
 visible = false
 offset_left = 995.0
 offset_top = 340.0
@@ -292,5 +601,5 @@ default_color = Color(0.501961, 0.501961, 0.501961, 0.156863)
 [connection signal="pressed" from="CanvasLayer/EditorModes/TileMode" to="." method="SetEditorMode" binds= [0]]
 [connection signal="pressed" from="CanvasLayer/EditorModes/NodeMode" to="." method="SetEditorMode" binds= [1]]
 [connection signal="pressed" from="CanvasLayer/EditorModes/CodeMode" to="." method="SetEditorMode" binds= [2]]
-[connection signal="pressed" from="CanvasLayer/Button" to="." method="SaveLevel"]
-[connection signal="pressed" from="CanvasLayer/Button2" to="." method="TestLevel"]
+[connection signal="pressed" from="CanvasLayer/SaveLevelButton" to="." method="SaveLevel"]
+[connection signal="pressed" from="CanvasLayer/TestLevelButton" to="." method="TestLevel"]
