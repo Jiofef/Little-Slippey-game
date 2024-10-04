@@ -48,8 +48,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jcmm3"]
 _data = {
-&"MusicStopping": SubResource("Animation_n61s8"),
-&"MusicStarting": SubResource("Animation_p3npb")
+"MusicStarting": SubResource("Animation_p3npb"),
+"MusicStopping": SubResource("Animation_n61s8")
 }
 
 [sub_resource type="Animation" id="Animation_etf5i"]
@@ -84,7 +84,7 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_gkaxv"]
 _data = {
-&"Moving": SubResource("Animation_etf5i")
+"Moving": SubResource("Animation_etf5i")
 }
 
 [sub_resource type="Curve2D" id="Curve2D_asfxu"]
@@ -124,7 +124,7 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_f1ma7"]
 _data = {
-&"Combining": SubResource("Animation_geswg")
+"Combining": SubResource("Animation_geswg")
 }
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bp8qh"]
@@ -332,7 +332,7 @@ tracks/8/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2hg7h"]
 _data = {
-&"Default": SubResource("Animation_8sdl3")
+"Default": SubResource("Animation_8sdl3")
 }
 
 [sub_resource type="Curve" id="Curve_x73kq"]
@@ -630,8 +630,8 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4p2pf"]
 _data = {
-&"Pause": SubResource("Animation_qdctp"),
-&"OpeningSubMenu": SubResource("Animation_gr4ul")
+"OpeningSubMenu": SubResource("Animation_gr4ul"),
+"Pause": SubResource("Animation_qdctp")
 }
 
 [sub_resource type="Animation" id="Animation_gx3u0"]
@@ -754,14 +754,14 @@ tracks/8/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_emurq"]
 _data = {
-&"EpicIntro": SubResource("Animation_gx3u0")
+"EpicIntro": SubResource("Animation_gx3u0")
 }
 
 [node name="Main" instance=ExtResource("1_xrr5q")]
 
 [node name="AnimationPlayer" parent="LevelMusicPlayer" index="0"]
 libraries = {
-&"": SubResource("AnimationLibrary_jcmm3")
+"": SubResource("AnimationLibrary_jcmm3")
 }
 
 [node name="Background" type="ParallaxBackground" parent="Level" index="0"]
@@ -794,7 +794,7 @@ centered = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Level/Background/Clouds" index="1"]
 libraries = {
-&"": SubResource("AnimationLibrary_gkaxv")
+"": SubResource("AnimationLibrary_gkaxv")
 }
 autoplay = "Moving"
 
@@ -834,7 +834,7 @@ color = Color(0.764706, 0.764706, 0, 1)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Level/Background/FieldBackLayer/Path2D/PathFollow2D/Combine" index="1"]
 libraries = {
-&"": SubResource("AnimationLibrary_f1ma7")
+"": SubResource("AnimationLibrary_f1ma7")
 }
 autoplay = "Combining"
 
@@ -917,7 +917,7 @@ flip_h = true
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Level/Background/FieldFrontLayer" index="5"]
 root_node = NodePath("../ShOat")
 libraries = {
-&"": SubResource("AnimationLibrary_2hg7h")
+"": SubResource("AnimationLibrary_2hg7h")
 }
 autoplay = "Default"
 
@@ -966,6 +966,7 @@ tile_set = SubResource("TileSet_gw0j2")
 [node name="Player" parent="Level" index="3" instance=ExtResource("13_bkmnr")]
 modulate = Color(0.956863, 0.956863, 0.956863, 1)
 position = Vector2(1440, 288)
+_enableRigidBodyPhysics = true
 
 [node name="TileMap" type="TileMapLayer" parent="Level" index="4"]
 use_parent_material = true
@@ -981,12 +982,12 @@ shape = SubResource("RectangleShape2D_14w2j")
 
 [node name="AnimationPlayer" parent="Pause/Interface" index="3"]
 libraries = {
-&"": SubResource("AnimationLibrary_4p2pf")
+"": SubResource("AnimationLibrary_4p2pf")
 }
 
 [node name="AnimationPlayer" parent="EpicIntro" index="0"]
 libraries = {
-&"": SubResource("AnimationLibrary_emurq")
+"": SubResource("AnimationLibrary_emurq")
 }
 
 [connection signal="ButtonPressed" from="Level/PlayMusicTrigger" to="LevelMusicPlayer" method="PlayMusic" flags=6 binds= ["Selected Breakcore Work", 18.35, 0.0]]

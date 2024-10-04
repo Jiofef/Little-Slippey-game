@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://c1b6qyg17m3f1"]
+[gd_scene load_steps=30 format=3 uid="uid://c1b6qyg17m3f1"]
 
 [ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/LevelEditor.cs" id="1_03doe"]
 [ext_resource type="Texture2D" uid="uid://d284tqsj2yp0w" path="res://Content/Sprites/Interface/Cross.png" id="2_0sxv6"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://c2oim5v4o8wh6" path="res://Content/Sprites/Interface/LevelEditor/NodeButton.png" id="4_uf0bb"]
 [ext_resource type="Texture2D" uid="uid://bx7ylmwls0u3b" path="res://Content/Sprites/Interface/LevelEditor/Node2D.png" id="5_2kmmy"]
 [ext_resource type="Texture2D" uid="uid://b1yvdl7jwsm2i" path="res://Content/Sprites/Interface/LevelEditor/Node.png" id="5_8n2gy"]
+[ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/LevelEditorCreateNodeButton.cs" id="5_qjbpb"]
 [ext_resource type="Texture2D" uid="uid://cq6ok61no1qlr" path="res://Content/Sprites/Interface/LevelEditor/Sprite2D.png" id="7_kcma0"]
 [ext_resource type="Texture2D" uid="uid://dkscfivq8c814" path="res://Content/Sprites/Interface/LevelEditor/AnimatedSprite2D.png" id="8_06qfi"]
 [ext_resource type="Texture2D" uid="uid://dyv2csygb2l8v" path="res://Content/Sprites/Interface/LevelEditor/TileMapLayer.png" id="8_n7fqe"]
@@ -20,6 +21,9 @@
 [ext_resource type="Texture2D" uid="uid://cwimhnhs122xs" path="res://Content/Sprites/Interface/LevelEditor/RigidBody2D.png" id="16_yksuj"]
 [ext_resource type="Texture2D" uid="uid://d1g53o432okdn" path="res://Content/Sprites/Interface/LevelEditor/ColorRect.png" id="18_7l5cp"]
 [ext_resource type="Texture2D" uid="uid://dq3onblu5j2rl" path="res://Content/Sprites/Interface/LevelEditor/TextureRect.png" id="19_eoacx"]
+[ext_resource type="Texture2D" uid="uid://b337eu2riy466" path="res://Content/Sprites/Interface/LevelEditor/TogglableButton.png" id="21_dxwej"]
+[ext_resource type="Texture2D" uid="uid://dx7cgilkcmgj8" path="res://Content/Sprites/Interface/LevelEditor/CanvasLayer.png" id="22_hlm8a"]
+[ext_resource type="Texture2D" uid="uid://414qjuyxudme" path="res://Content/Sprites/Interface/LevelEditor/ParalaxBackground.png" id="23_pec1j"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_u6r4h"]
 texture = ExtResource("2_0sxv6")
@@ -170,6 +174,7 @@ value = 1.0
 update_on_text_changed = true
 
 [node name="NodeModeGUI" type="Control" parent="CanvasLayer"]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1280.0
@@ -182,7 +187,6 @@ offset_right = 312.0
 offset_bottom = 592.0
 columns = 2
 allow_reselect = true
-allow_rmb_select = true
 
 [node name="PropertiesGridContainer" type="ScrollContainer" parent="CanvasLayer/NodeModeGUI"]
 layout_mode = 0
@@ -199,6 +203,7 @@ layout_mode = 2
 columns = 2
 
 [node name="NodeCreateMenu" type="Control" parent="CanvasLayer/NodeModeGUI"]
+visible = false
 custom_minimum_size = Vector2(768, 576)
 layout_mode = 1
 anchors_preset = 15
@@ -242,17 +247,14 @@ offset_right = 384.0
 offset_bottom = 288.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 40
+theme_override_constants/margin_left = 32
 theme_override_constants/margin_top = 16
-theme_override_constants/margin_right = 40
+theme_override_constants/margin_right = 32
 theme_override_constants/margin_bottom = 16
-
-[node name="VScrollBar" type="VScrollBar" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer"]
-layout_mode = 2
 
 [node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer"]
 layout_mode = 2
-scroll_vertical = 144
+scroll_vertical = 320
 
 [node name="NodesContainer" type="FlowContainer" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer"]
 custom_minimum_size = Vector2(688, 0)
@@ -260,230 +262,677 @@ layout_mode = 2
 theme_override_constants/h_separation = 16
 theme_override_constants/v_separation = 16
 
-[node name="Button" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer" instance=ExtResource("3_wdnfh")]
+[node name="Node" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer" instance=ExtResource("3_wdnfh")]
 custom_minimum_size = Vector2(160, 160)
 layout_mode = 2
 texture_normal = ExtResource("4_uf0bb")
 stretch_mode = 0
+script = ExtResource("5_qjbpb")
+_nodeTypeName = "Node"
+_nodeFileName = ""
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/Button"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/Node"]
 layout_mode = 1
 offset_right = 40.0
-offset_bottom = 40.0
+offset_bottom = 30.0
 scale = Vector2(4, 4)
 mouse_filter = 2
 texture = ExtResource("5_8n2gy")
 stretch_mode = 3
 
-[node name="Button2" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer" instance=ExtResource("3_wdnfh")]
+[node name="Label" type="Label" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/Node"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -68.0
+offset_right = 82.0
+offset_bottom = 35.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.66, 0.66)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+theme_override_font_sizes/font_size = 22
+text = "Node"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Node2D" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer" instance=ExtResource("3_wdnfh")]
 custom_minimum_size = Vector2(160, 160)
 layout_mode = 2
 texture_normal = ExtResource("4_uf0bb")
 stretch_mode = 0
+script = ExtResource("5_qjbpb")
+_nodeTypeName = "Node2D"
+_nodeFileName = ""
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/Button2"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/Node2D"]
 layout_mode = 0
 offset_right = 40.0
-offset_bottom = 40.0
+offset_bottom = 30.0
 scale = Vector2(4, 4)
 mouse_filter = 2
 texture = ExtResource("5_2kmmy")
 stretch_mode = 3
 
-[node name="Button3" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer" instance=ExtResource("3_wdnfh")]
+[node name="Label" type="Label" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/Node2D"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -68.0
+offset_right = 82.0
+offset_bottom = 35.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.66, 0.66)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+theme_override_font_sizes/font_size = 22
+text = "Node2D"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Sprite2D" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer" instance=ExtResource("3_wdnfh")]
 custom_minimum_size = Vector2(160, 160)
 layout_mode = 2
 texture_normal = ExtResource("4_uf0bb")
 stretch_mode = 0
+script = ExtResource("5_qjbpb")
+_nodeTypeName = "Sprite2D"
+_nodeFileName = "Sprite2D"
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/Button3"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/Sprite2D"]
 layout_mode = 0
 offset_right = 40.0
-offset_bottom = 40.0
+offset_bottom = 30.0
 scale = Vector2(4, 4)
 mouse_filter = 2
 texture = ExtResource("7_kcma0")
 stretch_mode = 3
 
-[node name="Button13" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer" instance=ExtResource("3_wdnfh")]
+[node name="Label" type="Label" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/Sprite2D"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -68.0
+offset_right = 82.0
+offset_bottom = 35.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.66, 0.66)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+theme_override_font_sizes/font_size = 22
+text = "Sprite2D"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimatedSprite2D" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer" instance=ExtResource("3_wdnfh")]
 custom_minimum_size = Vector2(160, 160)
 layout_mode = 2
 texture_normal = ExtResource("4_uf0bb")
 stretch_mode = 0
+script = ExtResource("5_qjbpb")
+_nodeTypeName = "AnimatedSprite2D"
+_nodeFileName = ""
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/Button13"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/AnimatedSprite2D"]
 layout_mode = 0
 offset_right = 40.0
-offset_bottom = 40.0
+offset_bottom = 30.0
 scale = Vector2(4, 4)
 mouse_filter = 2
 texture = ExtResource("8_06qfi")
 stretch_mode = 3
 
-[node name="Button5" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer" instance=ExtResource("3_wdnfh")]
+[node name="Label" type="Label" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/AnimatedSprite2D"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -68.0
+offset_right = 82.0
+offset_bottom = 35.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.66, 0.66)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+theme_override_font_sizes/font_size = 22
+text = "Animated
+Sprite2D"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AudioStreamPlayer" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer" instance=ExtResource("3_wdnfh")]
 custom_minimum_size = Vector2(160, 160)
 layout_mode = 2
 texture_normal = ExtResource("4_uf0bb")
 stretch_mode = 0
+script = ExtResource("5_qjbpb")
+_nodeTypeName = "AudioStreamPlayer"
+_nodeFileName = ""
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/Button5"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/AudioStreamPlayer"]
 layout_mode = 0
 offset_right = 40.0
-offset_bottom = 40.0
+offset_bottom = 30.0
 scale = Vector2(4, 4)
 mouse_filter = 2
 texture = ExtResource("9_nmsu2")
 stretch_mode = 3
 
-[node name="Button6" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer" instance=ExtResource("3_wdnfh")]
+[node name="Label" type="Label" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/AudioStreamPlayer"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -68.0
+offset_right = 82.0
+offset_bottom = 35.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.66, 0.66)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+theme_override_font_sizes/font_size = 22
+text = "AudioStream
+Player"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AudioStreamPlayer2D" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer" instance=ExtResource("3_wdnfh")]
 custom_minimum_size = Vector2(160, 160)
 layout_mode = 2
 texture_normal = ExtResource("4_uf0bb")
 stretch_mode = 0
+script = ExtResource("5_qjbpb")
+_nodeTypeName = "AudioStreamPlayer2D"
+_nodeFileName = ""
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/Button6"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/AudioStreamPlayer2D"]
 layout_mode = 0
 offset_right = 40.0
-offset_bottom = 40.0
+offset_bottom = 30.0
 scale = Vector2(4, 4)
 mouse_filter = 2
 texture = ExtResource("10_wodf3")
 stretch_mode = 3
 
-[node name="Button11" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer" instance=ExtResource("3_wdnfh")]
+[node name="Label" type="Label" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/AudioStreamPlayer2D"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -68.0
+offset_right = 82.0
+offset_bottom = 35.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.66, 0.66)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+theme_override_font_sizes/font_size = 22
+text = "AudioStream
+Player2D"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StaticBody" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer" instance=ExtResource("3_wdnfh")]
 custom_minimum_size = Vector2(160, 160)
 layout_mode = 2
 texture_normal = ExtResource("4_uf0bb")
 stretch_mode = 0
+script = ExtResource("5_qjbpb")
+_nodeTypeName = "StaticBody"
+_nodeFileName = ""
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/Button11"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/StaticBody"]
 layout_mode = 0
 offset_right = 40.0
-offset_bottom = 40.0
+offset_bottom = 30.0
 scale = Vector2(4, 4)
 mouse_filter = 2
 texture = ExtResource("12_b8lnn")
 stretch_mode = 3
 
-[node name="Button4" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer" instance=ExtResource("3_wdnfh")]
+[node name="Label" type="Label" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/StaticBody"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -68.0
+offset_right = 82.0
+offset_bottom = 35.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.66, 0.66)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+theme_override_font_sizes/font_size = 22
+text = "StaticBody"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TileMapLayer" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer" instance=ExtResource("3_wdnfh")]
 custom_minimum_size = Vector2(160, 160)
 layout_mode = 2
 texture_normal = ExtResource("4_uf0bb")
 stretch_mode = 0
+script = ExtResource("5_qjbpb")
+_nodeTypeName = "TileMapLayer"
+_nodeFileName = ""
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/Button4"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/TileMapLayer"]
 layout_mode = 0
 offset_right = 40.0
-offset_bottom = 40.0
+offset_bottom = 30.0
 scale = Vector2(4, 4)
 mouse_filter = 2
 texture = ExtResource("8_n7fqe")
 stretch_mode = 3
 
-[node name="Button9" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer" instance=ExtResource("3_wdnfh")]
+[node name="Label" type="Label" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/TileMapLayer"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -68.0
+offset_right = 82.0
+offset_bottom = 35.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.66, 0.66)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+theme_override_font_sizes/font_size = 22
+text = "TileMapLayer"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Timer" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer" instance=ExtResource("3_wdnfh")]
 custom_minimum_size = Vector2(160, 160)
 layout_mode = 2
 texture_normal = ExtResource("4_uf0bb")
 stretch_mode = 0
+script = ExtResource("5_qjbpb")
+_nodeTypeName = "Timer"
+_nodeFileName = ""
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/Button9"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/Timer"]
 layout_mode = 0
 offset_right = 40.0
-offset_bottom = 40.0
+offset_bottom = 30.0
 scale = Vector2(4, 4)
 mouse_filter = 2
 texture = ExtResource("12_bgqii")
 stretch_mode = 3
 
-[node name="Button8" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer" instance=ExtResource("3_wdnfh")]
+[node name="Label" type="Label" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/Timer"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -68.0
+offset_right = 82.0
+offset_bottom = 35.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.66, 0.66)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+theme_override_font_sizes/font_size = 22
+text = "Timer"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CPUParticles2D" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer" instance=ExtResource("3_wdnfh")]
 custom_minimum_size = Vector2(160, 160)
 layout_mode = 2
 texture_normal = ExtResource("4_uf0bb")
 stretch_mode = 0
+script = ExtResource("5_qjbpb")
+_nodeTypeName = "CPUParticles2D"
+_nodeFileName = ""
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/Button8"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/CPUParticles2D"]
 layout_mode = 0
 offset_right = 40.0
-offset_bottom = 40.0
+offset_bottom = 30.0
 scale = Vector2(4, 4)
 mouse_filter = 2
 texture = ExtResource("12_wttbg")
 stretch_mode = 3
 
-[node name="Button12" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer" instance=ExtResource("3_wdnfh")]
+[node name="Label" type="Label" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/CPUParticles2D"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -68.0
+offset_right = 82.0
+offset_bottom = 35.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.66, 0.66)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+theme_override_font_sizes/font_size = 22
+text = "CPU
+Particles2D"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RigidBody" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer" instance=ExtResource("3_wdnfh")]
 custom_minimum_size = Vector2(160, 160)
 layout_mode = 2
 texture_normal = ExtResource("4_uf0bb")
 stretch_mode = 0
+script = ExtResource("5_qjbpb")
+_nodeTypeName = "RigidBody"
+_nodeFileName = "DefaultRigidBody"
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/Button12"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/RigidBody"]
 layout_mode = 0
 offset_right = 40.0
-offset_bottom = 40.0
+offset_bottom = 30.0
 scale = Vector2(4, 4)
 mouse_filter = 2
 texture = ExtResource("16_yksuj")
 stretch_mode = 3
 
-[node name="Button7" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer" instance=ExtResource("3_wdnfh")]
+[node name="Label" type="Label" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/RigidBody"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -68.0
+offset_right = 82.0
+offset_bottom = 35.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.66, 0.66)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+theme_override_font_sizes/font_size = 22
+text = "RigidBody"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Area2D" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer" instance=ExtResource("3_wdnfh")]
 custom_minimum_size = Vector2(160, 160)
 layout_mode = 2
 texture_normal = ExtResource("4_uf0bb")
 stretch_mode = 0
+script = ExtResource("5_qjbpb")
+_nodeTypeName = "Area2D"
+_nodeFileName = "DefaultArea2D"
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/Button7"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/Area2D"]
 layout_mode = 0
 offset_right = 40.0
-offset_bottom = 40.0
+offset_bottom = 30.0
 scale = Vector2(4, 4)
 mouse_filter = 2
 texture = ExtResource("11_x7i7q")
 stretch_mode = 3
 
-[node name="Button10" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer" instance=ExtResource("3_wdnfh")]
+[node name="Label" type="Label" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/Area2D"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -68.0
+offset_right = 82.0
+offset_bottom = 35.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.66, 0.66)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+theme_override_font_sizes/font_size = 22
+text = "Area2D"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Path2D" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer" instance=ExtResource("3_wdnfh")]
 custom_minimum_size = Vector2(160, 160)
 layout_mode = 2
 texture_normal = ExtResource("4_uf0bb")
 stretch_mode = 0
+script = ExtResource("5_qjbpb")
+_nodeTypeName = "Path2D"
+_nodeFileName = ""
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/Button10"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/Path2D"]
 layout_mode = 0
 offset_right = 40.0
-offset_bottom = 40.0
+offset_bottom = 30.0
 scale = Vector2(4, 4)
 mouse_filter = 2
 texture = ExtResource("14_easg4")
 stretch_mode = 3
 
-[node name="Button14" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer" instance=ExtResource("3_wdnfh")]
+[node name="Label" type="Label" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/Path2D"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -68.0
+offset_right = 82.0
+offset_bottom = 35.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.66, 0.66)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+theme_override_font_sizes/font_size = 22
+text = "Path2D"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorRect" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer" instance=ExtResource("3_wdnfh")]
 custom_minimum_size = Vector2(160, 160)
 layout_mode = 2
 texture_normal = ExtResource("4_uf0bb")
 stretch_mode = 0
+script = ExtResource("5_qjbpb")
+_nodeTypeName = "ColorRect"
+_nodeFileName = "DefaultColorRect"
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/Button14"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/ColorRect"]
 layout_mode = 0
 offset_right = 40.0
-offset_bottom = 40.0
+offset_bottom = 30.0
 scale = Vector2(4, 4)
 mouse_filter = 2
 texture = ExtResource("18_7l5cp")
 stretch_mode = 3
 
-[node name="Button15" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer" instance=ExtResource("3_wdnfh")]
+[node name="Label" type="Label" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/ColorRect"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -68.0
+offset_right = 82.0
+offset_bottom = 35.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.66, 0.66)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+theme_override_font_sizes/font_size = 22
+text = "ColorRect"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer" instance=ExtResource("3_wdnfh")]
 custom_minimum_size = Vector2(160, 160)
 layout_mode = 2
 texture_normal = ExtResource("4_uf0bb")
 stretch_mode = 0
+script = ExtResource("5_qjbpb")
+_nodeTypeName = "TextureRect"
+_nodeFileName = "TextureRect"
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/Button15"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/TextureRect"]
 layout_mode = 0
 offset_right = 40.0
-offset_bottom = 40.0
+offset_bottom = 30.0
 scale = Vector2(4, 4)
 mouse_filter = 2
 texture = ExtResource("19_eoacx")
 stretch_mode = 3
+
+[node name="Label" type="Label" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/TextureRect"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -68.0
+offset_right = 82.0
+offset_bottom = 35.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.66, 0.66)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+theme_override_font_sizes/font_size = 22
+text = "TextureRect"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TogglableButton" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer" instance=ExtResource("3_wdnfh")]
+custom_minimum_size = Vector2(160, 160)
+layout_mode = 2
+texture_normal = ExtResource("4_uf0bb")
+stretch_mode = 0
+script = ExtResource("5_qjbpb")
+_nodeTypeName = "TogglableButton"
+_nodeFileName = "TogglableButton"
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/TogglableButton"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 30.0
+scale = Vector2(4, 4)
+mouse_filter = 2
+texture = ExtResource("21_dxwej")
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/TogglableButton"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -68.0
+offset_right = 82.0
+offset_bottom = 35.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.66, 0.66)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+theme_override_font_sizes/font_size = 22
+text = "Togglable
+Button"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CanvasLayer" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer" instance=ExtResource("3_wdnfh")]
+custom_minimum_size = Vector2(160, 160)
+layout_mode = 2
+texture_normal = ExtResource("4_uf0bb")
+stretch_mode = 0
+script = ExtResource("5_qjbpb")
+_nodeTypeName = "CanvasLayer"
+_nodeFileName = ""
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/CanvasLayer"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 30.0
+scale = Vector2(4, 4)
+mouse_filter = 2
+texture = ExtResource("22_hlm8a")
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/CanvasLayer"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -68.0
+offset_right = 82.0
+offset_bottom = 35.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.66, 0.66)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+theme_override_font_sizes/font_size = 22
+text = "CanvasLayer"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ParalaxBackground" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer" instance=ExtResource("3_wdnfh")]
+custom_minimum_size = Vector2(160, 160)
+layout_mode = 2
+texture_normal = ExtResource("4_uf0bb")
+stretch_mode = 0
+script = ExtResource("5_qjbpb")
+_nodeTypeName = "ParalaxBackground"
+_nodeFileName = ""
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/ParalaxBackground"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 30.0
+scale = Vector2(4, 4)
+mouse_filter = 2
+texture = ExtResource("23_pec1j")
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/ParalaxBackground"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -68.0
+offset_right = 82.0
+offset_bottom = 35.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.66, 0.66)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+theme_override_font_sizes/font_size = 22
+text = "Paralax
+Background"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="NodePopupMenu" type="PopupMenu" parent="CanvasLayer/NodeModeGUI"]
 size = Vector2i(219, 233)
@@ -505,6 +954,15 @@ item_7/text = "Copy node path"
 item_7/id = 7
 item_8/text = "Delete"
 item_8/id = 8
+
+[node name="CheckButton" type="CheckButton" parent="CanvasLayer/NodeModeGUI"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 690.0
+offset_right = 152.0
+offset_bottom = 719.0
+button_pressed = true
+text = "Smart pos"
 
 [node name="CodeModeGUI" type="Control" parent="CanvasLayer"]
 visible = false
@@ -598,6 +1056,7 @@ default_color = Color(0.501961, 0.501961, 0.501961, 0.156863)
 [connection signal="value_changed" from="CanvasLayer/TileModeGUI/TileChangeProbability" to="." method="SetTileChangeProbability"]
 [connection signal="item_selected" from="CanvasLayer/NodeModeGUI/NodesButtonsTree" to="." method="SelectItem"]
 [connection signal="id_pressed" from="CanvasLayer/NodeModeGUI/NodePopupMenu" to="." method="NodePopupAction"]
+[connection signal="toggled" from="CanvasLayer/NodeModeGUI/CheckButton" to="." method="SetDoSmartPos"]
 [connection signal="pressed" from="CanvasLayer/EditorModes/TileMode" to="." method="SetEditorMode" binds= [0]]
 [connection signal="pressed" from="CanvasLayer/EditorModes/NodeMode" to="." method="SetEditorMode" binds= [1]]
 [connection signal="pressed" from="CanvasLayer/EditorModes/CodeMode" to="." method="SetEditorMode" binds= [2]]

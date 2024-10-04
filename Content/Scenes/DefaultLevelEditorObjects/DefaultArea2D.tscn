@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Content/Scripts/Levels/Level8DisposableButton.cs" id="1_s4m6r"]
 
-[node name="CrutchedArea2D" type="Area2D"]
+[node name="DefaultArea2D" type="Area2D"]
 collision_layer = 0
 collision_mask = 8
 script = ExtResource("1_s4m6r")

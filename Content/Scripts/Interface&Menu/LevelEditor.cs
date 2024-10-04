@@ -15,6 +15,7 @@ public partial class LevelEditor : Control
     Node[] _allTheNodes = new Node[0];
     Timer _guiDelayTimer;
     TextureButton _screenButton = new TextureButton();
+    Vector2 _selectedNodeGlobalPosition, _smartPositioningDistance = new Vector2(32, 32); bool _doSmartPos = false; // for "smart" positioning
 
     enum EditorMode { TileMode, NodeMode, CodeMode }
     EditorMode _editorMode = EditorMode.TileMode;
@@ -56,6 +57,8 @@ public partial class LevelEditor : Control
 
     public override void _PhysicsProcess(double delta)
     {
+        Vector2 MousePos = GetGlobalMousePosition();
+
         if (Input.IsActionJustPressed("MouseClick") && Input.IsMouseButtonPressed(MouseButton.Right))
         {
             var nodePopupMenu = GetNode<PopupMenu>("CanvasLayer/NodeModeGUI/NodePopupMenu");
@@ -75,13 +78,16 @@ public partial class LevelEditor : Control
                 ChangeZoom(0.8f);
             else if (Input.IsActionJustPressed("MouseWheelScrollUp"))
                 ChangeZoom(1.25f);
+            if (Input.IsActionPressed("MouseWheelClick"))
+                _camera.GlobalPosition += _mouseLastFramePos - MousePos;
+            
         }
 
-        Vector2 MousePos = GetGlobalMousePosition();
+        GD.Print(_mouseLastFramePos, MousePos);
         switch (_editorMode)
         {
             case EditorMode.TileMode:
-                _mouseTilePos = new Vector2I((int)(MousePos.X / (16 * _selectedTileMap.Scale.X)), (int)(MousePos.Y / (16 * _selectedTileMap.Scale.Y))) + new Vector2I(MousePos.X < 0 ? -1 : 0, MousePos.Y < 0 ? -1 : 0);
+                _mouseTilePos = new Vector2I((int)((MousePos.X - _selectedTileMap.GlobalPosition.X) / (16 * _selectedTileMap.Scale.X)), (int)((MousePos.Y - _selectedTileMap.GlobalPosition.Y) / (16 * _selectedTileMap.Scale.Y))) + new Vector2I(MousePos.X < 0 ? -1 : 0, MousePos.Y < 0 ? -1 : 0);
 
                 if (Input.IsMouseButtonPressed(MouseButton.Middle))
                 {
@@ -283,10 +289,11 @@ public partial class LevelEditor : Control
                 }
                 else if (_screenButton.ButtonPressed && Input.IsMouseButtonPressed(MouseButton.Left) && _selectedNode != null)
                 {
-                    if (_selectedNode is Node2D)
-                        ((Node2D)_selectedNode).Position -= _mouseLastFramePos - MousePos;
-                    else if (_selectedNode is Control)
-                        ((Control)_selectedNode).Position -= _mouseLastFramePos - MousePos;
+                    if (_selectedNode is Node2D or Control)
+                    {
+                        _selectedNodeGlobalPosition -= _mouseLastFramePos - MousePos;
+                        _selectedNode.Set("global_position", _selectedNodeGlobalPosition - _selectedNodeGlobalPosition % _smartPositioningDistance);
+                    }
                     EmitSignal("NodeMovedByMouse");
                 }
                 var nodesButtonsTree = GetNode<Tree>("CanvasLayer/NodeModeGUI/NodesButtonsTree");
@@ -298,7 +305,11 @@ public partial class LevelEditor : Control
 
         _mouseLastFramePos = MousePos;
     }
-
+    public void SetDoSmartPos(bool value)
+    {
+        _doSmartPos = value;
+        _smartPositioningDistance = _doSmartPos ? new Vector2(32, 32) : new Vector2(1, 1);
+    }
     public void ChangeZoom(float value)
     {
         float NewZoom = Mathf.Clamp(_camera.Zoom.X * value, 1f / 16, 1 * 16);
@@ -322,6 +333,8 @@ public partial class LevelEditor : Control
         UpdateAllNodesArray();
         if (_editorMode == EditorMode.NodeMode)
             UpdateVisibleNodesButtons();
+        else if (_editorMode == EditorMode.TileMode)
+            SetSelectedTileMap(0);
     }
 
     private void KILLCHILDREN(Node node)
@@ -376,6 +389,7 @@ public partial class LevelEditor : Control
         UpdateVisibleAtlases();
         UpdateVisibleTileSet();
         _assistiveTileMap.TileSet = _selectedTileMap.TileSet;
+        _assistiveTileMap.GlobalTransform = _erasingAssistiveTileMap.GlobalTransform = _selectedTileMap.GlobalTransform;
     }
     public void SetTileInstrument(int index)
     {
@@ -535,11 +549,14 @@ public partial class LevelEditor : Control
     private void SetSelectedNode(Node node)
     {
         _selectedNode = node;
+        if (_selectedNode is Node2D or Control)
+            _selectedNodeGlobalPosition = (Vector2)_selectedNode.Get("global_position");
+
     }
     private void SelectItem()
     {
         var NodesButtonsContainer = GetNode<Tree>("CanvasLayer/NodeModeGUI/NodesButtonsTree");
-        _selectedNode = (Node)NodesButtonsContainer.GetSelected().GetMeta("CorrespondingNode");
+        SetSelectedNode((Node)NodesButtonsContainer.GetSelected().GetMeta("CorrespondingNode"));
         UpdateVisibleProperties();
 
         if (Input.IsMouseButtonPressed(MouseButton.Right))
@@ -565,12 +582,7 @@ public partial class LevelEditor : Control
         switch (actionIndex)
         {
             case 0:
-                string TypeName = "Sprite2D";
-                node = CreateNodeWithType(TypeName);
-                _selectedNode.AddChild(node);
-                node.Name = TypeName;
-
-                CreateItem(node);
+                GetNode<Control>("CanvasLayer/NodeModeGUI/NodeCreateMenu").Show();
                 break;
             case 1:
                 G.NodeCopyBuffer.Clear();
@@ -640,6 +652,7 @@ public partial class LevelEditor : Control
                 var NextItem = item.CreateChild();
                 NextItem.SetText(0, node.Name);
                 NextItem.SetMeta("CorrespondingNode", node);
+                NextItem.Collapsed = true;
                 _allTheNodes = _allTheNodes.Append(node).ToArray();
                 Recursion(node, NextItem);
             }
@@ -648,6 +661,7 @@ public partial class LevelEditor : Control
         Item.SetText(0, _level.Name);
         Item.SetMeta("CorrespondingNode", _level);
         Recursion(_level, Item);
+
     }
     private void UpdateVisibleProperties()
     {
@@ -829,9 +843,19 @@ public partial class LevelEditor : Control
 
         return nodeTypes;
     }
-    public Node CreateNodeWithType(string className)
+    public void CreateNode(Node node, string name)
     {
-        return (Node)ClassDB.Instantiate(className);
+        _selectedNode.AddChild(node);
+        node.Name = name;
+        if (node is Control || node is Node2D)
+            node.Set("position", new Vector2(0, 0));
+
+        var NodesButtonsContainer = GetNode<Tree>("CanvasLayer/NodeModeGUI/NodesButtonsTree");
+        NodesButtonsContainer.GetSelected().Collapsed = false;
+        TreeItem Item = NodesButtonsContainer.CreateItem(NodesButtonsContainer.GetSelected());
+        Item.SetText(0, node.Name);
+        Item.SetMeta("CorrespondingNode", node);
+        Item.Select(0);
     }
 
     // Save Section

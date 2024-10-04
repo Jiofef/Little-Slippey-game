@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://cfi6geg5ns85j"]
+
+[ext_resource type="Texture2D" uid="uid://bf6l830aawvwo" path="res://Content/Sprites/Interface/LevelEditor/DefaultSprite.png" id="1_fvsk4"]
+
+[node name="Sprite2D" type="Sprite2D"]
+scale = Vector2(4, 4)
+texture = ExtResource("1_fvsk4")

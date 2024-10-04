@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://d15tbh2p8gwqj"]
+
+[ext_resource type="Texture2D" uid="uid://bf6l830aawvwo" path="res://Content/Sprites/Interface/LevelEditor/DefaultSprite.png" id="1_85cpw"]
+
+[node name="TextureRect" type="TextureRect"]
+offset_right = 64.0
+offset_bottom = 64.0
+texture = ExtResource("1_85cpw")

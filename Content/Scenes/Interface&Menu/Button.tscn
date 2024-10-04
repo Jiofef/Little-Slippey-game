@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bwpstpk1xmkah"]
 
 [ext_resource type="AudioStream" uid="uid://tqadkdxweb8k" path="res://Content/Sounds/Other/ButtonDown.mp3" id="2_ej45a"]
-[ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/Button.cs" id="2_j2ehd"]
+[ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/EnhancedButton.cs" id="2_j2ehd"]
 [ext_resource type="AudioStream" uid="uid://chdpssnfxb7o1" path="res://Content/Sounds/Other/ButtonUp.mp3" id="3_vw7ai"]
 
 [node name="Button" type="TextureButton"]

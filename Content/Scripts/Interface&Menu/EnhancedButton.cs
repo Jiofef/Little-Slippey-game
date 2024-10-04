@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class Button : TextureButton
+public partial class EnhancedButton : TextureButton
 {
 	Vector2 _previousFrameMousePos;
 	ColorRect _focusRect;
