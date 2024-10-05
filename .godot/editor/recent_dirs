@@ -1,3 +1,4 @@
+res://Content
 res://Content/Scenes/DefaultLevelEditorObjects
 res://Content/Scripts/Levels
 res://Content/Scripts/Interface&Menu
@@ -19,4 +20,3 @@ res://Content/Sounds/Levels
 res://Content/Scenes/Achievements
 res://Content/Sprites/Other
 res://Content/Sprites/Levels/Level1
-res://Content/Sprites/Levels/Level2

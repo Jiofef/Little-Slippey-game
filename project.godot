@@ -12,7 +12,9 @@ config_version=5
 
 config/name="Little Slippey"
 run/main_scene="res://Content/Scenes/Interface&Menu/InitializationScene.tscn"
+run/print_header=false
 config/features=PackedStringArray("4.3", "C#")
+boot_splash/show_image=false
 config/icon="res://icon.png"
 
 [audio]

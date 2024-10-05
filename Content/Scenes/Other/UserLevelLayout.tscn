@@ -2515,4 +2515,5 @@ layer = 100
 [connection signal="pressed" from="Pause/Interface/ButtonsFrame/Menu" to="." method="ResetAllTransitiveValues" flags=6]
 [connection signal="animation_finished" from="EpicIntro/AnimationPlayer" to="EpicIntro" method="queue_free" unbinds=1]
 
+[editable path="Level/Player"]
 [editable path="Pause/Interface/ButtonsFrame/Menu"]

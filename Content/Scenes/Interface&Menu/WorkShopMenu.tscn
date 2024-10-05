@@ -31,7 +31,7 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_u8saj"]
 _data = {
-&"Appearance": SubResource("Animation_fu4ro")
+"Appearance": SubResource("Animation_fu4ro")
 }
 
 [sub_resource type="Animation" id="Animation_5hdve"]
@@ -52,7 +52,7 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ckval"]
 _data = {
-&"Appearance": SubResource("Animation_5hdve")
+"Appearance": SubResource("Animation_5hdve")
 }
 
 [sub_resource type="Animation" id="Animation_tgptk"]
@@ -85,7 +85,7 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_24sii"]
 _data = {
-&"WARNING": SubResource("Animation_tgptk")
+"WARNING": SubResource("Animation_tgptk")
 }
 
 [node name="WorkshopMenu" type="Control"]
@@ -243,7 +243,7 @@ script = ExtResource("7_lmrig")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-&"": SubResource("AnimationLibrary_u8saj")
+"": SubResource("AnimationLibrary_u8saj")
 }
 autoplay = "Appearance"
 
@@ -261,7 +261,7 @@ centered = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="EditModInfo"]
 libraries = {
-&"": SubResource("AnimationLibrary_ckval")
+"": SubResource("AnimationLibrary_ckval")
 }
 
 [node name="PreviewPicture" type="TextureRect" parent="EditModInfo"]
@@ -439,7 +439,7 @@ centered = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="WARNING"]
 libraries = {
-&"": SubResource("AnimationLibrary_24sii")
+"": SubResource("AnimationLibrary_24sii")
 }
 
 [node name="Description" type="RichTextLabel" parent="WARNING"]
@@ -460,6 +460,7 @@ script = ExtResource("7_lmrig")
 [connection signal="pressed" from="ModsScrollContainer/ModsScrollVBoxContainer/CreateMapButton" to="." method="CreateANewMap"]
 [connection signal="button_down" from="ModsScrollContainer/ModsScrollVBoxContainer/DefaultMod" to="ModsScrollContainer/ModsScrollVBoxContainer/DefaultMod/DownSound" method="play"]
 [connection signal="button_up" from="ModsScrollContainer/ModsScrollVBoxContainer/DefaultMod" to="ModsScrollContainer/ModsScrollVBoxContainer/DefaultMod/UpSound" method="play"]
+[connection signal="pressed" from="ActionButtons/OpenTheDirectoryButton" to="." method="OpenModFolder"]
 [connection signal="pressed" from="ActionButtons/OpenInEditorButton" to="." method="OpenInEditor"]
 [connection signal="pressed" from="ActionButtons/EditInfoButton" to="." method="EditModInfo"]
 [connection signal="pressed" from="EditModInfo/AcceptButton" to="." method="Accept"]

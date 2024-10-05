@@ -2,6 +2,7 @@ using Godot;
 using Godot.Collections;
 using Godot.NativeInterop;
 using System;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -124,6 +125,17 @@ public partial class WorkshopMenu : Control
         G.InGameTransitiveValue = _selectedModFolder + @"\MainScene.tscn";
         G.ModMapPath = _selectedModFolder.Remove(0, _defaultPath.Length) + @"\MainScene.tscn";
         GetTree().ChangeSceneToFile("res://Content/Scenes/Interface&Menu/LevelEditor.tscn");
+    }
+
+    public void OpenModFolder()
+    {
+        GD.Print(OS.GetUserDataDir());
+        ProcessStartInfo folderInfo = new ProcessStartInfo()
+        {
+            Arguments = OS.GetUserDataDir() + "/mods",
+            FileName = "explorer.exe"
+        };
+        Process.Start("explorer.exe", OS.GetUserDataDir().Replace("/", @"\") + @"\mods");
     }
 
     public void CreateANewMap()

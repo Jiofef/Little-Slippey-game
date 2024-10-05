@@ -10,12 +10,16 @@ public partial class LevelEditor : Control
 
     NodeMovedByMouseEventHandler _lastConnectedPositionPropertyUpdate;
     NodeMovedByMouseEventHandler _lastConnectedGlobalPositionPropertyUpdate;
-    Node2D _level;
+    Node _level, _mainLevelScene;
     Camera2D _camera;
     Node[] _allTheNodes = new Node[0];
     Timer _guiDelayTimer;
     TextureButton _screenButton = new TextureButton();
+
+
     Vector2 _selectedNodeGlobalPosition, _smartPositioningDistance = new Vector2(32, 32); bool _doSmartPos = false; // for "smart" positioning
+    bool _seeAllTheNodes = false; string _mainLevelSceneName = "Level";
+
 
     enum EditorMode { TileMode, NodeMode, CodeMode }
     EditorMode _editorMode = EditorMode.TileMode;
@@ -34,8 +38,11 @@ public partial class LevelEditor : Control
             _level.GetNode<CanvasLayer>("Pause").Visible = false;
         if (_editorCrutches[2])
             _level.GetNode<CanvasLayer>("EpicIntro").Visible = false;
+        if (_editorCrutches[3])
+            _level.GetNode<Label>("Level/Player/Camera2D/GUI/Scores").SetDeferred("visible", false);
 
         GetNode("LevelContainer").AddChild(_level);
+        _mainLevelScene = _level.GetNode(_mainLevelSceneName);
         _selectedTileMap = _level.GetNode<TileMap>("Level/TileMap");
         _camera = GetNode<Camera2D>("Camera2D");
         _assistiveTileMap = GetNode<TileMap>("AssistiveTileMap");
@@ -55,39 +62,50 @@ public partial class LevelEditor : Control
             GD.Print(nodename);
     }
 
+    Vector2 _globalMousePos, _localMousePos, _globalMouseLastFramePos = new Vector2(), _localMouseLastFramePos;
     public override void _PhysicsProcess(double delta)
     {
-        Vector2 MousePos = GetGlobalMousePosition();
+        _globalMousePos = GetGlobalMousePosition();
+        _localMousePos = _camera.GetLocalMousePosition();
 
         if (Input.IsActionJustPressed("MouseClick") && Input.IsMouseButtonPressed(MouseButton.Right))
         {
-            var nodePopupMenu = GetNode<PopupMenu>("CanvasLayer/NodeModeGUI/NodePopupMenu");
-            if (nodePopupMenu.Visible && _guiDelayTimer.IsStopped())
+            if (_guiDelayTimer.IsStopped())
             {
-                nodePopupMenu.CallDeferred("hide");
+                if (GetNode<PopupMenu>("CanvasLayer/NodeModeGUI/NodePopupMenu").Visible)
+                    GetNode<PopupMenu>("CanvasLayer/NodeModeGUI/NodePopupMenu").CallDeferred("hide");
+                else if (GetNode<PopupPanel>("CanvasLayer/NodeModeGUI/NodeNameEditPopup").Visible)
+                    GetNode<PopupPanel>("CanvasLayer/NodeModeGUI/NodeNameEditPopup").Hide();
             }
         }
-        _camera.Position += new Vector2(
-         Input.GetActionStrength("ui_right") - Input.GetActionStrength("ui_left"),
-        Input.GetActionStrength("ui_down") - Input.GetActionStrength("ui_up"))
-        * ((Input.IsKeyPressed(Key.Shift) ? 30 : 15) * 1 / _camera.Zoom.X
-        );
+        if (_screenButton.HasFocus())
+            _camera.Position += new Vector2(
+            Input.GetActionStrength("ui_right") - Input.GetActionStrength("ui_left"),
+            Input.GetActionStrength("ui_down") - Input.GetActionStrength("ui_up")) *
+            ((Input.IsKeyPressed(Key.Shift) ? 30 : 15) * 1 / _camera.Zoom.X);
+
         if (_screenButton.IsHovered())
         {
             if (Input.IsActionJustPressed("MouseWheelScrollDown"))
+            {
                 ChangeZoom(0.8f);
+            }
             else if (Input.IsActionJustPressed("MouseWheelScrollUp"))
+            {
                 ChangeZoom(1.25f);
+            }
+
+        }
+        if (_screenButton.ButtonPressed)
+        {
             if (Input.IsActionPressed("MouseWheelClick"))
-                _camera.GlobalPosition += _mouseLastFramePos - MousePos;
-            
+                _camera.GlobalPosition += _localMouseLastFramePos - _localMousePos;
         }
 
-        GD.Print(_mouseLastFramePos, MousePos);
         switch (_editorMode)
         {
             case EditorMode.TileMode:
-                _mouseTilePos = new Vector2I((int)((MousePos.X - _selectedTileMap.GlobalPosition.X) / (16 * _selectedTileMap.Scale.X)), (int)((MousePos.Y - _selectedTileMap.GlobalPosition.Y) / (16 * _selectedTileMap.Scale.Y))) + new Vector2I(MousePos.X < 0 ? -1 : 0, MousePos.Y < 0 ? -1 : 0);
+                _mouseTilePos = new Vector2I((int)((_globalMousePos.X - _selectedTileMap.GlobalPosition.X) / (16 * _selectedTileMap.Scale.X)), (int)((_globalMousePos.Y - _selectedTileMap.GlobalPosition.Y) / (16 * _selectedTileMap.Scale.Y))) + new Vector2I(_globalMousePos.X < 0 ? -1 : 0, _globalMousePos.Y < 0 ? -1 : 0);
 
                 if (Input.IsMouseButtonPressed(MouseButton.Middle))
                 {
@@ -291,7 +309,7 @@ public partial class LevelEditor : Control
                 {
                     if (_selectedNode is Node2D or Control)
                     {
-                        _selectedNodeGlobalPosition -= _mouseLastFramePos - MousePos;
+                        _selectedNodeGlobalPosition -= _globalMouseLastFramePos - _globalMousePos;
                         _selectedNode.Set("global_position", _selectedNodeGlobalPosition - _selectedNodeGlobalPosition % _smartPositioningDistance);
                     }
                     EmitSignal("NodeMovedByMouse");
@@ -303,16 +321,31 @@ public partial class LevelEditor : Control
                 break;
         }
 
-        _mouseLastFramePos = MousePos;
+        _globalMouseLastFramePos = _globalMousePos;
+        _localMouseLastFramePos = _localMousePos;
     }
     public void SetDoSmartPos(bool value)
     {
         _doSmartPos = value;
         _smartPositioningDistance = _doSmartPos ? new Vector2(32, 32) : new Vector2(1, 1);
     }
-    public void ChangeZoom(float value)
+    public void SetSeeAllTheNodes(bool value)
+    {
+        _seeAllTheNodes = value;
+        _mainLevelScene = _seeAllTheNodes ? _level : _level.GetNode(_mainLevelSceneName);
+        UpdateVisibleNodesButtons();
+    }
+    public void SetOption(Variant value, string option)
+    {
+        Set(option, value);
+    }
+    public void ChangeZoom(float value, bool stickToTheCursor = true)
     {
         float NewZoom = Mathf.Clamp(_camera.Zoom.X * value, 1f / 16, 1 * 16);
+
+        if (stickToTheCursor && _camera.Zoom != new Vector2(NewZoom, NewZoom))
+            _camera.Position += _camera.GetLocalMousePosition() * 0.25f * (value > 1 ? 1 : -1);
+
         _camera.Zoom = new Vector2(NewZoom, NewZoom);
     }
 
@@ -334,7 +367,10 @@ public partial class LevelEditor : Control
         if (_editorMode == EditorMode.NodeMode)
             UpdateVisibleNodesButtons();
         else if (_editorMode == EditorMode.TileMode)
+        {
+            UpdateAllTheTileMaps();
             SetSelectedTileMap(0);
+        }
     }
 
     private void KILLCHILDREN(Node node)
@@ -545,7 +581,6 @@ public partial class LevelEditor : Control
 
     // NodeMode Section
     Node _selectedNode;
-    Vector2 _mouseLastFramePos = new Vector2();
     private void SetSelectedNode(Node node)
     {
         _selectedNode = node;
@@ -556,6 +591,7 @@ public partial class LevelEditor : Control
     private void SelectItem()
     {
         var NodesButtonsContainer = GetNode<Tree>("CanvasLayer/NodeModeGUI/NodesButtonsTree");
+        Node PreviousSelectedNode = _selectedNode;
         SetSelectedNode((Node)NodesButtonsContainer.GetSelected().GetMeta("CorrespondingNode"));
         UpdateVisibleProperties();
 
@@ -567,17 +603,20 @@ public partial class LevelEditor : Control
             nodePopupMenu.Popup();
             _guiDelayTimer.Start(0.02f);
         }
+        else if (PreviousSelectedNode == _selectedNode)
+            NodePopupAction(4);
     }
     public void NodePopupAction(int actionIndex)
     {
         var NodesButtonsContainer = GetNode<Tree>("CanvasLayer/NodeModeGUI/NodesButtonsTree");
         Node node;
         TreeItem Item;
-        void CreateItem(Node itemNode)
+        TreeItem CreateItem(Node itemNode, TreeItem parent = null)
         {
-            Item = NodesButtonsContainer.CreateItem(NodesButtonsContainer.GetSelected());
+            Item = NodesButtonsContainer.CreateItem(parent == null ? NodesButtonsContainer.GetSelected() : parent);
             Item.SetText(0, itemNode.Name);
             Item.SetMeta("CorrespondingNode", itemNode);
+            return Item;
         }
         switch (actionIndex)
         {
@@ -603,13 +642,19 @@ public partial class LevelEditor : Control
                 CreateItem(node);
                 break;
             case 4:
+                var lineEditPopup = GetNode<PopupPanel>("CanvasLayer/NodeModeGUI/NodeNameEditPopup");
+
+                lineEditPopup.Position = (Vector2I)GetNode<Control>("CanvasLayer/NodeModeGUI").GetLocalMousePosition();
+                lineEditPopup.Popup();
+                lineEditPopup.GetNode<LineEdit>("LineEdit").Text = _selectedNode.Name;
+                _guiDelayTimer.Start(0.02f);
                 break;
             case 5:
                 var Duplicate = _selectedNode.Duplicate();
                 _selectedNode.GetParent().AddChild(Duplicate);
                 Duplicate.Name = _selectedNode.Name;
 
-                CreateItem(Duplicate);
+                CreateItem(Duplicate, NodesButtonsContainer.GetSelected().GetParent());
                 break;
             case 6:
                 break;
@@ -622,6 +667,15 @@ public partial class LevelEditor : Control
                 NodesButtonsContainer.GetSelected().Free();
                 break;
         }
+    }
+    private void SetNodeName(string value)
+    {
+        if (_selectedNode != null)
+        {
+            _selectedNode.Name = value;
+            GetNode<Tree>("CanvasLayer/NodeModeGUI/NodesButtonsTree").GetSelected().SetText(0, _selectedNode.Name);
+        }
+        GetNode<PopupPanel>("CanvasLayer/NodeModeGUI/NodeNameEditPopup").Hide();
     }
     private void UpdateAllNodesArray()
     {
@@ -658,9 +712,9 @@ public partial class LevelEditor : Control
             }
         }
         var Item = NodesButtonsContainer.CreateItem();
-        Item.SetText(0, _level.Name);
-        Item.SetMeta("CorrespondingNode", _level);
-        Recursion(_level, Item);
+        Item.SetText(0, _mainLevelScene.Name);
+        Item.SetMeta("CorrespondingNode", _mainLevelScene);
+        Recursion(_mainLevelScene, Item);
 
     }
     private void UpdateVisibleProperties()
@@ -859,7 +913,7 @@ public partial class LevelEditor : Control
     }
 
     // Save Section
-    private bool[] _editorCrutches = { true, true, true };
+    private bool[] _editorCrutches = { true, true, true, true};
     public void SaveLevel()
     {
         _packedLevel = new PackedScene();
@@ -870,6 +924,8 @@ public partial class LevelEditor : Control
             LevelClone.GetNode<CanvasLayer>("Pause").Visible = true;
         if (_editorCrutches[2])
             LevelClone.GetNode<CanvasLayer>("EpicIntro").Visible = true;
+        if (_editorCrutches[3])
+            LevelClone.GetNode<Label>("Level/Player/Camera2D/GUI/Scores").Visible = true;
 
         _packedLevel.Pack(LevelClone);
         ResourceSaver.Save(_packedLevel, _mapPath);

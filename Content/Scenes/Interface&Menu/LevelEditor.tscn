@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://c1b6qyg17m3f1"]
+[gd_scene load_steps=32 format=3 uid="uid://c1b6qyg17m3f1"]
 
 [ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/LevelEditor.cs" id="1_03doe"]
 [ext_resource type="Texture2D" uid="uid://d284tqsj2yp0w" path="res://Content/Sprites/Interface/Cross.png" id="2_0sxv6"]
@@ -34,11 +34,26 @@ sources/0 = SubResource("TileSetAtlasSource_u6r4h")
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_k521p"]
 
+[sub_resource type="Theme" id="Theme_aodif"]
+Tree/colors/children_hl_line_color = Color(1, 1, 1, 1)
+Tree/colors/custom_button_font_highlight = Color(1, 1, 1, 1)
+Tree/colors/drop_position_color = Color(1, 1, 1, 1)
+Tree/colors/font_color = Color(1, 1, 1, 1)
+Tree/colors/font_disabled_color = Color(1, 1, 1, 1)
+Tree/colors/font_outline_color = Color(1, 1, 1, 1)
+Tree/colors/font_selected_color = Color(1, 1, 1, 1)
+Tree/colors/guide_color = Color(1, 1, 1, 1)
+Tree/colors/parent_hl_line_color = Color(1, 1, 1, 1)
+Tree/colors/relationship_line_color = Color(1, 1, 1, 1)
+Tree/colors/title_button_color = Color(0.875, 0.875, 0.875, 1)
+
 [sub_resource type="Gradient" id="Gradient_hh0p1"]
 colors = PackedColorArray(0.501407, 0.501406, 0.501406, 1, 0.501407, 0.501406, 0.501406, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_crqmt"]
 gradient = SubResource("Gradient_hh0p1")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_41nhu"]
 
 [node name="LevelEditor" type="Control"]
 layout_mode = 3
@@ -56,11 +71,13 @@ position = Vector2(640, 360)
 [node name="LevelContainer" type="Node2D" parent="."]
 
 [node name="AssistiveTileMap" type="TileMap" parent="."]
+z_index = 100
 scale = Vector2(4, 4)
 format = 2
 layer_0/modulate = Color(1, 1, 1, 0.501961)
 
 [node name="ErasingAssistiveTileMap" type="TileMap" parent="."]
+z_index = 100
 scale = Vector2(4, 4)
 tile_set = SubResource("TileSet_nxqni")
 format = 2
@@ -71,9 +88,9 @@ layer_0/modulate = Color(1, 1, 1, 0.501961)
 [node name="ScreenButton" type="TextureButton" parent="CanvasLayer"]
 offset_right = 1280.0
 offset_bottom = 720.0
-focus_mode = 0
+focus_mode = 1
 mouse_filter = 1
-button_mask = 3
+button_mask = 7
 
 [node name="TileModeGUI" type="Control" parent="CanvasLayer"]
 layout_mode = 3
@@ -185,7 +202,7 @@ mouse_filter = 2
 layout_mode = 2
 offset_right = 312.0
 offset_bottom = 592.0
-columns = 2
+theme = SubResource("Theme_aodif")
 allow_reselect = true
 
 [node name="PropertiesGridContainer" type="ScrollContainer" parent="CanvasLayer/NodeModeGUI"]
@@ -254,7 +271,6 @@ theme_override_constants/margin_bottom = 16
 
 [node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer"]
 layout_mode = 2
-scroll_vertical = 320
 
 [node name="NodesContainer" type="FlowContainer" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer"]
 custom_minimum_size = Vector2(688, 0)
@@ -934,6 +950,22 @@ Background"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="SeeAllTheNodes" type="CheckButton" parent="CanvasLayer/NodeModeGUI"]
+offset_left = 3.0
+offset_top = 661.0
+offset_right = 227.0
+offset_bottom = 690.0
+text = "See all the nodes"
+
+[node name="CheckButton" type="CheckButton" parent="CanvasLayer/NodeModeGUI"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 690.0
+offset_right = 152.0
+offset_bottom = 719.0
+button_pressed = true
+text = "Smart pos"
+
 [node name="NodePopupMenu" type="PopupMenu" parent="CanvasLayer/NodeModeGUI"]
 size = Vector2i(219, 233)
 item_count = 9
@@ -955,14 +987,16 @@ item_7/id = 7
 item_8/text = "Delete"
 item_8/id = 8
 
-[node name="CheckButton" type="CheckButton" parent="CanvasLayer/NodeModeGUI"]
-layout_mode = 0
-offset_left = 3.0
-offset_top = 690.0
-offset_right = 152.0
-offset_bottom = 719.0
-button_pressed = true
-text = "Smart pos"
+[node name="NodeNameEditPopup" type="PopupPanel" parent="CanvasLayer/NodeModeGUI"]
+transparent_bg = true
+size = Vector2i(256, 37)
+transient_to_focused = true
+transparent = true
+theme_override_styles/panel = SubResource("StyleBoxEmpty_41nhu")
+
+[node name="LineEdit" type="LineEdit" parent="CanvasLayer/NodeModeGUI/NodeNameEditPopup"]
+offset_right = 256.0
+offset_bottom = 37.0
 
 [node name="CodeModeGUI" type="Control" parent="CanvasLayer"]
 visible = false
@@ -1055,8 +1089,10 @@ default_color = Color(0.501961, 0.501961, 0.501961, 0.156863)
 [connection signal="pressed" from="CanvasLayer/TileModeGUI/SmartFilling" to="." method="SetTileInstrument" binds= [3]]
 [connection signal="value_changed" from="CanvasLayer/TileModeGUI/TileChangeProbability" to="." method="SetTileChangeProbability"]
 [connection signal="item_selected" from="CanvasLayer/NodeModeGUI/NodesButtonsTree" to="." method="SelectItem"]
-[connection signal="id_pressed" from="CanvasLayer/NodeModeGUI/NodePopupMenu" to="." method="NodePopupAction"]
+[connection signal="toggled" from="CanvasLayer/NodeModeGUI/SeeAllTheNodes" to="." method="SetSeeAllTheNodes"]
 [connection signal="toggled" from="CanvasLayer/NodeModeGUI/CheckButton" to="." method="SetDoSmartPos"]
+[connection signal="id_pressed" from="CanvasLayer/NodeModeGUI/NodePopupMenu" to="." method="NodePopupAction"]
+[connection signal="text_submitted" from="CanvasLayer/NodeModeGUI/NodeNameEditPopup/LineEdit" to="." method="SetNodeName"]
 [connection signal="pressed" from="CanvasLayer/EditorModes/TileMode" to="." method="SetEditorMode" binds= [0]]
 [connection signal="pressed" from="CanvasLayer/EditorModes/NodeMode" to="." method="SetEditorMode" binds= [1]]
 [connection signal="pressed" from="CanvasLayer/EditorModes/CodeMode" to="." method="SetEditorMode" binds= [2]]

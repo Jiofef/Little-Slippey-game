@@ -1,3 +1,6 @@
+PopupMenu
+PopupPanel
+LineEdit
 CheckButton
 Label
 TextureRect
@@ -10,6 +13,3 @@ Node
 ResourcePreloader
 CollisionShape2D
 RigidBody2D
-StatusIndicator
-ShapeCast2D
-ScrollContainer
