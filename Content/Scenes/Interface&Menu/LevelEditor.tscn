@@ -1,7 +1,8 @@
-[gd_scene load_steps=32 format=3 uid="uid://c1b6qyg17m3f1"]
+[gd_scene load_steps=48 format=3 uid="uid://c1b6qyg17m3f1"]
 
 [ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/LevelEditor.cs" id="1_03doe"]
 [ext_resource type="Texture2D" uid="uid://d284tqsj2yp0w" path="res://Content/Sprites/Interface/Cross.png" id="2_0sxv6"]
+[ext_resource type="Texture2D" uid="uid://bfg5b2a5xwbt" path="res://Content/Sprites/Interface/LevelEditor/SmallButton.png" id="3_5ujd4"]
 [ext_resource type="Texture2D" uid="uid://begcejlgxi8vb" path="res://Content/Sprites/Interface/LevelEditorChunk.png" id="3_is8cq"]
 [ext_resource type="PackedScene" uid="uid://bwpstpk1xmkah" path="res://Content/Scenes/Interface&Menu/Button.tscn" id="3_wdnfh"]
 [ext_resource type="Texture2D" uid="uid://c2oim5v4o8wh6" path="res://Content/Sprites/Interface/LevelEditor/NodeButton.png" id="4_uf0bb"]
@@ -24,6 +25,8 @@
 [ext_resource type="Texture2D" uid="uid://b337eu2riy466" path="res://Content/Sprites/Interface/LevelEditor/TogglableButton.png" id="21_dxwej"]
 [ext_resource type="Texture2D" uid="uid://dx7cgilkcmgj8" path="res://Content/Sprites/Interface/LevelEditor/CanvasLayer.png" id="22_hlm8a"]
 [ext_resource type="Texture2D" uid="uid://414qjuyxudme" path="res://Content/Sprites/Interface/LevelEditor/ParalaxBackground.png" id="23_pec1j"]
+[ext_resource type="Texture2D" uid="uid://7r0hpuodjrlj" path="res://Content/Sprites/Interface/AnnotationWindowBase.png" id="24_0opd5"]
+[ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/AnnotationBox.cs" id="24_4xfmb"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_u6r4h"]
 texture = ExtResource("2_0sxv6")
@@ -32,7 +35,24 @@ texture = ExtResource("2_0sxv6")
 [sub_resource type="TileSet" id="TileSet_nxqni"]
 sources/0 = SubResource("TileSetAtlasSource_u6r4h")
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_t1ql4"]
+atlas = ExtResource("24_0opd5")
+region = Rect2(2, 2, 4, 4)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0iy5r"]
+atlas = ExtResource("24_0opd5")
+region = Rect2(2, 0, 4, 2)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u2lp1"]
+atlas = ExtResource("24_0opd5")
+region = Rect2(0, 2, 2, 4)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eu31a"]
+atlas = ExtResource("24_0opd5")
+region = Rect2(6, 2, 2, 4)
+
 [sub_resource type="ButtonGroup" id="ButtonGroup_k521p"]
+resource_local_to_scene = false
 
 [sub_resource type="Theme" id="Theme_aodif"]
 Tree/colors/children_hl_line_color = Color(1, 1, 1, 1)
@@ -54,6 +74,67 @@ colors = PackedColorArray(0.501407, 0.501406, 0.501406, 1, 0.501407, 0.501406, 0
 gradient = SubResource("Gradient_hh0p1")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_41nhu"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_8rse1"]
+resource_local_to_scene = false
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_luqsi"]
+atlas = ExtResource("24_0opd5")
+region = Rect2(2, 6, 4, 2)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vg0e5"]
+atlas = ExtResource("24_0opd5")
+region = Rect2(0, 0, 8, 2)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bgqcr"]
+atlas = ExtResource("24_0opd5")
+region = Rect2(6, 0, 4, 4)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jkl77"]
+atlas = ExtResource("24_0opd5")
+region = Rect2(0, 6, 8, 2)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bqw27"]
+atlas = ExtResource("24_0opd5")
+region = Rect2(6, 6, 8, 2)
+
+[sub_resource type="Animation" id="Animation_hlg0i"]
+resource_name = "Appearing"
+length = 0.3
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:_sizeCoeff")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_uolno"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:_sizeCoeff")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xtxak"]
+_data = {
+"Appearing": SubResource("Animation_hlg0i"),
+"RESET": SubResource("Animation_uolno")
+}
 
 [node name="LevelEditor" type="Control"]
 layout_mode = 3
@@ -106,6 +187,22 @@ offset_right = 320.0
 offset_bottom = 624.0
 scale = Vector2(4, 4)
 
+[node name="Mid" type="TextureRect" parent="CanvasLayer/TileModeGUI/TileButtonsContainer"]
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+texture = SubResource("AtlasTexture_t1ql4")
+
+[node name="Up" type="TextureRect" parent="CanvasLayer/TileModeGUI/TileButtonsContainer"]
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+texture = SubResource("AtlasTexture_0iy5r")
+stretch_mode = 1
+
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/TileModeGUI/TileButtonsContainer"]
 layout_mode = 2
 alignment = 1
@@ -117,6 +214,21 @@ offset_right = 1184.0
 offset_bottom = 148.0
 scale = Vector2(4, 4)
 
+[node name="Mid" type="TextureRect" parent="CanvasLayer/TileModeGUI/AtlasButtonsContainer"]
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+texture = SubResource("AtlasTexture_t1ql4")
+
+[node name="MidLeft" type="TextureRect" parent="CanvasLayer/TileModeGUI/AtlasButtonsContainer"]
+clip_contents = true
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+texture = SubResource("AtlasTexture_u2lp1")
+
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/TileModeGUI/AtlasButtonsContainer"]
 layout_mode = 2
 
@@ -125,6 +237,22 @@ layout_mode = 0
 offset_right = 32.0
 offset_bottom = 148.0
 scale = Vector2(4, 4)
+
+[node name="Mid" type="TextureRect" parent="CanvasLayer/TileModeGUI/TileMapsButtonsContainer"]
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+texture = SubResource("AtlasTexture_t1ql4")
+
+[node name="MidRight" type="TextureRect" parent="CanvasLayer/TileModeGUI/TileMapsButtonsContainer"]
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 3
+mouse_filter = 2
+texture = SubResource("AtlasTexture_eu31a")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/TileModeGUI/TileMapsButtonsContainer"]
 layout_mode = 2
@@ -139,47 +267,6 @@ scale = Vector2(4, 4)
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/TileModeGUI/TileMapsLayersContainer"]
 layout_mode = 2
 
-[node name="Brush" type="Button" parent="CanvasLayer/TileModeGUI"]
-layout_mode = 0
-offset_left = 208.0
-offset_right = 224.0
-offset_bottom = 16.0
-scale = Vector2(4, 4)
-focus_mode = 0
-toggle_mode = true
-button_pressed = true
-button_group = SubResource("ButtonGroup_k521p")
-
-[node name="Rectangle" type="Button" parent="CanvasLayer/TileModeGUI"]
-layout_mode = 0
-offset_left = 272.0
-offset_right = 288.0
-offset_bottom = 16.0
-scale = Vector2(4, 4)
-focus_mode = 0
-toggle_mode = true
-button_group = SubResource("ButtonGroup_k521p")
-
-[node name="Filling" type="Button" parent="CanvasLayer/TileModeGUI"]
-layout_mode = 0
-offset_left = 336.0
-offset_right = 352.0
-offset_bottom = 16.0
-scale = Vector2(4, 4)
-focus_mode = 0
-toggle_mode = true
-button_group = SubResource("ButtonGroup_k521p")
-
-[node name="SmartFilling" type="Button" parent="CanvasLayer/TileModeGUI"]
-layout_mode = 0
-offset_left = 400.0
-offset_right = 416.0
-offset_bottom = 16.0
-scale = Vector2(4, 4)
-focus_mode = 0
-toggle_mode = true
-button_group = SubResource("ButtonGroup_k521p")
-
 [node name="TileChangeProbability" type="SpinBox" parent="CanvasLayer/TileModeGUI"]
 layout_mode = 0
 offset_left = 468.0
@@ -189,6 +276,36 @@ offset_bottom = 46.0
 min_value = 1.0
 value = 1.0
 update_on_text_changed = true
+
+[node name="Brush" parent="CanvasLayer/TileModeGUI" instance=ExtResource("3_wdnfh")]
+layout_mode = 0
+offset_left = 208.0
+offset_right = 224.0
+toggle_mode = true
+button_pressed = true
+button_group = SubResource("ButtonGroup_k521p")
+texture_normal = ExtResource("3_5ujd4")
+
+[node name="Rectangle" parent="CanvasLayer/TileModeGUI" instance=ExtResource("3_wdnfh")]
+offset_left = 272.0
+offset_right = 288.0
+toggle_mode = true
+button_group = SubResource("ButtonGroup_k521p")
+texture_normal = ExtResource("3_5ujd4")
+
+[node name="Filling" parent="CanvasLayer/TileModeGUI" instance=ExtResource("3_wdnfh")]
+offset_left = 336.0
+offset_right = 352.0
+toggle_mode = true
+button_group = SubResource("ButtonGroup_k521p")
+texture_normal = ExtResource("3_5ujd4")
+
+[node name="SmartFilling" parent="CanvasLayer/TileModeGUI" instance=ExtResource("3_wdnfh")]
+offset_left = 400.0
+offset_right = 416.0
+toggle_mode = true
+button_group = SubResource("ButtonGroup_k521p")
+texture_normal = ExtResource("3_5ujd4")
 
 [node name="NodeModeGUI" type="Control" parent="CanvasLayer"]
 visible = false
@@ -286,6 +403,7 @@ stretch_mode = 0
 script = ExtResource("5_qjbpb")
 _nodeTypeName = "Node"
 _nodeFileName = ""
+_description = "An empty object that does not have 2d properties. All other objects in the game are based on it"
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/Node"]
 layout_mode = 1
@@ -323,6 +441,7 @@ stretch_mode = 0
 script = ExtResource("5_qjbpb")
 _nodeTypeName = "Node2D"
 _nodeFileName = ""
+_description = "The same as Node, but has 2d properties. A great container for 2d objects"
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/Node2D"]
 layout_mode = 0
@@ -360,6 +479,7 @@ stretch_mode = 0
 script = ExtResource("5_qjbpb")
 _nodeTypeName = "Sprite2D"
 _nodeFileName = "Sprite2D"
+_description = "2d image for general purposes"
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/Sprite2D"]
 layout_mode = 0
@@ -397,6 +517,7 @@ stretch_mode = 0
 script = ExtResource("5_qjbpb")
 _nodeTypeName = "AnimatedSprite2D"
 _nodeFileName = ""
+_description = "Like Sprite2D, but also can play animations"
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/AnimatedSprite2D"]
 layout_mode = 0
@@ -435,6 +556,7 @@ stretch_mode = 0
 script = ExtResource("5_qjbpb")
 _nodeTypeName = "AudioStreamPlayer"
 _nodeFileName = ""
+_description = "Plays sounds"
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/AudioStreamPlayer"]
 layout_mode = 0
@@ -473,6 +595,7 @@ stretch_mode = 0
 script = ExtResource("5_qjbpb")
 _nodeTypeName = "AudioStreamPlayer2D"
 _nodeFileName = ""
+_description = "Plays sounds in space with stereo and fade-out if it is far away"
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/AudioStreamPlayer2D"]
 layout_mode = 0
@@ -511,6 +634,7 @@ stretch_mode = 0
 script = ExtResource("5_qjbpb")
 _nodeTypeName = "StaticBody"
 _nodeFileName = ""
+_description = "A static object with a collision"
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/StaticBody"]
 layout_mode = 0
@@ -548,6 +672,7 @@ stretch_mode = 0
 script = ExtResource("5_qjbpb")
 _nodeTypeName = "TileMapLayer"
 _nodeFileName = ""
+_description = "Used to place blocks on a grid"
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/TileMapLayer"]
 layout_mode = 0
@@ -585,6 +710,7 @@ stretch_mode = 0
 script = ExtResource("5_qjbpb")
 _nodeTypeName = "Timer"
 _nodeFileName = ""
+_description = "A simple timer for scripts. Use signals to take advantage of it"
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/Timer"]
 layout_mode = 0
@@ -622,6 +748,7 @@ stretch_mode = 0
 script = ExtResource("5_qjbpb")
 _nodeTypeName = "CPUParticles2D"
 _nodeFileName = ""
+_description = "An object for creating beautiful particle-based effects"
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/CPUParticles2D"]
 layout_mode = 0
@@ -660,6 +787,7 @@ stretch_mode = 0
 script = ExtResource("5_qjbpb")
 _nodeTypeName = "RigidBody"
 _nodeFileName = "DefaultRigidBody"
+_description = "2d body that has physics and interacts with the player and the level (To make it interact with the player, enable the \"Enable Rigid Body Physics\" option for the player)"
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/RigidBody"]
 layout_mode = 0
@@ -697,6 +825,7 @@ stretch_mode = 0
 script = ExtResource("5_qjbpb")
 _nodeTypeName = "Area2D"
 _nodeFileName = "DefaultArea2D"
+_description = "Emits signals at the entrance and exit of collisions from it and more"
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/Area2D"]
 layout_mode = 0
@@ -734,6 +863,7 @@ stretch_mode = 0
 script = ExtResource("5_qjbpb")
 _nodeTypeName = "Path2D"
 _nodeFileName = ""
+_description = "A configurable curve along which objects can be moved"
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/Path2D"]
 layout_mode = 0
@@ -771,6 +901,7 @@ stretch_mode = 0
 script = ExtResource("5_qjbpb")
 _nodeTypeName = "ColorRect"
 _nodeFileName = "DefaultColorRect"
+_description = "2d rectangle with customizable color. Has the properties of an GUI element"
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/ColorRect"]
 layout_mode = 0
@@ -808,6 +939,7 @@ stretch_mode = 0
 script = ExtResource("5_qjbpb")
 _nodeTypeName = "TextureRect"
 _nodeFileName = "TextureRect"
+_description = "Similar to Sprite2D, but has other useful features and GUI element properties"
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/TextureRect"]
 layout_mode = 0
@@ -845,6 +977,7 @@ stretch_mode = 0
 script = ExtResource("5_qjbpb")
 _nodeTypeName = "TogglableButton"
 _nodeFileName = "TogglableButton"
+_description = "An object for scripting at the level. Emits signals when pressed and released"
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/TogglableButton"]
 layout_mode = 0
@@ -883,6 +1016,7 @@ stretch_mode = 0
 script = ExtResource("5_qjbpb")
 _nodeTypeName = "CanvasLayer"
 _nodeFileName = ""
+_description = "Draws objects separately from the rest of the level, ignoring its position, rotation, and so on. Simply put, it pins objects on the screen"
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/CanvasLayer"]
 layout_mode = 0
@@ -920,6 +1054,7 @@ stretch_mode = 0
 script = ExtResource("5_qjbpb")
 _nodeTypeName = "ParalaxBackground"
 _nodeFileName = ""
+_description = "Used to create a realistic moving background"
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/NodeModeGUI/NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/ParalaxBackground"]
 layout_mode = 0
@@ -951,6 +1086,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="SeeAllTheNodes" type="CheckButton" parent="CanvasLayer/NodeModeGUI"]
+layout_mode = 0
 offset_left = 3.0
 offset_top = 661.0
 offset_right = 227.0
@@ -1020,34 +1156,27 @@ offset_left = 552.0
 offset_right = 744.0
 offset_bottom = 64.0
 
-[node name="TileMode" type="Button" parent="CanvasLayer/EditorModes"]
-layout_mode = 0
-offset_right = 16.0
-offset_bottom = 16.0
-scale = Vector2(4, 4)
-focus_mode = 0
+[node name="TileMode" parent="CanvasLayer/EditorModes" instance=ExtResource("3_wdnfh")]
 toggle_mode = true
-button_group = SubResource("ButtonGroup_k521p")
+button_group = SubResource("ButtonGroup_8rse1")
+texture_normal = ExtResource("3_5ujd4")
+stretch_mode = 0
 
-[node name="NodeMode" type="Button" parent="CanvasLayer/EditorModes"]
-layout_mode = 0
+[node name="NodeMode" parent="CanvasLayer/EditorModes" instance=ExtResource("3_wdnfh")]
 offset_left = 64.0
 offset_right = 80.0
-offset_bottom = 16.0
-scale = Vector2(4, 4)
-focus_mode = 0
 toggle_mode = true
-button_group = SubResource("ButtonGroup_k521p")
+button_group = SubResource("ButtonGroup_8rse1")
+texture_normal = ExtResource("3_5ujd4")
+stretch_mode = 0
 
-[node name="CodeMode" type="Button" parent="CanvasLayer/EditorModes"]
-layout_mode = 0
+[node name="CodeMode" parent="CanvasLayer/EditorModes" instance=ExtResource("3_wdnfh")]
 offset_left = 128.0
 offset_right = 144.0
-offset_bottom = 16.0
-scale = Vector2(4, 4)
-focus_mode = 0
 toggle_mode = true
-button_group = SubResource("ButtonGroup_k521p")
+button_group = SubResource("ButtonGroup_8rse1")
+texture_normal = ExtResource("3_5ujd4")
+stretch_mode = 0
 
 [node name="SaveLevelButton" type="Button" parent="CanvasLayer"]
 visible = false
@@ -1067,6 +1196,156 @@ offset_bottom = 486.0
 process_mode = 3
 one_shot = true
 
+[node name="AnnotationBox" type="Control" parent="CanvasLayer"]
+visible = false
+z_index = 100
+clip_contents = true
+custom_minimum_size = Vector2(12, 12)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 12.0
+offset_bottom = 12.0
+mouse_filter = 2
+script = ExtResource("24_4xfmb")
+
+[node name="Mid" type="TextureRect" parent="CanvasLayer/AnnotationBox"]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("AtlasTexture_t1ql4")
+
+[node name="Up" type="TextureRect" parent="CanvasLayer/AnnotationBox"]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 8.0
+grow_horizontal = 2
+mouse_filter = 2
+texture = SubResource("AtlasTexture_0iy5r")
+
+[node name="MidLeft" type="TextureRect" parent="CanvasLayer/AnnotationBox"]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 8.0
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("AtlasTexture_u2lp1")
+
+[node name="MidRight" type="TextureRect" parent="CanvasLayer/AnnotationBox"]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -8.0
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("AtlasTexture_eu31a")
+
+[node name="Bottom" type="TextureRect" parent="CanvasLayer/AnnotationBox"]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -8.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+texture = SubResource("AtlasTexture_luqsi")
+
+[node name="UpLeft" type="TextureRect" parent="CanvasLayer/AnnotationBox"]
+clip_contents = true
+layout_mode = 1
+offset_right = 2.0
+offset_bottom = 2.0
+scale = Vector2(4, 4)
+mouse_filter = 2
+texture = SubResource("AtlasTexture_vg0e5")
+expand_mode = 1
+stretch_mode = 2
+
+[node name="UpRight" type="TextureRect" parent="CanvasLayer/AnnotationBox"]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -2.0
+offset_bottom = 2.0
+grow_horizontal = 0
+scale = Vector2(4, 4)
+pivot_offset = Vector2(2, 0)
+mouse_filter = 2
+texture = SubResource("AtlasTexture_bgqcr")
+expand_mode = 1
+stretch_mode = 2
+
+[node name="BottomLeft" type="TextureRect" parent="CanvasLayer/AnnotationBox"]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -2.0
+offset_right = 2.0
+grow_vertical = 0
+scale = Vector2(4, 4)
+pivot_offset = Vector2(0, 2)
+mouse_filter = 2
+texture = SubResource("AtlasTexture_jkl77")
+expand_mode = 1
+stretch_mode = 2
+
+[node name="BottomRight" type="TextureRect" parent="CanvasLayer/AnnotationBox"]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -2.0
+offset_top = -2.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(4, 4)
+pivot_offset = Vector2(2, 2)
+mouse_filter = 2
+texture = SubResource("AtlasTexture_bqw27")
+expand_mode = 1
+stretch_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/AnnotationBox"]
+clip_contents = false
+custom_minimum_size = Vector2(498, 64)
+layout_mode = 0
+offset_left = 8.0
+offset_top = 12.0
+offset_right = 9.0
+offset_bottom = 12.0
+mouse_filter = 2
+theme_override_colors/default_color = Color(0.196078, 0.196078, 0.196078, 1)
+theme_override_font_sizes/normal_font_size = 22
+fit_content = true
+scroll_active = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/AnnotationBox"]
+libraries = {
+"": SubResource("AnimationLibrary_xtxak")
+}
+
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
@@ -1079,15 +1358,16 @@ texture = ExtResource("3_is8cq")
 centered = false
 
 [node name="Line2D" type="Line2D" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2(-1, 0)
 points = PackedVector2Array(0, 0, 1280, 0, 1280, 720, 0, 720, 0, 0)
 width = 2.0
 default_color = Color(0.501961, 0.501961, 0.501961, 0.156863)
 
+[connection signal="value_changed" from="CanvasLayer/TileModeGUI/TileChangeProbability" to="." method="SetTileChangeProbability"]
 [connection signal="pressed" from="CanvasLayer/TileModeGUI/Brush" to="." method="SetTileInstrument" binds= [0]]
 [connection signal="pressed" from="CanvasLayer/TileModeGUI/Rectangle" to="." method="SetTileInstrument" binds= [1]]
 [connection signal="pressed" from="CanvasLayer/TileModeGUI/Filling" to="." method="SetTileInstrument" binds= [2]]
 [connection signal="pressed" from="CanvasLayer/TileModeGUI/SmartFilling" to="." method="SetTileInstrument" binds= [3]]
-[connection signal="value_changed" from="CanvasLayer/TileModeGUI/TileChangeProbability" to="." method="SetTileChangeProbability"]
 [connection signal="item_selected" from="CanvasLayer/NodeModeGUI/NodesButtonsTree" to="." method="SelectItem"]
 [connection signal="toggled" from="CanvasLayer/NodeModeGUI/SeeAllTheNodes" to="." method="SetSeeAllTheNodes"]
 [connection signal="toggled" from="CanvasLayer/NodeModeGUI/CheckButton" to="." method="SetDoSmartPos"]
@@ -1098,3 +1378,4 @@ default_color = Color(0.501961, 0.501961, 0.501961, 0.156863)
 [connection signal="pressed" from="CanvasLayer/EditorModes/CodeMode" to="." method="SetEditorMode" binds= [2]]
 [connection signal="pressed" from="CanvasLayer/SaveLevelButton" to="." method="SaveLevel"]
 [connection signal="pressed" from="CanvasLayer/TestLevelButton" to="." method="TestLevel"]
+[connection signal="draw" from="CanvasLayer/AnnotationBox/RichTextLabel" to="CanvasLayer/AnnotationBox" method="UpdateRequiredSize" flags=3]

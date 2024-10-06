@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://cbsgke2it77a5"]
+
+[ext_resource type="PackedScene" uid="uid://bwpstpk1xmkah" path="res://Content/Scenes/Interface&Menu/Button.tscn" id="1_rf2y2"]
+[ext_resource type="Texture2D" uid="uid://bfg5b2a5xwbt" path="res://Content/Sprites/Interface/LevelEditor/SmallButton.png" id="2_0r5o2"]
+
+[node name="Button" instance=ExtResource("1_rf2y2")]
+custom_minimum_size = Vector2(16, 16)
+texture_normal = ExtResource("2_0r5o2")
+ignore_texture_size = false

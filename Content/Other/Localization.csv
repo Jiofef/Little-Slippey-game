@@ -705,3 +705,22 @@ you were deceived.,you were deceived.,вас обманули.
 want to leave?","Are you sure you
 want to leave?","Вы уверены что
 хотите выйти?"
+An empty object that does not have 2d properties. All other objects in the game are based on it,An empty object that does not have 2d properties. All other objects in the game are based on it,Пустой объект без 2д свойств. Все другие объекты созданы на его основе
+"The same as Node, but has 2d properties. A great container for 2d objects","The same as Node, but has 2d properties. A great container for 2d objects","Тоже, что и Node, но имеет 2д свойства. Отличный контейнер для 2д объектов"
+2d image for general purposes,2d image for general purposes,Простое 2д изображение
+"Like Sprite2D, but also can play animations","Like Sprite2D, but also can play animations","Тоже, что и Sprite2D, но может проигрывать анимации"
+Plays sounds,Plays sounds,Проигрывает звуки
+Plays sounds in space with stereo and fade-out if it is far away,Plays sounds in space with stereo and fade-out if it is far away,"Проигрывает звуки в 2д пространстве засчёт стерео и затухания, если находится далеко от игрока"
+A static object with a collision,A static object with a collision,Статический объект с коллизией
+Used to place blocks on a grid,Used to place blocks on a grid,"Используется для ""рисования"" блоками по сетке"
+A simple timer for scripts. Use signals to take advantage of it,A simple timer for scripts. Use signals to take advantage of it,"Простой таймер для скриптинга. Используйте сигналы, чтобы получить от него пользу"
+An object for creating beautiful particle-based effects,An object for creating beautiful particle-based effects,Используется для создания красивых эффектов основанных на частицах
+"2d body that has physics and interacts with the player and the level (To make it interact with the player, enable the ""Enable Rigid Body Physics"" option for the player)","2d body that has physics and interacts with the player and the level (To make it interact with the player, enable the ""Enable Rigid Body Physics"" option for the player)","2д тело, обладающее физикой и взаимодействующее с игроком и уровнем (Чтобы оно взаимодействовало с игроком, включите ""Enable Rigid Body Physics"" у игрока)"
+Emits signals at the entrance and exit of collisions from it and more,Emits signals at the entrance and exit of collisions from it and more,Испускает сигналы при входе и выходе коллизий из него
+A configurable curve along which objects can be moved,A configurable curve along which objects can be moved,"Настраиваемая кривая, вдоль которой могут двигаться объекты"
+2d rectangle with customizable color. Has the properties of an GUI element,2d rectangle with customizable color. Has the properties of an GUI element,2д прямоугольник с настраиваемым цветом. Имеет свойства элементов интерфейса
+"Similar to Sprite2D, but has other useful features and GUI element properties","Similar to Sprite2D, but has other useful features and GUI element properties","Похож на Sprite2D, но имеет другие полезные плюшки и обладает свойствами элементов интерфейса"
+An object for scripting at the level. Emits signals when pressed and released,An object for scripting at the level. Emits signals when pressed and released,Объект для скриптинга на уровне. Испускает сигналы когда нажимается и отжимается
+"Draws objects separately from the rest of the level, ignoring its position, rotation, and so on. Simply put, it pins objects on the screen","Draws objects separately from the rest of the level, ignoring its position, rotation, and so on. Simply put, it pins objects on the screen","Рендерит объекты отдельно от остального уровня, игнорируя позицию, вращение и т.д. Проще говоря, закрепляет объекты на экране"
+Used to create a realistic moving background,Used to create a realistic moving background,Используется в создании реалистично движущегося фона
+WorkShop,WorkShop,Мастерская

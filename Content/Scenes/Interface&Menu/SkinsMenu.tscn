@@ -40,7 +40,7 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_qxbaw"]
 _data = {
-&"Opening": SubResource("Animation_yy61y")
+"Opening": SubResource("Animation_yy61y")
 }
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_gs0uw"]
@@ -87,7 +87,7 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1ht21"]
 _data = {
-&"HopHop": SubResource("Animation_7pr83")
+"HopHop": SubResource("Animation_7pr83")
 }
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qk0hs"]
@@ -382,9 +382,9 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_35a7h"]
 _data = {
-&"RegionGlitch1": SubResource("Animation_1vtst"),
-&"RegionGlitch2": SubResource("Animation_ht2kx"),
-&"RegionGlitch3": SubResource("Animation_opwea")
+"RegionGlitch1": SubResource("Animation_1vtst"),
+"RegionGlitch2": SubResource("Animation_ht2kx"),
+"RegionGlitch3": SubResource("Animation_opwea")
 }
 
 [sub_resource type="Gradient" id="Gradient_wy0j6"]
@@ -473,7 +473,7 @@ tracks/4/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dqx3r"]
 _data = {
-&"Idle": SubResource("Animation_1enmt")
+"Idle": SubResource("Animation_1enmt")
 }
 
 [node name="SkinsMenu" type="Control"]
@@ -492,7 +492,7 @@ script = ExtResource("1_81lvq")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-&"": SubResource("AnimationLibrary_qxbaw")
+"": SubResource("AnimationLibrary_qxbaw")
 }
 autoplay = "Opening"
 
@@ -543,7 +543,7 @@ texture = ExtResource("7_onqfp")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="SkinButtons/Button1/?"]
 libraries = {
-&"": SubResource("AnimationLibrary_1ht21")
+"": SubResource("AnimationLibrary_1ht21")
 }
 autoplay = "HopHop"
 
@@ -582,7 +582,7 @@ texture = ExtResource("7_onqfp")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="SkinButtons/Button2/?"]
 libraries = {
-&"": SubResource("AnimationLibrary_1ht21")
+"": SubResource("AnimationLibrary_1ht21")
 }
 autoplay = "HopHop"
 
@@ -622,7 +622,7 @@ texture = ExtResource("7_onqfp")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="SkinButtons/Button3/?"]
 libraries = {
-&"": SubResource("AnimationLibrary_1ht21")
+"": SubResource("AnimationLibrary_1ht21")
 }
 autoplay = "HopHop"
 
@@ -661,7 +661,7 @@ texture = ExtResource("7_onqfp")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="SkinButtons/Button4/?"]
 libraries = {
-&"": SubResource("AnimationLibrary_1ht21")
+"": SubResource("AnimationLibrary_1ht21")
 }
 autoplay = "HopHop"
 
@@ -700,7 +700,7 @@ texture = ExtResource("7_onqfp")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="SkinButtons/Button5/?"]
 libraries = {
-&"": SubResource("AnimationLibrary_1ht21")
+"": SubResource("AnimationLibrary_1ht21")
 }
 autoplay = "HopHop"
 
@@ -740,7 +740,7 @@ texture = ExtResource("7_onqfp")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="SkinButtons/Button6/?"]
 libraries = {
-&"": SubResource("AnimationLibrary_1ht21")
+"": SubResource("AnimationLibrary_1ht21")
 }
 autoplay = "HopHop"
 
@@ -796,7 +796,7 @@ texture = ExtResource("7_onqfp")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="SkinButtons/Button7/?"]
 libraries = {
-&"": SubResource("AnimationLibrary_1ht21")
+"": SubResource("AnimationLibrary_1ht21")
 }
 autoplay = "HopHop"
 
@@ -836,7 +836,7 @@ texture = ExtResource("7_onqfp")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="SkinButtons/Button8/?"]
 libraries = {
-&"": SubResource("AnimationLibrary_1ht21")
+"": SubResource("AnimationLibrary_1ht21")
 }
 autoplay = "HopHop"
 
@@ -877,7 +877,7 @@ texture = ExtResource("7_onqfp")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="SkinButtons/Button9/?"]
 libraries = {
-&"": SubResource("AnimationLibrary_1ht21")
+"": SubResource("AnimationLibrary_1ht21")
 }
 autoplay = "HopHop"
 
@@ -918,7 +918,7 @@ texture = ExtResource("7_onqfp")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="SkinButtons/Button10/?"]
 libraries = {
-&"": SubResource("AnimationLibrary_1ht21")
+"": SubResource("AnimationLibrary_1ht21")
 }
 autoplay = "HopHop"
 
@@ -960,7 +960,7 @@ texture = ExtResource("7_onqfp")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="SkinButtons/Button11/?"]
 libraries = {
-&"": SubResource("AnimationLibrary_1ht21")
+"": SubResource("AnimationLibrary_1ht21")
 }
 autoplay = "HopHop"
 
@@ -1001,7 +1001,7 @@ texture = ExtResource("7_onqfp")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="SkinButtons/Button12/?"]
 libraries = {
-&"": SubResource("AnimationLibrary_1ht21")
+"": SubResource("AnimationLibrary_1ht21")
 }
 autoplay = "HopHop"
 
@@ -1035,7 +1035,7 @@ script = ExtResource("19_r3u0u")
 
 [node name="GlitchPlayer" type="AnimationPlayer" parent="SkinButtons/Button13/AnimatedSprite2D"]
 libraries = {
-&"": SubResource("AnimationLibrary_35a7h")
+"": SubResource("AnimationLibrary_35a7h")
 }
 
 [node name="Sprite2D" type="Sprite2D" parent="SkinButtons/Button13/AnimatedSprite2D"]
@@ -1058,7 +1058,7 @@ texture = ExtResource("7_onqfp")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="SkinButtons/Button13/?"]
 libraries = {
-&"": SubResource("AnimationLibrary_1ht21")
+"": SubResource("AnimationLibrary_1ht21")
 }
 autoplay = "HopHop"
 
@@ -1116,7 +1116,7 @@ region_rect = Rect2(16, 0, 2, 2)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="SkinButtons/Button14/AnimatedSprite2D"]
 libraries = {
-&"": SubResource("AnimationLibrary_dqx3r")
+"": SubResource("AnimationLibrary_dqx3r")
 }
 autoplay = "Idle"
 
@@ -1127,7 +1127,7 @@ texture = ExtResource("7_onqfp")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="SkinButtons/Button14/?"]
 libraries = {
-&"": SubResource("AnimationLibrary_1ht21")
+"": SubResource("AnimationLibrary_1ht21")
 }
 autoplay = "HopHop"
 

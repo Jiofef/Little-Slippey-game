@@ -446,13 +446,14 @@ public partial class LevelEditor : Control
         Vector2I AtlasSize = GetCurrentAtlas().GetAtlasGridSize();
 
         ButtonGroup buttonGroup = new ButtonGroup();
+        Texture2D texture = GD.Load<CompressedTexture2D>("res://Content/Sprites/Interface/LevelEditor/BigButton.png");
         for (int i = 0; i < AtlasSize.X * AtlasSize.Y; i++)
         {
             Vector2I TileCoords;
             TileCoords.Y = Math.DivRem(i, AtlasSize.X, out TileCoords.X);
             if (GetCurrentAtlas().HasTile(TileCoords))
             {
-                var button = MakeAButton(new Vector2(32, 32), buttonGroup);
+                var button = MakeAButton(new Vector2(32, 32), buttonGroup, texture);
                 int crutch = i;
                 button.Pressed += () => SetSelectedTile(crutch);
 
@@ -487,9 +488,10 @@ public partial class LevelEditor : Control
         int AtlasesCount = _selectedTileMap.TileSet.GetSourceCount();
 
         ButtonGroup buttonGroup = new ButtonGroup();
+        Texture2D texture = GD.Load<CompressedTexture2D>("res://Content/Sprites/Interface/LevelEditor/BigButton.png");
         for (int i = 0; i < AtlasesCount; i++)
         {
-            var button = MakeAButton(new Vector2(32, 32), buttonGroup);
+            var button = MakeAButton(new Vector2(32, 32), buttonGroup, texture);
             int crutch = i;
             button.Pressed += () => SetSelectedAtlas(crutch);
 
@@ -514,9 +516,10 @@ public partial class LevelEditor : Control
         UpdateAllTheTileMaps();
 
         ButtonGroup buttonGroup = new ButtonGroup();
+        Texture2D texture = GD.Load<CompressedTexture2D>("res://Content/Sprites/Interface/LevelEditor/BigButton.png");
         for (int i = 0; i < _allTheTileMaps.Count; i++)
         {
-            var button = MakeAButton(new Vector2(32, 32), buttonGroup);
+            var button = MakeAButton(new Vector2(32, 32), buttonGroup, texture);
             int crutch = i;
             button.Pressed += () => SetSelectedTileMap(crutch);
 
@@ -535,9 +538,10 @@ public partial class LevelEditor : Control
         int LayersCount = _selectedTileMap.GetLayersCount();
 
         ButtonGroup buttonGroup = new ButtonGroup();
+        Texture2D texture = GD.Load<CompressedTexture2D>("res://Content/Sprites/Interface/LevelEditor/SmallButton.png");
         for (int i = 0; i < LayersCount; i++)
         {
-            var button = MakeAButton(new Vector2(16, 16), buttonGroup);
+            var button = MakeAButton(new Vector2(16, 16), buttonGroup, texture);
             int crutch = i;
             button.Pressed += () => _selectedLayer = crutch;
 
@@ -567,14 +571,14 @@ public partial class LevelEditor : Control
     {
         return (TileSetAtlasSource)_selectedTileMap.TileSet.GetSource(_selectedAtlas);
     }
-    private Godot.Button MakeAButton(Vector2 minimumSize = new Vector2(), ButtonGroup buttonGroup = null)
+    private EnhancedButton MakeAButton(Vector2 minimumSize = new Vector2(), ButtonGroup buttonGroup = null, Texture2D normalTexture = null)
     {
-        Godot.Button button = new Godot.Button();
+        EnhancedButton button = (EnhancedButton)GD.Load<PackedScene>("res://Content/Scenes/Interface&Menu/Button.tscn").Instantiate();
+        button.TextureNormal = normalTexture;
         button.CustomMinimumSize = minimumSize;
         button.ToggleMode = true;
         if (buttonGroup != null)
             button.ButtonGroup = buttonGroup;
-        button.FocusMode = FocusModeEnum.None;
 
         return button;
     }

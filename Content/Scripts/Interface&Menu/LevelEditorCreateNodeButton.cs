@@ -3,8 +3,16 @@ using System;
 
 public partial class LevelEditorCreateNodeButton : EnhancedButton
 {
-	[Export] string _nodeTypeName = "Node", _nodeFileName = ""; // if node has prepared layout, you (I) should write its name from the appropriate folder
+	[Export] string _nodeTypeName = "Node", _nodeFileName = "", _description = ""; // if node has prepared layout, you (I) should write its name from the appropriate folder
 
+    public override void _Ready()
+    {
+        base._Ready();
+
+        var annotationBox = GetTree().Root.GetNode<AnnotationBox>("/root/LevelEditor/CanvasLayer/AnnotationBox");
+        MouseEntered += () => annotationBox.PopupWithText(_description);
+        MouseExited += () => annotationBox.Hide();
+    }
     public override void _Pressed()
     {
         base._Pressed();
