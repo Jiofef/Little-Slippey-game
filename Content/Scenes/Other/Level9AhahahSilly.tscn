@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bjf1k0vs8j6wq"]
 
-[ext_resource type="VideoStream" path="res://Content/Other/AhahahSillyVideo.ogv" id="1_vnn2f"]
+[ext_resource type="VideoStream" path="res://Other/AhahahSillyVideo.ogv" id="1_vnn2f"]
 [ext_resource type="Script" path="res://Content/Scripts/Levels/Level9AhahahSilly.cs" id="2_8fdcr"]
 
 [node name="AhahahSilly" type="VideoStreamPlayer"]

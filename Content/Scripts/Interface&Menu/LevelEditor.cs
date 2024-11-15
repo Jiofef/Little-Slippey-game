@@ -1,6 +1,8 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 
 public partial class LevelEditor : Control
@@ -13,6 +15,7 @@ public partial class LevelEditor : Control
     Node _level, _mainLevelScene;
     Camera2D _camera;
     Node[] _allTheNodes = new Node[0];
+    private string[] _allTheFiles = new string[0];
     Timer _guiDelayTimer;
     TextureButton _screenButton = new TextureButton();
 
@@ -21,15 +24,16 @@ public partial class LevelEditor : Control
     bool _seeAllTheNodes = false; string _mainLevelSceneName = "Level";
 
 
-    enum EditorMode { TileMode, NodeMode, CodeMode }
+    enum EditorMode { TileMode, NodeMode, CodeMode, SavePage }
     EditorMode _editorMode = EditorMode.TileMode;
 
-    private bool _isMiddleButtonPressed = false, _isRightButtonPressed = false;
-    private string _mapPath = "";
+    private string _mapPath = "", _mapFolder = "", _selectedFile = "";
+    private readonly string _defaultPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData) + @"\Godot\app_userdata\Little Slippey\mods\";
 
     public override void _Ready()
     {
         _mapPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData) + @"\Godot\app_userdata\Little Slippey\mods\" + G.ModMapPath;
+        _mapFolder = G.ModMapFolder;
         G.IsLevelVanilla = false;
         _level = (Node2D)ResourceLoader.Load<PackedScene>(_mapPath).Instantiate();
         if (_editorCrutches[0])
@@ -56,7 +60,8 @@ public partial class LevelEditor : Control
         _assistiveTileMap.TileSet = _selectedTileMap.TileSet;
 
 
-         GetNode<Tree>("CanvasLayer/NodeModeGUI/NodesButtonsTree").Connect( "gui_input", new Callable(this, "OnTreeGuiInput"));
+        GetNode<Tree>("CanvasLayer/NodeModeGUI/NodesButtonsTree").Connect("gui_input", new Callable(this, "OnNodesTreeGuiInput"));
+        GetNode<Tree>("CanvasLayer/NodeModeGUI/FilesButtonsTree").Connect("gui_input", new Callable(this, "OnFilesTreeGuiInput"));
 
         foreach (string nodename in GetAllNodeTypes())
             GD.Print(nodename);
@@ -76,6 +81,8 @@ public partial class LevelEditor : Control
                     GetNode<PopupMenu>("CanvasLayer/NodeModeGUI/NodePopupMenu").CallDeferred("hide");
                 else if (GetNode<PopupPanel>("CanvasLayer/NodeModeGUI/NodeNameEditPopup").Visible)
                     GetNode<PopupPanel>("CanvasLayer/NodeModeGUI/NodeNameEditPopup").Hide();
+                else if (GetNode<PopupMenu>("CanvasLayer/NodeModeGUI/FilePopupMenu").Visible)
+                    GetNode<PopupMenu>("CanvasLayer/NodeModeGUI/FilePopupMenu").CallDeferred("hide");
             }
         }
         if (_screenButton.HasFocus())
@@ -107,17 +114,11 @@ public partial class LevelEditor : Control
             case EditorMode.TileMode:
                 _mouseTilePos = new Vector2I((int)((_globalMousePos.X - _selectedTileMap.GlobalPosition.X) / (16 * _selectedTileMap.Scale.X)), (int)((_globalMousePos.Y - _selectedTileMap.GlobalPosition.Y) / (16 * _selectedTileMap.Scale.Y))) + new Vector2I(_globalMousePos.X < 0 ? -1 : 0, _globalMousePos.Y < 0 ? -1 : 0);
 
-                if (Input.IsMouseButtonPressed(MouseButton.Middle))
-                {
-                    if (!_isMiddleButtonPressed)
-                    {
-                        SetSelectedTile(_previousTileIndex);
-                        UpdateAlternativeTileInGUI(_previousChangedGUITileMap, _selectedAlternativeTile);
-                        _isMiddleButtonPressed = true;
-                    }
-                }
-                else
-                    _isMiddleButtonPressed = false;
+                //if (Input.IsActionJustPressed("MouseWheelClick"))
+                //{
+                //   SetSelectedTile(_previousTileIndex);
+                //    UpdateAlternativeTileInGUI(_previousChangedGUITileMap, _selectedAlternativeTile);
+                //}
 
                 if (_mouseLastFrameTilePos != _mouseTilePos || Input.IsActionJustPressed("MouseClick") || Input.IsActionJustReleased("MouseClick"))
                 {
@@ -268,7 +269,7 @@ public partial class LevelEditor : Control
                 }
                 break;
             case EditorMode.NodeMode:
-                if (_screenButton.ButtonPressed && Input.IsActionJustPressed("MouseClick"))
+                if (_screenButton.ButtonPressed && Input.IsActionJustPressed("MouseLeftClick"))
                 {
                     //foreach (GodotObject node in _allTheNodes)
                     //{
@@ -314,7 +315,21 @@ public partial class LevelEditor : Control
                     }
                     EmitSignal("NodeMovedByMouse");
                 }
-                var nodesButtonsTree = GetNode<Tree>("CanvasLayer/NodeModeGUI/NodesButtonsTree");
+                if (_isDraggingFile && Input.IsActionJustReleased("MouseLeftClick"))
+                {
+                    if (_screenButton.IsHovered())
+                    {
+                        if (HasStringFormats(_selectedFile, "tscn"))
+                        {
+                            var node = GD.Load<PackedScene>(_selectedFile).Instantiate();
+                            CreateNode(node, node.Name);
+                            if (node is Node2D or Control)
+                                node.Set("global_position", _globalMousePos);
+                        }
+                    }
+                    _isDraggingFile = false;
+
+                }
                 if (Input.IsActionJustPressed("MouseClick") && GetNode<PopupMenu>("CanvasLayer/NodeModeGUI/NodePopupMenu").Visible && !GetNode<PopupMenu>("CanvasLayer/NodeModeGUI/NodePopupMenu").GetVisibleRect().HasPoint(GetGlobalMousePosition())) ;
                     //GetNode<PopupMenu>("CanvasLayer/NodeModeGUI/NodePopupMenu").Hide();
 
@@ -361,15 +376,27 @@ public partial class LevelEditor : Control
         GetNode<Control>("CanvasLayer/TileModeGUI").Visible = _editorMode == EditorMode.TileMode;
         GetNode<Control>("CanvasLayer/NodeModeGUI").Visible = _editorMode == EditorMode.NodeMode;
         GetNode<Control>("CanvasLayer/CodeModeGUI").Visible = _editorMode == EditorMode.CodeMode;
+        GetNode<Control>("CanvasLayer/SavePage").Visible = _editorMode == EditorMode.SavePage;
         GetNode<TileMap>("AssistiveTileMap").Visible = _editorMode == EditorMode.TileMode;
         GetNode<TileMap>("ErasingAssistiveTileMap").Visible = _editorMode == EditorMode.TileMode;
         UpdateAllNodesArray();
-        if (_editorMode == EditorMode.NodeMode)
-            UpdateVisibleNodesButtons();
-        else if (_editorMode == EditorMode.TileMode)
+        switch (_editorMode)
         {
-            UpdateAllTheTileMaps();
-            SetSelectedTileMap(0);
+            case EditorMode.TileMode:
+                UpdateAllTheTileMaps();
+                SetSelectedTileMap(0);
+                break;
+
+            case EditorMode.NodeMode:
+                UpdateVisibleNodesButtons();
+                UpdateVisibleFiles();
+                break;
+            case EditorMode.CodeMode:
+
+                break;
+            case EditorMode.SavePage:
+
+                break;
         }
     }
 
@@ -453,7 +480,7 @@ public partial class LevelEditor : Control
             TileCoords.Y = Math.DivRem(i, AtlasSize.X, out TileCoords.X);
             if (GetCurrentAtlas().HasTile(TileCoords))
             {
-                var button = MakeAButton(new Vector2(32, 32), buttonGroup, texture);
+                var button = MakeAButton(new Vector2(24, 24), buttonGroup, texture);
                 int crutch = i;
                 button.Pressed += () => SetSelectedTile(crutch);
 
@@ -461,7 +488,7 @@ public partial class LevelEditor : Control
                 tileMap.TileSet = _selectedTileMap.TileSet;
                 tileMap.SetCell(0, new Vector2I(0, 0), _selectedAtlas, TileCoords);
                 button.Pressed += () => UpdateAlternativeTileInGUI(tileMap, _selectedAlternativeTile);
-                tileMap.Position = new Vector2(8, 8);
+                tileMap.Position = new Vector2(4, 4);
                 button.AddChild(tileMap);
 
                 tileButtonsContainer.AddChild(button);
@@ -491,7 +518,7 @@ public partial class LevelEditor : Control
         Texture2D texture = GD.Load<CompressedTexture2D>("res://Content/Sprites/Interface/LevelEditor/BigButton.png");
         for (int i = 0; i < AtlasesCount; i++)
         {
-            var button = MakeAButton(new Vector2(32, 32), buttonGroup, texture);
+            var button = MakeAButton(new Vector2(24, 24), buttonGroup, texture);
             int crutch = i;
             button.Pressed += () => SetSelectedAtlas(crutch);
 
@@ -519,7 +546,7 @@ public partial class LevelEditor : Control
         Texture2D texture = GD.Load<CompressedTexture2D>("res://Content/Sprites/Interface/LevelEditor/BigButton.png");
         for (int i = 0; i < _allTheTileMaps.Count; i++)
         {
-            var button = MakeAButton(new Vector2(32, 32), buttonGroup, texture);
+            var button = MakeAButton(new Vector2(24, 24), buttonGroup, texture);
             int crutch = i;
             button.Pressed += () => SetSelectedTileMap(crutch);
 
@@ -661,6 +688,10 @@ public partial class LevelEditor : Control
                 CreateItem(Duplicate, NodesButtonsContainer.GetSelected().GetParent());
                 break;
             case 6:
+                PackedScene packedScene = new PackedScene();
+                packedScene.Pack(_selectedNode.Duplicate());
+                ResourceSaver.Save(packedScene, _mapFolder + @"\" + _selectedNode.Name + ".tscn");
+                UpdateVisibleFiles();
                 break;
             case 7:
                 DisplayServer.ClipboardSet(_level.GetPathTo(_selectedNode));
@@ -721,6 +752,167 @@ public partial class LevelEditor : Control
         Recursion(_mainLevelScene, Item);
 
     }
+    // Files
+    private bool _isDraggingFile = false;
+    private void UpdateVisibleFiles()
+    {
+        var FilesButtonsContainer = GetNode<Tree>("CanvasLayer/NodeModeGUI/FilesButtonsTree");
+
+        FilesButtonsContainer.Clear();
+
+        ButtonGroup buttonGroup = new ButtonGroup();
+        var texture = ResourceLoader.Load<Texture2D>("res://Content/Sprites/Interface/AcceptButton.png");
+
+
+        void Recursion(string rootFile, TreeItem item)
+        {
+            foreach (string folder in Directory.GetDirectories(rootFile))
+            {
+                var NextItem = item.CreateChild();
+                NextItem.SetText(0, folder.Remove(0, rootFile.Length + 1));
+                NextItem.SetMeta("FilePath", folder);
+                NextItem.Collapsed = true;
+                _allTheFiles = _allTheFiles.Append(folder).ToArray();
+                Recursion(folder, NextItem);
+            }
+
+            foreach (string file in Directory.GetFiles(rootFile))
+            {
+                if (HasStringFormats(file, new string[]{"tscn", "png", "jpg", "cs", "gd", "json", "ogv", "gdshader", "mp3", "mp4", "ogg", "wav", "theme", "ttf", "tres"}))
+                {
+                    var NextItem = item.CreateChild();
+                    NextItem.SetText(0, file.Remove(0, rootFile.Length + 1));
+                    NextItem.SetMeta("FilePath", file);
+                    NextItem.Collapsed = true;
+                    _allTheFiles = _allTheFiles.Append(file).ToArray();
+                }
+            }
+        }
+        var Item = FilesButtonsContainer.CreateItem();
+        Item.SetText(0, _mapFolder.Remove(0, _defaultPath.Length));
+        Item.SetMeta("FilePath", _mapFolder);
+        Recursion(_mapFolder, Item);
+    }
+    private void SetSelectedFile(string path)
+    {
+        _selectedFile = path;
+    }
+    private void FilePopupAction(int actionIndex)
+    {
+        _allTheFiles = new string[0];
+        var FilesButtonsContainer = GetNode<Tree>("CanvasLayer/NodeModeGUI/FilesButtonsTree");
+        TreeItem Item;
+        TreeItem CreateItem(string path, TreeItem parent = null)
+        {
+            Item = FilesButtonsContainer.CreateItem(parent == null ? FilesButtonsContainer.GetSelected() : parent);
+            Item.SetText(0, path.Remove(0, _selectedFile.Length + 1));
+            Item.SetMeta("FilePath", path);
+            _allTheFiles = _allTheFiles.Append(path).ToArray();
+            return Item;
+        }
+        switch (actionIndex)
+        {
+            case 0:
+                for (int i = 0; ; i++)
+                {
+                    var SuggestedPath = _selectedFile + @"\NewFolder" + i;
+                    if (!Directory.Exists(SuggestedPath))
+                    {
+                        Directory.CreateDirectory(SuggestedPath);
+                        UpdateVisibleFiles();
+                        break;
+                    }
+                }
+                break;
+            case 1:
+                DirAccess.RemoveAbsolute(_selectedFile);
+                UpdateVisibleFiles();
+                break;
+            case 2:
+                DisplayServer.ClipboardSet(ProjectSettings.LocalizePath(ProjectSettings.LocalizePath(_selectedFile)));
+                break;
+            case 3:
+                DisplayServer.ClipboardSet(_selectedFile);
+                break;
+            case 4:
+                var lineEditPopup = GetNode<PopupPanel>("CanvasLayer/NodeModeGUI/FileNameEditPopup");
+
+                lineEditPopup.Position = (Vector2I)GetNode<Control>("CanvasLayer/NodeModeGUI").GetLocalMousePosition();
+                lineEditPopup.Popup();
+                lineEditPopup.GetNode<LineEdit>("LineEdit").Text = GetNode<Tree>("CanvasLayer/NodeModeGUI/FilesButtonsTree").GetSelected().GetText(0);
+                _guiDelayTimer.Start(0.02f);
+                break;
+            case 5:
+
+                break;
+            case 6:
+                GD.Print(_selectedFile.Remove(_selectedFile.RFind(@"\")));
+                Process.Start("explorer.exe", _selectedFile.Remove(_selectedFile.RFind(@"\")));
+                break;
+            case 7:
+                Process.Start("explorer.exe", _selectedFile);
+                break;
+        }
+    }
+    private void SetFileName(string value)
+    {
+        if (_selectedFile != null)
+        {
+            string NewPath = _selectedFile.Remove(_selectedFile.RFind(@"\")) + @"\" + value;
+            if (!_selectedFile.Contains("."))
+            {
+                Directory.Move(_selectedFile, NewPath);
+            }
+            else
+            {
+                File.Move(_selectedFile, NewPath);
+            }
+
+            var treeItem = GetNode<Tree>("CanvasLayer/NodeModeGUI/FilesButtonsTree").GetSelected();
+            treeItem.SetText(0, value);
+            treeItem.SetMeta("FilePath", NewPath);
+
+            _selectedFile = NewPath;
+        }
+        GetNode<PopupPanel>("CanvasLayer/NodeModeGUI/FileNameEditPopup").Hide();
+    }
+    private void SelectFile()
+    {
+        var FilesButtonsContainer = GetNode<Tree>("CanvasLayer/NodeModeGUI/FilesButtonsTree");
+        string PreviousSelectedFile = _selectedFile;
+        SetSelectedFile(FilesButtonsContainer.GetSelected().GetMeta("FilePath").ToString());
+        if (Input.IsActionPressed("MouseLeftClick"))
+        {
+            _isDraggingFile = true;
+        }
+
+        //UpdateVisibleProperties();
+
+        if (Input.IsMouseButtonPressed(MouseButton.Right))
+        {
+            var filePopupMenu = GetNode<PopupMenu>("CanvasLayer/NodeModeGUI/FilePopupMenu");
+
+            filePopupMenu.Position = (Vector2I)GetNode<Control>("CanvasLayer/NodeModeGUI").GetLocalMousePosition();
+            filePopupMenu.Popup();
+            _guiDelayTimer.Start(0.02f);
+        }
+        //else if (PreviousSelectedFile == _selectedFile)
+            //NodePopupAction(4);
+
+    }
+    bool HasStringFormats(string value, string[] formats)
+    {
+        foreach (string format in formats)
+            if (value.Contains("." + format))
+                return true;
+        return false;
+    }
+    bool HasStringFormats(string value, string format)
+    {
+        return value.Contains("." + format);
+    }
+    // Files end
+    
     private void UpdateVisibleProperties()
     {
         var propertiesGrid = GetNode<GridContainer>("CanvasLayer/NodeModeGUI/PropertiesGridContainer/VBoxContainer/PropertiesGrid");
@@ -734,6 +926,7 @@ public partial class LevelEditor : Control
         {
             var text = new Label();
             text.Text = item["name"].ToString().Capitalize();
+            text.Theme = GD.Load<Theme>("res://Content/Other/LevelEditor.theme");
 
             propertiesGrid.AddChild(text);
 
@@ -829,6 +1022,14 @@ public partial class LevelEditor : Control
                         propertiesGrid.AddChild(RectSpinBoxYPos);
                     }
                     break;
+                case Variant.Type.Color:
+                    var colorPickerButton = new ColorPickerButton();
+                    colorPickerButton.SizeFlagsHorizontal = SizeFlags.ExpandFill;
+                    colorPickerButton.SizeFlagsVertical = SizeFlags.ExpandFill;
+                    colorPickerButton.Color = (Color)propertyValue;
+                    colorPickerButton.ColorChanged += (color) => SetProperty(_selectedNode, item["name"].ToString(), Variant.Type.Color, color);
+                    propertiesGrid.AddChild(colorPickerButton);
+                    break;
                 default:
                     propertiesGrid.AddChild(new Control());
                     break;
@@ -864,10 +1065,14 @@ public partial class LevelEditor : Control
                     node.Set(name, new Rect2(new Vector2(((Rect2)currentValue).Position.X, ((Rect2)currentValue).Position.Y), new Vector2(((Rect2)currentValue).Size.X, (float)value)));
                     break;
             }
+        else if (varType == Variant.Type.Color)
+        {
+            node.Set(name, value);
+        }
         else
             node.Set(name, value);
     }
-    private void OnTreeGuiInput(InputEvent @event)
+    private void OnNodesTreeGuiInput(InputEvent @event)
     {
         if (@event is InputEventMouseButton mouseEvent)
         {
@@ -881,6 +1086,26 @@ public partial class LevelEditor : Control
                     tree.SetSelected(clickedItem, 0);
 
                     var popupMenu = GetNode<PopupMenu>("CanvasLayer/NodeModeGUI/NodePopupMenu");
+                    popupMenu.SetPosition((Vector2I)mouseEvent.GlobalPosition);
+                    popupMenu.CallDeferred("popup");
+                }
+            }
+        }
+    }
+    private void OnFilesTreeGuiInput(InputEvent @event)
+    {
+        if (@event is InputEventMouseButton mouseEvent)
+        {
+            if (mouseEvent.ButtonIndex == MouseButton.Right && mouseEvent.Pressed)
+            {
+                var tree = GetNode<Tree>("CanvasLayer/NodeModeGUI/FilesButtonsTree");
+                TreeItem clickedItem = tree.GetItemAtPosition(mouseEvent.Position);
+
+                if (clickedItem != null)
+                {
+                    tree.SetSelected(clickedItem, 0);
+
+                    var popupMenu = GetNode<PopupMenu>("CanvasLayer/NodeModeGUI/FilePopupMenu");
                     popupMenu.SetPosition((Vector2I)mouseEvent.GlobalPosition);
                     popupMenu.CallDeferred("popup");
                 }
@@ -915,9 +1140,26 @@ public partial class LevelEditor : Control
         Item.SetMeta("CorrespondingNode", node);
         Item.Select(0);
     }
+    // CodeMode
+    public void SetEditingScript(string path)
+    {
 
+    }
+    public void LoadCode()
+    {
+        GetNode<CodeEdit>("CanvasLayer/CodeModeGUI/CodeEdit").Text = ((CSharpScript)_selectedNode.GetScript()).SourceCode;
+    }
+    public void SaveCode()
+    {
+        ((CSharpScript)_selectedNode.GetScript()).SourceCode = GetNode<CodeEdit>("CanvasLayer/CodeModeGUI/CodeEdit").Text;
+        ((CSharpScript)_selectedNode.GetScript()).Reload();
+    }
     // Save Section
     private bool[] _editorCrutches = { true, true, true, true};
+    public void SetCrutch(bool value, int index)
+    {
+        _editorCrutches[index] = value;
+    }
     public void SaveLevel()
     {
         _packedLevel = new PackedScene();

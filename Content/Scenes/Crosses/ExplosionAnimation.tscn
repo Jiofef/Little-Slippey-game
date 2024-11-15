@@ -1,6 +1,7 @@
-[gd_scene load_steps=15 format=3 uid="uid://bt41vubjcqv8p"]
+[gd_scene load_steps=16 format=3 uid="uid://bt41vubjcqv8p"]
 
 [ext_resource type="Texture2D" uid="uid://bg2mvitb1ih7q" path="res://Content/Sprites/Other/Explosion.png" id="1"]
+[ext_resource type="Script" path="res://Content/Scripts/Crosses/ExplosionAnimation.cs" id="2_3f1r3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_smc7j"]
 atlas = ExtResource("1")
@@ -98,3 +99,4 @@ animations = [{
 visible = false
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_m7y0n")
+script = ExtResource("2_3f1r3")

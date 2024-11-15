@@ -1,0 +1,108 @@
+[gd_scene load_steps=17 format=3 uid="uid://c2bqt07ll783d"]
+
+[ext_resource type="PackedScene" uid="uid://bt41vubjcqv8p" path="res://Content/Scenes/Crosses/ExplosionAnimation.tscn" id="1_gi07g"]
+[ext_resource type="Texture2D" uid="uid://8ddls1rsr5x" path="res://Content/Sprites/Other/EXPOLZION.png" id="2_epwlk"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0sg1q"]
+atlas = ExtResource("2_epwlk")
+region = Rect2(0, 0, 216, 216)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vbwc3"]
+atlas = ExtResource("2_epwlk")
+region = Rect2(216, 0, 216, 216)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kkkdu"]
+atlas = ExtResource("2_epwlk")
+region = Rect2(432, 0, 216, 216)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_10kc4"]
+atlas = ExtResource("2_epwlk")
+region = Rect2(648, 0, 216, 216)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wlnef"]
+atlas = ExtResource("2_epwlk")
+region = Rect2(0, 216, 216, 216)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cyvy0"]
+atlas = ExtResource("2_epwlk")
+region = Rect2(216, 216, 216, 216)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g543n"]
+atlas = ExtResource("2_epwlk")
+region = Rect2(432, 216, 216, 216)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bc5jh"]
+atlas = ExtResource("2_epwlk")
+region = Rect2(648, 216, 216, 216)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rsvv3"]
+atlas = ExtResource("2_epwlk")
+region = Rect2(0, 432, 216, 216)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uqqpr"]
+atlas = ExtResource("2_epwlk")
+region = Rect2(216, 432, 216, 216)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f4x1y"]
+atlas = ExtResource("2_epwlk")
+region = Rect2(432, 432, 216, 216)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0gsxw"]
+atlas = ExtResource("2_epwlk")
+region = Rect2(648, 432, 216, 216)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ysh1g"]
+atlas = ExtResource("2_epwlk")
+region = Rect2(0, 648, 216, 216)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hde38"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0sg1q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vbwc3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kkkdu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_10kc4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wlnef")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cyvy0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g543n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bc5jh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rsvv3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uqqpr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f4x1y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0gsxw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ysh1g")
+}],
+"loop": false,
+"name": &"default",
+"speed": 12.0
+}]
+
+[node name="ExplosionAnimation" instance=ExtResource("1_gi07g")]
+sprite_frames = SubResource("SpriteFrames_hde38")
+
+[connection signal="animation_finished" from="." to="." method="queue_free"]

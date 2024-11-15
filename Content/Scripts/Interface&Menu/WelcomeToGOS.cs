@@ -4,9 +4,10 @@ public partial class WelcomeToGOS : Control
 {
 	Control _openedMenu;
 
-	int _openedMenuNumber; // if value == 0, there are no opened menus
+    int _openedMenuNumber; // if value == 0, there are no opened menus
 	public override void _Ready()
 	{
+
 		G.CurrentPopupAchievementsLayer = GetNode<CanvasLayer>("PopupAchievementsLayer");
 		GetNode<Sprite2D>("Buttons/Titles/Notify").Visible = UnchangableMeta.IsThereNewContentInRecycleBin;
 		if (!G.IsSystemInitiated)
@@ -18,8 +19,7 @@ public partial class WelcomeToGOS : Control
 		else
             GetNode<AnimationPlayer>("AnimationPlayer").Play("BackToGOS");
     }
-
-	public void IconClick(int iconNumber)
+    public void IconClick(int iconNumber)
 	{
 		if (_openedMenu != null)
 		{

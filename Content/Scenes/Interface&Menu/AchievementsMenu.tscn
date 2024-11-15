@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://blm6syft6nu6e" path="res://Content/Sprites/Interface/AchievementsMenu.png" id="1_fxqph"]
 [ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/AchievementsMenu.cs" id="1_xte5a"]
-[ext_resource type="Theme" uid="uid://cgvarj6mm8mm" path="res://Content/Other/Default.theme" id="3_e0nlk"]
+[ext_resource type="Theme" uid="uid://cgvarj6mm8mm" path="res://Other/LevelEditor.theme" id="3_e0nlk"]
 [ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/ScrollableContainer.cs" id="4_rv65g"]
 
 [sub_resource type="Animation" id="Animation_q7m3v"]

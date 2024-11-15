@@ -26,7 +26,7 @@
 [ext_resource type="Texture2D" uid="uid://be5mi0sdy4bep" path="res://Content/Sprites/Interface/PauseOptionsButton.png" id="21_pqe1n"]
 [ext_resource type="Texture2D" uid="uid://blp8i7meimekf" path="res://Content/Sprites/Interface/PauseMenuButton.png" id="22_olv38"]
 [ext_resource type="Script" path="res://Content/Scripts/Other/DidLevelIntroPassedSet.cs" id="23_4se7t"]
-[ext_resource type="Shader" path="res://Content/Other/BrightnessShader.gdshader" id="24_neuu2"]
+[ext_resource type="Shader" path="res://Other/BrightnessShader.gdshader" id="24_neuu2"]
 [ext_resource type="Script" path="res://Content/Scripts/Other/PostProcessingRect.cs" id="25_duxyh"]
 [ext_resource type="AudioStream" uid="uid://cuvkdo1lyvynu" path="res://Content/Sounds/Other/EpicIntro.mp3" id="26_gylqo"]
 

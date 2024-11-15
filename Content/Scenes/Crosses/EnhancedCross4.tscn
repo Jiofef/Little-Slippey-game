@@ -6,10 +6,10 @@
 [ext_resource type="Texture2D" uid="uid://sb76vc7slrym" path="res://Content/Sprites/Crosses/EnhancedBlumCrossCrystalAnimation.png" id="5_0sw4k"]
 [ext_resource type="Texture2D" uid="uid://csq1qdkb418s" path="res://Content/Sprites/Crosses/EnhancedBlumCrossCrystalHead.png" id="5_u48da"]
 [ext_resource type="Texture2D" uid="uid://r3iyalnukxbo" path="res://Content/Sprites/Crosses/EnhancedBlumCrossEnergyBeamAnimation.png" id="6_ywbs3"]
-[ext_resource type="PackedScene" uid="uid://bt41vubjcqv8p" path="res://Content/Scenes/Crosses/ExplosionAnimation.tscn" id="8_a6rgt"]
 [ext_resource type="AudioStream" uid="uid://c5uftb5sncnln" path="res://Content/Sounds/Crosses/EnhancedBlumCrossCrystalBreaking.mp3" id="8_hj7f4"]
 [ext_resource type="AudioStream" uid="uid://dfo3s2oywny1s" path="res://Content/Sounds/Crosses/EnhancedBlumCrossSignal.mp3" id="9_pifl3"]
 [ext_resource type="AudioStream" uid="uid://djlnmwp104edh" path="res://Content/Sounds/Crosses/MegaExplosion.mp3" id="9_s8yf4"]
+[ext_resource type="PackedScene" uid="uid://c2bqt07ll783d" path="res://Content/Scenes/Crosses/BigExplosionAnimation.tscn" id="10_64ovj"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vy3rc"]
 atlas = ExtResource("5_0sw4k")
@@ -405,11 +405,8 @@ bus = &"Crosses"
 stream = ExtResource("9_s8yf4")
 bus = &"Explosions"
 
-[node name="ExplosionAnimation" parent="." instance=ExtResource("8_a6rgt")]
-scale = Vector2(18, 18)
-speed_scale = 0.8
+[node name="ExplosionAnimation" parent="." instance=ExtResource("10_64ovj")]
 
 [connection signal="area_entered" from="WearAcceleratingArea2D" to="." method="EnableWearAccelerating" unbinds=1]
 [connection signal="area_exited" from="WearAcceleratingArea2D" to="." method="DisableWearAccelerating" unbinds=1]
 [connection signal="finished" from="ExplosionSound" to="." method="queue_free"]
-[connection signal="animation_finished" from="ExplosionAnimation" to="ExplosionAnimation" method="queue_free"]

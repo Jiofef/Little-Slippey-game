@@ -1,5 +1,6 @@
 using Godot;
-using System.Collections.Generic;
+using System;
+using System.Linq;
 
 public partial class G : Node
 {
@@ -7,7 +8,7 @@ public partial class G : Node
 	public static bool IsSystemInitiated, IsPlayerDead, IsNewRecordReached, IsProgressPaused = false, IsCrossesEnabled = true, DidLevelIntroPassed, IsLevelVanilla = true, IsDebugEnabled = true;
 	public static float PlayerMoveCoeff = 1, Scores = 0, ResetTimer, PlayerCorpseFlightTimer, AfterPlayerCorpseFlightTimer, CrossSpawnMultiplier = 1, CrossesProgressCoeff = 1, MusicStopTimeCode = 0, MusicRestartPosition = 0, LevelCompleteTime = 150;
 	public static int CurrentLevel;
-	public static string LevelAdditionalLink, MusicName = "", ModMapPath;
+	public static string LevelAdditionalLink, MusicName = "", ModMapPath, ModMapFolder;
 	public static Vector4 CameraLimits;
 	public static readonly int LevelsInGameTotal = 10, CrossesInGameTotal = 5, DificultiesInGameTotal = 3;
 	public static string GetLanguagePrefix()
@@ -124,4 +125,118 @@ public partial class G : Node
     public static Variant InGameTransitiveValue;
     // This array used in level editor. Don't touch it either
     public static Godot.Collections.Array<Node> NodeCopyBuffer = new Godot.Collections.Array<Node>();
+
+	public class CrossSpawner
+	{
+		public float[] TimeCodes;
+		public float[] SpawnWeights;
+
+		private string[] _scenesPathes;
+		public string[] ScenesPathes
+		{
+			get { return _scenesPathes; }
+
+			set {
+                _scenesPathes = value;
+				_scenes = new PackedScene[ScenesPathes.Length];
+				 for (int i = 0; i < _scenes.Length; i++)
+				 {
+					 _scenes[i] = GD.Load<PackedScene>(ScenesPathes[i]);
+				 }
+			}
+		}
+        private PackedScene[] _scenes = { };
+        public int TypesCount => _scenes.Length;
+
+        public CrossSpawner()
+        {
+            TimeCodes = new float[] { 0, 30, 60, 90, 120, 150 };
+            SpawnWeights = new float[] { 600, 170, 80, 40, 110 };
+            ScenesPathes = new string[] { "res://Content/Scenes/Crosses/Cross1.tscn", "res://Content/Scenes/Crosses/Cross2.tscn", "res://Content/Scenes/Crosses/Cross3.tscn", "res://Content/Scenes/Crosses/Cross4.tscn", "res://Content/Scenes/Crosses/Cross5.tscn" };
+        }
+		public CrossSpawner(float[] timeCodes, float[] spawnWeights, string[] scenesPathes)
+		{
+			TimeCodes = timeCodes;
+			SpawnWeights = spawnWeights;
+			ScenesPathes = scenesPathes;
+		}
+
+
+		public Node GetCross(int index)
+		{
+			return _scenes[index].Instantiate();
+		}
+
+
+		Random _random = new Random();
+        private int[] _defaultSpawnWeight = { 600, 170, 80, 40, 110 };
+        private float[] _crossWeight = new float[G.CrossesInGameTotal];
+        private int _lastAviableCrossNumber = 0;
+        private float _lastCheckedScoresValue = 0;
+
+        private bool _didAllCrossWeigthsSetted;
+        public Node GetRandomCross()
+		{
+            if (!_didAllCrossWeigthsSetted)
+            {
+                if (_crossWeight[_lastAviableCrossNumber] + Scores - _lastCheckedScoresValue < _defaultSpawnWeight[_lastAviableCrossNumber])
+                {
+                    _crossWeight[_lastAviableCrossNumber] += Scores - _lastCheckedScoresValue;
+                    _lastCheckedScoresValue = Scores;
+                }
+                else
+                {
+                    _crossWeight[_lastAviableCrossNumber] = _defaultSpawnWeight[_lastAviableCrossNumber];
+                    _lastAviableCrossNumber++;
+                    _lastCheckedScoresValue = 0;
+                }
+                if (_lastAviableCrossNumber >= _scenes.Length)
+                {
+                    _lastAviableCrossNumber = _scenes.Length - 1;
+                    _didAllCrossWeigthsSetted = true;
+                }
+            }
+
+            int SelectedCrossNumber;
+            int RandomNumber = _random.Next((int)_crossWeight.Sum());
+            for (int i = 0; ; i++)
+            {
+                if (RandomNumber < _defaultSpawnWeight[i])
+                {
+                    SelectedCrossNumber = i;
+                    break;
+                }
+                else RandomNumber -= _defaultSpawnWeight[i];
+            }
+			return GetCross(SelectedCrossNumber);
+        }
+
+        public void RecalculateCrossWeight()
+        {
+            float WeightMultiplierExtender = Scores / 30 * CrossesProgressCoeff * _defaultSpawnWeight[_lastAviableCrossNumber];
+            _crossWeight = new float[CrossesInGameTotal];
+            _lastAviableCrossNumber = 0;
+            for (int i = 0; WeightMultiplierExtender > 0; i++)
+            {
+                if (i >= 5)
+                {
+                    _didAllCrossWeigthsSetted = true;
+                    _lastAviableCrossNumber = 4;
+                    break;
+                }
+                if (_crossWeight[_lastAviableCrossNumber] + WeightMultiplierExtender * _defaultSpawnWeight[_lastAviableCrossNumber] < _defaultSpawnWeight[_lastAviableCrossNumber])
+                {
+                    _crossWeight[_lastAviableCrossNumber] += WeightMultiplierExtender * _defaultSpawnWeight[_lastAviableCrossNumber];
+                    WeightMultiplierExtender = 0;
+                }
+                else
+                {
+                    _crossWeight[_lastAviableCrossNumber] = _defaultSpawnWeight[_lastAviableCrossNumber];
+                    _lastAviableCrossNumber++;
+                    WeightMultiplierExtender -= 1;
+                }
+            }
+        }
+
+    }
 }

@@ -1,11 +1,9 @@
 using Godot;
 using Godot.Collections;
-using Godot.NativeInterop;
 using System;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Reflection;
 
 public partial class WorkshopMenu : Control
 {
@@ -29,6 +27,7 @@ public partial class WorkshopMenu : Control
 
         for (int i = 0; i < _directories.Length; i++)
         {
+            GD.Print(_directories[i]);
             try
             {
                 if (File.Exists(_directories[i] + @"\mod_info.json"))
@@ -124,17 +123,12 @@ public partial class WorkshopMenu : Control
 
         G.InGameTransitiveValue = _selectedModFolder + @"\MainScene.tscn";
         G.ModMapPath = _selectedModFolder.Remove(0, _defaultPath.Length) + @"\MainScene.tscn";
+        G.ModMapFolder = _selectedModFolder;
         GetTree().ChangeSceneToFile("res://Content/Scenes/Interface&Menu/LevelEditor.tscn");
     }
 
     public void OpenModFolder()
     {
-        GD.Print(OS.GetUserDataDir());
-        ProcessStartInfo folderInfo = new ProcessStartInfo()
-        {
-            Arguments = OS.GetUserDataDir() + "/mods",
-            FileName = "explorer.exe"
-        };
         Process.Start("explorer.exe", OS.GetUserDataDir().Replace("/", @"\") + @"\mods");
     }
 
@@ -149,6 +143,15 @@ public partial class WorkshopMenu : Control
                 Directory.CreateDirectory(SuggestedPath);
                 DirAccess.CopyAbsolute("res://Content/Scenes/Other/UserLevelLayout.tscn", SuggestedPath + @"\MainScene.tscn"); 
                 DirAccess.CopyAbsolute("res://Content/Sprites/Interface/CustomMapDefaultPreview.png", SuggestedPath + @"\PreviewPicture.png");
+                foreach (string value in new string[]{ ""})
+                {
+
+                }
+                Directory.CreateDirectory(SuggestedPath + @"\Other");
+                Directory.CreateDirectory(SuggestedPath + @"\Scenes");
+                Directory.CreateDirectory(SuggestedPath + @"\Scripts");
+                Directory.CreateDirectory(SuggestedPath + @"\Scounds");
+                Directory.CreateDirectory(SuggestedPath + @"\Sprites");
 
                 var modPreview = (ModPreview)ResourceLoader.Load<PackedScene>("res://Content/Scenes/Interface&Menu/ModPreviewLayout.tscn").Instantiate();
                 modPreview._resourcePath = SuggestedPath + @"\PreviewPicture.png";

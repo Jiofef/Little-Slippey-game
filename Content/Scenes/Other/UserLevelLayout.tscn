@@ -1,8 +1,8 @@
-[gd_scene load_steps=76 format=3 uid="uid://ugapo2ny55bq"]
+[gd_scene load_steps=77 format=3 uid="uid://ugapo2ny55bq"]
 
 [ext_resource type="Script" path="res://Content/Scripts/Other/MainScript.cs" id="1_q56u5"]
 [ext_resource type="Script" path="res://Content/Scripts/Other/LevelMusicPlayer.cs" id="2_6ioiu"]
-[ext_resource type="Script" path="res://Content/Scripts/Levels/BaseLevelScript.cs" id="3_u3p71"]
+[ext_resource type="Script" path="res://Content/Scenes/Other/UserLevelScript.cs" id="3_xhwy7"]
 [ext_resource type="Texture2D" uid="uid://cjieb76jdv80v" path="res://Content/Sprites/Levels/ANineGreetingsTileset.png" id="4_kbue1"]
 [ext_resource type="Texture2D" uid="uid://dgluki8hnwb62" path="res://Content/Sprites/Levels/Level8/AcidAndLavaTileset.png" id="4_udjuf"]
 [ext_resource type="Texture2D" uid="uid://4udch8ejvu08" path="res://Content/Sprites/Interface/PauseButtonsFrame.png" id="4_xi6ki"]
@@ -27,6 +27,7 @@
 [ext_resource type="Texture2D" uid="uid://kcd1m7tkh45l" path="res://Content/Sprites/Levels/NePeretrudilsyaTileset.png" id="14_c2p12"]
 [ext_resource type="Texture2D" uid="uid://b1dppreruk7js" path="res://Content/Sprites/Levels/poliSiSagEtilEseT.png" id="15_xjndr"]
 [ext_resource type="PackedScene" uid="uid://dlscufxb5f1ca" path="res://Content/Scenes/Other/Player.tscn" id="17_5hmvf"]
+[ext_resource type="Script" path="res://Content/Scenes/Other/CrossSpawner.cs" id="18_d522f"]
 
 [sub_resource type="Animation" id="Animation_p3npb"]
 resource_name = "MusicStarting"
@@ -2351,7 +2352,7 @@ libraries = {
 
 [node name="Level" type="Node2D" parent="."]
 process_mode = 4
-script = ExtResource("3_u3p71")
+script = ExtResource("3_xhwy7")
 
 [node name="DecorationTileMap" type="TileMap" parent="Level"]
 scale = Vector2(4, 4)
@@ -2370,6 +2371,9 @@ format = 2
 
 [node name="Player" parent="Level" instance=ExtResource("17_5hmvf")]
 position = Vector2(640, 352)
+
+[node name="CrossSpawner" type="Node2D" parent="."]
+script = ExtResource("18_d522f")
 
 [node name="Pause" type="CanvasLayer" parent="."]
 process_mode = 2
