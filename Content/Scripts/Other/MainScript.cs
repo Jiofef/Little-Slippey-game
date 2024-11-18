@@ -1,10 +1,12 @@
 using Godot;
-
+using GodotSteam;
+using System;
 public partial class MainScript : Node2D
 {
     [Signal] public delegate void RecalculateCrossWeightEventHandler();
     [Signal] public delegate void LevelResetingEventHandler();
     private bool _subMenusOpened, _isPauseDisabled = false, _isResetDisabled;
+    
     TextureButton _rewindButton;
     AudioStreamPlayer _levelMusicPlayer;
 
@@ -33,6 +35,7 @@ public partial class MainScript : Node2D
         }
 
         SetProcess(false);
+        
     }
     public override void _PhysicsProcess(double delta)
     {
@@ -64,7 +67,11 @@ public partial class MainScript : Node2D
     }
     public void UnPause()
     {
-        bool IsPaused = GetTree().Paused;
+        ChangePause(GetTree().Paused);
+    }
+
+    private void ChangePause(bool IsPaused)
+    {
         AudioServer.SetBusEffectEnabled(2, 0, !IsPaused);
         AudioServer.SetBusEffectEnabled(6, 0, !IsPaused);
         GetNode<TextureButton>("Pause/Interface/ButtonsFrame/Resume").GrabFocus();
@@ -80,6 +87,7 @@ public partial class MainScript : Node2D
 
         GetTree().Paused = !IsPaused;
     }
+
     public void Options()
     {
         var pause = GetNode<CanvasLayer>("Pause");

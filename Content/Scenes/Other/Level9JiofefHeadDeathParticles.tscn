@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Content/Scripts/Levels/Level9JiofefHeadDeathParticles.cs" id="1_5djou"]
 [ext_resource type="AudioStream" uid="uid://bb57chgdorit5" path="res://Content/Sounds/Levels/Level9Chaos.mp3" id="2_cncxe"]
 [ext_resource type="AudioStream" uid="uid://j3eptu8vfa8h" path="res://Content/Sounds/Levels/Level9ChaosIsOver.mp3" id="3_putbu"]
-[ext_resource type="Shader" path="res://Other/BrightnessShader.gdshader" id="4_i402c"]
+[ext_resource type="Shader" path="res://Content/Other/BrightnessShader.gdshader" id="4_i402c"]
 [ext_resource type="Script" path="res://Content/Scripts/Other/PostProcessingRect.cs" id="5_5wsfb"]
 
 [sub_resource type="Gradient" id="Gradient_v7153"]

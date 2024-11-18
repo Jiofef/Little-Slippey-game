@@ -16,7 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://kcd1m7tkh45l" path="res://Content/Sprites/Levels/NePeretrudilsyaTileset.png" id="14_hwiy7"]
 [ext_resource type="PackedScene" uid="uid://dlscufxb5f1ca" path="res://Content/Scenes/Other/Player.tscn" id="15_f0cdm"]
 [ext_resource type="Script" path="res://Content/Scripts/Levels/Foreground.cs" id="16_yd5fs"]
-[ext_resource type="Shader" path="res://Other/PostProcessing.gdshader" id="17_61d51"]
+[ext_resource type="Shader" path="res://Content/Other/BlurShader.gdshader" id="17_61d51"]
 [ext_resource type="PackedScene" uid="uid://d3u7pfig07yrs" path="res://Content/Scenes/Other/CrutchedArea2D.tscn" id="18_axctq"]
 
 [sub_resource type="Animation" id="Animation_n61s8"]

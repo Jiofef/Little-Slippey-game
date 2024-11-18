@@ -42,7 +42,7 @@ public partial class G : Node
         if (@event is InputEventKey)
         {
 			TypeOfUsedController = "Keyboard";
-			if (Input.IsKeyPressed(Key.F11))
+			if (Input.IsActionJustPressed("ToggleScreenMode"))
 			{
 				Meta.Instance.IsFullScreen = !Meta.Instance.IsFullScreen;
 				Meta.Instance.ApplyOptions();

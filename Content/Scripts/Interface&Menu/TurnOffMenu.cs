@@ -1,4 +1,5 @@
 using Godot;
+using GodotSteam;
 using System;
 
 public partial class TurnOffMenu : Control
@@ -8,6 +9,7 @@ public partial class TurnOffMenu : Control
     {
         UnchangableMeta.SaveToFile();
         Meta.Instance.SaveToFile();
+        Steam.SteamShutdown();
         GetTree().Quit();
     }
     public void Cancel()

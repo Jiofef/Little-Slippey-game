@@ -130,7 +130,6 @@ disabled = true
 
 [node name="ExplosionSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_v2rgn")
-bus = &"CrossExplosion"
 
 [node name="ExplosionAnimation" parent="." instance=ExtResource("5_30vlq")]
 sprite_frames = SubResource("SpriteFrames_chf6h")

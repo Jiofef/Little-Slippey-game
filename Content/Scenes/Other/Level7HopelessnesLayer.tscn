@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://45vtxkc30vn7"]
 
 [ext_resource type="Script" path="res://Content/Scripts/Levels/Level7HopelessnessLayer.cs" id="1_52qy1"]
-[ext_resource type="VideoStream" path="res://Other/VintageFilterVideo.ogv" id="2_rc8ov"]
+[ext_resource type="VideoStream" path="res://Content/Other/VintageFilterVideo.ogv" id="2_rc8ov"]
 [ext_resource type="AudioStream" uid="uid://dfy21dsuhqjdy" path="res://Content/Sounds/Levels/Level7FilmNoise.mp3" id="3_3ai6c"]
 
 [node name="HopelessnessLayer" type="CanvasLayer"]

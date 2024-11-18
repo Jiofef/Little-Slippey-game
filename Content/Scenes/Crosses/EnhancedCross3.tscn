@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://b5csm7lkembqn"]
 
 [ext_resource type="Script" path="res://Content/Scripts/Crosses/EnhancedElementalCross.cs" id="1_cu7se"]
-[ext_resource type="Shader" path="res://Other/StaticNoiseShader.gdshader" id="1_f3m00"]
+[ext_resource type="Shader" path="res://Content/Other/StaticNoiseShader.gdshader" id="1_f3m00"]
 [ext_resource type="Texture2D" uid="uid://ctq5ebhau88rj" path="res://Content/Sprites/Crosses/EnhancedElementalCrossAnimation.png" id="3_gthcy"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3aj87"]

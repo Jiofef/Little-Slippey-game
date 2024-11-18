@@ -1,10 +1,35 @@
 using Godot;
+using GodotSteam;
 using System.IO;
 
 public partial class InitializationScene : Control
 {
-	public override void _Ready()
+    private const uint AppId = 3288650;
+    public override void _Ready()
 	{
+        OS.SetEnvironment("SteamAppId", AppId.ToString());
+        OS.SetEnvironment("SteamGameId", AppId.ToString());
+
+        Steam.RestartAppIfNecessary(AppId);
+        Steam.SteamInit();
+
+
+        var isSteamRunning = Steam.IsSteamRunning();
+        if (!isSteamRunning)
+        {
+            GD.Print("Steam is not running.");
+            return;
+        }
+        else
+        {
+            var steamId = Steam.GetSteamID();
+            var name = Steam.GetFriendPersonaName(steamId);
+
+            GD.Print("Your Steam Name: " + name);
+        }
+
+
+
         Directory.CreateDirectory(System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData) + @"\Godot\app_userdata\Little Slippey\mods\");
         Meta.Instance.LoadOptions();
         Meta.Instance.ApplyOptions();

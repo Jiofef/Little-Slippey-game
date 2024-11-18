@@ -1,6 +1,8 @@
+res://addons/godotsteam_csharpbindings
+res://Content/Other
+res://
 res://Content/Sprites/Other
 res://Content/Scenes/Crosses
-res://Content/Other
 res://Content/Scripts/Crosses
 res://Content/Scenes/Other
 res://Content
@@ -10,7 +12,6 @@ res://Content/Scenes/DefaultLevelEditorObjects
 res://Content/Scripts/Levels
 D:/Великие Калловые Архивы/Little Slip
 D:/Великие Калловые Архивы/Little Slippey
-res://
 res://Content/Scenes/Levels/FullParts
 res://Content/Scenes/PlayerSkins
 res://Content/Scripts/Other
@@ -19,4 +20,3 @@ res://Content/Sprites/Levels/Level3
 res://Content/Sprites/Levels/Level6
 res://Content/Sprites/Levels/Level4
 res://Content/Sprites/PlayerSkins
-res://Content/Sounds/Levels
