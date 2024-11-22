@@ -1574,6 +1574,14 @@ libraries = {
 "": SubResource("AnimationLibrary_xtxak")
 }
 
+[node name="ExtraCursor" type="Sprite2D" parent="CanvasLayer"]
+scale = Vector2(4, 4)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/ExtraCursor"]
+visible = false
+offset_right = 40.0
+offset_bottom = 40.0
+
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
@@ -1590,7 +1598,7 @@ default_color = Color(0.501961, 0.501961, 0.501961, 0.156863)
 [connection signal="pressed" from="CanvasLayer/TileModeGUI/Rectangle" to="." method="SetTileInstrument" binds= [1]]
 [connection signal="pressed" from="CanvasLayer/TileModeGUI/Filling" to="." method="SetTileInstrument" binds= [2]]
 [connection signal="pressed" from="CanvasLayer/TileModeGUI/SmartFilling" to="." method="SetTileInstrument" binds= [3]]
-[connection signal="item_selected" from="CanvasLayer/NodeModeGUI/NodesButtonsTree" to="." method="SelectItem"]
+[connection signal="item_selected" from="CanvasLayer/NodeModeGUI/NodesButtonsTree" to="." method="SelectNode"]
 [connection signal="item_selected" from="CanvasLayer/NodeModeGUI/FilesButtonsTree" to="." method="SelectFile"]
 [connection signal="toggled" from="CanvasLayer/NodeModeGUI/SeeAllTheNodes" to="." method="SetSeeAllTheNodes"]
 [connection signal="toggled" from="CanvasLayer/NodeModeGUI/CheckButton" to="." method="SetDoSmartPos"]

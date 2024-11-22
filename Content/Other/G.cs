@@ -52,6 +52,7 @@ public partial class G : Node
         else if (@event is InputEventJoypadButton || @event is InputEventJoypadMotion)
         {
 			string JoyName = Input.GetJoyName(0);
+			GD.Print(JoyName);
 			if (JoyName == "") return;
 			if (JoyName[0] == 'P' && JoyName[1] == 'S')
 				TypeOfUsedController = "PS Gamepad";

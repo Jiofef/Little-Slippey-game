@@ -27,7 +27,6 @@ public partial class WorkshopMenu : Control
 
         for (int i = 0; i < _directories.Length; i++)
         {
-            GD.Print(_directories[i]);
             try
             {
                 if (File.Exists(_directories[i] + @"\mod_info.json"))

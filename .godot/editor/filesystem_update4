@@ -2,8 +2,6 @@ res://default_env.tres
 res://Content/Scenes/Interface&Menu/LevelEditorSmallButton.tscn
 res://Content/Other/BrightnessShader.gdshader
 res://Content/Scenes/Interface&Menu/LevelEditor.tscn
-res://Content/Scenes/Levels/FullParts/Level1.tscn
-res://Content/Scenes/Interface&Menu/WelcomeToGOS.tscn
 res://Content/Other/G.cs
 res://Content/Scripts/Other/DidLevelIntroPassedSet.cs
 res://Content/Scripts/Interface&Menu/EnhancedButton.cs
@@ -88,3 +86,6 @@ res://Content/Scripts/Crosses/BlueElementalCrossPart.cs
 res://Content/Scripts/Interface&Menu/ScrollableContainer.cs
 res://Content/Scripts/Levels/BaseLevelScript.cs
 res://Content/Scripts/Other/Camera.cs
+res://Content/Scenes/Achievements/Achievement1.tscn
+res://Content/Scenes/Achievements/Achievement2.tscn
+res://Content/Scenes/Achievements/Achievement3.tscn

@@ -1,3 +1,5 @@
+RichTextLabel
+Sprite2D
 Camera2D
 CodeEdit
 TextureRect
@@ -8,7 +10,5 @@ TabContainer
 TextureButton
 AnimationPlayer
 Button
-RichTextLabel
 PopupMenu
 PopupPanel
-LineEdit

@@ -1,12 +1,13 @@
 using Godot;
 using GodotSteam;
+using System.Runtime.InteropServices;
 
 public partial class WelcomeToGOS : Control
 {
 	Control _openedMenu;
 
     int _openedMenuNumber; // if value == 0, there are no opened menus
-	public override void _Ready()
+    public override void _Ready()
 	{
         G.CurrentPopupAchievementsLayer = GetNode<CanvasLayer>("PopupAchievementsLayer");
 		GetNode<Sprite2D>("Buttons/Titles/Notify").Visible = UnchangableMeta.IsThereNewContentInRecycleBin;

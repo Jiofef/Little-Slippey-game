@@ -1,4 +1,5 @@
 using Godot;
+using GodotSteam;
 using System;
 using System.Linq;
 
@@ -56,6 +57,8 @@ public partial class BaseLevelScript : Node2D
             _crosses[i] = ResourceLoader.Load<PackedScene>("res://Content/Scenes/Crosses/" + (_isCrossesEnhanced ? "Enhanced" : "") + "Cross" + (i + 1) + ".tscn");
 
         ProcessMode = ProcessModeEnum.Pausable;
+
+        Steam.OverlayToggled += (bool active, bool userInitiated, uint appId) => GetParent().Call("ChangePause", active);
     }
 
     public override void _PhysicsProcess(double delta)
