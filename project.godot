@@ -27,6 +27,7 @@ buses/channel_disable_time=0.0
 Meta="*res://Content/Other/Meta.cs"
 UnchangableMeta="*res://Content/Other/UnchangableMeta.cs"
 G="*res://Content/Other/G.cs"
+FileSystemExtension="*res://Content/Other/FileSystemExtension.cs"
 
 [display]
 

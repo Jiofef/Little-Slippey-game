@@ -1198,7 +1198,7 @@ offset_right = 536.0
 offset_bottom = 29.0
 text = "See all the nodes"
 
-[node name="CheckButton" type="CheckButton" parent="CanvasLayer/NodeModeGUI"]
+[node name="SnapToGrid" type="CheckButton" parent="CanvasLayer/NodeModeGUI"]
 layout_mode = 0
 offset_left = 312.0
 offset_top = 25.0
@@ -1601,7 +1601,7 @@ default_color = Color(0.501961, 0.501961, 0.501961, 0.156863)
 [connection signal="item_selected" from="CanvasLayer/NodeModeGUI/NodesButtonsTree" to="." method="SelectNode"]
 [connection signal="item_selected" from="CanvasLayer/NodeModeGUI/FilesButtonsTree" to="." method="SelectFile"]
 [connection signal="toggled" from="CanvasLayer/NodeModeGUI/SeeAllTheNodes" to="." method="SetSeeAllTheNodes"]
-[connection signal="toggled" from="CanvasLayer/NodeModeGUI/CheckButton" to="." method="SetDoSmartPos"]
+[connection signal="toggled" from="CanvasLayer/NodeModeGUI/SnapToGrid" to="." method="SetDoSmartPos"]
 [connection signal="id_pressed" from="CanvasLayer/NodeModeGUI/NodePopupMenu" to="." method="NodePopupAction"]
 [connection signal="id_pressed" from="CanvasLayer/NodeModeGUI/FilePopupMenu" to="." method="FilePopupAction"]
 [connection signal="text_submitted" from="CanvasLayer/NodeModeGUI/NodeNameEditPopup/LineEdit" to="." method="SetNodeName"]

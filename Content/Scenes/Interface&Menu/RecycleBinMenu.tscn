@@ -80,10 +80,10 @@ grow_vertical = 2
 script = ExtResource("1_a6dy1")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "Opening"
 libraries = {
 "": SubResource("AnimationLibrary_j3e8n")
 }
+autoplay = "Opening"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(4, 4)
@@ -783,7 +783,7 @@ Factorio developers, Pizza Tower developers, Arsi \"Hakita\" Patala, Edmund McMi
 Gooseworx, Nelward, Toby Fox, Richard David James, Mike Paradinas, NikeTheHuman,
 Guk Svetlana, Alexey Panasenko, Dmitriy Pogodaev, Serbina Valentina, Konstanin Panov,
 Sergey HellYeah Belyakov, Roman Hudyakov, Elena Kishenko,
-Illya, my mom, and You, Player.
+Xenia, my mom, and You, Player.
 
 Without you all this game wouldn't exist"
 

@@ -71,7 +71,7 @@ public partial class WorkshopMenu : Control
         ModButton.GetNode<RichTextLabel>("Name").Text = model["name"].ToString();
         if (ModTypeIcons.TryGetValue(model["mod_type"], out Variant value))
             ModButton.GetNode<Sprite2D>("ModType").Texture = (Texture2D)value;
-
+        
         ModButton.FocusEntered += () => ShowModInfo(modIndex);
         ModButton.Pressed += () =>
         {
@@ -139,18 +139,12 @@ public partial class WorkshopMenu : Control
             if (!Directory.Exists(SuggestedPath))
             {
                 _directories = _directories.Append(SuggestedPath).ToArray();
-                Directory.CreateDirectory(SuggestedPath);
-                DirAccess.CopyAbsolute("res://Content/Scenes/Other/UserLevelLayout.tscn", SuggestedPath + @"\MainScene.tscn"); 
-                DirAccess.CopyAbsolute("res://Content/Sprites/Interface/CustomMapDefaultPreview.png", SuggestedPath + @"\PreviewPicture.png");
-                foreach (string value in new string[]{ ""})
-                {
 
-                }
-                Directory.CreateDirectory(SuggestedPath + @"\Other");
-                Directory.CreateDirectory(SuggestedPath + @"\Scenes");
-                Directory.CreateDirectory(SuggestedPath + @"\Scripts");
-                Directory.CreateDirectory(SuggestedPath + @"\Scounds");
-                Directory.CreateDirectory(SuggestedPath + @"\Sprites");
+                foreach (string value in new string[]{ "", @"\Other", @"\Scenes", @"\Scripts", @"\Sounds", @"\Sprites" })
+                    Directory.CreateDirectory(SuggestedPath + value);
+                ResourceSaver.Save(ResourceLoader.Load("res://Content/Scenes/Other/UserLevelLayout.tscn"), SuggestedPath + @"\MainScene.tscn");
+                FileSystemExtension.CopyResourceFileTo("res://Content/Scenes/Other/UserLevelLayout.tscn", SuggestedPath + @"\MainScene.tscn");
+                FileSystemExtension.CopyByteResourceFileTo("res://Content/Sprites/Interface/CustomMapDefaultPreview.png", SuggestedPath + @"\PreviewPicture.png");
 
                 var modPreview = (ModPreview)ResourceLoader.Load<PackedScene>("res://Content/Scenes/Interface&Menu/ModPreviewLayout.tscn").Instantiate();
                 modPreview._resourcePath = SuggestedPath + @"\PreviewPicture.png";

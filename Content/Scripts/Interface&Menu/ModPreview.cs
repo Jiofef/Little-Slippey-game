@@ -10,18 +10,9 @@ public partial class ModPreview : Control
 		if (previewPicture != null && FileAccess.FileExists(_resourcePath))
 		{
 			if (_resourcePath.Substr(0, 6) != "res://")
-			{
-                Image image = new Image();
-                image.Load(_resourcePath);
-                ImageTexture texture = new ImageTexture();
-                texture.SetImage(image);
-
-                previewPicture.Texture = texture;
-            }
+                previewPicture.Texture = FileSystemExtension.LoadNonResourceImage(_resourcePath);
 			else
-			{
                 previewPicture.Texture = (Texture2D)GD.Load(_resourcePath);
-            }
         }
 	}
 }

@@ -1,8 +1,9 @@
+TextureRect
+Node
 RichTextLabel
 Sprite2D
 Camera2D
 CodeEdit
-TextureRect
 Node2D
 Control
 ColorPickerButton
@@ -11,4 +12,3 @@ TextureButton
 AnimationPlayer
 Button
 PopupMenu
-PopupPanel

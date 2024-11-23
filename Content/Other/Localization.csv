@@ -354,7 +354,7 @@ Factorio developers, Pizza Tower developers, Arsi ""Hakita"" Patala, Edmund McMi
 Gooseworx, Nelward, Toby Fox, Richard David James, Mike Paradinas, NikeTheHuman,
 Guk Svetlana, Alexey Panasenko, Dmitriy Pogodaev, Serbina Valentina, Konstanin Panov,
 Sergey HellYeah Belyakov, Roman Hudyakov, Elena Kishenko,
-Illya, my mom, and You, Player.
+Xenia, my mom, and You, Player.
 
 Without you all this game wouldn't exist","
 Huge Thanks from Jiofef to Alexandr Steif, Diana Steif, Tengi, Frontend Pashtet, 
@@ -362,11 +362,11 @@ Factorio developers, Pizza Tower developers, Arsi ""Hakita"" Patala, Edmund McMi
 Gooseworx, Nelward, Toby Fox, Richard David James, Mike Paradinas, NikeTheHuman,
 Guk Svetlana, Alexey Panasenko, Dmitriy Pogodaev, Serbina Valentina, Konstanin Panov,
 Sergey HellYeah Belyakov, Roman Hudyakov, Elena Kishenko,
-Illya, my mom, and You, Player.
+Xenia, my mom, and You, Player.
 
 Without you all this game wouldn't exist","
 Jiofef хочет лично поблагодарить: Александра Стейф, Диану Стейф, Tengi, Фронтенд Паштета, разработчиков Factorio, разработчиков Pizza Tower, Арси ""Хакита"" Паталу, Эдмунда МакМиллена, Gooseworx, Нелварда, Тоби Фокса, Ричарда Дэвида Джеймса, Майка Парадинаса, Никиту Жижова, Гук Светлану, Алексея Панасенко, Дмитрия Погодаева, Сербину Валентину, Константина Панова, Сергея-HellYeah-Белякова, Романа Худякова, Елену Кищенко,
-Иллию, мою маму и Тебя, Игрок.
+Ксению, мою маму и Тебя, Игрок.
 
 Без вас всех этой игры бы не существовало"
 "
@@ -725,3 +725,11 @@ An object for scripting at the level. Emits signals when pressed and released,An
 "Draws objects separately from the rest of the level, ignoring its position, rotation, and so on. Simply put, it pins objects on the screen","Draws objects separately from the rest of the level, ignoring its position, rotation, and so on. Simply put, it pins objects on the screen","Рендерит объекты отдельно от остального уровня, игнорируя позицию, вращение и т.д. Проще говоря, закрепляет объекты на экране"
 Used to create a realistic moving background,Used to create a realistic moving background,Используется в создании реалистично движущегося фона
 "The basis of all GUI elements. It has the basic properties of a GUI element (size, minimum size, trimming elements outside of itself, etc.). It is primarily used as a container for interface elements. By itself, it does not ""attach"" objects to the camera, use CanvasLayer for this","The basis of all GUI elements. It has the basic properties of a GUI element (size, minimum size, trimming elements outside of itself, etc.). It is primarily used as a container for interface elements. By itself, it does not ""attach"" objects to the camera, use CanvasLayer for this","Основа всех элементов интерфейса. Обладает базовыми свойствами элемента интерфейса (размер, минимальный размер, обрезка элементов за пределами себя и т.д.). В первую очередь используется как контейнер для элементов интерфейса. Сам по себе он не ""прикрепляет"" объекты к камере, для этого используйте CanvasLayer"
+,,
+,,
+,,
+,,
+,,
+,,
+Snap to grid,Snap to grid,Привязка к сетке
+See all the nodes,See all the nodes,Видеть все ноды
