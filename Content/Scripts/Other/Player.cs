@@ -18,7 +18,7 @@ public partial class Player : CharacterBody2D
     readonly float _floatDelta = 0.016667f;
 
     // other variable
-    private bool _isFliph, _skinAnimationPlayerEnabled;
+    private bool _isFliph, _skinAnimationPlayerEnabled, _readyAlready;
 
     private string _animationName;
 
@@ -42,7 +42,8 @@ public partial class Player : CharacterBody2D
 
     public override void _Ready()
     {
-        GetNode("SkinContainer/Sprite2D").QueueFree();
+        if (_readyAlready) return;
+        GetNode("SkinContainer/Sprite2D")?.QueueFree();
         string[] SkinNames = {"Slippey", "Samey", "Sanboy", "Strawman", "Pineplum", "Bondey", "Sleepy", "Daley", "Hostey", "CompressMass", "JioYobaFefski", "SlippeyChad", "MISSINGNULL", "Corey"};
         _animatedSprite = (AnimatedSprite2D)ResourceLoader.Load<PackedScene>("res://Content/Scenes/PlayerSkins/" + SkinNames[Meta.Instance.ChosenSkinIndex] + ".tscn").Instantiate();
         _animatedSprite.Connect("animation_finished", new Callable(this, "AnimationFinished"));
@@ -56,6 +57,8 @@ public partial class Player : CharacterBody2D
         var cameraCallable = new Callable(GetNode("Camera2D"), "LimitsChangingBy");
         if (!IsConnected("CameraLimitsChanged", cameraCallable))
             Connect("CameraLimitsChanged", cameraCallable);
+
+        _readyAlready = true;
     }
 
     public override void _PhysicsProcess(double delta)

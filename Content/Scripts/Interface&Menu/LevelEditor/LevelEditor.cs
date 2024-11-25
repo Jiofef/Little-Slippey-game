@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Reflection;
+using System.Threading.Tasks;
 
 public partial class LevelEditor : Control
 {
@@ -34,7 +36,7 @@ public partial class LevelEditor : Control
     private string _pickedTreeItem;
     private Vector2 _itemPickMousePos;
 
-    private string _mapPath = "", _mapFolder = "", _selectedFile = "";
+    private string _mapPath = "", _mapFolder = "", _selectedFilePath = "";
     private readonly string _defaultPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData) + @"\Godot\app_userdata\Little Slippey\mods\";
 
     public override void _Ready()
@@ -63,6 +65,11 @@ public partial class LevelEditor : Control
         _nodeModeGui = GetNode<Control>("CanvasLayer/TileModeGUI");
         _guiDelayTimer = GetNode<Timer>("CanvasLayer/GUIDelayTimer");
         _codeEdit = GetNode<CodeEdit>("CanvasLayer/CodeModeGUI/CodeEdit");
+
+        _filesButtonsTree = GetNode<Tree>("CanvasLayer/NodeModeGUI/FilesButtonsTree");
+        _nodesButtonsTree = GetNode<Tree>("CanvasLayer/NodeModeGUI/NodesButtonsTree");
+
+
         UpdateVisibleTileMapsLayers();
         UpdateVisibleAtlases();
         UpdateVisibleTileSet();
@@ -71,7 +78,6 @@ public partial class LevelEditor : Control
 
         GetTree().Root.FilesDropped += AddFile;
         TreeExiting += () => GetTree().Root.FilesDropped -= AddFile;
-
 
         GetNode<Tree>("CanvasLayer/NodeModeGUI/NodesButtonsTree").Connect("gui_input", new Callable(this, "OnNodesTreeGuiInput"));
         GetNode<Tree>("CanvasLayer/NodeModeGUI/FilesButtonsTree").Connect("gui_input", new Callable(this, "OnFilesTreeGuiInput"));
@@ -192,10 +198,10 @@ public partial class LevelEditor : Control
                 else if (DefaultCondition && DoesItemsBelongTo(FilesButtonsContainer) && IsTargetADirectory)
                 {
 
-                    string OldPath = SelectedFilePath, NewPath = TargetItem.GetMeta("FilePath").ToString() + @"\" + GetFileName(_selectedFile);
-                    MoveFile(OldPath, TargetItem.GetMeta("FilePath").ToString() + @"\" + GetFileName(_selectedFile));
+                    string OldPath = SelectedFilePath, NewPath = TargetItem.GetMeta("FilePath").ToString() + @"\" + GetFileName(_selectedFilePath);
+                    MoveFile(OldPath, TargetItem.GetMeta("FilePath").ToString() + @"\" + GetFileName(_selectedFilePath));
                     SelectedItem.SetMeta("FilePath", NewPath);
-                    _selectedFile = NewPath;
+                    _selectedFilePath = NewPath;
 
                     MoveTreeItem(SelectedItem, TargetItem);
                     Recursion(SelectedItem);
@@ -226,7 +232,7 @@ public partial class LevelEditor : Control
                         switch (Path.GetExtension(SelectedFilePath))
                         {
                             case ".tscn":
-                                var node = GD.Load<PackedScene>(_selectedFile).Instantiate();
+                                var node = GD.Load<PackedScene>(_selectedFilePath).Instantiate();
                                 CreateNode(node, node.Name);
 
                                 if (node is Node2D or Control)
@@ -236,11 +242,11 @@ public partial class LevelEditor : Control
                             case ".png" or ".jpg":
                                 var sprite = new Sprite2D
                                 {
-                                    Texture = FileSystemExtension.LoadNonResourceImage(_selectedFile),
+                                    Texture = FileSystemExtension.LoadNonResourceImage(_selectedFilePath),
                                     Scale = new Vector2(4, 4)
                                 };
 
-                                CreateNode(sprite, GetFileName(_selectedFile));
+                                CreateNode(sprite, GetFileName(_selectedFilePath));
                                 sprite.Set("global_position", _globalMousePos);
                                 break;
                         }
@@ -580,11 +586,14 @@ public partial class LevelEditor : Control
         foreach (Node child in node.GetChildren())
             child.QueueFree();
     }
-    private void MoveTreeItem(TreeItem item, TreeItem target)
+    private void MoveTreeItem(TreeItem item, TreeItem target, bool UnCollapseTarget = true)
     {
         item.GetParent().RemoveChild(item);
 
         target.AddChild(item);
+
+        if (UnCollapseTarget)
+            target.Collapsed = false;
     }
 
     // TileMode Section
@@ -791,7 +800,9 @@ public partial class LevelEditor : Control
     }
 
     // NodeMode Section
+
     Node _selectedNode;
+    Tree _nodesButtonsTree;
 
     private void SetSelectedNode(Node node)
     {
@@ -804,9 +815,8 @@ public partial class LevelEditor : Control
         if (Input.IsActionJustPressed("MouseLeftClick"))
             TakeTreeitem("Node");
 
-        var NodesButtonsContainer = GetNode<Tree>("CanvasLayer/NodeModeGUI/NodesButtonsTree");
         Node PreviousSelectedNode = _selectedNode;
-        SetSelectedNode((Node)NodesButtonsContainer.GetSelected().GetMeta("CorrespondingNode"));
+        SetSelectedNode((Node)_nodesButtonsTree.GetSelected().GetMeta("CorrespondingNode"));
         UpdateVisibleProperties();
 
         if (Input.IsMouseButtonPressed(MouseButton.Right))
@@ -822,16 +832,10 @@ public partial class LevelEditor : Control
     }
     public void NodePopupAction(int actionIndex)
     {
-        var NodesButtonsContainer = GetNode<Tree>("CanvasLayer/NodeModeGUI/NodesButtonsTree");
         Node node;
-        TreeItem Item;
-        TreeItem CreateItem(Node itemNode, TreeItem parent = null)
-        {
-            Item = NodesButtonsContainer.CreateItem(parent == null ? NodesButtonsContainer.GetSelected() : parent);
-            Item.SetText(0, itemNode.Name);
-            Item.SetMeta("CorrespondingNode", itemNode);
-            return Item;
-        }
+
+        TreeItem SelectedItem = _nodesButtonsTree.GetSelected();
+
         switch (actionIndex)
         {
             case 0:
@@ -842,7 +846,7 @@ public partial class LevelEditor : Control
                 G.NodeCopyBuffer.Add(_selectedNode.Duplicate());
                 _selectedNode.QueueFree();
                 _selectedNode = null;
-                NodesButtonsContainer.GetSelected().Free();
+                _nodesButtonsTree.GetSelected().Free();
                 break;
             case 2:
                 G.NodeCopyBuffer.Clear();
@@ -853,7 +857,7 @@ public partial class LevelEditor : Control
                 _selectedNode.AddChild(node);
                 node.Name = G.NodeCopyBuffer[0].Name;
 
-                CreateItem(node);
+                CreateNodeItem(node);
                 break;
             case 4:
                 var lineEditPopup = GetNode<PopupPanel>("CanvasLayer/NodeModeGUI/NodeNameEditPopup");
@@ -868,7 +872,7 @@ public partial class LevelEditor : Control
                 _selectedNode.GetParent().AddChild(Duplicate);
                 Duplicate.Name = _selectedNode.Name;
 
-                CreateItem(Duplicate, NodesButtonsContainer.GetSelected().GetParent());
+                CreateNodeItem(Duplicate, SelectedItem.GetParent());
                 break;
             case 6:
                 SaveNodeTo(_selectedNode, _mapFolder);
@@ -877,9 +881,7 @@ public partial class LevelEditor : Control
                 DisplayServer.ClipboardSet(_level.GetPathTo(_selectedNode));
                 break;
             case 8:
-                _selectedNode.QueueFree();
-                _selectedNode = null;
-                NodesButtonsContainer.GetSelected().Free();
+                DeleteNodeByItem(SelectedItem);
                 break;
         }
     }
@@ -907,9 +909,7 @@ public partial class LevelEditor : Control
     }
     private void UpdateVisibleNodesButtons()
     {
-        var NodesButtonsContainer = GetNode<Tree>("CanvasLayer/NodeModeGUI/NodesButtonsTree");
-
-        NodesButtonsContainer.Clear();
+        _nodesButtonsTree.Clear();
 
         ButtonGroup buttonGroup = new ButtonGroup();
         var texture = ResourceLoader.Load<Texture2D>("res://Content/Sprites/Interface/AcceptButton.png");
@@ -926,7 +926,7 @@ public partial class LevelEditor : Control
                 Recursion(node, NextItem);
             }
         }
-        var Item = NodesButtonsContainer.CreateItem();
+        var Item = _nodesButtonsTree.CreateItem();
         Item.SetText(0, _mainLevelScene.Name);
         Item.SetMeta("CorrespondingNode", _mainLevelScene);
         Recursion(_mainLevelScene, Item);
@@ -936,16 +936,41 @@ public partial class LevelEditor : Control
     {
         PackedScene packedScene = new PackedScene();
         packedScene.Pack(node.Duplicate());
-        ResourceSaver.Save(packedScene, directory + @"\" + node.Name + ".tscn");
-        UpdateVisibleFiles();
+
+        string path = directory + @"\" + node.Name + ".tscn";
+
+        ResourceSaver.Save(packedScene, path);
+        CreateFileItem(path, GetTargetedTreeItem(_filesButtonsTree));
+    }
+    private void DeleteNodeByItem(TreeItem nodeItem)
+    {
+        if (nodeItem.GetTree() != _nodesButtonsTree) return;
+
+        var node = (Node)nodeItem.GetMeta("CorrespondingNode");
+        _allTheNodes = _allTheNodes.Where(x => x !=  node).ToArray();
+        if (_selectedNode == node) 
+            _selectedNode = null;
+        node.QueueFree();
+        nodeItem.Free();
+    }
+
+    TreeItem CreateNodeItem(Node itemNode, TreeItem parent = null)
+    {
+        bool IsParentValid = parent != null && parent.GetTree() == _nodesButtonsTree;
+
+        TreeItem Item;
+        Item = _nodesButtonsTree.CreateItem(IsParentValid ? parent : _nodesButtonsTree.GetSelected());
+        Item.SetText(0, itemNode.Name);
+        Item.SetMeta("CorrespondingNode", itemNode);
+        return Item;
     }
 
     // Files
+    Tree _filesButtonsTree;
+
     private void UpdateVisibleFiles()
     {
-        var FilesButtonsContainer = GetNode<Tree>("CanvasLayer/NodeModeGUI/FilesButtonsTree");
-
-        FilesButtonsContainer.Clear();
+        _filesButtonsTree.Clear();
 
         ButtonGroup buttonGroup = new ButtonGroup();
         var texture = ResourceLoader.Load<Texture2D>("res://Content/Sprites/Interface/AcceptButton.png");
@@ -975,51 +1000,41 @@ public partial class LevelEditor : Control
                 }
             }
         }
-        var Item = FilesButtonsContainer.CreateItem();
+        var Item = _filesButtonsTree.CreateItem();
         Item.SetText(0, _mapFolder.Remove(0, _defaultPath.Length));
         Item.SetMeta("FilePath", _mapFolder);
         Recursion(_mapFolder, Item);
     }
     private void SetSelectedFile(string path)
     {
-        _selectedFile = path;
+        _selectedFilePath = path;
     }
     private void FilePopupAction(int actionIndex)
     {
-        _allTheFiles = new string[0];
-        var FilesButtonsContainer = GetNode<Tree>("CanvasLayer/NodeModeGUI/FilesButtonsTree");
-        TreeItem Item;
-        TreeItem CreateItem(string path, TreeItem parent = null)
-        {
-            Item = FilesButtonsContainer.CreateItem(parent == null ? FilesButtonsContainer.GetSelected() : parent);
-            Item.SetText(0, path.Remove(0, _selectedFile.Length + 1));
-            Item.SetMeta("FilePath", path);
-            _allTheFiles = _allTheFiles.Append(path).ToArray();
-            return Item;
-        }
+        TreeItem SelectedItem = _filesButtonsTree.GetSelected();
+
         switch (actionIndex)
         {
             case 0:
                 for (int i = 0; ; i++)
                 {
-                    var SuggestedPath = _selectedFile + @"\NewFolder" + i;
+                    var SuggestedPath = _selectedFilePath + @"\NewFolder" + i;
                     if (!Directory.Exists(SuggestedPath))
                     {
                         Directory.CreateDirectory(SuggestedPath);
-                        UpdateVisibleFiles();
+                        CreateFileItem(SuggestedPath, SelectedItem);
                         break;
                     }
                 }
                 break;
             case 1:
-                DirAccess.RemoveAbsolute(_selectedFile);
-                UpdateVisibleFiles();
+                DeleteFileByItem(SelectedItem);
                 break;
             case 2:
-                DisplayServer.ClipboardSet(ProjectSettings.LocalizePath(ProjectSettings.LocalizePath(_selectedFile)));
+                DisplayServer.ClipboardSet(ProjectSettings.LocalizePath(ProjectSettings.LocalizePath(_selectedFilePath)));
                 break;
             case 3:
-                DisplayServer.ClipboardSet(_selectedFile);
+                DisplayServer.ClipboardSet(_selectedFilePath);
                 break;
             case 4:
                 var lineEditPopup = GetNode<PopupPanel>("CanvasLayer/NodeModeGUI/FileNameEditPopup");
@@ -1033,27 +1048,26 @@ public partial class LevelEditor : Control
 
                 break;
             case 6:
-                GD.Print(_selectedFile.Remove(_selectedFile.RFind(@"\")));
-                Process.Start("explorer.exe", _selectedFile.Remove(_selectedFile.RFind(@"\")));
+                Process.Start("explorer.exe", _selectedFilePath.Remove(_selectedFilePath.RFind(@"\")));
                 break;
             case 7:
-                Process.Start("explorer.exe", _selectedFile);
+                Process.Start("explorer.exe", _selectedFilePath);
                 break;
         }
     }
     private void SetFileName(string value)
     {
-        if (_selectedFile != null)
+        if (_selectedFilePath != null)
         {
-            string NewPath = GetFilePath(_selectedFile) + value;
+            string NewPath = GetFilePath(_selectedFilePath) + value;
 
-            MoveFile(_selectedFile, NewPath);
+            MoveFile(_selectedFilePath, NewPath);
 
-            var treeItem = GetNode<Tree>("CanvasLayer/NodeModeGUI/FilesButtonsTree").GetSelected();
+            var treeItem = _filesButtonsTree.GetSelected();
             treeItem.SetText(0, value);
             treeItem.SetMeta("FilePath", NewPath);
 
-            _selectedFile = NewPath;
+            _selectedFilePath = NewPath;
         }
         GetNode<PopupPanel>("CanvasLayer/NodeModeGUI/FileNameEditPopup").Hide();
     }
@@ -1062,9 +1076,8 @@ public partial class LevelEditor : Control
         if (Input.IsActionJustPressed("MouseLeftClick"))
             TakeTreeitem("File");
 
-        var FilesButtonsContainer = GetNode<Tree>("CanvasLayer/NodeModeGUI/FilesButtonsTree");
-        string PreviousSelectedFile = _selectedFile;
-        SetSelectedFile(FilesButtonsContainer.GetSelected().GetMeta("FilePath").ToString());
+        string PreviousSelectedFile = _selectedFilePath;
+        SetSelectedFile(_filesButtonsTree.GetSelected().GetMeta("FilePath").ToString());
 
         //UpdateVisibleProperties();
 
@@ -1088,16 +1101,41 @@ public partial class LevelEditor : Control
     }
     public void AddFile(string[] files)
     {
-        var FilesButtonsContainer = GetNode<Tree>("CanvasLayer/NodeModeGUI/FilesButtonsTree");
-        TreeItem SelectedFileItem = FilesButtonsContainer.GetSelected();
+        TreeItem SelectedFileItem = _filesButtonsTree.GetSelected();
         string SubString = @"\" + GetFileName(files[0]);
 
-        DirAccess.CopyAbsolute(files[0], SelectedFileItem != null ? SelectedFileItem.GetMeta("FilePath").ToString() + SubString : FilesButtonsContainer.GetRoot().GetMeta("FilePath").ToString() + SubString);
+        DirAccess.CopyAbsolute(files[0], SelectedFileItem != null ? SelectedFileItem.GetMeta("FilePath").ToString() + SubString : _filesButtonsTree.GetRoot().GetMeta("FilePath").ToString() + SubString);
 
         UpdateVisibleFiles();
     }
+    private void DeleteFileByItem(TreeItem fileItem)
+    {
+        if (fileItem.GetTree() != _filesButtonsTree) return;
 
-    //Tweaks
+        var path = (string)fileItem.GetMeta("FilePath");
+        _allTheFiles = _allTheFiles.Where(x => x != path).ToArray();
+        if (_selectedFilePath == path)
+            _selectedFilePath = null;
+        DirAccess.RemoveAbsolute(path);
+        fileItem.Free();
+    }
+
+    TreeItem CreateFileItem(string path, TreeItem parent = null)
+    {
+        bool IsParentValid = parent != null && parent.GetTree() == _filesButtonsTree;
+
+        if (IsParentValid)
+            parent.Collapsed = false;
+
+        TreeItem Item;
+        Item = _filesButtonsTree.CreateItem(IsParentValid ? parent : _filesButtonsTree.GetSelected());
+        Item.SetText(0, GetFileName(path));
+        Item.SetMeta("FilePath", path);
+        _allTheFiles = _allTheFiles.Append(path).ToArray();
+        return Item;
+    }
+
+    //String Tweaks
     bool HasStringFormats(string value, string[] formats)
     {
         foreach (string format in formats)
@@ -1117,159 +1155,147 @@ public partial class LevelEditor : Control
     {
         return path.Remove(path.RFind(@"\")) + @"\";
     }
-    //Tweaks
+    //String Tweaks
 
     // Files end
 
+    private string[] _propertyBlackList =
+    {
+        "global_position", "global_rotation", "global_transform", "global_scale", "global_skew", "global_rotation_degrees", "rotation", "import_path", "name", "owner", "multiplayer", "process"
+    };
+    
     private void UpdateVisibleProperties()
     {
         var propertiesGrid = GetNode<GridContainer>("CanvasLayer/NodeModeGUI/PropertiesGridContainer/VBoxContainer/PropertiesGrid");
-
         KILLCHILDREN(propertiesGrid);
 
-        var properties = _selectedNode.GetPropertyList();
-        properties.Reverse();
-
-        foreach (Godot.Collections.Dictionary item in properties)
+        foreach (Godot.Collections.Dictionary item in _selectedNode.GetPropertyList())
         {
-            var text = new Label();
-            text.Text = item["name"].ToString().Capitalize();
-            text.Theme = GD.Load<Theme>("res://Content/Other/LevelEditor.theme");
+            AddPropertyToGrid(propertiesGrid, item);
+        }
+        void AddPropertyToGrid(GridContainer propertiesGrid, Godot.Collections.Dictionary property)
+        {
+            string propertyName = property["name"].ToString();
 
-            propertiesGrid.AddChild(text);
+            if (_propertyBlackList.Contains(propertyName)) return;
 
-            var propertyValue = _selectedNode.Get(item["name"].ToString());
-            var propertyType = (Variant.Type)(int)item["type"];
-            switch (propertyType)
+            var propertyLabel = new Label { Text = propertyName.Capitalize(), Theme = GD.Load<Theme>("res://Content/Other/LevelEditor.theme") };
+            propertiesGrid.AddChild(propertyLabel);
+
+            var propertyValue = _selectedNode.Get(propertyName);
+            var propertyType = (Variant.Type)(int)property["type"];
+
+
+            var propertyEditor = CreatePropertyEditor(propertyName, propertyType, propertyValue);
+
+            propertiesGrid.AddChild(propertyEditor);
+                
+        }
+
+        Control CreatePropertyEditor(string propertyName, Variant.Type propertyType, Variant propertyValue)
+        {
+            return propertyType switch
             {
-                case Variant.Type.Bool:
-                    var checkBox = new CheckBox();
-                    checkBox.ButtonPressed = (bool)propertyValue;
-                    checkBox.Toggled += (value) => SetProperty(_selectedNode, item["name"].ToString(), Variant.Type.Bool, value);
-                    propertiesGrid.AddChild(checkBox);
-                    break;
-                case Variant.Type.Int or Variant.Type.Float:
-                    var spinBox = new SpinBox();
-                    spinBox.Rounded = false;
-                    spinBox.Step = propertyType == Variant.Type.Float ? 0.000001 : 1;
-                    spinBox.Value = propertyType == Variant.Type.Float ? (float)propertyValue : (int)propertyValue;
-                    spinBox.MinValue = -1000;
-                    spinBox.AllowGreater = true;
-                    spinBox.AllowLesser = true;
-                    spinBox.ValueChanged += (value) => SetProperty(_selectedNode, item["name"].ToString(), Variant.Type.Float, value);
-                    propertiesGrid.AddChild(spinBox);
-                    break;
-                case Variant.Type.String or Variant.Type.StringName:
-                    var lineEdit = new LineEdit();
-                    lineEdit.Text = (string)propertyValue;
-                    lineEdit.TextChanged += (value) => SetProperty(_selectedNode, item["name"].ToString(), Variant.Type.String, value);
-                    propertiesGrid.AddChild(lineEdit);
-                    break;
+                Variant.Type.Bool => CreateCheckBox(propertyName, propertyValue.AsBool()),
+                Variant.Type.Int => CreateSpinBox(propertyName, Variant.Type.Int, propertyValue.AsInt32()),
+                Variant.Type.Float => CreateSpinBox(propertyName, Variant.Type.Float, (float)propertyValue.AsDouble()),
+                Variant.Type.String => CreateLineEdit(propertyName, propertyValue.AsString()),
+                Variant.Type.StringName => CreateLineEdit(propertyName, propertyValue.AsStringName()),
+                Variant.Type.Vector2 => CreateVector2Editor(propertyName, propertyValue.AsVector2()),
+                Variant.Type.Rect2 => CreateRect2Editor(propertyName, propertyValue.AsRect2()),
+                Variant.Type.Color => CreateColorPicker(propertyName, propertyValue.AsColor()),
+                _ => new Control()
+            };
+        }
 
-                case Variant.Type.Vector2 or Variant.Type.Vector2I:
-                    {
-                        var vectorSpinBoxX = new SpinBox();
-                        vectorSpinBoxX.Rounded = false;
-                        vectorSpinBoxX.Step = propertyType == Variant.Type.Float ? 0.000001 : 1;
-                        vectorSpinBoxX.MinValue = -1000;
-                        vectorSpinBoxX.AllowGreater = true;
-                        vectorSpinBoxX.AllowLesser = true;
-                        var vectorSpinBoxY = (SpinBox)vectorSpinBoxX.Duplicate();
-                        vectorSpinBoxX.Value = ((Vector2)propertyValue).X;
-                        vectorSpinBoxY.Value = ((Vector2)propertyValue).Y;
-                        vectorSpinBoxX.ValueChanged += (value) => SetProperty(_selectedNode, item["name"].ToString(), Variant.Type.Vector2, value, "X");
-                        vectorSpinBoxY.ValueChanged += (value) => SetProperty(_selectedNode, item["name"].ToString(), Variant.Type.Vector2, value, "Y");
-                        propertiesGrid.AddChild(new Control());
-                        propertiesGrid.AddChild(vectorSpinBoxX);
-                        propertiesGrid.AddChild(vectorSpinBoxY);
-                        NodeMovedByMouseEventHandler UpdatePositionProperty = () =>
-                        {
-                            vectorSpinBoxX.Value = ((Vector2)_selectedNode.Get(item["name"].ToString())).X;
-                            vectorSpinBoxY.Value = ((Vector2)_selectedNode.Get(item["name"].ToString())).Y;
-                        };
-                        if (item["name"].ToString() == "position")
-                        {
-                            if (_lastConnectedPositionPropertyUpdate != null)
-                                NodeMovedByMouse -= _lastConnectedPositionPropertyUpdate;
-                            _lastConnectedPositionPropertyUpdate = UpdatePositionProperty;
-                            NodeMovedByMouse += UpdatePositionProperty;
-                        }
-                        else if (item["name"].ToString() == "global_position")
-                        {
-                            if (_lastConnectedGlobalPositionPropertyUpdate != null)
-                                NodeMovedByMouse -= _lastConnectedGlobalPositionPropertyUpdate;
-                            _lastConnectedGlobalPositionPropertyUpdate = UpdatePositionProperty;
-                            NodeMovedByMouse += UpdatePositionProperty;
-                        }
-                    }
+        CheckBox CreateCheckBox(string propertyName, bool value)
+        {
+            var checkBox = new CheckBox { ButtonPressed = value };
+            checkBox.Toggled += (v) => SetProperty(_selectedNode, propertyName, Variant.Type.Bool, v);
 
-                    break;
-                case Variant.Type.Rect2 or Variant.Type.Rect2I:
-                    {
-                        var RectSpinBoxX = new SpinBox();
-                        RectSpinBoxX.Rounded = false;
-                        RectSpinBoxX.Step = propertyType == Variant.Type.Float ? 0.000001 : 1;
-                        RectSpinBoxX.MinValue = -1000;
-                        RectSpinBoxX.AllowGreater = true;
-                        RectSpinBoxX.AllowLesser = true;
-                        var RectSpinBoxY = (SpinBox)RectSpinBoxX.Duplicate();
-                        var RectSpinBoxXPos = (SpinBox)RectSpinBoxX.Duplicate();
-                        var RectSpinBoxYPos = (SpinBox)RectSpinBoxX.Duplicate();
-                        RectSpinBoxX.Value = ((Rect2)propertyValue).Position.X;
-                        RectSpinBoxY.Value = ((Rect2)propertyValue).Position.Y;
-                        RectSpinBoxXPos.Value = ((Rect2)propertyValue).Size.X;
-                        RectSpinBoxYPos.Value = ((Rect2)propertyValue).Size.Y;
-                        RectSpinBoxX.ValueChanged += (value) => SetProperty(_selectedNode, item["name"].ToString(), Variant.Type.Vector2, value, "X");
-                        RectSpinBoxY.ValueChanged += (value) => SetProperty(_selectedNode, item["name"].ToString(), Variant.Type.Vector2, value, "Y");
-                        RectSpinBoxXPos.ValueChanged += (value) => SetProperty(_selectedNode, item["name"].ToString(), Variant.Type.Vector2, value, "XPos");
-                        RectSpinBoxYPos.ValueChanged += (value) => SetProperty(_selectedNode, item["name"].ToString(), Variant.Type.Vector2, value, "YPos");
-                        propertiesGrid.AddChild(new Control());
-                        propertiesGrid.AddChild(RectSpinBoxX);
-                        propertiesGrid.AddChild(RectSpinBoxY);
-                        propertiesGrid.AddChild(RectSpinBoxXPos);
-                        propertiesGrid.AddChild(RectSpinBoxYPos);
-                    }
-                    break;
-                case Variant.Type.Color:
-                    var colorPickerButton = new ColorPickerButton();
-                    colorPickerButton.SizeFlagsHorizontal = SizeFlags.ExpandFill;
-                    colorPickerButton.SizeFlagsVertical = SizeFlags.ExpandFill;
-                    colorPickerButton.Color = (Color)propertyValue;
-                    colorPickerButton.ColorChanged += (color) => SetProperty(_selectedNode, item["name"].ToString(), Variant.Type.Color, color);
-                    propertiesGrid.AddChild(colorPickerButton);
-                    break;
-                default:
-                    propertiesGrid.AddChild(new Control());
-                    break;
-            }
+            return checkBox;
+        }
+
+        SpinBox CreateSpinBox(string propertyName, Variant.Type propertyType, double value, string optionalKey = null)
+        {
+            var spinBox = new SpinBox
+            {
+                Rounded = false,
+                Step = propertyType == Variant.Type.Float ? 0.000001 : 1,
+                MinValue = int.MinValue,
+                MaxValue = int.MaxValue,
+                AllowGreater = true,
+                AllowLesser = true
+            };
+            spinBox.Value = value;
+            spinBox.ValueChanged += (v) => SetProperty(_selectedNode, propertyName, propertyType, v, optionalKey);
+            return spinBox;
+        }
+
+        LineEdit CreateLineEdit(string propertyName, string value)
+        {
+            var lineEdit = new LineEdit { Text = value };
+            lineEdit.TextChanged += (v) => SetProperty(_selectedNode, propertyName, Variant.Type.String, v);
+
+            return lineEdit;
+        }
+
+        ColorPickerButton CreateColorPicker(string propertyName, Color value)
+        {
+            var colorPickerButton = new ColorPickerButton { Color = value };
+            colorPickerButton.ColorChanged += (c) => SetProperty(_selectedNode, propertyName, Variant.Type.Color, c);
+            return colorPickerButton;
+        }
+
+
+        Control CreateVector2Editor(string propertyName, Vector2 value, string optionalKey = null)
+        {
+            var container = new HBoxContainer();
+            container.AddChild(CreateSpinBox(propertyName, Variant.Type.Vector2, value.X, "x" + optionalKey));
+            container.AddChild(CreateSpinBox(propertyName, Variant.Type.Vector2, value.Y, "y" + optionalKey));
+            return container;
+        }
+
+        Control CreateRect2Editor(string propertyName, Rect2 value, bool? doBindProperty = null)
+        {
+            var container = new VBoxContainer();
+            container.AddChild(CreateVector2Editor(propertyName, value.Position));
+            container.AddChild(CreateVector2Editor(propertyName, value.Size, "Size"));
+
+            return container;
         }
     }
-    private void SetProperty(Node node, string name, Variant.Type varType, Variant value, string VectorOrRectDesiredValue = "")
+
+
+
+
+    private void SetProperty(Node node, string name, Variant.Type varType, Variant value, string optionalKey = "")
     {
         var currentValue = node.Get(name);
-        if (varType == Variant.Type.Vector2 || varType == Variant.Type.Vector2)
-            switch (VectorOrRectDesiredValue)
+        if (varType == Variant.Type.Vector2 || varType == Variant.Type.Vector2I)
+            switch (optionalKey)
             {
-                case "X":
+                case "x":
+                    GD.Print(value);
                     node.Set(name, new Vector2((float)value, ((Vector2)currentValue).Y));
                     break;
-                case "Y":
+                case "y":
                     node.Set(name, new Vector2(((Vector2)currentValue).X, (float)value));
                     break;
             }
         else if (varType == Variant.Type.Rect2 || varType == Variant.Type.Rect2I)
-            switch (VectorOrRectDesiredValue)
+            switch (optionalKey)
             {
-                case "X":
+                case "x":
                     node.Set(name, new Rect2(new Vector2((float)value, ((Rect2)currentValue).Position.Y), new Vector2(((Rect2)currentValue).Size.X, ((Rect2)currentValue).Size.Y)));
                     break;
-                case "Y":
+                case "y":
                     node.Set(name, new Rect2(new Vector2(((Rect2)currentValue).Position.X, (float)value), new Vector2(((Rect2)currentValue).Size.X, ((Rect2)currentValue).Size.Y)));
                     break;
-                case "XPos":
+                case "xSize":
                     node.Set(name, new Rect2(new Vector2(((Rect2)currentValue).Position.X, ((Rect2)currentValue).Position.Y), new Vector2((float)value, ((Rect2)currentValue).Size.Y)));
                     break;
-                case "YPos":
+                case "ySize":
                     node.Set(name, new Rect2(new Vector2(((Rect2)currentValue).Position.X, ((Rect2)currentValue).Position.Y), new Vector2(((Rect2)currentValue).Size.X, (float)value)));
                     break;
             }
@@ -1286,12 +1312,11 @@ public partial class LevelEditor : Control
         {
             if (mouseEvent.ButtonIndex == MouseButton.Right && mouseEvent.Pressed)
             {
-                var tree = GetNode<Tree>("CanvasLayer/NodeModeGUI/NodesButtonsTree");
-                TreeItem clickedItem = tree.GetItemAtPosition(mouseEvent.Position);
+                TreeItem clickedItem = GetTargetedTreeItem(_nodesButtonsTree);
 
                 if (clickedItem != null)
                 {
-                    tree.SetSelected(clickedItem, 0);
+                    _nodesButtonsTree.SetSelected(clickedItem, 0);
 
                     var popupMenu = GetNode<PopupMenu>("CanvasLayer/NodeModeGUI/NodePopupMenu");
                     popupMenu.SetPosition((Vector2I)mouseEvent.GlobalPosition);
@@ -1306,12 +1331,11 @@ public partial class LevelEditor : Control
         {
             if (mouseEvent.ButtonIndex == MouseButton.Right && mouseEvent.Pressed)
             {
-                var tree = GetNode<Tree>("CanvasLayer/NodeModeGUI/FilesButtonsTree");
-                TreeItem clickedItem = tree.GetItemAtPosition(mouseEvent.Position);
+                TreeItem clickedItem = GetTargetedTreeItem(_filesButtonsTree);
 
                 if (clickedItem != null)
                 {
-                    tree.SetSelected(clickedItem, 0);
+                    _filesButtonsTree.SetSelected(clickedItem, 0);
 
                     var popupMenu = GetNode<PopupMenu>("CanvasLayer/NodeModeGUI/FilePopupMenu");
                     popupMenu.SetPosition((Vector2I)mouseEvent.GlobalPosition);
@@ -1336,20 +1360,19 @@ public partial class LevelEditor : Control
     }
     public void CreateNode(Node node, string name)
     {
-        var NodesButtonsContainer = GetNode<Tree>("CanvasLayer/NodeModeGUI/NodesButtonsTree");
         TreeItem Item;
 
         if (_selectedNode != null)
         {
             _selectedNode.AddChild(node);
-            Item = NodesButtonsContainer.CreateItem(NodesButtonsContainer.GetSelected());
-            NodesButtonsContainer.GetSelected().Collapsed = false;
+            Item = _nodesButtonsTree.CreateItem(_nodesButtonsTree.GetSelected());
+            _nodesButtonsTree.GetSelected().Collapsed = false;
         }
         else
         {
-            TreeItem RootItem = NodesButtonsContainer.GetRoot();
+            TreeItem RootItem = _nodesButtonsTree.GetRoot();
             RootItem.GetMeta("CorrespondingNode").As<Node>().AddChild(node);
-            Item = NodesButtonsContainer.CreateItem(NodesButtonsContainer.GetRoot());
+            Item = _nodesButtonsTree.CreateItem(_nodesButtonsTree.GetRoot());
             RootItem.Collapsed = false;
         }
 
@@ -1363,11 +1386,16 @@ public partial class LevelEditor : Control
         Item.SetMeta("CorrespondingNode", node);
         Item.Select(0);
     }
-    // CodeMode
+
+    TreeItem GetTargetedTreeItem(Tree tree)
+    {
+        return tree.GetItemAtPosition(tree.GetLocalMousePosition());
+    }
+
+    // CodeMode Section (Demo pre-alpha beta lambda)
     private string _currentScriptPath = "";
     CodeEdit _codeEdit;
     Script _script;
-
 
     public void LoadCode()
     {
@@ -1379,8 +1407,6 @@ public partial class LevelEditor : Control
             _codeEdit.Text = _script.SourceCode;
         }
     }
-
-
     public void SaveCode()
     {
         if (_selectedNode == null) return;
@@ -1407,11 +1433,11 @@ public partial class LevelEditor : Control
         _selectedNode = newNode;
     }
 
-
     public void SetEditingScript(string path)
     {
 
     }
+
     // Save Section
     private bool[] _editorCrutches = { true, true, true, true};
     public void SetCrutch(int index, bool value)

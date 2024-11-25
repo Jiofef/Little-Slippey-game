@@ -1,13 +1,12 @@
 [gd_scene load_steps=56 format=3 uid="uid://c1b6qyg17m3f1"]
 
-[ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/LevelEditor.cs" id="1_03doe"]
+[ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/LevelEditor/LevelEditor.cs" id="1_iqefj"]
 [ext_resource type="Texture2D" uid="uid://d284tqsj2yp0w" path="res://Content/Sprites/Interface/Cross.png" id="2_0sxv6"]
 [ext_resource type="Texture2D" uid="uid://bfg5b2a5xwbt" path="res://Content/Sprites/Interface/LevelEditor/SmallButton.png" id="3_5ujd4"]
 [ext_resource type="PackedScene" uid="uid://bwpstpk1xmkah" path="res://Content/Scenes/Interface&Menu/Button.tscn" id="3_wdnfh"]
 [ext_resource type="Texture2D" uid="uid://c2oim5v4o8wh6" path="res://Content/Sprites/Interface/LevelEditor/NodeButton.png" id="4_uf0bb"]
 [ext_resource type="Texture2D" uid="uid://bx7ylmwls0u3b" path="res://Content/Sprites/Interface/LevelEditor/Node2D.png" id="5_2kmmy"]
 [ext_resource type="Texture2D" uid="uid://b1yvdl7jwsm2i" path="res://Content/Sprites/Interface/LevelEditor/Node.png" id="5_8n2gy"]
-[ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/LevelEditorCreateNodeButton.cs" id="5_qjbpb"]
 [ext_resource type="Texture2D" uid="uid://b0kg6nh2hqi73" path="res://Content/Sprites/Interface/LevelEditor/Arrow.png" id="6_gm3t2"]
 [ext_resource type="StyleBox" uid="uid://c24v6s0lhccbw" path="res://Content/Other/LevelEditor.tres" id="6_lqdq7"]
 [ext_resource type="Texture2D" uid="uid://cqbdi52i8c0ld" path="res://Content/Sprites/Interface/LevelEditor/ArrowMirrored.png" id="7_3nqbu"]
@@ -17,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://dyv2csygb2l8v" path="res://Content/Sprites/Interface/LevelEditor/TileMapLayer.png" id="8_n7fqe"]
 [ext_resource type="Texture2D" uid="uid://dcdlcab5xodw6" path="res://Content/Sprites/Interface/LevelEditor/AudioStreamPlayer.png" id="9_nmsu2"]
 [ext_resource type="Texture2D" uid="uid://cfc28xydsuxqi" path="res://Content/Sprites/Interface/LevelEditor/AudioStreamPlayer2D.png" id="10_wodf3"]
+[ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/LevelEditor/LevelEditorCreateNodeButton.cs" id="11_a8xpy"]
 [ext_resource type="Texture2D" uid="uid://bxlr1x4qchnne" path="res://Content/Sprites/Interface/LevelEditor/Area2D.png" id="11_x7i7q"]
 [ext_resource type="Texture2D" uid="uid://c13iluvke2mck" path="res://Content/Sprites/Interface/LevelEditor/StaticBody2D.png" id="12_b8lnn"]
 [ext_resource type="Texture2D" uid="uid://qmagw6nqfpry" path="res://Content/Sprites/Interface/LevelEditor/Timer.png" id="12_bgqii"]
@@ -173,7 +173,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-script = ExtResource("1_03doe")
+script = ExtResource("1_iqefj")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(640, 360)
@@ -468,7 +468,7 @@ custom_minimum_size = Vector2(160, 160)
 layout_mode = 2
 texture_normal = ExtResource("4_uf0bb")
 stretch_mode = 0
-script = ExtResource("5_qjbpb")
+script = ExtResource("11_a8xpy")
 _nodeTypeName = "Node"
 _nodeFileName = ""
 _description = "An empty object that does not have 2d properties. All other objects in the game are based on it"
@@ -506,7 +506,7 @@ custom_minimum_size = Vector2(160, 160)
 layout_mode = 2
 texture_normal = ExtResource("4_uf0bb")
 stretch_mode = 0
-script = ExtResource("5_qjbpb")
+script = ExtResource("11_a8xpy")
 _nodeTypeName = "Node2D"
 _nodeFileName = ""
 _description = "The same as Node, but has 2d properties. A great container for 2d objects"
@@ -544,7 +544,7 @@ custom_minimum_size = Vector2(160, 160)
 layout_mode = 2
 texture_normal = ExtResource("4_uf0bb")
 stretch_mode = 0
-script = ExtResource("5_qjbpb")
+script = ExtResource("11_a8xpy")
 _nodeTypeName = "Sprite2D"
 _nodeFileName = "Sprite2D"
 _description = "2d image for general purposes"
@@ -582,7 +582,7 @@ custom_minimum_size = Vector2(160, 160)
 layout_mode = 2
 texture_normal = ExtResource("4_uf0bb")
 stretch_mode = 0
-script = ExtResource("5_qjbpb")
+script = ExtResource("11_a8xpy")
 _nodeTypeName = "AnimatedSprite2D"
 _nodeFileName = ""
 _description = "Like Sprite2D, but also can play animations"
@@ -621,7 +621,7 @@ custom_minimum_size = Vector2(160, 160)
 layout_mode = 2
 texture_normal = ExtResource("4_uf0bb")
 stretch_mode = 0
-script = ExtResource("5_qjbpb")
+script = ExtResource("11_a8xpy")
 _nodeTypeName = "AudioStreamPlayer"
 _nodeFileName = ""
 _description = "Plays sounds"
@@ -660,7 +660,7 @@ custom_minimum_size = Vector2(160, 160)
 layout_mode = 2
 texture_normal = ExtResource("4_uf0bb")
 stretch_mode = 0
-script = ExtResource("5_qjbpb")
+script = ExtResource("11_a8xpy")
 _nodeTypeName = "AudioStreamPlayer2D"
 _nodeFileName = ""
 _description = "Plays sounds in space with stereo and fade-out if it is far away"
@@ -699,7 +699,7 @@ custom_minimum_size = Vector2(160, 160)
 layout_mode = 2
 texture_normal = ExtResource("4_uf0bb")
 stretch_mode = 0
-script = ExtResource("5_qjbpb")
+script = ExtResource("11_a8xpy")
 _nodeTypeName = "StaticBody"
 _nodeFileName = ""
 _description = "A static object with a collision"
@@ -737,7 +737,7 @@ custom_minimum_size = Vector2(160, 160)
 layout_mode = 2
 texture_normal = ExtResource("4_uf0bb")
 stretch_mode = 0
-script = ExtResource("5_qjbpb")
+script = ExtResource("11_a8xpy")
 _nodeTypeName = "TileMapLayer"
 _nodeFileName = ""
 _description = "Used to place blocks on a grid"
@@ -775,7 +775,7 @@ custom_minimum_size = Vector2(160, 160)
 layout_mode = 2
 texture_normal = ExtResource("4_uf0bb")
 stretch_mode = 0
-script = ExtResource("5_qjbpb")
+script = ExtResource("11_a8xpy")
 _nodeTypeName = "Timer"
 _nodeFileName = ""
 _description = "A simple timer for scripts. Use signals to take advantage of it"
@@ -813,7 +813,7 @@ custom_minimum_size = Vector2(160, 160)
 layout_mode = 2
 texture_normal = ExtResource("4_uf0bb")
 stretch_mode = 0
-script = ExtResource("5_qjbpb")
+script = ExtResource("11_a8xpy")
 _nodeTypeName = "CPUParticles2D"
 _nodeFileName = ""
 _description = "An object for creating beautiful particle-based effects"
@@ -852,7 +852,7 @@ custom_minimum_size = Vector2(160, 160)
 layout_mode = 2
 texture_normal = ExtResource("4_uf0bb")
 stretch_mode = 0
-script = ExtResource("5_qjbpb")
+script = ExtResource("11_a8xpy")
 _nodeTypeName = "RigidBody"
 _nodeFileName = "DefaultRigidBody"
 _description = "2d body that has physics and interacts with the player and the level (To make it interact with the player, enable the \"Enable Rigid Body Physics\" option for the player)"
@@ -890,7 +890,7 @@ custom_minimum_size = Vector2(160, 160)
 layout_mode = 2
 texture_normal = ExtResource("4_uf0bb")
 stretch_mode = 0
-script = ExtResource("5_qjbpb")
+script = ExtResource("11_a8xpy")
 _nodeTypeName = "Area2D"
 _nodeFileName = "DefaultArea2D"
 _description = "Emits signals at the entrance and exit of collisions from it and more"
@@ -928,7 +928,7 @@ custom_minimum_size = Vector2(160, 160)
 layout_mode = 2
 texture_normal = ExtResource("4_uf0bb")
 stretch_mode = 0
-script = ExtResource("5_qjbpb")
+script = ExtResource("11_a8xpy")
 _nodeTypeName = "Path2D"
 _nodeFileName = ""
 _description = "A configurable curve along which objects can be moved"
@@ -966,7 +966,7 @@ custom_minimum_size = Vector2(160, 160)
 layout_mode = 2
 texture_normal = ExtResource("4_uf0bb")
 stretch_mode = 0
-script = ExtResource("5_qjbpb")
+script = ExtResource("11_a8xpy")
 _nodeTypeName = "TogglableButton"
 _nodeFileName = "TogglableButton"
 _description = "An object for scripting at the level. Emits signals when pressed and released"
@@ -1005,7 +1005,7 @@ custom_minimum_size = Vector2(160, 160)
 layout_mode = 2
 texture_normal = ExtResource("4_uf0bb")
 stretch_mode = 0
-script = ExtResource("5_qjbpb")
+script = ExtResource("11_a8xpy")
 _nodeTypeName = "Control"
 _nodeFileName = ""
 _description = "The basis of all GUI elements. It has the basic properties of a GUI element (size, minimum size, trimming elements outside of itself, etc.). It is primarily used as a container for interface elements. By itself, it does not \"attach\" objects to the camera, use CanvasLayer for this"
@@ -1043,7 +1043,7 @@ custom_minimum_size = Vector2(160, 160)
 layout_mode = 2
 texture_normal = ExtResource("4_uf0bb")
 stretch_mode = 0
-script = ExtResource("5_qjbpb")
+script = ExtResource("11_a8xpy")
 _nodeTypeName = "ColorRect"
 _nodeFileName = "DefaultColorRect"
 _description = "2d rectangle with customizable color. Has the properties of an GUI element"
@@ -1081,7 +1081,7 @@ custom_minimum_size = Vector2(160, 160)
 layout_mode = 2
 texture_normal = ExtResource("4_uf0bb")
 stretch_mode = 0
-script = ExtResource("5_qjbpb")
+script = ExtResource("11_a8xpy")
 _nodeTypeName = "TextureRect"
 _nodeFileName = "TextureRect"
 _description = "Similar to Sprite2D, but has other useful features and GUI element properties"
@@ -1119,7 +1119,7 @@ custom_minimum_size = Vector2(160, 160)
 layout_mode = 2
 texture_normal = ExtResource("4_uf0bb")
 stretch_mode = 0
-script = ExtResource("5_qjbpb")
+script = ExtResource("11_a8xpy")
 _nodeTypeName = "CanvasLayer"
 _nodeFileName = ""
 _description = "Draws objects separately from the rest of the level, ignoring its position, rotation, and so on. Simply put, it pins objects on the screen"
@@ -1157,7 +1157,7 @@ custom_minimum_size = Vector2(160, 160)
 layout_mode = 2
 texture_normal = ExtResource("4_uf0bb")
 stretch_mode = 0
-script = ExtResource("5_qjbpb")
+script = ExtResource("11_a8xpy")
 _nodeTypeName = "ParalaxBackground"
 _nodeFileName = ""
 _description = "Used to create a realistic moving background"

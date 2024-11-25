@@ -123,7 +123,7 @@ public partial class WorkshopMenu : Control
         G.InGameTransitiveValue = _selectedModFolder + @"\MainScene.tscn";
         G.ModMapPath = _selectedModFolder.Remove(0, _defaultPath.Length) + @"\MainScene.tscn";
         G.ModMapFolder = _selectedModFolder;
-        GetTree().ChangeSceneToFile("res://Content/Scenes/Interface&Menu/LevelEditor.tscn");
+        GetTree().ChangeSceneToFile("res://Content/Scenes/Interface&Menu/LevelEditor/LevelEditor.tscn");
     }
 
     public void OpenModFolder()
