@@ -1,0 +1,109 @@
+[gd_scene load_steps=8 format=3 uid="uid://bfuw1ww4jrifk"]
+
+[ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/LevelEditor/SavePage.cs" id="1_7jxe7"]
+[ext_resource type="Texture2D" uid="uid://cdh8bcaew8h6o" path="res://Content/Sprites/Interface/TurnOffBox.png" id="2_dku7u"]
+[ext_resource type="Texture2D" uid="uid://bqoa0ymeusaxe" path="res://Content/Sprites/Interface/LevelEditor/ArrowOpened.png" id="3_4qvda"]
+[ext_resource type="Texture2D" uid="uid://b0kg6nh2hqi73" path="res://Content/Sprites/Interface/LevelEditor/Arrow.png" id="4_lfyq4"]
+[ext_resource type="Texture2D" uid="uid://cqbdi52i8c0ld" path="res://Content/Sprites/Interface/LevelEditor/ArrowMirrored.png" id="5_tqh5g"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3o8j1"]
+bg_color = Color(0.772549, 0.768627, 0.733333, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.556863, 0.537255, 0.603922, 1)
+
+[sub_resource type="Theme" id="Theme_aodif"]
+CheckButton/colors/font_color = Color(0.184314, 0.180392, 0.192157, 1)
+CheckButton/colors/font_focus_color = Color(0.184314, 0.180392, 0.192157, 1)
+CheckButton/colors/font_hover_color = Color(0.184314, 0.180392, 0.192157, 1)
+CheckButton/colors/font_hover_pressed_color = Color(0.184314, 0.180392, 0.192157, 1)
+CheckButton/colors/font_pressed_color = Color(0.184314, 0.180392, 0.192157, 1)
+Label/colors/font_color = Color(0.184314, 0.180392, 0.192157, 1)
+Tree/colors/children_hl_line_color = Color(0.184314, 0.180392, 0.192157, 1)
+Tree/colors/custom_button_font_highlight = Color(0.184314, 0.180392, 0.192157, 1)
+Tree/colors/drop_position_color = Color(0.184314, 0.180392, 0.192157, 1)
+Tree/colors/font_color = Color(0.184314, 0.180392, 0.192157, 1)
+Tree/colors/font_disabled_color = Color(0.184314, 0.180392, 0.192157, 1)
+Tree/colors/font_outline_color = Color(0.184314, 0.180392, 0.192157, 1)
+Tree/colors/font_selected_color = Color(0.184314, 0.180392, 0.192157, 1)
+Tree/colors/guide_color = Color(0.184314, 0.180392, 0.192157, 1)
+Tree/colors/parent_hl_line_color = Color(0.184314, 0.180392, 0.192157, 1)
+Tree/colors/relationship_line_color = Color(0.184314, 0.180392, 0.192157, 1)
+Tree/colors/title_button_color = Color(0.184314, 0.180392, 0.192157, 1)
+Tree/icons/arrow = ExtResource("3_4qvda")
+Tree/icons/arrow_collapsed = ExtResource("4_lfyq4")
+Tree/icons/arrow_collapsed_mirrored = ExtResource("5_tqh5g")
+Tree/icons/select_arrow = ExtResource("3_4qvda")
+Tree/styles/panel = SubResource("StyleBoxFlat_3o8j1")
+
+[node name="SavePage" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+script = ExtResource("1_7jxe7")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+texture = ExtResource("2_dku7u")
+
+[node name="Crutch1" type="CheckButton" parent="."]
+layout_mode = 0
+offset_left = 26.0
+offset_top = 67.0
+offset_right = 1036.0
+offset_bottom = 96.0
+theme = SubResource("Theme_aodif")
+text = "Disable ProcessMode at the level when entering the editor and enable it when loading the level"
+
+[node name="Crutch2" type="CheckButton" parent="."]
+layout_mode = 0
+offset_left = 26.0
+offset_top = 96.0
+offset_right = 1039.0
+offset_bottom = 125.0
+theme = SubResource("Theme_aodif")
+text = "Disable the visibility of the pause when entering the editor and enable it when loading the level"
+
+[node name="Crutch3" type="CheckButton" parent="."]
+layout_mode = 0
+offset_left = 26.0
+offset_top = 125.0
+offset_right = 1084.0
+offset_bottom = 154.0
+theme = SubResource("Theme_aodif")
+text = "Disable the visibility of the intro level when entering the editor and enable it when loading the level"
+
+[node name="Crutch4" type="CheckButton" parent="."]
+layout_mode = 0
+offset_left = 26.0
+offset_top = 154.0
+offset_right = 1084.0
+offset_bottom = 183.0
+theme = SubResource("Theme_aodif")
+text = "Disable the visibility of scores when entering the editor and enable it when loading a level"
+
+[node name="SaveLevelButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 986.0
+offset_top = 492.0
+offset_right = 1114.0
+offset_bottom = 638.0
+
+[node name="TestLevelButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 995.0
+offset_top = 340.0
+offset_right = 1123.0
+offset_bottom = 486.0
+
+[connection signal="toggled" from="Crutch1" to="." method="SetCrutch" binds= [0]]
+[connection signal="toggled" from="Crutch2" to="." method="SetCrutch" binds= [1]]
+[connection signal="toggled" from="Crutch3" to="." method="SetCrutch" binds= [2]]
+[connection signal="toggled" from="Crutch4" to="." method="SetCrutch" binds= [3]]
+[connection signal="pressed" from="SaveLevelButton" to="." method="SaveLevel"]
+[connection signal="pressed" from="TestLevelButton" to="." method="TestLevel"]

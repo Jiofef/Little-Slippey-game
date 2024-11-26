@@ -22,6 +22,8 @@ public partial class TileMode : Control
         _erasingAssistiveTileMap = L.GetNode<TileMap>("ErasingAssistiveTileMap");
         _assistiveTileMap.TileSet = _selectedTileMap.TileSet;
 
+        _assistiveTileMap.GlobalTransform = _erasingAssistiveTileMap.GlobalTransform = _selectedTileMap.GlobalTransform;
+
         UpdateVisibleTileMapsLayers();
         UpdateVisibleAtlases();
         UpdateVisibleTileSet();

@@ -93,3 +93,7 @@ res://Content/Scripts/Other/PostProcessingRect.cs
 res://Content/Scripts/Other/SkinScript.cs
 res://Content/Scripts/Other/SlippeyChadCorpseMotionMultiplierCrutch.cs
 res://Content/Scripts/Other/UserLevelScript.cs
+res://Content/Scenes/Other/UserLevelLayout.tscn
+res://Content/Scenes/Interface&Menu/LevelEditor/CodeMode.tscn
+res://Content/Scenes/Interface&Menu/LevelEditor/NodeMode.tscn
+res://Content/Scenes/Interface&Menu/LevelEditor/SavePage.tscn

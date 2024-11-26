@@ -34,7 +34,7 @@ public partial class AnnotationBox : Control
     public override void _Process(double delta)
     {
         Size = _requiredSize * _sizeCoeff;
-        Position = GetNode<Control>("../NodeModeGUI").GetLocalMousePosition();
+        Position = GetNode<Control>("../ModeGUIControl").GetLocalMousePosition();
         Position = new Vector2(Math.Min(Position.X, 1280 - Size.X), Math.Min(Position.Y, 720 - Size.Y));
     }
 }

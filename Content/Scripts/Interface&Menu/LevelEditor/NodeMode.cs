@@ -24,6 +24,9 @@ public partial class NodeMode : Control
 
         _filesButtonsTree = GetNode<Tree>("FilesButtonsTree");
         _nodesButtonsTree = GetNode<Tree>("NodesButtonsTree");
+
+        UpdateVisibleNodesButtons();
+        UpdateVisibleFiles();
     }
 
     public override void _PhysicsProcess(double delta)
@@ -96,7 +99,7 @@ public partial class NodeMode : Control
 
         if (Input.IsMouseButtonPressed(MouseButton.Right))
         {
-            var nodePopupMenu = GetNode<PopupMenu>("GUILayer/NodeModeGUI/NodePopupMenu");
+            var nodePopupMenu = GetNode<PopupMenu>("NodePopupMenu");
 
             nodePopupMenu.Position = (Vector2I)GetLocalMousePosition();
             nodePopupMenu.Popup();

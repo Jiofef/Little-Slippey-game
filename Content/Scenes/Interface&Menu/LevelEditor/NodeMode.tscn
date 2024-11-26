@@ -1,0 +1,985 @@
+[gd_scene load_steps=33 format=3 uid="uid://brbs3hjj1mae1"]
+
+[ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/LevelEditor/NodeMode.cs" id="1_bjd8r"]
+[ext_resource type="Texture2D" uid="uid://bqoa0ymeusaxe" path="res://Content/Sprites/Interface/LevelEditor/ArrowOpened.png" id="2_4a0i0"]
+[ext_resource type="Texture2D" uid="uid://b0kg6nh2hqi73" path="res://Content/Sprites/Interface/LevelEditor/Arrow.png" id="3_3pgdq"]
+[ext_resource type="Texture2D" uid="uid://cqbdi52i8c0ld" path="res://Content/Sprites/Interface/LevelEditor/ArrowMirrored.png" id="4_bvrm4"]
+[ext_resource type="StyleBox" uid="uid://c24v6s0lhccbw" path="res://Content/Other/LevelEditor.tres" id="5_x03uh"]
+[ext_resource type="PackedScene" uid="uid://bwpstpk1xmkah" path="res://Content/Scenes/Interface&Menu/Button.tscn" id="6_5nli3"]
+[ext_resource type="Texture2D" uid="uid://c2oim5v4o8wh6" path="res://Content/Sprites/Interface/LevelEditor/NodeButton.png" id="7_mgmec"]
+[ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/LevelEditor/LevelEditorCreateNodeButton.cs" id="8_mi0g4"]
+[ext_resource type="Texture2D" uid="uid://b1yvdl7jwsm2i" path="res://Content/Sprites/Interface/LevelEditor/Node.png" id="9_ovyhu"]
+[ext_resource type="Texture2D" uid="uid://bx7ylmwls0u3b" path="res://Content/Sprites/Interface/LevelEditor/Node2D.png" id="10_urtak"]
+[ext_resource type="Texture2D" uid="uid://cq6ok61no1qlr" path="res://Content/Sprites/Interface/LevelEditor/Sprite2D.png" id="11_b45yp"]
+[ext_resource type="Texture2D" uid="uid://dkscfivq8c814" path="res://Content/Sprites/Interface/LevelEditor/AnimatedSprite2D.png" id="12_s8pgj"]
+[ext_resource type="Texture2D" uid="uid://dcdlcab5xodw6" path="res://Content/Sprites/Interface/LevelEditor/AudioStreamPlayer.png" id="13_hhryh"]
+[ext_resource type="Texture2D" uid="uid://cfc28xydsuxqi" path="res://Content/Sprites/Interface/LevelEditor/AudioStreamPlayer2D.png" id="14_5ym2y"]
+[ext_resource type="Texture2D" uid="uid://c13iluvke2mck" path="res://Content/Sprites/Interface/LevelEditor/StaticBody2D.png" id="15_i6kss"]
+[ext_resource type="Texture2D" uid="uid://dyv2csygb2l8v" path="res://Content/Sprites/Interface/LevelEditor/TileMapLayer.png" id="16_bdgf8"]
+[ext_resource type="Texture2D" uid="uid://qmagw6nqfpry" path="res://Content/Sprites/Interface/LevelEditor/Timer.png" id="17_anfck"]
+[ext_resource type="Texture2D" uid="uid://biraqjyb8dhn7" path="res://Content/Sprites/Interface/LevelEditor/CPUParticles2D.png" id="18_3j0jk"]
+[ext_resource type="Texture2D" uid="uid://cwimhnhs122xs" path="res://Content/Sprites/Interface/LevelEditor/RigidBody2D.png" id="19_ftm83"]
+[ext_resource type="Texture2D" uid="uid://bxlr1x4qchnne" path="res://Content/Sprites/Interface/LevelEditor/Area2D.png" id="20_0eb41"]
+[ext_resource type="Texture2D" uid="uid://bve8pw1q8qg84" path="res://Content/Sprites/Interface/LevelEditor/Path2D.png" id="21_b7jhu"]
+[ext_resource type="Texture2D" uid="uid://b337eu2riy466" path="res://Content/Sprites/Interface/LevelEditor/TogglableButton.png" id="22_7hxwx"]
+[ext_resource type="Texture2D" uid="uid://be3sf2od0f0k8" path="res://Content/Sprites/Interface/LevelEditor/Control.png" id="23_ejyp2"]
+[ext_resource type="Texture2D" uid="uid://d1g53o432okdn" path="res://Content/Sprites/Interface/LevelEditor/ColorRect.png" id="24_uflrx"]
+[ext_resource type="Texture2D" uid="uid://dq3onblu5j2rl" path="res://Content/Sprites/Interface/LevelEditor/TextureRect.png" id="25_jubhl"]
+[ext_resource type="Texture2D" uid="uid://dx7cgilkcmgj8" path="res://Content/Sprites/Interface/LevelEditor/CanvasLayer.png" id="26_5o8xm"]
+[ext_resource type="Texture2D" uid="uid://414qjuyxudme" path="res://Content/Sprites/Interface/LevelEditor/ParalaxBackground.png" id="27_ivytd"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3o8j1"]
+bg_color = Color(0.772549, 0.768627, 0.733333, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.556863, 0.537255, 0.603922, 1)
+
+[sub_resource type="Theme" id="Theme_aodif"]
+CheckButton/colors/font_color = Color(0.184314, 0.180392, 0.192157, 1)
+CheckButton/colors/font_focus_color = Color(0.184314, 0.180392, 0.192157, 1)
+CheckButton/colors/font_hover_color = Color(0.184314, 0.180392, 0.192157, 1)
+CheckButton/colors/font_hover_pressed_color = Color(0.184314, 0.180392, 0.192157, 1)
+CheckButton/colors/font_pressed_color = Color(0.184314, 0.180392, 0.192157, 1)
+Label/colors/font_color = Color(0.184314, 0.180392, 0.192157, 1)
+Tree/colors/children_hl_line_color = Color(0.184314, 0.180392, 0.192157, 1)
+Tree/colors/custom_button_font_highlight = Color(0.184314, 0.180392, 0.192157, 1)
+Tree/colors/drop_position_color = Color(0.184314, 0.180392, 0.192157, 1)
+Tree/colors/font_color = Color(0.184314, 0.180392, 0.192157, 1)
+Tree/colors/font_disabled_color = Color(0.184314, 0.180392, 0.192157, 1)
+Tree/colors/font_outline_color = Color(0.184314, 0.180392, 0.192157, 1)
+Tree/colors/font_selected_color = Color(0.184314, 0.180392, 0.192157, 1)
+Tree/colors/guide_color = Color(0.184314, 0.180392, 0.192157, 1)
+Tree/colors/parent_hl_line_color = Color(0.184314, 0.180392, 0.192157, 1)
+Tree/colors/relationship_line_color = Color(0.184314, 0.180392, 0.192157, 1)
+Tree/colors/title_button_color = Color(0.184314, 0.180392, 0.192157, 1)
+Tree/icons/arrow = ExtResource("2_4a0i0")
+Tree/icons/arrow_collapsed = ExtResource("3_3pgdq")
+Tree/icons/arrow_collapsed_mirrored = ExtResource("4_bvrm4")
+Tree/icons/select_arrow = ExtResource("2_4a0i0")
+Tree/styles/panel = SubResource("StyleBoxFlat_3o8j1")
+
+[sub_resource type="Gradient" id="Gradient_hh0p1"]
+colors = PackedColorArray(0.501407, 0.501406, 0.501406, 1, 0.501407, 0.501406, 0.501406, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_crqmt"]
+gradient = SubResource("Gradient_hh0p1")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_41nhu"]
+
+[node name="NodeModeGUI" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+mouse_filter = 2
+script = ExtResource("1_bjd8r")
+
+[node name="NodesButtonsTree" type="Tree" parent="."]
+layout_mode = 2
+offset_right = 312.0
+offset_bottom = 360.0
+theme = SubResource("Theme_aodif")
+allow_reselect = true
+
+[node name="FilesButtonsTree" type="Tree" parent="."]
+layout_mode = 0
+offset_top = 356.0
+offset_right = 312.0
+offset_bottom = 720.0
+theme = SubResource("Theme_aodif")
+allow_reselect = true
+
+[node name="PropertiesGridContainer" type="ScrollContainer" parent="."]
+layout_mode = 0
+offset_left = 920.0
+offset_right = 1280.0
+offset_bottom = 592.0
+theme_override_styles/panel = ExtResource("5_x03uh")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PropertiesGridContainer"]
+layout_mode = 2
+
+[node name="PropertiesGrid" type="GridContainer" parent="PropertiesGridContainer/VBoxContainer"]
+custom_minimum_size = Vector2(256, 592)
+layout_mode = 2
+columns = 2
+
+[node name="NodeCreateMenu" type="Control" parent="."]
+visible = false
+custom_minimum_size = Vector2(768, 576)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="NodeCreateMenu"]
+custom_minimum_size = Vector2(768, 576)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -384.0
+offset_top = -288.0
+offset_right = 384.0
+offset_bottom = 288.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture1D_crqmt")
+
+[node name="TextureRect" type="TextureRect" parent="NodeCreateMenu/TextureRect"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="MarginContainer" type="MarginContainer" parent="NodeCreateMenu"]
+custom_minimum_size = Vector2(768, 576)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -384.0
+offset_top = -288.0
+offset_right = 384.0
+offset_bottom = 288.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 16
+
+[node name="ScrollContainer" type="ScrollContainer" parent="NodeCreateMenu/MarginContainer"]
+layout_mode = 2
+
+[node name="NodesContainer" type="FlowContainer" parent="NodeCreateMenu/MarginContainer/ScrollContainer"]
+custom_minimum_size = Vector2(688, 0)
+layout_mode = 2
+theme_override_constants/h_separation = 16
+theme_override_constants/v_separation = 16
+
+[node name="Node" parent="NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer" instance=ExtResource("6_5nli3")]
+custom_minimum_size = Vector2(160, 160)
+layout_mode = 2
+texture_normal = ExtResource("7_mgmec")
+stretch_mode = 0
+script = ExtResource("8_mi0g4")
+_nodeTypeName = "Node"
+_nodeFileName = ""
+_description = "An empty object that does not have 2d properties. All other objects in the game are based on it"
+
+[node name="TextureRect" type="TextureRect" parent="NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/Node"]
+layout_mode = 1
+offset_right = 40.0
+offset_bottom = 30.0
+scale = Vector2(4, 4)
+mouse_filter = 2
+texture = ExtResource("9_ovyhu")
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/Node"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -68.0
+offset_right = 82.0
+offset_bottom = 35.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.66, 0.66)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+theme_override_font_sizes/font_size = 22
+text = "Node"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Node2D" parent="NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer" instance=ExtResource("6_5nli3")]
+custom_minimum_size = Vector2(160, 160)
+layout_mode = 2
+texture_normal = ExtResource("7_mgmec")
+stretch_mode = 0
+script = ExtResource("8_mi0g4")
+_nodeTypeName = "Node2D"
+_nodeFileName = ""
+_description = "The same as Node, but has 2d properties. A great container for 2d objects"
+
+[node name="TextureRect" type="TextureRect" parent="NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/Node2D"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 30.0
+scale = Vector2(4, 4)
+mouse_filter = 2
+texture = ExtResource("10_urtak")
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/Node2D"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -68.0
+offset_right = 82.0
+offset_bottom = 35.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.66, 0.66)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+theme_override_font_sizes/font_size = 22
+text = "Node2D"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Sprite2D" parent="NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer" instance=ExtResource("6_5nli3")]
+custom_minimum_size = Vector2(160, 160)
+layout_mode = 2
+texture_normal = ExtResource("7_mgmec")
+stretch_mode = 0
+script = ExtResource("8_mi0g4")
+_nodeTypeName = "Sprite2D"
+_nodeFileName = "Sprite2D"
+_description = "2d image for general purposes"
+
+[node name="TextureRect" type="TextureRect" parent="NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/Sprite2D"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 30.0
+scale = Vector2(4, 4)
+mouse_filter = 2
+texture = ExtResource("11_b45yp")
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/Sprite2D"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -68.0
+offset_right = 82.0
+offset_bottom = 35.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.66, 0.66)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+theme_override_font_sizes/font_size = 22
+text = "Sprite2D"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimatedSprite2D" parent="NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer" instance=ExtResource("6_5nli3")]
+custom_minimum_size = Vector2(160, 160)
+layout_mode = 2
+texture_normal = ExtResource("7_mgmec")
+stretch_mode = 0
+script = ExtResource("8_mi0g4")
+_nodeTypeName = "AnimatedSprite2D"
+_nodeFileName = ""
+_description = "Like Sprite2D, but also can play animations"
+
+[node name="TextureRect" type="TextureRect" parent="NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/AnimatedSprite2D"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 30.0
+scale = Vector2(4, 4)
+mouse_filter = 2
+texture = ExtResource("12_s8pgj")
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/AnimatedSprite2D"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -68.0
+offset_right = 82.0
+offset_bottom = 35.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.66, 0.66)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+theme_override_font_sizes/font_size = 22
+text = "Animated
+Sprite2D"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AudioStreamPlayer" parent="NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer" instance=ExtResource("6_5nli3")]
+custom_minimum_size = Vector2(160, 160)
+layout_mode = 2
+texture_normal = ExtResource("7_mgmec")
+stretch_mode = 0
+script = ExtResource("8_mi0g4")
+_nodeTypeName = "AudioStreamPlayer"
+_nodeFileName = ""
+_description = "Plays sounds"
+
+[node name="TextureRect" type="TextureRect" parent="NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/AudioStreamPlayer"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 30.0
+scale = Vector2(4, 4)
+mouse_filter = 2
+texture = ExtResource("13_hhryh")
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/AudioStreamPlayer"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -68.0
+offset_right = 82.0
+offset_bottom = 35.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.66, 0.66)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+theme_override_font_sizes/font_size = 22
+text = "AudioStream
+Player"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AudioStreamPlayer2D" parent="NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer" instance=ExtResource("6_5nli3")]
+custom_minimum_size = Vector2(160, 160)
+layout_mode = 2
+texture_normal = ExtResource("7_mgmec")
+stretch_mode = 0
+script = ExtResource("8_mi0g4")
+_nodeTypeName = "AudioStreamPlayer2D"
+_nodeFileName = ""
+_description = "Plays sounds in space with stereo and fade-out if it is far away"
+
+[node name="TextureRect" type="TextureRect" parent="NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/AudioStreamPlayer2D"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 30.0
+scale = Vector2(4, 4)
+mouse_filter = 2
+texture = ExtResource("14_5ym2y")
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/AudioStreamPlayer2D"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -68.0
+offset_right = 82.0
+offset_bottom = 35.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.66, 0.66)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+theme_override_font_sizes/font_size = 22
+text = "AudioStream
+Player2D"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StaticBody" parent="NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer" instance=ExtResource("6_5nli3")]
+custom_minimum_size = Vector2(160, 160)
+layout_mode = 2
+texture_normal = ExtResource("7_mgmec")
+stretch_mode = 0
+script = ExtResource("8_mi0g4")
+_nodeTypeName = "StaticBody"
+_nodeFileName = ""
+_description = "A static object with a collision"
+
+[node name="TextureRect" type="TextureRect" parent="NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/StaticBody"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 30.0
+scale = Vector2(4, 4)
+mouse_filter = 2
+texture = ExtResource("15_i6kss")
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/StaticBody"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -68.0
+offset_right = 82.0
+offset_bottom = 35.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.66, 0.66)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+theme_override_font_sizes/font_size = 22
+text = "StaticBody"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TileMapLayer" parent="NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer" instance=ExtResource("6_5nli3")]
+custom_minimum_size = Vector2(160, 160)
+layout_mode = 2
+texture_normal = ExtResource("7_mgmec")
+stretch_mode = 0
+script = ExtResource("8_mi0g4")
+_nodeTypeName = "TileMapLayer"
+_nodeFileName = ""
+_description = "Used to place blocks on a grid"
+
+[node name="TextureRect" type="TextureRect" parent="NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/TileMapLayer"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 30.0
+scale = Vector2(4, 4)
+mouse_filter = 2
+texture = ExtResource("16_bdgf8")
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/TileMapLayer"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -68.0
+offset_right = 82.0
+offset_bottom = 35.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.66, 0.66)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+theme_override_font_sizes/font_size = 22
+text = "TileMapLayer"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Timer" parent="NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer" instance=ExtResource("6_5nli3")]
+custom_minimum_size = Vector2(160, 160)
+layout_mode = 2
+texture_normal = ExtResource("7_mgmec")
+stretch_mode = 0
+script = ExtResource("8_mi0g4")
+_nodeTypeName = "Timer"
+_nodeFileName = ""
+_description = "A simple timer for scripts. Use signals to take advantage of it"
+
+[node name="TextureRect" type="TextureRect" parent="NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/Timer"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 30.0
+scale = Vector2(4, 4)
+mouse_filter = 2
+texture = ExtResource("17_anfck")
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/Timer"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -68.0
+offset_right = 82.0
+offset_bottom = 35.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.66, 0.66)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+theme_override_font_sizes/font_size = 22
+text = "Timer"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CPUParticles2D" parent="NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer" instance=ExtResource("6_5nli3")]
+custom_minimum_size = Vector2(160, 160)
+layout_mode = 2
+texture_normal = ExtResource("7_mgmec")
+stretch_mode = 0
+script = ExtResource("8_mi0g4")
+_nodeTypeName = "CPUParticles2D"
+_nodeFileName = ""
+_description = "An object for creating beautiful particle-based effects"
+
+[node name="TextureRect" type="TextureRect" parent="NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/CPUParticles2D"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 30.0
+scale = Vector2(4, 4)
+mouse_filter = 2
+texture = ExtResource("18_3j0jk")
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/CPUParticles2D"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -68.0
+offset_right = 82.0
+offset_bottom = 35.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.66, 0.66)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+theme_override_font_sizes/font_size = 22
+text = "CPU
+Particles2D"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RigidBody" parent="NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer" instance=ExtResource("6_5nli3")]
+custom_minimum_size = Vector2(160, 160)
+layout_mode = 2
+texture_normal = ExtResource("7_mgmec")
+stretch_mode = 0
+script = ExtResource("8_mi0g4")
+_nodeTypeName = "RigidBody"
+_nodeFileName = "DefaultRigidBody"
+_description = "2d body that has physics and interacts with the player and the level (To make it interact with the player, enable the \"Enable Rigid Body Physics\" option for the player)"
+
+[node name="TextureRect" type="TextureRect" parent="NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/RigidBody"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 30.0
+scale = Vector2(4, 4)
+mouse_filter = 2
+texture = ExtResource("19_ftm83")
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/RigidBody"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -68.0
+offset_right = 82.0
+offset_bottom = 35.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.66, 0.66)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+theme_override_font_sizes/font_size = 22
+text = "RigidBody"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Area2D" parent="NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer" instance=ExtResource("6_5nli3")]
+custom_minimum_size = Vector2(160, 160)
+layout_mode = 2
+texture_normal = ExtResource("7_mgmec")
+stretch_mode = 0
+script = ExtResource("8_mi0g4")
+_nodeTypeName = "Area2D"
+_nodeFileName = "DefaultArea2D"
+_description = "Emits signals at the entrance and exit of collisions from it and more"
+
+[node name="TextureRect" type="TextureRect" parent="NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/Area2D"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 30.0
+scale = Vector2(4, 4)
+mouse_filter = 2
+texture = ExtResource("20_0eb41")
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/Area2D"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -68.0
+offset_right = 82.0
+offset_bottom = 35.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.66, 0.66)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+theme_override_font_sizes/font_size = 22
+text = "Area2D"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Path2D" parent="NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer" instance=ExtResource("6_5nli3")]
+custom_minimum_size = Vector2(160, 160)
+layout_mode = 2
+texture_normal = ExtResource("7_mgmec")
+stretch_mode = 0
+script = ExtResource("8_mi0g4")
+_nodeTypeName = "Path2D"
+_nodeFileName = ""
+_description = "A configurable curve along which objects can be moved"
+
+[node name="TextureRect" type="TextureRect" parent="NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/Path2D"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 30.0
+scale = Vector2(4, 4)
+mouse_filter = 2
+texture = ExtResource("21_b7jhu")
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/Path2D"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -68.0
+offset_right = 82.0
+offset_bottom = 35.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.66, 0.66)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+theme_override_font_sizes/font_size = 22
+text = "Path2D"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TogglableButton" parent="NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer" instance=ExtResource("6_5nli3")]
+custom_minimum_size = Vector2(160, 160)
+layout_mode = 2
+texture_normal = ExtResource("7_mgmec")
+stretch_mode = 0
+script = ExtResource("8_mi0g4")
+_nodeTypeName = "TogglableButton"
+_nodeFileName = "TogglableButton"
+_description = "An object for scripting at the level. Emits signals when pressed and released"
+
+[node name="TextureRect" type="TextureRect" parent="NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/TogglableButton"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 30.0
+scale = Vector2(4, 4)
+mouse_filter = 2
+texture = ExtResource("22_7hxwx")
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/TogglableButton"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -68.0
+offset_right = 82.0
+offset_bottom = 35.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.66, 0.66)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+theme_override_font_sizes/font_size = 22
+text = "Togglable
+Button"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Control" parent="NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer" instance=ExtResource("6_5nli3")]
+custom_minimum_size = Vector2(160, 160)
+layout_mode = 2
+texture_normal = ExtResource("7_mgmec")
+stretch_mode = 0
+script = ExtResource("8_mi0g4")
+_nodeTypeName = "Control"
+_nodeFileName = ""
+_description = "The basis of all GUI elements. It has the basic properties of a GUI element (size, minimum size, trimming elements outside of itself, etc.). It is primarily used as a container for interface elements. By itself, it does not \"attach\" objects to the camera, use CanvasLayer for this"
+
+[node name="TextureRect" type="TextureRect" parent="NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 30.0
+scale = Vector2(4, 4)
+mouse_filter = 2
+texture = ExtResource("23_ejyp2")
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/Control"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -68.0
+offset_right = 82.0
+offset_bottom = 35.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.66, 0.66)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+theme_override_font_sizes/font_size = 22
+text = "Control"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorRect" parent="NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer" instance=ExtResource("6_5nli3")]
+custom_minimum_size = Vector2(160, 160)
+layout_mode = 2
+texture_normal = ExtResource("7_mgmec")
+stretch_mode = 0
+script = ExtResource("8_mi0g4")
+_nodeTypeName = "ColorRect"
+_nodeFileName = "DefaultColorRect"
+_description = "2d rectangle with customizable color. Has the properties of an GUI element"
+
+[node name="TextureRect" type="TextureRect" parent="NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/ColorRect"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 30.0
+scale = Vector2(4, 4)
+mouse_filter = 2
+texture = ExtResource("24_uflrx")
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/ColorRect"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -68.0
+offset_right = 82.0
+offset_bottom = 35.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.66, 0.66)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+theme_override_font_sizes/font_size = 22
+text = "ColorRect"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" parent="NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer" instance=ExtResource("6_5nli3")]
+custom_minimum_size = Vector2(160, 160)
+layout_mode = 2
+texture_normal = ExtResource("7_mgmec")
+stretch_mode = 0
+script = ExtResource("8_mi0g4")
+_nodeTypeName = "TextureRect"
+_nodeFileName = "TextureRect"
+_description = "Similar to Sprite2D, but has other useful features and GUI element properties"
+
+[node name="TextureRect" type="TextureRect" parent="NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/TextureRect"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 30.0
+scale = Vector2(4, 4)
+mouse_filter = 2
+texture = ExtResource("25_jubhl")
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/TextureRect"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -68.0
+offset_right = 82.0
+offset_bottom = 35.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.66, 0.66)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+theme_override_font_sizes/font_size = 22
+text = "TextureRect"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CanvasLayer" parent="NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer" instance=ExtResource("6_5nli3")]
+custom_minimum_size = Vector2(160, 160)
+layout_mode = 2
+texture_normal = ExtResource("7_mgmec")
+stretch_mode = 0
+script = ExtResource("8_mi0g4")
+_nodeTypeName = "CanvasLayer"
+_nodeFileName = ""
+_description = "Draws objects separately from the rest of the level, ignoring its position, rotation, and so on. Simply put, it pins objects on the screen"
+
+[node name="TextureRect" type="TextureRect" parent="NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/CanvasLayer"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 30.0
+scale = Vector2(4, 4)
+mouse_filter = 2
+texture = ExtResource("26_5o8xm")
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/CanvasLayer"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -68.0
+offset_right = 82.0
+offset_bottom = 35.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.66, 0.66)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+theme_override_font_sizes/font_size = 22
+text = "CanvasLayer"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ParalaxBackground" parent="NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer" instance=ExtResource("6_5nli3")]
+custom_minimum_size = Vector2(160, 160)
+layout_mode = 2
+texture_normal = ExtResource("7_mgmec")
+stretch_mode = 0
+script = ExtResource("8_mi0g4")
+_nodeTypeName = "ParalaxBackground"
+_nodeFileName = ""
+_description = "Used to create a realistic moving background"
+
+[node name="TextureRect" type="TextureRect" parent="NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/ParalaxBackground"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 30.0
+scale = Vector2(4, 4)
+mouse_filter = 2
+texture = ExtResource("27_ivytd")
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="NodeCreateMenu/MarginContainer/ScrollContainer/NodesContainer/ParalaxBackground"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -68.0
+offset_right = 82.0
+offset_bottom = 35.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.66, 0.66)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+theme_override_font_sizes/font_size = 22
+text = "Paralax
+Background"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SeeAllTheNodes" type="CheckButton" parent="."]
+layout_mode = 0
+offset_left = 312.0
+offset_right = 536.0
+offset_bottom = 29.0
+text = "See all the nodes"
+
+[node name="SnapToGrid" type="CheckButton" parent="."]
+layout_mode = 0
+offset_left = 312.0
+offset_top = 25.0
+offset_right = 490.0
+offset_bottom = 54.0
+button_pressed = true
+text = "Snap to grid"
+
+[node name="NodePopupMenu" type="PopupMenu" parent="."]
+auto_translate_mode = 1
+size = Vector2i(219, 233)
+item_count = 9
+item_0/text = "Add child node"
+item_1/text = "Cut"
+item_1/id = 1
+item_2/text = "Copy"
+item_2/id = 2
+item_3/text = "Paste"
+item_3/id = 3
+item_4/text = "Rename"
+item_4/id = 4
+item_5/text = "Duplicate"
+item_5/id = 5
+item_6/text = "Save as new scene"
+item_6/id = 6
+item_7/text = "Copy node path"
+item_7/id = 7
+item_8/text = "Delete"
+item_8/id = 8
+
+[node name="FilePopupMenu" type="PopupMenu" parent="."]
+auto_translate_mode = 1
+size = Vector2i(219, 233)
+item_count = 8
+item_0/text = "Create folder"
+item_1/text = "Delete"
+item_1/id = 1
+item_2/text = "Copy path"
+item_2/id = 2
+item_3/text = "Copy absolute path"
+item_3/id = 3
+item_4/text = "Rename"
+item_4/id = 4
+item_5/text = "Duplicate"
+item_5/id = 5
+item_6/text = "Open in explorer"
+item_6/id = 6
+item_7/text = "Open as a file"
+item_7/id = 7
+
+[node name="NodeNameEditPopup" type="PopupPanel" parent="."]
+auto_translate_mode = 1
+transparent_bg = true
+size = Vector2i(256, 39)
+transient_to_focused = true
+transparent = true
+theme_override_styles/panel = SubResource("StyleBoxEmpty_41nhu")
+
+[node name="LineEdit" type="LineEdit" parent="NodeNameEditPopup"]
+offset_right = 256.0
+offset_bottom = 39.0
+
+[node name="FileNameEditPopup" type="PopupPanel" parent="."]
+auto_translate_mode = 1
+transparent_bg = true
+size = Vector2i(256, 39)
+transient_to_focused = true
+transparent = true
+theme_override_styles/panel = SubResource("StyleBoxEmpty_41nhu")
+
+[node name="LineEdit" type="LineEdit" parent="FileNameEditPopup"]
+offset_right = 256.0
+offset_bottom = 39.0
+
+[connection signal="item_selected" from="NodesButtonsTree" to="." method="SelectNode"]
+[connection signal="item_selected" from="FilesButtonsTree" to="." method="SelectFile"]
+[connection signal="toggled" from="SeeAllTheNodes" to="." method="SetSeeAllTheNodes"]
+[connection signal="toggled" from="SnapToGrid" to="." method="SetDoSmartPos"]
+[connection signal="id_pressed" from="NodePopupMenu" to="." method="NodePopupAction"]
+[connection signal="id_pressed" from="FilePopupMenu" to="." method="FilePopupAction"]
+[connection signal="text_submitted" from="NodeNameEditPopup/LineEdit" to="." method="SetNodeName"]
+[connection signal="text_submitted" from="FileNameEditPopup/LineEdit" to="." method="SetFileName"]

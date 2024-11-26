@@ -19,7 +19,7 @@ public partial class LevelEditorCreateNodeButton : EnhancedButton
 
         bool HasNodePath = _nodeFileName != "";
         Node node = !HasNodePath ? (Node)ClassDB.Instantiate(_nodeTypeName) : GD.Load<PackedScene>("res://Content/Scenes/DefaultLevelEditorObjects/" + _nodeFileName + ".tscn").Instantiate();
-        GetTree().Root.GetNode("/root/LevelEditor").Call("CreateNode", node, !HasNodePath ? _nodeTypeName : _nodeFileName);
+        ((NodeMode)GetTree().Root.GetNode("/root/LevelEditor").Get("_currentModeGui")).CreateNode(node, !HasNodePath ? _nodeTypeName : _nodeFileName);
 
         GetNode<Control>("../../../../").Hide();
     }

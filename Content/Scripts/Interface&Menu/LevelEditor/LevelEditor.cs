@@ -74,6 +74,8 @@ public partial class LevelEditor : Control
         _modeGuiControl = GetNode<Control>("GUILayer/ModeGUIControl");
         _extraCursor = GetNode<Sprite2D>("GUILayer/ExtraCursor");
         _guiDelayTimer = GetNode<Timer>("GUILayer/GUIDelayTimer");
+
+        GD.Print(_level.Name);
     }
 
     public Vector2 _globalMousePos, _localMousePos, _guiMousePos, _globalMouseLastFramePos = new Vector2(), _localMouseLastFramePos;
@@ -81,20 +83,24 @@ public partial class LevelEditor : Control
     {
         //Mouse processing
         {
+            _globalMouseLastFramePos = _globalMousePos;
+            _localMouseLastFramePos = _localMousePos;
+
             _globalMousePos = GetGlobalMousePosition();
             _localMousePos = _camera.GetLocalMousePosition();
             _guiMousePos = _modeGuiControl.GetLocalMousePosition();
 
             if (Input.IsActionJustPressed("MouseRightClick"))
             {
-                if (_guiDelayTimer.IsStopped())
+                if (_guiDelayTimer.IsStopped() && _editorMode == EditorMode.NodeMode)
                 {
-                    if (GetNode<PopupMenu>("GUILayer/NodeModeGUI/NodePopupMenu").Visible)
-                        GetNode<PopupMenu>("GUILayer/NodeModeGUI/NodePopupMenu").CallDeferred("hide");
-                    else if (GetNode<PopupPanel>("GUILayer/NodeModeGUI/NodeNameEditPopup").Visible)
-                        GetNode<PopupPanel>("GUILayer/NodeModeGUI/NodeNameEditPopup").Hide();
-                    else if (GetNode<PopupMenu>("GUILayer/NodeModeGUI/FilePopupMenu").Visible)
-                        GetNode<PopupMenu>("GUILayer/NodeModeGUI/FilePopupMenu").CallDeferred("hide");
+                    var nodeMode = (NodeMode)_currentModeGui;
+                    if (_currentModeGui.GetNode<PopupMenu>("NodePopupMenu").Visible)
+                        _currentModeGui.GetNode<PopupMenu>("NodePopupMenu").CallDeferred("hide");
+                    else if (_currentModeGui.GetNode<PopupPanel>("NodeNameEditPopup").Visible)
+                        _currentModeGui.GetNode<PopupPanel>("NodeNameEditPopup").Hide();
+                    else if (_currentModeGui.GetNode<PopupMenu>("FilePopupMenu").Visible)
+                        _currentModeGui.GetNode<PopupMenu>("FilePopupMenu").CallDeferred("hide");
                 }
             }
 
@@ -146,8 +152,8 @@ public partial class LevelEditor : Control
                 _extraCursorMode = ExtraCursorMode.Null;
                 _extraCursor.Texture = null;
 
-                var NodesButtonsContainer = GetNode<Tree>("GUILayer/NodeModeGUI/NodesButtonsTree");
-                var FilesButtonsContainer = GetNode<Tree>("GUILayer/NodeModeGUI/FilesButtonsTree");
+                var NodesButtonsContainer = nodeMode.GetNode<Tree>("NodesButtonsTree");
+                var FilesButtonsContainer = nodeMode.GetNode<Tree>("FilesButtonsTree");
 
                 TreeItem TargetItem = null;
                 TreeItem SelectedItem = null;
@@ -292,8 +298,6 @@ public partial class LevelEditor : Control
             }
         }
 
-        _globalMouseLastFramePos = _globalMousePos;
-        _localMouseLastFramePos = _localMousePos;
     }
 
     // General functions
@@ -344,6 +348,7 @@ public partial class LevelEditor : Control
 
         _editorMode = (EditorMode)value;
         _currentModeGui = ((PackedScene)GD.Load("res://Content/Scenes/Interface&Menu/LevelEditor/" + _editorMode.ToString() + ".tscn")).Instantiate<Control>();
+        _currentModeGui.Set("L", this);
         GetNode<TileMap>("AssistiveTileMap").Visible = _editorMode == EditorMode.TileMode;
         GetNode<TileMap>("ErasingAssistiveTileMap").Visible = _editorMode == EditorMode.TileMode;
         UpdateAllNodesArray();
