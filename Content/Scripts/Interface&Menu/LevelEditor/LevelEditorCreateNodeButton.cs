@@ -9,7 +9,7 @@ public partial class LevelEditorCreateNodeButton : EnhancedButton
     {
         base._Ready();
 
-        var annotationBox = GetTree().Root.GetNode<AnnotationBox>("/root/LevelEditor/CanvasLayer/AnnotationBox");
+        var annotationBox = GetTree().Root.GetNode<AnnotationBox>("/root/LevelEditor/GUILayer/AnnotationBox");
         MouseEntered += () => annotationBox.PopupWithText(_description);
         MouseExited += () => annotationBox.Hide();
     }

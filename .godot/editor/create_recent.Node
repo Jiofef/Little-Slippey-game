@@ -1,3 +1,4 @@
+Control
 LineEdit
 TextureRect
 Node
@@ -6,10 +7,8 @@ Sprite2D
 Camera2D
 CodeEdit
 Node2D
-Control
 ColorPickerButton
 TabContainer
 TextureButton
 AnimationPlayer
 Button
-PopupMenu

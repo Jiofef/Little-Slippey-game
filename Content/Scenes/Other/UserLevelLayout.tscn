@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Content/Scripts/Other/MainScript.cs" id="1_q56u5"]
 [ext_resource type="Script" path="res://Content/Scripts/Other/LevelMusicPlayer.cs" id="2_6ioiu"]
-[ext_resource type="Script" path="res://Content/Scenes/Other/UserLevelScript.cs" id="3_xhwy7"]
+[ext_resource type="Script" path="res://Content/Scripts/Other/UserLevelScript.cs" id="3_xhwy7"]
 [ext_resource type="Texture2D" uid="uid://cjieb76jdv80v" path="res://Content/Sprites/Levels/ANineGreetingsTileset.png" id="4_kbue1"]
 [ext_resource type="Texture2D" uid="uid://dgluki8hnwb62" path="res://Content/Sprites/Levels/Level8/AcidAndLavaTileset.png" id="4_udjuf"]
 [ext_resource type="Texture2D" uid="uid://4udch8ejvu08" path="res://Content/Sprites/Interface/PauseButtonsFrame.png" id="4_xi6ki"]
