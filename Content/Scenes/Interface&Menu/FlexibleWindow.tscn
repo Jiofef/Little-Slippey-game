@@ -1,0 +1,122 @@
+[gd_scene load_steps=3 format=3 uid="uid://7ggxixinwr0a"]
+
+[ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/FlexibleWindow.cs" id="1_1wqt2"]
+[ext_resource type="Texture2D" uid="uid://w4gejppfm3h3" path="res://Content/Sprites/Interface/4XSmallWindowBase.png" id="1_g5l01"]
+
+[node name="FlexibleWindow" type="Control"]
+clip_contents = true
+custom_minimum_size = Vector2(12, 12)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -960.0
+offset_bottom = -560.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1wqt2")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_g5l01")
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="FlexBorders" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+metadata/_edit_group_ = true
+
+[node name="Left" type="Control" parent="FlexBorders"]
+custom_minimum_size = Vector2(4, 4)
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+grow_vertical = 2
+mouse_default_cursor_shape = 10
+
+[node name="Up" type="Control" parent="FlexBorders"]
+custom_minimum_size = Vector2(4, 4)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+mouse_default_cursor_shape = 9
+
+[node name="Down" type="Control" parent="FlexBorders"]
+custom_minimum_size = Vector2(4, 4)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_default_cursor_shape = 9
+
+[node name="Right" type="Control" parent="FlexBorders"]
+custom_minimum_size = Vector2(4, 4)
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 2
+mouse_default_cursor_shape = 10
+
+[node name="LeftUp" type="Control" parent="FlexBorders"]
+custom_minimum_size = Vector2(4, 4)
+layout_mode = 1
+anchors_preset = 0
+offset_right = 4.0
+offset_bottom = 4.0
+mouse_default_cursor_shape = 12
+
+[node name="RightUp" type="Control" parent="FlexBorders"]
+custom_minimum_size = Vector2(4, 4)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -4.0
+offset_bottom = 4.0
+grow_horizontal = 0
+mouse_default_cursor_shape = 11
+
+[node name="RightDown" type="Control" parent="FlexBorders"]
+custom_minimum_size = Vector2(4, 4)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -4.0
+offset_top = -4.0
+grow_horizontal = 0
+grow_vertical = 0
+mouse_default_cursor_shape = 12
+
+[node name="LeftDown" type="Control" parent="FlexBorders"]
+custom_minimum_size = Vector2(4, 4)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -4.0
+offset_right = 4.0
+grow_vertical = 0
+mouse_default_cursor_shape = 11

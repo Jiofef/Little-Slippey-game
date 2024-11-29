@@ -17,6 +17,6 @@ public partial class Achievement : Control
 
     public void TimerDeleted()
     {
-        G.AchievementPopupTimerMultiplier--;
+        Achievements.AchievementPopupTimerMultiplier--;
     }
 }

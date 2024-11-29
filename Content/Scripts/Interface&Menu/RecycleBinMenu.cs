@@ -1,11 +1,12 @@
 using Godot;
 using System;
 
-public partial class RecycleBinMenu : Control
+public partial class RecycleBinMenu : DraggableWindow
 {
 	private string _openedFile = "";
     public override void _Ready()
     {
+        // VOT ETA MENYAT NADO AFALLFALFALFLAFLALF
         UnchangableMeta.IsThereNewContentInRecycleBin = false;
         UnchangableMeta.SaveToFile();
         GetNode<Sprite2D>("FileBoxes/GratitudeDiaryTxt/ILoveYouAllGuys<3").Position = new Vector2(Convert.ToInt32(Tr("GratitudeDiaryHeartXPos")), Convert.ToInt32(Tr("GratitudeDiaryHeartYPos")));
@@ -13,7 +14,7 @@ public partial class RecycleBinMenu : Control
         {
             string[] NodesToHideNames = { "TheTestIsOverTxt", "GratitudeDiaryTxt", "Dem01", "Dem02", "Dem03", "Dem04", "Dem05", "Memory1", "Memory2", "Memory3", "Memory4", "Eternity"};
             for (int i = 0; i < NodesToHideNames.Length; i++)
-                GetNode("Icons/" + NodesToHideNames[i]).QueueFree();
+                GetNode("MarginContainer/VBoxContainer/Icons/" + NodesToHideNames[i]).QueueFree();
         }
     }
     public void OpenFile(string FileName)
@@ -48,6 +49,6 @@ public partial class RecycleBinMenu : Control
 
     public void GiveRoyaltyAchievement()
     {
-        G.GetAchievement(9);
+        Achievements.GetAchievement(9);
     }
 }

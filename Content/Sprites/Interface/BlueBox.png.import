@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://7r0hpuodjrlj"
-path="res://.godot/imported/AnnotationWindowBase.png-e7c1afc7f6b0ec433737b0beb73d8c95.ctex"
+uid="uid://dndhsmgrbk5l5"
+path="res://.godot/imported/BlueBox.png-6c976cd99d09235d6e3c125736db81e4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Content/Sprites/Interface/AnnotationWindowBase.png"
-dest_files=["res://.godot/imported/AnnotationWindowBase.png-e7c1afc7f6b0ec433737b0beb73d8c95.ctex"]
+source_file="res://Content/Sprites/Interface/BlueBox.png"
+dest_files=["res://.godot/imported/BlueBox.png-6c976cd99d09235d6e3c125736db81e4.ctex"]
 
 [params]
 

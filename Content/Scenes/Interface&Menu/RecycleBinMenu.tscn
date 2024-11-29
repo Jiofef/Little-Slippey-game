@@ -1,10 +1,11 @@
-[gd_scene load_steps=28 format=3 uid="uid://b4srh3us7jexg"]
+[gd_scene load_steps=29 format=3 uid="uid://b4srh3us7jexg"]
 
-[ext_resource type="Texture2D" uid="uid://wpxl612ttbw5" path="res://Content/Sprites/Interface/RecycleBinContainer.png" id="1_7olll"]
 [ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/RecycleBinMenu.cs" id="1_a6dy1"]
+[ext_resource type="PackedScene" uid="uid://cb3550p76ubc8" path="res://Content/Scenes/Interface&Menu/DraggableWindow.tscn" id="1_wk4jw"]
 [ext_resource type="PackedScene" uid="uid://bwpstpk1xmkah" path="res://Content/Scenes/Interface&Menu/Button.tscn" id="2_cpq08"]
 [ext_resource type="Texture2D" uid="uid://c4vm1al1458fw" path="res://Content/Sprites/Interface/TXTFileIcon.png" id="3_hpaob"]
 [ext_resource type="Texture2D" uid="uid://sey4s4u68gsq" path="res://Content/Sprites/Interface/PictureIcon.png" id="4_hbnvg"]
+[ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/RecycleBinIcon.cs" id="5_f303m"]
 [ext_resource type="Texture2D" uid="uid://dvnx6uvqwda4a" path="res://Content/Sprites/Interface/BoostyIcon.png" id="5_h7g8x"]
 [ext_resource type="Texture2D" uid="uid://xrdfs0in8rkd" path="res://Content/Sprites/Interface/Discord.png" id="6_hnjhh"]
 [ext_resource type="Texture2D" uid="uid://vb7vdsdjg4xa" path="res://Content/Sprites/Interface/USADiscordFlag.png" id="7_vfq1x"]
@@ -66,44 +67,29 @@ _data = {
 "Opening": SubResource("Animation_207cr")
 }
 
-[node name="RecycleBinMenu" type="Control"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+[node name="RecycleBinMenu" instance=ExtResource("1_wk4jw")]
 offset_left = 164.0
 offset_top = 40.0
 offset_right = -156.0
 offset_bottom = -40.0
-grow_horizontal = 2
-grow_vertical = 2
 script = ExtResource("1_a6dy1")
+WindowTitles = "Recycle Bin"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_j3e8n")
-}
-autoplay = "Opening"
+[node name="WindowTitle" parent="MarginContainer/VBoxContainer/BlueBox" index="1"]
+text = "Recycle Bin"
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(4, 4)
-texture = ExtResource("1_7olll")
-centered = false
-
-[node name="Icons" type="Control" parent="."]
-anchors_preset = 0
-offset_left = 16.0
-offset_top = 16.0
-offset_right = 944.0
-offset_bottom = 623.0
+[node name="Icons" type="Control" parent="MarginContainer/VBoxContainer" index="1"]
+layout_mode = 2
+size_flags_vertical = 0
 mouse_filter = 2
 
-[node name="WereSorryTxt" parent="Icons" instance=ExtResource("2_cpq08")]
+[node name="WereSorryTxt" parent="MarginContainer/VBoxContainer/Icons" index="0" instance=ExtResource("2_cpq08")]
 clip_contents = false
 layout_mode = 0
 texture_normal = ExtResource("3_hpaob")
+script = ExtResource("5_f303m")
 
-[node name="WereSorryTxtLabel" type="Label" parent="Icons/WereSorryTxt"]
+[node name="WereSorryTxtLabel" type="Label" parent="MarginContainer/VBoxContainer/Icons/WereSorryTxt" index="3"]
 layout_mode = 0
 offset_left = -0.75
 offset_top = 16.75
@@ -115,14 +101,14 @@ text = "We're Sorry
 .txt"
 horizontal_alignment = 1
 
-[node name="))))Txt" parent="Icons" instance=ExtResource("2_cpq08")]
+[node name="))))Txt" parent="MarginContainer/VBoxContainer/Icons" index="1" instance=ExtResource("2_cpq08")]
 clip_contents = false
 layout_mode = 0
 offset_left = 72.0
 offset_right = 88.0
 texture_normal = ExtResource("3_hpaob")
 
-[node name="))))TxtLabel" type="Label" parent="Icons/))))Txt"]
+[node name="))))TxtLabel" type="Label" parent="MarginContainer/VBoxContainer/Icons/))))Txt" index="3"]
 layout_mode = 0
 offset_left = 0.5
 offset_top = 16.75
@@ -133,14 +119,14 @@ theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
 text = ":)))).txt"
 horizontal_alignment = 1
 
-[node name="TitlesTxt" parent="Icons" instance=ExtResource("2_cpq08")]
+[node name="TitlesTxt" parent="MarginContainer/VBoxContainer/Icons" index="2" instance=ExtResource("2_cpq08")]
 clip_contents = false
 layout_mode = 0
 offset_left = 144.0
 offset_right = 160.0
 texture_normal = ExtResource("3_hpaob")
 
-[node name="TitlesTxtLabel" type="Label" parent="Icons/TitlesTxt"]
+[node name="TitlesTxtLabel" type="Label" parent="MarginContainer/VBoxContainer/Icons/TitlesTxt" index="3"]
 layout_mode = 0
 offset_left = 0.5
 offset_top = 16.75
@@ -151,14 +137,14 @@ theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
 text = "Titles.txt"
 horizontal_alignment = 1
 
-[node name="BoostyLink" parent="Icons" instance=ExtResource("2_cpq08")]
+[node name="BoostyLink" parent="MarginContainer/VBoxContainer/Icons" index="3" instance=ExtResource("2_cpq08")]
 clip_contents = false
 layout_mode = 0
 offset_left = 216.0
 offset_right = 232.0
 texture_normal = ExtResource("5_h7g8x")
 
-[node name="BoostyLinkLabel" type="Label" parent="Icons/BoostyLink"]
+[node name="BoostyLinkLabel" type="Label" parent="MarginContainer/VBoxContainer/Icons/BoostyLink" index="3"]
 layout_mode = 0
 offset_left = 0.5
 offset_top = 16.75
@@ -169,14 +155,14 @@ theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
 text = "Boosty.link"
 horizontal_alignment = 1
 
-[node name="YoutubeLink" parent="Icons" instance=ExtResource("2_cpq08")]
+[node name="YoutubeLink" parent="MarginContainer/VBoxContainer/Icons" index="4" instance=ExtResource("2_cpq08")]
 clip_contents = false
 layout_mode = 0
 offset_left = 288.0
 offset_right = 304.0
 texture_normal = ExtResource("9_hn5vf")
 
-[node name="YoutubeLinkLabel" type="Label" parent="Icons/YoutubeLink"]
+[node name="YoutubeLinkLabel" type="Label" parent="MarginContainer/VBoxContainer/Icons/YoutubeLink" index="3"]
 layout_mode = 0
 offset_left = -2.0
 offset_top = 16.75
@@ -188,20 +174,20 @@ text = "YouTube
 .link"
 horizontal_alignment = 1
 
-[node name="DiscordEngLink" parent="Icons" instance=ExtResource("2_cpq08")]
+[node name="DiscordEngLink" parent="MarginContainer/VBoxContainer/Icons" index="5" instance=ExtResource("2_cpq08")]
 clip_contents = false
 layout_mode = 0
 offset_left = 360.0
 offset_right = 376.0
 texture_normal = ExtResource("6_hnjhh")
 
-[node name="USAFlag" type="Sprite2D" parent="Icons/DiscordEngLink"]
+[node name="USAFlag" type="Sprite2D" parent="MarginContainer/VBoxContainer/Icons/DiscordEngLink" index="3"]
 position = Vector2(8, 0)
 scale = Vector2(0.33, 0.33)
 texture = ExtResource("7_vfq1x")
 centered = false
 
-[node name="DiscordEngLinkLabel" type="Label" parent="Icons/DiscordEngLink"]
+[node name="DiscordEngLinkLabel" type="Label" parent="MarginContainer/VBoxContainer/Icons/DiscordEngLink" index="4"]
 layout_mode = 0
 offset_left = 0.5
 offset_top = 16.75
@@ -213,20 +199,20 @@ text = "Discord
 Eng.link"
 horizontal_alignment = 1
 
-[node name="DiscordRusLink" parent="Icons" instance=ExtResource("2_cpq08")]
+[node name="DiscordRusLink" parent="MarginContainer/VBoxContainer/Icons" index="6" instance=ExtResource("2_cpq08")]
 clip_contents = false
 layout_mode = 0
 offset_left = 432.0
 offset_right = 448.0
 texture_normal = ExtResource("6_hnjhh")
 
-[node name="RussianFlag" type="Sprite2D" parent="Icons/DiscordRusLink"]
+[node name="RussianFlag" type="Sprite2D" parent="MarginContainer/VBoxContainer/Icons/DiscordRusLink" index="3"]
 position = Vector2(8, 0)
 scale = Vector2(0.33, 0.33)
 texture = ExtResource("8_7bxqy")
 centered = false
 
-[node name="DiscordRusLinkLabel" type="Label" parent="Icons/DiscordRusLink"]
+[node name="DiscordRusLinkLabel" type="Label" parent="MarginContainer/VBoxContainer/Icons/DiscordRusLink" index="4"]
 layout_mode = 0
 offset_left = 1.0
 offset_top = 16.75
@@ -238,14 +224,14 @@ text = "Discord
 Rus.link"
 horizontal_alignment = 1
 
-[node name="TheTestIsOverTxt" parent="Icons" instance=ExtResource("2_cpq08")]
+[node name="TheTestIsOverTxt" parent="MarginContainer/VBoxContainer/Icons" index="7" instance=ExtResource("2_cpq08")]
 clip_contents = false
 layout_mode = 0
 offset_left = 576.0
 offset_right = 592.0
 texture_normal = ExtResource("3_hpaob")
 
-[node name="TheTestIsOverTxtLabel" type="Label" parent="Icons/TheTestIsOverTxt"]
+[node name="TheTestIsOverTxtLabel" type="Label" parent="MarginContainer/VBoxContainer/Icons/TheTestIsOverTxt" index="3"]
 layout_mode = 0
 offset_left = -6.5
 offset_top = 16.75
@@ -257,14 +243,14 @@ text = "Gratitude
 Diary.txt"
 horizontal_alignment = 1
 
-[node name="GratitudeDiaryTxt" parent="Icons" instance=ExtResource("2_cpq08")]
+[node name="GratitudeDiaryTxt" parent="MarginContainer/VBoxContainer/Icons" index="8" instance=ExtResource("2_cpq08")]
 clip_contents = false
 layout_mode = 0
 offset_left = 504.0
 offset_right = 520.0
 texture_normal = ExtResource("3_hpaob")
 
-[node name="GratitudeDiaryTxtLabel" type="Label" parent="Icons/GratitudeDiaryTxt"]
+[node name="GratitudeDiaryTxtLabel" type="Label" parent="MarginContainer/VBoxContainer/Icons/GratitudeDiaryTxt" index="3"]
 layout_mode = 0
 offset_left = -5.5
 offset_top = 16.75
@@ -276,14 +262,14 @@ text = "The Test Is
 Over.txt"
 horizontal_alignment = 1
 
-[node name="Dem01" parent="Icons" instance=ExtResource("2_cpq08")]
+[node name="Dem01" parent="MarginContainer/VBoxContainer/Icons" index="9" instance=ExtResource("2_cpq08")]
 clip_contents = false
 layout_mode = 0
 offset_left = 648.0
 offset_right = 664.0
 texture_normal = ExtResource("4_hbnvg")
 
-[node name="Dem01Label" type="Label" parent="Icons/Dem01"]
+[node name="Dem01Label" type="Label" parent="MarginContainer/VBoxContainer/Icons/Dem01" index="3"]
 layout_mode = 0
 offset_left = 0.5
 offset_top = 16.75
@@ -294,14 +280,14 @@ theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
 text = "Dem01.img"
 horizontal_alignment = 1
 
-[node name="Dem02" parent="Icons" instance=ExtResource("2_cpq08")]
+[node name="Dem02" parent="MarginContainer/VBoxContainer/Icons" index="10" instance=ExtResource("2_cpq08")]
 clip_contents = false
 layout_mode = 0
 offset_left = 720.0
 offset_right = 736.0
 texture_normal = ExtResource("4_hbnvg")
 
-[node name="Dem02Label" type="Label" parent="Icons/Dem02"]
+[node name="Dem02Label" type="Label" parent="MarginContainer/VBoxContainer/Icons/Dem02" index="3"]
 layout_mode = 0
 offset_left = 0.75
 offset_top = 16.75
@@ -312,14 +298,14 @@ theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
 text = "Dem02.img"
 horizontal_alignment = 1
 
-[node name="Dem03" parent="Icons" instance=ExtResource("2_cpq08")]
+[node name="Dem03" parent="MarginContainer/VBoxContainer/Icons" index="11" instance=ExtResource("2_cpq08")]
 clip_contents = false
 layout_mode = 0
 offset_left = 792.0
 offset_right = 808.0
 texture_normal = ExtResource("4_hbnvg")
 
-[node name="Dem03Label" type="Label" parent="Icons/Dem03"]
+[node name="Dem03Label" type="Label" parent="MarginContainer/VBoxContainer/Icons/Dem03" index="3"]
 layout_mode = 0
 offset_left = 0.5
 offset_top = 16.75
@@ -330,14 +316,14 @@ theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
 text = "Dem03.img"
 horizontal_alignment = 1
 
-[node name="Dem04" parent="Icons" instance=ExtResource("2_cpq08")]
+[node name="Dem04" parent="MarginContainer/VBoxContainer/Icons" index="12" instance=ExtResource("2_cpq08")]
 clip_contents = false
 layout_mode = 0
 offset_left = 864.0
 offset_right = 880.0
 texture_normal = ExtResource("4_hbnvg")
 
-[node name="Dem04Label" type="Label" parent="Icons/Dem04"]
+[node name="Dem04Label" type="Label" parent="MarginContainer/VBoxContainer/Icons/Dem04" index="3"]
 layout_mode = 0
 offset_left = 0.5
 offset_top = 16.75
@@ -348,14 +334,14 @@ theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
 text = "Dem04.img"
 horizontal_alignment = 1
 
-[node name="Dem05" parent="Icons" instance=ExtResource("2_cpq08")]
+[node name="Dem05" parent="MarginContainer/VBoxContainer/Icons" index="13" instance=ExtResource("2_cpq08")]
 clip_contents = false
 layout_mode = 0
 offset_top = 92.0
 offset_bottom = 108.0
 texture_normal = ExtResource("4_hbnvg")
 
-[node name="Dem05Label" type="Label" parent="Icons/Dem05"]
+[node name="Dem05Label" type="Label" parent="MarginContainer/VBoxContainer/Icons/Dem05" index="3"]
 layout_mode = 0
 offset_left = 0.75
 offset_top = 16.75
@@ -366,7 +352,7 @@ theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
 text = "Dem05.img"
 horizontal_alignment = 1
 
-[node name="Memory1" parent="Icons" instance=ExtResource("2_cpq08")]
+[node name="Memory1" parent="MarginContainer/VBoxContainer/Icons" index="14" instance=ExtResource("2_cpq08")]
 clip_contents = false
 layout_mode = 0
 offset_left = 72.0
@@ -375,7 +361,7 @@ offset_right = 88.0
 offset_bottom = 108.0
 texture_normal = ExtResource("4_hbnvg")
 
-[node name="Memory1Label" type="Label" parent="Icons/Memory1"]
+[node name="Memory1Label" type="Label" parent="MarginContainer/VBoxContainer/Icons/Memory1" index="3"]
 layout_mode = 0
 offset_left = 0.5
 offset_top = 16.75
@@ -387,7 +373,7 @@ text = "Memory1
 .img"
 horizontal_alignment = 1
 
-[node name="Memory2" parent="Icons" instance=ExtResource("2_cpq08")]
+[node name="Memory2" parent="MarginContainer/VBoxContainer/Icons" index="15" instance=ExtResource("2_cpq08")]
 clip_contents = false
 layout_mode = 0
 offset_left = 144.0
@@ -396,7 +382,7 @@ offset_right = 160.0
 offset_bottom = 108.0
 texture_normal = ExtResource("4_hbnvg")
 
-[node name="Memory2Label" type="Label" parent="Icons/Memory2"]
+[node name="Memory2Label" type="Label" parent="MarginContainer/VBoxContainer/Icons/Memory2" index="3"]
 layout_mode = 0
 offset_left = 0.5
 offset_top = 16.75
@@ -408,7 +394,7 @@ text = "Memory2
 .img"
 horizontal_alignment = 1
 
-[node name="Memory3" parent="Icons" instance=ExtResource("2_cpq08")]
+[node name="Memory3" parent="MarginContainer/VBoxContainer/Icons" index="16" instance=ExtResource("2_cpq08")]
 clip_contents = false
 layout_mode = 0
 offset_left = 216.0
@@ -417,7 +403,7 @@ offset_right = 232.0
 offset_bottom = 108.0
 texture_normal = ExtResource("4_hbnvg")
 
-[node name="Memory3Label" type="Label" parent="Icons/Memory3"]
+[node name="Memory3Label" type="Label" parent="MarginContainer/VBoxContainer/Icons/Memory3" index="3"]
 layout_mode = 0
 offset_left = 0.5
 offset_top = 16.75
@@ -429,7 +415,7 @@ text = "Memory3
 .img"
 horizontal_alignment = 1
 
-[node name="Memory4" parent="Icons" instance=ExtResource("2_cpq08")]
+[node name="Memory4" parent="MarginContainer/VBoxContainer/Icons" index="17" instance=ExtResource("2_cpq08")]
 clip_contents = false
 layout_mode = 0
 offset_left = 288.0
@@ -438,7 +424,7 @@ offset_right = 304.0
 offset_bottom = 108.0
 texture_normal = ExtResource("4_hbnvg")
 
-[node name="Memory4Label" type="Label" parent="Icons/Memory4"]
+[node name="Memory4Label" type="Label" parent="MarginContainer/VBoxContainer/Icons/Memory4" index="3"]
 layout_mode = 0
 offset_left = 0.5
 offset_top = 16.75
@@ -450,7 +436,7 @@ text = "Memory4
 .img"
 horizontal_alignment = 1
 
-[node name="Eternity" parent="Icons" instance=ExtResource("2_cpq08")]
+[node name="Eternity" parent="MarginContainer/VBoxContainer/Icons" index="18" instance=ExtResource("2_cpq08")]
 clip_contents = false
 layout_mode = 0
 offset_left = 360.0
@@ -459,7 +445,7 @@ offset_right = 376.0
 offset_bottom = 108.0
 texture_normal = ExtResource("4_hbnvg")
 
-[node name="EternityLabel" type="Label" parent="Icons/Eternity"]
+[node name="EternityLabel" type="Label" parent="MarginContainer/VBoxContainer/Icons/Eternity" index="3"]
 layout_mode = 0
 offset_left = 0.25
 offset_top = 16.75
@@ -471,25 +457,32 @@ text = "Eternity
 .img"
 horizontal_alignment = 1
 
-[node name="FileBoxes" type="Control" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="3"]
+libraries = {
+"": SubResource("AnimationLibrary_j3e8n")
+}
+autoplay = "Opening"
+
+[node name="FileBoxes" type="Control" parent="." index="4"]
+layout_mode = 3
 anchors_preset = 0
 offset_left = 12.0
 offset_top = 228.0
 offset_right = 948.0
 offset_bottom = 628.0
 
-[node name="ManagementLetterTxt" type="Sprite2D" parent="FileBoxes"]
+[node name="ManagementLetterTxt" type="Sprite2D" parent="FileBoxes" index="0"]
 visible = false
 scale = Vector2(4, 4)
 texture = ExtResource("11_m33u8")
 centered = false
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="FileBoxes/ManagementLetterTxt"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="FileBoxes/ManagementLetterTxt" index="0"]
 libraries = {
 "": SubResource("AnimationLibrary_bj0h5")
 }
 
-[node name="Label" type="RichTextLabel" parent="FileBoxes/ManagementLetterTxt"]
+[node name="Label" type="RichTextLabel" parent="FileBoxes/ManagementLetterTxt" index="1"]
 offset_left = 3.0
 offset_top = 4.0
 offset_right = 922.0
@@ -503,18 +496,18 @@ important for us to see you happy and rested, but it is also equally important t
 the work plan. Don't forget what a serious project you are working on.
 Sincerely, the administration of the third sector of Giero Labs."
 
-[node name="))))Txt" type="Sprite2D" parent="FileBoxes"]
+[node name="))))Txt" type="Sprite2D" parent="FileBoxes" index="1"]
 visible = false
 scale = Vector2(4, 4)
 texture = ExtResource("11_m33u8")
 centered = false
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="FileBoxes/))))Txt"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="FileBoxes/))))Txt" index="0"]
 libraries = {
 "": SubResource("AnimationLibrary_bj0h5")
 }
 
-[node name="Label" type="RichTextLabel" parent="FileBoxes/))))Txt"]
+[node name="Label" type="RichTextLabel" parent="FileBoxes/))))Txt" index="1"]
 offset_left = 3.0
 offset_top = 4.0
 offset_right = 923.0
@@ -526,52 +519,52 @@ From Mike777 to middle-level employees.
 I want to give special thanks to the geniuses who watched porn on office computers
 during working hours. MAY GOD BLESS YOU AND YOUR F*CKEN FAMILY"
 
-[node name="Dem01" type="Sprite2D" parent="FileBoxes"]
+[node name="Dem01" type="Sprite2D" parent="FileBoxes" index="2"]
 visible = false
 scale = Vector2(4, 4)
 texture = ExtResource("12_jsxs2")
 centered = false
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="FileBoxes/Dem01"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="FileBoxes/Dem01" index="0"]
 libraries = {
 "": SubResource("AnimationLibrary_bj0h5")
 }
 
-[node name="Sprite2D" type="Sprite2D" parent="FileBoxes/Dem01"]
+[node name="Sprite2D" type="Sprite2D" parent="FileBoxes/Dem01" index="1"]
 position = Vector2(3, 3.00001)
 scale = Vector2(0.247826, 0.247368)
 texture = ExtResource("13_00rjr")
 centered = false
 
-[node name="Dem02" type="Sprite2D" parent="FileBoxes"]
+[node name="Dem02" type="Sprite2D" parent="FileBoxes" index="3"]
 visible = false
 scale = Vector2(4, 4)
 texture = ExtResource("12_jsxs2")
 centered = false
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="FileBoxes/Dem02"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="FileBoxes/Dem02" index="0"]
 libraries = {
 "": SubResource("AnimationLibrary_bj0h5")
 }
 
-[node name="Sprite2D" type="Sprite2D" parent="FileBoxes/Dem02"]
+[node name="Sprite2D" type="Sprite2D" parent="FileBoxes/Dem02" index="1"]
 position = Vector2(3, 3.00001)
 scale = Vector2(0.247826, 0.247368)
 texture = ExtResource("14_f0qg6")
 centered = false
 
-[node name="TitlesTxt" type="Sprite2D" parent="FileBoxes"]
+[node name="TitlesTxt" type="Sprite2D" parent="FileBoxes" index="4"]
 visible = false
 scale = Vector2(4, 4)
 texture = ExtResource("11_m33u8")
 centered = false
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="FileBoxes/TitlesTxt"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="FileBoxes/TitlesTxt" index="0"]
 libraries = {
 "": SubResource("AnimationLibrary_bj0h5")
 }
 
-[node name="Label" type="RichTextLabel" parent="FileBoxes/TitlesTxt"]
+[node name="Label" type="RichTextLabel" parent="FileBoxes/TitlesTxt" index="1"]
 offset_left = 3.0
 offset_top = 4.0
 offset_right = 923.0
@@ -595,154 +588,154 @@ the nickname Jiofef
 
 All rights reserved btw ;p"
 
-[node name="Dem03" type="Sprite2D" parent="FileBoxes"]
+[node name="Dem03" type="Sprite2D" parent="FileBoxes" index="5"]
 visible = false
 scale = Vector2(4, 4)
 texture = ExtResource("12_jsxs2")
 centered = false
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="FileBoxes/Dem03"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="FileBoxes/Dem03" index="0"]
 libraries = {
 "": SubResource("AnimationLibrary_bj0h5")
 }
 
-[node name="Sprite2D" type="Sprite2D" parent="FileBoxes/Dem03"]
+[node name="Sprite2D" type="Sprite2D" parent="FileBoxes/Dem03" index="1"]
 position = Vector2(3, 3.00001)
 scale = Vector2(0.247826, 0.247368)
 texture = ExtResource("15_s806g")
 centered = false
 
-[node name="Dem04" type="Sprite2D" parent="FileBoxes"]
+[node name="Dem04" type="Sprite2D" parent="FileBoxes" index="6"]
 visible = false
 scale = Vector2(4, 4)
 texture = ExtResource("12_jsxs2")
 centered = false
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="FileBoxes/Dem04"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="FileBoxes/Dem04" index="0"]
 libraries = {
 "": SubResource("AnimationLibrary_bj0h5")
 }
 
-[node name="Sprite2D" type="Sprite2D" parent="FileBoxes/Dem04"]
+[node name="Sprite2D" type="Sprite2D" parent="FileBoxes/Dem04" index="1"]
 position = Vector2(3, 3.00001)
 scale = Vector2(0.247826, 0.247368)
 texture = ExtResource("16_xboqb")
 centered = false
 
-[node name="Dem05" type="Sprite2D" parent="FileBoxes"]
+[node name="Dem05" type="Sprite2D" parent="FileBoxes" index="7"]
 visible = false
 scale = Vector2(4, 4)
 texture = ExtResource("12_jsxs2")
 centered = false
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="FileBoxes/Dem05"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="FileBoxes/Dem05" index="0"]
 libraries = {
 "": SubResource("AnimationLibrary_bj0h5")
 }
 
-[node name="Sprite2D" type="Sprite2D" parent="FileBoxes/Dem05"]
+[node name="Sprite2D" type="Sprite2D" parent="FileBoxes/Dem05" index="1"]
 position = Vector2(3, 3.00001)
 scale = Vector2(0.247826, 0.247368)
 texture = ExtResource("17_kqxna")
 centered = false
 
-[node name="Memory1" type="Sprite2D" parent="FileBoxes"]
+[node name="Memory1" type="Sprite2D" parent="FileBoxes" index="8"]
 visible = false
 scale = Vector2(4, 4)
 texture = ExtResource("12_jsxs2")
 centered = false
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="FileBoxes/Memory1"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="FileBoxes/Memory1" index="0"]
 libraries = {
 "": SubResource("AnimationLibrary_bj0h5")
 }
 
-[node name="Sprite2D" type="Sprite2D" parent="FileBoxes/Memory1"]
+[node name="Sprite2D" type="Sprite2D" parent="FileBoxes/Memory1" index="1"]
 position = Vector2(69, 3)
 scale = Vector2(0.25, 0.246)
 texture = ExtResource("18_qsuhx")
 centered = false
 
-[node name="Memory2" type="Sprite2D" parent="FileBoxes"]
+[node name="Memory2" type="Sprite2D" parent="FileBoxes" index="9"]
 visible = false
 scale = Vector2(4, 4)
 texture = ExtResource("12_jsxs2")
 centered = false
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="FileBoxes/Memory2"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="FileBoxes/Memory2" index="0"]
 libraries = {
 "": SubResource("AnimationLibrary_bj0h5")
 }
 
-[node name="Sprite2D" type="Sprite2D" parent="FileBoxes/Memory2"]
+[node name="Sprite2D" type="Sprite2D" parent="FileBoxes/Memory2" index="1"]
 position = Vector2(69, 3)
 scale = Vector2(0.247826, 0.247368)
 texture = ExtResource("19_epk1r")
 centered = false
 
-[node name="Memory3" type="Sprite2D" parent="FileBoxes"]
+[node name="Memory3" type="Sprite2D" parent="FileBoxes" index="10"]
 visible = false
 scale = Vector2(4, 4)
 texture = ExtResource("12_jsxs2")
 centered = false
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="FileBoxes/Memory3"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="FileBoxes/Memory3" index="0"]
 libraries = {
 "": SubResource("AnimationLibrary_bj0h5")
 }
 
-[node name="Sprite2D" type="Sprite2D" parent="FileBoxes/Memory3"]
+[node name="Sprite2D" type="Sprite2D" parent="FileBoxes/Memory3" index="1"]
 position = Vector2(69, 3)
 scale = Vector2(0.247826, 0.247368)
 texture = ExtResource("20_jmpmm")
 centered = false
 
-[node name="Memory4" type="Sprite2D" parent="FileBoxes"]
+[node name="Memory4" type="Sprite2D" parent="FileBoxes" index="11"]
 visible = false
 scale = Vector2(4, 4)
 texture = ExtResource("12_jsxs2")
 centered = false
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="FileBoxes/Memory4"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="FileBoxes/Memory4" index="0"]
 libraries = {
 "": SubResource("AnimationLibrary_bj0h5")
 }
 
-[node name="Sprite2D" type="Sprite2D" parent="FileBoxes/Memory4"]
+[node name="Sprite2D" type="Sprite2D" parent="FileBoxes/Memory4" index="1"]
 position = Vector2(69, 3)
 scale = Vector2(0.247826, 0.247368)
 texture = ExtResource("21_basfh")
 centered = false
 
-[node name="Eternity" type="Sprite2D" parent="FileBoxes"]
+[node name="Eternity" type="Sprite2D" parent="FileBoxes" index="12"]
 visible = false
 scale = Vector2(4, 4)
 texture = ExtResource("12_jsxs2")
 centered = false
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="FileBoxes/Eternity"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="FileBoxes/Eternity" index="0"]
 libraries = {
 "": SubResource("AnimationLibrary_bj0h5")
 }
 
-[node name="Sprite2D" type="Sprite2D" parent="FileBoxes/Eternity"]
+[node name="Sprite2D" type="Sprite2D" parent="FileBoxes/Eternity" index="1"]
 position = Vector2(69, 3)
 scale = Vector2(0.247826, 0.247368)
 texture = ExtResource("22_g11jh")
 centered = false
 
-[node name="TheTestIsOverTxt" type="Sprite2D" parent="FileBoxes"]
+[node name="TheTestIsOverTxt" type="Sprite2D" parent="FileBoxes" index="13"]
 visible = false
 scale = Vector2(4, 4)
 texture = ExtResource("11_m33u8")
 centered = false
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="FileBoxes/TheTestIsOverTxt"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="FileBoxes/TheTestIsOverTxt" index="0"]
 libraries = {
 "": SubResource("AnimationLibrary_bj0h5")
 }
 
-[node name="Label" type="RichTextLabel" parent="FileBoxes/TheTestIsOverTxt"]
+[node name="Label" type="RichTextLabel" parent="FileBoxes/TheTestIsOverTxt" index="1"]
 offset_left = 3.0
 offset_top = 3.0
 offset_right = 919.0
@@ -759,18 +752,18 @@ near future.
 With respect,
 The general manager of Giero Labs, Hiro Miyoshi."
 
-[node name="GratitudeDiaryTxt" type="Sprite2D" parent="FileBoxes"]
+[node name="GratitudeDiaryTxt" type="Sprite2D" parent="FileBoxes" index="14"]
 visible = false
 scale = Vector2(4, 1e-05)
 texture = ExtResource("11_m33u8")
 centered = false
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="FileBoxes/GratitudeDiaryTxt"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="FileBoxes/GratitudeDiaryTxt" index="0"]
 libraries = {
 "": SubResource("AnimationLibrary_bj0h5")
 }
 
-[node name="Label" type="RichTextLabel" parent="FileBoxes/GratitudeDiaryTxt"]
+[node name="Label" type="RichTextLabel" parent="FileBoxes/GratitudeDiaryTxt" index="1"]
 offset_left = 3.0
 offset_top = 4.0
 offset_right = 923.0
@@ -787,30 +780,6 @@ Xenia, my mom, and You, Player.
 
 Without you all this game wouldn't exist"
 
-[node name="ILoveYouAllGuys<3" type="Sprite2D" parent="FileBoxes/GratitudeDiaryTxt"]
+[node name="ILoveYouAllGuys<3" type="Sprite2D" parent="FileBoxes/GratitudeDiaryTxt" index="2"]
 position = Vector2(105, 48)
 texture = ExtResource("12_d2061")
-
-[connection signal="pressed" from="Icons/WereSorryTxt" to="." method="OpenFile" binds= ["ManagementLetterTxt"]]
-[connection signal="pressed" from="Icons/))))Txt" to="." method="OpenFile" binds= ["))))Txt"]]
-[connection signal="pressed" from="Icons/TitlesTxt" to="." method="OpenFile" binds= ["TitlesTxt"]]
-[connection signal="pressed" from="Icons/BoostyLink" to="." method="GiveRoyaltyAchievement"]
-[connection signal="pressed" from="Icons/BoostyLink" to="." method="OpenLink" binds= ["https://boosty.to/paradiseunderground"]]
-[connection signal="pressed" from="Icons/YoutubeLink" to="." method="GiveRoyaltyAchievement"]
-[connection signal="pressed" from="Icons/YoutubeLink" to="." method="OpenLink" binds= ["https://www.youtube.com/@paradiseunderground333"]]
-[connection signal="pressed" from="Icons/DiscordEngLink" to="." method="GiveRoyaltyAchievement"]
-[connection signal="pressed" from="Icons/DiscordEngLink" to="." method="OpenLink" binds= ["https://discord.com/invite/K2TJZTfXt4"]]
-[connection signal="pressed" from="Icons/DiscordRusLink" to="." method="GiveRoyaltyAchievement"]
-[connection signal="pressed" from="Icons/DiscordRusLink" to="." method="OpenLink" binds= ["https://discord.com/invite/Wjy3JNSdNa"]]
-[connection signal="pressed" from="Icons/TheTestIsOverTxt" to="." method="OpenFile" binds= ["GratitudeDiaryTxt"]]
-[connection signal="pressed" from="Icons/GratitudeDiaryTxt" to="." method="OpenFile" binds= ["TheTestIsOverTxt"]]
-[connection signal="pressed" from="Icons/Dem01" to="." method="OpenFile" binds= ["Dem01"]]
-[connection signal="pressed" from="Icons/Dem02" to="." method="OpenFile" binds= ["Dem02"]]
-[connection signal="pressed" from="Icons/Dem03" to="." method="OpenFile" binds= ["Dem03"]]
-[connection signal="pressed" from="Icons/Dem04" to="." method="OpenFile" binds= ["Dem04"]]
-[connection signal="pressed" from="Icons/Dem05" to="." method="OpenFile" binds= ["Dem05"]]
-[connection signal="pressed" from="Icons/Memory1" to="." method="OpenFile" binds= ["Memory1"]]
-[connection signal="pressed" from="Icons/Memory2" to="." method="OpenFile" binds= ["Memory2"]]
-[connection signal="pressed" from="Icons/Memory3" to="." method="OpenFile" binds= ["Memory3"]]
-[connection signal="pressed" from="Icons/Memory4" to="." method="OpenFile" binds= ["Memory4"]]
-[connection signal="pressed" from="Icons/Eternity" to="." method="OpenFile" binds= ["Eternity"]]

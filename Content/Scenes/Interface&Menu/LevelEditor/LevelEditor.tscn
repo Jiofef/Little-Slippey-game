@@ -1,11 +1,10 @@
-[gd_scene load_steps=22 format=3 uid="uid://c1b6qyg17m3f1"]
+[gd_scene load_steps=9 format=3 uid="uid://c1b6qyg17m3f1"]
 
 [ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/LevelEditor/LevelEditor.cs" id="1_iqefj"]
 [ext_resource type="Texture2D" uid="uid://d284tqsj2yp0w" path="res://Content/Sprites/Interface/Cross.png" id="2_0sxv6"]
 [ext_resource type="Texture2D" uid="uid://bfg5b2a5xwbt" path="res://Content/Sprites/Interface/LevelEditor/SmallButton.png" id="3_5ujd4"]
 [ext_resource type="PackedScene" uid="uid://bwpstpk1xmkah" path="res://Content/Scenes/Interface&Menu/Button.tscn" id="3_wdnfh"]
-[ext_resource type="Texture2D" uid="uid://7r0hpuodjrlj" path="res://Content/Sprites/Interface/AnnotationWindowBase.png" id="24_0opd5"]
-[ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/AnnotationBox.cs" id="24_4xfmb"]
+[ext_resource type="PackedScene" uid="uid://dewmapsqmn8uk" path="res://Content/Scenes/Interface&Menu/AnnotationBox.tscn" id="5_kg1qs"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_u6r4h"]
 texture = ExtResource("2_0sxv6")
@@ -16,80 +15,6 @@ sources/0 = SubResource("TileSetAtlasSource_u6r4h")
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_8rse1"]
 resource_local_to_scene = false
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_t1ql4"]
-atlas = ExtResource("24_0opd5")
-region = Rect2(2, 2, 4, 4)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_0iy5r"]
-atlas = ExtResource("24_0opd5")
-region = Rect2(2, 0, 4, 2)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_u2lp1"]
-atlas = ExtResource("24_0opd5")
-region = Rect2(0, 2, 2, 4)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_eu31a"]
-atlas = ExtResource("24_0opd5")
-region = Rect2(6, 2, 2, 4)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_luqsi"]
-atlas = ExtResource("24_0opd5")
-region = Rect2(2, 6, 4, 2)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vg0e5"]
-atlas = ExtResource("24_0opd5")
-region = Rect2(0, 0, 8, 2)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_bgqcr"]
-atlas = ExtResource("24_0opd5")
-region = Rect2(6, 0, 4, 4)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_jkl77"]
-atlas = ExtResource("24_0opd5")
-region = Rect2(0, 6, 8, 2)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_bqw27"]
-atlas = ExtResource("24_0opd5")
-region = Rect2(6, 6, 8, 2)
-
-[sub_resource type="Animation" id="Animation_hlg0i"]
-resource_name = "Appearing"
-length = 0.3
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:_sizeCoeff")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3),
-"transitions": PackedFloat32Array(0.5, 1),
-"update": 0,
-"values": [0.0, 1.0]
-}
-
-[sub_resource type="Animation" id="Animation_uolno"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:_sizeCoeff")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_xtxak"]
-_data = {
-"Appearing": SubResource("Animation_hlg0i"),
-"RESET": SubResource("Animation_uolno")
-}
 
 [node name="LevelEditor" type="Control"]
 layout_mode = 3
@@ -180,155 +105,7 @@ stretch_mode = 0
 process_mode = 3
 one_shot = true
 
-[node name="AnnotationBox" type="Control" parent="GUILayer"]
-visible = false
-z_index = 100
-clip_contents = true
-custom_minimum_size = Vector2(12, 12)
-layout_mode = 3
-anchors_preset = 0
-offset_right = 12.0
-offset_bottom = 12.0
-mouse_filter = 2
-script = ExtResource("24_4xfmb")
-
-[node name="Mid" type="TextureRect" parent="GUILayer/AnnotationBox"]
-clip_contents = true
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-texture = SubResource("AtlasTexture_t1ql4")
-
-[node name="Up" type="TextureRect" parent="GUILayer/AnnotationBox"]
-clip_contents = true
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 8.0
-grow_horizontal = 2
-mouse_filter = 2
-texture = SubResource("AtlasTexture_0iy5r")
-
-[node name="MidLeft" type="TextureRect" parent="GUILayer/AnnotationBox"]
-clip_contents = true
-layout_mode = 1
-anchors_preset = 9
-anchor_bottom = 1.0
-offset_right = 8.0
-grow_vertical = 2
-mouse_filter = 2
-texture = SubResource("AtlasTexture_u2lp1")
-
-[node name="MidRight" type="TextureRect" parent="GUILayer/AnnotationBox"]
-clip_contents = true
-layout_mode = 1
-anchors_preset = 11
-anchor_left = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -8.0
-grow_horizontal = 0
-grow_vertical = 2
-mouse_filter = 2
-texture = SubResource("AtlasTexture_eu31a")
-
-[node name="Bottom" type="TextureRect" parent="GUILayer/AnnotationBox"]
-clip_contents = true
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -8.0
-grow_horizontal = 2
-grow_vertical = 0
-mouse_filter = 2
-texture = SubResource("AtlasTexture_luqsi")
-
-[node name="UpLeft" type="TextureRect" parent="GUILayer/AnnotationBox"]
-clip_contents = true
-layout_mode = 1
-offset_right = 2.0
-offset_bottom = 2.0
-scale = Vector2(4, 4)
-mouse_filter = 2
-texture = SubResource("AtlasTexture_vg0e5")
-expand_mode = 1
-stretch_mode = 2
-
-[node name="UpRight" type="TextureRect" parent="GUILayer/AnnotationBox"]
-clip_contents = true
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -2.0
-offset_bottom = 2.0
-grow_horizontal = 0
-scale = Vector2(4, 4)
-pivot_offset = Vector2(2, 0)
-mouse_filter = 2
-texture = SubResource("AtlasTexture_bgqcr")
-expand_mode = 1
-stretch_mode = 2
-
-[node name="BottomLeft" type="TextureRect" parent="GUILayer/AnnotationBox"]
-clip_contents = true
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -2.0
-offset_right = 2.0
-grow_vertical = 0
-scale = Vector2(4, 4)
-pivot_offset = Vector2(0, 2)
-mouse_filter = 2
-texture = SubResource("AtlasTexture_jkl77")
-expand_mode = 1
-stretch_mode = 2
-
-[node name="BottomRight" type="TextureRect" parent="GUILayer/AnnotationBox"]
-clip_contents = true
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -2.0
-offset_top = -2.0
-grow_horizontal = 0
-grow_vertical = 0
-scale = Vector2(4, 4)
-pivot_offset = Vector2(2, 2)
-mouse_filter = 2
-texture = SubResource("AtlasTexture_bqw27")
-expand_mode = 1
-stretch_mode = 2
-
-[node name="RichTextLabel" type="RichTextLabel" parent="GUILayer/AnnotationBox"]
-clip_contents = false
-custom_minimum_size = Vector2(498, 64)
-layout_mode = 0
-offset_left = 8.0
-offset_top = 12.0
-offset_right = 9.0
-offset_bottom = 12.0
-mouse_filter = 2
-theme_override_colors/default_color = Color(0.196078, 0.196078, 0.196078, 1)
-theme_override_font_sizes/normal_font_size = 22
-fit_content = true
-scroll_active = false
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="GUILayer/AnnotationBox"]
-libraries = {
-"": SubResource("AnimationLibrary_xtxak")
-}
+[node name="AnnotationBox" parent="GUILayer" instance=ExtResource("5_kg1qs")]
 
 [node name="ExtraCursor" type="Sprite2D" parent="GUILayer"]
 scale = Vector2(4, 4)
@@ -353,4 +130,3 @@ default_color = Color(0.501961, 0.501961, 0.501961, 0.156863)
 [connection signal="pressed" from="GUILayer/EditorModes/NodeMode" to="." method="SetEditorMode" binds= [1]]
 [connection signal="pressed" from="GUILayer/EditorModes/CodeMode" to="." method="SetEditorMode" binds= [2]]
 [connection signal="pressed" from="GUILayer/EditorModes/SavePage" to="." method="SetEditorMode" binds= [3]]
-[connection signal="draw" from="GUILayer/AnnotationBox/RichTextLabel" to="GUILayer/AnnotationBox" method="UpdateRequiredSize" flags=3]

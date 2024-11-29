@@ -1,0 +1,77 @@
+[gd_scene load_steps=5 format=3 uid="uid://cb3550p76ubc8"]
+
+[ext_resource type="PackedScene" uid="uid://7ggxixinwr0a" path="res://Content/Scenes/Interface&Menu/FlexibleWindow.tscn" id="1_rnubb"]
+[ext_resource type="Texture2D" uid="uid://i530dds7xb5g" path="res://Content/Sprites/Interface/4XBlueBox.png" id="2_cyb7u"]
+[ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/DraggableWindow.cs" id="2_qyxa4"]
+[ext_resource type="LabelSettings" uid="uid://crwvi8nldyh0f" path="res://Content/Other/MenuTextLabelSettings.tres" id="3_oiy22"]
+
+[node name="DraggableWindow" instance=ExtResource("1_rnubb")]
+script = ExtResource("2_qyxa4")
+WindowTitles = "Title"
+
+[node name="MarginContainer" type="MarginContainer" parent="." index="2"]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" index="0"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="BlueBox" type="NinePatchRect" parent="MarginContainer/VBoxContainer" index="0"]
+clip_contents = true
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+size_flags_vertical = 0
+mouse_filter = 0
+mouse_default_cursor_shape = 6
+texture = ExtResource("2_cyb7u")
+draw_center = false
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
+
+[node name="BlueBoxRect" type="ColorRect" parent="MarginContainer/VBoxContainer/BlueBox" index="0"]
+show_behind_parent = true
+clip_contents = true
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 0
+mouse_filter = 2
+color = Color(0.313726, 0.380392, 0.87451, 1)
+
+[node name="WindowTitle" type="Label" parent="MarginContainer/VBoxContainer/BlueBox" index="1"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -624.0
+offset_top = -34.0
+offset_right = 1040.0
+offset_bottom = 34.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.75, 0.75)
+text = "Title"
+label_settings = ExtResource("3_oiy22")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="gui_input" from="MarginContainer/VBoxContainer/BlueBox" to="." method="OnBlueBoxInput"]

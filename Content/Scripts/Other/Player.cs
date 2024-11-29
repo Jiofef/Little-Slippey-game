@@ -286,15 +286,19 @@ public partial class Player : CharacterBody2D
         {
             switch (UnchangableMeta.DeathsNumber)
             {
-                case 2: G.GetAchievement(4); break;
-                case 35: G.GetAchievement(5); break;
-                case 273: G.GetAchievement(6); break;
+                case 2: Achievements.GetAchievement(4); break;
+                case 35: Achievements.GetAchievement(5); break;
+                case 273: Achievements.GetAchievement(6); break;
             }
             UnchangableMeta.SaveRecords();
             UnchangableMeta.SaveToFile();
         }
     }
 
+    public void Resurrect()
+    {
+
+    }
     public void LeftWallDetect()
     {
         _wallDetectNumber = -1;

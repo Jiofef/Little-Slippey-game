@@ -68,9 +68,15 @@ public partial class BaseLevelScript : Node2D
             if (Input.IsActionPressed("TeleportDebug"))
                 _player.GlobalPosition = GetGlobalMousePosition();
 
-            if (Input.IsActionJustReleased("ScoreDebug"))
+            if (Input.IsActionJustReleased("GetScoreDebug"))
             {
                 G.Scores += 5;
+                RecalculateCrossWeight();
+            }
+
+            if (Input.IsActionJustReleased("DecraseScoreDebug"))
+            {
+                G.Scores -= 5;
                 RecalculateCrossWeight();
             }
 

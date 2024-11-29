@@ -1,6 +1,4 @@
 using Godot;
-using GodotSteam;
-using System;
 public partial class MainScript : Node2D
 {
     [Signal] public delegate void RecalculateCrossWeightEventHandler();
@@ -17,7 +15,7 @@ public partial class MainScript : Node2D
         AudioServer.SetBusEffectEnabled(2, 0, false);
         AudioServer.SetBusEffectEnabled(6, 0, false);
 
-        G.CurrentPopupAchievementsLayer = GetNode<CanvasLayer>("PopupAchievementsLayer");
+        Achievements.CurrentPopupAchievementsLayer = GetNode<CanvasLayer>("PopupAchievementsLayer");
         _rewindButton = GetNode<TextureButton>("Pause/Interface/ButtonsFrame/Rewind");
         _levelMusicPlayer = GetNode<AudioStreamPlayer>("LevelMusicPlayer");
 
@@ -130,7 +128,7 @@ public partial class MainScript : Node2D
 
     public void GiveAchievement(int index)
     {
-        G.GetAchievement(index);
+        Achievements.GetAchievement(index);
     }
 
     //Methods from above are actively used in game scripts and their sloppy use can break some processes, use at your own risk.

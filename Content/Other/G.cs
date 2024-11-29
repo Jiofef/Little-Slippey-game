@@ -2,75 +2,115 @@ using Godot;
 using System;
 using System.Linq;
 
+/// <summary>
+/// G is gameplay singleton, that having importal information which may be needed in various places of the game. They will not save after exiting the game
+/// </summary>
 public partial class G : Node
 {
-	// G is gameplay singleton, that having importal information which may be needed in various places of the game. They will not save after exiting the game
-	public static bool IsSystemInitiated, IsPlayerDead, IsNewRecordReached, IsProgressPaused = false, IsCrossesEnabled = true, DidLevelIntroPassed, IsLevelVanilla = true, IsDebugEnabled = true;
-	public static float PlayerMoveCoeff = 1, Scores = 0, ResetTimer, PlayerCorpseFlightTimer, AfterPlayerCorpseFlightTimer, CrossSpawnMultiplier = 1, CrossesProgressCoeff = 1, MusicStopTimeCode = 0, MusicRestartPosition = 0, LevelCompleteTime = 150;
-	public static int CurrentLevel;
-	public static string LevelAdditionalLink, MusicName = "", ModMapPath, ModMapFolder;
-	public static Vector4 CameraLimits;
-	public static readonly int LevelsInGameTotal = 10, CrossesInGameTotal = 5, DificultiesInGameTotal = 3;
-	public static string GetLanguagePrefix()
-	{
-		if (Meta.Instance.language == Meta.Language.en)
-			return "";
-        var value = Meta.Instance.language.ToString();
-        value = char.ToUpper(value[0]) + value.Substring(1);
-        return value;
-    }
-	public static string TypeOfUsedController = "Keyboard";
-    // These variables are designed to expand the capabilities in level scripting, including for modders. It is primarily created to store data remaining after restarting a level, or after changing the scene.
-	public static Variant[] TransitiveVariant = new Variant[64];
+    #region NOTE: Only in-game variables. Don't touch it if you're a modder please, or i will ban your map :)
+    public static bool IsSystemInitiated, IsLevelVanilla = true;
+    public static int CurrentLevel;
+    public static Variant InGameTransitiveValue;
+    public static Godot.Collections.Array<Node> NodeCopyBuffer = new Godot.Collections.Array<Node>();
+    #endregion
+
+
+    #region These are used in game and in very rare cases can be used for modders. You can twist them any way you want, they don't break anything important, but do it wisely.
+    public static float PlayerMoveCoeff = 1, // The more the player moves, the greater the coefficient from 0 to 1
+        ResetTimer, // It starts after pressing the R button and goes out quickly when released. By default level restarts at 1.5 seconds of it
+        PlayerCorpseFlightTimer, // Starts after player dies
+        AfterPlayerCorpseFlightTimer, // Starts when player death GUI starts appearing (Scores and "Press R")
+        MusicStopTimeCode = 0; // It is necessary to put the music in the same position after restarting the level
+
     public static readonly Vector2[] LevelXYSizes =
-	{
-		//Level sizes starts from Vector2 with index "1", Vector2 with index "0" is the minimal level size
-		new Vector2(1280, 640),
-		new Vector2(1280, 640),
-		new Vector2(2560, 640),
-		new Vector2(2560, 1280),
-		new Vector2(2560, 1280),
-		new Vector2(2560, 640),
-		new Vector2(2560, 1280),
-		new Vector2(1280, 640),
-		new Vector2(999999999, 640),
-		new Vector2(2560, 1280),
-		new Vector2(2560, 1280)
-	};
+{
+        new Vector2(1280, 640),
+        new Vector2(1280, 640),
+        new Vector2(2560, 640),
+        new Vector2(2560, 1280),
+        new Vector2(2560, 1280),
+        new Vector2(2560, 640),
+        new Vector2(2560, 1280),
+        new Vector2(1280, 640),
+        new Vector2(999999999, 640),
+        new Vector2(2560, 1280),
+        new Vector2(2560, 1280)
+    }; // In game levels sizes
+
+    public static float GetPlayerCorpseFlightTimerCoeff() // The same as PlayerCorpseFlightTimer() but from 0 to 1
+    {
+        return PlayerCorpseFlightTimer / 4.5f;
+    } 
+    public static float GetReversedPlayerCorpseFlightTimerCoeff() // The same as GetPlayerCorpseFlightTimerCoeff but from 1 to 0. Reversed in short.
+    {
+        return 1 - GetPlayerCorpseFlightTimerCoeff();
+    } 
+    public static readonly int LevelsInGameTotal = 10, CrossesInGameTotal = 5, DificultiesInGameTotal = 3;
+
+    public static string LevelAdditionalLink, MusicName = "", ModMapPath, ModMapFolder, 
+                        TypeOfUsedController = "Keyboard"; // Updates every _Input. Can be "Keyboard", "XInput Gamepad" or "PS Gamepad"
+
     public override void _Input(InputEvent @event)
     {
         if (@event is InputEventKey)
         {
-			TypeOfUsedController = "Keyboard";
-			if (Input.IsActionJustPressed("ToggleScreenMode"))
-			{
-				Meta.Instance.IsFullScreen = !Meta.Instance.IsFullScreen;
-				Meta.Instance.ApplyOptions();
-				Meta.Instance.SaveToFile();
-			}
+            TypeOfUsedController = "Keyboard";
+            if (Input.IsActionJustPressed("ToggleScreenMode"))
+            {
+                Meta.Instance.IsFullScreen = !Meta.Instance.IsFullScreen;
+                Meta.Instance.ApplyOptions();
+                Meta.Instance.SaveToFile();
+            }
         }
         else if (@event is InputEventJoypadButton || @event is InputEventJoypadMotion)
         {
-			string JoyName = Input.GetJoyName(0);
-			GD.Print(JoyName);
-			if (JoyName == "") return;
-			if (JoyName[0] == 'P' && JoyName[1] == 'S')
-				TypeOfUsedController = "PS Gamepad";
-			else if (JoyName == "XInput Gamepad")
-				TypeOfUsedController = "XInput Gamepad";
-			else TypeOfUsedController = "XInput Gamepad"; //Maybe I'll add more gamepads soon
+            string JoyName = Input.GetJoyName(0);
+            if (JoyName == "") return;
+            if (JoyName[0] == 'P' && JoyName[1] == 'S')
+                TypeOfUsedController = "PS Gamepad";
+            else if (JoyName == "XInput Gamepad")
+                TypeOfUsedController = "XInput Gamepad";
+            else TypeOfUsedController = "XInput Gamepad"; //Maybe I'll add more gamepads soon
         }
     }
-    public static float GetPlayerCorpseFlightTimerCoeff()
-	{
-		return PlayerCorpseFlightTimer / 4.5f;
-	}
-	public static float GetReversedPlayerCorpseFlightTimerCoeff()
-	{
-		return 1 - GetPlayerCorpseFlightTimerCoeff();
-	}
-    public static void ResetValues()
-	{
+    #endregion
+
+
+    #region May be used to some if statements or something, but be careful if you change it. There are other, more correct ways to change them.
+    public static bool IsPlayerDead, // To change correctly, call Death() or Ressurect() in player's script
+                       IsNewRecordReached; // I don't know why you even might want to change it
+    public static Vector4 CameraLimits; // Better use SetCameraLimits() from Player's script
+    #endregion
+
+
+    #region May be used however you want
+    public static bool IsProgressPaused = false, // Enables or disables the earning of points and increasing the difficulty of crosses
+                       IsCrossesEnabled = true, // Enables or disables the spawn of crosses
+                       DidLevelIntroPassed, // If the intro is missing or changed in your level, you may want to set this value yourself
+                       IsDebugEnabled = true; // If enabled, Alt+Z enables immortality, Alt+X disables player's physics, Alt+C disables the crosses. Also Alt + scrolling up your mouse wheel gives you +5 scores for every "scroll step" (Alt + scrolling down does the opposite)
+
+    public static float Scores = 0, // Speaks for itself
+                       CrossSpawnMultiplier = 1, // Too
+                       CrossesProgressCoeff = 1, // Default crosses evolve every 30 seconds. If this equals 2, they will do it every 15 seconds. If it's 0.5 then 60 seconds. The evolve time can also change through CrossSpawner in the editor or code
+                       MusicRestartPosition = 0, // When music ends, if it can restart, it starts with this position. 1 = 1 second
+                       LevelCompleteTime = 150; // When this second comes, the level is passed. Can be used for different things
+
+    public static Variant[] TransitiveVariant = new Variant[64]; // You can store almost anything here for anything. The game deletes the data only after entering the menu. If you need to save some data after restarting a level or moving to another scene, this option is perfect for you
+
+    public static string GetLanguagePrefix() // For localization maybe?
+    {
+        if (Meta.Instance.language == Meta.Language.en)
+            return "";
+        var value = Meta.Instance.language.ToString();
+        value = char.ToUpper(value[0]) + value.Substring(1);
+        return value;
+    } 
+    #endregion
+
+    // Other stuff
+
+    public static void ResetValues() // Usually used during a level restart
+    {
 		IsNewRecordReached = false;
 		IsPlayerDead = false;
 		PlayerCorpseFlightTimer = 0;
@@ -78,8 +118,8 @@ public partial class G : Node
 		AfterPlayerCorpseFlightTimer = 0;
 		Scores = 0;
     }
-	public static void CompletelyResetValues()
-	{
+	public static void CompletelyResetValues() // Usually used during the exit from the level
+    {
 		ResetValues();
 		LevelAdditionalLink = null;
 		IsProgressPaused = false;
@@ -96,39 +136,9 @@ public partial class G : Node
 		AudioServer.SetBusEffectEnabled(6, 0, false);
 	}
 
-	//Achievements segment. WARNING. BEING HERE CAN CAUSE HEAD ACHE, DIZZINESS, VOMITING, AND ALSO CAN PROVOKE AIDS AND ACUTE FORM OF PROSTATE CANCER. You have been warned.
-	public static readonly int[][] LevelCompletionAchievementNumbers =
-	{
-		new int[] {10, 13, 16, 19, 22, 25, 28, 33, 38, 41},
-        new int[] {11, 14, 17, 20, 23, 26, 29, 34, 39, 42},
-        new int[] {12, 15, 18, 21, 24, 27, 30, 35, 40, 43}
-    };
-	public static readonly bool[] IsAchievementHiden = { false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true, false, false, false, false, false, false, false, true, true, true, true, true, true, false, false};
-	public static CanvasLayer CurrentPopupAchievementsLayer;
-	public static int AchievementPopupTimerMultiplier = 0;
-	public static void GetAchievement(int index)
-	{
-		if (UnchangableMeta.AchievementStatuses[index] == 1) return;
-		var achievement = (Control)ResourceLoader.Load<PackedScene>("res://Content/Scenes/Achievements/Achievement" + (index + 1) + ".tscn").Instantiate();
-        CurrentPopupAchievementsLayer.AddChild(achievement);
-        achievement.GetNode<Timer>("PopupVersionPart/PopupTimer").Start(0.05f + 0.3f * AchievementPopupTimerMultiplier);
-		achievement.FocusMode = Control.FocusModeEnum.None;
-		achievement.MouseFilter = Control.MouseFilterEnum.Ignore;
-        UnchangableMeta.AchievementStatuses[index] = 1;
-		UnchangableMeta.SaveToFile();
-        AchievementPopupTimerMultiplier++;
 
-		if (UnchangableMeta.AchievementsCount() == (UnchangableMeta.AchievementStatuses.Length - 1))
-			GetAchievement(51);
-	}
-
-    // This variable is used when switching between some scenes in the game menu. Don't touch it if you don't want to break anything.
-    public static Variant InGameTransitiveValue;
-    // This array used in level editor. Don't touch it either
-    public static Godot.Collections.Array<Node> NodeCopyBuffer = new Godot.Collections.Array<Node>();
-
-	public class CrossSpawner
-	{
+    public class CrossSpawner  // Base for spawning crosses on custom levels. Use in scripts as you like. It is located at the end of the script just to avoid polluting its important parts, as the class is large
+    {
 		public float[] TimeCodes;
 		public float[] SpawnWeights;
 

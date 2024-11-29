@@ -18,7 +18,7 @@ public partial class AchievementsMenu : Control
                 achievement.GetNode<Sprite2D>("Sprite2D/RewardBox1/RewardSprite").Modulate = new Color(0, 0, 0, 0.5f);
                 achievement.GetNode<Sprite2D>("Sprite2D/RewardBox2/RewardSprite").Modulate = new Color(0, 0, 0, 0.5f);
                 achievement.Modulate = new Color(0.5f, 0.5f, 0.5f);
-				if (G.IsAchievementHiden[i])
+				if (Achievements.IsAchievementHiden[i])
                     achievement.GetNode<RichTextLabel>("Text").Text = "[HIDDEN]";
             }
 			achievementsContainer.AddChild(achievement);

@@ -39,13 +39,13 @@ public partial class UnchangableMeta : Node
             {
                 LevelCompleteStatus[G.CurrentLevel - 1] = Meta.Instance.Dificulty + 1;
                 for (int i = 0; i <= Meta.Instance.Dificulty; i++)
-                    G.GetAchievement(G.LevelCompletionAchievementNumbers[i][G.CurrentLevel - 1]);
+                    Achievements.GetAchievement(Achievements.LevelCompletionAchievementNumbers[i][G.CurrentLevel - 1]);
             }
         }
         if (G.Scores >= 50)
-            G.GetAchievement(7);
+            Achievements.GetAchievement(7);
         if (G.Scores >= G.LevelCompleteTime && Meta.Instance.CameraZoom >= 2)
-            G.GetAchievement(8);
+            Achievements.GetAchievement(8);
     }
 
     public static Dictionary<string, Variant> GetJson()

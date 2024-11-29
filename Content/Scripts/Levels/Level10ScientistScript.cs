@@ -269,11 +269,11 @@ public partial class Level10ScientistScript : Node2D
             GetNode<AudioStreamPlayer>("../CanvasLayer/ColorRect/AudioStreamPlayer").Play();
             if (UnchangableMeta.LevelCompleteStatus[9] == 0)
             {
-                G.GetAchievement(41 + Meta.Instance.Dificulty);
-                G.GetAchievement(44);
-                G.GetAchievement(45);
-                G.GetAchievement(46);
-                G.GetAchievement(47);
+                Achievements.GetAchievement(41 + Meta.Instance.Dificulty);
+                Achievements.GetAchievement(44);
+                Achievements.GetAchievement(45);
+                Achievements.GetAchievement(46);
+                Achievements.GetAchievement(47);
                 UnchangableMeta.IsThereNewContentInRecycleBin = true;
                 UnchangableMeta.SaveToFile();
             }

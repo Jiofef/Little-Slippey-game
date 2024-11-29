@@ -1,0 +1,13 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://crwvi8nldyh0f"]
+
+[sub_resource type="FontVariation" id="FontVariation_rojdw"]
+spacing_top = 20
+
+[resource]
+font = SubResource("FontVariation_rojdw")
+font_size = 22
+outline_size = 4
+outline_color = Color(0.372549, 0.431373, 0.882353, 1)
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 0.235294)
+shadow_offset = Vector2(0, 2)

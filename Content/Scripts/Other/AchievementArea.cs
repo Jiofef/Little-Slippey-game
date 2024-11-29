@@ -6,6 +6,6 @@ public partial class AchievementArea : Area2D
 
     public void AreaEntered()
     {
-        G.GetAchievement(_achievementIndex);
+        Achievements.GetAchievement(_achievementIndex);
     }
 }

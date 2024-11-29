@@ -8,7 +8,7 @@ public partial class FinalLetter : Node2D
         UnchangableMeta.SaveRecords();
         UnchangableMeta.SaveToFile();
         G.CompletelyResetValues();
-        G.CurrentPopupAchievementsLayer = GetNode<CanvasLayer>("PopupAchievementsLayer");
+        Achievements.CurrentPopupAchievementsLayer = GetNode<CanvasLayer>("PopupAchievementsLayer");
     }
     public void Close()
     {
@@ -17,6 +17,6 @@ public partial class FinalLetter : Node2D
     }
     public void ACriminalAgainstHumanity()
     {
-        G.GetAchievement(49);
+        Achievements.GetAchievement(49);
     }
 }
