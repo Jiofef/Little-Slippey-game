@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://c3v8nqqydm71g"]
+
+[ext_resource type="PackedScene" uid="uid://twinoyaw5kfj" path="res://Content/Scenes/Interface&Menu/ConfirmationWindow.tscn" id="1_82x53"]
+
+[node name="SetByDefaultConfirmation" instance=ExtResource("1_82x53")]
+custom_minimum_size = Vector2(360, 340)
+offset_left = 420.0
+offset_top = 157.0
+offset_right = -500.0
+offset_bottom = -223.0
+Description = "Are you sure? This will reset all the settings of this tab to defaults"
+
+[node name="Description" parent="MarginContainer/VBoxContainer" index="1"]
+custom_minimum_size = Vector2(320, 0)
+text = "Are you sure? This will reset all the settings of this tab to defaults"

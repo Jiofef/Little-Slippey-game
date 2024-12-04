@@ -7,7 +7,7 @@ public partial class Level5MusicStarter : Area2D
 
     public void AreaEntered()
     {
-        if (Meta.Instance.AdditionStatuses[1])
+        if (Meta.Instance.Gameplay.AdditionStatuses[1])
             EmitSignal("ButtonPressed");
     }
 }

@@ -20,6 +20,8 @@ Head","Голова
 Crosses","Enhanced
 Crosses","Улучшенные
 Метки"
+Confirmation,Confirmation,Подтверждение
+Are you sure? This will reset all the settings of this tab to defaults,Are you sure? This will reset all the settings of this tab to defaults,Вы уверены? Это вернёт настройки этой вкладки к значениям по умолчанию
 Sound,Sound,Звук
 Global,Global,Общий
 Interface,Interface,Интерфейс
@@ -29,47 +31,23 @@ Crosses,Crosses,Метки
 Explosions,Explosions,Взрывы
 Environment,Environment,Окружение
 Video,Video,Визуал
-"Screen
-mode","Screen
-mode","Режим
-экрана"
-Full,Full,Полный
-Window,Window,Оконный
-"Window
-size","Window
-size","Размер
-окна"
-"Vertical
-Sync","Vertical
-Sync","Вертикальная
-синхронизация"
+Window mode,Window mode,Режим окна
+Fullscreen,Fullscreen,На весь экран
+Windowed,Windowed,Оконный
+Window size,Window size,Разрешение окна
+VSync,VSync,Вертикальная синхронизация
 On,On,Вкл
 Off,Off,Выкл
-"Scores
-label
-mode","Scores
-label
-mode","Режим
-отображения
-очков"
-Default,Default,Обычно
-Mini,Mini,Мини
+Scores label mode,Scores label mode,Режим отображения очков
+Large,Large,Большие
+Small,Small,Маленькие
 Hide,Hide,Скрыть
-"Scores
-label
-location","Scores
-label
-location","Расположение
-очков на
-экране"
-"Camera
-zoom","Camera
-zoom","Приближение
-камеры"
-"View
-controls","View
-controls","Посмотреть
-управление"
+Scores label location,Scores label location,Место очков на экране
+Camera zoom,Camera zoom,Приближение камеры
+Language,Language,Язык
+English,English,Английский
+Russian,Russian,Русский
+Controls,Controls,Управление
 "There is no way to change the control 
 settings yet
 Maybe in 1000 years","There is no way to change the control 
@@ -142,6 +120,7 @@ Chad,Chad,Чад
 M7SSINGNULL,M7SSINGNULL,М7SSINGNULL
 Corey,Corey,Кори
 Skins: ,Skins: ,Скины:
+of,of,из
 000-,000-,000-
 -000-,-000-,-000-
 000-,000-,000-
@@ -242,6 +221,7 @@ You will regret it.,You will regret it.,Вы об этом пожалеете.
 "Thank you for everything, player :)","Thank you for everything, player :)","Спасибо за всё, игрок :)"
 Complete all other achievements,Complete all other achievements,Соберите все остальные достижения
 Achievements: ,Achievements: ,Достижения:
+[HIDDEN],[HIDDEN],[СКРЫТО]
 "We're Sorry
 .txt","We're Sorry
 .txt",Нам жаль.txt
@@ -402,155 +382,155 @@ section?","Пропустить
 level part?","Skip fake
 level part?","Пропустить
 вступление?"
-[center]Press [img]res://Content/Sprites/Interface/KeyboardButtonBigF.png[/img] to skip intro,[center]Press [img]res://Content/Sprites/Interface/KeyboardButtonBigF.png[/img] to skip intro,[center]Нажмите [img]res://Content/Sprites/Interface/KeyboardButtonBigF.png[/img] чтобы пропустить вступление
-[center]Press [img]res://Content/Sprites/Interface/PSControllerBigX.png[/img] to skip intro,[center]Press [img]res://Content/Sprites/Interface/PSControllerBigX.png[/img] to skip intro,[center]Нажмите [img]res://Content/Sprites/Interface/PSControllerBigX.png[/img] чтобы пропустить вступление
-[center]Press [img]res://Content/Sprites/Interface/XControllerBigAmogus.png[/img] to skip intro,[center]Press [img]res://Content/Sprites/Interface/XControllerBigAmogus.png[/img] to skip intro,[center]Нажмите [img]res://Content/Sprites/Interface/XControllerBigAmogus.png[/img] чтобы пропустить вступление
+[center]Press [img]res://Content/Sprites/Interface/ControllerButtons/KeyboardButtonBigF.png[/img] to skip intro,[center]Press [img]res://Content/Sprites/Interface/ControllerButtons/KeyboardButtonBigF.png[/img] to skip intro,[center]Нажмите [img]res://Content/Sprites/Interface/ControllerButtons/KeyboardButtonBigF.png[/img] чтобы пропустить вступление
+[center]Press [img]res://Content/Sprites/Interface/ControllerButtons/PSControllerBigX.png[/img] to skip intro,[center]Press [img]res://Content/Sprites/Interface/ControllerButtons/PSControllerBigX.png[/img] to skip intro,[center]Нажмите [img]res://Content/Sprites/Interface/ControllerButtons/PSControllerBigX.png[/img] чтобы пропустить вступление
+[center]Press [img]res://Content/Sprites/Interface/ControllerButtons/XControllerBigAmogus.png[/img] to skip intro,[center]Press [img]res://Content/Sprites/Interface/ControllerButtons/XControllerBigAmogus.png[/img] to skip intro,[center]Нажмите [img]res://Content/Sprites/Interface/ControllerButtons/XControllerBigAmogus.png[/img] чтобы пропустить вступление
 "
 
 
-[center]To walk, press [img]res://Content/Sprites/Interface/KeyboardButtonLeft.png[/img]
- and [img]res://Content/Sprites/Interface/KeyboardButtonRight.png[/img] or [img]res://Content/Sprites/Interface/KeyboardButtonA.png[/img] and [img]res://Content/Sprites/Interface/KeyboardButtonD.png[/img][/center]","
+[center]To walk, press [img]res://Content/Sprites/Interface/ControllerButtons/KeyboardButtonLeft.png[/img]
+ and [img]res://Content/Sprites/Interface/ControllerButtons/KeyboardButtonRight.png[/img] or [img]res://Content/Sprites/Interface/ControllerButtons/KeyboardButtonA.png[/img] and [img]res://Content/Sprites/Interface/ControllerButtons/KeyboardButtonD.png[/img][/center]","
 
 
-[center]To walk, press [img]res://Content/Sprites/Interface/KeyboardButtonLeft.png[/img]
- and [img]res://Content/Sprites/Interface/KeyboardButtonRight.png[/img] or [img]res://Content/Sprites/Interface/KeyboardButtonA.png[/img] and [img]res://Content/Sprites/Interface/KeyboardButtonD.png[/img][/center]","
+[center]To walk, press [img]res://Content/Sprites/Interface/ControllerButtons/KeyboardButtonLeft.png[/img]
+ and [img]res://Content/Sprites/Interface/ControllerButtons/KeyboardButtonRight.png[/img] or [img]res://Content/Sprites/Interface/ControllerButtons/KeyboardButtonA.png[/img] and [img]res://Content/Sprites/Interface/ControllerButtons/KeyboardButtonD.png[/img][/center]","
 
 
 [center]Чтобы ходить, нажми
-[img]res://Content/Sprites/Interface/KeyboardButtonLeft.png[/img] и [img]res://Content/Sprites/Interface/KeyboardButtonRight.png[/img] или [img]res://Content/Sprites/Interface/KeyboardButtonA.png[/img] и [img]res://Content/Sprites/Interface/KeyboardButtonD.png[/img][/center]"
+[img]res://Content/Sprites/Interface/ControllerButtons/KeyboardButtonLeft.png[/img] и [img]res://Content/Sprites/Interface/ControllerButtons/KeyboardButtonRight.png[/img] или [img]res://Content/Sprites/Interface/ControllerButtons/KeyboardButtonA.png[/img] и [img]res://Content/Sprites/Interface/ControllerButtons/KeyboardButtonD.png[/img][/center]"
 "
 
 
-[center]To walk, press [img]res://Content/Sprites/Interface/ControllerStickLeft.png[/img]
- and [img]res://Content/Sprites/Interface/ControllerStickRight.png[/img] or [img]res://Content/Sprites/Interface/ControllerDPadLeft.png[/img] and [img]res://Content/Sprites/Interface/ControllerDPadRight.png[/img][/center]","
+[center]To walk, press [img]res://Content/Sprites/Interface/ControllerButtons/ControllerStickLeft.png[/img]
+ and [img]res://Content/Sprites/Interface/ControllerButtons/ControllerStickRight.png[/img] or [img]res://Content/Sprites/Interface/ControllerButtons/ControllerDPadLeft.png[/img] and [img]res://Content/Sprites/Interface/ControllerButtons/ControllerDPadRight.png[/img][/center]","
 
 
-[center]To walk, press [img]res://Content/Sprites/Interface/ControllerStickLeft.png[/img]
- and [img]res://Content/Sprites/Interface/ControllerStickRight.png[/img] or [img]res://Content/Sprites/Interface/ControllerDPadLeft.png[/img] and [img]res://Content/Sprites/Interface/ControllerDPadRight.png[/img][/center]","
+[center]To walk, press [img]res://Content/Sprites/Interface/ControllerButtons/ControllerStickLeft.png[/img]
+ and [img]res://Content/Sprites/Interface/ControllerButtons/ControllerStickRight.png[/img] or [img]res://Content/Sprites/Interface/ControllerButtons/ControllerDPadLeft.png[/img] and [img]res://Content/Sprites/Interface/ControllerButtons/ControllerDPadRight.png[/img][/center]","
 
 
 [center]Чтобы ходить, нажми
-[img]res://Content/Sprites/Interface/ControllerStickLeft.png[/img] и [img]res://Content/Sprites/Interface/ControllerStickRight.png[/img] или [img]res://Content/Sprites/Interface/ControllerDPadLeft.png[/img] и [img]res://Content/Sprites/Interface/ControllerDPadRight.png[/img][/center]"
+[img]res://Content/Sprites/Interface/ControllerButtons/ControllerStickLeft.png[/img] и [img]res://Content/Sprites/Interface/ControllerButtons/ControllerStickRight.png[/img] или [img]res://Content/Sprites/Interface/ControllerButtons/ControllerDPadLeft.png[/img] и [img]res://Content/Sprites/Interface/ControllerButtons/ControllerDPadRight.png[/img][/center]"
 "
 
 
-[center]To jump press [img]res://Content/Sprites/Interface/KeyboardButtonUp.png[/img], 
-[img]res://Content/Sprites/Interface/KeyboardButtonW.png[/img] or [img]res://Content/Sprites/Interface/KeyboardUltraBigButtonSpace.png[/img][/center]","
+[center]To jump press [img]res://Content/Sprites/Interface/ControllerButtons/KeyboardButtonUp.png[/img], 
+[img]res://Content/Sprites/Interface/ControllerButtons/KeyboardButtonW.png[/img] or [img]res://Content/Sprites/Interface/ControllerButtons/KeyboardUltraBigButtonSpace.png[/img][/center]","
 
 
-[center]To jump press [img]res://Content/Sprites/Interface/KeyboardButtonUp.png[/img], 
-[img]res://Content/Sprites/Interface/KeyboardButtonW.png[/img] or [img]res://Content/Sprites/Interface/KeyboardUltraBigButtonSpace.png[/img][/center]","
+[center]To jump press [img]res://Content/Sprites/Interface/ControllerButtons/KeyboardButtonUp.png[/img], 
+[img]res://Content/Sprites/Interface/ControllerButtons/KeyboardButtonW.png[/img] or [img]res://Content/Sprites/Interface/ControllerButtons/KeyboardUltraBigButtonSpace.png[/img][/center]","
 
 
 [center]Чтобы прыгнуть, 
-жми [img]res://Content/Sprites/Interface/KeyboardButtonUp.png[/img], [img]res://Content/Sprites/Interface/KeyboardButtonW.png[/img] или [img]res://Content/Sprites/Interface/KeyboardUltraBigButtonSpace.png[/img][/center]"
+жми [img]res://Content/Sprites/Interface/ControllerButtons/KeyboardButtonUp.png[/img], [img]res://Content/Sprites/Interface/ControllerButtons/KeyboardButtonW.png[/img] или [img]res://Content/Sprites/Interface/ControllerButtons/KeyboardUltraBigButtonSpace.png[/img][/center]"
 "
 
 
-[center]To jump, press [img]res://Content/Sprites/Interface/XControllerAmogus.png[/img], [img]res://Content/Sprites/Interface/ControllerDPadUp.png[/img] or [img]res://Content/Sprites/Interface/ControllerStickUp.png[/img][/center]","
+[center]To jump, press [img]res://Content/Sprites/Interface/ControllerButtons/XControllerAmogus.png[/img], [img]res://Content/Sprites/Interface/ControllerButtons/ControllerDPadUp.png[/img] or [img]res://Content/Sprites/Interface/ControllerButtons/ControllerStickUp.png[/img][/center]","
 
 
-[center]To jump, press [img]res://Content/Sprites/Interface/XControllerAmogus.png[/img], [img]res://Content/Sprites/Interface/ControllerDPadUp.png[/img] or [img]res://Content/Sprites/Interface/ControllerStickUp.png[/img][/center]","
+[center]To jump, press [img]res://Content/Sprites/Interface/ControllerButtons/XControllerAmogus.png[/img], [img]res://Content/Sprites/Interface/ControllerButtons/ControllerDPadUp.png[/img] or [img]res://Content/Sprites/Interface/ControllerButtons/ControllerStickUp.png[/img][/center]","
 
 
 [center]Чтобы прыгнуть, 
-жми [img]res://Content/Sprites/Interface/XControllerAmogus.png[/img], [img]res://Content/Sprites/Interface/ControllerDPadUp.png[/img] или [img]res://Content/Sprites/Interface/ControllerStickUp.png[/img][/center]"
+жми [img]res://Content/Sprites/Interface/ControllerButtons/XControllerAmogus.png[/img], [img]res://Content/Sprites/Interface/ControllerButtons/ControllerDPadUp.png[/img] или [img]res://Content/Sprites/Interface/ControllerButtons/ControllerStickUp.png[/img][/center]"
 "
 
 
-[center]To jump, press [img]res://Content/Sprites/Interface/PSControllerX.png[/img], [img]res://Content/Sprites/Interface/ControllerDPadUp.png[/img] or [img]res://Content/Sprites/Interface/ControllerStickUp.png[/img][/center]","
+[center]To jump, press [img]res://Content/Sprites/Interface/ControllerButtons/PSControllerX.png[/img], [img]res://Content/Sprites/Interface/ControllerButtons/ControllerDPadUp.png[/img] or [img]res://Content/Sprites/Interface/ControllerButtons/ControllerStickUp.png[/img][/center]","
 
 
-[center]To jump, press [img]res://Content/Sprites/Interface/PSControllerX.png[/img], [img]res://Content/Sprites/Interface/ControllerDPadUp.png[/img] or [img]res://Content/Sprites/Interface/ControllerStickUp.png[/img][/center]","
+[center]To jump, press [img]res://Content/Sprites/Interface/ControllerButtons/PSControllerX.png[/img], [img]res://Content/Sprites/Interface/ControllerButtons/ControllerDPadUp.png[/img] or [img]res://Content/Sprites/Interface/ControllerButtons/ControllerStickUp.png[/img][/center]","
 
 
 [center]Чтобы прыгнуть, 
-жми [img]res://Content/Sprites/Interface/PSControllerX.png[/img], [img]res://Content/Sprites/Interface/ControllerDPadUp.png[/img] или [img]res://Content/Sprites/Interface/ControllerStickUp.png[/img][/center]"
+жми [img]res://Content/Sprites/Interface/ControllerButtons/PSControllerX.png[/img], [img]res://Content/Sprites/Interface/ControllerButtons/ControllerDPadUp.png[/img] или [img]res://Content/Sprites/Interface/ControllerButtons/ControllerStickUp.png[/img][/center]"
 "
 
 [center]To climb the wall,
-press [img]res://Content/Sprites/Interface/KeyboardButtonUp.png[/img], [img]res://Content/Sprites/Interface/KeyboardButtonW.png[/img] or [img]res://Content/Sprites/Interface/KeyboardUltraBigButtonSpace.png[/img]
+press [img]res://Content/Sprites/Interface/ControllerButtons/KeyboardButtonUp.png[/img], [img]res://Content/Sprites/Interface/ControllerButtons/KeyboardButtonW.png[/img] or [img]res://Content/Sprites/Interface/ControllerButtons/KeyboardUltraBigButtonSpace.png[/img]
 during flight[/center]","
 
 [center]To climb the wall,
-press [img]res://Content/Sprites/Interface/KeyboardButtonUp.png[/img], [img]res://Content/Sprites/Interface/KeyboardButtonW.png[/img] or [img]res://Content/Sprites/Interface/KeyboardUltraBigButtonSpace.png[/img]
+press [img]res://Content/Sprites/Interface/ControllerButtons/KeyboardButtonUp.png[/img], [img]res://Content/Sprites/Interface/ControllerButtons/KeyboardButtonW.png[/img] or [img]res://Content/Sprites/Interface/ControllerButtons/KeyboardUltraBigButtonSpace.png[/img]
 during flight[/center]","
 
 [center]Чтобы взобраться на стену,
-жми [img]res://Content/Sprites/Interface/KeyboardButtonUp.png[/img], [img]res://Content/Sprites/Interface/KeyboardButtonW.png[/img] или [img]res://Content/Sprites/Interface/KeyboardUltraBigButtonSpace.png[/img]
+жми [img]res://Content/Sprites/Interface/ControllerButtons/KeyboardButtonUp.png[/img], [img]res://Content/Sprites/Interface/ControllerButtons/KeyboardButtonW.png[/img] или [img]res://Content/Sprites/Interface/ControllerButtons/KeyboardUltraBigButtonSpace.png[/img]
 в полёте[/center]"
 "
 
 [center]To climb the wall,
-press [img]res://Content/Sprites/Interface/XControllerAmogus.png[/img], [img]res://Content/Sprites/Interface/ControllerStickUp.png[/img] or [img]res://Content/Sprites/Interface/ControllerDPadUp.png[/img]
+press [img]res://Content/Sprites/Interface/ControllerButtons/XControllerAmogus.png[/img], [img]res://Content/Sprites/Interface/ControllerButtons/ControllerStickUp.png[/img] or [img]res://Content/Sprites/Interface/ControllerButtons/ControllerDPadUp.png[/img]
 during flight[/center]","
 
 [center]To climb the wall,
-press [img]res://Content/Sprites/Interface/XControllerAmogus.png[/img], [img]res://Content/Sprites/Interface/ControllerStickUp.png[/img] or [img]res://Content/Sprites/Interface/ControllerDPadUp.png[/img]
+press [img]res://Content/Sprites/Interface/ControllerButtons/XControllerAmogus.png[/img], [img]res://Content/Sprites/Interface/ControllerButtons/ControllerStickUp.png[/img] or [img]res://Content/Sprites/Interface/ControllerButtons/ControllerDPadUp.png[/img]
 during flight[/center]","
 
 [center]Чтобы взобраться на стену,
-жми [img]res://Content/Sprites/Interface/XControllerAmogus.png[/img], [img]res://Content/Sprites/Interface/ControllerStickUp.png[/img] или [img]res://Content/Sprites/Interface/ControllerDPadUp.png[/img]
+жми [img]res://Content/Sprites/Interface/ControllerButtons/XControllerAmogus.png[/img], [img]res://Content/Sprites/Interface/ControllerButtons/ControllerStickUp.png[/img] или [img]res://Content/Sprites/Interface/ControllerButtons/ControllerDPadUp.png[/img]
 в полёте[/center]"
 "
 
 [center]To climb the wall,
-press [img]res://Content/Sprites/Interface/PSControllerX.png[/img], [img]res://Content/Sprites/Interface/ControllerStickUp.png[/img] or [img]res://Content/Sprites/Interface/ControllerDPadUp.png[/img]
+press [img]res://Content/Sprites/Interface/ControllerButtons/PSControllerX.png[/img], [img]res://Content/Sprites/Interface/ControllerButtons/ControllerStickUp.png[/img] or [img]res://Content/Sprites/Interface/ControllerButtons/ControllerDPadUp.png[/img]
 during flight[/center]","
 
 [center]To climb the wall,
-press [img]res://Content/Sprites/Interface/PSControllerX.png[/img], [img]res://Content/Sprites/Interface/ControllerStickUp.png[/img] or [img]res://Content/Sprites/Interface/ControllerDPadUp.png[/img]
+press [img]res://Content/Sprites/Interface/ControllerButtons/PSControllerX.png[/img], [img]res://Content/Sprites/Interface/ControllerButtons/ControllerStickUp.png[/img] or [img]res://Content/Sprites/Interface/ControllerButtons/ControllerDPadUp.png[/img]
 during flight[/center]","
 
 [center]Чтобы взобраться на стену,
-жми [img]res://Content/Sprites/Interface/PSControllerX.png[/img], [img]res://Content/Sprites/Interface/ControllerStickUp.png[/img] или [img]res://Content/Sprites/Interface/ControllerDPadUp.png[/img]
+жми [img]res://Content/Sprites/Interface/ControllerButtons/PSControllerX.png[/img], [img]res://Content/Sprites/Interface/ControllerButtons/ControllerStickUp.png[/img] или [img]res://Content/Sprites/Interface/ControllerButtons/ControllerDPadUp.png[/img]
 в полёте[/center]"
 "
 
 [center]To wall-jump,
-hold [img]res://Content/Sprites/Interface/KeyboardBigButtonCtrl.png[/img], [img]res://Content/Sprites/Interface/KeyboardBigButtonShift.png[/img] or [img]res://Content/Sprites/Interface/LeftMouseButton.png[/img]
+hold [img]res://Content/Sprites/Interface/ControllerButtons/KeyboardBigButtonCtrl.png[/img], [img]res://Content/Sprites/Interface/ControllerButtons/KeyboardBigButtonShift.png[/img] or [img]res://Content/Sprites/Interface/ControllerButtons/LeftMouseButton.png[/img]
 against the wall during
 flight and jump[/center]","
 
 [center]To wall-jump,
-hold [img]res://Content/Sprites/Interface/KeyboardBigButtonCtrl.png[/img], [img]res://Content/Sprites/Interface/KeyboardBigButtonShift.png[/img] or [img]res://Content/Sprites/Interface/LeftMouseButton.png[/img]
+hold [img]res://Content/Sprites/Interface/ControllerButtons/KeyboardBigButtonCtrl.png[/img], [img]res://Content/Sprites/Interface/ControllerButtons/KeyboardBigButtonShift.png[/img] or [img]res://Content/Sprites/Interface/ControllerButtons/LeftMouseButton.png[/img]
 against the wall during
 flight and jump[/center]","
 
 [center]Чтобы отпрыгнуть от
-стены, зажми [img]res://Content/Sprites/Interface/KeyboardBigButtonCtrl.png[/img], [img]res://Content/Sprites/Interface/KeyboardBigButtonShift.png[/img] или [img]res://Content/Sprites/Interface/LeftMouseButton.png[/img]
+стены, зажми [img]res://Content/Sprites/Interface/ControllerButtons/KeyboardBigButtonCtrl.png[/img], [img]res://Content/Sprites/Interface/ControllerButtons/KeyboardBigButtonShift.png[/img] или [img]res://Content/Sprites/Interface/ControllerButtons/LeftMouseButton.png[/img]
 около стены во
 время полёта и прыгни[/center]"
 "
 
 [center]To wall-jump,
-hold [img]res://Content/Sprites/Interface/XControllerX.png[/img] or [img]res://Content/Sprites/Interface/ControllerR2Button.png[/img]
+hold [img]res://Content/Sprites/Interface/ControllerButtons/XControllerX.png[/img] or [img]res://Content/Sprites/Interface/ControllerButtons/ControllerR2Button.png[/img]
 against the wall during
 flight and jump[/center]","
 
 [center]To wall-jump,
-hold [img]res://Content/Sprites/Interface/XControllerX.png[/img] or [img]res://Content/Sprites/Interface/ControllerR2Button.png[/img]
+hold [img]res://Content/Sprites/Interface/ControllerButtons/XControllerX.png[/img] or [img]res://Content/Sprites/Interface/ControllerButtons/ControllerR2Button.png[/img]
 against the wall during
 flight and jump[/center]","
 
 [center]Чтобы отпрыгнуть от
-стены, зажми [img]res://Content/Sprites/Interface/XControllerX.png[/img] или [img]res://Content/Sprites/Interface/ControllerR2Button.png[/img]
+стены, зажми [img]res://Content/Sprites/Interface/ControllerButtons/XControllerX.png[/img] или [img]res://Content/Sprites/Interface/ControllerButtons/ControllerR2Button.png[/img]
 около стены во
 время полёта и прыгни[/center]"
 "
 
 [center]To wall-jump,
-hold [img]res://Content/Sprites/Interface/PSControllerSquare.png[/img] or [img]res://Content/Sprites/Interface/ControllerR2Button.png[/img]
+hold [img]res://Content/Sprites/Interface/ControllerButtons/PSControllerSquare.png[/img] or [img]res://Content/Sprites/Interface/ControllerButtons/ControllerR2Button.png[/img]
 against the wall during
 flight and jump[/center]","
 
 [center]To wall-jump,
-hold [img]res://Content/Sprites/Interface/PSControllerSquare.png[/img] or [img]res://Content/Sprites/Interface/ControllerR2Button.png[/img]
+hold [img]res://Content/Sprites/Interface/ControllerButtons/PSControllerSquare.png[/img] or [img]res://Content/Sprites/Interface/ControllerButtons/ControllerR2Button.png[/img]
 against the wall during
 flight and jump[/center]","
 
 [center]Чтобы отпрыгнуть от
-стены, зажми [img]res://Content/Sprites/Interface/PSControllerSquare.png[/img] или [img]res://Content/Sprites/Interface/ControllerR2Button.png[/img]
+стены, зажми [img]res://Content/Sprites/Interface/ControllerButtons/PSControllerSquare.png[/img] или [img]res://Content/Sprites/Interface/ControllerButtons/ControllerR2Button.png[/img]
 около стены во
 время полёта и прыгни[/center]"
 "🠊 🠊 🠊
@@ -565,28 +545,28 @@ Oh...,Oh...,Ой...
 
 
 [center]To pulldown, press 
-[img]res://Content/Sprites/Interface/KeyboardButtonDown.png[/img] or [img]res://Content/Sprites/Interface/KeyboardButtonS.png[/img] during flight[/center]","
+[img]res://Content/Sprites/Interface/ControllerButtons/KeyboardButtonDown.png[/img] or [img]res://Content/Sprites/Interface/ControllerButtons/KeyboardButtonS.png[/img] during flight[/center]","
 
 
 [center]To pulldown, press 
-[img]res://Content/Sprites/Interface/KeyboardButtonDown.png[/img] or [img]res://Content/Sprites/Interface/KeyboardButtonS.png[/img] during flight[/center]","
+[img]res://Content/Sprites/Interface/ControllerButtons/KeyboardButtonDown.png[/img] or [img]res://Content/Sprites/Interface/ControllerButtons/KeyboardButtonS.png[/img] during flight[/center]","
 
 
 [center]Для рывка вниз, нажми
-[img]res://Content/Sprites/Interface/KeyboardButtonDown.png[/img] или [img]res://Content/Sprites/Interface/KeyboardButtonS.png[/img] в полёте[/center]"
+[img]res://Content/Sprites/Interface/ControllerButtons/KeyboardButtonDown.png[/img] или [img]res://Content/Sprites/Interface/ControllerButtons/KeyboardButtonS.png[/img] в полёте[/center]"
 "
 
 
 [center]To pulldown, press 
-[img]res://Content/Sprites/Interface/ControllerStickDown.png[/img] or [img]res://Content/Sprites/Interface/ControllerDPadDown.png[/img] during flight[/center]","
+[img]res://Content/Sprites/Interface/ControllerButtons/ControllerStickDown.png[/img] or [img]res://Content/Sprites/Interface/ControllerButtons/ControllerDPadDown.png[/img] during flight[/center]","
 
 
 [center]To pulldown, press 
-[img]res://Content/Sprites/Interface/ControllerStickDown.png[/img] or [img]res://Content/Sprites/Interface/ControllerDPadDown.png[/img] during flight[/center]","
+[img]res://Content/Sprites/Interface/ControllerButtons/ControllerStickDown.png[/img] or [img]res://Content/Sprites/Interface/ControllerButtons/ControllerDPadDown.png[/img] during flight[/center]","
 
 
 [center]Для рывка вниз, нажми
-[img]res://Content/Sprites/Interface/ControllerStickDown.png[/img] или [img]res://Content/Sprites/Interface/ControllerDPadDown.png[/img] в полёте[/center]"
+[img]res://Content/Sprites/Interface/ControllerButtons/ControllerStickDown.png[/img] или [img]res://Content/Sprites/Interface/ControllerButtons/ControllerDPadDown.png[/img] в полёте[/center]"
 !YOU WIN!,!YOU WIN!,!ТЫ ПОБЕДИЛ!
 "You're probably
 wondering why you 
@@ -609,15 +589,14 @@ seconds.","Просто подожди
 And where?..,And where?..,И где?..
 "Oh, I almost forgot.","Oh, I almost forgot.","А, я забыл."
 Done :),Done :),Готово :)
-[center]Hold [img]res://Content/Sprites/Interface/KeyboardButtonBigR.png[/img],[center]Hold [img]res://Content/Sprites/Interface/KeyboardButtonBigR.png[/img],[center]Зажмите [img]res://Content/Sprites/Interface/KeyboardButtonBigR.png[/img]
-[center]Hold [img]res://Content/Sprites/Interface/PSControllerBigTriangle.png[/img],[center]Hold [img]res://Content/Sprites/Interface/PSControllerBigTriangle.png[/img],[center]Зажмите [img]res://Content/Sprites/Interface/PSControllerBigTriangle.png[/img]
-[center]Hold [img]res://Content/Sprites/Interface/XControllerBigY.png[/img],[center]Hold [img]res://Content/Sprites/Interface/XControllerBigY.png[/img],[center]Зажмите [img]res://Content/Sprites/Interface/XControllerBigY.png[/img]
+[center]Hold [img]res://Content/Sprites/Interface/ControllerButtons/KeyboardButtonBigR.png[/img],[center]Hold [img]res://Content/Sprites/Interface/KeyboardButtonBigR.png[/img],[center]Зажмите [img]res://Content/Sprites/Interface/ControllerButtons/KeyboardButtonBigR.png[/img]
+[center]Hold [img]res://Content/Sprites/Interface/ControllerButtons/PSControllerBigTriangle.png[/img],[center]Hold [img]res://Content/Sprites/Interface/PSControllerBigTriangle.png[/img],[center]Зажмите [img]res://Content/Sprites/Interface/ControllerButtons/PSControllerBigTriangle.png[/img]
+[center]Hold [img]res://Content/Sprites/Interface/ControllerButtons/XControllerBigY.png[/img],[center]Hold [img]res://Content/Sprites/Interface/XControllerBigY.png[/img],[center]Зажмите [img]res://Content/Sprites/Interface/ControllerButtons/XControllerBigY.png[/img]
 Score: ,Score: ,Очки: 
 "New Record!
 Score: ","New Record!
 Score: ","Новый Рекорд!
 Очки: "
-Language,Language,          Язык
 GratitudeDiaryHeartXPos,106,124
 GratitudeDiaryHeartYPos,48,54
 "AHA
@@ -733,3 +712,7 @@ Used to create a realistic moving background,Used to create a realistic moving b
 ,,
 Snap to grid,Snap to grid,Привязка к сетке
 See all the nodes,See all the nodes,Видеть все ноды
+,,
+,,
+Gnomes (ó﹏ò｡),Gnomes (ó﹏ò｡),Гномы (ó﹏ò｡)
+No!,No!,Нет!

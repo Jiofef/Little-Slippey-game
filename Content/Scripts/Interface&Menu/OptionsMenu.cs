@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class OptionsMenu : Control
+public partial class OptionsMenu : DraggableWindow
 {
     [Signal]
     public delegate void OptionsClosingEventHandler();
@@ -18,22 +18,19 @@ public partial class OptionsMenu : Control
         new Vector2I (2560, 1440),
         new Vector2I (3840, 2160)
     };
-    ScrollContainer _videoContainer;
     HSlider _lastFocusedSlider;
 
     public override void _Ready()
     {
+        base._Ready();
         GetViewport().GuiFocusChanged += GuiFocusChanged => WhenFocusChanged(GuiFocusChanged);
-        _videoContainer = GetNode<ScrollContainer>("VideoContainer");
         Meta.OptionsReserve = Meta.Instance.Clone();
         if (G.CurrentLevel != 0 || !G.IsLevelVanilla)
         {
             Connect("OptionsClosing", new Callable(GetNode("../.."), "OptionsClosing"));
             Connect("GUIOptionsChanged", new Callable(GetNode("../../Level/Player/Camera2D"), "ApplyGUIOptions"));
-            GetNode<TextureButton>("DeclineButton").GrabFocus();
+            GetNode<TextureButton>("MarginContainer/VBoxContainer/HBoxContainer/DeclineButton").GrabFocus();
         }
-        else
-            Connect("OptionsClosing", new Callable(GetParent(), "OpenedMenuClosed"));
 
         UpdateSettingsGUI();
     }
@@ -48,16 +45,32 @@ public partial class OptionsMenu : Control
     }
     public void Accept()
     {
-        DisplayServer.WindowSetSize(Meta.Instance.WindowSize);
         Meta.Instance.SaveToFile();
         EmitSignal("OptionsClosing");
         QueueFree();
     }
     public void SetByDefault()
     {
-        Meta.Instance = Meta.GetDefaultSettings();
+        var confirmation = (ConfirmationWindow)GD.Load<PackedScene>("res://Content/Scenes/Interface&Menu/OptionsSetByDefaultConfirmation.tscn").Instantiate();
+        confirmation.Connect("Accepted", new Callable(this, "SetByDefaultConfirm")); 
+
+        AddChild(confirmation);
+    }
+    public void SetByDefaultConfirm()
+    {
+        var Tabs = GetNode<TabContainer>("MarginContainer/VBoxContainer/Tabs");
+        switch (Tabs.CurrentTab)
+        {
+            case 0: // Video
+                Meta.Instance.Video = Meta.GetDefaultVideoSettings();
+                EmitSignal("GUIOptionsChanged", false);
+                break;
+            case 1: // Sound
+                Meta.Instance.Sound = Meta.GetDefaultSoundOptions();
+                break;
+        }
+
         Meta.Instance.ApplyOptions();
-        EmitSignal("GUIOptionsChanged", false);
         UpdateSettingsGUI();
     }
     public void Controls()
@@ -82,6 +95,8 @@ public partial class OptionsMenu : Control
         }
 
         CanvasItem Node = node;
+        if (!IsInsideTree()) return;
+
         while (Node.Name != Name && Node.GetParent() is CanvasItem)
         {
             if (Node.Name == "SoundContainer" || Node.Name == "VideoContainer")
@@ -95,41 +110,53 @@ public partial class OptionsMenu : Control
                 break;
         }
     }
+
+    string[] SliderNames = { "Global", "Interface", "Music", "Player", "Crosses", "Explosions", "Environment" };
     private void UpdateSettingsGUI()
     {
-        string[] SliderNames = { "Global", "Interface", "Music", "Player", "Crosses", "Explosions", "Environment" };
+        const string TabsLink = "MarginContainer/VBoxContainer/Tabs/";
         for (int i = 0; i < SliderNames.Length; i++)
-            GetNode<Slider>("SoundContainer/" + SliderNames[i] + "Slider").Value = Meta.Instance.BusVolumes[i];
+        {
+            GetNode<Slider>(TabsLink + "Sound/MarginContainer/VBoxContainer/" + SliderNames[i] + "/Slider").Value = Meta.Instance.Sound.BusVolumes[i];
+            GetNode<Label>(TabsLink + "Sound/MarginContainer/VBoxContainer/" + SliderNames[i] + "/Value").Text = ((int)(Meta.Instance.Sound.BusVolumes[i] * 100)).ToString();
+        }
 
 
-        Meta.Instance.IsFullScreen = DisplayServer.WindowGetMode() == DisplayServer.WindowMode.Fullscreen;
-        var windowSizeSlider = GetNode<Slider>("VideoContainer/GridContainer/WindowSizesContainer/WindowSizeSlider");
-        for (int i = 0; i <= windowSizeSlider.MaxValue; i++)
-            if (Meta.Instance.WindowSize == _windowSizes[i])
-                windowSizeSlider.Value = i;
+
+        GetNode<OptionButton>(TabsLink + "Video/MarginContainer/VBoxContainer/ScreenMode/OptionButton").Selected = Meta.Instance.Video.IsFullScreen ? 0 : 1;
+
+        Meta.Instance.Video.IsFullScreen = DisplayServer.WindowGetMode() == DisplayServer.WindowMode.Fullscreen;
+        var windowSizeOptions = GetNode<OptionButton>(TabsLink + "Video/MarginContainer/VBoxContainer/WindowSize/OptionButton");
+        for (int i = 0; i <= windowSizeOptions.ItemCount - 1; i++)
+            if (Meta.Instance.Video.WindowSize == _windowSizes[i])
+                windowSizeOptions.Selected = i;
 
 
-        GetNode<CheckBox>("VideoContainer/GridContainer/VerticalSyncContainer/" + (Meta.Instance.VSyncOn ? "On" : "Off") + "CheckBox").ButtonPressed = true;
+        GetNode<CheckBox>(TabsLink + "Video/MarginContainer/VBoxContainer/VSync/CheckBox").ButtonPressed = Meta.Instance.Video.VSyncOn;
 
-        string[] ScoresShowingFormats = { "Default", "Mini", "Hide" };
-        GetNode<CheckBox>("VideoContainer/GridContainer/ScoresLabelContainer/" + ScoresShowingFormats[Meta.Instance.ScoresShowingFormatIndex] + "CheckBox").ButtonPressed = true;
-        GetNode<CheckBox>("VideoContainer/GridContainer/GridContainer/CheckBox" + (Meta.Instance.ScoresLabelLocationX + 1) + "X" + (Meta.Instance.ScoresLabelLocationY + 1) + "Y").ButtonPressed = true;
+        GetNode<OptionButton>(TabsLink + "Video/MarginContainer/VBoxContainer/ScoresLabelMode/OptionButton").Selected = Meta.Instance.Video.ScoresShowingFormatIndex;
+        GetNode<CheckBox>(TabsLink + "Video/MarginContainer/VBoxContainer/ScoresLabelLocation/GridContainer/CheckBox" + (Meta.Instance.Video.ScoresLabelLocationX) + "X" + (Meta.Instance.Video.ScoresLabelLocationY) + "Y").ButtonPressed = true;
 
-        GetNode<Slider>("VideoContainer/GridContainer/CameraZoomContainer/CameraZoomSlider").Value = Meta.Instance.CameraZoom;
-        GetNode<Label>("VideoContainer/GridContainer/CameraZoomContainer/CameraZoom").Text = "X" + Meta.Instance.CameraZoom;
+        GetNode<Slider>(TabsLink + "Video/MarginContainer/VBoxContainer/CameraZoom/Slider").Value = Meta.Instance.Video.CameraZoom;
+        GetNode<Label>(TabsLink + "Video/MarginContainer/VBoxContainer/CameraZoom/Value").Text =  Meta.Instance.Video.CameraZoom + "x";
+
+        GetNode<OptionButton>(TabsLink + "Video/MarginContainer/VBoxContainer/Language/OptionButton").Selected = (int)Meta.Instance.Video.language;
     }
 
     //SoundOptions
     public void SoundChanging(float value, int BusNubmer)
     {
-        Meta.Instance.BusVolumes[BusNubmer] = value;
-        AudioServer.SetBusVolumeDb(BusNubmer, value);
+        Meta.Instance.Sound.BusVolumes[BusNubmer] = value;
+
+        float DbValue = Mathf.LinearToDb(value);
+
+        AudioServer.SetBusVolumeDb(BusNubmer, DbValue);
+        GetNode<Label>("MarginContainer/VBoxContainer/Tabs/Sound/MarginContainer/VBoxContainer/" + SliderNames[BusNubmer] + "/Value").Text = ((int)(value * 100)).ToString();
     }
 
     public override void _PhysicsProcess(double delta)
     {
         string[] WindowModes = { "Full", "Window" };
-        GetNode<CheckBox>("VideoContainer/GridContainer/ScreenModeContainer/" + WindowModes[DisplayServer.WindowGetMode() == DisplayServer.WindowMode.Fullscreen ? 0 : 1] + "CheckBox").ButtonPressed = true;
         if (Input.IsActionJustPressed("Cancel"))
             Cancel();
 
@@ -141,41 +168,44 @@ public partial class OptionsMenu : Control
     //VideoOptions
     public void ChangeScreenFormat(int index)
     {
-        Meta.Instance.IsFullScreen = index == 0 ? true : false;
-        DisplayServer.WindowSetMode(index == 0 ? DisplayServer.WindowMode.Fullscreen : DisplayServer.WindowMode.Windowed);
-        DisplayServer.WindowSetSize(Meta.Instance.WindowSize);
+        bool IsFullScreen = index == 0 ? true : false;
+        Meta.Instance.Video.IsFullScreen = IsFullScreen;
+        DisplayServer.WindowSetMode(IsFullScreen ? DisplayServer.WindowMode.Fullscreen : DisplayServer.WindowMode.Windowed);
+        DisplayServer.WindowSetSize(Meta.Instance.Video.WindowSize);
+
+        if (IsFullScreen)
+            GetViewport().SdfScale = Viewport.SdfScaleEnum.Scale25Percent;
     }
     public void ChangeWindowSize(int index)
     {
-        Meta.Instance.WindowSize = _windowSizes[index];
-        GetNode<Label>("VideoContainer/GridContainer/WindowSizesContainer/Label").Text = Meta.Instance.WindowSize.X + "X" + Meta.Instance.WindowSize.Y;
+        Meta.Instance.Video.WindowSize = _windowSizes[index];
+        DisplayServer.WindowSetSize(Meta.Instance.Video.WindowSize);
     }
     public void ChangeScoresShowingFormat(int index)
     {
-        Meta.Instance.ScoresShowingFormatIndex = (byte)index;
+        Meta.Instance.Video.ScoresShowingFormatIndex = (byte)index;
         EmitSignal("GUIOptionsChanged", false);
     }
-    public void ChangeVSync(int index)
+    public void ChangeVSync(bool value)
     {
-        Meta.Instance.VSyncOn = index == 0 ? true : false;
-        DisplayServer.WindowSetVsyncMode(Meta.Instance.VSyncOn ? DisplayServer.VSyncMode.Enabled : DisplayServer.VSyncMode.Disabled);
+        Meta.Instance.Video.VSyncOn = value;
+        DisplayServer.WindowSetVsyncMode(Meta.Instance.Video.VSyncOn ? DisplayServer.VSyncMode.Enabled : DisplayServer.VSyncMode.Disabled);
     }
     public void ChangeScoresLabelLocation(int indexX, int indexY)
     {
-        Meta.Instance.ScoresLabelLocationX = (byte)indexX;
-        Meta.Instance.ScoresLabelLocationY = (byte)indexY;
+        Meta.Instance.Video.ScoresLabelLocationX = (byte)indexX;
+        Meta.Instance.Video.ScoresLabelLocationY = (byte)indexY;
         EmitSignal("GUIOptionsChanged", false);
     }
     public void CameraZoomChanged(float value)
     {
-        Meta.Instance.CameraZoom = value;
-        GetNode<Label>("VideoContainer/GridContainer/CameraZoomContainer/CameraZoom").Text = "X" + Meta.Instance.CameraZoom;
+        Meta.Instance.Video.CameraZoom = value;
+        GetNode<Label>("MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer/CameraZoom/Value").Text = "X" + Meta.Instance.Video.CameraZoom;
         EmitSignal("GUIOptionsChanged", false);
     }
     public void SetLanguage(int languageNumber)
     {
-        Meta.Instance.language = (Meta.Language)languageNumber;
-        TranslationServer.SetLocale(Meta.Instance.language.ToString());
-        ProjectSettings.SetSetting("gui/theme/custom_font", "FontPath");
+        Meta.Instance.Video.language = (Meta.VideoClass.Language)languageNumber;
+        TranslationServer.SetLocale(Meta.Instance.Video.language.ToString());
     }
 }

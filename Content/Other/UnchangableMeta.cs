@@ -31,20 +31,20 @@ public partial class UnchangableMeta : Node
 
     public static void SaveRecords()
     {
-        if ((int)G.Scores > LevelRecords[Meta.Instance.Dificulty][G.CurrentLevel - 1])
+        if ((int)G.Scores > LevelRecords[Meta.Instance.Gameplay.Dificulty][G.CurrentLevel - 1])
         {
-            LevelRecords[Meta.Instance.Dificulty][G.CurrentLevel - 1] = (int)G.Scores;
+            LevelRecords[Meta.Instance.Gameplay.Dificulty][G.CurrentLevel - 1] = (int)G.Scores;
             G.IsNewRecordReached = true;
-            if (G.Scores >= G.LevelCompleteTime && Meta.Instance.Dificulty + 1 > LevelCompleteStatus[G.CurrentLevel - 1])
+            if (G.Scores >= G.LevelCompleteTime && Meta.Instance.Gameplay.Dificulty + 1 > LevelCompleteStatus[G.CurrentLevel - 1])
             {
-                LevelCompleteStatus[G.CurrentLevel - 1] = Meta.Instance.Dificulty + 1;
-                for (int i = 0; i <= Meta.Instance.Dificulty; i++)
+                LevelCompleteStatus[G.CurrentLevel - 1] = Meta.Instance.Gameplay.Dificulty + 1;
+                for (int i = 0; i <= Meta.Instance.Gameplay.Dificulty; i++)
                     Achievements.GetAchievement(Achievements.LevelCompletionAchievementNumbers[i][G.CurrentLevel - 1]);
             }
         }
         if (G.Scores >= 50)
             Achievements.GetAchievement(7);
-        if (G.Scores >= G.LevelCompleteTime && Meta.Instance.CameraZoom >= 2)
+        if (G.Scores >= G.LevelCompleteTime && Meta.Instance.Video.CameraZoom >= 2)
             Achievements.GetAchievement(8);
     }
 

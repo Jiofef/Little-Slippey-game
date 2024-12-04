@@ -47,11 +47,11 @@
 [ext_resource type="Texture2D" uid="uid://4udch8ejvu08" path="res://Content/Sprites/Interface/PauseButtonsFrame.png" id="42_rbsgg"]
 [ext_resource type="PackedScene" uid="uid://bwpstpk1xmkah" path="res://Content/Scenes/Interface&Menu/Button.tscn" id="43_l3ghu"]
 [ext_resource type="AudioStream" uid="uid://dy6lncevmnf3o" path="res://Content/Sounds/Other/WhiteNoise.mp3" id="44_6mcov"]
-[ext_resource type="Texture2D" uid="uid://dhr0k5tpvpg7n" path="res://Content/Sprites/Interface/UnpauseButton.png" id="44_rfbyl"]
-[ext_resource type="Texture2D" uid="uid://bqua21jbasqml" path="res://Content/Sprites/Interface/PauseRewindButton.png" id="45_hxp0y"]
+[ext_resource type="Texture2D" uid="uid://dhr0k5tpvpg7n" path="res://Content/Sprites/Interface/Buttons/UnpauseButton.png" id="44_rfbyl"]
+[ext_resource type="Texture2D" uid="uid://bqua21jbasqml" path="res://Content/Sprites/Interface/Buttons/PauseRewindButton.png" id="45_hxp0y"]
 [ext_resource type="AudioStream" uid="uid://du0ycpo1qy4w5" path="res://Content/Sounds/Levels/TutorialTVFallingSound.mp3" id="46_6hxhb"]
-[ext_resource type="Texture2D" uid="uid://be5mi0sdy4bep" path="res://Content/Sprites/Interface/PauseOptionsButton.png" id="46_j6rd0"]
-[ext_resource type="Texture2D" uid="uid://blp8i7meimekf" path="res://Content/Sprites/Interface/PauseMenuButton.png" id="47_0cvso"]
+[ext_resource type="Texture2D" uid="uid://be5mi0sdy4bep" path="res://Content/Sprites/Interface/Buttons/PauseOptionsButton.png" id="46_j6rd0"]
+[ext_resource type="Texture2D" uid="uid://blp8i7meimekf" path="res://Content/Sprites/Interface/Buttons/PauseMenuButton.png" id="47_0cvso"]
 [ext_resource type="Script" path="res://Content/Scripts/Other/DidLevelIntroPassedSet.cs" id="48_knw17"]
 [ext_resource type="Shader" path="res://Content/Other/BrightnessShader.gdshader" id="49_rg8pl"]
 [ext_resource type="Script" path="res://Content/Scripts/Other/PostProcessingRect.cs" id="50_xmuo4"]
@@ -3438,8 +3438,8 @@ bbcode_enabled = true
 text = "
 
 
-[center]To walk, press [img]res://Content/Sprites/Interface/KeyboardButtonLeft.png[/img]
- and [img]res://Content/Sprites/Interface/KeyboardButtonRight.png[/img] or [img]res://Content/Sprites/Interface/KeyboardButtonA.png[/img] and [img]res://Content/Sprites/Interface/KeyboardButtonD.png[/img][/center]"
+[center]To walk, press [img]res://Content/Sprites/Interface/ControllerButtons/KeyboardButtonLeft.png[/img]
+ and [img]res://Content/Sprites/Interface/ControllerButtons/KeyboardButtonRight.png[/img] or [img]res://Content/Sprites/Interface/ControllerButtons/KeyboardButtonA.png[/img] and [img]res://Content/Sprites/Interface/ControllerButtons/KeyboardButtonD.png[/img][/center]"
 
 [node name="GamepadText" type="RichTextLabel" parent="Level/TileMap/TutorialTV/Screen" index="3"]
 visible = false
@@ -3452,8 +3452,8 @@ bbcode_enabled = true
 text = "
 
 
-[center]To walk, press [img]res://Content/Sprites/Interface/ControllerStickLeft.png[/img]
- and [img]res://Content/Sprites/Interface/ControllerStickRight.png[/img] or [img]res://Content/Sprites/Interface/ControllerDPadLeft.png[/img] and [img]res://Content/Sprites/Interface/ControllerDPadRight.png[/img][/center]"
+[center]To walk, press [img]res://Content/Sprites/Interface/ControllerButtons/ControllerStickLeft.png[/img]
+ and [img]res://Content/Sprites/Interface/ControllerButtons/ControllerStickRight.png[/img] or [img]res://Content/Sprites/Interface/ControllerButtons/ControllerDPadLeft.png[/img] and [img]res://Content/Sprites/Interface/ControllerButtons/ControllerDPadRight.png[/img][/center]"
 
 [node name="AnimationPlayer" parent="Level/TileMap/TutorialTV/Screen" index="5"]
 libraries = {
@@ -3508,8 +3508,8 @@ bbcode_enabled = true
 text = "
 
 
-[center]To jump press [img]res://Content/Sprites/Interface/KeyboardButtonUp.png[/img], 
-[img]res://Content/Sprites/Interface/KeyboardButtonW.png[/img] or [img]res://Content/Sprites/Interface/KeyboardUltraBigButtonSpace.png[/img][/center]"
+[center]To jump press [img]res://Content/Sprites/Interface/ControllerButtons/KeyboardButtonUp.png[/img], 
+[img]res://Content/Sprites/Interface/ControllerButtons/KeyboardButtonW.png[/img] or [img]res://Content/Sprites/Interface/ControllerButtons/KeyboardUltraBigButtonSpace.png[/img][/center]"
 
 [node name="XBoxText" type="RichTextLabel" parent="Level/TileMap2/TutorialTV/Screen" index="3"]
 visible = false
@@ -3522,7 +3522,7 @@ bbcode_enabled = true
 text = "
 
 
-[center]To jump, press [img]res://Content/Sprites/Interface/XControllerAmogus.png[/img], [img]res://Content/Sprites/Interface/ControllerDPadUp.png[/img] or [img]res://Content/Sprites/Interface/ControllerStickUp.png[/img][/center]"
+[center]To jump, press [img]res://Content/Sprites/Interface/ControllerButtons/XControllerAmogus.png[/img], [img]res://Content/Sprites/Interface/ControllerButtons/ControllerDPadUp.png[/img] or [img]res://Content/Sprites/Interface/ControllerButtons/ControllerStickUp.png[/img][/center]"
 
 [node name="PSText" type="RichTextLabel" parent="Level/TileMap2/TutorialTV/Screen" index="4"]
 visible = false
@@ -3535,7 +3535,7 @@ bbcode_enabled = true
 text = "
 
 
-[center]To jump, press [img]res://Content/Sprites/Interface/PSControllerX.png[/img], [img]res://Content/Sprites/Interface/ControllerDPadUp.png[/img] or [img]res://Content/Sprites/Interface/ControllerStickUp.png[/img][/center]"
+[center]To jump, press [img]res://Content/Sprites/Interface/ControllerButtons/PSControllerX.png[/img], [img]res://Content/Sprites/Interface/ControllerButtons/ControllerDPadUp.png[/img] or [img]res://Content/Sprites/Interface/ControllerButtons/ControllerStickUp.png[/img][/center]"
 
 [node name="AnimationPlayer" parent="Level/TileMap2/TutorialTV/Screen" index="6"]
 libraries = {
@@ -3636,7 +3636,7 @@ bbcode_enabled = true
 text = "
 
 [center]To climb the wall,
-press [img]res://Content/Sprites/Interface/KeyboardButtonUp.png[/img], [img]res://Content/Sprites/Interface/KeyboardButtonW.png[/img] or [img]res://Content/Sprites/Interface/KeyboardUltraBigButtonSpace.png[/img]
+press [img]res://Content/Sprites/Interface/ControllerButtons/KeyboardButtonUp.png[/img], [img]res://Content/Sprites/Interface/ControllerButtons/KeyboardButtonW.png[/img] or [img]res://Content/Sprites/Interface/ControllerButtons/KeyboardUltraBigButtonSpace.png[/img]
 during flight[/center]"
 
 [node name="XBoxText" type="RichTextLabel" parent="Level/TileMap4/TutorialTV/Screen" index="3"]
@@ -3650,7 +3650,7 @@ bbcode_enabled = true
 text = "
 
 [center]To climb the wall,
-press [img]res://Content/Sprites/Interface/XControllerAmogus.png[/img], [img]res://Content/Sprites/Interface/ControllerStickUp.png[/img] or [img]res://Content/Sprites/Interface/ControllerDPadUp.png[/img]
+press [img]res://Content/Sprites/Interface/ControllerButtons/XControllerAmogus.png[/img], [img]res://Content/Sprites/Interface/ControllerButtons/ControllerStickUp.png[/img] or [img]res://Content/Sprites/Interface/ControllerButtons/ControllerDPadUp.png[/img]
 during flight[/center]"
 
 [node name="PSText" type="RichTextLabel" parent="Level/TileMap4/TutorialTV/Screen" index="4"]
@@ -3664,7 +3664,7 @@ bbcode_enabled = true
 text = "
 
 [center]To climb the wall,
-press [img]res://Content/Sprites/Interface/PSControllerX.png[/img], [img]res://Content/Sprites/Interface/ControllerStickUp.png[/img] or [img]res://Content/Sprites/Interface/ControllerDPadUp.png[/img]
+press [img]res://Content/Sprites/Interface/ControllerButtons/PSControllerX.png[/img], [img]res://Content/Sprites/Interface/ControllerButtons/ControllerStickUp.png[/img] or [img]res://Content/Sprites/Interface/ControllerButtons/ControllerDPadUp.png[/img]
 during flight[/center]"
 
 [node name="AnimationPlayer" parent="Level/TileMap4/TutorialTV/Screen" index="6"]
@@ -3771,7 +3771,7 @@ bbcode_enabled = true
 text = "
 
 [center]To wall-jump,
-hold [img]res://Content/Sprites/Interface/KeyboardBigButtonCtrl.png[/img], [img]res://Content/Sprites/Interface/KeyboardBigButtonShift.png[/img] or [img]res://Content/Sprites/Interface/LeftMouseButton.png[/img]
+hold [img]res://Content/Sprites/Interface/ControllerButtons/KeyboardBigButtonCtrl.png[/img], [img]res://Content/Sprites/Interface/ControllerButtons/KeyboardBigButtonShift.png[/img] or [img]res://Content/Sprites/Interface/ControllerButtons/LeftMouseButton.png[/img]
 against the wall during
 flight and jump[/center]"
 
@@ -3786,7 +3786,7 @@ bbcode_enabled = true
 text = "
 
 [center]To wall-jump,
-hold [img]res://Content/Sprites/Interface/XControllerX.png[/img] or [img]res://Content/Sprites/Interface/ControllerR2Button.png[/img]
+hold [img]res://Content/Sprites/Interface/ControllerButtons/XControllerX.png[/img] or [img]res://Content/Sprites/Interface/ControllerButtons/ControllerR2Button.png[/img]
 against the wall during
 flight and jump[/center]"
 
@@ -3801,7 +3801,7 @@ bbcode_enabled = true
 text = "
 
 [center]To wall-jump,
-hold [img]res://Content/Sprites/Interface/PSControllerSquare.png[/img] or [img]res://Content/Sprites/Interface/ControllerR2Button.png[/img]
+hold [img]res://Content/Sprites/Interface/ControllerButtons/PSControllerSquare.png[/img] or [img]res://Content/Sprites/Interface/ControllerButtons/ControllerR2Button.png[/img]
 against the wall during
 flight and jump[/center]"
 
@@ -4286,7 +4286,7 @@ text = "
 
 
 [center]To pulldown, press 
-[img]res://Content/Sprites/Interface/KeyboardButtonDown.png[/img] or [img]res://Content/Sprites/Interface/KeyboardButtonS.png[/img] during flight[/center]"
+[img]res://Content/Sprites/Interface/ControllerButtons/KeyboardButtonDown.png[/img] or [img]res://Content/Sprites/Interface/ControllerButtons/KeyboardButtonS.png[/img] during flight[/center]"
 
 [node name="GamepadText" type="RichTextLabel" parent="Level/TileMap6/TutorialTV/Screen" index="3"]
 visible = false
@@ -4300,7 +4300,7 @@ text = "
 
 
 [center]To pulldown, press 
-[img]res://Content/Sprites/Interface/ControllerStickDown.png[/img] or [img]res://Content/Sprites/Interface/ControllerDPadDown.png[/img] during flight[/center]"
+[img]res://Content/Sprites/Interface/ControllerButtons/ControllerStickDown.png[/img] or [img]res://Content/Sprites/Interface/ControllerButtons/ControllerDPadDown.png[/img] during flight[/center]"
 
 [node name="WhiteNoise" parent="Level/TileMap6/TutorialTV/Screen" index="4"]
 visible = false
@@ -4691,7 +4691,7 @@ scale = Vector2(2, 2)
 theme_override_colors/default_color = Color(0.788235, 0.788235, 0.788235, 1)
 theme_override_font_sizes/normal_font_size = 22
 bbcode_enabled = true
-text = "[center]Press [img]res://Content/Sprites/Interface/KeyboardButtonBigF.png[/img] to skip intro"
+text = "[center]Press [img]res://Content/Sprites/Interface/ControllerButtons/KeyboardButtonBigF.png[/img] to skip intro"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Level/TutorialCanvasLayer/Label"]
 libraries = {
@@ -4865,24 +4865,24 @@ layer = 100
 [connection signal="ButtonPressed" from="Level/TileMap/TeleporterArea" to="Level/TileMap" method="queue_free" flags=7]
 [connection signal="ButtonPressed" from="Level/TileMap/TeleporterArea" to="Level/TutorialCanvasLayer" method="Glitch" flags=6]
 [connection signal="ButtonPressed" from="Level/TileMap/TeleporterArea" to="LevelMusicPlayer" method="PlayMusic" flags=6 binds= ["Base 314, Please Respond", 0.0, 0.0]]
-[connection signal="ButtonPressed" from="Level/TileMap/TeleporterArea" to="Level/Player" method="SetCameraLimits" binds= [Vector4(3392, 18496, 4032, 16000), true]]
 [connection signal="ButtonPressed" from="Level/TileMap/TeleporterArea" to="Level/Player" method="set_position" flags=6 binds= [Vector2(16296, 3864)]]
+[connection signal="ButtonPressed" from="Level/TileMap/TeleporterArea" to="Level/Player" method="SetCameraLimits" binds= [Vector4(3392, 18496, 4032, 16000), true]]
 [connection signal="ButtonPressed" from="Level/TileMap/TeleporterArea" to="Level/TileMap2/TutorialTV/AnimationPlayer" method="play" flags=6 binds= ["FallingDown"]]
 [connection signal="screen_entered" from="Level/TileMap2/TutorialTV/VisibleOnScreenNotifier2D" to="Level/TileMap2/TutorialTV/Screen" method="UpdateScreen"]
 [connection signal="ButtonPressed" from="Level/TileMap2/TeleporterArea" to="Level/TileMap2" method="queue_free" flags=7]
 [connection signal="ButtonPressed" from="Level/TileMap2/TeleporterArea" to="Level/TutorialCanvasLayer" method="Glitch"]
-[connection signal="ButtonPressed" from="Level/TileMap2/TeleporterArea" to="Level/Player" method="SetCameraLimits" flags=6 binds= [Vector4(1536, 21376, 4032, 18944), true]]
 [connection signal="ButtonPressed" from="Level/TileMap2/TeleporterArea" to="Level/Player" method="set_position" flags=6 binds= [Vector2(19296, 3864)]]
+[connection signal="ButtonPressed" from="Level/TileMap2/TeleporterArea" to="Level/Player" method="SetCameraLimits" flags=6 binds= [Vector4(1536, 21376, 4032, 18944), true]]
 [connection signal="ButtonPressed" from="Level/TileMap3/TeleporterArea" to="Level/TileMap3" method="queue_free" flags=7]
 [connection signal="ButtonPressed" from="Level/TileMap3/TeleporterArea" to="Level/TutorialCanvasLayer" method="Glitch"]
-[connection signal="ButtonPressed" from="Level/TileMap3/TeleporterArea" to="Level/Player" method="SetCameraLimits" flags=6 binds= [Vector4(-100000, 27136, 4032, 21824), true]]
 [connection signal="ButtonPressed" from="Level/TileMap3/TeleporterArea" to="Level/Player" method="set_position" flags=6 binds= [Vector2(21984, 3864)]]
+[connection signal="ButtonPressed" from="Level/TileMap3/TeleporterArea" to="Level/Player" method="SetCameraLimits" flags=6 binds= [Vector4(-100000, 27136, 4032, 21824), true]]
 [connection signal="screen_entered" from="Level/TileMap4/TutorialTV/VisibleOnScreenNotifier2D" to="Level/TileMap4/TutorialTV/Screen" method="UpdateScreen"]
 [connection signal="ButtonPressed" from="Level/TileMap4/TVFallTrigger" to="Level/TileMap4/TutorialTV/AnimationPlayer" method="play" flags=6 binds= ["FallingDown"]]
 [connection signal="ButtonPressed" from="Level/TileMap4/TeleporterArea2" to="Level/TileMap4" method="queue_free" flags=7]
 [connection signal="ButtonPressed" from="Level/TileMap4/TeleporterArea2" to="Level/TutorialCanvasLayer" method="Glitch"]
-[connection signal="ButtonPressed" from="Level/TileMap4/TeleporterArea2" to="Level/Player" method="SetCameraLimits" flags=6 binds= [Vector4(-1e+06, 100000, 4032, 27584), true]]
 [connection signal="ButtonPressed" from="Level/TileMap4/TeleporterArea2" to="Level/Player" method="set_position" flags=6 binds= [Vector2(27812, 4003)]]
+[connection signal="ButtonPressed" from="Level/TileMap4/TeleporterArea2" to="Level/Player" method="SetCameraLimits" flags=6 binds= [Vector4(-1e+06, 100000, 4032, 27584), true]]
 [connection signal="ButtonPressed" from="Level/TileMap4/TeleporterArea2" to="Level/TileMap5/ShakyPlatform/TutorialTV/Screen/SlippeyHead/AnimationPlayer" method="play" flags=6 binds= ["BangerFilm"]]
 [connection signal="ButtonPressed" from="Level/TileMap4/ShowSecretArea" to="Level/TileMap4/ShowSecretArea/AnimationPlayer" method="play" flags=6 binds= ["Appearing"]]
 [connection signal="area_entered" from="Level/TileMap4/ShowSecretArea" to="Level/TileMap4/ShowSecretArea" method="AreaEntered" unbinds=1]
@@ -4902,8 +4902,8 @@ layer = 100
 [connection signal="timeout" from="Level/TileMap5/SecretActivationArea/Timer" to="Level/TileMap5/SecretActivationArea/AnimationPlayer" method="play" flags=6 binds= ["PlatformCrashing"]]
 [connection signal="ButtonPressed" from="Level/TileMap5/TeleporterArea2" to="Level/TileMap5" method="queue_free" flags=7]
 [connection signal="ButtonPressed" from="Level/TileMap5/TeleporterArea2" to="Level/TutorialCanvasLayer" method="Glitch"]
-[connection signal="ButtonPressed" from="Level/TileMap5/TeleporterArea2" to="Level/Player" method="SetCameraLimits" flags=6 binds= [Vector4(-100000, 100000, 4032, 42496), true]]
 [connection signal="ButtonPressed" from="Level/TileMap5/TeleporterArea2" to="Level/Player" method="set_position" flags=6 binds= [Vector2(42776, 4000)]]
+[connection signal="ButtonPressed" from="Level/TileMap5/TeleporterArea2" to="Level/Player" method="SetCameraLimits" flags=6 binds= [Vector4(-100000, 100000, 4032, 42496), true]]
 [connection signal="ButtonPressed" from="Level/TileMap5/TeleporterArea2" to="Level/TutorialCanvasLayer/Fog?" method="set_color" flags=6 binds= [Color(0, 1, 1, 0.0156863)]]
 [connection signal="area_entered" from="Level/TileMap5/DarkeningArea" to="Level/TileMap5/DarkeningArea/AnimationPlayer" method="Darkening" unbinds=1]
 [connection signal="area_exited" from="Level/TileMap5/DarkeningArea" to="Level/TileMap5/DarkeningArea/AnimationPlayer" method="Lightening" unbinds=1]
@@ -4924,8 +4924,8 @@ layer = 100
 [connection signal="ButtonPressed" from="Level/TileMap6/TeleporterArea" to="Level/TileMap6" method="queue_free" flags=7]
 [connection signal="ButtonPressed" from="Level/TileMap6/TeleporterArea" to="Level/TutorialCanvasLayer" method="Glitch" flags=6]
 [connection signal="ButtonPressed" from="Level/TileMap6/TeleporterArea" to="LevelMusicPlayer" method="StopMusic" flags=6 binds= [0.0]]
-[connection signal="ButtonPressed" from="Level/TileMap6/TeleporterArea" to="Level/Player" method="SetCameraLimits" flags=6 binds= [Vector4(3520, 54656, 4032, 53696), true]]
 [connection signal="ButtonPressed" from="Level/TileMap6/TeleporterArea" to="Level/Player" method="set_position" flags=6 binds= [Vector2(54176, 4000)]]
+[connection signal="ButtonPressed" from="Level/TileMap6/TeleporterArea" to="Level/Player" method="SetCameraLimits" flags=6 binds= [Vector4(3520, 54656, 4032, 53696), true]]
 [connection signal="ButtonPressed" from="Level/TileMap6/TeleporterArea" to="Level/TileMap7/TutorialTV/Screen/SlippeyHead/AnimationPlayer" method="play" flags=6 binds= ["BangerFilm"]]
 [connection signal="ButtonPressed" from="Level/TileMap6/TeleporterArea" to="Level/TileMap7/TutorialTV/AnimationPlayer" method="play" flags=6 binds= ["YOUWIN"]]
 [connection signal="ButtonPressed" from="Level/TileMap6/TeleporterArea" to="Level/TutorialCanvasLayer/Fog?" method="set_color" binds= [Color(0, 1, 1, 0.0156863)]]

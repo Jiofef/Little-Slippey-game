@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://c365fjpfqoj67"]
 
 [ext_resource type="PackedScene" uid="uid://bwpstpk1xmkah" path="res://Content/Scenes/Interface&Menu/Button.tscn" id="1_swctt"]
-[ext_resource type="Texture2D" uid="uid://71vomw6byask" path="res://Content/Sprites/Interface/LevelIconButton.png" id="2_xhrrd"]
-[ext_resource type="Texture2D" uid="uid://kaxj86lxg5nq" path="res://Content/Sprites/Interface/LevelIconButtonDisabled.png" id="3_2xnvp"]
+[ext_resource type="Texture2D" uid="uid://71vomw6byask" path="res://Content/Sprites/Interface/Buttons/LevelIconButton.png" id="2_xhrrd"]
+[ext_resource type="Texture2D" uid="uid://kaxj86lxg5nq" path="res://Content/Sprites/Interface/Buttons/LevelIconButtonDisabled.png" id="3_2xnvp"]
 [ext_resource type="Texture2D" uid="uid://bppnbtehdr3md" path="res://Content/Sprites/Interface/LevelsIcons.png" id="3_6pbch"]
 
 [node name="LevelButton" instance=ExtResource("1_swctt")]

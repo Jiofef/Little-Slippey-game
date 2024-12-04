@@ -1,11 +1,13 @@
 using Godot;
 
-public partial class AchievementsMenu : Control
+[Tool]
+public partial class AchievementsMenu : DraggableWindow
 {
 	public override void _Ready()
 	{
-		GetNode<Label>("AchievementsCount").Text = Tr("Achievements: ") + UnchangableMeta.AchievementsCount() + "/" + UnchangableMeta.AchievementStatuses.Length;
-		var achievementsContainer = GetNode<GridContainer>("AchievementsContainer/GridContainer");
+		base._Ready();
+        WindowTitle = Tr("Achievements") + " (" + (UnchangableMeta.AchievementsCount()) + " " + Tr("of") + " " + UnchangableMeta.AchievementStatuses.Length + ")";
+        var achievementsContainer = GetNode<GridContainer>("MarginContainer/VBoxContainer/MarginContainer/AchievementsContainer/GridContainer");
 		for (int i = 0; i < UnchangableMeta.AchievementStatuses.Length; i++)
 		{
 			var achievement = (Control)ResourceLoader.Load<PackedScene>("res://Content/Scenes/Achievements/Achievement" + (i + 1) + ".tscn").Instantiate();

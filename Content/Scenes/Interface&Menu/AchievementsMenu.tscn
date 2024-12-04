@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://bbefvhpfglkty"]
 
-[ext_resource type="Texture2D" uid="uid://blm6syft6nu6e" path="res://Content/Sprites/Interface/AchievementsMenu.png" id="1_fxqph"]
+[ext_resource type="PackedScene" uid="uid://cb3550p76ubc8" path="res://Content/Scenes/Interface&Menu/DraggableWindow.tscn" id="1_3wmdj"]
 [ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/AchievementsMenu.cs" id="1_xte5a"]
-[ext_resource type="Theme" uid="uid://cgvarj6mm8mm" path="res://Other/LevelEditor.theme" id="3_e0nlk"]
+[ext_resource type="Theme" uid="uid://dkitr1ftp0yhs" path="res://Content/Other/Menu.tres" id="3_6f771"]
 [ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/ScrollableContainer.cs" id="4_rv65g"]
 
 [sub_resource type="Animation" id="Animation_q7m3v"]
@@ -26,59 +26,42 @@ _data = {
 "Appearance": SubResource("Animation_q7m3v")
 }
 
-[node name="AchievementsMenu" type="Control"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+[node name="AchievementsMenu" instance=ExtResource("1_3wmdj")]
 offset_left = 145.0
 offset_top = 40.0
-offset_right = -135.0
+offset_right = -55.0
 offset_bottom = -40.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
 script = ExtResource("1_xte5a")
+WindowTitle = "Achievements (0 of 52)"
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(4, 4)
-texture = ExtResource("1_fxqph")
-centered = false
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MarginContainer" index="0"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_tgxxh")
+}
+autoplay = "Appearance"
 
-[node name="AchievementsCount" type="Label" parent="."]
-layout_mode = 0
-offset_left = 556.0
-offset_top = 586.0
-offset_right = 774.0
-offset_bottom = 611.0
-scale = Vector2(2, 2)
-theme = ExtResource("3_e0nlk")
-theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
-text = "Achievements: 0/0"
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="WindowTitle" parent="MarginContainer/VBoxContainer/BlueBox" index="1"]
+text = "Achievements (0 of 52)"
 
-[node name="AchievementsContainer" type="ScrollContainer" parent="."]
-layout_mode = 0
-offset_left = 12.0
-offset_top = 12.0
-offset_right = 988.0
-offset_bottom = 560.0
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer" index="1"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_bottom = 8
+
+[node name="AchievementsContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer/MarginContainer" index="0"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("3_6f771")
 follow_focus = true
 horizontal_scroll_mode = 0
 vertical_scroll_mode = 2
 script = ExtResource("4_rv65g")
 _scrollingSpeed = Vector2(5, 20)
 
-[node name="GridContainer" type="GridContainer" parent="AchievementsContainer"]
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/VBoxContainer/MarginContainer/AchievementsContainer" index="0"]
 clip_contents = true
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 columns = 2
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "Appearance"
-libraries = {
-"": SubResource("AnimationLibrary_tgxxh")
-}

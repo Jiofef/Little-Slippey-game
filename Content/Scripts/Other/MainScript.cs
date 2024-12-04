@@ -10,6 +10,13 @@ public partial class MainScript : Node2D
 
     public override void _Ready()
     {
+        G.MainNode = this;
+        TreeExited += () =>
+        {
+            if (G.MainNode == this)
+                G.MainNode = null;
+        };
+
         GetTree().Paused = false;
 
         AudioServer.SetBusEffectEnabled(2, 0, false);
@@ -63,7 +70,7 @@ public partial class MainScript : Node2D
             }
         }
     }
-    public void UnPause()
+    private void UnPause()
     {
         ChangePause(GetTree().Paused);
     }
@@ -86,7 +93,7 @@ public partial class MainScript : Node2D
         GetTree().Paused = !IsPaused;
     }
 
-    public void Options()
+    private void Options()
     {
         var pause = GetNode<CanvasLayer>("Pause");
         pause.ProcessMode = ProcessModeEnum.Disabled;
@@ -94,7 +101,7 @@ public partial class MainScript : Node2D
         GetNode<AnimationPlayer>("Pause/Interface/AnimationPlayer").Play("OpeningSubMenu");
         _subMenusOpened = true;
     }
-    public void Menu()
+    private void Menu()
     {
         GetTree().Paused = false;
         if (G.IsLevelVanilla)
@@ -104,12 +111,11 @@ public partial class MainScript : Node2D
             GetTree().ChangeSceneToFile("res://Content/Scenes/Interface&Menu/WelcomeToGOS.tscn");
         }
         else
-        {
             GetTree().ChangeSceneToFile("res://Content/Scenes/Interface&Menu/LevelEditor.tscn");
-        }
+
         G.CompletelyResetValues();
     }
-    public void OptionsClosing()
+    private void OptionsClosing()
     {
         GetNode<CanvasLayer>("Pause").ProcessMode = ProcessModeEnum.WhenPaused;
         GetNode<TextureButton>("Pause/Interface/ButtonsFrame/Options").GrabFocus();
@@ -117,7 +123,7 @@ public partial class MainScript : Node2D
         _subMenusOpened = false;
     }
 
-    public void MusicAnimationFinished(string animation)
+    private void MusicAnimationFinished(string animation)
     {
         if (animation == "MusicStopping")
         {
@@ -126,7 +132,7 @@ public partial class MainScript : Node2D
         }
     }
 
-    public void GiveAchievement(int index)
+    private void GiveAchievement(int index)
     {
         Achievements.GetAchievement(index);
     }

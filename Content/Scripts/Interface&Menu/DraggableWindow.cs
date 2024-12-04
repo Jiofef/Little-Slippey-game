@@ -5,8 +5,9 @@ using System.Linq;
 [Tool]
 public partial class DraggableWindow : FlexibleWindow
 {
+    [Signal] public delegate void WindowClosedByButtonEventHandler();
     private string _windowTitle = "Title";
-    [Export] public string WindowTitles
+    [Export] public string WindowTitle
     {
         get => _windowTitle;
         set 
@@ -20,7 +21,27 @@ public partial class DraggableWindow : FlexibleWindow
     {
         GetNode<Label>("MarginContainer/VBoxContainer/BlueBox/WindowTitle").Text = _windowTitle;
     }
-
+    private bool _canClose = true;
+    [Export]
+    public bool CanClose
+    {
+        get => _canClose;
+        set
+        {
+            _canClose = value;
+            CallDeferred("UpdateCloseButton");
+        }
+    }
+    private void UpdateCloseButton()
+    {
+        GetNode<TextureButton>("MarginContainer/VBoxContainer/BlueBox/CloseButton").Visible = _canClose;
+        
+    }
+    private void OnCloseButtonPressed()
+    {
+        EmitSignal("WindowClosedByButton");
+        QueueFree();
+    }
 
     private bool _isBlueBoxHovered = false, _isDragging = false;
     public Vector2 Velocity;
@@ -42,6 +63,7 @@ public partial class DraggableWindow : FlexibleWindow
 
     public override void _Process(double delta)
     {
+        var blueBox = GetNode<NinePatchRect>("MarginContainer/VBoxContainer/BlueBox");
         if (_isDragging)
         {
             Vector2 LocalMousePos = GetLocalMousePosition();
@@ -66,7 +88,8 @@ public partial class DraggableWindow : FlexibleWindow
             }
 
         }
-        Position = new Vector2(Math.Clamp(Position.X, 0, 1280 - Size.X), Math.Clamp(Position.Y, 0, 720 - Size.Y));
+        Vector2 blueBoxPos = blueBox.GlobalPosition - GlobalPosition;
+        GlobalPosition = new Vector2(Math.Clamp(GlobalPosition.X, -blueBoxPos.X, 1280 - blueBox.Size.X - blueBoxPos.X), Math.Clamp(GlobalPosition.Y + blueBox.Position.Y, -blueBoxPos.Y, 720 - blueBox.Size.Y - blueBoxPos.Y));
         Velocity /= 1.25f;
         Rotation /= 1.1f;
 

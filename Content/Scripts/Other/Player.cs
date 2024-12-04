@@ -42,10 +42,17 @@ public partial class Player : CharacterBody2D
 
     public override void _Ready()
     {
+        G.PlayerNode = this;
+        TreeExited += () =>
+        {
+            if (G.PlayerNode == this)
+                G.PlayerNode = null;
+        };
+
         if (_readyAlready) return;
-        GetNode("SkinContainer/Sprite2D")?.QueueFree();
+        GetNode("SkinContainer/Default")?.QueueFree();
         string[] SkinNames = {"Slippey", "Samey", "Sanboy", "Strawman", "Pineplum", "Bondey", "Sleepy", "Daley", "Hostey", "CompressMass", "JioYobaFefski", "SlippeyChad", "MISSINGNULL", "Corey"};
-        _animatedSprite = (AnimatedSprite2D)ResourceLoader.Load<PackedScene>("res://Content/Scenes/PlayerSkins/" + SkinNames[Meta.Instance.ChosenSkinIndex] + ".tscn").Instantiate();
+        _animatedSprite = (AnimatedSprite2D)ResourceLoader.Load<PackedScene>("res://Content/Scenes/PlayerSkins/" + SkinNames[Meta.Instance.Gameplay.ChosenSkinIndex] + ".tscn").Instantiate();
         _animatedSprite.Connect("animation_finished", new Callable(this, "AnimationFinished"));
         if (Convert.ToBoolean((string)_animatedSprite.GetMeta("HasAnimationPlayer")))
         {
@@ -68,7 +75,7 @@ public partial class Player : CharacterBody2D
             if (G.PlayerCorpseFlightTimer != 4.5f)
             {
                 G.PlayerCorpseFlightTimer = G.PlayerCorpseFlightTimer < 4.5f ? G.PlayerCorpseFlightTimer + 0.016667f : 4.5f;
-                if (Meta.Instance.ChosenSkinIndex == 11) return;
+                if (Meta.Instance.Gameplay.ChosenSkinIndex == 11) return;
                 Position += (_corpseMotion * G.GetReversedPlayerCorpseFlightTimerCoeff() * _corpseMotionMultiplier);
                 Rotation += _corpseMotion.X / 50 * G.GetReversedPlayerCorpseFlightTimerCoeff();
                 _corpseMotion.Y += _gravity / 200;

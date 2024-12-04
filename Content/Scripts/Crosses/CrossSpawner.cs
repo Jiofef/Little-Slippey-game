@@ -31,14 +31,14 @@ public partial class CrossSpawner : Node2D
         {
             G.Scores += _floatDelta;
             _weightMultiplierExtenderToCurrentCross += (_floatDelta * _crossDefaultWeight[_lastAviableCrossNumber]) / 30 * G.CrossesProgressCoeff;
-            if (G.Scores > G.LevelCompleteTime && UnchangableMeta.LevelCompleteStatus[G.CurrentLevel - 1] < 1 + Meta.Instance.Dificulty && G.IsLevelVanilla)
+            if (G.Scores > G.LevelCompleteTime && UnchangableMeta.LevelCompleteStatus[G.CurrentLevel - 1] < 1 + Meta.Instance.Gameplay.Dificulty && G.IsLevelVanilla)
                 UnchangableMeta.SaveRecords();
         }
 
 
         if (G.IsCrossesEnabled)
         {
-            int RandomRange = 20 - Meta.Instance.Dificulty * 5;
+            int RandomRange = 20 - Meta.Instance.Gameplay.Dificulty * 5;
             RandomRange = (int)((RandomRange - (RandomRange / 2 - G.PlayerMoveCoeff * RandomRange / 2)) / G.CrossSpawnMultiplier);
 
             if (_random.Next(RandomRange) == 0)
@@ -105,7 +105,7 @@ public partial class CrossSpawner : Node2D
 
                 AddChild(Cross);
 
-                if (G.CurrentLevel == 9 || Meta.Instance.AdditionStatuses[2] || _isCrossesEnhanced)
+                if (G.CurrentLevel == 9 || Meta.Instance.Gameplay.AdditionStatuses[2] || _isCrossesEnhanced)
                     Cross.AddToGroup("Crosses");
             }
         }

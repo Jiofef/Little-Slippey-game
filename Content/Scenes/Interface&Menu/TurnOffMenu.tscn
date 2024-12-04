@@ -3,8 +3,8 @@
 [ext_resource type="Texture2D" uid="uid://cdh8bcaew8h6o" path="res://Content/Sprites/Interface/TurnOffBox.png" id="1_2an5l"]
 [ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/TurnOffMenu.cs" id="1_ai8b4"]
 [ext_resource type="PackedScene" uid="uid://bwpstpk1xmkah" path="res://Content/Scenes/Interface&Menu/Button.tscn" id="3_jajao"]
-[ext_resource type="Texture2D" uid="uid://c1d2p0ba42csh" path="res://Content/Sprites/Interface/AcceptButton.png" id="4_lr5ag"]
-[ext_resource type="Texture2D" uid="uid://d0sqlunqacimf" path="res://Content/Sprites/Interface/CancelButton.png" id="5_nxnt3"]
+[ext_resource type="Texture2D" uid="uid://c1d2p0ba42csh" path="res://Content/Sprites/Interface/Buttons/AcceptButton.png" id="4_lr5ag"]
+[ext_resource type="Texture2D" uid="uid://d0sqlunqacimf" path="res://Content/Sprites/Interface/Buttons/CancelButton.png" id="5_nxnt3"]
 
 [sub_resource type="Animation" id="Animation_5j2kk"]
 resource_name = "Opening"

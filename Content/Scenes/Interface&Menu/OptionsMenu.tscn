@@ -1,47 +1,19 @@
-[gd_scene load_steps=22 format=3 uid="uid://dwuivxxfk4cbs"]
+[gd_scene load_steps=16 format=3 uid="uid://053iekkefhol"]
 
 [ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/OptionsMenu.cs" id="1_kmdmx"]
-[ext_resource type="Texture2D" uid="uid://i15evt2viayu" path="res://Content/Sprites/Interface/OptionsMenuBox.png" id="1_trr7h"]
+[ext_resource type="PackedScene" uid="uid://cb3550p76ubc8" path="res://Content/Scenes/Interface&Menu/DraggableWindow.tscn" id="1_tw6c3"]
 [ext_resource type="PackedScene" uid="uid://bwpstpk1xmkah" path="res://Content/Scenes/Interface&Menu/Button.tscn" id="2_hr832"]
-[ext_resource type="Texture2D" uid="uid://c1d2p0ba42csh" path="res://Content/Sprites/Interface/AcceptButton.png" id="3_cxo48"]
-[ext_resource type="Texture2D" uid="uid://d0sqlunqacimf" path="res://Content/Sprites/Interface/CancelButton.png" id="4_kqtal"]
-[ext_resource type="Texture2D" uid="uid://1ateuoq4ybsb" path="res://Content/Sprites/Interface/ControlsButton.png" id="6_8j7i4"]
-[ext_resource type="Texture2D" uid="uid://cq66udhicgrdo" path="res://Content/Sprites/Interface/OptionsMenuVideoContainer.png" id="6_gcpn7"]
-[ext_resource type="Texture2D" uid="uid://6364lktejv61" path="res://Content/Sprites/Interface/SettingResetButton.png" id="6_jifs0"]
 [ext_resource type="Texture2D" uid="uid://vb7vdsdjg4xa" path="res://Content/Sprites/Interface/USADiscordFlag.png" id="7_3d3xi"]
 [ext_resource type="Texture2D" uid="uid://hcoc3411pyvj" path="res://Content/Sprites/Interface/RussiaDiscordFlag.png" id="8_42rvm"]
+[ext_resource type="Theme" uid="uid://dkitr1ftp0yhs" path="res://Content/Other/Menu.tres" id="8_ui2mu"]
+[ext_resource type="Texture2D" uid="uid://dsg7gc0ux6ng4" path="res://Content/Sprites/Interface/Buttons/4XSettingResetButton.png" id="10_lf0wq"]
 [ext_resource type="Texture2D" uid="uid://dqdsspefb6520" path="res://Content/Sprites/Interface/ControlsBox.png" id="10_orj3k"]
+[ext_resource type="Texture2D" uid="uid://b8abnpf38b77x" path="res://Content/Sprites/Interface/Buttons/4XAcceptButton.png" id="11_5wnor"]
 [ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/ScrollableContainer.cs" id="11_qsm8k"]
-[ext_resource type="Texture2D" uid="uid://ce4oq2adhljwh" path="res://Content/Sprites/Interface/LevelsMenuIcon.png" id="12_balti"]
+[ext_resource type="Texture2D" uid="uid://glq8rf30o1q3" path="res://Content/Sprites/Interface/Buttons/4XCancelButton.png" id="12_6gaq7"]
+[ext_resource type="Texture2D" uid="uid://ce4oq2adhljwh" path="res://Content/Sprites/Interface/Buttons/LevelsMenuIcon.png" id="12_balti"]
 
-[sub_resource type="ButtonGroup" id="ButtonGroup_vfk1r"]
-
-[sub_resource type="ButtonGroup" id="ButtonGroup_kert5"]
-
-[sub_resource type="ButtonGroup" id="ButtonGroup_upid1"]
-
-[sub_resource type="ButtonGroup" id="ButtonGroup_qiuqg"]
-
-[sub_resource type="Animation" id="Animation_fu4ro"]
-resource_name = "Appearance"
-length = 0.3
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3),
-"transitions": PackedFloat32Array(0.5, 1),
-"update": 0,
-"values": [Vector2(1, 0), Vector2(1, 1)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_u8saj"]
-_data = {
-"Appearance": SubResource("Animation_fu4ro")
-}
+[sub_resource type="ButtonGroup" id="ButtonGroup_0o8lr"]
 
 [sub_resource type="Animation" id="Animation_kaqri"]
 resource_name = "Appearence"
@@ -64,534 +36,216 @@ _data = {
 "Appearence": SubResource("Animation_kaqri")
 }
 
-[node name="OptionsMenu" type="Control"]
+[node name="OptionsMenu" instance=ExtResource("1_tw6c3")]
 process_mode = 3
-z_index = 1
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 120.0
+clip_contents = false
+offset_left = 260.0
 offset_top = 40.0
-offset_right = -100.0
+offset_right = -220.0
 offset_bottom = -40.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
+theme = ExtResource("8_ui2mu")
 script = ExtResource("1_kmdmx")
+WindowTitle = "Options"
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(4, 4)
-texture = ExtResource("1_trr7h")
-centered = false
+[node name="WindowTitle" parent="MarginContainer/VBoxContainer/BlueBox" index="1"]
+text = "Options"
 
-[node name="AcceptButton" parent="." instance=ExtResource("2_hr832")]
-layout_mode = 0
-offset_left = 832.0
-offset_top = 524.0
-offset_right = 856.0
-offset_bottom = 548.0
-focus_neighbor_left = NodePath("../ControlsButton")
-focus_neighbor_top = NodePath("../VideoContainer/GridContainer/LanguageContainer/English")
-focus_neighbor_right = NodePath("../DeclineButton")
-focus_neighbor_bottom = NodePath("../VideoContainer/GridContainer/ScreenModeContainer/FullCheckBox")
-texture_normal = ExtResource("3_cxo48")
+[node name="Tabs" type="TabContainer" parent="MarginContainer/VBoxContainer" index="1"]
+layout_mode = 2
+size_flags_vertical = 3
+current_tab = 0
 
-[node name="DeclineButton" parent="." instance=ExtResource("2_hr832")]
-layout_mode = 0
-offset_left = 944.0
-offset_top = 524.0
-offset_right = 968.0
-offset_bottom = 548.0
-focus_neighbor_left = NodePath("../AcceptButton")
-focus_neighbor_top = NodePath("../VideoContainer/GridContainer/LanguageContainer/English")
-focus_neighbor_bottom = NodePath("../VideoContainer/GridContainer/ScreenModeContainer/FullCheckBox")
-texture_normal = ExtResource("4_kqtal")
+[node name="Video" type="ScrollContainer" parent="MarginContainer/VBoxContainer/Tabs" index="1"]
+layout_mode = 2
+metadata/_tab_index = 0
 
-[node name="SetByDefaultButton" parent="." instance=ExtResource("2_hr832")]
-custom_minimum_size = Vector2(24, 24)
-layout_mode = 0
-offset_left = 400.0
-offset_top = 524.0
-offset_right = 424.0
-offset_bottom = 548.0
-focus_neighbor_top = NodePath("../SoundContainer/EnvironmentSlider")
-focus_neighbor_right = NodePath("../AcceptButton")
-focus_neighbor_bottom = NodePath("../SoundContainer/GlobalSlider")
-texture_normal = ExtResource("6_jifs0")
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Tabs/Video" index="0"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
 
-[node name="SetByDefault" type="Label" parent="."]
-layout_mode = 0
-offset_left = 512.0
-offset_top = 524.0
-offset_right = 601.0
-offset_bottom = 572.0
-scale = Vector2(2, 2)
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer" index="0"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ScreenMode" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer" index="0"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Name" type="Label" parent="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer/ScreenMode" index="0"]
+layout_mode = 2
+size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
-text = "Set by
-default"
-horizontal_alignment = 1
-vertical_alignment = 1
+text = "Window mode"
 
-[node name="ControlsButton" parent="." instance=ExtResource("2_hr832")]
-custom_minimum_size = Vector2(24, 24)
-layout_mode = 0
-offset_left = 21.0
-offset_top = 524.0
-offset_right = 45.0
-offset_bottom = 548.0
-focus_neighbor_top = NodePath("../SoundContainer/EnvironmentSlider")
-focus_neighbor_right = NodePath("../AcceptButton")
-focus_neighbor_bottom = NodePath("../SoundContainer/GlobalSlider")
-texture_normal = ExtResource("6_8j7i4")
+[node name="OptionButton" type="OptionButton" parent="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer/ScreenMode" index="1"]
+layout_mode = 2
+selected = 0
+item_count = 2
+popup/item_0/text = "Fullscreen"
+popup/item_0/id = 1
+popup/item_1/text = "Windowed"
+popup/item_1/id = 1
 
-[node name="ViewControls" type="Label" parent="."]
-layout_mode = 0
-offset_left = 134.0
-offset_top = 524.0
-offset_right = 223.0
-offset_bottom = 572.0
-scale = Vector2(2, 2)
+[node name="Do" type="HSeparator" parent="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer" index="1"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="WindowSize" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer" index="2"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Name" type="Label" parent="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer/WindowSize" index="0"]
+layout_mode = 2
+size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
-text = "View
-controls"
-horizontal_alignment = 1
-vertical_alignment = 1
+text = "Window size"
 
-[node name="Sound" type="Label" parent="."]
-layout_mode = 0
-offset_left = 220.0
-offset_top = 40.0
-offset_right = 282.0
-offset_bottom = 65.0
-scale = Vector2(2, 2)
+[node name="OptionButton" type="OptionButton" parent="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer/WindowSize" index="1"]
+layout_mode = 2
+selected = 3
+item_count = 8
+popup/item_0/text = "640X360"
+popup/item_0/id = 1
+popup/item_1/text = "854X480"
+popup/item_1/id = 2
+popup/item_2/text = "960X540"
+popup/item_2/id = 3
+popup/item_3/text = "1280X720"
+popup/item_3/id = 3
+popup/item_4/text = "1600X900"
+popup/item_4/id = 4
+popup/item_5/text = "1920X1080"
+popup/item_5/id = 5
+popup/item_6/text = "2560X1440"
+popup/item_6/id = 6
+popup/item_7/text = "3840X2160"
+popup/item_7/id = 7
+
+[node name="Re" type="HSeparator" parent="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer" index="3"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="VSync" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer" index="4"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Name" type="Label" parent="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer/VSync" index="0"]
+layout_mode = 2
+size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
-text = "Sound"
+text = "VSync"
 
-[node name="SoundContainer" type="GridContainer" parent="."]
-layout_mode = 0
-offset_left = 56.0
-offset_top = 102.0
-offset_right = 288.0
-offset_bottom = 301.0
-scale = Vector2(2, 2)
-columns = 2
-
-[node name="Global" type="Label" parent="SoundContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
-text = "Global"
-
-[node name="GlobalSlider" type="HSlider" parent="SoundContainer"]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-focus_neighbor_top = NodePath("../../ControlsButton")
-focus_neighbor_right = NodePath("../../VideoContainer/GridContainer/ScreenModeContainer/FullCheckBox")
-min_value = -30.0
-max_value = 10.0
-scrollable = false
-
-[node name="Interface" type="Label" parent="SoundContainer"]
-custom_minimum_size = Vector2(0, 26)
-layout_mode = 2
-theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
-text = "Interface"
-
-[node name="InterfaceSlider" type="HSlider" parent="SoundContainer"]
-layout_mode = 2
-focus_neighbor_right = NodePath("../../VideoContainer/GridContainer/ScreenModeContainer/FullCheckBox")
-min_value = -30.0
-max_value = 10.0
-scrollable = false
-
-[node name="Music" type="Label" parent="SoundContainer"]
-custom_minimum_size = Vector2(0, 25)
-layout_mode = 2
-theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
-text = "Music"
-
-[node name="MusicSlider" type="HSlider" parent="SoundContainer"]
-layout_mode = 2
-focus_neighbor_right = NodePath("../../VideoContainer/GridContainer/ScreenModeContainer/FullCheckBox")
-min_value = -30.0
-max_value = 10.0
-scrollable = false
-
-[node name="Player" type="Label" parent="SoundContainer"]
-custom_minimum_size = Vector2(0, 27)
-layout_mode = 2
-theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
-text = "Player"
-
-[node name="PlayerSlider" type="HSlider" parent="SoundContainer"]
-layout_mode = 2
-focus_neighbor_right = NodePath("../../VideoContainer/GridContainer/ScreenModeContainer/FullCheckBox")
-min_value = -30.0
-max_value = 10.0
-scrollable = false
-
-[node name="Crosses" type="Label" parent="SoundContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
-text = "Crosses"
-
-[node name="CrossesSlider" type="HSlider" parent="SoundContainer"]
-layout_mode = 2
-focus_neighbor_right = NodePath("../../VideoContainer/GridContainer/ScreenModeContainer/FullCheckBox")
-min_value = -30.0
-max_value = 10.0
-scrollable = false
-
-[node name="Explosions" type="Label" parent="SoundContainer"]
-custom_minimum_size = Vector2(0, 26)
-layout_mode = 2
-theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
-text = "Explosions"
-
-[node name="ExplosionsSlider" type="HSlider" parent="SoundContainer"]
-layout_mode = 2
-focus_neighbor_right = NodePath("../../VideoContainer/GridContainer/ScreenModeContainer/FullCheckBox")
-min_value = -30.0
-max_value = 10.0
-scrollable = false
-
-[node name="Environment" type="Label" parent="SoundContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
-text = "Environment"
-
-[node name="EnvironmentSlider" type="HSlider" parent="SoundContainer"]
-layout_mode = 2
-focus_neighbor_right = NodePath("../../VideoContainer/GridContainer/ScreenModeContainer/FullCheckBox")
-focus_neighbor_bottom = NodePath("../../ControlsButton")
-min_value = -30.0
-max_value = 10.0
-scrollable = false
-
-[node name="Video" type="Label" parent="."]
-layout_mode = 0
-offset_left = 716.0
-offset_top = 39.0
-offset_right = 778.0
-offset_bottom = 64.0
-scale = Vector2(2, 2)
-theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
-text = "Video"
-
-[node name="VideoContainer" type="ScrollContainer" parent="."]
-layout_mode = 2
-offset_left = 540.0
-offset_top = 96.0
-offset_right = 807.0
-offset_bottom = 322.0
-scale = Vector2(1.75, 1.75)
-focus_mode = 2
-follow_focus = true
-script = ExtResource("11_qsm8k")
-
-[node name="GridContainer" type="GridContainer" parent="VideoContainer"]
-custom_minimum_size = Vector2(260, 0)
-layout_mode = 2
-columns = 2
-
-[node name="Sprite2D" type="Sprite2D" parent="VideoContainer/GridContainer"]
-scale = Vector2(2.3, 2.3)
-texture = ExtResource("6_gcpn7")
-centered = false
-
-[node name="ScreenMode" type="Label" parent="VideoContainer/GridContainer"]
-custom_minimum_size = Vector2(0, 60)
-layout_mode = 2
-theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
-text = "Screen
-mode"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="ScreenModeContainer" type="GridContainer" parent="VideoContainer/GridContainer"]
-custom_minimum_size = Vector2(0, 60)
-layout_mode = 2
-columns = 2
-
-[node name="Full" type="Label" parent="VideoContainer/GridContainer/ScreenModeContainer"]
-custom_minimum_size = Vector2(90, 0)
-layout_mode = 2
-theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
-text = "Full"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Window" type="Label" parent="VideoContainer/GridContainer/ScreenModeContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
-text = "Window"
-vertical_alignment = 1
-
-[node name="FullCheckBox" type="CheckBox" parent="VideoContainer/GridContainer/ScreenModeContainer"]
-modulate = Color(0.588235, 0.588235, 0.588235, 1)
+[node name="CheckBox" type="CheckBox" parent="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer/VSync" index="1"]
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 0
-focus_neighbor_top = NodePath("../../../../AcceptButton")
-focus_neighbor_right = NodePath("../WindowCheckBox")
-button_group = SubResource("ButtonGroup_vfk1r")
-
-[node name="WindowCheckBox" type="CheckBox" parent="VideoContainer/GridContainer/ScreenModeContainer"]
-modulate = Color(0.588235, 0.588235, 0.588235, 1)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 0
-focus_neighbor_left = NodePath("../FullCheckBox")
-focus_neighbor_top = NodePath("../../../../AcceptButton")
-button_group = SubResource("ButtonGroup_vfk1r")
-
-[node name="WindowSize" type="Label" parent="VideoContainer/GridContainer"]
-custom_minimum_size = Vector2(0, 48)
-layout_mode = 2
-theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
-text = "Window
-size"
-horizontal_alignment = 1
-
-[node name="WindowSizesContainer" type="Control" parent="VideoContainer/GridContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="VideoContainer/GridContainer/WindowSizesContainer"]
-layout_mode = 0
-offset_right = 160.0
-offset_bottom = 24.0
-theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
-text = "1280X720"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="WindowSizeSlider" type="HSlider" parent="VideoContainer/GridContainer/WindowSizesContainer"]
-custom_minimum_size = Vector2(160, 0)
-layout_mode = 2
-offset_top = 24.0
-offset_right = 160.0
-offset_bottom = 40.0
 size_flags_vertical = 4
-max_value = 7.0
-value = 3.0
-scrollable = false
 
-[node name="VerticalSync" type="Label" parent="VideoContainer/GridContainer"]
-custom_minimum_size = Vector2(0, 48)
+[node name="Mi" type="HSeparator" parent="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer" index="5"]
 layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="ScoresLabelMode" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer" index="6"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Name" type="Label" parent="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer/ScoresLabelMode" index="0"]
+layout_mode = 2
+size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
-text = "Vertical
-Sync"
-horizontal_alignment = 1
+text = "Scores label mode"
 
-[node name="VerticalSyncContainer" type="Control" parent="VideoContainer/GridContainer"]
+[node name="OptionButton" type="OptionButton" parent="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer/ScoresLabelMode" index="1"]
 layout_mode = 2
+selected = 0
+item_count = 3
+popup/item_0/text = "Large"
+popup/item_1/text = "Small"
+popup/item_1/id = 1
+popup/item_2/text = "Hide"
+popup/item_2/id = 2
 
-[node name="On" type="Label" parent="VideoContainer/GridContainer/VerticalSyncContainer"]
-custom_minimum_size = Vector2(72, 0)
-layout_mode = 0
-offset_left = 28.0
-offset_right = 100.0
-offset_bottom = 25.0
+[node name="Fa" type="HSeparator" parent="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer" index="7"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="ScoresLabelLocation" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer" index="8"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Name" type="Label" parent="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer/ScoresLabelLocation" index="0"]
+layout_mode = 2
+size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
-text = "On"
-horizontal_alignment = 1
-vertical_alignment = 1
+text = "Scores label location"
 
-[node name="Off" type="Label" parent="VideoContainer/GridContainer/VerticalSyncContainer"]
-layout_mode = 0
-offset_left = 108.0
-offset_right = 140.0
-offset_bottom = 24.0
-theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
-text = "Off"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="OnCheckBox" type="CheckBox" parent="VideoContainer/GridContainer/VerticalSyncContainer"]
-modulate = Color(0.588235, 0.588235, 0.588235, 1)
-layout_mode = 0
-offset_left = 52.0
-offset_top = 24.0
-offset_right = 76.0
-offset_bottom = 48.0
-size_flags_horizontal = 4
-size_flags_vertical = 0
-button_group = SubResource("ButtonGroup_kert5")
-
-[node name="OffCheckBox" type="CheckBox" parent="VideoContainer/GridContainer/VerticalSyncContainer"]
-modulate = Color(0.588235, 0.588235, 0.588235, 1)
-layout_mode = 0
-offset_left = 112.0
-offset_top = 24.0
-offset_right = 136.0
-offset_bottom = 48.0
-size_flags_horizontal = 4
-size_flags_vertical = 0
-button_pressed = true
-button_group = SubResource("ButtonGroup_kert5")
-
-[node name="ScoresLabelMode" type="Label" parent="VideoContainer/GridContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
-text = "Scores
-label
-mode"
-horizontal_alignment = 1
-
-[node name="ScoresLabelContainer" type="Control" parent="VideoContainer/GridContainer"]
-layout_mode = 2
-
-[node name="Default" type="Label" parent="VideoContainer/GridContainer/ScoresLabelContainer"]
-custom_minimum_size = Vector2(83, 0)
-layout_mode = 2
-offset_top = 12.0
-offset_right = 83.0
-offset_bottom = 37.0
-scale = Vector2(0.85, 0.85)
-theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
-text = "Default"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Mini" type="Label" parent="VideoContainer/GridContainer/ScoresLabelContainer"]
-custom_minimum_size = Vector2(53, 0)
-layout_mode = 2
-offset_left = 76.0
-offset_top = 12.0
-offset_right = 129.0
-offset_bottom = 37.0
-theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
-text = "Mini"
-
-[node name="Hide" type="Label" parent="VideoContainer/GridContainer/ScoresLabelContainer"]
-layout_mode = 2
-offset_left = 127.0
-offset_top = 12.0
-offset_right = 176.0
-offset_bottom = 37.0
-theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
-text = "Hide"
-
-[node name="DefaultCheckBox" type="CheckBox" parent="VideoContainer/GridContainer/ScoresLabelContainer"]
-modulate = Color(0.588235, 0.588235, 0.588235, 1)
-layout_mode = 2
-offset_left = 24.0
-offset_top = 36.0
-offset_right = 48.0
-offset_bottom = 60.0
-size_flags_horizontal = 4
-size_flags_vertical = 0
-button_pressed = true
-button_group = SubResource("ButtonGroup_upid1")
-
-[node name="MiniCheckBox" type="CheckBox" parent="VideoContainer/GridContainer/ScoresLabelContainer"]
-modulate = Color(0.588235, 0.588235, 0.588235, 1)
-layout_mode = 2
-offset_left = 86.0
-offset_top = 36.0
-offset_right = 110.0
-offset_bottom = 60.0
-size_flags_horizontal = 4
-size_flags_vertical = 0
-button_group = SubResource("ButtonGroup_upid1")
-
-[node name="HideCheckBox" type="CheckBox" parent="VideoContainer/GridContainer/ScoresLabelContainer"]
-modulate = Color(0.588235, 0.588235, 0.588235, 1)
-layout_mode = 2
-offset_left = 141.0
-offset_top = 36.0
-offset_right = 165.0
-offset_bottom = 60.0
-size_flags_horizontal = 4
-size_flags_vertical = 0
-button_group = SubResource("ButtonGroup_upid1")
-
-[node name="ScoresLabelLocation" type="Label" parent="VideoContainer/GridContainer"]
-custom_minimum_size = Vector2(0, 88)
-layout_mode = 2
-theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
-text = "Scores
-label
-location"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="GridContainer" type="GridContainer" parent="VideoContainer/GridContainer"]
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer/ScoresLabelLocation" index="1"]
 layout_mode = 2
 size_flags_horizontal = 4
 columns = 3
 
-[node name="CheckBox1X1Y" type="CheckBox" parent="VideoContainer/GridContainer/GridContainer"]
-modulate = Color(0.588235, 0.588235, 0.588235, 1)
+[node name="CheckBox0X0Y" type="CheckBox" parent="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer/ScoresLabelLocation/GridContainer" index="0"]
 layout_mode = 2
-button_group = SubResource("ButtonGroup_qiuqg")
+button_group = SubResource("ButtonGroup_0o8lr")
 
-[node name="CheckBox2X1Y" type="CheckBox" parent="VideoContainer/GridContainer/GridContainer"]
-modulate = Color(0.588235, 0.588235, 0.588235, 1)
+[node name="CheckBox1X0Y" type="CheckBox" parent="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer/ScoresLabelLocation/GridContainer" index="1"]
 layout_mode = 2
-button_group = SubResource("ButtonGroup_qiuqg")
+button_group = SubResource("ButtonGroup_0o8lr")
 
-[node name="CheckBox3X1Y" type="CheckBox" parent="VideoContainer/GridContainer/GridContainer"]
-modulate = Color(0.588235, 0.588235, 0.588235, 1)
+[node name="CheckBox2X0Y" type="CheckBox" parent="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer/ScoresLabelLocation/GridContainer" index="2"]
 layout_mode = 2
-button_group = SubResource("ButtonGroup_qiuqg")
+button_group = SubResource("ButtonGroup_0o8lr")
 
-[node name="CheckBox1X2Y" type="CheckBox" parent="VideoContainer/GridContainer/GridContainer"]
-modulate = Color(0.588235, 0.588235, 0.588235, 1)
+[node name="CheckBox0X1Y" type="CheckBox" parent="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer/ScoresLabelLocation/GridContainer" index="3"]
 layout_mode = 2
-button_group = SubResource("ButtonGroup_qiuqg")
+button_group = SubResource("ButtonGroup_0o8lr")
 
-[node name="CheckBox2X2Y" type="CheckBox" parent="VideoContainer/GridContainer/GridContainer"]
-modulate = Color(0.588235, 0.588235, 0.588235, 1)
+[node name="CheckBox1X1Y" type="CheckBox" parent="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer/ScoresLabelLocation/GridContainer" index="4"]
 layout_mode = 2
-button_group = SubResource("ButtonGroup_qiuqg")
+button_group = SubResource("ButtonGroup_0o8lr")
 
-[node name="CheckBox3X2Y" type="CheckBox" parent="VideoContainer/GridContainer/GridContainer"]
-modulate = Color(0.588235, 0.588235, 0.588235, 1)
+[node name="CheckBox2X1Y" type="CheckBox" parent="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer/ScoresLabelLocation/GridContainer" index="5"]
 layout_mode = 2
-button_group = SubResource("ButtonGroup_qiuqg")
+button_group = SubResource("ButtonGroup_0o8lr")
 
-[node name="CheckBox1X3Y" type="CheckBox" parent="VideoContainer/GridContainer/GridContainer"]
-modulate = Color(0.588235, 0.588235, 0.588235, 1)
+[node name="CheckBox0X2Y" type="CheckBox" parent="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer/ScoresLabelLocation/GridContainer" index="6"]
 layout_mode = 2
-button_group = SubResource("ButtonGroup_qiuqg")
+button_group = SubResource("ButtonGroup_0o8lr")
 
-[node name="CheckBox2X3Y" type="CheckBox" parent="VideoContainer/GridContainer/GridContainer"]
-modulate = Color(0.588235, 0.588235, 0.588235, 1)
+[node name="CheckBox1X2Y" type="CheckBox" parent="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer/ScoresLabelLocation/GridContainer" index="7"]
 layout_mode = 2
-button_group = SubResource("ButtonGroup_qiuqg")
+button_group = SubResource("ButtonGroup_0o8lr")
 
-[node name="CheckBox3X3Y" type="CheckBox" parent="VideoContainer/GridContainer/GridContainer"]
-modulate = Color(0.588235, 0.588235, 0.588235, 1)
+[node name="CheckBox2X2Y" type="CheckBox" parent="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer/ScoresLabelLocation/GridContainer" index="8"]
 layout_mode = 2
-button_group = SubResource("ButtonGroup_qiuqg")
+button_group = SubResource("ButtonGroup_0o8lr")
 
-[node name="CameraZoom" type="Label" parent="VideoContainer/GridContainer"]
+[node name="So" type="HSeparator" parent="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer" index="9"]
 layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="CameraZoom" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer" index="10"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Name" type="Label" parent="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer/CameraZoom" index="0"]
+layout_mode = 2
+size_flags_horizontal = 2
 theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
-text = "Camera
-zoom"
-horizontal_alignment = 1
-vertical_alignment = 1
+text = "Camera zoom"
 
-[node name="CameraZoomContainer" type="Control" parent="VideoContainer/GridContainer"]
+[node name="Value" type="Label" parent="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer/CameraZoom" index="1"]
 layout_mode = 2
+size_flags_horizontal = 10
+text = "1.25x"
 
-[node name="CameraZoom" type="Label" parent="VideoContainer/GridContainer/CameraZoomContainer"]
-layout_mode = 0
-offset_right = 160.0
-offset_bottom = 24.0
-theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
-text = "X1.25"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="CameraZoomSlider" type="HSlider" parent="VideoContainer/GridContainer/CameraZoomContainer"]
+[node name="Slider" type="HSlider" parent="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer/CameraZoom" index="2"]
+custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
-offset_top = 24.0
-offset_right = 163.0
-offset_bottom = 40.0
 size_flags_vertical = 4
 min_value = 1.25
 max_value = 2.0
@@ -599,63 +253,292 @@ step = 0.15
 value = 1.25
 scrollable = false
 
-[node name="Language" type="Control" parent="VideoContainer/GridContainer"]
-custom_minimum_size = Vector2(84, 25)
+[node name="La" type="HSeparator" parent="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer" index="11"]
 layout_mode = 2
+theme_override_constants/separation = 12
 
-[node name="Label" type="Label" parent="VideoContainer/GridContainer/Language"]
+[node name="Language" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer" index="12"]
 layout_mode = 2
-offset_right = 98.0
-offset_bottom = 58.0
-scale = Vector2(0.9, 0.9)
+theme_override_constants/separation = 16
+
+[node name="Name" type="Label" parent="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer/Language" index="0"]
+layout_mode = 2
+size_flags_horizontal = 2
 theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
 text = "Language"
-horizontal_alignment = 1
-vertical_alignment = 1
 
-[node name="LanguageContainer" type="Control" parent="VideoContainer/GridContainer"]
-custom_minimum_size = Vector2(0, 52)
+[node name="OptionButton" type="OptionButton" parent="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer/Language" index="1"]
+layout_mode = 2
+selected = 0
+item_count = 2
+popup/item_0/text = "English"
+popup/item_0/icon = ExtResource("7_3d3xi")
+popup/item_1/text = "Russian"
+popup/item_1/icon = ExtResource("8_42rvm")
+popup/item_1/id = 1
+
+[node name="Ti" type="HSeparator" parent="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer" index="13"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="SmallGnomes" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer" index="14"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Name" type="Label" parent="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer/SmallGnomes" index="0"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+text = "Gnomes (ó﹏ò｡)"
+
+[node name="TextEdit" type="TextEdit" parent="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer/SmallGnomes" index="1"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "No!"
+
+[node name="Do2" type="HSeparator" parent="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer" index="15"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Sound" type="ScrollContainer" parent="MarginContainer/VBoxContainer/Tabs" index="2"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Tabs/Sound" index="0"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Tabs/Sound/MarginContainer" index="0"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Global" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Tabs/Sound/MarginContainer/VBoxContainer" index="0"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Tabs/Sound/MarginContainer/VBoxContainer/Global" index="0"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+text = "Global"
+
+[node name="Value" type="Label" parent="MarginContainer/VBoxContainer/Tabs/Sound/MarginContainer/VBoxContainer/Global" index="1"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "100"
+
+[node name="Slider" type="HSlider" parent="MarginContainer/VBoxContainer/Tabs/Sound/MarginContainer/VBoxContainer/Global" index="2"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+theme = ExtResource("8_ui2mu")
+max_value = 1.0
+step = 0.01
+value = 1.0
+scrollable = false
+
+[node name="Up" type="HSeparator" parent="MarginContainer/VBoxContainer/Tabs/Sound/MarginContainer/VBoxContainer" index="1"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Interface" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Tabs/Sound/MarginContainer/VBoxContainer" index="2"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Tabs/Sound/MarginContainer/VBoxContainer/Interface" index="0"]
+custom_minimum_size = Vector2(0, 26)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+text = "Interface"
+
+[node name="Value" type="Label" parent="MarginContainer/VBoxContainer/Tabs/Sound/MarginContainer/VBoxContainer/Interface" index="1"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "100"
+
+[node name="Slider" type="HSlider" parent="MarginContainer/VBoxContainer/Tabs/Sound/MarginContainer/VBoxContainer/Interface" index="2"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 10
+max_value = 1.0
+step = 0.01
+value = 1.0
+scrollable = false
+
+[node name="Down" type="HSeparator" parent="MarginContainer/VBoxContainer/Tabs/Sound/MarginContainer/VBoxContainer" index="3"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Music" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Tabs/Sound/MarginContainer/VBoxContainer" index="4"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Tabs/Sound/MarginContainer/VBoxContainer/Music" index="0"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+text = "Music"
+
+[node name="Value" type="Label" parent="MarginContainer/VBoxContainer/Tabs/Sound/MarginContainer/VBoxContainer/Music" index="1"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "100"
+
+[node name="Slider" type="HSlider" parent="MarginContainer/VBoxContainer/Tabs/Sound/MarginContainer/VBoxContainer/Music" index="2"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 10
+max_value = 1.0
+step = 0.01
+value = 1.0
+scrollable = false
+
+[node name="Charm" type="HSeparator" parent="MarginContainer/VBoxContainer/Tabs/Sound/MarginContainer/VBoxContainer" index="5"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Player" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Tabs/Sound/MarginContainer/VBoxContainer" index="6"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Tabs/Sound/MarginContainer/VBoxContainer/Player" index="0"]
+custom_minimum_size = Vector2(0, 27)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+text = "Player"
+
+[node name="Value" type="Label" parent="MarginContainer/VBoxContainer/Tabs/Sound/MarginContainer/VBoxContainer/Player" index="1"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "100"
+
+[node name="Slider" type="HSlider" parent="MarginContainer/VBoxContainer/Tabs/Sound/MarginContainer/VBoxContainer/Player" index="2"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 10
+max_value = 1.0
+step = 0.01
+value = 1.0
+scrollable = false
+
+[node name="Strange" type="HSeparator" parent="MarginContainer/VBoxContainer/Tabs/Sound/MarginContainer/VBoxContainer" index="7"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Crosses" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Tabs/Sound/MarginContainer/VBoxContainer" index="8"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Tabs/Sound/MarginContainer/VBoxContainer/Crosses" index="0"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+text = "Crosses"
+
+[node name="Value" type="Label" parent="MarginContainer/VBoxContainer/Tabs/Sound/MarginContainer/VBoxContainer/Crosses" index="1"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "100"
+
+[node name="Slider" type="HSlider" parent="MarginContainer/VBoxContainer/Tabs/Sound/MarginContainer/VBoxContainer/Crosses" index="2"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 10
+max_value = 1.0
+step = 0.01
+value = 1.0
+scrollable = false
+
+[node name="Top" type="HSeparator" parent="MarginContainer/VBoxContainer/Tabs/Sound/MarginContainer/VBoxContainer" index="9"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Explosions" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Tabs/Sound/MarginContainer/VBoxContainer" index="10"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Tabs/Sound/MarginContainer/VBoxContainer/Explosions" index="0"]
+custom_minimum_size = Vector2(0, 26)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+text = "Explosions"
+
+[node name="Value" type="Label" parent="MarginContainer/VBoxContainer/Tabs/Sound/MarginContainer/VBoxContainer/Explosions" index="1"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "100"
+
+[node name="Slider" type="HSlider" parent="MarginContainer/VBoxContainer/Tabs/Sound/MarginContainer/VBoxContainer/Explosions" index="2"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 10
+max_value = 1.0
+step = 0.01
+value = 1.0
+scrollable = false
+
+[node name="Bottom" type="HSeparator" parent="MarginContainer/VBoxContainer/Tabs/Sound/MarginContainer/VBoxContainer" index="11"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Environment" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Tabs/Sound/MarginContainer/VBoxContainer" index="12"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Tabs/Sound/MarginContainer/VBoxContainer/Environment" index="0"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+text = "Environment"
+
+[node name="Value" type="Label" parent="MarginContainer/VBoxContainer/Tabs/Sound/MarginContainer/VBoxContainer/Environment" index="1"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "100"
+
+[node name="Slider" type="HSlider" parent="MarginContainer/VBoxContainer/Tabs/Sound/MarginContainer/VBoxContainer/Environment" index="2"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 10
+theme = ExtResource("8_ui2mu")
+max_value = 1.0
+step = 0.01
+value = 1.0
+scrollable = false
+
+[node name="Gluon" type="HSeparator" parent="MarginContainer/VBoxContainer/Tabs/Sound/MarginContainer/VBoxContainer" index="13"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Controls" type="ScrollContainer" parent="MarginContainer/VBoxContainer/Tabs" index="3"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 2
+
+[node name="ControlsMenu" type="Control" parent="MarginContainer/VBoxContainer/Tabs/Controls" index="0"]
 layout_mode = 2
 
-[node name="English" parent="VideoContainer/GridContainer/LanguageContainer" instance=ExtResource("2_hr832")]
-layout_mode = 0
-offset_left = 4.0
-offset_right = 24.0
-offset_bottom = 13.0
-focus_neighbor_bottom = NodePath("../../../../AcceptButton")
-texture_normal = ExtResource("7_3d3xi")
-
-[node name="Russian" parent="VideoContainer/GridContainer/LanguageContainer" instance=ExtResource("2_hr832")]
-layout_mode = 0
-offset_left = 88.0
-offset_right = 108.0
-offset_bottom = 13.0
-focus_neighbor_bottom = NodePath("../../../../AcceptButton")
-texture_normal = ExtResource("8_42rvm")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "Appearance"
-libraries = {
-"": SubResource("AnimationLibrary_u8saj")
-}
-
-[node name="ControlsMenu" type="Control" parent="."]
-visible = false
-anchors_preset = 0
-offset_right = 1060.0
-offset_bottom = 512.0
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="ControlsMenu"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MarginContainer/VBoxContainer/Tabs/Controls/ControlsMenu" index="0"]
 libraries = {
 "": SubResource("AnimationLibrary_nja3y")
 }
 
-[node name="Sprite2D" type="Sprite2D" parent="ControlsMenu"]
+[node name="Sprite2D" type="Sprite2D" parent="MarginContainer/VBoxContainer/Tabs/Controls/ControlsMenu" index="1"]
 scale = Vector2(4, 4)
 texture = ExtResource("10_orj3k")
 centered = false
 
-[node name="Moving" type="Label" parent="ControlsMenu"]
+[node name="Moving" type="Label" parent="MarginContainer/VBoxContainer/Tabs/Controls/ControlsMenu" index="2"]
 layout_mode = 0
 offset_left = 473.0
 offset_top = 412.0
@@ -668,7 +551,7 @@ down - pulldown"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="WallCatch" type="Label" parent="ControlsMenu"]
+[node name="WallCatch" type="Label" parent="MarginContainer/VBoxContainer/Tabs/Controls/ControlsMenu" index="3"]
 layout_mode = 0
 offset_left = 877.0
 offset_top = 30.0
@@ -679,7 +562,7 @@ text = "Wall catch"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="LevelReset" type="Label" parent="ControlsMenu"]
+[node name="LevelReset" type="Label" parent="MarginContainer/VBoxContainer/Tabs/Controls/ControlsMenu" index="4"]
 layout_mode = 0
 offset_left = 873.0
 offset_top = 187.0
@@ -690,7 +573,7 @@ text = "Level reset"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="PauseOrCancel" type="Label" parent="ControlsMenu"]
+[node name="PauseOrCancel" type="Label" parent="MarginContainer/VBoxContainer/Tabs/Controls/ControlsMenu" index="5"]
 layout_mode = 0
 offset_left = 870.0
 offset_top = 82.0
@@ -702,7 +585,7 @@ cancel"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Jump" type="Label" parent="ControlsMenu"]
+[node name="Jump" type="Label" parent="MarginContainer/VBoxContainer/Tabs/Controls/ControlsMenu" index="6"]
 layout_mode = 0
 offset_left = 871.0
 offset_top = 235.0
@@ -713,7 +596,7 @@ text = "Jump"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="MoveScrollbars" type="Label" parent="ControlsMenu"]
+[node name="MoveScrollbars" type="Label" parent="MarginContainer/VBoxContainer/Tabs/Controls/ControlsMenu" index="7"]
 layout_mode = 0
 offset_left = 831.0
 offset_top = 272.0
@@ -725,7 +608,7 @@ text = "Move scrollbars
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ScrollContainer" type="ScrollContainer" parent="ControlsMenu"]
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer/Tabs/Controls/ControlsMenu" index="8"]
 layout_mode = 0
 offset_left = 869.0
 offset_top = 320.0
@@ -736,23 +619,23 @@ scroll_vertical = 84
 script = ExtResource("11_qsm8k")
 metadata/_edit_group_ = true
 
-[node name="SpriteControl" type="Control" parent="ControlsMenu/ScrollContainer"]
+[node name="SpriteControl" type="Control" parent="MarginContainer/VBoxContainer/Tabs/Controls/ControlsMenu/ScrollContainer" index="0"]
 custom_minimum_size = Vector2(256, 256)
 layout_mode = 2
 metadata/_edit_group_ = true
 
-[node name="ColorRect" type="ColorRect" parent="ControlsMenu/ScrollContainer/SpriteControl"]
+[node name="ColorRect" type="ColorRect" parent="MarginContainer/VBoxContainer/Tabs/Controls/ControlsMenu/ScrollContainer/SpriteControl" index="0"]
 layout_mode = 0
 offset_right = 256.0
 offset_bottom = 256.0
 color = Color(0.184314, 0.180392, 0.192157, 0.117647)
 
-[node name="Sprite2D" type="Sprite2D" parent="ControlsMenu/ScrollContainer/SpriteControl"]
+[node name="Sprite2D" type="Sprite2D" parent="MarginContainer/VBoxContainer/Tabs/Controls/ControlsMenu/ScrollContainer/SpriteControl" index="1"]
 scale = Vector2(16, 16)
 texture = ExtResource("12_balti")
 centered = false
 
-[node name="_(" type="Label" parent="ControlsMenu"]
+[node name="_(" type="Label" parent="MarginContainer/VBoxContainer/Tabs/Controls/ControlsMenu" index="9"]
 layout_mode = 0
 offset_left = 13.0
 offset_top = 429.0
@@ -764,7 +647,7 @@ settings yet
 Maybe in 1000 years"
 vertical_alignment = 1
 
-[node name="KeyboardMovement" type="Label" parent="ControlsMenu"]
+[node name="KeyboardMovement" type="Label" parent="MarginContainer/VBoxContainer/Tabs/Controls/ControlsMenu" index="10"]
 layout_mode = 0
 offset_left = 15.0
 offset_top = 18.0
@@ -782,34 +665,49 @@ Pause or cancel - Esc
 "
 vertical_alignment = 1
 
-[connection signal="pressed" from="AcceptButton" to="." method="Accept"]
-[connection signal="pressed" from="DeclineButton" to="." method="Cancel"]
-[connection signal="pressed" from="SetByDefaultButton" to="." method="SetByDefault"]
-[connection signal="pressed" from="ControlsButton" to="." method="Controls"]
-[connection signal="value_changed" from="SoundContainer/GlobalSlider" to="." method="SoundChanging" binds= [0]]
-[connection signal="value_changed" from="SoundContainer/InterfaceSlider" to="." method="SoundChanging" binds= [1]]
-[connection signal="value_changed" from="SoundContainer/MusicSlider" to="." method="SoundChanging" binds= [2]]
-[connection signal="value_changed" from="SoundContainer/PlayerSlider" to="." method="SoundChanging" binds= [3]]
-[connection signal="value_changed" from="SoundContainer/CrossesSlider" to="." method="SoundChanging" binds= [4]]
-[connection signal="value_changed" from="SoundContainer/ExplosionsSlider" to="." method="SoundChanging" binds= [5]]
-[connection signal="value_changed" from="SoundContainer/EnvironmentSlider" to="." method="SoundChanging" binds= [6]]
-[connection signal="pressed" from="VideoContainer/GridContainer/ScreenModeContainer/FullCheckBox" to="." method="ChangeScreenFormat" binds= [0]]
-[connection signal="pressed" from="VideoContainer/GridContainer/ScreenModeContainer/WindowCheckBox" to="." method="ChangeScreenFormat" binds= [1]]
-[connection signal="value_changed" from="VideoContainer/GridContainer/WindowSizesContainer/WindowSizeSlider" to="." method="ChangeWindowSize"]
-[connection signal="pressed" from="VideoContainer/GridContainer/VerticalSyncContainer/OnCheckBox" to="." method="ChangeVSync" binds= [0]]
-[connection signal="pressed" from="VideoContainer/GridContainer/VerticalSyncContainer/OffCheckBox" to="." method="ChangeVSync" binds= [1]]
-[connection signal="pressed" from="VideoContainer/GridContainer/ScoresLabelContainer/DefaultCheckBox" to="." method="ChangeScoresShowingFormat" binds= [0]]
-[connection signal="pressed" from="VideoContainer/GridContainer/ScoresLabelContainer/MiniCheckBox" to="." method="ChangeScoresShowingFormat" binds= [1]]
-[connection signal="pressed" from="VideoContainer/GridContainer/ScoresLabelContainer/HideCheckBox" to="." method="ChangeScoresShowingFormat" binds= [2]]
-[connection signal="pressed" from="VideoContainer/GridContainer/GridContainer/CheckBox1X1Y" to="." method="ChangeScoresLabelLocation" binds= [0, 0]]
-[connection signal="pressed" from="VideoContainer/GridContainer/GridContainer/CheckBox2X1Y" to="." method="ChangeScoresLabelLocation" binds= [1, 0]]
-[connection signal="pressed" from="VideoContainer/GridContainer/GridContainer/CheckBox3X1Y" to="." method="ChangeScoresLabelLocation" binds= [2, 0]]
-[connection signal="pressed" from="VideoContainer/GridContainer/GridContainer/CheckBox1X2Y" to="." method="ChangeScoresLabelLocation" binds= [0, 1]]
-[connection signal="pressed" from="VideoContainer/GridContainer/GridContainer/CheckBox2X2Y" to="." method="ChangeScoresLabelLocation" binds= [1, 1]]
-[connection signal="pressed" from="VideoContainer/GridContainer/GridContainer/CheckBox3X2Y" to="." method="ChangeScoresLabelLocation" binds= [2, 1]]
-[connection signal="pressed" from="VideoContainer/GridContainer/GridContainer/CheckBox1X3Y" to="." method="ChangeScoresLabelLocation" binds= [0, 2]]
-[connection signal="pressed" from="VideoContainer/GridContainer/GridContainer/CheckBox2X3Y" to="." method="ChangeScoresLabelLocation" binds= [1, 2]]
-[connection signal="pressed" from="VideoContainer/GridContainer/GridContainer/CheckBox3X3Y" to="." method="ChangeScoresLabelLocation" binds= [2, 2]]
-[connection signal="value_changed" from="VideoContainer/GridContainer/CameraZoomContainer/CameraZoomSlider" to="." method="CameraZoomChanged"]
-[connection signal="pressed" from="VideoContainer/GridContainer/LanguageContainer/English" to="." method="SetLanguage" binds= [0]]
-[connection signal="pressed" from="VideoContainer/GridContainer/LanguageContainer/Russian" to="." method="SetLanguage" binds= [1]]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer" index="2"]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_constants/separation = 16
+alignment = 2
+
+[node name="SetByDefaultButton" parent="MarginContainer/VBoxContainer/HBoxContainer" index="0" instance=ExtResource("2_hr832")]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+texture_normal = ExtResource("10_lf0wq")
+
+[node name="AcceptButton" parent="MarginContainer/VBoxContainer/HBoxContainer" index="1" instance=ExtResource("2_hr832")]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+texture_normal = ExtResource("11_5wnor")
+
+[node name="DeclineButton" parent="MarginContainer/VBoxContainer/HBoxContainer" index="2" instance=ExtResource("2_hr832")]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+texture_normal = ExtResource("12_6gaq7")
+
+[connection signal="item_selected" from="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer/ScreenMode/OptionButton" to="." method="ChangeScreenFormat"]
+[connection signal="item_selected" from="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer/WindowSize/OptionButton" to="." method="ChangeWindowSize"]
+[connection signal="toggled" from="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer/VSync/CheckBox" to="." method="ChangeVSync"]
+[connection signal="item_selected" from="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer/ScoresLabelMode/OptionButton" to="." method="ChangeScoresShowingFormat"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer/ScoresLabelLocation/GridContainer/CheckBox0X0Y" to="." method="ChangeScoresLabelLocation" binds= [0, 0]]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer/ScoresLabelLocation/GridContainer/CheckBox1X0Y" to="." method="ChangeScoresLabelLocation" binds= [1, 0]]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer/ScoresLabelLocation/GridContainer/CheckBox2X0Y" to="." method="ChangeScoresLabelLocation" binds= [2, 0]]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer/ScoresLabelLocation/GridContainer/CheckBox0X1Y" to="." method="ChangeScoresLabelLocation" binds= [0, 1]]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer/ScoresLabelLocation/GridContainer/CheckBox1X1Y" to="." method="ChangeScoresLabelLocation" binds= [1, 1]]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer/ScoresLabelLocation/GridContainer/CheckBox2X1Y" to="." method="ChangeScoresLabelLocation" binds= [2, 1]]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer/ScoresLabelLocation/GridContainer/CheckBox0X2Y" to="." method="ChangeScoresLabelLocation" binds= [0, 2]]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer/ScoresLabelLocation/GridContainer/CheckBox1X2Y" to="." method="ChangeScoresLabelLocation" binds= [1, 2]]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer/ScoresLabelLocation/GridContainer/CheckBox2X2Y" to="." method="ChangeScoresLabelLocation" binds= [2, 2]]
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer/CameraZoom/Slider" to="." method="CameraZoomChanged"]
+[connection signal="item_selected" from="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer/Language/OptionButton" to="." method="SetLanguage"]
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/Tabs/Sound/MarginContainer/VBoxContainer/Global/Slider" to="." method="SoundChanging" binds= [0]]
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/Tabs/Sound/MarginContainer/VBoxContainer/Interface/Slider" to="." method="SoundChanging" binds= [1]]
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/Tabs/Sound/MarginContainer/VBoxContainer/Music/Slider" to="." method="SoundChanging" binds= [2]]
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/Tabs/Sound/MarginContainer/VBoxContainer/Player/Slider" to="." method="SoundChanging" binds= [3]]
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/Tabs/Sound/MarginContainer/VBoxContainer/Crosses/Slider" to="." method="SoundChanging" binds= [4]]
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/Tabs/Sound/MarginContainer/VBoxContainer/Explosions/Slider" to="." method="SoundChanging" binds= [5]]
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/Tabs/Sound/MarginContainer/VBoxContainer/Environment/Slider" to="." method="SoundChanging" binds= [6]]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/SetByDefaultButton" to="." method="SetByDefault"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/AcceptButton" to="." method="Accept"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/DeclineButton" to="." method="Cancel"]

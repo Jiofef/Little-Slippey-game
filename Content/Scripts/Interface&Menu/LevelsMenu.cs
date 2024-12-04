@@ -21,13 +21,13 @@ public partial class LevelsMenu : Control
                 GetNode<Label>("Visual/AdittionalButtons/" + ButtonNames[i]).Visible = true;
                 var toggleButton = GetNode<CheckBox>("Visual/AdittionalButtons/Toggle" + ButtonNames[i] + "Button");
                 toggleButton.Disabled = false;
-                toggleButton.ButtonPressed = Meta.Instance.AdditionStatuses[i];
+                toggleButton.ButtonPressed = Meta.Instance.Gameplay.AdditionStatuses[i];
                 toggleButton.FocusMode = FocusModeEnum.All;
             }   
         }
 
         for (int i = 0; i < _dificultiesNames.Length; i++)
-            GetNode<CheckBox>("Visual/DifficultyButtons/" + _dificultiesNames[i] + "ModeButton").ButtonPressed = Meta.Instance.Dificulty == i;
+            GetNode<CheckBox>("Visual/DifficultyButtons/" + _dificultiesNames[i] + "ModeButton").ButtonPressed = Meta.Instance.Gameplay.Dificulty == i;
 
         UpdateGUIForCurrentDificulty();
 
@@ -165,18 +165,18 @@ public partial class LevelsMenu : Control
 
     public void SetDifficulty(int value)
     {
-        Meta.Instance.Dificulty = value;
+        Meta.Instance.Gameplay.Dificulty = value;
         UpdateGUIForCurrentDificulty();
         Meta.Instance.SaveToFile();
     }
     public void SetAdditionStatus(bool value, int AdditionIndex)
     {
-        Meta.Instance.AdditionStatuses[AdditionIndex] = value;
+        Meta.Instance.Gameplay.AdditionStatuses[AdditionIndex] = value;
         Meta.Instance.SaveToFile();
     }
     private void UpdateGUIForCurrentDificulty()
     {
         for (int i = 0; i < _dificultiesNames.Length; i ++)
-            GetNode<Label>("Visual/" + _dificultiesNames[i] + "BestResult").Visible = Meta.Instance.Dificulty == i;
+            GetNode<Label>("Visual/" + _dificultiesNames[i] + "BestResult").Visible = Meta.Instance.Gameplay.Dificulty == i;
     }
 }

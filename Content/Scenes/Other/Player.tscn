@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://dlscufxb5f1ca"]
+[gd_scene load_steps=25 format=3 uid="uid://dlscufxb5f1ca"]
 
 [ext_resource type="Script" path="res://Content/Scripts/Other/Player.cs" id="1"]
 [ext_resource type="AudioStream" uid="uid://422y36f6ucnf" path="res://Content/Sounds/Player/Climb.mp3" id="2_bn55d"]
@@ -63,6 +63,21 @@ animations = [{
 "loop": true,
 "name": &"default",
 "speed": 15.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_icdi5"]
+atlas = ExtResource("8_36ypt")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1esqc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_icdi5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
 }]
 
 [node name="Player" type="CharacterBody2D"]
@@ -243,7 +258,7 @@ theme_override_constants/shadow_offset_y = 0
 theme_override_constants/shadow_outline_size = 4
 theme_override_font_sizes/normal_font_size = 22
 bbcode_enabled = true
-text = "[center]Hold [img]res://Content/Sprites/Interface/KeyboardButtonBigR.png[/img]"
+text = "[center]Hold [img]res://Content/Sprites/Interface/ControllerButtons/KeyboardButtonBigR.png[/img]"
 
 [node name="RestartNoise" type="AnimatedSprite2D" parent="Camera2D/GUI"]
 modulate = Color(1, 1, 1, 0)
@@ -258,11 +273,9 @@ bus = &"Player"
 
 [node name="SkinContainer" type="Node2D" parent="."]
 
-[node name="Sprite2D" type="Sprite2D" parent="SkinContainer"]
+[node name="Default" type="AnimatedSprite2D" parent="SkinContainer"]
 scale = Vector2(4, 4)
-texture = ExtResource("8_36ypt")
-region_enabled = true
-region_rect = Rect2(0, 0, 16, 16)
+sprite_frames = SubResource("SpriteFrames_1esqc")
 
 [connection signal="area_entered" from="Areas/PlayerDamageDetector" to="." method="Death" flags=6 unbinds=1]
 [connection signal="area_entered" from="Areas/PlayerDamageDetector" to="Camera2D" method="CameraZoom" flags=6 unbinds=1]

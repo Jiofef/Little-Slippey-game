@@ -1,4 +1,5 @@
 using Godot;
+using GodotPlugins.Game;
 using System;
 using System.Linq;
 
@@ -57,7 +58,7 @@ public partial class G : Node
             TypeOfUsedController = "Keyboard";
             if (Input.IsActionJustPressed("ToggleScreenMode"))
             {
-                Meta.Instance.IsFullScreen = !Meta.Instance.IsFullScreen;
+                Meta.Instance.Video.IsFullScreen = !Meta.Instance.Video.IsFullScreen;
                 Meta.Instance.ApplyOptions();
                 Meta.Instance.SaveToFile();
             }
@@ -99,12 +100,18 @@ public partial class G : Node
 
     public static string GetLanguagePrefix() // For localization maybe?
     {
-        if (Meta.Instance.language == Meta.Language.en)
+        if (Meta.Instance.Video.language == Meta.VideoClass.Language.en)
             return "";
-        var value = Meta.Instance.language.ToString();
+        var value = Meta.Instance.Video.language.ToString();
         value = char.ToUpper(value[0]) + value.Substring(1);
         return value;
-    } 
+    }
+
+    #region Frequently used nodes
+    public static Player PlayerNode { get; set; }
+    public static MainScript MainNode { get; set; }
+    #endregion
+
     #endregion
 
     // Other stuff

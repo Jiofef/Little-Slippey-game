@@ -48,7 +48,7 @@ public partial class InitializationScene : Control
 
     public void SetLanguage(int languageNumber)
     {
-        Meta.Instance.language = (Meta.Language)languageNumber;
+        Meta.Instance.Video.language = (Meta.VideoClass.Language)languageNumber;
         UnchangableMeta.IsLanguageSetted = true;
         Meta.Instance.ApplyOptions();
         Meta.Instance.SaveToFile();

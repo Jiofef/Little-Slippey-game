@@ -269,7 +269,7 @@ public partial class Level10ScientistScript : Node2D
             GetNode<AudioStreamPlayer>("../CanvasLayer/ColorRect/AudioStreamPlayer").Play();
             if (UnchangableMeta.LevelCompleteStatus[9] == 0)
             {
-                Achievements.GetAchievement(41 + Meta.Instance.Dificulty);
+                Achievements.GetAchievement(41 + Meta.Instance.Gameplay.Dificulty);
                 Achievements.GetAchievement(44);
                 Achievements.GetAchievement(45);
                 Achievements.GetAchievement(46);
@@ -315,7 +315,7 @@ public partial class Level10ScientistScript : Node2D
         if (MegaphoneDefaultCondition && G.Scores >= _scriptedPhrasesTimeCodes[(int)G.TransitiveVariant[7] + 1])
         {
             PlayMegaphonePhrase("Scripted" + ((int)G.TransitiveVariant[7] + 2));
-            EmitSignal("ShowTextQueue", _phrasesSubtitles[(int)G.TransitiveVariant[7] + 1], Meta.Instance.language == Meta.Language.en ? _phrasesTimeCodes[(int)G.TransitiveVariant[7] + 1] : _phrasesTimeCodesRu[(int)G.TransitiveVariant[7] + 1], 1);
+            EmitSignal("ShowTextQueue", _phrasesSubtitles[(int)G.TransitiveVariant[7] + 1], Meta.Instance.Video.language == Meta.VideoClass.Language.en ? _phrasesTimeCodes[(int)G.TransitiveVariant[7] + 1] : _phrasesTimeCodesRu[(int)G.TransitiveVariant[7] + 1], 1);
             if ((int)G.TransitiveVariant[7] == 1)
             {
                 EmitSignal("SetResetDisabled", true);
@@ -330,7 +330,7 @@ public partial class Level10ScientistScript : Node2D
         {
             G.TransitiveVariant[6] = true;
             PlayMegaphonePhrase("FiveDeaths");
-            EmitSignal("ShowTextQueue", _phrasesSubtitles[6], Meta.Instance.language == Meta.Language.en ? _phrasesTimeCodes[6] : _phrasesTimeCodesRu[6], 1);
+            EmitSignal("ShowTextQueue", _phrasesSubtitles[6], Meta.Instance.Video.language == Meta.VideoClass.Language.en ? _phrasesTimeCodes[6] : _phrasesTimeCodesRu[6], 1);
         }
         else if (MegaphoneDefaultCondition && _scriptedPhrasesTimeCodes[(int)G.TransitiveVariant[7] + 1] - G.Scores > 10 && !G.IsPlayerDead && G.Scores > 5)
         {
@@ -340,7 +340,7 @@ public partial class Level10ScientistScript : Node2D
                 while (i == (int)G.TransitiveVariant[13])
                     i = random.Next(1, 8);
                 PlayMegaphonePhrase("Random" + i);
-                EmitSignal("ShowTextQueue", _phrasesSubtitles[i + 6], Meta.Instance.language == Meta.Language.en ? _phrasesTimeCodes[i + 6] : _phrasesTimeCodesRu[i + 6], 1);
+                EmitSignal("ShowTextQueue", _phrasesSubtitles[i + 6], Meta.Instance.Video.language == Meta.VideoClass.Language.en ? _phrasesTimeCodes[i + 6] : _phrasesTimeCodesRu[i + 6], 1);
                 G.TransitiveVariant[13] = i;
             }
         }

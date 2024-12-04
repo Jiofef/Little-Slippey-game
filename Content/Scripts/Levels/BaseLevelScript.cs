@@ -27,20 +27,20 @@ public partial class BaseLevelScript : Node2D
     {
         G.ResetValues();
         Input.MouseMode = !GetTree().Paused ? Input.MouseModeEnum.Hidden : Input.MouseModeEnum.Visible;
-        AudioServer.SetBusMute(2, Meta.Instance.BusVolumes[2] <= -30);
+        AudioServer.SetBusMute(2, Meta.Instance.Sound.BusVolumes[2] <= -30);
         GetNode<AudioStreamPlayer>("../LevelMusicPlayer").StreamPaused = false;
         _player = GetNode<CharacterBody2D>("Player");
 
-        if (G.CurrentLevel == 5 || Meta.Instance.AdditionStatuses[0])
+        if (G.CurrentLevel == 5 || Meta.Instance.Gameplay.AdditionStatuses[0])
             AddChild((Node2D)ResourceLoader.Load<PackedScene>("res://Content/Scenes/Other/Level5Rain.tscn").Instantiate());
-        if (G.CurrentLevel == 7 || Meta.Instance.AdditionStatuses[1])
+        if (G.CurrentLevel == 7 || Meta.Instance.Gameplay.AdditionStatuses[1])
         {
             var level7HopelessnesLayer = (CanvasLayer)ResourceLoader.Load<PackedScene>("res://Content/Scenes/Other/Level7HopelessnesLayer.tscn").Instantiate();
-            if (G.CurrentLevel == 5 || Meta.Instance.AdditionStatuses[0])
+            if (G.CurrentLevel == 5 || Meta.Instance.Gameplay.AdditionStatuses[0])
                 level7HopelessnesLayer.GetNode<VideoStreamPlayer>("VintageFilter").Modulate = new Color(1, 0.8f, 0.55f, 0.2f);
             AddChild(level7HopelessnesLayer);
         }
-        if (Meta.Instance.AdditionStatuses[2])
+        if (Meta.Instance.Gameplay.AdditionStatuses[2])
         {
             var level9JiofefHead = (Node2D)ResourceLoader.Load<PackedScene>("res://Content/Scenes/Other/Level9JiofefHead.tscn").Instantiate();
             level9JiofefHead.Position = G.LevelXYSizes[G.CurrentLevel] / 2;
@@ -50,7 +50,7 @@ public partial class BaseLevelScript : Node2D
 
             AddChild(level9JiofefHead);
         }
-        _isCrossesEnhanced = G.CurrentLevel == 10 && G.LevelAdditionalLink == "True" || Meta.Instance.AdditionStatuses[3];
+        _isCrossesEnhanced = G.CurrentLevel == 10 && G.LevelAdditionalLink == "True" || Meta.Instance.Gameplay.AdditionStatuses[3];
         if (_isCrossesEnhanced)
             _crossDefaultWeight = new int[] { 650, 265, 45, 15, 25 };
         for (int i = 0; i < _crosses.Length; i++)
@@ -104,14 +104,14 @@ public partial class BaseLevelScript : Node2D
         {
             G.Scores += _floatDelta;
             _weightMultiplierExtenderToCurrentCross += (_floatDelta * _crossDefaultWeight[_lastAviableCrossNumber]) / 30 * G.CrossesProgressCoeff;
-            if(G.Scores > G.LevelCompleteTime && UnchangableMeta.LevelCompleteStatus[G.CurrentLevel - 1] < 1 + Meta.Instance.Dificulty && G.IsLevelVanilla)
+            if(G.Scores > G.LevelCompleteTime && UnchangableMeta.LevelCompleteStatus[G.CurrentLevel - 1] < 1 + Meta.Instance.Gameplay.Dificulty && G.IsLevelVanilla)
                 UnchangableMeta.SaveRecords();
         }
 
 
         if (G.IsCrossesEnabled)
         {
-            int RandomRange = 20 - Meta.Instance.Dificulty * 5;
+            int RandomRange = 20 - Meta.Instance.Gameplay.Dificulty * 5;
             RandomRange = (int)((RandomRange - (RandomRange / 2 - G.PlayerMoveCoeff * RandomRange / 2)) / G.CrossSpawnMultiplier);
 
             if (_random.Next(RandomRange) == 0)
@@ -206,7 +206,7 @@ public partial class BaseLevelScript : Node2D
                 }
                 AddChild(Cross);
 
-                if (G.CurrentLevel == 9 || Meta.Instance.AdditionStatuses[2] || _isCrossesEnhanced)
+                if (G.CurrentLevel == 9 || Meta.Instance.Gameplay.AdditionStatuses[2] || _isCrossesEnhanced)
                     Cross.AddToGroup("Crosses");
             }
         }

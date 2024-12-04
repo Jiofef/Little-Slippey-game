@@ -9,87 +9,123 @@ public partial class Meta : Node
     public static Meta OptionsReserve = new Meta(); //Reserve in case user will click cancel options or will pressed escape button
     public static Meta Instance = new Meta(); //And default Meta Instance
 
-    //SoundsVolume
-    public float[] BusVolumes = { -10, 0, 0, 0, 0, 0, 0}; //in this array #0 is _master, #1 _interface, #2 _music, #3 _player, #4 _crossounds, #5 _crossexplosion
+    public class SoundClass
+    {
+        public float[] BusVolumes = { 0.4f, 1, 1, 1, 1, 1, 1 }; //in this array #0 is _master, #1 - Interface, #2 - Music, #3 - Player, #4 - Crossounds, #5 - Crossexplosion
+    }
+    public SoundClass Sound = new SoundClass();
 
-    //VideoOptions
-    public bool IsFullScreen = false;
-    public Vector2I WindowSize = new Vector2I(1280, 720);
-    public bool VSyncOn = false;
-    public float CameraZoom = 1.25f;
-    public byte ScoresLabelLocationX = 1, ScoresLabelLocationY = 0, ScoresShowingFormatIndex = 0;
-    public enum Language {en, ru}
-    public Language language;
-    //Gameplay
-    public int Dificulty = 0;
-    public bool[] AdditionStatuses = new bool[4];
-    public int ChosenSkinIndex = 0;
+
+    public class VideoClass
+    {
+        public bool IsFullScreen = false;
+        public Vector2I WindowSize = new Vector2I(1280, 720);
+        public bool VSyncOn = false;
+        public float CameraZoom = 1.25f;
+        public byte ScoresLabelLocationX = 1, ScoresLabelLocationY = 0, ScoresShowingFormatIndex = 0;
+        public enum Language { en, ru }
+        public Language language;
+    }
+    public VideoClass Video = new VideoClass();
+
+    public class GameplayClass
+    {
+        public int Dificulty = 0;
+        public bool[] AdditionStatuses = new bool[4];
+        public int ChosenSkinIndex = 0;
+    }
+    public GameplayClass Gameplay = new GameplayClass();
 
     public void ApplyOptions()
     {
-        for (int i = 0; i < Instance.BusVolumes.Length; i++)
-            AudioServer.SetBusVolumeDb(i, Instance.BusVolumes[i]);
-        DisplayServer.WindowSetMode(Instance.IsFullScreen ? DisplayServer.WindowMode.Fullscreen : DisplayServer.WindowMode.Windowed);
-        DisplayServer.WindowSetSize(Instance.WindowSize);
-        DisplayServer.WindowSetVsyncMode(Instance.VSyncOn ? DisplayServer.VSyncMode.Enabled : DisplayServer.VSyncMode.Disabled);
-        TranslationServer.SetLocale(language.ToString());
+        for (int i = 0; i < Instance.Sound.BusVolumes.Length; i++)
+            AudioServer.SetBusVolumeDb(i, Mathf.LinearToDb(Instance.Sound.BusVolumes[i]));
+        DisplayServer.WindowSetMode(Instance.Video.IsFullScreen ? DisplayServer.WindowMode.Fullscreen : DisplayServer.WindowMode.Windowed);
+        DisplayServer.WindowSetSize(Instance.Video.WindowSize);
+        DisplayServer.WindowSetVsyncMode(Instance.Video.VSyncOn ? DisplayServer.VSyncMode.Enabled : DisplayServer.VSyncMode.Disabled);
+        TranslationServer.SetLocale(Video.language.ToString());
         ProjectSettings.SetSetting("gui/theme/custom_font", "FontPath");
     }
     public Meta Clone()
     {
         Meta ReturnMeta = new Meta();
-        for (int i = 0; i < Instance.BusVolumes.Length; i++)
-            ReturnMeta.BusVolumes[i] = BusVolumes[i];
-        ReturnMeta.Dificulty = Dificulty;
-        ReturnMeta.IsFullScreen = IsFullScreen;
-        ReturnMeta.WindowSize = WindowSize;
-        ReturnMeta.VSyncOn = VSyncOn;
-        ReturnMeta.ScoresShowingFormatIndex = ScoresShowingFormatIndex;
-        ReturnMeta.CameraZoom = CameraZoom;
-        ReturnMeta.language = language;
-        ReturnMeta.ScoresLabelLocationX = ScoresLabelLocationX;
-        ReturnMeta.ScoresLabelLocationY = ScoresLabelLocationY;
-        for (int i = 0; i < Instance.AdditionStatuses.Length; i++)
-            ReturnMeta.AdditionStatuses[i] = AdditionStatuses[i];
-        ReturnMeta.ChosenSkinIndex = ChosenSkinIndex;
+
+        //Sound
+        for (int i = 0; i < Instance.Sound.BusVolumes.Length; i++)
+            ReturnMeta.Sound.BusVolumes[i] = Sound.BusVolumes[i];
+
+        //Video
+        ReturnMeta.Video.IsFullScreen = Video.IsFullScreen;
+        ReturnMeta.Video.WindowSize = Video.WindowSize;
+        ReturnMeta.Video.VSyncOn = Video.VSyncOn;
+        ReturnMeta.Video.ScoresShowingFormatIndex = Video.ScoresShowingFormatIndex;
+        ReturnMeta.Video.CameraZoom = Video.CameraZoom;
+        ReturnMeta.Video.language = Video.language;
+        ReturnMeta.Video.ScoresLabelLocationX = Video.ScoresLabelLocationX;
+        ReturnMeta.Video.ScoresLabelLocationY = Video.ScoresLabelLocationY;
+
+        //Gameplay
+        ReturnMeta.Gameplay.Dificulty = Gameplay.Dificulty;
+        for (int i = 0; i < Instance.Gameplay.AdditionStatuses.Length; i++)
+            ReturnMeta.Gameplay.AdditionStatuses[i] = Gameplay.AdditionStatuses[i];
+        ReturnMeta.Gameplay.ChosenSkinIndex = Gameplay.ChosenSkinIndex;
+
         return ReturnMeta;
     }
     public Dictionary<string, Variant> GetJson()
     {
         return new Dictionary<string, Variant>()
         {
-            {"bus_volumes", BusVolumes},
-            {"is_full_screen", IsFullScreen},
-            {"window_size_x", WindowSize.X},
-            {"window_size_y", WindowSize.Y},
-            {"v_sync_on", VSyncOn},
-            {"scores_showing_format_index", ScoresShowingFormatIndex},
-            {"scores_label_location_x", ScoresLabelLocationX},
-            {"scores_label_location_y", ScoresLabelLocationY},
-            {"camera_zoom", CameraZoom},
-            {"language", Convert.ToInt32(language)},
-            {"dificulty", Dificulty},
-            {"addition_status0", AdditionStatuses[0]},
-            {"addition_status1", AdditionStatuses[1]},
-            {"addition_status2", AdditionStatuses[2]},
-            {"addition_status3", AdditionStatuses[3]},
-            {"chosen_skin_index", ChosenSkinIndex},
+            {"bus_volumes", Sound.BusVolumes},
+            {"is_full_screen", Video.IsFullScreen},
+            {"window_size_x", Video.WindowSize.X},
+            {"window_size_y", Video.WindowSize.Y},
+            {"v_sync_on", Video.VSyncOn},
+            {"scores_showing_format_index", Video.ScoresShowingFormatIndex},
+            {"scores_label_location_x", Video.ScoresLabelLocationX},
+            {"scores_label_location_y", Video.ScoresLabelLocationY},
+            {"camera_zoom", Video.CameraZoom},
+            {"language", Convert.ToInt32(Video.language)},
+            {"dificulty", Gameplay.Dificulty},
+            {"addition_status0", Gameplay.AdditionStatuses[0]},
+            {"addition_status1", Gameplay.AdditionStatuses[1]},
+            {"addition_status2", Gameplay.AdditionStatuses[2]},
+            {"addition_status3", Gameplay.AdditionStatuses[3]},
+            {"chosen_skin_index", Gameplay.ChosenSkinIndex},
         };
     }
-    public static Meta GetDefaultSettings()
+    public static SoundClass GetDefaultSoundOptions()
     {
-        Meta ReturnMeta = new Meta();
-        ReturnMeta.BusVolumes = new float[] { -10, 0, 0, 0, 0, 0, 0 };
-        ReturnMeta.IsFullScreen = false;
-        ReturnMeta.WindowSize = new Vector2I(1280, 720);
-        ReturnMeta.VSyncOn = false;
-        ReturnMeta.CameraZoom = 1.25f;
-        ReturnMeta.ScoresLabelLocationX = 1;
-        ReturnMeta.ScoresLabelLocationY = 0;
-        ReturnMeta.ScoresShowingFormatIndex = 0;
-        ReturnMeta.language = Language.en;
+        SoundClass ReturnOptions = new SoundClass();
 
-        return ReturnMeta;
+        ReturnOptions.BusVolumes = [0.4f, 1, 1, 1, 1, 1, 1];
+
+        return ReturnOptions;
+    }
+    public static VideoClass GetDefaultVideoSettings()
+    {
+        VideoClass ReturnOptions = new VideoClass();
+
+        ReturnOptions.IsFullScreen = false;
+        ReturnOptions.WindowSize = new Vector2I(1280, 720);
+        ReturnOptions.VSyncOn = false;
+        ReturnOptions.CameraZoom = 1.25f;
+        ReturnOptions.ScoresLabelLocationX = 1;
+        ReturnOptions.ScoresLabelLocationY = 0;
+        ReturnOptions.ScoresShowingFormatIndex = 0;
+        ReturnOptions.language = VideoClass.Language.en;
+
+        return ReturnOptions;
+    }
+    public static GameplayClass GetDefaultGameplaySettings()
+    {
+        GameplayClass ReturnOptions = new GameplayClass();
+
+        ReturnOptions.Dificulty = 0;
+        ReturnOptions.AdditionStatuses = new bool[4];
+        ReturnOptions.ChosenSkinIndex = 0;
+
+        return ReturnOptions;
     }
     public void SaveToFile()
     {
@@ -107,23 +143,23 @@ public partial class Meta : Node
 
             Godot.Collections.Array BusVolumesArray = (Godot.Collections.Array)model["bus_volumes"];
             for (int i = 0; i < BusVolumesArray.Count; i++)
-                BusVolumes[i] = (float)BusVolumesArray[i];
+                Sound.BusVolumes[i] = (float)BusVolumesArray[i];
 
-            IsFullScreen = (bool)model["is_full_screen"];
-            WindowSize = new Vector2I((int)model["window_size_x"], (int)model["window_size_y"]);
-            VSyncOn = (bool)model["v_sync_on"];
-            ScoresShowingFormatIndex = (byte)model["scores_showing_format_index"];
-            ScoresLabelLocationX = (byte)model["scores_label_location_x"];
-            ScoresLabelLocationY = (byte)model["scores_label_location_y"];
-            CameraZoom = (float)model["camera_zoom"];
-            language = (Language)(int)(model["language"]);
+            Video.IsFullScreen = (bool)model["is_full_screen"];
+            Video.WindowSize = new Vector2I((int)model["window_size_x"], (int)model["window_size_y"]);
+            Video.VSyncOn = (bool)model["v_sync_on"];
+            Video.ScoresShowingFormatIndex = (byte)model["scores_showing_format_index"];
+            Video.ScoresLabelLocationX = (byte)model["scores_label_location_x"];
+            Video.ScoresLabelLocationY = (byte)model["scores_label_location_y"];
+            Video.CameraZoom = (float)model["camera_zoom"];
+            Video.language = (VideoClass.Language)(int)(model["language"]);
 
-            Dificulty = (int)model["dificulty"];
+            Gameplay.Dificulty = (int)model["dificulty"];
 
-            ChosenSkinIndex = (int)model["chosen_skin_index"];
+            Gameplay.ChosenSkinIndex = (int)model["chosen_skin_index"];
 
-            for (int i = 0; i < AdditionStatuses.Length; i++)
-                AdditionStatuses[i] = Convert.ToBoolean((string)model["addition_status" + i]);
+            for (int i = 0; i < Gameplay.AdditionStatuses.Length; i++)
+                Gameplay.AdditionStatuses[i] = Convert.ToBoolean((string)model["addition_status" + i]);
 
             file.Close();
         }

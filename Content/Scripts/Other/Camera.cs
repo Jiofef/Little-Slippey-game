@@ -44,6 +44,7 @@ public partial class Camera : Camera2D
             if (!_restartNoise.IsPlaying())
                 _restartNoise.Play();
             _restartNoise.Modulate = new Color(_restartNoise.Modulate.R, _restartNoise.Modulate.G, _restartNoise.Modulate.B, G.ResetTimer / 2);
+
             var restartNoiseSound = GetNode<AudioStreamPlayer>("GUI/RestartNoise/Sound");
             if (!restartNoiseSound.Playing)
                 restartNoiseSound.Play();
@@ -56,9 +57,10 @@ public partial class Camera : Camera2D
         }
         else if (_restartNoise.IsPlaying())
         {
-            var restartnoise = GetNode<AnimatedSprite2D>("GUI/RestartNoise");
-            restartnoise.Stop();
-            restartnoise.Modulate = new Color(restartnoise.Modulate.R, restartnoise.Modulate.G, restartnoise.Modulate.B, 0);
+            var restartNoise = GetNode<AnimatedSprite2D>("GUI/RestartNoise");
+            restartNoise.Stop();
+            restartNoise.Modulate = new Color(restartNoise.Modulate.R, restartNoise.Modulate.G, restartNoise.Modulate.B, 0);
+
             GetNode<AudioStreamPlayer>("GUI/RestartNoise/Sound").Stop();
             LimitsChangingBy();
             LimitsExpansion = Vector2.Zero;
@@ -66,7 +68,7 @@ public partial class Camera : Camera2D
 
         if (G.IsPlayerDead)
         {
-            float zoom = G.PlayerCorpseFlightTimer < 4 ? Meta.Instance.CameraZoom + G.PlayerCorpseFlightTimer * ((4.5f - Meta.Instance.CameraZoom) / 4) : 4.5f;
+            float zoom = G.PlayerCorpseFlightTimer < 4 ? Meta.Instance.Video.CameraZoom + G.PlayerCorpseFlightTimer * ((4.5f - Meta.Instance.Video.CameraZoom) / 4) : 4.5f;
             Zoom = new Vector2(zoom, zoom);
             float PlayerCorpseFlightTimerX50 = G.PlayerCorpseFlightTimer * 50;
             LimitsChangingBy(false, -PlayerCorpseFlightTimerX50 - LimitsExpansion.Y, PlayerCorpseFlightTimerX50 + LimitsExpansion.X, PlayerCorpseFlightTimerX50 + LimitsExpansion.Y, -PlayerCorpseFlightTimerX50 - LimitsExpansion.X);
@@ -76,7 +78,7 @@ public partial class Camera : Camera2D
                 var emergingElements = GetNode<Node2D>("GUI/EmergingElements");
                 if (G.IsNewRecordReached)
                 {
-                    string link = "GUI/EmergingElements/NewRecordScores";
+                    const string link = "GUI/EmergingElements/NewRecordScores";
                     var newRecordScores = GetNode<Label>(link);
                     newRecordScores.Text = Tr("New Record!\nScore: ") + (int)G.Scores;
                     newRecordScores.Visible = true;
@@ -94,7 +96,7 @@ public partial class Camera : Camera2D
 
                 void SetHoldIMG(string ImageName)
                 {
-                    GetNode<RichTextLabel>("GUI/EmergingElements/Hold R").Text = "[center]Hold [img]res://Content/Sprites/Interface/" + ImageName + ".png[/img]";
+                    GetNode<RichTextLabel>("GUI/EmergingElements/Hold R").Text = "[center]Hold [img]res://Content/Sprites/Interface/ControllerButtons/" + ImageName + ".png[/img]";
                 }
                 switch (G.TypeOfUsedController)
                 {
@@ -117,34 +119,29 @@ public partial class Camera : Camera2D
         _scores.Visible = false;
     }
 
-    public void SetZoom(Vector2 value)
-    {
-        Zoom = value;
-    }
-
     public void ApplyGUIOptions(bool IsLevelJustStarted)
     {
         if (IsLevelJustStarted)
         {
-            _scores.Visible = Meta.Instance.ScoresShowingFormatIndex != 2 && (G.CurrentLevel != 1 || G.LevelAdditionalLink != "Tutorial");
-            Zoom = new Vector2(Meta.Instance.CameraZoom, Meta.Instance.CameraZoom);
+            _scores.Visible = Meta.Instance.Video.ScoresShowingFormatIndex != 2 && (G.CurrentLevel != 1 || G.LevelAdditionalLink != "Tutorial");
+            Zoom = new Vector2(Meta.Instance.Video.CameraZoom, Meta.Instance.Video.CameraZoom);
         }
         else
         {
-            _scores.Visible = Meta.Instance.ScoresShowingFormatIndex != 2 && !G.IsPlayerDead && (G.CurrentLevel != 1 || G.LevelAdditionalLink != "Tutorial");
-            float zoom = G.PlayerCorpseFlightTimer < 4 ? Meta.Instance.CameraZoom + G.PlayerCorpseFlightTimer * ((4.5f - Meta.Instance.CameraZoom) / 4) : 4.5f;
+            _scores.Visible = Meta.Instance.Video.ScoresShowingFormatIndex != 2 && !G.IsPlayerDead && (G.CurrentLevel != 1 || G.LevelAdditionalLink != "Tutorial");
+            float zoom = G.PlayerCorpseFlightTimer < 4 ? Meta.Instance.Video.CameraZoom + G.PlayerCorpseFlightTimer * ((4.5f - Meta.Instance.Video.CameraZoom) / 4) : 4.5f;
             Zoom = new Vector2(zoom, zoom);
         }
 
-        float ScoresScale = Meta.Instance.ScoresShowingFormatIndex == 0 ? 1.5f : 1;
-        Vector2 ScoresSize = Meta.Instance.ScoresShowingFormatIndex == 0 ? new Vector2(211, 120) : new Vector2(315, 175);
+        float ScoresScale = Meta.Instance.Video.ScoresShowingFormatIndex == 0 ? 1.5f : 1;
+        Vector2 ScoresSize = Meta.Instance.Video.ScoresShowingFormatIndex == 0 ? new Vector2(211, 120) : new Vector2(315, 175);
         if (_scores.Visible)
         {
             _scores.Scale = new Vector2(ScoresScale, ScoresScale);
             _scores.Size = ScoresSize;
         }
 
-        _scores.HorizontalAlignment = (HorizontalAlignment)Meta.Instance.ScoresLabelLocationX;
-        _scores.VerticalAlignment = (VerticalAlignment)Meta.Instance.ScoresLabelLocationY;
+        _scores.HorizontalAlignment = (HorizontalAlignment)Meta.Instance.Video.ScoresLabelLocationX;
+        _scores.VerticalAlignment = (VerticalAlignment)Meta.Instance.Video.ScoresLabelLocationY;
     }
 }

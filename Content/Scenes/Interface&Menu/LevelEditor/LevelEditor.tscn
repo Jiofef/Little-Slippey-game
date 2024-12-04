@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://c1b6qyg17m3f1"]
 
 [ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/LevelEditor/LevelEditor.cs" id="1_iqefj"]
-[ext_resource type="Texture2D" uid="uid://d284tqsj2yp0w" path="res://Content/Sprites/Interface/Cross.png" id="2_0sxv6"]
+[ext_resource type="Texture2D" uid="uid://d284tqsj2yp0w" path="res://Content/Sprites/Interface/LevelEditor/Cross.png" id="2_0sxv6"]
 [ext_resource type="Texture2D" uid="uid://bfg5b2a5xwbt" path="res://Content/Sprites/Interface/LevelEditor/SmallButton.png" id="3_5ujd4"]
 [ext_resource type="PackedScene" uid="uid://bwpstpk1xmkah" path="res://Content/Scenes/Interface&Menu/Button.tscn" id="3_wdnfh"]
 [ext_resource type="PackedScene" uid="uid://dewmapsqmn8uk" path="res://Content/Scenes/Interface&Menu/AnnotationBox.tscn" id="5_kg1qs"]

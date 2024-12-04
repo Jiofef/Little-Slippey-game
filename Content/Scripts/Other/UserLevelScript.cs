@@ -8,7 +8,7 @@ public partial class UserLevelScript : Node2D
     {
         G.ResetValues();
         Input.MouseMode = !GetTree().Paused ? Input.MouseModeEnum.Hidden : Input.MouseModeEnum.Visible;
-        AudioServer.SetBusMute(2, Meta.Instance.BusVolumes[2] <= -30);
+        AudioServer.SetBusMute(2, Meta.Instance.Sound.BusVolumes[2] <= -30);
         GetNode<AudioStreamPlayer>("../LevelMusicPlayer").StreamPaused = false;
         _player = GetNode<CharacterBody2D>("Player");
 
@@ -62,7 +62,7 @@ public partial class UserLevelScript : Node2D
         if (!G.IsProgressPaused)
         {
             G.Scores += 0.016667f;
-            if (G.Scores > G.LevelCompleteTime && UnchangableMeta.LevelCompleteStatus[G.CurrentLevel - 1] < 1 + Meta.Instance.Dificulty && G.IsLevelVanilla)
+            if (G.Scores > G.LevelCompleteTime && UnchangableMeta.LevelCompleteStatus[G.CurrentLevel - 1] < 1 + Meta.Instance.Gameplay.Dificulty && G.IsLevelVanilla)
                 UnchangableMeta.SaveRecords();
         }
     }

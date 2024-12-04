@@ -11,7 +11,7 @@ public partial class TutorialCanvasLayer : CanvasLayer
 			GetNode<AnimationPlayer>("Label/AnimationPlayer").Play("Disappearing");
             void SetHoldIMG(string ImageName)
             {
-                GetNode<RichTextLabel>("Label").Text = "[center]Press [img]res://Content/Sprites/Interface/" + ImageName + ".png[/img] to skip intro";
+                GetNode<RichTextLabel>("Label").Text = "[center]Press [img]res://Content/Sprites/Interface/ControllerButtons/" + ImageName + ".png[/img] to skip intro";
             }
             switch (G.TypeOfUsedController)
             {

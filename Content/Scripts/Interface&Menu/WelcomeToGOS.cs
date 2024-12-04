@@ -21,28 +21,40 @@ public partial class WelcomeToGOS : Control
             GetNode<AnimationPlayer>("AnimationPlayer").Play("BackToGOS");
     }
     public void IconClick(int iconNumber)
-	{
-		if (_openedMenu != null)
-		{
-			_openedMenu.QueueFree();
-			_openedMenu = null;
+    {
+        if (_openedMenu != null)
+        {
+            _openedMenu.TreeExited -= OpenedMenuClosed;
+            RemoveChild(_openedMenu);
+            _openedMenu = null;
+
+            if (iconNumber == _openedMenuNumber)
+            {
+                _openedMenuNumber = 0;
+                return;
+            }
         }
 
-		if (iconNumber != _openedMenuNumber)
-		{
-			string[] MenuNames = {"Levels", "Options", "Skins", "Achievements", "RecycleBin", "TurnOff", "WorkShop"};
-			_openedMenu = (Control)ResourceLoader.Load<PackedScene>("res://Content/Scenes/Interface&Menu/" + MenuNames[iconNumber - 1] + "Menu.tscn").Instantiate();
+        string[] menuNames = { "Levels", "Options", "Skins", "Achievements", "RecycleBin", "TurnOff", "WorkShop" };
+
+        if (iconNumber > 0 && iconNumber <= menuNames.Length)
+        {
+            var scenePath = $"res://Content/Scenes/Interface&Menu/{menuNames[iconNumber - 1]}Menu.tscn";
+            var scene = ResourceLoader.Load<PackedScene>(scenePath);
+            if (scene == null) return;
+
+            _openedMenu = (Control)scene.Instantiate();
             AddChild(_openedMenu);
-			_openedMenuNumber = iconNumber;
-		}
-		else
-			_openedMenuNumber = 0;
+
+            _openedMenu.TreeExited += OpenedMenuClosed;
+            _openedMenuNumber = iconNumber;
+        }
     }
 
-	public void OpenedMenuClosed()
-	{
-		_openedMenu = null;
-		_openedMenuNumber = 0;
-		GetNode<TextureButton>("Buttons/LevelsMenuButton").GrabFocus();
-	}
+    public void OpenedMenuClosed()
+    {
+        _openedMenu = null;
+        _openedMenuNumber = 0;
+        GetNode<TextureButton>("Buttons/LevelsMenuButton").GrabFocus();
+    }
 }
