@@ -177,7 +177,6 @@ public partial class NodeMode : Control
         _nodesButtonsTree.Clear();
 
         ButtonGroup buttonGroup = new ButtonGroup();
-        var texture = ResourceLoader.Load<Texture2D>("res://Content/Sprites/Interface/AcceptButton.png");
 
         void Recursion(Node rootNode, TreeItem item)
         {
@@ -455,7 +454,6 @@ public partial class NodeMode : Control
         _filesButtonsTree.Clear();
 
         ButtonGroup buttonGroup = new ButtonGroup();
-        var texture = ResourceLoader.Load<Texture2D>("res://Content/Sprites/Interface/AcceptButton.png");
 
 
         void Recursion(string rootFile, TreeItem item)

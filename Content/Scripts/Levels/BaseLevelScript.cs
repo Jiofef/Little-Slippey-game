@@ -6,7 +6,6 @@ using System.Linq;
 public partial class BaseLevelScript : Node2D
 {
     PackedScene[] _crosses = new PackedScene[G.CrossesInGameTotal];
-    CharacterBody2D _player;
 
     Random _random = new Random();
 
@@ -19,17 +18,18 @@ public partial class BaseLevelScript : Node2D
 
     public override void _Ready()
     {
-        if (ProcessMode != ProcessModeEnum.Disabled || G.DidLevelIntroPassed)
-            StartLevel();
-    }
-
-    public void StartLevel()
-    {
         G.ResetValues();
         Input.MouseMode = !GetTree().Paused ? Input.MouseModeEnum.Hidden : Input.MouseModeEnum.Visible;
         AudioServer.SetBusMute(2, Meta.Instance.Sound.BusVolumes[2] <= -30);
-        GetNode<AudioStreamPlayer>("../LevelMusicPlayer").StreamPaused = false;
-        _player = GetNode<CharacterBody2D>("Player");
+
+
+        _isCrossesEnhanced = G.CurrentLevel == 10 && G.LevelAdditionalLink == "True" || Meta.Instance.Gameplay.AdditionStatuses[3];
+
+        if (_isCrossesEnhanced)
+            _crossDefaultWeight = new int[] { 650, 265, 45, 15, 25 };
+        for (int i = 0; i < _crosses.Length; i++)
+            _crosses[i] = ResourceLoader.Load<PackedScene>("res://Content/Scenes/Crosses/" + (_isCrossesEnhanced ? "Enhanced" : "") + "Cross" + (i + 1) + ".tscn");
+
 
         if (G.CurrentLevel == 5 || Meta.Instance.Gameplay.AdditionStatuses[0])
             AddChild((Node2D)ResourceLoader.Load<PackedScene>("res://Content/Scenes/Other/Level5Rain.tscn").Instantiate());
@@ -50,15 +50,16 @@ public partial class BaseLevelScript : Node2D
 
             AddChild(level9JiofefHead);
         }
-        _isCrossesEnhanced = G.CurrentLevel == 10 && G.LevelAdditionalLink == "True" || Meta.Instance.Gameplay.AdditionStatuses[3];
-        if (_isCrossesEnhanced)
-            _crossDefaultWeight = new int[] { 650, 265, 45, 15, 25 };
-        for (int i = 0; i < _crosses.Length; i++)
-            _crosses[i] = ResourceLoader.Load<PackedScene>("res://Content/Scenes/Crosses/" + (_isCrossesEnhanced ? "Enhanced" : "") + "Cross" + (i + 1) + ".tscn");
 
-        ProcessMode = ProcessModeEnum.Pausable;
 
+
+        //
         Steam.OverlayToggled += (bool active, bool userInitiated, uint appId) => GetParent().Call("ChangePause", active);
+    }
+
+    public void StartLevel()
+    {
+        GetTree().Paused = false;
     }
 
     public override void _PhysicsProcess(double delta)
@@ -66,7 +67,7 @@ public partial class BaseLevelScript : Node2D
         if (G.IsDebugEnabled)
         {
             if (Input.IsActionPressed("TeleportDebug"))
-                _player.GlobalPosition = GetGlobalMousePosition();
+                G.Player.GlobalPosition = GetGlobalMousePosition();
 
             if (Input.IsActionJustReleased("GetScoreDebug"))
             {
@@ -89,8 +90,8 @@ public partial class BaseLevelScript : Node2D
 
             if (Input.IsActionJustPressed("PlayerPhysicsDebug"))
             {
-                _player.SetPhysicsProcess(!_player.IsPhysicsProcessing());
-                GD.Print("PlayerPhysics: " + _player.IsPhysicsProcessing());
+                G.Player.SetPhysicsProcess(!G.Player.IsPhysicsProcessing());
+                GD.Print("PlayerPhysics: " + G.Player.IsPhysicsProcessing());
             }
 
             if (Input.IsActionJustPressed("CrossesEnablingDebug"))
@@ -150,7 +151,7 @@ public partial class BaseLevelScript : Node2D
 
                 Node2D Cross = (Node2D)_crosses[SelectedCrossNumber].Instantiate();
                 float CrossGathering = _random.Next(100) < (1 - G.PlayerMoveCoeff) * 50 ? 3 - G.PlayerMoveCoeff * 2 : 1;
-                Cross.Position = new Vector2(_player.Position.X + (-750 + _random.Next(1500)) / CrossGathering, _player.Position.Y + (-450 + _random.Next(900)) / CrossGathering);
+                Cross.Position = new Vector2(G.Player.Position.X + (-750 + _random.Next(1500)) / CrossGathering, G.Player.Position.Y + (-450 + _random.Next(900)) / CrossGathering);
 
                 switch (Cross.Name)
                 {
@@ -163,12 +164,12 @@ public partial class BaseLevelScript : Node2D
                         Cross.Modulate = new Color(1, 1, 1, 0);
                         Cross.Scale = new Vector2(3, 3);
                         float XPos = _random.Next(
-                            _player.Position.X - 425 > G.CameraLimits.W ? (int)_player.Position.X - 425 : 0,
-                            _player.Position.X + 425 < G.CameraLimits.Y ? (int)_player.Position.X + 425 : (int)_player.Position.X + 425
+                            G.Player.Position.X - 425 > G.CameraLimits.W ? (int)G.Player.Position.X - 425 : 0,
+                            G.Player.Position.X + 425 < G.CameraLimits.Y ? (int)G.Player.Position.X + 425 : (int)G.Player.Position.X + 425
                             );
                         float YPos = _random.Next(
-                            _player.Position.Y - 240 > G.CameraLimits.X ? (int)_player.Position.Y - 240 : 0,
-                            _player.Position.Y + 240 < G.CameraLimits.Z ? (int)_player.Position.Y + 240 : (int)_player.Position.Y + 240
+                            G.Player.Position.Y - 240 > G.CameraLimits.X ? (int)G.Player.Position.Y - 240 : 0,
+                            G.Player.Position.Y + 240 < G.CameraLimits.Z ? (int)G.Player.Position.Y + 240 : (int)G.Player.Position.Y + 240
                             );
                         Cross.Position = new Vector2(XPos, YPos);
                         break;
@@ -179,12 +180,12 @@ public partial class BaseLevelScript : Node2D
 
                     case "BlumCross" or "EnhancedBlumCross":
                         Cross.Modulate = new Color(1, 1, 1, 0);
-                        if ((Cross.Position - _player.Position).X < 300)
+                        if ((Cross.Position - G.Player.Position).X < 300)
                             Cross.Position = new Vector2(
                                 Cross.Position.X,
                                 _random.Next(100) < 50 ?
-                                _random.Next((int)_player.Position.Y - 750, (int)_player.Position.Y - 250) :
-                                _random.Next((int)_player.Position.Y + 250, (int)_player.Position.Y + 750)
+                                _random.Next((int)G.Player.Position.Y - 750, (int)G.Player.Position.Y - 250) :
+                                _random.Next((int)G.Player.Position.Y + 250, (int)G.Player.Position.Y + 750)
                                 );
                         break;
 
@@ -201,7 +202,7 @@ public partial class BaseLevelScript : Node2D
                         break;
 
                     case "EnhancedCannonCross":
-                        Cross.Position = new Vector2(_random.Next(2) == 0 ? _player.Position.X - 1280 : _player.Position.X + 1280, _player.Position.Y + _random.Next(-750, -250));
+                        Cross.Position = new Vector2(_random.Next(2) == 0 ? G.Player.Position.X - 1280 : G.Player.Position.X + 1280, G.Player.Position.Y + _random.Next(-750, -250));
                         break;
                 }
                 AddChild(Cross);

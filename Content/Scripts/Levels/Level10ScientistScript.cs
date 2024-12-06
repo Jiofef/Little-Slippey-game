@@ -4,6 +4,21 @@ using System.Linq;
 
 public partial class Level10ScientistScript : Node2D
 {
+    //!!!
+    //!!!
+    //!!!
+    //!!!
+    //!!!
+    //  I opened this script after a year and fucked up. Don't laugh please, I really became a better coder :(((
+    //!!!
+    //!!!
+    //!!!
+    //!!!
+    //!!!
+
+
+
+
     [Signal] public delegate void SetScoresEventHandler();
     [Signal] public delegate void SetResetDisabledEventHandler();
     [Signal] public delegate void ShowTextQueueEventHandler();

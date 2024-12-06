@@ -3,132 +3,67 @@ public partial class MainScript : Node2D
 {
     [Signal] public delegate void RecalculateCrossWeightEventHandler();
     [Signal] public delegate void LevelResetingEventHandler();
-    private bool _subMenusOpened, _isPauseDisabled = false, _isResetDisabled;
+    public bool IsPauseDisabled = false, IsResetDisabled = false;
     
-    TextureButton _rewindButton;
-    AudioStreamPlayer _levelMusicPlayer;
+
 
     public override void _Ready()
     {
-        G.MainNode = this;
+        G.Main = this;
         TreeExited += () =>
         {
-            if (G.MainNode == this)
-                G.MainNode = null;
+            if (G.Main == this)
+                G.Main = null;
         };
 
-        GetTree().Paused = false;
+        G.OnMusicPlayerSetted += () => 
+        { 
+            G.MusicPlayer.StreamPaused = false; 
+        };
+
+
+        GetTree().Paused = true;
 
         AudioServer.SetBusEffectEnabled(2, 0, false);
         AudioServer.SetBusEffectEnabled(6, 0, false);
 
         Achievements.CurrentPopupAchievementsLayer = GetNode<CanvasLayer>("PopupAchievementsLayer");
-        _rewindButton = GetNode<TextureButton>("Pause/Interface/ButtonsFrame/Rewind");
-        _levelMusicPlayer = GetNode<AudioStreamPlayer>("LevelMusicPlayer");
 
         Connect("RecalculateCrossWeight", new Callable(GetNode("Level"), "RecalculateCrossWeight"));
 
         if (G.DidLevelIntroPassed)
         {
             GetNode<CanvasLayer>("EpicIntro").QueueFree();
-            GetNode<Node2D>("Level").ProcessMode = ProcessModeEnum.Pausable;
+            GetTree().Paused = false;
+            CallDeferred("CallOnLevelStarted", false);
         }
         if (G.IsLevelVanilla && UnchangableMeta.LevelPlayedStatus[G.CurrentLevel - 1] != 1)
         {
             UnchangableMeta.LevelPlayedStatus[G.CurrentLevel - 1] = 1;
             UnchangableMeta.SaveToFile();
         }
-
-        SetProcess(false);
-        
     }
     public override void _PhysicsProcess(double delta)
     {
-        if (Input.IsActionJustPressed("Cancel") && !_subMenusOpened && G.DidLevelIntroPassed && !_isPauseDisabled)
-            UnPause();
-        if (_rewindButton.ButtonPressed && !_isResetDisabled)
-            G.ResetTimer += 0.016667f * 2;
 
-        if (Input.IsActionPressed("Reset") && G.DidLevelIntroPassed && !_isResetDisabled)
-           G.ResetTimer += 0.016667f;
-        else G.ResetTimer = G.ResetTimer > 0 ? G.ResetTimer - 0.016667f : 0;
-
-        if (G.ResetTimer > 1.5f)
-        {
-            G.IsCrossesEnabled = true;
-            G.IsProgressPaused = false;
-            G.CrossSpawnMultiplier = 1;
-            EmitSignal("LevelReseting");
-            if (G.IsLevelVanilla)
-            {
-                UnchangableMeta.SaveRecords();
-                LoadScene("res://Content/Scenes/Levels/FullParts/Level" + G.CurrentLevel + G.LevelAdditionalLink + ".tscn");
-            }
-            else
-            {
-                LoadScene(G.ModMapPath);
-            }
-        }
     }
-    private void UnPause()
+    private void CallOnLevelStarted(bool wasIntroShown)
     {
-        ChangePause(GetTree().Paused);
+        G.OnLevelStartedFunc(wasIntroShown);
     }
-
-    private void ChangePause(bool IsPaused)
-    {
-        AudioServer.SetBusEffectEnabled(2, 0, !IsPaused);
-        AudioServer.SetBusEffectEnabled(6, 0, !IsPaused);
-        GetNode<TextureButton>("Pause/Interface/ButtonsFrame/Resume").GrabFocus();
-        GetNode<TextureButton>("Pause/Interface/ButtonsFrame/Rewind").Disabled = _isResetDisabled;
-
-        var animationPlayer = GetNode<AnimationPlayer>("Pause/Interface/AnimationPlayer");
-        if (!IsPaused)
-            animationPlayer.Play("Pause");
-        else
-            animationPlayer.PlayBackwards("Pause");
-
-        Input.MouseMode = IsPaused ? Input.MouseModeEnum.Hidden : Input.MouseModeEnum.Visible;
-
-        GetTree().Paused = !IsPaused;
-    }
-
-    private void Options()
-    {
-        var pause = GetNode<CanvasLayer>("Pause");
-        pause.ProcessMode = ProcessModeEnum.Disabled;
-        pause.AddChild(ResourceLoader.Load<PackedScene>("res://Content/Scenes/Interface&Menu/OptionsMenu.tscn").Instantiate<Control>());
-        GetNode<AnimationPlayer>("Pause/Interface/AnimationPlayer").Play("OpeningSubMenu");
-        _subMenusOpened = true;
-    }
-    private void Menu()
+    private void OnIntroFinished()
     {
         GetTree().Paused = false;
-        if (G.IsLevelVanilla)
-        {
-            UnchangableMeta.SaveRecords();
-            UnchangableMeta.SaveToFile(); 
-            GetTree().ChangeSceneToFile("res://Content/Scenes/Interface&Menu/WelcomeToGOS.tscn");
-        }
-        else
-            GetTree().ChangeSceneToFile("res://Content/Scenes/Interface&Menu/LevelEditor.tscn");
+        CallDeferred("CallOnLevelStarted", true);
+    }
 
-        G.CompletelyResetValues();
-    }
-    private void OptionsClosing()
-    {
-        GetNode<CanvasLayer>("Pause").ProcessMode = ProcessModeEnum.WhenPaused;
-        GetNode<TextureButton>("Pause/Interface/ButtonsFrame/Options").GrabFocus();
-        GetNode<AnimationPlayer>("Pause/Interface/AnimationPlayer").PlayBackwards("OpeningSubMenu");
-        _subMenusOpened = false;
-    }
 
     private void MusicAnimationFinished(string animation)
     {
         if (animation == "MusicStopping")
         {
-            _levelMusicPlayer.Stream = null;
-            _levelMusicPlayer.Stop();
+            G.MusicPlayer.Stream = null;
+            G.MusicPlayer.Stop();
         }
     }
 
@@ -190,11 +125,11 @@ public partial class MainScript : Node2D
     }
     public void SetPauseDisabled(bool value)
     {
-        _isPauseDisabled = value;
+        IsPauseDisabled = value;
     }
     public void SetResetDisabled(bool value)
     {
-        _isResetDisabled = value;
+        IsResetDisabled = value;
     }
     public void SetLevelCompleteTime(float value)
     {

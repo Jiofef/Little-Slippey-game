@@ -8,10 +8,10 @@
 [ext_resource type="PackedScene" uid="uid://d3u7pfig07yrs" path="res://Content/Scenes/Other/CrutchedArea2D.tscn" id="4_a6s5x"]
 [ext_resource type="Texture2D" uid="uid://bvogrd2bqhwmt" path="res://Content/Sprites/Other/OblivionNoise.png" id="5_jaem3"]
 [ext_resource type="Shader" path="res://Content/Other/BrightnessShader.gdshader" id="6_hnlpt"]
-[ext_resource type="Shader" path="res://Content/Other/BlurShader.gdshader" id="6_kwxxw"]
 [ext_resource type="AudioStream" uid="uid://igyg85eq8ea5" path="res://Content/Sounds/Levels/Level10Void.mp3" id="7_f14yg"]
 [ext_resource type="Script" path="res://Content/Scripts/Other/PostProcessingRect.cs" id="7_fj1rh"]
 [ext_resource type="Texture2D" uid="uid://b3eihc4teio4x" path="res://Content/Sprites/Levels/Level10/Sky.png" id="8_235lo"]
+[ext_resource type="Shader" path="res://Content/Other/StaticNoiseShader.gdshader" id="8_x5t6k"]
 [ext_resource type="Texture2D" uid="uid://dbduwv6h0rkr" path="res://Content/Sprites/Levels/Level10/Clouds.png" id="9_mi3tm"]
 [ext_resource type="Texture2D" uid="uid://co1mpijobgmvi" path="res://Content/Sprites/Levels/Level10/BackCloudLayer.png" id="10_c5mrw"]
 [ext_resource type="Texture2D" uid="uid://datptqmcpau44" path="res://Content/Sprites/Levels/Level10/MiddleCloudLayer.png" id="11_8vlae"]
@@ -62,12 +62,27 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jcmm3"]
 _data = {
-&"MusicStopping": SubResource("Animation_n61s8"),
-&"MusicStarting": SubResource("Animation_p3npb")
+"MusicStarting": SubResource("Animation_p3npb"),
+"MusicStopping": SubResource("Animation_n61s8")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mapyl"]
 size = Vector2(192, 1280)
+
+[sub_resource type="Animation" id="Animation_irq8v"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../../TileMap/Layer1:enabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_4s1sj"]
 resource_name = "RealityTumor"
@@ -248,26 +263,11 @@ tracks/13/keys = {
 "values": [false]
 }
 
-[sub_resource type="Animation" id="Animation_irq8v"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../../TileMap/Layer1:enabled")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_np0vx"]
 resource_local_to_scene = true
 _data = {
-&"RESET": SubResource("Animation_irq8v"),
-&"RealityTumor": SubResource("Animation_4s1sj")
+"RESET": SubResource("Animation_irq8v"),
+"RealityTumor": SubResource("Animation_4s1sj")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i2jhq"]
@@ -337,7 +337,7 @@ animations = [{
 }]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_17gf3"]
-shader = ExtResource("6_kwxxw")
+shader = ExtResource("8_x5t6k")
 shader_parameter/u_amount = 1.0
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_bsyjr"]
@@ -618,7 +618,7 @@ tracks/6/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_d840e"]
 _data = {
-&"HereYouAre": SubResource("Animation_nnjx3")
+"HereYouAre": SubResource("Animation_nnjx3")
 }
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4bdfn"]
@@ -721,8 +721,8 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4p2pf"]
 _data = {
-&"Pause": SubResource("Animation_qdctp"),
-&"OpeningSubMenu": SubResource("Animation_gr4ul")
+"OpeningSubMenu": SubResource("Animation_gr4ul"),
+"Pause": SubResource("Animation_qdctp")
 }
 
 [sub_resource type="Animation" id="Animation_gx3u0"]
@@ -752,75 +752,49 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector2(0, 360), Vector2(0, 360), Vector2(0, 720)]
 }
-tracks/2/type = "method"
+tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath(".")
+tracks/2/path = NodePath("LevelMusicPlayer:playing")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(2),
 "transitions": PackedFloat32Array(1),
-"values": [{
-"args": [true],
-"method": &"set_process"
-}]
+"update": 1,
+"values": [true]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("LevelMusicPlayer:playing")
+tracks/3/path = NodePath("EpicIntro/BrightnessRect:_value")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(2),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
+"times": PackedFloat32Array(0, 2, 8),
+"transitions": PackedFloat32Array(0, 0.5, 1),
+"update": 0,
+"values": [0.0, 4.0, 1.0]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("EpicIntro/BrightnessRect:_value")
+tracks/4/path = NodePath("EpicIntro/Glare:modulate")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 2, 8),
-"transitions": PackedFloat32Array(0, 0.5, 1),
-"update": 0,
-"values": [0.0, 4.0, 1.15]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("EpicIntro/Glare:modulate")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
 "times": PackedFloat32Array(0, 2, 5),
 "transitions": PackedFloat32Array(1, 0.5, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.501961), Color(1, 1, 1, 0)]
 }
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("Level:process_mode")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [4]
-}
-tracks/7/type = "method"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("EpicIntro/AnimationPlayer")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("EpicIntro/AnimationPlayer")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
 "times": PackedFloat32Array(2),
 "transitions": PackedFloat32Array(1),
 "values": [{
@@ -828,43 +802,43 @@ tracks/7/keys = {
 "method": &"Set"
 }]
 }
-tracks/8/type = "method"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("Level")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
+tracks/6/type = "method"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath(".")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
 "times": PackedFloat32Array(2),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
-"method": &"StartLevel"
+"method": &"OnIntroFinished"
 }]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_emurq"]
 resource_local_to_scene = true
 _data = {
-&"EpicIntro": SubResource("Animation_gx3u0")
+"EpicIntro": SubResource("Animation_gx3u0")
 }
 
 [node name="Main" type="Node2D"]
-process_mode = 3
+process_mode = 1
 script = ExtResource("1_r4pva")
 metadata/_edit_vertical_guides_ = [-234.0]
 
 [node name="LevelMusicPlayer" type="AudioStreamPlayer" parent="."]
+process_mode = 3
 bus = &"Music"
 script = ExtResource("2_s5qx3")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="LevelMusicPlayer"]
 libraries = {
-&"": SubResource("AnimationLibrary_jcmm3")
+"": SubResource("AnimationLibrary_jcmm3")
 }
 
 [node name="Level" type="Node2D" parent="."]
-process_mode = 4
 script = ExtResource("3_dk2ue")
 
 [node name="RealityDissector" type="Node" parent="Level"]
@@ -886,7 +860,7 @@ shape = SubResource("RectangleShape2D_mapyl")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Level/RealityDissector/ByNoMeansArtificalBoundaries"]
 libraries = {
-&"": SubResource("AnimationLibrary_np0vx")
+"": SubResource("AnimationLibrary_np0vx")
 }
 
 [node name="CameraLimitsSetTrigger" parent="Level/RealityDissector" instance=ExtResource("4_a6s5x")]
@@ -1154,7 +1128,7 @@ shape = SubResource("RectangleShape2D_hggg6")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Level/Boundaries/FloorTouchDetector"]
 libraries = {
-&"": SubResource("AnimationLibrary_d840e")
+"": SubResource("AnimationLibrary_d840e")
 }
 
 [node name="FallSound" type="AudioStreamPlayer" parent="Level/Boundaries/FloorTouchDetector"]
@@ -1276,16 +1250,17 @@ color = Color(0, 0, 0, 0.156863)
 process_mode = 3
 root_node = NodePath("../..")
 libraries = {
-&"": SubResource("AnimationLibrary_4p2pf")
+"": SubResource("AnimationLibrary_4p2pf")
 }
 
 [node name="EpicIntro" type="CanvasLayer" parent="."]
+process_mode = 3
 layer = 10
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="EpicIntro"]
 root_node = NodePath("../..")
 libraries = {
-&"": SubResource("AnimationLibrary_emurq")
+"": SubResource("AnimationLibrary_emurq")
 }
 autoplay = "EpicIntro"
 script = ExtResource("29_haw0h")
@@ -1330,6 +1305,7 @@ autoplay = true
 bus = &"Interface"
 
 [node name="PopupAchievementsLayer" type="CanvasLayer" parent="."]
+process_mode = 3
 layer = 100
 
 [connection signal="animation_finished" from="LevelMusicPlayer/AnimationPlayer" to="." method="MusicAnimationFinished"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://5kfyvxsdpsk2"]
+[gd_scene load_steps=24 format=3 uid="uid://5kfyvxsdpsk2"]
 
 [ext_resource type="Script" path="res://Content/Scripts/Other/MainScript.cs" id="2"]
 [ext_resource type="Script" path="res://Content/Scripts/Other/LevelMusicPlayer.cs" id="2_4qm76"]
@@ -6,6 +6,7 @@
 [ext_resource type="Shader" path="res://Content/Other/BrightnessShader.gdshader" id="2_i0xj5"]
 [ext_resource type="Texture2D" uid="uid://dhr0k5tpvpg7n" path="res://Content/Sprites/Interface/Buttons/UnpauseButton.png" id="3_30esk"]
 [ext_resource type="Script" path="res://Content/Scripts/Levels/BaseLevelScript.cs" id="3_mid8o"]
+[ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/Pause.cs" id="4_axw4o"]
 [ext_resource type="AudioStream" uid="uid://cuvkdo1lyvynu" path="res://Content/Sounds/Other/EpicIntro.mp3" id="4_upcxf"]
 [ext_resource type="Texture2D" uid="uid://bqua21jbasqml" path="res://Content/Sprites/Interface/Buttons/PauseRewindButton.png" id="5_db6pn"]
 [ext_resource type="PackedScene" uid="uid://bwpstpk1xmkah" path="res://Content/Scenes/Interface&Menu/Button.tscn" id="6"]
@@ -136,7 +137,7 @@ _data = {
 "Pause": SubResource("Animation_qdctp")
 }
 
-[sub_resource type="Animation" id="Animation_gx3u0"]
+[sub_resource type="Animation" id="Animation_l41e4"]
 resource_name = "EpicIntro"
 length = 8.0
 tracks/0/type = "value"
@@ -163,75 +164,49 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector2(0, 360), Vector2(0, 360), Vector2(0, 720)]
 }
-tracks/2/type = "method"
+tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath(".")
+tracks/2/path = NodePath("LevelMusicPlayer:playing")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(2),
 "transitions": PackedFloat32Array(1),
-"values": [{
-"args": [true],
-"method": &"set_process"
-}]
+"update": 1,
+"values": [true]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("LevelMusicPlayer:playing")
+tracks/3/path = NodePath("EpicIntro/BrightnessRect:_value")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(2),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("EpicIntro/BrightnessRect:_value")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
 "times": PackedFloat32Array(0, 2, 8),
 "transitions": PackedFloat32Array(0, 0.5, 1),
 "update": 0,
 "values": [0.0, 4.0, 1.0]
 }
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("EpicIntro/Glare:modulate")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("EpicIntro/Glare:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
 "times": PackedFloat32Array(0, 2, 5),
 "transitions": PackedFloat32Array(1, 0.5, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.501961), Color(1, 1, 1, 0)]
 }
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("Level:process_mode")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [4]
-}
-tracks/7/type = "method"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("EpicIntro/AnimationPlayer")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("EpicIntro/AnimationPlayer")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
 "times": PackedFloat32Array(2),
 "transitions": PackedFloat32Array(1),
 "values": [{
@@ -239,24 +214,24 @@ tracks/7/keys = {
 "method": &"Set"
 }]
 }
-tracks/8/type = "method"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("Level")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
+tracks/6/type = "method"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath(".")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
 "times": PackedFloat32Array(2),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
-"method": &"StartLevel"
+"method": &"OnIntroFinished"
 }]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_emurq"]
 _data = {
-"EpicIntro": SubResource("Animation_gx3u0")
+"EpicIntro": SubResource("Animation_l41e4")
 }
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xv08t"]
@@ -264,11 +239,12 @@ shader = ExtResource("2_i0xj5")
 shader_parameter/brightness = 1.0
 
 [node name="Main" type="Node2D"]
-process_mode = 3
+process_mode = 1
 script = ExtResource("2")
 metadata/_edit_vertical_guides_ = [-234.0]
 
 [node name="LevelMusicPlayer" type="AudioStreamPlayer" parent="."]
+process_mode = 3
 bus = &"Music"
 script = ExtResource("2_4qm76")
 
@@ -278,14 +254,15 @@ libraries = {
 }
 
 [node name="Level" type="Node2D" parent="."]
-process_mode = 4
 script = ExtResource("3_mid8o")
 
 [node name="Pause" type="CanvasLayer" parent="."]
-process_mode = 2
+process_mode = 3
 layer = 3
+script = ExtResource("4_axw4o")
 
 [node name="Interface" type="Control" parent="Pause"]
+process_mode = 2
 modulate = Color(1, 1, 1, 0)
 layout_mode = 3
 anchors_preset = 0
@@ -368,14 +345,15 @@ libraries = {
 }
 
 [node name="EpicIntro" type="CanvasLayer" parent="."]
+process_mode = 3
 layer = 10
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="EpicIntro"]
 root_node = NodePath("../..")
-autoplay = "EpicIntro"
 libraries = {
 "": SubResource("AnimationLibrary_emurq")
 }
+autoplay = "EpicIntro"
 script = ExtResource("10_5bv6t")
 
 [node name="BrightnessRect" type="ColorRect" parent="EpicIntro"]
@@ -416,13 +394,14 @@ autoplay = true
 bus = &"Interface"
 
 [node name="PopupAchievementsLayer" type="CanvasLayer" parent="."]
+process_mode = 3
 layer = 100
 
 [connection signal="animation_finished" from="LevelMusicPlayer/AnimationPlayer" to="." method="MusicAnimationFinished"]
-[connection signal="pressed" from="Pause/Interface/ButtonsFrame/Resume" to="." method="UnPause"]
-[connection signal="pressed" from="Pause/Interface/ButtonsFrame/Options" to="." method="Options"]
-[connection signal="pressed" from="Pause/Interface/ButtonsFrame/Menu" to="." method="Menu"]
+[connection signal="pressed" from="Pause/Interface/ButtonsFrame/Resume" to="Pause" method="UnPause"]
+[connection signal="pressed" from="Pause/Interface/ButtonsFrame/Options" to="Pause" method="Options"]
 [connection signal="pressed" from="Pause/Interface/ButtonsFrame/Menu" to="." method="ResetAllTransitiveValues" flags=6]
+[connection signal="pressed" from="Pause/Interface/ButtonsFrame/Menu" to="Pause" method="Menu"]
 [connection signal="animation_finished" from="EpicIntro/AnimationPlayer" to="EpicIntro" method="queue_free" unbinds=1]
 
 [editable path="Pause/Interface/ButtonsFrame/Menu"]

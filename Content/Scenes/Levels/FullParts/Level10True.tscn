@@ -62,8 +62,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_pai8u"]
 _data = {
-&"Appearing": SubResource("Animation_lixp7"),
-&"Disappearing": SubResource("Animation_r25rs")
+"Appearing": SubResource("Animation_lixp7"),
+"Disappearing": SubResource("Animation_r25rs")
 }
 
 [sub_resource type="Animation" id="Animation_cj33v"]
@@ -180,10 +180,10 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_i8hg0"]
 _data = {
-&"TramPassage": SubResource("Animation_3tvvv"),
-&"ManipulatorPassage": SubResource("Animation_uhn5l"),
-&"CapsulePassage": SubResource("Animation_cj33v"),
-&"PortaPottyPassage": SubResource("Animation_kodqi")
+"CapsulePassage": SubResource("Animation_cj33v"),
+"ManipulatorPassage": SubResource("Animation_uhn5l"),
+"PortaPottyPassage": SubResource("Animation_kodqi"),
+"TramPassage": SubResource("Animation_3tvvv")
 }
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_atkr4"]
@@ -500,7 +500,7 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dxx2d"]
 _data = {
-&"Blumxd": SubResource("Animation_qc6kh")
+"Blumxd": SubResource("Animation_qc6kh")
 }
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gciug"]
@@ -544,7 +544,7 @@ resource_name = "Glitch"
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_gy5u0"]
 _data = {
-&"Glitch": SubResource("Animation_8akm0")
+"Glitch": SubResource("Animation_8akm0")
 }
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2vw5w"]
@@ -757,7 +757,7 @@ tracks/12/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_urued"]
 _data = {
-&"TakingSlippey": SubResource("Animation_ntmlj")
+"TakingSlippey": SubResource("Animation_ntmlj")
 }
 
 [sub_resource type="Animation" id="Animation_gr4ul"]
@@ -842,11 +842,11 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4p2pf"]
 _data = {
-&"Pause": SubResource("Animation_qdctp"),
-&"OpeningSubMenu": SubResource("Animation_gr4ul")
+"OpeningSubMenu": SubResource("Animation_gr4ul"),
+"Pause": SubResource("Animation_qdctp")
 }
 
-[sub_resource type="Animation" id="Animation_gx3u0"]
+[sub_resource type="Animation" id="Animation_l41e4"]
 resource_name = "EpicIntro"
 length = 8.0
 tracks/0/type = "value"
@@ -873,75 +873,49 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector2(0, 360), Vector2(0, 360), Vector2(0, 720)]
 }
-tracks/2/type = "method"
+tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath(".")
+tracks/2/path = NodePath("LevelMusicPlayer:playing")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(2),
 "transitions": PackedFloat32Array(1),
-"values": [{
-"args": [true],
-"method": &"set_process"
-}]
+"update": 1,
+"values": [true]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("LevelMusicPlayer:playing")
+tracks/3/path = NodePath("EpicIntro/BrightnessRect:_value")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(2),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("EpicIntro/BrightnessRect:_value")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
 "times": PackedFloat32Array(0, 2, 8),
 "transitions": PackedFloat32Array(0, 0.5, 1),
 "update": 0,
 "values": [0.0, 4.0, 1.0]
 }
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("EpicIntro/Glare:modulate")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("EpicIntro/Glare:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
 "times": PackedFloat32Array(0, 2, 5),
 "transitions": PackedFloat32Array(1, 0.5, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.501961), Color(1, 1, 1, 0)]
 }
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("Level:process_mode")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [4]
-}
-tracks/7/type = "method"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("EpicIntro/AnimationPlayer")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("EpicIntro/AnimationPlayer")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
 "times": PackedFloat32Array(2),
 "transitions": PackedFloat32Array(1),
 "values": [{
@@ -949,39 +923,24 @@ tracks/7/keys = {
 "method": &"Set"
 }]
 }
-tracks/8/type = "method"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("Level")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
+tracks/6/type = "method"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath(".")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
 "times": PackedFloat32Array(2),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
-"method": &"StartLevel"
-}]
-}
-tracks/9/type = "method"
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/path = NodePath("LevelMusicPlayer")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/keys = {
-"times": PackedFloat32Array(2),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"StartPlaying"
+"method": &"OnIntroFinished"
 }]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_emurq"]
-resource_local_to_scene = true
 _data = {
-&"EpicIntro": SubResource("Animation_gx3u0")
+"EpicIntro": SubResource("Animation_l41e4")
 }
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xv08t"]
@@ -989,17 +948,17 @@ shader = ExtResource("24_neuu2")
 shader_parameter/brightness = 1.0
 
 [node name="Main" type="Node2D"]
-process_mode = 3
+process_mode = 1
 script = ExtResource("1_52yug")
 metadata/_edit_vertical_guides_ = [-234.0]
 
 [node name="LevelMusicPlayer" type="AudioStreamPlayer" parent="."]
+process_mode = 3
 volume_db = 10.0
 bus = &"Music"
 script = ExtResource("2_1fwqt")
 
 [node name="Level" type="Node2D" parent="."]
-process_mode = 4
 script = ExtResource("2_8e3wu")
 
 [node name="ScientistNode" type="Node2D" parent="Level"]
@@ -1025,7 +984,7 @@ color = Color(0.117647, 0.117647, 0.117647, 0.352941)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Level/ScientistNode/CanvasLayer/ColorRect"]
 libraries = {
-&"": SubResource("AnimationLibrary_pai8u")
+"": SubResource("AnimationLibrary_pai8u")
 }
 
 [node name="Subtitles" type="RichTextLabel" parent="Level/ScientistNode/CanvasLayer"]
@@ -1087,7 +1046,7 @@ region_rect = Rect2(110, 8, 32, 38)
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Level/Background/Rail/Rail/Object"]
 root_node = NodePath("../../..")
 libraries = {
-&"": SubResource("AnimationLibrary_i8hg0")
+"": SubResource("AnimationLibrary_i8hg0")
 }
 autoplay = "ManipulatorPassage"
 script = ExtResource("8_hunrt")
@@ -1151,7 +1110,7 @@ volume_db = 6.0
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Level/CanvasLayer/ColorRect"]
 root_node = NodePath("../..")
 libraries = {
-&"": SubResource("AnimationLibrary_dxx2d")
+"": SubResource("AnimationLibrary_dxx2d")
 }
 
 [node name="NoiseNoise" type="AnimatedSprite2D" parent="Level/CanvasLayer"]
@@ -1167,7 +1126,7 @@ bus = &"Player"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Level/CanvasLayer/NoiseNoise"]
 libraries = {
-&"": SubResource("AnimationLibrary_gy5u0")
+"": SubResource("AnimationLibrary_gy5u0")
 }
 
 [node name="WhiteNoiseGlitch" type="AnimatedSprite2D" parent="Level/CanvasLayer"]
@@ -1272,7 +1231,7 @@ region_rect = Rect2(66, 27, 8, 5)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Level/PositionCrutch/DroneCapsule"]
 libraries = {
-&"": SubResource("AnimationLibrary_urued")
+"": SubResource("AnimationLibrary_urued")
 }
 
 [node name="Timer" type="Timer" parent="Level/PositionCrutch/DroneCapsule"]
@@ -1365,16 +1324,17 @@ color = Color(0, 0, 0, 0.156863)
 process_mode = 3
 root_node = NodePath("../..")
 libraries = {
-&"": SubResource("AnimationLibrary_4p2pf")
+"": SubResource("AnimationLibrary_4p2pf")
 }
 
 [node name="EpicIntro" type="CanvasLayer" parent="."]
+process_mode = 3
 layer = 10
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="EpicIntro"]
 root_node = NodePath("../..")
 libraries = {
-&"": SubResource("AnimationLibrary_emurq")
+"": SubResource("AnimationLibrary_emurq")
 }
 autoplay = "EpicIntro"
 script = ExtResource("23_4se7t")
@@ -1417,13 +1377,14 @@ autoplay = true
 bus = &"Interface"
 
 [node name="PopupAchievementsLayer" type="CanvasLayer" parent="."]
+process_mode = 3
 layer = 100
 
 [connection signal="LevelReseting" from="." to="Level/ScientistNode" method="OnLevelReset" flags=6]
+[connection signal="ready" from="." to="." method="SetProgressPaused" flags=7 binds= [false]]
 [connection signal="ready" from="." to="." method="SetCrossesEnabled" flags=7 binds= [true]]
 [connection signal="ready" from="." to="." method="SetCrossesSpawnMultiplier" flags=7 binds= [1.0]]
 [connection signal="ready" from="." to="." method="SetCrossesProgressCoeff" flags=7 binds= [0.5]]
-[connection signal="ready" from="." to="." method="SetProgressPaused" flags=7 binds= [false]]
 [connection signal="finished" from="Level/ScientistNode/Megaphone" to="Level/ScientistNode" method="PhraseFinished" flags=3]
 [connection signal="TextAppearing" from="Level/ScientistNode/CanvasLayer/Subtitles" to="Level/ScientistNode/CanvasLayer/ColorRect/AnimationPlayer" method="play" binds= ["Appearing"]]
 [connection signal="TextClearing" from="Level/ScientistNode/CanvasLayer/Subtitles" to="Level/ScientistNode/CanvasLayer/ColorRect/AnimationPlayer" method="play" binds= ["Disappearing"]]

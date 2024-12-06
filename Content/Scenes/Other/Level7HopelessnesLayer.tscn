@@ -26,11 +26,10 @@ stream = ExtResource("2_rc8ov")
 autoplay = true
 expand = true
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="FilmCracking" type="AudioStreamPlayer" parent="."]
 process_mode = 3
 stream = ExtResource("3_3ai6c")
 volume_db = 15.0
-autoplay = true
 bus = &"Music"
 
 [node name="CrutchTimer" type="Timer" parent="."]

@@ -67,6 +67,8 @@ public partial class LevelEditor : Control
 
         GetNode("LevelContainer").AddChild(_level);
 
+        GetTree().Paused = true;
+
 
         _mainLevelScene = _level.GetNode(_mainLevelSceneName);
         _camera = GetNode<Camera2D>("Camera2D");

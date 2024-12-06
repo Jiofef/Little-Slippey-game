@@ -42,11 +42,11 @@ public partial class Player : CharacterBody2D
 
     public override void _Ready()
     {
-        G.PlayerNode = this;
+        G.Player = this;
         TreeExited += () =>
         {
-            if (G.PlayerNode == this)
-                G.PlayerNode = null;
+            if (G.Player == this)
+                G.Player = null;
         };
 
         if (_readyAlready) return;

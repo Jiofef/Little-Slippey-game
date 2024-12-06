@@ -1,61 +1,15 @@
-[gd_scene load_steps=34 format=4 uid="uid://dkyfagv681w7p"]
+[gd_scene load_steps=16 format=4 uid="uid://dkyfagv681w7p"]
 
-[ext_resource type="Script" path="res://Content/Scripts/Other/MainScript.cs" id="1_jpky8"]
+[ext_resource type="PackedScene" uid="uid://5kfyvxsdpsk2" path="res://Content/Scenes/Other/LevelLayout.tscn" id="1_e0lt1"]
 [ext_resource type="Texture2D" uid="uid://08yjrts0y3be" path="res://Content/Sprites/Levels/Level5/Sky.png" id="2_vj6ws"]
-[ext_resource type="Script" path="res://Content/Scripts/Other/LevelMusicPlayer.cs" id="2_vpple"]
 [ext_resource type="Texture2D" uid="uid://3arwpxm41m0a" path="res://Content/Sprites/Levels/Level5/HomeSweetHome.png" id="3_rganm"]
-[ext_resource type="Script" path="res://Content/Scripts/Levels/BaseLevelScript.cs" id="3_y6s5y"]
 [ext_resource type="Texture2D" uid="uid://c1a8v62iy3ybh" path="res://Content/Sprites/Levels/WhyIsItStillRainingTileset.png" id="4_qdehb"]
 [ext_resource type="PackedScene" uid="uid://dlscufxb5f1ca" path="res://Content/Scenes/Other/Player.tscn" id="5_imudf"]
 [ext_resource type="Texture2D" uid="uid://q2j1uuqfjmos" path="res://Content/Sprites/Levels/BaseTileSet.png" id="6_dfbi8"]
 [ext_resource type="PackedScene" uid="uid://d3u7pfig07yrs" path="res://Content/Scenes/Other/CrutchedArea2D.tscn" id="7_736q8"]
 [ext_resource type="Script" path="res://Content/Scripts/Levels/Level5MusicStarter.cs" id="8_lc6sv"]
-[ext_resource type="Texture2D" uid="uid://4udch8ejvu08" path="res://Content/Sprites/Interface/PauseButtonsFrame.png" id="11_3duik"]
-[ext_resource type="PackedScene" uid="uid://bwpstpk1xmkah" path="res://Content/Scenes/Interface&Menu/Button.tscn" id="12_ix4c8"]
-[ext_resource type="Texture2D" uid="uid://dhr0k5tpvpg7n" path="res://Content/Sprites/Interface/Buttons/UnpauseButton.png" id="13_8xvjp"]
-[ext_resource type="Texture2D" uid="uid://bqua21jbasqml" path="res://Content/Sprites/Interface/Buttons/PauseRewindButton.png" id="14_8y1hb"]
-[ext_resource type="Texture2D" uid="uid://be5mi0sdy4bep" path="res://Content/Sprites/Interface/Buttons/PauseOptionsButton.png" id="15_xair1"]
-[ext_resource type="Texture2D" uid="uid://blp8i7meimekf" path="res://Content/Sprites/Interface/Buttons/PauseMenuButton.png" id="16_66xuu"]
-[ext_resource type="Script" path="res://Content/Scripts/Other/DidLevelIntroPassedSet.cs" id="17_mjowy"]
-[ext_resource type="AudioStream" uid="uid://cuvkdo1lyvynu" path="res://Content/Sounds/Other/EpicIntro.mp3" id="18_kox16"]
 
-[sub_resource type="Animation" id="Animation_p3npb"]
-resource_name = "MusicStarting"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:volume_db")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, 10.0]
-}
-
-[sub_resource type="Animation" id="Animation_n61s8"]
-resource_name = "MusicStopping"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:volume_db")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [10.0, -20.0]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_jcmm3"]
-_data = {
-&"MusicStopping": SubResource("Animation_n61s8"),
-&"MusicStarting": SubResource("Animation_p3npb")
-}
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_r08os"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_byspj"]
 texture = ExtResource("4_qdehb")
 0:0/0 = 0
 1:0/0 = 0
@@ -87,12 +41,12 @@ texture = ExtResource("4_qdehb")
 3:2/3 = 3
 3:2/3/flip_h = true
 
-[sub_resource type="TileSet" id="TileSet_x0wno"]
-sources/2 = SubResource("TileSetAtlasSource_r08os")
+[sub_resource type="TileSet" id="TileSet_jqn0s"]
+sources/2 = SubResource("TileSetAtlasSource_byspj")
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_c47k8"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mxbjq"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7voic"]
 texture = ExtResource("6_dfbi8")
 0:0/next_alternative_id = 8
 0:0/0 = 0
@@ -104,7 +58,7 @@ texture = ExtResource("6_dfbi8")
 2:0/0 = 0
 2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_odx4j"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_15ent"]
 texture = ExtResource("4_qdehb")
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -151,393 +105,71 @@ texture = ExtResource("4_qdehb")
 2:2/1/flip_h = true
 3:2/0 = 0
 
-[sub_resource type="TileSet" id="TileSet_tk7cp"]
+[sub_resource type="TileSet" id="TileSet_ismfq"]
 physics_layer_0/collision_layer = 4
 physics_layer_0/collision_mask = 3
 physics_layer_0/physics_material = SubResource("PhysicsMaterial_c47k8")
-sources/0 = SubResource("TileSetAtlasSource_mxbjq")
-sources/1 = SubResource("TileSetAtlasSource_odx4j")
+sources/0 = SubResource("TileSetAtlasSource_7voic")
+sources/1 = SubResource("TileSetAtlasSource_15ent")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_fr4nu"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_syxfr"]
 size = Vector2(128, 128)
 
-[sub_resource type="Animation" id="Animation_gr4ul"]
-resource_name = "OpeningSubMenu"
-length = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Interface/SubMenuBackgroundRect:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Interface:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Interface/ButtonsFrame:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(0, 520), Vector2(0, 520)]
-}
+[node name="Main" instance=ExtResource("1_e0lt1")]
 
-[sub_resource type="Animation" id="Animation_qdctp"]
-resource_name = "Pause"
-length = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Interface:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Interface/ButtonsFrame:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(0, 720), Vector2(0, 520)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Interface/SubMenuBackgroundRect:modulate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0)]
-}
+[node name="Background" type="ParallaxBackground" parent="Level" index="0"]
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_4p2pf"]
-_data = {
-&"Pause": SubResource("Animation_qdctp"),
-&"OpeningSubMenu": SubResource("Animation_gr4ul")
-}
-
-[sub_resource type="Animation" id="Animation_3p15v"]
-resource_name = "EpicIntro"
-length = 8.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("TopRect:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 2, 2.4),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(0, 0), Vector2(0, -360)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("BottomRect:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 2, 2.4),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(0, 360), Vector2(0, 360), Vector2(0, 720)]
-}
-tracks/2/type = "method"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("..")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(2),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [true],
-"method": &"set_process"
-}]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("../LevelMusicPlayer:playing")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(2),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("../Level:process_mode")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [4]
-}
-tracks/5/type = "method"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("AnimationPlayer")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(2),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [true],
-"method": &"Set"
-}]
-}
-tracks/6/type = "method"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("../Level")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(2),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"StartLevel"
-}]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_60n51"]
-_data = {
-&"EpicIntro": SubResource("Animation_3p15v")
-}
-
-[node name="Main" type="Node2D"]
-process_mode = 3
-script = ExtResource("1_jpky8")
-metadata/_edit_vertical_guides_ = [-234.0]
-
-[node name="LevelMusicPlayer" type="AudioStreamPlayer" parent="."]
-bus = &"Music"
-script = ExtResource("2_vpple")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="LevelMusicPlayer"]
-libraries = {
-&"": SubResource("AnimationLibrary_jcmm3")
-}
-
-[node name="Level" type="Node2D" parent="."]
-process_mode = 4
-script = ExtResource("3_y6s5y")
-
-[node name="Background" type="ParallaxBackground" parent="Level"]
-
-[node name="Sky" type="ParallaxLayer" parent="Level/Background"]
+[node name="Sky" type="ParallaxLayer" parent="Level/Background" index="0"]
 motion_scale = Vector2(0.4, 0.4)
 
-[node name="Sprite2D" type="Sprite2D" parent="Level/Background/Sky"]
+[node name="Sprite2D" type="Sprite2D" parent="Level/Background/Sky" index="0"]
 scale = Vector2(4, 4)
 texture = ExtResource("2_vj6ws")
 centered = false
 
-[node name="HomeSweetHome" type="ParallaxLayer" parent="Level/Background"]
+[node name="HomeSweetHome" type="ParallaxLayer" parent="Level/Background" index="1"]
 motion_scale = Vector2(0.9, 0.9)
 
-[node name="Sprite2D" type="Sprite2D" parent="Level/Background/HomeSweetHome"]
+[node name="Sprite2D" type="Sprite2D" parent="Level/Background/HomeSweetHome" index="0"]
 scale = Vector2(4, 4)
 texture = ExtResource("3_rganm")
 centered = false
 
-[node name="DecorationMap" type="TileMapLayer" parent="Level"]
+[node name="DecorationMap" type="TileMapLayer" parent="Level" index="1"]
 modulate = Color(0.501961, 0.501961, 0.501961, 1)
 use_parent_material = true
 scale = Vector2(4, 4)
 tile_map_data = PackedByteArray("AAAGAAgAAgAAAAAAAAAHAAkAAgAAAAAAAAAPAAkAAgAAAAAAAAAQAAgAAgAAAAAAAAAFAAQAAgAAAAAAAAAFAAUAAgAAAAAAAAAIAAcAAgAAAAAAAAAPAAMAAgAAAAAAAAAGAAMAAgAAAAAAAAAHAAMAAgAAAAAAAAAOAAUAAgAAAAAAAAADAAYAAgAAAAAAAAAOAAMAAgAAAAAAAAALAAMAAgAAAAAAAAAMAAEAAgAAAAAAAAANAAEAAgAAAAAAAAAfAAQAAgAAAAIAAAAfAAUAAgAAAAEAAAAfAAYAAgAAAAIAAAAfAAcAAgABAAEAAAAfAAgAAgABAAEAAAAfAAkAAgABAAEAAAAbAAMAAgABAAEAAAAbAAQAAgABAAIAAAAbAAUAAgABAAIAAAAbAAYAAgABAAEAAAAbAAcAAgABAAEAAAAbAAgAAgABAAEAAAAbAAkAAgABAAEAAAAXAAQAAgAAAAIAAQAXAAUAAgAAAAEAAAAXAAYAAgAAAAIAAQAXAAcAAgABAAEAAAAXAAgAAgABAAEAAAAXAAkAAgABAAEAAAAFAAkAAgAAAAAAAAAWAAMAAgAAAAEAAAAXAAMAAgAAAAIAAQAbAAIAAgABAAEAAAAfAAMAAgAAAAIAAAAgAAMAAgAAAAEAAAAZAAIAAgAAAAIAAQAdAAIAAgAAAAIAAAAaAAQAAgAAAAIAAQAaAAUAAgAAAAIAAQAcAAQAAgAAAAIAAAAcAAUAAgAAAAIAAAAlAAcAAgAAAAAAAAAlAAgAAgAAAAAAAAAlAAkAAgAAAAAAAAAmAAkAAgAAAAAAAAAmAAgAAgAAAAAAAAAmAAcAAgAAAAAAAAAnAAcAAgAAAAAAAAAnAAgAAgAAAAAAAAAnAAkAAgAAAAAAAAApAAkAAgAAAAAAAAApAAgAAgAAAAAAAAApAAcAAgAAAAAAAAAqAAcAAgAAAAAAAAAqAAgAAgAAAAAAAAAqAAkAAgAAAAAAAAAoAAkAAgAAAAAAAAAoAAgAAgAAAAAAAAADAAIAAgACAAEAAQAMAAcAAgACAAEAAAAOAAcAAgACAAIAAQANAAcAAgACAAIAAAAkAAgAAgAAAAAAAAAkAAkAAgAAAAAAAAARAAcAAgADAAIAAwARAAYAAgADAAIAAgARAAEAAgADAAIAAgARAAIAAgADAAIAAwAFAAEAAgADAAIAAQAFAAIAAgADAAIAAAACAAkAAgADAAIAAAACAAgAAgADAAIAAQA=")
-tile_set = SubResource("TileSet_x0wno")
+tile_set = SubResource("TileSet_jqn0s")
 
-[node name="Player" parent="Level" instance=ExtResource("5_imudf")]
+[node name="Player" parent="Level" index="2" instance=ExtResource("5_imudf")]
 position = Vector2(160, 160)
 
-[node name="TileMap" type="Node2D" parent="Level"]
+[node name="TileMap" type="Node2D" parent="Level" index="3"]
 scale = Vector2(4, 4)
 
-[node name="Bench" type="TileMapLayer" parent="Level/TileMap"]
+[node name="Bench" type="TileMapLayer" parent="Level/TileMap" index="0"]
 z_index = -1
 use_parent_material = true
 tile_map_data = PackedByteArray("AAAYAAkAAQABAAAAAAAaAAkAAQABAAAAAQAZAAkAAQACAAAAAAAdAAkAAQACAAAAAAAcAAkAAQABAAAAAAAeAAkAAQABAAAAAQA=")
-tile_set = SubResource("TileSet_tk7cp")
+tile_set = SubResource("TileSet_ismfq")
 
-[node name="Layer1" type="TileMapLayer" parent="Level/TileMap"]
+[node name="Layer1" type="TileMapLayer" parent="Level/TileMap" index="1"]
 use_parent_material = true
 tile_map_data = PackedByteArray("AAD/////AAABAAAAAAAAAP//AAABAAAAAAABAP//AAABAAAAAAACAP//AAABAAAAAAADAP//AAABAAAAAAAEAP//AAABAAAAAAAFAP//AAABAAAAAAAOAP//AAABAAAAAAAPAP//AAABAAAAAAD//wAAAAABAAAAAAD//wEAAAABAAAAAAD//wIAAAABAAAAAAD//wMAAAABAAAAAAD//wQAAAABAAAAAAD//wUAAAABAAAAAAD//wYAAAABAAAAAAD//wcAAAABAAAAAAD//wgAAAABAAAAAAD//wkAAAABAAAAAAAQAP//AAABAAAAAAARAP//AAABAAAAAAASAP//AAABAAAAAAATAP//AAABAAAAAAAUAAoAAAACAAAAAAATAAoAAAACAAAAAAASAAoAAAACAAAAAAARAAoAAAACAAAAAAAQAAoAAAACAAAAAAAPAAoAAAACAAAAAAAOAAoAAAACAAAAAAANAAoAAAACAAAAAAAGAAoAAAACAAAAAAAFAAoAAAACAAAAAAAEAAoAAAACAAAAAAADAAoAAAACAAAAAAACAAoAAAACAAAAAAABAAoAAAACAAAAAAAAAAoAAAACAAAAAAD//woAAAAAAAAAAAD//wsAAAAAAAAAAAAAAAsAAAAAAAAAAAABAAsAAAAAAAAAAAACAAsAAAAAAAAAAAADAAsAAAAAAAAAAAAEAAsAAAAAAAAAAAAFAAsAAAAAAAAAAAAGAAsAAAAAAAAAAAAHAAsAAAAAAAAAAAAIAAsAAAAAAAAAAAAJAAsAAAAAAAAAAAAKAAsAAAAAAAAAAAALAAsAAAAAAAAAAAAMAAsAAAAAAAAAAAANAAsAAAAAAAAAAAAOAAsAAAAAAAAAAAAPAAsAAAAAAAAAAAAQAAsAAAAAAAAAAAARAAsAAAAAAAAAAAASAAsAAAAAAAAAAAATAAsAAAAAAAAAAAAUAAsAAAAAAAAAAAANAP//AAABAAAAAAAHAP//AAABAAAAAAAGAP//AAABAAAAAAAIAP//AAABAAAAAAAJAP//AAABAAAAAAAKAP//AAABAAAAAAALAP//AAABAAAAAAAMAP//AAABAAAAAAAMAAoAAAACAAAAAAALAAoAAAACAAAAAAAKAAoAAAACAAAAAAAJAAoAAAACAAAAAAAIAAoAAAACAAAAAAAHAAoAAAACAAAA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AAARAAAAAQAAAAAAAAAMAAgAAQAAAAAAAAANAAgAAQAAAAAAAAAOAAgAAQAAAAAAAAAPAAgAAQAAAAAAAAAPAAUAAQAAAAAAAAAPAAYAAQAAAAAAAAAPAAcAAQAAAAAAAAAQAAUAAQAAAAAAAAAJAAMAAQAAAAAAAAAKAAMAAQAAAAAAAAAQAAMAAQAAAAAAAAAIAAMAAQAAAAAAAAAIAAQAAQAAAAAAAAAIAAUAAQAAAAAAAAAIAAYAAQAAAAAAAAAMAAQAAQAAAAAAAAAMAAUAAQAAAAAAAAANAAQAAQAAAAAAAAANAAUAAQAAAAAAAAAKAAYAAQADAAAAAAAKAAcAAQADAAAAAQAMAAIAAQAAAAAAAAAMAAMAAQAAAAAAAAANAAIAAQAAAAAAAAANAAMAAQAAAAAAAAAMAAAAAQAAAAAAAAANAAAAAQAAAAAAAAAkAAYAAQAAAAAAAAAlAAYAAQAAAAAAAAAmAAYAAQAAAAAAAAAnAAYAAQAAAAAAAAAkAAcAAQAAAAAAAAAkAAgAAQADAAEAAQAkAAkAAQADAAEAAAAcAAoAAAACAAAAAAAdAAoAAAACAAAAAAAeAAoAAAACAAAAAAAVAAYAAQAAAAIAAAAYAAUAAQAAAAEAAAAZAAQAAQAAAAIAAAAgAAYAAQAAAAEAAAAXAAIAAQAAAAEAAAAYAAIAAQAAAAEAAAAeAAIAAQAAAAEAAAAWAAUAAQAAAAIAAAAWAAYAAQAAAAEAAAAbAAEAAQAAAAEAAAAfAAIAAQAAAAEAAAAhAAYAAQAAAAIAAQAgAAUAAQAAAAIAAQAZAAUAAQAAAAEAAAAeAAUAAQAAAAEAAAAdAAQAAQAAAAIAAQAaAAEAAQAAAAEAAAAcAAEAAQAAAAEAAAAgAAIAAQAAAAIAAQAhAAMAAQAAAAIAAQAWAAIAAQAAAAIAAAAVAAMAAQAAAAIAAAAZAAEAAQAAAAIAAAAdAAEAAQAAAAIAAQAdAAUAAQAAAAEAAAApAAYAAQAAAAAAAAAqAAYAAQAAAAAAAAAoAAkAAQADAAEAAAAoAAgAAQADAAEAAQAlAAkAAQACAAEAAAAmAAkAAQACAAIAAAAnAAkAAQACAAIAAQD9////AAABAAAAAAD9/wAAAAABAAAAAAD9/wEAAAABAAAAAAD9/wIAAAABAAAAAAD9/wMAAAABAAAAAAD9/wQAAAABAAAAAAD9/wUAAAABAAAAAAD9/wYAAAABAAAAAAD9/wcAAAABAAAAAAD9/wgAAAABAAAAAAD9/wkAAAABAAAAAAD+////AAABAAAAAAD+/wAAAAABAAAAAAD+/wEAAAABAAAAAAD+/wIAAAABAAAAAAD+/wMAAAABAAAAAAD+/wQAAAABAAAAAAD+/wUAAAABAAAAAAD+/wYAAAABAAAAAAD+/wcAAAABAAAAAAD+/wgAAAABAAAAAAD+/wkAAAABAAAAAAD9//3/AAABAAAAAAD9//7/AAABAAAAAAD+//3/AAABAAAAAAD+//7/AAABAAAAAAD///3/AAABAAAAAAD///7/AAABAAAAAAAAAP3/AAABAAAAAAAAAP7/AAABAAAAAAABAP3/AAABAAAAAAABAP7/AAABAAAAAAACAP3/AAABAAAAAAACAP7/AAABAAAAAAADAP3/AAABAAAAAAADAP7/AAABAAAAAAAEAP3/AAABAAAAAAAEAP7/AAABAAAAAAAFAP3/AAABAAAAAAAFAP7/AAABAAAAAAAGAP3/AAABAAAAAAAGAP7/AAABAAAAAAAHAP3/AAABAAAAAAAHAP7/AAABAAAAAAAIAP3/AAABAAAAAAAIAP7/AAABAAAAAAAJAP3/AAABAAAAAAAJAP7/AAABAAAAAAAKAP3/AAABAAAAAAAKAP7/AAABAAAAAAALAP3/AAABAAAAAAALAP7/AAABAAAAAAAMAP3/AAABAAAAAAAMAP7/AAABAAAAAAANAP3/AAABAAAAAAANAP7/AAABAAAAAAAOAP3/AAABAAAAAAAOAP7/AAABAAAAAAAPAP3/AAABAAAAAAAPAP7/AAABAAAAAAAQAP3/AAABAAAAAAAQAP7/AAABAAAAAAARAP3/AAABAAAAAAARAP7/AAABAAAAAAASAP3/AAABAAAAAAASAP7/AAABAAAAAAATAP3/AAABAAAAAAATAP7/AAABAAAAAAAUAP3/AAABAAAAAAAUAP7/AAABAAAAAAAVAP3/AAABAAAAAAAVAP7/AAABAAAAAAAWAP3/AAABAAAAAAAWAP7/AAABAAAAAAAXAP3/AAABAAAAAAAXAP7/AAABAAAAAAAYAP3/AAABAAAAAAAYAP7/AAABAAAAAAAZAP3/AAABAAAAAAAZAP7/AAABAAAAAAAaAP3/AAABAAAAAAAaAP7/AAABAAAAAAAbAP3/AAABAAAAAAAbAP7/AAABAAAAAAAcAP3/AAABAAAAAAAcAP7/AAABAAAAAAAdAP3/AAABAAAAAAAdAP7/AAABAAAAAAAeAP3/AAABAAAAAAAeAP7/AAABAAAAAAAfAP3/AAABAAAAAAAfAP7/AAABAAAAAAAgAP3/AAABAAAAAAAgAP7/AAABAAAAAAAhAP3/AAABAAAAAAAhAP7/AAABAAAAAAAiAP3/AAABAAAAAAAiAP7/AAABAAAAAAAjAP3/AAABAAAAAAAjAP7/AAABAAAAAAAkAP3/AAABAAAAAAAkAP7/AAABAAAAAAAlAP3/AAABAAAAAAAlAP7/AAABAAAAAAAmAP3/AAABAAAAAAAmAP7/AAABAAAAAAAnAP3/AAABAAAAAAAnAP7/AAABAAAAAAAoAP3/AAABAAAAAAAoAP7/AAABAAAAAAApAP3/AAABAAAAAAApAP7/AAABAAAAAAApAP//AAABAAAAAAApAAAAAAABAAAAAAApAAEAAAABAAAAAAApAAIAAAABAAAAAAApAAMAAAABAAAAAAApAAQAAAABAAAAAAApAAUAAAABAAAAAAAqAP3/AAABAAAAAAAqAP7/AAABAAAAAAAqAP//AAABAAAAAAAqAAAAAAABAAAAAAAqAAEAAAABAAAAAAAqAAIAAAABAAAAAAAqAAMAAAABAAAAAAAqAAQAAAABAAAAAAAqAAUAAAABAAAAAAAVAAoAAAACAAAAAAAVAAsAAAAAAAAAAAAVAAwAAAAAAAAAAAA=")
-tile_set = SubResource("TileSet_tk7cp")
+tile_set = SubResource("TileSet_ismfq")
 
-[node name="PlayMusicTrigger" parent="Level" instance=ExtResource("7_736q8")]
+[node name="PlayMusicTrigger" parent="Level" index="4" instance=ExtResource("7_736q8")]
 position = Vector2(160, 160)
 script = ExtResource("8_lc6sv")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/PlayMusicTrigger"]
-shape = SubResource("RectangleShape2D_fr4nu")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/PlayMusicTrigger" index="0"]
+shape = SubResource("RectangleShape2D_syxfr")
 
-[node name="Pause" type="CanvasLayer" parent="."]
-process_mode = 2
-layer = 3
+[node name="BrightnessRect" parent="EpicIntro" index="1"]
+visible = false
 
-[node name="Interface" type="Control" parent="Pause"]
-modulate = Color(1, 1, 1, 0)
-layout_mode = 3
-anchors_preset = 0
-offset_right = 1280.0
-offset_bottom = 720.0
-metadata/_edit_group_ = true
-metadata/_edit_lock_ = true
-
-[node name="ColorRect" type="ColorRect" parent="Pause/Interface"]
-layout_mode = 0
-offset_right = 1280.0
-offset_bottom = 720.0
-color = Color(0, 0.501961, 0.501961, 0.196078)
-
-[node name="ButtonsFrame" type="Control" parent="Pause/Interface"]
-anchors_preset = 0
-offset_top = 720.0
-offset_right = 1280.0
-offset_bottom = 920.0
-
-[node name="Sprite2D" type="Sprite2D" parent="Pause/Interface/ButtonsFrame"]
-scale = Vector2(4, 4)
-texture = ExtResource("11_3duik")
-centered = false
-
-[node name="Resume" parent="Pause/Interface/ButtonsFrame" instance=ExtResource("12_ix4c8")]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -398.0
-offset_top = -80.0
-offset_right = -358.0
-offset_bottom = -40.0
-grow_horizontal = 2
-grow_vertical = 2
-focus_neighbor_left = NodePath("../Menu")
-texture_normal = ExtResource("13_8xvjp")
-
-[node name="Rewind" parent="Pause/Interface/ButtonsFrame" instance=ExtResource("12_ix4c8")]
-layout_mode = 1
-offset_left = 454.0
-offset_top = 20.0
-offset_right = 494.0
-offset_bottom = 60.0
-texture_normal = ExtResource("14_8y1hb")
-
-[node name="Options" parent="Pause/Interface/ButtonsFrame" instance=ExtResource("12_ix4c8")]
-layout_mode = 0
-offset_left = 666.0
-offset_top = 20.0
-offset_right = 706.0
-offset_bottom = 60.0
-texture_normal = ExtResource("15_xair1")
-
-[node name="Menu" parent="Pause/Interface/ButtonsFrame" instance=ExtResource("12_ix4c8")]
-layout_mode = 0
-offset_left = 878.0
-offset_top = 20.0
-offset_right = 918.0
-offset_bottom = 60.0
-focus_neighbor_right = NodePath("../Resume")
-texture_normal = ExtResource("16_66xuu")
-
-[node name="SubMenuBackgroundRect" type="ColorRect" parent="Pause/Interface"]
-modulate = Color(1, 1, 1, 0)
-layout_mode = 0
-offset_right = 1280.0
-offset_bottom = 720.0
-mouse_filter = 2
-color = Color(0, 0, 0, 0.156863)
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Pause/Interface"]
-process_mode = 3
-root_node = NodePath("../..")
-libraries = {
-&"": SubResource("AnimationLibrary_4p2pf")
-}
-
-[node name="EpicIntro" type="CanvasLayer" parent="."]
-layer = 10
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="EpicIntro"]
-libraries = {
-&"": SubResource("AnimationLibrary_60n51")
-}
-autoplay = "EpicIntro"
-script = ExtResource("17_mjowy")
-
-[node name="TopRect" type="ColorRect" parent="EpicIntro"]
-offset_right = 1280.0
-offset_bottom = 360.0
-mouse_filter = 2
-color = Color(0, 0, 0, 1)
-metadata/_edit_lock_ = true
-
-[node name="BottomRect" type="ColorRect" parent="EpicIntro"]
-offset_top = 360.0
-offset_right = 1280.0
-offset_bottom = 720.0
-mouse_filter = 2
-color = Color(0, 0, 0, 1)
-metadata/_edit_lock_ = true
-
-[node name="TurningOnSound" type="AudioStreamPlayer" parent="EpicIntro"]
-stream = ExtResource("18_kox16")
-volume_db = 15.0
-autoplay = true
-bus = &"Interface"
-
-[node name="PopupAchievementsLayer" type="CanvasLayer" parent="."]
-layer = 100
-
-[connection signal="animation_finished" from="LevelMusicPlayer/AnimationPlayer" to="." method="MusicAnimationFinished"]
-[connection signal="ButtonPressed" from="Level/PlayMusicTrigger" to="LevelMusicPlayer" method="PlayMusic" flags=6 binds= ["Envelope", 0.0, 0.0]]
-[connection signal="pressed" from="Pause/Interface/ButtonsFrame/Resume" to="." method="UnPause"]
-[connection signal="pressed" from="Pause/Interface/ButtonsFrame/Options" to="." method="Options"]
-[connection signal="pressed" from="Pause/Interface/ButtonsFrame/Menu" to="." method="Menu"]
-[connection signal="animation_finished" from="EpicIntro/AnimationPlayer" to="EpicIntro" method="queue_free" flags=6 unbinds=1]
+[node name="Glare" parent="EpicIntro" index="2"]
+visible = false
 
 [editable path="Pause/Interface/ButtonsFrame/Menu"]

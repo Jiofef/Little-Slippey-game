@@ -2669,7 +2669,7 @@ _data = {
 "Pause": SubResource("Animation_qdctp")
 }
 
-[sub_resource type="Animation" id="Animation_gx3u0"]
+[sub_resource type="Animation" id="Animation_l41e4"]
 resource_name = "EpicIntro"
 length = 8.0
 tracks/0/type = "value"
@@ -2696,63 +2696,49 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector2(0, 360), Vector2(0, 360), Vector2(0, 720)]
 }
-tracks/2/type = "method"
+tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath(".")
+tracks/2/path = NodePath("LevelMusicPlayer:playing")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(2),
 "transitions": PackedFloat32Array(1),
-"values": [{
-"args": [true],
-"method": &"set_process"
-}]
+"update": 1,
+"values": [true]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("LevelMusicPlayer:playing")
+tracks/3/path = NodePath("EpicIntro/BrightnessRect:_value")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(2),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("EpicIntro/BrightnessRect:_value")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
 "times": PackedFloat32Array(0, 2, 8),
 "transitions": PackedFloat32Array(0, 0.5, 1),
 "update": 0,
 "values": [0.0, 4.0, 1.0]
 }
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("EpicIntro/Glare:modulate")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("EpicIntro/Glare:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
 "times": PackedFloat32Array(0, 2, 5),
 "transitions": PackedFloat32Array(1, 0.5, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.501961), Color(1, 1, 1, 0)]
 }
-tracks/6/type = "method"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("EpicIntro/AnimationPlayer")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("EpicIntro/AnimationPlayer")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
 "times": PackedFloat32Array(2),
 "transitions": PackedFloat32Array(1),
 "values": [{
@@ -2760,36 +2746,24 @@ tracks/6/keys = {
 "method": &"Set"
 }]
 }
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("Level:process_mode")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"times": PackedFloat32Array(0, 2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [4, 1]
-}
-tracks/8/type = "method"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("Level")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
+tracks/6/type = "method"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath(".")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
 "times": PackedFloat32Array(2),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
-"method": &"StartLevel"
+"method": &"OnIntroFinished"
 }]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_emurq"]
 _data = {
-"EpicIntro": SubResource("Animation_gx3u0")
+"EpicIntro": SubResource("Animation_l41e4")
 }
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xv08t"]
@@ -2797,11 +2771,12 @@ shader = ExtResource("49_rg8pl")
 shader_parameter/brightness = 1.0
 
 [node name="Main" type="Node2D"]
-process_mode = 3
+process_mode = 1
 script = ExtResource("1_ejqbl")
 metadata/_edit_vertical_guides_ = [-234.0]
 
 [node name="LevelMusicPlayer" type="AudioStreamPlayer" parent="."]
+process_mode = 3
 bus = &"Music"
 script = ExtResource("2_okxpt")
 SaveTimeCodeWhenLevelResets = false
@@ -2813,7 +2788,6 @@ libraries = {
 }
 
 [node name="Level" type="Node2D" parent="."]
-process_mode = 4
 script = ExtResource("2_v16o6")
 
 [node name="Ambient" type="AudioStreamPlayer" parent="Level"]
@@ -3543,9 +3517,6 @@ libraries = {
 }
 
 [node name="Sprite2D" type="Sprite2D" parent="Level/TileMap2/TutorialTV/Screen" index="7"]
-
-[node name="Particles" parent="Level/TileMap2/TutorialTV" index="2"]
-emitting = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Level/TileMap2/TutorialTV"]
 libraries = {
@@ -4312,7 +4283,6 @@ libraries = {
 
 [node name="Particles" parent="Level/TileMap6/TutorialTV" index="2"]
 position = Vector2(0, 0)
-emitting = true
 lifetime = 2.5
 explosiveness = 0.5
 texture = ExtResource("35_ylt62")
@@ -4800,6 +4770,7 @@ libraries = {
 }
 
 [node name="EpicIntro" type="CanvasLayer" parent="."]
+process_mode = 3
 layer = 10
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="EpicIntro"]

@@ -9,10 +9,16 @@ public partial class LevelMusicPlayer : AudioStreamPlayer
 
     public override void _Ready()
     {
-        if (RestartMusicWhenItFinished) 
-            Connect("finished", new Callable(this, "MusicFinished"));
-        if (SaveTimeCodeWhenLevelResets)
-            GetNode("../").Connect("LevelReseting", new Callable(this, "SaveTimeCode"));
+        G.MusicPlayer = this;
+        TreeExited += () =>
+        {
+            if (G.MusicPlayer == this)
+                G.MusicPlayer = null;
+            SaveTimeCode();
+        };
+
+        Connect("finished", new Callable(this, "MusicFinished"));
+
         if (SavePlayingWhenLevelResets && G.MusicName != "")
             PlayMusic(G.MusicName, G.MusicRestartPosition);
     }
@@ -51,13 +57,15 @@ public partial class LevelMusicPlayer : AudioStreamPlayer
         _currentMusicName = "";
     }
 
-    public void MusicFinished()
+    private void OnMusicFinished()
     {
-        Play(_trackRestartPosition);
+        if (RestartMusicWhenItFinished)
+            Play(_trackRestartPosition);
     }
 
-    public void SaveTimeCode()
+    private void SaveTimeCode()
     {
-       G.MusicStopTimeCode = GetPlaybackPosition();
+        if (SaveTimeCodeWhenLevelResets)
+            G.MusicStopTimeCode = GetPlaybackPosition();
     }
 }

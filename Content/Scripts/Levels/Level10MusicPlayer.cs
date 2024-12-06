@@ -12,10 +12,17 @@ public partial class Level10MusicPlayer : AudioStreamPlayer
         { 395.1f, 2730}
     };
     private int[] _partsRelatedScores = { 150, 290, 300, 999999999};
+
+    private G.LevelStartedEventHandler _onLevelStartedHandler;
     public override void _Ready()
 	{
-        if (G.DidLevelIntroPassed)
-            StartPlaying();
+        _onLevelStartedHandler = (bool wasIntroShown) => StartPlaying();
+        G.OnLevelStarted += _onLevelStartedHandler;
+    }
+    public override void _ExitTree()
+    {
+        if (_onLevelStartedHandler != null)
+            G.OnLevelStarted -= _onLevelStartedHandler;
     }
 
     public void StartPlaying()

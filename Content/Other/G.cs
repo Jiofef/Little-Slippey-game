@@ -2,6 +2,7 @@ using Godot;
 using GodotPlugins.Game;
 using System;
 using System.Linq;
+using System.Runtime.CompilerServices;
 
 /// <summary>
 /// G is gameplay singleton, that having importal information which may be needed in various places of the game. They will not save after exiting the game
@@ -74,6 +75,14 @@ public partial class G : Node
             else TypeOfUsedController = "XInput Gamepad"; //Maybe I'll add more gamepads soon
         }
     }
+
+    /// <summary>
+    /// Call this at the moment the level starts, if you've somehow seriously changed the structure of the scene or Main script.
+    /// </summary>
+    public static void OnLevelStartedFunc(bool wasIntroShown)
+    {
+        OnLevelStarted.Invoke(wasIntroShown);
+    }
     #endregion
 
 
@@ -108,8 +117,74 @@ public partial class G : Node
     }
 
     #region Frequently used nodes
-    public static Player PlayerNode { get; set; }
-    public static MainScript MainNode { get; set; }
+
+    public static Player Player
+    { 
+        get
+        {
+            return player;
+        } 
+        set
+        {
+            player = value;
+
+            if (value != null)
+                OnPlayerSetted?.Invoke();
+        }
+    }
+    public delegate void PlayerSettedEventHandler();
+    public static event PlayerSettedEventHandler OnPlayerSetted = delegate { };
+
+    public static MainScript Main
+    {
+        get
+        {
+            return main;
+        }
+        set
+        {
+            main = value;
+
+            if (value != null)
+                OnMainSetted?.Invoke();
+        }
+    }
+    public delegate void MainSettedEventHandler();
+    public static event MainSettedEventHandler OnMainSetted = delegate { };
+
+
+    public static LevelMusicPlayer MusicPlayer
+    {
+        get
+        {
+            return musicPlayer;
+        }
+        set
+        {
+            musicPlayer = value;
+            if (value != null)
+                OnMusicPlayerSetted?.Invoke();
+        }
+    }
+    public delegate void MusicPlayerSettedEventHandler();
+    public static event MusicPlayerSettedEventHandler OnMusicPlayerSetted = delegate { };
+
+
+    private static Player player;
+    private static MainScript main;
+    private static LevelMusicPlayer musicPlayer;
+    #endregion
+
+    #region Useful events
+
+    public delegate void LevelStartedEventHandler(bool wasIntroShown);
+    /// <summary>
+    /// Use this if you want to do something at the end of the level intro, or if the intro is skipped (e.g. it was already there). 
+    /// 
+    /// <para>wasIntroShown shows if the intro was shown this time. You can use this as a marker if the level was run for the first time (true if yes, false if not)</para>
+    /// </summary>
+    public static event LevelStartedEventHandler OnLevelStarted = delegate { };
+
     #endregion
 
     #endregion
@@ -159,8 +234,9 @@ public partial class G : Node
 				_scenes = new PackedScene[ScenesPathes.Length];
 				 for (int i = 0; i < _scenes.Length; i++)
 				 {
-					 _scenes[i] = GD.Load<PackedScene>(ScenesPathes[i]);
-				 }
+                    _scenes[i] = GD.Load<PackedScene>(ScenesPathes[i]);
+                    GD.Print(_scenes[i].Instantiate().Name);
+                }
 			}
 		}
         private PackedScene[] _scenes = { };
@@ -168,9 +244,9 @@ public partial class G : Node
 
         public CrossSpawner()
         {
-            TimeCodes = new float[] { 0, 30, 60, 90, 120, 150 };
-            SpawnWeights = new float[] { 600, 170, 80, 40, 110 };
-            ScenesPathes = new string[] { "res://Content/Scenes/Crosses/Cross1.tscn", "res://Content/Scenes/Crosses/Cross2.tscn", "res://Content/Scenes/Crosses/Cross3.tscn", "res://Content/Scenes/Crosses/Cross4.tscn", "res://Content/Scenes/Crosses/Cross5.tscn" };
+            TimeCodes = [0, 30, 60, 90, 120, 150];
+            SpawnWeights = [600, 170, 80, 40, 110];
+            ScenesPathes = ["res://Content/Scenes/Crosses/Cross1.tscn", "res://Content/Scenes/Crosses/Cross2.tscn", "res://Content/Scenes/Crosses/Cross3.tscn", "res://Content/Scenes/Crosses/Cross4.tscn", "res://Content/Scenes/Crosses/Cross5.tscn"];
         }
 		public CrossSpawner(float[] timeCodes, float[] spawnWeights, string[] scenesPathes)
 		{
@@ -188,7 +264,7 @@ public partial class G : Node
 
 		Random _random = new Random();
         private int[] _defaultSpawnWeight = { 600, 170, 80, 40, 110 };
-        private float[] _crossWeight = new float[G.CrossesInGameTotal];
+        private float[] _crossWeight = new float[CrossesInGameTotal];
         private int _lastAviableCrossNumber = 0;
         private float _lastCheckedScoresValue = 0;
 

@@ -17,6 +17,7 @@ sources/0 = SubResource("TileSetAtlasSource_u6r4h")
 resource_local_to_scene = false
 
 [node name="LevelEditor" type="Control"]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -30,6 +31,7 @@ script = ExtResource("1_iqefj")
 position = Vector2(640, 360)
 
 [node name="LevelContainer" type="Node2D" parent="."]
+process_mode = 1
 
 [node name="AssistiveTileMap" type="TileMap" parent="."]
 z_index = 100
