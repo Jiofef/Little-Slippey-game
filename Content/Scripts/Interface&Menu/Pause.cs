@@ -4,6 +4,9 @@ using System;
 public partial class Pause : CanvasLayer
 {
     TextureButton _rewindButton;
+
+    private bool _isPaused = false;
+
     public override void _Ready()
     {
         _rewindButton = GetNode<TextureButton>("Interface/ButtonsFrame/Rewind");
@@ -25,7 +28,7 @@ public partial class Pause : CanvasLayer
             G.IsCrossesEnabled = true;
             G.IsProgressPaused = false;
             G.CrossSpawnMultiplier = 1;
-            EmitSignal("LevelReseting");
+            G.Main.EmitSignal("LevelReseting");
             if (G.IsLevelVanilla)
             {
                 UnchangableMeta.SaveRecords();
@@ -43,8 +46,18 @@ public partial class Pause : CanvasLayer
         ChangePause(GetTree().Paused);
     }
 
+    public override void _ExitTree()
+    {
+        if (_isPaused)
+        {
+            AudioServer.SetBusEffectEnabled(2, 0, false);
+            AudioServer.SetBusEffectEnabled(6, 0, false);
+        }
+    }
+
     private void ChangePause(bool IsPaused)
     {
+        _isPaused = !IsPaused;
         AudioServer.SetBusEffectEnabled(2, 0, !IsPaused);
         AudioServer.SetBusEffectEnabled(6, 0, !IsPaused);
         GetNode<TextureButton>("Interface/ButtonsFrame/Resume").GrabFocus();

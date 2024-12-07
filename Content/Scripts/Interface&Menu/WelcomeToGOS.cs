@@ -1,6 +1,5 @@
 using Godot;
 using GodotSteam;
-using System.Runtime.InteropServices;
 
 public partial class WelcomeToGOS : Control
 {

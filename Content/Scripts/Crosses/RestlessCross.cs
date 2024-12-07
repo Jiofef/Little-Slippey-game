@@ -4,6 +4,8 @@ using System;
 public partial class RestlessCross : Node2D
 {
     [Export] bool _isCrossEnhanced;
+    Sprite2D _crossSprite, _warningSprite;
+
     private int _ticksToExplosion = 60;
     private float _defaultTicksToAppear = 60;
     private float _ticksToAppear = 0;
@@ -23,6 +25,9 @@ public partial class RestlessCross : Node2D
         rotationGoal = random.Next(-30, 30);
 
         RotationDegrees = defaultRotation;
+
+        _crossSprite = GetNode<Sprite2D>("CrossSprite");
+        _warningSprite = GetNode<Sprite2D>("WarningSprite");
     }
 
     public override void _PhysicsProcess(double delta)
@@ -34,6 +39,7 @@ public partial class RestlessCross : Node2D
             TicksCoeff = Mathf.Lerp(0.0f, 1.0f, 1 - (1 - TicksCoeff) * (1 - TicksCoeff) * (1 - TicksCoeff));
 
             RotationDegrees = defaultRotation + rotationGoal * TicksCoeff;
+            _warningSprite.GlobalPosition = _crossSprite.GlobalPosition - new Vector2(2, 2) * (3 - 2 * TicksCoeff);
             Scale = new Vector2(3 - 2 * TicksCoeff, 3 - 2 * TicksCoeff);
             Modulate = new Color(Modulate.R, Modulate.G, Modulate.B, TicksCoeff);
         }
@@ -72,8 +78,8 @@ public partial class RestlessCross : Node2D
 
             if (!explosionAnimation.IsPlaying())
             {
-                GetNode<Sprite2D>("CrossSprite").QueueFree();
-                GetNode<Sprite2D>("WarningSprite").QueueFree();
+                _crossSprite.QueueFree();
+                _warningSprite.QueueFree();
                 GetNode<AudioStreamPlayer>("ExplosionSound").Play();
                 explosionAnimation.Visible = true;
                 explosionAnimation.Play();

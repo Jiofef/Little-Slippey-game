@@ -17,7 +17,7 @@ public partial class TileMode : Control
 
     public override void _Ready()
     {
-        _selectedTileMap = L._level.GetNode<TileMap>("Level/TileMap");
+        _selectedTileMap = L._main.GetNode<TileMap>("Level/TileMap");
         _assistiveTileMap = L.GetNode<TileMap>("AssistiveTileMap");
         _erasingAssistiveTileMap = L.GetNode<TileMap>("ErasingAssistiveTileMap");
         _assistiveTileMap.TileSet = _selectedTileMap.TileSet;

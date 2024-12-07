@@ -156,7 +156,7 @@ public partial class NodeMode : Control
                 SaveNodeTo(L._selectedNode, L._mapFolder);
                 break;
             case 7:
-                DisplayServer.ClipboardSet(L._level.GetPathTo(L._selectedNode));
+                DisplayServer.ClipboardSet(L._main.GetPathTo(L._selectedNode));
                 break;
             case 8:
                 DeleteNodeByItem(SelectedItem);
@@ -191,9 +191,9 @@ public partial class NodeMode : Control
             }
         }
         var Item = _nodesButtonsTree.CreateItem();
-        Item.SetText(0, L._mainLevelScene.Name);
-        Item.SetMeta("CorrespondingNode", L._mainLevelScene);
-        Recursion(L._mainLevelScene, Item);
+        Item.SetText(0, L._level.Name);
+        Item.SetMeta("CorrespondingNode", L._level);
+        Recursion(L._level, Item);
 
     }
     public void SaveNodeTo(Node node, string directory)
@@ -442,7 +442,7 @@ public partial class NodeMode : Control
     public void SetSeeAllTheNodes(bool value)
     {
         L._seeAllTheNodes = value;
-        L._mainLevelScene = L._seeAllTheNodes ? L._level : L._level.GetNode(L._mainLevelSceneName);
+        L._level = L._seeAllTheNodes ? L._main : L._main.GetNode(L._mainLevelSceneName);
         UpdateVisibleNodesButtons();
     }
 

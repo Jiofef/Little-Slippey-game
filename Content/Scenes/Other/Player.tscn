@@ -119,38 +119,6 @@ collision_mask = 132
 position = Vector2(22, 4)
 shape = SubResource("2")
 
-[node name="Sounds" type="Node" parent="."]
-
-[node name="Climb" type="AudioStreamPlayer" parent="Sounds"]
-stream = ExtResource("2_bn55d")
-volume_db = 5.0
-bus = &"Player"
-
-[node name="Death" type="AudioStreamPlayer" parent="Sounds"]
-stream = ExtResource("3_e2byo")
-volume_db = 10.0
-bus = &"Player"
-
-[node name="PullDownHit" type="AudioStreamPlayer" parent="Sounds"]
-stream = ExtResource("4_eqohp")
-volume_db = 6.0
-bus = &"Player"
-
-[node name="Jump" type="AudioStreamPlayer" parent="Sounds"]
-stream = ExtResource("5_4c4de")
-volume_db = -3.0
-bus = &"Player"
-
-[node name="PullDown" type="AudioStreamPlayer" parent="Sounds"]
-stream = ExtResource("6_ouqh1")
-volume_db = -10.0
-bus = &"Player"
-
-[node name="Ghost" type="Sprite2D" parent="."]
-visible = false
-scale = Vector2(4, 4)
-texture = ExtResource("10")
-
 [node name="Camera2D" type="Camera2D" parent="."]
 process_mode = 3
 zoom = Vector2(1.25, 1.25)
@@ -270,6 +238,38 @@ frame_progress = 0.601279
 stream = ExtResource("12_jom63")
 volume_db = -5.0
 bus = &"Player"
+
+[node name="Sounds" type="Node" parent="."]
+
+[node name="Climb" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("2_bn55d")
+volume_db = 5.0
+bus = &"Player"
+
+[node name="Death" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("3_e2byo")
+volume_db = 10.0
+bus = &"Player"
+
+[node name="PullDownHit" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("4_eqohp")
+volume_db = 6.0
+bus = &"Player"
+
+[node name="Jump" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("5_4c4de")
+volume_db = -3.0
+bus = &"Player"
+
+[node name="PullDown" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("6_ouqh1")
+volume_db = -10.0
+bus = &"Player"
+
+[node name="Ghost" type="Sprite2D" parent="."]
+visible = false
+scale = Vector2(4, 4)
+texture = ExtResource("10")
 
 [node name="SkinContainer" type="Node2D" parent="."]
 

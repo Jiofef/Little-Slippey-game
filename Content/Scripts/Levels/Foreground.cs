@@ -11,12 +11,12 @@ public partial class Foreground : Node2D
         else if (_doHideForeground && Modulate.A > 0.3f)
             Modulate = new Color(Modulate.R, Modulate.G, Modulate.B, Modulate.A - 0.04f);
     }
-    public void Hide()
+    new public void Hide()
 	{
         _doHideForeground = true;
         SetPlayerCollidingWithFlyingCars(false);
     }
-    public void Show()
+    new public void Show()
     {
         _doHideForeground = false;
         SetPlayerCollidingWithFlyingCars(true);

@@ -198,7 +198,7 @@ animations = [{
 [node name="Slippey" type="AnimatedSprite2D"]
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_ha5cw")
-animation = &"WallCatch"
+animation = &"Idle"
 autoplay = "Idle"
 script = ExtResource("2_ktwy3")
 metadata/HasAnimationPlayer = false

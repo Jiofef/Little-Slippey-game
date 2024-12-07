@@ -13,7 +13,7 @@ public partial class LevelEditor : Control
 
     public PackedScene _packedLevel;
 
-    public Node _level, _mainLevelScene;
+    public Node _main, _level;
     public string _mainLevelSceneName = "Level";
 
     public Node[] _allTheNodes = new Node[0];
@@ -21,7 +21,15 @@ public partial class LevelEditor : Control
 
 
     public bool _seeAllTheNodes = false;
-    public bool[] _editorCrutches = { true, true, true, true };
+
+    /// <summary>
+    /// <br>1 - Disable the ProcessMode of Main when entering the editor and enable it when loading the level</br>
+    /// <br>2 - Disable the ProcessMode of EpicIntro when entering the editor and enable it when loading the level</br>
+    /// <br>3 - Disable the visibility of the pause when entering the editor and enable it when loading the level</br>
+    /// <br>4 - Disable the visibility of the intro level when entering the editor and enable it when loading the level</br>
+    /// <br>5 - Disable the visibility of scores when entering the editor and enable it when loading a level</br>
+    /// </summary>
+    public bool[] _editorCrutches = { true, true, true, true, true };
 
 
     public enum EditorMode { TileMode, NodeMode, CodeMode, SavePage }
@@ -54,30 +62,31 @@ public partial class LevelEditor : Control
         _mapFolder = G.ModMapFolder;
 
         G.IsLevelVanilla = false;
-        _level = (Node2D)ResourceLoader.Load<PackedScene>(_mapPath).Instantiate();
+        _main = (Node2D)ResourceLoader.Load<PackedScene>(_mapPath).Instantiate();
+
 
         if (_editorCrutches[0])
-            _level.ProcessMode = ProcessModeEnum.Disabled;
+            _main.ProcessMode = ProcessModeEnum.Disabled;
         if (_editorCrutches[1])
-            _level.GetNode<CanvasLayer>("Pause").Visible = false;
+            _main.GetNode("EpicIntro").ProcessMode = ProcessModeEnum.Disabled;
         if (_editorCrutches[2])
-            _level.GetNode<CanvasLayer>("EpicIntro").Visible = false;
+            _main.GetNode<CanvasLayer>("Pause").Visible = false;
         if (_editorCrutches[3])
-            _level.GetNode<Label>("Level/Player/Camera2D/GUI/Scores").SetDeferred("visible", false);
+            _main.GetNode<CanvasLayer>("EpicIntro").Visible = false;
+        if (_editorCrutches[4])
+            _main.GetNode<Label>("Level/Player/Camera2D/GUI/Scores").SetDeferred("visible", false);
 
-        GetNode("LevelContainer").AddChild(_level);
+        GetNode("LevelContainer").AddChild(_main);
 
         GetTree().Paused = true;
 
 
-        _mainLevelScene = _level.GetNode(_mainLevelSceneName);
+        _level = _main.GetNode(_mainLevelSceneName);
         _camera = GetNode<Camera2D>("Camera2D");
         _screenButton = GetNode<TextureButton>("GUILayer/ScreenButton");
         _modeGuiControl = GetNode<Control>("GUILayer/ModeGUIControl");
         _extraCursor = GetNode<Sprite2D>("GUILayer/ExtraCursor");
         _guiDelayTimer = GetNode<Timer>("GUILayer/GUIDelayTimer");
-
-        GD.Print(_level.Name);
     }
 
     public Vector2 _globalMousePos, _localMousePos, _guiMousePos, _globalMouseLastFramePos = new Vector2(), _localMouseLastFramePos;
@@ -315,7 +324,7 @@ public partial class LevelEditor : Control
             }
         }
         _allTheNodes = new Node[0];
-        Recursion(_level);
+        Recursion(_main);
     }
 
     public void SetOption(Variant value, string option) // A little crutch for godot signals that gives the value argument first
@@ -378,23 +387,31 @@ public partial class LevelEditor : Control
 
     public void TestLevel() // Doesn't work well yet
     {
+        GetTree().Paused = false;
         SaveLevel();
         GetTree().ChangeSceneToPacked(_packedLevel);
     }
     public void SaveLevel() // Doesn't work well as well
     {
         _packedLevel = new PackedScene();
-        var LevelClone = _level.Duplicate();
+        var LevelClone = _main.Duplicate();
         if (_editorCrutches[0])
-            LevelClone.ProcessMode = ProcessModeEnum.Always;
+            LevelClone.ProcessMode = ProcessModeEnum.Pausable;
         if (_editorCrutches[1])
-            LevelClone.GetNode<CanvasLayer>("Pause").Visible = true;
+            LevelClone.GetNode("EpicIntro").ProcessMode = ProcessModeEnum.Always;
         if (_editorCrutches[2])
-            LevelClone.GetNode<CanvasLayer>("EpicIntro").Visible = true;
+            LevelClone.GetNode<CanvasLayer>("Pause").Visible = true;
         if (_editorCrutches[3])
+            LevelClone.GetNode<CanvasLayer>("EpicIntro").Visible = true;
+        if (_editorCrutches[4])
             LevelClone.GetNode<Label>("Level/Player/Camera2D/GUI/Scores").Visible = true;
 
         _packedLevel.Pack(LevelClone);
         ResourceSaver.Save(_packedLevel, _mapPath);
+    }
+    public void Leave()
+    {
+        GetTree().Paused = false;
+        GetTree().ChangeSceneToFile("res://Content/Scenes/Interface&Menu/WelcomeToGOS.tscn");
     }
 }

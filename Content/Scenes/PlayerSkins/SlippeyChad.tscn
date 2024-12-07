@@ -295,6 +295,7 @@ sprite_frames = SubResource("SpriteFrames_b58yy")
 animation = &"Death"
 autoplay = "Idle"
 script = ExtResource("2_xusc5")
+HasDeathAnimation = true
 metadata/HasAnimationPlayer = false
 metadata/HasDeathPlayerAnimation = true
 

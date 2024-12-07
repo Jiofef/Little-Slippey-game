@@ -35,6 +35,7 @@ public partial class DefaultCross : Node2D
             TicksCoeff = Mathf.Lerp(0.0f, 1.0f, 1 - (1 - TicksCoeff) * (1 - TicksCoeff) * (1 - TicksCoeff));
 
             RotationDegrees = _defaultRotation + _rotationGoal * TicksCoeff;
+            _warningSprite.GlobalPosition = _crossSprite.GlobalPosition - new Vector2(2, 2) * (3 - 2 * TicksCoeff);
             Scale = new Vector2(3 - 2 * TicksCoeff, 3 - 2 * TicksCoeff);
             Modulate = new Color(Modulate.R, Modulate.G, Modulate.B, TicksCoeff);
         }

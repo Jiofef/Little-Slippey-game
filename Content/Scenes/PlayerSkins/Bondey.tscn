@@ -198,7 +198,8 @@ sprite_frames = SubResource("SpriteFrames_2me0h")
 animation = &"Idle"
 autoplay = "Idle"
 script = ExtResource("3_q8sv5")
-_enableSecondJumpAndFallFrame = true
+HasDeathAnimation = true
+HasSideJumpAndFallFrame = true
 metadata/HasAnimationPlayer = false
 metadata/HasDeathPlayerAnimation = true
 

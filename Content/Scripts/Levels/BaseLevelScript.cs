@@ -8,7 +8,6 @@ public partial class BaseLevelScript : Node2D
     PackedScene[] _crosses = new PackedScene[G.CrossesInGameTotal];
 
     Random _random = new Random();
-
     private int[] _crossDefaultWeight = { 600, 170, 80, 40, 110 };
     private float[] _crossWeight = new float[G.CrossesInGameTotal];
     private int _lastAviableCrossNumber = 0;

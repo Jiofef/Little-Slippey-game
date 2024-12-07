@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=4 uid="uid://dkibh4v7pkdaf"]
+[gd_scene load_steps=27 format=4 uid="uid://dkibh4v7pkdaf"]
 
 [ext_resource type="Texture2D" uid="uid://bup1u0y7qgmvb" path="res://Content/Sprites/Interface/MenuBackground.png" id="1_gbq5h"]
 [ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/WelcomeToGOS.cs" id="1_u85jq"]
@@ -230,10 +230,50 @@ tracks/5/keys = {
 "values": [-10.0, 6.0]
 }
 
+[sub_resource type="Animation" id="Animation_j4ndi"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MonitorEffects/InitializationBlackout:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Buttons:process_mode")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Music:volume_db")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [6.0]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_81kv7"]
 _data = {
 "BackToGOS": SubResource("Animation_0im2c"),
-"Initialization": SubResource("Animation_267tr")
+"Initialization": SubResource("Animation_267tr"),
+"RESET": SubResource("Animation_j4ndi")
 }
 
 [node name="WelcomeToGOS" type="Control"]

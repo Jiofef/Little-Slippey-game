@@ -282,6 +282,8 @@ sprite_frames = SubResource("SpriteFrames_chcc5")
 animation = &"Idle"
 autoplay = "Idle"
 script = ExtResource("2_60qb7")
+HasAnimationPlayer = false
+HasDeathAnimation = true
 metadata/HasAnimationPlayer = false
 metadata/HasDeathPlayerAnimation = true
 

@@ -33,6 +33,9 @@ public partial class Meta : Node
         public int Dificulty = 0;
         public bool[] AdditionStatuses = new bool[4];
         public int ChosenSkinIndex = 0;
+
+        public bool IsSkinModded = false;
+        public string ChosenModSkin;
     }
     public GameplayClass Gameplay = new GameplayClass();
 
@@ -124,6 +127,8 @@ public partial class Meta : Node
         ReturnOptions.Dificulty = 0;
         ReturnOptions.AdditionStatuses = new bool[4];
         ReturnOptions.ChosenSkinIndex = 0;
+        ReturnOptions.IsSkinModded = false;
+        ReturnOptions.ChosenModSkin = null;
 
         return ReturnOptions;
     }

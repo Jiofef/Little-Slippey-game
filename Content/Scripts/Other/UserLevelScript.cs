@@ -3,20 +3,14 @@ using System;
 
 public partial class UserLevelScript : Node2D
 {
-    CharacterBody2D _player;
     public void StartLevel()
     {
         G.ResetValues();
         Input.MouseMode = !GetTree().Paused ? Input.MouseModeEnum.Hidden : Input.MouseModeEnum.Visible;
-        AudioServer.SetBusMute(2, Meta.Instance.Sound.BusVolumes[2] <= -30);
-        GetNode<AudioStreamPlayer>("../LevelMusicPlayer").StreamPaused = false;
-        _player = GetNode<CharacterBody2D>("Player");
-
-        ProcessMode = ProcessModeEnum.Pausable;
     }
     public override void _Ready()
 	{
-        if (ProcessMode != ProcessModeEnum.Disabled || G.DidLevelIntroPassed)
+        if (G.DidLevelIntroPassed)
             StartLevel();
     }
 
@@ -25,7 +19,7 @@ public partial class UserLevelScript : Node2D
         if (G.IsDebugEnabled)
         {
             if (Input.IsActionPressed("TeleportDebug"))
-                _player.GlobalPosition = GetGlobalMousePosition();
+                G.Player.GlobalPosition = GetGlobalMousePosition();
 
             if (Input.IsActionJustReleased("GetScoreDebug"))
             {
@@ -48,8 +42,8 @@ public partial class UserLevelScript : Node2D
 
             if (Input.IsActionJustPressed("PlayerPhysicsDebug"))
             {
-                _player.SetPhysicsProcess(!_player.IsPhysicsProcessing());
-                GD.Print("PlayerPhysics: " + _player.IsPhysicsProcessing());
+                G.Player.SetPhysicsProcess(!G.Player.IsPhysicsProcessing());
+                GD.Print("PlayerPhysics: " + G.Player.IsPhysicsProcessing());
             }
 
             if (Input.IsActionJustPressed("CrossesEnablingDebug"))

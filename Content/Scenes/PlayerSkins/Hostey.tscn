@@ -316,9 +316,10 @@ colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 [node name="Hostey" type="AnimatedSprite2D"]
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_0j3go")
-animation = &"Death"
+animation = &"Idle"
 autoplay = "Idle"
 script = ExtResource("2_1qpmb")
+HasDeathAnimation = true
 metadata/HasAnimationPlayer = false
 metadata/HasDeathPlayerAnimation = true
 

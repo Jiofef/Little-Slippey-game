@@ -227,7 +227,7 @@ sprite_frames = SubResource("SpriteFrames_a5dnx")
 animation = &"Idle"
 autoplay = "Idle"
 script = ExtResource("2_lclxa")
-metadata/HasAnimationPlayer = false
+metadata/HasAnimationPlayer = true
 metadata/HasDeathPlayerAnimation = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

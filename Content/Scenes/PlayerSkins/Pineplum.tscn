@@ -224,6 +224,7 @@ sprite_frames = SubResource("SpriteFrames_vfmv7")
 animation = &"Idle"
 autoplay = "Idle"
 script = ExtResource("2_bom76")
+HasDeathAnimation = true
 metadata/HasAnimationPlayer = false
 metadata/HasDeathPlayerAnimation = true
 

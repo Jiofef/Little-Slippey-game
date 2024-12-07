@@ -226,6 +226,7 @@ animations = [{
 resource_name = "Climb"
 length = 0.15
 step = 0.05
+capture_included = true
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -302,6 +303,7 @@ tracks/5/keys = {
 [sub_resource type="Animation" id="Animation_oi6ak"]
 resource_name = "Death"
 length = 20.0
+capture_included = true
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -440,6 +442,7 @@ tracks/10/keys = {
 [sub_resource type="Animation" id="Animation_ayrf0"]
 resource_name = "Fall"
 length = 0.3
+capture_included = true
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -676,6 +679,7 @@ tracks/11/keys = {
 [sub_resource type="Animation" id="Animation_8egte"]
 resource_name = "Jump"
 length = 0.3
+capture_included = true
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -925,6 +929,7 @@ tracks/9/keys = {
 [sub_resource type="Animation" id="Animation_qscia"]
 resource_name = "WallCatch"
 length = 0.2
+capture_included = true
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -1093,6 +1098,8 @@ sprite_frames = SubResource("SpriteFrames_68fvk")
 animation = &"Idle"
 autoplay = "Idle"
 script = ExtResource("2_t3u54")
+HasAnimationAnalogues = true
+HasDeathAnimation = true
 metadata/HasAnimationPlayer = true
 metadata/HasDeathPlayerAnimation = true
 
@@ -1115,10 +1122,10 @@ texture = ExtResource("2_bpfdc")
 flip_h = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "Idle"
 libraries = {
 "": SubResource("AnimationLibrary_0xrdk")
 }
+autoplay = "Idle"
 next/Climb = &"Jump"
 
 [node name="Artefact" type="CPUParticles2D" parent="."]

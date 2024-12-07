@@ -1,4 +1,4 @@
-[gd_scene load_steps=68 format=4 uid="uid://c2nxiddufnutu"]
+[gd_scene load_steps=69 format=4 uid="uid://c2nxiddufnutu"]
 
 [ext_resource type="Script" path="res://Content/Scripts/Other/MainScript.cs" id="1_52yug"]
 [ext_resource type="Script" path="res://Content/Scripts/Levels/Level10MusicPlayer.cs" id="2_1fwqt"]
@@ -22,6 +22,7 @@
 [ext_resource type="Texture2D" uid="uid://4udch8ejvu08" path="res://Content/Sprites/Interface/PauseButtonsFrame.png" id="17_t8ssq"]
 [ext_resource type="PackedScene" uid="uid://bwpstpk1xmkah" path="res://Content/Scenes/Interface&Menu/Button.tscn" id="18_iki0q"]
 [ext_resource type="Texture2D" uid="uid://dhr0k5tpvpg7n" path="res://Content/Sprites/Interface/Buttons/UnpauseButton.png" id="19_cvop0"]
+[ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/Pause.cs" id="20_bgikv"]
 [ext_resource type="Texture2D" uid="uid://bqua21jbasqml" path="res://Content/Sprites/Interface/Buttons/PauseRewindButton.png" id="20_lf4ru"]
 [ext_resource type="Texture2D" uid="uid://be5mi0sdy4bep" path="res://Content/Sprites/Interface/Buttons/PauseOptionsButton.png" id="21_pqe1n"]
 [ext_resource type="Texture2D" uid="uid://blp8i7meimekf" path="res://Content/Sprites/Interface/Buttons/PauseMenuButton.png" id="22_olv38"]
@@ -1242,10 +1243,12 @@ one_shot = true
 stream = ExtResource("16_mt6pq")
 
 [node name="Pause" type="CanvasLayer" parent="."]
-process_mode = 2
+process_mode = 3
 layer = 3
+script = ExtResource("20_bgikv")
 
 [node name="Interface" type="Control" parent="Pause"]
+process_mode = 2
 modulate = Color(1, 1, 1, 0)
 layout_mode = 3
 anchors_preset = 0

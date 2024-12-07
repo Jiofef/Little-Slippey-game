@@ -1,4 +1,4 @@
-[gd_scene load_steps=80 format=4 uid="uid://cma82s1tmg4rd"]
+[gd_scene load_steps=81 format=4 uid="uid://cma82s1tmg4rd"]
 
 [ext_resource type="Script" path="res://Content/Scripts/Other/MainScript.cs" id="1_r4pva"]
 [ext_resource type="Script" path="res://Content/Scripts/Levels/Level10RealityDissector.cs" id="2_a7alo"]
@@ -23,6 +23,7 @@
 [ext_resource type="AudioStream" uid="uid://cuvkdo1lyvynu" path="res://Content/Sounds/Other/EpicIntro.mp3" id="17_yr0y3"]
 [ext_resource type="Texture2D" uid="uid://bx0f1c20d2wai" path="res://Content/Sprites/Levels/DropesAndHeamsTileset.png" id="18_ew1u5"]
 [ext_resource type="Texture2D" uid="uid://4udch8ejvu08" path="res://Content/Sprites/Interface/PauseButtonsFrame.png" id="23_8mbe8"]
+[ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/Pause.cs" id="23_hkt3f"]
 [ext_resource type="PackedScene" uid="uid://bwpstpk1xmkah" path="res://Content/Scenes/Interface&Menu/Button.tscn" id="24_382xa"]
 [ext_resource type="Texture2D" uid="uid://dhr0k5tpvpg7n" path="res://Content/Sprites/Interface/Buttons/UnpauseButton.png" id="25_jgk1v"]
 [ext_resource type="Texture2D" uid="uid://bqua21jbasqml" path="res://Content/Sprites/Interface/Buttons/PauseRewindButton.png" id="26_c3541"]
@@ -1168,10 +1169,12 @@ position = Vector2(13856, 608)
 shape = SubResource("RectangleShape2D_pgrru")
 
 [node name="Pause" type="CanvasLayer" parent="."]
-process_mode = 2
+process_mode = 3
 layer = 3
+script = ExtResource("23_hkt3f")
 
 [node name="Interface" type="Control" parent="Pause"]
+process_mode = 2
 modulate = Color(1, 1, 1, 0)
 layout_mode = 3
 anchors_preset = 0

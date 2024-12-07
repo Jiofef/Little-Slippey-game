@@ -2780,7 +2780,6 @@ process_mode = 3
 bus = &"Music"
 script = ExtResource("2_okxpt")
 SaveTimeCodeWhenLevelResets = false
-SavePlayingWhenLevelResets = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="LevelMusicPlayer"]
 libraries = {
@@ -4684,10 +4683,11 @@ offset_bottom = 720.0
 color = Color(0.27451, 0, 0.164706, 0)
 
 [node name="Pause" type="CanvasLayer" parent="."]
-process_mode = 2
+process_mode = 3
 layer = 3
 
 [node name="Interface" type="Control" parent="Pause"]
+process_mode = 2
 modulate = Color(1, 1, 1, 0)
 layout_mode = 3
 anchors_preset = 0

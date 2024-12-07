@@ -16,6 +16,7 @@ public partial class G : Node
     public static Godot.Collections.Array<Node> NodeCopyBuffer = new Godot.Collections.Array<Node>();
     #endregion
 
+    ////////////////////////////
 
     #region These are used in game and in very rare cases can be used for modders. You can twist them any way you want, they don't break anything important, but do it wisely.
     public static float PlayerMoveCoeff = 1, // The more the player moves, the greater the coefficient from 0 to 1
@@ -24,8 +25,10 @@ public partial class G : Node
         AfterPlayerCorpseFlightTimer, // Starts when player death GUI starts appearing (Scores and "Press R")
         MusicStopTimeCode = 0; // It is necessary to put the music in the same position after restarting the level
 
+    public static readonly string[] VanillaSkinNames = ["Slippey", "Samey", "Sanboy", "Strawman", "Pineplum", "Bondey", "Sleepy", "Daley", "Hostey", "CompressMass", "JioYobaFefski", "SlippeyChad", "MISSINGNULL", "Corey"];
+
     public static readonly Vector2[] LevelXYSizes =
-{
+[
         new Vector2(1280, 640),
         new Vector2(1280, 640),
         new Vector2(2560, 640),
@@ -37,7 +40,7 @@ public partial class G : Node
         new Vector2(999999999, 640),
         new Vector2(2560, 1280),
         new Vector2(2560, 1280)
-    }; // In game levels sizes
+    ]; // In game levels sizes
 
     public static float GetPlayerCorpseFlightTimerCoeff() // The same as PlayerCorpseFlightTimer() but from 0 to 1
     {
@@ -85,6 +88,7 @@ public partial class G : Node
     }
     #endregion
 
+    ////////////////////////////
 
     #region May be used to some if statements or something, but be careful if you change it. There are other, more correct ways to change them.
     public static bool IsPlayerDead, // To change correctly, call Death() or Ressurect() in player's script
@@ -92,6 +96,7 @@ public partial class G : Node
     public static Vector4 CameraLimits; // Better use SetCameraLimits() from Player's script
     #endregion
 
+    ////////////////////////////
 
     #region May be used however you want
     public static bool IsProgressPaused = false, // Enables or disables the earning of points and increasing the difficulty of crosses
@@ -102,7 +107,7 @@ public partial class G : Node
     public static float Scores = 0, // Speaks for itself
                        CrossSpawnMultiplier = 1, // Too
                        CrossesProgressCoeff = 1, // Default crosses evolve every 30 seconds. If this equals 2, they will do it every 15 seconds. If it's 0.5 then 60 seconds. The evolve time can also change through CrossSpawner in the editor or code
-                       MusicRestartPosition = 0, // When music ends, if it can restart, it starts with this position. 1 = 1 second
+                       MusicStartPosition = 0, // When music ends, if it can restart, it starts with this position. 1 = 1 second
                        LevelCompleteTime = 150; // When this second comes, the level is passed. Can be used for different things
 
     public static Variant[] TransitiveVariant = new Variant[64]; // You can store almost anything here for anything. The game deletes the data only after entering the menu. If you need to save some data after restarting a level or moving to another scene, this option is perfect for you
@@ -182,12 +187,35 @@ public partial class G : Node
     /// Use this if you want to do something at the end of the level intro, or if the intro is skipped (e.g. it was already there). 
     /// 
     /// <para>wasIntroShown shows if the intro was shown this time. You can use this as a marker if the level was run for the first time (true if yes, false if not)</para>
+    /// <para>Instead, you can also use the OnLevelStarted signal from "Main" scene for a simpler structure</para>
+    /// <para>___</para>
+    /// <para>Presumably there should be such a structure to avoid NullReferenceException:</para>
+    /// <para>
+    /// <br>    private G.LevelStartedEventHandler _onLevelStartedHandler;</br>
+    /// <br>    public override void _Ready()</br>
+    /// <br>    {</br>
+    /// <br>        _onLevelStartedHandler = (bool wasIntroShown) => OnLevelStarted();</br>
+    /// <br>        G.OnLevelStarted += _onLevelStartedHandler;</br>
+    /// <br>    }</br>
+    /// <br>    private void OnLevelStarted()</br>
+    /// <br>    }</br>
+    /// <br>//your code</br>
+    /// <br>    }</br>
+    /// <br>    public override void _ExitTree()</br>
+    /// <br>    {</br>
+    /// <br>        if (_onLevelStartedHandler != null)</br>
+    /// <br>            G.OnLevelStarted -= _onLevelStartedHandler;</br>
+    /// <br>    {</br>
+    /// </para>
+    /// 
     /// </summary>
     public static event LevelStartedEventHandler OnLevelStarted = delegate { };
 
     #endregion
 
     #endregion
+
+    ////////////////////////////
 
     // Other stuff
 
@@ -210,7 +238,7 @@ public partial class G : Node
 		CrossesProgressCoeff = 1;
 		CurrentLevel = 0;
         DidLevelIntroPassed = false;
-        MusicRestartPosition = 0;
+        MusicStartPosition = 0;
         MusicStopTimeCode = 0;
         MusicName = "";
 		LevelCompleteTime = 150;
@@ -235,7 +263,6 @@ public partial class G : Node
 				 for (int i = 0; i < _scenes.Length; i++)
 				 {
                     _scenes[i] = GD.Load<PackedScene>(ScenesPathes[i]);
-                    GD.Print(_scenes[i].Instantiate().Name);
                 }
 			}
 		}

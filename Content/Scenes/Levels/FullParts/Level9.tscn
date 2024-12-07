@@ -1,4 +1,4 @@
-[gd_scene load_steps=117 format=4 uid="uid://dk25coyr36re8"]
+[gd_scene load_steps=118 format=4 uid="uid://dk25coyr36re8"]
 
 [ext_resource type="Script" path="res://Content/Scripts/Other/MainScript.cs" id="1_evesd"]
 [ext_resource type="Script" path="res://Content/Scripts/Other/LevelMusicPlayer.cs" id="2_78ana"]
@@ -29,6 +29,7 @@
 [ext_resource type="Texture2D" uid="uid://dum4qduobam4q" path="res://Content/Sprites/Levels/Level9/DoomApproachesAnimation.png" id="25_rrbgu"]
 [ext_resource type="Script" path="res://Content/Scripts/Levels/Level9DoomApproachesAnimation.cs" id="26_py352"]
 [ext_resource type="Texture2D" uid="uid://4udch8ejvu08" path="res://Content/Sprites/Interface/PauseButtonsFrame.png" id="29_i2dx7"]
+[ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/Pause.cs" id="29_xscdb"]
 [ext_resource type="PackedScene" uid="uid://bwpstpk1xmkah" path="res://Content/Scenes/Interface&Menu/Button.tscn" id="30_gvjgv"]
 [ext_resource type="Texture2D" uid="uid://dhr0k5tpvpg7n" path="res://Content/Sprites/Interface/Buttons/UnpauseButton.png" id="31_st2k2"]
 [ext_resource type="Texture2D" uid="uid://bqua21jbasqml" path="res://Content/Sprites/Interface/Buttons/PauseRewindButton.png" id="32_uh6au"]
@@ -2016,10 +2017,12 @@ position = Vector2(1280, 640)
 shape = SubResource("CapsuleShape2D_16p1l")
 
 [node name="Pause" type="CanvasLayer" parent="."]
-process_mode = 2
+process_mode = 3
 layer = 3
+script = ExtResource("29_xscdb")
 
 [node name="Interface" type="Control" parent="Pause"]
+process_mode = 2
 modulate = Color(1, 1, 1, 0)
 layout_mode = 3
 anchors_preset = 0

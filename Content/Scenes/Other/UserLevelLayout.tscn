@@ -1,4 +1,4 @@
-[gd_scene load_steps=78 format=3 uid="uid://ugapo2ny55bq"]
+[gd_scene load_steps=79 format=3 uid="uid://ugapo2ny55bq"]
 
 [ext_resource type="Script" path="res://Content/Scripts/Other/MainScript.cs" id="1_q56u5"]
 [ext_resource type="Script" path="res://Content/Scripts/Other/LevelMusicPlayer.cs" id="2_6ioiu"]
@@ -28,6 +28,7 @@
 [ext_resource type="Texture2D" uid="uid://b1dppreruk7js" path="res://Content/Sprites/Levels/poliSiSagEtilEseT.png" id="15_xjndr"]
 [ext_resource type="PackedScene" uid="uid://dlscufxb5f1ca" path="res://Content/Scenes/Other/Player.tscn" id="17_5hmvf"]
 [ext_resource type="Script" path="res://Content/Scripts/Crosses/CrossSpawner.cs" id="18_d522f"]
+[ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/Pause.cs" id="19_02qi8"]
 
 [sub_resource type="Animation" id="Animation_p3npb"]
 resource_name = "MusicStarting"
@@ -2227,7 +2228,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 1)]
+"values": [Color(1, 1, 1, 0)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -2239,7 +2240,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, 520)]
+"values": [Vector2(0, 720)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4p2pf"]
@@ -2417,10 +2418,13 @@ process_mode = 1
 script = ExtResource("18_d522f")
 
 [node name="Pause" type="CanvasLayer" parent="."]
-process_mode = 2
+process_mode = 3
 layer = 3
+script = ExtResource("19_02qi8")
 
 [node name="Interface" type="Control" parent="Pause"]
+process_mode = 2
+modulate = Color(1, 1, 1, 0)
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1280.0
@@ -2436,9 +2440,9 @@ color = Color(0, 0.501961, 0.501961, 0.196078)
 
 [node name="ButtonsFrame" type="Control" parent="Pause/Interface"]
 anchors_preset = 0
-offset_top = 520.0
+offset_top = 720.0
 offset_right = 1280.0
-offset_bottom = 720.0
+offset_bottom = 920.0
 
 [node name="Sprite2D" type="Sprite2D" parent="Pause/Interface/ButtonsFrame"]
 scale = Vector2(4, 4)
@@ -2504,6 +2508,7 @@ libraries = {
 [node name="EpicIntro" type="CanvasLayer" parent="."]
 process_mode = 3
 layer = 10
+visible = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="EpicIntro"]
 root_node = NodePath("../..")
@@ -2554,7 +2559,7 @@ bus = &"Interface"
 process_mode = 3
 layer = 100
 
-[connection signal="animation_finished" from="LevelMusicPlayer/AnimationPlayer" to="." method="MusicAnimationFinished"]
+[connection signal="animation_finished" from="LevelMusicPlayer/AnimationPlayer" to="LevelMusicPlayer" method="MusicAnimationFinished"]
 [connection signal="pressed" from="Pause/Interface/ButtonsFrame/Resume" to="." method="UnPause"]
 [connection signal="pressed" from="Pause/Interface/ButtonsFrame/Options" to="." method="Options"]
 [connection signal="pressed" from="Pause/Interface/ButtonsFrame/Menu" to="." method="Menu"]

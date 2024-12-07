@@ -58,32 +58,40 @@ offset_top = 67.0
 offset_right = 1036.0
 offset_bottom = 96.0
 theme = SubResource("Theme_aodif")
-text = "Disable ProcessMode at the level when entering the editor and enable it when loading the level"
+text = "Disable the ProcessMode of Main when entering the editor and enable it when loading the level"
 
 [node name="Crutch2" type="CheckButton" parent="."]
-layout_mode = 0
 offset_left = 26.0
 offset_top = 96.0
 offset_right = 1039.0
 offset_bottom = 125.0
 theme = SubResource("Theme_aodif")
-text = "Disable the visibility of the pause when entering the editor and enable it when loading the level"
+text = "Disable the ProcessMode of EpicIntro when entering the editor and enable it when loading the level"
 
 [node name="Crutch3" type="CheckButton" parent="."]
 layout_mode = 0
-offset_left = 26.0
+offset_left = 27.0
 offset_top = 125.0
-offset_right = 1084.0
+offset_right = 1040.0
 offset_bottom = 154.0
 theme = SubResource("Theme_aodif")
-text = "Disable the visibility of the intro level when entering the editor and enable it when loading the level"
+text = "Disable the visibility of the pause when entering the editor and enable it when loading the level"
 
 [node name="Crutch4" type="CheckButton" parent="."]
 layout_mode = 0
-offset_left = 26.0
-offset_top = 154.0
-offset_right = 1084.0
-offset_bottom = 183.0
+offset_left = 27.0
+offset_top = 157.0
+offset_right = 1085.0
+offset_bottom = 186.0
+theme = SubResource("Theme_aodif")
+text = "Disable the visibility of the intro level when entering the editor and enable it when loading the level"
+
+[node name="Crutch5" type="CheckButton" parent="."]
+layout_mode = 0
+offset_left = 27.0
+offset_top = 187.0
+offset_right = 1085.0
+offset_bottom = 216.0
 theme = SubResource("Theme_aodif")
 text = "Disable the visibility of scores when entering the editor and enable it when loading a level"
 
@@ -93,6 +101,7 @@ offset_left = 986.0
 offset_top = 492.0
 offset_right = 1114.0
 offset_bottom = 638.0
+text = "Save"
 
 [node name="TestLevelButton" type="Button" parent="."]
 layout_mode = 0
@@ -100,10 +109,20 @@ offset_left = 995.0
 offset_top = 340.0
 offset_right = 1123.0
 offset_bottom = 486.0
+text = "Test"
+
+[node name="SaveLevelButton2" type="Button" parent="."]
+offset_left = 815.0
+offset_top = 512.0
+offset_right = 943.0
+offset_bottom = 658.0
+text = "Leave"
 
 [connection signal="toggled" from="Crutch1" to="." method="SetCrutch" binds= [0]]
 [connection signal="toggled" from="Crutch2" to="." method="SetCrutch" binds= [1]]
 [connection signal="toggled" from="Crutch3" to="." method="SetCrutch" binds= [2]]
 [connection signal="toggled" from="Crutch4" to="." method="SetCrutch" binds= [3]]
+[connection signal="toggled" from="Crutch5" to="." method="SetCrutch" binds= [4]]
 [connection signal="pressed" from="SaveLevelButton" to="." method="SaveLevel"]
 [connection signal="pressed" from="TestLevelButton" to="." method="TestLevel"]
+[connection signal="pressed" from="SaveLevelButton2" to="." method="Leave"]

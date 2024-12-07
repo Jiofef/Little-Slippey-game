@@ -313,6 +313,7 @@ animation = &"Idle"
 autoplay = "Idle"
 frame_progress = 0.817513
 script = ExtResource("2_t4gni")
+HasDeathAnimation = true
 metadata/HasAnimationPlayer = false
 metadata/HasDeathPlayerAnimation = true
 

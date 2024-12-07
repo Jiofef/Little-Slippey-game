@@ -3,15 +3,15 @@ using System;
 
 public partial class Player : CharacterBody2D
 {
-    [Export] float _speed = 400, _gravity = 18.6f, _jumpForce = 600, _pushForce = 8;
-    [Export] bool _enableRigidBodyPhysics = false;
+    [Export] public float Speed = 400, Gravity = 18.6f, JumpForce = 600, PushForce = 8;
+    [Export] public bool EnableRigidBodyPhysics = false;
 
     [Signal] public delegate void CameraLimitsChangedEventHandler();
     [Signal] public delegate void PlayerDiedEventHandler();
 
     private float _inertion, _wallJumpTimer = 0, //WallJumping
           _climbTimer, _climbUncontrollingTimer, //Climbing
-          _moveCalculationTimer = 0; //Other
+          _moveCalculationFramesTimer = 0; //Other
     private int _wallDetectNumber, _nearWallsCount, _savedWallNumber, //WallJumping
         _climbBufer = 3, _savedClimbWallNumber; //Climbing
 
@@ -28,7 +28,7 @@ public partial class Player : CharacterBody2D
     State _state = State.Default;
 
     AnimatedSprite2D _animatedSprite;
-    AnimationPlayer _animationPlayer;
+    AnimationPlayer _animationPlayer = null;
 
     Vector2 _motion = new Vector2();
     Vector2[] _savedPastPositions = new Vector2[11];
@@ -50,16 +50,27 @@ public partial class Player : CharacterBody2D
         };
 
         if (_readyAlready) return;
+
+        #region Skin setting
         GetNode("SkinContainer/Default")?.QueueFree();
-        string[] SkinNames = {"Slippey", "Samey", "Sanboy", "Strawman", "Pineplum", "Bondey", "Sleepy", "Daley", "Hostey", "CompressMass", "JioYobaFefski", "SlippeyChad", "MISSINGNULL", "Corey"};
-        _animatedSprite = (AnimatedSprite2D)ResourceLoader.Load<PackedScene>("res://Content/Scenes/PlayerSkins/" + SkinNames[Meta.Instance.Gameplay.ChosenSkinIndex] + ".tscn").Instantiate();
+
+        if (!Meta.Instance.Gameplay.IsSkinModded)
+            _animatedSprite = (AnimatedSprite2D)ResourceLoader.Load<PackedScene>("res://Content/Scenes/PlayerSkins/" + G.VanillaSkinNames[Meta.Instance.Gameplay.ChosenSkinIndex] + ".tscn").Instantiate();
+        else;
+
         _animatedSprite.Connect("animation_finished", new Callable(this, "AnimationFinished"));
-        if (Convert.ToBoolean((string)_animatedSprite.GetMeta("HasAnimationPlayer")))
+        if (_animatedSprite is SkinScript)
         {
-            _skinAnimationPlayerEnabled = true;
-            _animationPlayer = _animatedSprite.GetNode<AnimationPlayer>("AnimationPlayer");
+            var skin = (SkinScript)_animatedSprite;
+            if (skin.HasAnimationAnalogues)
+            {
+                _skinAnimationPlayerEnabled = true;
+                _animationPlayer = _animatedSprite.GetNode<AnimationPlayer>("AnimationPlayer");
+            }
         }
+
         GetNode("SkinContainer").AddChild(_animatedSprite);
+        #endregion
 
         var cameraCallable = new Callable(GetNode("Camera2D"), "LimitsChangingBy");
         if (!IsConnected("CameraLimitsChanged", cameraCallable))
@@ -67,6 +78,8 @@ public partial class Player : CharacterBody2D
 
         _readyAlready = true;
     }
+
+
 
     public override void _PhysicsProcess(double delta)
     {
@@ -78,7 +91,7 @@ public partial class Player : CharacterBody2D
                 if (Meta.Instance.Gameplay.ChosenSkinIndex == 11) return;
                 Position += (_corpseMotion * G.GetReversedPlayerCorpseFlightTimerCoeff() * _corpseMotionMultiplier);
                 Rotation += _corpseMotion.X / 50 * G.GetReversedPlayerCorpseFlightTimerCoeff();
-                _corpseMotion.Y += _gravity / 200;
+                _corpseMotion.Y += Gravity / 200;
             }
             else
                 G.AfterPlayerCorpseFlightTimer += 0.016667f;
@@ -90,12 +103,12 @@ public partial class Player : CharacterBody2D
         {
             _motion = Velocity;
             if (_motion.Y < 1250)
-                _motion.Y += _gravity;
+                _motion.Y += Gravity;
 
             if (_state != State.DownDash)
             {
                 _motion.X += Input.GetActionStrength("ui_right") - Input.GetActionStrength("ui_left");
-                _motion.X *= _speed;
+                _motion.X *= Speed;
 
                 if (_state == State.Inerted)
                 {
@@ -118,13 +131,13 @@ public partial class Player : CharacterBody2D
             {
                 if (IsOnFloor())
                 {
-                    _motion.Y = -_jumpForce;
+                    _motion.Y = -JumpForce;
                     PlaySound("Jump");
                 }
                 else if (Input.IsActionPressed("WallCatch") && _wallDetectNumber != 0 && _inertion == 0 && _wallJumpTimer < 0 && _climbTimer < 0)
                 {
                     _savedWallNumber = _wallDetectNumber;
-                    _motion.Y = -_jumpForce;
+                    _motion.Y = -JumpForce;
                     _inertion = 1.25f * -_savedWallNumber;
                     _state = State.Inerted;
                     PlaySound("Climb");
@@ -135,7 +148,7 @@ public partial class Player : CharacterBody2D
                         _animationPlayer.Play("Climb");
                     _climbTimer = 0.2f;
                     _climbBufer--;
-                    _motion.Y = -_jumpForce * 0.7f;
+                    _motion.Y = -JumpForce * 0.7f;
                     _savedClimbWallNumber = _wallDetectNumber;
                     _climbUncontrollingTimer = 1;
                     _animatedSprite.Frame = 0;
@@ -153,7 +166,7 @@ public partial class Player : CharacterBody2D
             {
                 if (_state == State.Inerted)
                 {
-                    _motion.X += _inertion * _speed;
+                    _motion.X += _inertion * Speed;
                     _inertion -= _inertion > 0 ? 0.025f : -0.025f;
 
                     if (_inertion < 0.1f && _inertion > 0 || _inertion > -0.1f && _inertion < 0)
@@ -219,10 +232,10 @@ public partial class Player : CharacterBody2D
 
         //Physics injection
         {
-            _moveCalculationTimer += _floatDelta;
-            if (_moveCalculationTimer > 0.033f)
+            _moveCalculationFramesTimer ++;
+            if (_moveCalculationFramesTimer > 3)
             {
-                _moveCalculationTimer = 0;
+                _moveCalculationFramesTimer = 0;
                 _savedPastPositions[_savedPastPositions.Length - 1] = Position;
                 for (int i = 0; i < _savedPastPositions.Length - 1; i++)
                     _savedPastPositions[i] = _savedPastPositions[i + 1];
@@ -230,33 +243,31 @@ public partial class Player : CharacterBody2D
                 if (_moveCalculationStartTimer > 10)
                     G.PlayerMoveCoeff = MoveDist < 200 ? MoveDist / 200 : 1;
                 else _moveCalculationStartTimer++;
+
+                //BOO
+                var ghost = GetNode<Sprite2D>("Ghost");
+                if (ghost.Visible)
+                    ghost.GlobalPosition = new Vector2(_savedPastPositions[0].X, _savedPastPositions[0].Y);
             }
 
             Velocity = _motion;
             MoveAndSlide();
             Velocity = new Vector2(0, Velocity.Y);
 
-            if (_enableRigidBodyPhysics)
+            if (EnableRigidBodyPhysics)
             {
                 for (int i = 0; i < GetSlideCollisionCount(); i++)
                 {
                     var collision = GetSlideCollision(i);
                     if (collision.GetCollider() is RigidBody2D)
-                        ((RigidBody2D)collision.GetCollider()).ApplyCentralImpulse(-collision.GetNormal() * _pushForce);
+                        ((RigidBody2D)collision.GetCollider()).ApplyCentralImpulse(-collision.GetNormal() * PushForce);
                 }
             }
 
         }
-
-        //BOO
-        {
-            var ghost = GetNode<Sprite2D>("Ghost");
-            if (ghost.Visible)
-                ghost.GlobalPosition = new Vector2(_savedPastPositions[0].X, _savedPastPositions[0].Y);
-        }
     }
 
-    public void AnimationFinished()
+    private void AnimationFinished()
     {
         if (_animationName == "Climb")
         {
@@ -264,6 +275,30 @@ public partial class Player : CharacterBody2D
             _animatedSprite.Play();
         }
     }
+
+    private void LeftWallDetect()
+    {
+        _wallDetectNumber = -1;
+        _nearWallsCount++;
+    }
+
+    private void RightWallDetect()
+    {
+        _wallDetectNumber = 1;
+        _nearWallsCount++;
+    }
+
+    private void WallUndetected()
+    {
+        _nearWallsCount--;
+        if (_nearWallsCount <= 0)
+            _wallDetectNumber = 0;
+    }
+
+    //Above - use with caution
+
+
+    //Below - use freely 
 
     public void Death()
     {
@@ -306,24 +341,6 @@ public partial class Player : CharacterBody2D
     {
 
     }
-    public void LeftWallDetect()
-    {
-        _wallDetectNumber = -1;
-        _nearWallsCount++;
-    }
-
-    public void RightWallDetect()
-    {
-        _wallDetectNumber = 1;
-        _nearWallsCount++;
-    }
-
-    public void WallUndetected()
-    {
-        _nearWallsCount--;
-        if (_nearWallsCount <= 0)
-            _wallDetectNumber = 0;
-    }
 
     public void SetCameraLimits(Vector4 value, bool DoResetSmoothing = false)
     {
@@ -336,11 +353,13 @@ public partial class Player : CharacterBody2D
         GetNode<Camera2D>("Camera2D").PositionSmoothingSpeed = value;
     }
 
+
+
+    // Use that two if you need to limit the character's flight after death (or increase it, god knows what you're doing).
     public void SetCorpseMotionMultiplierX(float value)
     {
         _corpseMotionMultiplier.X = value;
     }
-
     public void SetCorpseMotionMultiplierY(float value)
     {
         _corpseMotionMultiplier.Y = value;

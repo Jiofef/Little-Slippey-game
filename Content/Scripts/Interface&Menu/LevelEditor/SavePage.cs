@@ -9,6 +9,11 @@ public partial class SavePage : Control
     {
         L._editorCrutches[index] = value;
     }
+    public void Leave()
+    {
+        G.CompletelyResetValues();
+        L.Leave();
+    }
 
     public void TestLevel()
     {
