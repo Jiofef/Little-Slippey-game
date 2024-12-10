@@ -64,6 +64,17 @@ public partial class LevelEditor : Control
         G.IsLevelVanilla = false;
         _main = (Node2D)ResourceLoader.Load<PackedScene>(_mapPath).Instantiate();
 
+        GetTree().Paused = true;
+
+        GetNode("LevelContainer").AddChild(_main);
+
+        _level = _main.GetNode(_mainLevelSceneName);
+        _camera = GetNode<Camera2D>("Camera2D");
+        _screenButton = GetNode<TextureButton>("GUILayer/ScreenButton");
+        _modeGuiControl = GetNode<Control>("GUILayer/ModeGUIControl");
+        _extraCursor = GetNode<Sprite2D>("GUILayer/ExtraCursor");
+        _guiDelayTimer = GetNode<Timer>("GUILayer/GUIDelayTimer");
+
 
         if (_editorCrutches[0])
             _main.ProcessMode = ProcessModeEnum.Disabled;
@@ -75,18 +86,6 @@ public partial class LevelEditor : Control
             _main.GetNode<CanvasLayer>("EpicIntro").Visible = false;
         if (_editorCrutches[4])
             _main.GetNode<Label>("Level/Player/Camera2D/GUI/Scores").SetDeferred("visible", false);
-
-        GetNode("LevelContainer").AddChild(_main);
-
-        GetTree().Paused = true;
-
-
-        _level = _main.GetNode(_mainLevelSceneName);
-        _camera = GetNode<Camera2D>("Camera2D");
-        _screenButton = GetNode<TextureButton>("GUILayer/ScreenButton");
-        _modeGuiControl = GetNode<Control>("GUILayer/ModeGUIControl");
-        _extraCursor = GetNode<Sprite2D>("GUILayer/ExtraCursor");
-        _guiDelayTimer = GetNode<Timer>("GUILayer/GUIDelayTimer");
     }
 
     public Vector2 _globalMousePos, _localMousePos, _guiMousePos, _globalMouseLastFramePos = new Vector2(), _localMouseLastFramePos;
@@ -406,6 +405,7 @@ public partial class LevelEditor : Control
         if (_editorCrutches[4])
             LevelClone.GetNode<Label>("Level/Player/Camera2D/GUI/Scores").Visible = true;
 
+
         _packedLevel.Pack(LevelClone);
         ResourceSaver.Save(_packedLevel, _mapPath);
     }
@@ -413,5 +413,19 @@ public partial class LevelEditor : Control
     {
         GetTree().Paused = false;
         GetTree().ChangeSceneToFile("res://Content/Scenes/Interface&Menu/WelcomeToGOS.tscn");
+    }
+    public void Crutch()
+    {
+        ColorRect colorRect1 = new ColorRect();
+        ColorRect colorRect2 = new ColorRect();
+        ColorRect colorRect3 = new ColorRect();
+        colorRect2.Owner = colorRect1;
+        colorRect3.Owner = colorRect2;
+
+        //PackedScene packedScene = new PackedScene();
+        //packedScene.
+        //packedScene.Pack(colorRect1);
+
+        //ResourceSaver.Save(packedScene, @"C:\Users\Jiofef\AppData\Roaming\Godot\app_userdata\Little Slippey\mods\CustomMap1\Other\sas.tscn");
     }
 }

@@ -1,5 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://dxuq8m0a88io7"]
+[gd_scene load_steps=3 format=3 uid="uid://dxuq8m0a88io7"]
 
+[ext_resource type="Theme" uid="uid://dkitr1ftp0yhs" path="res://Content/Other/Menu.tres" id="1_punsv"]
 [ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/LevelEditor/CodeMode.cs" id="1_wyc0j"]
 
 [node name="CodeModeGUI" type="Control"]
@@ -8,6 +9,7 @@ anchors_preset = 0
 offset_right = 1280.0
 offset_bottom = 720.0
 mouse_filter = 2
+theme = ExtResource("1_punsv")
 script = ExtResource("1_wyc0j")
 
 [node name="CodeEdit" type="CodeEdit" parent="."]

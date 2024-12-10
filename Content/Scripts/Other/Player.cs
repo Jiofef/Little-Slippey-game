@@ -3,14 +3,20 @@ using System;
 
 public partial class Player : CharacterBody2D
 {
-    [Export] public float Speed = 400, Gravity = 18.6f, JumpForce = 600, PushForce = 8;
+    [ExportGroup("Main settings")]
+    [Export] public float Speed = 430, Gravity = 18.6f, JumpForce = 620;
     [Export] public bool EnableRigidBodyPhysics = false;
+    [Export] public float RigidBodyPushForce = 8;
+
+    [ExportGroup("Secondary settings")]
+    [Export] public float CoyoteTime = 0.2f, WallJumpInertion = 1.4f, InertionControl = 3.3f;
 
     [Signal] public delegate void CameraLimitsChangedEventHandler();
     [Signal] public delegate void PlayerDiedEventHandler();
 
     private float _inertion, _wallJumpTimer = 0, //WallJumping
           _climbTimer, _climbUncontrollingTimer, //Climbing
+          _coyoteTimer, //Jumping
           _moveCalculationFramesTimer = 0; //Other
     private int _wallDetectNumber, _nearWallsCount, _savedWallNumber, //WallJumping
         _climbBufer = 3, _savedClimbWallNumber; //Climbing
@@ -18,19 +24,19 @@ public partial class Player : CharacterBody2D
     readonly float _floatDelta = 0.016667f;
 
     // other variable
-    private bool _isFliph, _skinAnimationPlayerEnabled, _readyAlready;
+    private bool _isFliph, _isDownDashing, _skinAnimationPlayerEnabled, _readyAlready;
 
     private string _animationName;
 
     private sbyte _moveCalculationStartTimer, _lastXMoveVector;
 
-    private enum State {Default, DownDash, Inerted}
-    State _state = State.Default;
+    private enum State {OnFloor, InAir, Climb, Inerted}
+    State _state = State.OnFloor;
 
     AnimatedSprite2D _animatedSprite;
     AnimationPlayer _animationPlayer = null;
 
-    Vector2 _motion = new Vector2();
+    public Vector2 Motion = new Vector2();
     Vector2[] _savedPastPositions = new Vector2[11];
 
     Vector2 _corpseMotion, _corpseMotionMultiplier = new Vector2(1, 1);
@@ -83,7 +89,7 @@ public partial class Player : CharacterBody2D
 
     public override void _PhysicsProcess(double delta)
     {
-        if (G.IsPlayerDead)
+        if (G.IsPlayerDead) //smertb
         {
             if (G.PlayerCorpseFlightTimer != 4.5f)
             {
@@ -98,91 +104,99 @@ public partial class Player : CharacterBody2D
 
             return;
         }
-
+        bool isOnFloor = IsOnFloor();
+        GD.Print(_state + " " + _inertion);
         //Player control and physic consequence
         {
-            _motion = Velocity;
-            if (_motion.Y < 1250)
-                _motion.Y += Gravity;
 
-            if (_state != State.DownDash)
+            Motion = Velocity;
+            if (Motion.Y < 1250)
+                Motion.Y += Gravity;
+
+            Motion.X += Input.GetActionStrength("ui_right") - Input.GetActionStrength("ui_left");
+            Motion.X *= Speed;
+
+            if (_state == State.Inerted)
             {
-                _motion.X += Input.GetActionStrength("ui_right") - Input.GetActionStrength("ui_left");
-                _motion.X *= Speed;
-
-                if (_state == State.Inerted)
-                {
-                    float uncontrolling = _motion.X * _inertion / 2.5f;
-                    _motion.X += _inertion > 0 ? -uncontrolling : uncontrolling;
-                }
+                float uncontrolling = Motion.X * _inertion / InertionControl;
+                Motion.X += _inertion > 0 ? -uncontrolling : uncontrolling;
+            }
+            if (_wallDetectNumber != 0 && Input.IsActionPressed("WallCatch") && !isOnFloor && Motion.Y > 0 && (!Input.IsActionPressed("Jump") || _inertion != 0))
+            {
+                Motion.Y = 15;
+                _animationName = "WallCatch";
+                if (_inertion == 0 && _state != State.InAir)
+                    _state = State.InAir;
+                _isDownDashing = false;
             }
 
-            if (_wallDetectNumber != 0 && Input.IsActionPressed("WallCatch") && !IsOnFloor() && _motion.Y > 0 && _state != State.DownDash)
-                if (!Input.IsActionPressed("Jump") || _inertion != 0)
-                {
-                    _motion.Y = 15;
-                    _animationName = "WallCatch";
-                }
-
             if (_climbBufer < 3 && _climbUncontrollingTimer > 0)
-                _motion.X /= _motion.X / _savedClimbWallNumber < 0 ? _climbUncontrollingTimer * 3 + 1 : 1;
+                Motion.X /= Motion.X / _savedClimbWallNumber < 0 ? _climbUncontrollingTimer * 3 + 1 : 1;
 
             if (Input.IsActionPressed("Jump"))
             {
-                if (IsOnFloor())
+                if (isOnFloor) // This is jump
                 {
-                    _motion.Y = -JumpForce;
+                    Motion.Y = -JumpForce;
                     PlaySound("Jump");
                 }
-                else if (Input.IsActionPressed("WallCatch") && _wallDetectNumber != 0 && _inertion == 0 && _wallJumpTimer < 0 && _climbTimer < 0)
+                else if (Input.IsActionPressed("WallCatch") && _wallDetectNumber != 0 && _inertion == 0 && _wallJumpTimer < 0 && _climbTimer < 0) // This is WallJump
                 {
                     _savedWallNumber = _wallDetectNumber;
-                    _motion.Y = -JumpForce;
-                    _inertion = 1.25f * -_savedWallNumber;
+                    Motion.Y = -JumpForce;
+                    _inertion = WallJumpInertion * -_savedWallNumber;
                     _state = State.Inerted;
                     PlaySound("Climb");
+                    _isDownDashing = false;
                 }
-                else if (!Input.IsActionPressed("WallCatch") && _lastXMoveVector == _wallDetectNumber && _wallDetectNumber != 0 && _climbTimer < 0 && _climbBufer > 0)
+                else if (!Input.IsActionPressed("WallCatch") && _lastXMoveVector == _wallDetectNumber && _wallDetectNumber != 0 && _climbTimer < 0 && _climbBufer > 0) // This is Climb
                 {
                     if (_skinAnimationPlayerEnabled)
                         _animationPlayer.Play("Climb");
                     _climbTimer = 0.2f;
                     _climbBufer--;
-                    _motion.Y = -JumpForce * 0.7f;
+                    Motion.Y = -JumpForce * 0.7f;
                     _savedClimbWallNumber = _wallDetectNumber;
                     _climbUncontrollingTimer = 1;
                     _animatedSprite.Frame = 0;
                     _animationName = "Climb";
+                    _state = State.Climb;
                     PlaySound("Climb");
+                    _isDownDashing = false;
+                    _inertion = 0;
                 }
             }
-            else if (Input.IsActionJustPressed("DownPull") && !IsOnFloor() && _state != State.DownDash)
+            else if (Input.IsActionJustPressed("DownDash") && !isOnFloor && !_isDownDashing) // This is DownDash
             {
-                _state = State.DownDash;
-                PlaySound("PullDown");
+                _isDownDashing = true;
+                Motion.Y = 1250;
+                PlaySound("DownDash");
+            }
+            else if (Input.IsActionJustReleased("Jump") && _state != State.Climb) // This is jump interruption
+            {
+                if (Motion.Y < 0)
+                    Motion.Y /= 1.5f;
             }
 
-            if (!IsOnFloor())
+            if (!isOnFloor)
             {
                 if (_state == State.Inerted)
                 {
-                    _motion.X += _inertion * Speed;
+                    Motion.X += _inertion * Speed;
                     _inertion -= _inertion > 0 ? 0.025f : -0.025f;
 
                     if (_inertion < 0.1f && _inertion > 0 || _inertion > -0.1f && _inertion < 0)
                         _inertion = 0;
                 }
 
-                if (_state == State.DownDash)
-                {
-                    _motion.X = 0;
-                    _motion.Y = 1250;
-                }
+                if (_state != State.Inerted && _state != State.Climb && _state != State.InAir)
+                    _state = State.InAir;
+
                 _wallJumpTimer -= _floatDelta;
                 _climbTimer -= _floatDelta;
                 _climbUncontrollingTimer -= _floatDelta;
             }
-            else
+            else if (_state != State.OnFloor)
             {
                 _savedWallNumber = 0;
                 _inertion = 0;
@@ -190,28 +204,30 @@ public partial class Player : CharacterBody2D
                 _climbTimer = 0.2f;
                 _climbBufer = 3;
                 _climbUncontrollingTimer = 0;
+                _coyoteTimer = CoyoteTime;
 
-                if (_state == State.DownDash)
-                    PlaySound("PullDownHit");
-                _state = State.Default;
+                if (_isDownDashing)
+                {
+                    _isDownDashing = false;
+                    PlaySound("DownDashHit");
+                }
+                _state = State.OnFloor;
             }
 
-            if (_motion.X > 0)
+            if (Motion.X > 0)
                 _lastXMoveVector = 1;
-            else if (_motion.X < 0)
+            else if (Motion.X < 0)
                 _lastXMoveVector = -1;
         }
 
         //Animations
         {
-            if (IsOnFloor() && _motion.X == 0)
+            if (isOnFloor && Motion.X == 0)
                 _animationName = "Idle";
-            else if (_motion.X != 0 && IsOnFloor())
+            else if (Motion.X != 0 && isOnFloor)
                 _animationName = "Walk";
-            else if (_state == State.DownDash)
-                _animationName = "Fall";
             else if (_animationName != "WallCatch" && _animationName != "Climb" || _animationName == "WallCatch" && _wallDetectNumber == 0)
-                _animationName = _motion.Y < 0 ? "Jump" : "Fall";
+                _animationName = Motion.Y < 0 ? "Jump" : "Fall";
 
             if (_animatedSprite.Animation != _animationName)
             {
@@ -224,8 +240,8 @@ public partial class Player : CharacterBody2D
                 _isFliph = _savedClimbWallNumber == 1;
             else if (_animationName == "WallCatch")
                 _isFliph = _wallDetectNumber == 1;
-            else if (_motion.X != 0)
-                _isFliph = _motion.X > 0;
+            else if (Motion.X != 0)
+                _isFliph = Motion.X > 0;
 
             GetNode<Node2D>("SkinContainer").Scale = new Vector2(_isFliph ? -1 : 1, 1);
         }
@@ -250,7 +266,7 @@ public partial class Player : CharacterBody2D
                     ghost.GlobalPosition = new Vector2(_savedPastPositions[0].X, _savedPastPositions[0].Y);
             }
 
-            Velocity = _motion;
+            Velocity = Motion;
             MoveAndSlide();
             Velocity = new Vector2(0, Velocity.Y);
 
@@ -260,7 +276,7 @@ public partial class Player : CharacterBody2D
                 {
                     var collision = GetSlideCollision(i);
                     if (collision.GetCollider() is RigidBody2D)
-                        ((RigidBody2D)collision.GetCollider()).ApplyCentralImpulse(-collision.GetNormal() * PushForce);
+                        ((RigidBody2D)collision.GetCollider()).ApplyCentralImpulse(-collision.GetNormal() * RigidBodyPushForce);
                 }
             }
 
@@ -272,6 +288,7 @@ public partial class Player : CharacterBody2D
         if (_animationName == "Climb")
         {
             _animationName = "Jump";
+            _state = State.InAir;
             _animatedSprite.Play();
         }
     }

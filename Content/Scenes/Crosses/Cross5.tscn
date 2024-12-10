@@ -17,7 +17,7 @@ point_count = 2
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
 [sub_resource type="CircleShape2D" id="3"]
-radius = 6.66
+radius = 5.0
 
 [sub_resource type="Gradient" id="Gradient_3xuh7"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
@@ -91,7 +91,6 @@ color = Color(1, 0.737255, 0.0352941, 1)
 color_ramp = SubResource("4")
 
 [node name="Ball" type="Node2D" parent="PathFollow2D/Cannon"]
-visible = false
 position = Vector2(-5, 3)
 
 [node name="Ball" type="Sprite2D" parent="PathFollow2D/Cannon/Ball"]

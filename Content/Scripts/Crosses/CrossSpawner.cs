@@ -4,6 +4,9 @@ using System.Linq;
 
 public partial class CrossSpawner : Node2D
 {
+    public enum CannonsModeEnum {Horizontal, Vertical, Both}
+    [Export] public CannonsModeEnum CannonsMode = CannonsModeEnum.Horizontal;
+
     Random _random = new Random();
 
     public G.CrossSpawner Spawner = new G.CrossSpawner();
@@ -27,12 +30,7 @@ public partial class CrossSpawner : Node2D
 	public override void _PhysicsProcess(double delta)
 	{
         if (!G.IsProgressPaused)
-        {
-            G.Scores += _floatDelta;
             _weightMultiplierExtenderToCurrentCross += (_floatDelta * _crossDefaultWeight[_lastAviableCrossNumber]) / 30 * G.CrossesProgressCoeff;
-            if (G.Scores > G.LevelCompleteTime && UnchangableMeta.LevelCompleteStatus[G.CurrentLevel - 1] < 1 + Meta.Instance.Gameplay.Dificulty && G.IsLevelVanilla)
-                UnchangableMeta.SaveRecords();
-        }
 
 
         if (G.IsCrossesEnabled)

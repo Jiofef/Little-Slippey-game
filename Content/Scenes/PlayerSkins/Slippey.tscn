@@ -184,7 +184,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"Walk",
-"speed": 12.0
+"speed": 16.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -198,8 +198,9 @@ animations = [{
 [node name="Slippey" type="AnimatedSprite2D"]
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_ha5cw")
-animation = &"Idle"
+animation = &"Walk"
 autoplay = "Idle"
+frame_progress = 0.66071
 script = ExtResource("2_ktwy3")
 metadata/HasAnimationPlayer = false
 metadata/HasDeathPlayerAnimation = false

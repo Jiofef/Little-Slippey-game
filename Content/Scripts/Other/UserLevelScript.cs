@@ -10,6 +10,7 @@ public partial class UserLevelScript : Node2D
     }
     public override void _Ready()
 	{
+        GD.Print("");
         if (G.DidLevelIntroPassed)
             StartLevel();
     }

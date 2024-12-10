@@ -5,7 +5,7 @@ public partial class Camera : Camera2D
 {
     [Signal] public delegate void ResetEventHandler();
     AnimatedSprite2D _restartNoise;
-    CharacterBody2D _player;
+    Player _player;
     Label _scores;
     public override void _Ready()
     {
@@ -14,7 +14,7 @@ public partial class Camera : Camera2D
         ResetSmoothing();
 
         _restartNoise = GetNode<AnimatedSprite2D>("GUI/RestartNoise");
-        _player = GetNode<CharacterBody2D>("..");
+        _player = GetNode<Player>("..");
         _scores = GetNode<Label>("GUI/Scores");
 
         ApplyGUIOptions(true);
@@ -38,8 +38,9 @@ public partial class Camera : Camera2D
             _scores.Modulate = new Color(_scores.Modulate.R, _scores.Modulate.G, _scores.Modulate.B, _player.Position.Y > G.CameraLimits.X + 200 ? 1 : _player.Position.Y / (G.CameraLimits.X + 200));
         }
 
-            Vector2 LimitsExpansion = Vector2.Zero;
-        if (G.ResetTimer != 0)
+        Vector2 LimitsExpansion = Vector2.Zero;
+
+        if (G.ResetTimer != 0) // When resetting 
         {
             if (!_restartNoise.IsPlaying())
                 _restartNoise.Play();
@@ -55,7 +56,7 @@ public partial class Camera : Camera2D
             Position = new Vector2(LimitsExpansion.X, LimitsExpansion.Y);
             LimitsChangingBy(true, LimitsExpansion.Y, LimitsExpansion.X, LimitsExpansion.Y, LimitsExpansion.X);
         }
-        else if (_restartNoise.IsPlaying())
+        else if (_restartNoise.IsPlaying()) // When reset interrupts
         {
             var restartNoise = GetNode<AnimatedSprite2D>("GUI/RestartNoise");
             restartNoise.Stop();
@@ -66,7 +67,7 @@ public partial class Camera : Camera2D
             LimitsExpansion = Vector2.Zero;
         }
 
-        if (G.IsPlayerDead)
+        if (G.IsPlayerDead) // When player dead
         {
             float zoom = G.PlayerCorpseFlightTimer < 4 ? Meta.Instance.Video.CameraZoom + G.PlayerCorpseFlightTimer * ((4.5f - Meta.Instance.Video.CameraZoom) / 4) : 4.5f;
             Zoom = new Vector2(zoom, zoom);

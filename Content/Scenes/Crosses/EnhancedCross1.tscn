@@ -6,10 +6,10 @@
 [ext_resource type="Texture2D" uid="uid://deoana6qfwjd3" path="res://Content/Sprites/Crosses/EnhancedDefaultCrossWarning.png" id="4_o3oaw"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mspml"]
-radius = 90.0
+radius = 85.0
 
 [sub_resource type="CircleShape2D" id="1"]
-radius = 90.0
+radius = 75.0
 
 [node name="EnhancedDefaultCross" instance=ExtResource("1_qdcgx")]
 script = ExtResource("2_jidna")

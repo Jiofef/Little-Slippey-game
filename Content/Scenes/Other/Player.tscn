@@ -17,7 +17,7 @@
 size = Vector2(40, 56)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y6w3b"]
-size = Vector2(40, 56)
+size = Vector2(24, 32)
 
 [sub_resource type="RectangleShape2D" id="2"]
 size = Vector2(4, 56)
@@ -100,7 +100,6 @@ collision_layer = 8
 collision_mask = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/PlayerDamageDetector"]
-position = Vector2(0, 4)
 shape = SubResource("RectangleShape2D_y6w3b")
 
 [node name="WallDirectionLeftDetector" type="Area2D" parent="Areas"]
@@ -251,7 +250,7 @@ stream = ExtResource("3_e2byo")
 volume_db = 10.0
 bus = &"Player"
 
-[node name="PullDownHit" type="AudioStreamPlayer" parent="Sounds"]
+[node name="DownDashHit" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("4_eqohp")
 volume_db = 6.0
 bus = &"Player"
@@ -261,7 +260,7 @@ stream = ExtResource("5_4c4de")
 volume_db = -3.0
 bus = &"Player"
 
-[node name="PullDown" type="AudioStreamPlayer" parent="Sounds"]
+[node name="DownDash" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("6_ouqh1")
 volume_db = -10.0
 bus = &"Player"

@@ -33,6 +33,7 @@ public partial class MainScript : Node2D
 
         if (G.DidLevelIntroPassed || DoIgnoreIntro)
         {
+            GetTree().Paused = false;
             GetNode<CanvasLayer>("EpicIntro")?.QueueFree();
             CallDeferred("CallOnLevelStarted", false);
         }
@@ -48,12 +49,11 @@ public partial class MainScript : Node2D
     }
     private void CallOnLevelStarted(bool wasIntroShown)
     {
-        GD.Print("s");
         G.OnLevelStartedFunc(wasIntroShown);
         EmitSignal("OnLevelStarted", wasIntroShown);
         EmitSignal("OnLevelStartedNoBool");
     }
-    private void OnIntroFinished()
+    public void OnIntroFinished()
     {
         GetTree().Paused = false;
         CallDeferred("CallOnLevelStarted", true);

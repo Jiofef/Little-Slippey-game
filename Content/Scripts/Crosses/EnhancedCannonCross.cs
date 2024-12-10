@@ -4,7 +4,6 @@ using System;
 public partial class EnhancedCannonCross : Node2D
 {
     PackedScene _bomb = new PackedScene();
-    CharacterBody2D _player;
 	Sprite2D _sprite2D;
 
 	Random _random = new Random();
@@ -16,7 +15,6 @@ public partial class EnhancedCannonCross : Node2D
 
     public override void _Ready()
 	{
-		_player = GetNode<CharacterBody2D>("../Player");
 		_sprite2D = GetNode<Sprite2D>("Sprite2D");
         _bomb = ResourceLoader.Load<PackedScene>("res://Content/Scenes/Crosses/HelicopterBomb.tscn");
 
@@ -27,12 +25,12 @@ public partial class EnhancedCannonCross : Node2D
 	{
 		if (_state != State.FlyingAway)
 		{
-            _movementGlobalPoint = _player.GlobalPosition + _movementPoint;
+            _movementGlobalPoint = G.Player.GlobalPosition + _movementPoint;
 			if (_movementGlobalPoint.Y < G.CameraLimits.X)
 				_movementGlobalPoint.Y = G.CameraLimits.X;
         }
 
-		_velocity += (_movementGlobalPoint - GlobalPosition) / 500;
+		_velocity += (_movementGlobalPoint - GlobalPosition) / 600;
         GlobalTranslate(_velocity);
 		_velocity /= 1.1f;
 

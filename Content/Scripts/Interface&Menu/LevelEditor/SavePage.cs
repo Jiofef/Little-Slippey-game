@@ -5,6 +5,10 @@ public partial class SavePage : Control
 {
     public LevelEditor L;
 
+    public void Crutch()
+    {
+        L.Crutch();
+    }
     public void SetCrutch(int index, bool value)
     {
         L._editorCrutches[index] = value;

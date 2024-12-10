@@ -244,6 +244,8 @@ public partial class G : Node
 		LevelCompleteTime = 150;
         AudioServer.SetBusEffectEnabled(2, 0, false);
 		AudioServer.SetBusEffectEnabled(6, 0, false);
+
+        IsLevelVanilla = true;
 	}
 
 

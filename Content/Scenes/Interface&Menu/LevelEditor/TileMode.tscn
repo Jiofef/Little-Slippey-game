@@ -1,6 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://w3fqg8d3aiwn"]
+[gd_scene load_steps=13 format=3 uid="uid://w3fqg8d3aiwn"]
 
 [ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/LevelEditor/TileMode.cs" id="1_2lv2p"]
+[ext_resource type="Theme" uid="uid://dkitr1ftp0yhs" path="res://Content/Other/Menu.tres" id="1_m2vlk"]
 [ext_resource type="Texture2D" uid="uid://7r0hpuodjrlj" path="res://Content/Sprites/Interface/SmallWindowBase.png" id="2_f0t08"]
 [ext_resource type="PackedScene" uid="uid://bwpstpk1xmkah" path="res://Content/Scenes/Interface&Menu/Button.tscn" id="3_7gtyb"]
 [ext_resource type="Texture2D" uid="uid://bfg5b2a5xwbt" path="res://Content/Sprites/Interface/LevelEditor/SmallButton.png" id="4_7jjx3"]
@@ -35,6 +36,7 @@ anchors_preset = 0
 offset_right = 1280.0
 offset_bottom = 720.0
 mouse_filter = 2
+theme = ExtResource("1_m2vlk")
 script = ExtResource("1_2lv2p")
 
 [node name="UIBackground" type="Control" parent="."]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=69 format=4 uid="uid://c2nxiddufnutu"]
+[gd_scene load_steps=54 format=4 uid="uid://c2nxiddufnutu"]
 
 [ext_resource type="Script" path="res://Content/Scripts/Other/MainScript.cs" id="1_52yug"]
 [ext_resource type="Script" path="res://Content/Scripts/Levels/Level10MusicPlayer.cs" id="2_1fwqt"]
@@ -19,17 +19,8 @@
 [ext_resource type="Texture2D" uid="uid://dpf24jfhstqid" path="res://Content/Sprites/Levels/Level10/PortableControlledDroneCapsule.png" id="15_h6grn"]
 [ext_resource type="AudioStream" uid="uid://cfsrycvyi23la" path="res://Content/Sounds/Levels/Level10ElectronicBroken.mp3" id="16_frlwx"]
 [ext_resource type="AudioStream" uid="uid://c0lbb7mb40ipw" path="res://Content/Sounds/Levels/Level10ManipulatorSound.mp3" id="16_mt6pq"]
-[ext_resource type="Texture2D" uid="uid://4udch8ejvu08" path="res://Content/Sprites/Interface/PauseButtonsFrame.png" id="17_t8ssq"]
-[ext_resource type="PackedScene" uid="uid://bwpstpk1xmkah" path="res://Content/Scenes/Interface&Menu/Button.tscn" id="18_iki0q"]
-[ext_resource type="Texture2D" uid="uid://dhr0k5tpvpg7n" path="res://Content/Sprites/Interface/Buttons/UnpauseButton.png" id="19_cvop0"]
-[ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/Pause.cs" id="20_bgikv"]
-[ext_resource type="Texture2D" uid="uid://bqua21jbasqml" path="res://Content/Sprites/Interface/Buttons/PauseRewindButton.png" id="20_lf4ru"]
-[ext_resource type="Texture2D" uid="uid://be5mi0sdy4bep" path="res://Content/Sprites/Interface/Buttons/PauseOptionsButton.png" id="21_pqe1n"]
-[ext_resource type="Texture2D" uid="uid://blp8i7meimekf" path="res://Content/Sprites/Interface/Buttons/PauseMenuButton.png" id="22_olv38"]
-[ext_resource type="Script" path="res://Content/Scripts/Other/DidLevelIntroPassedSet.cs" id="23_4se7t"]
-[ext_resource type="Shader" path="res://Content/Other/BrightnessShader.gdshader" id="24_neuu2"]
-[ext_resource type="Script" path="res://Content/Scripts/Other/PostProcessingRect.cs" id="25_duxyh"]
-[ext_resource type="AudioStream" uid="uid://cuvkdo1lyvynu" path="res://Content/Sounds/Other/EpicIntro.mp3" id="26_gylqo"]
+[ext_resource type="PackedScene" uid="uid://tjddwdxopw2u" path="res://Content/Scenes/Interface&Menu/Pause.tscn" id="20_hj1ty"]
+[ext_resource type="PackedScene" uid="uid://c7psxdkakrw5x" path="res://Content/Scenes/Other/EpicIntro.tscn" id="21_qva4a"]
 
 [sub_resource type="Animation" id="Animation_lixp7"]
 resource_name = "Appearing"
@@ -761,193 +752,6 @@ _data = {
 "TakingSlippey": SubResource("Animation_ntmlj")
 }
 
-[sub_resource type="Animation" id="Animation_gr4ul"]
-resource_name = "OpeningSubMenu"
-length = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Interface/SubMenuBackgroundRect:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Interface:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Interface/ButtonsFrame:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(0, 520), Vector2(0, 520)]
-}
-
-[sub_resource type="Animation" id="Animation_qdctp"]
-resource_name = "Pause"
-length = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Interface:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Interface/ButtonsFrame:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(0, 720), Vector2(0, 520)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Interface/SubMenuBackgroundRect:modulate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_4p2pf"]
-_data = {
-"OpeningSubMenu": SubResource("Animation_gr4ul"),
-"Pause": SubResource("Animation_qdctp")
-}
-
-[sub_resource type="Animation" id="Animation_l41e4"]
-resource_name = "EpicIntro"
-length = 8.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("EpicIntro/TopRect:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 2, 2.4),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(0, 0), Vector2(0, -360)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("EpicIntro/BottomRect:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 2, 2.4),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(0, 360), Vector2(0, 360), Vector2(0, 720)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("LevelMusicPlayer:playing")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(2),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("EpicIntro/BrightnessRect:_value")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 2, 8),
-"transitions": PackedFloat32Array(0, 0.5, 1),
-"update": 0,
-"values": [0.0, 4.0, 1.0]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("EpicIntro/Glare:modulate")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 2, 5),
-"transitions": PackedFloat32Array(1, 0.5, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.501961), Color(1, 1, 1, 0)]
-}
-tracks/5/type = "method"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("EpicIntro/AnimationPlayer")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(2),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [true],
-"method": &"Set"
-}]
-}
-tracks/6/type = "method"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath(".")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(2),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"OnIntroFinished"
-}]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_emurq"]
-_data = {
-"EpicIntro": SubResource("Animation_l41e4")
-}
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_xv08t"]
-shader = ExtResource("24_neuu2")
-shader_parameter/brightness = 1.0
-
 [node name="Main" type="Node2D"]
 process_mode = 1
 script = ExtResource("1_52yug")
@@ -1242,152 +1046,19 @@ one_shot = true
 [node name="ManipulatorSound" type="AudioStreamPlayer" parent="Level/PositionCrutch/DroneCapsule"]
 stream = ExtResource("16_mt6pq")
 
-[node name="Pause" type="CanvasLayer" parent="."]
-process_mode = 3
-layer = 3
-script = ExtResource("20_bgikv")
+[node name="Pause" parent="." instance=ExtResource("20_hj1ty")]
 
-[node name="Interface" type="Control" parent="Pause"]
-process_mode = 2
-modulate = Color(1, 1, 1, 0)
-layout_mode = 3
-anchors_preset = 0
-offset_right = 1280.0
-offset_bottom = 720.0
-metadata/_edit_group_ = true
-metadata/_edit_lock_ = true
-
-[node name="ColorRect" type="ColorRect" parent="Pause/Interface"]
-layout_mode = 0
-offset_right = 1280.0
-offset_bottom = 720.0
-color = Color(0, 0.501961, 0.501961, 0.196078)
-
-[node name="ButtonsFrame" type="Control" parent="Pause/Interface"]
-anchors_preset = 0
-offset_top = 720.0
-offset_right = 1280.0
-offset_bottom = 920.0
-
-[node name="Sprite2D" type="Sprite2D" parent="Pause/Interface/ButtonsFrame"]
-scale = Vector2(4, 4)
-texture = ExtResource("17_t8ssq")
-centered = false
-
-[node name="Resume" parent="Pause/Interface/ButtonsFrame" instance=ExtResource("18_iki0q")]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -398.0
-offset_top = -80.0
-offset_right = -358.0
-offset_bottom = -40.0
-grow_horizontal = 2
-grow_vertical = 2
-focus_neighbor_left = NodePath("../Menu")
-texture_normal = ExtResource("19_cvop0")
-
-[node name="Rewind" parent="Pause/Interface/ButtonsFrame" instance=ExtResource("18_iki0q")]
-layout_mode = 1
-offset_left = 454.0
-offset_top = 20.0
-offset_right = 494.0
-offset_bottom = 60.0
-texture_normal = ExtResource("20_lf4ru")
-
-[node name="Options" parent="Pause/Interface/ButtonsFrame" instance=ExtResource("18_iki0q")]
-layout_mode = 0
-offset_left = 666.0
-offset_top = 20.0
-offset_right = 706.0
-offset_bottom = 60.0
-texture_normal = ExtResource("21_pqe1n")
-
-[node name="Menu" parent="Pause/Interface/ButtonsFrame" instance=ExtResource("18_iki0q")]
-layout_mode = 0
-offset_left = 878.0
-offset_top = 20.0
-offset_right = 918.0
-offset_bottom = 60.0
-focus_neighbor_right = NodePath("../Resume")
-texture_normal = ExtResource("22_olv38")
-
-[node name="SubMenuBackgroundRect" type="ColorRect" parent="Pause/Interface"]
-modulate = Color(1, 1, 1, 0)
-layout_mode = 0
-offset_right = 1280.0
-offset_bottom = 720.0
-mouse_filter = 2
-color = Color(0, 0, 0, 0.156863)
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Pause/Interface"]
-process_mode = 3
-root_node = NodePath("../..")
-libraries = {
-"": SubResource("AnimationLibrary_4p2pf")
-}
-
-[node name="EpicIntro" type="CanvasLayer" parent="."]
-process_mode = 3
-layer = 10
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="EpicIntro"]
-root_node = NodePath("../..")
-libraries = {
-"": SubResource("AnimationLibrary_emurq")
-}
-autoplay = "EpicIntro"
-script = ExtResource("23_4se7t")
-
-[node name="BrightnessRect" type="ColorRect" parent="EpicIntro"]
-material = SubResource("ShaderMaterial_xv08t")
-offset_right = 1280.0
-offset_bottom = 720.0
-mouse_filter = 2
-script = ExtResource("25_duxyh")
-_value = 0.0
-metadata/_edit_lock_ = true
-
-[node name="Glare" type="ColorRect" parent="EpicIntro"]
-modulate = Color(1, 1, 1, 0)
-offset_right = 1280.0
-offset_bottom = 720.0
-mouse_filter = 2
-metadata/_edit_lock_ = true
-
-[node name="TopRect" type="ColorRect" parent="EpicIntro"]
-offset_right = 1280.0
-offset_bottom = 360.0
-mouse_filter = 2
-color = Color(0, 0, 0, 1)
-metadata/_edit_lock_ = true
-
-[node name="BottomRect" type="ColorRect" parent="EpicIntro"]
-offset_top = 360.0
-offset_right = 1280.0
-offset_bottom = 720.0
-mouse_filter = 2
-color = Color(0, 0, 0, 1)
-metadata/_edit_lock_ = true
-
-[node name="TurningOnSound" type="AudioStreamPlayer" parent="EpicIntro"]
-stream = ExtResource("26_gylqo")
-volume_db = 15.0
-autoplay = true
-bus = &"Interface"
+[node name="EpicIntro" parent="." instance=ExtResource("21_qva4a")]
 
 [node name="PopupAchievementsLayer" type="CanvasLayer" parent="."]
 process_mode = 3
 layer = 100
 
 [connection signal="LevelReseting" from="." to="Level/ScientistNode" method="OnLevelReset" flags=6]
-[connection signal="ready" from="." to="." method="SetProgressPaused" flags=7 binds= [false]]
-[connection signal="ready" from="." to="." method="SetCrossesEnabled" flags=7 binds= [true]]
-[connection signal="ready" from="." to="." method="SetCrossesSpawnMultiplier" flags=7 binds= [1.0]]
 [connection signal="ready" from="." to="." method="SetCrossesProgressCoeff" flags=7 binds= [0.5]]
+[connection signal="ready" from="." to="." method="SetProgressPaused" flags=7 binds= [false]]
+[connection signal="ready" from="." to="." method="SetCrossesSpawnMultiplier" flags=7 binds= [1.0]]
+[connection signal="ready" from="." to="." method="SetCrossesEnabled" flags=7 binds= [true]]
 [connection signal="finished" from="Level/ScientistNode/Megaphone" to="Level/ScientistNode" method="PhraseFinished" flags=3]
 [connection signal="TextAppearing" from="Level/ScientistNode/CanvasLayer/Subtitles" to="Level/ScientistNode/CanvasLayer/ColorRect/AnimationPlayer" method="play" binds= ["Appearing"]]
 [connection signal="TextClearing" from="Level/ScientistNode/CanvasLayer/Subtitles" to="Level/ScientistNode/CanvasLayer/ColorRect/AnimationPlayer" method="play" binds= ["Disappearing"]]
@@ -1396,11 +1067,5 @@ layer = 100
 [connection signal="area_entered" from="Level/Player/Areas/PlayerDamageDetector" to="Level/PositionCrutch/DroneCapsule/Timer" method="start" flags=6 unbinds=1]
 [connection signal="animation_finished" from="Level/CanvasLayer/WhiteNoiseGlitch" to="Level/CanvasLayer/WhiteNoiseGlitch" method="set_visible" binds= [false]]
 [connection signal="timeout" from="Level/PositionCrutch/DroneCapsule/Timer" to="Level/PositionCrutch/DroneCapsule" method="Departure"]
-[connection signal="pressed" from="Pause/Interface/ButtonsFrame/Resume" to="." method="UnPause"]
-[connection signal="pressed" from="Pause/Interface/ButtonsFrame/Options" to="." method="Options"]
-[connection signal="pressed" from="Pause/Interface/ButtonsFrame/Menu" to="." method="Menu"]
-[connection signal="pressed" from="Pause/Interface/ButtonsFrame/Menu" to="." method="ResetAllTransitiveValues" flags=6]
-[connection signal="animation_finished" from="EpicIntro/AnimationPlayer" to="EpicIntro" method="queue_free" unbinds=1]
 
 [editable path="Level/Player"]
-[editable path="Pause/Interface/ButtonsFrame/Menu"]

@@ -1,11 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://d25kkxh4radbh"]
+[gd_scene load_steps=5 format=3 uid="uid://d25kkxh4radbh"]
 
 [ext_resource type="PackedScene" uid="uid://c0w7ccrl7jm2x" path="res://Content/Scenes/Crosses/Cross2.tscn" id="1_24dmb"]
+[ext_resource type="Script" path="res://Content/Scripts/Crosses/EnhancedRestlessCross.cs" id="2_23lhi"]
 [ext_resource type="Texture2D" uid="uid://cgpmfppklulie" path="res://Content/Sprites/Crosses/EnhancedRestlessCross.png" id="2_oneab"]
 [ext_resource type="Texture2D" uid="uid://csnrg83dxih5b" path="res://Content/Sprites/Crosses/EnhancedRestlessCrossWarning.png" id="3_p6gne"]
 
 [node name="EnhancedRestlessCross" instance=ExtResource("1_24dmb")]
-_isCrossEnhanced = true
+script = ExtResource("2_23lhi")
 
 [node name="CrossSprite" parent="." index="2"]
 use_parent_material = true

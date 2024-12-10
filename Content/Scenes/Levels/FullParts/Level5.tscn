@@ -172,4 +172,4 @@ visible = false
 [node name="Glare" parent="EpicIntro" index="2"]
 visible = false
 
-[editable path="Pause/Interface/ButtonsFrame/Menu"]
+[editable path="EpicIntro"]

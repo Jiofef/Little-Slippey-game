@@ -9,7 +9,6 @@ public partial class EnhancedBlumCross : Node2D
     private bool _isWearAccelerated = false;
     private Sprite2D _warningSprite;
     private AudioStreamPlayer _explosiveSignal;
-    private CharacterBody2D _player;
     private Random _random = new Random();
 
     private Node2D[] ControlledCrosses = new Node2D[4];
@@ -17,7 +16,6 @@ public partial class EnhancedBlumCross : Node2D
     public override void _Ready()
 	{
         _warningSprite = GetNode<Sprite2D>("WarningSprite");
-        _player = GetNode<CharacterBody2D>("../Player");
 
         _controlledCrossesGroupIndex = "ControlledCrosses_" + Name;
 
@@ -78,7 +76,7 @@ public partial class EnhancedBlumCross : Node2D
                     
                     var ControlledCross = (Node2D)AllControlledCrosses[i];
                     if (ControlledCross.Name != "Ball" || ControlledCross.Visible)
-                        ControlledCross.GlobalTranslate(ControlledCross.GlobalPosition.DirectionTo(_player.GlobalPosition) * 5 / _controllersLeft);
+                        ControlledCross.GlobalTranslate(ControlledCross.GlobalPosition.DirectionTo(G.Player.GlobalPosition) * 5 / _controllersLeft);
                     showingRangeController.Size = new Vector2(showingRangeController.GlobalPosition.DistanceTo(ControlledCross.GlobalPosition), showingRangeController.Size.Y);
 
                     energyBeam.Rotation += energyBeam.GetAngleTo(ControlledCross.GlobalPosition);           

@@ -8,8 +8,8 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c5ln7"]
 size = Vector2(124, 64)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_v6osl"]
-radius = 75.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_8sqw6"]
+radius = 60.0
 
 [node name="HelicopterBomb" type="Node2D"]
 z_index = 2
@@ -41,7 +41,7 @@ collision_layer = 16
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ExplosiveArea"]
-shape = SubResource("CircleShape2D_v6osl")
+shape = SubResource("CircleShape2D_8sqw6")
 disabled = true
 
 [node name="ExplosionAnimation" parent="." instance=ExtResource("3_c65yf")]

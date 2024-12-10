@@ -14,6 +14,7 @@ config/name="Little Slippey"
 run/main_scene="res://Content/Scenes/Interface&Menu/InitializationScene.tscn"
 run/print_header=false
 config/features=PackedStringArray("4.3", "C#")
+run/max_fps=60
 boot_splash/show_image=false
 config/icon="res://icon.png"
 
@@ -138,7 +139,7 @@ WallCatch={
 , Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":-1,"axis":5,"axis_value":1.0,"script":null)
 ]
 }
-DownPull={
+DownDash={
 "deadzone": 0.5,
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":4194322,"physical_keycode":0,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
 , Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":83,"physical_keycode":0,"key_label":0,"unicode":1099,"location":0,"echo":false,"script":null)
@@ -282,6 +283,7 @@ common/enable_pause_aware_picking=true
 
 textures/canvas_textures/default_texture_filter=0
 environment/glow/upscale_mode=0
+anti_aliasing/quality/screen_space_aa=1
 environment/defaults/default_environment="res://default_env.tres"
 vram_compression/import_etc=true
 quality/driver/driver_name="GLES2"
