@@ -5,7 +5,7 @@ public partial class Level9VomitCross : Node2D
 {
     private Vector2 _crossVelocity;
 
-    private int _ticksToExplosion = 60;
+    private int _ticksToExplosion = 80;
     Random _random = new Random();
 
     public override void _Ready()

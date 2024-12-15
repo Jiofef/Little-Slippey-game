@@ -1,6 +1,9 @@
 using Godot;
 using System;
 using Godot.Collections;
+using System.Text.Json;
+using System.Collections;
+using System.Runtime.InteropServices;
 
 public partial class UnchangableMeta : Node
 {
@@ -19,15 +22,6 @@ public partial class UnchangableMeta : Node
 
     public static bool IsLanguageSetted = false, IsTutorialPlayed, IsLevel9PlatformSectionFirstTimeCompleted, IsLevel9PlatformSectionSkipAllowed, IsFakeLevel10SkipAllowed, IsThereNewContentInRecycleBin = true;
     public static float DeathsNumber = 0;
-    public static byte[] AchievementStatuses = new byte[52]; // A G A I N
-
-    public static int AchievementsCount()
-    {
-        int AchievementsCount = 0;
-        for (int i = 0; i < AchievementStatuses.Length; i++)
-            AchievementsCount += AchievementStatuses[i];
-        return AchievementsCount;
-    }
 
     public static void SaveRecords()
     {
@@ -38,14 +32,13 @@ public partial class UnchangableMeta : Node
             if (G.Scores >= G.LevelCompleteTime && Meta.Instance.Gameplay.Dificulty + 1 > LevelCompleteStatus[G.CurrentLevel - 1])
             {
                 LevelCompleteStatus[G.CurrentLevel - 1] = Meta.Instance.Gameplay.Dificulty + 1;
-                for (int i = 0; i <= Meta.Instance.Gameplay.Dificulty; i++)
-                    Achievements.GetAchievement(Achievements.LevelCompletionAchievementNumbers[i][G.CurrentLevel - 1]);
+                Achievements.GetLevelAchievements();
             }
         }
         if (G.Scores >= 50)
-            Achievements.GetAchievement(7);
+            Achievements.GetAchievement("You're getting somewhere");
         if (G.Scores >= G.LevelCompleteTime && Meta.Instance.Video.CameraZoom >= 2)
-            Achievements.GetAchievement(8);
+            Achievements.GetAchievement("I Have No Eyes, and I Must Oversee");
     }
 
     public static Dictionary<string, Variant> GetJson()
@@ -63,64 +56,96 @@ public partial class UnchangableMeta : Node
             {"is_fake_level10_skip_allowed", IsFakeLevel10SkipAllowed},
             {"is_there_new_content_in_recycle_bin", IsThereNewContentInRecycleBin},
             {"level_played_status", LevelPlayedStatus},
-            {"achievement_statuses", AchievementStatuses},
         };
     }
     public static void SaveToFile()
     {
-        using FileAccess file = FileAccess.Open("user://save.json", FileAccess.ModeFlags.Write);
-        file.StoreString(GetJson().ToString());
-        file.Close();
+        // Save file
+        try
+        {
+            using FileAccess save = FileAccess.Open("user://save.json", FileAccess.ModeFlags.Write);
+            save.StoreString(GetJson().ToString());
+            save.Close();
+        }
+        catch { }
+
+        // Achievements file
+        try
+        {
+            using FileAccess achievements = FileAccess.Open("user://achievements.json", FileAccess.ModeFlags.Write);
+            achievements.StoreString(JsonSerializer.Serialize(Achievements.AllTheAchievements));
+            achievements.Close();
+        }
+        catch { }
     }
     public static void LoadSave()
     {
         try
         {
-            using FileAccess file = FileAccess.Open("user://save.json", FileAccess.ModeFlags.Read);
-            var model = Json.ParseString(file.GetAsText()).Obj as Dictionary;
+            // Save file
+            {
+                using FileAccess file = FileAccess.Open("user://save.json", FileAccess.ModeFlags.Read);
+                var model = Json.ParseString(file.GetAsText()).Obj as Dictionary;
 
-            Godot.Collections.Array[] LevelRecordsArrays = new Godot.Collections.Array[3];
-            for (int i = 0; i < LevelRecordsArrays.Length; i++)
-                LevelRecordsArrays[i] = (Godot.Collections.Array)model["level_records" + i];
-            for (int i = 0; i < LevelRecordsArrays.Length; i++)
+                Godot.Collections.Array[] LevelRecordsArrays = new Godot.Collections.Array[3];
+                for (int i = 0; i < LevelRecordsArrays.Length; i++)
+                    LevelRecordsArrays[i] = (Godot.Collections.Array)model["level_records" + i];
+                for (int i = 0; i < LevelRecordsArrays.Length; i++)
+                    try
+                    {
+                        for (int j = 0; j < G.LevelsInGameTotal; j++)
+                        {
+                            LevelRecords[i][j] = Convert.ToInt32(LevelRecordsArrays[i][j].ToString());
+                        }
+                    }
+                    catch { }
+
+                Godot.Collections.Array LevelCompleteStatusArray = (Godot.Collections.Array)model["level_complete_status"];
                 try
                 {
-                    for (int j = 0; j < G.LevelsInGameTotal; j++)
-                    {
-                        LevelRecords[i][j] = Convert.ToInt32(LevelRecordsArrays[i][j].ToString());
-                    }
-                } catch {}
+                    for (int i = 0; i < LevelCompleteStatus.Length; i++)
+                        LevelCompleteStatus[i] = Convert.ToInt32(LevelCompleteStatusArray[i].ToString());
+                }
+                catch { }
 
-            Godot.Collections.Array LevelCompleteStatusArray = (Godot.Collections.Array)model["level_complete_status"];
-            try
-            {
-                for (int i = 0; i < LevelCompleteStatus.Length; i++)
-                    LevelCompleteStatus[i] = Convert.ToInt32(LevelCompleteStatusArray[i].ToString());
-            } catch {}
+                Godot.Collections.Array LevelPlayedStatusArray = (Godot.Collections.Array)model["level_played_status"];
+                try
+                {
+                    for (int i = 0; i < LevelPlayedStatus.Length; i++)
+                        LevelPlayedStatus[i] = Convert.ToByte(LevelPlayedStatusArray[i].ToString());
+                }
+                catch { }
 
-            Godot.Collections.Array LevelPlayedStatusArray = (Godot.Collections.Array)model["level_played_status"];
-            try
-            {
-                for (int i = 0; i < LevelPlayedStatus.Length; i++)
-                    LevelPlayedStatus[i] = Convert.ToByte(LevelPlayedStatusArray[i].ToString());
-            } catch {}
+                IsLanguageSetted = (bool)model["is_language_setted"];
+                IsTutorialPlayed = (bool)model["is_tutorial_played"];
+                IsLevel9PlatformSectionFirstTimeCompleted = (bool)model["is_level9_platform_section_first_time_completed"];
+                IsLevel9PlatformSectionSkipAllowed = (bool)model["is_level9_platform_section_skip_is_allowed"];
+                IsFakeLevel10SkipAllowed = (bool)model["is_fake_level10_skip_allowed"];
+                IsThereNewContentInRecycleBin = (bool)model["is_there_new_content_in_recycle_bin"];
 
-            IsLanguageSetted = (bool)model["is_language_setted"];
-            IsTutorialPlayed = (bool)model["is_tutorial_played"];
-            IsLevel9PlatformSectionFirstTimeCompleted = (bool)model["is_level9_platform_section_first_time_completed"];
-            IsLevel9PlatformSectionSkipAllowed = (bool)model["is_level9_platform_section_skip_is_allowed"];
-            IsFakeLevel10SkipAllowed = (bool)model["is_fake_level10_skip_allowed"];
-            IsThereNewContentInRecycleBin = (bool)model["is_there_new_content_in_recycle_bin"];
-
-            Godot.Collections.Array AchievementStatusesArray = (Godot.Collections.Array)model["achievement_statuses"];
-            try
-            {
-                for (int i = 0; i < AchievementStatuses.Length; i++)
-                    AchievementStatuses[i] = Convert.ToByte(AchievementStatusesArray[i].ToString());
+                file.Close();
             }
-            catch {}
 
-            file.Close();
+
+            //Achievements file
+            {
+                using FileAccess achievements = FileAccess.Open("user://achievements.json", FileAccess.ModeFlags.Read);
+
+                var dictionary = JsonSerializer.Deserialize<System.Collections.Generic.Dictionary<string, Achievements.Data>>(achievements.GetAsText());
+
+                foreach (var achievement in dictionary)
+                {
+                    try
+                    {
+                        Achievements.AllTheAchievements[achievement.Key].IsReceived = achievement.Value.IsReceived;
+                    }
+                    catch { }
+                }
+            }
+
+
+
         } catch{}
+
     }
 }

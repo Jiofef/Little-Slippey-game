@@ -25,7 +25,7 @@ public partial class RecycleBinMenu : DraggableWindow
                 };
             }
         }
-        if (UnchangableMeta.AchievementStatuses[48] == 0)
+        if (!Achievements.AllTheAchievements["you were deceived."].IsReceived)
         {
             string[] NodesToHideNames = { "TheTestIsOverTxt", "GratitudeDiaryTxt", "Dem01", "Dem02", "Dem03", "Dem04", "Dem05", "Memory1", "Memory2", "Memory3", "Memory4", "Eternity"};
             for (int i = 0; i < NodesToHideNames.Length; i++)
@@ -64,6 +64,6 @@ public partial class RecycleBinMenu : DraggableWindow
 
     public void GiveRoyaltyAchievement()
     {
-        Achievements.GetAchievement(9);
+        Achievements.GetAchievement("At least I got to hobnob with royalty");
     }
 }

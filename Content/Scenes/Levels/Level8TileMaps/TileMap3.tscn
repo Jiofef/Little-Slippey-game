@@ -177,7 +177,7 @@ tile_set = SubResource("TileSet_sdcfh")
 
 [node name="AchievementArea" parent="SecretShortCut" instance=ExtResource("2_4ddd2")]
 position = Vector2(104, 32)
-_achievementIndex = 31
+_achievementName = "Eureka"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SecretShortCut/AchievementArea"]
 shape = SubResource("RectangleShape2D_6w1io")

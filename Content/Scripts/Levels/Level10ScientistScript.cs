@@ -284,11 +284,11 @@ public partial class Level10ScientistScript : Node2D
             GetNode<AudioStreamPlayer>("../CanvasLayer/ColorRect/AudioStreamPlayer").Play();
             if (UnchangableMeta.LevelCompleteStatus[9] == 0)
             {
-                Achievements.GetAchievement(41 + Meta.Instance.Gameplay.Dificulty);
-                Achievements.GetAchievement(44);
-                Achievements.GetAchievement(45);
-                Achievements.GetAchievement(46);
-                Achievements.GetAchievement(47);
+                Achievements.GetLevelAchievements();
+                Achievements.GetAchievement("Congratulations!0");
+                Achievements.GetAchievement("Congratulations!1");
+                Achievements.GetAchievement("Congratulations!2");
+                Achievements.GetAchievement("Congratulations!3");
                 UnchangableMeta.IsThereNewContentInRecycleBin = true;
                 UnchangableMeta.SaveToFile();
             }

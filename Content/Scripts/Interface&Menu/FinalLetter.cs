@@ -17,6 +17,6 @@ public partial class FinalLetter : Node2D
     }
     public void ACriminalAgainstHumanity()
     {
-        Achievements.GetAchievement(49);
+        Achievements.GetAchievement("A criminal against humanity");
     }
 }

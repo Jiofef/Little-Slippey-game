@@ -31,6 +31,7 @@ public partial class Meta : Node
     public class GameplayClass
     {
         public int Dificulty = 0;
+        public readonly string[] DificultyNames = ["Hard", "Insane", "Inferno"];
         public bool[] AdditionStatuses = new bool[4];
         public int ChosenSkinIndex = 0;
 

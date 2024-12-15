@@ -91,6 +91,7 @@ color = Color(1, 0.737255, 0.0352941, 1)
 color_ramp = SubResource("4")
 
 [node name="Ball" type="Node2D" parent="PathFollow2D/Cannon"]
+visible = false
 position = Vector2(-5, 3)
 
 [node name="Ball" type="Sprite2D" parent="PathFollow2D/Cannon/Ball"]

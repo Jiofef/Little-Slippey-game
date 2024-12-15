@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://02i4p0no1ej8"]
+
+[ext_resource type="PackedScene" uid="uid://d27nwc3cdixbo" path="res://Content/Scenes/Achievements/DefaultAchievement.tscn" id="1_b1ny7"]
+[ext_resource type="Texture2D" uid="uid://cx42eys4hmvdl" path="res://Content/Sprites/Other/Jiofef.png" id="2_e1l2r"]
+
+[node name="Achievement" instance=ExtResource("1_b1ny7")]
+
+[node name="Star1" parent="Sprite2D/Ratings" index="0"]
+position = Vector2(10.5, 22)
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("2_e1l2r")
+
+[node name="Name" parent="." index="1"]
+text = "Did you really fall for that?"
+
+[node name="Text" parent="." index="2"]
+visible = false
+offset_right = 356.0

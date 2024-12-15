@@ -3,6 +3,22 @@ using Godot;
 [Tool]
 public partial class SkinsMenu : DraggableWindow
 {
+    readonly string[] _neededAchievements = [
+        "I am already the Slippey",
+        "Level1Inferno",
+        "Level2Inferno",
+        "Level3Inferno",
+        "Level4Inferno",
+        "Level5Inferno",
+        "Level6Inferno",
+        "Level7Inferno",
+        "Level8Inferno",
+        "Level9Inferno",
+        "Level10Inferno",
+        "You will regret it.",
+        "Thank you for everything, player",
+        ];
+
 	public override void _Ready()
 	{
         int[] NeededAchievementIndexes = { 3, 12, 15, 18, 21, 24, 27, 30, 35, 40, 43, 50, 51};
@@ -26,17 +42,18 @@ public partial class SkinsMenu : DraggableWindow
 
         for (int i = 0; i < NeededAchievementIndexes.Length; i++)
         {
-            if (UnchangableMeta.AchievementStatuses[NeededAchievementIndexes[i]] != 1)
+            if (Achievements.AllTheAchievements[_neededAchievements[i]].IsReceived)
             {
-                GetNode<TextureButton>(link + "/Button" + (i + 2)).Disabled = true;
-                GetNode<AnimatedSprite2D>(link + "/Button" + (i + 2) + "/AnimatedSprite2D").QueueFree();
-				GetNode<Label>(link + "/Button" + (i + 2) + "/SkinName").Text = "???";
-				GetNode<Sprite2D>(link + "/Button" + (i + 2) + "/?").Visible = true;
+                GetNode<Sprite2D>(link + "/Button" + (i + 2) + "/?").QueueFree();
+                SkinsUnlocked++;
+
             }
 			else
 			{
-                GetNode<Sprite2D>(link + "/Button" + (i + 2) + "/?").QueueFree();
-				SkinsUnlocked++;
+                GetNode<TextureButton>(link + "/Button" + (i + 2)).Disabled = true;
+                GetNode<AnimatedSprite2D>(link + "/Button" + (i + 2) + "/AnimatedSprite2D").QueueFree();
+                GetNode<Label>(link + "/Button" + (i + 2) + "/SkinName").Text = "???";
+                GetNode<Sprite2D>(link + "/Button" + (i + 2) + "/?").Visible = true;
             }
         }
         

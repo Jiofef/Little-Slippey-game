@@ -104,4 +104,12 @@ public partial class Pause : CanvasLayer
         GetNode<AnimationPlayer>("Interface/AnimationPlayer").PlayBackwards("OpeningSubMenu");
         _subMenusOpened = false;
     }
+
+    public override void _Notification(int what)
+    {
+        if (what == MainLoop.NotificationApplicationFocusOut && !GetTree().Paused)
+        {
+            ChangePause(false);
+        }
+    }
 }

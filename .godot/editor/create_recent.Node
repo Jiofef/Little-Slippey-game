@@ -1,4 +1,6 @@
 ColorRect
+Control
+TextureProgressBar
 AnimatedSprite2D
 CheckBox
 TextEdit
@@ -10,6 +12,3 @@ Label
 MarginContainer
 HBoxContainer
 VBoxContainer
-BoxContainer
-GridContainer
-RichTextLabel

@@ -3368,6 +3368,7 @@ tile_set = SubResource("TileSet_jidnq")
 
 [node name="AchievementArea" parent="Level/TileMap3" instance=ExtResource("21_7v6rx")]
 position = Vector2(4768, 448)
+_achievementName = "000-"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/TileMap3/AchievementArea"]
 shape = SubResource("RectangleShape2D_62pp6")
@@ -3505,7 +3506,7 @@ frame_progress = 0.866652
 
 [node name="AchievementArea" parent="Level/TileMap4/ShowSecretArea" instance=ExtResource("21_7v6rx")]
 position = Vector2(72, -288)
-_achievementIndex = 1
+_achievementName = "-000-"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/TileMap4/ShowSecretArea/AchievementArea"]
 shape = SubResource("RectangleShape2D_qrdyq")
@@ -3916,7 +3917,7 @@ stream = ExtResource("32_ltdvp")
 
 [node name="AchievementArea" parent="Level/TileMap5/SecretActivationArea" instance=ExtResource("21_7v6rx")]
 position = Vector2(32, -107)
-_achievementIndex = 2
+_achievementName = "_000"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/TileMap5/SecretActivationArea/AchievementArea"]
 shape = SubResource("RectangleShape2D_q0s52")
@@ -4498,6 +4499,7 @@ visible = false
 visible = false
 
 [node name="PopupAchievementsLayer" type="CanvasLayer" parent="."]
+process_mode = 3
 layer = 100
 
 [connection signal="ready" from="." to="." method="SetTransitiveValue" flags=6 binds= [0, true]]

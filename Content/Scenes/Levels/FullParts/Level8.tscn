@@ -581,7 +581,7 @@ tile_set = SubResource("TileSet_sdcfh")
 
 [node name="AchievementArea" parent="Level/TileMap/SecretShortCut" index="0" instance=ExtResource("7_e7up1")]
 position = Vector2(504, 136)
-_achievementIndex = 31
+_achievementName = "Eureka"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/TileMap/SecretShortCut/AchievementArea" index="0"]
 shape = SubResource("RectangleShape2D_rmh6m")
@@ -739,7 +739,6 @@ frame_progress = 0.359743
 
 [node name="AchievementArea" parent="Level" index="5" instance=ExtResource("7_e7up1")]
 position = Vector2(32481, 403)
-_achievementIndex = 32
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/AchievementArea" index="0"]
 position = Vector2(-33, 13)

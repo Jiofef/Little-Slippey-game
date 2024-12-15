@@ -336,7 +336,6 @@ shape = SubResource("RectangleShape2D_iewxf")
 
 [node name="AchievementArea" parent="Secret (!)" instance=ExtResource("2_0hp2c")]
 position = Vector2(192, 144)
-_achievementIndex = 31
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Secret (!)/AchievementArea"]
 position = Vector2(8, 0)
@@ -351,7 +350,7 @@ tile_set = SubResource("TileSet_s0rms")
 
 [node name="AchievementArea" parent="SecretShortCut" instance=ExtResource("2_0hp2c")]
 position = Vector2(304, 16)
-_achievementIndex = 31
+_achievementName = "Eureka"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SecretShortCut/AchievementArea"]
 shape = SubResource("RectangleShape2D_36kcc")

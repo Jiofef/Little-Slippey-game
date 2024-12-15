@@ -1128,7 +1128,7 @@ libraries = {
 
 [node name="AchievementArea" parent="Level/PlatformerSection/NoWayBro" instance=ExtResource("23_jff28")]
 position = Vector2(128, -32)
-_achievementIndex = 37
+_achievementName = "Laziness is our everything"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/PlatformerSection/NoWayBro/AchievementArea"]
 position = Vector2(0, -40)
@@ -1861,7 +1861,7 @@ visible = false
 visible = false
 
 [node name="PopupAchievementsLayer" type="CanvasLayer" parent="."]
-process_mode = 2
+process_mode = 3
 layer = 100
 
 [connection signal="animation_finished" from="LevelMusicPlayer/AnimationPlayer" to="." method="MusicAnimationFinished"]

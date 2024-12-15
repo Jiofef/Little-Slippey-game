@@ -7,15 +7,17 @@ public partial class Camera : Camera2D
     AnimatedSprite2D _restartNoise;
     Player _player;
     Label _scores;
+    TextureProgressBar _standBar;
     public override void _Ready()
     {
         G.CameraLimits = new Vector4(0, G.LevelXYSizes[G.CurrentLevel].X, G.LevelXYSizes[G.CurrentLevel].Y, 0);
         LimitsChangingBy(true);
         ResetSmoothing();
 
-        _restartNoise = GetNode<AnimatedSprite2D>("GUI/RestartNoise");
+        _restartNoise = GetNode<AnimatedSprite2D>("GUICanvas/GUI/RestartNoise");
         _player = GetNode<Player>("..");
-        _scores = GetNode<Label>("GUI/Scores");
+        _scores = GetNode<Label>("GUICanvas/GUI/Scores");
+        _standBar = GetNode<TextureProgressBar>("GUICanvas/GUI/StandBar");
 
         ApplyGUIOptions(true);
     }
@@ -35,10 +37,12 @@ public partial class Camera : Camera2D
         if (_scores.Visible)
         {
             _scores.Text = ((int)G.Scores).ToString();
-            _scores.Modulate = new Color(_scores.Modulate.R, _scores.Modulate.G, _scores.Modulate.B, _player.Position.Y > G.CameraLimits.X + 200 ? 1 : _player.Position.Y / (G.CameraLimits.X + 200));
+            if (Meta.Instance.Video.ScoresLabelLocationY == 0)
+                _scores.Modulate = new Color(_scores.Modulate.R, _scores.Modulate.G, _scores.Modulate.B, _player.Position.Y > G.CameraLimits.X + 200 ? 1 : _player.Position.Y / (G.CameraLimits.X + 200));
         }
 
         Vector2 LimitsExpansion = Vector2.Zero;
+        _standBar.Value = 1 - G.PlayerMoveCoeff;
 
         if (G.ResetTimer != 0) // When resetting 
         {
@@ -46,7 +50,7 @@ public partial class Camera : Camera2D
                 _restartNoise.Play();
             _restartNoise.Modulate = new Color(_restartNoise.Modulate.R, _restartNoise.Modulate.G, _restartNoise.Modulate.B, G.ResetTimer / 2);
 
-            var restartNoiseSound = GetNode<AudioStreamPlayer>("GUI/RestartNoise/Sound");
+            var restartNoiseSound = GetNode<AudioStreamPlayer>("GUICanvas/GUI/RestartNoise/Sound");
             if (!restartNoiseSound.Playing)
                 restartNoiseSound.Play();
             restartNoiseSound.VolumeDb = -5 + G.ResetTimer * 10;
@@ -58,11 +62,11 @@ public partial class Camera : Camera2D
         }
         else if (_restartNoise.IsPlaying()) // When reset interrupts
         {
-            var restartNoise = GetNode<AnimatedSprite2D>("GUI/RestartNoise");
+            var restartNoise = GetNode<AnimatedSprite2D>("GUICanvas/GUI/RestartNoise");
             restartNoise.Stop();
             restartNoise.Modulate = new Color(restartNoise.Modulate.R, restartNoise.Modulate.G, restartNoise.Modulate.B, 0);
 
-            GetNode<AudioStreamPlayer>("GUI/RestartNoise/Sound").Stop();
+            GetNode<AudioStreamPlayer>("GUICanvas/GUI/RestartNoise/Sound").Stop();
             LimitsChangingBy();
             LimitsExpansion = Vector2.Zero;
         }
@@ -132,6 +136,8 @@ public partial class Camera : Camera2D
             _scores.Visible = Meta.Instance.Video.ScoresShowingFormatIndex != 2 && !G.IsPlayerDead && (G.CurrentLevel != 1 || G.LevelAdditionalLink != "Tutorial");
             float zoom = G.PlayerCorpseFlightTimer < 4 ? Meta.Instance.Video.CameraZoom + G.PlayerCorpseFlightTimer * ((4.5f - Meta.Instance.Video.CameraZoom) / 4) : 4.5f;
             Zoom = new Vector2(zoom, zoom);
+
+            _scores.Modulate = new Color(_scores.Modulate.R, _scores.Modulate.G, _scores.Modulate.B);
         }
 
         float ScoresScale = Meta.Instance.Video.ScoresShowingFormatIndex == 0 ? 1.5f : 1;

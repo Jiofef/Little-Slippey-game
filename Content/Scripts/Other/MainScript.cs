@@ -60,9 +60,9 @@ public partial class MainScript : Node2D
     }
 
 
-    private void GiveAchievement(int index)
+    private void GiveAchievement(string name)
     {
-        Achievements.GetAchievement(index);
+        Achievements.GetAchievement(name);
     }
 
 

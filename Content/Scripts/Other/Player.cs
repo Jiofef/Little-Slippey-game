@@ -1,34 +1,47 @@
 using Godot;
+using GodotSteam;
 using System;
+using System.Dynamic;
+using System.Linq;
 
 public partial class Player : CharacterBody2D
 {
+
+    ///////////////////////////
+    
+    //InEditor options
     [ExportGroup("Main settings")]
     [Export] public float Speed = 430, Gravity = 18.6f, JumpForce = 620;
     [Export] public bool EnableRigidBodyPhysics = false;
     [Export] public float RigidBodyPushForce = 8;
 
     [ExportGroup("Secondary settings")]
-    [Export] public float CoyoteTime = 0.2f, WallJumpInertion = 1.4f, InertionControl = 3.3f;
+    [Export] public float CoyoteTime = 0.2f, WallJumpInertion = 1.4f, InertionControl = 3.3f, DownDashSpeed = 1250, MaxFallSpeed = 1250;
 
     [Signal] public delegate void CameraLimitsChangedEventHandler();
     [Signal] public delegate void PlayerDiedEventHandler();
 
+    ///////////////////////////
+
+    // Numeric variables
     private float _inertion, _wallJumpTimer = 0, //WallJumping
           _climbTimer, _climbUncontrollingTimer, //Climbing
           _coyoteTimer, //Jumping
+          _moveCoeff, // Hardcore =)
           _moveCalculationFramesTimer = 0; //Other
     private int _wallDetectNumber, _nearWallsCount, _savedWallNumber, //WallJumping
         _climbBufer = 3, _savedClimbWallNumber; //Climbing
 
-    readonly float _floatDelta = 0.016667f;
+    readonly float _floatDelta = 0.016667f; // 1/60 fps
 
-    // other variable
+    private sbyte _lastXMoveVector; //The direction of movement in the previous frame
+
+    ///////////////////////////
+
+    // Other variables
     private bool _isFliph, _isDownDashing, _skinAnimationPlayerEnabled, _readyAlready;
 
     private string _animationName;
-
-    private sbyte _moveCalculationStartTimer, _lastXMoveVector;
 
     private enum State {OnFloor, InAir, Climb, Inerted}
     State _state = State.OnFloor;
@@ -36,10 +49,15 @@ public partial class Player : CharacterBody2D
     AnimatedSprite2D _animatedSprite;
     AnimationPlayer _animationPlayer = null;
 
-    public Vector2 Motion = new Vector2();
-    Vector2[] _savedPastPositions = new Vector2[11];
+    public Vector2 Motion = new Vector2(); // Comfortable layer for velocity
+
+    Vector2[] _savedPastPositions = new Vector2[30];
+    Vector2 _averagePosition; // The arithmetic mean of the upper array
 
     Vector2 _corpseMotion, _corpseMotionMultiplier = new Vector2(1, 1);
+
+    ///////////////////////////
+
 
     private void PlaySound(string SoundName)
     {
@@ -78,9 +96,11 @@ public partial class Player : CharacterBody2D
         GetNode("SkinContainer").AddChild(_animatedSprite);
         #endregion
 
+        #region Camera signal binding
         var cameraCallable = new Callable(GetNode("Camera2D"), "LimitsChangingBy");
         if (!IsConnected("CameraLimitsChanged", cameraCallable))
             Connect("CameraLimitsChanged", cameraCallable);
+        #endregion
 
         _readyAlready = true;
     }
@@ -104,23 +124,33 @@ public partial class Player : CharacterBody2D
 
             return;
         }
-        bool isOnFloor = IsOnFloor();
-        GD.Print(_state + " " + _inertion);
-        //Player control and physic consequence
+
+        bool isOnFloor = IsOnFloor(); // To avoid calling the function every time
+
+        #region Control and physics processing
         {
-
             Motion = Velocity;
-            if (Motion.Y < 1250)
+
+            #region Gravitation
+            if (Motion.Y < MaxFallSpeed) //Falling speed limitation
                 Motion.Y += Gravity;
+            #endregion
 
-            Motion.X += Input.GetActionStrength("ui_right") - Input.GetActionStrength("ui_left");
+            #region Walking
+            Motion.X += Input.GetActionStrength("ui_right") - Input.GetActionStrength("ui_left"); // Walking
             Motion.X *= Speed;
+            #endregion
 
+
+            #region Effect of inertia on control
             if (_state == State.Inerted)
             {
                 float uncontrolling = Motion.X * _inertion / InertionControl;
                 Motion.X += _inertion > 0 ? -uncontrolling : uncontrolling;
             }
+            #endregion
+
+            #region WallCatching
             if (_wallDetectNumber != 0 && Input.IsActionPressed("WallCatch") && !isOnFloor && Motion.Y > 0 && (!Input.IsActionPressed("Jump") || _inertion != 0))
             {
                 Motion.Y = 15;
@@ -129,18 +159,27 @@ public partial class Player : CharacterBody2D
                     _state = State.InAir;
                 _isDownDashing = false;
             }
+            #endregion
 
+            #region Climb inertion
             if (_climbBufer < 3 && _climbUncontrollingTimer > 0)
                 Motion.X /= Motion.X / _savedClimbWallNumber < 0 ? _climbUncontrollingTimer * 3 + 1 : 1;
+            #endregion
+
+
+            #region All the mechanics with a jump
 
             if (Input.IsActionPressed("Jump"))
             {
-                if (isOnFloor) // This is jump
+                #region Jumping
+                if (isOnFloor)
                 {
                     Motion.Y = -JumpForce;
                     PlaySound("Jump");
                 }
-                else if (Input.IsActionPressed("WallCatch") && _wallDetectNumber != 0 && _inertion == 0 && _wallJumpTimer < 0 && _climbTimer < 0) // This is WallJump
+                #endregion
+                #region WallJumping
+                else if (Input.IsActionPressed("WallCatch") && _wallDetectNumber != 0 && _inertion == 0 && _wallJumpTimer < 0 && _climbTimer < 0)
                 {
                     _savedWallNumber = _wallDetectNumber;
                     Motion.Y = -JumpForce;
@@ -149,7 +188,9 @@ public partial class Player : CharacterBody2D
                     PlaySound("Climb");
                     _isDownDashing = false;
                 }
-                else if (!Input.IsActionPressed("WallCatch") && _lastXMoveVector == _wallDetectNumber && _wallDetectNumber != 0 && _climbTimer < 0 && _climbBufer > 0) // This is Climb
+                #endregion
+                #region  Climbing
+                else if (!Input.IsActionPressed("WallCatch") && _lastXMoveVector == _wallDetectNumber && _wallDetectNumber != 0 && _climbTimer < 0 && _climbBufer > 0)
                 {
                     if (_skinAnimationPlayerEnabled)
                         _animationPlayer.Play("Climb");
@@ -165,19 +206,29 @@ public partial class Player : CharacterBody2D
                     _isDownDashing = false;
                     _inertion = 0;
                 }
+                #endregion
             }
+            #region DownDashing
             else if (Input.IsActionJustPressed("DownDash") && !isOnFloor && !_isDownDashing) // This is DownDash
             {
                 _isDownDashing = true;
                 Motion.Y = 1250;
                 PlaySound("DownDash");
             }
+            #endregion
+
+            #region Jump interruption
             else if (Input.IsActionJustReleased("Jump") && _state != State.Climb) // This is jump interruption
             {
                 if (Motion.Y < 0)
                     Motion.Y /= 1.5f;
             }
+            #endregion
 
+            #endregion
+
+
+            #region Flight physics
             if (!isOnFloor)
             {
                 if (_state == State.Inerted)
@@ -196,6 +247,8 @@ public partial class Player : CharacterBody2D
                 _climbTimer -= _floatDelta;
                 _climbUncontrollingTimer -= _floatDelta;
             }
+            #endregion
+            #region Fall processing
             else if (_state != State.OnFloor)
             {
                 _savedWallNumber = 0;
@@ -213,14 +266,19 @@ public partial class Player : CharacterBody2D
                 }
                 _state = State.OnFloor;
             }
+            #endregion
 
+
+            #region Saving the direction of walking
             if (Motion.X > 0)
                 _lastXMoveVector = 1;
             else if (Motion.X < 0)
                 _lastXMoveVector = -1;
+            #endregion
         }
+        #endregion
 
-        //Animations
+        #region Animation processing
         {
             if (isOnFloor && Motion.X == 0)
                 _animationName = "Idle";
@@ -245,26 +303,33 @@ public partial class Player : CharacterBody2D
 
             GetNode<Node2D>("SkinContainer").Scale = new Vector2(_isFliph ? -1 : 1, 1);
         }
+        #endregion
 
-        //Physics injection
+        #region Physics injection
         {
             _moveCalculationFramesTimer ++;
-            if (_moveCalculationFramesTimer > 3)
+            if (_moveCalculationFramesTimer > 2)
             {
                 _moveCalculationFramesTimer = 0;
                 _savedPastPositions[_savedPastPositions.Length - 1] = Position;
                 for (int i = 0; i < _savedPastPositions.Length - 1; i++)
                     _savedPastPositions[i] = _savedPastPositions[i + 1];
-                float MoveDist = Position.DistanceTo(_savedPastPositions[0]);
-                if (_moveCalculationStartTimer > 10)
-                    G.PlayerMoveCoeff = MoveDist < 200 ? MoveDist / 200 : 1;
-                else _moveCalculationStartTimer++;
+
+                Vector2 PastPosSum = new Vector2();
+                foreach (var position in _savedPastPositions)
+                    PastPosSum += position;
+                _averagePosition = PastPosSum / _savedPastPositions.Length;
+
 
                 //BOO
-                var ghost = GetNode<Sprite2D>("Ghost");
-                if (ghost.Visible)
-                    ghost.GlobalPosition = new Vector2(_savedPastPositions[0].X, _savedPastPositions[0].Y);
+                if (GetNode<Sprite2D>("Ghost").Visible)
+                    GetNode<Sprite2D>("Ghost").GlobalPosition = new Vector2(_savedPastPositions[0].X, _savedPastPositions[0].Y);
             }
+
+            float MoveDist = GlobalPosition.DistanceTo(_averagePosition);
+            _moveCoeff += (MoveDist < 300 ? - 0.75f + MoveDist / 300 : 0.25f) / 60;
+            _moveCoeff = Mathf.Clamp(_moveCoeff, 0, 1);
+            G.PlayerMoveCoeff = _moveCoeff;
 
             Velocity = Motion;
             MoveAndSlide();
@@ -281,16 +346,20 @@ public partial class Player : CharacterBody2D
             }
 
         }
+        #endregion
     }
 
     private void AnimationFinished()
     {
+        #region When climbing animation ends
         if (_animationName == "Climb")
         {
             _animationName = "Jump";
             _state = State.InAir;
             _animatedSprite.Play();
         }
+        #endregion
+
     }
 
     private void LeftWallDetect()
@@ -345,9 +414,9 @@ public partial class Player : CharacterBody2D
         {
             switch (UnchangableMeta.DeathsNumber)
             {
-                case 2: Achievements.GetAchievement(4); break;
-                case 35: Achievements.GetAchievement(5); break;
-                case 273: Achievements.GetAchievement(6); break;
+                case 2: Achievements.GetAchievement("It's worth a shot"); break;
+                case 35: Achievements.GetAchievement("I'm no stranger to"); break;
+                case 273: Achievements.GetAchievement("Over and over and over and over and over and"); break;
             }
             UnchangableMeta.SaveRecords();
             UnchangableMeta.SaveToFile();

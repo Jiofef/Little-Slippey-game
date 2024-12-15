@@ -1,11 +1,13 @@
-[gd_scene load_steps=25 format=3 uid="uid://dlscufxb5f1ca"]
+[gd_scene load_steps=27 format=3 uid="uid://dlscufxb5f1ca"]
 
 [ext_resource type="Script" path="res://Content/Scripts/Other/Player.cs" id="1"]
 [ext_resource type="AudioStream" uid="uid://422y36f6ucnf" path="res://Content/Sounds/Player/Climb.mp3" id="2_bn55d"]
 [ext_resource type="AudioStream" uid="uid://ctpwmgkvyooy1" path="res://Content/Sounds/Player/Death.mp3" id="3_e2byo"]
 [ext_resource type="AudioStream" uid="uid://blkua1p6uqioe" path="res://Content/Sounds/Player/GroundHit.mp3" id="4_eqohp"]
 [ext_resource type="AudioStream" uid="uid://b3cwlsvshgdvx" path="res://Content/Sounds/Player/Jump.mp3" id="5_4c4de"]
+[ext_resource type="Texture2D" uid="uid://cq27bdhehtatn" path="res://Content/Sprites/Interface/StandBarEmpty.png" id="6_ddctq"]
 [ext_resource type="AudioStream" uid="uid://p26mliplwayb" path="res://Content/Sounds/Player/PullDown.mp3" id="6_ouqh1"]
+[ext_resource type="Texture2D" uid="uid://c2vlstlfjauxy" path="res://Content/Sprites/Interface/StandBar.png" id="7_71iex"]
 [ext_resource type="Texture2D" uid="uid://060bgiw5i00k" path="res://Content/Sprites/PlayerSkins/Slippey.png" id="8_36ypt"]
 [ext_resource type="Texture2D" uid="uid://nmw5orvjy6f8" path="res://Content/Sprites/Other/PlayerGhost.png" id="10"]
 [ext_resource type="Texture2D" uid="uid://t73lfqyo0ovn" path="res://Content/Sprites/Other/Shine.png" id="10_3mkpq"]
@@ -126,18 +128,28 @@ position_smoothing_enabled = true
 editor_draw_limits = true
 script = ExtResource("13")
 
-[node name="GUI" type="CanvasLayer" parent="Camera2D"]
+[node name="GUICanvas" type="CanvasLayer" parent="Camera2D"]
 offset = Vector2(600, 0)
 scale = Vector2(4, 4)
 transform = Transform2D(4, 0, 0, 4, 600, 0)
 
-[node name="Scores" type="Label" parent="Camera2D/GUI"]
+[node name="GUI" type="Control" parent="Camera2D/GUICanvas"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -150.0
+offset_right = 170.0
+offset_bottom = 180.0
+mouse_filter = 2
+
+[node name="Scores" type="Label" parent="Camera2D/GUICanvas/GUI"]
 visible = false
-offset_left = -148.0
+layout_mode = 0
+offset_left = 2.0
 offset_top = 4.0
-offset_right = 63.0
+offset_right = 213.0
 offset_bottom = 124.0
 scale = Vector2(1.5, 1.5)
+size_flags_vertical = 0
 theme_override_colors/font_shadow_color = Color(0.223529, 0.203922, 0.341176, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 0
@@ -145,11 +157,12 @@ theme_override_font_sizes/font_size = 22
 text = "000000000"
 horizontal_alignment = 1
 
-[node name="EmergingElements" type="Node2D" parent="Camera2D/GUI"]
+[node name="EmergingElements" type="Node2D" parent="Camera2D/GUICanvas/GUI"]
 modulate = Color(1, 1, 1, 0)
 z_index = -1
+position = Vector2(150, 0)
 
-[node name="Scores" type="Label" parent="Camera2D/GUI/EmergingElements"]
+[node name="Scores" type="Label" parent="Camera2D/GUICanvas/GUI/EmergingElements"]
 visible = false
 offset_left = -130.0
 offset_top = 5.0
@@ -163,7 +176,7 @@ theme_override_font_sizes/font_size = 22
 text = "Score: "
 horizontal_alignment = 1
 
-[node name="NewRecordScores" type="Label" parent="Camera2D/GUI/EmergingElements"]
+[node name="NewRecordScores" type="Label" parent="Camera2D/GUICanvas/GUI/EmergingElements"]
 visible = false
 offset_left = -130.0
 offset_top = 5.0
@@ -179,7 +192,7 @@ text = "New Record!
 Score: "
 horizontal_alignment = 1
 
-[node name="Shine1" type="CPUParticles2D" parent="Camera2D/GUI/EmergingElements/NewRecordScores"]
+[node name="Shine1" type="CPUParticles2D" parent="Camera2D/GUICanvas/GUI/EmergingElements/NewRecordScores"]
 position = Vector2(127, 8)
 emitting = false
 amount = 20
@@ -196,7 +209,7 @@ color = Color(1, 1, 0.501961, 0.501961)
 color_ramp = SubResource("Gradient_lmxa7")
 color_initial_ramp = SubResource("Gradient_4fxyx")
 
-[node name="Shine2" type="CPUParticles2D" parent="Camera2D/GUI/EmergingElements/NewRecordScores"]
+[node name="Shine2" type="CPUParticles2D" parent="Camera2D/GUICanvas/GUI/EmergingElements/NewRecordScores"]
 position = Vector2(129, 33)
 emitting = false
 amount = 15
@@ -213,7 +226,7 @@ color = Color(1, 1, 0.501961, 0.501961)
 color_ramp = SubResource("Gradient_lmxa7")
 color_initial_ramp = SubResource("Gradient_4fxyx")
 
-[node name="Hold R" type="RichTextLabel" parent="Camera2D/GUI/EmergingElements"]
+[node name="Hold R" type="RichTextLabel" parent="Camera2D/GUICanvas/GUI/EmergingElements"]
 clip_contents = false
 offset_left = -150.0
 offset_top = 139.0
@@ -227,16 +240,31 @@ theme_override_font_sizes/normal_font_size = 22
 bbcode_enabled = true
 text = "[center]Hold [img]res://Content/Sprites/Interface/ControllerButtons/KeyboardButtonBigR.png[/img]"
 
-[node name="RestartNoise" type="AnimatedSprite2D" parent="Camera2D/GUI"]
+[node name="RestartNoise" type="AnimatedSprite2D" parent="Camera2D/GUICanvas/GUI"]
 modulate = Color(1, 1, 1, 0)
-position = Vector2(10, 90)
+position = Vector2(160, 90)
 sprite_frames = SubResource("37")
 frame_progress = 0.601279
 
-[node name="Sound" type="AudioStreamPlayer" parent="Camera2D/GUI/RestartNoise"]
+[node name="Sound" type="AudioStreamPlayer" parent="Camera2D/GUICanvas/GUI/RestartNoise"]
 stream = ExtResource("12_jom63")
 volume_db = -5.0
 bus = &"Player"
+
+[node name="StandBar" type="TextureProgressBar" parent="Camera2D/GUICanvas/GUI"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -8.0
+offset_right = 48.0
+grow_vertical = 0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+max_value = 1.0
+step = 0.0
+texture_under = ExtResource("6_ddctq")
+texture_progress = ExtResource("7_71iex")
 
 [node name="Sounds" type="Node" parent="."]
 

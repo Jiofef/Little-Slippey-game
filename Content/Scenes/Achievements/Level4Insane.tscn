@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://cm87shvhw2cy7"]
+
+[ext_resource type="PackedScene" uid="uid://d27nwc3cdixbo" path="res://Content/Scenes/Achievements/DefaultAchievement.tscn" id="1_otm72"]
+[ext_resource type="Texture2D" uid="uid://bppnbtehdr3md" path="res://Content/Sprites/Interface/LevelsIcons.png" id="2_34ql7"]
+
+[node name="Achievement" instance=ExtResource("1_otm72")]
+
+[node name="RewardBox1" parent="Sprite2D" index="0"]
+visible = true
+
+[node name="RewardSprite" parent="Sprite2D/RewardBox1" index="0"]
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("2_34ql7")
+region_enabled = true
+region_rect = Rect2(135, 45, 45, 45)
+
+[node name="Star2" parent="Sprite2D/Ratings" index="1"]
+visible = true
+
+[node name="Name" parent="." index="1"]
+scale = Vector2(0.95, 0.95)
+text = "Swung blind and blackening in the moonless air;"
+
+[node name="Text" parent="." index="2"]
+offset_right = 356.0
+text = "Complete level 4 on \"Insane\" difficulty"

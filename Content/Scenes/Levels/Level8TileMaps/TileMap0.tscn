@@ -262,7 +262,7 @@ tile_set = SubResource("TileSet_8oww4")
 
 [node name="AchievementArea" parent="SecretShortCut" instance=ExtResource("2_fekg1")]
 position = Vector2(481.5, 152.5)
-_achievementIndex = 31
+_achievementName = "Eureka"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SecretShortCut/AchievementArea"]
 position = Vector2(-1.5, -0.5)
