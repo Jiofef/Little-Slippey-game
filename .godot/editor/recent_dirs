@@ -1,8 +1,10 @@
+res://Content/Scenes/Interface&Menu
+res://Content/Scripts/Interface&Menu
+res://Content/Sprites/Other
+res://Content/Scripts/Levels
 res://Content/Scripts/Crosses
 res://Content/Scenes/Other
 res://Content/Scripts/Other
-res://Content/Scenes/Interface&Menu
-res://Content/Scripts/Interface&Menu
 res://Content/Scenes/Levels/FullParts
 res://Content/Other
 res://Content/Sprites/PlayerSkins
@@ -14,10 +16,8 @@ res://Content
 D:/Великие Калловые Архивы/Little Slip
 C:/Users/Jiofef/Documents/GitHub/Little-Slippey-game
 res://addons/godotsteam_csharpbindings
-res://Content/Sprites/Other
 res://Content/Scenes/Crosses
 res://Content/Scenes/DefaultLevelEditorObjects
-res://Content/Scripts/Levels
 D:/Великие Калловые Архивы/Little Slippey
 res://Content/Scenes/PlayerSkins
 D:/Великие Калловые Архивы/Вне категорий

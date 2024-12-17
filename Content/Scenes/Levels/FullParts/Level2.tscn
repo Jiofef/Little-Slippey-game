@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=4 uid="uid://bg7f2ie6bi0u8"]
+[gd_scene load_steps=54 format=4 uid="uid://bg7f2ie6bi0u8"]
 
 [ext_resource type="PackedScene" uid="uid://5kfyvxsdpsk2" path="res://Content/Scenes/Other/LevelLayout.tscn" id="1_xrr5q"]
 [ext_resource type="Texture2D" uid="uid://ba64m2i1e8tsn" path="res://Content/Sprites/Levels/Level2/Sky.png" id="2_c6v2q"]
@@ -14,7 +14,11 @@
 [ext_resource type="Texture2D" uid="uid://b830neidt3avy" path="res://Content/Sprites/Levels/Mort'sTileset.png" id="12_chrfp"]
 [ext_resource type="PackedScene" uid="uid://dlscufxb5f1ca" path="res://Content/Scenes/Other/Player.tscn" id="13_bkmnr"]
 [ext_resource type="Texture2D" uid="uid://q2j1uuqfjmos" path="res://Content/Sprites/Levels/BaseTileSet.png" id="14_n3thr"]
-[ext_resource type="PackedScene" uid="uid://d3u7pfig07yrs" path="res://Content/Scenes/Other/CrutchedArea2D.tscn" id="15_i2gi8"]
+[ext_resource type="PackedScene" uid="uid://ci02ahah4pg1w" path="res://Content/Scenes/Interface&Menu/HintCanvasLayer.tscn" id="16_ffab2"]
+[ext_resource type="Texture2D" uid="uid://cq27bdhehtatn" path="res://Content/Sprites/Interface/StandBarEmpty.png" id="18_25g4a"]
+[ext_resource type="PackedScene" uid="uid://dbbw5dwtig42m" path="res://Content/Scenes/Interface&Menu/AppearingText.tscn" id="18_ygb1l"]
+[ext_resource type="Texture2D" uid="uid://c2vlstlfjauxy" path="res://Content/Sprites/Interface/StandBar.png" id="19_a4yww"]
+[ext_resource type="Texture2D" uid="uid://dwhribmb1bvrr" path="res://Content/Sprites/Interface/DiagonalArrow.png" id="19_gi4na"]
 
 [sub_resource type="Animation" id="Animation_p3npb"]
 resource_name = "MusicStarting"
@@ -545,8 +549,560 @@ physics_layer_0/collision_mask = 0
 sources/1 = SubResource("TileSetAtlasSource_i2m21")
 sources/0 = SubResource("TileSetAtlasSource_hl1pk")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_14w2j"]
-size = Vector2(128, 128)
+[sub_resource type="Animation" id="Animation_xqrtd"]
+resource_name = "Default"
+length = 44.4
+step = 1.0
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(3, 44.4),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"ShowHint"
+}, {
+"args": [],
+"method": &"HideHint"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("StandBar:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(5, 44),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../LevelMusicPlayer")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(42.9, 43.4, 44.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"values": [{
+"args": [0.0],
+"method": &"SetStartPosition"
+}, {
+"args": ["Selected Breakcore Work", 18.35, 0.0],
+"method": &"SetMusicWithoutPlaying"
+}, {
+"args": [5.0],
+"method": &"play"
+}]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ThisIs:Appearing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(7),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("IHopeThatsClear:Appearing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(41),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Arrow:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(7, 12),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("DarkBackground/Appearing:playing")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(5, 44),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("ThisIs:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(12),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("DarkBackground:modulate")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 44),
+"transitions": PackedFloat32Array(0, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.501961), Color(1, 1, 1, 1)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("IfYouDontMove:Appearing")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(12),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("IfYouMoveInOne:Appearing")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(18),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("TheMoreTheScaleIs:Appearing")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(24),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("IfYouMoveFast:Appearing")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(32),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("InShortMoveMore:Appearing")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(38),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("IHopeThatsClear:visible")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(44),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("IfYouDontMove:visible")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(18),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("IfYouMoveInOne:visible")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(24),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/17/type = "value"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("TheMoreTheScaleIs:visible")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"times": PackedFloat32Array(32),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/18/type = "value"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("IfYouMoveFast:visible")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = {
+"times": PackedFloat32Array(38),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/19/type = "value"
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/path = NodePath("InShortMoveMore:visible")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/keys = {
+"times": PackedFloat32Array(41),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/20/type = "value"
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/path = NodePath("StandBar:value")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/keys = {
+"times": PackedFloat32Array(0, 12, 15, 17, 18, 21, 23, 24, 29, 32, 37),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 1.0, 0.0]
+}
+tracks/21/type = "value"
+tracks/21/imported = false
+tracks/21/enabled = true
+tracks/21/path = NodePath("ThatsVeryBad:Appearing")
+tracks/21/interp = 1
+tracks/21/loop_wrap = true
+tracks/21/keys = {
+"times": PackedFloat32Array(29),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/22/type = "value"
+tracks/22/imported = false
+tracks/22/enabled = true
+tracks/22/path = NodePath("ThatsVeryBad:visible")
+tracks/22/interp = 1
+tracks/22/loop_wrap = true
+tracks/22/keys = {
+"times": PackedFloat32Array(32),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_kvr6j"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("StandBar:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ThisIs:Appearing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("IHopeThatsClear:Appearing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Arrow:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("DarkBackground/Appearing:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("ThisIs:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("DarkBackground:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.501961)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("TheMoreTheScaleIs:Appearing")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("IfYouMoveFast:Appearing")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("InShortMoveMore:Appearing")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("TheMoreTheScaleIs:visible")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("IfYouMoveFast:visible")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("InShortMoveMore:visible")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("IfYouDontMove:Appearing")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("IfYouMoveInOne:Appearing")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("IfYouDontMove:visible")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("IfYouMoveInOne:visible")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/17/type = "value"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("IHopeThatsClear:visible")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/18/type = "value"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("StandBar:value")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/19/type = "value"
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/path = NodePath("ThatsVeryBad:Appearing")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/20/type = "value"
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/path = NodePath("ThatsVeryBad:visible")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_x41rb"]
+_data = {
+"Default": SubResource("Animation_xqrtd"),
+"RESET": SubResource("Animation_kvr6j")
+}
 
 [node name="Main" instance=ExtResource("1_xrr5q")]
 
@@ -757,6 +1313,7 @@ tile_set = SubResource("TileSet_gw0j2")
 [node name="Player" parent="Level" index="3" instance=ExtResource("13_bkmnr")]
 modulate = Color(0.956863, 0.956863, 0.956863, 1)
 position = Vector2(1440, 288)
+EnableStandingPenalty = false
 
 [node name="TileMap" type="TileMapLayer" parent="Level" index="4"]
 use_parent_material = true
@@ -764,10 +1321,111 @@ scale = Vector2(4, 4)
 tile_map_data = PackedByteArray("AAAAAAoAAQACAAAAAAABAAoAAQACAAAAAAACAAoAAQACAAAAAAADAAoAAQACAAAAAAAEAAoAAQACAAAAAAAFAAoAAQACAAAAAAAGAAoAAQACAAAAAAAHAAoAAQACAAAAAAAIAAoAAQACAAAAAAAJAAoAAQACAAAAAAAKAAoAAQACAAAAAAALAAoAAQACAAAAAAAMAAoAAQACAAAAAAANAAoAAQACAAAAAAAOAAoAAQACAAAAAAAPAAoAAQACAAAAAAAQAAoAAQACAAAAAAARAAoAAQACAAAAAAASAAoAAQACAAAAAAATAAoAAQACAAAAAAAUAAoAAQACAAAAAAAVAAoAAQACAAAAAAAWAAoAAQACAAAAAAAXAAoAAQACAAAAAAAYAAoAAQACAAAAAAAZAAoAAQACAAAAAAAaAAoAAQACAAAAAAAcAAoAAQACAAAAAAAdAAoAAQACAAAAAAAeAAoAAQACAAAAAAAfAAoAAQACAAAAAAAgAAoAAQACAAAAAAAhAAoAAQACAAAAAAAiAAoAAQACAAAAAAAjAAoAAQACAAAAAAAkAAoAAQACAAAAAAAlAAoAAQACAAAAAAAmAAoAAQACAAAAAAAnAAoAAQACAAAAAAD//woAAQAAAAAAAAD//wkAAQABAAAAAAD//wgAAQABAAAAAAD//wcAAQABAAAAAAD//wYAAQABAAAAAAD//wUAAQABAAAAAAD//wQAAQABAAAAAAD//wMAAQABAAAAAAD//wIAAQABAAAAAAD//wEAAQABAAAAAAD//wAAAQABAAAAAAD/////AQABAAAAAAAAAP//AQABAAAAAAABAP//AQABAAAAAAACAP//AQABAAAAAAADAP//AQABAAAAAAAEAP//AQABAAAAAAAFAP//AQABAAAAAAAGAP//AQABAAAAAAAHAP//AQABAAAAAAAIAP//AQABAAAAAAAJAP//AQABAAAAAAAKAP//AQABAAAAAAALAP//AQABAAAAAAAMAP//AQABAAAAAAANAP//AQABAAAAAAAOAP//AQABAAAAAAAPAP//AQABAAAAAAAQAP//AQABAAAAAAARAP//AQABAAAAAAASAP//AQABAAAAAAATAP//AQABAAAAAAAUAP//AQABAAAAAAAVAP//AQABAAAAAAAWAP//AQABAAAAAAAXAP//AQABAAAAAAAYAP//AQABAAAAAAAZAP//AQABAAAAAAAaAP//AQABAAAAAAAbAP//AQABAAAAAAAcAP//AQABAAAAAAAdAP//AQABAAAAAAAeAP//AQABAAAAAAAfAP//AQABAAAAAAAgAP//AQABAAAAAAAhAP//AQABAAAAAAAiAP//AQABAAAAAAAjAP//AQABAAAAAAAkAP//AQABAAAAAAAlAP//AQABAAAAAAAmAP//AQABAAAAAAAnAP//AQABAAAAAAAoAP//AQABAAAAAAAoAAAAAAAAAAIABwAoAAEAAAAAAAAABgAoAAIAAAAAAAAABgAoAAMAAAAAAAAABgAoAAQAAAAAAAAABgAoAAUAAAAAAAAABgAoAAYAAAAAAAAABgAoAAcAAAAAAAAABgAoAAgAAAAAAAAABgAoAAkAAAAAAAAABgAoAAoAAQAAAAAAAAACAAYAAAAAAAAABgACAAUAAAAAAAAABgACAAcAAAAAAAIACQACAAQAAAAAAAAABgACAAMAAAAAAAAABgACAAIAAAAAAAIACgAFAAEAAAABAAAABwAGAAEAAAABAAAACAABAAcAAAAAAAAABQAFAAQAAAAAAAEABwAGAAQAAAAAAAAABQAHAAQAAAAAAAAABQAIAAQAAAAAAAAABQAGAAcAAAAAAAIABwAFAAcAAAAAAAIACgAFAAgAAAABAAAABwAGAAgAAAABAAAACAAKAAgAAAACAAEAAgAJAAgAAAACAAEAAgAJAAkAAAACAAEAAgAKAAkAAAACAAEAAgADAAIAAAAAAAAABQAJAAQAAAAAAAEABgANAAMAAAAAAAAABQAJAAEAAAAAAAEABwAKAAEAAAAAAAAABQAGAAIAAAAAAAIACQALAAEAAAAAAAEABgAEAAIAAAAAAAAABQAFAAIAAAABAAAABQAMAAMAAAAAAAIACgAOAAMAAAAAAAAABQAPAAMAAAABAAAACAAPAAYAAAAAAAAABgAPAAUAAAABAAAABwAQAAUAAAAAAAAABQARAAUAAAAAAAEABgAPAAcAAAAAAAAABgAMAAQAAAAAAAEACAAbAAoAAQACAAAAAAAUAAcAAAABAAEABwAVAAYAAAABAAIABwAXAAYAAAABAAIACAAbAAcAAAAAAAAABgAbAAYAAAAAAAAABgAbAAUAAAABAAAABwAbAAQAAAABAAAABwAbAAMAAAAAAAAABgAbAAIAAAAAAAAABgAcAAQAAAABAAAABgAdAAQAAAAAAAIABwAgAAgAAAAAAAEACAAgAAcAAAAAAAIACgAhAAcAAAAAAAEABgAUAAYAAAABAAIABgAVAAUAAAABAAIABgAWAAUAAAACAAAABAAXAAUAAAABAAIABQAYAAYAAAABAAIABQAYAAcAAAABAAEABwAcAAUAAAABAAAABQAdAAUAAAABAAAACAAnAAAAAAAAAAAABQAmAAAAAAAAAAAABQAlAAAAAAAAAAAABQAkAAAAAAAAAAIACgAgAAQAAAAAAAEABwAhAAQAAAAAAAEABgAkAAQAAAAAAAAABgAkAAUAAAAAAAAABgAlAAkAAAACAAEAAgAmAAkAAAACAAEAAgAnAAkAAAACAAEAAgAkAAYAAAAAAAAABgAnAAgAAAACAAEAAgApAP//AQABAAAAAAApAAAAAQABAAAAAAApAAEAAQABAAAAAAApAAIAAQABAAAAAAApAAMAAQABAAAAAAApAAQAAQABAAAAAAApAAUAAQABAAAAAAApAAYAAQABAAAAAAApAAcAAQABAAAAAAApAAgAAQABAAAAAAApAAkAAQABAAAAAAApAAoAAQAAAAAAAAD//wsAAQAAAAAAAAD//wwAAQAAAAAAAAAAAAwAAQAAAAAAAAAAAAsAAQAAAAAAAAABAAsAAQAAAAAAAAABAAwAAQAAAAAAAAACAAsAAQAAAAAAAAACAAwAAQAAAAAAAAADAAsAAQAAAAAAAAADAAwAAQAAAAAAAAAEAAsAAQAAAAAAAAAEAAwAAQAAAAAAAAAFAAsAAQAAAAAAAAAFAAwAAQAAAAAAAAAGAAsAAQAAAAAAAAAGAAwAAQAAAAAAAAAHAAsAAQAAAAAAAAAHAAwAAQAAAAAAAAAIAAsAAQAAAAAAAAAIAAwAAQAAAAAAAAAJAAsAAQAAAAAAAAAJAAwAAQAAAAAAAAAKAAsAAQAAAAAAAAAKAAwAAQAAAAAAAAALAAsAAQAAAAAAAAALAAwAAQAAAAAAAAAMAAsAAQAAAAAAAAAMAAwAAQAAAAAAAAANAAsAAQAAAAAAAAANAAwAAQAAAAAAAAAOAAsAAQAAAAAAAAAOAAwAAQAAAAAAAAAPAAsAAQAAAAAAAAAPAAwAAQAAAAAAAAAQAAsAAQAAAAAAAAAQAAwAAQAAAAAAAAARAAsAAQAAAAAAAAARAAwAAQAAAAAAAAASAAsAAQAAAAAAAAASAAwAAQAAAAAAAAATAAsAAQAAAAAAAAATAAwAAQAAAAAAAAAUAAsAAQAAAAAAAAAUAAwAAQAAAAAAAAAVAAsAAQAAAAAAAAAVAAwAAQAAAAAAAAAWAAsAAQAAAAAAAAAWAAwAAQAAAAAAAAAXAAsAAQAAAAAAAAAXAAwAAQAAAAAAAAAYAAsAAQAAAAAAAAAYAAwAAQAAAAAAAAAZAAsAAQAAAAAAAAAZAAwAAQAAAAAAAAAaAAsAAQAAAAAAAAAaAAwAAQAAAAAAAAAbAAsAAQAAAAAAAAAbAAwAAQAAAAAAAAAcAAsAAQAAAAAAAAAcAAwAAQAAAAAAAAAdAAsAAQAAAAAAAAAdAAwAAQAAAAAAAAAeAAsAAQAAAAAAAAAeAAwAAQAAAAAAAAAfAAsAAQAAAAAAAAAfAAwAAQAAAAAAAAAgAAsAAQAAAAAAAAAgAAwAAQAAAAAAAAAhAAsAAQAAAAAAAAAhAAwAAQAAAAAAAAAiAAsAAQAAAAAAAAAiAAwAAQAAAAAAAAAjAAsAAQAAAAAAAAAjAAwAAQAAAAAAAAAkAAsAAQAAAAAAAAAkAAwAAQAAAAAAAAAlAAsAAQAAAAAAAAAlAAwAAQAAAAAAAAAmAAsAAQAAAAAAAAAmAAwAAQAAAAAAAAAnAAsAAQAAAAAAAAAnAAwAAQAAAAAAAAAoAAsAAQAAAAAAAAAoAAwAAQAAAAAAAAApAAsAAQAAAAAAAAApAAwAAQAAAAAAAAD9/woAAQAAAAAAAAD+/woAAQAAAAAAAAD9/wsAAQAAAAAAAAD9/wwAAQAAAAAAAAD+/wsAAQAAAAAAAAD+/wwAAQAAAAAAAAAqAAoAAQAAAAAAAAAqAAsAAQAAAAAAAAAqAAwAAQAAAAAAAAArAAoAAQAAAAAAAAArAAsAAQAAAAAAAAArAAwAAQAAAAAAAAD+/wkAAQABAAAAAAD+/wgAAQABAAAAAAD+/wcAAQABAAAAAAD+/wYAAQABAAAAAAD+/wUAAQABAAAAAAD+/wQAAQABAAAAAAD+/wMAAQABAAAAAAD+/wIAAQABAAAAAAD9/wkAAQABAAAAAAD9/wgAAQABAAAAAAD9/wcAAQABAAAAAAD9/wYAAQABAAAAAAD9/wUAAQABAAAAAAD9/wQAAQABAAAAAAD9/wMAAQABAAAAAAD9/wIAAQABAAAAAAD9/wEAAQABAAAAAAD+/wEAAQABAAAAAAD9/wAAAQABAAAAAAD9////AQABAAAAAAD+////AQABAAAAAAD+/wAAAQABAAAAAAD9//7/AQABAAAAAAD+//7/AQABAAAAAAD///7/AQABAAAAAAAAAP7/AQABAAAAAAABAP7/AQABAAAAAAACAP7/AQABAAAAAAADAP7/AQABAAAAAAAEAP7/AQABAAAAAAAFAP7/AQABAAAAAAAGAP7/AQABAAAAAAAHAP7/AQABAAAAAAAIAP7/AQABAAAAAAAJAP7/AQABAAAAAAAKAP7/AQABAAAAAAALAP7/AQABAAAAAAAMAP7/AQABAAAAAAApAP7/AQABAAAAAAAoAP7/AQABAAAAAAAnAP7/AQABAAAAAAAmAP7/AQABAAAAAAAlAP7/AQABAAAAAAAkAP7/AQABAAAAAAAjAP7/AQABAAAAAAAiAP7/AQABAAAAAAAhAP7/AQABAAAAAAAgAP7/AQABAAAAAAAfAP7/AQABAAAAAAAeAP7/AQABAAAAAAAdAP7/AQABAAAAAAAcAP7/AQABAAAAAAAbAP7/AQABAAAAAAAaAP7/AQABAAAAAAAZAP7/AQABAAAAAAAYAP7/AQABAAAAAAAXAP7/AQABAAAAAAAWAP7/AQABAAAAAAAVAP7/AQABAAAAAAAUAP7/AQABAAAAAAATAP7/AQABAAAAAAASAP7/AQABAAAAAAARAP7/AQABAAAAAAAQAP7/AQABAAAAAAAPAP7/AQABAAAAAAAOAP7/AQABAAAAAAANAP7/AQABAAAAAAALAP3/AQABAAAAAAD9//3/AQABAAAAAAD+//3/AQABAAAAAAD///3/AQABAAAAAAAAAP3/AQABAAAAAAABAP3/AQABAAAAAAACAP3/AQABAAAAAAADAP3/AQABAAAAAAAEAP3/AQABAAAAAAAFAP3/AQABAAAAAAAGAP3/AQABAAAAAAAHAP3/AQABAAAAAAAIAP3/AQABAAAAAAAJAP3/AQABAAAAAAAKAP3/AQABAAAAAAAMAP3/AQABAAAAAAANAP3/AQABAAAAAAAOAP3/AQABAAAAAAAPAP3/AQABAAAAAAAQAP3/AQABAAAAAAARAP3/AQABAAAAAAASAP3/AQABAAAAAAATAP3/AQABAAAAAAAUAP3/AQABAAAAAAAVAP3/AQABAAAAAAAWAP3/AQABAAAAAAAXAP3/AQABAAAAAAAYAP3/AQABAAAAAAAZAP3/AQABAAAAAAAaAP3/AQABAAAAAAAbAP3/AQABAAAAAAAcAP3/AQABAAAAAAAdAP3/AQABAAAAAAAeAP3/AQABAAAAAAAfAP3/AQABAAAAAAAgAP3/AQABAAAAAAAhAP3/AQABAAAAAAAiAP3/AQABAAAAAAAjAP3/AQABAAAAAAAkAP3/AQABAAAAAAAlAP3/AQABAAAAAAAmAP3/AQABAAAAAAAnAP3/AQABAAAAAAAoAP3/AQABAAAAAAApAP3/AQABAAAAAAAqAP3/AQABAAAAAAAqAP7/AQABAAAAAAAqAP//AQABAAAAAAAqAAAAAQABAAAAAAAqAAEAAQABAAAAAAAqAAIAAQABAAAAAAAqAAMAAQABAAAAAAAqAAQAAQABAAAAAAAqAAUAAQABAAAAAAAqAAYAAQABAAAAAAAqAAcAAQABAAAAAAAqAAgAAQABAAAAAAAqAAkAAQABAAAAAAArAP3/AQABAAAAAAArAP7/AQABAAAAAAArAP//AQABAAAAAAArAAAAAQABAAAAAAArAAEAAQABAAAAAAArAAIAAQABAAAAAAArAAMAAQABAAAAAAArAAQAAQABAAAAAAArAAUAAQABAAAAAAArAAYAAQABAAAAAAArAAcAAQABAAAAAAArAAgAAQABAAAAAAArAAkAAQABAAAAAAA=")
 tile_set = SubResource("TileSet_ok3g5")
 
-[node name="PlayMusicTrigger" parent="Level" index="5" instance=ExtResource("15_i2gi8")]
-position = Vector2(1440, 288)
+[node name="HintLayer" parent="." index="5" instance=ExtResource("16_ffab2")]
+visible = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/PlayMusicTrigger" index="0"]
-shape = SubResource("RectangleShape2D_14w2j")
+[node name="AppearTimer" type="Timer" parent="HintLayer" index="2"]
+process_mode = 1
+one_shot = true
 
-[connection signal="ButtonPressed" from="Level/PlayMusicTrigger" to="LevelMusicPlayer" method="PlayMusic" flags=6 binds= ["Selected Breakcore Work", 18.35, 0.0]]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="HintLayer" index="3"]
+libraries = {
+"": SubResource("AnimationLibrary_x41rb")
+}
+
+[node name="StandBar" type="TextureProgressBar" parent="HintLayer" index="4"]
+visible = false
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -64.0
+offset_right = 96.0
+offset_bottom = -48.0
+grow_vertical = 0
+scale = Vector2(4, 4)
+size_flags_horizontal = 0
+size_flags_vertical = 0
+min_value = -0.2
+max_value = 1.0
+step = 0.0
+texture_under = ExtResource("18_25g4a")
+texture_progress = ExtResource("19_a4yww")
+
+[node name="ThisIs" parent="HintLayer" index="5" instance=ExtResource("18_ygb1l")]
+offset_left = 105.0
+offset_top = 402.0
+offset_right = 795.0
+offset_bottom = 658.0
+text = "This is standing penalty scale."
+
+[node name="IfYouDontMove" parent="HintLayer" index="6" instance=ExtResource("18_ygb1l")]
+offset_left = 105.0
+offset_top = 402.0
+offset_right = 795.0
+offset_bottom = 658.0
+text = "If you don't move much, it fills up."
+
+[node name="IfYouMoveInOne" parent="HintLayer" index="7" instance=ExtResource("18_ygb1l")]
+offset_left = 105.0
+offset_top = 402.0
+offset_right = 795.0
+offset_bottom = 658.0
+text = "If you move in one place, it fills up."
+
+[node name="TheMoreTheScaleIs" parent="HintLayer" index="8" instance=ExtResource("18_ygb1l")]
+offset_left = 133.0
+offset_top = 292.0
+offset_right = 823.0
+offset_bottom = 932.0
+text = "The more the scale is filled, the more the crosses spawn increases and the closer they are to you"
+CharactersPerSecond = 20.0
+
+[node name="ThatsVeryBad" parent="HintLayer" index="9" instance=ExtResource("18_ygb1l")]
+offset_left = 398.0
+offset_top = 673.0
+offset_right = 2172.0
+offset_bottom = 737.0
+scale = Vector2(0.5, 0.5)
+text = "(That's - very bad)"
+CharactersPerSecond = 20.0
+PopSound = false
+AppearSound = false
+
+[node name="IfYouMoveFast" parent="HintLayer" index="10" instance=ExtResource("18_ygb1l")]
+offset_left = 105.0
+offset_top = 402.0
+offset_right = 795.0
+offset_bottom = 722.0
+text = "If you're moving fast, the scale goes down."
+
+[node name="InShortMoveMore" parent="HintLayer" index="11" instance=ExtResource("18_ygb1l")]
+offset_left = 171.0
+offset_top = 403.0
+offset_right = 861.0
+offset_bottom = 531.0
+text = "In short, move more."
+
+[node name="IHopeThatsClear" parent="HintLayer" index="12" instance=ExtResource("18_ygb1l")]
+offset_left = 186.0
+offset_top = 406.0
+offset_right = 876.0
+offset_bottom = 598.0
+text = "I hope that's clear."
+
+[node name="Arrow" type="Sprite2D" parent="HintLayer" index="13"]
+visible = false
+position = Vector2(315, 567)
+scale = Vector2(4, 4)
+texture = ExtResource("19_gi4na")
+
+[connection signal="PlayerDied" from="Level/Player" to="HintLayer/AppearTimer" method="stop"]
+[connection signal="HintHidden" from="HintLayer" to="Level/Player" method="ToggleStandingPenalty" binds= [true]]
+[connection signal="HintWillBeShown" from="HintLayer" to="Level/Player" method="ToggleStandingPenalty" binds= [false]]
+[connection signal="HintWontBeShown" from="HintLayer" to="Level/Player" method="ToggleStandingPenalty" binds= [true]]
+[connection signal="OnLevelStartHintWillBeShown" from="HintLayer" to="LevelMusicPlayer" method="PlayMusic" binds= ["Selected Breakcore Work (Chillout Mix)", 18.35, 0.0]]
+[connection signal="OnLevelStartHintWillBeShown" from="HintLayer" to="HintLayer/AppearTimer" method="start" binds= [13.0]]
+[connection signal="OnLevelStartHintWontBeShown" from="HintLayer" to="LevelMusicPlayer" method="PlayMusic" binds= ["Selected Breakcore Work", 18.35, 0.0]]
+[connection signal="timeout" from="HintLayer/AppearTimer" to="HintLayer" method="Glitch"]
+[connection signal="timeout" from="HintLayer/AppearTimer" to="HintLayer/AnimationPlayer" method="play" binds= ["Default"]]
+
+[editable path="HintLayer"]

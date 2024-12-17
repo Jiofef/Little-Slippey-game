@@ -142,4 +142,22 @@ public partial class MainScript : Node2D
         for (int i = 0; i < G.TransitiveVariant.Length; i++)
             G.TransitiveVariant[i] = "";
     }
+
+    public void DebugTransitiveObject(int index)
+    {
+        GD.Print(G.TransitiveObject[index]);
+    }
+    public void SetTransitiveObject(int index, Variant value)
+    {
+        G.TransitiveObject[index] = value;
+    }
+    public void ResetTransitiveObject(int index)
+    {
+        G.TransitiveObject[index] = "";
+    }
+    public void ResetAllTransitiveObject()
+    {
+        for (int i = 0; i < G.TransitiveObject.Length; i++)
+            G.TransitiveObject[i] = "";
+    }
 }

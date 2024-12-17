@@ -111,6 +111,8 @@ public partial class G : Node
                        LevelCompleteTime = 150; // When this second comes, the level is passed. Can be used for different things
 
     public static Variant[] TransitiveVariant = new Variant[64]; // You can store almost anything here for anything. The game deletes the data only after entering the menu. If you need to save some data after restarting a level or moving to another scene, this option is perfect for you
+    public static object[] TransitiveObject = new object[64]; // Addition to Variant, if some required data types are not supported
+    // P.s. we HIGHLY recommend commenting out these variables in your code to avoid confusion. Especially if you use a lot of them.
 
     public static string GetLanguagePrefix() // For localization maybe?
     {

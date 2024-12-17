@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://dlscufxb5f1ca"]
+[gd_scene load_steps=33 format=3 uid="uid://dlscufxb5f1ca"]
 
 [ext_resource type="Script" path="res://Content/Scripts/Other/Player.cs" id="1"]
 [ext_resource type="AudioStream" uid="uid://422y36f6ucnf" path="res://Content/Sounds/Player/Climb.mp3" id="2_bn55d"]
@@ -9,6 +9,8 @@
 [ext_resource type="AudioStream" uid="uid://p26mliplwayb" path="res://Content/Sounds/Player/PullDown.mp3" id="6_ouqh1"]
 [ext_resource type="Texture2D" uid="uid://c2vlstlfjauxy" path="res://Content/Sprites/Interface/StandBar.png" id="7_71iex"]
 [ext_resource type="Texture2D" uid="uid://060bgiw5i00k" path="res://Content/Sprites/PlayerSkins/Slippey.png" id="8_36ypt"]
+[ext_resource type="Texture2D" uid="uid://dlkiscny21m58" path="res://Content/Sprites/Interface/ClimbBarEmpty.png" id="8_s2o7p"]
+[ext_resource type="Texture2D" uid="uid://br5w2ioqt3fqq" path="res://Content/Sprites/Interface/ClimbBar.png" id="9_d4mc5"]
 [ext_resource type="Texture2D" uid="uid://nmw5orvjy6f8" path="res://Content/Sprites/Other/PlayerGhost.png" id="10"]
 [ext_resource type="Texture2D" uid="uid://t73lfqyo0ovn" path="res://Content/Sprites/Other/Shine.png" id="10_3mkpq"]
 [ext_resource type="AudioStream" uid="uid://dy6lncevmnf3o" path="res://Content/Sounds/Other/WhiteNoise.mp3" id="12_jom63"]
@@ -20,6 +22,9 @@ size = Vector2(40, 56)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y6w3b"]
 size = Vector2(24, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rr8tv"]
+size = Vector2(40, 56)
 
 [sub_resource type="RectangleShape2D" id="2"]
 size = Vector2(4, 56)
@@ -67,6 +72,68 @@ animations = [{
 "speed": 15.0
 }]
 
+[sub_resource type="Animation" id="Animation_5ikrs"]
+resource_name = "Disappearing"
+length = 0.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_xrnrv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vul4l"]
+_data = {
+"Disappearing": SubResource("Animation_5ikrs"),
+"RESET": SubResource("Animation_xrnrv")
+}
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_icdi5"]
 atlas = ExtResource("8_36ypt")
 region = Rect2(0, 0, 16, 16)
@@ -98,11 +165,19 @@ shape = SubResource("1")
 [node name="Areas" type="Node2D" parent="."]
 
 [node name="PlayerDamageDetector" type="Area2D" parent="Areas"]
-collision_layer = 8
+collision_layer = 0
 collision_mask = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/PlayerDamageDetector"]
 shape = SubResource("RectangleShape2D_y6w3b")
+
+[node name="FullBodyHitBox" type="Area2D" parent="Areas"]
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/FullBodyHitBox"]
+position = Vector2(0, 4)
+shape = SubResource("RectangleShape2D_rr8tv")
 
 [node name="WallDirectionLeftDetector" type="Area2D" parent="Areas"]
 collision_layer = 2
@@ -140,6 +215,23 @@ offset_left = -150.0
 offset_right = 170.0
 offset_bottom = 180.0
 mouse_filter = 2
+
+[node name="StandBar" type="TextureProgressBar" parent="Camera2D/GUICanvas/GUI"]
+visible = false
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -16.0
+offset_right = 96.0
+grow_vertical = 0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+min_value = -0.2
+max_value = 1.0
+step = 0.0
+texture_under = ExtResource("6_ddctq")
+texture_progress = ExtResource("7_71iex")
 
 [node name="Scores" type="Label" parent="Camera2D/GUICanvas/GUI"]
 visible = false
@@ -251,20 +343,24 @@ stream = ExtResource("12_jom63")
 volume_db = -5.0
 bus = &"Player"
 
-[node name="StandBar" type="TextureProgressBar" parent="Camera2D/GUICanvas/GUI"]
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -8.0
-offset_right = 48.0
-grow_vertical = 0
-size_flags_horizontal = 0
-size_flags_vertical = 0
-max_value = 1.0
-step = 0.0
-texture_under = ExtResource("6_ddctq")
-texture_progress = ExtResource("7_71iex")
+[node name="ClimbsBar" type="TextureProgressBar" parent="Camera2D"]
+visible = false
+z_index = 10
+offset_left = -48.0
+offset_top = -64.0
+offset_right = -24.0
+offset_bottom = -59.0
+scale = Vector2(4, 4)
+mouse_filter = 2
+max_value = 3.0
+value = 3.0
+texture_under = ExtResource("8_s2o7p")
+texture_progress = ExtResource("9_d4mc5")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Camera2D/ClimbsBar"]
+libraries = {
+"": SubResource("AnimationLibrary_vul4l")
+}
 
 [node name="Sounds" type="Node" parent="."]
 
@@ -310,3 +406,4 @@ sprite_frames = SubResource("SpriteFrames_1esqc")
 [connection signal="body_exited" from="Areas/WallDirectionLeftDetector" to="." method="WallUndetected" unbinds=1]
 [connection signal="body_entered" from="Areas/WallDirectionRightDetector" to="." method="RightWallDetect" unbinds=1]
 [connection signal="body_exited" from="Areas/WallDirectionRightDetector" to="." method="WallUndetected" unbinds=1]
+[connection signal="draw" from="Camera2D/ClimbsBar" to="Camera2D/ClimbsBar/AnimationPlayer" method="play" binds= ["Disappearing"]]

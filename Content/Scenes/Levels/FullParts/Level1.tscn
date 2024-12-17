@@ -366,6 +366,7 @@ tile_set = SubResource("TileSet_kc0ya")
 
 [node name="Player" parent="Level" index="3" instance=ExtResource("3")]
 position = Vector2(640, 375)
+EnableStandingPenalty = false
 
 [node name="TileMap" type="TileMapLayer" parent="Level" index="4"]
 use_parent_material = true

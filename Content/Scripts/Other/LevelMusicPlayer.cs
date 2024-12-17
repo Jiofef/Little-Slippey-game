@@ -22,32 +22,30 @@ public partial class LevelMusicPlayer : AudioStreamPlayer
         if (KeepPlayingWhenLevelResets && G.MusicName != "")
             PlayMusic(G.MusicName, G.MusicStartPosition);
     }
-    public void PlayMusic(string MusicName, float TrackStartPosition = 0, float AppearanceDuration = 0)
+
+    private void PlayMusicBase(string MusicName, float TrackStartPosition = 0, float AppearanceDuration = 0)
     {
         var musicAnimationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
-        if (MusicName != _currentMusicName)
+        Stream = ResourceLoader.Load<AudioStream>($"res://Content/Sounds/Soundtrack/{MusicName}.mp3");
+        if (Stream == null)
         {
-            Stream = ResourceLoader.Load<AudioStream>($"res://Content/Sounds/Soundtrack/{MusicName}.mp3");
-            if (Stream == null)
-            {
-                GD.PrintErr($"Failed to load music: {MusicName}");
-                return;
-            }
+            GD.PrintErr($"Failed to load music: {MusicName}");
+            return;
+        }
 
-            _currentMusicName = MusicName;
-            _startPosition = TrackStartPosition;
-            if (AppearanceDuration > 0)
-                musicAnimationPlayer.Play("MusicStarting", -1, 1 / AppearanceDuration);
-            else
-                VolumeDb = 10;
-            Play(SaveTimeCodeWhenLevelResets ? G.MusicStopTimeCode : 0);
-            if (KeepPlayingWhenLevelResets)
-            {
-                G.MusicName = _currentMusicName;
-                G.MusicStartPosition = _startPosition;
-            }
+        _currentMusicName = MusicName;
+        _startPosition = TrackStartPosition;
+        if (AppearanceDuration > 0)
+            musicAnimationPlayer.Play("MusicStarting", -1, 1 / AppearanceDuration);
+        else
+            VolumeDb = 10;
+        if (KeepPlayingWhenLevelResets)
+        {
+            G.MusicName = _currentMusicName;
+            G.MusicStartPosition = _startPosition;
         }
     }
+
     public void StopMusic(float DisappearanceDuration = 0)
     {
         var musicAnimationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
@@ -84,6 +82,22 @@ public partial class LevelMusicPlayer : AudioStreamPlayer
             G.MusicStopTimeCode = GetPlaybackPosition();
     }
 
+    public void PlayMusic(string MusicName, float TrackStartPosition = 0, float AppearanceDuration = 0)
+    {
+        if (MusicName != _currentMusicName)
+        {
+            PlayMusicBase(MusicName, TrackStartPosition, AppearanceDuration);
+            Play(SaveTimeCodeWhenLevelResets ? G.MusicStopTimeCode : 0);
+        }
+    }
+    public void PlayMusicFrom(float Position, string MusicName, float TrackStartPosition = 0, float AppearanceDuration = 0)
+    {
+        if (MusicName != _currentMusicName)
+        {
+            PlayMusicBase(MusicName, TrackStartPosition, AppearanceDuration);
+            Play(Position);
+        }
+    }
 
     public void SetRestartMusicWhenItFinished(bool value)
     {
@@ -101,5 +115,15 @@ public partial class LevelMusicPlayer : AudioStreamPlayer
     {
         _startPosition = value;
         G.MusicStartPosition = _startPosition;
+    }
+    public void SetPosition()
+    {
+        GetPlaybackPosition();
+    }
+
+    public void SetMusicWithoutPlaying(string MusicName, float TrackStartPosition = 0, float AppearanceDuration = 0)
+    {
+        PlayMusic(MusicName, TrackStartPosition, AppearanceDuration);
+        StreamPaused = true;
     }
 }

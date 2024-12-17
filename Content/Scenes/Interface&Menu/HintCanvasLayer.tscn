@@ -1,0 +1,57 @@
+[gd_scene load_steps=8 format=3 uid="uid://ci02ahah4pg1w"]
+
+[ext_resource type="Script" path="res://Content/Scripts/Levels/HintCanvasLayer.cs" id="1_6pbvn"]
+[ext_resource type="AudioStream" uid="uid://cij0pc53cmvqd" path="res://Content/Sounds/Other/Snare.mp3" id="2_4atta"]
+[ext_resource type="Texture2D" uid="uid://6nyi0tpol518" path="res://Content/Sprites/Other/HintGlitch.png" id="3_1cepg"]
+[ext_resource type="AudioStream" uid="uid://2xdh4hpisqfj" path="res://Content/Sounds/Other/HintGlitch.mp3" id="4_e27mp"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3wfgn"]
+atlas = ExtResource("3_1cepg")
+region = Rect2(0, 0, 320, 180)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8hqwr"]
+atlas = ExtResource("3_1cepg")
+region = Rect2(0, 180, 320, 180)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_t86w5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3wfgn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8hqwr")
+}],
+"loop": false,
+"name": &"Glitch",
+"speed": 30.0
+}]
+
+[node name="HintLayer" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_6pbvn")
+
+[node name="DarkBackground" type="ColorRect" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0.501961)
+offset_right = 1280.0
+offset_bottom = 720.0
+color = Color(0, 0, 0, 1)
+
+[node name="Appearing" type="AudioStreamPlayer" parent="DarkBackground"]
+stream = ExtResource("2_4atta")
+bus = &"Interface"
+
+[node name="Glitch" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(640, 360)
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_t86w5")
+animation = &"Glitch"
+
+[node name="GlitchSound" type="AudioStreamPlayer" parent="Glitch"]
+stream = ExtResource("4_e27mp")
+volume_db = -5.0
+bus = &"Interface"
+
+[connection signal="animation_finished" from="Glitch" to="Glitch" method="hide"]

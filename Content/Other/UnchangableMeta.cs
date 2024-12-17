@@ -21,6 +21,11 @@ public partial class UnchangableMeta : Node
     public static byte[] LevelPlayedStatus = new byte[G.LevelsInGameTotal]; //I made it as byte[] because of retard Godot that can't save a boolean array >:(
 
     public static bool IsLanguageSetted = false, IsTutorialPlayed, IsLevel9PlatformSectionFirstTimeCompleted, IsLevel9PlatformSectionSkipAllowed, IsFakeLevel10SkipAllowed, IsThereNewContentInRecycleBin = true;
+    public static bool[] HintsStatus = //True - was showed. False - hasn't.
+    {
+        false, // 0 is Level 2 standing penalty hint
+        false, // 1 is Level 6 building hint
+    };
     public static float DeathsNumber = 0;
 
     public static void SaveRecords()
