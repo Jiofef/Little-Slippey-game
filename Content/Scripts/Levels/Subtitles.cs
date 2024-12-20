@@ -8,15 +8,15 @@ public partial class Subtitles : RichTextLabel
 	[Signal] public delegate void TextClearingEventHandler();
 
     //I have made these fields public so that their values can be saved after the level is reloaded.
-    public string _textToDraw = "";
-    public float _timeToDraw = 0;
-    public float _timer = 0;
+    public string TextToDraw = "";
+    public float TimeToDraw = 0;
+    public float Timer = 0;
 
-    public string[] _textsQueue;
-    public float[] _textTimeCodes;
-    public bool _isTextQueued = false;
-    public float _textSavingTime = 0;
-    public int _currentQueueNumber = -1;
+    public string[] TextsQueue;
+    public float[] TextTimeCodes;
+    public bool IsTextQueued = false;
+    public float TextSavingTime = 0;
+    public int CurrentQueueNumber = -1;
 	//
 
     public override void _Ready()
@@ -26,42 +26,42 @@ public partial class Subtitles : RichTextLabel
 
 	public override void _PhysicsProcess(double delta)
 	{
-		_timer += 0.01667f;
-		if (_isTextQueued)
+		Timer += 0.01667f;
+		if (IsTextQueued)
 		{
-			if (_currentQueueNumber < _textsQueue.Length && _currentQueueNumber < _textTimeCodes.Length)
+			if (CurrentQueueNumber < TextsQueue.Length && CurrentQueueNumber < TextTimeCodes.Length)
 			{
-                if (_timer > _textTimeCodes[_currentQueueNumber + 1])
+                if (Timer > TextTimeCodes[CurrentQueueNumber + 1])
                 {
-                    _currentQueueNumber++;
-                    if (_currentQueueNumber < _textsQueue.Length)
-                        Text = _textsQueue[_currentQueueNumber];
+                    CurrentQueueNumber++;
+                    if (CurrentQueueNumber < TextsQueue.Length)
+                        Text = TextsQueue[CurrentQueueNumber];
                     VisibleRatio = 0;
                 }
 
-                if (VisibleRatio < 1 && _currentQueueNumber < _textsQueue.Length)
+                if (VisibleRatio < 1 && CurrentQueueNumber < TextsQueue.Length)
 				{
-					if (_currentQueueNumber >= 0 && _textTimeCodes[_currentQueueNumber + 1] - _textTimeCodes[_currentQueueNumber] - _textSavingTime > 0)
-						VisibleRatio = (_timer - _textTimeCodes[_currentQueueNumber]) / (_textTimeCodes[_currentQueueNumber + 1] - _textTimeCodes[_currentQueueNumber] - _textSavingTime);
+					if (CurrentQueueNumber >= 0 && TextTimeCodes[CurrentQueueNumber + 1] - TextTimeCodes[CurrentQueueNumber] - TextSavingTime > 0)
+						VisibleRatio = (Timer - TextTimeCodes[CurrentQueueNumber]) / (TextTimeCodes[CurrentQueueNumber + 1] - TextTimeCodes[CurrentQueueNumber] - TextSavingTime);
 					else VisibleRatio = 1;
 				}
             }
-			else if (_timer < _textTimeCodes.Last() - _textSavingTime)
+			else if (Timer < TextTimeCodes.Last() - TextSavingTime)
 				ClearText();
 		}
 		else
 		{
-            if (_timeToDraw > 0 && VisibleRatio < 1)
-                VisibleRatio = _timer / _timeToDraw;
-            if (_timer > _timeToDraw + _textSavingTime)
+            if (TimeToDraw > 0 && VisibleRatio < 1)
+                VisibleRatio = Timer / TimeToDraw;
+            if (Timer > TimeToDraw + TextSavingTime)
                 ClearText();
         }
 	}
 	public void ShowText(string TextToDraw, float TimeToDraw = 1)
 	{
-		_timer = 0;
-        _timeToDraw = TimeToDraw;
-		_textToDraw = TextToDraw;
+		Timer = 0;
+        this.TimeToDraw = TimeToDraw;
+		this.TextToDraw = TextToDraw;
         Text = TextToDraw;
 		EmitSignal("TextAppearing");
 
@@ -69,27 +69,27 @@ public partial class Subtitles : RichTextLabel
     }
 	public void ClearText()
 	{
-		_textToDraw = "";
-		_timeToDraw = 0;
+		TextToDraw = "";
+		TimeToDraw = 0;
 		Text = "";
-		_timer = 0;
-		_textsQueue = null;
-		_textTimeCodes = null;
-		_textSavingTime = 0;
-		_isTextQueued = false;
-		_currentQueueNumber = -1;
+		Timer = 0;
+		TextsQueue = null;
+		TextTimeCodes = null;
+		TextSavingTime = 0;
+		IsTextQueued = false;
+		CurrentQueueNumber = -1;
 		EmitSignal("TextClearing");
 
         SetPhysicsProcess(false);
 	}
 	public void ShowTextQueue(string[] TextsQueue, float[] TextTimeCodes, float TextSavingTime = 0)
 	{
-        _timer = 0;
-		_textsQueue = TextsQueue;
-		_textTimeCodes = TextTimeCodes;
-		_textSavingTime = TextSavingTime;
-		_isTextQueued = true;
-        _currentQueueNumber = -1;
+        Timer = 0;
+		this.TextsQueue = TextsQueue;
+		this.TextTimeCodes = TextTimeCodes;
+		this.TextSavingTime = TextSavingTime;
+		IsTextQueued = true;
+        CurrentQueueNumber = -1;
         EmitSignal("TextAppearing");
 
         SetPhysicsProcess(true);

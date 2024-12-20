@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=4 uid="uid://c2nxiddufnutu"]
+[gd_scene load_steps=55 format=4 uid="uid://c2nxiddufnutu"]
 
 [ext_resource type="Script" path="res://Content/Scripts/Other/MainScript.cs" id="1_52yug"]
 [ext_resource type="Script" path="res://Content/Scripts/Levels/Level10MusicPlayer.cs" id="2_1fwqt"]
@@ -583,6 +583,21 @@ format = 1
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.05, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 
+[sub_resource type="Animation" id="Animation_5ruv1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
 [sub_resource type="Animation" id="Animation_ntmlj"]
 resource_name = "TakingSlippey"
 length = 16.0
@@ -749,6 +764,7 @@ tracks/12/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_urued"]
 _data = {
+"RESET": SubResource("Animation_5ruv1"),
 "TakingSlippey": SubResource("Animation_ntmlj")
 }
 
@@ -951,6 +967,7 @@ stream = ExtResource("16_frlwx")
 z_index = 3
 
 [node name="DroneCapsule" type="Node2D" parent="Level/PositionCrutch"]
+visible = false
 z_index = 2
 position = Vector2(-760, -114)
 script = ExtResource("14_qp2rg")
@@ -1054,16 +1071,7 @@ stream = ExtResource("16_mt6pq")
 process_mode = 3
 layer = 100
 
-[connection signal="LevelReseting" from="." to="Level/ScientistNode" method="OnLevelReset" flags=6]
-[connection signal="ready" from="." to="." method="SetCrossesProgressCoeff" flags=7 binds= [0.5]]
-[connection signal="ready" from="." to="." method="SetProgressPaused" flags=7 binds= [false]]
-[connection signal="ready" from="." to="." method="SetCrossesSpawnMultiplier" flags=7 binds= [1.0]]
-[connection signal="ready" from="." to="." method="SetCrossesEnabled" flags=7 binds= [true]]
 [connection signal="finished" from="Level/ScientistNode/Megaphone" to="Level/ScientistNode" method="PhraseFinished" flags=3]
-[connection signal="TextAppearing" from="Level/ScientistNode/CanvasLayer/Subtitles" to="Level/ScientistNode/CanvasLayer/ColorRect/AnimationPlayer" method="play" binds= ["Appearing"]]
-[connection signal="TextClearing" from="Level/ScientistNode/CanvasLayer/Subtitles" to="Level/ScientistNode/CanvasLayer/ColorRect/AnimationPlayer" method="play" binds= ["Disappearing"]]
-[connection signal="PlayerDied" from="Level/Player" to="LevelMusicPlayer" method="SaveTimeCode" flags=6]
-[connection signal="PlayerDied" from="Level/Player" to="Level/ScientistNode" method="PlayerDied" flags=6]
 [connection signal="area_entered" from="Level/Player/Areas/PlayerDamageDetector" to="Level/PositionCrutch/DroneCapsule/Timer" method="start" flags=6 unbinds=1]
 [connection signal="animation_finished" from="Level/CanvasLayer/WhiteNoiseGlitch" to="Level/CanvasLayer/WhiteNoiseGlitch" method="set_visible" binds= [false]]
 [connection signal="timeout" from="Level/PositionCrutch/DroneCapsule/Timer" to="Level/PositionCrutch/DroneCapsule" method="Departure"]

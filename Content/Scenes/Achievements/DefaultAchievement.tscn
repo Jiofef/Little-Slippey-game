@@ -1,11 +1,13 @@
-[gd_scene load_steps=11 format=3 uid="uid://d27nwc3cdixbo"]
+[gd_scene load_steps=13 format=3 uid="uid://d27nwc3cdixbo"]
 
 [ext_resource type="Texture2D" uid="uid://w03njd07hf8e" path="res://Content/Sprites/Interface/AchievementBox.png" id="1_11rdp"]
 [ext_resource type="Script" path="res://Content/Scripts/Other/Achievement.cs" id="1_u1lly"]
 [ext_resource type="Texture2D" uid="uid://01o8bu8kwj2h" path="res://Content/Sprites/Other/AchievementStarParticle.png" id="2_tnofe"]
 [ext_resource type="Texture2D" uid="uid://bpldglo3qd7mh" path="res://Content/Sprites/Interface/AchievementRewardBox.png" id="3_blldf"]
+[ext_resource type="Texture2D" uid="uid://8yt60jrdtl3" path="res://Content/Sprites/Interface/AchievementIcons.png" id="4_7bny4"]
 [ext_resource type="AudioStream" uid="uid://ca1ra0emtaeth" path="res://Content/Sounds/Other/AchievementSound.mp3" id="4_338ko"]
 [ext_resource type="Texture2D" uid="uid://brgquvu7soyfx" path="res://Content/Sprites/Interface/AchievementStar.png" id="4_ndwic"]
+[ext_resource type="Theme" uid="uid://dkitr1ftp0yhs" path="res://Content/Other/Menu.tres" id="6_ui8eo"]
 
 [sub_resource type="Gradient" id="Gradient_6pdph"]
 offsets = PackedFloat32Array(0, 0.03, 1)
@@ -77,11 +79,14 @@ texture = ExtResource("1_11rdp")
 centered = false
 
 [node name="RewardBox1" type="Sprite2D" parent="Sprite2D"]
-visible = false
 position = Vector2(100, 22)
 texture = ExtResource("3_blldf")
 
 [node name="RewardSprite" type="Sprite2D" parent="Sprite2D/RewardBox1"]
+scale = Vector2(0.355555, 0.355556)
+texture = ExtResource("4_7bny4")
+region_enabled = true
+region_rect = Rect2(0, 0, 45, 45)
 
 [node name="RewardBox2" type="Sprite2D" parent="Sprite2D"]
 visible = false
@@ -110,8 +115,10 @@ texture = ExtResource("4_ndwic")
 layout_mode = 0
 offset_left = 8.0
 offset_top = 9.0
-offset_right = 472.0
-offset_bottom = 31.0
+offset_right = 671.0
+offset_bottom = 42.0
+scale = Vector2(0.7, 0.7)
+theme = ExtResource("6_ui8eo")
 theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
 
 [node name="Text" type="RichTextLabel" parent="."]
@@ -119,9 +126,11 @@ clip_contents = false
 layout_mode = 0
 offset_left = 8.0
 offset_top = 44.0
-offset_right = 438.0
-offset_bottom = 132.0
+offset_right = 588.0
+offset_bottom = 184.0
+scale = Vector2(0.6, 0.6)
 mouse_filter = 2
+theme = ExtResource("6_ui8eo")
 theme_override_colors/default_color = Color(0.196078, 0.196078, 0.196078, 1)
 
 [node name="PopupVersionPart" type="Node2D" parent="."]

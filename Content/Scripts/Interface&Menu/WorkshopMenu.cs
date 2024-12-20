@@ -5,7 +5,8 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 
-public partial class WorkshopMenu : Control
+[Tool]
+public partial class WorkshopMenu : DraggableWindow
 {
     private readonly string _defaultPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData) + @"\Godot\app_userdata\Little Slippey\mods\";
     private Dictionary[] _modsInfo;
@@ -22,7 +23,7 @@ public partial class WorkshopMenu : Control
         _directories = Directory.GetDirectories(_defaultPath);
         _modsInfo = new Dictionary[_directories.Length];
         _lastFocusOwner = GetViewport().GuiGetFocusOwner();
-        _selectedModButton = GetNode<TextureButton>("ModsScrollContainer/ModsScrollVBoxContainer/DefaultMod");
+        _selectedModButton = GetNode<TextureButton>("MarginContainer/VBoxContainer/Tabs/Mods/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/DefaultMod");
 
 
         for (int i = 0; i < _directories.Length; i++)
@@ -36,11 +37,11 @@ public partial class WorkshopMenu : Control
             }
             catch { }
         }
-        var defaultModButton = GetNode<TextureButton>("ModsScrollContainer/ModsScrollVBoxContainer/DefaultMod");
+        var defaultModButton = GetNode<TextureButton>("MarginContainer/VBoxContainer/Tabs/Mods/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/DefaultMod");
         defaultModButton.FocusEntered += () => ShowDefaultModInfo();
         defaultModButton.Pressed += () => SelectMod(-1, defaultModButton);
 
-        _currentModPreview = GetNode<Control>("ModDescription/ModPreview");
+        _currentModPreview = GetNode<Control>("MarginContainer/VBoxContainer/Tabs/Mods/MarginContainer/VBoxContainer/HBoxContainer/ModDescription/ModPreview");
     }
     public override void _PhysicsProcess(double delta)
     {
@@ -68,9 +69,9 @@ public partial class WorkshopMenu : Control
         else
             _modsInfo = _modsInfo.Append(model).ToArray();
 
-        ModButton.GetNode<RichTextLabel>("Name").Text = model["name"].ToString();
+        ModButton.GetNode<RichTextLabel>("HBoxContainer/Name").Text = model["name"].ToString();
         if (ModTypeIcons.TryGetValue(model["mod_type"], out Variant value))
-            ModButton.GetNode<Sprite2D>("ModType").Texture = (Texture2D)value;
+            ModButton.GetNode<TextureRect>("HBoxContainer/ModType").Texture = (Texture2D)value;
         
         ModButton.FocusEntered += () => ShowModInfo(modIndex);
         ModButton.Pressed += () =>
@@ -78,7 +79,7 @@ public partial class WorkshopMenu : Control
             SelectMod(modIndex, ModButton);
             _selectedModFolder = _directories[modIndex];
         };
-        GetNode("ModsScrollContainer/ModsScrollVBoxContainer").AddChild(ModButton);
+        GetNode("MarginContainer/VBoxContainer/Tabs/Mods/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer").AddChild(ModButton);
         return ModButton;
     }
     private void ShowDefaultModInfo()

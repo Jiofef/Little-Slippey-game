@@ -1,10 +1,11 @@
-[gd_scene load_steps=33 format=3 uid="uid://dlscufxb5f1ca"]
+[gd_scene load_steps=35 format=3 uid="uid://dlscufxb5f1ca"]
 
 [ext_resource type="Script" path="res://Content/Scripts/Other/Player.cs" id="1"]
 [ext_resource type="AudioStream" uid="uid://422y36f6ucnf" path="res://Content/Sounds/Player/Climb.mp3" id="2_bn55d"]
 [ext_resource type="AudioStream" uid="uid://ctpwmgkvyooy1" path="res://Content/Sounds/Player/Death.mp3" id="3_e2byo"]
 [ext_resource type="AudioStream" uid="uid://blkua1p6uqioe" path="res://Content/Sounds/Player/GroundHit.mp3" id="4_eqohp"]
 [ext_resource type="AudioStream" uid="uid://b3cwlsvshgdvx" path="res://Content/Sounds/Player/Jump.mp3" id="5_4c4de"]
+[ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/StandBar.cs" id="5_88r4t"]
 [ext_resource type="Texture2D" uid="uid://cq27bdhehtatn" path="res://Content/Sprites/Interface/StandBarEmpty.png" id="6_ddctq"]
 [ext_resource type="AudioStream" uid="uid://p26mliplwayb" path="res://Content/Sounds/Player/PullDown.mp3" id="6_ouqh1"]
 [ext_resource type="Texture2D" uid="uid://c2vlstlfjauxy" path="res://Content/Sprites/Interface/StandBar.png" id="7_71iex"]
@@ -149,6 +150,9 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Gradient" id="Gradient_u843o"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 452
 platform_on_leave = 1
@@ -230,8 +234,10 @@ size_flags_vertical = 0
 min_value = -0.2
 max_value = 1.0
 step = 0.0
+value = 1.0
 texture_under = ExtResource("6_ddctq")
 texture_progress = ExtResource("7_71iex")
+script = ExtResource("5_88r4t")
 
 [node name="Scores" type="Label" parent="Camera2D/GUICanvas/GUI"]
 visible = false
@@ -242,9 +248,11 @@ offset_right = 213.0
 offset_bottom = 124.0
 scale = Vector2(1.5, 1.5)
 size_flags_vertical = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_shadow_color = Color(0.223529, 0.203922, 0.341176, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 0
+theme_override_constants/shadow_outline_size = 0
 theme_override_font_sizes/font_size = 22
 text = "000000000"
 horizontal_alignment = 1
@@ -262,8 +270,9 @@ offset_right = 150.0
 offset_bottom = 45.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_shadow_color = Color(0.223529, 0.203922, 0.341176, 1)
+theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 0
-theme_override_constants/shadow_outline_size = 4
+theme_override_constants/shadow_outline_size = 0
 theme_override_font_sizes/font_size = 22
 text = "Score: "
 horizontal_alignment = 1
@@ -277,8 +286,11 @@ offset_bottom = 55.0
 scale = Vector2(1.1, 1.1)
 theme_override_colors/font_color = Color(1, 1, 0, 1)
 theme_override_colors/font_shadow_color = Color(0.839216, 0.690196, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 0.760784, 0, 1)
+theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 0
-theme_override_constants/shadow_outline_size = 4
+theme_override_constants/outline_size = 4
+theme_override_constants/shadow_outline_size = 0
 theme_override_font_sizes/font_size = 22
 text = "New Record!
 Score: "
@@ -327,18 +339,19 @@ offset_bottom = 168.0
 scale = Vector2(1.5, 1.5)
 theme_override_colors/font_shadow_color = Color(0.223529, 0.203922, 0.341176, 1)
 theme_override_constants/shadow_offset_y = 0
-theme_override_constants/shadow_outline_size = 4
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_outline_size = 0
 theme_override_font_sizes/normal_font_size = 22
 bbcode_enabled = true
 text = "[center]Hold [img]res://Content/Sprites/Interface/ControllerButtons/KeyboardButtonBigR.png[/img]"
 
-[node name="RestartNoise" type="AnimatedSprite2D" parent="Camera2D/GUICanvas/GUI"]
+[node name="RestartNoise" type="AnimatedSprite2D" parent="Camera2D/GUICanvas"]
 modulate = Color(1, 1, 1, 0)
-position = Vector2(160, 90)
+position = Vector2(10, 90)
 sprite_frames = SubResource("37")
 frame_progress = 0.601279
 
-[node name="Sound" type="AudioStreamPlayer" parent="Camera2D/GUICanvas/GUI/RestartNoise"]
+[node name="Sound" type="AudioStreamPlayer" parent="Camera2D/GUICanvas/RestartNoise"]
 stream = ExtResource("12_jom63")
 volume_db = -5.0
 bus = &"Player"
@@ -399,6 +412,20 @@ texture = ExtResource("10")
 [node name="Default" type="AnimatedSprite2D" parent="SkinContainer"]
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_1esqc")
+
+[node name="HardJumpParticles" type="CPUParticles2D" parent="."]
+position = Vector2(0, 24)
+emitting = false
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 160.0
+initial_velocity_max = 160.0
+scale_amount_min = 4.0
+scale_amount_max = 4.0
+color_ramp = SubResource("Gradient_u843o")
 
 [connection signal="area_entered" from="Areas/PlayerDamageDetector" to="." method="Death" flags=6 unbinds=1]
 [connection signal="area_entered" from="Areas/PlayerDamageDetector" to="Camera2D" method="CameraZoom" flags=6 unbinds=1]

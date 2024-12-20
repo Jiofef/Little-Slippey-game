@@ -21,6 +21,7 @@ public partial class EnhancedElementalCross : Node2D
             var Cross = (Node2D)_crosses[_random.Next(_crosses.Length)].Instantiate();
             Cross.GlobalPosition = GlobalPosition;
             Cross.Material = _noiseShader;
+            Cross.GetNode<Area2D>("ExplosiveArea").Monitorable = false;
             GetParent().AddChild(Cross);
         }
 

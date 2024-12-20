@@ -54,8 +54,8 @@ public partial class DefaultCross : Node2D
 
             if (!explosionAnimation.IsPlaying())
             {
-                GetNode<Sprite2D>("CrossSprite").QueueFree();
-                GetNode<Sprite2D>("WarningSprite").QueueFree();
+                _crossSprite.QueueFree();
+                _warningSprite.QueueFree();
                 GetNode<AudioStreamPlayer>("ExplosionSound").Play();
                 explosionAnimation.Visible = true;
                 explosionAnimation.Play();

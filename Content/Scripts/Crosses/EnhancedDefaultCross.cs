@@ -74,8 +74,7 @@ public partial class EnhancedDefaultCross : Node2D
                 GetNode<CollisionShape2D>("TriggerArea/CollisionShape2D").Disabled = true;
                 explosionAnimation.Visible = true;
                 explosionAnimation.Play();
-                if (Material == null || Material.ResourceName != "StaticNoise")
-                    explosiveArea.Disabled = false;
+                explosiveArea.Disabled = false;
 
                 var Groups = GetGroups();
                 for (int i = 0; i < Groups.Count; i++)

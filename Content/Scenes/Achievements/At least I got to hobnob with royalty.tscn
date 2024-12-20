@@ -5,6 +5,9 @@
 
 [node name="Achievement" instance=ExtResource("1_12vyg")]
 
+[node name="RewardSprite" parent="Sprite2D/RewardBox1" index="0"]
+region_rect = Rect2(405, 0, 45, 45)
+
 [node name="Star1" parent="Sprite2D/Ratings" index="0"]
 texture = ExtResource("2_3a1t2")
 

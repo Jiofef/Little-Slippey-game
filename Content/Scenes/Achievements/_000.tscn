@@ -4,6 +4,9 @@
 
 [node name="Achievement" instance=ExtResource("1_glvup")]
 
+[node name="RewardSprite" parent="Sprite2D/RewardBox1" index="0"]
+region_rect = Rect2(90, 0, 45, 45)
+
 [node name="Name" parent="." index="1"]
 text = "-000"
 

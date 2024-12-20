@@ -859,6 +859,7 @@ horizontal_alignment = 1
 
 [node name="Player" parent="Level" instance=ExtResource("14_8rk7d")]
 position = Vector2(13856, 608)
+EnableStandingPenalty = false
 
 [node name="TileMap" type="Node2D" parent="Level"]
 clip_children = 1
@@ -994,8 +995,8 @@ layer = 100
 [connection signal="ButtonPressed" from="Level/RealityDissector/ByNoMeansArtificalBoundaries" to="Level/RealityDissector/ByNoMeansArtificalBoundaries/AnimationPlayer" method="play" flags=6 binds= ["RealityTumor"]]
 [connection signal="ButtonPressed" from="Level/RealityDissector/ByNoMeansArtificalBoundaries" to="Level/RealityDissector/CanvasLayer/WhiteNoiseGlitch" method="set_visible" binds= [true]]
 [connection signal="ButtonPressed" from="Level/RealityDissector/ByNoMeansArtificalBoundaries" to="Level/SunLightLayerContainer/SunLightLayer/SunLight" method="set_visible" binds= [false]]
-[connection signal="ButtonPressed" from="Level/RealityDissector/ByNoMeansArtificalBoundaries" to="Level/Player" method="set_global_position" binds= [Vector2(13856, 608)]]
 [connection signal="ButtonPressed" from="Level/RealityDissector/ByNoMeansArtificalBoundaries" to="Level/Player" method="SetCameraLimits" binds= [Vector4(-100000, 100000, 100000, -100000), true]]
+[connection signal="ButtonPressed" from="Level/RealityDissector/ByNoMeansArtificalBoundaries" to="Level/Player" method="set_global_position" binds= [Vector2(13856, 608)]]
 [connection signal="area_entered" from="Level/RealityDissector/ByNoMeansArtificalBoundaries" to="Level/RealityDissector/ByNoMeansArtificalBoundaries" method="AreaEntered" unbinds=1]
 [connection signal="ButtonPressed" from="Level/RealityDissector/CameraLimitsSetTrigger" to="Level/Player" method="SetCameraLimits" flags=6 binds= [Vector4(-100000, 100000, 100000, -100000), true]]
 [connection signal="ButtonPressed" from="Level/RealityDissector/CameraPositionSmoothingSpeedSetTrigger" to="Level/Player" method="SetCameraPositionSmoothingSpeed" binds= [15.0]]

@@ -21,10 +21,9 @@ public partial class UnchangableMeta : Node
     public static byte[] LevelPlayedStatus = new byte[G.LevelsInGameTotal]; //I made it as byte[] because of retard Godot that can't save a boolean array >:(
 
     public static bool IsLanguageSetted = false, IsTutorialPlayed, IsLevel9PlatformSectionFirstTimeCompleted, IsLevel9PlatformSectionSkipAllowed, IsFakeLevel10SkipAllowed, IsThereNewContentInRecycleBin = true;
-    public static bool[] HintsStatus = //True - was showed. False - hasn't.
+    public static byte[] HintsStatus = //1 - was showed. 0 - hasn't.
     {
-        false, // 0 is Level 2 standing penalty hint
-        false, // 1 is Level 6 building hint
+        0, // id 0 is Level 2 standing penalty hint
     };
     public static float DeathsNumber = 0;
 
@@ -61,6 +60,7 @@ public partial class UnchangableMeta : Node
             {"is_fake_level10_skip_allowed", IsFakeLevel10SkipAllowed},
             {"is_there_new_content_in_recycle_bin", IsThereNewContentInRecycleBin},
             {"level_played_status", LevelPlayedStatus},
+            {"hints_status", HintsStatus},
         };
     }
     public static void SaveToFile()
@@ -118,6 +118,14 @@ public partial class UnchangableMeta : Node
                 {
                     for (int i = 0; i < LevelPlayedStatus.Length; i++)
                         LevelPlayedStatus[i] = Convert.ToByte(LevelPlayedStatusArray[i].ToString());
+                }
+                catch { }
+
+                Godot.Collections.Array HintsStatusArray = (Godot.Collections.Array)model["hints_status"];
+                try
+                {
+                    for (int i = 0; i < HintsStatus.Length; i++)
+                        HintsStatus[i] = Convert.ToByte(HintsStatusArray[i].ToString());
                 }
                 catch { }
 

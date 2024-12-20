@@ -27,19 +27,18 @@ _data = {
 
 [node name="Achievement" instance=ExtResource("1_c5fvi")]
 
-[node name="RewardBox1" parent="Sprite2D" index="0"]
-visible = true
-
 [node name="RewardSprite" parent="Sprite2D/RewardBox1" index="0"]
 position = Vector2(0, 1)
+scale = Vector2(1, 1)
 texture = ExtResource("2_qw2yi")
 offset = Vector2(0, -1)
+region_enabled = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D/RewardBox1/RewardSprite" index="0"]
-autoplay = "Rotating"
 libraries = {
 "": SubResource("AnimationLibrary_uchl4")
 }
+autoplay = "Rotating"
 
 [node name="RewardBox2" parent="Sprite2D" index="1"]
 visible = true
@@ -89,5 +88,5 @@ modulate = Color(1, 0, 1, 1)
 text = "Thank you for everything, player :)"
 
 [node name="Text" parent="." index="2"]
-offset_right = 272.0
+offset_right = 446.0
 text = "Complete all other achievements"

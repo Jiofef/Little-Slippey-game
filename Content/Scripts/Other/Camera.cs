@@ -8,13 +8,16 @@ public partial class Camera : Camera2D
     Player _player;
     Label _scores;
     TextureProgressBar _standBar;
+    Random _random = new Random();
+
+    bool IsScoreDisabled = false;
     public override void _Ready()
     {
         G.CameraLimits = new Vector4(0, G.LevelXYSizes[G.CurrentLevel].X, G.LevelXYSizes[G.CurrentLevel].Y, 0);
         LimitsChangingBy(true);
         ResetSmoothing();
 
-        _restartNoise = GetNode<AnimatedSprite2D>("GUICanvas/GUI/RestartNoise");
+        _restartNoise = GetNode<AnimatedSprite2D>("GUICanvas/RestartNoise");
         _player = GetNode<Player>("..");
         _scores = GetNode<Label>("GUICanvas/GUI/Scores");
         _standBar = GetNode<TextureProgressBar>("GUICanvas/GUI/StandBar");
@@ -39,37 +42,51 @@ public partial class Camera : Camera2D
             _scores.Text = ((int)G.Scores).ToString();
             if (Meta.Instance.Video.ScoresLabelLocationY == 0)
                 _scores.Modulate = new Color(_scores.Modulate.R, _scores.Modulate.G, _scores.Modulate.B, _player.Position.Y > G.CameraLimits.X + 200 ? 1 : _player.Position.Y / (G.CameraLimits.X + 200));
+
+            if (IsScoreDisabled != G.IsProgressPaused)
+            {
+                IsScoreDisabled = G.IsProgressPaused;
+                if (IsScoreDisabled)
+                    _scores.Modulate = new Color(0.6f, 0.6f, 0.6f);
+                else
+                    _scores.Modulate = new Color(1, 1, 1);
+            }
         }
 
         Vector2 LimitsExpansion = Vector2.Zero;
-        _standBar.Value = 1 - G.PlayerMoveCoeff;
 
-        if (G.ResetTimer != 0) // When resetting 
+
+        #region When resetting 
+        if (G.ResetTimer != 0)
         {
             if (!_restartNoise.IsPlaying())
                 _restartNoise.Play();
             _restartNoise.Modulate = new Color(_restartNoise.Modulate.R, _restartNoise.Modulate.G, _restartNoise.Modulate.B, G.ResetTimer / 2);
 
-            var restartNoiseSound = GetNode<AudioStreamPlayer>("GUICanvas/GUI/RestartNoise/Sound");
+            var restartNoiseSound = _restartNoise.GetNode<AudioStreamPlayer>("Sound");
             if (!restartNoiseSound.Playing)
                 restartNoiseSound.Play();
             restartNoiseSound.VolumeDb = -5 + G.ResetTimer * 10;
 
-            Random random = new Random();
-            LimitsExpansion = new Vector2(random.Next(-50, 50) * G.ResetTimer, random.Next(-50, 50) * G.ResetTimer);
+
+            LimitsExpansion = new Vector2(_random.Next(-50, 50) * G.ResetTimer, _random.Next(-50, 50) * G.ResetTimer);
             Position = new Vector2(LimitsExpansion.X, LimitsExpansion.Y);
             LimitsChangingBy(true, LimitsExpansion.Y, LimitsExpansion.X, LimitsExpansion.Y, LimitsExpansion.X);
         }
-        else if (_restartNoise.IsPlaying()) // When reset interrupts
+        #endregion
+        #region When reset interrupts
+        else if (_restartNoise.IsPlaying())
         {
-            var restartNoise = GetNode<AnimatedSprite2D>("GUICanvas/GUI/RestartNoise");
-            restartNoise.Stop();
-            restartNoise.Modulate = new Color(restartNoise.Modulate.R, restartNoise.Modulate.G, restartNoise.Modulate.B, 0);
+            _restartNoise.Stop();
+            _restartNoise.Modulate = new Color(_restartNoise.Modulate.R, _restartNoise.Modulate.G, _restartNoise.Modulate.B, 0);
 
-            GetNode<AudioStreamPlayer>("GUICanvas/GUI/RestartNoise/Sound").Stop();
+            _restartNoise.GetNode<AudioStreamPlayer>("Sound").Stop();
             LimitsChangingBy();
             LimitsExpansion = Vector2.Zero;
         }
+        #endregion
+
+
 
         if (G.IsPlayerDead) // When player dead
         {
@@ -80,10 +97,10 @@ public partial class Camera : Camera2D
 
             if (G.PlayerCorpseFlightTimer >= 4.5f)
             {
-                var emergingElements = GetNode<Node2D>("GUI/EmergingElements");
+                var emergingElements = GetNode<Node2D>("GUICanvas/GUI/EmergingElements");
                 if (G.IsNewRecordReached)
                 {
-                    const string link = "GUI/EmergingElements/NewRecordScores";
+                    const string link = "GUICanvas/GUI/EmergingElements/NewRecordScores";
                     var newRecordScores = GetNode<Label>(link);
                     newRecordScores.Text = Tr("New Record!\nScore: ") + (int)G.Scores;
                     newRecordScores.Visible = true;
@@ -92,7 +109,7 @@ public partial class Camera : Camera2D
                 }
                 else
                 {
-                    var emergingScores = GetNode<Label>("GUI/EmergingElements/Scores");
+                    var emergingScores = GetNode<Label>("GUICanvas/GUI/EmergingElements/Scores");
                     emergingScores.Visible = true;
                     emergingScores.Text = Convert.ToString(Tr("Score: ") + (int)G.Scores);
                 }
@@ -101,7 +118,7 @@ public partial class Camera : Camera2D
 
                 void SetHoldIMG(string ImageName)
                 {
-                    GetNode<RichTextLabel>("GUI/EmergingElements/Hold R").Text = "[center]Hold [img]res://Content/Sprites/Interface/ControllerButtons/" + ImageName + ".png[/img]";
+                    GetNode<RichTextLabel>("GUICanvas/GUI/EmergingElements/Hold R").Text = "[center]Hold [img]res://Content/Sprites/Interface/ControllerButtons/" + ImageName + ".png[/img]";
                 }
                 switch (G.TypeOfUsedController)
                 {
@@ -122,6 +139,7 @@ public partial class Camera : Camera2D
     {
         PositionSmoothingEnabled = false;
         _scores.Visible = false;
+        GetNode<TextureProgressBar>("GUICanvas/GUI/StandBar").Visible = false;
     }
 
     public void ApplyGUIOptions(bool IsLevelJustStarted)

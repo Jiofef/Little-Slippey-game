@@ -6,13 +6,8 @@
 
 [node name="Achievement" instance=ExtResource("1_5v5il")]
 
-[node name="RewardBox1" parent="Sprite2D" index="0"]
-visible = true
-
 [node name="RewardSprite" parent="Sprite2D/RewardBox1" index="0"]
-scale = Vector2(0.4, 0.4)
 texture = ExtResource("2_8tja5")
-region_enabled = true
 region_rect = Rect2(270, 0, 45, 45)
 
 [node name="RewardBox2" parent="Sprite2D" index="1"]
@@ -23,8 +18,8 @@ modulate = Color(0.762639, 0.531746, 1.34766e-06, 1)
 texture = ExtResource("3_hk4lf")
 
 [node name="Name" parent="." index="1"]
-text = "The coming-on of storms"
+text = "Nor dark and many-folded clouds foretell"
 
 [node name="Text" parent="." index="2"]
-offset_right = 272.0
+offset_right = 448.0
 text = "Complete level 7 on \"Hard\" difficulty"

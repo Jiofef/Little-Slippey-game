@@ -5,13 +5,8 @@
 
 [node name="Achievement" instance=ExtResource("1_oqvdp")]
 
-[node name="RewardBox1" parent="Sprite2D" index="0"]
-visible = true
-
 [node name="RewardSprite" parent="Sprite2D/RewardBox1" index="0"]
-scale = Vector2(0.4, 0.4)
 texture = ExtResource("2_1la6o")
-region_enabled = true
 region_rect = Rect2(405, 45, 45, 45)
 
 [node name="Star2" parent="Sprite2D/Ratings" index="1"]
@@ -21,5 +16,4 @@ visible = true
 text = "The palaces of crowned kings — were burnt."
 
 [node name="Text" parent="." index="2"]
-offset_right = 356.0
 text = "Complete level 10 on \"Insane\" difficulty"

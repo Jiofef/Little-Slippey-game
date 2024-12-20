@@ -8,13 +8,8 @@
 
 [node name="Achievement" instance=ExtResource("1_eeqrh")]
 
-[node name="RewardBox1" parent="Sprite2D" index="0"]
-visible = true
-
 [node name="RewardSprite" parent="Sprite2D/RewardBox1" index="0"]
-scale = Vector2(0.4, 0.4)
 texture = ExtResource("2_41wfu")
-region_enabled = true
 region_rect = Rect2(360, 90, 45, 45)
 
 [node name="RewardBox2" parent="Sprite2D" index="1"]
@@ -55,5 +50,5 @@ visible = true
 text = "And then I heard them lift a Box"
 
 [node name="Text" parent="." index="2"]
-offset_right = 272.0
+offset_right = 448.0
 text = "Complete level 9 on \"Inferno\" difficulty"

@@ -12,15 +12,12 @@ public partial class HintCanvasLayer : CanvasLayer
 
     [Export] public int HintID;
 
-    private G.LevelStartedEventHandler _onLevelStartedHandler;
     #region Sorry for shitcode :P
     public override void _Ready()
     {
-        _onLevelStartedHandler = (bool wasIntroShown) => OnLevelStarted(wasIntroShown);
-        G.OnLevelStarted += _onLevelStartedHandler;
+        G.BindLevelStartEventToNodeSafely(this, "OnLevelStarted", true);
 
-
-        if (UnchangableMeta.HintsStatus[HintID] == true)
+        if (UnchangableMeta.HintsStatus[HintID] == 1)
         {
             EmitSignal("HintWontBeShown");
             if (G.DidLevelIntroPassed)
@@ -37,17 +34,13 @@ public partial class HintCanvasLayer : CanvasLayer
     {
         if (!wasIntroShown) return;
 
-        if (UnchangableMeta.HintsStatus[HintID] == true)
+        if (UnchangableMeta.HintsStatus[HintID] == 1)
         {
             CallDeferred("emit_signal", "OnLevelStartHintWontBeShown");
             QueueFree();
         }
         else
             CallDeferred("emit_signal", "OnLevelStartHintWillBeShown");
-    }
-    public void ExitTree()
-    {
-        G.OnLevelStarted -= _onLevelStartedHandler;
     }
     #endregion
 
@@ -76,6 +69,9 @@ public partial class HintCanvasLayer : CanvasLayer
         GetNode<ColorRect>("DarkBackground").Visible = true;
 
         EmitSignal("HintShowed");
+
+        UnchangableMeta.HintsStatus[HintID] = 1;
+        UnchangableMeta.SaveToFile();
     }
     public void HideHint()
     {

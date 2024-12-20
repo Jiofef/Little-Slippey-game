@@ -5,14 +5,20 @@
 
 [node name="Achievement" instance=ExtResource("1_b1ny7")]
 
-[node name="Star1" parent="Sprite2D/Ratings" index="0"]
-position = Vector2(10.5, 22)
-scale = Vector2(0.05, 0.05)
+[node name="RewardBox1" parent="Sprite2D" index="0"]
+position = Vector2(13, 22)
+
+[node name="RewardSprite" parent="Sprite2D/RewardBox1" index="0"]
+position = Vector2(7.18236e-06, 4.88758e-06)
+scale = Vector2(0.0470589, 0.0380952)
 texture = ExtResource("2_e1l2r")
+region_enabled = false
+
+[node name="Star1" parent="Sprite2D/Ratings" index="0"]
+visible = false
 
 [node name="Name" parent="." index="1"]
 text = "Did you really fall for that?"
 
 [node name="Text" parent="." index="2"]
 visible = false
-offset_right = 356.0

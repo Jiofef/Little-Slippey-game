@@ -183,15 +183,39 @@ public partial class G : Node
     #endregion
 
     #region Useful events
+    /// <summary>
+    /// Be careful if you use this method multiple times to the same node. AI told me there might be problems with it :P
+    /// <para>includeWasIntroShown determines whether the WasIntroShown argument is bound to the call. If so, it is placed before the arguments you insert or not.</para>
+    /// </summary>
+    public static void BindLevelStartEventToNodeSafely(Node node, string methodName, bool includeWasIntroShown = false, params Variant[] @args)
+    {
+        LevelStartedEventHandler @event;
+        @event = (bool wasIntroShown) =>
+        {
+            Variant[] callArgs = includeWasIntroShown
+            ? @args.Concat(new Variant[] { wasIntroShown }).ToArray()
+            : @args;
 
+            node.Call(methodName, callArgs);
+        };
+        OnLevelStarted += @event;
+
+        node.TreeExiting += () =>
+        {
+            if (@event != null)
+            {
+                OnLevelStarted -= @event;
+            }
+        };
+    }
     public delegate void LevelStartedEventHandler(bool wasIntroShown);
     /// <summary>
     /// Use this if you want to do something at the end of the level intro, or if the intro is skipped (e.g. it was already there). 
     /// 
     /// <para>wasIntroShown shows if the intro was shown this time. You can use this as a marker if the level was run for the first time (true if yes, false if not)</para>
-    /// <para>Instead, you can also use the OnLevelStarted signal from "Main" scene for a simpler structure</para>
+    /// <para>Instead of using this event directly, you can use OnLevelStarted signal from "Main" or BindLevelStartEventToNodeSafely method for a simpler structure. </para>
     /// <para>___</para>
-    /// <para>Presumably there should be such a structure to avoid NullReferenceException:</para>
+    /// <para>If you use it directly, here is one possible implementation to avoid NullReferenceException:</para>
     /// <para>
     /// <br>    private G.LevelStartedEventHandler _onLevelStartedHandler;</br>
     /// <br>    public override void _Ready()</br>
@@ -246,6 +270,9 @@ public partial class G : Node
 		LevelCompleteTime = 150;
         AudioServer.SetBusEffectEnabled(2, 0, false);
 		AudioServer.SetBusEffectEnabled(6, 0, false);
+
+        for (int i = 0; i < G.TransitiveVariant.Length; i++)
+            G.TransitiveVariant[i] = "";
 
         IsLevelVanilla = true;
 	}

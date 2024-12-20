@@ -5,13 +5,8 @@
 
 [node name="Achievement" instance=ExtResource("1_xjsr1")]
 
-[node name="RewardBox1" parent="Sprite2D" index="0"]
-visible = true
-
 [node name="RewardSprite" parent="Sprite2D/RewardBox1" index="0"]
-scale = Vector2(0.4, 0.4)
 texture = ExtResource("2_8tja5")
-region_enabled = true
 region_rect = Rect2(270, 45, 45, 45)
 
 [node name="Star2" parent="Sprite2D/Ratings" index="1"]
@@ -21,5 +16,4 @@ visible = true
 text = "Of this their desolation; and all hearts"
 
 [node name="Text" parent="." index="2"]
-offset_right = 356.0
 text = "Complete level 7 on \"Insane\" difficulty"

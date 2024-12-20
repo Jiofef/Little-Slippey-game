@@ -6,13 +6,8 @@
 
 [node name="Achievement" instance=ExtResource("1_s5oqv")]
 
-[node name="RewardBox1" parent="Sprite2D" index="0"]
-visible = true
-
 [node name="RewardSprite" parent="Sprite2D/RewardBox1" index="0"]
-scale = Vector2(0.4, 0.4)
 texture = ExtResource("2_si10j")
-region_enabled = true
 region_rect = Rect2(405, 90, 45, 45)
 
 [node name="RewardBox2" parent="Sprite2D" index="1"]
@@ -34,5 +29,5 @@ visible = true
 text = "And creak across my Soul..."
 
 [node name="Text" parent="." index="2"]
-offset_right = 272.0
+offset_right = 448.0
 text = "Complete level 10 on \"Inferno\" difficulty"

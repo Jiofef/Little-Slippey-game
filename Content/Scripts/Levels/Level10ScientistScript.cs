@@ -230,7 +230,7 @@ public partial class Level10ScientistScript : Node2D
         G.LevelCompleteTime = 300;
         Connect("ShowTextQueue", new Callable(GetNode("CanvasLayer/Subtitles"), "ShowTextQueue"));
         Connect("ClearText", new Callable(GetNode("CanvasLayer/Subtitles"), "ClearText"));
-        Connect("SetResetDisabled", new Callable(GetNode("../../"), "SetResetDisabled"));
+        Connect("SetResetDisabled", new Callable(GetNode<Node2D>("../.."), "SetResetDisabled"));
         if ((bool)G.TransitiveVariant[3])
             EmitSignal("SetResetDisabled", true);
         _megaphone = GetNode<AudioStreamPlayer2D>("Megaphone");
@@ -276,7 +276,11 @@ public partial class Level10ScientistScript : Node2D
         {
             G.TransitiveVariant[12] = true;
             G.IsCrossesEnabled = false;
+            G.Main.IsPauseDisabled = true;
+            G.Main.IsResetDisabled = true;
             G.CrossSpawnMultiplier = 0.25f;
+            G.Player.SetGUIVisible(false);
+            _megaphonePhraseTimer = 0;
             var AllCrossesOnScreen = GetTree().GetNodesInGroup("Crosses");
             for (int i = 0; AllCrossesOnScreen.Count > i; i++)
                 AllCrossesOnScreen[i].QueueFree();
@@ -363,13 +367,7 @@ public partial class Level10ScientistScript : Node2D
     public void PlayerDied()
     {
         G.TransitiveVariant[29] = false;
-        if (G.Scores > 300)
-        {
-            GetNode<Node2D>("../Player/Camera2D/GUI/EmergingElements").Visible = false;
-            GetNode<Node2D>("../../").SetPhysicsProcess(false);
-
-        }
-        else if (G.Scores > 150 || (bool)G.TransitiveVariant[3])
+        if (G.Scores < 300 && (G.Scores > 150 || (bool)G.TransitiveVariant[3]))
         {
             OnLevelReset();
             G.TransitiveVariant[3] = true;
@@ -391,7 +389,7 @@ public partial class Level10ScientistScript : Node2D
 
     public void OnLevelReset()
     {
-        G.TransitiveVariant[1] = (int)G.TransitiveVariant[1] + 1;
+        G.TransitiveVariant[1] = (int)G.TransitiveVariant[1] + 1; // Deaths/resets of that level
         G.TransitiveVariant[8] = _megaphone.Stream;
         G.TransitiveVariant[9] = _megaphonePhraseTimer;
         G.TransitiveVariant[10] = _musicPlayer.VolumeDb;
@@ -411,15 +409,15 @@ public partial class Level10ScientistScript : Node2D
     public void SaveSubtitlesState()
     {
         var subtitles = GetNode<Subtitles>("CanvasLayer/Subtitles");
-        G.TransitiveVariant[16] = subtitles._textToDraw;
-        G.TransitiveVariant[17] = subtitles._timeToDraw;
-        G.TransitiveVariant[18] = subtitles._timer;
+        G.TransitiveVariant[16] = subtitles.TextToDraw;
+        G.TransitiveVariant[17] = subtitles.TimeToDraw;
+        G.TransitiveVariant[18] = subtitles.Timer;
 
-        G.TransitiveVariant[19] = subtitles._textsQueue;
-        G.TransitiveVariant[20] = subtitles._textTimeCodes;
-        G.TransitiveVariant[21] = subtitles._isTextQueued;
-        G.TransitiveVariant[22] = subtitles._textSavingTime;
-        G.TransitiveVariant[23] = subtitles._currentQueueNumber;
+        G.TransitiveVariant[19] = subtitles.TextsQueue;
+        G.TransitiveVariant[20] = subtitles.TextTimeCodes;
+        G.TransitiveVariant[21] = subtitles.IsTextQueued;
+        G.TransitiveVariant[22] = subtitles.TextSavingTime;
+        G.TransitiveVariant[23] = subtitles.CurrentQueueNumber;
 
         G.TransitiveVariant[24] = GetNode<ColorRect>("CanvasLayer/ColorRect").Modulate;
         G.TransitiveVariant[25] = GetNode<AnimationPlayer>("CanvasLayer/ColorRect/AnimationPlayer").CurrentAnimation;
@@ -430,15 +428,15 @@ public partial class Level10ScientistScript : Node2D
     public void LoadSubtitlesSavedState()
     {
         var subtitles = GetNode<Subtitles>("CanvasLayer/Subtitles");
-        subtitles._textToDraw = (string)G.TransitiveVariant[16];
-        subtitles._timeToDraw = (float)G.TransitiveVariant[17];
-        subtitles._timer = (float)G.TransitiveVariant[18];
+        subtitles.TextToDraw = (string)G.TransitiveVariant[16];
+        subtitles.TimeToDraw = (float)G.TransitiveVariant[17];
+        subtitles.Timer = (float)G.TransitiveVariant[18];
 
-        subtitles._textsQueue = (string[])G.TransitiveVariant[19];
-        subtitles._textTimeCodes = (float[])G.TransitiveVariant[20];
-        subtitles._isTextQueued = (bool)G.TransitiveVariant[21];
-        subtitles._textSavingTime = (float)G.TransitiveVariant[22];
-        subtitles._currentQueueNumber = (int)G.TransitiveVariant[23];
+        subtitles.TextsQueue = (string[])G.TransitiveVariant[19];
+        subtitles.TextTimeCodes = (float[])G.TransitiveVariant[20];
+        subtitles.IsTextQueued = (bool)G.TransitiveVariant[21];
+        subtitles.TextSavingTime = (float)G.TransitiveVariant[22];
+        subtitles.CurrentQueueNumber = (int)G.TransitiveVariant[23];
         if ((string)G.TransitiveVariant[24] != "")
         GetNode<ColorRect>("CanvasLayer/ColorRect").Modulate = (Color)G.TransitiveVariant[24];
         if ((string)G.TransitiveVariant[25] != "")

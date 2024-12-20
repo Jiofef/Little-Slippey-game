@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bbefvhpfglkty"]
+[gd_scene load_steps=8 format=3 uid="uid://bbefvhpfglkty"]
 
 [ext_resource type="PackedScene" uid="uid://cb3550p76ubc8" path="res://Content/Scenes/Interface&Menu/DraggableWindow.tscn" id="1_3wmdj"]
 [ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/AchievementsMenu.cs" id="1_xte5a"]
@@ -25,6 +25,8 @@ tracks/0/keys = {
 _data = {
 "Appearance": SubResource("Animation_q7m3v")
 }
+
+[sub_resource type="Theme" id="Theme_3dv30"]
 
 [node name="AchievementsMenu" instance=ExtResource("1_3wmdj")]
 offset_left = 145.0
@@ -64,4 +66,5 @@ clip_contents = true
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+theme = SubResource("Theme_3dv30")
 columns = 2

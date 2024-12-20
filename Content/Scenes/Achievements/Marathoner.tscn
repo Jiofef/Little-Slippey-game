@@ -4,9 +4,11 @@
 
 [node name="Achievement" instance=ExtResource("1_aly1n")]
 
+[node name="RewardSprite" parent="Sprite2D/RewardBox1" index="0"]
+region_rect = Rect2(0, 45, 45, 45)
+
 [node name="Name" parent="." index="1"]
 text = "Marathoner"
 
 [node name="Text" parent="." index="2"]
-offset_right = 356.0
 text = "Run 512 blocks on level 8"

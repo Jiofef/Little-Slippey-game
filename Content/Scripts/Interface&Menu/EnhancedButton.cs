@@ -8,7 +8,6 @@ public partial class EnhancedButton : TextureButton
 	public override void _Ready()
 	{
         _focusRect = GetNode<ColorRect>("FocusRect");
-        _focusRect.Size = Size;
 
 		var downSoundCallable = new Callable(GetNode<AudioStreamPlayer>("DownSound"), "play");
         if (!IsConnected("button_down", downSoundCallable))

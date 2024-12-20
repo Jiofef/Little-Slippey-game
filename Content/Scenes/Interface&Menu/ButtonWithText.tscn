@@ -1,0 +1,160 @@
+[gd_scene load_steps=10 format=3 uid="uid://bfcv2jyesu362"]
+
+[ext_resource type="PackedScene" uid="uid://bwpstpk1xmkah" path="res://Content/Scenes/Interface&Menu/Button.tscn" id="1_hrdtf"]
+[ext_resource type="Texture2D" uid="uid://dt52ve0jyuro" path="res://Content/Sprites/Interface/Buttons/4XButtonBase.png" id="2_w5xiy"]
+[ext_resource type="Theme" uid="uid://dkitr1ftp0yhs" path="res://Content/Other/Menu.tres" id="2_wnwbw"]
+[ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/ButtonWithText.cs" id="3_ek235"]
+[ext_resource type="Texture2D" uid="uid://glq8rf30o1q3" path="res://Content/Sprites/Interface/Buttons/4XCancelButton.png" id="3_qg1d2"]
+
+[sub_resource type="Animation" id="Animation_duut4"]
+resource_name = "Appearing"
+length = 0.3
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:_sizeCoeff")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [false],
+"method": &"TrySetProcess"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_puv5q"]
+resource_name = "Disappearing"
+length = 0.3
+step = 0.1
+capture_included = true
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:_sizeCoeff")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"update": 2,
+"values": [0.0]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [false],
+"method": &"TrySetProcess"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_axrtu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:_sizeCoeff")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tn67c"]
+_data = {
+"Appearing": SubResource("Animation_duut4"),
+"Disappearing": SubResource("Animation_puv5q"),
+"RESET": SubResource("Animation_axrtu")
+}
+
+[node name="Button" instance=ExtResource("1_hrdtf")]
+custom_minimum_size = Vector2(96, 96)
+offset_right = 96.0
+offset_bottom = 96.0
+scale = Vector2(1, 1)
+theme = ExtResource("2_wnwbw")
+texture_normal = ExtResource("3_qg1d2")
+stretch_mode = 3
+script = ExtResource("3_ek235")
+_sizeCoeff = 0.0
+Description = null
+DisableProcessDisabling = null
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="0"]
+libraries = {
+"": SubResource("AnimationLibrary_tn67c")
+}
+
+[node name="NinePatchRect" type="NinePatchRect" parent="." index="1"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_w5xiy")
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16
+
+[node name="Face" type="Control" parent="." index="2"]
+clip_contents = true
+custom_minimum_size = Vector2(0, 72)
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 12.0
+offset_top = -36.0
+offset_right = -12.0
+offset_bottom = 36.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="TextureRect" type="TextureRect" parent="Face" index="0"]
+custom_minimum_size = Vector2(72, 72)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+grow_vertical = 2
+stretch_mode = 3
+
+[node name="Description" type="RichTextLabel" parent="Face" index="1"]
+custom_minimum_size = Vector2(128, 72)
+layout_mode = 0
+offset_left = 72.0
+offset_right = 200.0
+offset_bottom = 72.0
+mouse_filter = 2
+text = "sdfgdgsdgsdgsd stre tst"
+fit_content = true
+autowrap_mode = 2

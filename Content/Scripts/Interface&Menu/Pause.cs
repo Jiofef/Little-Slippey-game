@@ -6,6 +6,7 @@ public partial class Pause : CanvasLayer
     TextureButton _rewindButton;
 
     private bool _isPaused = false;
+    public bool ResetProcessDisabled = false;
 
     public override void _Ready()
     {
@@ -18,6 +19,9 @@ public partial class Pause : CanvasLayer
             UnPause();
         if (_rewindButton.ButtonPressed && !G.Main.IsResetDisabled)
             G.ResetTimer += 0.016667f * 2;
+
+        if (ResetProcessDisabled) return;
+
 
         if (Input.IsActionPressed("Reset") && G.DidLevelIntroPassed && !G.Main.IsResetDisabled)
             G.ResetTimer += 0.016667f;

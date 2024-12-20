@@ -4,9 +4,11 @@
 
 [node name="Achievement" instance=ExtResource("1_fsc17")]
 
+[node name="RewardSprite" parent="Sprite2D/RewardBox1" index="0"]
+region_rect = Rect2(45, 45, 45, 45)
+
 [node name="Name" parent="." index="1"]
 text = "Laziness is our everything"
 
 [node name="Text" parent="." index="2"]
-offset_right = 356.0
 text = "Skip the section with rising lava at level 9"

@@ -4,6 +4,9 @@
 
 [node name="Achievement" instance=ExtResource("1_xnnn0")]
 
+[node name="RewardSprite" parent="Sprite2D/RewardBox1" index="0"]
+region_rect = Rect2(360, 0, 45, 45)
+
 [node name="Star2" parent="Sprite2D/Ratings" index="1"]
 visible = true
 

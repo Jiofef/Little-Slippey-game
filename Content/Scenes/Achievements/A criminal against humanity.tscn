@@ -4,6 +4,9 @@
 
 [node name="Achievement" instance=ExtResource("1_cwaqe")]
 
+[node name="RewardSprite" parent="Sprite2D/RewardBox1" index="0"]
+region_rect = Rect2(315, 45, 45, 45)
+
 [node name="Star1" parent="Sprite2D/Ratings" index="0"]
 modulate = Color(1, 0, 0, 1)
 

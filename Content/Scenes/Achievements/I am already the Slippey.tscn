@@ -5,10 +5,13 @@
 
 [node name="Achievement" instance=ExtResource("1_tyiob")]
 
-[node name="RewardBox1" parent="Sprite2D" index="0"]
+[node name="RewardSprite" parent="Sprite2D/RewardBox1" index="0"]
+region_rect = Rect2(135, 0, 45, 45)
+
+[node name="RewardBox2" parent="Sprite2D" index="1"]
 visible = true
 
-[node name="RewardSprite" parent="Sprite2D/RewardBox1" index="0"]
+[node name="RewardSprite" parent="Sprite2D/RewardBox2" index="0"]
 texture = ExtResource("2_bbc5c")
 region_enabled = true
 region_rect = Rect2(0, 0, 16, 16)
@@ -17,4 +20,5 @@ region_rect = Rect2(0, 0, 16, 16)
 text = "I am already the Slippey"
 
 [node name="Text" parent="." index="2"]
+offset_right = 446.0
 text = "Complete the tutorial"

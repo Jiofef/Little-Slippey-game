@@ -68,7 +68,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.4, 5, 6),
 "transitions": PackedFloat32Array(0.5, 1, 2, 1),
 "update": 0,
-"values": [Vector2(338, 700), Vector2(338, 180), Vector2(338, 180), Vector2(338, 700)]
+"values": [Vector2(338, 720), Vector2(338, 180), Vector2(338, 180), Vector2(338, 720)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -141,10 +141,15 @@ script = ExtResource("7_lmrig")
 [node name="DefaultMod" parent="ModsScrollContainer/ModsScrollVBoxContainer" instance=ExtResource("3_ujc5x")]
 layout_mode = 2
 
-[node name="Name" parent="ModsScrollContainer/ModsScrollVBoxContainer/DefaultMod" index="4"]
-offset_top = 0.0
-offset_bottom = 48.0
-text = "Default_2.7.3"
+[node name="FocusRect" parent="ModsScrollContainer/ModsScrollVBoxContainer/DefaultMod" index="1"]
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 1
+grow_vertical = 1
 
 [node name="ActionButtons" type="Control" parent="."]
 anchors_preset = 0
@@ -425,7 +430,6 @@ there to change a picture"
 vertical_alignment = 1
 
 [node name="WARNING" type="Control" parent="."]
-visible = false
 anchors_preset = 0
 offset_left = 338.0
 offset_top = 700.0

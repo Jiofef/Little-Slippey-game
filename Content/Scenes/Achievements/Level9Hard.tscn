@@ -6,13 +6,8 @@
 
 [node name="Achievement" instance=ExtResource("1_g7f58")]
 
-[node name="RewardBox1" parent="Sprite2D" index="0"]
-visible = true
-
 [node name="RewardSprite" parent="Sprite2D/RewardBox1" index="0"]
-scale = Vector2(0.4, 0.4)
 texture = ExtResource("2_3jsev")
-region_enabled = true
 region_rect = Rect2(360, 0, 45, 45)
 
 [node name="RewardBox2" parent="Sprite2D" index="1"]
@@ -23,9 +18,8 @@ modulate = Color(0.784314, 0, 0, 1)
 texture = ExtResource("3_6eled")
 
 [node name="Name" parent="." index="1"]
-scale = Vector2(0.95, 1)
-text = "Though stricken to the heart with winter's cold"
+text = "From the earth's loosened mould"
 
 [node name="Text" parent="." index="2"]
-offset_right = 272.0
+offset_right = 448.0
 text = "Complete level 9 on \"Hard\" difficulty"

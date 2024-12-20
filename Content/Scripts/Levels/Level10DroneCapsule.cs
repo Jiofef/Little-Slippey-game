@@ -3,6 +3,7 @@ using Godot;
 public partial class Level10DroneCapsule : Node2D
 {
     bool _isTrueFinaling;
+
     public override void _PhysicsProcess(double delta)
     {
         if (G.Scores > 300)
@@ -11,8 +12,6 @@ public partial class Level10DroneCapsule : Node2D
                 G.ResetTimer += 0.003f;
             else if (G.ResetTimer > 0)
                 G.ResetTimer -= 0.01f;
-            else if (G.ResetTimer != 0)
-                G.ResetTimer = 0;
             if (G.ResetTimer >= 2f)
                 GetTree().ChangeSceneToFile("res://Content/Scenes/Interface&Menu/FinalLetter.tscn");
         }
@@ -24,10 +23,12 @@ public partial class Level10DroneCapsule : Node2D
         {
             GetNode<AnimationPlayer>("AnimationPlayer").Play("TakingSlippey");
 
-            var player = GetNode<CharacterBody2D>("../../Player");
-            GetParent<Node2D>().GlobalPosition = player.GlobalPosition;
-            GetNode<Node2D>("../../Player/SkinContainer").Rotation = player.Rotation;
-            player.Rotation = 0;
+            GetParent<Node2D>().GlobalPosition = G.Player.GlobalPosition;
+            G.Player.GetNode<Node2D>("SkinContainer").Rotation = G.Player.Rotation;
+            G.Player.Rotation = 0;
+
+            G.Main.GetNode<Pause>("Pause").ResetProcessDisabled = true;
+            G.Main.IsResetDisabled = true;
         }
     }
     public void TrueFinale()

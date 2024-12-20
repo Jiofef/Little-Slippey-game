@@ -12,7 +12,6 @@ public partial class EnhancedRestlessCross : RestlessCross
             float RotationValue = GetAngleTo(playerPos) * 3;
 
             RotationValue = Mathf.Clamp(RotationValue, -1.5f, 1.5f);
-            GD.Print(_defaultRotation);
             if (_ticksToAppear > 0)
                 _defaultRotation += RotationValue;
             else 
