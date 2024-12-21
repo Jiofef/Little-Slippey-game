@@ -3,12 +3,11 @@
 [ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/ModPreview.cs" id="1_y23h1"]
 
 [node name="ModPreview" type="Control"]
+custom_minimum_size = Vector2(340, 340)
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+anchors_preset = 0
+offset_right = 340.0
+offset_bottom = 340.0
 script = ExtResource("1_y23h1")
 metadata/_edit_horizontal_guides_ = [199.0]
 

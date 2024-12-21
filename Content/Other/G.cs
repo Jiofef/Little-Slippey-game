@@ -27,6 +27,8 @@ public partial class G : Node
 
     public static readonly string[] VanillaSkinNames = ["Slippey", "Samey", "Sanboy", "Strawman", "Pineplum", "Bondey", "Sleepy", "Daley", "Hostey", "CompressMass", "JioYobaFefski", "SlippeyChad", "MISSINGNULL", "Corey"];
 
+    public enum ModType {map, localization, skin, content, resource}
+
     public static readonly Vector2[] LevelXYSizes =
 [
         new Vector2(1280, 640),

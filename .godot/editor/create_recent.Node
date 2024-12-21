@@ -1,7 +1,10 @@
+ScrollContainer
+VBoxContainer
+MarginContainer
+VSeparator
 TextureRect
 HBoxContainer
 CheckButton
-VBoxContainer
 NinePatchRect
 AnimationPlayer
 Control
@@ -10,5 +13,3 @@ CPUParticles2D
 Sprite2D
 AudioStreamPlayer
 Label
-Timer
-AnimatedSprite2D

@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=43 format=3 uid="uid://dkitr1ftp0yhs"]
+[gd_resource type="Theme" load_steps=44 format=3 uid="uid://dkitr1ftp0yhs"]
 
 [ext_resource type="Texture2D" uid="uid://dsjclghg3lapq" path="res://Content/Sprites/Interface/Buttons/SliderGrabber.png" id="1_jkmd4"]
 [ext_resource type="Texture2D" uid="uid://cl2nf0eg2ercq" path="res://Content/Sprites/Interface/Buttons/SliderGrabberDisabled.png" id="2_upkyk"]
@@ -243,6 +243,10 @@ border_width_right = 4
 border_width_bottom = 4
 border_color = Color(0.731449, 0.727062, 0.687878, 1)
 
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_fws1l"]
+thickness = 4
+vertical = true
+
 [resource]
 CheckBox/icons/checked = ExtResource("8_72ihc")
 CheckBox/icons/radio_checked = ExtResource("9_v5xhx")
@@ -312,3 +316,5 @@ VScrollBar/styles/grabber_highlight = SubResource("StyleBoxFlat_ba3h1")
 VScrollBar/styles/grabber_pressed = SubResource("StyleBoxFlat_toqv1")
 VScrollBar/styles/scroll = SubResource("StyleBoxFlat_cyd6e")
 VScrollBar/styles/scroll_focus = SubResource("StyleBoxFlat_flkx4")
+VSeparator/constants/separation = 12
+VSeparator/styles/separator = SubResource("StyleBoxLine_fws1l")

@@ -618,7 +618,6 @@ offset_bottom = 420.0
 scroll_horizontal = 84
 scroll_vertical = 84
 script = ExtResource("11_qsm8k")
-_scrollingSpeed = null
 metadata/_edit_group_ = true
 
 [node name="SpriteControl" type="Control" parent="MarginContainer/VBoxContainer/Tabs/Controls/ControlsMenu/ScrollContainer" index="0"]
@@ -677,15 +676,18 @@ alignment = 2
 layout_mode = 2
 texture_normal = ExtResource("10_lf0wq")
 Description = "Set by default"
+DisableProcessDisabling = false
 
 [node name="AcceptButton" parent="MarginContainer/VBoxContainer/HBoxContainer" index="1" instance=ExtResource("9_kbbo8")]
 layout_mode = 2
 texture_normal = ExtResource("11_5wnor")
 Description = "Apply"
+DisableProcessDisabling = false
 
 [node name="DeclineButton" parent="MarginContainer/VBoxContainer/HBoxContainer" index="2" instance=ExtResource("9_kbbo8")]
 layout_mode = 2
 Description = "Cancel"
+DisableProcessDisabling = false
 
 [connection signal="item_selected" from="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer/ScreenMode/OptionButton" to="." method="ChangeScreenFormat"]
 [connection signal="item_selected" from="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer/WindowSize/OptionButton" to="." method="ChangeWindowSize"]

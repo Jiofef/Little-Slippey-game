@@ -4,7 +4,6 @@ res://Content/Other/BrightnessShader.gdshader
 res://Content/Other/MenuTextLabelSettings.tres
 res://Content/Other/Menu.tres
 res://Content/Other/BlurShader.gdshader
-res://Content/Scenes/Interface&Menu/WorkShopMenu.tscn
 res://Content/Other/Achievements.cs
 res://Content/Scripts/Other/EpicIntro.cs
 res://Content/Scripts/Interface&Menu/DraggableWindow.cs
@@ -110,6 +109,4 @@ res://Content/Scripts/Interface&Menu/LevelEditor/NodeMode.cs
 res://Content/Scripts/Crosses/EnhancedBlumCross.cs
 res://Content/Scenes/Levels/FullParts/Level2.tscn
 res://Content/Scenes/Interface&Menu/OptionsMenu.tscn
-res://Content/Scenes/Interface&Menu/ButtonWithText.tscn
 res://Content/Scenes/Interface&Menu/ModButton.tscn
-res://Content/Scenes/Levels/FullParts/Level10True.tscn

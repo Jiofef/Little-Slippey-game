@@ -1,3 +1,4 @@
+res://Content/Other
 res://Content/Scripts/Interface&Menu
 res://Content/Scenes/Interface&Menu
 res://Content/Sprites/Other
@@ -6,7 +7,6 @@ res://Content/Scripts/Crosses
 res://Content/Scenes/Other
 res://Content/Scripts/Other
 res://Content/Scenes/Levels/FullParts
-res://Content/Other
 res://Content/Sprites/PlayerSkins
 res://
 res://Content/Scenes/Interface&Menu/LevelEditor

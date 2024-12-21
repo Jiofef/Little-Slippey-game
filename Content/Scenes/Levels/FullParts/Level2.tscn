@@ -1105,14 +1105,6 @@ _data = {
 }
 
 [node name="Main" instance=ExtResource("1_xrr5q")]
-LevelNodePath = null
-DoIgnoreIntro = null
-DoIgnoreAchievementLayer = null
-
-[node name="LevelMusicPlayer" parent="." index="0"]
-RestartMusicWhenItFinished = null
-SaveTimeCodeWhenLevelResets = null
-KeepPlayingWhenLevelResets = null
 
 [node name="AnimationPlayer" parent="LevelMusicPlayer" index="0"]
 libraries = {
@@ -1321,18 +1313,7 @@ tile_set = SubResource("TileSet_gw0j2")
 [node name="Player" parent="Level" index="3" instance=ExtResource("13_bkmnr")]
 modulate = Color(0.956863, 0.956863, 0.956863, 1)
 position = Vector2(1440, 288)
-Speed = null
-Gravity = null
-JumpForce = null
-MaxClimbs = null
 EnableStandingPenalty = false
-EnableRigidBodyPhysics = null
-RigidBodyPushForce = null
-CoyoteTime = null
-WallJumpInertion = null
-InertionControl = null
-DownDashSpeed = null
-MaxFallSpeed = null
 
 [node name="TileMap" type="TileMapLayer" parent="Level" index="4"]
 use_parent_material = true
@@ -1342,7 +1323,6 @@ tile_set = SubResource("TileSet_ok3g5")
 
 [node name="HintLayer" parent="." index="5" instance=ExtResource("16_ffab2")]
 visible = false
-HintID = null
 
 [node name="AppearTimer" type="Timer" parent="HintLayer" index="2"]
 process_mode = 1
@@ -1377,10 +1357,6 @@ offset_top = 402.0
 offset_right = 795.0
 offset_bottom = 658.0
 text = "This is standing penalty scale."
-CharactersPerSecond = null
-AutoStart = null
-PopSound = null
-AppearSound = null
 
 [node name="IfYouDontMove" parent="HintLayer" index="6" instance=ExtResource("18_ygb1l")]
 offset_left = 105.0
@@ -1388,10 +1364,6 @@ offset_top = 402.0
 offset_right = 795.0
 offset_bottom = 658.0
 text = "If you don't move much, it fills up."
-CharactersPerSecond = null
-AutoStart = null
-PopSound = null
-AppearSound = null
 
 [node name="IfYouMoveInOne" parent="HintLayer" index="7" instance=ExtResource("18_ygb1l")]
 offset_left = 105.0
@@ -1399,10 +1371,6 @@ offset_top = 402.0
 offset_right = 795.0
 offset_bottom = 658.0
 text = "If you move in one place, it fills up."
-CharactersPerSecond = null
-AutoStart = null
-PopSound = null
-AppearSound = null
 
 [node name="TheMoreTheScaleIs" parent="HintLayer" index="8" instance=ExtResource("18_ygb1l")]
 offset_left = 133.0
@@ -1411,9 +1379,6 @@ offset_right = 823.0
 offset_bottom = 932.0
 text = "The more the scale is filled, the more the crosses spawn increases and the closer they are to you"
 CharactersPerSecond = 20.0
-AutoStart = null
-PopSound = null
-AppearSound = null
 
 [node name="ThatsVeryBad" parent="HintLayer" index="9" instance=ExtResource("18_ygb1l")]
 offset_left = 398.0
@@ -1423,7 +1388,6 @@ offset_bottom = 737.0
 scale = Vector2(0.5, 0.5)
 text = "(That's - very bad)"
 CharactersPerSecond = 20.0
-AutoStart = null
 PopSound = false
 AppearSound = false
 
@@ -1433,10 +1397,6 @@ offset_top = 402.0
 offset_right = 795.0
 offset_bottom = 722.0
 text = "If you're moving fast, the scale goes down."
-CharactersPerSecond = null
-AutoStart = null
-PopSound = null
-AppearSound = null
 
 [node name="InShortMoveMore" parent="HintLayer" index="11" instance=ExtResource("18_ygb1l")]
 offset_left = 171.0
@@ -1444,10 +1404,6 @@ offset_top = 403.0
 offset_right = 861.0
 offset_bottom = 531.0
 text = "In short, move more."
-CharactersPerSecond = null
-AutoStart = null
-PopSound = null
-AppearSound = null
 
 [node name="IHopeThatsClear" parent="HintLayer" index="12" instance=ExtResource("18_ygb1l")]
 offset_left = 186.0
@@ -1455,10 +1411,6 @@ offset_top = 406.0
 offset_right = 876.0
 offset_bottom = 598.0
 text = "I hope that's clear."
-CharactersPerSecond = null
-AutoStart = null
-PopSound = null
-AppearSound = null
 
 [node name="Arrow" type="Sprite2D" parent="HintLayer" index="13"]
 visible = false
