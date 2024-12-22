@@ -5,9 +5,10 @@ using static ModLoader;
 [Tool]
 public partial class CreateAModWindow : DraggableWindow
 {
-    [Signal] public delegate void CreateModEventHandler(ModType type, string folderName, string modName);
-    private ModType _selectedType = ModType.map;
-    private string _folderName, _modName;
+    public delegate void CreateModEventHandler(CreateModParams @params);
+    public event CreateModEventHandler CreateMod;
+
+    private CreateModParams _params = new CreateModParams();
 
     Color _redColor = new Color(0.788f, 0.141f, 0.392f);
     Color _greenColor = new Color(0.357f, 0.702f, 0.38f);
@@ -24,7 +25,7 @@ public partial class CreateAModWindow : DraggableWindow
     private void SelectType(int typeID)
     {
         var type = (ModType)typeID;
-        _selectedType = type;
+        _params.modType = type;
     }
 
     private void FolderNameChanged(string value) 
@@ -47,7 +48,7 @@ public partial class CreateAModWindow : DraggableWindow
         else
         {
             _isFolderNameValid.Text = "The name is valid";
-            _folderName = value;
+            _params.FolderName = value;
             _acceptButton.Disabled = false;
         }
 
@@ -56,13 +57,17 @@ public partial class CreateAModWindow : DraggableWindow
         else
             _isFolderNameValid.Modulate = _redColor;
     }
-    private void SetModName(string value)
+    private void ModNameChanged(string value)
     {
-        _modName = value;
+        _params.ModName = value;
+    }
+    private void SetCreateAdditionalFolders(bool value)
+    {
+        _params.CreateAdditionalFolders = value;
     }
     private void Accept()
     {
-        EmitSignal("CreateMod", (int)_selectedType, _folderName, _modName);
+        CreateMod(_params);
         QueueFree();
     }
 }

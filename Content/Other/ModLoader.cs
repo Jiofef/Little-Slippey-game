@@ -20,7 +20,7 @@ public partial class ModLoader : Node
 
     public static ModType StringToModType(string value)
     {
-        return ModType.resource;
+        return (ModType)Enum.Parse(typeof(ModType), value);
     }
     //
 
@@ -34,7 +34,6 @@ public partial class ModLoader : Node
 
             var model = FileSystemExtension.GetJsonModel(directory + @"/mod_info.json");
 
-            GD.Print(directory);
 
             var modType = StringToModType((string)model["mod_type"]);
             switch (modType)
@@ -71,23 +70,36 @@ public partial class ModLoader : Node
 
 
     // Mod creation
-    public static string CreateAMod(ModType modType, string folderName, string modName)
+
+    public class CreateModParams
     {
-        var Path = DefaultModsPath + folderName;
+        public ModType modType;
+        public string FolderName;
+        public string ModName;
+        public bool CreateAdditionalFolders = true;
+    }
+    public static string CreateAMod(CreateModParams @params)
+    {
+        var Path = DefaultModsPath + @params.FolderName;
         if (!Directory.Exists(Path))
         {
-            switch (modType)
+            switch (@params.modType)
             {
                 case ModType.map:
-                    CreateAMap(Path, modName);
+                    CreateAModBase(@params, Path);
+                    FileSystemExtension.CopyResourceFileTo("res://Content/Scenes/Other/UserLevelLayout.tscn", Path + @"\MainScene.tscn");
                     break;
                 case ModType.localization:
+                    CreateAModBase(@params, Path);
                     break;
                 case ModType.skin:
+                    CreateAModBase(@params, Path);
                     break;
                 case ModType.resource:
+                    CreateAModBase(@params, Path);
                     break;
                 case ModType.content:
+                    CreateAModBase(@params, Path);
                     break;
             }
             return Path;
@@ -96,14 +108,15 @@ public partial class ModLoader : Node
             return "";
     }
 
-    private static void CreateAMap(string path, string modName)
+    private static void CreateAModBase(CreateModParams @params, string path)
     {
-        foreach (string value in new string[] { "", @"\Other", @"\Scenes", @"\Scripts", @"\Sounds", @"\Sprites" })
-            Directory.CreateDirectory(path + value);
-        ResourceSaver.Save(ResourceLoader.Load("res://Content/Scenes/Other/UserLevelLayout.tscn"), path + @"\MainScene.tscn");
-        FileSystemExtension.CopyResourceFileTo("res://Content/Scenes/Other/UserLevelLayout.tscn", path + @"\MainScene.tscn");
-        FileSystemExtension.CopyByteResourceFileTo("res://Content/Sprites/Interface/CustomMapDefaultPreview.png", path + @"\PreviewPicture.png");
+        Directory.CreateDirectory(path + @"\");
+        if (@params.CreateAdditionalFolders)
+            foreach (string value in new string[] { "", @"\Other", @"\Scenes", @"\Scripts", @"\Sounds", @"\Sprites" })
+                Directory.CreateDirectory(path + value);
 
+
+        FileSystemExtension.CopyByteResourceFileTo("res://Content/Sprites/Interface/CustomMapDefaultPreview.png", path + @"\PreviewPicture.png");
 
         var modPreview = (ModPreview)ResourceLoader.Load<PackedScene>("res://Content/Scenes/Interface&Menu/ModPreviewLayout.tscn").Instantiate();
         modPreview._resourcePath = path + @"\PreviewPicture.png";
@@ -113,9 +126,11 @@ public partial class ModLoader : Node
         ToSave.Pack(modPreview);
         ResourceSaver.Save(ToSave, path + @"\ModPreview.tscn");
 
-        var jsonText = "{\r\n  \"name\": \"" + modName + "\", \"mod_type\":  \"map\",\r\n  \"description\": \"\"\r\n}"; // TO FIX!!!
+        var jsonText = "{\r\n  " +
+            "\"name\": \"" + @params.ModName + "\",\r\n  " +
+            "\"mod_type\":  \"" + @params.modType.ToString() + "\",\r\n  " +
+            "\"description\": \"\"\r\n}";
         FileSystemExtension.SaveInJson(jsonText, path + @"\mod_info.json");
-        GD.Print(path);
     }
     //
 }

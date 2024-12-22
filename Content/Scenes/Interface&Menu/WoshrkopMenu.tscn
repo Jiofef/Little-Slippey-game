@@ -79,24 +79,6 @@ offset_bottom = 0.0
 theme = ExtResource("2_1n4sv")
 script = ExtResource("3_8037h")
 WindowTitle = "Workshop"
-_windowTitle = "Workshop"
-_canClose = true
-_isBlueBoxHovered = false
-_isDragging = false
-Velocity = Vector2(0, 0)
-_savedMousePos = Vector2(0, 0)
-_mouseVelocity = Vector2(0, 0)
-_selectedMod = -1
-_selectedModFolder = ""
-_directories = PackedStringArray("C:/Users/Jiofef/AppData/Roaming/Godot/app_userdata/Little Slippey/mods/CustomMap")
-_selectedModButton = null
-_lastFocusOwner = null
-_currentModPreview = null
-_createAModWindowOpened = false
-_settedModName = ""
-_settedModFolderName = ""
-_settedModDescription = ""
-_settedImagePath = ""
 
 [node name="WindowTitle" parent="MarginContainer/VBoxContainer/BlueBox" index="1"]
 text = "Workshop"
@@ -177,7 +159,6 @@ theme_override_font_sizes/normal_font_size = 22
 text = "Note: Before starting the construction of a test chamber, it is necessary to ensure the integrity, effectiveness and sufficient cruelty of its concept. In the workshop, you can design your own test chambers, activate the simulation in them, and also try out test chambers made by other scientists."
 fit_content = true
 script = ExtResource("14_3xvpj")
-_scrollingSpeed = null
 
 [node name="ActionButtons" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Tabs/Mods/MarginC/VBoxC" index="1"]
 layout_mode = 2
@@ -186,6 +167,7 @@ theme_override_constants/separation = 16
 alignment = 2
 
 [node name="PlayMapButton" parent="MarginContainer/VBoxContainer/Tabs/Mods/MarginC/VBoxC/ActionButtons" index="0" instance=ExtResource("3_tb1mh")]
+visible = false
 layout_mode = 2
 texture_normal = ExtResource("10_im05a")
 Description = "Play"
@@ -196,6 +178,7 @@ custom_minimum_size = Vector2(96, 72)
 offset_right = 136.0
 
 [node name="OpenInEditorButton" parent="MarginContainer/VBoxContainer/Tabs/Mods/MarginC/VBoxC/ActionButtons" index="1" instance=ExtResource("3_tb1mh")]
+visible = false
 layout_mode = 2
 texture_normal = ExtResource("6_rmog0")
 Description = "Open in editor"
@@ -444,7 +427,6 @@ theme_override_font_sizes/normal_font_size = 33
 text = "DON'T EVEN TRY TO ENTER THE EDITOR USING GAMEPAD.
 If you don't care about the warnings, click again"
 script = ExtResource("14_3xvpj")
-_scrollingSpeed = null
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Tabs/Mods/MarginC/VBoxC/ActionButtons/PlayMapButton" to="." method="PlayMap" flags=6]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Tabs/Mods/MarginC/VBoxC/ActionButtons/OpenInEditorButton" to="." method="OpenInEditor"]

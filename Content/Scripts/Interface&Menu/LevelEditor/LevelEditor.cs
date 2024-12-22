@@ -402,7 +402,7 @@ public partial class LevelEditor : Control
         if (_editorCrutches[3])
             LevelClone.GetNode<CanvasLayer>("EpicIntro").Visible = true;
         if (_editorCrutches[4])
-            LevelClone.GetNode<Label>("Level/Player/Camera2D/GUI/Scores").Visible = true;
+            LevelClone.GetNode<Label>("Level/Player/Camera2D/GUICanvas/GUI/Scores").Visible = true;
 
 
         _packedLevel.Pack(LevelClone);

@@ -618,7 +618,6 @@ offset_bottom = 420.0
 scroll_horizontal = 84
 scroll_vertical = 84
 script = ExtResource("11_qsm8k")
-_scrollingSpeed = null
 metadata/_edit_group_ = true
 
 [node name="SpriteControl" type="Control" parent="MarginContainer/VBoxContainer/Tabs/Controls/ControlsMenu/ScrollContainer" index="0"]

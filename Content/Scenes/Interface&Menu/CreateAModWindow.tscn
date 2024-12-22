@@ -11,29 +11,16 @@
 [ext_resource type="Texture2D" uid="uid://38kwf6v761n0" path="res://Content/Sprites/Interface/ContentMod.png" id="7_sooyf"]
 [ext_resource type="Texture2D" uid="uid://dfl63nvlmclky" path="res://Content/Sprites/Interface/ResourceMod.png" id="8_v5xf6"]
 
-[node name="DraggableWindow" instance=ExtResource("1_0cy6k")]
-custom_minimum_size = Vector2(540, 540)
+[node name="CreateAMod" instance=ExtResource("1_0cy6k")]
+process_mode = 3
+custom_minimum_size = Vector2(540, 640)
 offset_left = 250.0
-offset_top = 100.0
+offset_top = 80.0
 offset_right = -490.0
-offset_bottom = -120.0
+offset_bottom = -58.945
 theme = ExtResource("2_sahd4")
 script = ExtResource("2_45m3j")
 WindowTitle = "Create a mod"
-_windowTitle = "Create a mod"
-_canClose = true
-_isBlueBoxHovered = false
-_isDragging = false
-Velocity = Vector2(0, 0)
-_savedMousePos = Vector2(0, 0)
-_mouseVelocity = Vector2(0, 0)
-_selectedType = 0
-_folderName = ""
-_modName = ""
-_redColor = Color(0.788, 0.141, 0.392, 1)
-_greenColor = Color(0.357, 0.702, 0.38, 1)
-_isFolderNameValid = null
-_acceptButton = null
 
 [node name="WindowTitle" parent="MarginContainer/VBoxContainer/BlueBox" index="1"]
 text = "Create a mod"
@@ -101,6 +88,19 @@ popup/item_4/text = "Resource"
 popup/item_4/icon = ExtResource("8_v5xf6")
 popup/item_4/id = 4
 
+[node name="HSeparator3" type="HSeparator" parent="MarginContainer/VBoxContainer/VBoxContainer" index="9"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="MakeAdditionalFoldersCheck" type="CheckBox" parent="MarginContainer/VBoxContainer/VBoxContainer" index="10"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+button_pressed = true
+text = "Create additional folders
+(Scripts, Scenes, Sounds,
+Sprites, Other)"
+
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer" index="2"]
 layout_mode = 2
 size_flags_vertical = 8
@@ -118,8 +118,9 @@ layout_mode = 2
 Description = "Cancel"
 DisableProcessDisabling = false
 
-[connection signal="text_submitted" from="MarginContainer/VBoxContainer/VBoxContainer/NameEdit" to="." method="SetModName"]
+[connection signal="text_changed" from="MarginContainer/VBoxContainer/VBoxContainer/NameEdit" to="." method="ModNameChanged"]
 [connection signal="text_changed" from="MarginContainer/VBoxContainer/VBoxContainer/FolderNameEdit" to="." method="FolderNameChanged"]
 [connection signal="item_selected" from="MarginContainer/VBoxContainer/VBoxContainer/ModTypeOption" to="." method="SelectType"]
+[connection signal="toggled" from="MarginContainer/VBoxContainer/VBoxContainer/MakeAdditionalFoldersCheck" to="." method="SetCreateAdditionalFolders"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/AcceptButton" to="." method="Accept"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/DeclineButton" to="." method="queue_free"]

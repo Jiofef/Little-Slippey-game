@@ -44,20 +44,11 @@ public partial class WorkshopMenu : DraggableWindow
             catch { }
         }
     }
-    public override void _PhysicsProcess(double delta)
-    {
-        GD.Print(_selectedMod);
-    }
     #endregion
 
     #region Private methods
     private void ShowModInfo(int index)
     {
-        GD.Print(_directories.Length);
-        GD.Print(_modsInfo.Length);
-        GD.Print(index);
-        StackTrace trace = new StackTrace();
-        GD.Print(trace.ToString());
         GetNode<RichTextLabel>("MarginContainer/VBoxContainer/Tabs/Mods/MarginC/VBoxC/HBoxC/ModDescription/MarginC/ScrollContainer/VBoxC/Description").Text = _modsInfo[index]["description"].ToString();
         if (_currentModPreview != null)
             _currentModPreview.QueueFree();
@@ -194,7 +185,15 @@ public partial class WorkshopMenu : DraggableWindow
 
     public void OpenModFolder()
     {
-        Process.Start("explorer.exe", OS.GetUserDataDir().Replace("/", @"\") + @"\mods");
+        // Determine the folder path based on the selected mod
+        string folderPath = _selectedMod == -1 ?
+            DefaultModsPath.Replace("/", @"\") :
+            _directories[_selectedMod].Replace("/", @"\");
+
+        if (_selectedMod == -1)
+            Process.Start("explorer.exe", folderPath); // Open the default mods path directly
+        else 
+            Process.Start("explorer.exe", $"/select,\"{folderPath}\""); // Open the parent folder and select the specific mod folder
     }
 
 
@@ -203,7 +202,7 @@ public partial class WorkshopMenu : DraggableWindow
         if (!_createAModWindowOpened)
         {
             var createAModMenu = GD.Load<PackedScene>("res://Content/Scenes/Interface&Menu/CreateAModWindow.tscn").Instantiate() as CreateAModWindow;
-            AddChild(createAModMenu);
+            GetParent().AddChild(createAModMenu);
 
             createAModMenu.CreateMod += ConfirmCreatingMod;
 
@@ -212,9 +211,9 @@ public partial class WorkshopMenu : DraggableWindow
         }
 
     }
-    public void ConfirmCreatingMod(ModType type, string folderName, string modName)
+    public void ConfirmCreatingMod(CreateModParams @params)
     {
-        var modPath = CreateAMod(type, folderName, modName); // Creating a mod and getting its path
+        var modPath = CreateAMod(@params); // Creating a mod and getting its path
 
         var button = AddModButton(modPath, _directories.Length); // Creating a button for the mode
         GetNode("MarginContainer/VBoxContainer/Tabs/Mods/MarginC/VBoxC/HBoxC/ModsList").MoveChild(button, 0); // Moving the mod button to the top
