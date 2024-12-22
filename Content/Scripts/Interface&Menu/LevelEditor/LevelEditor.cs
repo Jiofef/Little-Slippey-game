@@ -9,7 +9,6 @@ public partial class LevelEditor : Control
     #region
 
     public string _mapPath = "", _mapFolder = "";
-    public readonly string _defaultPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData) + @"\Godot\app_userdata\Little Slippey\mods\";
 
     public PackedScene _packedLevel;
 

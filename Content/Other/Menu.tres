@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=44 format=3 uid="uid://dkitr1ftp0yhs"]
+[gd_resource type="Theme" load_steps=46 format=3 uid="uid://dkitr1ftp0yhs"]
 
 [ext_resource type="Texture2D" uid="uid://dsjclghg3lapq" path="res://Content/Sprites/Interface/Buttons/SliderGrabber.png" id="1_jkmd4"]
 [ext_resource type="Texture2D" uid="uid://cl2nf0eg2ercq" path="res://Content/Sprites/Interface/Buttons/SliderGrabberDisabled.png" id="2_upkyk"]
@@ -107,6 +107,21 @@ expand_margin_top = 4.0
 expand_margin_bottom = 4.0
 shadow_offset = Vector2(2, 2)
 anti_aliasing = false
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ntiy5"]
+texture = ExtResource("8_fyjp6")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 8.0
+modulate_color = Color(0.783523, 0.783523, 0.783523, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wf5lo"]
+texture = ExtResource("8_fyjp6")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 8.0
 
 [sub_resource type="FontVariation" id="FontVariation_w0h8d"]
 spacing_top = -4
@@ -268,6 +283,11 @@ HSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_1gn15")
 HSlider/styles/slider = SubResource("StyleBoxFlat_u6kv1")
 Label/colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
 Label/font_sizes/font_size = 22
+LineEdit/colors/font_color = Color(0.184314, 0.180392, 0.192157, 1)
+LineEdit/font_sizes/font_size = 22
+LineEdit/styles/focus = SubResource("StyleBoxTexture_ntiy5")
+LineEdit/styles/normal = SubResource("StyleBoxTexture_wf5lo")
+LineEdit/styles/read_only = SubResource("StyleBoxTexture_wf5lo")
 OptionButton/colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
 OptionButton/colors/font_disabled_color = Color(0.196078, 0.196078, 0.196078, 1)
 OptionButton/colors/font_focus_color = Color(0.196078, 0.196078, 0.196078, 1)

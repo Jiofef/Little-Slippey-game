@@ -711,7 +711,14 @@ you were deceived.,you were deceived.,вас обманули.
 want to leave?","Are you sure you
 want to leave?","Вы уверены что
 хотите выйти?"
+,,
 WorkShop,WorkShop,Мастерская
+"Remove the special characters, please","Remove the special characters, please","Уберите специальные символы, пожалуйста"
+There's a folder with the same name,There's a folder with the same name,Уже есть папка с таким именем
+The name is valid,The name is valid,Имя подходит
+Enter something,Enter something,Введите хоть что-то
+,,
+,,
 An empty object that does not have 2d properties. All other objects in the game are based on it,An empty object that does not have 2d properties. All other objects in the game are based on it,Пустой объект без 2д свойств. Все другие объекты созданы на его основе
 "The same as Node, but has 2d properties. A great container for 2d objects","The same as Node, but has 2d properties. A great container for 2d objects","Тоже, что и Node, но имеет 2д свойства. Отличный контейнер для 2д объектов"
 2d image for general purposes,2d image for general purposes,Простое 2д изображение

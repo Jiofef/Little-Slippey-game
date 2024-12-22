@@ -1,15 +1,13 @@
-[gd_scene load_steps=24 format=3 uid="uid://b6deeu4t1saw"]
+[gd_scene load_steps=22 format=3 uid="uid://b6deeu4t1saw"]
 
 [ext_resource type="PackedScene" uid="uid://cb3550p76ubc8" path="res://Content/Scenes/Interface&Menu/DraggableWindow.tscn" id="1_6pi7r"]
 [ext_resource type="Theme" uid="uid://dkitr1ftp0yhs" path="res://Content/Other/Menu.tres" id="2_1n4sv"]
 [ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/WorkshopMenu.cs" id="3_8037h"]
 [ext_resource type="PackedScene" uid="uid://bfcv2jyesu362" path="res://Content/Scenes/Interface&Menu/ButtonWithText.tscn" id="3_tb1mh"]
-[ext_resource type="PackedScene" uid="uid://duv6361wgul0d" path="res://Content/Scenes/Interface&Menu/ModButton.tscn" id="3_vtuu6"]
 [ext_resource type="Texture2D" uid="uid://dwloy3yjsqa53" path="res://Content/Sprites/Interface/WorkShopBox.png" id="4_cop4e"]
 [ext_resource type="Texture2D" uid="uid://w4gejppfm3h3" path="res://Content/Sprites/Interface/4XSmallWindowBase.png" id="5_8cdam"]
 [ext_resource type="PackedScene" uid="uid://bwpstpk1xmkah" path="res://Content/Scenes/Interface&Menu/Button.tscn" id="5_d1kvm"]
 [ext_resource type="Texture2D" uid="uid://cwxoq374yceom" path="res://Content/Sprites/Interface/Buttons/OpenTheDirectoryButton.png" id="5_edsbi"]
-[ext_resource type="PackedScene" uid="uid://3pxsh7u8scxi" path="res://Content/Scenes/Interface&Menu/ModPreviewLayout.tscn" id="5_h5hwp"]
 [ext_resource type="Theme" uid="uid://bk43yj1frw10n" path="res://Content/Other/MarginConainerMenu.tres" id="6_4btlt"]
 [ext_resource type="Texture2D" uid="uid://c1d2p0ba42csh" path="res://Content/Sprites/Interface/Buttons/AcceptButton.png" id="6_p1tqc"]
 [ext_resource type="Texture2D" uid="uid://bmldgxs7k8p6" path="res://Content/Sprites/Interface/Buttons/OpenInEditorButton.png" id="6_rmog0"]
@@ -81,6 +79,24 @@ offset_bottom = 0.0
 theme = ExtResource("2_1n4sv")
 script = ExtResource("3_8037h")
 WindowTitle = "Workshop"
+_windowTitle = "Workshop"
+_canClose = true
+_isBlueBoxHovered = false
+_isDragging = false
+Velocity = Vector2(0, 0)
+_savedMousePos = Vector2(0, 0)
+_mouseVelocity = Vector2(0, 0)
+_selectedMod = -1
+_selectedModFolder = ""
+_directories = PackedStringArray("C:/Users/Jiofef/AppData/Roaming/Godot/app_userdata/Little Slippey/mods/CustomMap")
+_selectedModButton = null
+_lastFocusOwner = null
+_currentModPreview = null
+_createAModWindowOpened = false
+_settedModName = ""
+_settedModFolderName = ""
+_settedModDescription = ""
+_settedImagePath = ""
 
 [node name="WindowTitle" parent="MarginContainer/VBoxContainer/BlueBox" index="1"]
 text = "Workshop"
@@ -113,16 +129,6 @@ size_flags_vertical = 3
 [node name="ModsList" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Tabs/Mods/MarginC/VBoxC/HBoxC" index="0"]
 layout_mode = 2
 size_flags_horizontal = 3
-
-[node name="DefaultMod" parent="MarginContainer/VBoxContainer/Tabs/Mods/MarginC/VBoxC/HBoxC/ModsList" index="0" instance=ExtResource("3_vtuu6")]
-layout_mode = 2
-
-[node name="Name" parent="MarginContainer/VBoxContainer/Tabs/Mods/MarginC/VBoxC/HBoxC/ModsList/DefaultMod/HBoxContainer" index="0"]
-text = "StandartTimerLib"
-
-[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer/Tabs/Mods/MarginC/VBoxC/HBoxC/ModsList" index="1"]
-layout_mode = 2
-theme_override_constants/separation = 12
 
 [node name="ModDescription" type="Control" parent="MarginContainer/VBoxContainer/Tabs/Mods/MarginC/VBoxC/HBoxC" index="1"]
 clip_contents = true
@@ -161,12 +167,7 @@ layout_mode = 2
 [node name="VBoxC" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Tabs/Mods/MarginC/VBoxC/HBoxC/ModDescription/MarginC/ScrollContainer" index="0"]
 layout_mode = 2
 
-[node name="ModPreview" parent="MarginContainer/VBoxContainer/Tabs/Mods/MarginC/VBoxC/HBoxC/ModDescription/MarginC/ScrollContainer/VBoxC" index="0" instance=ExtResource("5_h5hwp")]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 0
-
-[node name="Description" type="RichTextLabel" parent="MarginContainer/VBoxContainer/Tabs/Mods/MarginC/VBoxC/HBoxC/ModDescription/MarginC/ScrollContainer/VBoxC" index="1"]
+[node name="Description" type="RichTextLabel" parent="MarginContainer/VBoxContainer/Tabs/Mods/MarginC/VBoxC/HBoxC/ModDescription/MarginC/ScrollContainer/VBoxC" index="0"]
 custom_minimum_size = Vector2(340, 48)
 layout_mode = 2
 size_flags_vertical = 3
@@ -176,42 +177,43 @@ theme_override_font_sizes/normal_font_size = 22
 text = "Note: Before starting the construction of a test chamber, it is necessary to ensure the integrity, effectiveness and sufficient cruelty of its concept. In the workshop, you can design your own test chambers, activate the simulation in them, and also try out test chambers made by other scientists."
 fit_content = true
 script = ExtResource("14_3xvpj")
+_scrollingSpeed = null
 
-[node name="HBoxC2" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Tabs/Mods/MarginC/VBoxC" index="1"]
+[node name="ActionButtons" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Tabs/Mods/MarginC/VBoxC" index="1"]
 layout_mode = 2
 size_flags_vertical = 8
 theme_override_constants/separation = 16
 alignment = 2
 
-[node name="PlayMapButton" parent="MarginContainer/VBoxContainer/Tabs/Mods/MarginC/VBoxC/HBoxC2" index="0" instance=ExtResource("3_tb1mh")]
+[node name="PlayMapButton" parent="MarginContainer/VBoxContainer/Tabs/Mods/MarginC/VBoxC/ActionButtons" index="0" instance=ExtResource("3_tb1mh")]
 layout_mode = 2
 texture_normal = ExtResource("10_im05a")
 Description = "Play"
 DisableProcessDisabling = false
 
-[node name="Description" parent="MarginContainer/VBoxContainer/Tabs/Mods/MarginC/VBoxC/HBoxC2/PlayMapButton/Face" index="1"]
+[node name="Description" parent="MarginContainer/VBoxContainer/Tabs/Mods/MarginC/VBoxC/ActionButtons/PlayMapButton/Face" index="1"]
 custom_minimum_size = Vector2(96, 72)
 offset_right = 136.0
 
-[node name="MakeAModButton" parent="MarginContainer/VBoxContainer/Tabs/Mods/MarginC/VBoxC/HBoxC2" index="1" instance=ExtResource("3_tb1mh")]
-layout_mode = 2
-texture_normal = ExtResource("11_25v3e")
-Description = "Make a mod"
-DisableProcessDisabling = false
-
-[node name="OpenInEditorButton" parent="MarginContainer/VBoxContainer/Tabs/Mods/MarginC/VBoxC/HBoxC2" index="2" instance=ExtResource("3_tb1mh")]
+[node name="OpenInEditorButton" parent="MarginContainer/VBoxContainer/Tabs/Mods/MarginC/VBoxC/ActionButtons" index="1" instance=ExtResource("3_tb1mh")]
 layout_mode = 2
 texture_normal = ExtResource("6_rmog0")
 Description = "Open in editor"
 DisableProcessDisabling = false
 
-[node name="OpenTheDirectoryButton" parent="MarginContainer/VBoxContainer/Tabs/Mods/MarginC/VBoxC/HBoxC2" index="3" instance=ExtResource("3_tb1mh")]
+[node name="MakeAModButton" parent="MarginContainer/VBoxContainer/Tabs/Mods/MarginC/VBoxC/ActionButtons" index="2" instance=ExtResource("3_tb1mh")]
+layout_mode = 2
+texture_normal = ExtResource("11_25v3e")
+Description = "Create a mod"
+DisableProcessDisabling = false
+
+[node name="OpenTheDirectoryButton" parent="MarginContainer/VBoxContainer/Tabs/Mods/MarginC/VBoxC/ActionButtons" index="3" instance=ExtResource("3_tb1mh")]
 layout_mode = 2
 texture_normal = ExtResource("5_edsbi")
 Description = "Open the directory"
 DisableProcessDisabling = false
 
-[node name="Description" parent="MarginContainer/VBoxContainer/Tabs/Mods/MarginC/VBoxC/HBoxC2/OpenTheDirectoryButton/Face" index="1"]
+[node name="Description" parent="MarginContainer/VBoxContainer/Tabs/Mods/MarginC/VBoxC/ActionButtons/OpenTheDirectoryButton/Face" index="1"]
 custom_minimum_size = Vector2(160, 72)
 
 [node name="Mod Options" type="ScrollContainer" parent="MarginContainer/VBoxContainer/Tabs" index="2"]
@@ -442,13 +444,12 @@ theme_override_font_sizes/normal_font_size = 33
 text = "DON'T EVEN TRY TO ENTER THE EDITOR USING GAMEPAD.
 If you don't care about the warnings, click again"
 script = ExtResource("14_3xvpj")
+_scrollingSpeed = null
 
-[connection signal="button_down" from="MarginContainer/VBoxContainer/Tabs/Mods/MarginC/VBoxC/HBoxC/ModsList/DefaultMod" to="MarginContainer/VBoxContainer/Tabs/Mods/MarginC/VBoxC/HBoxC/ModsList/DefaultMod/DownSound" method="play"]
-[connection signal="button_up" from="MarginContainer/VBoxContainer/Tabs/Mods/MarginC/VBoxC/HBoxC/ModsList/DefaultMod" to="MarginContainer/VBoxContainer/Tabs/Mods/MarginC/VBoxC/HBoxC/ModsList/DefaultMod/UpSound" method="play"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Tabs/Mods/MarginC/VBoxC/HBoxC2/PlayMapButton" to="." method="PlayMap" flags=6]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Tabs/Mods/MarginC/VBoxC/HBoxC2/MakeAModButton" to="." method="CreateANewMap"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Tabs/Mods/MarginC/VBoxC/HBoxC2/OpenInEditorButton" to="." method="OpenInEditor"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Tabs/Mods/MarginC/VBoxC/HBoxC2/OpenTheDirectoryButton" to="." method="OpenModFolder"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Tabs/Mods/MarginC/VBoxC/ActionButtons/PlayMapButton" to="." method="PlayMap" flags=6]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Tabs/Mods/MarginC/VBoxC/ActionButtons/OpenInEditorButton" to="." method="OpenInEditor"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Tabs/Mods/MarginC/VBoxC/ActionButtons/MakeAModButton" to="." method="CreateANewMod"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Tabs/Mods/MarginC/VBoxC/ActionButtons/OpenTheDirectoryButton" to="." method="OpenModFolder"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Tabs/Mod Options/MarginC/EditModInfo/AcceptButton" to="." method="Accept"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Tabs/Mod Options/MarginC/EditModInfo/DeclineButton" to="." method="Cancel"]
 [connection signal="text_changed" from="MarginContainer/VBoxContainer/Tabs/Mod Options/MarginC/EditModInfo/ScrollC/VBoxC/CrutchControl/ModNameText" to="." method="ModNameChanged"]
@@ -457,6 +458,5 @@ script = ExtResource("14_3xvpj")
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Tabs/Mod Options/MarginC/EditModInfo/ChangeThePictureButton" to="." method="ChangeThePicture"]
 [connection signal="file_selected" from="MarginContainer/VBoxContainer/Tabs/Mod Options/MarginC/EditModInfo/ChangeThePictureDialog" to="." method="SetPicture"]
 
-[editable path="MarginContainer/VBoxContainer/Tabs/Mods/MarginC/VBoxC/HBoxC/ModsList/DefaultMod"]
-[editable path="MarginContainer/VBoxContainer/Tabs/Mods/MarginC/VBoxC/HBoxC2/PlayMapButton"]
-[editable path="MarginContainer/VBoxContainer/Tabs/Mods/MarginC/VBoxC/HBoxC2/OpenTheDirectoryButton"]
+[editable path="MarginContainer/VBoxContainer/Tabs/Mods/MarginC/VBoxC/ActionButtons/PlayMapButton"]
+[editable path="MarginContainer/VBoxContainer/Tabs/Mods/MarginC/VBoxC/ActionButtons/OpenTheDirectoryButton"]

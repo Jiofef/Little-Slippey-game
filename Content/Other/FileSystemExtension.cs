@@ -1,5 +1,7 @@
 using Godot;
+using Godot.Collections;
 using System.IO;
+using System.Linq;
 
 public partial class FileSystemExtension : Node
 {
@@ -36,5 +38,25 @@ public partial class FileSystemExtension : Node
         ImageTexture texture = new ImageTexture();
         texture.SetImage(image);
         return texture;
+    }
+
+    public static bool HasSpecialChars(string value)
+    {
+        return value.Any(ch => !char.IsLetterOrDigit(ch));
+    }
+
+    public static Dictionary GetJsonModel(string path)
+    {
+        using Godot.FileAccess file = Godot.FileAccess.Open(path, Godot.FileAccess.ModeFlags.Read);
+        var model = Json.ParseString(file.GetAsText()).Obj as Dictionary;
+        file.Close();
+        return model;
+    }
+
+    public static void SaveInJson(string what, string where)
+    {
+        using Godot.FileAccess file = Godot.FileAccess.Open(where, Godot.FileAccess.ModeFlags.Write);
+        file.StoreString(what);
+        file.Close();
     }
 }

@@ -2,8 +2,6 @@ using Godot;
 using System;
 using Godot.Collections;
 using System.Text.Json;
-using System.Collections;
-using System.Runtime.InteropServices;
 
 public partial class UnchangableMeta : Node
 {
@@ -21,6 +19,7 @@ public partial class UnchangableMeta : Node
     public static byte[] LevelPlayedStatus = new byte[G.LevelsInGameTotal]; //I made it as byte[] because of retard Godot that can't save a boolean array >:(
 
     public static bool IsLanguageSetted = false, IsTutorialPlayed, IsLevel9PlatformSectionFirstTimeCompleted, IsLevel9PlatformSectionSkipAllowed, IsFakeLevel10SkipAllowed, IsThereNewContentInRecycleBin = true;
+    public static bool DidModsCrushedTheGame = false;
     public static byte[] HintsStatus = //1 - was showed. 0 - hasn't.
     {
         0, // id 0 is Level 2 standing penalty hint
@@ -45,7 +44,7 @@ public partial class UnchangableMeta : Node
             Achievements.GetAchievement("I Have No Eyes, and I Must Oversee");
     }
 
-    public static Dictionary<string, Variant> GetJson()
+    public static Dictionary<string, Variant> GetJsonSave()
     {
         return new Dictionary<string, Variant>()
         {
@@ -61,6 +60,7 @@ public partial class UnchangableMeta : Node
             {"is_there_new_content_in_recycle_bin", IsThereNewContentInRecycleBin},
             {"level_played_status", LevelPlayedStatus},
             {"hints_status", HintsStatus},
+            {"did_mods_crushed_the_game", DidModsCrushedTheGame},
         };
     }
     public static void SaveToFile()
@@ -68,29 +68,27 @@ public partial class UnchangableMeta : Node
         // Save file
         try
         {
-            using FileAccess save = FileAccess.Open("user://save.json", FileAccess.ModeFlags.Write);
-            save.StoreString(GetJson().ToString());
-            save.Close();
+            var SaveData = GetJsonSave();
+            FileSystemExtension.SaveInJson(SaveData.ToString(), "user://save.json");
         }
         catch { }
 
         // Achievements file
         try
         {
-            using FileAccess achievements = FileAccess.Open("user://achievements.json", FileAccess.ModeFlags.Write);
-            achievements.StoreString(JsonSerializer.Serialize(Achievements.AllTheAchievements));
-            achievements.Close();
+            var SaveData = JsonSerializer.Serialize(Achievements.AllTheAchievements);
+            FileSystemExtension.SaveInJson(SaveData, "user://achievements.json");
         }
         catch { }
     }
     public static void LoadSave()
     {
+
         try
         {
             // Save file
             {
-                using FileAccess file = FileAccess.Open("user://save.json", FileAccess.ModeFlags.Read);
-                var model = Json.ParseString(file.GetAsText()).Obj as Dictionary;
+                var model = FileSystemExtension.GetJsonModel("user://save.json");
 
                 Godot.Collections.Array[] LevelRecordsArrays = new Godot.Collections.Array[3];
                 for (int i = 0; i < LevelRecordsArrays.Length; i++)
@@ -135,8 +133,7 @@ public partial class UnchangableMeta : Node
                 IsLevel9PlatformSectionSkipAllowed = (bool)model["is_level9_platform_section_skip_is_allowed"];
                 IsFakeLevel10SkipAllowed = (bool)model["is_fake_level10_skip_allowed"];
                 IsThereNewContentInRecycleBin = (bool)model["is_there_new_content_in_recycle_bin"];
-
-                file.Close();
+                DidModsCrushedTheGame = (bool)model["did_mods_crushed_the_game"];
             }
 
 

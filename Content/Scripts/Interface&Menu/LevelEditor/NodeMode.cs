@@ -481,7 +481,7 @@ public partial class NodeMode : Control
             }
         }
         var Item = _filesButtonsTree.CreateItem();
-        Item.SetText(0, L._mapFolder.Remove(0, L._defaultPath.Length));
+        Item.SetText(0, L._mapFolder.Remove(0, ModLoader.DefaultModsPath.Length));
         Item.SetMeta("FilePath", L._mapFolder);
         Recursion(L._mapFolder, Item);
     }

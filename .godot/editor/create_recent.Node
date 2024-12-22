@@ -1,5 +1,7 @@
-ScrollContainer
+RichTextLabel
+LineEdit
 VBoxContainer
+ScrollContainer
 MarginContainer
 VSeparator
 TextureRect
@@ -8,8 +10,5 @@ CheckButton
 NinePatchRect
 AnimationPlayer
 Control
-RichTextLabel
 CPUParticles2D
 Sprite2D
-AudioStreamPlayer
-Label

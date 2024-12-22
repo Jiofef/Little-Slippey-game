@@ -4,11 +4,12 @@ using System;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
+using static ModLoader;
 
 [Tool]
 public partial class WorkshopMenu : DraggableWindow
 {
-    private readonly string _defaultPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData) + @"\Godot\app_userdata\Little Slippey\mods\";
     private Dictionary[] _modsInfo;
     private int _selectedMod = -1;
     private string _selectedModFolder;
@@ -16,11 +17,16 @@ public partial class WorkshopMenu : DraggableWindow
     private TextureButton _selectedModButton;
     private Control _lastFocusOwner, _currentModPreview;
 
+    bool _createAModWindowOpened = false;
+
+
+    #region InScript methods
+    #region Override methods
     public override void _Ready()
     {
         GetTree().Root.FilesDropped += FileDropped;
         TreeExiting += () => GetTree().Root.FilesDropped -= FileDropped;
-        _directories = Directory.GetDirectories(_defaultPath);
+        _directories = GetModDirectories();
         _modsInfo = new Dictionary[_directories.Length];
         _lastFocusOwner = GetViewport().GuiGetFocusOwner();
 
@@ -37,21 +43,86 @@ public partial class WorkshopMenu : DraggableWindow
             }
             catch { }
         }
-        var defaultModButton = GetNode<TextureButton>("MarginContainer/VBoxContainer/Tabs/Mods/MarginC/VBoxC/HBoxC/ModsList/DefaultMod");
-        defaultModButton.FocusEntered += () => ShowDefaultModInfo();
-        defaultModButton.Pressed += () => SelectMod(-1, defaultModButton);
-        _selectedModButton = defaultModButton;
-
-        _currentModPreview = GetNode<Control>("MarginContainer/VBoxContainer/Tabs/Mods/MarginC/VBoxC/HBoxC/ModDescription/MarginC/ScrollContainer/VBoxC/ModPreview");
     }
     public override void _PhysicsProcess(double delta)
     {
-        if (GetViewport().GuiGetFocusOwner() != _lastFocusOwner)
+        GD.Print(_selectedMod);
+    }
+    #endregion
+
+    #region Private methods
+    private void ShowModInfo(int index)
+    {
+        GD.Print(_directories.Length);
+        GD.Print(_modsInfo.Length);
+        GD.Print(index);
+        StackTrace trace = new StackTrace();
+        GD.Print(trace.ToString());
+        GetNode<RichTextLabel>("MarginContainer/VBoxContainer/Tabs/Mods/MarginC/VBoxC/HBoxC/ModDescription/MarginC/ScrollContainer/VBoxC/Description").Text = _modsInfo[index]["description"].ToString();
+        if (_currentModPreview != null)
+            _currentModPreview.QueueFree();
+        _currentModPreview = (Control)ResourceLoader.Load<PackedScene>(_directories[index] + "/ModPreview.tscn").Instantiate();
+
+        var modDescriptionVBox = GetNode("MarginContainer/VBoxContainer/Tabs/Mods/MarginC/VBoxC/HBoxC/ModDescription/MarginC/ScrollContainer/VBoxC");
+        modDescriptionVBox.AddChild(_currentModPreview);
+        modDescriptionVBox.MoveChild(_currentModPreview, 0); // Moving preview to the top
+    }
+    private void SelectMod(int index, TextureButton button, ModType modType)
+    {
+        if (_selectedModButton != null)
+            _selectedModButton.GetNode<ColorRect>("SelectRect").Visible = false; // Unsellect the last mod
+
+        _selectedModButton = button;
+        _selectedMod = index;
+        button.GetNode<ColorRect>("SelectRect").Visible = true; // Selecting new mod
+
+
+        switch (modType)
         {
-            _lastFocusOwner = GetViewport().GuiGetFocusOwner();
-            WhenFocusChanged(_lastFocusOwner);
+            case ModType.map:
+                SetVisibleActionButtons("PlayMapButton", "OpenInEditorButton");
+                break;
+            case ModType.localization:
+                break;
+            case ModType.skin:
+                break;
+            case ModType.resource:
+                break;
+            case ModType.content:
+                break;
         }
     }
+    private void SelectMod(int index, TextureButton button, string modTypeName)
+    {
+        ModType NewModType = StringToModType(modTypeName);
+        SelectMod(index, button, NewModType);
+    }
+
+    /// <summary>
+    /// All buttons with sent names will be visible and the rest will be hidden. 
+    ///<para>There are buttons that are always visible, regardless of the values sent, among them: "MakeAModButton" and "OpenTheDirectoryButton".</para>
+    /// </summary>
+    private void SetVisibleActionButtons(params string[] visibleNames)
+    {
+        string[] AlwaysVisibleButtons = ["MakeAModButton", "OpenTheDirectoryButton"];
+        var actionButtonsContainer = GetNode<HBoxContainer>("MarginContainer/VBoxContainer/Tabs/Mods/MarginC/VBoxC/ActionButtons");
+
+        foreach (ButtonWithText button in actionButtonsContainer.GetChildren())
+        {
+            string buttonName = button.Name;
+            bool doArrayContainsName = AlwaysVisibleButtons.Contains(buttonName) || visibleNames.Contains(buttonName);
+            button.Visible = doArrayContainsName;
+        }
+    }
+
+    private void WhenFocusChanged(Control node)
+    {
+        if (node != null && node.GetParentOrNull<Node>() != null && node.GetParent().Name == "ModsList")
+        {
+             ShowModInfo(_selectedMod);
+        }
+    }
+
     public TextureButton AddModButton(string path, int modIndex)
     {
         Dictionary ModTypeIcons = new Dictionary
@@ -63,9 +134,9 @@ public partial class WorkshopMenu : DraggableWindow
             {"resource", ResourceLoader.Load<Texture2D>("res://Content/Sprites/Interface/ResourceMod.png")},
         };
         var ModButton = (TextureButton)ResourceLoader.Load<PackedScene>("res://Content/Scenes/Interface&Menu/ModButton.tscn").Instantiate();
-        using Godot.FileAccess ModInfo = Godot.FileAccess.Open(path + @"\mod_info.json", Godot.FileAccess.ModeFlags.Read);
-        var text = ModInfo.GetAsText();
-        var model = Json.ParseString(ModInfo.GetAsText()).Obj as Dictionary;
+
+        var model = FileSystemExtension.GetJsonModel(path + @"\mod_info.json");
+
         if (modIndex < _modsInfo.Length)
             _modsInfo[modIndex] = model;
         else
@@ -75,60 +146,33 @@ public partial class WorkshopMenu : DraggableWindow
 
         ModButton.GetNode<RichTextLabel>("HBoxContainer/Name").Text = model["name"].ToString(); // Setting mod name
 
-        if (ModTypeIcons.TryGetValue(model["mod_type"], out Variant value)) 
+
+        string modTypeName = model["mod_type"].ToString();
+        ModType modType = (ModType)Enum.Parse(typeof(ModType), modTypeName);
+
+        if (ModTypeIcons.TryGetValue(modTypeName, out Variant value))
             ModButton.GetNode<TextureRect>("HBoxContainer/ModType").Texture = (Texture2D)value; // Setting mod type icon
 
-        if (model["mod_type"].ToString() == "map")
+        if (modTypeName == "map")
             ModButton.GetNode<CheckButton>("HBoxContainer/CheckButton").QueueFree();
-        
-        ModButton.FocusEntered += () => ShowModInfo(modIndex);
+
+        int id = modIndex;
+        ModButton.FocusEntered += () => ShowModInfo(id);
         ModButton.Pressed += () =>
         {
-            SelectMod(modIndex, ModButton);
+            SelectMod(modIndex, ModButton, modType);
             _selectedModFolder = _directories[modIndex];
         };
         GetNode("MarginContainer/VBoxContainer/Tabs/Mods/MarginC/VBoxC/HBoxC/ModsList").AddChild(ModButton);
         return ModButton;
     }
-    private void ShowDefaultModInfo()
-    {
-        GetNode<RichTextLabel>("MarginContainer/VBoxContainer/Tabs/Mods/MarginC/VBoxC/HBoxC/ModDescription/MarginC/ScrollContainer/VBoxC/Description").Text = "Core. DON'T DISABLE IT.";
-        if (_currentModPreview != null)
-        {
-            _currentModPreview.QueueFree();
-            _currentModPreview = null;
-        }
-    }
-    private void ShowModInfo(int index)
-    {
-        GetNode<RichTextLabel>("MarginContainer/VBoxContainer/Tabs/Mods/MarginC/VBoxC/HBoxC/ModDescription/MarginC/ScrollContainer/VBoxC/Description").Text = _modsInfo[index]["description"].ToString();
-        if (_currentModPreview != null)
-            _currentModPreview.QueueFree();
-        _currentModPreview = (Control)ResourceLoader.Load<PackedScene>(_directories[index] + "/ModPreview.tscn").Instantiate();
+    #endregion
 
-        var modDescriptionVBox = GetNode("MarginContainer/VBoxContainer/Tabs/Mods/MarginC/VBoxC/HBoxC/ModDescription/MarginC/ScrollContainer/VBoxC");
-        modDescriptionVBox.AddChild(_currentModPreview);
-        modDescriptionVBox.MoveChild(_currentModPreview, 1); // Moving preview to down
-    }
-    private void SelectMod(int index, TextureButton button)
-    {
-        if (_selectedModButton != null)
-            _selectedModButton.GetNode<ColorRect>("SelectRect").Visible = false;
-        _selectedModButton = button;
-        _selectedMod = index;
-        button.GetNode<ColorRect>("SelectRect").Visible = true;
-    }
-    private void WhenFocusChanged(Control node)
-    {
-        if (node != null && node.GetParentOrNull<Node>() != null && node.GetParent().Name != "ModsList")
-        {
-            if (_selectedMod == -1)
-                ShowDefaultModInfo();
-            else
-                ShowModInfo(_selectedMod);
-        }
-    }
+    #endregion
 
+
+
+    #region Buttons region
     public void OpenInEditor()
     {
         if (G.TypeOfUsedController != "Keyboard" && GetNode<Control>("WARNING").Visible == false)
@@ -138,7 +182,7 @@ public partial class WorkshopMenu : DraggableWindow
         }
 
         G.InGameTransitiveValue = _selectedModFolder + @"\MainScene.tscn";
-        G.ModMapPath = _selectedModFolder.Remove(0, _defaultPath.Length) + @"\MainScene.tscn";
+        G.ModMapPath = _selectedModFolder.Remove(0, DefaultModsPath.Length) + @"\MainScene.tscn";
         G.ModMapFolder = _selectedModFolder;
         GetTree().ChangeSceneToFile("res://Content/Scenes/Interface&Menu/LevelEditor/LevelEditor.tscn");
     }
@@ -153,39 +197,35 @@ public partial class WorkshopMenu : DraggableWindow
         Process.Start("explorer.exe", OS.GetUserDataDir().Replace("/", @"\") + @"\mods");
     }
 
-    public void CreateANewMap()
+
+    public void CreateANewMod()
     {
-        for (int i = 0; ; i++)
+        if (!_createAModWindowOpened)
         {
-            var SuggestedPath = _defaultPath + "CustomMap" + i;
-            if (!Directory.Exists(SuggestedPath))
-            {
-                _directories = _directories.Append(SuggestedPath).ToArray();
+            var createAModMenu = GD.Load<PackedScene>("res://Content/Scenes/Interface&Menu/CreateAModWindow.tscn").Instantiate() as CreateAModWindow;
+            AddChild(createAModMenu);
 
-                foreach (string value in new string[]{ "", @"\Other", @"\Scenes", @"\Scripts", @"\Sounds", @"\Sprites" })
-                    Directory.CreateDirectory(SuggestedPath + value);
-                ResourceSaver.Save(ResourceLoader.Load("res://Content/Scenes/Other/UserLevelLayout.tscn"), SuggestedPath + @"\MainScene.tscn");
-                FileSystemExtension.CopyResourceFileTo("res://Content/Scenes/Other/UserLevelLayout.tscn", SuggestedPath + @"\MainScene.tscn");
-                FileSystemExtension.CopyByteResourceFileTo("res://Content/Sprites/Interface/CustomMapDefaultPreview.png", SuggestedPath + @"\PreviewPicture.png");
+            createAModMenu.CreateMod += ConfirmCreatingMod;
 
-                var modPreview = (ModPreview)ResourceLoader.Load<PackedScene>("res://Content/Scenes/Interface&Menu/ModPreviewLayout.tscn").Instantiate();
-                modPreview._resourcePath = SuggestedPath + @"\PreviewPicture.png";
-                var ToSave = new PackedScene();
-                ToSave.Pack(modPreview);
-                ResourceSaver.Save(ToSave, SuggestedPath + @"\ModPreview.tscn");
-
-                using Godot.FileAccess file = Godot.FileAccess.Open(SuggestedPath + @"\mod_info.json", Godot.FileAccess.ModeFlags.Write);
-                file.StoreString("{\r\n  \"name\": \"CustomMap\",\r\n  \"mod_type\":  \"map\",\r\n  \"description\": \"\"\r\n}");
-                file.Close();
-
-                var button = AddModButton(SuggestedPath, _directories.Length - 1);
-                GetNode("MarginContainer/VBoxContainer/Tabs/Mods/MarginC/VBoxC/HBoxC/ModsList").MoveChild(button, 1);
-                break;
-            }
+            _createAModWindowOpened = true;
+            createAModMenu.TreeExited += () => _createAModWindowOpened = false;
         }
-    }
 
-    //Mod Info Editing Section
+    }
+    public void ConfirmCreatingMod(ModType type, string folderName, string modName)
+    {
+        var modPath = CreateAMod(type, folderName, modName); // Creating a mod and getting its path
+
+        var button = AddModButton(modPath, _directories.Length); // Creating a button for the mode
+        GetNode("MarginContainer/VBoxContainer/Tabs/Mods/MarginC/VBoxC/HBoxC/ModsList").MoveChild(button, 0); // Moving the mod button to the top
+
+        _directories = _directories.Append(modPath).ToArray(); // Adding the path to the array
+    }
+    #endregion
+
+
+
+    #region Mod Info Editing Section
     string _settedModName, _settedModFolderName, _settedModDescription, _settedImagePath;
     public void EditModInfo()
     {
@@ -195,7 +235,7 @@ public partial class WorkshopMenu : DraggableWindow
         GetNode<TextureButton>("ActionButtons/EditInfoButton").Disabled = true;
 
         GetNode<TextEdit>("EditModInfo/ScrollContainer/VBoxContainer/CrutchControl/ModNameText").Text = _settedModName = _modsInfo[_selectedMod]["name"].ToString();
-        GetNode<LineEdit>("EditModInfo/ScrollContainer/VBoxContainer/CrutchControl/LineEdit").Text = _settedModFolderName = _selectedModFolder.Remove(0, _defaultPath.Length);
+        GetNode<LineEdit>("EditModInfo/ScrollContainer/VBoxContainer/CrutchControl/LineEdit").Text = _settedModFolderName = _selectedModFolder.Remove(0, DefaultModsPath.Length);
         GetNode<TextEdit>("EditModInfo/ScrollContainer/VBoxContainer/CrutchControl/DescriptionText").Text = _settedModDescription = _modsInfo[_selectedMod]["description"].ToString();
 
         var previewPicture = _currentModPreview.GetNodeOrNull<TextureRect>("PreviewPicture");
@@ -244,10 +284,10 @@ public partial class WorkshopMenu : DraggableWindow
 
         _modsInfo[_selectedMod]["name"] = _settedModName;
         _modsInfo[_selectedMod]["description"] = _settedModDescription;
-        if (_selectedModFolder != _defaultPath + _settedModFolderName)
+        if (_selectedModFolder != DefaultModsPath + _settedModFolderName)
         {
-            Directory.Move(_selectedModFolder, _defaultPath + _settedModFolderName);
-            _selectedModFolder = _defaultPath + _settedModFolderName;
+            Directory.Move(_selectedModFolder, DefaultModsPath + _settedModFolderName);
+            _selectedModFolder = DefaultModsPath + _settedModFolderName;
             _directories[_selectedMod] = _selectedModFolder;
             ((ModPreview)_currentModPreview)._resourcePath = _selectedModFolder;
         }
@@ -275,4 +315,5 @@ public partial class WorkshopMenu : DraggableWindow
     {
         _settedModDescription = GetNode<TextEdit>("EditModInfo/ScrollContainer/VBoxContainer/CrutchControl/DescriptionText").Text;
     }
+    #endregion
 }

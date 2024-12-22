@@ -1,0 +1,125 @@
+[gd_scene load_steps=11 format=3 uid="uid://bss0j4lcrvubl"]
+
+[ext_resource type="PackedScene" uid="uid://cb3550p76ubc8" path="res://Content/Scenes/Interface&Menu/DraggableWindow.tscn" id="1_0cy6k"]
+[ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/CreateAModWindow.cs" id="2_45m3j"]
+[ext_resource type="Theme" uid="uid://dkitr1ftp0yhs" path="res://Content/Other/Menu.tres" id="2_sahd4"]
+[ext_resource type="PackedScene" uid="uid://bfcv2jyesu362" path="res://Content/Scenes/Interface&Menu/ButtonWithText.tscn" id="3_5skfg"]
+[ext_resource type="Texture2D" uid="uid://b8abnpf38b77x" path="res://Content/Sprites/Interface/Buttons/4XAcceptButton.png" id="4_ovf15"]
+[ext_resource type="Texture2D" uid="uid://bpc1to7slboss" path="res://Content/Sprites/Interface/MapMod.png" id="4_st45q"]
+[ext_resource type="Texture2D" uid="uid://xrqlo61ofo8s" path="res://Content/Sprites/Interface/LocalizationMod.png" id="5_c8n5k"]
+[ext_resource type="Texture2D" uid="uid://c0gqurfye032u" path="res://Content/Sprites/Interface/SkinMod.png" id="6_vly0q"]
+[ext_resource type="Texture2D" uid="uid://38kwf6v761n0" path="res://Content/Sprites/Interface/ContentMod.png" id="7_sooyf"]
+[ext_resource type="Texture2D" uid="uid://dfl63nvlmclky" path="res://Content/Sprites/Interface/ResourceMod.png" id="8_v5xf6"]
+
+[node name="DraggableWindow" instance=ExtResource("1_0cy6k")]
+custom_minimum_size = Vector2(540, 540)
+offset_left = 250.0
+offset_top = 100.0
+offset_right = -490.0
+offset_bottom = -120.0
+theme = ExtResource("2_sahd4")
+script = ExtResource("2_45m3j")
+WindowTitle = "Create a mod"
+_windowTitle = "Create a mod"
+_canClose = true
+_isBlueBoxHovered = false
+_isDragging = false
+Velocity = Vector2(0, 0)
+_savedMousePos = Vector2(0, 0)
+_mouseVelocity = Vector2(0, 0)
+_selectedType = 0
+_folderName = ""
+_modName = ""
+_redColor = Color(0.788, 0.141, 0.392, 1)
+_greenColor = Color(0.357, 0.702, 0.38, 1)
+_isFolderNameValid = null
+_acceptButton = null
+
+[node name="WindowTitle" parent="MarginContainer/VBoxContainer/BlueBox" index="1"]
+text = "Create a mod"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer" index="1"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Name" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer" index="0"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+text = "Mod name"
+
+[node name="NameEdit" type="LineEdit" parent="MarginContainer/VBoxContainer/VBoxContainer" index="1"]
+layout_mode = 2
+text = "Name"
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer/VBoxContainer" index="2"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="FolderName" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer" index="3"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+text = "Folder name"
+
+[node name="FolderNameEdit" type="LineEdit" parent="MarginContainer/VBoxContainer/VBoxContainer" index="4"]
+layout_mode = 2
+
+[node name="IsFolderNameValid" type="RichTextLabel" parent="MarginContainer/VBoxContainer/VBoxContainer" index="5"]
+modulate = Color(0.356863, 0.701961, 0.380392, 1)
+layout_mode = 2
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+text = "The name is valid"
+fit_content = true
+
+[node name="HSeparator2" type="HSeparator" parent="MarginContainer/VBoxContainer/VBoxContainer" index="6"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="ModType" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer" index="7"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+text = "Mod type"
+
+[node name="ModTypeOption" type="OptionButton" parent="MarginContainer/VBoxContainer/VBoxContainer" index="8"]
+layout_mode = 2
+selected = 0
+item_count = 5
+popup/item_0/text = "Map"
+popup/item_0/icon = ExtResource("4_st45q")
+popup/item_1/text = "Localization"
+popup/item_1/icon = ExtResource("5_c8n5k")
+popup/item_1/id = 1
+popup/item_2/text = "Skin"
+popup/item_2/icon = ExtResource("6_vly0q")
+popup/item_2/id = 2
+popup/item_3/text = "Content"
+popup/item_3/icon = ExtResource("7_sooyf")
+popup/item_3/id = 3
+popup/item_4/text = "Resource"
+popup/item_4/icon = ExtResource("8_v5xf6")
+popup/item_4/id = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer" index="2"]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_constants/separation = 16
+alignment = 2
+
+[node name="AcceptButton" parent="MarginContainer/VBoxContainer/HBoxContainer" index="0" instance=ExtResource("3_5skfg")]
+layout_mode = 2
+texture_normal = ExtResource("4_ovf15")
+Description = "Apply"
+DisableProcessDisabling = false
+
+[node name="DeclineButton" parent="MarginContainer/VBoxContainer/HBoxContainer" index="1" instance=ExtResource("3_5skfg")]
+layout_mode = 2
+Description = "Cancel"
+DisableProcessDisabling = false
+
+[connection signal="text_submitted" from="MarginContainer/VBoxContainer/VBoxContainer/NameEdit" to="." method="SetModName"]
+[connection signal="text_changed" from="MarginContainer/VBoxContainer/VBoxContainer/FolderNameEdit" to="." method="FolderNameChanged"]
+[connection signal="item_selected" from="MarginContainer/VBoxContainer/VBoxContainer/ModTypeOption" to="." method="SelectType"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/AcceptButton" to="." method="Accept"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/DeclineButton" to="." method="queue_free"]

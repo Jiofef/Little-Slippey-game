@@ -1,8 +1,6 @@
 using Godot;
-using GodotPlugins.Game;
 using System;
 using System.Linq;
-using System.Runtime.CompilerServices;
 
 /// <summary>
 /// G is gameplay singleton, that having importal information which may be needed in various places of the game. They will not save after exiting the game
@@ -26,8 +24,6 @@ public partial class G : Node
         MusicStopTimeCode = 0; // It is necessary to put the music in the same position after restarting the level
 
     public static readonly string[] VanillaSkinNames = ["Slippey", "Samey", "Sanboy", "Strawman", "Pineplum", "Bondey", "Sleepy", "Daley", "Hostey", "CompressMass", "JioYobaFefski", "SlippeyChad", "MISSINGNULL", "Corey"];
-
-    public enum ModType {map, localization, skin, content, resource}
 
     public static readonly Vector2[] LevelXYSizes =
 [
