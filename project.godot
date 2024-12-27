@@ -25,12 +25,13 @@ buses/channel_disable_time=0.0
 
 [autoload]
 
-UnchangableMeta="*res://Content/Other/UnchangableMeta.cs"
-Meta="*res://Content/Other/Meta.cs"
-Achievements="*res://Content/Other/Achievements.cs"
-ModLoader="*res://Content/Other/ModLoader.cs"
-FileSystemExtension="*res://Content/Other/FileSystemExtension.cs"
-G="*res://Content/Other/G.cs"
+UnchangableMeta="*res://Content/Scripts/Singletons/UnchangableMeta.cs"
+Meta="*res://Content/Scripts/Singletons/Meta.cs"
+Achievements="*res://Content/Scripts/Singletons/Achievements.cs"
+ModDataManager="*res://Content/Scripts/Singletons/ModDataManager.cs"
+ModManager="*res://Content/Scripts/Singletons/ModManager.cs"
+FileSystemExtension="*res://Content/Scripts/Singletons/FileSystemExtension.cs"
+G="*res://Content/Scripts/Singletons/G.cs"
 
 [display]
 

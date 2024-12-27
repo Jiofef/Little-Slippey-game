@@ -1,0 +1,479 @@
+[gd_scene load_steps=19 format=3 uid="uid://dhpudi781np1e"]
+
+[ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/WorkshopMenu.cs" id="1_y8ofb"]
+[ext_resource type="Texture2D" uid="uid://dwloy3yjsqa53" path="res://Content/Sprites/Interface/WorkShopBox.png" id="2_y6w1l"]
+[ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/ScrollableContainer.cs" id="3_ei7qp"]
+[ext_resource type="PackedScene" uid="uid://duv6361wgul0d" path="res://Content/Scenes/Interface&Menu/ModButton.tscn" id="3_ujc5x"]
+[ext_resource type="PackedScene" uid="uid://bwpstpk1xmkah" path="res://Content/Scenes/Interface&Menu/Button.tscn" id="3_wh83q"]
+[ext_resource type="Texture2D" uid="uid://cwxoq374yceom" path="res://Content/Sprites/Interface/Buttons/OpenTheDirectoryButton.png" id="4_faqv8"]
+[ext_resource type="Texture2D" uid="uid://bmldgxs7k8p6" path="res://Content/Sprites/Interface/Buttons/OpenInEditorButton.png" id="5_tmdrm"]
+[ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/ScrollableRichTextLabel.cs" id="7_lmrig"]
+[ext_resource type="Texture2D" uid="uid://c1d2p0ba42csh" path="res://Content/Sprites/Interface/Buttons/AcceptButton.png" id="8_4njlo"]
+[ext_resource type="Texture2D" uid="uid://d0sqlunqacimf" path="res://Content/Sprites/Interface/Buttons/CancelButton.png" id="9_casy6"]
+[ext_resource type="PackedScene" uid="uid://3pxsh7u8scxi" path="res://Content/Scenes/Interface&Menu/ModPreviewLayout.tscn" id="10_xw0ix"]
+[ext_resource type="Texture2D" uid="uid://cdh8bcaew8h6o" path="res://Content/Sprites/Interface/TurnOffBox.png" id="10_ypwju"]
+
+[sub_resource type="Animation" id="Animation_fu4ro"]
+resource_name = "Appearance"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector2(1, 0), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_u8saj"]
+_data = {
+"Appearance": SubResource("Animation_fu4ro")
+}
+
+[sub_resource type="Animation" id="Animation_5hdve"]
+resource_name = "Appearance"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector2(1, 0), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ckval"]
+_data = {
+"Appearance": SubResource("Animation_5hdve")
+}
+
+[sub_resource type="Animation" id="Animation_tgptk"]
+resource_name = "WARNING"
+length = 6.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 5, 6),
+"transitions": PackedFloat32Array(0.5, 1, 2, 1),
+"update": 0,
+"values": [Vector2(338, 720), Vector2(338, 180), Vector2(338, 180), Vector2(338, 720)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_24sii"]
+_data = {
+"WARNING": SubResource("Animation_tgptk")
+}
+
+[node name="WorkshopMenu" type="Control"]
+process_mode = 3
+z_index = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 120.0
+offset_top = 40.0
+offset_right = -100.0
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_y8ofb")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(4, 4)
+texture = ExtResource("2_y6w1l")
+centered = false
+
+[node name="ModsScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 0
+offset_left = 52.0
+offset_top = 36.0
+offset_right = 524.0
+offset_bottom = 496.0
+script = ExtResource("3_ei7qp")
+_scrollingSpeed = Vector2(5, 12)
+
+[node name="ModsScrollVBoxContainer" type="VBoxContainer" parent="ModsScrollContainer"]
+layout_mode = 2
+
+[node name="CreateMapButton" parent="ModsScrollContainer/ModsScrollVBoxContainer" instance=ExtResource("3_wh83q")]
+custom_minimum_size = Vector2(471, 40)
+layout_mode = 2
+
+[node name="Name" type="RichTextLabel" parent="ModsScrollContainer/ModsScrollVBoxContainer/CreateMapButton"]
+clip_contents = false
+custom_minimum_size = Vector2(560, 48)
+layout_mode = 0
+offset_right = 628.0
+offset_bottom = 48.0
+scale = Vector2(0.75, 0.75)
+mouse_filter = 1
+theme_override_colors/default_color = Color(0.196078, 0.196078, 0.196078, 1)
+theme_override_font_sizes/normal_font_size = 33
+text = "Create a new map"
+script = ExtResource("7_lmrig")
+
+[node name="DefaultMod" parent="ModsScrollContainer/ModsScrollVBoxContainer" instance=ExtResource("3_ujc5x")]
+layout_mode = 2
+
+[node name="FocusRect" parent="ModsScrollContainer/ModsScrollVBoxContainer/DefaultMod" index="1"]
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="ActionButtons" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 12.0
+offset_top = 508.0
+offset_right = 1048.0
+offset_bottom = 628.0
+
+[node name="OpenTheDirectoryButton" parent="ActionButtons" instance=ExtResource("3_wh83q")]
+layout_mode = 0
+offset_left = 28.0
+offset_top = 16.0
+offset_right = 52.0
+offset_bottom = 40.0
+focus_neighbor_right = NodePath("../OpenInEditorButton")
+texture_normal = ExtResource("4_faqv8")
+
+[node name="OpenTheDirectory" type="Label" parent="ActionButtons"]
+layout_mode = 0
+offset_left = 140.0
+offset_top = 16.0
+offset_right = 244.0
+offset_bottom = 64.0
+scale = Vector2(2, 2)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+text = "Open the
+directory
+"
+vertical_alignment = 1
+
+[node name="OpenInEditorButton" parent="ActionButtons" instance=ExtResource("3_wh83q")]
+layout_mode = 0
+offset_left = 362.0
+offset_top = 16.0
+offset_right = 386.0
+offset_bottom = 40.0
+focus_neighbor_left = NodePath("../OpenTheDirectoryButton")
+texture_normal = ExtResource("5_tmdrm")
+
+[node name="OpenInEditor" type="Label" parent="ActionButtons"]
+layout_mode = 0
+offset_left = 474.0
+offset_top = 16.0
+offset_right = 584.0
+offset_bottom = 64.0
+scale = Vector2(2, 2)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+text = "Open in
+editor"
+vertical_alignment = 1
+
+[node name="EditInfoButton" parent="ActionButtons" instance=ExtResource("3_wh83q")]
+layout_mode = 0
+offset_left = 676.0
+offset_top = 16.0
+offset_right = 700.0
+offset_bottom = 40.0
+focus_neighbor_left = NodePath("../OpenInEditorButton")
+texture_normal = ExtResource("8_4njlo")
+
+[node name="EditInfo" type="Label" parent="ActionButtons"]
+layout_mode = 0
+offset_left = 788.0
+offset_top = 16.0
+offset_right = 828.0
+offset_bottom = 64.0
+scale = Vector2(2, 2)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+text = "Edit
+info"
+vertical_alignment = 1
+
+[node name="ModDescription" type="Control" parent="."]
+clip_contents = true
+anchors_preset = 0
+offset_left = 536.0
+offset_top = 36.0
+offset_right = 1008.0
+offset_bottom = 496.0
+
+[node name="ModPreview" parent="ModDescription" instance=ExtResource("10_xw0ix")]
+layout_mode = 1
+
+[node name="Description" type="RichTextLabel" parent="ModDescription"]
+custom_minimum_size = Vector2(581, 48)
+layout_mode = 0
+offset_top = 250.0
+offset_right = 629.0
+offset_bottom = 530.0
+scale = Vector2(0.75, 0.75)
+mouse_filter = 1
+theme_override_colors/default_color = Color(0.196078, 0.196078, 0.196078, 1)
+theme_override_font_sizes/normal_font_size = 33
+text = "Note: Before starting the construction of a test chamber, it is necessary to ensure the integrity, effectiveness and sufficient cruelty of its concept. In the workshop, you can design your own test chambers, activate the simulation in them, and also try out test chambers made by other scientists."
+script = ExtResource("7_lmrig")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_u8saj")
+}
+autoplay = "Appearance"
+
+[node name="EditModInfo" type="Control" parent="."]
+process_mode = 3
+visible = false
+anchors_preset = 0
+offset_right = 1060.0
+offset_bottom = 640.0
+
+[node name="Sprite2D" type="Sprite2D" parent="EditModInfo"]
+scale = Vector2(4, 4)
+texture = ExtResource("2_y6w1l")
+centered = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="EditModInfo"]
+libraries = {
+"": SubResource("AnimationLibrary_ckval")
+}
+
+[node name="PreviewPicture" type="TextureRect" parent="EditModInfo"]
+layout_mode = 0
+offset_left = 536.0
+offset_top = 36.0
+offset_right = 654.0
+offset_bottom = 95.0
+scale = Vector2(4, 4)
+expand_mode = 1
+
+[node name="AcceptButton" parent="EditModInfo" instance=ExtResource("3_wh83q")]
+layout_mode = 0
+offset_left = 832.0
+offset_top = 524.0
+offset_right = 856.0
+offset_bottom = 548.0
+focus_neighbor_right = NodePath("../DeclineButton")
+texture_normal = ExtResource("8_4njlo")
+
+[node name="DeclineButton" parent="EditModInfo" instance=ExtResource("3_wh83q")]
+layout_mode = 0
+offset_left = 944.0
+offset_top = 524.0
+offset_right = 968.0
+offset_bottom = 548.0
+focus_neighbor_left = NodePath("../AcceptButton")
+texture_normal = ExtResource("9_casy6")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="EditModInfo"]
+layout_mode = 0
+offset_left = 52.0
+offset_top = 36.0
+offset_right = 524.0
+offset_bottom = 496.0
+script = ExtResource("3_ei7qp")
+_scrollingSpeed = Vector2(5, 8)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="EditModInfo/ScrollContainer"]
+layout_mode = 2
+
+[node name="CrutchControl" type="Control" parent="EditModInfo/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(472, 460)
+layout_mode = 2
+
+[node name="ModName" type="Label" parent="EditModInfo/ScrollContainer/VBoxContainer/CrutchControl"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 7.0
+offset_right = 208.0
+offset_bottom = 52.0
+scale = Vector2(0.75, 0.75)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+theme_override_font_sizes/font_size = 33
+text = "Mod name:"
+
+[node name="ModNameText" type="TextEdit" parent="EditModInfo/ScrollContainer/VBoxContainer/CrutchControl"]
+layout_mode = 0
+offset_top = 40.0
+offset_right = 629.0
+offset_bottom = 96.0
+scale = Vector2(0.75, 0.75)
+theme_override_colors/background_color = Color(0.729412, 0.717647, 0.686275, 1)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+theme_override_font_sizes/font_size = 33
+text = "Default"
+
+[node name="FolderName" type="Label" parent="EditModInfo/ScrollContainer/VBoxContainer/CrutchControl"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 89.0
+offset_right = 530.0
+offset_bottom = 179.0
+scale = Vector2(0.75, 0.75)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+theme_override_font_sizes/font_size = 33
+text = "Mod folder name:
+(No special symblols plz)"
+
+[node name="ColorRect" type="ColorRect" parent="EditModInfo/ScrollContainer/VBoxContainer/CrutchControl"]
+layout_mode = 0
+offset_top = 160.0
+offset_right = 629.0
+offset_bottom = 216.0
+scale = Vector2(0.75, 0.75)
+color = Color(0.729412, 0.717647, 0.686275, 1)
+
+[node name="LineEdit" type="LineEdit" parent="EditModInfo/ScrollContainer/VBoxContainer/CrutchControl"]
+layout_mode = 0
+offset_top = 159.0
+offset_right = 629.0
+offset_bottom = 215.0
+scale = Vector2(0.75, 0.75)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+theme_override_font_sizes/font_size = 33
+text = "Default"
+flat = true
+
+[node name="Description" type="Label" parent="EditModInfo/ScrollContainer/VBoxContainer/CrutchControl"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 207.0
+offset_right = 530.0
+offset_bottom = 252.0
+scale = Vector2(0.75, 0.75)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+theme_override_font_sizes/font_size = 33
+text = "Mod description:"
+
+[node name="DescriptionText" type="TextEdit" parent="EditModInfo/ScrollContainer/VBoxContainer/CrutchControl"]
+layout_mode = 0
+offset_top = 245.0
+offset_right = 629.0
+offset_bottom = 525.0
+scale = Vector2(0.75, 0.75)
+theme_override_colors/background_color = Color(0.729412, 0.717647, 0.686275, 1)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+theme_override_font_sizes/font_size = 33
+text = "Default"
+
+[node name="ChangeThePictureButton" parent="EditModInfo" instance=ExtResource("3_wh83q")]
+layout_mode = 0
+offset_left = 536.0
+offset_top = 400.0
+offset_right = 560.0
+offset_bottom = 424.0
+focus_neighbor_right = NodePath("../OpenInEditorButton")
+texture_normal = ExtResource("4_faqv8")
+
+[node name="ChangeThePicture" type="Label" parent="EditModInfo"]
+layout_mode = 0
+offset_left = 648.0
+offset_top = 412.0
+offset_right = 763.0
+offset_bottom = 460.0
+scale = Vector2(1.75, 1.75)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+text = "Change the
+picture"
+vertical_alignment = 1
+
+[node name="ChangeThePictureDialog" type="FileDialog" parent="EditModInfo"]
+title = "Open a File"
+initial_position = 1
+size = Vector2i(505, 505)
+ok_button_text = "Open"
+file_mode = 0
+access = 2
+filters = PackedStringArray("*.png ; PNG images")
+
+[node name="ChangeThePicture2" type="Label" parent="EditModInfo"]
+layout_mode = 0
+offset_left = 536.0
+offset_top = 284.0
+offset_right = 651.0
+offset_bottom = 332.0
+scale = Vector2(1.75, 1.75)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+text = "You can drop PNG files
+there to change a picture"
+vertical_alignment = 1
+
+[node name="WARNING" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 338.0
+offset_top = 700.0
+offset_right = 722.0
+offset_bottom = 955.999
+
+[node name="Sprite2D" type="Sprite2D" parent="WARNING"]
+scale = Vector2(4, 4)
+texture = ExtResource("10_ypwju")
+centered = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="WARNING"]
+libraries = {
+"": SubResource("AnimationLibrary_24sii")
+}
+
+[node name="Description" type="RichTextLabel" parent="WARNING"]
+clip_contents = false
+layout_mode = 0
+offset_left = 12.0
+offset_top = 12.0
+offset_right = 497.0
+offset_bottom = 327.0
+scale = Vector2(0.75, 0.75)
+mouse_filter = 1
+theme_override_colors/default_color = Color(0.196078, 0.196078, 0.196078, 1)
+theme_override_font_sizes/normal_font_size = 33
+text = "DON'T EVEN TRY TO ENTER THE EDITOR USING GAMEPAD.
+If you don't care about the warnings, click again"
+script = ExtResource("7_lmrig")
+
+[connection signal="pressed" from="ModsScrollContainer/ModsScrollVBoxContainer/CreateMapButton" to="." method="CreateANewMap"]
+[connection signal="button_down" from="ModsScrollContainer/ModsScrollVBoxContainer/DefaultMod" to="ModsScrollContainer/ModsScrollVBoxContainer/DefaultMod/DownSound" method="play"]
+[connection signal="button_up" from="ModsScrollContainer/ModsScrollVBoxContainer/DefaultMod" to="ModsScrollContainer/ModsScrollVBoxContainer/DefaultMod/UpSound" method="play"]
+[connection signal="pressed" from="ActionButtons/OpenTheDirectoryButton" to="." method="OpenModFolder"]
+[connection signal="pressed" from="ActionButtons/OpenInEditorButton" to="." method="OpenInEditor"]
+[connection signal="pressed" from="ActionButtons/EditInfoButton" to="." method="EditModInfo"]
+[connection signal="pressed" from="EditModInfo/AcceptButton" to="." method="Accept"]
+[connection signal="pressed" from="EditModInfo/DeclineButton" to="." method="Cancel"]
+[connection signal="text_changed" from="EditModInfo/ScrollContainer/VBoxContainer/CrutchControl/ModNameText" to="." method="ModNameChanged"]
+[connection signal="text_changed" from="EditModInfo/ScrollContainer/VBoxContainer/CrutchControl/LineEdit" to="." method="ModFolderNameChanged"]
+[connection signal="text_changed" from="EditModInfo/ScrollContainer/VBoxContainer/CrutchControl/DescriptionText" to="." method="ModDescriptionChanged"]
+[connection signal="pressed" from="EditModInfo/ChangeThePictureButton" to="." method="ChangeThePicture"]
+[connection signal="file_selected" from="EditModInfo/ChangeThePictureDialog" to="." method="SetPicture"]
+
+[editable path="ModsScrollContainer/ModsScrollVBoxContainer/CreateMapButton"]
+[editable path="ModsScrollContainer/ModsScrollVBoxContainer/DefaultMod"]

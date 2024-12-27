@@ -2,6 +2,7 @@ using Godot;
 using Godot.Collections;
 using GodotSteam;
 using System.IO;
+using System.Linq;
 using static Meta.VideoClass;
 
 public partial class InitializationScene : Control
@@ -17,8 +18,12 @@ public partial class InitializationScene : Control
 
         string CountryCode = Steam.GetIPCountry();
 
+
         
-        Directory.CreateDirectory(ModLoader.DefaultModsPath); // Creating mod directory if it isn't exist
+        Directory.CreateDirectory(ModManager.DefaultModsPath); // Creating mod directory if it isn't exist
+        Directory.CreateDirectory(ModDataManager.DefaultModLocalDataPath); // Creating mod local data directory if it isn't exist
+
+        ModDataManager.CleanDeletedModsData();
 
         Meta.Instance.LoadOptions();
         Meta.Instance.ApplyOptions();
@@ -27,6 +32,7 @@ public partial class InitializationScene : Control
 
         if (!UnchangableMeta.IsLanguageSetted)
         {
+            ModManager.CreateStandartTimerLib();
             //GetNode<Control>("ChooseYourLanguage").Visible = true;
             //GetNode<TextureButton>("ChooseYourLanguage/ChooseYourLanguageEng").GrabFocus();
             Dictionary<string, Language> CountryCodes = new Dictionary <string, Language>()
@@ -46,9 +52,11 @@ public partial class InitializationScene : Control
             else 
                 SetLanguage(Language.en);
         }
-        else
-            GetTree().CallDeferred("change_scene_to_file", "res://Content/Scenes/Interface&Menu/WelcomeToGOS.tscn");
 
+
+        ModDataManager.LoadAllModDataSafely();
+        ModDataManager.CleanDeletedModsData();
+        ModDataManager.AddMissingDefaultModData();
 
         //Mods loading
         if (!UnchangableMeta.DidModsCrushedTheGame)
@@ -56,7 +64,7 @@ public partial class InitializationScene : Control
             UnchangableMeta.DidModsCrushedTheGame = true;
             UnchangableMeta.SaveToFile();
 
-            ModLoader.LoadMods();
+            ModManager.LoadMods();
 
             UnchangableMeta.DidModsCrushedTheGame = false;
             UnchangableMeta.SaveToFile();
@@ -64,6 +72,7 @@ public partial class InitializationScene : Control
         else
             ShowModErrorMessage();
 
+        GetTree().CallDeferred("change_scene_to_file", "res://Content/Scenes/Interface&Menu/WelcomeToGOS.tscn");
     }
 
     public void SetLanguage(Language language)
@@ -73,7 +82,6 @@ public partial class InitializationScene : Control
         Meta.Instance.ApplyOptions();
         Meta.Instance.SaveToFile();
         UnchangableMeta.SaveToFile();
-        GetTree().ChangeSceneToFile("res://Content/Scenes/Interface&Menu/WelcomeToGOS.tscn");
     }
 
     public void ShowModErrorMessage()

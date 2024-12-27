@@ -1,0 +1,328 @@
+[gd_scene load_steps=10 format=3 uid="uid://pkd4dmid83nm"]
+
+[ext_resource type="Shader" path="res://Content/Other/BrightnessShader.gdshader" id="2_bd5vs"]
+[ext_resource type="Script" path="res://Content/Scripts/Other/RootIntro.cs" id="2_gxks7"]
+[ext_resource type="AudioStream" uid="uid://0ritvrmr8r7h" path="res://Content/Sounds/Other/RootIntro.mp3" id="3_j3mvi"]
+[ext_resource type="Script" path="res://Content/Scripts/Other/PostProcessingRect.cs" id="3_n4e2q"]
+
+[sub_resource type="Animation" id="Animation_sn303"]
+resource_name = "EpicIntro"
+length = 8.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TopRect:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2, 2.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 0), Vector2(0, -360)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BottomRect:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2, 2.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 360), Vector2(0, 360), Vector2(0, 720)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BrightnessRect:_value")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2, 8),
+"transitions": PackedFloat32Array(0, 0.5, 1),
+"update": 0,
+"values": [0.0, 4.0, 1.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Glare:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 2, 5),
+"transitions": PackedFloat32Array(1, 0.5, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.501961), Color(1, 1, 1, 0)]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"OnIntroPassed"
+}]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("FindTheRoot:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666, 0.0999333, 0.1332, 0.166533, 0.1998, 0.233133, 0.2664, 0.299733, 0.333, 0.366333, 0.3996, 0.432933, 0.4662, 0.499533, 0.5328, 0.566133, 0.5994, 0.632733, 0.699333, 0.7326, 0.765933, 0.7992, 0.832533, 0.8658, 0.899133, 0.9324, 0.965733, 0.999, 1.03233, 1.0656, 1.09893, 1.1322, 1.16553, 1.1988, 1.23213, 1.2654, 1.29873, 1.332, 1.36533, 1.3986, 1.43193, 1.4652, 1.49853, 1.5318, 1.56513, 1.5984, 1.63173, 1.69833, 1.7316, 1.76493, 1.7982, 1.83153, 1.89813, 1.9314, 1.96473, 1.998, 2.03133, 2.0646, 2.09793),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.133333), Color(1, 1, 1, 0), Color(1, 1, 1, 0.133333), Color(1, 1, 1, 0), Color(1, 1, 1, 0.133333), Color(1, 1, 1, 0), Color(1, 1, 1, 0.133333), Color(1, 1, 1, 0), Color(1, 1, 1, 0.133333), Color(1, 1, 1, 0), Color(1, 1, 1, 0.133333), Color(1, 1, 1, 0), Color(1, 1, 1, 0.133333), Color(1, 1, 1, 0), Color(1, 1, 1, 0.133333), Color(1, 1, 1, 0), Color(1, 1, 1, 0.133333), Color(1, 1, 1, 0), Color(1, 1, 1, 0.133333), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 0.133333), Color(1, 1, 1, 0), Color(1, 1, 1, 0.133333), Color(1, 1, 1, 0), Color(1, 1, 1, 0.133333), Color(1, 1, 1, 0), Color(1, 1, 1, 0.133333), Color(1, 1, 1, 0), Color(1, 1, 1, 0.133333), Color(1, 1, 1, 0), Color(1, 1, 1, 0.133333), Color(1, 1, 1, 0), Color(1, 1, 1, 0.133333), Color(1, 1, 1, 0), Color(1, 1, 1, 0.133333), Color(1, 1, 1, 0), Color(1, 1, 1, 0.133333), Color(1, 1, 1, 0), Color(1, 1, 1, 0.133333), Color(1, 1, 1, 0), Color(1, 1, 1, 0.133333), Color(1, 1, 1, 0), Color(1, 1, 1, 0.133333), Color(1, 1, 1, 0), Color(1, 1, 1, 0.133333), Color(1, 1, 1, 0), Color(1, 1, 1, 0.133333), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 0.133333), Color(1, 1, 1, 0), Color(1, 1, 1, 0.133333), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 0.133333), Color(1, 1, 1, 0), Color(1, 1, 1, 0.133333), Color(1, 1, 1, 0), Color(1, 1, 1, 0.133333), Color(1, 1, 1, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("TheRoot:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.633333, 0.666667, 0.7, 1.6317, 1.66503, 1.69837, 1.8315, 1.86483, 1.89817),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 0.109804), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 0.360784), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 0.2), Color(1, 1, 1, 0)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("FindTheRoot:scale")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.1, 0.999, 1.03333),
+"transitions": PackedFloat32Array(0, 0, 0, 0, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(2, 2), Vector2(1, 1), Vector2(3, 2), Vector2(1, 1)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("TheRoot:scale")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 0.999, 1.83333, 1.8981),
+"transitions": PackedFloat32Array(0, 0, 0, 0),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 1), Vector2(4, 4), Vector2(1, 1)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("FilmEffect:emitting")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("EffectRect:modulate")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.8, 1, 1.1, 1.7, 1.9, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_rem4u"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FindTheRoot:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.133333)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TheRoot:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.133333)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("FindTheRoot:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("TheRoot:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("FilmEffect:emitting")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("EffectRect:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_e6knk"]
+_data = {
+"EpicIntro": SubResource("Animation_sn303"),
+"RESET": SubResource("Animation_rem4u")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xv08t"]
+shader = ExtResource("2_bd5vs")
+shader_parameter/brightness = 1.0
+
+[sub_resource type="Curve" id="Curve_qe4gd"]
+max_value = 16.0
+_data = [Vector2(0, 16), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[node name="EpicIntro" type="CanvasLayer"]
+process_mode = 3
+layer = 10
+script = ExtResource("2_gxks7")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_e6knk")
+}
+autoplay = "EpicIntro"
+
+[node name="BrightnessRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_xv08t")
+offset_right = 1280.0
+offset_bottom = 720.0
+mouse_filter = 2
+script = ExtResource("3_n4e2q")
+_value = 0.0
+metadata/_edit_lock_ = true
+
+[node name="Glare" type="ColorRect" parent="."]
+modulate = Color(1, 1, 1, 0)
+offset_right = 1280.0
+offset_bottom = 720.0
+mouse_filter = 2
+metadata/_edit_lock_ = true
+
+[node name="TopRect" type="ColorRect" parent="."]
+offset_right = 1280.0
+offset_bottom = 360.0
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+metadata/_edit_lock_ = true
+
+[node name="BottomRect" type="ColorRect" parent="."]
+offset_top = 360.0
+offset_right = 1280.0
+offset_bottom = 720.0
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+metadata/_edit_lock_ = true
+
+[node name="TurningOnSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_j3mvi")
+volume_db = 15.0
+autoplay = true
+bus = &"Interface"
+
+[node name="FindTheRoot" type="Label" parent="."]
+modulate = Color(1, 1, 1, 0.133333)
+offset_left = 557.0
+offset_top = 368.0
+offset_right = 734.0
+offset_bottom = 389.0
+text = "find the [] root"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TheRoot" type="Label" parent="."]
+modulate = Color(1, 1, 1, 0.133333)
+offset_left = 557.0
+offset_top = 368.0
+offset_right = 734.0
+offset_bottom = 389.0
+theme_override_font_sizes/font_size = 22
+text = "√"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FilmEffect" type="CPUParticles2D" parent="."]
+position = Vector2(640, 360)
+amount = 100
+lifetime = 0.01
+emission_shape = 3
+emission_rect_extents = Vector2(640, 360)
+direction = Vector2(0, 1)
+spread = 0.0
+initial_velocity_min = 900.0
+initial_velocity_max = 900.0
+scale_amount_min = 8.0
+scale_amount_max = 8.0
+split_scale = true
+scale_curve_x = null
+scale_curve_y = SubResource("Curve_qe4gd")
+color = Color(1, 1, 1, 0.0156863)
+
+[node name="EffectRect" type="ColorRect" parent="."]
+modulate = Color(1, 1, 1, 0)
+offset_right = 1280.0
+offset_bottom = 720.0
+mouse_filter = 2
+color = Color(0, 0, 0, 1)

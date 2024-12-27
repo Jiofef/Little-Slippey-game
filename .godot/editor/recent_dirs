@@ -1,12 +1,13 @@
-res://Content/Scenes/Interface&Menu
-res://Content/Scripts/Interface&Menu
-res://Content/Other
-res://Content/Sprites/Other
 res://Content/Scripts/Levels
-res://Content/Scripts/Crosses
+res://Content/Scenes/Levels/FullParts
 res://Content/Scenes/Other
 res://Content/Scripts/Other
-res://Content/Scenes/Levels/FullParts
+res://Content/Scenes/Interface&Menu
+res://Content/Scripts/Interface&Menu
+res://Content/Scripts/Singletons
+res://Content/Other
+res://Content/Sprites/Other
+res://Content/Scripts/Crosses
 res://Content/Sprites/PlayerSkins
 res://
 res://Content/Scenes/Interface&Menu/LevelEditor
@@ -19,5 +20,4 @@ res://addons/godotsteam_csharpbindings
 res://Content/Scenes/Crosses
 res://Content/Scenes/DefaultLevelEditorObjects
 D:/Великие Калловые Архивы/Little Slippey
-res://Content/Scenes/PlayerSkins
 D:/Великие Калловые Архивы/Вне категорий

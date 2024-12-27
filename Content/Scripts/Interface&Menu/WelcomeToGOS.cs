@@ -18,6 +18,20 @@ public partial class WelcomeToGOS : Control
         }
 		else
             GetNode<AnimationPlayer>("AnimationPlayer").Play("BackToGOS");
+
+
+        // StandartTimerLib checking
+        ModManager.UpdateIsStandartTimerLibLoaded();
+        if (!ModManager.IsStandartTimerLibExists())
+        {
+            var timerLibWarning = GD.Load<PackedScene>("res://Content/Scenes/Interface&Menu/TimerLibNotFound.tscn").Instantiate();
+            AddChild(timerLibWarning);
+        }
+        else if (!ModManager.IsStandartTimerLibLoaded)
+        {
+            var timerLibWarning = GD.Load<PackedScene>("res://Content/Scenes/Interface&Menu/TimerLibIsDisabled.tscn").Instantiate();
+            AddChild(timerLibWarning);
+        }
     }
     public void IconClick(int iconNumber)
     {

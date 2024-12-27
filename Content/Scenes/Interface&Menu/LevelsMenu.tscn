@@ -10,9 +10,9 @@
 [ext_resource type="Texture2D" uid="uid://dk6qvinkosaoa" path="res://Content/Sprites/Interface/Buttons/LevelListScrollButtonDisabled.png" id="11_ve2a8"]
 [ext_resource type="Texture2D" uid="uid://c6v5r4xne78e0" path="res://Content/Sprites/Interface/Buttons/LevelListScrollButtonRight.png" id="12_fpxil"]
 [ext_resource type="PackedScene" uid="uid://c365fjpfqoj67" path="res://Content/Scenes/Interface&Menu/LevelButton.tscn" id="13_5l1by"]
+[ext_resource type="PackedScene" uid="uid://ci0nrongv6pih" path="res://Content/Scenes/Interface&Menu/MenuButton.tscn" id="13_f2y82"]
+[ext_resource type="Texture2D" uid="uid://b8abnpf38b77x" path="res://Content/Sprites/Interface/Buttons/4XAcceptButton.png" id="14_utgpe"]
 [ext_resource type="Texture2D" uid="uid://ba7grlwd3ygbr" path="res://Content/Sprites/Interface/LevelsMenuLevel5IconWindow.png" id="15_yae0y"]
-[ext_resource type="Texture2D" uid="uid://d0sqlunqacimf" path="res://Content/Sprites/Interface/Buttons/CancelButton.png" id="16_nunlu"]
-[ext_resource type="Texture2D" uid="uid://c1d2p0ba42csh" path="res://Content/Sprites/Interface/Buttons/AcceptButton.png" id="16_rxcum"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_m23ck"]
 atlas = ExtResource("2_d2goi")
@@ -265,60 +265,6 @@ tracks/3/keys = {
 "values": [Color(1, 1, 1, 0.25098), Color(1, 1, 1, 0.784314)]
 }
 
-[sub_resource type="Animation" id="Animation_pxge4"]
-resource_name = "LightingAndBlackoutAnimation3"
-length = 10.0
-loop_mode = 1
-step = 0.25
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("WindowView/ThunderLight:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1, 10),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("WindowView/ThunderLightInterior:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1, 10),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.00997252), Color(1, 1, 1, 0.00997252)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("WindowView/Fog?:modulate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.5, 1, 10),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0.501961), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("WindowView/Fog?Interior:modulate")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.5, 1, 10),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0.25098), Color(1, 1, 1, 0), Color(1, 1, 1, 0.784314), Color(1, 1, 1, 0.784314)]
-}
-
 [sub_resource type="Animation" id="Animation_42grw"]
 resource_name = "LightingAndBlackoutAnimation2"
 length = 10.0
@@ -385,6 +331,60 @@ tracks/4/keys = {
 "values": [true]
 }
 
+[sub_resource type="Animation" id="Animation_pxge4"]
+resource_name = "LightingAndBlackoutAnimation3"
+length = 10.0
+loop_mode = 1
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WindowView/ThunderLight:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 10),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WindowView/ThunderLightInterior:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 10),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.00997252), Color(1, 1, 1, 0.00997252)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("WindowView/Fog?:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 10),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.501961), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("WindowView/Fog?Interior:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 10),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.25098), Color(1, 1, 1, 0), Color(1, 1, 1, 0.784314), Color(1, 1, 1, 0.784314)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_80l7y"]
 _data = {
 "LightingAndBlackoutAnimation1": SubResource("Animation_n85q6"),
@@ -424,22 +424,6 @@ tracks/0/keys = {
 "values": [Vector2(-1190, 0), Vector2(10, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_qp6ok"]
-resource_name = "Scroll 3-2"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(0.25, 1),
-"update": 0,
-"values": [Vector2(-2390, 0), Vector2(-1190, 0)]
-}
-
 [sub_resource type="Animation" id="Animation_egxn2"]
 resource_name = "Scroll 2-3"
 length = 0.5
@@ -454,6 +438,22 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(0.25, 1),
 "update": 0,
 "values": [Vector2(-1190, 0), Vector2(-2390, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_qp6ok"]
+resource_name = "Scroll 3-2"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.25, 1),
+"update": 0,
+"values": [Vector2(-2390, 0), Vector2(-1190, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_lgy1q"]
@@ -1019,28 +1019,26 @@ horizontal_alignment = 1
 vertical_alignment = 1
 clip_text = true
 
-[node name="Yes" parent="LevelsList/LevelsIconsContainer/SubContainer/Level1Button/StartOption" instance=ExtResource("2_6jw0o")]
+[node name="Yes" parent="LevelsList/LevelsIconsContainer/SubContainer/Level1Button/StartOption" instance=ExtResource("13_f2y82")]
+custom_minimum_size = Vector2(24, 24)
 layout_mode = 0
 offset_left = 2.0
-offset_top = 23.0
-offset_right = 22.0
-offset_bottom = 43.0
-scale = Vector2(1, 1)
+offset_top = 24.0
+offset_right = 98.0
+offset_bottom = 120.0
+scale = Vector2(0.2, 0.2)
 focus_neighbor_right = NodePath("../No")
-disabled = true
-texture_normal = ExtResource("16_rxcum")
-stretch_mode = 0
+texture_normal = ExtResource("14_utgpe")
 
-[node name="No" parent="LevelsList/LevelsIconsContainer/SubContainer/Level1Button/StartOption" instance=ExtResource("2_6jw0o")]
+[node name="No" parent="LevelsList/LevelsIconsContainer/SubContainer/Level1Button/StartOption" instance=ExtResource("13_f2y82")]
+custom_minimum_size = Vector2(24, 24)
 layout_mode = 0
-offset_left = 23.0
-offset_top = 23.0
-offset_right = 43.0
-offset_bottom = 43.0
-scale = Vector2(1, 1)
-disabled = true
-texture_normal = ExtResource("16_nunlu")
-stretch_mode = 0
+offset_left = 24.0
+offset_top = 24.0
+offset_right = 120.0
+offset_bottom = 120.0
+scale = Vector2(0.2, 0.2)
+focus_neighbor_left = NodePath("../Yes")
 
 [node name="Level2Button" parent="LevelsList/LevelsIconsContainer/SubContainer" instance=ExtResource("13_5l1by")]
 layout_mode = 0
@@ -1236,28 +1234,26 @@ horizontal_alignment = 1
 vertical_alignment = 1
 clip_text = true
 
-[node name="Yes" parent="LevelsList/LevelsIconsContainer/SubContainer/Level9Button/StartOption" instance=ExtResource("2_6jw0o")]
+[node name="Yes" parent="LevelsList/LevelsIconsContainer/SubContainer/Level9Button/StartOption" instance=ExtResource("13_f2y82")]
+custom_minimum_size = Vector2(24, 24)
 layout_mode = 0
 offset_left = 2.0
-offset_top = 23.0
-offset_right = 22.0
-offset_bottom = 43.0
-scale = Vector2(1, 1)
+offset_top = 24.0
+offset_right = 98.0
+offset_bottom = 120.0
+scale = Vector2(0.2, 0.2)
 focus_neighbor_right = NodePath("../No")
-disabled = true
-texture_normal = ExtResource("16_rxcum")
-stretch_mode = 0
+texture_normal = ExtResource("14_utgpe")
 
-[node name="No" parent="LevelsList/LevelsIconsContainer/SubContainer/Level9Button/StartOption" instance=ExtResource("2_6jw0o")]
+[node name="No" parent="LevelsList/LevelsIconsContainer/SubContainer/Level9Button/StartOption" instance=ExtResource("13_f2y82")]
+custom_minimum_size = Vector2(24, 24)
 layout_mode = 0
-offset_left = 23.0
-offset_top = 23.0
-offset_right = 43.0
-offset_bottom = 43.0
-scale = Vector2(1, 1)
-disabled = true
-texture_normal = ExtResource("16_nunlu")
-stretch_mode = 0
+offset_left = 24.0
+offset_top = 24.0
+offset_right = 120.0
+offset_bottom = 120.0
+scale = Vector2(0.2, 0.2)
+focus_neighbor_left = NodePath("../Yes")
 
 [node name="Level10Button" parent="LevelsList/LevelsIconsContainer/SubContainer" instance=ExtResource("13_5l1by")]
 layout_mode = 0
@@ -1309,28 +1305,26 @@ horizontal_alignment = 1
 vertical_alignment = 1
 clip_text = true
 
-[node name="Yes" parent="LevelsList/LevelsIconsContainer/SubContainer/Level10Button/StartOption" instance=ExtResource("2_6jw0o")]
+[node name="Yes" parent="LevelsList/LevelsIconsContainer/SubContainer/Level10Button/StartOption" instance=ExtResource("13_f2y82")]
+custom_minimum_size = Vector2(24, 24)
 layout_mode = 0
 offset_left = 2.0
-offset_top = 23.0
-offset_right = 22.0
-offset_bottom = 43.0
-scale = Vector2(1, 1)
+offset_top = 24.0
+offset_right = 98.0
+offset_bottom = 120.0
+scale = Vector2(0.2, 0.2)
 focus_neighbor_right = NodePath("../No")
-disabled = true
-texture_normal = ExtResource("16_rxcum")
-stretch_mode = 0
+texture_normal = ExtResource("14_utgpe")
 
-[node name="No" parent="LevelsList/LevelsIconsContainer/SubContainer/Level10Button/StartOption" instance=ExtResource("2_6jw0o")]
+[node name="No" parent="LevelsList/LevelsIconsContainer/SubContainer/Level10Button/StartOption" instance=ExtResource("13_f2y82")]
+custom_minimum_size = Vector2(24, 24)
 layout_mode = 0
-offset_left = 23.0
-offset_top = 23.0
-offset_right = 43.0
-offset_bottom = 43.0
-scale = Vector2(1, 1)
-disabled = true
-texture_normal = ExtResource("16_nunlu")
-stretch_mode = 0
+offset_left = 24.0
+offset_top = 24.0
+offset_right = 120.0
+offset_bottom = 120.0
+scale = Vector2(0.2, 0.2)
+focus_neighbor_left = NodePath("../Yes")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="LevelsList/LevelsIconsContainer/SubContainer"]
 libraries = {
@@ -1405,3 +1399,10 @@ metadata/_edit_lock_ = true
 [connection signal="pressed" from="LevelsList/LevelsIconsContainer/SubContainer/Level10Button/StartOption/Yes" to="." method="StartLevelOpening" binds= [10, "True", false]]
 [connection signal="focus_entered" from="LevelsList/LevelsIconsContainer/SubContainer/Level10Button/StartOption/No" to="." method="SetPresentedLevel" binds= [10, ""]]
 [connection signal="pressed" from="LevelsList/LevelsIconsContainer/SubContainer/Level10Button/StartOption/No" to="." method="StartLevelOpening" binds= [10, "", false]]
+
+[editable path="LevelsList/LevelsIconsContainer/SubContainer/Level1Button/StartOption/Yes"]
+[editable path="LevelsList/LevelsIconsContainer/SubContainer/Level1Button/StartOption/No"]
+[editable path="LevelsList/LevelsIconsContainer/SubContainer/Level9Button/StartOption/Yes"]
+[editable path="LevelsList/LevelsIconsContainer/SubContainer/Level9Button/StartOption/No"]
+[editable path="LevelsList/LevelsIconsContainer/SubContainer/Level10Button/StartOption/Yes"]
+[editable path="LevelsList/LevelsIconsContainer/SubContainer/Level10Button/StartOption/No"]

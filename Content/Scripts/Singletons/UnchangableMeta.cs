@@ -28,7 +28,21 @@ public partial class UnchangableMeta : Node
 
     public static void SaveRecords()
     {
-        if ((int)G.Scores > LevelRecords[Meta.Instance.Gameplay.Dificulty][G.CurrentLevel - 1])
+        if (G.IsLevelVanilla)
+            SaveVanillaRecords();
+        else 
+            SaveModMapRecords();
+
+        if (G.Scores >= 50)
+            Achievements.GetAchievement("You're getting somewhere");
+        if (G.Scores >= G.LevelCompleteTime && Meta.Instance.Video.CameraZoom >= 2)
+            Achievements.GetAchievement("I Have No Eyes, and I Must Oversee");
+    }
+
+    public static void SaveVanillaRecords()
+    {
+        int LastRecord = LevelRecords[Meta.Instance.Gameplay.Dificulty][G.CurrentLevel - 1];
+        if ((int)G.Scores > LastRecord)
         {
             LevelRecords[Meta.Instance.Gameplay.Dificulty][G.CurrentLevel - 1] = (int)G.Scores;
             G.IsNewRecordReached = true;
@@ -38,10 +52,22 @@ public partial class UnchangableMeta : Node
                 Achievements.GetLevelAchievements();
             }
         }
-        if (G.Scores >= 50)
-            Achievements.GetAchievement("You're getting somewhere");
-        if (G.Scores >= G.LevelCompleteTime && Meta.Instance.Video.CameraZoom >= 2)
-            Achievements.GetAchievement("I Have No Eyes, and I Must Oversee");
+    }
+    public static void SaveModMapRecords()
+    {
+        string MapName = ModManager.CurrentModMapFolderName;
+
+        if (MapName == "") return;
+
+        if (!ModDataManager.ModMapRecords.ContainsKey(MapName))
+            ModDataManager.ModMapRecords.Add(MapName, (int)G.Scores);
+        else if ((int)G.Scores > ModDataManager.ModMapRecords[MapName].AsInt32()) // If scores larger than the record
+        {
+            G.IsNewRecordReached = true;
+
+            ModDataManager.ModMapRecords[MapName] = (int)G.Scores;
+            ModDataManager.SaveModMapRecords();
+        }
     }
 
     public static Dictionary<string, Variant> GetJsonSave()
@@ -65,19 +91,10 @@ public partial class UnchangableMeta : Node
     }
     public static void SaveToFile()
     {
-        // Save file
         try
         {
             var SaveData = GetJsonSave();
             FileSystemExtension.SaveInJson(SaveData.ToString(), "user://save.json");
-        }
-        catch { }
-
-        // Achievements file
-        try
-        {
-            var SaveData = JsonSerializer.Serialize(Achievements.AllTheAchievements);
-            FileSystemExtension.SaveInJson(SaveData, "user://achievements.json");
         }
         catch { }
     }

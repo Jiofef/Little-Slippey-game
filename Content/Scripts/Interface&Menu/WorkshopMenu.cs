@@ -5,7 +5,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
-using static ModLoader;
+using static ModManager;
 
 [Tool]
 public partial class WorkshopMenu : DraggableWindow
@@ -144,8 +144,23 @@ public partial class WorkshopMenu : DraggableWindow
         if (ModTypeIcons.TryGetValue(modTypeName, out Variant value))
             ModButton.GetNode<TextureRect>("HBoxContainer/ModType").Texture = (Texture2D)value; // Setting mod type icon
 
-        if (modTypeName == "map")
-            ModButton.GetNode<CheckButton>("HBoxContainer/CheckButton").QueueFree();
+        var checkButton = ModButton.GetNode<CheckButton>("HBoxContainer/CheckButton");
+
+        string modFolderName = Path.GetFileName(path);
+
+        if (modTypeName == "map" || modFolderName == "StandartTimerLib")
+            checkButton.QueueFree();
+        else
+        {
+            if (!ModDataManager.ModStatuses.ContainsKey(modFolderName))
+                ModDataManager.ModStatuses.Add(modFolderName, true);
+
+            bool IsModToggled = ModDataManager.ModStatuses[modFolderName].AsBool();
+
+            checkButton.ButtonPressed = IsModToggled;
+            checkButton.Toggled += (bool v) => ToggleMod(v, modFolderName);
+        }
+
 
         int id = modIndex;
         ModButton.FocusEntered += () => ShowModInfo(id);
@@ -156,6 +171,11 @@ public partial class WorkshopMenu : DraggableWindow
         };
         GetNode("MarginContainer/VBoxContainer/Tabs/Mods/MarginC/VBoxC/HBoxC/ModsList").AddChild(ModButton);
         return ModButton;
+    }
+    private void ToggleMod(bool value, string folderName)
+    {
+        ModDataManager.ModStatuses[folderName] = value;
+        ModDataManager.SaveModStatuses();
     }
     #endregion
 
@@ -175,12 +195,17 @@ public partial class WorkshopMenu : DraggableWindow
         G.InGameTransitiveValue = _selectedModFolder + @"\MainScene.tscn";
         G.ModMapPath = _selectedModFolder.Remove(0, DefaultModsPath.Length) + @"\MainScene.tscn";
         G.ModMapFolder = _selectedModFolder;
+
+        CurrentModMapFolderName = Path.GetDirectoryName(_selectedModFolder);
+        G.IsLevelVanilla = false;
+
         GetTree().ChangeSceneToFile("res://Content/Scenes/Interface&Menu/LevelEditor/LevelEditor.tscn");
     }
 
     public void PlayMap()
     {
-
+        CurrentModMapFolderName = Path.GetDirectoryName(_selectedModFolder);
+        G.IsLevelVanilla = false;
     }
 
     public void OpenModFolder()

@@ -43,6 +43,7 @@ script = ExtResource("2_avp7q")
 [node name="CheckButton" type="CheckButton" parent="HBoxContainer" index="1"]
 layout_mode = 2
 theme = ExtResource("3_gfyb7")
+button_pressed = true
 
 [node name="ModType" type="TextureRect" parent="HBoxContainer" index="2"]
 layout_mode = 2

@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://ci0nrongv6pih"]
+
+[ext_resource type="PackedScene" uid="uid://bwpstpk1xmkah" path="res://Content/Scenes/Interface&Menu/Button.tscn" id="1_8fi2w"]
+[ext_resource type="Texture2D" uid="uid://glq8rf30o1q3" path="res://Content/Sprites/Interface/Buttons/4XCancelButton.png" id="2_dlms8"]
+[ext_resource type="Texture2D" uid="uid://dt52ve0jyuro" path="res://Content/Sprites/Interface/Buttons/4XButtonBase.png" id="2_xns5g"]
+
+[node name="Button" instance=ExtResource("1_8fi2w")]
+custom_minimum_size = Vector2(96, 96)
+scale = Vector2(1, 1)
+texture_normal = ExtResource("2_dlms8")
+stretch_mode = 3
+
+[node name="NinePatchRect" type="NinePatchRect" parent="." index="0"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_xns5g")
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16

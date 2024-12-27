@@ -12,8 +12,9 @@ script = ExtResource("1_y23h1")
 metadata/_edit_horizontal_guides_ = [199.0]
 
 [node name="PreviewPicture" type="TextureRect" parent="."]
-layout_mode = 0
-offset_right = 118.0
-offset_bottom = 59.0
-scale = Vector2(4, 4)
-expand_mode = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

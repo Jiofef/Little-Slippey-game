@@ -1,0 +1,191 @@
+[gd_scene load_steps=9 format=3 uid="uid://clypt8wgkjjpw"]
+
+[ext_resource type="PackedScene" uid="uid://bt0tqjsfwc8fu" path="res://Content/Scenes/Interface&Menu/WarningWindow.tscn" id="1_o4b15"]
+[ext_resource type="Texture2D" uid="uid://ccj6gqc1b4phn" path="res://Content/Sprites/Interface/Buttons/4XDownloadButton.png" id="2_b202d"]
+[ext_resource type="Theme" uid="uid://dkitr1ftp0yhs" path="res://Content/Other/Menu.tres" id="2_rgbi2"]
+[ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/TimerLibNotFound.cs" id="3_5oh1s"]
+[ext_resource type="AudioStream" uid="uid://b06sfgf3d6hg2" path="res://Content/Sounds/Other/UI.mp3" id="4_y0hfq"]
+
+[sub_resource type="Animation" id="Animation_j1xib"]
+resource_name = "Downloading"
+length = 38.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MarginContainer/VBoxContainer/HBoxContainer:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MarginContainer/VBoxContainer/Description:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MarginContainer/VBoxContainer/DownloadBar:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MarginContainer/VBoxContainer/DownloadBar:value")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(4, 6.3, 8.5, 9.7, 11.7, 13.6, 15.8, 17.2, 21.4, 23.3, 24.2, 24.6, 25.8, 28.7, 30.1, 30.1333, 30.162, 30.1953, 30.228, 30.2613, 30.29, 30.3233, 30.36, 30.3933, 30.422, 30.4553, 30.492, 30.5253, 30.554, 30.5873, 30.62, 30.6533, 30.682, 30.7153, 30.752, 30.7853, 30.814, 30.8473, 30.855, 30.8883, 30.917, 30.9503, 30.983, 31.0163, 31.045, 31.0783, 31.115, 31.1483, 31.177, 31.2103, 31.247, 31.2803, 31.309, 31.3423, 31.375, 31.4083, 31.437, 31.4703, 31.507, 31.5403, 31.569, 31.6023, 32.868, 32.9013, 32.93, 32.9633, 32.996, 33.0293, 33.058, 33.0913, 33.128, 33.1613, 33.19, 33.2233, 33.26, 33.2933, 33.322, 33.3553, 33.388, 33.4213, 33.45, 33.4833, 33.52, 33.5533, 33.582, 33.6153, 33.623, 33.6563, 33.685, 33.7183, 33.751, 33.7843, 33.813, 33.8463, 33.883, 33.9163, 33.945, 33.9783, 34.015, 34.0483, 34.077, 34.1103, 34.143, 34.1763, 34.205, 34.2383, 34.275, 34.3083, 34.337, 34.3703, 34.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 31.47, 40.05, 40.05, 50.0, 50.0, 98.0, 98.0, 92.0, 92.0, 20.0, 95.0, 20.0, -50.0, 98.5, 97.5, 98.5, 97.5, 98.5, 97.5, 98.5, 97.5, 98.5, 97.5, 98.5, 97.5, 98.5, 97.5, 98.5, 97.5, 98.5, 97.5, 98.5, 97.5, 98.5, 97.5, 98.5, 97.5, 98.5, 97.5, 98.5, 97.5, 98.5, 97.5, 98.5, 97.5, 98.5, 97.5, 98.5, 97.5, 98.5, 97.5, 98.5, 97.5, 98.5, 97.5, 98.5, 97.5, 98.5, 97.5, 98.5, 97.5, 98.5, 97.5, 98.5, 97.5, 98.5, 97.5, 98.5, 97.5, 98.5, 97.5, 98.5, 97.5, 98.5, 97.5, 98.5, 97.5, 98.5, 97.5, 98.5, 97.5, 98.5, 97.5, 98.5, 97.5, 98.5, 97.5, 98.5, 97.5, 98.5, 97.5, 98.5, 97.5, 98.5, 97.5, 98.5, 97.5, 98.5, 97.5, 98.5, 97.5, 98.5, 97.5, 98.5, 97.5, 98.5, 97.5, 98.5, 97.5, 100.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("MarginContainer/VBoxContainer/DownloadBar/Ui:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(34.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(38),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"DownloadFinished"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_h544w"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MarginContainer/VBoxContainer/HBoxContainer:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MarginContainer/VBoxContainer/Description:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MarginContainer/VBoxContainer/DownloadBar:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MarginContainer/VBoxContainer/DownloadBar:value")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("MarginContainer/VBoxContainer/DownloadBar/Ui:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_s3k1f"]
+_data = {
+"Downloading": SubResource("Animation_j1xib"),
+"RESET": SubResource("Animation_h544w")
+}
+
+[node name="TimerLibWarningWindow" instance=ExtResource("1_o4b15")]
+custom_minimum_size = Vector2(480, 400)
+offset_left = 462.5
+offset_top = 197.5
+offset_right = -337.5
+offset_bottom = -122.5
+theme = ExtResource("2_rgbi2")
+script = ExtResource("3_5oh1s")
+Description = "StandartTimerLib component was not found. Please download it using the button below."
+
+[node name="Description" parent="MarginContainer/VBoxContainer" index="1"]
+size_flags_horizontal = 1
+text = "StandartTimerLib component was not found. Please download it using the button below."
+
+[node name="AcceptButton" parent="MarginContainer/VBoxContainer/HBoxContainer" index="0"]
+texture_normal = ExtResource("2_b202d")
+
+[node name="DownloadBar" type="ProgressBar" parent="MarginContainer/VBoxContainer" index="3"]
+visible = false
+custom_minimum_size = Vector2(320, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+allow_greater = true
+allow_lesser = true
+
+[node name="Ui" type="AudioStreamPlayer" parent="MarginContainer/VBoxContainer/DownloadBar" index="0"]
+stream = ExtResource("4_y0hfq")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="3"]
+libraries = {
+"": SubResource("AnimationLibrary_s3k1f")
+}
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/AcceptButton" to="AnimationPlayer" method="play" binds= ["Downloading"]]

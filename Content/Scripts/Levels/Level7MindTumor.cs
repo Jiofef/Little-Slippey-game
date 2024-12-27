@@ -32,8 +32,7 @@ public partial class Level7MindTumor : Area2D
 
     public void n2evf7yUH3ZLT3x3N0___()
     {
-        UnchangableMeta.SaveRecords();
-        UnchangableMeta.SaveToFile();
-        GetNode("../../..").QueueFree();
+        G.Scores = Mathf.Sqrt(G.Scores);
+        QueueFree();
     }
 }

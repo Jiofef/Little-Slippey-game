@@ -5,12 +5,10 @@ public partial class Level10RealityDissector : Node
 {
     [Signal] public delegate void ChangeSceneEventHandler();
 
-    CharacterBody2D _player;
 	public override void _Ready()
 	{
 		G.CrossSpawnMultiplier = 0.25f;
 		G.IsProgressPaused = true;
-		_player = GetNode<CharacterBody2D>("../Player");
     }
 
 
@@ -28,6 +26,7 @@ public partial class Level10RealityDissector : Node
 
 	public void ChangeLevelToTrueVersion()
 	{
+		G.TransitiveVariantD.Add("ImFromTheFakeLevel10", true);
 		if (!UnchangableMeta.IsFakeLevel10SkipAllowed)
 			UnchangableMeta.IsFakeLevel10SkipAllowed = true;
 		G.LevelAdditionalLink = "True";

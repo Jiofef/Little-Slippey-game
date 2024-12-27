@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=44 format=3 uid="uid://dkitr1ftp0yhs"]
+[gd_resource type="Theme" load_steps=47 format=3 uid="uid://dkitr1ftp0yhs"]
 
 [ext_resource type="Texture2D" uid="uid://dsjclghg3lapq" path="res://Content/Sprites/Interface/Buttons/SliderGrabber.png" id="1_jkmd4"]
 [ext_resource type="Texture2D" uid="uid://cl2nf0eg2ercq" path="res://Content/Sprites/Interface/Buttons/SliderGrabberDisabled.png" id="2_upkyk"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://bi6letybp2eon" path="res://Content/Sprites/Interface/Buttons/4XRadioUnchecked.png" id="10_5abeo"]
 [ext_resource type="Texture2D" uid="uid://c7x4oe6run7mi" path="res://Content/Sprites/Interface/Buttons/4XArrowDown.png" id="11_b2pne"]
 [ext_resource type="Texture2D" uid="uid://dnhm3dus2bloj" path="res://Content/Sprites/Interface/Buttons/4XSmallButtonBaseDisabled.png" id="12_i78yg"]
+[ext_resource type="Texture2D" uid="uid://l0pe4c0c7708" path="res://Content/Sprites/Interface/DownloadBar320X40.png" id="15_1nqgr"]
 [ext_resource type="Texture2D" uid="uid://30hcwqu8a7ei" path="res://Content/Sprites/Interface/Buttons/4XSmallButtonBase.png" id="15_4h3g1"]
 [ext_resource type="Texture2D" uid="uid://cymom0adyn60n" path="res://Content/Sprites/Interface/Buttons/4XSmallButtonBaseHighlight.png" id="16_ki47i"]
 
@@ -161,6 +162,17 @@ texture_margin_left = 12.0
 texture_margin_top = 12.0
 texture_margin_right = 12.0
 texture_margin_bottom = 12.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dwxtg"]
+texture = ExtResource("8_fyjp6")
+texture_margin_left = 16.0
+texture_margin_top = 16.0
+texture_margin_right = 16.0
+texture_margin_bottom = 16.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mb3no"]
+texture = ExtResource("15_1nqgr")
+axis_stretch_horizontal = 1
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fllxv"]
 content_margin_top = 8.0
@@ -320,6 +332,10 @@ PopupMenu/icons/radio_checked = ExtResource("9_v5xhx")
 PopupMenu/icons/radio_unchecked = ExtResource("10_5abeo")
 PopupMenu/icons/unchecked = ExtResource("9_as4a1")
 PopupMenu/styles/panel = SubResource("StyleBoxTexture_ly0f7")
+ProgressBar/colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+ProgressBar/font_sizes/font_size = 6
+ProgressBar/styles/background = SubResource("StyleBoxTexture_dwxtg")
+ProgressBar/styles/fill = SubResource("StyleBoxTexture_mb3no")
 RichTextLabel/colors/default_color = Color(0.196078, 0.196078, 0.196078, 1)
 RichTextLabel/font_sizes/bold_font_size = 22
 RichTextLabel/font_sizes/bold_italics_font_size = 22

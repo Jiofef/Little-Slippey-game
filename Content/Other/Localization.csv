@@ -707,17 +707,20 @@ You'll slip away!,You'll slip away!,Ты вырвешься!
 I believe in you!,I believe in you!,Я верю в тебя!
 "Hold on, it will be over soon!","Hold on, it will be over soon!","Держись, это скоро закончится!"
 you were deceived.,you were deceived.,вас обманули.
-"Are you sure you
-want to leave?","Are you sure you
-want to leave?","Вы уверены что
-хотите выйти?"
+Are you sure you want to leave?,Are you sure you want to leave?,Вы уверены что хотите выйти?
 ,,
 WorkShop,WorkShop,Мастерская
 "Remove the special characters, please","Remove the special characters, please","Уберите специальные символы, пожалуйста"
 There's a folder with the same name,There's a folder with the same name,Уже есть папка с таким именем
 The name is valid,The name is valid,Имя подходит
 Enter something,Enter something,Введите хоть что-то
-,,
+"Create additional folders
+(Scripts, Scenes, Sounds,
+Sprites, Other)","Create additional folders
+(Scripts, Scenes, Sounds,
+Sprites, Other)","Создать дополнительные
+папки (Scripts, Scenes,
+Sounds, Sprites, Other)"
 ,,
 An empty object that does not have 2d properties. All other objects in the game are based on it,An empty object that does not have 2d properties. All other objects in the game are based on it,Пустой объект без 2д свойств. Все другие объекты созданы на его основе
 "The same as Node, but has 2d properties. A great container for 2d objects","The same as Node, but has 2d properties. A great container for 2d objects","Тоже, что и Node, но имеет 2д свойства. Отличный контейнер для 2д объектов"
@@ -750,3 +753,13 @@ See all the nodes,See all the nodes,Видеть все ноды
 ,,
 Gnomes (ó﹏ò｡),Gnomes (ó﹏ò｡),Гномы (ó﹏ò｡)
 No!,No!,Нет!
+,,
+,,
+!Warning!,!Warning!,!Внимание!
+StandartTimerLib component was not found. Please download it using the button below.,StandartTimerLib component was not found. Please download it using the button below.,"Компонент StandartTimerLib не найден. Пожалуйста, скачайте его по кнопке ниже."
+StandartTimerLib component is disabled. Please enable it using the button below,StandartTimerLib component is disabled. Please enable it using the button below,"Компонент StandartTimerLib отключён. Пожалуйста, включите его по кнопке ниже."
+Apply,Apply,Применить
+Cancel,Cancel,Назад
+Set by default,Set by default,Вернуть по умолчанию
+Are you sure?,Are you sure?,Вы уверены?
+find the [] root,find the [] root,зри в [] корень

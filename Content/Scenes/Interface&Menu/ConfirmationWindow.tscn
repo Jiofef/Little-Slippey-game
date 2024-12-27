@@ -1,15 +1,14 @@
-[gd_scene load_steps=7 format=3 uid="uid://twinoyaw5kfj"]
+[gd_scene load_steps=6 format=3 uid="uid://twinoyaw5kfj"]
 
 [ext_resource type="PackedScene" uid="uid://cb3550p76ubc8" path="res://Content/Scenes/Interface&Menu/DraggableWindow.tscn" id="1_c5asp"]
 [ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/ConfirmationWindow.cs" id="2_gmu22"]
 [ext_resource type="Theme" uid="uid://dkitr1ftp0yhs" path="res://Content/Other/Menu.tres" id="2_qv4el"]
-[ext_resource type="PackedScene" uid="uid://bwpstpk1xmkah" path="res://Content/Scenes/Interface&Menu/Button.tscn" id="3_sg33f"]
+[ext_resource type="PackedScene" uid="uid://ci0nrongv6pih" path="res://Content/Scenes/Interface&Menu/MenuButton.tscn" id="4_cyx5k"]
 [ext_resource type="Texture2D" uid="uid://b8abnpf38b77x" path="res://Content/Sprites/Interface/Buttons/4XAcceptButton.png" id="4_h5dq2"]
-[ext_resource type="Texture2D" uid="uid://glq8rf30o1q3" path="res://Content/Sprites/Interface/Buttons/4XCancelButton.png" id="5_wru4e"]
 
 [node name="ConfirmationWindow" instance=ExtResource("1_c5asp")]
-custom_minimum_size = Vector2(320, 240)
-offset_bottom = -480.0
+custom_minimum_size = Vector2(320, 250)
+offset_bottom = -470.0
 script = ExtResource("2_gmu22")
 Description = "Are you sure?"
 WindowTitle = "Confirmation"
@@ -29,25 +28,15 @@ fit_content = true
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer" index="2"]
 layout_mode = 2
 size_flags_vertical = 8
-theme_override_constants/separation = 64
+theme_override_constants/separation = 32
 alignment = 1
 
-[node name="AcceptButton" parent="MarginContainer/VBoxContainer/HBoxContainer" index="0" instance=ExtResource("3_sg33f")]
-custom_minimum_size = Vector2(96, 96)
+[node name="AcceptButton" parent="MarginContainer/VBoxContainer/HBoxContainer" index="0" instance=ExtResource("4_cyx5k")]
 layout_mode = 2
-focus_neighbor_left = NodePath("../ControlsButton")
-focus_neighbor_top = NodePath("../VideoContainer/GridContainer/LanguageContainer/English")
-focus_neighbor_right = NodePath("../DeclineButton")
-focus_neighbor_bottom = NodePath("../VideoContainer/GridContainer/ScreenModeContainer/FullCheckBox")
 texture_normal = ExtResource("4_h5dq2")
 
-[node name="DeclineButton" parent="MarginContainer/VBoxContainer/HBoxContainer" index="1" instance=ExtResource("3_sg33f")]
-custom_minimum_size = Vector2(96, 96)
+[node name="DeclineButton" parent="MarginContainer/VBoxContainer/HBoxContainer" index="1" instance=ExtResource("4_cyx5k")]
 layout_mode = 2
-focus_neighbor_left = NodePath("../AcceptButton")
-focus_neighbor_top = NodePath("../VideoContainer/GridContainer/LanguageContainer/English")
-focus_neighbor_bottom = NodePath("../VideoContainer/GridContainer/ScreenModeContainer/FullCheckBox")
-texture_normal = ExtResource("5_wru4e")
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/AcceptButton" to="." method="Accept"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/DeclineButton" to="." method="Decline"]

@@ -78,6 +78,30 @@ tracks/0/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../StaticNoiseTileMap:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../VoidSound:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_4s1sj"]
 resource_name = "RealityTumor"
@@ -747,6 +771,7 @@ tile_set = SubResource("TileSet_tw0dy")
 
 [node name="VoidSound" type="AudioStreamPlayer" parent="Level/RealityDissector"]
 stream = ExtResource("7_f14yg")
+bus = &"Enviromnment"
 
 [node name="Background" type="ParallaxBackground" parent="Level"]
 
@@ -995,13 +1020,12 @@ layer = 100
 [connection signal="ButtonPressed" from="Level/RealityDissector/ByNoMeansArtificalBoundaries" to="Level/RealityDissector/ByNoMeansArtificalBoundaries/AnimationPlayer" method="play" flags=6 binds= ["RealityTumor"]]
 [connection signal="ButtonPressed" from="Level/RealityDissector/ByNoMeansArtificalBoundaries" to="Level/RealityDissector/CanvasLayer/WhiteNoiseGlitch" method="set_visible" binds= [true]]
 [connection signal="ButtonPressed" from="Level/RealityDissector/ByNoMeansArtificalBoundaries" to="Level/SunLightLayerContainer/SunLightLayer/SunLight" method="set_visible" binds= [false]]
-[connection signal="ButtonPressed" from="Level/RealityDissector/ByNoMeansArtificalBoundaries" to="Level/Player" method="SetCameraLimits" binds= [Vector4(-100000, 100000, 100000, -100000), true]]
 [connection signal="ButtonPressed" from="Level/RealityDissector/ByNoMeansArtificalBoundaries" to="Level/Player" method="set_global_position" binds= [Vector2(13856, 608)]]
+[connection signal="ButtonPressed" from="Level/RealityDissector/ByNoMeansArtificalBoundaries" to="Level/Player" method="SetCameraLimits" binds= [Vector4(-100000, 100000, 100000, -100000), true]]
 [connection signal="area_entered" from="Level/RealityDissector/ByNoMeansArtificalBoundaries" to="Level/RealityDissector/ByNoMeansArtificalBoundaries" method="AreaEntered" unbinds=1]
 [connection signal="ButtonPressed" from="Level/RealityDissector/CameraLimitsSetTrigger" to="Level/Player" method="SetCameraLimits" flags=6 binds= [Vector4(-100000, 100000, 100000, -100000), true]]
 [connection signal="ButtonPressed" from="Level/RealityDissector/CameraPositionSmoothingSpeedSetTrigger" to="Level/Player" method="SetCameraPositionSmoothingSpeed" binds= [15.0]]
 [connection signal="animation_finished" from="Level/RealityDissector/CanvasLayer/WhiteNoiseGlitch" to="Level/RealityDissector/CanvasLayer/WhiteNoiseGlitch" method="set_visible" binds= [false]]
-[connection signal="ButtonPressed" from="Level/Boundaries/FloorTouchDetector" to="." method="SetTransitiveValue" flags=6 binds= [0, true]]
 [connection signal="ButtonPressed" from="Level/Boundaries/FloorTouchDetector" to="Level/Boundaries/FloorTouchDetector/AnimationPlayer" method="play" flags=6 binds= ["HereYouAre"]]
 [connection signal="area_entered" from="Level/Boundaries/FloorTouchDetector" to="Level/Boundaries/FloorTouchDetector" method="AreaEntered" unbinds=1]
 [connection signal="ButtonPressed" from="Level/PlayMusicTrigger" to="LevelMusicPlayer" method="PlayMusic" flags=6 binds= ["On Second Volume", 61.9, 0.0]]

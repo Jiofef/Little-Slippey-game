@@ -1,6 +1,6 @@
 using Godot;
 using System;
-using static ModLoader;
+using static ModManager;
 
 [Tool]
 public partial class CreateAModWindow : DraggableWindow

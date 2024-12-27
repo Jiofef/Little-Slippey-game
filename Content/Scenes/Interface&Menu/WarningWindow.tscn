@@ -1,0 +1,52 @@
+[gd_scene load_steps=8 format=3 uid="uid://bt0tqjsfwc8fu"]
+
+[ext_resource type="PackedScene" uid="uid://cb3550p76ubc8" path="res://Content/Scenes/Interface&Menu/DraggableWindow.tscn" id="1_fdl8q"]
+[ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/ConfirmationWindow.cs" id="2_dm4ob"]
+[ext_resource type="Theme" uid="uid://dkitr1ftp0yhs" path="res://Content/Other/Menu.tres" id="3_4rrox"]
+[ext_resource type="PackedScene" uid="uid://ci0nrongv6pih" path="res://Content/Scenes/Interface&Menu/MenuButton.tscn" id="4_1xujc"]
+[ext_resource type="Texture2D" uid="uid://b8abnpf38b77x" path="res://Content/Sprites/Interface/Buttons/4XAcceptButton.png" id="5_hq2xt"]
+
+[sub_resource type="FontVariation" id="FontVariation_rojdw"]
+spacing_top = 20
+
+[sub_resource type="LabelSettings" id="LabelSettings_5o5o8"]
+font = SubResource("FontVariation_rojdw")
+font_size = 22
+outline_size = 4
+outline_color = Color(0.681832, 0.101825, 0.332352, 1)
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 0.235294)
+shadow_offset = Vector2(0, 2)
+
+[node name="WarningWindow" instance=ExtResource("1_fdl8q")]
+custom_minimum_size = Vector2(320, 250)
+offset_bottom = -470.0
+script = ExtResource("2_dm4ob")
+Description = "Are you sure?"
+WindowTitle = "!Warning!"
+
+[node name="BlueBoxRect" parent="MarginContainer/VBoxContainer/BlueBox" index="0"]
+color = Color(0.796078, 0.239216, 0.407843, 1)
+
+[node name="WindowTitle" parent="MarginContainer/VBoxContainer/BlueBox" index="1"]
+text = "!Warning!"
+label_settings = SubResource("LabelSettings_5o5o8")
+
+[node name="Description" type="RichTextLabel" parent="MarginContainer/VBoxContainer" index="1"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme = ExtResource("3_4rrox")
+text = "Are you sure?"
+fit_content = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer" index="2"]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_constants/separation = 32
+alignment = 1
+
+[node name="AcceptButton" parent="MarginContainer/VBoxContainer/HBoxContainer" index="0" instance=ExtResource("4_1xujc")]
+layout_mode = 2
+texture_normal = ExtResource("5_hq2xt")

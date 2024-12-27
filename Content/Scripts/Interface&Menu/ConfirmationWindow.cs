@@ -26,13 +26,13 @@ public partial class ConfirmationWindow : DraggableWindow
         GetNode<RichTextLabel>("MarginContainer/VBoxContainer/Description").Text = _description;
     }
 
-    private void Accept()
+    public virtual void Accept()
     {
         EmitSignal("Result", true);
         EmitSignal("Accepted");
         QueueFree();
     }
-    private void Decline()
+    public void Decline()
     {
         EmitSignal("Result", false);
         EmitSignal("Declined");

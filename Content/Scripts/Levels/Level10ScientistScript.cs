@@ -4,19 +4,46 @@ using System.Linq;
 
 public partial class Level10ScientistScript : Node2D
 {
-    //!!!
-    //!!!
-    //!!!
-    //!!!
-    //!!!
-    //  I opened this script after a year and fucked up. Don't laugh please, I really became a better coder :(((
-    //!!!
-    //!!!
-    //!!!
-    //!!!
-    //!!!
+
+    public class LevelState
+    {
+        public bool IsFakeLevelEntry;
+        public int DeathCount;
+        public bool IsTimerBroken;
+        public float SavedScores;
+        public bool HasFiveDeathsTriggered;
+        public bool IsFakeLevel10Handled;
 
 
+        public int CurrentPhraseIndex;
+        public float MegaphoneTimer;
+        public float MusicPlayerVolume;
+        public float MegaphonePlaybackPosition;
+
+
+        public bool IsLevelComplete;
+        public int LastRandomPhrase;
+        public bool ShowIntro;
+    }
+    public LevelState _level = new LevelState();
+
+    public class SubtitlesState
+    {
+        public string TextToDraw;
+        public float TimeToDraw;
+        public float Timer;
+        public string[] TextsQueue;
+        public float[] TextTimeCodes;
+        public bool IsTextQueued;
+        public float TextSavingTime;
+        public int CurrentQueueNumber;
+        public Color ColorModulate;
+        public string CurrentAnimation;
+        public bool IsPhysicsProcessing;
+        public string Text;
+        public float VisibleRatio;
+    }
+    public SubtitlesState _subtitles = new SubtitlesState();
 
 
     [Signal] public delegate void SetScoresEventHandler();
@@ -25,9 +52,12 @@ public partial class Level10ScientistScript : Node2D
     [Signal] public delegate void ClearTextEventHandler();
     [Signal] public delegate void SetCrossesProgressCoeffEventHandler();
     [Signal] public delegate void RecalculateCrossWeightEventHandler();
+
+    const int TIMER_BREAK_TIME = 150;
     AudioStreamPlayer2D _megaphone;
     AudioStreamPlayer _musicPlayer;
     CharacterBody2D _player;
+    MainScript _mainScript;
     private float _megaphonePhraseTimer = 0;
     private float[] _scriptedPhrasesTimeCodes = {3, 50, 150, 250, 290, 300};
     Random random = new Random();
@@ -227,99 +257,114 @@ public partial class Level10ScientistScript : Node2D
 
     public override void _Ready()
     {
+        // Initialize constants for the level
         G.LevelCompleteTime = 300;
-        Connect("ShowTextQueue", new Callable(GetNode("CanvasLayer/Subtitles"), "ShowTextQueue"));
-        Connect("ClearText", new Callable(GetNode("CanvasLayer/Subtitles"), "ClearText"));
-        Connect("SetResetDisabled", new Callable(GetNode<Node2D>("../.."), "SetResetDisabled"));
-        if ((bool)G.TransitiveVariant[3])
-            EmitSignal("SetResetDisabled", true);
+        G.CrossesProgressCoeff = 0.5f;
+
+        // Initialize nodes
         _megaphone = GetNode<AudioStreamPlayer2D>("Megaphone");
         _musicPlayer = GetNode<AudioStreamPlayer>("../../LevelMusicPlayer");
         _player = GetNode<CharacterBody2D>("../Player");
-        if ((bool)G.TransitiveVariant[0] == true)
+        _mainScript = GetNode<MainScript>("../..");
+
+        // Connect signals to their respective methods
+        Connect("ShowTextQueue", new Callable(GetNode("CanvasLayer/Subtitles"), "ShowTextQueue"));
+        Connect("ClearText", new Callable(GetNode("CanvasLayer/Subtitles"), "ClearText"));
+        Connect("SetResetDisabled", new Callable(_mainScript, "SetResetDisabled"));
+        _player.Connect("PlayerDied", new Callable (this, "PlayerDied"));
+        _mainScript.Connect("OnLevelResetting", new Callable(this, "OnLevelReset"));
+
+
+
+        // Handle fake level 10 entry scenario
+        if (G.TransitiveVariantD.ContainsKey("ImFromTheFakeLevel10"))
         {
-            G.TransitiveVariant[0] = "";
-            GetNode<AnimationPlayer>("../CanvasLayer/ColorRect/AnimationPlayer").Play("Blumxd");
-            GetNode<AudioStreamPlayer>("../CanvasLayer/ColorRect/AudioStreamPlayer").Play();
+            G.TransitiveVariantD.Remove("ImFromTheFakeLevel10"); // Reset flag
+            GetNode<AnimationPlayer>("../CanvasLayer/SubtitlesRect/AnimationPlayer").Play("Blumxd");
+            GetNode<AudioStreamPlayer>("../CanvasLayer/SubtitlesRect/AudioStreamPlayer").Play();
+
+            _mainScript.SetCrossesEnabled(true);
+            _mainScript.SetProgressPaused(false);
+            LoadMegaphoneInitialState();
+
+            _level.IsFakeLevel10Handled = true; // Mark that the scenario was handled
         }
 
-        if (!G.DidLevelIntroPassed || (bool)G.TransitiveVariant[29])
+        // Set up megaphone or subtitles based on intro state
+        if (!G.DidLevelIntroPassed && !_level.IsFakeLevel10Handled)
         {
-            G.TransitiveVariant[7] = -1;
-            _megaphonePhraseTimer = 3;
+            LoadMegaphoneInitialState();
         }
-        else
+        else if (!_level.IsFakeLevel10Handled)
         {
-            _megaphone.Stream = (AudioStream)G.TransitiveVariant[8];
-            _megaphone.Play((float)G.TransitiveVariant[11]);
-            _megaphonePhraseTimer = (float)G.TransitiveVariant[9];
-            _musicPlayer.VolumeDb = (float)G.TransitiveVariant[10];
+            LoadSavedStatesAfterRestart();
         }
 
-        if ((bool)G.TransitiveVariant[3])
+        if (_level.IsTimerBroken) // After surviving 150 seconds once
         {
+            EmitSignal("SetResetDisabled", true);
             Connect("SetScores", new Callable(GetNode("../.."), "SetScores"));
-            CallDeferred("emit_signal", "SetScores", G.TransitiveVariant[4]);
+            CallDeferred("emit_signal", "SetScores", _level.SavedScores);
+
             var whiteNoiseGlitch = GetNode<AnimatedSprite2D>("../CanvasLayer/WhiteNoiseGlitch");
             whiteNoiseGlitch.Visible = true;
             whiteNoiseGlitch.Play();
             GetNode<AudioStreamPlayer>("../CanvasLayer/WhiteNoiseGlitch/AudioStreamPlayer").Play();
         }
+
+        // Load saved subtitles state if intro has passed
         if (G.DidLevelIntroPassed)
         {
             LoadSubtitlesSavedState();
         }
     }
+
+    public void LoadMegaphoneInitialState()
+    {
+        _level.CurrentPhraseIndex = -1; // Initialize phrase index
+        _megaphonePhraseTimer = 3;  // Start timer for the first phrase
+    }
+
+    public void LoadSavedStatesAfterRestart()
+    {
+        _level = (LevelState)G.TransitiveObject[0];
+        _subtitles = (SubtitlesState)G.TransitiveObject[1];
+
+        _megaphone.Stream = (AudioStream)G.TransitiveVariant[0]; // Loading the megaphone stream
+        _megaphone.Play(_level.MegaphonePlaybackPosition);
+        _megaphonePhraseTimer = _level.MegaphoneTimer;
+        _musicPlayer.VolumeDb = _level.MusicPlayerVolume;
+    }
+
+    ////////
+
     public override void _PhysicsProcess(double delta)
     {
-        if (G.Scores >= 300 && (bool)G.TransitiveVariant[12] != true)
+        _megaphonePhraseTimer -= 0.01667f;
+        //Music fades out when megaphone speaks
+        if (_megaphone.Playing && _musicPlayer.VolumeDb > 4)
+            _musicPlayer.VolumeDb -= 0.2f;
+        //The music comes back when the megaphone fades out
+        else if (!_megaphone.Playing && _musicPlayer.VolumeDb < 10)
+            _musicPlayer.VolumeDb += 0.2f;
+
+
+        // When level finished
+        if (G.Scores >= G.LevelCompleteTime && _level.IsLevelComplete != true)
         {
-            G.TransitiveVariant[12] = true;
-            G.IsCrossesEnabled = false;
-            G.Main.IsPauseDisabled = true;
-            G.Main.IsResetDisabled = true;
-            G.CrossSpawnMultiplier = 0.25f;
-            G.Player.SetGUIVisible(false);
-            _megaphonePhraseTimer = 0;
-            var AllCrossesOnScreen = GetTree().GetNodesInGroup("Crosses");
-            for (int i = 0; AllCrossesOnScreen.Count > i; i++)
-                AllCrossesOnScreen[i].QueueFree();
-            GetNode<AnimationPlayer>("../CanvasLayer/ColorRect/AnimationPlayer").Play("Blumxd");
-            GetNode<AudioStreamPlayer>("../CanvasLayer/ColorRect/AudioStreamPlayer").Play();
-            if (UnchangableMeta.LevelCompleteStatus[9] == 0)
-            {
-                Achievements.GetLevelAchievements();
-                Achievements.GetAchievement("Congratulations!0");
-                Achievements.GetAchievement("Congratulations!1");
-                Achievements.GetAchievement("Congratulations!2");
-                Achievements.GetAchievement("Congratulations!3");
-                UnchangableMeta.IsThereNewContentInRecycleBin = true;
-                UnchangableMeta.SaveToFile();
-            }
-            Connect("SetCrossesProgressCoeff", new Callable(GetNode("../.."), "SetCrossesProgressCoeff"));
-            EmitSignal("SetCrossesProgressCoeff", 0.01f);
-            Connect("RecalculateCrossWeight", new Callable(GetNode(".."), "RecalculateCrossWeight"));
-            EmitSignal("RecalculateCrossWeight");
+            OnLevelCompleted();
         }
-        else if (G.Scores >= 315)
+        else if (G.Scores >= G.LevelCompleteTime + 15)
         {
             if (!G.IsPlayerDead)
             {
                 G.IsCrossesEnabled = true;
                 G.CrossSpawnMultiplier *= 1.01f;
             }
-            else
-            {
-                G.IsCrossesEnabled = false;
-                SetPhysicsProcess(false);
-            }
         }
-        _megaphonePhraseTimer -= 0.01667f;
-        if (_megaphone.Playing && _musicPlayer.VolumeDb > 4)
-            _musicPlayer.VolumeDb -= 0.2f;
-        else if (!_megaphone.Playing && _musicPlayer.VolumeDb < 10)
-            _musicPlayer.VolumeDb += 0.2f;
-        if ((int)G.TransitiveVariant[1] >= 5)
+
+        // Pushing the crosses away from the player
+        if (_level.DeathCount >= 5) 
         {
             var AllCrossesOnScreen = GetTree().GetNodesInGroup("Crosses");
             if (AllCrossesOnScreen.Count() > 0)
@@ -330,119 +375,205 @@ public partial class Level10ScientistScript : Node2D
                 LastCross.Position -= LastCross.GlobalPosition.DirectionTo(_player.GlobalPosition) * 5;
             }
         }
-        bool MegaphoneDefaultCondition = !_megaphone.Playing && _megaphonePhraseTimer <= 0 && _scriptedPhrasesTimeCodes.Length > (int)G.TransitiveVariant[7] + 1 && !G.IsPlayerDead;
-        if (MegaphoneDefaultCondition && G.Scores >= _scriptedPhrasesTimeCodes[(int)G.TransitiveVariant[7] + 1])
+
+
+
+        bool MegaphoneDefaultCondition = !_megaphone.Playing && _megaphonePhraseTimer <= 0 && _scriptedPhrasesTimeCodes.Length > _level.CurrentPhraseIndex + 1 && !G.IsPlayerDead;
+        // Playing current phrases
+        if (MegaphoneDefaultCondition && G.Scores >= _scriptedPhrasesTimeCodes[_level.CurrentPhraseIndex + 1])
         {
-            PlayMegaphonePhrase("Scripted" + ((int)G.TransitiveVariant[7] + 2));
-            EmitSignal("ShowTextQueue", _phrasesSubtitles[(int)G.TransitiveVariant[7] + 1], Meta.Instance.Video.language == Meta.VideoClass.Language.en ? _phrasesTimeCodes[(int)G.TransitiveVariant[7] + 1] : _phrasesTimeCodesRu[(int)G.TransitiveVariant[7] + 1], 1);
-            if ((int)G.TransitiveVariant[7] == 1)
-            {
-                EmitSignal("SetResetDisabled", true);
-                GetNode<AnimationPlayer>("../CanvasLayer/ColorRect/AnimationPlayer").Play("Blumxd");
-                GetNode<AudioStreamPlayer>("../CanvasLayer/TimerBroken").Play();
-            }
-            else if ((int)G.TransitiveVariant[7] == 3)
-                _megaphonePhraseTimer = 0;
-            G.TransitiveVariant[7] = (int)G.TransitiveVariant[7] + 1;
+            PlayNumeralPhrase(_level.CurrentPhraseIndex);
+            _level.CurrentPhraseIndex++;
         }
-        else if (MegaphoneDefaultCondition && (int)G.TransitiveVariant[1] >= 5 && (bool)G.TransitiveVariant[6] != true)
+
+        // Playing crosses help phrase
+        else if (MegaphoneDefaultCondition && _level.DeathCount >= 5 && _level.HasFiveDeathsTriggered != true)
         {
-            G.TransitiveVariant[6] = true;
-            PlayMegaphonePhrase("FiveDeaths");
+            _level.HasFiveDeathsTriggered  = true;
+            PlayPhrase("FiveDeaths");
             EmitSignal("ShowTextQueue", _phrasesSubtitles[6], Meta.Instance.Video.language == Meta.VideoClass.Language.en ? _phrasesTimeCodes[6] : _phrasesTimeCodesRu[6], 1);
         }
-        else if (MegaphoneDefaultCondition && _scriptedPhrasesTimeCodes[(int)G.TransitiveVariant[7] + 1] - G.Scores > 10 && !G.IsPlayerDead && G.Scores > 5)
+
+        // Playing random phrases
+        else if (MegaphoneDefaultCondition && _scriptedPhrasesTimeCodes[_level.CurrentPhraseIndex + 1] - G.Scores > 10 && !G.IsPlayerDead && G.Scores > 5)
         {
             if (random.Next(2000) == 0)
             {
-                int i = random.Next(1, 8);
-                while (i == (int)G.TransitiveVariant[13])
-                    i = random.Next(1, 8);
-                PlayMegaphonePhrase("Random" + i);
-                EmitSignal("ShowTextQueue", _phrasesSubtitles[i + 6], Meta.Instance.Video.language == Meta.VideoClass.Language.en ? _phrasesTimeCodes[i + 6] : _phrasesTimeCodesRu[i + 6], 1);
-                G.TransitiveVariant[13] = i;
+                PlayRandomPhrase();
             }
         }
     }
+
+    ////////
+
     public void PlayerDied()
     {
-        G.TransitiveVariant[29] = false;
-        if (G.Scores < 300 && (G.Scores > 150 || (bool)G.TransitiveVariant[3]))
+        _level.ShowIntro = false;
+        if (G.Scores < G.LevelCompleteTime && (G.Scores > TIMER_BREAK_TIME || _level.IsTimerBroken)) // ¬Œ“ “”“ ◊»Õ»“‹ Õ¿ƒŒ  Œ–Œ◊≈ ƒ¿
         {
             OnLevelReset();
-            G.TransitiveVariant[3] = true;
-            G.TransitiveVariant[4] = G.Scores - random.Next(5, 15);
-            if ((float)G.TransitiveVariant[4] < 0)
-                G.TransitiveVariant[4] = 0;
+            _level.IsTimerBroken = true;
+            _level.SavedScores = G.Scores - random.Next(5, 15);
+            if (_level.SavedScores < 0)
+            {
+                G.TransitiveVariantD.Add("SavedScores", G.Scores);
+                G.TransitiveVariantD.Add("PlayerSavedPos", _player.Position);
+                GetTree().ChangeSceneToFile("res://Content/Scenes/Levels/FullParts/Level000000000.tscn");
+                return;
+            }
 
             SaveSubtitlesState();
 
             GetTree().ReloadCurrentScene();
         }
 
+
+
+        if (_level.IsLevelComplete)
+        {
+            G.IsCrossesEnabled = false;
+            SetPhysicsProcess(false);
+        }
     }
-    public void PlayMegaphonePhrase(string value)
-    {
-        _megaphone.Stream = ResourceLoader.Load<AudioStream>("res://Content/Sounds/Levels/Level10Scientist" + value + G.GetLanguagePrefix() + ".mp3");
-        _megaphone.Play();
-    }
+
 
     public void OnLevelReset()
     {
-        G.TransitiveVariant[1] = (int)G.TransitiveVariant[1] + 1; // Deaths/resets of that level
-        G.TransitiveVariant[8] = _megaphone.Stream;
-        G.TransitiveVariant[9] = _megaphonePhraseTimer;
-        G.TransitiveVariant[10] = _musicPlayer.VolumeDb;
-        G.TransitiveVariant[11] = _megaphone.GetPlaybackPosition();
-        G.TransitiveVariant[29] = false;
+        _level.DeathCount++;
+        G.TransitiveVariant[0] = _megaphone.Stream; // Saving the megaphone stream
+        _level.MegaphoneTimer = _megaphonePhraseTimer;
+        _level.MusicPlayerVolume = _musicPlayer.VolumeDb;
+        _level.MegaphonePlaybackPosition = _megaphone.GetPlaybackPosition();
+        _level.ShowIntro = false;
+
+        G.TransitiveObject[0] = _level;
+        G.TransitiveObject[1] = _subtitles;
 
         SaveSubtitlesState();
 
         G.MusicStopTimeCode = _musicPlayer.GetPlaybackPosition();
     }
+
+    public void OnLevelCompleted()
+    {
+        _level.IsLevelComplete = true;
+        G.IsCrossesEnabled = false;
+        G.Main.IsPauseDisabled = true;
+        G.Main.IsResetDisabled = true;
+        G.CrossSpawnMultiplier = 0.25f;
+        G.Player.SetGUIVisible(false);
+        _megaphonePhraseTimer = 0;
+        var AllCrossesOnScreen = GetTree().GetNodesInGroup("Crosses");
+        for (int i = 0; AllCrossesOnScreen.Count > i; i++)
+            AllCrossesOnScreen[i].QueueFree();
+        GetNode<AnimationPlayer>("../CanvasLayer/SubtitlesRect/AnimationPlayer").Play("Blumxd");
+        GetNode<AudioStreamPlayer>("../CanvasLayer/SubtitlesRect/AudioStreamPlayer").Play();
+        if (UnchangableMeta.LevelCompleteStatus[9] == 0)
+        {
+            Achievements.GetLevelAchievements();
+            Achievements.GetAchievement("Congratulations!0");
+            Achievements.GetAchievement("Congratulations!1");
+            Achievements.GetAchievement("Congratulations!2");
+            Achievements.GetAchievement("Congratulations!3");
+            UnchangableMeta.IsThereNewContentInRecycleBin = true;
+            UnchangableMeta.SaveToFile();
+        }
+        Connect("SetCrossesProgressCoeff", new Callable(GetNode("../.."), "SetCrossesProgressCoeff"));
+        EmitSignal("SetCrossesProgressCoeff", 0.01f);
+        Connect("RecalculateCrossWeight", new Callable(GetNode(".."), "RecalculateCrossWeight"));
+        EmitSignal("RecalculateCrossWeight");
+    }
+
+
+
+
+
+
+    //Megaphone methods
+    public void PlayPhrase(string value)
+    {
+        _megaphone.Stream = ResourceLoader.Load<AudioStream>("res://Content/Sounds/Levels/Level10Scientist" + value + G.GetLanguagePrefix() + ".mp3");
+        _megaphone.Play();
+    }
+
+    public void PlayNumeralPhrase(int PhraseNumber)
+    {
+        int NextPhraseNumber = PhraseNumber + 1;
+        PlayPhrase("Scripted" + (NextPhraseNumber + 1));
+
+        EmitSignal("ShowTextQueue", _phrasesSubtitles[NextPhraseNumber], Meta.Instance.Video.language == Meta.VideoClass.Language.en ? _phrasesTimeCodes[NextPhraseNumber] : _phrasesTimeCodesRu[NextPhraseNumber], 1);
+        if (PhraseNumber == 1)
+        {
+            EmitSignal("SetResetDisabled", true);
+            GetNode<AnimationPlayer>("../CanvasLayer/SubtitlesRect/AnimationPlayer").Play("Blumxd");
+            GetNode<AudioStreamPlayer>("../CanvasLayer/TimerBroken").Play();
+        }
+        else if (PhraseNumber == 3)
+            _megaphonePhraseTimer = 0;
+    }
+
+    public void PlayRandomPhrase()
+    {
+        const int RANDOM_PHRASES_COUNT = 8;
+
+        int i = random.Next(1, RANDOM_PHRASES_COUNT);
+        while (i == _level.LastRandomPhrase)
+            i = random.Next(1, RANDOM_PHRASES_COUNT);
+
+        PlayPhrase("Random" + i);
+        EmitSignal("ShowTextQueue", _phrasesSubtitles[i + 6], Meta.Instance.Video.language == Meta.VideoClass.Language.en ? _phrasesTimeCodes[i + 6] : _phrasesTimeCodesRu[i + 6], 1);
+        _level.LastRandomPhrase = i;
+    }
+
     public void PhraseFinished()
     {
         _megaphone.Stream = null;
         _megaphonePhraseTimer = 10;
         EmitSignal("ClearText");
     }
+
+
+
+
+    //Saving / loading subtitles values
     public void SaveSubtitlesState()
     {
         var subtitles = GetNode<Subtitles>("CanvasLayer/Subtitles");
-        G.TransitiveVariant[16] = subtitles.TextToDraw;
-        G.TransitiveVariant[17] = subtitles.TimeToDraw;
-        G.TransitiveVariant[18] = subtitles.Timer;
+        _subtitles.TextToDraw = subtitles.TextToDraw;
+        _subtitles.TimeToDraw = subtitles.TimeToDraw;
+        _subtitles.Timer = subtitles.Timer;
 
-        G.TransitiveVariant[19] = subtitles.TextsQueue;
-        G.TransitiveVariant[20] = subtitles.TextTimeCodes;
-        G.TransitiveVariant[21] = subtitles.IsTextQueued;
-        G.TransitiveVariant[22] = subtitles.TextSavingTime;
-        G.TransitiveVariant[23] = subtitles.CurrentQueueNumber;
+        _subtitles.TextsQueue = subtitles.TextsQueue;
+        _subtitles.TextTimeCodes = subtitles.TextTimeCodes;
+        _subtitles.IsTextQueued = subtitles.IsTextQueued;
+        _subtitles.TextSavingTime = subtitles.TextSavingTime;
+        _subtitles.CurrentQueueNumber = subtitles.CurrentQueueNumber;
 
-        G.TransitiveVariant[24] = GetNode<ColorRect>("CanvasLayer/ColorRect").Modulate;
-        G.TransitiveVariant[25] = GetNode<AnimationPlayer>("CanvasLayer/ColorRect/AnimationPlayer").CurrentAnimation;
-        G.TransitiveVariant[26] = subtitles.IsPhysicsProcessing();
-        G.TransitiveVariant[27] = subtitles.Text;
-        G.TransitiveVariant[28] = subtitles.VisibleRatio;
+        _subtitles.ColorModulate = GetNode<ColorRect>("CanvasLayer/SubtitlesRect").Modulate;
+        _subtitles.CurrentAnimation = GetNode<AnimationPlayer>("CanvasLayer/SubtitlesRect/AnimationPlayer").CurrentAnimation;
+        _subtitles.IsPhysicsProcessing = subtitles.IsPhysicsProcessing();
+        _subtitles.Text = subtitles.Text;
+        _subtitles.VisibleRatio = subtitles.VisibleRatio;
     }
+
     public void LoadSubtitlesSavedState()
     {
         var subtitles = GetNode<Subtitles>("CanvasLayer/Subtitles");
-        subtitles.TextToDraw = (string)G.TransitiveVariant[16];
-        subtitles.TimeToDraw = (float)G.TransitiveVariant[17];
-        subtitles.Timer = (float)G.TransitiveVariant[18];
+        subtitles.TextToDraw = _subtitles.TextToDraw;
+        subtitles.TimeToDraw = _subtitles.TimeToDraw;
+        subtitles.Timer = _subtitles.Timer;
 
-        subtitles.TextsQueue = (string[])G.TransitiveVariant[19];
-        subtitles.TextTimeCodes = (float[])G.TransitiveVariant[20];
-        subtitles.IsTextQueued = (bool)G.TransitiveVariant[21];
-        subtitles.TextSavingTime = (float)G.TransitiveVariant[22];
-        subtitles.CurrentQueueNumber = (int)G.TransitiveVariant[23];
-        if ((string)G.TransitiveVariant[24] != "")
-        GetNode<ColorRect>("CanvasLayer/ColorRect").Modulate = (Color)G.TransitiveVariant[24];
-        if ((string)G.TransitiveVariant[25] != "")
-            GetNode<AnimationPlayer>("CanvasLayer/ColorRect/AnimationPlayer").Play((string)G.TransitiveVariant[25]);
-        subtitles.SetPhysicsProcess((bool)G.TransitiveVariant[26]);
-        subtitles.Text = (string)G.TransitiveVariant[27];
-        subtitles.VisibleRatio = (float)G.TransitiveVariant[28];
+        subtitles.TextsQueue = _subtitles.TextsQueue;
+        subtitles.TextTimeCodes = _subtitles.TextTimeCodes;
+        subtitles.IsTextQueued = _subtitles.IsTextQueued;
+        subtitles.TextSavingTime = _subtitles.TextSavingTime;
+        subtitles.CurrentQueueNumber = _subtitles.CurrentQueueNumber;
+
+        GetNode<ColorRect>("CanvasLayer/SubtitlesRect").Modulate = _subtitles.ColorModulate;
+        if (!string.IsNullOrEmpty(_subtitles.CurrentAnimation))
+            GetNode<AnimationPlayer>("CanvasLayer/SubtitlesRect/AnimationPlayer").Play(_subtitles.CurrentAnimation);
+        subtitles.SetPhysicsProcess(_subtitles.IsPhysicsProcessing);
+        subtitles.Text = _subtitles.Text;
+        subtitles.VisibleRatio = _subtitles.VisibleRatio;
     }
 }

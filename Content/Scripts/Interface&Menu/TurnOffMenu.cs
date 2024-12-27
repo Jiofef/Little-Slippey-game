@@ -1,21 +1,14 @@
 using Godot;
 using GodotSteam;
-using System;
 
-public partial class TurnOffMenu : Control
+[Tool]
+public partial class TurnOffMenu : ConfirmationWindow
 {
-    [Signal] public delegate void ClosingEventHandler();
-    public void Accept()
+    public override void Accept()
     {
         UnchangableMeta.SaveToFile();
         Meta.Instance.SaveToFile();
         Steam.SteamShutdown();
         GetTree().Quit();
-    }
-    public void Cancel()
-    {
-        Connect("Closing", new Callable(GetParent(), "OpenedMenuClosed"));
-        EmitSignal("Closing");
-        QueueFree();
     }
 }

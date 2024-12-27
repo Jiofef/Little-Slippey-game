@@ -32,7 +32,7 @@ public partial class Pause : CanvasLayer
             G.IsCrossesEnabled = true;
             G.IsProgressPaused = false;
             G.CrossSpawnMultiplier = 1;
-            G.Main.EmitSignal("LevelReseting");
+            G.Main.EmitSignal("OnLevelResetting");
             if (G.IsLevelVanilla)
             {
                 UnchangableMeta.SaveRecords();

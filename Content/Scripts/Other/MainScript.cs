@@ -3,7 +3,7 @@ public partial class MainScript : Node2D
 {
     [Signal] public delegate void RecalculateCrossWeightEventHandler();
 
-    [Signal] public delegate void LevelResetingEventHandler();
+    [Signal] public delegate void OnLevelResettingEventHandler();
 
     [Signal] public delegate void OnLevelStartedEventHandler(bool wasIntroShown);
     [Signal] public delegate void OnLevelStartedNoBoolEventHandler();
@@ -137,11 +137,6 @@ public partial class MainScript : Node2D
     {
         G.TransitiveVariant[index] = "";
     }
-    public void ResetAllTransitiveValues()
-    {
-        for (int i = 0; i < G.TransitiveVariant.Length; i++)
-            G.TransitiveVariant[i] = "";
-    }
 
     public void DebugTransitiveObject(int index)
     {
@@ -155,6 +150,37 @@ public partial class MainScript : Node2D
     {
         G.TransitiveObject[index] = "";
     }
+
+
+    public void DebugTransitiveDValue(string key)
+    {
+        GD.Print(G.TransitiveVariantD[key]);
+    }
+    public void SetTransitiveDValue(string key, Variant value)
+    {
+        G.TransitiveVariantD[key] = value;
+    }
+    public void ResetTransitiveDValue(string key)
+    {
+        G.TransitiveVariantD[key] = "";
+    }
+
+    public void ResetAllTransitiveValues()
+    {
+        for (int i = 0; i < G.TransitiveVariant.Length; i++)
+            G.TransitiveVariant[i] = "";
+
+        for (int i = 0; i < G.TransitiveObject.Length; i++)
+            G.TransitiveObject[i] = null;
+
+        foreach (string v in G.TransitiveVariantD.Keys)
+            G.TransitiveVariantD.Remove(v);
+    }
+
+
+
+
+
     public void ResetAllTransitiveObject()
     {
         for (int i = 0; i < G.TransitiveObject.Length; i++)

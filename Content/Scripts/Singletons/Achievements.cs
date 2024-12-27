@@ -3,6 +3,7 @@ using GodotSteam;
 using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
+using System.Text.Json;
 
 public partial class Achievements : Node
 {
@@ -115,10 +116,20 @@ public partial class Achievements : Node
         achievement.FocusMode = Control.FocusModeEnum.None;
         achievement.MouseFilter = Control.MouseFilterEnum.Ignore;
         AllTheAchievements[name].IsReceived = true;
-        UnchangableMeta.SaveToFile();
+        SaveAchievements();
         AchievementPopupTimerMultiplier++;
 
         if (AchievementsCount() == (AllTheAchievements.Count - 1))
             GetAchievement("Thank you for everything, player");
     } 
+
+    public static void SaveAchievements()
+    {
+        try
+        {
+            var SaveData = JsonSerializer.Serialize(AllTheAchievements);
+            FileSystemExtension.SaveInJson(SaveData, "user://achievements.json");
+        }
+        catch { }
+    }
 }
