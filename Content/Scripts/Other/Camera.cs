@@ -23,6 +23,8 @@ public partial class Camera : Camera2D
         _standBar = GetNode<TextureProgressBar>("GUICanvas/GUI/StandBar");
 
         ApplyGUIOptions(true);
+
+        preDeathParams = new PreDeathParams(this);
     }
     public void LimitsChangingBy(bool DoResetSmoothing = false, float plus1 = 0, float plus2 = 0, float plus3 = 0, float plus4 = 0)
     {
@@ -97,7 +99,6 @@ public partial class Camera : Camera2D
 
             if (G.PlayerCorpseFlightTimer >= 4.5f)
             {
-                var emergingElements = GetNode<Node2D>("GUICanvas/GUI/EmergingElements");
                 if (G.IsNewRecordReached)
                 {
                     const string link = "GUICanvas/GUI/EmergingElements/NewRecordScores";
@@ -113,6 +114,8 @@ public partial class Camera : Camera2D
                     emergingScores.Visible = true;
                     emergingScores.Text = Convert.ToString(Tr("Score: ") + (int)G.Scores);
                 }
+
+                var emergingElements = GetNode<Node2D>("GUICanvas/GUI/EmergingElements");
                 if (emergingElements.Modulate.A < 1)
                     emergingElements.Modulate = new Color(emergingElements.Modulate.R, emergingElements.Modulate.G, emergingElements.Modulate.B, emergingElements.Modulate.A + 0.005f);
 
@@ -135,12 +138,90 @@ public partial class Camera : Camera2D
             }
         }
     }
-    public void CameraZoom()
+
+
+    #region Death
+    private class PreDeathParams
     {
+        Camera camera;
+        public bool HasSavedParams = false;
+        public PreDeathParams(Camera thisCamera)
+        {
+            camera = thisCamera;
+        }
+
+        public Vector2 Zoom;
+
+        public Color EmergingElementsModulate;
+
+        public bool PositionSmoothingEnabled;
+
+        public bool NewRecordScoresVisible;
+        public bool EmergingScoresVisible;
+
+        public bool GoldenParticles1Emitting;
+        public bool GoldenParticles2Emitting;
+
+
+        public void SaveParams()
+        {
+            Zoom = camera.Zoom;
+
+            EmergingElementsModulate = camera.GetNode<Node2D>("GUICanvas/GUI/EmergingElements").Modulate;
+
+            PositionSmoothingEnabled = camera.PositionSmoothingEnabled;
+
+            const string NEW_RECORD_SCORES_LINK = "GUICanvas/GUI/EmergingElements/NewRecordScores";
+            NewRecordScoresVisible = camera.GetNode<Label>(NEW_RECORD_SCORES_LINK).Visible;
+            EmergingScoresVisible = camera.GetNode<Label>("GUICanvas/GUI/EmergingElements/Scores").Visible;
+
+            GoldenParticles1Emitting = camera.GetNode<CpuParticles2D>(NEW_RECORD_SCORES_LINK + "/Shine1").Emitting;
+            GoldenParticles2Emitting = camera.GetNode<CpuParticles2D>(NEW_RECORD_SCORES_LINK + "/Shine2").Emitting;
+
+            HasSavedParams = true;
+        }
+
+        public void LoadParams()
+        {
+            if (!HasSavedParams) return;
+
+            camera.GetNode<Node2D>("GUICanvas/GUI/EmergingElements").Modulate = EmergingElementsModulate;
+
+            camera.Zoom = Zoom;
+
+            camera.PositionSmoothingEnabled = PositionSmoothingEnabled;
+
+            const string NEW_RECORD_SCORES_LINK = "GUICanvas/GUI/EmergingElements/NewRecordScores";
+            camera.GetNode<Label>(NEW_RECORD_SCORES_LINK).Visible = NewRecordScoresVisible;
+            camera.GetNode<Label>("GUICanvas/GUI/EmergingElements/Scores").Visible = EmergingScoresVisible;
+
+            camera.GetNode<CpuParticles2D>(NEW_RECORD_SCORES_LINK + "/Shine1").Emitting = GoldenParticles1Emitting;
+            camera.GetNode<CpuParticles2D>(NEW_RECORD_SCORES_LINK + "/Shine2").Emitting = GoldenParticles2Emitting;
+        }
+    }
+    PreDeathParams preDeathParams;
+
+    public void OnPlayerDead()
+    {
+        preDeathParams.SaveParams();
+
         PositionSmoothingEnabled = false;
         _scores.Visible = false;
         GetNode<TextureProgressBar>("GUICanvas/GUI/StandBar").Visible = false;
     }
+
+    public void OnPlayerResurrected()
+    {
+        LimitsChangingBy();
+        ResetSmoothing();
+
+        ApplyGUIOptions(false);
+
+        preDeathParams.LoadParams();
+    }
+    //
+    #endregion
+
 
     public void ApplyGUIOptions(bool IsLevelJustStarted)
     {

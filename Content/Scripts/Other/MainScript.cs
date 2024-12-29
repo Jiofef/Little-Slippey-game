@@ -12,9 +12,12 @@ public partial class MainScript : Node2D
     [Export] public string LevelNodePath = "Level";
     [Export] public bool DoIgnoreIntro = false, DoIgnoreAchievementLayer = false;
 
-    public override void _Ready()
+    public override void _EnterTree()
     {
         G.Main = this;
+    }
+    public override void _Ready()
+    {
         TreeExited += () =>
         {
             if (G.Main == this)
@@ -79,6 +82,9 @@ public partial class MainScript : Node2D
             G.ModMapPath = ScenePath;
             GetTree().ChangeSceneToFile(System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData) + @"\Godot\app_userdata\Little Slippey\mods\" + G.ModMapPath);
         }
+
+        if (IsInsideTree()) //In very rare cases (e.g. with a level 7 black screen), the node is not deleted correctly when the scene is changed. This fixes this bug.
+            QueueFree();
     }
     public void SetCrossesEnabled(bool value)
     {

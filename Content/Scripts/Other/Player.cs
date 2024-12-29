@@ -3,6 +3,7 @@ using GodotSteam;
 using System;
 using System.Dynamic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 
 public partial class Player : CharacterBody2D
 {
@@ -82,9 +83,12 @@ public partial class Player : CharacterBody2D
         GetNode<AudioStreamPlayer>("Sounds/" + SoundName).Play();
     }
 
-    public override void _Ready()
+    public override void _EnterTree()
     {
         G.Player = this;
+    }
+    public override void _Ready()
+    {
         TreeExited += () =>
         {
             if (G.Player == this)
@@ -106,10 +110,14 @@ public partial class Player : CharacterBody2D
             Connect("CameraLimitsChanged", cameraCallable);
         #endregion
 
+        preDeathParams = new PreDeathParams(this);
+
         _readyAlready = true;
 
         Action("Fall");
     }
+
+
 
 
 
@@ -128,6 +136,7 @@ public partial class Player : CharacterBody2D
             }
             else
                 G.AfterPlayerCorpseFlightTimer += 0.016667f;
+
 
             return;
         }
@@ -475,11 +484,75 @@ public partial class Player : CharacterBody2D
 
 
     //Below - use freely 
+    private class PreDeathParams
+    {
+        Player player;
+        public bool HasSavedParams = false;
+        public PreDeathParams(Player thisPlayer)
+        {
+            player = thisPlayer;
+        }
+
+        public int ZIndex;
+        public float RotationDegrees;
+
+
+        public bool IsCrossesEnabled;
+        public bool IsProgressPaused;
+        public bool IsMusicPaused;
+        public bool IsCollisionDisabled;
+
+        public Vector2 Position;
+
+        public void SaveParams()
+        {
+            ZIndex = player.ZIndex;
+            RotationDegrees = player.RotationDegrees;
+
+
+            IsCrossesEnabled = G.IsCrossesEnabled;
+            IsProgressPaused = G.IsProgressPaused;
+            if (G.MusicPlayer != null)
+                IsMusicPaused = G.MusicPlayer.StreamPaused;
+
+            var collision = player.GetNode<CollisionShape2D>("FullBodyCollider");
+            if (collision != null)
+                IsCollisionDisabled = collision.Disabled;
+
+
+            Position = player.Position;
+
+            HasSavedParams = true;
+        }
+
+        public void LoadParams()
+        {
+            if (!HasSavedParams) return;
+
+            player.ZIndex = ZIndex;
+            player.Rotation = RotationDegrees;
+
+            G.IsCrossesEnabled = IsCrossesEnabled;
+            G.IsProgressPaused = IsProgressPaused;
+            if (G.MusicPlayer != null)
+                G.MusicPlayer.StreamPaused = IsMusicPaused;
+
+            var collision = player.GetNode<CollisionShape2D>("FullBodyCollider");
+            if (collision != null)
+                collision.Disabled = IsCollisionDisabled;
+
+            player.Position = Position;
+        }
+    }
+    PreDeathParams preDeathParams;
 
     public void Death()
     {
-        UnchangableMeta.DeathsNumber++;
+        if (G.IsPlayerDead) return;
 
+        preDeathParams.SaveParams();
+
+        UnchangableMeta.DeathsNumber++;
         ZIndex++;
 
         Random random = new Random();
@@ -491,7 +564,8 @@ public partial class Player : CharacterBody2D
         G.IsCrossesEnabled = false;
         G.IsProgressPaused = true;
 
-        EmitSignal("PlayerDied");
+        Camera.OnPlayerDead();
+
         PlaySound("Death");
         GetNode<AudioStreamPlayer>("../../LevelMusicPlayer").StreamPaused = true;
         GetNode<CollisionShape2D>("FullBodyCollider").SetDeferred("disabled", true);
@@ -508,12 +582,26 @@ public partial class Player : CharacterBody2D
         }
         UnchangableMeta.SaveRecords();
         UnchangableMeta.SaveToFile();
+
+        EmitSignal("PlayerDied");
     }
 
     public void Resurrect()
     {
+        if (!G.IsPlayerDead || !preDeathParams.HasSavedParams) return;
 
+        preDeathParams.LoadParams();
+
+        G.IsPlayerDead = false;
+        G.AfterPlayerCorpseFlightTimer = 0;
+        G.PlayerCorpseFlightTimer = 0;
+
+
+        GetNode<AudioStreamPlayer>("Sounds/Death").Stop();
+
+        Camera.OnPlayerResurrected();
     }
+
 
     public void SetCameraLimits(Vector4 value, bool DoResetSmoothing = false)
     {

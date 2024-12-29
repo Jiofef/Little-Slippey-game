@@ -1,6 +1,8 @@
 AnimationPlayer
+AudioStreamPlayer
 ColorRect
 CanvasLayer
+FlowContainer
 Node2D
 CPUParticles2D
 Label
@@ -10,5 +12,3 @@ RichTextLabel
 LineEdit
 VBoxContainer
 ScrollContainer
-MarginContainer
-VSeparator

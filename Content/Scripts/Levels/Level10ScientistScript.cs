@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Linq;
+using static System.Formats.Asn1.AsnWriter;
 
 public partial class Level10ScientistScript : Node2D
 {
@@ -55,8 +56,8 @@ public partial class Level10ScientistScript : Node2D
 
     const int TIMER_BREAK_TIME = 150;
     AudioStreamPlayer2D _megaphone;
-    AudioStreamPlayer _musicPlayer;
-    CharacterBody2D _player;
+    Level10MusicPlayer _musicPlayer;
+    Player _player;
     MainScript _mainScript;
     private float _megaphonePhraseTimer = 0;
     private float[] _scriptedPhrasesTimeCodes = {3, 50, 150, 250, 290, 300};
@@ -263,8 +264,8 @@ public partial class Level10ScientistScript : Node2D
 
         // Initialize nodes
         _megaphone = GetNode<AudioStreamPlayer2D>("Megaphone");
-        _musicPlayer = GetNode<AudioStreamPlayer>("../../LevelMusicPlayer");
-        _player = GetNode<CharacterBody2D>("../Player");
+        _musicPlayer = GetNode<Level10MusicPlayer>("../../LevelMusicPlayer");
+        _player = GetNode<Player>("../Player");
         _mainScript = GetNode<MainScript>("../..");
 
         // Connect signals to their respective methods
@@ -291,8 +292,10 @@ public partial class Level10ScientistScript : Node2D
         }
 
         // Set up megaphone or subtitles based on intro state
-        if (!G.DidLevelIntroPassed && !_level.IsFakeLevel10Handled)
+        if (!G.DidLevelIntroPassed && !_level.IsFakeLevel10Handled || G.TransitiveVariantD.ContainsKey("ImFromLevel000000000"))
         {
+            G.TransitiveVariantD.Remove("ImFromLevel000000000");
+
             LoadMegaphoneInitialState();
         }
         else if (!_level.IsFakeLevel10Handled)
@@ -409,11 +412,12 @@ public partial class Level10ScientistScript : Node2D
     public void PlayerDied()
     {
         _level.ShowIntro = false;
-        if (G.Scores < G.LevelCompleteTime && (G.Scores > TIMER_BREAK_TIME || _level.IsTimerBroken)) // ¬Œ“ “”“ ◊»Õ»“‹ Õ¿ƒŒ  Œ–Œ◊≈ ƒ¿
+        if (G.Scores < G.LevelCompleteTime && (G.Scores > TIMER_BREAK_TIME || _level.IsTimerBroken))
         {
-            OnLevelReset();
+
             _level.IsTimerBroken = true;
-            _level.SavedScores = G.Scores - random.Next(5, 15);
+            G.Scores -= random.Next(5, 15);
+            _level.SavedScores = G.Scores;
             if (_level.SavedScores < 0)
             {
                 G.TransitiveVariantD.Add("SavedScores", G.Scores);
@@ -424,7 +428,9 @@ public partial class Level10ScientistScript : Node2D
 
             SaveSubtitlesState();
 
-            GetTree().ReloadCurrentScene();
+            _player.CallDeferred("Resurrect");
+            _musicPlayer.SaveTimeCode();
+            _musicPlayer.StartPlaying();
         }
 
 
@@ -505,7 +511,8 @@ public partial class Level10ScientistScript : Node2D
         if (PhraseNumber == 1)
         {
             EmitSignal("SetResetDisabled", true);
-            GetNode<AnimationPlayer>("../CanvasLayer/SubtitlesRect/AnimationPlayer").Play("Blumxd");
+
+            GetNode<AnimationPlayer>("../CanvasLayer/ColorRect/AnimationPlayer").Play("Blumxd");
             GetNode<AudioStreamPlayer>("../CanvasLayer/TimerBroken").Play();
         }
         else if (PhraseNumber == 3)

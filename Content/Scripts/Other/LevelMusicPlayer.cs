@@ -7,9 +7,12 @@ public partial class LevelMusicPlayer : AudioStreamPlayer
     private string _currentMusicName;
     private float _startPosition = 0;
 
-    public override void _Ready()
+    public override void _EnterTree()
     {
         G.MusicPlayer = this;
+    }
+    public override void _Ready()
+    {
         TreeExited += () =>
         {
             if (G.MusicPlayer == this)

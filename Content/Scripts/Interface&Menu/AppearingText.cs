@@ -11,13 +11,15 @@ public partial class AppearingText : RichTextLabel
 		get => _appearing;
 		set { SetAppearing(value); }
 	}
-	private double _charactersToShow = 0;
+	private double _charactersToShow = 0; //This is not the number of characters in the text, but the number of characters to show in the next frame
+    private string _currentText;
 
     public override void _Ready()
     {
 		VisibleCharacters = 0;
 		if (AutoStart)
 			SetAppearing(true);
+		_currentText = Tr(Text);
     }
 
     public override void _Process(double delta)
@@ -26,7 +28,7 @@ public partial class AppearingText : RichTextLabel
 
 		_charactersToShow += delta * CharactersPerSecond;
 		
-		if (_charactersToShow > 1)
+		if (_charactersToShow >= 1)
 		{
             int IntLettersToShow = (int)(_charactersToShow - _charactersToShow % 1);
             VisibleCharacters += IntLettersToShow;
@@ -35,7 +37,7 @@ public partial class AppearingText : RichTextLabel
 			if (PopSound)
 				GetNode<AudioStreamPlayer>("Pop").Play();
 
-			if (VisibleCharacters >= Text.Length) // Stopping appearing when all text is shown
+			if (VisibleCharacters >= _currentText.Length) // Stopping appearing when all text is shown
 				Appearing = false;
 		}
 	}
@@ -46,5 +48,11 @@ public partial class AppearingText : RichTextLabel
 
 		if (value == true && AppearSound)
 			GetNode<AudioStreamPlayer>("Appear").Play();
+	}
+
+	public void SetText(string value)
+	{
+        Text = value;
+        _currentText = Tr(value);
 	}
 }

@@ -1418,6 +1418,13 @@ position = Vector2(315, 567)
 scale = Vector2(4, 4)
 texture = ExtResource("19_gi4na")
 
+[connection signal="PlayerDied" from="Level/Player" to="HintLayer/AppearTimer" method="stop"]
+[connection signal="HintHidden" from="HintLayer" to="Level/Player" method="ToggleStandingPenalty" binds= [true]]
+[connection signal="HintWillBeShown" from="HintLayer" to="Level/Player" method="ToggleStandingPenalty" binds= [false]]
+[connection signal="HintWontBeShown" from="HintLayer" to="Level/Player" method="ToggleStandingPenalty" binds= [true]]
+[connection signal="OnLevelStartHintWillBeShown" from="HintLayer" to="LevelMusicPlayer" method="PlayMusic" binds= ["Selected Breakcore Work (Chillout Mix)", 18.35, 0.0]]
+[connection signal="OnLevelStartHintWillBeShown" from="HintLayer" to="HintLayer/AppearTimer" method="start" binds= [13.0]]
+[connection signal="OnLevelStartHintWontBeShown" from="HintLayer" to="LevelMusicPlayer" method="PlayMusic" binds= ["Selected Breakcore Work", 18.35, 0.0]]
 [connection signal="timeout" from="HintLayer/AppearTimer" to="HintLayer" method="Glitch"]
 [connection signal="timeout" from="HintLayer/AppearTimer" to="HintLayer/AnimationPlayer" method="play" binds= ["Default"]]
 

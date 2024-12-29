@@ -33,6 +33,15 @@ public partial class Level7MindTumor : Area2D
     public void n2evf7yUH3ZLT3x3N0___()
     {
         G.Scores = Mathf.Sqrt(G.Scores);
+
+        Node root = GetTree().Root;
+
+        var endOfEverything = (Level7EndOfAnEverything)GD.Load<PackedScene>("res://Content/Scenes/Other/EndOfAnEverything.tscn").Instantiate();
+        endOfEverything.Backup = G.Main;
+
         QueueFree();
+        root.CallDeferred("remove_child", G.Main);
+
+        root.AddChild(endOfEverything);
     }
 }

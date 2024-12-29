@@ -100,9 +100,8 @@ public partial class G : Node
     ////////////////////////////
 
     #region May be used however you want
-    private static bool paused = false;
-    public static bool IsProgressPaused { get => paused; set { paused = value; StackTrace trace = new StackTrace(); GD.Print(trace + " " + value); } } // Enables or disables the earning of points and increasing the difficulty of crosses
-    public static bool IsCrossesEnabled = true, // Enables or disables the spawn of crosses
+    public static bool IsProgressPaused = false, // Enables or disables the earning of points and increasing the difficulty of crosses
+                       IsCrossesEnabled = true, // Enables or disables the spawn of crosses
                        DidLevelIntroPassed, // If the intro is missing or changed in your level, you may want to set this value yourself
                        IsDebugEnabled = true; // If enabled, Alt+Z enables immortality, Alt+X disables player's physics, Alt+C disables the crosses. Also Alt + scrolling up your mouse wheel gives you +5 scores for every "scroll step" (Alt + scrolling down does the opposite)
 
@@ -116,6 +115,13 @@ public partial class G : Node
     public static object[] TransitiveObject = new object[64]; // Addition to Variant, if some required data types are not supported
     // P.s. we HIGHLY recommend commenting out these variables in your code to avoid confusion. Especially if you use a lot of them.
     public static Dictionary<string, Variant> TransitiveVariantD = new Dictionary<string, Variant>(); // TransitiveVariant, but for those who don't want to get confused by unnamed array elements and don't need to comment out the elements.
+
+    public static Variant TakeAndRemoveFromTrVaD(string key)
+    {
+        Variant value = TransitiveVariantD[key];
+        TransitiveVariantD.Remove(key);
+        return value;
+    }
 
     public static string GetLanguagePrefix() // For localization maybe?
     {
@@ -136,6 +142,8 @@ public partial class G : Node
         } 
         set
         {
+            if (value == player) return;
+
             player = value;
 
             if (value != null)
@@ -153,6 +161,8 @@ public partial class G : Node
         }
         set
         {
+            if (value == main) return;
+
             main = value;
 
             if (value != null)
@@ -171,7 +181,10 @@ public partial class G : Node
         }
         set
         {
+            if (value == musicPlayer) return;
+
             musicPlayer = value;
+
             if (value != null)
                 OnMusicPlayerSetted?.Invoke();
         }

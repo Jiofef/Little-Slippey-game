@@ -22,6 +22,9 @@ texture = ExtResource("2_1bngn")
 0:1/animation_frame_6/duration = 1.0
 0:1/animation_frame_7/duration = 1.0
 0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:0/0 = 0
+1:0/0 = 0
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_m1cfi"]
 load_path = "res://.godot/imported/DropesAndHeamsTileset.png-f642dc6289dde9ecb1d381b06076c440.ctex"
@@ -257,6 +260,7 @@ script = ExtResource("2_0eems")
 [node name="Player" parent="Level" index="0" instance=ExtResource("2_4wixc")]
 z_index = 2
 position = Vector2(1280, 1248)
+EnableStandingPenalty = false
 
 [node name="TileMap" type="Node2D" parent="Level" index="1"]
 scale = Vector2(4, 4)

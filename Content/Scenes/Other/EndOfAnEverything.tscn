@@ -1,0 +1,65 @@
+[gd_scene load_steps=6 format=3 uid="uid://bg0jro5km8uhm"]
+
+[ext_resource type="Script" path="res://Content/Scripts/Levels/Level7EndOfAnEverything.cs" id="1_wkjk5"]
+[ext_resource type="AudioStream" uid="uid://ia5n2h8yioy6" path="res://Content/Sounds/Levels/Level7AverythingStruggling.mp3" id="2_cg8pa"]
+
+[sub_resource type="Animation" id="Animation_m1its"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("h ex AEl:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_4r4p5"]
+resource_name = "new_animation_new_animation_new_animation_new_animation"
+length = 1.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("h ex AEl:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_puop8"]
+_data = {
+"RESET": SubResource("Animation_m1its"),
+"new_animation_new_animation_new_animation_new_animation": SubResource("Animation_4r4p5")
+}
+
+[node name="EndOfAnEverything" type="CanvasLayer"]
+script = ExtResource("1_wkjk5")
+
+[node name="FeetTheHand" type="ColorRect" parent="."]
+offset_right = 1280.0
+offset_bottom = 720.0
+color = Color(0, 0, 0, 1)
+
+[node name="GrabAnIQ" type="ColorRect" parent="."]
+modulate = Color(1, 1, 1, 0)
+offset_right = 1280.0
+offset_bottom = 720.0
+
+[node name="Seemingless" type="AudioStreamPlayer" parent="."]
+
+[node name="h ex AEl" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_cg8pa")
+
+[node name="*~" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_puop8")
+}

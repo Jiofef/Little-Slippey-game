@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Content/Scripts/Other/MainScript.cs" id="1_52yug"]
 [ext_resource type="Script" path="res://Content/Scripts/Levels/Level10MusicPlayer.cs" id="2_1fwqt"]
 [ext_resource type="Script" path="res://Content/Scripts/Levels/BaseLevelScript.cs" id="2_8e3wu"]
-[ext_resource type="Script" path="res://Content/Scripts/Levels/Level10ScientistScript.cs" id="4_dq252"]
+[ext_resource type="Script" path="res://Content/Scripts/Levels/Level10ScientistScript.cs" id="3_dwaxd"]
 [ext_resource type="Texture2D" uid="uid://bif1cr6n4hvie" path="res://Content/Sprites/Levels/Level10/TestChamber.png" id="4_i3a5a"]
 [ext_resource type="Texture2D" uid="uid://cp7kra2fyq5jn" path="res://Content/Sprites/Levels/Level10/BackPipes.png" id="5_rf2xq"]
 [ext_resource type="Script" path="res://Content/Scripts/Levels/Subtitles.cs" id="5_rw6aw"]
@@ -504,6 +504,18 @@ tracks/0/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dxx2d"]
 _data = {
@@ -800,7 +812,7 @@ script = ExtResource("2_8e3wu")
 
 [node name="ScientistNode" type="Node2D" parent="Level"]
 process_priority = 1
-script = ExtResource("4_dq252")
+script = ExtResource("3_dwaxd")
 
 [node name="Megaphone" type="AudioStreamPlayer2D" parent="Level/ScientistNode"]
 position = Vector2(1280, 0)
@@ -1089,6 +1101,8 @@ process_mode = 3
 layer = 100
 
 [connection signal="finished" from="Level/ScientistNode/Megaphone" to="Level/ScientistNode" method="PhraseFinished" flags=3]
+[connection signal="TextAppearing" from="Level/ScientistNode/CanvasLayer/Subtitles" to="Level/ScientistNode/CanvasLayer/SubtitlesRect/AnimationPlayer" method="play" binds= ["Appearing"]]
+[connection signal="TextClearing" from="Level/ScientistNode/CanvasLayer/Subtitles" to="Level/ScientistNode/CanvasLayer/SubtitlesRect/AnimationPlayer" method="play" binds= ["Disappearing"]]
 [connection signal="area_entered" from="Level/Player/Areas/PlayerDamageDetector" to="Level/PositionCrutch/DroneCapsule/Timer" method="start" flags=6 unbinds=1]
 [connection signal="animation_finished" from="Level/CanvasLayer/WhiteNoiseGlitch" to="Level/CanvasLayer/WhiteNoiseGlitch" method="set_visible" binds= [false]]
 [connection signal="timeout" from="Level/PositionCrutch/DroneCapsule/Timer" to="Level/PositionCrutch/DroneCapsule" method="Departure"]

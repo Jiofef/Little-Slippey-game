@@ -763,3 +763,14 @@ Cancel,Cancel,Назад
 Set by default,Set by default,Вернуть по умолчанию
 Are you sure?,Are you sure?,Вы уверены?
 find the [] root,find the [] root,зри в [] корень
+,,
+,,
+,,
+This is standing penalty scale.,This is standing penalty scale.,Это шкала стояния на месте.
+"If you don't move much, it fills up.","If you don't move much, it fills up.","Если ты не двигаешься, она заполняется."
+"If you move in one place, it fills up.","If you move in one place, it fills up.","Если ты двигаешься на одном и том же месте, она заполняется."
+"The more the scale is filled, the more the crosses spawn increases and the closer they are to you","The more the scale is filled, the more the crosses spawn increases and the closer they are to you","Чем больше шкала заполнена, тем метки будут появляться чаще и ближе к тебе."
+(That's - very bad),(That's - very bad),(Это - оч плохо)
+"If you're moving fast, the scale goes down.","If you're moving fast, the scale goes down.","Если ты двигаешься быстро, шкала спадает."
+"In short, move more.","In short, move more.","В общем, двигайся больше."
+I hope that's clear.,I hope that's clear.,Надеюсь всё понятно.
