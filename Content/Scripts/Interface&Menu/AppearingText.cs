@@ -3,7 +3,8 @@ using System;
 
 public partial class AppearingText : RichTextLabel
 {
-	[Export] public float CharactersPerSecond = 15;
+	public const float DEFAULT_CHARS_PER_SEC = 15;
+	[Export] public float CharactersPerSecond = DEFAULT_CHARS_PER_SEC;
 	[Export] public bool AutoStart = false, PopSound = true, AppearSound = true;
 	private bool _appearing = false;
 	[Export] public bool Appearing 
@@ -50,9 +51,40 @@ public partial class AppearingText : RichTextLabel
 			GetNode<AudioStreamPlayer>("Appear").Play();
 	}
 
-	public void SetText(string value)
+	public void SkipAppearing()
 	{
+        VisibleCharacters = _currentText.Length;
+		Appearing = false;
+
+        _charactersToShow = 0;
+    }
+
+
+
+	new public void SetText(string value, float charactersPerSecond = DEFAULT_CHARS_PER_SEC)
+	{
+		VisibleCharacters = 0;
+		SetAppearing(true);
+
         Text = value;
         _currentText = Tr(value);
+
+		CharactersPerSecond = charactersPerSecond;
 	}
+	public void SetText(PhraseProperties properties)
+	{
+		SetText(properties.Text, properties.CharsPerSecond);
+    }
+
+    public class PhraseProperties
+    {
+        public string Text;
+        public float CharsPerSecond;
+
+        public PhraseProperties(string text, float charsPerSecond = DEFAULT_CHARS_PER_SEC)
+        {
+            Text = text;
+            CharsPerSecond = charsPerSecond;
+        }
+    }
 }

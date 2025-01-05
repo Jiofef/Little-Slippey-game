@@ -13,7 +13,7 @@ public partial class LevelMusicPlayer : AudioStreamPlayer
     }
     public override void _Ready()
     {
-        TreeExited += () =>
+        TreeExiting += () =>
         {
             if (G.MusicPlayer == this)
                 G.MusicPlayer = null;
@@ -21,11 +21,9 @@ public partial class LevelMusicPlayer : AudioStreamPlayer
         };
 
         Connect("finished", new Callable(this, "OnMusicFinished"));
-
         if (KeepPlayingWhenLevelResets && G.MusicName != "")
             PlayMusic(G.MusicName, G.MusicStartPosition);
     }
-
     private void PlayMusicBase(string MusicName, float TrackStartPosition = 0, float AppearanceDuration = 0)
     {
         var musicAnimationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
@@ -81,6 +79,8 @@ public partial class LevelMusicPlayer : AudioStreamPlayer
 
     private void SaveTimeCode()
     {
+        if (G.BlockSavingSomeValues) return;
+
         if (SaveTimeCodeWhenLevelResets)
             G.MusicStopTimeCode = GetPlaybackPosition();
     }

@@ -1,4 +1,5 @@
 using Godot;
+using System;
 
 public partial class Level7MindTumor : Area2D
 {
@@ -28,20 +29,5 @@ public partial class Level7MindTumor : Area2D
         Position = _defaultPosition;
         GlobalPosition = new Vector2(Mathf.Clamp(GlobalPosition.X, _limitLeft, _limitRight), Mathf.Clamp(GlobalPosition.Y, _limitTop, _limitBottom));
         Scale = _tumorSprite.Scale = new Vector2(Scale.X + 0.006f, Scale.Y + 0.006f);
-    }
-
-    public void n2evf7yUH3ZLT3x3N0___()
-    {
-        G.Scores = Mathf.Sqrt(G.Scores);
-
-        Node root = GetTree().Root;
-
-        var endOfEverything = (Level7EndOfAnEverything)GD.Load<PackedScene>("res://Content/Scenes/Other/EndOfAnEverything.tscn").Instantiate();
-        endOfEverything.Backup = G.Main;
-
-        QueueFree();
-        root.CallDeferred("remove_child", G.Main);
-
-        root.AddChild(endOfEverything);
     }
 }

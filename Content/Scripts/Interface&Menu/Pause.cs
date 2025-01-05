@@ -97,7 +97,11 @@ public partial class Pause : CanvasLayer
         else
             GetTree().ChangeSceneToFile("res://Content/Scenes/Interface&Menu/LevelEditor/LevelEditor.tscn");
 
+        if (IsInsideTree()) //In very rare cases (e.g. with a level 7 black screen), the node is not deleted correctly when the scene is changed. This fixes this bug.
+            G.Main.QueueFree();
+
         G.CompletelyResetValues();
+        G.BlockSavingSomeValues = true; //Addition to the previous bug. Read the description of the variable in G.
     }
 
 

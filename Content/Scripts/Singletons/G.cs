@@ -6,7 +6,7 @@ using System.IO;
 using System.Linq;
 
 /// <summary>
-/// G is gameplay singleton, that having importal information which may be needed in various places of the game. They will not save after exiting the game
+/// G is gameplay singleton, that having importal information or methods which may be needed in various places of the game. They will not save after exiting the game
 /// </summary>
 public partial class G : Node
 {
@@ -25,6 +25,7 @@ public partial class G : Node
         PlayerCorpseFlightTimer, // Starts after player dies
         AfterPlayerCorpseFlightTimer, // Starts when player death GUI starts appearing (Scores and "Press R")
         MusicStopTimeCode = 0; // It is necessary to put the music in the same position after restarting the level
+    public static bool BlockSavingSomeValues = false; // Due to bugs in the engine, if you first remove a scene and then add it to the tree again, it starts to behave strangely when deleting it. One of the cases is that music player saves timecode after all main values in G are reset. This variable is designed for such moments. It is disabled in the menu. If you use it in your own way on a level, you may need to disable it yourself.
 
     public static readonly string[] VanillaSkinNames = ["Slippey", "Samey", "Sanboy", "Strawman", "Pineplum", "Bondey", "Sleepy", "Daley", "Hostey", "CompressMass", "JioYobaFefski", "SlippeyChad", "MISSINGNULL", "Corey"];
 
@@ -286,7 +287,7 @@ public partial class G : Node
 		LevelCompleteTime = 150;
         AudioServer.SetBusEffectEnabled(2, 0, false);
 		AudioServer.SetBusEffectEnabled(6, 0, false);
-
+        
         for (int i = 0; i < TransitiveVariant.Length; i++)
             TransitiveVariant[i] = "";
 

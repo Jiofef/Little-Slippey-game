@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://dlscufxb5f1ca"]
+[gd_scene load_steps=36 format=3 uid="uid://dlscufxb5f1ca"]
 
 [ext_resource type="Script" path="res://Content/Scripts/Other/Player.cs" id="1"]
 [ext_resource type="AudioStream" uid="uid://422y36f6ucnf" path="res://Content/Sounds/Player/Climb.mp3" id="2_bn55d"]
@@ -29,6 +29,12 @@ size = Vector2(40, 56)
 
 [sub_resource type="RectangleShape2D" id="2"]
 size = Vector2(4, 56)
+
+[sub_resource type="LabelSettings" id="LabelSettings_nyxhd"]
+font_size = 22
+shadow_size = 0
+shadow_color = Color(0.223529, 0.203922, 0.341176, 1)
+shadow_offset = Vector2(2, 0)
 
 [sub_resource type="Gradient" id="Gradient_lmxa7"]
 offsets = PackedFloat32Array(0, 0.25, 0.75, 1)
@@ -255,6 +261,7 @@ theme_override_constants/shadow_offset_y = 0
 theme_override_constants/shadow_outline_size = 0
 theme_override_font_sizes/font_size = 22
 text = "000000000"
+label_settings = SubResource("LabelSettings_nyxhd")
 horizontal_alignment = 1
 
 [node name="EmergingElements" type="Node2D" parent="Camera2D/GUICanvas/GUI"]

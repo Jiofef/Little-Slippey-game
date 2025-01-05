@@ -1,9 +1,5 @@
 using Godot;
-using GodotSteam;
 using System;
-using System.Dynamic;
-using System.Linq;
-using System.Runtime.CompilerServices;
 
 public partial class Player : CharacterBody2D
 {
@@ -25,6 +21,10 @@ public partial class Player : CharacterBody2D
     [Signal] public delegate void PlayerDiedEventHandler();
 
     ///////////////////////////
+
+    // For the future if we have to access some Player nodes, and their path will be changed.
+    public const string CAMERA_PATH = "Camera2D", SCORES_PATH = "Camera2D/GUICanvas/GUI/Scores", GUI_CONTROL_PATH = "Camera2D/GUICanvas/GUI", GUI_CANVAS_PATH = "Camera2D/GUICanvas", AFTER_DEATH_GUI_PATH = "Camera2D/GUICanvas/GUI/EmergingElements"; 
+
 
     // Numeric variables
     private float _inertion, _wallJumpTimer = 0, //WallJumping

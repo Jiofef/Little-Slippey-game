@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://ctfykvmbo5pjb"]
+[gd_scene load_steps=5 format=3 uid="uid://ctfykvmbo5pjb"]
 
 [ext_resource type="Script" path="res://Content/Scripts/Levels/Level7MindTumor.cs" id="1_bjhm2"]
+[ext_resource type="Script" path="res://Content/Scripts/Levels/Level7TumorSprite.cs" id="2_6kndf"]
 [ext_resource type="Texture2D" uid="uid://dk3kpbxaofddl" path="res://Content/Sprites/Levels/Level7/MindTumor.png" id="2_qrpy6"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_p6ola"]
@@ -33,11 +34,12 @@ transform = Transform2D(1.5, 0, 0, 1.5, 0, 0)
 
 [node name="TumorSprite" type="Node2D" parent="CanvasLayer"]
 scale = Vector2(0.005, 0.005)
+script = ExtResource("2_6kndf")
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/TumorSprite"]
 scale = Vector2(0.05, 0.05)
 texture = ExtResource("2_qrpy6")
 
-[connection signal="area_entered" from="." to="." method="n2evf7yUH3ZLT3x3N0___" unbinds=1]
+[connection signal="area_entered" from="." to="." method="queue_free" unbinds=1]
 [connection signal="timeout" from="SafeTimer" to="CollisionShape2D" method="set_disabled" binds= [false]]
 [connection signal="timeout" from="LiveTimer" to="." method="queue_free"]

@@ -310,7 +310,7 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_21yo4"]
 _data = {
-&"Opening": SubResource("Animation_fkyqf")
+"Opening": SubResource("Animation_fkyqf")
 }
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_arrqn"]
@@ -440,7 +440,7 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_lksg7"]
 _data = {
-&"Opening": SubResource("Animation_u1qcf")
+"Opening": SubResource("Animation_u1qcf")
 }
 
 [sub_resource type="Animation" id="Animation_o3hvb"]
@@ -461,7 +461,7 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hhu4q"]
 _data = {
-&"Opening": SubResource("Animation_o3hvb")
+"Opening": SubResource("Animation_o3hvb")
 }
 
 [sub_resource type="Animation" id="Animation_vqvkn"]
@@ -482,7 +482,7 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3j25n"]
 _data = {
-&"Opening": SubResource("Animation_vqvkn")
+"Opening": SubResource("Animation_vqvkn")
 }
 
 [sub_resource type="Animation" id="Animation_nl1be"]
@@ -503,7 +503,7 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_d36to"]
 _data = {
-&"Opening": SubResource("Animation_nl1be")
+"Opening": SubResource("Animation_nl1be")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h77bd"]
@@ -615,7 +615,6 @@ rotation = 3.14159
 
 [node name="AchievementArea" parent="Secret" instance=ExtResource("5_mu3p2")]
 position = Vector2(296, 16)
-_achievementIndex = 31
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Secret/AchievementArea"]
 shape = SubResource("RectangleShape2D_3cqvc")
@@ -636,7 +635,7 @@ tile_set = SubResource("TileSet_gtmsj")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="OpenableTileMaps/DisposableButton/TileMap"]
 libraries = {
-&"": SubResource("AnimationLibrary_21yo4")
+"": SubResource("AnimationLibrary_21yo4")
 }
 
 [node name="DisposableButton2" parent="OpenableTileMaps" instance=ExtResource("2_og6f4")]
@@ -652,7 +651,7 @@ tile_set = SubResource("TileSet_kg6r8")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="OpenableTileMaps/DisposableButton2/TileMap"]
 libraries = {
-&"": SubResource("AnimationLibrary_lksg7")
+"": SubResource("AnimationLibrary_lksg7")
 }
 
 [node name="DisposableButton3" parent="OpenableTileMaps" instance=ExtResource("2_og6f4")]
@@ -668,7 +667,7 @@ tile_set = SubResource("TileSet_gtmsj")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="OpenableTileMaps/DisposableButton3/TileMap"]
 libraries = {
-&"": SubResource("AnimationLibrary_hhu4q")
+"": SubResource("AnimationLibrary_hhu4q")
 }
 
 [node name="DisposableButton4" parent="OpenableTileMaps" instance=ExtResource("2_og6f4")]
@@ -684,7 +683,7 @@ tile_set = SubResource("TileSet_gtmsj")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="OpenableTileMaps/DisposableButton4/TileMap"]
 libraries = {
-&"": SubResource("AnimationLibrary_3j25n")
+"": SubResource("AnimationLibrary_3j25n")
 }
 
 [node name="DisposableButton5" parent="OpenableTileMaps" instance=ExtResource("2_og6f4")]
@@ -700,7 +699,7 @@ tile_set = SubResource("TileSet_gtmsj")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="OpenableTileMaps/DisposableButton5/TileMap"]
 libraries = {
-&"": SubResource("AnimationLibrary_d36to")
+"": SubResource("AnimationLibrary_d36to")
 }
 
 [node name="Acid" type="Node2D" parent="."]

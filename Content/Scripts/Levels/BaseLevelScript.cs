@@ -7,6 +7,7 @@ public partial class BaseLevelScript : Node2D
 {
     PackedScene[] _crosses = new PackedScene[G.CrossesInGameTotal];
 
+    public const float CROSSES_SPAWN_START_TIMER = 1.5f;
     Random _random = new Random();
     private int[] _crossDefaultWeight = { 600, 170, 80, 40, 110 };
     private float[] _crossWeight = new float[G.CrossesInGameTotal];
@@ -109,7 +110,7 @@ public partial class BaseLevelScript : Node2D
         }
 
 
-        if (G.IsCrossesEnabled)
+        if (G.IsCrossesEnabled && G.Scores > CROSSES_SPAWN_START_TIMER)
         {
             int RandomRange = 20 - Meta.Instance.Gameplay.Dificulty * 5;
             RandomRange = (int)((RandomRange - (RandomRange / 2 - G.PlayerMoveCoeff * RandomRange / 2)) / G.CrossSpawnMultiplier);
