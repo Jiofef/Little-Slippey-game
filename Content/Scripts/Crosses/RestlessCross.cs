@@ -5,6 +5,8 @@ public partial class RestlessCross : Node2D
 {
     Sprite2D _crossSprite, _warningSprite;
 
+    private const int MAX_ROTATION = 45;
+
     protected int _ticksToExplosion = 60;
     protected float _defaultTicksToAppear = 60;
     protected float _ticksToAppear = 0;
@@ -15,15 +17,21 @@ public partial class RestlessCross : Node2D
     private bool _isSignaled;
     private float _timerToExplosion;
 
+    // Visual rotating effect
+    private bool _shouldRotate = Meta.Instance.Video.CrossRotationWhenSpawning;
+
+
     public override void _Ready()
     {
         _ticksToAppear = _defaultTicksToAppear;
 
-        Random random = new Random();
-        _defaultRotation = random.Next(-75, 75);
-        _rotationGoal = random.Next(-30, 30);
 
+        Random random = new Random();
+        _defaultRotation = random.Next(-180, 180);
         RotationDegrees = _defaultRotation;
+
+        if (_shouldRotate)
+            _rotationGoal = random.Next(-MAX_ROTATION, MAX_ROTATION);
 
         _crossSprite = GetNode<Sprite2D>("CrossSprite");
         _warningSprite = GetNode<Sprite2D>("WarningSprite");
@@ -37,7 +45,10 @@ public partial class RestlessCross : Node2D
             float TicksCoeff = 1 - (_ticksToAppear / _defaultTicksToAppear);
             TicksCoeff = Mathf.Lerp(0.0f, 1.0f, 1 - (1 - TicksCoeff) * (1 - TicksCoeff) * (1 - TicksCoeff));
 
-            RotationDegrees = _defaultRotation + _rotationGoal * TicksCoeff;
+            RotationDegrees = _defaultRotation;
+            if (_shouldRotate)
+                RotationDegrees += _rotationGoal * TicksCoeff;
+
             _warningSprite.GlobalPosition = _crossSprite.GlobalPosition - new Vector2(2, 2) * (3 - 2 * TicksCoeff);
             Scale = new Vector2(3 - 2 * TicksCoeff, 3 - 2 * TicksCoeff);
             Modulate = new Color(Modulate.R, Modulate.G, Modulate.B, TicksCoeff);

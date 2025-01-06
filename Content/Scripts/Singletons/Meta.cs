@@ -6,12 +6,12 @@ public partial class Meta : Node
 {
     //Meta is the singleton that having various options for gameplay, video and other. It saves and when you enter the game, you will find the same settings that you set earlier
 
-    public static Meta OptionsReserve = new Meta(); //Reserve in case user will click cancel options or will pressed escape button
-    public static Meta Instance = new Meta(); //And default Meta Instance
+    public static Meta OptionsReserve = new Meta(); //Reserve in case user will click cancel options or will press escape button
+    public static Meta Instance = new Meta(); //And default Meta Instance. Has applied options.
 
     public class SoundClass
     {
-        public float[] BusVolumes = { 0.4f, 1, 1, 1, 1, 1, 1 }; //in this array #0 is _master, #1 - Interface, #2 - Music, #3 - Player, #4 - Crossounds, #5 - Crossexplosion
+        public float[] BusVolumes = { 0.4f, 1, 1, 1, 1, 1, 1 }; //in this array #0 is Master, #1 - Interface, #2 - Music, #3 - Player, #4 - Crossounds, #5 - Crossexplosion
     }
     public SoundClass Sound = new SoundClass();
 
@@ -21,8 +21,10 @@ public partial class Meta : Node
         public bool IsFullScreen = false;
         public Vector2I WindowSize = new Vector2I(1280, 720);
         public bool VSyncOn = false;
+        public int MaxFrameRate = 60;
         public float CameraZoom = 1.25f;
         public byte ScoresLabelLocationX = 1, ScoresLabelLocationY = 0, ScoresShowingFormatIndex = 0;
+        public bool CrossRotationWhenSpawning = true;
         public enum Language { en, ru }
         public Language language;
     }
@@ -47,6 +49,7 @@ public partial class Meta : Node
         DisplayServer.WindowSetMode(Instance.Video.IsFullScreen ? DisplayServer.WindowMode.Fullscreen : DisplayServer.WindowMode.Windowed);
         DisplayServer.WindowSetSize(Instance.Video.WindowSize);
         DisplayServer.WindowSetVsyncMode(Instance.Video.VSyncOn ? DisplayServer.VSyncMode.Enabled : DisplayServer.VSyncMode.Disabled);
+        Engine.MaxFps = Instance.Video.MaxFrameRate;
         TranslationServer.SetLocale(Video.language.ToString());
         ProjectSettings.SetSetting("gui/theme/custom_font", "FontPath");
     }
@@ -62,11 +65,13 @@ public partial class Meta : Node
         ReturnMeta.Video.IsFullScreen = Video.IsFullScreen;
         ReturnMeta.Video.WindowSize = Video.WindowSize;
         ReturnMeta.Video.VSyncOn = Video.VSyncOn;
+        ReturnMeta.Video.MaxFrameRate = Video.MaxFrameRate;
         ReturnMeta.Video.ScoresShowingFormatIndex = Video.ScoresShowingFormatIndex;
         ReturnMeta.Video.CameraZoom = Video.CameraZoom;
-        ReturnMeta.Video.language = Video.language;
         ReturnMeta.Video.ScoresLabelLocationX = Video.ScoresLabelLocationX;
         ReturnMeta.Video.ScoresLabelLocationY = Video.ScoresLabelLocationY;
+        ReturnMeta.Video.CrossRotationWhenSpawning = Video.CrossRotationWhenSpawning;
+        ReturnMeta.Video.language = Video.language;
 
         //Gameplay
         ReturnMeta.Gameplay.Dificulty = Gameplay.Dificulty;
@@ -85,10 +90,12 @@ public partial class Meta : Node
             {"window_size_x", Video.WindowSize.X},
             {"window_size_y", Video.WindowSize.Y},
             {"v_sync_on", Video.VSyncOn},
+            {"max_frame_rate", Video.MaxFrameRate},
             {"scores_showing_format_index", Video.ScoresShowingFormatIndex},
             {"scores_label_location_x", Video.ScoresLabelLocationX},
             {"scores_label_location_y", Video.ScoresLabelLocationY},
             {"camera_zoom", Video.CameraZoom},
+            {"cross_rotation_when_spawning", Video.CrossRotationWhenSpawning},
             {"language", Convert.ToInt32(Video.language)},
             {"dificulty", Gameplay.Dificulty},
             {"addition_status0", Gameplay.AdditionStatuses[0]},
@@ -113,10 +120,12 @@ public partial class Meta : Node
         ReturnOptions.IsFullScreen = false;
         ReturnOptions.WindowSize = new Vector2I(1280, 720);
         ReturnOptions.VSyncOn = false;
+        ReturnOptions.MaxFrameRate = 60;
         ReturnOptions.CameraZoom = 1.25f;
         ReturnOptions.ScoresLabelLocationX = 1;
         ReturnOptions.ScoresLabelLocationY = 0;
         ReturnOptions.ScoresShowingFormatIndex = 0;
+        ReturnOptions.CrossRotationWhenSpawning = true;
         ReturnOptions.language = VideoClass.Language.en;
 
         return ReturnOptions;
@@ -154,9 +163,11 @@ public partial class Meta : Node
             Video.IsFullScreen = (bool)model["is_full_screen"];
             Video.WindowSize = new Vector2I((int)model["window_size_x"], (int)model["window_size_y"]);
             Video.VSyncOn = (bool)model["v_sync_on"];
+            Video.MaxFrameRate = (int)model["max_frame_rate"];
             Video.ScoresShowingFormatIndex = (byte)model["scores_showing_format_index"];
             Video.ScoresLabelLocationX = (byte)model["scores_label_location_x"];
             Video.ScoresLabelLocationY = (byte)model["scores_label_location_y"];
+            Video.CrossRotationWhenSpawning = (bool)model["cross_rotation_when_spawning"];
             Video.CameraZoom = (float)model["camera_zoom"];
             Video.language = (VideoClass.Language)(int)(model["language"]);
 

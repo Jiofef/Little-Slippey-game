@@ -21,6 +21,9 @@ public partial class ElementalCross : Node2D
     private Sprite2D _core, _redPart, _greenPart, _bluePart;
     private Node2D _sprites;
 
+    // Visual rotating effect
+    private bool _shouldRotate = Meta.Instance.Video.CrossRotationWhenSpawning;
+
     public override void _Ready()
     {
         Random random = new Random();
@@ -28,10 +31,13 @@ public partial class ElementalCross : Node2D
 
         _ticksToAppear = _defaultTicksToAppear;
 
-        _defaultRotation = random.Next(-30, 30);
-        _rotationDirection = random.Next(2) == 0 ? 2 : -2;
+        if (_shouldRotate)
+        {
+            _defaultRotation = random.Next(-30, 30);
+            _rotationDirection = random.Next(2) == 0 ? 2 : -2;
 
-        RotationDegrees = _defaultRotation;
+            RotationDegrees = _defaultRotation;
+        }
 
         _core = GetNode<Sprite2D>("Sprites/Core");
         _redPart = GetNode<Sprite2D>("Sprites/RedPart");
@@ -52,7 +58,8 @@ public partial class ElementalCross : Node2D
             float TicksCoeff = 1 - (_ticksToAppear / _defaultTicksToAppear);
             TicksCoeff = Mathf.Lerp(0.0f, 1.0f, 1 - (1 - TicksCoeff) * (1 - TicksCoeff) * (1 - TicksCoeff));
 
-            RotationDegrees += _rotationDirection * Mathf.Sqrt(_ticksToAppear / _defaultTicksToAppear);
+            if (_shouldRotate)
+                RotationDegrees += _rotationDirection * Mathf.Sqrt(_ticksToAppear / _defaultTicksToAppear);
             Scale = new Vector2(3 - 2 * TicksCoeff, 3 - 2 * TicksCoeff);
 
             Modulate = new Color(Modulate.R, Modulate.G, Modulate.B, TicksCoeff);

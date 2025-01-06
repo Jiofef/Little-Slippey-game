@@ -103,8 +103,11 @@ public partial class G : Node
     #region May be used however you want
     public static bool IsProgressPaused = false, // Enables or disables the earning of points and increasing the difficulty of crosses
                        IsCrossesEnabled = true, // Enables or disables the spawn of crosses
+                       IsDebugEnabled = true, // If enabled, Alt+Z enables immortality, Alt+X disables player's physics, Alt+C disables the crosses. Also Alt + scrolling up your mouse wheel gives you +5 scores for every "scroll step" (Alt + scrolling down does the opposite)
+                       
                        DidLevelIntroPassed, // If the intro is missing or changed in your level, you may want to set this value yourself
-                       IsDebugEnabled = true; // If enabled, Alt+Z enables immortality, Alt+X disables player's physics, Alt+C disables the crosses. Also Alt + scrolling up your mouse wheel gives you +5 scores for every "scroll step" (Alt + scrolling down does the opposite)
+                       WasTheLevelRestarted; // Essentially a continuation of the previous variable. But this one obviously has the difference that it becomes true only when the level is reloaded
+
 
     public static float Scores = 0, // Speaks for itself
                        CrossSpawnMultiplier = 1, // Too
@@ -264,33 +267,51 @@ public partial class G : Node
 
     public static void ResetValues() // Usually used during a level restart
     {
+        //
 		IsNewRecordReached = false;
-		IsPlayerDead = false;
-		PlayerCorpseFlightTimer = 0;
-		ResetTimer = 0;
+
+        // Consequences after death
+        IsPlayerDead = false;
+        PlayerCorpseFlightTimer = 0;
 		AfterPlayerCorpseFlightTimer = 0;
-		Scores = 0;
+
+        // Numbers? Idk
+        ResetTimer = 0;
+        Scores = 0;
     }
 	public static void CompletelyResetValues() // Usually used during the exit from the level
     {
 		ResetValues();
-		LevelAdditionalLink = null;
-		IsProgressPaused = false;
-		CrossSpawnMultiplier = 1;
+
+        //Level info
+        CurrentLevel = 0;
+        LevelAdditionalLink = null;
+
+        DidLevelIntroPassed = false;
+        WasTheLevelRestarted = false;
+
+        IsProgressPaused = false;
+
+        //Crosses
 		IsCrossesEnabled = true;
 		CrossesProgressCoeff = 1;
-		CurrentLevel = 0;
-        DidLevelIntroPassed = false;
+        CrossSpawnMultiplier = 1;
+
+
+
+        //Music
         MusicStartPosition = 0;
         MusicStopTimeCode = 0;
         MusicName = "";
-		LevelCompleteTime = 150;
+
+        //Sounds (I don't remember why this code is here, I'm afraid to remove it, just shhhh.)
         AudioServer.SetBusEffectEnabled(2, 0, false);
 		AudioServer.SetBusEffectEnabled(6, 0, false);
         
         for (int i = 0; i < TransitiveVariant.Length; i++)
             TransitiveVariant[i] = "";
 
+        //For mods
         IsLevelVanilla = true;
         ModManager.CurrentModMapFolderName = "";
     }

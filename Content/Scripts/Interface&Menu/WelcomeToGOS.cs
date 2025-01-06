@@ -8,7 +8,6 @@ public partial class WelcomeToGOS : Control
     int _openedMenuNumber; // if value == 0, there are no opened menus
     public override void _Ready()
 	{
-        GD.Print(Mathf.Sqrt(-1));
         G.BlockSavingSomeValues = false; //A small crutch to fix the engine bug. Read the assignment of a variable in G.
 
         Achievements.CurrentPopupAchievementsLayer = GetNode<CanvasLayer>("PopupAchievementsLayer");

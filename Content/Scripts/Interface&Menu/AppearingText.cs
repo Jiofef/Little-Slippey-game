@@ -61,7 +61,7 @@ public partial class AppearingText : RichTextLabel
 
 
 
-	new public void SetText(string value, float charactersPerSecond = DEFAULT_CHARS_PER_SEC)
+	public void SetText(string value, float charactersPerSecond = DEFAULT_CHARS_PER_SEC)
 	{
 		VisibleCharacters = 0;
 		SetAppearing(true);

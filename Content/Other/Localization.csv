@@ -38,6 +38,8 @@ Window size,Window size,Разрешение окна
 VSync,VSync,Вертикальная синхронизация
 On,On,Вкл
 Off,Off,Выкл
+Max frame rate,Max frame rate,Максимальная частота кадров
+Cross rotation when spawning,Cross rotation when spawning,Вращение меток при спавне
 Scores label mode,Scores label mode,Режим отображения очков
 Large,Large,Большие
 Small,Small,Маленькие
@@ -121,8 +123,6 @@ M7SSINGNULL,M7SSINGNULL,М7SSINGNULL
 Corey,Corey,Кори
 Skins: ,Skins: ,Скины:
 of,of,из
-,,
-,,
 ,,
 ,,
 ,,
@@ -774,3 +774,31 @@ This is standing penalty scale.,This is standing penalty scale.,Это шкал�
 "If you're moving fast, the scale goes down.","If you're moving fast, the scale goes down.","Если ты двигаешься быстро, шкала спадает."
 "In short, move more.","In short, move more.","В общем, двигайся больше."
 I hope that's clear.,I hope that's clear.,Надеюсь всё понятно.
+,,
+,,
+,,
+"Yeah, I agree with you.",,"Да, я согласен с тобой."
+"It's a total piece of crap, not a level.",,"Это полное фуфло, а не уровень."
+It's a mindless mess.,,Безыдейное месиво.
+I'm not even gonna argue.,,Я даже спорить не буду.
+"In our postmodern era, it's common to justify complete shit by saying “I did it bad on purpose”, isn't it?",,"Вообще прикольно в нашу постмодернистскую эпоху стало оправдывать лютый кал тем, что ""Ну я специально так плохо сделал"", да?"
+*Hahaha*,,*Ахахах*
+Programs don't break like that.,,Не ломаются так программы.
+And a lot of things are not really done the way they are shown to us in games and movies.,,"Да и куча на самом деле всего не делается так, как нам в играх и кино показывают."
+Somehow we've gotten used to these conventions.,,Мы как-то уже забили на эти условности.
+It's one thing when they're woven in intelligently.,,"Одно дело, когда они вплетены грамотно."
+"But, uh. You're not blind, are you?",,Но... Ты ж не слепой надеюсь?
+You have no idea how many white threads I had to weave into this “monster” to keep it from falling apart.,,"Ты даже не представляешь, сколькими белыми нитями мне пришлось исшить это ""чудище"", чтобы оно не развалилось."
+Have you ever wondered what you're running the levels through?,,"Ты например задавался вопросом, через что ты уровни запускаешь?"
+"Why the hell is there a program called ""Levels"" in the interface, simulating a working computer, when in fact it is a folder with camera recordings?",,"Какого чёрта в интерфейсе, имитирующем рабочий компьютер затесалась программа с названием ""Уровни"", хотя по факту это папка с записями камер?"
+How come there are settings on that computer that change the course of those recordings?,,"Откуда на этом же компьютере настройки, меняющие ход этих записей?"
+"And how did deleting some mod manage to change, again, the recordings already made?",,"И как удаление какого-то мода смогло поменять, опять же, уже сделанные записи?"
+Why is there... A story... Here?..,,Зачем... Здесь... Сюжет?..
+"Well, we both know who it's for anyway.",,"Ну, мы оба знаем, для кого это делается, в любом случае."
+They'll just make it up as they go along and write me a story 3 games ahead of time.,,"Один хрен, сами всё додумают и напишут мне сюжет на 3 игры вперёд."
+"Although, to be honest, I didn't intend it that way...",,"Хотя, честно, я так не задумывал..."
+"When I started making this game, the ""creepy things in a cute wrapper"" setting wasn't that hackneyed yet.",,"Когда я начинал делать эту игру, сеттинг ""крипота в милой обёртке"" был ещё не настолько заезжен."
+I wasn't that old.,,Я был ещё не настолько стар.
+And... Not that far behind.,,И... Не настолько отстал.
+"I used to have eyes light up, too",,Когда-то у меня тоже горели глаза.
+And they burned,,И сгорели

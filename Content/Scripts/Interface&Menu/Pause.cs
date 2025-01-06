@@ -28,20 +28,25 @@ public partial class Pause : CanvasLayer
         else G.ResetTimer = G.ResetTimer > 0 ? G.ResetTimer - 0.016667f : 0;
 
         if (G.ResetTimer > 1.5f)
+            Reset();
+    }
+
+    private void Reset()
+    {
+        G.WasTheLevelRestarted = true;
+
+        G.IsCrossesEnabled = true;
+        G.IsProgressPaused = false;
+        G.CrossSpawnMultiplier = 1;
+        G.Main.EmitSignal("OnLevelResetting");
+        if (G.IsLevelVanilla)
         {
-            G.IsCrossesEnabled = true;
-            G.IsProgressPaused = false;
-            G.CrossSpawnMultiplier = 1;
-            G.Main.EmitSignal("OnLevelResetting");
-            if (G.IsLevelVanilla)
-            {
-                UnchangableMeta.SaveRecords();
-                G.Main.LoadScene("res://Content/Scenes/Levels/FullParts/Level" + G.CurrentLevel + G.LevelAdditionalLink + ".tscn");
-            }
-            else
-            {
-                G.Main.LoadScene(G.ModMapPath);
-            }
+            UnchangableMeta.SaveRecords();
+            G.Main.LoadScene("res://Content/Scenes/Levels/FullParts/Level" + G.CurrentLevel + G.LevelAdditionalLink + ".tscn");
+        }
+        else
+        {
+            G.Main.LoadScene(G.ModMapPath);
         }
     }
 

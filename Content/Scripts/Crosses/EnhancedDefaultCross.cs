@@ -5,6 +5,8 @@ public partial class EnhancedDefaultCross : Node2D
 {
     Sprite2D _crossSprite, _warningSprite;
 
+    private const int MAX_ROTATION = 30;
+
     private int _ticksToExplosion = 90;
     private float _warningSpriteFallSpeedMultiplier = -1f;
 
@@ -14,16 +16,23 @@ public partial class EnhancedDefaultCross : Node2D
     private float _defaultRotation;
     private float _rotationGoal;
 
+    // Visual rotating effect
+    private bool _shouldRotate = Meta.Instance.Video.CrossRotationWhenSpawning;
+
     public override void _Ready()
     {
         _ticksToAppear = _defaultTicksToAppear;
 
-        Random random = new Random();
-        _defaultRotation = random.Next(-75, 75);
-        _rotationGoal = random.Next(-30, 30);
+        if (_shouldRotate)
+        {
+            Random random = new Random();
+            _defaultRotation = random.Next(-75, 75);
+            _rotationGoal = random.Next(-MAX_ROTATION, MAX_ROTATION);
 
-        RotationDegrees = _defaultRotation;
+            RotationDegrees = _defaultRotation;
+        }
 
+        // Initializing nodes
         _crossSprite = GetNode<Sprite2D>("CrossSprite");
         _warningSprite = GetNode<Sprite2D>("WarningSprite");
     }
@@ -35,7 +44,8 @@ public partial class EnhancedDefaultCross : Node2D
             float TicksCoeff = 1 - (_ticksToAppear / _defaultTicksToAppear);
             TicksCoeff = Mathf.Lerp(0.0f, 1.0f, 1 - (1 - TicksCoeff) * (1 - TicksCoeff) * (1 - TicksCoeff));
 
-            RotationDegrees = _defaultRotation + _rotationGoal * TicksCoeff;
+            if (_shouldRotate)
+                RotationDegrees = _defaultRotation + _rotationGoal * TicksCoeff;
             Scale = new Vector2(3 - 2 * TicksCoeff, 3 - 2 * TicksCoeff);
             Modulate = new Color(Modulate.R, Modulate.G, Modulate.B, TicksCoeff);
         }

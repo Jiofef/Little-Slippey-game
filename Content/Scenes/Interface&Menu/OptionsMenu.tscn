@@ -148,7 +148,27 @@ size_flags_vertical = 4
 layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="ScoresLabelMode" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer" index="6"]
+[node name="MaxFrameRate" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer" index="6"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Name" type="Label" parent="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer/MaxFrameRate" index="0"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+text = "Max frame rate"
+
+[node name="SpinBox" type="SpinBox" parent="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer/MaxFrameRate" index="1"]
+layout_mode = 2
+min_value = 10.0
+max_value = 1000.0
+value = 60.0
+
+[node name="Mi2" type="HSeparator" parent="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer" index="7"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="ScoresLabelMode" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer" index="8"]
 layout_mode = 2
 theme_override_constants/separation = 16
 
@@ -168,11 +188,11 @@ popup/item_1/id = 1
 popup/item_2/text = "Hide"
 popup/item_2/id = 2
 
-[node name="Fa" type="HSeparator" parent="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer" index="7"]
+[node name="Fa" type="HSeparator" parent="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer" index="9"]
 layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="ScoresLabelLocation" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer" index="8"]
+[node name="ScoresLabelLocation" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer" index="10"]
 layout_mode = 2
 theme_override_constants/separation = 16
 
@@ -223,11 +243,11 @@ button_group = SubResource("ButtonGroup_0o8lr")
 layout_mode = 2
 button_group = SubResource("ButtonGroup_0o8lr")
 
-[node name="So" type="HSeparator" parent="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer" index="9"]
+[node name="So" type="HSeparator" parent="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer" index="11"]
 layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="CameraZoom" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer" index="10"]
+[node name="CameraZoom" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer" index="12"]
 layout_mode = 2
 theme_override_constants/separation = 16
 
@@ -252,11 +272,31 @@ step = 0.15
 value = 1.25
 scrollable = false
 
-[node name="La" type="HSeparator" parent="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer" index="11"]
+[node name="La" type="HSeparator" parent="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer" index="13"]
 layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="Language" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer" index="12"]
+[node name="CrossRotationWhenSpawning" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer" index="14"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Name" type="Label" parent="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer/CrossRotationWhenSpawning" index="0"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+text = "Cross rotation when spawning"
+
+[node name="CheckBox" type="CheckBox" parent="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer/CrossRotationWhenSpawning" index="1"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+button_pressed = true
+
+[node name="La2" type="HSeparator" parent="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer" index="15"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Language" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer" index="16"]
 layout_mode = 2
 theme_override_constants/separation = 16
 
@@ -276,11 +316,11 @@ popup/item_1/text = "Russian"
 popup/item_1/icon = ExtResource("8_42rvm")
 popup/item_1/id = 1
 
-[node name="Ti" type="HSeparator" parent="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer" index="13"]
+[node name="Ti" type="HSeparator" parent="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer" index="17"]
 layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="SmallGnomes" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer" index="14"]
+[node name="SmallGnomes" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer" index="18"]
 layout_mode = 2
 theme_override_constants/separation = 16
 
@@ -295,7 +335,7 @@ custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 text = "No!"
 
-[node name="Do2" type="HSeparator" parent="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer" index="15"]
+[node name="Do2" type="HSeparator" parent="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer" index="19"]
 layout_mode = 2
 theme_override_constants/separation = 12
 
@@ -695,8 +735,10 @@ DisableProcessDisabling = false
 [connection signal="item_selected" from="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer/ScreenMode/OptionButton" to="." method="ChangeScreenFormat"]
 [connection signal="item_selected" from="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer/WindowSize/OptionButton" to="." method="ChangeWindowSize"]
 [connection signal="toggled" from="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer/VSync/CheckBox" to="." method="ChangeVSync"]
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer/MaxFrameRate/SpinBox" to="." method="ChangeMaxFrameRate"]
 [connection signal="item_selected" from="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer/ScoresLabelMode/OptionButton" to="." method="ChangeScoresShowingFormat"]
 [connection signal="value_changed" from="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer/CameraZoom/Slider" to="." method="CameraZoomChanged"]
+[connection signal="toggled" from="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer/CrossRotationWhenSpawning/CheckBox" to="." method="ChangeCrossRotationWhenSpawning"]
 [connection signal="item_selected" from="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer/Language/OptionButton" to="." method="SetLanguage"]
 [connection signal="value_changed" from="MarginContainer/VBoxContainer/Tabs/Sound/MarginContainer/VBoxContainer/Global/Slider" to="." method="SoundChanging" binds= [0]]
 [connection signal="value_changed" from="MarginContainer/VBoxContainer/Tabs/Sound/MarginContainer/VBoxContainer/Interface/Slider" to="." method="SoundChanging" binds= [1]]
