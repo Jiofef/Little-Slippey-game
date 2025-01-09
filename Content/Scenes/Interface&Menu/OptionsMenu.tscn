@@ -38,6 +38,7 @@ _data = {
 [node name="OptionsMenu" instance=ExtResource("1_tw6c3")]
 process_mode = 3
 clip_contents = false
+custom_minimum_size = Vector2(800, 640)
 offset_left = 260.0
 offset_top = 40.0
 offset_right = -220.0

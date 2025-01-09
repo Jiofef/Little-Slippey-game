@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=48 format=3 uid="uid://dkitr1ftp0yhs"]
+[gd_resource type="Theme" load_steps=53 format=3 uid="uid://dkitr1ftp0yhs"]
 
 [ext_resource type="Texture2D" uid="uid://dsjclghg3lapq" path="res://Content/Sprites/Interface/Buttons/SliderGrabber.png" id="1_jkmd4"]
 [ext_resource type="Texture2D" uid="uid://cl2nf0eg2ercq" path="res://Content/Sprites/Interface/Buttons/SliderGrabberDisabled.png" id="2_upkyk"]
@@ -223,6 +223,31 @@ texture_margin_bottom = 8.0
 expand_margin_top = 4.0
 modulate_color = Color(0.783523, 0.783523, 0.783523, 1)
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_df3xd"]
+texture = ExtResource("15_4h3g1")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 2.0
+expand_margin_top = 4.0
+expand_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_761bi"]
+texture = ExtResource("8_fyjp6")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fd5y8"]
+texture = ExtResource("15_4h3g1")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 2.0
+expand_margin_top = 4.0
+expand_margin_bottom = 4.0
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_flkx4"]
 bg_color = Color(0.772549, 0.768627, 0.733333, 1)
 border_width_left = 4
@@ -272,6 +297,10 @@ border_color = Color(0.731449, 0.727062, 0.687878, 1)
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_fws1l"]
 thickness = 4
 vertical = true
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_7521p"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_2hou8"]
 
 [resource]
 CheckBox/colors/font_color = Color(0.184314, 0.180392, 0.192157, 1)
@@ -353,6 +382,14 @@ TabContainer/styles/tab_disabled = SubResource("StyleBoxTexture_wxl46")
 TabContainer/styles/tab_hovered = SubResource("StyleBoxTexture_qji7u")
 TabContainer/styles/tab_selected = SubResource("StyleBoxTexture_eq75p")
 TabContainer/styles/tab_unselected = SubResource("StyleBoxTexture_yog1c")
+TextEdit/colors/font_color = Color(0.184314, 0.180392, 0.192157, 1)
+TextEdit/colors/font_placeholder_color = Color(0.875, 0.875, 0.875, 0.6)
+TextEdit/colors/font_readonly_color = Color(0.184314, 0.180392, 0.192157, 1)
+TextEdit/colors/font_selected_color = Color(0.184314, 0.180392, 0.192157, 1)
+TextEdit/font_sizes/font_size = 22
+TextEdit/styles/focus = SubResource("StyleBoxTexture_df3xd")
+TextEdit/styles/normal = SubResource("StyleBoxTexture_761bi")
+TextEdit/styles/read_only = SubResource("StyleBoxTexture_fd5y8")
 VScrollBar/styles/grabber = SubResource("StyleBoxFlat_flkx4")
 VScrollBar/styles/grabber_highlight = SubResource("StyleBoxFlat_ba3h1")
 VScrollBar/styles/grabber_pressed = SubResource("StyleBoxFlat_toqv1")
@@ -360,3 +397,5 @@ VScrollBar/styles/scroll = SubResource("StyleBoxFlat_cyd6e")
 VScrollBar/styles/scroll_focus = SubResource("StyleBoxFlat_flkx4")
 VSeparator/constants/separation = 12
 VSeparator/styles/separator = SubResource("StyleBoxLine_fws1l")
+Window/styles/embedded_border = SubResource("StyleBoxLine_7521p")
+Window/styles/embedded_unfocused_border = SubResource("StyleBoxLine_2hou8")

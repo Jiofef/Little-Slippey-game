@@ -165,3 +165,12 @@ offset_top = -4.0
 offset_right = 4.0
 grow_vertical = 0
 mouse_default_cursor_shape = 11
+
+[connection signal="gui_input" from="FlexBorders/Left" to="." method="BorderGuiInput" binds= ["Left"]]
+[connection signal="gui_input" from="FlexBorders/Up" to="." method="BorderGuiInput" binds= ["Up"]]
+[connection signal="gui_input" from="FlexBorders/Down" to="." method="BorderGuiInput" binds= ["Down"]]
+[connection signal="gui_input" from="FlexBorders/Right" to="." method="BorderGuiInput" binds= ["Right"]]
+[connection signal="gui_input" from="FlexBorders/LeftUp" to="." method="BorderGuiInput" binds= ["LeftUp"]]
+[connection signal="gui_input" from="FlexBorders/RightUp" to="." method="BorderGuiInput" binds= ["RightUp"]]
+[connection signal="gui_input" from="FlexBorders/RightDown" to="." method="BorderGuiInput" binds= ["RightDown"]]
+[connection signal="gui_input" from="FlexBorders/LeftDown" to="." method="BorderGuiInput" binds= ["LeftDown"]]

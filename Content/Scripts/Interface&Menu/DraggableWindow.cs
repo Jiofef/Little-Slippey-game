@@ -52,7 +52,6 @@ public partial class DraggableWindow : FlexibleWindow
         if (@event.IsActionPressed("MouseLeftClick"))
         {
             _isDragging = true;
-            SetProcess(true);
             _savedMousePos = GetLocalMousePosition();
         }
         if (@event is InputEventMouseMotion)
@@ -63,7 +62,8 @@ public partial class DraggableWindow : FlexibleWindow
 
     public override void _Process(double delta)
     {
-        var blueBox = GetNode<NinePatchRect>("MarginContainer/VBoxContainer/BlueBox");
+        base._Process(delta);
+
         if (_isDragging)
         {
             Vector2 LocalMousePos = GetLocalMousePosition();
@@ -82,14 +82,21 @@ public partial class DraggableWindow : FlexibleWindow
 
             if (Velocity.LengthSquared() < 1 && -0.05f < RotationDegrees && RotationDegrees < 0.05f)
             {
-                SetProcess(false);
                 Velocity = Vector2.Zero;
                 Rotation = 0;
             }
 
         }
+
+        if (Velocity == Vector2.Zero && Rotation == 0)
+            return;
+
+        var blueBox = GetNode<NinePatchRect>("MarginContainer/VBoxContainer/BlueBox");
+
         Vector2 blueBoxPos = blueBox.GlobalPosition - GlobalPosition;
-        GlobalPosition = new Vector2(Math.Clamp(GlobalPosition.X, -blueBoxPos.X, 1280 - blueBox.Size.X - blueBoxPos.X), Math.Clamp(GlobalPosition.Y + blueBox.Position.Y, -blueBoxPos.Y, 720 - blueBox.Size.Y - blueBoxPos.Y));
+        //GD.Print(blueBoxPos);
+        //GD.Print(1280 - blueBox.Size.X - blueBoxPos.X);
+        GlobalPosition = new Vector2(Math.Clamp(GlobalPosition.X, -Size.X + 80, 1280 - 80 - blueBoxPos.X), Math.Clamp(GlobalPosition.Y + blueBox.Position.Y, -blueBoxPos.Y, 720 - blueBox.Size.Y - blueBoxPos.Y));
         Velocity /= 1.25f;
         Rotation /= 1.1f;
 

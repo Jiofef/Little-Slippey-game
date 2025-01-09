@@ -1,9 +1,10 @@
-[gd_scene load_steps=72 format=3 uid="uid://ufrdtjstxptm"]
+[gd_scene load_steps=74 format=3 uid="uid://ufrdtjstxptm"]
 
 [ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/SkinsMenu.cs" id="1_81lvq"]
 [ext_resource type="PackedScene" uid="uid://cb3550p76ubc8" path="res://Content/Scenes/Interface&Menu/DraggableWindow.tscn" id="1_w6uws"]
 [ext_resource type="Texture2D" uid="uid://dxt3rcbkxua06" path="res://Content/Sprites/Interface/Buttons/SkinButton.png" id="2_5tg7d"]
 [ext_resource type="PackedScene" uid="uid://bwpstpk1xmkah" path="res://Content/Scenes/Interface&Menu/Button.tscn" id="2_oge4l"]
+[ext_resource type="Theme" uid="uid://dkitr1ftp0yhs" path="res://Content/Other/Menu.tres" id="3_16fyc"]
 [ext_resource type="Texture2D" uid="uid://060bgiw5i00k" path="res://Content/Sprites/PlayerSkins/Slippey.png" id="4_4fnp7"]
 [ext_resource type="Texture2D" uid="uid://cr6ilqqdmo4ug" path="res://Content/Sprites/Interface/Buttons/SkinButtonDisabled.png" id="5_m7r3n"]
 [ext_resource type="Texture2D" uid="uid://bd15vnp18h7qk" path="res://Content/Sprites/PlayerSkins/Sanboy.png" id="7_o713s"]
@@ -21,6 +22,9 @@
 [ext_resource type="Texture2D" uid="uid://ddbl3u1r26kie" path="res://Content/Sprites/PlayerSkins/SlippeyChad.png" id="18_n2prt"]
 [ext_resource type="Script" path="res://Content/Scripts/Other/MISSINGNULL.cs" id="19_r3u0u"]
 [ext_resource type="Texture2D" uid="uid://p8n66ul13xdu" path="res://Content/Sprites/PlayerSkins/Corey.png" id="20_jh25b"]
+
+[sub_resource type="Theme" id="Theme_6e3gb"]
+Label/font_sizes/font_size = 16
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_qh3tn"]
 resource_local_to_scene = false
@@ -456,6 +460,7 @@ _data = {
 }
 
 [node name="SkinsMenu" instance=ExtResource("1_w6uws")]
+custom_minimum_size = Vector2(512, 335)
 offset_left = 164.0
 offset_top = 40.0
 offset_right = -92.0
@@ -469,11 +474,13 @@ text = "Skins (1 of 14)"
 [node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer" index="1"]
 layout_mode = 2
 size_flags_vertical = 3
+theme = ExtResource("3_16fyc")
 
 [node name="SkinButtons" type="FlowContainer" parent="MarginContainer/VBoxContainer/ScrollContainer" index="0"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme = SubResource("Theme_6e3gb")
 
 [node name="Button1" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons" index="0" instance=ExtResource("2_oge4l")]
 custom_minimum_size = Vector2(192, 192)

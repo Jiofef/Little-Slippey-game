@@ -15,9 +15,9 @@
 process_mode = 3
 custom_minimum_size = Vector2(540, 640)
 offset_left = 250.0
-offset_top = 80.0
+offset_top = 50.5275
 offset_right = -490.0
-offset_bottom = -58.945
+offset_bottom = -29.4725
 theme = ExtResource("2_sahd4")
 script = ExtResource("2_45m3j")
 WindowTitle = "Create a mod"

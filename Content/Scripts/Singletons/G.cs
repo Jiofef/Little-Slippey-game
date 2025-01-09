@@ -95,7 +95,6 @@ public partial class G : Node
     #region May be used to some if statements or something, but be careful if you change it. There are other, more correct ways to change them.
     public static bool IsPlayerDead, // To change correctly, call Death() or Ressurect() in player's script
                        IsNewRecordReached; // I don't know why you even might want to change it
-    public static Vector4 CameraLimits; // Better use SetCameraLimits() from Player's script
     #endregion
 
     ////////////////////////////
@@ -115,10 +114,26 @@ public partial class G : Node
                        MusicStartPosition = 0, // When music ends, if it can restart, it starts with this position. 1 = 1 second
                        LevelCompleteTime = 150; // When this second comes, the level is passed. Can be used for different things
 
+
+    private static Vector4 _cameraLimits;
+    public static Vector4 CameraLimits 
+    {
+        get { return _cameraLimits; }
+        set 
+        {
+            _cameraLimits = value;
+            OnCameraLimitsChanged.Invoke(value);
+        }
+    }
+    public delegate void CameraLimitsChangedEventHandler(Vector4 limits);
+    public static event CameraLimitsChangedEventHandler OnCameraLimitsChanged = delegate { };
+
     public static Variant[] TransitiveVariant = new Variant[64]; // You can store almost anything here for anything. The game deletes the data only after entering the menu. If you need to save some data after restarting a level or moving to another scene, this option is perfect for you
     public static object[] TransitiveObject = new object[64]; // Addition to Variant, if some required data types are not supported
     // P.s. we HIGHLY recommend commenting out these variables in your code to avoid confusion. Especially if you use a lot of them.
+
     public static Dictionary<string, Variant> TransitiveVariantD = new Dictionary<string, Variant>(); // TransitiveVariant, but for those who don't want to get confused by unnamed array elements and don't need to comment out the elements.
+
 
     public static Variant TakeAndRemoveFromTrVaD(string key)
     {
@@ -433,6 +448,6 @@ public partial class G : Node
 
     public override void _PhysicsProcess(double delta) // This for debugging.
     {
-        //GD.Print(ModManager.CurrentModMapFolderName);
+        //GD.Print();
     }
 }

@@ -1,4 +1,5 @@
 using Godot;
+using GodotSteam;
 using System;
 
 public partial class Player : CharacterBody2D
@@ -17,7 +18,9 @@ public partial class Player : CharacterBody2D
     [ExportGroup("Secondary settings")]
     [Export] public float CoyoteTime = 0.1f, WallJumpInertion = 1.4f, InertionControl = 3.3f, DownDashSpeed = 1250, MaxFallSpeed = 1250;
 
-    [Signal] public delegate void CameraLimitsChangedEventHandler();
+    // The values in the camera used to be changed via this signal. Now it's just an auxiliary signal for modders.
+    [Signal] public delegate void CameraLimitsChangedEventHandler(bool doResetSmoothing, float top, float right, float bottom, float left);
+
     [Signal] public delegate void PlayerDiedEventHandler();
 
     ///////////////////////////
@@ -103,12 +106,6 @@ public partial class Player : CharacterBody2D
         UpdateSkin();
 
         ToggleStandingPenalty(EnableStandingPenalty);
-
-        #region Camera signal binding
-        var cameraCallable = new Callable(GetNode("Camera2D"), "LimitsChangingBy");
-        if (!IsConnected("CameraLimitsChanged", cameraCallable))
-            Connect("CameraLimitsChanged", cameraCallable);
-        #endregion
 
         preDeathParams = new PreDeathParams(this);
 
@@ -554,12 +551,17 @@ public partial class Player : CharacterBody2D
 
         UnchangableMeta.DeathsNumber++;
         ZIndex++;
-
         Random random = new Random();
-        _corpseMotion.X = random.Next(100) > 50 ? -5 * (GlobalPosition.X / G.LevelXYSizes[G.CurrentLevel].X) : 5 * (1 - GlobalPosition.X / G.LevelXYSizes[G.CurrentLevel].X);
+        const float CORPSE_MAX_X_SPEED = 5;
+        float XPosCoeff = Mathf.Clamp(GlobalPosition.X / Camera.LimitRight, -1f, 1f);
+        _corpseMotion.X = random.Next(100) > 50 ? -CORPSE_MAX_X_SPEED * XPosCoeff : CORPSE_MAX_X_SPEED * (1 - XPosCoeff);
+        
         _corpseMotion.Y = -8;
-        if (G.LevelXYSizes[G.CurrentLevel].X > 12800 || G.LevelXYSizes[G.CurrentLevel].Y > 12800 || GlobalPosition > G.LevelXYSizes[G.CurrentLevel] || GlobalPosition < Vector2.Zero)
-            _corpseMotion.X = random.Next(100) > 50 ? -5 : +5;
+
+        bool IsLevelTooLarge = (Camera.LimitRight - Camera.LimitLeft) > 12800;
+        
+        if (IsLevelTooLarge)
+            _corpseMotion.X = random.Next(100) > 50 ? -CORPSE_MAX_X_SPEED : +CORPSE_MAX_X_SPEED;
 
         G.IsCrossesEnabled = false;
         G.IsProgressPaused = true;
@@ -567,7 +569,7 @@ public partial class Player : CharacterBody2D
         Camera.OnPlayerDead();
 
         PlaySound("Death");
-        GetNode<AudioStreamPlayer>("../../LevelMusicPlayer").StreamPaused = true;
+        G.MusicPlayer?.Set("stream_paused", true);
         GetNode<CollisionShape2D>("FullBodyCollider").SetDeferred("disabled", true);
         _animatedSprite.Animation = "Death";
         if (Convert.ToBoolean((string)_animatedSprite.GetMeta("HasDeathPlayerAnimation")))
@@ -603,15 +605,25 @@ public partial class Player : CharacterBody2D
     }
 
 
-    public void SetCameraLimits(Vector4 value, bool DoResetSmoothing = false)
+    public void SetCameraLimits(Vector4 value, bool doResetSmoothing = false)
     {
+        // The camera itself updates its limits when it's changed in G. However, to reset its smoothing you have to call the method yourself, as here.
         G.CameraLimits = value;
-        EmitSignal("CameraLimitsChanged", DoResetSmoothing, 0, 0, 0, 0);
+        if (doResetSmoothing)
+            Camera.CallDeferred("reset_smoothing");
+
+        // The values in the camera used to be changed via this signal. Now it's just an auxiliary signal for modders.
+        EmitSignal("CameraLimitsChanged", doResetSmoothing, 0, 0, 0, 0);
     }
 
     public void SetCameraPositionSmoothingSpeed (float value)
     {
-        GetNode<Camera2D>("Camera2D").PositionSmoothingSpeed = value;
+        Camera.PositionSmoothingSpeed = value;
+    }
+
+    public void ResetCameraSmoothing()
+    {
+        Camera.ResetSmoothing();
     }
 
     public void SetGUIVisible(bool value)

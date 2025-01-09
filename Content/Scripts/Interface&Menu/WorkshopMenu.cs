@@ -4,7 +4,6 @@ using System;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices;
 using static ModManager;
 
 [Tool]
@@ -74,12 +73,16 @@ public partial class WorkshopMenu : DraggableWindow
                 SetVisibleActionButtons("PlayMapButton", "OpenInEditorButton");
                 break;
             case ModType.localization:
+                SetVisibleActionButtons();
                 break;
             case ModType.skin:
+                SetVisibleActionButtons();
                 break;
             case ModType.resource:
+                SetVisibleActionButtons();
                 break;
             case ModType.content:
+                SetVisibleActionButtons();
                 break;
         }
     }

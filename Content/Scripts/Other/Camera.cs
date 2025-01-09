@@ -3,36 +3,68 @@ using System;
 
 public partial class Camera : Camera2D
 {
-    [Signal] public delegate void ResetEventHandler();
+    // Needed nodes
     AnimatedSprite2D _restartNoise;
     Player _player;
     Label _scores;
     TextureProgressBar _standBar;
+
+
     Random _random = new Random();
 
-    bool IsScoreDisabled = false;
+    // The number of pixels visible outside the exposed limits of the camera. X = top, Y = right, Z = bottom, W = left
+    public Vector4 ViewAngleAddition = new Vector4(-30, 30, 100, -30);
+
+    private bool _isScoreDisabled = false;
+
     public override void _Ready()
     {
-        G.CameraLimits = new Vector4(0, G.LevelXYSizes[G.CurrentLevel].X, G.LevelXYSizes[G.CurrentLevel].Y, 0);
-        LimitsChangingBy(true);
-        ResetSmoothing();
-
+        //Initializing nodes
         _restartNoise = GetNode<AnimatedSprite2D>("GUICanvas/RestartNoise");
         _player = GetNode<Player>("..");
         _scores = GetNode<Label>("GUICanvas/GUI/Scores");
         _standBar = GetNode<TextureProgressBar>("GUICanvas/GUI/StandBar");
 
+
+        G.CameraLimits = new Vector4(0, G.LevelXYSizes[G.CurrentLevel].X, G.LevelXYSizes[G.CurrentLevel].Y, 0);
+        SetTheLimitsAddition(true);
+
+        _onCameraLimitsChangedHandler = OnCameraLimitsChanged;
+        G.OnCameraLimitsChanged += _onCameraLimitsChangedHandler;
+
+
+
         ApplyGUIOptions(true);
 
         preDeathParams = new PreDeathParams(this);
     }
-    public void LimitsChangingBy(bool DoResetSmoothing = false, float plus1 = 0, float plus2 = 0, float plus3 = 0, float plus4 = 0)
+    private G.CameraLimitsChangedEventHandler _onCameraLimitsChangedHandler;
+    public override void _ExitTree()
     {
-        float[] Defaultlimits = {G.CameraLimits.X - 30, G.CameraLimits.Y + 30, G.CameraLimits.Z + 100, G.CameraLimits.W - 30};
+        if (_onCameraLimitsChangedHandler != null)
+            G.OnCameraLimitsChanged -= _onCameraLimitsChangedHandler;
+    }
+
+
+
+    private void SetTheLimitsAddition(bool DoResetSmoothing = false, float plus1 = 0, float plus2 = 0, float plus3 = 0, float plus4 = 0)
+    {
+        Vector4 Defaultlimits = G.CameraLimits + ViewAngleAddition;
         LimitTop = (int)(Defaultlimits[0] + plus1);
         LimitRight = (int)(Defaultlimits[1] + plus2);
         LimitBottom = (int)(Defaultlimits[2] + plus3);
         LimitLeft = (int)(Defaultlimits[3] + plus4);
+
+        if (DoResetSmoothing)
+            ResetSmoothing();
+    }
+    private void UpdateTheLimits(bool DoResetSmoothing = false)
+    {
+        Vector4 Defaultlimits = G.CameraLimits + ViewAngleAddition;
+        LimitTop = (int)Defaultlimits[0];
+        LimitRight = (int)Defaultlimits[1];
+        LimitBottom = (int)Defaultlimits[2];
+        LimitLeft = (int)Defaultlimits[3];
 
         if (DoResetSmoothing)
             ResetSmoothing();
@@ -45,10 +77,10 @@ public partial class Camera : Camera2D
             if (Meta.Instance.Video.ScoresLabelLocationY == 0)
                 _scores.Modulate = new Color(_scores.Modulate.R, _scores.Modulate.G, _scores.Modulate.B, _player.Position.Y > G.CameraLimits.X + 200 ? 1 : _player.Position.Y / (G.CameraLimits.X + 200));
 
-            if (IsScoreDisabled != G.IsProgressPaused)
+            if (_isScoreDisabled != G.IsProgressPaused)
             {
-                IsScoreDisabled = G.IsProgressPaused;
-                if (IsScoreDisabled)
+                _isScoreDisabled = G.IsProgressPaused;
+                if (_isScoreDisabled)
                     _scores.Modulate = new Color(0.6f, 0.6f, 0.6f);
                 else
                     _scores.Modulate = new Color(1, 1, 1);
@@ -73,7 +105,7 @@ public partial class Camera : Camera2D
 
             LimitsExpansion = new Vector2(_random.Next(-50, 50) * G.ResetTimer, _random.Next(-50, 50) * G.ResetTimer);
             Position = new Vector2(LimitsExpansion.X, LimitsExpansion.Y);
-            LimitsChangingBy(true, LimitsExpansion.Y, LimitsExpansion.X, LimitsExpansion.Y, LimitsExpansion.X);
+            SetTheLimitsAddition(true, LimitsExpansion.Y, LimitsExpansion.X, LimitsExpansion.Y, LimitsExpansion.X);
         }
         #endregion
         #region When reset interrupts
@@ -83,7 +115,7 @@ public partial class Camera : Camera2D
             _restartNoise.Modulate = new Color(_restartNoise.Modulate.R, _restartNoise.Modulate.G, _restartNoise.Modulate.B, 0);
 
             _restartNoise.GetNode<AudioStreamPlayer>("Sound").Stop();
-            LimitsChangingBy();
+            SetTheLimitsAddition();
             LimitsExpansion = Vector2.Zero;
         }
         #endregion
@@ -95,7 +127,7 @@ public partial class Camera : Camera2D
             float zoom = G.PlayerCorpseFlightTimer < 4 ? Meta.Instance.Video.CameraZoom + G.PlayerCorpseFlightTimer * ((4.5f - Meta.Instance.Video.CameraZoom) / 4) : 4.5f;
             Zoom = new Vector2(zoom, zoom);
             float PlayerCorpseFlightTimerX50 = G.PlayerCorpseFlightTimer * 50;
-            LimitsChangingBy(false, -PlayerCorpseFlightTimerX50 - LimitsExpansion.Y, PlayerCorpseFlightTimerX50 + LimitsExpansion.X, PlayerCorpseFlightTimerX50 + LimitsExpansion.Y, -PlayerCorpseFlightTimerX50 - LimitsExpansion.X);
+            SetTheLimitsAddition(false, -PlayerCorpseFlightTimerX50 - LimitsExpansion.Y, PlayerCorpseFlightTimerX50 + LimitsExpansion.X, PlayerCorpseFlightTimerX50 + LimitsExpansion.Y, -PlayerCorpseFlightTimerX50 - LimitsExpansion.X);
 
             if (G.PlayerCorpseFlightTimer >= 4.5f)
             {
@@ -139,7 +171,11 @@ public partial class Camera : Camera2D
         }
     }
 
-
+    private void OnCameraLimitsChanged(Vector4 limits)
+    {
+        bool DoResetSmoothing = GetScreenCenterPosition().DistanceTo(_player.GlobalPosition) > 1280;
+        UpdateTheLimits(DoResetSmoothing);
+    }
     #region Death
     private class PreDeathParams
     {
@@ -212,7 +248,7 @@ public partial class Camera : Camera2D
 
     public void OnPlayerResurrected()
     {
-        LimitsChangingBy();
+        SetTheLimitsAddition();
         ResetSmoothing();
 
         ApplyGUIOptions(false);

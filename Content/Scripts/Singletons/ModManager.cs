@@ -1,4 +1,5 @@
 using Godot;
+using Godot.Collections;
 using System;
 using System.IO;
 using static ModManager;
@@ -18,7 +19,7 @@ public partial class ModManager : Node
         string[] modDirectories = GetModDirectories();
         string[] folderNames = new string[modDirectories.Length];
 
-        for(int i = 0; i < folderNames.Length; i++)
+        for (int i = 0; i < folderNames.Length; i++)
             folderNames[i] = Path.GetFileName(modDirectories[i]);
         return folderNames;
     }
@@ -84,6 +85,7 @@ public partial class ModManager : Node
         {
             string ToSave = "596f7520736572696f75733f";
             FileSystemExtension.SaveInJson(ToSave, ModPath + @"\_maintimermodule.json");
+            FileSystemExtension.CopyByteResourceFileTo("res://Content/Sprites/Interface/StandartTimerLibPreview.png", ModPath + @"\PreviewPicture.png");
             IsStandartTimerLibLoaded = true;
         }
     }
@@ -182,6 +184,15 @@ public partial class ModManager : Node
             return "";
     }
 
+    private static Dictionary<ModType, string> _defaultModPreviewNames = new Dictionary<ModType, string> 
+    {
+        {ModType.map, "CustomMap"},
+        {ModType.skin, "CustomSkin"},
+        {ModType.localization, "Localization"},
+        {ModType.resource, "ResourceMod"},
+        {ModType.content, "ContentMod"},
+    };
+
     private static void CreateAModBase(CreateModParams @params, string path)
     {
         Directory.CreateDirectory(path + @"\");
@@ -190,7 +201,7 @@ public partial class ModManager : Node
                 Directory.CreateDirectory(path + value);
 
 
-        FileSystemExtension.CopyByteResourceFileTo("res://Content/Sprites/Interface/CustomMapDefaultPreview.png", path + @"\PreviewPicture.png");
+        FileSystemExtension.CopyByteResourceFileTo("res://Content/Sprites/Interface/" + _defaultModPreviewNames[@params.modType] + "DefaultPreview.png", path + @"\PreviewPicture.png");
 
         var modPreview = (ModPreview)ResourceLoader.Load<PackedScene>("res://Content/Scenes/Interface&Menu/ModPreviewLayout.tscn").Instantiate();
         modPreview._resourcePath = path + @"\PreviewPicture.png";
