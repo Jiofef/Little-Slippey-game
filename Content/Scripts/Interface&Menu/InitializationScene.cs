@@ -54,23 +54,22 @@ public partial class InitializationScene : Control
         }
 
 
-        ModDataManager.LoadAllModDataSafely();
-        ModDataManager.CleanDeletedModsData();
-        ModDataManager.AddMissingDefaultModData();
-
         //Mods loading
         if (!UnchangableMeta.DidModsCrushedTheGame)
         {
             UnchangableMeta.DidModsCrushedTheGame = true;
             UnchangableMeta.SaveToFile();
 
+            ModDataManager.LoadAllModDataSafely();
+            ModDataManager.CleanDeletedModsData();
+            ModDataManager.AddMissingDefaultModData();
+
+
             ModManager.LoadMods();
 
             UnchangableMeta.DidModsCrushedTheGame = false;
             UnchangableMeta.SaveToFile();
         }
-        else
-            ShowModErrorMessage();
 
         GetTree().CallDeferred("change_scene_to_file", "res://Content/Scenes/Interface&Menu/WelcomeToGOS.tscn");
     }
@@ -82,10 +81,5 @@ public partial class InitializationScene : Control
         Meta.Instance.ApplyOptions();
         Meta.Instance.SaveToFile();
         UnchangableMeta.SaveToFile();
-    }
-
-    public void ShowModErrorMessage()
-    {
-        //
     }
 }

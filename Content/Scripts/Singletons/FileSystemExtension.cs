@@ -2,6 +2,7 @@ using Godot;
 using Godot.Collections;
 using System.IO;
 using System.Linq;
+using System.Text.Json;
 
 public partial class FileSystemExtension : Node
 {
@@ -42,9 +43,23 @@ public partial class FileSystemExtension : Node
 
     public static bool HasSpecialChars(string value)
     {
-        return value.Any(ch => !char.IsLetterOrDigit(ch));
+        return value.IndexOfAny(Path.GetInvalidFileNameChars()) != -1;
     }
 
+    public static string MakeUniqueFilePath(string path)
+    {
+        if (!Directory.Exists(path))
+            return path;
+
+        string newPath = null;
+        for (int i = 2; ; i++)
+        {
+            newPath = path + i;
+
+            if (!Directory.Exists(newPath))
+                return newPath;
+        }
+    }
     public static Dictionary GetJsonModel(string path)
     {
         using Godot.FileAccess file = Godot.FileAccess.Open(path, Godot.FileAccess.ModeFlags.Read);
@@ -58,5 +73,9 @@ public partial class FileSystemExtension : Node
         using Godot.FileAccess file = Godot.FileAccess.Open(where, Godot.FileAccess.ModeFlags.Write);
         file.StoreString(what);
         file.Close();
+    }
+    public static void SaveInJson(Variant what, string where)
+    {
+        SaveInJson(Json.Stringify(what), where);
     }
 }

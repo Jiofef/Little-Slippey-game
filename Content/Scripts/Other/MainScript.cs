@@ -80,7 +80,7 @@ public partial class MainScript : Node2D
         else
         {
             G.ModMapPath = ScenePath;
-            GetTree().ChangeSceneToFile(System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData) + @"\Godot\app_userdata\Little Slippey\mods\" + G.ModMapPath);
+            GetTree().ChangeSceneToFile(ModManager.DefaultModsPath + G.ModMapPath);
         }
 
         if (IsInsideTree()) //In very rare cases (e.g. with a level 7 black screen), the node is not deleted correctly when the scene is changed. This fixes this bug.

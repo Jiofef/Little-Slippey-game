@@ -1,19 +1,20 @@
 [gd_scene load_steps=3 format=3 uid="uid://cfxec0fltq552"]
 
-[ext_resource type="PackedScene" uid="uid://bt0tqjsfwc8fu" path="res://Content/Scenes/Interface&Menu/WarningWindow.tscn" id="1_8mpj2"]
-[ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/TimerLibIsDisabled.cs" id="2_27x7a"]
+[ext_resource type="PackedScene" uid="uid://bt0tqjsfwc8fu" path="res://Content/Scenes/Interface&Menu/WarningWindow.tscn" id="1_yx5pd"]
+[ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/TimerLibIsDisabled.cs" id="2_vg6sg"]
 
-[node name="TimerLibIsDisabled" instance=ExtResource("1_8mpj2")]
+[node name="TimerLibIsDisabled" instance=ExtResource("1_yx5pd")]
 custom_minimum_size = Vector2(480, 400)
 offset_left = 462.5
 offset_top = 197.5
 offset_right = -337.5
 offset_bottom = -122.5
-script = ExtResource("2_27x7a")
+script = ExtResource("2_vg6sg")
 Description = "StandartTimerLib component is disabled. Please enable it using the button below"
 
 [node name="Description" parent="MarginContainer/VBoxContainer" index="1"]
 custom_minimum_size = Vector2(456, 0)
 text = "StandartTimerLib component is disabled. Please enable it using the button below"
 
+[connection signal="Accepted" from="." to="." method="queue_free"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/AcceptButton" to="." method="Accept"]

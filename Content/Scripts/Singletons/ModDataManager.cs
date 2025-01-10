@@ -19,17 +19,17 @@ public partial class ModDataManager : Node
     #region Saving
     public static void SaveModMapRecords()
     {
-        SaveInJson(ModMapRecords.ToString(), DefaultModLocalDataPath + "mod_map_records.json");
+        SaveInJson(ModMapRecords, DefaultModLocalDataPath + "mod_map_records.json");
     }
 
     public static void SaveModSettings()
     {
-        SaveInJson(ModSettings.ToString(), DefaultModLocalDataPath + "mod_settings.json");
+        SaveInJson(ModSettings, DefaultModLocalDataPath + "mod_settings.json");
     }
 
     public static void SaveModStatuses()
     {
-        SaveInJson(ModStatuses.ToString(), DefaultModLocalDataPath + "mod_statuses.json");
+        SaveInJson(ModStatuses, DefaultModLocalDataPath + "mod_statuses.json");
     }
 
     public static void SaveAllModData()

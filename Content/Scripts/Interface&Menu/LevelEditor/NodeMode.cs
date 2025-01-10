@@ -116,28 +116,28 @@ public partial class NodeMode : Control
 
         switch (actionIndex)
         {
-            case 0:
+            case 0: // Creating a node
                 GetNode<Control>("NodeCreateMenu").Show();
                 break;
-            case 1:
+            case 1: // Cutting a node
                 G.NodeCopyBuffer.Clear();
                 G.NodeCopyBuffer.Add(L._selectedNode.Duplicate());
                 L._selectedNode.QueueFree();
                 L._selectedNode = null;
                 _nodesButtonsTree.GetSelected().Free();
                 break;
-            case 2:
+            case 2: // Copying a node
                 G.NodeCopyBuffer.Clear();
                 G.NodeCopyBuffer.Add(L._selectedNode.Duplicate());
                 break;
-            case 3:
+            case 3: // Pasting a node
                 node = G.NodeCopyBuffer[0].Duplicate();
                 L._selectedNode.AddChild(node);
                 node.Name = G.NodeCopyBuffer[0].Name;
 
                 CreateNodeItem(node);
                 break;
-            case 4:
+            case 4: // Renaming a node
                 var lineEditPopup = GetNode<PopupPanel>("NodeNameEditPopup");
 
                 lineEditPopup.Position = (Vector2I)GetLocalMousePosition();
@@ -145,20 +145,20 @@ public partial class NodeMode : Control
                 lineEditPopup.GetNode<LineEdit>("LineEdit").Text = L._selectedNode.Name;
                 L._guiDelayTimer.Start(0.02f);
                 break;
-            case 5:
+            case 5: // Duplicating a node
                 var Duplicate = L._selectedNode.Duplicate();
                 L._selectedNode.GetParent().AddChild(Duplicate);
                 Duplicate.Name = L._selectedNode.Name;
 
                 CreateNodeItem(Duplicate, SelectedItem.GetParent());
                 break;
-            case 6:
+            case 6: // Saving a node to folder
                 SaveNodeTo(L._selectedNode, L._mapFolder);
                 break;
-            case 7:
+            case 7: // Copying the path of node
                 DisplayServer.ClipboardSet(L._main.GetPathTo(L._selectedNode));
                 break;
-            case 8:
+            case 8: // Deleting a node
                 DeleteNodeByItem(SelectedItem);
                 break;
         }
@@ -201,7 +201,7 @@ public partial class NodeMode : Control
         PackedScene packedScene = new PackedScene();
         packedScene.Pack(node.Duplicate());
 
-        string path = directory + @"\" + node.Name + ".tscn";
+        string path = directory + @"/" + node.Name + ".tscn";
 
         ResourceSaver.Save(packedScene, path);
         CreateFileItem(path, L.GetTargetedTreeItem(_filesButtonsTree));
@@ -451,39 +451,30 @@ public partial class NodeMode : Control
 
     public void UpdateVisibleFiles()
     {
-        _filesButtonsTree.Clear();
+        _filesButtonsTree.Clear(); // Clearing old tree
 
-        ButtonGroup buttonGroup = new ButtonGroup();
-
+        var Item = CreateFileItem(L._mapFolder); // Creating the root TreeItem
+        Recursion(L._mapFolder, Item); // Stack overflow
 
         void Recursion(string rootFile, TreeItem item)
         {
             foreach (string folder in Directory.GetDirectories(rootFile))
             {
-                var NextItem = item.CreateChild();
-                NextItem.SetText(0, folder.Remove(0, rootFile.Length + 1));
-                NextItem.SetMeta("FilePath", folder);
-                NextItem.Collapsed = true;
-                L._allTheFiles = L._allTheFiles.Append(folder).ToArray();
-                Recursion(folder, NextItem);
+                TreeItem NextItem = CreateFileItem(folder.Replace(@"\", "/"), item, false); // Replacing the \ with / because GetDirectories or GetFiles gives paths like this "mods/CustomMap\Sounds", and such paths do not run through explorer.exe
+
+                NextItem.Collapsed = true; // Closing the directory branch
+                Recursion(folder, NextItem); // Loading subfiles/subdirectories
+
             }
 
             foreach (string file in Directory.GetFiles(rootFile))
             {
                 if (HasStringFormats(file, new string[] { "tscn", "png", "jpg", "cs", "gd", "json", "ogv", "gdshader", "mp3", "mp4", "ogg", "wav", "theme", "ttf", "tres" }))
                 {
-                    var NextItem = item.CreateChild();
-                    NextItem.SetText(0, file.Remove(0, rootFile.Length + 1));
-                    NextItem.SetMeta("FilePath", file);
-                    NextItem.Collapsed = true;
-                    L._allTheFiles = L._allTheFiles.Append(file).ToArray();
+                    CreateFileItem(file.Replace(@"\", "/"), item, false); // Replacing the \ with / because GetDirectories or GetFiles gives paths like this "mods/CustomMap\Sounds", and such paths do not run through explorer.exe
                 }
             }
         }
-        var Item = _filesButtonsTree.CreateItem();
-        Item.SetText(0, L._mapFolder.Remove(0, ModManager.DefaultModsPath.Length));
-        Item.SetMeta("FilePath", L._mapFolder);
-        Recursion(L._mapFolder, Item);
     }
     public void SetSelectedFile(string path)
     {
@@ -495,28 +486,22 @@ public partial class NodeMode : Control
 
         switch (actionIndex)
         {
-            case 0:
-                for (int i = 0; ; i++)
-                {
-                    var SuggestedPath = L._selectedFilePath + @"\NewFolder" + i;
-                    if (!Directory.Exists(SuggestedPath))
-                    {
-                        Directory.CreateDirectory(SuggestedPath);
-                        CreateFileItem(SuggestedPath, SelectedItem);
-                        break;
-                    }
-                }
+            case 0: // Creating a folder
+                string FilePath = FileSystemExtension.MakeUniqueFilePath(L._selectedFilePath + "/NewFolder");
+
+                Directory.CreateDirectory(FilePath);
+                CreateFileItem(FilePath, SelectedItem);
                 break;
-            case 1:
+            case 1: // Deleting a file
                 DeleteFileByItem(SelectedItem);
                 break;
-            case 2:
+            case 2: // Copying a local path of the file
                 DisplayServer.ClipboardSet(ProjectSettings.LocalizePath(ProjectSettings.LocalizePath(L._selectedFilePath)));
                 break;
-            case 3:
+            case 3: // Copying an absolute path of the file
                 DisplayServer.ClipboardSet(L._selectedFilePath);
                 break;
-            case 4:
+            case 4: // Renaming a file
                 var lineEditPopup = GetNode<PopupPanel>("FileNameEditPopup");
 
                 lineEditPopup.Position = (Vector2I)GetLocalMousePosition();
@@ -524,14 +509,16 @@ public partial class NodeMode : Control
                 lineEditPopup.GetNode<LineEdit>("LineEdit").Text = GetNode<Tree>("FilesButtonsTree").GetSelected().GetText(0);
                 L._guiDelayTimer.Start(0.02f);
                 break;
-            case 5:
+            case 5: // Duplicating a file
 
-                break;
+                break; // Open file in folder
             case 6:
-                Process.Start("explorer.exe", L._selectedFilePath.Remove(L._selectedFilePath.RFind(@"\")));
+                string CorrectExplorerPath = L._selectedFilePath.Replace("/", @"\");
+                Process.Start("explorer.exe", $"/select,\"{CorrectExplorerPath}\"");
                 break;
-            case 7:
-                Process.Start("explorer.exe", L._selectedFilePath);
+            case 7: // Open file
+                string CorrectExplorerPath1 = L._selectedFilePath.Replace("/", @"\");
+                Process.Start("explorer.exe", CorrectExplorerPath1);
                 break;
         }
     }
@@ -582,7 +569,7 @@ public partial class NodeMode : Control
     public void AddFile(string[] files)
     {
         TreeItem SelectedFileItem = _filesButtonsTree.GetSelected();
-        string SubString = @"\" + GetFileName(files[0]);
+        string SubString = @"/" + GetFileName(files[0]);
 
         DirAccess.CopyAbsolute(files[0], SelectedFileItem != null ? SelectedFileItem.GetMeta("FilePath").ToString() + SubString : _filesButtonsTree.GetRoot().GetMeta("FilePath").ToString() + SubString);
 
@@ -619,18 +606,17 @@ public partial class NodeMode : Control
             }
         }
     }
-    TreeItem CreateFileItem(string path, TreeItem parent = null)
+    TreeItem CreateFileItem(string path, TreeItem parent = null, bool uncollapseTheParent = true)
     {
         bool IsParentValid = parent != null && parent.GetTree() == _filesButtonsTree;
 
-        if (IsParentValid)
+        if (uncollapseTheParent && IsParentValid)
             parent.Collapsed = false;
 
-        TreeItem Item;
-        Item = _filesButtonsTree.CreateItem(IsParentValid ? parent : _filesButtonsTree.GetSelected());
-        Item.SetText(0, GetFileName(path));
-        Item.SetMeta("FilePath", path);
-        L._allTheFiles = L._allTheFiles.Append(path).ToArray();
+        TreeItem Item = _filesButtonsTree.CreateItem(IsParentValid ? parent : _filesButtonsTree.GetSelected());
+        Item.SetText(0, GetFileName(path)); // Loading the file name
+        Item.SetMeta("FilePath", path); // Saving the file path in its item meta
+        L._allTheFiles = L._allTheFiles.Append(path).ToArray(); // Saving the file path to the array
         return Item;
     }
 
@@ -648,11 +634,11 @@ public partial class NodeMode : Control
     }
     public string GetFileName(string path)
     {
-        return path.Remove(0, path.RFind(@"\") + 1);
+        return path.Remove(0, path.RFind(@"/") + 1);
     }
     public string GetFilePath(string path)
     {
-        return path.Remove(path.RFind(@"\")) + @"\";
+        return path.Remove(path.RFind(@"/")) + @"/";
     }
     //String Tweaks
 }

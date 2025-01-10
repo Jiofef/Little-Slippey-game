@@ -26,13 +26,24 @@ public partial class WelcomeToGOS : Control
         ModManager.UpdateIsStandartTimerLibLoaded();
         if (!ModManager.IsStandartTimerLibExists())
         {
-            var timerLibWarning = GD.Load<PackedScene>("res://Content/Scenes/Interface&Menu/TimerLibNotFound.tscn").Instantiate();
+            var timerLibWarning = GD.Load<PackedScene>("res://Content/Scenes/Interface&Menu/RareScenes/TimerLibNotFound.tscn").Instantiate();
             AddChild(timerLibWarning);
         }
         else if (!ModManager.IsStandartTimerLibLoaded)
         {
-            var timerLibWarning = GD.Load<PackedScene>("res://Content/Scenes/Interface&Menu/TimerLibIsDisabled.tscn").Instantiate();
+            var timerLibWarning = GD.Load<PackedScene>("res://Content/Scenes/Interface&Menu/RareScenes/TimerLibIsDisabled.tscn").Instantiate();
             AddChild(timerLibWarning);
+        }
+
+        // Message about emergency shutdown of mods
+        if (UnchangableMeta.DidModsCrushedTheGame)
+        {
+            var modsDisabledWarning = (ConfirmationWindow)GD.Load<PackedScene>("res://Content/Scenes/Interface&Menu/RareScenes/ModsDisabledWarning.tscn").Instantiate();
+            AddChild(modsDisabledWarning);
+            modsDisabledWarning.Accepted += () =>
+            {
+                UnchangableMeta.DidModsCrushedTheGame = false;
+            };
         }
     }
     public void IconClick(int iconNumber)

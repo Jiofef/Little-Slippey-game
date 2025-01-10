@@ -1,6 +1,7 @@
 using Godot;
 using Godot.Collections;
 using System;
+using static FileSystemExtension;
 
 public partial class Meta : Node
 {
@@ -144,17 +145,13 @@ public partial class Meta : Node
     }
     public void SaveToFile()
     {
-        using FileAccess file = FileAccess.Open("user://options.json", FileAccess.ModeFlags.Write);
-        file.StoreString(Instance.GetJson().ToString());
-        file.Close();
+        SaveInJson(Instance.GetJson(), "user://options.json");
     }
     public void LoadOptions()
     {
         try
         {
-            using FileAccess file = FileAccess.Open("user://options.json", FileAccess.ModeFlags.Read);
-            var text = file.GetAsText();
-            var model = Json.ParseString(file.GetAsText()).Obj as Dictionary;
+            var model = GetJsonModel("user://options.json");
 
             Godot.Collections.Array BusVolumesArray = (Godot.Collections.Array)model["bus_volumes"];
             for (int i = 0; i < BusVolumesArray.Count; i++)
@@ -177,8 +174,6 @@ public partial class Meta : Node
 
             for (int i = 0; i < Gameplay.AdditionStatuses.Length; i++)
                 Gameplay.AdditionStatuses[i] = Convert.ToBoolean((string)model["addition_status" + i]);
-
-            file.Close();
         }
         catch{}
     }

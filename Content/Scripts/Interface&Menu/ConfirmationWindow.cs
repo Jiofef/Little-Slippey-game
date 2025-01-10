@@ -18,8 +18,15 @@ public partial class ConfirmationWindow : DraggableWindow
             CallDeferred("UpdateDescrtiption");
         }
     }
+    [Export] public bool ReturnTheFocusToPreviousOwnerWhenAccepted = true;
     
     private string _description = "Are you sure?";
+
+    public override void _Ready()
+    {
+        _previousFocusOwner = GetViewport().GuiGetFocusOwner();
+        GetNode<TextureButton>("MarginContainer/VBoxContainer/HBoxContainer/AcceptButton").GrabFocus();
+    }
 
     private void UpdateDescrtiption()
     {
@@ -31,11 +38,16 @@ public partial class ConfirmationWindow : DraggableWindow
         EmitSignal("Result", true);
         EmitSignal("Accepted");
         QueueFree();
+
+        if (ReturnTheFocusToPreviousOwnerWhenAccepted)
+            _previousFocusOwner.GrabFocus();
     }
     public void Decline()
     {
         EmitSignal("Result", false);
         EmitSignal("Declined");
         QueueFree();
+
+        _previousFocusOwner.GrabFocus();
     }
 }

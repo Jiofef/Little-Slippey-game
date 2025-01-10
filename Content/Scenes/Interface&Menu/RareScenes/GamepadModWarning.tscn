@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://bc1ia6l7h0nfl"]
+
+[ext_resource type="PackedScene" uid="uid://twinoyaw5kfj" path="res://Content/Scenes/Interface&Menu/ConfirmationWindow.tscn" id="1_uteqx"]
+
+[sub_resource type="FontVariation" id="FontVariation_rojdw"]
+spacing_top = 20
+
+[sub_resource type="LabelSettings" id="LabelSettings_5o5o8"]
+font = SubResource("FontVariation_rojdw")
+font_size = 22
+outline_size = 4
+outline_color = Color(0.681832, 0.101825, 0.332352, 1)
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 0.235294)
+shadow_offset = Vector2(0, 2)
+
+[node name="ConfirmationWindow" instance=ExtResource("1_uteqx")]
+offset_left = 345.0
+offset_top = 136.0
+offset_right = -455.0
+offset_bottom = -184.0
+Description = "DON'T EVEN TRY TO ENTER THE EDITOR USING GAMEPAD. If you don't care about the warnings, click the accept button"
+
+[node name="BlueBoxRect" parent="MarginContainer/VBoxContainer/BlueBox" index="0"]
+color = Color(0.796078, 0.239216, 0.407843, 1)
+
+[node name="WindowTitle" parent="MarginContainer/VBoxContainer/BlueBox" index="1"]
+label_settings = SubResource("LabelSettings_5o5o8")
+
+[node name="Description" parent="MarginContainer/VBoxContainer" index="1"]
+custom_minimum_size = Vector2(400, 0)
+text = "DON'T EVEN TRY TO ENTER THE EDITOR USING GAMEPAD. If you don't care about the warnings, click the accept button"

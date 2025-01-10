@@ -57,7 +57,7 @@ public partial class LevelEditor : Control
 
     public override void _Ready()
     {
-        _mapPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData) + @"\Godot\app_userdata\Little Slippey\mods\" + G.ModMapPath;
+        _mapPath = ModManager.DefaultModsPath + G.ModMapPath;
         _mapFolder = G.ModMapFolder;
 
         G.IsLevelVanilla = false;

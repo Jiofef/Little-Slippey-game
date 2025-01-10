@@ -35,12 +35,18 @@ public partial class DraggableWindow : FlexibleWindow
     private void UpdateCloseButton()
     {
         GetNode<TextureButton>("MarginContainer/VBoxContainer/BlueBox/CloseButton").Visible = _canClose;
-        
     }
     private void OnCloseButtonPressed()
     {
         EmitSignal("WindowClosedByButton");
         QueueFree();
+        _previousFocusOwner?.GrabFocus();
+    }
+
+    protected Control _previousFocusOwner = null;
+    public override void _Ready()
+    {
+        _previousFocusOwner = GetViewport().GuiGetFocusOwner();
     }
 
     private bool _isBlueBoxHovered = false, _isDragging = false;

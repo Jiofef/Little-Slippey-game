@@ -57,8 +57,10 @@ public partial class UserLevelScript : Node2D
         if (!G.IsProgressPaused)
         {
             G.Scores += 0.016667f;
-            if (G.Scores > G.LevelCompleteTime && UnchangableMeta.LevelCompleteStatus[G.CurrentLevel - 1] < 1 + Meta.Instance.Gameplay.Dificulty && G.IsLevelVanilla)
-                UnchangableMeta.SaveRecords();
+
+            // Need to fix :p
+            //if (G.Scores > G.LevelCompleteTime && UnchangableMeta.LevelCompleteStatus[G.CurrentLevel - 1] < 1 + Meta.Instance.Gameplay.Dificulty && G.IsLevelVanilla)
+                //UnchangableMeta.SaveRecords();
         }
     }
 }

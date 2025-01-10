@@ -187,11 +187,13 @@ public partial class WorkshopMenu : DraggableWindow
 
 
     #region Buttons region
-    public void OpenInEditor()
+    public void OpenInEditor(bool openAnyway = false)
     {
-        if (G.TypeOfUsedController != "Keyboard" && GetNode<Control>("WARNING").Visible == false)
+        if (!openAnyway && G.TypeOfUsedController != "Keyboard")
         {
-            GetNode<AnimationPlayer>("WARNING/AnimationPlayer").Play("WARNING");
+            var gamepadModWarning = (ConfirmationWindow)GD.Load<PackedScene>("res://Content/Scenes/Interface&Menu/RareScenes/GamepadModWarning.tscn").Instantiate();
+            GetParent().AddChild(gamepadModWarning);
+            gamepadModWarning.Accepted += () => OpenInEditor(true);
             return;
         }
 

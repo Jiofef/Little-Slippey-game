@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://b6deeu4t1saw"]
+[gd_scene load_steps=12 format=3 uid="uid://b6deeu4t1saw"]
 
 [ext_resource type="PackedScene" uid="uid://cb3550p76ubc8" path="res://Content/Scenes/Interface&Menu/DraggableWindow.tscn" id="1_db0af"]
 [ext_resource type="Theme" uid="uid://dkitr1ftp0yhs" path="res://Content/Other/Menu.tres" id="2_2kps5"]
@@ -11,40 +11,6 @@
 [ext_resource type="Texture2D" uid="uid://bmldgxs7k8p6" path="res://Content/Sprites/Interface/Buttons/OpenInEditorButton.png" id="9_oa3ny"]
 [ext_resource type="Texture2D" uid="uid://cgnw0ryaidc3m" path="res://Content/Sprites/Interface/Buttons/MakeAModButton.png" id="10_ihewl"]
 [ext_resource type="Texture2D" uid="uid://cwxoq374yceom" path="res://Content/Sprites/Interface/Buttons/OpenTheDirectoryButton.png" id="11_qede0"]
-[ext_resource type="Texture2D" uid="uid://cdh8bcaew8h6o" path="res://Content/Sprites/Interface/TurnOffBox.png" id="17_x6lpf"]
-
-[sub_resource type="Animation" id="Animation_tgptk"]
-resource_name = "WARNING"
-length = 6.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.4, 5, 6),
-"transitions": PackedFloat32Array(0.5, 1, 2, 1),
-"update": 0,
-"values": [Vector2(338, 720), Vector2(338, 180), Vector2(338, 180), Vector2(338, 720)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 6),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_24sii"]
-_data = {
-"WARNING": SubResource("Animation_tgptk")
-}
 
 [node name="WorkshopMenu" instance=ExtResource("1_db0af")]
 custom_minimum_size = Vector2(1060, 720)
@@ -61,10 +27,9 @@ text = "Workshop"
 [node name="Tabs" type="TabContainer" parent="MarginContainer/VBoxContainer" index="1"]
 layout_mode = 2
 size_flags_vertical = 3
-current_tab = 2
+current_tab = 0
 
 [node name="Mods" type="ScrollContainer" parent="MarginContainer/VBoxContainer/Tabs" index="1"]
-visible = false
 layout_mode = 2
 metadata/_tab_index = 0
 
@@ -198,6 +163,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="Edit Mod Data" type="ScrollContainer" parent="MarginContainer/VBoxContainer/Tabs" index="3"]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 2
 
@@ -443,45 +409,13 @@ grow_vertical = 2
 size_flags_horizontal = 0
 texture_normal = ExtResource("11_qede0")
 Description = "Change the picture"
+DisableProcessDisabling = false
 
 [node name="Description" parent="MarginContainer/VBoxContainer/Tabs/Edit Mod Data/MarginC/HBoxC/VBoxC2/NPR2/MarginC/VBoxC/Control/ChangeThePictureButton/Face" index="1"]
 custom_minimum_size = Vector2(192, 72)
 
-[node name="WARNING" type="Control" parent="." index="3"]
-layout_mode = 3
-anchors_preset = 0
-offset_left = 338.0
-offset_top = 720.0
-offset_right = 722.0
-offset_bottom = 975.999
-
-[node name="Sprite2D" type="Sprite2D" parent="WARNING" index="0"]
-scale = Vector2(4, 4)
-texture = ExtResource("17_x6lpf")
-centered = false
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="WARNING" index="1"]
-libraries = {
-"": SubResource("AnimationLibrary_24sii")
-}
-
-[node name="Description" type="RichTextLabel" parent="WARNING" index="2"]
-clip_contents = false
-layout_mode = 0
-offset_left = 12.0
-offset_top = 12.0
-offset_right = 497.0
-offset_bottom = 327.0
-scale = Vector2(0.75, 0.75)
-mouse_filter = 1
-theme_override_colors/default_color = Color(0.196078, 0.196078, 0.196078, 1)
-theme_override_font_sizes/normal_font_size = 33
-text = "DON'T EVEN TRY TO ENTER THE EDITOR USING GAMEPAD.
-If you don't care about the warnings, click again"
-script = ExtResource("6_yqfp4")
-
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Tabs/Mods/MarginC/VBoxC/ActionButtons/PlayMapButton" to="." method="PlayMap" flags=6]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Tabs/Mods/MarginC/VBoxC/ActionButtons/OpenInEditorButton" to="." method="OpenInEditor"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Tabs/Mods/MarginC/VBoxC/ActionButtons/OpenInEditorButton" to="." method="OpenInEditor" binds= [false]]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Tabs/Mods/MarginC/VBoxC/ActionButtons/MakeAModButton" to="." method="CreateANewMod"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Tabs/Mods/MarginC/VBoxC/ActionButtons/OpenTheDirectoryButton" to="." method="OpenModFolder"]
 [connection signal="text_changed" from="MarginContainer/VBoxContainer/Tabs/Edit Mod Data/MarginC/HBoxC/VBoxC/MarginC/ScrollC/VBoxC/DescriptionText" to="." method="ModDescriptionChanged"]

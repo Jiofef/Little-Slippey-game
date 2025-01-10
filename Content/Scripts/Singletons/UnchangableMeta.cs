@@ -94,7 +94,7 @@ public partial class UnchangableMeta : Node
         try
         {
             var SaveData = GetJsonSave();
-            FileSystemExtension.SaveInJson(SaveData.ToString(), "user://save.json");
+            FileSystemExtension.SaveInJson(SaveData, "user://save.json");
         }
         catch { }
     }

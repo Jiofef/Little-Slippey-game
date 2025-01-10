@@ -11,6 +11,7 @@ custom_minimum_size = Vector2(320, 250)
 offset_bottom = -470.0
 script = ExtResource("2_gmu22")
 Description = "Are you sure?"
+ReturnTheFocusToPreviousOwnerWhenAccepted = true
 WindowTitle = "Confirmation"
 
 [node name="WindowTitle" parent="MarginContainer/VBoxContainer/BlueBox" index="1"]

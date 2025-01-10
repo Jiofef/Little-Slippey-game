@@ -23,6 +23,7 @@ custom_minimum_size = Vector2(320, 250)
 offset_bottom = -470.0
 script = ExtResource("2_dm4ob")
 Description = "Are you sure?"
+ReturnTheFocusToPreviousOwnerWhenAccepted = true
 WindowTitle = "!Warning!"
 
 [node name="BlueBoxRect" parent="MarginContainer/VBoxContainer/BlueBox" index="0"]

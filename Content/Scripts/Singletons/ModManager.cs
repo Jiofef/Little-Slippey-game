@@ -28,6 +28,7 @@ public partial class ModManager : Node
 
     // Mod types
     public enum ModType { map, localization, skin, content, resource }
+    public static readonly ModType DefaultModType = ModType.map;
 
     public static ModType StringToModType(string value)
     {
@@ -184,7 +185,7 @@ public partial class ModManager : Node
             return "";
     }
 
-    private static Dictionary<ModType, string> _defaultModPreviewNames = new Dictionary<ModType, string> 
+    public static Dictionary<ModType, string> DefaultModTypeNames = new Dictionary<ModType, string> 
     {
         {ModType.map, "CustomMap"},
         {ModType.skin, "CustomSkin"},
@@ -201,7 +202,7 @@ public partial class ModManager : Node
                 Directory.CreateDirectory(path + value);
 
 
-        FileSystemExtension.CopyByteResourceFileTo("res://Content/Sprites/Interface/" + _defaultModPreviewNames[@params.modType] + "DefaultPreview.png", path + @"\PreviewPicture.png");
+        FileSystemExtension.CopyByteResourceFileTo("res://Content/Sprites/Interface/" + DefaultModTypeNames[@params.modType] + "DefaultPreview.png", path + @"\PreviewPicture.png");
 
         var modPreview = (ModPreview)ResourceLoader.Load<PackedScene>("res://Content/Scenes/Interface&Menu/ModPreviewLayout.tscn").Instantiate();
         modPreview._resourcePath = path + @"\PreviewPicture.png";
