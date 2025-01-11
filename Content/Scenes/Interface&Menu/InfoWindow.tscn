@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://cfc6vck53fdh7"]
+
+[ext_resource type="PackedScene" uid="uid://cb3550p76ubc8" path="res://Content/Scenes/Interface&Menu/DraggableWindow.tscn" id="1_l5otc"]
+[ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/ConfirmationWindow.cs" id="2_2e1t6"]
+[ext_resource type="Theme" uid="uid://dkitr1ftp0yhs" path="res://Content/Other/Menu.tres" id="2_fhl7m"]
+[ext_resource type="PackedScene" uid="uid://ci0nrongv6pih" path="res://Content/Scenes/Interface&Menu/MenuButton.tscn" id="3_2i13g"]
+[ext_resource type="Texture2D" uid="uid://b8abnpf38b77x" path="res://Content/Sprites/Interface/Buttons/4XAcceptButton.png" id="4_diils"]
+
+[node name="InfoWindow" instance=ExtResource("1_l5otc")]
+custom_minimum_size = Vector2(360, 250)
+offset_right = -920.0
+offset_bottom = -470.0
+script = ExtResource("2_2e1t6")
+Description = "Here cold be your advertising"
+ReturnTheFocusToPreviousOwnerWhenAccepted = true
+WindowTitle = "Info"
+
+[node name="WindowTitle" parent="MarginContainer/VBoxContainer/BlueBox" index="1"]
+text = "Info"
+
+[node name="Description" type="RichTextLabel" parent="MarginContainer/VBoxContainer" index="1"]
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 2
+theme = ExtResource("2_fhl7m")
+text = "Here cold be your advertising"
+fit_content = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer" index="2"]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_constants/separation = 32
+alignment = 1
+
+[node name="AcceptButton" parent="MarginContainer/VBoxContainer/HBoxContainer" index="0" instance=ExtResource("3_2i13g")]
+layout_mode = 2
+texture_normal = ExtResource("4_diils")
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/AcceptButton" to="." method="Accept"]

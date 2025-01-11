@@ -2,7 +2,7 @@ using Godot;
 using Godot.Collections;
 using System;
 using System.IO;
-using static ModManager;
+using System.Text.Json;
 
 public partial class ModManager : Node
 {
@@ -194,6 +194,17 @@ public partial class ModManager : Node
         {ModType.content, "ContentMod"},
     };
 
+    public static System.Collections.Generic.Dictionary<string, object> CreateModInfoJson(CreateModParams @params)
+    {
+        return new System.Collections.Generic.Dictionary<string, object>()
+        {
+            {"name", @params.ModName},
+            {"mod_type", @params.modType.ToString()},
+            {"description", @params.Description},
+            {"mod_options", new ModDataManager.ModOptionData[0]},
+        };
+    }
+
     private static void CreateAModBase(CreateModParams @params, string path)
     {
         Directory.CreateDirectory(path + @"\");
@@ -212,11 +223,7 @@ public partial class ModManager : Node
         ToSave.Pack(modPreview);
         ResourceSaver.Save(ToSave, path + @"\ModPreview.tscn");
 
-        var jsonText = "{\r\n  " +
-            "\"name\": \"" + @params.ModName + "\",\r\n  " +
-            "\"mod_type\":  \"" + @params.modType.ToString() + "\",\r\n  " +
-            "\"description\": \"" + @params.Description + "\"\r\n}";
-        FileSystemExtension.SaveInJson(jsonText, path + "/mod_info.json");
+        FileSystemExtension.SaveInJson(CreateModInfoJson(@params), path + "/mod_info.json");
 
 
         // Creating directory keypairs

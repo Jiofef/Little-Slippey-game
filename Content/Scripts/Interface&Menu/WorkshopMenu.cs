@@ -5,32 +5,55 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using static ModManager;
+using static ModDataManager;
 
 [Tool]
 public partial class WorkshopMenu : DraggableWindow
 {
-    private Dictionary[] _modsInfo;
+    private System.Collections.Generic.Dictionary<string, object>[] _modsInfo;
     private int _selectedMod = -1;
     private string _selectedModFolder;
     private string[] _directories;
     private TextureButton _selectedModButton;
     private Control _lastFocusOwner, _currentModPreview;
+    private TabContainer _tabs;
 
     bool _createAModWindowOpened = false;
 
 
     #region InScript methods
-    #region Override methods
+    #region Loading methods
     public override void _Ready()
     {
-        GetTree().Root.FilesDropped += FileDropped;
-        TreeExiting += () => GetTree().Root.FilesDropped -= FileDropped;
+        //Initializing the nodes
+        _tabs = GetNode<TabContainer>("MarginContainer/VBoxContainer/Tabs");
+
+        GetTree().Root.FilesDropped += FileDropped; // File reset handling for quick replacement of mod previews
+        TreeExiting += () => GetTree().Root.FilesDropped -= FileDropped; // Event disconnecting on node deletion
+        _lastFocusOwner = GetViewport().GuiGetFocusOwner(); // I don't remember why it's used.
+
+        UpdateModsList();
+    }
+
+    public void UpdateModsList()
+    {
+        // Deleting current mod buttons
+        var modsList = GetNode("MarginContainer/VBoxContainer/Tabs/Mods/MarginC/VBoxC/HBoxC/ModsList");
+        foreach (var modButton in modsList.GetChildren())
+            modButton.QueueFree();
+        // Unselecting the selected mod
+        _selectedMod = -1;
+        _selectedModFolder = null;
+        _selectedModButton = null;
+        // Since the selected mod is removed
+        SetTabEnabled("Mod Options", false);
+        SetTabEnabled("Edit Mod Data", false);
+
+        // Loading mod info
         _directories = GetModDirectories();
-        _modsInfo = new Dictionary[_directories.Length];
-        _lastFocusOwner = GetViewport().GuiGetFocusOwner();
+        _modsInfo = new System.Collections.Generic.Dictionary<string, object>[_directories.Length];
 
-
-
+        // Creating all the mod buttons
         for (int i = 0; i < _directories.Length; i++)
         {
             try
@@ -43,9 +66,39 @@ public partial class WorkshopMenu : DraggableWindow
             catch { }
         }
     }
+    public void UpdateModOptions()
+    {
+        if (_selectedMod == -1) return; // If the mod isn't selected
+    }
+    public void UpdateEditModData()
+    {
+        if (_selectedMod == -1) return; // If the mod isn't selected
+
+
+        const string FIELDS_LINK = "MarginContainer/VBoxContainer/Tabs/Edit Mod Data/MarginC/HBoxC/VBoxC/MarginC/ScrollC/VBoxC/";
+        const string EDIT_MOD_DATA_LINK = "MarginContainer/VBoxContainer/Tabs/Edit Mod Data/";
+
+        // Loading fields state
+        GetNode<LineEdit>(FIELDS_LINK + "NameEdit").Text = _settedModName = _modsInfo[_selectedMod]["name"].ToString();
+        GetNode<LineEdit>(FIELDS_LINK + "FolderNameEdit").Text = _settedModFolderName = Path.GetFileName(_selectedModFolder);
+        GetNode<TextEdit>(FIELDS_LINK + "DescriptionText").Text = _settedModDescription = _modsInfo[_selectedMod]["description"].ToString();
+
+        _settedModOptionDatas = GetCloneOfModOptionData(_modsInfo[_selectedMod]["mod_options"]); // NEED FIX HERE
+
+        // Loading the preview
+        var previewPicture = _currentModPreview.GetNodeOrNull<TextureRect>("PreviewPicture");
+        if (previewPicture != null)
+            GetNode<TextureRect>(EDIT_MOD_DATA_LINK + "MarginC/HBoxC/VBoxC2/NPR/PreviewTexture").Texture = previewPicture.Texture;
+    }
     #endregion
 
     #region Private methods
+    private void SetTabEnabled(string tabName, bool value)
+    {
+        var tab = _tabs.GetNode<Control>(tabName);
+        int tabId = _tabs.GetTabIdxFromControl(tab);
+        _tabs.SetTabDisabled(tabId, !value);
+    }
     private void ShowModInfo(int index)
     {
         GetNode<RichTextLabel>("MarginContainer/VBoxContainer/Tabs/Mods/MarginC/VBoxC/HBoxC/ModDescription/MarginC/ScrollContainer/VBoxC/Description").Text = _modsInfo[index]["description"].ToString();
@@ -66,6 +119,9 @@ public partial class WorkshopMenu : DraggableWindow
         _selectedMod = index;
         button.GetNode<ColorRect>("SelectRect").Visible = true; // Selecting new mod
 
+        // Enabling tabs in case a mod has not been previously selected
+        SetTabEnabled("Mod Options", true);
+        SetTabEnabled("Edit Mod Data", true);
 
         switch (modType)
         {
@@ -127,9 +183,11 @@ public partial class WorkshopMenu : DraggableWindow
             {"content", ResourceLoader.Load<Texture2D>("res://Content/Sprites/Interface/ContentMod.png")},
             {"resource", ResourceLoader.Load<Texture2D>("res://Content/Sprites/Interface/ResourceMod.png")},
         };
-        var ModButton = (TextureButton)ResourceLoader.Load<PackedScene>("res://Content/Scenes/Interface&Menu/ModButton.tscn").Instantiate();
 
-        var model = FileSystemExtension.GetJsonModel(path + @"\mod_info.json");
+        // Creating a button
+        var ModButton = (TextureButton)ResourceLoader.Load<PackedScene>("res://Content/Scenes/Interface&Menu/ModButton.tscn").Instantiate(); 
+
+        var model = FileSystemExtension.GetSystemJsonModel(path + @"\mod_info.json");
 
         if (modIndex < _modsInfo.Length)
             _modsInfo[modIndex] = model;
@@ -137,23 +195,24 @@ public partial class WorkshopMenu : DraggableWindow
             _modsInfo = _modsInfo.Append(model).ToArray();
 
 
-
-        ModButton.GetNode<RichTextLabel>("HBoxContainer/Name").Text = model["name"].ToString(); // Setting mod name
+        // Setting mod name
+        ModButton.GetNode<RichTextLabel>("HBoxContainer/Name").Text = model["name"].ToString();
 
 
         string modTypeName = model["mod_type"].ToString();
-        ModType modType = (ModType)Enum.Parse(typeof(ModType), modTypeName);
+        ModType modType = StringToModType(modTypeName);
 
+        // Setting mod type icon
         if (ModTypeIcons.TryGetValue(modTypeName, out Variant value))
-            ModButton.GetNode<TextureRect>("HBoxContainer/ModType").Texture = (Texture2D)value; // Setting mod type icon
+            ModButton.GetNode<TextureRect>("HBoxContainer/ModType").Texture = (Texture2D)value;
 
         var checkButton = ModButton.GetNode<CheckButton>("HBoxContainer/CheckButton");
 
         string modFolderName = Path.GetFileName(path);
 
-        if (modTypeName == "map" || modFolderName == "StandartTimerLib")
+        if (modTypeName == "map" || modFolderName == "StandartTimerLib") // Removing a switch where it is not needed
             checkButton.QueueFree();
-        else
+        else // Loading mod status
         {
             if (!ModDataManager.ModStatuses.ContainsKey(modFolderName))
                 ModDataManager.ModStatuses.Add(modFolderName, true);
@@ -181,10 +240,28 @@ public partial class WorkshopMenu : DraggableWindow
         ModDataManager.SaveModStatuses();
     }
     #endregion
-
     #endregion
 
+    public void OnTabChanged(int index)
+    {
+        #region Handling when tab are changed with the expectation that the tab order may change in the future.
+        var tabs = GetNode<TabContainer>("MarginContainer/VBoxContainer/Tabs");
 
+        var tab = tabs.GetCurrentTabControl(); // Getting selected tab
+
+        switch (tab.Name)
+        {
+            case "Mods":
+                break;
+            case "Mod Options":
+                UpdateModOptions();
+                break;
+            case "Edit Mod Data":
+                UpdateEditModData();
+                break;
+        }
+        #endregion
+    }
 
     #region Buttons region
     public void OpenInEditor(bool openAnyway = false)
@@ -255,23 +332,9 @@ public partial class WorkshopMenu : DraggableWindow
 
 
     #region Mod Info Editing Section
-    string _settedModName, _settedModFolderName, _settedModDescription, _settedImagePath;
-    public void EditModInfo()
-    {
-        var editModInfo = GetNode<Control>("EditModInfo");
-        editModInfo.Visible = true;
-        GetNode<AnimationPlayer>("EditModInfo/AnimationPlayer").Play("Appearance");
-        GetNode<TextureButton>("ActionButtons/EditInfoButton").Disabled = true;
-
-        GetNode<TextEdit>("EditModInfo/ScrollContainer/VBoxContainer/CrutchControl/ModNameText").Text = _settedModName = _modsInfo[_selectedMod]["name"].ToString();
-        GetNode<LineEdit>("EditModInfo/ScrollContainer/VBoxContainer/CrutchControl/LineEdit").Text = _settedModFolderName = _selectedModFolder.Remove(0, DefaultModsPath.Length);
-        GetNode<TextEdit>("EditModInfo/ScrollContainer/VBoxContainer/CrutchControl/DescriptionText").Text = _settedModDescription = _modsInfo[_selectedMod]["description"].ToString();
-
-        var previewPicture = _currentModPreview.GetNodeOrNull<TextureRect>("PreviewPicture");
-        if (previewPicture != null)
-            GetNode<TextureRect>("EditModInfo/PreviewPicture").Texture = previewPicture.Texture;
-    }
-
+    private string _settedModName, _settedModFolderName, _settedModDescription, _settedImagePath;
+    private ModOptionData[] _settedModOptionDatas;
+    private bool _isFolderNameCorrect = true, _wereChangesMade = false;
     public void ChangeThePicture()
     {
         GetNode<FileDialog>("EditModInfo/ChangeThePictureDialog").Popup();
@@ -281,36 +344,34 @@ public partial class WorkshopMenu : DraggableWindow
         if (!path.EndsWith(".png"))
             return;
 
+        _wereChangesMade = true;
+        UpdateSaveChangesButton();
+
         _settedImagePath = path;
         Image image = new Image();
         image.Load(path);
         ImageTexture texture = new ImageTexture();
         texture.SetImage(image);
         
-        GetNode<TextureRect>("EditModInfo/PreviewPicture").Texture = texture;
+        GetNode<TextureRect>("MarginContainer/VBoxContainer/Tabs/Edit Mod Data/MarginC/HBoxC/VBoxC2/NPR/PreviewTexture").Texture = texture;
     }
     public void FileDropped(string[] files)
     {
-        var previewPictureRect = GetNode<TextureRect>("EditModInfo/PreviewPicture").GetRect();
+        var previewPicture = GetNode<TextureRect>("MarginContainer/VBoxContainer/Tabs/Edit Mod Data/MarginC/HBoxC/VBoxC2/NPR/PreviewTexture");
+        var previewPictureRect = previewPicture.GetGlobalRect();
         var MouseGlobalPos = GetGlobalMousePosition();
-        if (GetNode<TextureRect>("EditModInfo/PreviewPicture").Visible && MouseGlobalPos.X > previewPictureRect.Position.X && MouseGlobalPos.Y > previewPictureRect.Position.Y && MouseGlobalPos.X < previewPictureRect.Position.X + previewPictureRect.Size.X && MouseGlobalPos.Y < previewPictureRect.Position.Y + previewPictureRect.Size.Y)
+
+        if (previewPicture.Visible && MouseGlobalPos.X > previewPictureRect.Position.X && MouseGlobalPos.Y > previewPictureRect.Position.Y && MouseGlobalPos.X < previewPictureRect.Position.X + previewPictureRect.Size.X && MouseGlobalPos.Y < previewPictureRect.Position.Y + previewPictureRect.Size.Y)
             SetPicture(files[0]);
     }
 
-    public void Cancel()
+    public void SaveTheChanges()
     {
-        GetNode<Control>("EditModInfo").Visible = false;
-        var editInfoButton = GetNode<TextureButton>("ActionButtons/EditInfoButton");
-        editInfoButton.GrabFocus();
-        editInfoButton.Disabled = false;
-    }
-    public void Accept()
-    {
-        GetNode<Control>("EditModInfo").Visible = false;
-        var editInfoButton = GetNode<TextureButton>("ActionButtons/EditInfoButton");
-        editInfoButton.GrabFocus();
-        editInfoButton.Disabled = false;
+        // Disabling the SaveChanges button
+        _wereChangesMade = false;
+        UpdateSaveChangesButton();
 
+        // Saving the values in mod info
         _modsInfo[_selectedMod]["name"] = _settedModName;
         _modsInfo[_selectedMod]["description"] = _settedModDescription;
         if (_selectedModFolder != DefaultModsPath + _settedModFolderName)
@@ -320,29 +381,126 @@ public partial class WorkshopMenu : DraggableWindow
             _directories[_selectedMod] = _selectedModFolder;
             ((ModPreview)_currentModPreview)._resourcePath = _selectedModFolder;
         }
+        _modsInfo[_selectedMod]["mod_options"] = _settedModOptionDatas;
 
-        using Godot.FileAccess file = Godot.FileAccess.Open(_selectedModFolder + @"\mod_info.json", Godot.FileAccess.ModeFlags.Write);
-        file.StoreString(_modsInfo[_selectedMod].ToString());
-        file.Close();
+        // Saving the mod info
+        string modsInfoLocation = _selectedModFolder + @"\mod_info.json";
+        FileSystemExtension.SaveInJson(_modsInfo[_selectedMod], modsInfoLocation);
 
-        _selectedModButton.GetNode<RichTextLabel>("Name").Text = _settedModName;
+        _selectedModButton.GetNode<RichTextLabel>("HBoxContainer/Name").Text = _settedModName;
 
+        // Updating the preview
         if (_settedImagePath != null)
             DirAccess.CopyAbsolute(_settedImagePath, _selectedModFolder + @"\PreviewPicture.png");
         _settedImagePath = null;
+
+        // Updating the showed mod info
         ShowModInfo(_selectedMod);
     }
-    public void ModNameChanged()
+
+    public void ModNameChanged(string value)
     {
-        _settedModName = GetNode<TextEdit>("EditModInfo/ScrollContainer/VBoxContainer/CrutchControl/ModNameText").Text;
+        _wereChangesMade = true;
+        UpdateSaveChangesButton();
+        _settedModName = value;
     }
     public void ModFolderNameChanged(string value)
     {
-        _settedModFolderName = value;
+        _wereChangesMade = true;
+        CheckFolderNameCorrectness(value);
+        UpdateSaveChangesButton();
     }
+    // Yes, almost like in CreateModMenu. I haven't figured out how to do it competently without copypasting.
+    private bool CheckFolderNameCorrectness(string name)
+    {
+        Color redColor = new Color(0.788f, 0.141f, 0.392f);
+        Color greenColor = new Color(0.357f, 0.702f, 0.38f);
+
+        const string EDIT_MOD_DATA_LINK = "MarginContainer/VBoxContainer/Tabs/Edit Mod Data/MarginC/HBoxC/";
+
+        var isFolderNameValid = GetNode<RichTextLabel>(EDIT_MOD_DATA_LINK + "VBoxC/MarginC/ScrollC/VBoxC/IsFolderNameValid");
+        var saveTheChangesButton = GetNode<ButtonWithText>(EDIT_MOD_DATA_LINK + "VBoxC2/NPR2/MarginC/VBoxC/Control/SaveChangesButton");
+
+        void NameIsntCorrectMessage(string messageText)
+        {
+            isFolderNameValid.Text = messageText;
+            _isFolderNameCorrect = false;
+            isFolderNameValid.Modulate = redColor;
+        }
+        if (FileSystemExtension.HasSpecialChars(name))
+        {
+            NameIsntCorrectMessage("Remove the special characters, please");
+            return false;
+        }
+        else if (name == "")
+        {
+            NameIsntCorrectMessage("Enter something");
+            return false;
+        }
+        else if (name.All(c => c == ' '))
+        {
+            NameIsntCorrectMessage("Bro, why the spaces?");
+            return false;
+        }
+        else if (DirAccess.DirExistsAbsolute(DefaultModsPath + name) && name != Path.GetFileName(_selectedModFolder))
+        {
+            NameIsntCorrectMessage("There's a folder with the same name");
+            return false;
+        }
+
+
+        //
+        switch (name.ToLower())
+        {
+            case "upandup" or "up and up" or "up_and_up":
+                NameIsntCorrectMessage("Heeey! No");
+                return false;
+            case "xa":
+                NameIsntCorrectMessage("Not a number");
+                return false;
+            case "jiofef" or "jio yoba fefski" or "jio_yoba_fefski":
+                NameIsntCorrectMessage("Pick another name, I don't like it");
+                return false;
+            case "tomatoes":
+                NameIsntCorrectMessage("Cucumbers are better");
+                return false;
+            case "when's the game coming out":
+                NameIsntCorrectMessage("Tomorrow at 3");
+                return false;
+        }
+
+        // If the name is correct
+        isFolderNameValid.Text = "The name is valid";
+        if (name == "000000000")
+            isFolderNameValid.Text = "000000000, bro";
+        _settedModFolderName = name;
+        _isFolderNameCorrect = true;
+        UpdateSaveChangesButton();
+        isFolderNameValid.Modulate = greenColor;
+
+        return true;
+    }
+
     public void ModDescriptionChanged()
     {
-        _settedModDescription = GetNode<TextEdit>("EditModInfo/ScrollContainer/VBoxContainer/CrutchControl/DescriptionText").Text;
+        _wereChangesMade = true;
+        UpdateSaveChangesButton();
+        _settedModDescription = GetNode<TextEdit>("MarginContainer/VBoxContainer/Tabs/Edit Mod Data/MarginC/HBoxC/VBoxC/MarginC/ScrollC/VBoxC/DescriptionText").Text;
+    }
+
+    public void UpdateSaveChangesButton()
+    {
+        bool CanSave = _isFolderNameCorrect && _wereChangesMade;
+
+        var saveChangesButton = GetNode<ButtonWithText>("MarginContainer/VBoxContainer/Tabs/Edit Mod Data/MarginC/HBoxC/VBoxC2/NPR2/MarginC/VBoxC/Control/SaveChangesButton");
+
+        saveChangesButton.Disabled = !CanSave;
+    }
+
+    public void ModOptionsMoreInfo()
+    {
+        var infoWindow = (ConfirmationWindow)GD.Load<PackedScene>("res://Content/Scenes/Interface&Menu/RareScenes/ModOptionsInfo.tscn").Instantiate();
+        GetParent().AddChild(infoWindow);
     }
     #endregion
 }

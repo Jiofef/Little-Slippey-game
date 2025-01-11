@@ -733,8 +733,8 @@ Tomorrow at 3,Tomorrow at 3,Завтра в 3
 ,,
 Last time the mods apparently resulted in a crash. All mods crash shut down until the next run.,Last time the mods apparently resulted in a crash. All mods crash shut down until the next run.,"В прошлый раз моды, видимо, привели к крашу. Все моды аварийно выключены до следующего запуска."
 "DON'T EVEN TRY TO ENTER THE EDITOR USING GAMEPAD. If you don't care about the warnings, click the accept button","DON'T EVEN TRY TO ENTER THE EDITOR USING GAMEPAD. If you don't care about the warnings, click the accept button","ДАЖЕ НЕ ПЫТАЙТЕСЬ ВХОДИТЬ В РЕДАКТОР С ГЕЙМПАДА. Если вы смелый, жмите кнопку слева (только не нойте потом)"
-,,
-,,
+"Mod options create local values on the player's disc, which ordinary players can change in the ModOptions section, and developers can use in scripts using the GetModOption or GetCurrentModMapOption function in G Singleton.","Mod options create local values on the player's disc, which ordinary players can change in the ModOptions section, and developers can use in scripts using the GetModOption or GetCurrentModMapOption function in G Singleton.","Настройки модов создают на диске игрока локальные значения, которые простые игроки могут менять в разделе ModOptions, а разработчики использовать в скриптах при помощи функции GetModOption или GetCurrentModMapOption в G синглтоне."
+Mod Options Info,Mod Options Info,Подробнее о настройках модов
 ,,
 ,,
 ,,

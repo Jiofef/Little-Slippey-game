@@ -6,8 +6,8 @@ using System.Text.Json;
 
 public partial class FileSystemExtension : Node
 {
-	public static void CopyResourceFileTo(string sourcePath, string targetPath)
-	{
+    public static void CopyResourceFileTo(string sourcePath, string targetPath)
+    {
         ResourceSaver.Save(ResourceLoader.Load(sourcePath), targetPath);
     }
 
@@ -67,6 +67,13 @@ public partial class FileSystemExtension : Node
         file.Close();
         return model;
     }
+    public static System.Collections.Generic.Dictionary<string, object> GetSystemJsonModel(string path)
+    {
+        using Godot.FileAccess file = Godot.FileAccess.Open(path, Godot.FileAccess.ModeFlags.Read);
+        var model = JsonSerializer.Deserialize(file.GetAsText(), typeof(System.Collections.Generic.Dictionary<string, object>)) as System.Collections.Generic.Dictionary<string, object>;
+        file.Close();
+        return model;
+    }
 
     public static void SaveInJson(string what, string where)
     {
@@ -77,5 +84,9 @@ public partial class FileSystemExtension : Node
     public static void SaveInJson(Variant what, string where)
     {
         SaveInJson(Json.Stringify(what), where);
+    }
+    public static void SaveInJson(System.Collections.Generic.Dictionary<string, object> what, string where)
+    {
+        SaveInJson(JsonSerializer.Serialize(what), where);
     }
 }

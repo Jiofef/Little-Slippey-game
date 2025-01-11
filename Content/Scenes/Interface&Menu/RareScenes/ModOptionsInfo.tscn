@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://bep0ehusvcfya"]
+
+[ext_resource type="PackedScene" uid="uid://cfc6vck53fdh7" path="res://Content/Scenes/Interface&Menu/InfoWindow.tscn" id="1_o3c0o"]
+
+[node name="InfoWindow" instance=ExtResource("1_o3c0o")]
+custom_minimum_size = Vector2(640, 400)
+offset_left = 335.0
+offset_top = 61.0
+offset_right = -305.0
+offset_bottom = -259.0
+Description = "Mod options create local values on the player's disc, which ordinary players can change in the ModOptions section, and developers can use in scripts using the GetModOption or GetCurrentModMapOption method in G Singleton."
+WindowTitle = "Mod Options Info"
+
+[node name="WindowTitle" parent="MarginContainer/VBoxContainer/BlueBox" index="1"]
+text = "Mod Options Info"
+
+[node name="Description" parent="MarginContainer/VBoxContainer" index="1"]
+custom_minimum_size = Vector2(600, 0)
+text = "Mod options create local values on the player's disc, which ordinary players can change in the ModOptions section, and developers can use in scripts using the GetModOption or GetCurrentModMapOption method in G Singleton."

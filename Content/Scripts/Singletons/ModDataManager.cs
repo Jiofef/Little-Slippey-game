@@ -141,4 +141,64 @@ public partial class ModDataManager : Node
             SaveModStatuses();
         }
     }
+
+    #region Mod Settings
+    public class ModOptionData
+    {
+        public string Key;
+        public string Name;
+        public string Description;
+        public enum ValueTypeEnum { Int, Float, Double, Bool, String, Color}
+        public enum ValueFieldTypeEnum { LineEdit, TextEdit, SpinBox, HSlider, ColorPickerButton }
+        public ValueTypeEnum ValueType;
+        public ValueFieldTypeEnum ValueFieldType;
+
+        public ModOptionTypeData modOptionTypeData;
+    }
+
+    public class ModOptionTypeData{}
+    public class ModStringOptionData : ModOptionTypeData
+    {
+        public int MaxStringLength;
+    }
+    public class ModNumberOptionData : ModOptionTypeData
+    {
+        public double MinNumValue, MaxNumValue;
+    }
+
+    public static ModOptionData GetCloneOfModOptionData(ModOptionData modOptionData)
+    {
+        ModOptionData modOptionDataClone = new();
+
+        modOptionDataClone.Key = modOptionData.Key;
+        modOptionDataClone.Name = modOptionData.Name;
+        modOptionDataClone.Description = modOptionData.Description;
+        modOptionDataClone.ValueType = modOptionData.ValueType;
+        modOptionDataClone.ValueFieldType = modOptionData.ValueFieldType;
+
+        modOptionDataClone.modOptionTypeData = GetCloneOfModOptionTypeData(modOptionData.modOptionTypeData);
+
+        return modOptionDataClone;
+    }
+
+    public static ModOptionTypeData GetCloneOfModOptionTypeData(ModOptionTypeData modOptionTypeData)
+    {
+        ModOptionTypeData clone = new();
+        if (modOptionTypeData is ModStringOptionData data)
+        {
+            ModStringOptionData stringTypeClone = (ModStringOptionData)clone;
+
+            stringTypeClone.MaxStringLength = data.MaxStringLength;
+        }
+
+        if (modOptionTypeData is ModNumberOptionData data1)
+        {
+            ModNumberOptionData stringTypeClone = (ModNumberOptionData)clone;
+
+            stringTypeClone.MinNumValue = data1.MinNumValue;
+            stringTypeClone.MaxNumValue = data1.MaxNumValue;
+        }
+        return clone;
+    }
+    #endregion
 }

@@ -101,8 +101,8 @@ texture_normal = ExtResource("3_qg1d2")
 stretch_mode = 3
 script = ExtResource("3_ek235")
 _sizeCoeff = 0.0
-Description = null
-DisableProcessDisabling = null
+Description = ""
+DisableProcessDisabling = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="0"]
 libraries = {

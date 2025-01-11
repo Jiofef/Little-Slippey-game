@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://b6deeu4t1saw"]
+[gd_scene load_steps=14 format=3 uid="uid://b6deeu4t1saw"]
 
 [ext_resource type="PackedScene" uid="uid://cb3550p76ubc8" path="res://Content/Scenes/Interface&Menu/DraggableWindow.tscn" id="1_db0af"]
 [ext_resource type="Theme" uid="uid://dkitr1ftp0yhs" path="res://Content/Other/Menu.tres" id="2_2kps5"]
@@ -11,6 +11,8 @@
 [ext_resource type="Texture2D" uid="uid://bmldgxs7k8p6" path="res://Content/Sprites/Interface/Buttons/OpenInEditorButton.png" id="9_oa3ny"]
 [ext_resource type="Texture2D" uid="uid://cgnw0ryaidc3m" path="res://Content/Sprites/Interface/Buttons/MakeAModButton.png" id="10_ihewl"]
 [ext_resource type="Texture2D" uid="uid://cwxoq374yceom" path="res://Content/Sprites/Interface/Buttons/OpenTheDirectoryButton.png" id="11_qede0"]
+[ext_resource type="Texture2D" uid="uid://3kpc4fuqg0da" path="res://Content/Sprites/Interface/Buttons/4XMoreInfoButton.png" id="12_5kcb7"]
+[ext_resource type="Texture2D" uid="uid://c1d2p0ba42csh" path="res://Content/Sprites/Interface/Buttons/AcceptButton.png" id="12_7pfwf"]
 
 [node name="WorkshopMenu" instance=ExtResource("1_db0af")]
 custom_minimum_size = Vector2(1060, 720)
@@ -113,7 +115,6 @@ visible = false
 layout_mode = 2
 texture_normal = ExtResource("8_ue32r")
 Description = "Play"
-DisableProcessDisabling = false
 
 [node name="Description" parent="MarginContainer/VBoxContainer/Tabs/Mods/MarginC/VBoxC/ActionButtons/PlayMapButton/Face" index="1"]
 custom_minimum_size = Vector2(96, 72)
@@ -124,19 +125,16 @@ visible = false
 layout_mode = 2
 texture_normal = ExtResource("9_oa3ny")
 Description = "Open in editor"
-DisableProcessDisabling = false
 
 [node name="MakeAModButton" parent="MarginContainer/VBoxContainer/Tabs/Mods/MarginC/VBoxC/ActionButtons" index="2" instance=ExtResource("7_sxybr")]
 layout_mode = 2
 texture_normal = ExtResource("10_ihewl")
 Description = "Create a mod"
-DisableProcessDisabling = false
 
 [node name="OpenTheDirectoryButton" parent="MarginContainer/VBoxContainer/Tabs/Mods/MarginC/VBoxC/ActionButtons" index="3" instance=ExtResource("7_sxybr")]
 layout_mode = 2
 texture_normal = ExtResource("11_qede0")
 Description = "Open the directory"
-DisableProcessDisabling = false
 
 [node name="Description" parent="MarginContainer/VBoxContainer/Tabs/Mods/MarginC/VBoxC/ActionButtons/OpenTheDirectoryButton/Face" index="1"]
 custom_minimum_size = Vector2(160, 72)
@@ -193,6 +191,7 @@ theme_override_constants/margin_bottom = 8
 
 [node name="ScrollC" type="ScrollContainer" parent="MarginContainer/VBoxContainer/Tabs/Edit Mod Data/MarginC/HBoxC/VBoxC/MarginC" index="0"]
 layout_mode = 2
+scroll_vertical = 240
 
 [node name="VBoxC" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Tabs/Edit Mod Data/MarginC/HBoxC/VBoxC/MarginC/ScrollC" index="0"]
 layout_mode = 2
@@ -243,6 +242,39 @@ text = "Description"
 custom_minimum_size = Vector2(0, 256)
 layout_mode = 2
 text = "Default"
+
+[node name="ModOptions" type="Label" parent="MarginContainer/VBoxContainer/Tabs/Edit Mod Data/MarginC/HBoxC/VBoxC/MarginC/ScrollC/VBoxC" index="9"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+text = "Mod Options"
+
+[node name="ModOptionsMoreInfoButton" parent="MarginContainer/VBoxContainer/Tabs/Edit Mod Data/MarginC/HBoxC/VBoxC/MarginC/ScrollC/VBoxC" index="10" instance=ExtResource("7_sxybr")]
+layout_mode = 2
+size_flags_horizontal = 0
+texture_normal = ExtResource("12_5kcb7")
+
+[node name="MenuOptions" type="NinePatchRect" parent="MarginContainer/VBoxContainer/Tabs/Edit Mod Data/MarginC/HBoxC/VBoxC/MarginC/ScrollC/VBoxC" index="11"]
+custom_minimum_size = Vector2(356, 128)
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("4_n3dup")
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="MarginC" type="MarginContainer" parent="MarginContainer/VBoxContainer/Tabs/Edit Mod Data/MarginC/HBoxC/VBoxC/MarginC/ScrollC/VBoxC/MenuOptions" index="0"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxC" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Tabs/Edit Mod Data/MarginC/HBoxC/VBoxC/MarginC/ScrollC/VBoxC/MenuOptions/MarginC" index="0"]
+layout_mode = 2
 
 [node name="CrutchControl" type="Control" parent="MarginContainer/VBoxContainer/Tabs/Edit Mod Data/MarginC/HBoxC/VBoxC/MarginC" index="1"]
 visible = false
@@ -330,7 +362,7 @@ size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.75
 
 [node name="NPR" type="NinePatchRect" parent="MarginContainer/VBoxContainer/Tabs/Edit Mod Data/MarginC/HBoxC/VBoxC2" index="0"]
-custom_minimum_size = Vector2(348, 348)
+custom_minimum_size = Vector2(356, 356)
 layout_mode = 2
 size_flags_vertical = 3
 texture = ExtResource("4_n3dup")
@@ -339,7 +371,7 @@ patch_margin_top = 8
 patch_margin_right = 8
 patch_margin_bottom = 8
 
-[node name="Control" type="Control" parent="MarginContainer/VBoxContainer/Tabs/Edit Mod Data/MarginC/HBoxC/VBoxC2/NPR" index="0"]
+[node name="PreviewTexture" type="TextureRect" parent="MarginContainer/VBoxContainer/Tabs/Edit Mod Data/MarginC/HBoxC/VBoxC2/NPR" index="0"]
 custom_minimum_size = Vector2(340, 340)
 layout_mode = 1
 anchors_preset = 8
@@ -353,6 +385,7 @@ offset_right = 20.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
+expand_mode = 1
 
 [node name="NPR2" type="NinePatchRect" parent="MarginContainer/VBoxContainer/Tabs/Edit Mod Data/MarginC/HBoxC/VBoxC2" index="1"]
 layout_mode = 2
@@ -409,22 +442,46 @@ grow_vertical = 2
 size_flags_horizontal = 0
 texture_normal = ExtResource("11_qede0")
 Description = "Change the picture"
-DisableProcessDisabling = false
 
 [node name="Description" parent="MarginContainer/VBoxContainer/Tabs/Edit Mod Data/MarginC/HBoxC/VBoxC2/NPR2/MarginC/VBoxC/Control/ChangeThePictureButton/Face" index="1"]
 custom_minimum_size = Vector2(192, 72)
 
+[node name="SaveChangesButton" parent="MarginContainer/VBoxContainer/Tabs/Edit Mod Data/MarginC/HBoxC/VBoxC2/NPR2/MarginC/VBoxC/Control" index="1" instance=ExtResource("7_sxybr")]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -96.0
+offset_top = -48.0
+offset_right = 0.0
+offset_bottom = 48.0
+grow_horizontal = 0
+grow_vertical = 2
+texture_normal = ExtResource("12_7pfwf")
+Description = "Save the changes"
+
+[node name="Description" parent="MarginContainer/VBoxContainer/Tabs/Edit Mod Data/MarginC/HBoxC/VBoxC2/NPR2/MarginC/VBoxC/Control/SaveChangesButton/Face" index="1"]
+custom_minimum_size = Vector2(192, 72)
+
+[connection signal="tab_changed" from="MarginContainer/VBoxContainer/Tabs" to="." method="OnTabChanged"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Tabs/Mods/MarginC/VBoxC/ActionButtons/PlayMapButton" to="." method="PlayMap" flags=6]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Tabs/Mods/MarginC/VBoxC/ActionButtons/OpenInEditorButton" to="." method="OpenInEditor" binds= [false]]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Tabs/Mods/MarginC/VBoxC/ActionButtons/MakeAModButton" to="." method="CreateANewMod"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Tabs/Mods/MarginC/VBoxC/ActionButtons/OpenTheDirectoryButton" to="." method="OpenModFolder"]
+[connection signal="text_changed" from="MarginContainer/VBoxContainer/Tabs/Edit Mod Data/MarginC/HBoxC/VBoxC/MarginC/ScrollC/VBoxC/NameEdit" to="." method="ModNameChanged"]
+[connection signal="text_changed" from="MarginContainer/VBoxContainer/Tabs/Edit Mod Data/MarginC/HBoxC/VBoxC/MarginC/ScrollC/VBoxC/FolderNameEdit" to="." method="ModFolderNameChanged"]
 [connection signal="text_changed" from="MarginContainer/VBoxContainer/Tabs/Edit Mod Data/MarginC/HBoxC/VBoxC/MarginC/ScrollC/VBoxC/DescriptionText" to="." method="ModDescriptionChanged"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Tabs/Edit Mod Data/MarginC/HBoxC/VBoxC/MarginC/ScrollC/VBoxC/ModOptionsMoreInfoButton" to="." method="ModOptionsMoreInfo"]
 [connection signal="text_changed" from="MarginContainer/VBoxContainer/Tabs/Edit Mod Data/MarginC/HBoxC/VBoxC/MarginC/CrutchControl/ModNameText" to="." method="ModNameChanged"]
 [connection signal="text_changed" from="MarginContainer/VBoxContainer/Tabs/Edit Mod Data/MarginC/HBoxC/VBoxC/MarginC/CrutchControl/LineEdit" to="." method="ModFolderNameChanged"]
 [connection signal="text_changed" from="MarginContainer/VBoxContainer/Tabs/Edit Mod Data/MarginC/HBoxC/VBoxC/MarginC/CrutchControl/DescriptionText" to="." method="ModDescriptionChanged"]
 [connection signal="file_selected" from="MarginContainer/VBoxContainer/Tabs/Edit Mod Data/MarginC/HBoxC/VBoxC2/NPR2/MarginC/VBoxC/ChangeThePictureDialog" to="." method="SetPicture"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Tabs/Edit Mod Data/MarginC/HBoxC/VBoxC2/NPR2/MarginC/VBoxC/Control/ChangeThePictureButton" to="." method="ChangeThePicture"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Tabs/Edit Mod Data/MarginC/HBoxC/VBoxC2/NPR2/MarginC/VBoxC/Control/SaveChangesButton" to="." method="SaveTheChanges"]
 
 [editable path="MarginContainer/VBoxContainer/Tabs/Mods/MarginC/VBoxC/ActionButtons/PlayMapButton"]
 [editable path="MarginContainer/VBoxContainer/Tabs/Mods/MarginC/VBoxC/ActionButtons/OpenTheDirectoryButton"]
 [editable path="MarginContainer/VBoxContainer/Tabs/Edit Mod Data/MarginC/HBoxC/VBoxC2/NPR2/MarginC/VBoxC/Control/ChangeThePictureButton"]
+[editable path="MarginContainer/VBoxContainer/Tabs/Edit Mod Data/MarginC/HBoxC/VBoxC2/NPR2/MarginC/VBoxC/Control/SaveChangesButton"]

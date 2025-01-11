@@ -1,8 +1,9 @@
-Control
+VBoxContainer
 MarginContainer
+TextureRect
+Control
 RichTextLabel
 HBoxContainer
-VBoxContainer
 ScrollContainer
 FlowContainer
 Window
@@ -11,4 +12,3 @@ AnimationPlayer
 TextureButton
 Node2D
 TileMap
-AudioStreamPlayer

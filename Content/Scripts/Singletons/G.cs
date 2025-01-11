@@ -134,6 +134,20 @@ public partial class G : Node
 
     public static Dictionary<string, Variant> TransitiveVariantD = new Dictionary<string, Variant>(); // TransitiveVariant, but for those who don't want to get confused by unnamed array elements and don't need to comment out the elements.
 
+    public static Variant GetModOption(string modName, string optionKey)
+    {
+        Dictionary modDictionary = (Dictionary)ModDataManager.ModSettings[modName];
+        return modDictionary[optionKey];
+    }
+
+    public static Variant GetCurrentModMapOption(string optionKey)
+    {
+        Dictionary modDictionary = (Dictionary)ModDataManager.ModSettings[Path.GetFileName(ModMapPath)];
+        return modDictionary[optionKey];
+    }
+
+
+
 
     public static Variant TakeAndRemoveFromTrVaD(string key)
     {
