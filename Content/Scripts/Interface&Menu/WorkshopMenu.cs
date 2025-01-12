@@ -28,7 +28,7 @@ public partial class WorkshopMenu : DraggableWindow
         //Initializing the nodes
         _tabs = GetNode<TabContainer>("MarginContainer/VBoxContainer/Tabs");
 
-        GetTree().Root.FilesDropped += FileDropped; // File reset handling for quick replacement of mod previews
+        GetTree().Root.FilesDropped += FileDropped; // File drop handling for quick replacement of mod previews
         TreeExiting += () => GetTree().Root.FilesDropped -= FileDropped; // Event disconnecting on node deletion
         _lastFocusOwner = GetViewport().GuiGetFocusOwner(); // I don't remember why it's used.
 
@@ -83,7 +83,23 @@ public partial class WorkshopMenu : DraggableWindow
         GetNode<LineEdit>(FIELDS_LINK + "FolderNameEdit").Text = _settedModFolderName = Path.GetFileName(_selectedModFolder);
         GetNode<TextEdit>(FIELDS_LINK + "DescriptionText").Text = _settedModDescription = _modsInfo[_selectedMod]["description"].ToString();
 
-        _settedModOptionDatas = GetCloneOfModOptionData(_modsInfo[_selectedMod]["mod_options"]); // NEED FIX HERE
+        // Loading mod options options
+        _settedModOptionDatas = GetCloneOfModOptionDataArray((ModOptionData[])_modsInfo[_selectedMod]["mod_options"]);
+
+        var optionsOptionsContainer = GetNode<VBoxContainer>("MarginContainer/VBoxContainer/Tabs/Edit Mod Data/MarginC/HBoxC/VBoxC/MarginC/ScrollC/VBoxC/ModOptionEditC/MarginC/OptionsOptionsContainer");
+        ModOptionData[] PlaceholderArray = new ModOptionData[5];
+
+        foreach(var optionData in PlaceholderArray)
+        {
+            var modOptionEdit = new ModOptionEdit();
+            modOptionEdit.SetModOptionData(optionData);
+            optionsOptionsContainer.AddChild(modOptionEdit);
+        }
+
+
+
+
+
 
         // Loading the preview
         var previewPicture = _currentModPreview.GetNodeOrNull<TextureRect>("PreviewPicture");
@@ -274,7 +290,7 @@ public partial class WorkshopMenu : DraggableWindow
             return;
         }
 
-        G.InGameTransitiveValue = _selectedModFolder + @"\MainScene.tscn";
+        G.VanillaTransitiveValue = _selectedModFolder + @"\MainScene.tscn";
         G.ModMapPath = _selectedModFolder.Remove(0, DefaultModsPath.Length) + @"\MainScene.tscn";
         G.ModMapFolder = _selectedModFolder;
 
@@ -381,7 +397,7 @@ public partial class WorkshopMenu : DraggableWindow
             _directories[_selectedMod] = _selectedModFolder;
             ((ModPreview)_currentModPreview)._resourcePath = _selectedModFolder;
         }
-        _modsInfo[_selectedMod]["mod_options"] = _settedModOptionDatas;
+        _modsInfo[_selectedMod]["mod_options"] = GetCloneOfModOptionDataArray(_settedModOptionDatas);
 
         // Saving the mod info
         string modsInfoLocation = _selectedModFolder + @"\mod_info.json";

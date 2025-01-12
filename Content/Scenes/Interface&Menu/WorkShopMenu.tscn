@@ -4,7 +4,6 @@
 [ext_resource type="Theme" uid="uid://dkitr1ftp0yhs" path="res://Content/Other/Menu.tres" id="2_2kps5"]
 [ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/WorkshopMenu.cs" id="3_hxjko"]
 [ext_resource type="Texture2D" uid="uid://w4gejppfm3h3" path="res://Content/Sprites/Interface/4XSmallWindowBase.png" id="4_n3dup"]
-[ext_resource type="Theme" uid="uid://bk43yj1frw10n" path="res://Content/Other/MarginConainerMenu.tres" id="5_232dm"]
 [ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/ScrollableRichTextLabel.cs" id="6_yqfp4"]
 [ext_resource type="PackedScene" uid="uid://bfcv2jyesu362" path="res://Content/Scenes/Interface&Menu/ButtonWithText.tscn" id="7_sxybr"]
 [ext_resource type="Texture2D" uid="uid://bqgediispvx10" path="res://Content/Sprites/Interface/Buttons/PlayMapButton.png" id="8_ue32r"]
@@ -13,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://cwxoq374yceom" path="res://Content/Sprites/Interface/Buttons/OpenTheDirectoryButton.png" id="11_qede0"]
 [ext_resource type="Texture2D" uid="uid://3kpc4fuqg0da" path="res://Content/Sprites/Interface/Buttons/4XMoreInfoButton.png" id="12_5kcb7"]
 [ext_resource type="Texture2D" uid="uid://c1d2p0ba42csh" path="res://Content/Sprites/Interface/Buttons/AcceptButton.png" id="12_7pfwf"]
+[ext_resource type="PackedScene" uid="uid://cgab2dpbda4al" path="res://Content/Scenes/Interface&Menu/ModOptionEdit.tscn" id="12_ni6br"]
 
 [node name="WorkshopMenu" instance=ExtResource("1_db0af")]
 custom_minimum_size = Vector2(1060, 720)
@@ -29,9 +29,10 @@ text = "Workshop"
 [node name="Tabs" type="TabContainer" parent="MarginContainer/VBoxContainer" index="1"]
 layout_mode = 2
 size_flags_vertical = 3
-current_tab = 0
+current_tab = 2
 
 [node name="Mods" type="ScrollContainer" parent="MarginContainer/VBoxContainer/Tabs" index="1"]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 0
 
@@ -80,7 +81,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("5_232dm")
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
@@ -161,7 +161,6 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="Edit Mod Data" type="ScrollContainer" parent="MarginContainer/VBoxContainer/Tabs" index="3"]
-visible = false
 layout_mode = 2
 metadata/_tab_index = 2
 
@@ -254,7 +253,10 @@ layout_mode = 2
 size_flags_horizontal = 0
 texture_normal = ExtResource("12_5kcb7")
 
-[node name="MenuOptions" type="NinePatchRect" parent="MarginContainer/VBoxContainer/Tabs/Edit Mod Data/MarginC/HBoxC/VBoxC/MarginC/ScrollC/VBoxC" index="11"]
+[node name="ModOptionEditC" type="MarginContainer" parent="MarginContainer/VBoxContainer/Tabs/Edit Mod Data/MarginC/HBoxC/VBoxC/MarginC/ScrollC/VBoxC" index="11"]
+layout_mode = 2
+
+[node name="MenuOptions" type="NinePatchRect" parent="MarginContainer/VBoxContainer/Tabs/Edit Mod Data/MarginC/HBoxC/VBoxC/MarginC/ScrollC/VBoxC/ModOptionEditC" index="0"]
 custom_minimum_size = Vector2(356, 128)
 layout_mode = 2
 size_flags_vertical = 3
@@ -264,97 +266,19 @@ patch_margin_top = 8
 patch_margin_right = 8
 patch_margin_bottom = 8
 
-[node name="MarginC" type="MarginContainer" parent="MarginContainer/VBoxContainer/Tabs/Edit Mod Data/MarginC/HBoxC/VBoxC/MarginC/ScrollC/VBoxC/MenuOptions" index="0"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="MarginC" type="MarginContainer" parent="MarginContainer/VBoxContainer/Tabs/Edit Mod Data/MarginC/HBoxC/VBoxC/MarginC/ScrollC/VBoxC/ModOptionEditC" index="1"]
+layout_mode = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="VBoxC" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Tabs/Edit Mod Data/MarginC/HBoxC/VBoxC/MarginC/ScrollC/VBoxC/MenuOptions/MarginC" index="0"]
+[node name="OptionsOptionsContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Tabs/Edit Mod Data/MarginC/HBoxC/VBoxC/MarginC/ScrollC/VBoxC/ModOptionEditC/MarginC" index="0"]
 layout_mode = 2
+theme_override_constants/separation = 8
 
-[node name="CrutchControl" type="Control" parent="MarginContainer/VBoxContainer/Tabs/Edit Mod Data/MarginC/HBoxC/VBoxC/MarginC" index="1"]
-visible = false
-custom_minimum_size = Vector2(472, 460)
+[node name="ModOptionEdit" parent="MarginContainer/VBoxContainer/Tabs/Edit Mod Data/MarginC/HBoxC/VBoxC/MarginC/ScrollC/VBoxC/ModOptionEditC/MarginC/OptionsOptionsContainer" index="0" instance=ExtResource("12_ni6br")]
 layout_mode = 2
-
-[node name="ModName" type="Label" parent="MarginContainer/VBoxContainer/Tabs/Edit Mod Data/MarginC/HBoxC/VBoxC/MarginC/CrutchControl" index="0"]
-layout_mode = 0
-offset_left = 3.0
-offset_top = 7.0
-offset_right = 208.0
-offset_bottom = 52.0
-scale = Vector2(0.75, 0.75)
-theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
-theme_override_font_sizes/font_size = 33
-text = "Mod name:"
-
-[node name="ModNameText" type="TextEdit" parent="MarginContainer/VBoxContainer/Tabs/Edit Mod Data/MarginC/HBoxC/VBoxC/MarginC/CrutchControl" index="1"]
-layout_mode = 0
-offset_top = 40.0
-offset_right = 629.0
-offset_bottom = 96.0
-scale = Vector2(0.75, 0.75)
-theme_override_colors/background_color = Color(0.729412, 0.717647, 0.686275, 1)
-theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
-theme_override_font_sizes/font_size = 33
-text = "Default"
-
-[node name="FolderName" type="Label" parent="MarginContainer/VBoxContainer/Tabs/Edit Mod Data/MarginC/HBoxC/VBoxC/MarginC/CrutchControl" index="2"]
-layout_mode = 0
-offset_left = 3.0
-offset_top = 89.0
-offset_right = 530.0
-offset_bottom = 179.0
-scale = Vector2(0.75, 0.75)
-theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
-theme_override_font_sizes/font_size = 33
-text = "Mod folder name:
-(No special symblols plz)"
-
-[node name="ColorRect" type="ColorRect" parent="MarginContainer/VBoxContainer/Tabs/Edit Mod Data/MarginC/HBoxC/VBoxC/MarginC/CrutchControl" index="3"]
-layout_mode = 0
-offset_top = 160.0
-offset_right = 629.0
-offset_bottom = 216.0
-scale = Vector2(0.75, 0.75)
-color = Color(0.729412, 0.717647, 0.686275, 1)
-
-[node name="LineEdit" type="LineEdit" parent="MarginContainer/VBoxContainer/Tabs/Edit Mod Data/MarginC/HBoxC/VBoxC/MarginC/CrutchControl" index="4"]
-layout_mode = 0
-offset_top = 159.0
-offset_right = 629.0
-offset_bottom = 215.0
-scale = Vector2(0.75, 0.75)
-theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
-theme_override_font_sizes/font_size = 33
-text = "Default"
-flat = true
-
-[node name="Description" type="Label" parent="MarginContainer/VBoxContainer/Tabs/Edit Mod Data/MarginC/HBoxC/VBoxC/MarginC/CrutchControl" index="5"]
-layout_mode = 0
-offset_left = 3.0
-offset_top = 207.0
-offset_right = 530.0
-offset_bottom = 252.0
-scale = Vector2(0.75, 0.75)
-theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
-theme_override_font_sizes/font_size = 33
-text = "Mod description:"
-
-[node name="DescriptionText" type="TextEdit" parent="MarginContainer/VBoxContainer/Tabs/Edit Mod Data/MarginC/HBoxC/VBoxC/MarginC/CrutchControl" index="6"]
-layout_mode = 0
-offset_top = 245.0
-offset_right = 629.0
-offset_bottom = 525.0
-scale = Vector2(0.75, 0.75)
-theme_override_colors/background_color = Color(0.729412, 0.717647, 0.686275, 1)
-theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
-theme_override_font_sizes/font_size = 33
-text = "Default"
 
 [node name="VBoxC2" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Tabs/Edit Mod Data/MarginC/HBoxC" index="1"]
 layout_mode = 2
@@ -474,9 +398,6 @@ custom_minimum_size = Vector2(192, 72)
 [connection signal="text_changed" from="MarginContainer/VBoxContainer/Tabs/Edit Mod Data/MarginC/HBoxC/VBoxC/MarginC/ScrollC/VBoxC/FolderNameEdit" to="." method="ModFolderNameChanged"]
 [connection signal="text_changed" from="MarginContainer/VBoxContainer/Tabs/Edit Mod Data/MarginC/HBoxC/VBoxC/MarginC/ScrollC/VBoxC/DescriptionText" to="." method="ModDescriptionChanged"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Tabs/Edit Mod Data/MarginC/HBoxC/VBoxC/MarginC/ScrollC/VBoxC/ModOptionsMoreInfoButton" to="." method="ModOptionsMoreInfo"]
-[connection signal="text_changed" from="MarginContainer/VBoxContainer/Tabs/Edit Mod Data/MarginC/HBoxC/VBoxC/MarginC/CrutchControl/ModNameText" to="." method="ModNameChanged"]
-[connection signal="text_changed" from="MarginContainer/VBoxContainer/Tabs/Edit Mod Data/MarginC/HBoxC/VBoxC/MarginC/CrutchControl/LineEdit" to="." method="ModFolderNameChanged"]
-[connection signal="text_changed" from="MarginContainer/VBoxContainer/Tabs/Edit Mod Data/MarginC/HBoxC/VBoxC/MarginC/CrutchControl/DescriptionText" to="." method="ModDescriptionChanged"]
 [connection signal="file_selected" from="MarginContainer/VBoxContainer/Tabs/Edit Mod Data/MarginC/HBoxC/VBoxC2/NPR2/MarginC/VBoxC/ChangeThePictureDialog" to="." method="SetPicture"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Tabs/Edit Mod Data/MarginC/HBoxC/VBoxC2/NPR2/MarginC/VBoxC/Control/ChangeThePictureButton" to="." method="ChangeThePicture"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Tabs/Edit Mod Data/MarginC/HBoxC/VBoxC2/NPR2/MarginC/VBoxC/Control/SaveChangesButton" to="." method="SaveTheChanges"]

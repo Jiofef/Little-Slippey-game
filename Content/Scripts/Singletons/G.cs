@@ -1,7 +1,6 @@
 using Godot;
 using Godot.Collections;
 using System;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 
@@ -13,8 +12,8 @@ public partial class G : Node
     #region NOTE: Only in-game variables. Don't touch it if you're a modder please, or i will ban your map :)
     public static bool IsSystemInitiated, IsLevelVanilla = true;
     public static int CurrentLevel;
-    public static Variant InGameTransitiveValue;
-    public static Godot.Collections.Array<Node> NodeCopyBuffer = new Godot.Collections.Array<Node>();
+    public static Variant VanillaTransitiveValue;
+    public static Array<Node> NodeCopyBuffer = new Array<Node>();
     #endregion
 
     ////////////////////////////

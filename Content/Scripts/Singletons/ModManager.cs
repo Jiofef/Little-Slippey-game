@@ -185,7 +185,7 @@ public partial class ModManager : Node
             return "";
     }
 
-    public static Dictionary<ModType, string> DefaultModTypeNames = new Dictionary<ModType, string> 
+    public static Dictionary<ModType, string> DefaultModTypeNames = new Dictionary<ModType, string>
     {
         {ModType.map, "CustomMap"},
         {ModType.skin, "CustomSkin"},
@@ -194,6 +194,14 @@ public partial class ModManager : Node
         {ModType.content, "ContentMod"},
     };
 
+    //public static System.Collections.Generic.Dictionary<string, ModDataManager.ModOptionData>[] GetNewModOptionsDictionaryArray()
+    //{
+    //    var array = new System.Collections.Generic.Dictionary<string, ModDataManager.ModOptionData>[1];
+    //    array[0].Add("Options");
+    //    return array;
+    //}
+
+
     public static System.Collections.Generic.Dictionary<string, object> CreateModInfoJson(CreateModParams @params)
     {
         return new System.Collections.Generic.Dictionary<string, object>()
@@ -201,7 +209,8 @@ public partial class ModManager : Node
             {"name", @params.ModName},
             {"mod_type", @params.modType.ToString()},
             {"description", @params.Description},
-            {"mod_options", new ModDataManager.ModOptionData[0]},
+            {"mod_options", null},
+            
         };
     }
 

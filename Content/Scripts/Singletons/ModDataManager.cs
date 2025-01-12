@@ -145,60 +145,110 @@ public partial class ModDataManager : Node
     #region Mod Settings
     public class ModOptionData
     {
-        public string Key;
-        public string Name;
-        public string Description;
-        public enum ValueTypeEnum { Int, Float, Double, Bool, String, Color}
-        public enum ValueFieldTypeEnum { LineEdit, TextEdit, SpinBox, HSlider, ColorPickerButton }
-        public ValueTypeEnum ValueType;
-        public ValueFieldTypeEnum ValueFieldType;
+        public string Key = "key";
+        public string Name = "Name";
+        public string Description = "";
+        public Variant DefaultValue;
+
+        public enum ValueTypeEnum {
+            Bool,
+            Int, Float, Double,
+            String, Char,
+            Color,
+            Enum}
+        public enum OptionMethodEnum {
+            CheckBox, CheckButton,
+            SpinBox, HSlider,
+            LineEdit, TextEdit,
+            ColorPickerButton,
+            OptionButton}
+        public ValueTypeEnum ValueType = ValueTypeEnum.Bool;
+        public OptionMethodEnum OptionMethod = OptionMethodEnum.SpinBox;
 
         public ModOptionTypeData modOptionTypeData;
+
+        public ModOptionData GetClone()
+        {
+            ModOptionData Clone = new();
+
+            Clone.Key = Key;
+            Clone.Name = Name;
+            
+            Clone.Description = Description;
+            Clone.ValueType = ValueType;
+            Clone.OptionMethod = OptionMethod;
+
+            Clone.modOptionTypeData = modOptionTypeData.Clone();
+
+            return Clone;
+        }
+        private Dictionary<int, string[]> RelatedTypeMethods = new Dictionary<int, string[]>()
+        {
+            {0, ["CheckBox", "CheckButton"]},
+            {1, ["SpinBox", "HSlider"]},
+            {2, ["SpinBox", "HSlider"]},
+            {3, ["SpinBox", "HSlider"]},
+            {4, ["LineEdit", "TextEdit"]},
+            {5, ["LineEdit", "TextEdit"]},
+            {6, ["ColorPickerButton"]},
+            {7, ["OptionButton"]},
+        };
+        public string[] GetRelatedTypeMethods()
+        {
+            return RelatedTypeMethods[(int)ValueType];
+        }
     }
 
-    public class ModOptionTypeData{}
+    public class ModOptionTypeData
+    {
+        public ModOptionTypeData Clone()
+        {
+            ModOptionTypeData Clone = new();
+
+            if (this is ModStringOptionData data)
+            {
+                ModStringOptionData stringTypeClone = (ModStringOptionData)Clone;
+
+                stringTypeClone.MaxStringLength = data.MaxStringLength;
+            }
+
+            if (this is ModNumberOptionData data1)
+            {
+                ModNumberOptionData stringTypeClone = (ModNumberOptionData)Clone;
+
+                stringTypeClone.MinNumValue = data1.MinNumValue;
+                stringTypeClone.MaxNumValue = data1.MaxNumValue;
+            }
+
+            return Clone;
+        }
+    }
     public class ModStringOptionData : ModOptionTypeData
     {
-        public int MaxStringLength;
+        public int MaxStringLength = 256;
+        public string PlaceholderText = "";
     }
     public class ModNumberOptionData : ModOptionTypeData
     {
-        public double MinNumValue, MaxNumValue;
+        public double MinNumValue = 0, MaxNumValue = 100;
+
+        public double RoundTo = 0;
+
+        public bool AllowLesser = false, AllowGreater = false;
+    }
+    public class ModEnumOptionData: ModOptionTypeData
+    {
+        public string[] Values = new string[0];
     }
 
-    public static ModOptionData GetCloneOfModOptionData(ModOptionData modOptionData)
+    public static ModOptionData[] GetCloneOfModOptionDataArray(ModOptionData[] array)
     {
-        ModOptionData modOptionDataClone = new();
+        ModOptionData[] Clone = new ModOptionData[array.Length];
 
-        modOptionDataClone.Key = modOptionData.Key;
-        modOptionDataClone.Name = modOptionData.Name;
-        modOptionDataClone.Description = modOptionData.Description;
-        modOptionDataClone.ValueType = modOptionData.ValueType;
-        modOptionDataClone.ValueFieldType = modOptionData.ValueFieldType;
+        for (int i = 0; i < array.Length; i++)
+            Clone[i] = array[i].GetClone();
 
-        modOptionDataClone.modOptionTypeData = GetCloneOfModOptionTypeData(modOptionData.modOptionTypeData);
-
-        return modOptionDataClone;
-    }
-
-    public static ModOptionTypeData GetCloneOfModOptionTypeData(ModOptionTypeData modOptionTypeData)
-    {
-        ModOptionTypeData clone = new();
-        if (modOptionTypeData is ModStringOptionData data)
-        {
-            ModStringOptionData stringTypeClone = (ModStringOptionData)clone;
-
-            stringTypeClone.MaxStringLength = data.MaxStringLength;
-        }
-
-        if (modOptionTypeData is ModNumberOptionData data1)
-        {
-            ModNumberOptionData stringTypeClone = (ModNumberOptionData)clone;
-
-            stringTypeClone.MinNumValue = data1.MinNumValue;
-            stringTypeClone.MaxNumValue = data1.MaxNumValue;
-        }
-        return clone;
+        return Clone;
     }
     #endregion
 }

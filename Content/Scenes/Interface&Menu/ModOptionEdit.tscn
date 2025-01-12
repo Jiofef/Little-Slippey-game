@@ -1,0 +1,266 @@
+[gd_scene load_steps=15 format=3 uid="uid://cgab2dpbda4al"]
+
+[ext_resource type="Theme" uid="uid://dkitr1ftp0yhs" path="res://Content/Other/Menu.tres" id="1_4ewfq"]
+[ext_resource type="Script" path="res://Content/Scenes/Interface&Menu/ModOptionEdit.cs" id="1_il238"]
+[ext_resource type="PackedScene" uid="uid://ci0nrongv6pih" path="res://Content/Scenes/Interface&Menu/MenuButton.tscn" id="2_8kgd4"]
+[ext_resource type="Texture2D" uid="uid://8bee8xp57r3u" path="res://Content/Sprites/Interface/Buttons/4XExpandButton.png" id="3_db74k"]
+[ext_resource type="Texture2D" uid="uid://0d4gd00vndij" path="res://Content/Sprites/Interface/Buttons/4XExpandCancelButton.png" id="4_l3a0i"]
+[ext_resource type="Texture2D" uid="uid://c2464rh5vpqqa" path="res://Content/Sprites/Interface/LevelEditor/4XAllTheNodesIcons.png" id="5_rsahc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7hj1k"]
+atlas = ExtResource("5_rsahc")
+region = Rect2(128, 1408, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nktru"]
+atlas = ExtResource("5_rsahc")
+region = Rect2(128, 1472, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ckpsd"]
+atlas = ExtResource("5_rsahc")
+region = Rect2(384, 1792, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8mecc"]
+atlas = ExtResource("5_rsahc")
+region = Rect2(384, 1600, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jqa74"]
+atlas = ExtResource("5_rsahc")
+region = Rect2(704, 1280, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yqsec"]
+atlas = ExtResource("5_rsahc")
+region = Rect2(192, 1280, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_24y82"]
+atlas = ExtResource("5_rsahc")
+region = Rect2(128, 1532, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d0al1"]
+atlas = ExtResource("5_rsahc")
+region = Rect2(128, 1664, 64, 64)
+
+[node name="ModOptionEdit" type="MarginContainer"]
+custom_minimum_size = Vector2(515, 96)
+size_flags_vertical = 0
+theme = ExtResource("1_4ewfq")
+script = ExtResource("1_il238")
+
+[node name="FocusRect" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+mouse_filter = 2
+color = Color(1, 1, 1, 0.501961)
+metadata/_edit_lock_ = true
+
+[node name="VBoxC" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="OptionNameEdit" type="LineEdit" parent="VBoxC"]
+custom_minimum_size = Vector2(192, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Option name"
+
+[node name="HBoxC" type="HBoxContainer" parent="VBoxC"]
+layout_mode = 2
+
+[node name="KeyEdit" type="LineEdit" parent="VBoxC/HBoxC"]
+custom_minimum_size = Vector2(192, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Key"
+
+[node name="ExpandButton" parent="VBoxC/HBoxC" instance=ExtResource("2_8kgd4")]
+custom_minimum_size = Vector2(96, 48)
+layout_mode = 2
+size_flags_horizontal = 8
+texture_normal = ExtResource("3_db74k")
+
+[node name="ExpandCancelButton" parent="VBoxC/HBoxC" instance=ExtResource("2_8kgd4")]
+visible = false
+custom_minimum_size = Vector2(96, 48)
+layout_mode = 2
+size_flags_horizontal = 8
+texture_normal = ExtResource("4_l3a0i")
+
+[node name="ExpandableBox" type="VBoxContainer" parent="VBoxC"]
+visible = false
+custom_minimum_size = Vector2(0, 128)
+layout_mode = 2
+
+[node name="DescriptionEdit" type="TextEdit" parent="VBoxC/ExpandableBox"]
+custom_minimum_size = Vector2(0, 128)
+layout_mode = 2
+placeholder_text = "Desctiption"
+
+[node name="DefaultValue" type="Label" parent="VBoxC/ExpandableBox"]
+layout_mode = 2
+text = "Default value"
+
+[node name="DefaultValueField" type="CheckBox" parent="VBoxC/ExpandableBox"]
+layout_mode = 2
+
+[node name="OptionValueType" type="Label" parent="VBoxC/ExpandableBox"]
+layout_mode = 2
+text = "Option value type"
+
+[node name="ValueTypeOption" type="OptionButton" parent="VBoxC/ExpandableBox"]
+layout_mode = 2
+size_flags_horizontal = 0
+selected = 0
+item_count = 8
+popup/item_0/text = "bool"
+popup/item_1/text = "int"
+popup/item_1/id = 1
+popup/item_2/text = "float"
+popup/item_2/id = 2
+popup/item_3/text = "double"
+popup/item_3/id = 3
+popup/item_4/text = "string"
+popup/item_4/id = 4
+popup/item_5/text = "char"
+popup/item_5/id = 5
+popup/item_6/text = "color"
+popup/item_6/id = 6
+popup/item_7/text = "enum"
+popup/item_7/id = 7
+
+[node name="OptionFieldType" type="Label" parent="VBoxC/ExpandableBox"]
+layout_mode = 2
+text = "Option method"
+
+[node name="ValueFieldTypeOption" type="OptionButton" parent="VBoxC/ExpandableBox"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+size_flags_horizontal = 0
+selected = 0
+item_count = 8
+popup/item_0/text = "CheckBox"
+popup/item_0/icon = SubResource("AtlasTexture_7hj1k")
+popup/item_1/text = "CheckButton"
+popup/item_1/icon = SubResource("AtlasTexture_nktru")
+popup/item_1/id = 1
+popup/item_2/text = "SpinBox"
+popup/item_2/icon = SubResource("AtlasTexture_ckpsd")
+popup/item_2/id = 2
+popup/item_3/text = "HSlider"
+popup/item_3/icon = SubResource("AtlasTexture_8mecc")
+popup/item_3/id = 3
+popup/item_4/text = "LineEdit"
+popup/item_4/icon = SubResource("AtlasTexture_jqa74")
+popup/item_4/id = 4
+popup/item_5/text = "TextEdit"
+popup/item_5/icon = SubResource("AtlasTexture_yqsec")
+popup/item_5/id = 5
+popup/item_6/text = "ColorPickerButton"
+popup/item_6/icon = SubResource("AtlasTexture_24y82")
+popup/item_6/id = 6
+popup/item_7/text = "OptionButton"
+popup/item_7/icon = SubResource("AtlasTexture_d0al1")
+popup/item_7/id = 7
+
+[node name="StringOptions" type="VBoxContainer" parent="VBoxC/ExpandableBox"]
+visible = false
+layout_mode = 2
+
+[node name="MaxLength" type="Label" parent="VBoxC/ExpandableBox/StringOptions"]
+layout_mode = 2
+text = "Max text length"
+
+[node name="MaxLengthBox" type="SpinBox" parent="VBoxC/ExpandableBox/StringOptions"]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+min_value = 1.0
+max_value = 32768.0
+value = 64.0
+
+[node name="PlaceholderText" type="Label" parent="VBoxC/ExpandableBox/StringOptions"]
+layout_mode = 2
+text = "Placeholder text"
+
+[node name="PlaceholderTextEdit" type="TextEdit" parent="VBoxC/ExpandableBox/StringOptions"]
+custom_minimum_size = Vector2(0, 192)
+layout_mode = 2
+
+[node name="NubmerOptions" type="VBoxContainer" parent="VBoxC/ExpandableBox"]
+visible = false
+layout_mode = 2
+
+[node name="MinValue" type="Label" parent="VBoxC/ExpandableBox/NubmerOptions"]
+layout_mode = 2
+text = "Min value"
+
+[node name="MinValueBox" type="SpinBox" parent="VBoxC/ExpandableBox/NubmerOptions"]
+custom_minimum_size = Vector2(256, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+min_value = -2.14748e+09
+max_value = 2.14748e+09
+allow_greater = true
+allow_lesser = true
+
+[node name="MaxValue" type="Label" parent="VBoxC/ExpandableBox/NubmerOptions"]
+layout_mode = 2
+text = "Max value"
+
+[node name="MaxValueBox" type="SpinBox" parent="VBoxC/ExpandableBox/NubmerOptions"]
+custom_minimum_size = Vector2(256, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+min_value = -2.14748e+09
+max_value = 2.14748e+09
+value = 100.0
+
+[node name="AllowGreater" type="Label" parent="VBoxC/ExpandableBox/NubmerOptions"]
+layout_mode = 2
+text = "Allow greater"
+
+[node name="AllowGreaterBox" type="CheckBox" parent="VBoxC/ExpandableBox/NubmerOptions"]
+layout_mode = 2
+
+[node name="AllowLesser" type="Label" parent="VBoxC/ExpandableBox/NubmerOptions"]
+layout_mode = 2
+text = "Allow lesser"
+
+[node name="AllowLesserBox" type="CheckBox" parent="VBoxC/ExpandableBox/NubmerOptions"]
+layout_mode = 2
+
+[node name="RoundTo" type="Label" parent="VBoxC/ExpandableBox/NubmerOptions"]
+layout_mode = 2
+text = "Round to"
+
+[node name="RoundToBox" type="SpinBox" parent="VBoxC/ExpandableBox/NubmerOptions"]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+max_value = 2.14748e+09
+value = 1.0
+
+[node name="EnumOptions" type="VBoxContainer" parent="VBoxC/ExpandableBox"]
+visible = false
+layout_mode = 2
+
+[node name="PossibleValues" type="Label" parent="VBoxC/ExpandableBox/EnumOptions"]
+layout_mode = 2
+text = "Selectable values"
+
+[connection signal="text_changed" from="VBoxC/OptionNameEdit" to="." method="OptionNameChanged"]
+[connection signal="text_changed" from="VBoxC/HBoxC/KeyEdit" to="." method="KeyChanged"]
+[connection signal="pressed" from="VBoxC/HBoxC/ExpandButton" to="VBoxC/HBoxC/ExpandButton" method="hide"]
+[connection signal="pressed" from="VBoxC/HBoxC/ExpandButton" to="VBoxC/HBoxC/ExpandCancelButton" method="show"]
+[connection signal="pressed" from="VBoxC/HBoxC/ExpandButton" to="VBoxC/ExpandableBox" method="show"]
+[connection signal="pressed" from="VBoxC/HBoxC/ExpandCancelButton" to="VBoxC/HBoxC/ExpandButton" method="show"]
+[connection signal="pressed" from="VBoxC/HBoxC/ExpandCancelButton" to="VBoxC/HBoxC/ExpandCancelButton" method="hide"]
+[connection signal="pressed" from="VBoxC/HBoxC/ExpandCancelButton" to="VBoxC/ExpandableBox" method="hide"]
+[connection signal="text_changed" from="VBoxC/ExpandableBox/DescriptionEdit" to="." method="DescriptionChanged"]
+[connection signal="toggled" from="VBoxC/ExpandableBox/DefaultValueField" to="." method="SetDefaultValue"]
+[connection signal="item_selected" from="VBoxC/ExpandableBox/ValueTypeOption" to="." method="SetValueType"]
+[connection signal="item_selected" from="VBoxC/ExpandableBox/ValueFieldTypeOption" to="." method="SetOptionMethod"]
+[connection signal="value_changed" from="VBoxC/ExpandableBox/StringOptions/MaxLengthBox" to="." method="SetMaxStringLength"]
+[connection signal="text_changed" from="VBoxC/ExpandableBox/StringOptions/PlaceholderTextEdit" to="." method="PlaceholderTextChanged"]
+[connection signal="value_changed" from="VBoxC/ExpandableBox/NubmerOptions/MinValueBox" to="." method="SetMinValue"]
+[connection signal="value_changed" from="VBoxC/ExpandableBox/NubmerOptions/MaxValueBox" to="." method="SetMaxValue"]
+[connection signal="toggled" from="VBoxC/ExpandableBox/NubmerOptions/AllowGreaterBox" to="." method="SetAllowGreater"]
+[connection signal="toggled" from="VBoxC/ExpandableBox/NubmerOptions/AllowLesserBox" to="." method="SetAllowLesser"]
+[connection signal="value_changed" from="VBoxC/ExpandableBox/NubmerOptions/RoundToBox" to="." method="SetRoundTo"]
