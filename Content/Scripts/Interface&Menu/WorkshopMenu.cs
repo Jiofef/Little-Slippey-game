@@ -6,6 +6,10 @@ using System.IO;
 using System.Linq;
 using static ModManager;
 using static ModDataManager;
+using System.Collections.Generic;
+using GodotSteam;
+using OtherExtension;
+using System.Text.Json;
 
 [Tool]
 public partial class WorkshopMenu : DraggableWindow
@@ -74,7 +78,6 @@ public partial class WorkshopMenu : DraggableWindow
     {
         if (_selectedMod == -1) return; // If the mod isn't selected
 
-
         const string FIELDS_LINK = "MarginContainer/VBoxContainer/Tabs/Edit Mod Data/MarginC/HBoxC/VBoxC/MarginC/ScrollC/VBoxC/";
         const string EDIT_MOD_DATA_LINK = "MarginContainer/VBoxContainer/Tabs/Edit Mod Data/";
 
@@ -84,16 +87,35 @@ public partial class WorkshopMenu : DraggableWindow
         GetNode<TextEdit>(FIELDS_LINK + "DescriptionText").Text = _settedModDescription = _modsInfo[_selectedMod]["description"].ToString();
 
         // Loading mod options options
-        _settedModOptionDatas = GetCloneOfModOptionDataArray((ModOptionData[])_modsInfo[_selectedMod]["mod_options"]);
+        OtherExtension.TreeNode<object> modOptionDatas = (OtherExtension.TreeNode<object>)_modsInfo[_selectedMod]["mod_options_tree"];
+        _settedModOptionDatas = (OtherExtension.TreeNode<object>)modOptionDatas.Clone();
 
         var optionsOptionsContainer = GetNode<VBoxContainer>("MarginContainer/VBoxContainer/Tabs/Edit Mod Data/MarginC/HBoxC/VBoxC/MarginC/ScrollC/VBoxC/ModOptionEditC/MarginC/OptionsOptionsContainer");
-        ModOptionData[] PlaceholderArray = new ModOptionData[5];
 
-        foreach(var optionData in PlaceholderArray)
+        OtherExtension.TreeNode<object> ModOptionsTree = new(null);
+
+        // Creation of first-order groups. It is done through ForEach and not through recursion, because this script does not have the CreateAnOption() function, that is necessary in recursion.
+        foreach (var modOptionGroup in ModOptionsTree.GetChildren())
         {
-            var modOptionEdit = new ModOptionEdit();
-            modOptionEdit.SetModOptionData(optionData);
-            optionsOptionsContainer.AddChild(modOptionEdit);
+            var optionsGroupEdit = AddModOptionsGroup(modOptionGroup);
+            Recursion(modOptionGroup, optionsGroupEdit);
+        }
+        // Guys, don't shame me, I was very tired while I was writing part of the code related to mod options. This applies to ModOptionsGroupEdit as well.
+        void Recursion(OtherExtension.TreeNode<object> node, Control parentGroupOrOption)
+        {
+            if (node.Value is ModOptionData && parentGroupOrOption is ModOptionsGroupEdit groupEdit)
+            {
+                groupEdit.CreateAnOption(node);
+
+                // There are no plans to create child options for the options, although everything can be...
+            }
+            else if (node.Value is ModOptionGroup group)
+            {
+                var optionsGroupEdit = AddModOptionsGroup(node);
+
+                foreach (var childNode in node.GetChildren())
+                    Recursion(childNode, optionsGroupEdit);
+            }
         }
 
 
@@ -210,6 +232,12 @@ public partial class WorkshopMenu : DraggableWindow
         else
             _modsInfo = _modsInfo.Append(model).ToArray();
 
+        // Json does not know what type of TreeNode mod_options_tree is stored in. To prevent it from spitting out System.Text.Json.JsonElement instead of a normal value, they must be additionally processed.
+        if (model.ContainsKey("mod_options_tree") && model["mod_options_tree"] is JsonElement jsonElement)
+        {
+            var treeNode = JsonSerializer.Deserialize<TreeNode<object>>(jsonElement.GetRawText());
+            model["mod_options_tree"] = treeNode;
+        }
 
         // Setting mod name
         ModButton.GetNode<RichTextLabel>("HBoxContainer/Name").Text = model["name"].ToString();
@@ -349,8 +377,72 @@ public partial class WorkshopMenu : DraggableWindow
 
     #region Mod Info Editing Section
     private string _settedModName, _settedModFolderName, _settedModDescription, _settedImagePath;
-    private ModOptionData[] _settedModOptionDatas;
+    private OtherExtension.TreeNode<object> _settedModOptionDatas;
     private bool _isFolderNameCorrect = true, _wereChangesMade = false;
+
+    public void SaveTheChanges()
+    {
+        // Disabling the SaveChanges button
+        _wereChangesMade = false;
+        UpdateSaveChangesButton();
+
+        // Saving the values in mod info
+        _modsInfo[_selectedMod]["name"] = _settedModName;
+        _modsInfo[_selectedMod]["description"] = _settedModDescription;
+        if (_selectedModFolder != DefaultModsPath + _settedModFolderName)
+        {
+            Directory.Move(_selectedModFolder, DefaultModsPath + _settedModFolderName);
+            _selectedModFolder = DefaultModsPath + _settedModFolderName;
+            _directories[_selectedMod] = _selectedModFolder;
+            ((ModPreview)_currentModPreview)._resourcePath = _selectedModFolder;
+        }
+        _modsInfo[_selectedMod]["mod_options_tree"] = _settedModOptionDatas.Clone();
+
+        // Saving the mod info
+        string modsInfoLocation = _selectedModFolder + @"\mod_info.json";
+        FileSystemExtension.SaveInJson(_modsInfo[_selectedMod], modsInfoLocation);
+
+        _selectedModButton.GetNode<RichTextLabel>("HBoxContainer/Name").Text = _settedModName;
+
+        // Updating the preview
+        if (_settedImagePath != null && _settedImagePath != "")
+            DirAccess.CopyAbsolute(_settedImagePath, _selectedModFolder + @"\PreviewPicture.png");
+        _settedImagePath = null;
+
+        // Updating the showed mod info
+        ShowModInfo(_selectedMod);
+    }
+    #region Mod Options Editing
+    // The method is designed to create an empty group by button.
+    public ModOptionsGroupEdit AddModOptionsGroup()
+    {
+        ModOptionGroup group = new("Options");
+        TreeNode<object> groupTreeItem = _settedModOptionDatas.AddChild(group);
+
+        ModOptionsGroupEdit groupEdit = (ModOptionsGroupEdit)GD.Load<PackedScene>("res://Content/Scenes/Interface&Menu/ModOptionsGroupEdit.tscn").Instantiate();
+
+        groupEdit.SetModOptionGroupTreeItem(groupTreeItem);
+
+        var optionsOptionsContainer = GetNode("MarginContainer/VBoxContainer/Tabs/Edit Mod Data/MarginC/HBoxC/VBoxC/MarginC/ScrollC/VBoxC/ModOptionEditC/MarginC/OptionsOptionsContainer");
+
+        optionsOptionsContainer.AddChild(groupEdit);
+
+        return groupEdit;
+    }
+    // The method is designed to create a node for an already saved group.
+    public ModOptionsGroupEdit AddModOptionsGroup(TreeNode<object> groupTreeItem)
+    {
+        ModOptionsGroupEdit groupEdit = (ModOptionsGroupEdit)GD.Load<PackedScene>("res://Content/Scenes/Interface&Menu/ModOptionsGroupEdit.tscn").Instantiate();
+
+        groupEdit.SetModOptionGroupTreeItem(groupTreeItem);
+
+        var optionsOptionsContainer = GetNode("MarginContainer/VBoxContainer/Tabs/Edit Mod Data/MarginC/HBoxC/VBoxC/MarginC/ScrollC/VBoxC/ModOptionEditC/MarginC/OptionsOptionsContainer");
+
+        optionsOptionsContainer.AddChild(groupEdit);
+
+        return groupEdit;
+    }
+    #endregion
     public void ChangeThePicture()
     {
         GetNode<FileDialog>("EditModInfo/ChangeThePictureDialog").Popup();
@@ -379,39 +471,6 @@ public partial class WorkshopMenu : DraggableWindow
 
         if (previewPicture.Visible && MouseGlobalPos.X > previewPictureRect.Position.X && MouseGlobalPos.Y > previewPictureRect.Position.Y && MouseGlobalPos.X < previewPictureRect.Position.X + previewPictureRect.Size.X && MouseGlobalPos.Y < previewPictureRect.Position.Y + previewPictureRect.Size.Y)
             SetPicture(files[0]);
-    }
-
-    public void SaveTheChanges()
-    {
-        // Disabling the SaveChanges button
-        _wereChangesMade = false;
-        UpdateSaveChangesButton();
-
-        // Saving the values in mod info
-        _modsInfo[_selectedMod]["name"] = _settedModName;
-        _modsInfo[_selectedMod]["description"] = _settedModDescription;
-        if (_selectedModFolder != DefaultModsPath + _settedModFolderName)
-        {
-            Directory.Move(_selectedModFolder, DefaultModsPath + _settedModFolderName);
-            _selectedModFolder = DefaultModsPath + _settedModFolderName;
-            _directories[_selectedMod] = _selectedModFolder;
-            ((ModPreview)_currentModPreview)._resourcePath = _selectedModFolder;
-        }
-        _modsInfo[_selectedMod]["mod_options"] = GetCloneOfModOptionDataArray(_settedModOptionDatas);
-
-        // Saving the mod info
-        string modsInfoLocation = _selectedModFolder + @"\mod_info.json";
-        FileSystemExtension.SaveInJson(_modsInfo[_selectedMod], modsInfoLocation);
-
-        _selectedModButton.GetNode<RichTextLabel>("HBoxContainer/Name").Text = _settedModName;
-
-        // Updating the preview
-        if (_settedImagePath != null)
-            DirAccess.CopyAbsolute(_settedImagePath, _selectedModFolder + @"\PreviewPicture.png");
-        _settedImagePath = null;
-
-        // Updating the showed mod info
-        ShowModInfo(_selectedMod);
     }
 
     public void ModNameChanged(string value)

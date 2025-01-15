@@ -40,6 +40,7 @@ public partial class DraggableWindow : FlexibleWindow
     {
         EmitSignal("WindowClosedByButton");
         QueueFree();
+
         _previousFocusOwner?.GrabFocus();
     }
 

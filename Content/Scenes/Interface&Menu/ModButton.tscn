@@ -39,6 +39,7 @@ mouse_filter = 1
 theme_override_colors/default_color = Color(0.196078, 0.196078, 0.196078, 1)
 theme_override_font_sizes/normal_font_size = 22
 script = ExtResource("2_avp7q")
+_scrollingSpeed = null
 
 [node name="CheckButton" type="CheckButton" parent="HBoxContainer" index="1"]
 layout_mode = 2

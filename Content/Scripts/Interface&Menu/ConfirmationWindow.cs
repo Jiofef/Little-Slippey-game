@@ -39,7 +39,7 @@ public partial class ConfirmationWindow : DraggableWindow
         EmitSignal("Accepted");
         QueueFree();
 
-        if (ReturnTheFocusToPreviousOwnerWhenAccepted)
+        if (ReturnTheFocusToPreviousOwnerWhenAccepted && _previousFocusOwner.IsInsideTree())
             _previousFocusOwner.GrabFocus();
     }
     public void Decline()

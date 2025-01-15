@@ -1,0 +1,53 @@
+[gd_scene load_steps=6 format=3 uid="uid://cndmt6gvbhfsb"]
+
+[ext_resource type="Theme" uid="uid://dkitr1ftp0yhs" path="res://Content/Other/Menu.tres" id="1_gggct"]
+[ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/ModOptionsGroupEdit.cs" id="1_mddts"]
+[ext_resource type="PackedScene" uid="uid://bfcv2jyesu362" path="res://Content/Scenes/Interface&Menu/ButtonWithText.tscn" id="3_3ctyp"]
+[ext_resource type="PackedScene" uid="uid://ci0nrongv6pih" path="res://Content/Scenes/Interface&Menu/MenuButton.tscn" id="3_n2jhn"]
+[ext_resource type="Texture2D" uid="uid://cgnw0ryaidc3m" path="res://Content/Sprites/Interface/Buttons/MakeAModButton.png" id="4_b5i62"]
+
+[node name="OptionsGroupEdit" type="MarginContainer"]
+size_flags_horizontal = 3
+theme = ExtResource("1_gggct")
+script = ExtResource("1_mddts")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="OptionNameEdit" type="LineEdit" parent="VBoxContainer"]
+custom_minimum_size = Vector2(192, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Option group name"
+
+[node name="MarginC" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 25
+
+[node name="OptionsContainer" type="VBoxContainer" parent="VBoxContainer/MarginC"]
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="RemoveTheGroup" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Remove the group"
+
+[node name="RemoveGroupButton" parent="VBoxContainer" instance=ExtResource("3_n2jhn")]
+custom_minimum_size = Vector2(88, 88)
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="AddNewOption" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Add new option"
+
+[node name="MakeAnOptionButton" parent="VBoxContainer" instance=ExtResource("3_3ctyp")]
+custom_minimum_size = Vector2(96, 72)
+layout_mode = 2
+texture_normal = ExtResource("4_b5i62")
+Description = "Create a group"
+
+[connection signal="text_changed" from="VBoxContainer/OptionNameEdit" to="." method="SetGroupName"]
+[connection signal="pressed" from="VBoxContainer/RemoveGroupButton" to="." method="RemoveGroup"]
+[connection signal="pressed" from="VBoxContainer/MakeAnOptionButton" to="." method="OnMakeAnOptionButtonPressed"]

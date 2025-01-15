@@ -209,7 +209,7 @@ public partial class ModManager : Node
             {"name", @params.ModName},
             {"mod_type", @params.modType.ToString()},
             {"description", @params.Description},
-            {"mod_options", null},
+            {"mod_options_tree", ModDataManager.CreateDefaultOptionTree()},
             
         };
     }

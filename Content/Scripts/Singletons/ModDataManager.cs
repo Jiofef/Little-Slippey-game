@@ -143,7 +143,37 @@ public partial class ModDataManager : Node
     }
 
     #region Mod Settings
-    public class ModOptionData
+    /*
+     * Options tree must look like this
+     * 
+     * -OptionsTree (value is null)
+     *      -OptionsGroup2 (value is name, string)
+     *          -Option1 (value is ModOptionData)
+     *          -Option2
+     *      -OptionsGroup2
+     *          -Option1
+    */
+    public class ModOptionGroup : ICloneable
+    {
+        // I might make groups with groups later, so I won't make ModOptionData a mandatory value here
+        public string Name;
+        public ModOptionGroup(string name)
+        {
+            Name = name;
+        }
+
+        public object Clone()
+        {
+            ModOptionGroup clone = new(Name);
+            return clone;
+        }
+    }
+    public static OtherExtension.TreeNode<object> CreateDefaultOptionTree()
+    {
+        return new OtherExtension.TreeNode<object>(new ModOptionGroup("Options"));
+    }
+
+    public class ModOptionData() : ICloneable
     {
         public string Key = "key";
         public string Name = "Name";
@@ -167,7 +197,7 @@ public partial class ModDataManager : Node
 
         public ModOptionTypeData modOptionTypeData;
 
-        public ModOptionData GetClone()
+        public object Clone()
         {
             ModOptionData Clone = new();
 
@@ -178,7 +208,7 @@ public partial class ModDataManager : Node
             Clone.ValueType = ValueType;
             Clone.OptionMethod = OptionMethod;
 
-            Clone.modOptionTypeData = modOptionTypeData.Clone();
+            Clone.modOptionTypeData = (ModOptionTypeData)modOptionTypeData?.Clone();
 
             return Clone;
         }
@@ -199,9 +229,9 @@ public partial class ModDataManager : Node
         }
     }
 
-    public class ModOptionTypeData
+    public class ModOptionTypeData() : ICloneable
     {
-        public ModOptionTypeData Clone()
+        public object Clone()
         {
             ModOptionTypeData Clone = new();
 
@@ -210,25 +240,37 @@ public partial class ModDataManager : Node
                 ModStringOptionData stringTypeClone = (ModStringOptionData)Clone;
 
                 stringTypeClone.MaxStringLength = data.MaxStringLength;
+                stringTypeClone.PlaceholderText = data.PlaceholderText;
             }
 
             if (this is ModNumberOptionData data1)
             {
-                ModNumberOptionData stringTypeClone = (ModNumberOptionData)Clone;
+                ModNumberOptionData numberTypeClone = (ModNumberOptionData)Clone;
 
-                stringTypeClone.MinNumValue = data1.MinNumValue;
-                stringTypeClone.MaxNumValue = data1.MaxNumValue;
+                numberTypeClone.MinNumValue = data1.MinNumValue;
+                numberTypeClone.MaxNumValue = data1.MaxNumValue;
+
+                numberTypeClone.RoundTo = data1.RoundTo;
+
+                numberTypeClone.AllowGreater = data1.AllowGreater;
+                numberTypeClone.AllowLesser = data1.AllowLesser;
+
+            }
+
+            if (this is ModEnumOptionData data2)
+            {
+                ModEnumOptionData enumTypeClone = (ModEnumOptionData)Clone;
             }
 
             return Clone;
         }
     }
-    public class ModStringOptionData : ModOptionTypeData
+    public class ModStringOptionData() : ModOptionTypeData
     {
         public int MaxStringLength = 256;
         public string PlaceholderText = "";
     }
-    public class ModNumberOptionData : ModOptionTypeData
+    public class ModNumberOptionData() : ModOptionTypeData
     {
         public double MinNumValue = 0, MaxNumValue = 100;
 
@@ -236,19 +278,9 @@ public partial class ModDataManager : Node
 
         public bool AllowLesser = false, AllowGreater = false;
     }
-    public class ModEnumOptionData: ModOptionTypeData
+    public class ModEnumOptionData() : ModOptionTypeData
     {
         public string[] Values = new string[0];
-    }
-
-    public static ModOptionData[] GetCloneOfModOptionDataArray(ModOptionData[] array)
-    {
-        ModOptionData[] Clone = new ModOptionData[array.Length];
-
-        for (int i = 0; i < array.Length; i++)
-            Clone[i] = array[i].GetClone();
-
-        return Clone;
     }
     #endregion
 }
