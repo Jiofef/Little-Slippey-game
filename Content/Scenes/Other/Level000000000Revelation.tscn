@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://t6ux1gxr8d4w"]
+[gd_scene load_steps=33 format=3 uid="uid://t6ux1gxr8d4w"]
 
 [ext_resource type="Texture2D" uid="uid://cpcf4ybsmoxc3" path="res://Content/Sprites/Levels/Level000000000/Revelation.png" id="1_25deo"]
 [ext_resource type="Script" path="res://Content/Scripts/Levels/Level000000000Revelation.cs" id="1_xwnnl"]
@@ -6,6 +6,23 @@
 [ext_resource type="AudioStream" uid="uid://c67b7n0eur5kv" path="res://Content/Sounds/Levels/Level000000000Laugh.mp3" id="3_gous1"]
 [ext_resource type="AudioStream" uid="uid://iyai4rv2ye0r" path="res://Content/Sounds/Levels/Level000000000LaughX3.mp3" id="4_32ya0"]
 [ext_resource type="PackedScene" uid="uid://dbbw5dwtig42m" path="res://Content/Scenes/Interface&Menu/AppearingText.tscn" id="5_femfo"]
+[ext_resource type="AudioStream" uid="uid://08jvbcvxr4nf" path="res://Content/Sounds/Levels/Level000000000Screamer.mp3" id="5_wels5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jy5wh"]
+atlas = ExtResource("1_25deo")
+region = Rect2(0, 2560, 478, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3lwkd"]
+atlas = ExtResource("1_25deo")
+region = Rect2(478, 2560, 478, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c8cc4"]
+atlas = ExtResource("1_25deo")
+region = Rect2(956, 2560, 478, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5nf0n"]
+atlas = ExtResource("1_25deo")
+region = Rect2(1434, 2560, 478, 640)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jai1m"]
 atlas = ExtResource("1_25deo")
@@ -73,6 +90,23 @@ region = Rect2(1434, 1280, 478, 640)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_5gjm5"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jy5wh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3lwkd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c8cc4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5nf0n")
+}],
+"loop": true,
+"name": &"333-333-333",
+"speed": 15.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_jai1m")
@@ -236,18 +270,6 @@ tracks/1/keys = {
 "method": &"NextPhrase"
 }]
 }
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".:PreventEnter")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 8),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
 
 [sub_resource type="Animation" id="Animation_cnyad"]
 length = 0.001
@@ -266,19 +288,90 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".:PreventEnter")
+tracks/1/path = NodePath("The:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("The/Screamer:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
 }
 
+[sub_resource type="Animation" id="Animation_4kscg"]
+resource_name = "HeadDisappearing"
+length = 8.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("The:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1, 6, 6.9, 7),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(6, 8),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": ["333-333-333"],
+"method": &"SetTheAnimation"
+}, {
+"args": [],
+"method": &"ReturnToGOS"
+}]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("The:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1, 6, 7, 8),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.75, 0.75), Vector2(2, 2), Vector2(8, 8)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("The/Screamer:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(6.9),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_j3u0w"]
 _data = {
 "HeadAppearing": SubResource("Animation_fdjcn"),
+"HeadDisappearing": SubResource("Animation_4kscg"),
 "RESET": SubResource("Animation_cnyad")
 }
 
@@ -295,6 +388,7 @@ modulate = Color(1, 1, 1, 0)
 position = Vector2(617, 260)
 sprite_frames = SubResource("SpriteFrames_5gjm5")
 animation = &"LookingForward"
+frame_progress = 0.339046
 
 [node name="Laugh" type="AudioStreamPlayer" parent="The"]
 stream = ExtResource("3_gous1")
@@ -303,6 +397,10 @@ volume_db = 8.0
 [node name="LaughX3n" type="AudioStreamPlayer" parent="The"]
 stream = ExtResource("4_32ya0")
 volume_db = 8.0
+
+[node name="Screamer" type="AudioStreamPlayer" parent="The"]
+stream = ExtResource("5_wels5")
+volume_db = 12.0
 
 [node name="ThisIs" parent="." instance=ExtResource("5_femfo")]
 custom_minimum_size = Vector2(1296, 256)
@@ -318,6 +416,7 @@ AppearSound = false
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_fc1lf")
 volume_db = 16.0
+bus = &"Music"
 
 [node name="PopupAchievementsLayer" type="CanvasLayer" parent="."]
 

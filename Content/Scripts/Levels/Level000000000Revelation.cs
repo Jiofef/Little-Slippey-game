@@ -5,6 +5,7 @@ using static AppearingText;
 public partial class Level000000000Revelation : Monologue
 {
     AnimationPlayer _monologueAnimations;
+    private string _playerName;
 	public override void _Ready()
 	{
         // Initialising the nodes
@@ -18,6 +19,9 @@ public partial class Level000000000Revelation : Monologue
         GetNode<TextureButton>("EnterHandler").GrabFocus();
 
         //Initialising the monologue phrases
+
+        _playerName = OS.HasEnvironment("USERNAME") ? OS.GetEnvironment("USERNAME") : Tr("Player");
+
         monologueProperties = [
         PP("Yeah, I agree with you.", 10), //0
         PP("It's a total piece of crap, not a level.", 10), //1
@@ -43,10 +47,20 @@ public partial class Level000000000Revelation : Monologue
         PP("I wasn't that old."), //21
         PP("And... Not that far behind."), //22
         PP("I used to have eyes light up, too"), //23
-        PP("And they burned"), //24
-        PP(""), //25
+        PP("AND THEY BURNED."), //24
+        PP("..."), //25
+        PP("Here's what you \"came\" here for."), //26
+        PP("It wasn't worth it, right?"), //27
+        PP("You probably don't care, though."), //28
+        PP("I'm not happy with the work I've done either."), //29
+        PP("In this life, we are given so little time to do anything."), //30
+        PP("There were so many things I wanted to be..."), //31
+        PP("All right."), //32
+        PP(Tr("Goodbye, I'll see you again, ") + _playerName + Tr("Goodbye, I'll see you again2")), //33
+        PP("Maybe."), //34
+        PP(""), //35
         ];
-
+        // gde-to zdes nado vstavit playername
 
         NextPhrase();
     }
@@ -113,10 +127,12 @@ public partial class Level000000000Revelation : Monologue
         {
             case 5:
                 _monologueAnimations.Play("HeadAppearing");
+                PreventEnter = true;
                     break;
             case 6:
                 // The music doesn't play before that
                 GetNode<AudioStreamPlayer>("Music").Play();
+                PreventEnter = false;
                 break;
             case 8: SetTheAnimation("LookingDown");
                 break;
@@ -140,7 +156,33 @@ public partial class Level000000000Revelation : Monologue
                 break;
             case 25: SetTheAnimation("LookingDown");
                 break;
+            case 26: SetTheAnimation("LookingForward");
+                break;
+            case 28: SetTheAnimation("LookingUp");
+                break;
+            case 29: SetTheAnimation("LookingForward");
+                break;
+            case 30: SetTheAnimation("LookingDown");
+                break;
+            case 32: SetTheAnimation("LookingUp");
+                break;
+            case 33: SetTheAnimation("LookingForward");
+                break;
+            case 35:
+                PreventEnter = true;
+                _monologueAnimations.Play("HeadDisappearing");
+                break;
         }
     }
     #endregion
+
+    public void ReturnToGOS()
+    {
+        G.CompletelyResetValues();
+
+        if (!ModManager.IsStandartTimerLibExists()) // Returning the StandartTimerLib
+            ModManager.CreateStandartTimerLib();
+
+        GetTree().ChangeSceneToFile("res://Content/Scenes/Interface&Menu/WelcomeToGOS.tscn");
+    }
 }

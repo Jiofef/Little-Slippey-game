@@ -1,9 +1,10 @@
-[gd_scene load_steps=43 format=3 uid="uid://c7dgo7tq8pfa8"]
+[gd_scene load_steps=45 format=3 uid="uid://c7dgo7tq8pfa8"]
 
 [ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/LevelsMenu.cs" id="1_d5t7a"]
 [ext_resource type="PackedScene" uid="uid://bwpstpk1xmkah" path="res://Content/Scenes/Interface&Menu/Button.tscn" id="2_6jw0o"]
 [ext_resource type="Texture2D" uid="uid://bvogrd2bqhwmt" path="res://Content/Sprites/Other/OblivionNoise.png" id="2_d2goi"]
 [ext_resource type="Texture2D" uid="uid://bv6ampi04qu7h" path="res://Content/Sprites/Interface/LevelsMenuBox.png" id="2_d7fu7"]
+[ext_resource type="Theme" uid="uid://dkitr1ftp0yhs" path="res://Content/Other/Menu.tres" id="2_ldda6"]
 [ext_resource type="AudioStream" uid="uid://dy6lncevmnf3o" path="res://Content/Sounds/Other/WhiteNoise.mp3" id="3_4foo2"]
 [ext_resource type="Texture2D" uid="uid://b2ay51k3qped" path="res://Content/Sprites/Interface/Buttons/MicroLockSprite.png" id="8_veuoi"]
 [ext_resource type="Texture2D" uid="uid://1ua2wp4j8ce" path="res://Content/Sprites/Interface/Buttons/LevelListScrollButtonLeft.png" id="10_nsyd5"]
@@ -179,8 +180,13 @@ _data = {
 "TextShake": SubResource("Animation_xq444")
 }
 
+[sub_resource type="Curve" id="Curve_i5n2l"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
 [sub_resource type="Gradient" id="Gradient_kr0se"]
-colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+offsets = PackedFloat32Array(0, 0.992126)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
 
 [sub_resource type="Animation" id="Animation_orvki"]
 resource_name = "TextShake"
@@ -560,9 +566,12 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+theme = ExtResource("2_ldda6")
 script = ExtResource("1_d5t7a")
 
-[node name="Visual" type="Node2D" parent="."]
+[node name="Visual" type="Control" parent="."]
+anchors_preset = 0
+theme = ExtResource("2_ldda6")
 
 [node name="youcantopenworkshophere" type="Control" parent="Visual"]
 layout_mode = 3
@@ -578,6 +587,7 @@ texture = ExtResource("2_d7fu7")
 centered = false
 
 [node name="LevelPresenter" type="SubViewportContainer" parent="Visual"]
+layout_mode = 0
 offset_left = 180.0
 offset_top = 40.0
 offset_right = 920.0
@@ -608,22 +618,24 @@ libraries = {
 }
 
 [node name="HighestTime" type="Label" parent="Visual"]
-offset_left = 928.0
-offset_top = 40.0
-offset_right = 1076.0
-offset_bottom = 72.0
-scale = Vector2(2, 2)
+layout_mode = 0
+offset_left = 934.0
+offset_top = 49.0
+offset_right = 1117.0
+offset_bottom = 86.0
+scale = Vector2(1.5, 1.5)
 theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
 text = "Highest Time:"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HardBestResult" type="Label" parent="Visual"]
-offset_left = 929.236
-offset_top = 101.236
-offset_right = 1073.24
-offset_bottom = 133.236
-scale = Vector2(2, 2)
+layout_mode = 0
+offset_left = 936.0
+offset_top = 102.0
+offset_right = 1153.0
+offset_bottom = 148.0
+scale = Vector2(1.25, 1.25)
 theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
 text = "000000000"
 horizontal_alignment = 1
@@ -637,32 +649,33 @@ autoplay = "TextShake"
 
 [node name="InsaneBestResult" type="Label" parent="Visual"]
 visible = false
-offset_left = 929.0
-offset_top = 103.0
-offset_right = 1073.0
-offset_bottom = 135.0
-scale = Vector2(2, 2)
-theme_override_colors/font_color = Color(0.501961, 0, 1, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = 936.0
+offset_top = 102.0
+offset_right = 1153.0
+offset_bottom = 148.0
+scale = Vector2(1.25, 1.25)
+theme_override_colors/font_color = Color(0.415686, 0.215686, 0.443137, 1)
+theme_override_colors/font_outline_color = Color(0.184314, 0.180392, 0.192157, 1)
 theme_override_constants/outline_size = 8
 text = "000000000"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="Visual/InsaneBestResult"]
-position = Vector2(72, 12)
+position = Vector2(108, 23)
 amount = 4
 lifetime = 0.5
 explosiveness = 0.5
 emission_shape = 3
-emission_rect_extents = Vector2(8, 0)
+emission_rect_extents = Vector2(8, 12)
 direction = Vector2(0, -1)
 spread = 90.0
 initial_velocity_min = 125.0
 initial_velocity_max = 200.0
 scale_amount_min = 4.0
 scale_amount_max = 4.0
-color = Color(0, 0.705882, 0.705882, 1)
+color = Color(0.0666667, 0.678431, 0.756863, 1)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Visual/InsaneBestResult"]
 libraries = {
@@ -672,31 +685,33 @@ autoplay = "TextShake"
 
 [node name="InfernoBestResult" type="Label" parent="Visual"]
 visible = false
-offset_left = 926.0
-offset_top = 106.0
-offset_right = 1070.0
-offset_bottom = 138.0
-scale = Vector2(2, 2)
-theme_override_colors/font_color = Color(0.784314, 0.54902, 0, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = 936.0
+offset_top = 102.0
+offset_right = 1153.0
+offset_bottom = 148.0
+scale = Vector2(1.25, 1.25)
+theme_override_colors/font_color = Color(0.976471, 0.572549, 0.321569, 1)
+theme_override_colors/font_outline_color = Color(0.184314, 0.180392, 0.192157, 1)
 theme_override_constants/outline_size = 24
 text = "000000000"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="Visual/InfernoBestResult"]
-position = Vector2(72, 12)
-amount = 144
+position = Vector2(108, 23)
+amount = 40
 lifetime = 0.3
 emission_shape = 3
-emission_rect_extents = Vector2(32, 16)
+emission_rect_extents = Vector2(34, 14)
 direction = Vector2(0, -1)
 gravity = Vector2(0, 0)
 initial_velocity_min = 50.0
 initial_velocity_max = 100.0
 scale_amount_min = 8.0
 scale_amount_max = 8.0
-color = Color(1, 0.501961, 0, 0.784314)
+scale_amount_curve = SubResource("Curve_i5n2l")
+color = Color(0.976471, 0.572549, 0.321569, 1)
 color_ramp = SubResource("Gradient_kr0se")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Visual/InfernoBestResult"]
@@ -706,11 +721,12 @@ libraries = {
 autoplay = "TextShake"
 
 [node name="Dificulties" type="Label" parent="Visual"]
-offset_left = 928.0
-offset_top = 184.0
-offset_right = 1093.0
-offset_bottom = 216.0
-scale = Vector2(1.75, 1.75)
+layout_mode = 0
+offset_left = 936.0
+offset_top = 192.0
+offset_right = 1117.0
+offset_bottom = 224.0
+scale = Vector2(1.5, 1.5)
 theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
 text = "Dificulties:"
 horizontal_alignment = 1
@@ -726,72 +742,73 @@ offset_bottom = 312.0
 
 [node name="Hard" type="Label" parent="Visual/DifficultyButtons"]
 layout_mode = 0
-offset_left = -20.0
-offset_top = -16.0
-offset_right = 55.0
-offset_bottom = 9.0
+offset_left = -14.0
+offset_top = -17.0
+offset_right = 122.0
+offset_bottom = 11.0
+scale = Vector2(0.5, 0.5)
 theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
 text = "Hard"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HardModeButton" type="CheckBox" parent="Visual/DifficultyButtons"]
-modulate = Color(0.588235, 0.588235, 0.588235, 1)
+self_modulate = Color(0.607843, 0.611765, 0.509804, 1)
 layout_mode = 0
 offset_right = 24.0
 offset_bottom = 24.0
-scale = Vector2(2.5, 2.5)
 focus_neighbor_left = NodePath("../InfernoModeButton")
 button_group = SubResource("ButtonGroup_2rde5")
 
 [node name="Insane" type="Label" parent="Visual/DifficultyButtons"]
 layout_mode = 0
-offset_left = 64.0
-offset_top = -16.0
-offset_right = 179.0
-offset_bottom = 9.0
+offset_left = 66.0
+offset_top = -17.0
+offset_right = 250.0
+offset_bottom = 11.0
+scale = Vector2(0.5, 0.5)
 theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
 text = "Insane"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="InsaneModeButton" type="CheckBox" parent="Visual/DifficultyButtons"]
-modulate = Color(0.501961, 0, 1, 1)
+modulate = Color(0.584314, 0.301961, 0.623529, 1)
 layout_mode = 0
 offset_left = 92.0
 offset_right = 116.0
 offset_bottom = 24.0
-scale = Vector2(2.5, 2.5)
 button_group = SubResource("ButtonGroup_2rde5")
 
 [node name="Inferno" type="Label" parent="Visual/DifficultyButtons"]
 layout_mode = 0
-offset_left = 168.0
-offset_top = -14.0
-offset_right = 270.0
-offset_bottom = 11.0
+offset_left = 161.0
+offset_top = -16.0
+offset_right = 333.0
+offset_bottom = 12.0
+scale = Vector2(0.5, 0.5)
 theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
 text = "Inferno"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="InfernoModeButton" type="CheckBox" parent="Visual/DifficultyButtons"]
-modulate = Color(1, 0.54902, 0, 1)
+modulate = Color(0.976471, 0.572549, 0.321569, 1)
 layout_mode = 0
 offset_left = 184.0
 offset_right = 208.0
 offset_bottom = 24.0
-scale = Vector2(2.5, 2.5)
 focus_neighbor_left = NodePath("../InsaneModeButton")
 focus_neighbor_right = NodePath("../HardModeButton")
 button_group = SubResource("ButtonGroup_2rde5")
 
 [node name="Additions" type="Label" parent="Visual"]
-offset_left = 928.0
-offset_top = 328.0
-offset_right = 1093.0
-offset_bottom = 360.0
-scale = Vector2(1.75, 1.75)
+layout_mode = 0
+offset_left = 936.0
+offset_top = 336.0
+offset_right = 1117.0
+offset_bottom = 368.0
+scale = Vector2(1.5, 1.5)
 theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
 text = "Additions:"
 horizontal_alignment = 1
@@ -808,23 +825,93 @@ offset_bottom = 454.0
 [node name="Rain" type="Label" parent="Visual/AdittionalButtons"]
 visible = false
 layout_mode = 0
-offset_left = 5.0
-offset_top = -12.0
-offset_right = 61.0
-offset_bottom = 13.0
-scale = Vector2(0.8, 0.8)
+offset_left = -5.0
+offset_top = -11.0
+offset_right = 119.0
+offset_bottom = 17.0
+scale = Vector2(0.5, 0.5)
 theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
 text = "Rain"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="ToggleRainButton" type="CheckBox" parent="Visual/AdittionalButtons"]
-modulate = Color(0, 0.34902, 0.34902, 1)
+modulate = Color(0.117647, 0.533333, 0.458824, 1)
 layout_mode = 0
-offset_right = 24.0
-offset_bottom = 24.0
-scale = Vector2(2.5, 2.5)
+offset_left = 7.0
+offset_right = 47.0
+offset_bottom = 40.0
 focus_neighbor_left = NodePath("../ToggleEnhancedCrossesButton")
+focus_mode = 0
+disabled = true
+
+[node name="OldFilm" type="Label" parent="Visual/AdittionalButtons"]
+visible = false
+layout_mode = 0
+offset_left = 42.0
+offset_top = -13.0
+offset_right = 226.0
+offset_bottom = 15.0
+scale = Vector2(0.5, 0.5)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+text = "Old film"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ToggleOldFilmButton" type="CheckBox" parent="Visual/AdittionalButtons"]
+modulate = Color(0.976471, 0.572549, 0.321569, 1)
+layout_mode = 0
+offset_left = 71.0
+offset_right = 111.0
+offset_bottom = 40.0
+focus_mode = 0
+disabled = true
+
+[node name="JiofefHead" type="Label" parent="Visual/AdittionalButtons"]
+visible = false
+layout_mode = 0
+offset_left = 113.0
+offset_top = -26.0
+offset_right = 259.0
+offset_bottom = 33.0
+scale = Vector2(0.5, 0.5)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+text = "Jiofef
+Head"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ToggleJiofefHeadButton" type="CheckBox" parent="Visual/AdittionalButtons"]
+modulate = Color(0.796078, 0.301961, 0.407843, 1)
+layout_mode = 0
+offset_left = 138.0
+offset_right = 178.0
+offset_bottom = 40.0
+focus_mode = 0
+disabled = true
+
+[node name="EnhancedCrosses" type="Label" parent="Visual/AdittionalButtons"]
+visible = false
+layout_mode = 0
+offset_left = 176.0
+offset_top = -27.0
+offset_right = 380.0
+offset_bottom = 32.0
+scale = Vector2(0.5, 0.5)
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+text = "Enhanced
+Crosses"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ToggleEnhancedCrossesButton" type="CheckBox" parent="Visual/AdittionalButtons"]
+modulate = Color(0.584314, 0.301961, 0.623529, 1)
+layout_mode = 0
+offset_left = 204.0
+offset_top = -1.0
+offset_right = 244.0
+offset_bottom = 39.0
+focus_neighbor_right = NodePath("../ToggleRainButton")
 focus_mode = 0
 disabled = true
 
@@ -834,89 +921,17 @@ scale = Vector2(4, 4)
 texture = ExtResource("8_veuoi")
 centered = false
 
-[node name="OldFilm" type="Label" parent="Visual/AdittionalButtons"]
-visible = false
-layout_mode = 0
-offset_left = 64.0
-offset_top = -12.0
-offset_right = 142.0
-offset_bottom = 13.0
-scale = Vector2(0.8, 0.8)
-theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
-text = "Old film"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="ToggleOldFilmButton" type="CheckBox" parent="Visual/AdittionalButtons"]
-modulate = Color(0.762639, 0.531746, 1.34766e-06, 1)
-layout_mode = 0
-offset_left = 65.0
-offset_right = 89.0
-offset_bottom = 24.0
-scale = Vector2(2.5, 2.5)
-focus_mode = 0
-disabled = true
-
 [node name="Lock2" type="Sprite2D" parent="Visual/AdittionalButtons"]
 position = Vector2(69, 0)
 scale = Vector2(4, 4)
 texture = ExtResource("8_veuoi")
 centered = false
 
-[node name="JiofefHead" type="Label" parent="Visual/AdittionalButtons"]
-visible = false
-layout_mode = 0
-offset_left = 125.0
-offset_top = -23.0
-offset_right = 213.0
-offset_bottom = 27.0
-scale = Vector2(0.7, 0.7)
-theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
-text = "Jiofef
-Head"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="ToggleJiofefHeadButton" type="CheckBox" parent="Visual/AdittionalButtons"]
-modulate = Color(0.784314, 0, 0, 1)
-layout_mode = 0
-offset_left = 130.0
-offset_right = 154.0
-offset_bottom = 24.0
-scale = Vector2(2.5, 2.5)
-focus_mode = 0
-disabled = true
-
 [node name="Lock3" type="Sprite2D" parent="Visual/AdittionalButtons"]
 position = Vector2(136, 0)
 scale = Vector2(4, 4)
 texture = ExtResource("8_veuoi")
 centered = false
-
-[node name="EnhancedCrosses" type="Label" parent="Visual/AdittionalButtons"]
-visible = false
-layout_mode = 0
-offset_left = 192.0
-offset_top = -23.0
-offset_right = 288.0
-offset_bottom = 27.0
-scale = Vector2(0.7, 0.7)
-theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
-text = "Enhanced
-Crosses"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="ToggleEnhancedCrossesButton" type="CheckBox" parent="Visual/AdittionalButtons"]
-modulate = Color(0.54902, 0, 1, 1)
-layout_mode = 0
-offset_left = 194.0
-offset_right = 218.0
-offset_bottom = 24.0
-scale = Vector2(2.5, 2.5)
-focus_neighbor_right = NodePath("../ToggleRainButton")
-focus_mode = 0
-disabled = true
 
 [node name="Lock4" type="Sprite2D" parent="Visual/AdittionalButtons"]
 position = Vector2(204, 0)
