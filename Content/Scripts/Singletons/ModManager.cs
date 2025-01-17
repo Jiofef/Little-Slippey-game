@@ -7,6 +7,7 @@ using System.Text.Json;
 public partial class ModManager : Node
 {
     public static string CurrentModMapFolderName = ""; // Equals "" if the player is not on a mod map
+    public static bool IsModsDisabled = true; // A temporary switch for anything mod-related
 
     // Directories
     public static readonly string DefaultModsPath = OS.GetUserDataDir() + @"/mods/";

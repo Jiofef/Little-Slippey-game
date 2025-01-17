@@ -3,6 +3,7 @@ using System;
 
 public partial class Pause : CanvasLayer
 {
+    const float RESET_SPEED_MULTIPLIER = 2;
     TextureButton _rewindButton;
 
     private bool _isPaused = false;
@@ -18,14 +19,14 @@ public partial class Pause : CanvasLayer
         if (Input.IsActionJustPressed("Cancel") && !_subMenusOpened && G.DidLevelIntroPassed && !G.Main.IsPauseDisabled)
             UnPause();
         if (_rewindButton.ButtonPressed && !G.Main.IsResetDisabled)
-            G.ResetTimer += 0.016667f * 2;
+            G.ResetTimer += 0.016667f * 2 * RESET_SPEED_MULTIPLIER;
 
         if (ResetProcessDisabled) return;
 
 
         if (Input.IsActionPressed("Reset") && G.DidLevelIntroPassed && !G.Main.IsResetDisabled)
-            G.ResetTimer += 0.016667f;
-        else G.ResetTimer = G.ResetTimer > 0 ? G.ResetTimer - 0.016667f : 0;
+            G.ResetTimer += 0.016667f * RESET_SPEED_MULTIPLIER;
+        else G.ResetTimer = G.ResetTimer > 0 ? G.ResetTimer - 0.016667f * RESET_SPEED_MULTIPLIER : 0;
 
         if (G.ResetTimer > 1.5f)
             Reset();
@@ -86,8 +87,12 @@ public partial class Pause : CanvasLayer
     private void Options()
     {
         GetNode<Control>("Interface").ProcessMode = ProcessModeEnum.Disabled;
-        AddChild(ResourceLoader.Load<PackedScene>("res://Content/Scenes/Interface&Menu/OptionsMenu.tscn").Instantiate<Control>());
         GetNode<AnimationPlayer>("Interface/AnimationPlayer").Play("OpeningSubMenu");
+
+        var options = (Control)ResourceLoader.Load<PackedScene>("res://Content/Scenes/Interface&Menu/OptionsMenu.tscn").Instantiate();
+        options.TreeExited += OptionsClosing;
+        AddChild(options);
+
         _subMenusOpened = true;
     }
     private void Menu()

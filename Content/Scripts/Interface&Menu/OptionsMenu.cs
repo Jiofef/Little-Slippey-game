@@ -27,7 +27,6 @@ public partial class OptionsMenu : DraggableWindow
         Meta.OptionsReserve = Meta.Instance.Clone();
         if (G.CurrentLevel != 0 || !G.IsLevelVanilla)
         {
-            Connect("OptionsClosing", new Callable(GetNode(".."), "OptionsClosing"));
             Connect("GUIOptionsChanged", new Callable(GetNode("../../Level/Player/Camera2D"), "ApplyGUIOptions"));
             GetNode<TextureButton>("MarginContainer/VBoxContainer/HBoxContainer/DeclineButton").GrabFocus();
         }

@@ -22,6 +22,8 @@ public partial class WelcomeToGOS : Control
             GetNode<AnimationPlayer>("AnimationPlayer").Play("BackToGOS");
 
 
+        if (ModManager.IsModsDisabled) return; // Below are things related to mods
+
         // StandartTimerLib checking
         ModManager.UpdateIsStandartTimerLibLoaded();
         if (!ModManager.IsStandartTimerLibExists())

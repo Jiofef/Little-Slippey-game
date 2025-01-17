@@ -33,7 +33,7 @@ public partial class Player : CharacterBody2D
     private float _inertion, _wallJumpTimer = 0, //WallJumping
           _climbTimer, _climbUncontrollingTimer, //Climbing
           _coyoteTimer, //Jumping
-          _moveCoeff, // Hardcore =)
+          _moveCoeff = 1, // Hardcore =)
           _moveCalculationFramesTimer = 0; //Other
     private int _wallDetectNumber, _nearWallsCount, _savedWallNumber, //WallJumping
         _climbBufer = 3, _savedClimbWallNumber; //Climbing
@@ -99,6 +99,7 @@ public partial class Player : CharacterBody2D
         };
 
         if (_readyAlready) return;
+
 
         Camera = GetNode<Camera>("Camera2D");
         GUI = Camera.GetNode<Control>("GUICanvas/GUI");
@@ -388,8 +389,10 @@ public partial class Player : CharacterBody2D
 
             if (EnableStandingPenalty)
             {
-                float MoveDist = GlobalPosition.DistanceTo(_averagePosition);
-                _moveCoeff += (MoveDist < 300 ? -0.75f + MoveDist / 300 : 0.25f) / 60;
+                Vector2 CorrectedAveragePosition = GlobalPosition - _averagePosition;
+                CorrectedAveragePosition.Y *= 1.5f;
+                float MoveDist = Mathf.Sqrt(CorrectedAveragePosition.X * CorrectedAveragePosition.X + CorrectedAveragePosition.Y * CorrectedAveragePosition.Y);
+                _moveCoeff += (MoveDist < 300 ? -0.6f + MoveDist / 300 : 0.4f) / 60;
                 _moveCoeff = Mathf.Clamp(_moveCoeff, 0, 1);
             }
 

@@ -183,6 +183,8 @@ public partial class Level000000000Revelation : Monologue
         if (!ModManager.IsStandartTimerLibExists()) // Returning the StandartTimerLib
             ModManager.CreateStandartTimerLib();
 
+        // !Need to enable StandartTimerLib if it is disabled!
+
         GetTree().ChangeSceneToFile("res://Content/Scenes/Interface&Menu/WelcomeToGOS.tscn");
     }
 }

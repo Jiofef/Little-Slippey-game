@@ -55,7 +55,7 @@ public partial class InitializationScene : Control
 
 
         //Mods loading
-        if (!UnchangableMeta.DidModsCrushedTheGame)
+        if (!UnchangableMeta.DidModsCrushedTheGame && !ModManager.IsModsDisabled) // temporarily disabled
         {
             UnchangableMeta.DidModsCrushedTheGame = true;
             UnchangableMeta.SaveToFile();

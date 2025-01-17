@@ -1,7 +1,6 @@
 using Godot;
 using System;
 using System.Linq;
-using static System.Formats.Asn1.AsnWriter;
 
 public partial class Level10ScientistScript : Node2D
 {
@@ -280,9 +279,11 @@ public partial class Level10ScientistScript : Node2D
         // Handle fake level 10 entry scenario
         if (G.TransitiveVariantD.ContainsKey("ImFromTheFakeLevel10"))
         {
+            G.IsProgressPaused = false;
+
             G.TransitiveVariantD.Remove("ImFromTheFakeLevel10"); // Reset flag
-            GetNode<AnimationPlayer>("../CanvasLayer/SubtitlesRect/AnimationPlayer").Play("Blumxd");
-            GetNode<AudioStreamPlayer>("../CanvasLayer/SubtitlesRect/AudioStreamPlayer").Play();
+            GetNode<AnimationPlayer>("../CanvasLayer/ColorRect/AnimationPlayer").Play("Blumxd");
+            GetNode<AudioStreamPlayer>("../CanvasLayer/ColorRect/AudioStreamPlayer").Play();
 
             _mainScript.SetCrossesEnabled(true);
             _mainScript.SetProgressPaused(false);
@@ -418,7 +419,7 @@ public partial class Level10ScientistScript : Node2D
             _level.IsTimerBroken = true;
             G.Scores -= random.Next(5, 15);
             _level.SavedScores = G.Scores;
-            if (_level.SavedScores < 0)
+            if (_level.SavedScores < 0 && ModManager.IsStandartTimerLibLoaded && !ModManager.IsModsDisabled)
             {
                 G.TransitiveVariantD.Add("SavedScores", G.Scores);
                 G.TransitiveVariantD.Add("PlayerSavedPos", _player.Position);
@@ -462,6 +463,7 @@ public partial class Level10ScientistScript : Node2D
 
     public void OnLevelCompleted()
     {
+        GD.Print("Cock");
         _level.IsLevelComplete = true;
         G.IsCrossesEnabled = false;
         G.Main.IsPauseDisabled = true;
@@ -472,15 +474,17 @@ public partial class Level10ScientistScript : Node2D
         var AllCrossesOnScreen = GetTree().GetNodesInGroup("Crosses");
         for (int i = 0; AllCrossesOnScreen.Count > i; i++)
             AllCrossesOnScreen[i].QueueFree();
-        GetNode<AnimationPlayer>("../CanvasLayer/SubtitlesRect/AnimationPlayer").Play("Blumxd");
-        GetNode<AudioStreamPlayer>("../CanvasLayer/SubtitlesRect/AudioStreamPlayer").Play();
+        GetNode<AnimationPlayer>("../CanvasLayer/ColorRect/AnimationPlayer").Play("Blumxd");
+        GetNode<AudioStreamPlayer>("../CanvasLayer/ColorRect/AudioStreamPlayer").Play();
+
+        Achievements.GetLevelAchievements();
+        Achievements.GetAchievement("Congratulations!0");
+        Achievements.GetAchievement("Congratulations!1");
+        Achievements.GetAchievement("Congratulations!2");
+        Achievements.GetAchievement("Congratulations!3");
+
         if (UnchangableMeta.LevelCompleteStatus[9] == 0)
         {
-            Achievements.GetLevelAchievements();
-            Achievements.GetAchievement("Congratulations!0");
-            Achievements.GetAchievement("Congratulations!1");
-            Achievements.GetAchievement("Congratulations!2");
-            Achievements.GetAchievement("Congratulations!3");
             UnchangableMeta.IsThereNewContentInRecycleBin = true;
             UnchangableMeta.SaveToFile();
         }
