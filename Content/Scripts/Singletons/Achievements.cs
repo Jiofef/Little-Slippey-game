@@ -104,14 +104,14 @@ public partial class Achievements : Node
             }
         }
     }
-    public static CanvasLayer CurrentPopupAchievementsLayer;
+    public static AdditionalGuiLayer CurrentAdditionalGuiLayer;
     public static int AchievementPopupTimerMultiplier = 0;
     public static void GetAchievement(string name) // Do not ruin someone else's experience and do not give away game achievements for nothing. If you are making a cheat map or mod, mark it in the title/preview
     {
         Steam.SetAchievement(name);
         if (AllTheAchievements[name].IsReceived) return;
         var achievement = (Control)ResourceLoader.Load<PackedScene>("res://Content/Scenes/Achievements/" + name + ".tscn").Instantiate();
-        CurrentPopupAchievementsLayer.AddChild(achievement);
+        CurrentAdditionalGuiLayer.AddChild(achievement);
         achievement.GetNode<Timer>("PopupVersionPart/PopupTimer").Start(0.05f + 0.3f * AchievementPopupTimerMultiplier);
         achievement.FocusMode = Control.FocusModeEnum.None;
         achievement.MouseFilter = Control.MouseFilterEnum.Ignore;

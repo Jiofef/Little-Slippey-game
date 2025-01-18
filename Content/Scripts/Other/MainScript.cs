@@ -10,7 +10,7 @@ public partial class MainScript : Node2D
     public bool IsPauseDisabled = false, IsResetDisabled = false;
 
     [Export] public string LevelNodePath = "Level";
-    [Export] public bool DoIgnoreIntro = false, DoIgnoreAchievementLayer = false;
+    [Export] public bool DoIgnoreIntro = false;
 
     public override void _EnterTree()
     {
@@ -28,9 +28,6 @@ public partial class MainScript : Node2D
         { 
             G.MusicPlayer.StreamPaused = false; 
         };
-
-        if (!DoIgnoreAchievementLayer)
-            Achievements.CurrentPopupAchievementsLayer = GetNode<CanvasLayer>("PopupAchievementsLayer");
 
         Connect("RecalculateCrossWeight", new Callable(GetNode(LevelNodePath), "RecalculateCrossWeight"));
 

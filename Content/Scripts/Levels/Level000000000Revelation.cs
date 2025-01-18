@@ -9,7 +9,6 @@ public partial class Level000000000Revelation : Monologue
 	public override void _Ready()
 	{
         // Initialising the nodes
-        Achievements.CurrentPopupAchievementsLayer = GetNode<CanvasLayer>("PopupAchievementsLayer");
         _the = GetNode<AnimatedSprite2D>("The");
         _monologueAnimations = GetNode<AnimationPlayer>("MonologueAnimations");
 

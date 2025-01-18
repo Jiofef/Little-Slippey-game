@@ -1,0 +1,100 @@
+[gd_scene load_steps=10 format=3 uid="uid://cdbeqxy4ybfl6"]
+
+[ext_resource type="Theme" uid="uid://dkitr1ftp0yhs" path="res://Content/Other/Menu.tres" id="1_ktjkf"]
+[ext_resource type="Texture2D" uid="uid://bmnjn4tqb7t5m" path="res://Content/Sprites/Interface/GoldenCrossesAnimation.png" id="2_x2oom"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hrufl"]
+atlas = ExtResource("2_x2oom")
+region = Rect2(0, 0, 17, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6glml"]
+atlas = ExtResource("2_x2oom")
+region = Rect2(17, 0, 17, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0htyy"]
+atlas = ExtResource("2_x2oom")
+region = Rect2(34, 0, 17, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bjnud"]
+atlas = ExtResource("2_x2oom")
+region = Rect2(51, 0, 17, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qeu4c"]
+atlas = ExtResource("2_x2oom")
+region = Rect2(68, 0, 17, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j6amb"]
+atlas = ExtResource("2_x2oom")
+region = Rect2(85, 0, 17, 17)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mfpev"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hrufl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6glml")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0htyy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bjnud")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qeu4c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j6amb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qeu4c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bjnud")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0htyy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6glml")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="GoldenCrossesAmount" type="MarginContainer"]
+custom_minimum_size = Vector2(192, 192)
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -192.0
+offset_bottom = 192.0
+grow_horizontal = 0
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="AmountLabel" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource("1_ktjkf")
+text = "0"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="GoldenCrossesAnimation" type="Control" parent="HBoxContainer"]
+custom_minimum_size = Vector2(68, 68)
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="HBoxContainer/GoldenCrossesAnimation"]
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_mfpev")
+autoplay = "default"
+centered = false

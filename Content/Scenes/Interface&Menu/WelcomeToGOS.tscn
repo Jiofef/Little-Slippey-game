@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=4 uid="uid://dkibh4v7pkdaf"]
+[gd_scene load_steps=28 format=4 uid="uid://dkibh4v7pkdaf"]
 
 [ext_resource type="Texture2D" uid="uid://bup1u0y7qgmvb" path="res://Content/Sprites/Interface/MenuBackground.png" id="1_gbq5h"]
 [ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/WelcomeToGOS.cs" id="1_u85jq"]
@@ -7,6 +7,7 @@
 [ext_resource type="Shader" path="res://Content/Other/PixelateShader.gdshader" id="5_h17kw"]
 [ext_resource type="Shader" path="res://Content/Other/CRT.gdshader" id="5_v2xk6"]
 [ext_resource type="PackedScene" uid="uid://bwpstpk1xmkah" path="res://Content/Scenes/Interface&Menu/Button.tscn" id="7_0t5ux"]
+[ext_resource type="PackedScene" uid="uid://catydhrk62at1" path="res://Content/Scenes/Interface&Menu/AdditionalGuiLayer.tscn" id="7_bb6fw"]
 [ext_resource type="Texture2D" uid="uid://ce4oq2adhljwh" path="res://Content/Sprites/Interface/Buttons/LevelsMenuIcon.png" id="8_ftgus"]
 [ext_resource type="Texture2D" uid="uid://7flw3x3pbl5h" path="res://Content/Sprites/Interface/Buttons/OptionsIcon.png" id="9_byapo"]
 [ext_resource type="Texture2D" uid="uid://byj71drocdgl4" path="res://Content/Sprites/Interface/Buttons/SkinsMenuIcon.png" id="10_6fao5"]
@@ -320,6 +321,9 @@ libraries = {
 }
 autoplay = "BackgroundAnimation"
 
+[node name="AdditionalGUILayer" parent="." instance=ExtResource("7_bb6fw")]
+layer = 0
+
 [node name="MonitorEffects" type="CanvasLayer" parent="."]
 
 [node name="CRTEffect" type="ColorRect" parent="MonitorEffects"]
@@ -338,8 +342,6 @@ color = Color(0, 0, 0, 1)
 [node name="Sound" type="AudioStreamPlayer" parent="MonitorEffects/InitializationBlackout"]
 stream = SubResource("AudioStreamMP3_tm2e3")
 volume_db = 10.0
-
-[node name="PopupAchievementsLayer" type="CanvasLayer" parent="."]
 
 [node name="Buttons" type="Control" parent="."]
 layout_mode = 3

@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://t6ux1gxr8d4w"]
+[gd_scene load_steps=34 format=3 uid="uid://t6ux1gxr8d4w"]
 
 [ext_resource type="Texture2D" uid="uid://cpcf4ybsmoxc3" path="res://Content/Sprites/Levels/Level000000000/Revelation.png" id="1_25deo"]
 [ext_resource type="Script" path="res://Content/Scripts/Levels/Level000000000Revelation.cs" id="1_xwnnl"]
@@ -7,6 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://iyai4rv2ye0r" path="res://Content/Sounds/Levels/Level000000000LaughX3.mp3" id="4_32ya0"]
 [ext_resource type="PackedScene" uid="uid://dbbw5dwtig42m" path="res://Content/Scenes/Interface&Menu/AppearingText.tscn" id="5_femfo"]
 [ext_resource type="AudioStream" uid="uid://08jvbcvxr4nf" path="res://Content/Sounds/Levels/Level000000000Screamer.mp3" id="5_wels5"]
+[ext_resource type="PackedScene" uid="uid://catydhrk62at1" path="res://Content/Scenes/Interface&Menu/AdditionalGuiLayer.tscn" id="8_tu7os"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jy5wh"]
 atlas = ExtResource("1_25deo")
@@ -418,7 +419,7 @@ stream = ExtResource("3_fc1lf")
 volume_db = 16.0
 bus = &"Music"
 
-[node name="PopupAchievementsLayer" type="CanvasLayer" parent="."]
+[node name="AdditionalGUILayer" parent="." instance=ExtResource("8_tu7os")]
 
 [node name="EnterHandler" type="TextureButton" parent="."]
 offset_right = 1280.0

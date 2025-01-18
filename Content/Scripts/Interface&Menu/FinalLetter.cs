@@ -8,7 +8,6 @@ public partial class FinalLetter : Node2D
         UnchangableMeta.SaveRecords();
         UnchangableMeta.SaveToFile();
         G.CompletelyResetValues();
-        Achievements.CurrentPopupAchievementsLayer = GetNode<CanvasLayer>("PopupAchievementsLayer");
     }
     public void Close()
     {

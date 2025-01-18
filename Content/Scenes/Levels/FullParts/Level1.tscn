@@ -1,6 +1,7 @@
-[gd_scene load_steps=48 format=4 uid="uid://dlx8yjd3gp608"]
+[gd_scene load_steps=49 format=4 uid="uid://dlx8yjd3gp608"]
 
 [ext_resource type="PackedScene" uid="uid://5kfyvxsdpsk2" path="res://Content/Scenes/Other/LevelLayout.tscn" id="1_t253m"]
+[ext_resource type="Script" path="res://Content/Scripts/Levels/Level1MainScript.cs" id="2_0n0cx"]
 [ext_resource type="Texture2D" uid="uid://q2j1uuqfjmos" path="res://Content/Sprites/Levels/BaseTileSet.png" id="2_5coah"]
 [ext_resource type="Texture2D" uid="uid://cjoa8meyv5ehu" path="res://Content/Sprites/Levels/Level1/Sky.png" id="2_xqbfl"]
 [ext_resource type="PackedScene" uid="uid://dlscufxb5f1ca" path="res://Content/Scenes/Other/Player.tscn" id="3"]
@@ -278,6 +279,7 @@ _data = {
 }
 
 [node name="Main" instance=ExtResource("1_t253m")]
+script = ExtResource("2_0n0cx")
 
 [node name="AnimationPlayer" parent="LevelMusicPlayer" index="0"]
 libraries = {

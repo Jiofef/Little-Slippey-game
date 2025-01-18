@@ -6,6 +6,8 @@ using System.Text.Json;
 public partial class UnchangableMeta : Node
 {
     // Unchangable Meta is the saving singleton with the data which the player cannot directly change (not the settings, simply put)
+    public static int GoldenCrossesAmount = 0;
+
     public static int[][] LevelRecords =
     {
         new int[G.LevelsInGameTotal],
@@ -107,6 +109,11 @@ public partial class UnchangableMeta : Node
             {
                 var model = FileSystemExtension.GetJsonModel("user://save.json");
 
+                try
+                {
+                    GoldenCrossesAmount = model["golden_crosses_amount"].AsInt32();
+                } catch { }
+
                 Godot.Collections.Array[] LevelRecordsArrays = new Godot.Collections.Array[3];
                 for (int i = 0; i < LevelRecordsArrays.Length; i++)
                     LevelRecordsArrays[i] = (Godot.Collections.Array)model["level_records" + i];
@@ -132,7 +139,7 @@ public partial class UnchangableMeta : Node
                 try
                 {
                     for (int i = 0; i < LevelPlayedStatus.Length; i++)
-                        LevelPlayedStatus[i] = Convert.ToByte(LevelPlayedStatusArray[i].ToString());
+                        LevelPlayedStatus[i] = Convert.ToInt32(LevelPlayedStatusArray[i].ToString());
                 }
                 catch { }
 
@@ -140,7 +147,7 @@ public partial class UnchangableMeta : Node
                 try
                 {
                     for (int i = 0; i < HintsStatus.Length; i++)
-                        HintsStatus[i] = Convert.ToByte(HintsStatusArray[i].ToString());
+                        HintsStatus[i] = Convert.ToInt32(HintsStatusArray[i].ToString());
                 }
                 catch { }
 

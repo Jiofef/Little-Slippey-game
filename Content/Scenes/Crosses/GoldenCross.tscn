@@ -1,0 +1,254 @@
+[gd_scene load_steps=16 format=3 uid="uid://cqxxf07okbp3j"]
+
+[ext_resource type="Script" path="res://Content/Scripts/Crosses/GoldenCross.cs" id="1_6aek6"]
+[ext_resource type="Texture2D" uid="uid://bmnjn4tqb7t5m" path="res://Content/Sprites/Interface/GoldenCrossesAnimation.png" id="1_d3wju"]
+[ext_resource type="AudioStream" uid="uid://b2yuhey8vnsqk" path="res://Content/Sounds/Crosses/OnGoldenCrossCollected1.mp3" id="3_mnqio"]
+[ext_resource type="AudioStream" uid="uid://pt4ssvnfc64t" path="res://Content/Sounds/Crosses/OnGoldenCrossCollected2.mp3" id="4_cysas"]
+
+[sub_resource type="Curve2D" id="Curve2D_axwey"]
+_data = {
+"points": PackedVector2Array(0, 0, 24, -8, 0, 0, 16, 0, 16, 0, 128, -24, -32, 0, 32, 0, 230, -64, 0, -32, 0, 32, 298, 1, 32, 0, -32, 0, 230, 64, 32, 0, -16, 0, 128, 24, 0, 0, 0, 0, 0, 0, 16, 0, -16, 0, -128, -24, 32, 0, -32, 0, -230, -64, 0, -32, 0, 32, -298, 0, -32, 0, 32, 0, -230, 64, -16, 0, -16, 0, -128, 24, 0, 0, 0, 0, 0, 0)
+}
+point_count = 13
+
+[sub_resource type="Curve" id="Curve_ealj3"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_d55e1"]
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o5kcy"]
+atlas = ExtResource("1_d3wju")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="Gradient" id="Gradient_iu5he"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a4yly"]
+size = Vector2(130, 130)
+
+[sub_resource type="Animation" id="Animation_yvvx0"]
+resource_name = "Appearing"
+length = 3.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_2llam"]
+resource_name = "Disappearing"
+length = 3.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(2, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../..")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"OnDisappeared"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_yvqqx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(10, 10)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_83rnd"]
+resource_name = "OnCollected"
+length = 0.2
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector2(10, 10), Vector2(30, 30)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_m800w"]
+_data = {
+"Appearing": SubResource("Animation_yvvx0"),
+"Disappearing": SubResource("Animation_2llam"),
+"OnCollected": SubResource("Animation_83rnd"),
+"RESET": SubResource("Animation_yvqqx")
+}
+
+[node name="GoldenCross" type="Node2D"]
+position = Vector2(666, 328)
+script = ExtResource("1_6aek6")
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_axwey")
+
+[node name="Cross" type="PathFollow2D" parent="Path2D"]
+rotates = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Path2D/Cross"]
+scale = Vector2(10, 10)
+texture = ExtResource("1_d3wju")
+region_enabled = true
+region_rect = Rect2(0, 0, 17, 17)
+
+[node name="ShineParticles" type="CPUParticles2D" parent="Path2D/Cross"]
+amount = 16
+lifetime = 2.5
+emission_shape = 1
+emission_sphere_radius = 64.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 50.0
+initial_velocity_max = 50.0
+scale_amount_min = 10.0
+scale_amount_max = 10.0
+scale_amount_curve = SubResource("Curve_ealj3")
+color = Color(0.968627, 0.894118, 0.462745, 1)
+color_ramp = SubResource("Gradient_d55e1")
+
+[node name="ParticlesDisappearingTimer" type="Timer" parent="Path2D/Cross/ShineParticles"]
+wait_time = 2.5
+one_shot = true
+
+[node name="OnCollectedParticles1" type="CPUParticles2D" parent="Path2D/Cross"]
+emitting = false
+amount = 4
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.75
+texture = SubResource("AtlasTexture_o5kcy")
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 400.0
+initial_velocity_max = 600.0
+angular_velocity_min = -360.0
+angular_velocity_max = 360.0
+angle_min = -720.0
+angle_max = 720.0
+scale_amount_min = 10.0
+scale_amount_max = 10.0
+scale_amount_curve = SubResource("Curve_ealj3")
+
+[node name="OnCollectedParticles2" type="CPUParticles2D" parent="Path2D/Cross"]
+emitting = false
+one_shot = true
+explosiveness = 0.9
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 400.0
+initial_velocity_max = 600.0
+angular_velocity_min = -360.0
+angular_velocity_max = 360.0
+orbit_velocity_min = 0.5
+orbit_velocity_max = 0.5
+angle_min = -720.0
+angle_max = 720.0
+scale_amount_min = 10.0
+scale_amount_max = 20.0
+scale_amount_curve = SubResource("Curve_ealj3")
+color = Color(0.968627, 0.894118, 0.462745, 1)
+color_ramp = SubResource("Gradient_iu5he")
+
+[node name="CollectArea" type="Area2D" parent="Path2D/Cross"]
+visible = false
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Path2D/Cross/CollectArea"]
+shape = SubResource("RectangleShape2D_a4yly")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Path2D/Cross"]
+libraries = {
+"": SubResource("AnimationLibrary_m800w")
+}
+autoplay = "Appearing"
+
+[node name="OnGoldenCrossCollected1" type="AudioStreamPlayer" parent="Path2D/Cross"]
+stream = ExtResource("3_mnqio")
+volume_db = 4.0
+bus = &"Interface"
+
+[node name="OnGoldenCrossCollected2" type="AudioStreamPlayer" parent="Path2D/Cross"]
+stream = ExtResource("4_cysas")
+volume_db = 4.0
+bus = &"Interface"
+
+[connection signal="timeout" from="Path2D/Cross/ShineParticles/ParticlesDisappearingTimer" to="." method="OnShineParticlesDisappeared"]
+[connection signal="area_entered" from="Path2D/Cross/CollectArea" to="." method="onCollected" flags=6 unbinds=1]

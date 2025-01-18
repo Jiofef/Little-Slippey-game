@@ -10,7 +10,6 @@ public partial class WelcomeToGOS : Control
 	{
         G.BlockSavingSomeValues = false; //A small crutch to fix the engine bug. Read the assignment of a variable in G.
 
-        Achievements.CurrentPopupAchievementsLayer = GetNode<CanvasLayer>("PopupAchievementsLayer");
 		GetNode<Sprite2D>("Buttons/Titles/Notify").Visible = UnchangableMeta.IsThereNewContentInRecycleBin;
 		if (!G.IsSystemInitiated)
 		{
