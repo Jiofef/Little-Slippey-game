@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://4gxbtrc21wvn"]
+
+[ext_resource type="Texture2D" uid="uid://d3p14ip2xny4v" path="res://Content/Sprites/Interface/PointingArrow.png" id="1_80ff3"]
+[ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/OffscreenPointer.cs" id="1_xk2uv"]
+
+[node name="OffscreenPointer" type="Node2D"]
+script = ExtResource("1_xk2uv")
+
+[node name="Pointer" type="Sprite2D" parent="."]
+scale = Vector2(4, 4)
+texture = ExtResource("1_80ff3")
+offset = Vector2(-18, 0)
+flip_h = true

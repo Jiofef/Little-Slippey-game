@@ -19,13 +19,19 @@ public partial class AdditionalGuiLayer : CanvasLayer
         }
     }
 
-    public void OnGoldenCrossesRecieved()
+    public void OnGoldenCrossesRecieved(int value)
     {
         // Updating visible amount
         GetNode<Label>("ScreenControl/MarginC/GoldenCrossesAmount/HBoxContainer/AmountLabel").Text = UnchangableMeta.GoldenCrossesAmount.ToString();
 
         // Effects when amount gets visible
-        //GetNode<AudioStreamPlayer>("ScreenControl/MarginC/GoldenCrossesAmount/OnGoldenCrossesRecievedSound").Play();
-        GetNode<AnimationPlayer>("ScreenControl/MarginC/GoldenCrossesAmount/AnimationPlayer").Play("Disappearing");
+        var animationPlayer = GetNode<AnimationPlayer>("ScreenControl/MarginC/GoldenCrossesAmount/AnimationPlayer");
+        animationPlayer.Stop();
+        animationPlayer.Play("Disappearing");
+    }
+
+    public void PlayGoldenCrossesRecievedAdditionalSound()
+    {
+        GetNode<AudioStreamPlayer>("ScreenControl/MarginC/GoldenCrossesAmount/GoldenCrossesRecievedAdditionalSound").Play();
     }
 }

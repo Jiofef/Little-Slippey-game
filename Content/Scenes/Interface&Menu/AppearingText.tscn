@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://dbbw5dwtig42m"]
 
 [ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/AppearingText.cs" id="1_mf4j4"]
-[ext_resource type="AudioStream" uid="uid://boa8p5oxc1h4m" path="res://Content/Sounds/Other/LetterPop.mp3" id="2_pn321"]
-[ext_resource type="AudioStream" uid="uid://b06sfgf3d6hg2" path="res://Content/Sounds/Other/UI.mp3" id="3_wuccj"]
+[ext_resource type="AudioStream" uid="uid://boa8p5oxc1h4m" path="res://Content/Sounds/Interface&Menu/LetterPop.mp3" id="2_pn321"]
+[ext_resource type="AudioStream" uid="uid://b06sfgf3d6hg2" path="res://Content/Sounds/Interface&Menu/UI.mp3" id="3_wuccj"]
 
 [node name="ThisIs" type="RichTextLabel"]
 clip_contents = false

@@ -463,7 +463,6 @@ public partial class Level10ScientistScript : Node2D
 
     public void OnLevelCompleted()
     {
-        GD.Print("Cock");
         _level.IsLevelComplete = true;
         G.IsCrossesEnabled = false;
         G.Main.IsPauseDisabled = true;
@@ -485,7 +484,7 @@ public partial class Level10ScientistScript : Node2D
 
         if (UnchangableMeta.LevelCompleteStatus[9] == 0)
         {
-            UnchangableMeta.IsThereNewContentInRecycleBin = true;
+            UnchangableMeta.NotifyRecycleBinNewContent();
             UnchangableMeta.SaveToFile();
         }
         Connect("SetCrossesProgressCoeff", new Callable(GetNode("../.."), "SetCrossesProgressCoeff"));

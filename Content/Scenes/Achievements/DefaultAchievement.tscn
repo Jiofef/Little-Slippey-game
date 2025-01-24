@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://01o8bu8kwj2h" path="res://Content/Sprites/Other/AchievementStarParticle.png" id="2_tnofe"]
 [ext_resource type="Texture2D" uid="uid://bpldglo3qd7mh" path="res://Content/Sprites/Interface/AchievementRewardBox.png" id="3_blldf"]
 [ext_resource type="Texture2D" uid="uid://8yt60jrdtl3" path="res://Content/Sprites/Interface/AchievementIcons.png" id="4_7bny4"]
-[ext_resource type="AudioStream" uid="uid://ca1ra0emtaeth" path="res://Content/Sounds/Other/AchievementSound.mp3" id="4_338ko"]
+[ext_resource type="AudioStream" uid="uid://ca1ra0emtaeth" path="res://Content/Sounds/Interface&Menu/AchievementSound.mp3" id="4_338ko"]
 [ext_resource type="Texture2D" uid="uid://brgquvu7soyfx" path="res://Content/Sprites/Interface/AchievementStar.png" id="4_ndwic"]
 [ext_resource type="Theme" uid="uid://dkitr1ftp0yhs" path="res://Content/Other/Menu.tres" id="6_ui8eo"]
 

@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://ccj6gqc1b4phn" path="res://Content/Sprites/Interface/Buttons/4XDownloadButton.png" id="2_b202d"]
 [ext_resource type="Theme" uid="uid://dkitr1ftp0yhs" path="res://Content/Other/Menu.tres" id="2_rgbi2"]
 [ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/TimerLibNotFound.cs" id="3_5oh1s"]
-[ext_resource type="AudioStream" uid="uid://b06sfgf3d6hg2" path="res://Content/Sounds/Other/UI.mp3" id="4_y0hfq"]
+[ext_resource type="AudioStream" uid="uid://b06sfgf3d6hg2" path="res://Content/Sounds/Interface&Menu/UI.mp3" id="4_y0hfq"]
 
 [sub_resource type="Animation" id="Animation_j1xib"]
 resource_name = "Downloading"

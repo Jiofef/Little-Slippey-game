@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://75ikfwlafbnm"]
+
+[ext_resource type="PackedScene" uid="uid://bwpstpk1xmkah" path="res://Content/Scenes/Interface&Menu/Button.tscn" id="1_8jiex"]
+[ext_resource type="Theme" uid="uid://dkitr1ftp0yhs" path="res://Content/Other/Menu.tres" id="2_4nf4e"]
+[ext_resource type="Texture2D" uid="uid://dxt3rcbkxua06" path="res://Content/Sprites/Interface/Buttons/SkinButton.png" id="2_m86qu"]
+[ext_resource type="Texture2D" uid="uid://cr6ilqqdmo4ug" path="res://Content/Sprites/Interface/Buttons/SkinButtonDisabled.png" id="3_r3khw"]
+[ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/SkinButton.cs" id="4_ssot4"]
+
+[node name="Button" instance=ExtResource("1_8jiex")]
+custom_minimum_size = Vector2(192, 192)
+scale = Vector2(1, 1)
+theme = ExtResource("2_4nf4e")
+toggle_mode = true
+texture_normal = ExtResource("2_m86qu")
+texture_disabled = ExtResource("3_r3khw")
+stretch_mode = 0
+script = ExtResource("4_ssot4")
+SkinName = ""
+SkinKey = ""
+NeededAchievementKey = ""
+SkinPrice = 0
+
+[node name="SkinName" type="Label" parent="." index="0"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 144.0
+offset_right = 180.0
+offset_bottom = 180.0
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SkinPrice" type="RichTextLabel" parent="." index="1"]
+visible = false
+layout_mode = 0
+offset_left = 12.0
+offset_top = 140.0
+offset_right = 180.0
+offset_bottom = 180.0
+bbcode_enabled = true

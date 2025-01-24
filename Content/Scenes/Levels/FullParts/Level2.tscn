@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=4 uid="uid://bg7f2ie6bi0u8"]
+[gd_scene load_steps=54 format=4 uid="uid://bg7f2ie6bi0u8"]
 
 [ext_resource type="PackedScene" uid="uid://5kfyvxsdpsk2" path="res://Content/Scenes/Other/LevelLayout.tscn" id="1_xrr5q"]
 [ext_resource type="Texture2D" uid="uid://ba64m2i1e8tsn" path="res://Content/Sprites/Levels/Level2/Sky.png" id="2_c6v2q"]
@@ -19,7 +19,6 @@
 [ext_resource type="PackedScene" uid="uid://dbbw5dwtig42m" path="res://Content/Scenes/Interface&Menu/AppearingText.tscn" id="18_ygb1l"]
 [ext_resource type="Texture2D" uid="uid://c2vlstlfjauxy" path="res://Content/Sprites/Interface/StandBar.png" id="19_a4yww"]
 [ext_resource type="Texture2D" uid="uid://dwhribmb1bvrr" path="res://Content/Sprites/Interface/DiagonalArrow.png" id="19_gi4na"]
-[ext_resource type="PackedScene" uid="uid://cqxxf07okbp3j" path="res://Content/Scenes/Crosses/GoldenCross.tscn" id="20_3ib4e"]
 
 [sub_resource type="Animation" id="Animation_p3npb"]
 resource_name = "MusicStarting"
@@ -1422,9 +1421,6 @@ visible = false
 position = Vector2(315, 567)
 scale = Vector2(4, 4)
 texture = ExtResource("19_gi4na")
-
-[node name="GoldenCross" parent="." index="6" instance=ExtResource("20_3ib4e")]
-position = Vector2(1864, 261)
 
 [connection signal="PlayerDied" from="Level/Player" to="HintLayer/AppearTimer" method="stop"]
 [connection signal="HintHidden" from="HintLayer" to="Level/Player" method="ToggleStandingPenalty" binds= [true]]

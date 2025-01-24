@@ -26,8 +26,6 @@ public partial class G : Node
         MusicStopTimeCode = 0; // It is necessary to put the music in the same position after restarting the level
     public static bool BlockSavingSomeValues = false; // Due to bugs in the engine, if you first remove a scene and then add it to the tree again, it starts to behave strangely when deleting it. One of the cases is that music player saves timecode after all main values in G are reset. This variable is designed for such moments. It is disabled in the menu. If you use it in your own way on a level, you may need to disable it yourself.
 
-    public static readonly string[] VanillaSkinNames = ["Slippey", "Samey", "Sanboy", "Strawman", "Pineplum", "Bondey", "Sleepy", "Daley", "Hostey", "CompressMass", "JioYobaFefski", "SlippeyChad", "MISSINGNULL", "Corey"];
-
     public static readonly Vector2[] LevelXYSizes =
 [
         new Vector2(1280, 640),
@@ -162,6 +160,25 @@ public partial class G : Node
         var value = Meta.Instance.Video.language.ToString();
         value = char.ToUpper(value[0]) + value.Substring(1);
         return value;
+    }
+
+    public static AudioStreamPlayer PlayOneshotSound(string soundPath, Node parent, string busName = "Master", float volumeDb = 0) // Plays the sound once at the given path from res://Content/Sounds/
+    {
+        const string PATH_START = "res://Content/Sounds/";
+
+        AudioStreamPlayer player = new AudioStreamPlayer();
+        AudioStream stream = GD.Load<AudioStream>(PATH_START + soundPath);
+
+        player.Stream = stream;
+        player.Finished += player.QueueFree;
+        player.Bus = busName;
+        player.VolumeDb = volumeDb;
+
+        parent.AddChild(player);
+
+        player.Play();
+
+        return player;
     }
 
     #region Frequently used nodes

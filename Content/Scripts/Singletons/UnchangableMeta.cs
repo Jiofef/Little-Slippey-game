@@ -1,12 +1,23 @@
 using Godot;
 using System;
-using Godot.Collections;
 using System.Text.Json;
+using System.Collections.Generic;
 
 public partial class UnchangableMeta : Node
 {
     // Unchangable Meta is the saving singleton with the data which the player cannot directly change (not the settings, simply put)
-    public static int GoldenCrossesAmount = 0;
+    private static int _goldenCrossesAmount;
+    public static int GoldenCrossesAmount 
+    { 
+        get => _goldenCrossesAmount;
+        set 
+        {
+            _goldenCrossesAmount = value;
+            GoldenCrossesAmountChanged(value);
+        }
+    }
+    public delegate void GoldenCrossesAmountChangedEventHandler(int value);
+    public static event GoldenCrossesAmountChangedEventHandler GoldenCrossesAmountChanged = delegate { };
 
     public static int[][] LevelRecords =
     {
@@ -20,7 +31,12 @@ public partial class UnchangableMeta : Node
     public static int[] LevelCompleteStatus = new int[G.LevelsInGameTotal];
     public static int[] LevelPlayedStatus = new int[G.LevelsInGameTotal]; //I made it as byte[] because of retard Godot that can't save a boolean array >:( // UPD: On top of that, the JSON.Stringify method converts an array of bytes into a string. To avoid doing bdsm, I converted the bytes to int. Sorry.
 
-    public static bool IsLanguageSetted = false, IsTutorialPlayed, IsLevel9PlatformSectionFirstTimeCompleted, IsLevel9PlatformSectionSkipAllowed, IsFakeLevel10SkipAllowed, IsThereNewContentInRecycleBin = true;
+    public static bool IsLanguageSetted = false, IsTutorialPlayed, IsLevel9PlatformSectionFirstTimeCompleted, IsLevel9PlatformSectionSkipAllowed, IsFakeLevel10SkipAllowed, IsThereNewContentInRecycleBin = true, WasThereRecycleBinAudioNotify = true;
+    public static void NotifyRecycleBinNewContent()
+    {
+        IsThereNewContentInRecycleBin = true;
+        WasThereRecycleBinAudioNotify = false;
+    }
     public static bool DidModsCrushedTheGame = false;
     public static int[] HintsStatus = //1 - was showed. 0 - hasn't.
     {
@@ -72,23 +88,27 @@ public partial class UnchangableMeta : Node
         }
     }
 
-    public static Dictionary<string, Variant> GetJsonSave()
+    public static Dictionary<string, object> GetJsonSave()
     {
-        return new Dictionary<string, Variant>()
+        return new Dictionary<string, object>()
         {
+            {"did_mods_crushed_the_game", DidModsCrushedTheGame},
+            {"golden_crosses_amount", GoldenCrossesAmount},
             {"level_records0", LevelRecords[0]},
             {"level_records1", LevelRecords[1]},
             {"level_records2", LevelRecords[2]},
             {"level_complete_status", LevelCompleteStatus},
+            {"level_played_status", LevelPlayedStatus},
+            {"hints_status", HintsStatus},
+            {"is_there_new_content_in_recycle_bin", IsThereNewContentInRecycleBin},
+            {"was_there_recycle_bin_audio_notify", WasThereRecycleBinAudioNotify},
+            {"is_skin_bought_dic", Skins.IsSkinBoughtDic},
+
             {"is_language_setted", IsLanguageSetted},
             {"is_tutorial_played", IsTutorialPlayed },
             {"is_level9_platform_section_first_time_completed", IsLevel9PlatformSectionFirstTimeCompleted},
             {"is_level9_platform_section_skip_is_allowed", IsLevel9PlatformSectionSkipAllowed},
             {"is_fake_level10_skip_allowed", IsFakeLevel10SkipAllowed},
-            {"is_there_new_content_in_recycle_bin", IsThereNewContentInRecycleBin},
-            {"level_played_status", LevelPlayedStatus},
-            {"hints_status", HintsStatus},
-            {"did_mods_crushed_the_game", DidModsCrushedTheGame},
         };
     }
     public static void SaveToFile()
@@ -102,70 +122,109 @@ public partial class UnchangableMeta : Node
     }
     public static void LoadSave()
     {
-
-        try
         {
-            // Save file
-            {
-                var model = FileSystemExtension.GetJsonModel("user://save.json");
+            var model = FileSystemExtension.GetSystemJsonModel("user://save.json");
 
+            void TryLoad<T>(string key, Action<T> setValue, string errorLog = null)
+            {
                 try
                 {
-                    GoldenCrossesAmount = model["golden_crosses_amount"].AsInt32();
-                } catch { }
+                    var loadedValue = JsonSerializer.Deserialize<T>(JsonSerializer.Serialize(model[key]));
+                    setValue(loadedValue);
+                }
+                catch
+                {
+                    GD.Print(errorLog ?? key);
+                }
+            }
+            void TryLoadArray<T>(string key, Action<T[]> setValue, Func<int, T[]> defaultArray, int expectedLength, string errorLog = null)
+            {
+                try
+                {
+                    var loadedArray = JsonSerializer.Deserialize<T[]>(JsonSerializer.Serialize(model[key]));
+                    var newArray = defaultArray(expectedLength);
 
-                Godot.Collections.Array[] LevelRecordsArrays = new Godot.Collections.Array[3];
-                for (int i = 0; i < LevelRecordsArrays.Length; i++)
-                    LevelRecordsArrays[i] = (Godot.Collections.Array)model["level_records" + i];
-                for (int i = 0; i < LevelRecordsArrays.Length; i++)
-                    try
+                    if (loadedArray != null)
                     {
-                        for (int j = 0; j < G.LevelsInGameTotal; j++)
+                        for (int i = 0; i < Math.Min(loadedArray.Length, expectedLength); i++)
                         {
-                            LevelRecords[i][j] = Convert.ToInt32(LevelRecordsArrays[i][j].ToString());
+                            newArray[i] = loadedArray[i];
                         }
                     }
-                    catch { }
 
-                Godot.Collections.Array LevelCompleteStatusArray = (Godot.Collections.Array)model["level_complete_status"];
+                    setValue(newArray);
+                }
+                catch
+                {
+                    GD.Print(errorLog ?? key);
+                }
+            }
+            void TryLoadDictionary<TKey, TValue>(string key,Action<Dictionary<TKey, TValue>> setValue,Func<Dictionary<TKey, TValue>> getDefaultDictionary, bool doNotAddUnknownValues = false, string errorLog = null)
+            {
                 try
                 {
-                    for (int i = 0; i < LevelCompleteStatus.Length; i++)
-                        LevelCompleteStatus[i] = Convert.ToInt32(LevelCompleteStatusArray[i].ToString());
-                }
-                catch { }
+                    var loadedDictionary = JsonSerializer.Deserialize<Dictionary<TKey, TValue>>(JsonSerializer.Serialize(model[key]));
 
-                Godot.Collections.Array LevelPlayedStatusArray = (Godot.Collections.Array)model["level_played_status"];
-                try
+                    var defaultDictionary = getDefaultDictionary();
+
+                    if (loadedDictionary != null)
+                    {
+                        foreach (var kvp in loadedDictionary)
+                        {
+                            if (defaultDictionary.ContainsKey(kvp.Key))
+                                defaultDictionary[kvp.Key] = kvp.Value;
+                            else if (!doNotAddUnknownValues)
+                                defaultDictionary.Add(kvp.Key, kvp.Value);
+                        }
+                    }
+
+                    setValue(defaultDictionary);
+                }
+                catch
                 {
-                    for (int i = 0; i < LevelPlayedStatus.Length; i++)
-                        LevelPlayedStatus[i] = Convert.ToInt32(LevelPlayedStatusArray[i].ToString());
-                }
-                catch { }
+                    GD.Print(errorLog ?? key);
 
-                Godot.Collections.Array HintsStatusArray = (Godot.Collections.Array)model["hints_status"];
-                try
-                {
-                    for (int i = 0; i < HintsStatus.Length; i++)
-                        HintsStatus[i] = Convert.ToInt32(HintsStatusArray[i].ToString());
+                    setValue(getDefaultDictionary());
                 }
-                catch { }
-
-                IsLanguageSetted = (bool)model["is_language_setted"];
-                IsTutorialPlayed = (bool)model["is_tutorial_played"];
-                IsLevel9PlatformSectionFirstTimeCompleted = (bool)model["is_level9_platform_section_first_time_completed"];
-                IsLevel9PlatformSectionSkipAllowed = (bool)model["is_level9_platform_section_skip_is_allowed"];
-                IsFakeLevel10SkipAllowed = (bool)model["is_fake_level10_skip_allowed"];
-                IsThereNewContentInRecycleBin = (bool)model["is_there_new_content_in_recycle_bin"];
-                DidModsCrushedTheGame = (bool)model["did_mods_crushed_the_game"];
             }
 
 
+            TryLoad<bool>("did_mods_crushed_the_game", value => DidModsCrushedTheGame = value);
+
+            TryLoad<int>("golden_crosses_amount", value => GoldenCrossesAmount = value);
+
+            for (int i = 0; i < LevelRecords.Length; i++)
+            {
+                TryLoadArray($"level_records{i}", value => LevelRecords[i] = value,  length => new int[length],LevelRecords[i].Length, $"level_records{i}");
+            }
+
+            TryLoadArray("level_complete_status",value => LevelCompleteStatus = value,length => new int[length], LevelCompleteStatus.Length);
+
+            TryLoadArray("level_played_status",value => LevelPlayedStatus = value,length => new int[length],LevelPlayedStatus.Length);
+
+            TryLoadArray("hints_status",value => HintsStatus = value, length => new int[length], HintsStatus.Length);
+
+
+            TryLoad<bool>("is_there_new_content_in_recycle_bin", value => IsThereNewContentInRecycleBin = value);
+            TryLoad<bool>("was_there_recycle_bin_audio_notify", value => WasThereRecycleBinAudioNotify = value);
+
+            TryLoadDictionary( "is_skin_bought_dic", value => Skins.IsSkinBoughtDic = value, () => Skins.IsSkinBoughtDic, true, "is_skin_bought_dic");
+
+
+            TryLoad<bool>("is_language_setted", value => IsLanguageSetted = value);
+            TryLoad<bool>("is_tutorial_played", value => IsTutorialPlayed = value);
+            TryLoad<bool>("is_level9_platform_section_first_time_completed", value => IsLevel9PlatformSectionFirstTimeCompleted = value);
+            TryLoad<bool>("is_level9_platform_section_skip_is_allowed", value => IsLevel9PlatformSectionSkipAllowed = value);
+            TryLoad<bool>("is_fake_level10_skip_allowed", value => IsFakeLevel10SkipAllowed = value);
+        }
+        try
+        {
+            // Save file
             //Achievements file
             {
                 using FileAccess achievements = FileAccess.Open("user://achievements.json", FileAccess.ModeFlags.Read);
 
-                var dictionary = JsonSerializer.Deserialize<System.Collections.Generic.Dictionary<string, Achievements.Data>>(achievements.GetAsText());
+                var dictionary = JsonSerializer.Deserialize<Dictionary<string, Achievements.Data>>(achievements.GetAsText());
 
                 foreach (var achievement in dictionary)
                 {

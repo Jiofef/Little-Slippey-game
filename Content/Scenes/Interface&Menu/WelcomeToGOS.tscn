@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=4 uid="uid://dkibh4v7pkdaf"]
+[gd_scene load_steps=29 format=4 uid="uid://dkibh4v7pkdaf"]
 
 [ext_resource type="Texture2D" uid="uid://bup1u0y7qgmvb" path="res://Content/Sprites/Interface/MenuBackground.png" id="1_gbq5h"]
 [ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/WelcomeToGOS.cs" id="1_u85jq"]
@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://b163nftflfm82" path="res://Content/Sprites/Interface/RecycleBinNotify.png" id="13_dkta7"]
 [ext_resource type="Texture2D" uid="uid://cscw1i3huf5fv" path="res://Content/Sprites/Interface/Buttons/TurnOffIcon.png" id="14_51aon"]
 [ext_resource type="Texture2D" uid="uid://cgmokiqdm6i3q" path="res://Content/Sprites/Interface/Buttons/WorkShop.png" id="15_ch334"]
+[ext_resource type="AudioStream" uid="uid://dj0m8fd4rqlf6" path="res://Content/Sounds/Interface&Menu/RecycleBinNotify.mp3" id="15_g5vp8"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4v4vt"]
 shader = ExtResource("5_h17kw")
@@ -424,8 +425,12 @@ offset_bottom = 413.0
 texture_normal = ExtResource("12_galhh")
 
 [node name="Notify" type="Sprite2D" parent="Buttons/Titles"]
+visible = false
 position = Vector2(12, 14)
 texture = ExtResource("13_dkta7")
+
+[node name="RecycleBinNotify" type="AudioStreamPlayer" parent="Buttons/Titles/Notify"]
+stream = ExtResource("15_g5vp8")
 
 [node name="RecycleBin" type="Label" parent="Buttons"]
 layout_mode = 0

@@ -1,6 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://cdbeqxy4ybfl6"]
+[gd_scene load_steps=11 format=3 uid="uid://cdbeqxy4ybfl6"]
 
 [ext_resource type="Theme" uid="uid://dkitr1ftp0yhs" path="res://Content/Other/Menu.tres" id="1_ktjkf"]
+[ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/GoldenCrossesAmount.cs" id="1_qitl6"]
 [ext_resource type="Texture2D" uid="uid://bmnjn4tqb7t5m" path="res://Content/Sprites/Interface/GoldenCrossesAnimation.png" id="2_x2oom"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hrufl"]
@@ -74,6 +75,7 @@ offset_left = -192.0
 offset_bottom = 192.0
 grow_horizontal = 0
 size_flags_horizontal = 3
+script = ExtResource("1_qitl6")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2

@@ -1,14 +1,11 @@
-[gd_scene load_steps=75 format=3 uid="uid://ufrdtjstxptm"]
+[gd_scene load_steps=68 format=3 uid="uid://ufrdtjstxptm"]
 
 [ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/SkinsMenu.cs" id="1_81lvq"]
 [ext_resource type="PackedScene" uid="uid://cb3550p76ubc8" path="res://Content/Scenes/Interface&Menu/DraggableWindow.tscn" id="1_w6uws"]
-[ext_resource type="Texture2D" uid="uid://dxt3rcbkxua06" path="res://Content/Sprites/Interface/Buttons/SkinButton.png" id="2_5tg7d"]
-[ext_resource type="PackedScene" uid="uid://bwpstpk1xmkah" path="res://Content/Scenes/Interface&Menu/Button.tscn" id="2_oge4l"]
 [ext_resource type="Theme" uid="uid://dkitr1ftp0yhs" path="res://Content/Other/Menu.tres" id="3_16fyc"]
 [ext_resource type="Texture2D" uid="uid://060bgiw5i00k" path="res://Content/Sprites/PlayerSkins/Slippey.png" id="4_4fnp7"]
-[ext_resource type="Texture2D" uid="uid://cr6ilqqdmo4ug" path="res://Content/Sprites/Interface/Buttons/SkinButtonDisabled.png" id="5_m7r3n"]
+[ext_resource type="PackedScene" uid="uid://75ikfwlafbnm" path="res://Content/Scenes/Interface&Menu/SkinButton.tscn" id="4_pnw2u"]
 [ext_resource type="Texture2D" uid="uid://bd15vnp18h7qk" path="res://Content/Sprites/PlayerSkins/Sanboy.png" id="7_o713s"]
-[ext_resource type="Texture2D" uid="uid://blm0gtq86usr7" path="res://Content/Sprites/Interface/BlockedSkinSign.png" id="7_onqfp"]
 [ext_resource type="Texture2D" uid="uid://cxusn8e4odfu0" path="res://Content/Sprites/PlayerSkins/Samey.png" id="7_q6ji3"]
 [ext_resource type="Texture2D" uid="uid://vjcab56ymxqr" path="res://Content/Sprites/PlayerSkins/Pineplum.png" id="9_2om8k"]
 [ext_resource type="Texture2D" uid="uid://b486fyylpidxt" path="res://Content/Sprites/PlayerSkins/Strawman.png" id="9_osnja"]
@@ -23,12 +20,6 @@
 [ext_resource type="Texture2D" uid="uid://ddbl3u1r26kie" path="res://Content/Sprites/PlayerSkins/SlippeyChad.png" id="18_n2prt"]
 [ext_resource type="Script" path="res://Content/Scripts/Other/MISSINGNULL.cs" id="19_r3u0u"]
 [ext_resource type="Texture2D" uid="uid://p8n66ul13xdu" path="res://Content/Sprites/PlayerSkins/Corey.png" id="20_jh25b"]
-
-[sub_resource type="Theme" id="Theme_6e3gb"]
-Label/font_sizes/font_size = 16
-
-[sub_resource type="ButtonGroup" id="ButtonGroup_qh3tn"]
-resource_local_to_scene = false
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_daiar"]
 atlas = ExtResource("4_4fnp7")
@@ -51,28 +42,6 @@ animations = [{
 "name": &"default",
 "speed": 2.0
 }]
-
-[sub_resource type="Animation" id="Animation_7pr83"]
-resource_name = "HopHop"
-length = 0.5
-loop_mode = 2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(2, 1),
-"update": 0,
-"values": [Vector2(96, 72), Vector2(96, 84)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_1ht21"]
-_data = {
-"HopHop": SubResource("Animation_7pr83")
-}
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qk0hs"]
 atlas = ExtResource("7_q6ji3")
@@ -481,267 +450,144 @@ theme = ExtResource("3_16fyc")
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme = SubResource("Theme_6e3gb")
 
-[node name="Button1" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons" index="0" instance=ExtResource("2_oge4l")]
-custom_minimum_size = Vector2(192, 192)
+[node name="Button1" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons" index="0" instance=ExtResource("4_pnw2u")]
+modulate = Color(0.5, 0.5, 0.5, 1)
 layout_mode = 2
-toggle_mode = true
-button_group = SubResource("ButtonGroup_qh3tn")
-texture_normal = ExtResource("2_5tg7d")
-texture_disabled = ExtResource("5_m7r3n")
-stretch_mode = 0
+button_pressed = true
+SkinName = "Slippey"
+SkinKey = "Slippey"
 
-[node name="SkinName" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button1" index="3"]
-layout_mode = 0
-offset_left = 12.0
-offset_top = 144.0
-offset_right = 133.0
-offset_bottom = 169.0
-scale = Vector2(1.4, 1.4)
-theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+[node name="SkinName" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button1" index="0"]
+visible = false
 text = "Slippey"
-horizontal_alignment = 1
-vertical_alignment = 1
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button1" index="4"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button1" index="1"]
+modulate = Color(0.184314, 0.180392, 0.192157, 1)
 position = Vector2(96, 76)
 scale = Vector2(8, 8)
 sprite_frames = SubResource("SpriteFrames_37mde")
 autoplay = "default"
 
-[node name="?" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button1" index="5"]
-visible = false
-position = Vector2(96, 72)
-scale = Vector2(4, 4)
-texture = ExtResource("7_onqfp")
+[node name="SkinPrice" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button1" index="2"]
+visible = true
+text = "[center]0 [img]res://Content/Sprites/Interface/4XMiniGoldenCross.png[/img]"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button1/?" index="0"]
-libraries = {
-"": SubResource("AnimationLibrary_1ht21")
-}
-autoplay = "HopHop"
-
-[node name="Button2" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons" index="1" instance=ExtResource("2_oge4l")]
-custom_minimum_size = Vector2(192, 192)
+[node name="Button2" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons" index="1" instance=ExtResource("4_pnw2u")]
 layout_mode = 2
-toggle_mode = true
-button_group = SubResource("ButtonGroup_qh3tn")
-texture_normal = ExtResource("2_5tg7d")
-texture_disabled = ExtResource("5_m7r3n")
-stretch_mode = 0
+disabled = true
+SkinName = "Samey"
+SkinKey = "Samey"
+NeededAchievementKey = "I am already the Slippey"
 
-[node name="SkinName" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button2" index="3"]
-layout_mode = 0
-offset_left = 12.0
-offset_top = 144.0
-offset_right = 133.0
-offset_bottom = 169.0
-scale = Vector2(1.4, 1.4)
-theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
-text = "Samey"
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="SkinName" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button2" index="0"]
+text = "???"
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button2" index="4"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button2" index="1"]
+visible = false
 position = Vector2(96, 76)
 scale = Vector2(8, 8)
 sprite_frames = SubResource("SpriteFrames_7adh7")
 autoplay = "default"
 
-[node name="?" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button2" index="5"]
-visible = false
-position = Vector2(96, 72)
-scale = Vector2(4, 4)
-texture = ExtResource("7_onqfp")
+[node name="SkinPrice" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button2" index="2"]
+text = "[center]0 [img]res://Content/Sprites/Interface/4XMiniGoldenCross.png[/img]"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button2/?" index="0"]
-libraries = {
-"": SubResource("AnimationLibrary_1ht21")
-}
-autoplay = "HopHop"
-
-[node name="Button3" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons" index="2" instance=ExtResource("2_oge4l")]
-custom_minimum_size = Vector2(192, 192)
+[node name="Button3" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons" index="2" instance=ExtResource("4_pnw2u")]
 layout_mode = 2
-toggle_mode = true
-button_group = SubResource("ButtonGroup_qh3tn")
-texture_normal = ExtResource("2_5tg7d")
-texture_disabled = ExtResource("5_m7r3n")
-stretch_mode = 0
+disabled = true
+SkinName = "Sanboy"
+SkinKey = "Sanboy"
+NeededAchievementKey = "Level1Hard"
 
-[node name="SkinName" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button3" index="3"]
-layout_mode = 0
-offset_left = 12.0
-offset_top = 144.0
-offset_right = 131.0
-offset_bottom = 169.0
-scale = Vector2(1.4, 1.4)
-theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
-text = "Sanboy"
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="SkinName" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button3" index="0"]
+text = "???"
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button3" index="4"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button3" index="1"]
+visible = false
 position = Vector2(96, 76)
 scale = Vector2(8, 8)
 sprite_frames = SubResource("SpriteFrames_81p7v")
 autoplay = "default"
 
-[node name="?" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button3" index="5"]
-visible = false
-position = Vector2(96, 72)
-scale = Vector2(4, 4)
-texture = ExtResource("7_onqfp")
+[node name="SkinPrice" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button3" index="2"]
+text = "[center]0 [img]res://Content/Sprites/Interface/4XMiniGoldenCross.png[/img]"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button3/?" index="0"]
-libraries = {
-"": SubResource("AnimationLibrary_1ht21")
-}
-autoplay = "HopHop"
-
-[node name="Button4" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons" index="3" instance=ExtResource("2_oge4l")]
-custom_minimum_size = Vector2(192, 192)
+[node name="Button4" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons" index="3" instance=ExtResource("4_pnw2u")]
 layout_mode = 2
-toggle_mode = true
-button_group = SubResource("ButtonGroup_qh3tn")
-texture_normal = ExtResource("2_5tg7d")
-texture_disabled = ExtResource("5_m7r3n")
-stretch_mode = 0
+disabled = true
+SkinName = "Strawman"
+SkinKey = "Strawman"
+NeededAchievementKey = "Level2Hard"
 
-[node name="SkinName" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button4" index="3"]
-layout_mode = 0
-offset_left = 12.0
-offset_top = 144.0
-offset_right = 132.0
-offset_bottom = 169.0
-scale = Vector2(1.4, 1.4)
-theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
-text = "Strawman"
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="SkinName" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button4" index="0"]
+text = "???"
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button4" index="4"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button4" index="1"]
+visible = false
 position = Vector2(96, 76)
 scale = Vector2(8, 8)
 sprite_frames = SubResource("SpriteFrames_yxqqj")
 autoplay = "default"
 
-[node name="?" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button4" index="5"]
-visible = false
-position = Vector2(96, 72)
-scale = Vector2(4, 4)
-texture = ExtResource("7_onqfp")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button4/?" index="0"]
-libraries = {
-"": SubResource("AnimationLibrary_1ht21")
-}
-autoplay = "HopHop"
+[node name="SkinPrice" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button4" index="2"]
+text = "[center]0 [img]res://Content/Sprites/Interface/4XMiniGoldenCross.png[/img]"
 
 [node name="GoldenCrossesAmount" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons" index="4" instance=ExtResource("12_b2waw")]
 layout_mode = 2
 
-[node name="Button5" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons" index="5" instance=ExtResource("2_oge4l")]
-custom_minimum_size = Vector2(192, 192)
+[node name="Button5" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons" index="5" instance=ExtResource("4_pnw2u")]
 layout_mode = 2
-toggle_mode = true
-button_group = SubResource("ButtonGroup_qh3tn")
-texture_normal = ExtResource("2_5tg7d")
-texture_disabled = ExtResource("5_m7r3n")
-stretch_mode = 0
+disabled = true
+SkinName = "Pineplum"
+SkinKey = "Pineplum"
+NeededAchievementKey = "Level3Hard"
 
-[node name="SkinName" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button5" index="3"]
-layout_mode = 0
-offset_left = 12.0
-offset_top = 144.0
-offset_right = 131.0
-offset_bottom = 169.0
-scale = Vector2(1.4, 1.4)
-theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
-text = "Pineplum"
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="SkinName" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button5" index="0"]
+text = "???"
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button5" index="4"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button5" index="1"]
+visible = false
 position = Vector2(96, 76)
 scale = Vector2(8, 8)
 sprite_frames = SubResource("SpriteFrames_u7xvk")
 autoplay = "default"
 
-[node name="?" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button5" index="5"]
-visible = false
-position = Vector2(96, 72)
-scale = Vector2(4, 4)
-texture = ExtResource("7_onqfp")
+[node name="SkinPrice" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button5" index="2"]
+text = "[center]0 [img]res://Content/Sprites/Interface/4XMiniGoldenCross.png[/img]"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button5/?" index="0"]
-libraries = {
-"": SubResource("AnimationLibrary_1ht21")
-}
-autoplay = "HopHop"
-
-[node name="Button6" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons" index="6" instance=ExtResource("2_oge4l")]
-custom_minimum_size = Vector2(192, 192)
+[node name="Button6" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons" index="6" instance=ExtResource("4_pnw2u")]
 layout_mode = 2
-toggle_mode = true
-button_group = SubResource("ButtonGroup_qh3tn")
-texture_normal = ExtResource("2_5tg7d")
-texture_disabled = ExtResource("5_m7r3n")
-stretch_mode = 0
+disabled = true
+SkinName = "Bondey"
+SkinKey = "Bondey"
+NeededAchievementKey = "Level4Hard"
 
-[node name="SkinName" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button6" index="3"]
-layout_mode = 0
-offset_left = 12.0
-offset_top = 144.0
-offset_right = 132.0
-offset_bottom = 169.0
-scale = Vector2(1.4, 1.4)
-theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
-text = "Bondey"
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="SkinName" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button6" index="0"]
+text = "???"
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button6" index="4"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button6" index="1"]
+visible = false
 position = Vector2(96, 76)
 scale = Vector2(8, 8)
 sprite_frames = SubResource("SpriteFrames_68l6o")
 autoplay = "default"
 
-[node name="?" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button6" index="5"]
-visible = false
-position = Vector2(96, 72)
-scale = Vector2(4, 4)
-texture = ExtResource("7_onqfp")
+[node name="SkinPrice" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button6" index="2"]
+text = "[center]0 [img]res://Content/Sprites/Interface/4XMiniGoldenCross.png[/img]"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button6/?" index="0"]
-libraries = {
-"": SubResource("AnimationLibrary_1ht21")
-}
-autoplay = "HopHop"
-
-[node name="Button7" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons" index="7" instance=ExtResource("2_oge4l")]
-custom_minimum_size = Vector2(192, 192)
+[node name="Button7" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons" index="7" instance=ExtResource("4_pnw2u")]
 layout_mode = 2
-toggle_mode = true
-button_group = SubResource("ButtonGroup_qh3tn")
-texture_normal = ExtResource("2_5tg7d")
-texture_disabled = ExtResource("5_m7r3n")
-stretch_mode = 0
+disabled = true
+SkinName = "Sleepy"
+SkinKey = "Sleepy"
+NeededAchievementKey = "Level5Hard"
 
-[node name="SkinName" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button7" index="3"]
-layout_mode = 0
-offset_left = 12.0
-offset_top = 144.0
-offset_right = 133.0
-offset_bottom = 169.0
-scale = Vector2(1.4, 1.4)
-theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
-text = "Sleepy"
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="SkinName" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button7" index="0"]
+text = "???"
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button7" index="4"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button7" index="1"]
+visible = false
 position = Vector2(96, 76)
 scale = Vector2(8, 8)
 sprite_frames = SubResource("SpriteFrames_n505m")
@@ -763,156 +609,81 @@ scale_amount_max = 4.0
 scale_amount_curve = SubResource("Curve_ms4ib")
 color_ramp = SubResource("Gradient_f54j1")
 
-[node name="?" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button7" index="5"]
-visible = false
-position = Vector2(96, 72)
-scale = Vector2(4, 4)
-texture = ExtResource("7_onqfp")
+[node name="SkinPrice" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button7" index="2"]
+text = "[center]0 [img]res://Content/Sprites/Interface/4XMiniGoldenCross.png[/img]"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button7/?" index="0"]
-libraries = {
-"": SubResource("AnimationLibrary_1ht21")
-}
-autoplay = "HopHop"
-
-[node name="Button8" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons" index="8" instance=ExtResource("2_oge4l")]
-custom_minimum_size = Vector2(192, 192)
+[node name="Button8" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons" index="8" instance=ExtResource("4_pnw2u")]
 layout_mode = 2
-toggle_mode = true
-button_group = SubResource("ButtonGroup_qh3tn")
-texture_normal = ExtResource("2_5tg7d")
-texture_disabled = ExtResource("5_m7r3n")
-stretch_mode = 0
+disabled = true
+SkinName = "Daley"
+SkinKey = "Daley"
+NeededAchievementKey = "Level6Hard"
 
-[node name="SkinName" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button8" index="3"]
-layout_mode = 0
-offset_left = 12.0
-offset_top = 144.0
-offset_right = 133.0
-offset_bottom = 169.0
-scale = Vector2(1.4, 1.4)
-theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
-text = "Daley"
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="SkinName" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button8" index="0"]
+text = "???"
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button8" index="4"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button8" index="1"]
+visible = false
 position = Vector2(96, 76)
 scale = Vector2(8, 8)
 sprite_frames = SubResource("SpriteFrames_qsjm7")
 autoplay = "default"
 
-[node name="?" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button8" index="5"]
-visible = false
-position = Vector2(96, 72)
-scale = Vector2(4, 4)
-texture = ExtResource("7_onqfp")
+[node name="SkinPrice" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button8" index="2"]
+text = "[center]0 [img]res://Content/Sprites/Interface/4XMiniGoldenCross.png[/img]"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button8/?" index="0"]
-libraries = {
-"": SubResource("AnimationLibrary_1ht21")
-}
-autoplay = "HopHop"
-
-[node name="Button9" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons" index="9" instance=ExtResource("2_oge4l")]
-custom_minimum_size = Vector2(192, 192)
+[node name="Button9" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons" index="9" instance=ExtResource("4_pnw2u")]
 layout_mode = 2
-toggle_mode = true
-button_group = SubResource("ButtonGroup_qh3tn")
-texture_normal = ExtResource("2_5tg7d")
-texture_disabled = ExtResource("5_m7r3n")
-stretch_mode = 0
+disabled = true
+SkinName = "???"
+SkinKey = "Hostey"
+NeededAchievementKey = "Level7Hard"
 
-[node name="SkinName" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button9" index="3"]
-layout_mode = 0
-offset_left = 12.0
-offset_top = 144.0
-offset_right = 132.0
-offset_bottom = 169.0
-scale = Vector2(1.4, 1.4)
-theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+[node name="SkinName" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button9" index="0"]
 text = "???"
-horizontal_alignment = 1
-vertical_alignment = 1
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button9" index="4"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button9" index="1"]
+visible = false
 position = Vector2(96, 76)
 scale = Vector2(8, 8)
 sprite_frames = SubResource("SpriteFrames_540tk")
 autoplay = "default"
 
-[node name="?" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button9" index="5"]
-visible = false
-position = Vector2(96, 72)
-scale = Vector2(4, 4)
-texture = ExtResource("7_onqfp")
+[node name="SkinPrice" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button9" index="2"]
+text = "[center]0 [img]res://Content/Sprites/Interface/4XMiniGoldenCross.png[/img]"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button9/?" index="0"]
-libraries = {
-"": SubResource("AnimationLibrary_1ht21")
-}
-autoplay = "HopHop"
-
-[node name="Button10" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons" index="10" instance=ExtResource("2_oge4l")]
-custom_minimum_size = Vector2(192, 192)
+[node name="Button10" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons" index="10" instance=ExtResource("4_pnw2u")]
 layout_mode = 2
-toggle_mode = true
-button_group = SubResource("ButtonGroup_qh3tn")
-texture_normal = ExtResource("2_5tg7d")
-texture_disabled = ExtResource("5_m7r3n")
-stretch_mode = 0
+disabled = true
+SkinName = "Compress Mass"
+SkinKey = "CompressMass"
+NeededAchievementKey = "Level8Hard"
 
-[node name="SkinName" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button10" index="3"]
-layout_mode = 0
-offset_left = 12.0
-offset_top = 144.0
-offset_right = 165.0
-offset_bottom = 180.0
-scale = Vector2(1.1, 1.1)
-theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
-text = "Compress Mass"
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="SkinName" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button10" index="0"]
+text = "???"
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button10" index="4"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button10" index="1"]
+visible = false
 position = Vector2(96, 76)
 scale = Vector2(8, 8)
 sprite_frames = SubResource("SpriteFrames_rej27")
 autoplay = "default"
 
-[node name="?" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button10" index="5"]
-visible = false
-position = Vector2(96, 72)
-scale = Vector2(4, 4)
-texture = ExtResource("7_onqfp")
+[node name="SkinPrice" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button10" index="2"]
+text = "[center]0 [img]res://Content/Sprites/Interface/4XMiniGoldenCross.png[/img]"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button10/?" index="0"]
-libraries = {
-"": SubResource("AnimationLibrary_1ht21")
-}
-autoplay = "HopHop"
-
-[node name="Button11" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons" index="11" instance=ExtResource("2_oge4l")]
-custom_minimum_size = Vector2(192, 192)
+[node name="Button11" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons" index="11" instance=ExtResource("4_pnw2u")]
 layout_mode = 2
-toggle_mode = true
-button_group = SubResource("ButtonGroup_qh3tn")
-texture_normal = ExtResource("2_5tg7d")
-texture_disabled = ExtResource("5_m7r3n")
-stretch_mode = 0
+disabled = true
+SkinName = "Jio Yoba Fefski"
+SkinKey = "JioYobaFefski"
+NeededAchievementKey = "Level9Hard"
 
-[node name="SkinName" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button11" index="3"]
-layout_mode = 0
-offset_left = 12.0
-offset_top = 144.0
-offset_right = 180.0
-offset_bottom = 184.0
-theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
-text = "Jio Yoba Fefski"
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="SkinName" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button11" index="0"]
+text = "???"
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button11" index="4"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button11" index="1"]
+visible = false
 position = Vector2(96, 76)
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_fcnt3")
@@ -922,80 +693,42 @@ scale = Vector2(0.18, 0.18)
 frame_progress = 0.0520097
 script = null
 
-[node name="?" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button11" index="5"]
-visible = false
-position = Vector2(96, 72)
-scale = Vector2(4, 4)
-texture = ExtResource("7_onqfp")
+[node name="SkinPrice" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button11" index="2"]
+text = "[center]0 [img]res://Content/Sprites/Interface/4XMiniGoldenCross.png[/img]"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button11/?" index="0"]
-libraries = {
-"": SubResource("AnimationLibrary_1ht21")
-}
-autoplay = "HopHop"
-
-[node name="Button12" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons" index="12" instance=ExtResource("2_oge4l")]
-custom_minimum_size = Vector2(192, 192)
+[node name="Button12" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons" index="12" instance=ExtResource("4_pnw2u")]
 layout_mode = 2
-toggle_mode = true
-button_group = SubResource("ButtonGroup_qh3tn")
-texture_normal = ExtResource("2_5tg7d")
-texture_disabled = ExtResource("5_m7r3n")
-stretch_mode = 0
+disabled = true
+SkinName = "Chad"
+SkinKey = "Chad"
+NeededAchievementKey = "Level10Hard"
 
-[node name="SkinName" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button12" index="3"]
-layout_mode = 0
-offset_left = 12.0
-offset_top = 144.0
-offset_right = 132.0
-offset_bottom = 173.0
-scale = Vector2(1.4, 1.4)
-theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
-text = "Chad"
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="SkinName" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button12" index="0"]
+text = "???"
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button12" index="4"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button12" index="1"]
+visible = false
 position = Vector2(96, 76)
 scale = Vector2(0.48, 0.48)
 sprite_frames = SubResource("SpriteFrames_6jrs7")
 autoplay = "default"
 
-[node name="?" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button12" index="5"]
-visible = false
-position = Vector2(96, 72)
-scale = Vector2(4, 4)
-texture = ExtResource("7_onqfp")
+[node name="SkinPrice" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button12" index="2"]
+text = "[center]0 [img]res://Content/Sprites/Interface/4XMiniGoldenCross.png[/img]"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button12/?" index="0"]
-libraries = {
-"": SubResource("AnimationLibrary_1ht21")
-}
-autoplay = "HopHop"
-
-[node name="Button13" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons" index="13" instance=ExtResource("2_oge4l")]
-custom_minimum_size = Vector2(192, 192)
+[node name="Button13" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons" index="13" instance=ExtResource("4_pnw2u")]
 layout_mode = 2
-toggle_mode = true
-button_group = SubResource("ButtonGroup_qh3tn")
-texture_normal = ExtResource("2_5tg7d")
-texture_disabled = ExtResource("5_m7r3n")
-stretch_mode = 0
+disabled = true
+SkinName = "M7SSINGNULL"
+SkinKey = "MISSINGNULL"
+NeededAchievementKey = "You will regret it."
 
-[node name="SkinName" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button13" index="3"]
-layout_mode = 0
-offset_left = 12.0
-offset_top = 144.0
-offset_right = 152.0
-offset_bottom = 180.0
-scale = Vector2(1.2, 1.2)
-theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
-text = "M7SSINGNULL"
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="SkinName" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button13" index="0"]
+text = "???"
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button13" index="4"]
-position = Vector2(96, 88)
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button13" index="1"]
+visible = false
+position = Vector2(96, 76)
 sprite_frames = SubResource("SpriteFrames_3vqm6")
 script = ExtResource("19_r3u0u")
 
@@ -1018,41 +751,22 @@ gravity = Vector2(0, 0)
 scale_amount_max = 100.0
 color_initial_ramp = SubResource("Gradient_jgll3")
 
-[node name="?" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button13" index="5"]
-visible = false
-position = Vector2(96, 72)
-scale = Vector2(4, 4)
-texture = ExtResource("7_onqfp")
+[node name="SkinPrice" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button13" index="2"]
+text = "[center]0 [img]res://Content/Sprites/Interface/4XMiniGoldenCross.png[/img]"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button13/?" index="0"]
-libraries = {
-"": SubResource("AnimationLibrary_1ht21")
-}
-autoplay = "HopHop"
-
-[node name="Button14" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons" index="14" instance=ExtResource("2_oge4l")]
-custom_minimum_size = Vector2(192, 192)
+[node name="Button14" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons" index="14" instance=ExtResource("4_pnw2u")]
 layout_mode = 2
-toggle_mode = true
-button_group = SubResource("ButtonGroup_qh3tn")
-texture_normal = ExtResource("2_5tg7d")
-texture_disabled = ExtResource("5_m7r3n")
-stretch_mode = 0
+disabled = true
+SkinName = "Corey"
+SkinKey = "Corey"
+NeededAchievementKey = "Thank you for everything, player"
 
-[node name="SkinName" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button14" index="3"]
-layout_mode = 0
-offset_left = 12.0
-offset_top = 144.0
-offset_right = 132.0
-offset_bottom = 173.0
-scale = Vector2(1.4, 1.4)
-theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
-text = "Corey"
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="SkinName" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button14" index="0"]
+text = "???"
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button14" index="4"]
-position = Vector2(96, 72)
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button14" index="1"]
+visible = false
+position = Vector2(96, 76)
 scale = Vector2(8, 8)
 sprite_frames = SubResource("SpriteFrames_0kgi2")
 
@@ -1086,14 +800,20 @@ libraries = {
 }
 autoplay = "Idle"
 
-[node name="?" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button14" index="5"]
-visible = false
-position = Vector2(96, 72)
-scale = Vector2(4, 4)
-texture = ExtResource("7_onqfp")
+[node name="SkinPrice" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button14" index="2"]
+text = "[center]0 [img]res://Content/Sprites/Interface/4XMiniGoldenCross.png[/img]"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button14/?" index="0"]
-libraries = {
-"": SubResource("AnimationLibrary_1ht21")
-}
-autoplay = "HopHop"
+[editable path="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button1"]
+[editable path="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button2"]
+[editable path="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button3"]
+[editable path="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button4"]
+[editable path="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button5"]
+[editable path="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button6"]
+[editable path="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button7"]
+[editable path="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button8"]
+[editable path="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button9"]
+[editable path="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button10"]
+[editable path="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button11"]
+[editable path="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button12"]
+[editable path="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button13"]
+[editable path="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button14"]

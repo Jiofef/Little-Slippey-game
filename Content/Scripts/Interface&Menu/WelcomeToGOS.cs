@@ -10,7 +10,16 @@ public partial class WelcomeToGOS : Control
 	{
         G.BlockSavingSomeValues = false; //A small crutch to fix the engine bug. Read the assignment of a variable in G.
 
-		GetNode<Sprite2D>("Buttons/Titles/Notify").Visible = UnchangableMeta.IsThereNewContentInRecycleBin;
+        if (UnchangableMeta.IsThereNewContentInRecycleBin)
+        {
+            GetNode<Sprite2D>("Buttons/Titles/Notify").Visible = true;
+
+            if (!UnchangableMeta.WasThereRecycleBinAudioNotify)
+            {
+                GetNode<AudioStreamPlayer>("Buttons/Titles/Notify/RecycleBinNotify").Play();
+                UnchangableMeta.WasThereRecycleBinAudioNotify = true;
+            }
+        }
 		if (!G.IsSystemInitiated)
 		{
 			GetNode<AnimationPlayer>("AnimationPlayer").Play("Initialization");

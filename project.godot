@@ -33,6 +33,7 @@ ModDataManager="*res://Content/Scripts/Singletons/ModDataManager.cs"
 ModManager="*res://Content/Scripts/Singletons/ModManager.cs"
 FileSystemExtension="*res://Content/Scripts/Singletons/FileSystemExtension.cs"
 G="*res://Content/Scripts/Singletons/G.cs"
+Skins="*res://Content/Scripts/Singletons/Skins.cs"
 
 [display]
 

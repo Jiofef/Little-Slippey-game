@@ -1,9 +1,11 @@
-[gd_scene load_steps=16 format=3 uid="uid://cqxxf07okbp3j"]
+[gd_scene load_steps=18 format=3 uid="uid://cqxxf07okbp3j"]
 
 [ext_resource type="Script" path="res://Content/Scripts/Crosses/GoldenCross.cs" id="1_6aek6"]
 [ext_resource type="Texture2D" uid="uid://bmnjn4tqb7t5m" path="res://Content/Sprites/Interface/GoldenCrossesAnimation.png" id="1_d3wju"]
 [ext_resource type="AudioStream" uid="uid://b2yuhey8vnsqk" path="res://Content/Sounds/Crosses/OnGoldenCrossCollected1.mp3" id="3_mnqio"]
 [ext_resource type="AudioStream" uid="uid://pt4ssvnfc64t" path="res://Content/Sounds/Crosses/OnGoldenCrossCollected2.mp3" id="4_cysas"]
+[ext_resource type="PackedScene" uid="uid://4gxbtrc21wvn" path="res://Content/Scenes/Interface&Menu/OffscreenPointer.tscn" id="5_qfebh"]
+[ext_resource type="Texture2D" uid="uid://btp8llsfw6hi3" path="res://Content/Sprites/Interface/GoldenPointingArrow.png" id="6_jqy6v"]
 
 [sub_resource type="Curve2D" id="Curve2D_axwey"]
 _data = {
@@ -76,6 +78,35 @@ tracks/1/keys = {
 }]
 }
 
+[sub_resource type="Animation" id="Animation_83rnd"]
+resource_name = "OnCollected"
+length = 0.2
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector2(10, 10), Vector2(30, 30)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_yvqqx"]
 length = 0.001
 tracks/0/type = "value"
@@ -115,35 +146,6 @@ tracks/2/keys = {
 "values": [Color(1, 1, 1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_83rnd"]
-resource_name = "OnCollected"
-length = 0.2
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(0.5, 1),
-"update": 0,
-"values": [Vector2(10, 10), Vector2(30, 30)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(0.5, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_m800w"]
 _data = {
 "Appearing": SubResource("Animation_yvvx0"),
@@ -153,7 +155,6 @@ _data = {
 }
 
 [node name="GoldenCross" type="Node2D"]
-position = Vector2(666, 328)
 script = ExtResource("1_6aek6")
 
 [node name="Path2D" type="Path2D" parent="."]
@@ -183,16 +184,11 @@ scale_amount_curve = SubResource("Curve_ealj3")
 color = Color(0.968627, 0.894118, 0.462745, 1)
 color_ramp = SubResource("Gradient_d55e1")
 
-[node name="ParticlesDisappearingTimer" type="Timer" parent="Path2D/Cross/ShineParticles"]
-wait_time = 2.5
-one_shot = true
-
 [node name="OnCollectedParticles1" type="CPUParticles2D" parent="Path2D/Cross"]
 emitting = false
 amount = 4
-lifetime = 0.5
 one_shot = true
-explosiveness = 0.75
+explosiveness = 0.9
 texture = SubResource("AtlasTexture_o5kcy")
 spread = 180.0
 gravity = Vector2(0, 0)
@@ -202,8 +198,8 @@ angular_velocity_min = -360.0
 angular_velocity_max = 360.0
 angle_min = -720.0
 angle_max = 720.0
-scale_amount_min = 10.0
-scale_amount_max = 10.0
+scale_amount_min = 4.0
+scale_amount_max = 4.0
 scale_amount_curve = SubResource("Curve_ealj3")
 
 [node name="OnCollectedParticles2" type="CPUParticles2D" parent="Path2D/Cross"]
@@ -242,13 +238,20 @@ autoplay = "Appearing"
 
 [node name="OnGoldenCrossCollected1" type="AudioStreamPlayer" parent="Path2D/Cross"]
 stream = ExtResource("3_mnqio")
-volume_db = 4.0
+volume_db = 8.0
 bus = &"Interface"
 
 [node name="OnGoldenCrossCollected2" type="AudioStreamPlayer" parent="Path2D/Cross"]
 stream = ExtResource("4_cysas")
-volume_db = 4.0
+volume_db = 8.0
 bus = &"Interface"
 
-[connection signal="timeout" from="Path2D/Cross/ShineParticles/ParticlesDisappearingTimer" to="." method="OnShineParticlesDisappeared"]
+[node name="OffscreenPointer" parent="Path2D/Cross" instance=ExtResource("5_qfebh")]
+modulate = Color(0.968627, 0.894118, 0.462745, 1)
+
+[node name="Pointer" parent="Path2D/Cross/OffscreenPointer" index="0"]
+texture = ExtResource("6_jqy6v")
+
 [connection signal="area_entered" from="Path2D/Cross/CollectArea" to="." method="onCollected" flags=6 unbinds=1]
+
+[editable path="Path2D/Cross/OffscreenPointer"]

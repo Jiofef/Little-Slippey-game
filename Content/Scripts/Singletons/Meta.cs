@@ -1,6 +1,7 @@
 using Godot;
-using Godot.Collections;
 using System;
+using System.Collections.Generic;
+using System.Text.Json;
 using static FileSystemExtension;
 
 public partial class Meta : Node
@@ -36,7 +37,7 @@ public partial class Meta : Node
         public int Dificulty = 0;
         public readonly string[] DificultyNames = ["Hard", "Insane", "Inferno"];
         public bool[] AdditionStatuses = new bool[4];
-        public int ChosenSkinIndex = 0;
+        public string ChosenSkinKey = "Slippey";
 
         public bool IsSkinModded = false;
         public string ChosenModSkin;
@@ -78,13 +79,13 @@ public partial class Meta : Node
         ReturnMeta.Gameplay.Dificulty = Gameplay.Dificulty;
         for (int i = 0; i < Instance.Gameplay.AdditionStatuses.Length; i++)
             ReturnMeta.Gameplay.AdditionStatuses[i] = Gameplay.AdditionStatuses[i];
-        ReturnMeta.Gameplay.ChosenSkinIndex = Gameplay.ChosenSkinIndex;
+        ReturnMeta.Gameplay.ChosenSkinKey = Gameplay.ChosenSkinKey;
 
         return ReturnMeta;
     }
-    public Dictionary<string, Variant> GetJson()
+    public System.Collections.Generic.Dictionary<string, object> GetJson()
     {
-        return new Dictionary<string, Variant>()
+        return new System.Collections.Generic.Dictionary<string, object>
         {
             {"bus_volumes", Sound.BusVolumes},
             {"is_full_screen", Video.IsFullScreen},
@@ -99,11 +100,8 @@ public partial class Meta : Node
             {"cross_rotation_when_spawning", Video.CrossRotationWhenSpawning},
             {"language", Convert.ToInt32(Video.language)},
             {"dificulty", Gameplay.Dificulty},
-            {"addition_status0", Gameplay.AdditionStatuses[0]},
-            {"addition_status1", Gameplay.AdditionStatuses[1]},
-            {"addition_status2", Gameplay.AdditionStatuses[2]},
-            {"addition_status3", Gameplay.AdditionStatuses[3]},
-            {"chosen_skin_index", Gameplay.ChosenSkinIndex},
+            {"addition_statuses", Gameplay.AdditionStatuses},
+            {"chosen_skin_key", Gameplay.ChosenSkinKey},
         };
     }
     public static SoundClass GetDefaultSoundOptions()
@@ -137,7 +135,7 @@ public partial class Meta : Node
 
         ReturnOptions.Dificulty = 0;
         ReturnOptions.AdditionStatuses = new bool[4];
-        ReturnOptions.ChosenSkinIndex = 0;
+        ReturnOptions.ChosenSkinKey = "Slippey";
         ReturnOptions.IsSkinModded = false;
         ReturnOptions.ChosenModSkin = null;
 
@@ -149,32 +147,87 @@ public partial class Meta : Node
     }
     public void LoadOptions()
     {
-        try
+        var model = GetSystemJsonModel("user://options.json");
+
+        void TryLoad<T>(string key, Action<T> setValue, string errorLog = null)
         {
-            var model = GetJsonModel("user://options.json");
-
-            Godot.Collections.Array BusVolumesArray = (Godot.Collections.Array)model["bus_volumes"];
-            for (int i = 0; i < BusVolumesArray.Count; i++)
-                Sound.BusVolumes[i] = (float)BusVolumesArray[i];
-
-            Video.IsFullScreen = (bool)model["is_full_screen"];
-            Video.WindowSize = new Vector2I((int)model["window_size_x"], (int)model["window_size_y"]);
-            Video.VSyncOn = (bool)model["v_sync_on"];
-            Video.MaxFrameRate = (int)model["max_frame_rate"];
-            Video.ScoresShowingFormatIndex = (byte)model["scores_showing_format_index"];
-            Video.ScoresLabelLocationX = (byte)model["scores_label_location_x"];
-            Video.ScoresLabelLocationY = (byte)model["scores_label_location_y"];
-            Video.CrossRotationWhenSpawning = (bool)model["cross_rotation_when_spawning"];
-            Video.CameraZoom = (float)model["camera_zoom"];
-            Video.language = (VideoClass.Language)(int)(model["language"]);
-
-            Gameplay.Dificulty = (int)model["dificulty"];
-
-            Gameplay.ChosenSkinIndex = (int)model["chosen_skin_index"];
-
-            for (int i = 0; i < Gameplay.AdditionStatuses.Length; i++)
-                Gameplay.AdditionStatuses[i] = Convert.ToBoolean((string)model["addition_status" + i]);
+            try
+            {
+                var loadedValue = JsonSerializer.Deserialize<T>(JsonSerializer.Serialize(model[key]));
+                setValue(loadedValue);
+            }
+            catch
+            {
+                GD.Print(errorLog ?? key);
+            }
         }
-        catch{}
+        void TryLoadArray<T>(string key, Action<T[]> setValue, Func<int, T[]> defaultArray, int expectedLength, string errorLog = null)
+        {
+            try
+            {
+                var loadedArray = JsonSerializer.Deserialize<T[]>(JsonSerializer.Serialize(model[key]));
+                var newArray = defaultArray(expectedLength);
+
+                if (loadedArray != null)
+                {
+                    for (int i = 0; i < Math.Min(loadedArray.Length, expectedLength); i++)
+                    {
+                        newArray[i] = loadedArray[i];
+                    }
+                }
+
+                setValue(newArray);
+            }
+            catch
+            {
+                GD.Print(errorLog ?? key);
+            }
+        }
+        void TryLoadDictionary<TKey, TValue>(string key, Action<Dictionary<TKey, TValue>> setValue, Func<Dictionary<TKey, TValue>> getDefaultDictionary, bool doNotAddUnknownValues = false, string errorLog = null)
+        {
+            try
+            {
+                var loadedDictionary = JsonSerializer.Deserialize<Dictionary<TKey, TValue>>(JsonSerializer.Serialize(model[key]));
+
+                var defaultDictionary = getDefaultDictionary();
+
+                if (loadedDictionary != null)
+                {
+                    foreach (var kvp in loadedDictionary)
+                    {
+                        if (defaultDictionary.ContainsKey(kvp.Key))
+                            defaultDictionary[kvp.Key] = kvp.Value;
+                        else if (!doNotAddUnknownValues)
+                            defaultDictionary.Add(kvp.Key, kvp.Value);
+                    }
+                }
+
+                setValue(defaultDictionary);
+            }
+            catch
+            {
+                GD.Print(errorLog ?? key);
+
+                setValue(getDefaultDictionary());
+            }
+        }
+
+        TryLoadArray( "bus_volumes", value => Sound.BusVolumes = value,length => new float[length], Sound.BusVolumes.Length,"bus_volumes");
+
+        TryLoad<bool>("is_full_screen", value => Video.IsFullScreen = value, "is_full_screen");
+        TryLoad<int>("window_size_x", value => Video.WindowSize.X = value, "window_size_x");
+        TryLoad<int>("window_size_y", value => Video.WindowSize.Y = value, "window_size_y");
+        TryLoad<bool>("v_sync_on",value => Video.VSyncOn = value,"v_sync_on");
+        TryLoad<int>("max_frame_rate", value => Video.MaxFrameRate = value, "max_frame_rate");
+        TryLoad<byte>("scores_showing_format_index",value => Video.ScoresShowingFormatIndex = value,"scores_showing_format_index");
+        TryLoad<byte>("scores_label_location_x", value => Video.ScoresLabelLocationX = value, "scores_label_location_x");
+        TryLoad<byte>("scores_label_location_y", value => Video.ScoresLabelLocationY = value, "scores_label_location_y");
+        TryLoad<bool>( "cross_rotation_when_spawning", value => Video.CrossRotationWhenSpawning = value,"cross_rotation_when_spawning" );
+        TryLoad<float>("camera_zoom", value => Video.CameraZoom = value,"camera_zoom" );
+        TryLoad<int>("language",value => Video.language = (VideoClass.Language)value,"language" );
+
+        TryLoad<int>("dificulty",value => Gameplay.Dificulty = value, "dificulty");
+        TryLoad<string>("chosen_skin_key", value => Gameplay.ChosenSkinKey = value, "chosen_skin_key");
+        TryLoadArray("addition_statuses",  value => Gameplay.AdditionStatuses = value, length => new bool[length], Gameplay.AdditionStatuses.Length, "addition_statuses");
     }
 }

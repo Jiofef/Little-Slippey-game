@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Diagnostics.Tracing;
 using static Godot.TextServer;
 
 public partial class GoldenCross : Node2D
@@ -7,15 +8,16 @@ public partial class GoldenCross : Node2D
     [Signal] public delegate void OnCollectedEventHandler();
 
     // Price
-    const int DEFAULT_MIN_PRICE = 10;
-    const int DEFAULT_MAX_PRICE = 20;
+    const int DEFAULT_MIN_PRICE = 3;
+    const int DEFAULT_MAX_PRICE = 7;
     private Random _random = new Random();
     public int Price;
 
 
     // Moving
     public float LifeTime = 6f;
-    public bool IsDisappearing = false;
+    public enum StateEnum {Default, Disappearing, Collected}
+    private StateEnum _state = StateEnum.Default;
 
     public const float MAX_ROTATION_SPEED = 2f;
     public float RotationSpeed = 0;
@@ -40,7 +42,13 @@ public partial class GoldenCross : Node2D
         RotationAcceleration = -MAX_ROTATION_ACCELERATION + (_random.NextSingle() * MAX_ROTATION_ACCELERATION * 2);
 
         // Price determination
-        UnchangableMeta.GoldenCrossesAmount = _random.Next(DEFAULT_MIN_PRICE, DEFAULT_MAX_PRICE);
+        Price = _random.Next(DEFAULT_MIN_PRICE, DEFAULT_MAX_PRICE);
+
+        // Connecting a pointer to despawn when player dies
+        var offscreenPointer = GetNode<OffscreenPointer>("Path2D/Cross/OffscreenPointer");
+        if (G.Player != null)
+            G.Player.Connect("PlayerDied", new Callable(offscreenPointer, "queue_free"));
+
     }
 
     public override void _PhysicsProcess(double delta)
@@ -69,39 +77,37 @@ public partial class GoldenCross : Node2D
         LifeTime -= FLOAT_DELTA;
 
         const float DISAPPEARING_ANIMATION_LENGTH = 3f;
-        if (LifeTime < DISAPPEARING_ANIMATION_LENGTH && !IsDisappearing)
+        if (LifeTime < DISAPPEARING_ANIMATION_LENGTH && _state == StateEnum.Default) // Default state in the condition so that the tag can't start disappearing while being collected.
         {
-            IsDisappearing = true;
+            _state = StateEnum.Disappearing;
             GetNode<AnimationPlayer>("Path2D/Cross/AnimationPlayer").Play("Disappearing");
         }
     }
 
-    public void OnDisappeared()
+    public async void OnDisappeared()
     {
-        GetNode<CpuParticles2D>("Path2D/Cross/ShineParticles").Emitting = false;
+        var shineParticles = GetNode<CpuParticles2D>("Path2D/Cross/ShineParticles");
+        shineParticles.Emitting = false;
 
-        // To remove the node when the last particles are gone.
-        GetNode<Timer>("Path2D/Cross/ShineParticles/ParticlesDisappearingTimer").Start();
-    }
-
-    public void OnShineParticlesDisappeared()
-    {
+        await ToSignal(shineParticles, "finished");
         QueueFree();
     }
 
-    public void onCollected()
+    public async void onCollected()
     {
+        _state = StateEnum.Collected;
+
         EmitSignal(nameof(OnCollected));
 
-        GetNode<CpuParticles2D>("Path2D/Cross/ShineParticles").Emitting = false;
+        var onCollectedParticles1 = GetNode<CpuParticles2D>("Path2D/Cross/OnCollectedParticles1");
+        onCollectedParticles1.Emitting = true;
+        onCollectedParticles1.Amount = Price;
 
-        GetNode<CpuParticles2D>("Path2D/Cross/OnCollectedParticles1").Emitting = true;
         GetNode<CpuParticles2D>("Path2D/Cross/OnCollectedParticles2").Emitting = true;
 
-        GetNode<AnimationPlayer>("Path2D/Cross/AnimationPlayer").Play("OnCollected");
-
-        // To remove the node when the last particles are gone.
-        GetNode<Timer>("Path2D/Cross/ShineParticles/ParticlesDisappearingTimer").Start();
+        var animationPlayer = GetNode<AnimationPlayer>("Path2D/Cross/AnimationPlayer");
+        animationPlayer.Stop(true); // If you don't save the state, the next animation fails.
+        animationPlayer.Play("OnCollected");
 
         // Playing a random collect sound
         GetNode<AudioStreamPlayer>("Path2D/Cross/OnGoldenCrossCollected" + _random.Next(1, 3)).Play();
@@ -110,7 +116,27 @@ public partial class GoldenCross : Node2D
         UnchangableMeta.GoldenCrossesAmount += Price;
         if (Achievements.CurrentAdditionalGuiLayer != null)
         {
-            Achievements.CurrentAdditionalGuiLayer.OnGoldenCrossesRecieved();
+            Achievements.CurrentAdditionalGuiLayer.OnGoldenCrossesRecieved(Price);
         }
+
+        var shineParticles = GetNode<CpuParticles2D>("Path2D/Cross/ShineParticles");
+        shineParticles.Emitting = false;
+
+        // Creating a collect popup
+        if (G.Player != null)
+        {
+            var collectPopup = PopupText.Instance(G.Player.Position);
+            collectPopup.Text = Price.ToString();
+            collectPopup.Scale = new Vector2(2, 2);
+
+            collectPopup.LifeTime = 1f;
+            collectPopup.Gravity /= 2;
+
+            G.Player.GetParent().AddChild(collectPopup);
+        }
+
+
+        await ToSignal(shineParticles, "finished");
+        QueueFree();
     }
 }

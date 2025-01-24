@@ -6,6 +6,8 @@ using System.Linq;
 public partial class BaseLevelScript : Node2D
 {
     PackedScene[] _crosses = new PackedScene[G.CrossesInGameTotal];
+    const int GOLDEN_CROSS_RARITY = 5;
+    PackedScene _goldenCross;
 
     [Export] public float BeforeResetCrossesSpawnStartTimer = 0f;
     Random _random = new Random();
@@ -29,6 +31,7 @@ public partial class BaseLevelScript : Node2D
             _crossDefaultWeight = new int[] { 650, 265, 45, 15, 25 };
         for (int i = 0; i < _crosses.Length; i++)
             _crosses[i] = ResourceLoader.Load<PackedScene>("res://Content/Scenes/Crosses/" + (_isCrossesEnhanced ? "Enhanced" : "") + "Cross" + (i + 1) + ".tscn");
+        _goldenCross = ResourceLoader.Load<PackedScene>("res://Content/Scenes/Crosses/" + (_isCrossesEnhanced ? "Enhanced" : "") + "GoldenCross.tscn");
 
 
         if (G.CurrentLevel == 5 || Meta.Instance.Gameplay.AdditionStatuses[0])
@@ -137,6 +140,12 @@ public partial class BaseLevelScript : Node2D
                     }
                 }
 
+                //Spawning golden cross
+                if (_random.Next(GOLDEN_CROSS_RARITY) == 0)
+                {
+                    SpawnGoldenCross();
+                }
+
                 int SelectedCrossNumber;
                 int RandomNumber = _random.Next((int)_crossWeight.Sum());
                 for (int i = 0; ; i++)
@@ -237,5 +246,15 @@ public partial class BaseLevelScript : Node2D
                 _weightMultiplierExtender -= 1;
             }
         }
+    }
+
+    public void SpawnGoldenCross()
+    {
+        GoldenCross Cross = (GoldenCross)_goldenCross.Instantiate();
+        float XPos = _random.Next((int)G.CameraLimits.W, (int)G.CameraLimits.Y);
+        float YPos = _random.Next((int)G.CameraLimits.X, (int)G.CameraLimits.Z);
+        Cross.Position = new Vector2(XPos, YPos);
+
+        AddChild(Cross);
     }
 }

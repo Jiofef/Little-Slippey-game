@@ -127,7 +127,7 @@ public partial class Player : CharacterBody2D
             if (G.PlayerCorpseFlightTimer != 4.5f)
             {
                 G.PlayerCorpseFlightTimer = G.PlayerCorpseFlightTimer < 4.5f ? G.PlayerCorpseFlightTimer + 0.016667f : 4.5f;
-                if (Meta.Instance.Gameplay.ChosenSkinIndex == 11) return;
+                if (Meta.Instance.Gameplay.ChosenSkinKey == "Chad") return;
                 Position += (_corpseMotion * G.GetReversedPlayerCorpseFlightTimerCoeff() * _corpseMotionMultiplier);
                 Rotation += _corpseMotion.X / 50 * G.GetReversedPlayerCorpseFlightTimerCoeff();
                 _corpseMotion.Y += Gravity / 200;
@@ -463,7 +463,7 @@ public partial class Player : CharacterBody2D
         }
 
         if (!Meta.Instance.Gameplay.IsSkinModded)
-            _animatedSprite = (AnimatedSprite2D)ResourceLoader.Load<PackedScene>("res://Content/Scenes/PlayerSkins/" + G.VanillaSkinNames[Meta.Instance.Gameplay.ChosenSkinIndex] + ".tscn").Instantiate();
+            _animatedSprite = (AnimatedSprite2D)ResourceLoader.Load<PackedScene>("res://Content/Scenes/PlayerSkins/" + Meta.Instance.Gameplay.ChosenSkinKey + ".tscn").Instantiate();
         else;
 
         _animatedSprite.Connect("animation_finished", new Callable(this, "AnimationFinished"));
