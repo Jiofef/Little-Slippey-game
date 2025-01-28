@@ -1,7 +1,8 @@
-[gd_scene load_steps=18 format=3 uid="uid://cqxxf07okbp3j"]
+[gd_scene load_steps=19 format=3 uid="uid://cqxxf07okbp3j"]
 
 [ext_resource type="Script" path="res://Content/Scripts/Crosses/GoldenCross.cs" id="1_6aek6"]
 [ext_resource type="Texture2D" uid="uid://bmnjn4tqb7t5m" path="res://Content/Sprites/Interface/GoldenCrossesAnimation.png" id="1_d3wju"]
+[ext_resource type="Texture2D" uid="uid://ixwvo35psihl" path="res://Content/Sprites/Crosses/GoldenCross.png" id="2_cerrl"]
 [ext_resource type="AudioStream" uid="uid://b2yuhey8vnsqk" path="res://Content/Sounds/Crosses/OnGoldenCrossCollected1.mp3" id="3_mnqio"]
 [ext_resource type="AudioStream" uid="uid://pt4ssvnfc64t" path="res://Content/Sounds/Crosses/OnGoldenCrossCollected2.mp3" id="4_cysas"]
 [ext_resource type="PackedScene" uid="uid://4gxbtrc21wvn" path="res://Content/Scenes/Interface&Menu/OffscreenPointer.tscn" id="5_qfebh"]
@@ -165,8 +166,7 @@ rotates = false
 
 [node name="Sprite2D" type="Sprite2D" parent="Path2D/Cross"]
 scale = Vector2(10, 10)
-texture = ExtResource("1_d3wju")
-region_enabled = true
+texture = ExtResource("2_cerrl")
 region_rect = Rect2(0, 0, 17, 17)
 
 [node name="ShineParticles" type="CPUParticles2D" parent="Path2D/Cross"]

@@ -610,8 +610,13 @@ public partial class Player : CharacterBody2D
 
     public void SetCameraLimits(Vector4 value, bool doResetSmoothing = false)
     {
-        // The camera itself updates its limits when it's changed in G. However, to reset its smoothing you have to call the method yourself, as here.
+        SetCameraLimits(new Rect2(value.W, value.X, value.Y, value.Z), doResetSmoothing);
+    }
+
+    public void SetCameraLimits(Rect2 value, bool doResetSmoothing = false)
+    {
         G.CameraLimits = value;
+        // The camera itself updates its limits when it's changed in G. However, to reset its smoothing you have to call the method yourself, as here.
         if (doResetSmoothing)
             Camera.CallDeferred("reset_smoothing");
 

@@ -9,6 +9,7 @@ public partial class RedElementalCrossPart : Node2D
     private float _elementSpeed = 4.5f;
     public override void _Ready()
     {
+        // Initializing nodes
         _sprite = GetNode<Sprite2D>("Path2D/PathFollow2D/Sprite2D");
         _pathFollow2D = GetNode<PathFollow2D>("Path2D/PathFollow2D");
 

@@ -15,6 +15,7 @@ public partial class EnhancedBlumCross : Node2D
 
     public override void _Ready()
 	{
+        // Initializing nodes
         _warningSprite = GetNode<Sprite2D>("WarningSprite");
 
         _controlledCrossesGroupIndex = "ControlledCrosses_" + Name;

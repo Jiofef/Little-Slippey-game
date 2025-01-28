@@ -13,7 +13,7 @@ public partial class Camera : Camera2D
     Random _random = new Random();
 
     // The number of pixels visible outside the exposed limits of the camera. X = top, Y = right, Z = bottom, W = left
-    public Vector4 ViewAngleAddition = new Vector4(-30, 30, 100, -30);
+    public Rect2 ViewAngleAddition = new Rect2(-30, -30, 30, 100);
 
     private bool _isScoreDisabled = false;
 
@@ -26,7 +26,7 @@ public partial class Camera : Camera2D
         _standBar = GetNode<TextureProgressBar>("GUICanvas/GUI/StandBar");
 
 
-        G.CameraLimits = new Vector4(0, G.LevelXYSizes[G.CurrentLevel].X, G.LevelXYSizes[G.CurrentLevel].Y, 0);
+        G.CameraLimits = new Rect2(0, 0, G.LevelXYSizes[G.CurrentLevel].X, G.LevelXYSizes[G.CurrentLevel].Y);
         SetTheLimitsAddition(true);
 
         _onCameraLimitsChangedHandler = OnCameraLimitsChanged;
@@ -49,25 +49,19 @@ public partial class Camera : Camera2D
 
     private void SetTheLimitsAddition(bool DoResetSmoothing = false, float plus1 = 0, float plus2 = 0, float plus3 = 0, float plus4 = 0)
     {
-        Vector4 Defaultlimits = G.CameraLimits + ViewAngleAddition;
-        LimitTop = (int)(Defaultlimits[0] + plus1);
-        LimitRight = (int)(Defaultlimits[1] + plus2);
-        LimitBottom = (int)(Defaultlimits[2] + plus3);
-        LimitLeft = (int)(Defaultlimits[3] + plus4);
+        Rect2 Defaultlimits = new Rect2(G.CameraLimits.Position + ViewAngleAddition.Position, G.CameraLimits.End + ViewAngleAddition.Size);
+        LimitLeft = (int)(Defaultlimits.Position.X + plus4);
+        LimitTop = (int)(Defaultlimits.Position.Y + plus1);
+        LimitBottom = (int)(Defaultlimits.End.Y + plus3);
+        LimitRight = (int)(Defaultlimits.End.X + plus2);
+
 
         if (DoResetSmoothing)
             ResetSmoothing();
     }
     private void UpdateTheLimits(bool DoResetSmoothing = false)
     {
-        Vector4 Defaultlimits = G.CameraLimits + ViewAngleAddition;
-        LimitTop = (int)Defaultlimits[0];
-        LimitRight = (int)Defaultlimits[1];
-        LimitBottom = (int)Defaultlimits[2];
-        LimitLeft = (int)Defaultlimits[3];
-
-        if (DoResetSmoothing)
-            ResetSmoothing();
+        SetTheLimitsAddition(false, 0, 0, 0, 0);
     }
     public override void _PhysicsProcess(double delta)
     {
@@ -75,7 +69,7 @@ public partial class Camera : Camera2D
         {
             _scores.Text = ((int)G.Scores).ToString();
             if (Meta.Instance.Video.ScoresLabelLocationY == 0)
-                _scores.Modulate = new Color(_scores.Modulate.R, _scores.Modulate.G, _scores.Modulate.B, _player.Position.Y > G.CameraLimits.X + 200 ? 1 : _player.Position.Y / (G.CameraLimits.X + 200));
+                _scores.Modulate = new Color(_scores.Modulate.R, _scores.Modulate.G, _scores.Modulate.B, _player.Position.Y > G.CameraLimits.Position.Y + 200 ? 1 : _player.Position.Y / (G.CameraLimits.Position.Y + 200));
 
             if (_isScoreDisabled != G.IsProgressPaused)
             {
@@ -171,7 +165,7 @@ public partial class Camera : Camera2D
         }
     }
 
-    private void OnCameraLimitsChanged(Vector4 limits)
+    private void OnCameraLimitsChanged(Rect2 limits)
     {
         bool DoResetSmoothing = GetScreenCenterPosition().DistanceTo(_player.GlobalPosition) > 1280;
         UpdateTheLimits(DoResetSmoothing);

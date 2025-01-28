@@ -1,4 +1,4 @@
-[gd_scene load_steps=70 format=4 uid="uid://cma82s1tmg4rd"]
+[gd_scene load_steps=72 format=4 uid="uid://cma82s1tmg4rd"]
 
 [ext_resource type="Script" path="res://Content/Scripts/Other/MainScript.cs" id="1_r4pva"]
 [ext_resource type="Script" path="res://Content/Scripts/Levels/Level10RealityDissector.cs" id="2_a7alo"]
@@ -23,7 +23,9 @@
 [ext_resource type="AudioStream" uid="uid://cuvkdo1lyvynu" path="res://Content/Sounds/Other/EpicIntro.mp3" id="17_yr0y3"]
 [ext_resource type="Texture2D" uid="uid://bx0f1c20d2wai" path="res://Content/Sprites/Levels/DropesAndHeamsTileset.png" id="18_ew1u5"]
 [ext_resource type="PackedScene" uid="uid://tjddwdxopw2u" path="res://Content/Scenes/Interface&Menu/Pause.tscn" id="23_d0li1"]
+[ext_resource type="Script" path="res://Content/Scripts/Crosses/CrossSpawner.cs" id="23_ttllf"]
 [ext_resource type="PackedScene" uid="uid://c7psxdkakrw5x" path="res://Content/Scenes/Other/EpicIntro.tscn" id="24_23g0w"]
+[ext_resource type="PackedScene" uid="uid://catydhrk62at1" path="res://Content/Scenes/Interface&Menu/AdditionalGuiLayer.tscn" id="25_3firf"]
 
 [sub_resource type="Animation" id="Animation_p3npb"]
 resource_name = "MusicStarting"
@@ -1003,13 +1005,14 @@ position = Vector2(13856, 608)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/PlayMusicTrigger"]
 shape = SubResource("RectangleShape2D_pgrru")
 
+[node name="CrossSpawner" type="Node2D" parent="."]
+script = ExtResource("23_ttllf")
+
 [node name="Pause" parent="." instance=ExtResource("23_d0li1")]
 
 [node name="EpicIntro" parent="." instance=ExtResource("24_23g0w")]
 
-[node name="PopupAchievementsLayer" type="CanvasLayer" parent="."]
-process_mode = 3
-layer = 100
+[node name="AdditionalGUILayer" parent="." instance=ExtResource("25_3firf")]
 
 [connection signal="animation_finished" from="LevelMusicPlayer/AnimationPlayer" to="." method="MusicAnimationFinished"]
 [connection signal="ChangeScene" from="Level/RealityDissector" to="." method="LoadScene" flags=6 binds= ["res://Content/Scenes/Levels/FullParts/Level10True.tscn"]]

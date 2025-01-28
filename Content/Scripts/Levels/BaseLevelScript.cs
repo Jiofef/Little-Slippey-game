@@ -2,20 +2,18 @@ using Godot;
 using GodotSteam;
 using System;
 using System.Linq;
+using static Crosses;
+using static OtherExtension.RandomTools;
 
 public partial class BaseLevelScript : Node2D
 {
-    PackedScene[] _crosses = new PackedScene[G.CrossesInGameTotal];
-    const int GOLDEN_CROSS_RARITY = 5;
-    PackedScene _goldenCross;
-
     [Export] public float BeforeResetCrossesSpawnStartTimer = 0f;
     Random _random = new Random();
     private int[] _crossDefaultWeight = { 600, 170, 80, 40, 110 };
     private float[] _crossWeight = new float[G.CrossesInGameTotal];
     private int _lastAviableCrossNumber = 0;
     private float _weightMultiplierExtenderToCurrentCross = 0;
-    private bool _doAllCrossWeigthsSetted, _isCrossesEnhanced;
+    private bool _doAllCrossWeigthsSetted;
     private readonly float _floatDelta = 0.016667f;
 
     public override void _Ready()
@@ -24,14 +22,11 @@ public partial class BaseLevelScript : Node2D
         Input.MouseMode = !GetTree().Paused ? Input.MouseModeEnum.Hidden : Input.MouseModeEnum.Visible;
         AudioServer.SetBusMute(2, Meta.Instance.Sound.BusVolumes[2] <= -30);
 
-
-        _isCrossesEnhanced = G.CurrentLevel == 10 && G.LevelAdditionalLink == "True" || Meta.Instance.Gameplay.AdditionStatuses[3];
-
-        if (_isCrossesEnhanced)
-            _crossDefaultWeight = new int[] { 650, 265, 45, 15, 25 };
-        for (int i = 0; i < _crosses.Length; i++)
-            _crosses[i] = ResourceLoader.Load<PackedScene>("res://Content/Scenes/Crosses/" + (_isCrossesEnhanced ? "Enhanced" : "") + "Cross" + (i + 1) + ".tscn");
-        _goldenCross = ResourceLoader.Load<PackedScene>("res://Content/Scenes/Crosses/" + (_isCrossesEnhanced ? "Enhanced" : "") + "GoldenCross.tscn");
+        bool IsCrossesEnhanced = G.CurrentLevel == 10 && G.LevelAdditionalLink == "True" || Meta.Instance.Gameplay.AdditionStatuses[3];
+        if (IsCrossesEnhanced)
+            SetEnhancedCrossesPack();
+        else
+            SetDefaultCrossesPack();
 
 
         if (G.CurrentLevel == 5 || Meta.Instance.Gameplay.AdditionStatuses[0])
@@ -139,85 +134,6 @@ public partial class BaseLevelScript : Node2D
                         _doAllCrossWeigthsSetted = true;
                     }
                 }
-
-                //Spawning golden cross
-                if (_random.Next(GOLDEN_CROSS_RARITY) == 0)
-                {
-                    SpawnGoldenCross();
-                }
-
-                int SelectedCrossNumber;
-                int RandomNumber = _random.Next((int)_crossWeight.Sum());
-                for (int i = 0; ; i++)
-                {
-                    if (RandomNumber < _crossDefaultWeight[i])
-                    {
-                        SelectedCrossNumber = i;
-                        break;
-                    }
-                    else RandomNumber -= _crossDefaultWeight[i];
-                }
-
-                Node2D Cross = (Node2D)_crosses[SelectedCrossNumber].Instantiate();
-                float CrossGathering = _random.Next(100) < (1 - G.PlayerMoveCoeff) * 50 ? 3 - G.PlayerMoveCoeff * 2 : 1;
-                Cross.Position = new Vector2(G.Player.Position.X + (-750 + _random.Next(1500)) / CrossGathering, G.Player.Position.Y + (-450 + _random.Next(900)) / CrossGathering);
-
-                switch (Cross.Name)
-                {
-                    case "DefaultCross" or "EnhancedDefaultCross":
-                        Cross.Modulate = new Color(1, 1, 1, 0);
-                        Cross.Scale = new Vector2(3, 3);
-                        break;
-
-                    case "RestlessCross" or "EnhancedRestlessCross":
-                        Cross.Modulate = new Color(1, 1, 1, 0);
-                        Cross.Scale = new Vector2(3, 3);
-                        float XPos = _random.Next(
-                            G.Player.Position.X - 425 > G.CameraLimits.W ? (int)G.Player.Position.X - 425 : 0,
-                            G.Player.Position.X + 425 < G.CameraLimits.Y ? (int)G.Player.Position.X + 425 : (int)G.Player.Position.X + 425
-                            );
-                        float YPos = _random.Next(
-                            G.Player.Position.Y - 240 > G.CameraLimits.X ? (int)G.Player.Position.Y - 240 : 0,
-                            G.Player.Position.Y + 240 < G.CameraLimits.Z ? (int)G.Player.Position.Y + 240 : (int)G.Player.Position.Y + 240
-                            );
-                        Cross.Position = new Vector2(XPos, YPos);
-                        break;
-
-                    case "ElementalCross":
-                        Cross.Scale = new Vector2(3, 3);
-                        break;
-
-                    case "BlumCross" or "EnhancedBlumCross":
-                        Cross.Modulate = new Color(1, 1, 1, 0);
-                        if ((Cross.Position - G.Player.Position).X < 300)
-                            Cross.Position = new Vector2(
-                                Cross.Position.X,
-                                _random.Next(100) < 50 ?
-                                _random.Next((int)G.Player.Position.Y - 750, (int)G.Player.Position.Y - 250) :
-                                _random.Next((int)G.Player.Position.Y + 250, (int)G.Player.Position.Y + 750)
-                                );
-                        break;
-
-                    case "CannonCross":
-                        if (G.CurrentLevel == 8)
-                        {
-                            Cross.RotationDegrees = _random.Next(100) <= 50 ? 90 : -90;
-                            Cross.Position = new Vector2(Cross.Position.X + 1280, Cross.RotationDegrees == 90 ? -25 : 760);
-                            break;
-                        }
-
-                        Cross.Scale = new Vector2(_random.Next(100) <= 50 ? 1 : -1, 1);
-                        Cross.Position = Cross.Scale.X == -1 ? new Vector2(G.LevelXYSizes[G.CurrentLevel].X + 25, Cross.Position.Y) : new Vector2(-25, Cross.Position.Y);
-                        break;
-
-                    case "EnhancedCannonCross":
-                        Cross.Position = new Vector2(_random.Next(2) == 0 ? G.Player.Position.X - 1280 : G.Player.Position.X + 1280, G.Player.Position.Y + _random.Next(-750, -250));
-                        break;
-                }
-                AddChild(Cross);
-
-                if (G.CurrentLevel == 9 || Meta.Instance.Gameplay.AdditionStatuses[2] || _isCrossesEnhanced)
-                    Cross.AddToGroup("Crosses");
             }
         }
     }
@@ -246,15 +162,5 @@ public partial class BaseLevelScript : Node2D
                 _weightMultiplierExtender -= 1;
             }
         }
-    }
-
-    public void SpawnGoldenCross()
-    {
-        GoldenCross Cross = (GoldenCross)_goldenCross.Instantiate();
-        float XPos = _random.Next((int)G.CameraLimits.W, (int)G.CameraLimits.Y);
-        float YPos = _random.Next((int)G.CameraLimits.X, (int)G.CameraLimits.Z);
-        Cross.Position = new Vector2(XPos, YPos);
-
-        AddChild(Cross);
     }
 }

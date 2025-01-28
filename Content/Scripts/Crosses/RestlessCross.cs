@@ -23,8 +23,16 @@ public partial class RestlessCross : Node2D
 
     public override void _Ready()
     {
-        _ticksToAppear = _defaultTicksToAppear;
+        // Initializing nodes
+        _crossSprite = GetNode<Sprite2D>("CrossSprite");
+        _warningSprite = GetNode<Sprite2D>("WarningSprite");
 
+        // Spawn properties
+        Scale = new Vector2(3, 3);
+        Modulate = new Color(Modulate.R, Modulate.G, Modulate.B, 0);
+
+
+        _ticksToAppear = _defaultTicksToAppear;
 
         Random random = new Random();
         _defaultRotation = random.Next(-180, 180);
@@ -32,9 +40,6 @@ public partial class RestlessCross : Node2D
 
         if (_shouldRotate)
             _rotationGoal = random.Next(-MAX_ROTATION, MAX_ROTATION);
-
-        _crossSprite = GetNode<Sprite2D>("CrossSprite");
-        _warningSprite = GetNode<Sprite2D>("WarningSprite");
     }
 
     public override void _PhysicsProcess(double delta)

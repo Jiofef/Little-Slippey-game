@@ -26,6 +26,16 @@ public partial class ElementalCross : Node2D
 
     public override void _Ready()
     {
+        // Initializing nodes
+        _core = GetNode<Sprite2D>("Sprites/Core");
+        _redPart = GetNode<Sprite2D>("Sprites/RedPart");
+        _greenPart = GetNode<Sprite2D>("Sprites/GreenPart");
+        _bluePart = GetNode<Sprite2D>("Sprites/BluePart");
+        _sprites = GetNode<Node2D>("Sprites");
+
+        //Spawn properties
+        Scale = new Vector2(3, 3);
+
         Random random = new Random();
         _elementalType = (ElementalType)random.Next(0, 3);
 
@@ -39,11 +49,7 @@ public partial class ElementalCross : Node2D
             RotationDegrees = _defaultRotation;
         }
 
-        _core = GetNode<Sprite2D>("Sprites/Core");
-        _redPart = GetNode<Sprite2D>("Sprites/RedPart");
-        _greenPart = GetNode<Sprite2D>("Sprites/GreenPart");
-        _bluePart = GetNode<Sprite2D>("Sprites/BluePart");
-        _sprites = GetNode<Node2D>("Sprites");
+
         _sprites.Modulate = new Color(_core.SelfModulate.R, _core.SelfModulate.G, _core.SelfModulate.B, 0);
         _elementsToSpawn = _random.Next(6, 11);
         _defaultElementsToSpawn = _elementsToSpawn;

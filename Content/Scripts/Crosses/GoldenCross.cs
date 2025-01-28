@@ -35,6 +35,7 @@ public partial class GoldenCross : Node2D
     {
         // Initializing the nodes
         _cross = GetNode<PathFollow2D>("Path2D/Cross");
+
         // Randomizing the transform
         RotationDegrees = _random.Next(-360, 360);
         _cross.GlobalRotationDegrees = 0;
@@ -88,6 +89,7 @@ public partial class GoldenCross : Node2D
     {
         var shineParticles = GetNode<CpuParticles2D>("Path2D/Cross/ShineParticles");
         shineParticles.Emitting = false;
+        GetNode<Area2D>("Path2D/Cross/CollectArea").Monitoring = false;
 
         await ToSignal(shineParticles, "finished");
         QueueFree();

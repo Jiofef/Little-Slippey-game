@@ -13,10 +13,15 @@ public partial class BlumCross : Node2D
 
     public override void _Ready()
     {
+        // Initializing nodes
         _crossSprite = GetNode<Sprite2D>("CrossSprite");
         _warningSprite = GetNode<Sprite2D>("WarningSprite");
         _abortButton = GetNode<Sprite2D>("AbortButton");
         _explosiveSignal = GetNode<AudioStreamPlayer>("ExplosionSignal");
+
+        // Spawn properties
+        Modulate = new Color(Modulate.R, Modulate.G, Modulate.B, 0);
+
 
         _crossSprite.Modulate = new Color(_crossSprite.Modulate.R + _cycleSpeedMultiplier, _crossSprite.Modulate.G, _crossSprite.Modulate.B);
 

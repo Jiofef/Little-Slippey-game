@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://5kfyvxsdpsk2"]
+[gd_scene load_steps=11 format=3 uid="uid://5kfyvxsdpsk2"]
 
 [ext_resource type="Script" path="res://Content/Scripts/Other/MainScript.cs" id="2"]
 [ext_resource type="Script" path="res://Content/Scripts/Other/LevelMusicPlayer.cs" id="2_4qm76"]
 [ext_resource type="Script" path="res://Content/Scripts/Levels/BaseLevelScript.cs" id="3_mid8o"]
+[ext_resource type="Script" path="res://Content/Scripts/Crosses/CrossSpawner.cs" id="4_ddpkh"]
 [ext_resource type="PackedScene" uid="uid://tjddwdxopw2u" path="res://Content/Scenes/Interface&Menu/Pause.tscn" id="4_s6iig"]
 [ext_resource type="PackedScene" uid="uid://c7psxdkakrw5x" path="res://Content/Scenes/Other/EpicIntro.tscn" id="5_qbkrh"]
 [ext_resource type="PackedScene" uid="uid://catydhrk62at1" path="res://Content/Scenes/Interface&Menu/AdditionalGuiLayer.tscn" id="6_58s1k"]
@@ -60,6 +61,9 @@ libraries = {
 
 [node name="Level" type="Node2D" parent="."]
 script = ExtResource("3_mid8o")
+
+[node name="CrossSpawner" type="Node2D" parent="."]
+script = ExtResource("4_ddpkh")
 
 [node name="Pause" parent="." instance=ExtResource("4_s6iig")]
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=106 format=4 uid="uid://cyguctos1c5pv"]
+[gd_scene load_steps=108 format=4 uid="uid://cyguctos1c5pv"]
 
 [ext_resource type="Script" path="res://Content/Scripts/Other/MainScript.cs" id="1_evesd"]
 [ext_resource type="Script" path="res://Content/Scripts/Other/LevelMusicPlayer.cs" id="2_78ana"]
@@ -29,7 +29,9 @@
 [ext_resource type="Texture2D" uid="uid://dum4qduobam4q" path="res://Content/Sprites/Levels/Level9/DoomApproachesAnimation.png" id="25_rrbgu"]
 [ext_resource type="Script" path="res://Content/Scripts/Levels/Level9DoomApproachesAnimation.cs" id="26_py352"]
 [ext_resource type="PackedScene" uid="uid://tjddwdxopw2u" path="res://Content/Scenes/Interface&Menu/Pause.tscn" id="29_pnjni"]
+[ext_resource type="Script" path="res://Content/Scripts/Crosses/CrossSpawner.cs" id="29_q31gy"]
 [ext_resource type="PackedScene" uid="uid://c7psxdkakrw5x" path="res://Content/Scenes/Other/EpicIntro.tscn" id="30_kviqb"]
+[ext_resource type="PackedScene" uid="uid://catydhrk62at1" path="res://Content/Scenes/Interface&Menu/AdditionalGuiLayer.tscn" id="31_h5p8f"]
 
 [sub_resource type="Animation" id="Animation_p3npb"]
 resource_name = "MusicStarting"
@@ -1850,6 +1852,9 @@ position = Vector2(1280, 640)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/PlayMusicTrigger"]
 shape = SubResource("CapsuleShape2D_16p1l")
 
+[node name="CrossSpawner" type="Node2D" parent="."]
+script = ExtResource("29_q31gy")
+
 [node name="Pause" parent="." instance=ExtResource("29_pnjni")]
 
 [node name="EpicIntro" parent="." instance=ExtResource("30_kviqb")]
@@ -1860,9 +1865,7 @@ visible = false
 [node name="Glare" parent="EpicIntro" index="2"]
 visible = false
 
-[node name="PopupAchievementsLayer" type="CanvasLayer" parent="."]
-process_mode = 3
-layer = 100
+[node name="AdditionalGUILayer" parent="." instance=ExtResource("31_h5p8f")]
 
 [connection signal="animation_finished" from="LevelMusicPlayer/AnimationPlayer" to="." method="MusicAnimationFinished"]
 [connection signal="HeadDead" from="Level/JiofefHead" to="LevelMusicPlayer" method="StopMusic" flags=6 binds= [5.0]]
@@ -1880,8 +1883,8 @@ layer = 100
 [connection signal="ButtonPressed" from="Level/PlatformerSection/ImpendingDoomTrigger" to="LevelMusicPlayer" method="StopMusic" flags=6 binds= [10.0]]
 [connection signal="ButtonPressed" from="Level/PlatformerSection/ImpendingDoomTrigger" to="Level/Player" method="SetCameraLimits" flags=6 binds= [Vector4(768, 2560, 1216, -3392), false]]
 [connection signal="ButtonPressed" from="Level/PlatformerSection/ImpendingDoomTrigger" to="Level/PlatformerSection/AnimationPlayer" method="play" flags=6 binds= ["FrontDoorClosing"]]
-[connection signal="ButtonPressed" from="Level/PlatformerSection/ImpendingDoomTrigger" to="Level/PlatformerSection/CanvasLayer/DoomApproachesAnimation" method="set_visible" flags=6 binds= [true]]
 [connection signal="ButtonPressed" from="Level/PlatformerSection/ImpendingDoomTrigger" to="Level/PlatformerSection/CanvasLayer/DoomApproachesAnimation" method="set_physics_process" flags=6 binds= [true]]
+[connection signal="ButtonPressed" from="Level/PlatformerSection/ImpendingDoomTrigger" to="Level/PlatformerSection/CanvasLayer/DoomApproachesAnimation" method="set_visible" flags=6 binds= [true]]
 [connection signal="ButtonPressed" from="Level/PlatformerSection/YOU\'REDOOMEDTrigger" to="Level/PlatformerSection" method="PlatformSectionCompleted" flags=6]
 [connection signal="ButtonPressed" from="Level/PlatformerSection/YOU\'REDOOMEDTrigger" to="Level/Player" method="SetCameraLimits" flags=6 binds= [Vector4(0, 2560, 1280, 0), false]]
 [connection signal="ButtonPressed" from="Level/PlatformerSection/YOU\'REDOOMEDTrigger" to="Level/PlatformerSection/AnimationPlayer" method="play" flags=6 binds= ["DoomDoorClosing"]]

@@ -20,6 +20,15 @@ public partial class DefaultCross : Node2D
 
     public override void _Ready()
     {
+        // Initializing nodes
+        _crossSprite = GetNode<Sprite2D>("CrossSprite");
+        _warningSprite = GetNode<Sprite2D>("WarningSprite");
+
+        // Spawn properties
+        Scale = new Vector2(3, 3);
+        Modulate = new Color(Modulate.R, Modulate.G, Modulate.B, 0);
+
+
         _ticksToAppear = _defaultTicksToAppear;
 
         if (_shouldRotate)
@@ -30,10 +39,6 @@ public partial class DefaultCross : Node2D
 
             RotationDegrees = _defaultRotation;
         }
-
-        // Initializing nodes
-        _crossSprite = GetNode<Sprite2D>("CrossSprite");
-        _warningSprite = GetNode<Sprite2D>("WarningSprite");
     }
     public override void _PhysicsProcess(double delta)
     {

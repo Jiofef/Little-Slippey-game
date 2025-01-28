@@ -1,0 +1,70 @@
+[gd_scene load_steps=2 format=3 uid="uid://d2li6dhrpg6lu"]
+
+[ext_resource type="Script" path="res://Content/Scripts/Other/RandomVectorTest.cs" id="1_iy7p5"]
+
+[node name="Node2D" type="Node2D"]
+position = Vector2(663, 357)
+script = ExtResource("1_iy7p5")
+
+[node name="HSlider" type="HSlider" parent="."]
+offset_left = -655.0
+offset_top = 265.0
+offset_right = -259.0
+offset_bottom = 281.0
+max_value = 3000.0
+value = 300.0
+
+[node name="HSlider2" type="HSlider" parent="."]
+offset_left = -656.0
+offset_top = 282.0
+offset_right = -260.0
+offset_bottom = 298.0
+max_value = 500.0
+value = 200.0
+
+[node name="HSlider3" type="HSlider" parent="."]
+offset_left = -656.0
+offset_top = 302.0
+offset_right = -260.0
+offset_bottom = 318.0
+value = 5.0
+
+[node name="HSlider4" type="HSlider" parent="."]
+offset_left = 233.0
+offset_top = -346.0
+offset_right = 590.0
+offset_bottom = -330.0
+min_value = -500.0
+max_value = 500.0
+value = 50.0
+
+[node name="HSlider5" type="VSlider" parent="."]
+offset_left = 592.0
+offset_top = -344.0
+offset_right = 608.0
+offset_bottom = -30.0
+min_value = -500.0
+max_value = 500.0
+
+[node name="HSlider6" type="HSlider" parent="."]
+offset_left = -660.0
+offset_top = 324.0
+offset_right = -264.0
+offset_bottom = 340.0
+max_value = 500.0
+value = 50.0
+
+[node name="ColorPickerButton" type="ColorPickerButton" parent="."]
+offset_left = 482.0
+offset_top = 257.0
+offset_right = 586.0
+offset_bottom = 352.0
+color = Color(1, 1, 1, 1)
+
+[connection signal="value_changed" from="HSlider" to="." method="SetAmount"]
+[connection signal="value_changed" from="HSlider2" to="." method="SetSize"]
+[connection signal="value_changed" from="HSlider3" to="." method="SetCirclesSizes"]
+[connection signal="value_changed" from="HSlider4" to="." method="SetCirclePosX"]
+[connection signal="value_changed" from="HSlider5" to="." method="SetCirclePosY"]
+[connection signal="value_changed" from="HSlider6" to="." method="SetCircleSize"]
+[connection signal="color_changed" from="ColorPickerButton" to="." method="SetCircleColor"]

@@ -1,16 +1,43 @@
-[gd_scene load_steps=6 format=3 uid="uid://75ikfwlafbnm"]
+[gd_scene load_steps=10 format=3 uid="uid://75ikfwlafbnm"]
 
 [ext_resource type="PackedScene" uid="uid://bwpstpk1xmkah" path="res://Content/Scenes/Interface&Menu/Button.tscn" id="1_8jiex"]
 [ext_resource type="Theme" uid="uid://dkitr1ftp0yhs" path="res://Content/Other/Menu.tres" id="2_4nf4e"]
 [ext_resource type="Texture2D" uid="uid://dxt3rcbkxua06" path="res://Content/Sprites/Interface/Buttons/SkinButton.png" id="2_m86qu"]
 [ext_resource type="Texture2D" uid="uid://cr6ilqqdmo4ug" path="res://Content/Sprites/Interface/Buttons/SkinButtonDisabled.png" id="3_r3khw"]
 [ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/SkinButton.cs" id="4_ssot4"]
+[ext_resource type="Texture2D" uid="uid://blm0gtq86usr7" path="res://Content/Sprites/Interface/BlockedSkinSign.png" id="6_e5p1q"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_mk0hi"]
+resource_local_to_scene = false
+
+[sub_resource type="Animation" id="Animation_7pr83"]
+resource_name = "HopHop"
+length = 0.5
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(2, 1),
+"update": 0,
+"values": [Vector2(96, 72), Vector2(96, 84)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1ht21"]
+_data = {
+"HopHop": SubResource("Animation_7pr83")
+}
 
 [node name="Button" instance=ExtResource("1_8jiex")]
 custom_minimum_size = Vector2(192, 192)
 scale = Vector2(1, 1)
 theme = ExtResource("2_4nf4e")
 toggle_mode = true
+button_group = SubResource("ButtonGroup_mk0hi")
 texture_normal = ExtResource("2_m86qu")
 texture_disabled = ExtResource("3_r3khw")
 stretch_mode = 0
@@ -37,4 +64,18 @@ offset_left = 12.0
 offset_top = 140.0
 offset_right = 180.0
 offset_bottom = 180.0
+mouse_filter = 2
 bbcode_enabled = true
+text = "[center]0 [img]res://Content/Sprites/Interface/4XMiniGoldenCross.png[/img]"
+
+[node name="?" type="Sprite2D" parent="." index="2"]
+visible = false
+position = Vector2(96, 72)
+scale = Vector2(4, 4)
+texture = ExtResource("6_e5p1q")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="?" index="0"]
+libraries = {
+"": SubResource("AnimationLibrary_1ht21")
+}
+autoplay = "HopHop"

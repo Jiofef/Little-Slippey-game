@@ -34,6 +34,7 @@ ModManager="*res://Content/Scripts/Singletons/ModManager.cs"
 FileSystemExtension="*res://Content/Scripts/Singletons/FileSystemExtension.cs"
 G="*res://Content/Scripts/Singletons/G.cs"
 Skins="*res://Content/Scripts/Singletons/Skins.cs"
+Crosses="*res://Content/Scripts/Singletons/Crosses.cs"
 
 [display]
 

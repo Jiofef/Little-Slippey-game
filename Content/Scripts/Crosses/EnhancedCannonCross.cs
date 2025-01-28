@@ -15,6 +15,7 @@ public partial class EnhancedCannonCross : Node2D
 
     public override void _Ready()
 	{
+		// Initializing nodes
 		_sprite2D = GetNode<Sprite2D>("Sprite2D");
         _bomb = ResourceLoader.Load<PackedScene>("res://Content/Scenes/Crosses/HelicopterBomb.tscn");
 
@@ -26,8 +27,8 @@ public partial class EnhancedCannonCross : Node2D
 		if (_state != State.FlyingAway)
 		{
             _movementGlobalPoint = G.Player.GlobalPosition + _movementPoint;
-			if (_movementGlobalPoint.Y < G.CameraLimits.X)
-				_movementGlobalPoint.Y = G.CameraLimits.X;
+			if (_movementGlobalPoint.Y < G.CameraLimits.Position.Y)
+				_movementGlobalPoint.Y = G.CameraLimits.Position.Y;
         }
 
 		_velocity += (_movementGlobalPoint - GlobalPosition) / 600;
@@ -65,13 +66,13 @@ public partial class EnhancedCannonCross : Node2D
 					if (_bombsLeft <= 0)
 					{
                         _state = State.FlyingAway;
-						_movementGlobalPoint = new Vector2(GlobalPosition.X, G.CameraLimits.X - 400);
+						_movementGlobalPoint = new Vector2(GlobalPosition.X, G.CameraLimits.Position.Y - 400);
                     }
                 }
                 break;
 
             case State.FlyingAway:
-				if (GlobalPosition.Y < G.CameraLimits.X - 250)
+				if (GlobalPosition.Y < G.CameraLimits.Position.Y - 250)
 					QueueFree();
                 break;
         }

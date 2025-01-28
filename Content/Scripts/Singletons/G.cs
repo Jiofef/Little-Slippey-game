@@ -112,8 +112,8 @@ public partial class G : Node
                        LevelCompleteTime = 150; // When this second comes, the level is passed. Can be used for different things
 
 
-    private static Vector4 _cameraLimits;
-    public static Vector4 CameraLimits 
+    private static Rect2 _cameraLimits;
+    public static Rect2 CameraLimits 
     {
         get { return _cameraLimits; }
         set 
@@ -122,7 +122,7 @@ public partial class G : Node
             OnCameraLimitsChanged.Invoke(value);
         }
     }
-    public delegate void CameraLimitsChangedEventHandler(Vector4 limits);
+    public delegate void CameraLimitsChangedEventHandler(Rect2 limits);
     public static event CameraLimitsChangedEventHandler OnCameraLimitsChanged = delegate { };
 
     public static Variant[] TransitiveVariant = new Variant[64]; // You can store almost anything here for anything. The game deletes the data only after entering the menu. If you need to save some data after restarting a level or moving to another scene, this option is perfect for you
@@ -361,123 +361,8 @@ public partial class G : Node
         ModManager.CurrentModMapFolderName = "";
     }
 
-
-    public class CrossSpawner  // Base for spawning crosses on custom levels. Use in scripts as you like. It is located at the end of the script just to avoid polluting its important parts, as the class is large
-    {
-		public float[] TimeCodes;
-		public float[] SpawnWeights;
-
-		private string[] _scenesPathes;
-		public string[] ScenesPathes
-		{
-			get { return _scenesPathes; }
-
-			set {
-                _scenesPathes = value;
-				_scenes = new PackedScene[ScenesPathes.Length];
-				 for (int i = 0; i < _scenes.Length; i++)
-				 {
-                    _scenes[i] = GD.Load<PackedScene>(ScenesPathes[i]);
-                }
-			}
-		}
-        private PackedScene[] _scenes = { };
-        public int TypesCount => _scenes.Length;
-
-        public CrossSpawner()
-        {
-            TimeCodes = [0, 30, 60, 90, 120, 150];
-            SpawnWeights = [600, 170, 80, 40, 110];
-            ScenesPathes = ["res://Content/Scenes/Crosses/Cross1.tscn", "res://Content/Scenes/Crosses/Cross2.tscn", "res://Content/Scenes/Crosses/Cross3.tscn", "res://Content/Scenes/Crosses/Cross4.tscn", "res://Content/Scenes/Crosses/Cross5.tscn"];
-        }
-		public CrossSpawner(float[] timeCodes, float[] spawnWeights, string[] scenesPathes)
-		{
-			TimeCodes = timeCodes;
-			SpawnWeights = spawnWeights;
-			ScenesPathes = scenesPathes;
-		}
-
-
-		public Node GetCross(int index)
-		{
-			return _scenes[index].Instantiate();
-		}
-
-
-		Random _random = new Random();
-        private int[] _defaultSpawnWeight = { 600, 170, 80, 40, 110 };
-        private float[] _crossWeight = new float[CrossesInGameTotal];
-        private int _lastAviableCrossNumber = 0;
-        private float _lastCheckedScoresValue = 0;
-
-        private bool _didAllCrossWeigthsSetted;
-        public Node GetRandomCross()
-		{
-            if (!_didAllCrossWeigthsSetted)
-            {
-                if (_crossWeight[_lastAviableCrossNumber] + Scores - _lastCheckedScoresValue < _defaultSpawnWeight[_lastAviableCrossNumber])
-                {
-                    _crossWeight[_lastAviableCrossNumber] += Scores - _lastCheckedScoresValue;
-                    _lastCheckedScoresValue = Scores;
-                }
-                else
-                {
-                    _crossWeight[_lastAviableCrossNumber] = _defaultSpawnWeight[_lastAviableCrossNumber];
-                    _lastAviableCrossNumber++;
-                    _lastCheckedScoresValue = 0;
-                }
-                if (_lastAviableCrossNumber >= _scenes.Length)
-                {
-                    _lastAviableCrossNumber = _scenes.Length - 1;
-                    _didAllCrossWeigthsSetted = true;
-                }
-            }
-
-            int SelectedCrossNumber;
-            int RandomNumber = _random.Next((int)_crossWeight.Sum());
-            for (int i = 0; ; i++)
-            {
-                if (RandomNumber < _defaultSpawnWeight[i])
-                {
-                    SelectedCrossNumber = i;
-                    break;
-                }
-                else RandomNumber -= _defaultSpawnWeight[i];
-            }
-			return GetCross(SelectedCrossNumber);
-        }
-
-        public void RecalculateCrossWeight()
-        {
-            float WeightMultiplierExtender = Scores / 30 * CrossesProgressCoeff * _defaultSpawnWeight[_lastAviableCrossNumber];
-            _crossWeight = new float[CrossesInGameTotal];
-            _lastAviableCrossNumber = 0;
-            for (int i = 0; WeightMultiplierExtender > 0; i++)
-            {
-                if (i >= 5)
-                {
-                    _didAllCrossWeigthsSetted = true;
-                    _lastAviableCrossNumber = 4;
-                    break;
-                }
-                if (_crossWeight[_lastAviableCrossNumber] + WeightMultiplierExtender * _defaultSpawnWeight[_lastAviableCrossNumber] < _defaultSpawnWeight[_lastAviableCrossNumber])
-                {
-                    _crossWeight[_lastAviableCrossNumber] += WeightMultiplierExtender * _defaultSpawnWeight[_lastAviableCrossNumber];
-                    WeightMultiplierExtender = 0;
-                }
-                else
-                {
-                    _crossWeight[_lastAviableCrossNumber] = _defaultSpawnWeight[_lastAviableCrossNumber];
-                    _lastAviableCrossNumber++;
-                    WeightMultiplierExtender -= 1;
-                }
-            }
-        }
-
-    }
-
     public override void _PhysicsProcess(double delta) // This for debugging.
     {
-        //GD.Print();
+        //GD.Print(Mathf.Cos(new Vector2(-2, 2).Angle()));
     }
 }
