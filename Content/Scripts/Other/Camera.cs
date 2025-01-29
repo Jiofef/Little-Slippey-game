@@ -49,7 +49,10 @@ public partial class Camera : Camera2D
 
     private void SetTheLimitsAddition(bool DoResetSmoothing = false, float plus1 = 0, float plus2 = 0, float plus3 = 0, float plus4 = 0)
     {
-        Rect2 Defaultlimits = new Rect2(G.CameraLimits.Position + ViewAngleAddition.Position, G.CameraLimits.End + ViewAngleAddition.Size);
+        Rect2 Defaultlimits = new Rect2();
+        Defaultlimits.Position = G.CameraLimits.Position + ViewAngleAddition.Position;
+        Defaultlimits.End = G.CameraLimits.End + ViewAngleAddition.Size;
+
         LimitLeft = (int)(Defaultlimits.Position.X + plus4);
         LimitTop = (int)(Defaultlimits.Position.Y + plus1);
         LimitBottom = (int)(Defaultlimits.End.Y + plus3);

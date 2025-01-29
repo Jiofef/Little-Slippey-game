@@ -121,9 +121,6 @@ public partial class GoldenCross : Node2D
             Achievements.CurrentAdditionalGuiLayer.OnGoldenCrossesRecieved(Price);
         }
 
-        var shineParticles = GetNode<CpuParticles2D>("Path2D/Cross/ShineParticles");
-        shineParticles.Emitting = false;
-
         // Creating a collect popup
         if (G.Player != null)
         {
@@ -137,6 +134,8 @@ public partial class GoldenCross : Node2D
             G.Player.GetParent().AddChild(collectPopup);
         }
 
+        var shineParticles = GetNode<CpuParticles2D>("Path2D/Cross/ShineParticles");
+        shineParticles.Emitting = false;
 
         await ToSignal(shineParticles, "finished");
         QueueFree();

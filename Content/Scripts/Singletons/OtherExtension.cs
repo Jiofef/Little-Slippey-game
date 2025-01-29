@@ -208,4 +208,19 @@ namespace OtherExtension
             }
         }
     }
+
+    public static class OtherTools
+    {
+        public static void PrintAnArray(Array array, string delimiter = " | ")
+        {
+            string toPrint = "";
+            foreach(var value in array)
+                toPrint += value.ToString() + delimiter;
+
+            // Removing the unnecessary delimiter
+            toPrint = toPrint.Remove(toPrint.Length - delimiter.Length, delimiter.Length);
+
+            GD.Print(toPrint);
+        }
+    }
 }

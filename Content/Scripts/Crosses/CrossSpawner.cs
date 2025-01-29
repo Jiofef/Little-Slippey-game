@@ -10,16 +10,6 @@ public partial class CrossSpawner : Node2D
 
     Random _random = new Random();
 
-    public Crosses.CrossSpawner Spawner = new Crosses.CrossSpawner();
-
-    PackedScene[] _crosses = new PackedScene[G.CrossesInGameTotal];
-
-
-    private int[] _crossDefaultWeight = { 600, 170, 80, 40, 110 };
-    private float[] _crossWeight = new float[G.CrossesInGameTotal];
-    private int _lastAviableCrossNumber = 0;
-    private float _weightMultiplierExtenderToCurrentCross = 0;
-    private bool _doAllCrossWeigthsSetted, _isCrossesEnhanced;
     private readonly float _floatDelta = 0.016667f;
 
     public override void _Ready()
@@ -30,10 +20,6 @@ public partial class CrossSpawner : Node2D
 
 	public override void _PhysicsProcess(double delta)
 	{
-        if (!G.IsProgressPaused)
-            _weightMultiplierExtenderToCurrentCross += (_floatDelta * _crossDefaultWeight[_lastAviableCrossNumber]) / 30 * G.CrossesProgressCoeff;
-
-
         if (G.IsCrossesEnabled)
         {
             int RandomRange = 20 - Meta.Instance.Gameplay.Dificulty * 5;
@@ -41,7 +27,7 @@ public partial class CrossSpawner : Node2D
 
             if (_random.Next(RandomRange) == 0)
             {
-                CanvasItem Cross = Crosses.CrossSpawner.SpawnRandomCrossIn(this);
+                CanvasItem Cross = SpawnRandomCrossIn(this);
             }
         }
     }

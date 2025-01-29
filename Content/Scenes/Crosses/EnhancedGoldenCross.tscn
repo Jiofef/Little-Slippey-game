@@ -1,17 +1,318 @@
-[gd_scene load_steps=5 format=3 uid="uid://bajxkgbvef738"]
+[gd_scene load_steps=41 format=3 uid="uid://bajxkgbvef738"]
 
 [ext_resource type="Texture2D" uid="uid://dnn6gvvg4t2sr" path="res://Content/Sprites/Crosses/EnhancedGoldenCross.png" id="1_egfsr"]
 [ext_resource type="Script" path="res://Content/Scripts/Crosses/EnhancedGoldenCross.cs" id="1_vafaw"]
 [ext_resource type="Script" path="res://Content/Scripts/Crosses/ElementaryParticleScript.cs" id="2_nucrf"]
+[ext_resource type="PackedScene" uid="uid://4gxbtrc21wvn" path="res://Content/Scenes/Interface&Menu/OffscreenPointer.tscn" id="3_n6rmv"]
+[ext_resource type="Texture2D" uid="uid://bmnjn4tqb7t5m" path="res://Content/Sprites/Interface/GoldenCrossesAnimation.png" id="4_j0by6"]
+[ext_resource type="Texture2D" uid="uid://btp8llsfw6hi3" path="res://Content/Sprites/Interface/GoldenPointingArrow.png" id="4_v7afd"]
+[ext_resource type="Texture2D" uid="uid://cfn1twxbtcy8h" path="res://Content/Sprites/Interface/ChargedArrows.png" id="5_o0dkf"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tkbld"]
 radius = 32.0
+
+[sub_resource type="Curve" id="Curve_ev2uc"]
+min_value = -1.0
+_data = [Vector2(0, 0.254412), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_n5oiw"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xqkmw"]
+atlas = ExtResource("5_o0dkf")
+region = Rect2(0, 0, 36, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_giigy"]
+atlas = ExtResource("5_o0dkf")
+region = Rect2(0, 22, 36, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yc1gh"]
+atlas = ExtResource("5_o0dkf")
+region = Rect2(0, 44, 36, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_210bf"]
+atlas = ExtResource("5_o0dkf")
+region = Rect2(0, 66, 36, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nlx58"]
+atlas = ExtResource("5_o0dkf")
+region = Rect2(0, 88, 36, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o4mgs"]
+atlas = ExtResource("5_o0dkf")
+region = Rect2(0, 110, 36, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pb2mq"]
+atlas = ExtResource("5_o0dkf")
+region = Rect2(0, 132, 36, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0tdn0"]
+atlas = ExtResource("5_o0dkf")
+region = Rect2(0, 154, 36, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_etab6"]
+atlas = ExtResource("5_o0dkf")
+region = Rect2(0, 176, 36, 22)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0c5qr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xqkmw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_giigy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yc1gh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_210bf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nlx58")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o4mgs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pb2mq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0tdn0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_etab6")
+}],
+"loop": true,
+"name": &"default",
+"speed": 16.0
+}]
+
+[sub_resource type="Animation" id="Animation_6fhwm"]
+resource_name = "Appearing"
+length = 3.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_hj34s"]
+resource_name = "Disappearing"
+length = 3.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(2, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"OnDisappeared"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_rjf4e"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(2),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(0.5),
+"update": 0,
+"values": [Vector2(10, 10)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(0.5),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_2f1xp"]
+resource_name = "OnCollected"
+length = 0.2
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector2(10, 10), Vector2(30, 30)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1lqn2"]
+_data = {
+"Appearing": SubResource("Animation_6fhwm"),
+"Disappearing": SubResource("Animation_hj34s"),
+"OnCollected": SubResource("Animation_2f1xp"),
+"RESET": SubResource("Animation_rjf4e")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6shwi"]
+atlas = ExtResource("4_j0by6")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="Curve" id="Curve_daif1"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_7soco"]
+min_value = -1.0
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 10), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_pospt"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="Gradient" id="Gradient_sricb"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.33, 0.66)
+colors = PackedColorArray(0.796078, 0.301961, 0.407843, 1, 0.952941, 0.839216, 0.192157, 1, 0.0666667, 0.678431, 0.756863, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lnaa6"]
+atlas = ExtResource("5_o0dkf")
+region = Rect2(36, 0, 36, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ubo7"]
+atlas = ExtResource("5_o0dkf")
+region = Rect2(36, 22, 36, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m1fu1"]
+atlas = ExtResource("5_o0dkf")
+region = Rect2(36, 44, 36, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_41f1i"]
+atlas = ExtResource("5_o0dkf")
+region = Rect2(36, 66, 36, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r2xlx"]
+atlas = ExtResource("5_o0dkf")
+region = Rect2(36, 88, 36, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_galy5"]
+atlas = ExtResource("5_o0dkf")
+region = Rect2(36, 110, 36, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q66j8"]
+atlas = ExtResource("5_o0dkf")
+region = Rect2(36, 132, 36, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rr77f"]
+atlas = ExtResource("5_o0dkf")
+region = Rect2(36, 154, 36, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l4e6v"]
+atlas = ExtResource("5_o0dkf")
+region = Rect2(36, 176, 36, 22)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_euq1o"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lnaa6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6ubo7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m1fu1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_41f1i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r2xlx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_galy5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q66j8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rr77f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l4e6v")
+}],
+"loop": true,
+"name": &"default",
+"speed": 16.0
+}]
 
 [node name="UnstableGoldenCross" type="Node2D"]
 script = ExtResource("1_vafaw")
 
 [node name="NegativePart" type="Node2D" parent="."]
-position = Vector2(703, 351)
+position = Vector2(273, 0)
+script = ExtResource("2_nucrf")
 
 [node name="Sprite2D" type="Sprite2D" parent="NegativePart"]
 scale = Vector2(10, 10)
@@ -25,8 +326,43 @@ collision_layer = 2147483649
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NegativePart/ChargeArea"]
 shape = SubResource("CircleShape2D_tkbld")
 
+[node name="PhotonParticles" type="CPUParticles2D" parent="NegativePart"]
+lifetime = 1.5
+emission_shape = 1
+emission_sphere_radius = 64.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 10.0
+initial_velocity_max = 50.0
+linear_accel_min = 1000.0
+linear_accel_max = 1500.0
+linear_accel_curve = SubResource("Curve_ev2uc")
+scale_amount_min = 10.0
+scale_amount_max = 10.0
+scale_amount_curve = SubResource("Curve_n5oiw")
+color = Color(0.0666667, 0.678431, 0.756863, 1)
+
+[node name="OffscreenPointer" parent="NegativePart" instance=ExtResource("3_n6rmv")]
+
+[node name="Pointer" parent="NegativePart/OffscreenPointer" index="0"]
+texture = ExtResource("4_v7afd")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="NegativePart/OffscreenPointer/Pointer" index="0"]
+position = Vector2(-18, 0)
+scale = Vector2(-1, -1)
+sprite_frames = SubResource("SpriteFrames_0c5qr")
+autoplay = "default"
+frame_progress = 0.475692
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="NegativePart"]
+libraries = {
+"": SubResource("AnimationLibrary_1lqn2")
+}
+
 [node name="PositivePart" type="Node2D" parent="."]
+position = Vector2(-273, 0)
 script = ExtResource("2_nucrf")
+IsMainParticle = true
 
 [node name="Sprite2D" type="Sprite2D" parent="PositivePart"]
 scale = Vector2(10, 10)
@@ -41,4 +377,85 @@ collision_mask = 2147483648
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PositivePart/ChargeArea"]
 shape = SubResource("CircleShape2D_tkbld")
 
-[node name="OnCollectedEffects" type="Node2D" parent="."]
+[node name="OnCollectedEffects" type="Node2D" parent="PositivePart"]
+
+[node name="OnCollectedParticles1" type="CPUParticles2D" parent="PositivePart/OnCollectedEffects"]
+emitting = false
+amount = 4
+one_shot = true
+explosiveness = 0.9
+texture = SubResource("AtlasTexture_6shwi")
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 400.0
+initial_velocity_max = 600.0
+angular_velocity_min = -360.0
+angular_velocity_max = 360.0
+angle_min = -720.0
+angle_max = 720.0
+scale_amount_min = 4.0
+scale_amount_max = 4.0
+scale_amount_curve = SubResource("Curve_daif1")
+
+[node name="OnCollectedParticles2" type="CPUParticles2D" parent="PositivePart/OnCollectedEffects"]
+emitting = false
+amount = 12
+one_shot = true
+explosiveness = 0.9
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 400.0
+initial_velocity_max = 600.0
+angular_velocity_min = -360.0
+angular_velocity_max = 360.0
+orbit_velocity_min = 0.5
+orbit_velocity_max = 0.5
+linear_accel_min = 1000.0
+linear_accel_max = 1000.0
+linear_accel_curve = SubResource("Curve_7soco")
+angle_min = -720.0
+angle_max = 720.0
+scale_amount_min = 10.0
+scale_amount_max = 20.0
+scale_amount_curve = SubResource("Curve_daif1")
+color_ramp = SubResource("Gradient_pospt")
+color_initial_ramp = SubResource("Gradient_sricb")
+
+[node name="PhotonParticles" type="CPUParticles2D" parent="PositivePart"]
+lifetime = 1.5
+emission_shape = 1
+emission_sphere_radius = 64.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 10.0
+initial_velocity_max = 50.0
+linear_accel_min = 1000.0
+linear_accel_max = 1500.0
+linear_accel_curve = SubResource("Curve_ev2uc")
+scale_amount_min = 10.0
+scale_amount_max = 10.0
+scale_amount_curve = SubResource("Curve_n5oiw")
+color = Color(0.796078, 0.301961, 0.407843, 1)
+
+[node name="OffscreenPointer" parent="PositivePart" instance=ExtResource("3_n6rmv")]
+
+[node name="Pointer" parent="PositivePart/OffscreenPointer" index="0"]
+texture = ExtResource("4_v7afd")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PositivePart/OffscreenPointer/Pointer" index="0"]
+position = Vector2(-18, 0)
+scale = Vector2(-1, -1)
+sprite_frames = SubResource("SpriteFrames_euq1o")
+autoplay = "default"
+frame_progress = 0.305869
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PositivePart"]
+libraries = {
+"": SubResource("AnimationLibrary_1lqn2")
+}
+
+[connection signal="area_entered" from="NegativePart/ChargeArea" to="NegativePart" method="Anihilate"]
+[connection signal="area_entered" from="PositivePart/ChargeArea" to="PositivePart" method="Anihilate"]
+
+[editable path="NegativePart/OffscreenPointer"]
+[editable path="PositivePart/OffscreenPointer"]

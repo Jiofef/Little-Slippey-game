@@ -10,8 +10,8 @@ public partial class CannonCross : Path2D
     private float _ballYBound = G.CameraLimits.End.Y + 256, _ballYMotion = 0.5f, _appearedCoeff = 0, _afterShotCoeff = 0;
 
     private Rect2 _ballBounds = new Rect2(
-        G.CameraLimits.Position + new Vector2(-256, 256),
-        G.CameraLimits.Size + new Vector2(-256, 256));
+        G.CameraLimits.Position + new Vector2(-256, -256),
+        G.CameraLimits.Size + new Vector2(256, 512));
 
     private bool _didCannonShot, _isLevelTooWide = G.CameraLimits.Size.X / G.CameraLimits.Size.Y > 10;
     public override void _Ready()
@@ -28,7 +28,7 @@ public partial class CannonCross : Path2D
         _chargeSound = GetNode<AudioStreamPlayer>("PathFollow2D/Cannon/Sounds/Charge");
         #endregion
 
-        Scale = new Vector2(FiftyFifty() ? 1 : -1, 1);
+
 
         // 25 and 125 are off-camera positions that don't show the sudden appearance of the cannon
 
@@ -36,13 +36,16 @@ public partial class CannonCross : Path2D
         if (_isLevelTooWide)
         {
             RotationDegrees = FiftyFifty() ? 90 : -90;
-            GlobalPosition = new Vector2(GlobalPosition.X + G.CameraLimits.Position.Y, RotationDegrees == 90 ? G.CameraLimits.Position.Y - 25 : G.CameraLimits.End.Y + 120);
+            GlobalPosition = new Vector2(RandomIn(G.Player.GlobalPosition.X - 940, G.Player.GlobalPosition.X + 940), RotationDegrees == 90 ? G.CameraLimits.Position.Y - 25 : G.CameraLimits.End.Y + 120);
             return;
         }
-
-        GlobalPosition = Scale.X == -1 ? 
-            new Vector2(G.CameraLimits.End.X + 25, GlobalPosition.Y) : 
-            new Vector2(G.CameraLimits.Position.X - 25, GlobalPosition.Y);
+        else
+        {
+            Scale = new Vector2(FiftyFifty() ? 1 : -1, 1);
+            GlobalPosition = Scale.X == -1 ?
+                new Vector2(G.CameraLimits.End.X + 25, RandomIn(G.CameraLimits.Position.Y, G.CameraLimits.End.Y)) :
+                new Vector2(G.CameraLimits.Position.X - 25, RandomIn(G.CameraLimits.Position.Y, G.CameraLimits.End.Y));
+        }
     }
     public override void _PhysicsProcess(double delta)
     {
@@ -116,6 +119,6 @@ public partial class CannonCross : Path2D
 
     public bool IsBallOutOfBounds()
     {
-        return _ballBounds.HasPoint(_ball.GlobalPosition);
+        return !_ballBounds.HasPoint(_ball.GlobalPosition);
     }
 }

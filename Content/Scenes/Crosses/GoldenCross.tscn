@@ -247,7 +247,6 @@ volume_db = 8.0
 bus = &"Interface"
 
 [node name="OffscreenPointer" parent="Path2D/Cross" instance=ExtResource("5_qfebh")]
-modulate = Color(0.968627, 0.894118, 0.462745, 1)
 
 [node name="Pointer" parent="Path2D/Cross/OffscreenPointer" index="0"]
 texture = ExtResource("6_jqy6v")

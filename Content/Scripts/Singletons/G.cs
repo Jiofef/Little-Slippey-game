@@ -323,6 +323,9 @@ public partial class G : Node
         // Numbers? Idk
         ResetTimer = 0;
         Scores = 0;
+
+        // Crosses
+        Crosses.ResetLocalValues();
     }
 	public static void CompletelyResetValues() // Usually used during the exit from the level
     {

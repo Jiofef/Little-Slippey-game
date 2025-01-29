@@ -18,6 +18,9 @@ public partial class EnhancedBlumCross : Node2D
         // Initializing nodes
         _warningSprite = GetNode<Sprite2D>("WarningSprite");
 
+        // Spawn properties
+        Modulate = new Color(Modulate.R, Modulate.G, Modulate.B, 0);
+
         _controlledCrossesGroupIndex = "ControlledCrosses_" + Name;
 
         for (int i = 0; i < _controllersLeft; i++)

@@ -10,7 +10,6 @@ public partial class UserLevelScript : Node2D
     }
     public override void _Ready()
 	{
-        GD.Print("");
         if (G.DidLevelIntroPassed)
             StartLevel();
     }
@@ -25,13 +24,13 @@ public partial class UserLevelScript : Node2D
             if (Input.IsActionJustReleased("GetScoreDebug"))
             {
                 G.Scores += 5;
-                GetNode<CrossSpawner>("../CrossSpawner").Spawner.RecalculateCrossWeight();
+                Crosses.UpdateCrossesWeight();
             }
 
             if (Input.IsActionJustReleased("DecraseScoreDebug"))
             {
                 G.Scores -= 5;
-                GetNode<CrossSpawner>("../CrossSpawner").Spawner.RecalculateCrossWeight();
+                Crosses.UpdateCrossesWeight();
             }
 
             if (Input.IsActionJustPressed("InvincibilityDebug"))
