@@ -1,8 +1,5 @@
 using Godot;
 using System;
-using System.Diagnostics.Tracing;
-using static Godot.TextServer;
-
 public partial class GoldenCross : Node2D
 {
     [Signal] public delegate void OnCollectedEventHandler();
@@ -41,6 +38,10 @@ public partial class GoldenCross : Node2D
         _cross.GlobalRotationDegrees = 0;
 
         RotationAcceleration = -MAX_ROTATION_ACCELERATION + (_random.NextSingle() * MAX_ROTATION_ACCELERATION * 2);
+
+        // Lifetime determination
+        const float LIFETIME_PER_100PX = 0.5f;
+        LifeTime = 3f + LIFETIME_PER_100PX * GlobalPosition.DistanceTo(G.Player.GlobalPosition) / 100;
 
         // Price determination
         Price = _random.Next(DEFAULT_MIN_PRICE, DEFAULT_MAX_PRICE);

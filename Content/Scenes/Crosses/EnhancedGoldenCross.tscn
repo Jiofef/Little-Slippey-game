@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://bajxkgbvef738"]
+[gd_scene load_steps=43 format=3 uid="uid://bajxkgbvef738"]
 
 [ext_resource type="Texture2D" uid="uid://dnn6gvvg4t2sr" path="res://Content/Sprites/Crosses/EnhancedGoldenCross.png" id="1_egfsr"]
 [ext_resource type="Script" path="res://Content/Scripts/Crosses/EnhancedGoldenCross.cs" id="1_vafaw"]
@@ -7,6 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://bmnjn4tqb7t5m" path="res://Content/Sprites/Interface/GoldenCrossesAnimation.png" id="4_j0by6"]
 [ext_resource type="Texture2D" uid="uid://btp8llsfw6hi3" path="res://Content/Sprites/Interface/GoldenPointingArrow.png" id="4_v7afd"]
 [ext_resource type="Texture2D" uid="uid://cfn1twxbtcy8h" path="res://Content/Sprites/Interface/ChargedArrows.png" id="5_o0dkf"]
+[ext_resource type="AudioStream" uid="uid://b2yuhey8vnsqk" path="res://Content/Sounds/Crosses/OnGoldenCrossCollected1.mp3" id="8_sv5kn"]
+[ext_resource type="AudioStream" uid="uid://pt4ssvnfc64t" path="res://Content/Sounds/Crosses/OnGoldenCrossCollected2.mp3" id="9_m3v0p"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tkbld"]
 radius = 32.0
@@ -139,6 +141,35 @@ tracks/1/keys = {
 }]
 }
 
+[sub_resource type="Animation" id="Animation_2f1xp"]
+resource_name = "OnCollected"
+length = 0.2
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector2(10, 10), Vector2(30, 30)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_rjf4e"]
 length = 0.001
 tracks/0/type = "value"
@@ -176,35 +207,6 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(0.5),
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_2f1xp"]
-resource_name = "OnCollected"
-length = 0.2
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(0.5, 1),
-"update": 0,
-"values": [Vector2(10, 10), Vector2(30, 30)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(0.5, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1lqn2"]
@@ -326,7 +328,7 @@ collision_layer = 2147483649
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NegativePart/ChargeArea"]
 shape = SubResource("CircleShape2D_tkbld")
 
-[node name="PhotonParticles" type="CPUParticles2D" parent="NegativePart"]
+[node name="MicroParticles" type="CPUParticles2D" parent="NegativePart"]
 lifetime = 1.5
 emission_shape = 1
 emission_sphere_radius = 64.0
@@ -343,6 +345,7 @@ scale_amount_curve = SubResource("Curve_n5oiw")
 color = Color(0.0666667, 0.678431, 0.756863, 1)
 
 [node name="OffscreenPointer" parent="NegativePart" instance=ExtResource("3_n6rmv")]
+visible = false
 
 [node name="Pointer" parent="NegativePart/OffscreenPointer" index="0"]
 texture = ExtResource("4_v7afd")
@@ -358,6 +361,7 @@ frame_progress = 0.475692
 libraries = {
 "": SubResource("AnimationLibrary_1lqn2")
 }
+autoplay = "Appearing"
 
 [node name="PositivePart" type="Node2D" parent="."]
 position = Vector2(-273, 0)
@@ -421,7 +425,7 @@ scale_amount_curve = SubResource("Curve_daif1")
 color_ramp = SubResource("Gradient_pospt")
 color_initial_ramp = SubResource("Gradient_sricb")
 
-[node name="PhotonParticles" type="CPUParticles2D" parent="PositivePart"]
+[node name="MicroParticles" type="CPUParticles2D" parent="PositivePart"]
 lifetime = 1.5
 emission_shape = 1
 emission_sphere_radius = 64.0
@@ -438,6 +442,7 @@ scale_amount_curve = SubResource("Curve_n5oiw")
 color = Color(0.796078, 0.301961, 0.407843, 1)
 
 [node name="OffscreenPointer" parent="PositivePart" instance=ExtResource("3_n6rmv")]
+visible = false
 
 [node name="Pointer" parent="PositivePart/OffscreenPointer" index="0"]
 texture = ExtResource("4_v7afd")
@@ -449,13 +454,21 @@ sprite_frames = SubResource("SpriteFrames_euq1o")
 autoplay = "default"
 frame_progress = 0.305869
 
+[node name="OnGoldenCrossCollected1" type="AudioStreamPlayer" parent="PositivePart"]
+stream = ExtResource("8_sv5kn")
+volume_db = 8.0
+
+[node name="OnGoldenCrossCollected2" type="AudioStreamPlayer" parent="PositivePart"]
+stream = ExtResource("9_m3v0p")
+volume_db = 8.0
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="PositivePart"]
 libraries = {
 "": SubResource("AnimationLibrary_1lqn2")
 }
+autoplay = "Appearing"
 
-[connection signal="area_entered" from="NegativePart/ChargeArea" to="NegativePart" method="Anihilate"]
-[connection signal="area_entered" from="PositivePart/ChargeArea" to="PositivePart" method="Anihilate"]
+[connection signal="area_entered" from="PositivePart/ChargeArea" to="PositivePart" method="Anihilate" flags=6]
 
 [editable path="NegativePart/OffscreenPointer"]
 [editable path="PositivePart/OffscreenPointer"]

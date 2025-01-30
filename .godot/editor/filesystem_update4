@@ -2,6 +2,8 @@ res://default_env.tres
 res://Content/Scenes/Interface&Menu/InitializationScene.tscn
 res://Content/Other/BrightnessShader.gdshader
 res://Content/Other/BlurShader.gdshader
+res://Content/Scenes/Crosses/EnhancedGoldenCross.tscn
+res://Content/Scenes/Crosses/GoldenCross.tscn
 res://Content/Scripts/Crosses/BlueElementalCrossPart.cs
 res://Content/Scripts/Other/UserLevelScript.cs
 res://Content/Scripts/Interface&Menu/LevelEditor/LevelEditor.cs
@@ -130,5 +132,3 @@ res://Content/Scripts/Other/RootIntro.cs
 res://Content/Scripts/Crosses/DefaultCross.cs
 res://Content/Scripts/Interface&Menu/ScrollableRichTextLabel.cs
 res://Content/Scripts/Interface&Menu/OptionsMenu.cs
-res://Content/Scenes/Crosses/EnhancedGoldenCross.tscn
-res://Content/Scenes/Crosses/GoldenCross.tscn

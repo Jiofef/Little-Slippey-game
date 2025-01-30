@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using static OtherExtension.RandomTools;
 
 public partial class EnhancedGoldenCross : Node2D
 {
@@ -12,6 +13,9 @@ public partial class EnhancedGoldenCross : Node2D
 
 		negativePart.Reparent(GetParent());
 		positivePart.Reparent(GetParent());
+
+        negativePart.GlobalPosition = RandomVectorInCameraBorders();
+        positivePart.GlobalPosition = RandomVectorIn(G.CameraLimits, negativePart.GlobalPosition, 500);
 
 
 		QueueFree();

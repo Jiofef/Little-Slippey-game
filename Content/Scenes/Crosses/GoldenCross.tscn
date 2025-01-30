@@ -230,11 +230,10 @@ collision_mask = 8
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Path2D/Cross/CollectArea"]
 shape = SubResource("RectangleShape2D_a4yly")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Path2D/Cross"]
-libraries = {
-"": SubResource("AnimationLibrary_m800w")
-}
-autoplay = "Appearing"
+[node name="OffscreenPointer" parent="Path2D/Cross" instance=ExtResource("5_qfebh")]
+
+[node name="Pointer" parent="Path2D/Cross/OffscreenPointer" index="0"]
+texture = ExtResource("6_jqy6v")
 
 [node name="OnGoldenCrossCollected1" type="AudioStreamPlayer" parent="Path2D/Cross"]
 stream = ExtResource("3_mnqio")
@@ -246,10 +245,11 @@ stream = ExtResource("4_cysas")
 volume_db = 8.0
 bus = &"Interface"
 
-[node name="OffscreenPointer" parent="Path2D/Cross" instance=ExtResource("5_qfebh")]
-
-[node name="Pointer" parent="Path2D/Cross/OffscreenPointer" index="0"]
-texture = ExtResource("6_jqy6v")
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Path2D/Cross"]
+libraries = {
+"": SubResource("AnimationLibrary_m800w")
+}
+autoplay = "Appearing"
 
 [connection signal="area_entered" from="Path2D/Cross/CollectArea" to="." method="onCollected" flags=6 unbinds=1]
 

@@ -1,7 +1,7 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1738124698
-default_bus_layout.tres::AudioBusLayout::5491450156466921558::1738117389::0::1::::<><>::
-default_env.tres::Environment::9038263142653210561::1738124698::0::1::::<><>::
+::res://::1738201088
+default_bus_layout.tres::AudioBusLayout::5491450156466921558::1738192938::0::1::::<><>::
+default_env.tres::Environment::9038263142653210561::1738201088::0::1::::<><>::
 export_presets.cfg::TextFile::-1::1737077466::0::1::::<><>::
 icon.png::CompressedTexture2D::3916059988824051122::1670150219::1727708651::1::::<><>::
 README.md::TextFile::-1::1698159925::0::1::::<><>::
@@ -18,7 +18,7 @@ godotsteam.gdextension::GDExtension::-1::1731950749::0::1::::<><>::
 ::res://addons/godotsteam/osx/libgodotsteam.macos.template_release.framework/::1731950749
 ::res://addons/godotsteam/osx/libgodotsteam.macos.template_release.framework/Resources/::1731950749
 ::res://addons/godotsteam/win32/::1731950749
-::res://addons/godotsteam/win64/::1738117380
+::res://addons/godotsteam/win64/::1738192929
 ::res://addons/godotsteam_csharpbindings/::1731950750
 Methods.cs::CSharpScript::-1::1731950750::0::1::::<><>::
 Signals.cs::CSharpScript::-1::1731950750::0::1::::<><>::
@@ -148,11 +148,11 @@ TextFilteringContext.cs::CSharpScript::-1::1731950750::0::1::::<><>::
 ::res://addons/godotsteam_csharpbindings/Video/::1731950750
 BroadcastStatus.cs::CSharpScript::-1::1731950750::0::1::::<><>::
 ::res://Content/::1737065771
-::res://Content/Other/::1738124698
+::res://Content/Other/::1738201088
 AhahahSillyVideo.ogv::VideoStreamTheora::-1::1694090016::0::1::::<><>::
 AhahahSillyVideoRussian.ogv::VideoStreamTheora::-1::1694090016::0::1::::<><>::
-BlurShader.gdshader::Shader::-1::1738124698::0::1::::<><>::
-BrightnessShader.gdshader::Shader::-1::1738124698::0::1::::<><>::
+BlurShader.gdshader::Shader::-1::1738201088::0::1::::<><>::
+BrightnessShader.gdshader::Shader::-1::1738201088::0::1::::<><>::
 CH032.png::CompressedTexture2D::6617125560179867686::1716678946::1727708653::1::::<><>::
 CRT.gdshader::Shader::-1::1728347031::0::1::::<><>::
 Default.theme::Theme::154039918873755752::1728348342::0::1::::<><>::uid://cw7y82t02txrj::::res://Content/Other/Retro_Gaming.ttf
@@ -226,7 +226,7 @@ Thank you for everything, player.tscn::PackedScene::3953103206870700792::1734551
 you were deceived..tscn::PackedScene::6576563301102338178::1734547687::0::1::::<><>::uid://d27nwc3cdixbo::::res://Content/Scenes/Achievements/DefaultAchievement.tscn
 You will regret it..tscn::PackedScene::6376532086227510209::1734547772::0::1::::<><>::uid://d27nwc3cdixbo::::res://Content/Scenes/Achievements/DefaultAchievement.tscn
 You're getting somewhere.tscn::PackedScene::8978538712460565716::1734547791::0::1::::<><>::uid://d27nwc3cdixbo::::res://Content/Scenes/Achievements/DefaultAchievement.tscn
-::res://Content/Scenes/Crosses/::1738124698
+::res://Content/Scenes/Crosses/::1738201088
 BigExplosionAnimation.tscn::PackedScene::6671011288368873807::1731696286::0::1::::<><>::uid://bt41vubjcqv8p::::res://Content/Scenes/Crosses/ExplosionAnimation.tscn<>uid://8ddls1rsr5x::::res://Content/Sprites/Other/EXPOLZION.png
 BlueElementalCrossPart.tscn::PackedScene::7126450225434593745::1731696286::0::1::::<><>::uid://daihu7vaujeu7::::res://Content/Sprites/Crosses/BlueElementalCrossPart.png<>uid://bia3ek48x2oph::::res://Content/Sounds/Crosses/MicroExplosion.mp3<>res://Content/Scripts/Crosses/BlueElementalCrossPart.cs<>uid://bln6ojf3x2auj::::res://Content/Scenes/Crosses/SmallExplosionAnimation.tscn
 Cross1.tscn::PackedScene::5519690501599639894::1738038863::0::1::::<><>::uid://53uh2aqy4q1p::::res://Content/Sprites/Crosses/DefaultCross.png<>uid://doeu7dyjmu0db::::res://Content/Sprites/Crosses/DefaultCrossWarning.png<>res://Content/Scripts/Crosses/DefaultCross.cs<>uid://cceqrm4tkdmc2::::res://Content/Sounds/Crosses/Explosion.mp3<>uid://bt41vubjcqv8p::::res://Content/Scenes/Crosses/ExplosionAnimation.tscn<>uid://bg2mvitb1ih7q::::res://Content/Sprites/Other/Explosion.png
@@ -240,9 +240,9 @@ EnhancedCross3.tscn::PackedScene::4497330781939073361::1733785986::0::1::::<><>:
 EnhancedCross4.tscn::PackedScene::5520316719386197547::1738038863::0::1::::<><>::res://Content/Scripts/Crosses/EnhancedBlumCross.cs<>uid://bs7uef7wkpd40::::res://Content/Sprites/Crosses/EnhancedBlumCross.png<>uid://6cxf6dabdomb::::res://Content/Sprites/Crosses/EnhancedBlumCrossWarning.png<>uid://sb76vc7slrym::::res://Content/Sprites/Crosses/EnhancedBlumCrossCrystalAnimation.png<>uid://csq1qdkb418s::::res://Content/Sprites/Crosses/EnhancedBlumCrossCrystalHead.png<>uid://r3iyalnukxbo::::res://Content/Sprites/Crosses/EnhancedBlumCrossEnergyBeamAnimation.png<>uid://c5uftb5sncnln::::res://Content/Sounds/Crosses/EnhancedBlumCrossCrystalBreaking.mp3<>uid://dfo3s2oywny1s::::res://Content/Sounds/Crosses/EnhancedBlumCrossSignal.mp3<>uid://djlnmwp104edh::::res://Content/Sounds/Crosses/MegaExplosion.mp3<>uid://c2bqt07ll783d::::res://Content/Scenes/Crosses/BigExplosionAnimation.tscn
 EnhancedCross4CrystalParticles.tscn::PackedScene::6571180083599881656::1695511051::0::1::::<><>::
 EnhancedCross5.tscn::PackedScene::1733392445259053272::1733785986::0::1::::<><>::res://Content/Scripts/Crosses/EnhancedCannonCross.cs<>uid://dxgtoqpjnurps::::res://Content/Sprites/Crosses/Helicopter.png
-EnhancedGoldenCross.tscn::PackedScene::2406414749896945697::1738124698::0::1::::<><>::uid://dnn6gvvg4t2sr::::res://Content/Sprites/Crosses/EnhancedGoldenCross.png<>res://Content/Scripts/Crosses/EnhancedGoldenCross.cs<>res://Content/Scripts/Crosses/ElementaryParticleScript.cs<>uid://4gxbtrc21wvn::::res://Content/Scenes/Interface&Menu/OffscreenPointer.tscn<>uid://bmnjn4tqb7t5m::::res://Content/Sprites/Interface/GoldenCrossesAnimation.png<>uid://btp8llsfw6hi3::::res://Content/Sprites/Interface/GoldenPointingArrow.png<>uid://cfn1twxbtcy8h::::res://Content/Sprites/Interface/ChargedArrows.png
+EnhancedGoldenCross.tscn::PackedScene::2406414749896945697::1738201088::0::1::::<><>::uid://dnn6gvvg4t2sr::::res://Content/Sprites/Crosses/EnhancedGoldenCross.png<>res://Content/Scripts/Crosses/EnhancedGoldenCross.cs<>res://Content/Scripts/Crosses/ElementaryParticleScript.cs<>uid://4gxbtrc21wvn::::res://Content/Scenes/Interface&Menu/OffscreenPointer.tscn<>uid://bmnjn4tqb7t5m::::res://Content/Sprites/Interface/GoldenCrossesAnimation.png<>uid://btp8llsfw6hi3::::res://Content/Sprites/Interface/GoldenPointingArrow.png<>uid://cfn1twxbtcy8h::::res://Content/Sprites/Interface/ChargedArrows.png<>uid://b2yuhey8vnsqk::::res://Content/Sounds/Crosses/OnGoldenCrossCollected1.mp3<>uid://pt4ssvnfc64t::::res://Content/Sounds/Crosses/OnGoldenCrossCollected2.mp3
 ExplosionAnimation.tscn::PackedScene::3781492863591433797::1738108233::0::1::::<><>::uid://bg2mvitb1ih7q::::res://Content/Sprites/Other/Explosion.png<>res://Content/Scripts/Crosses/ExplosionAnimation.cs
-GoldenCross.tscn::PackedScene::5944750336908260069::1738124360::0::1::::<><>::res://Content/Scripts/Crosses/GoldenCross.cs<>uid://bmnjn4tqb7t5m::::res://Content/Sprites/Interface/GoldenCrossesAnimation.png<>uid://ixwvo35psihl::::res://Content/Sprites/Crosses/GoldenCross.png<>uid://b2yuhey8vnsqk::::res://Content/Sounds/Crosses/OnGoldenCrossCollected1.mp3<>uid://pt4ssvnfc64t::::res://Content/Sounds/Crosses/OnGoldenCrossCollected2.mp3<>uid://4gxbtrc21wvn::::res://Content/Scenes/Interface&Menu/OffscreenPointer.tscn<>uid://btp8llsfw6hi3::::res://Content/Sprites/Interface/GoldenPointingArrow.png
+GoldenCross.tscn::PackedScene::5944750336908260069::1738201088::0::1::::<><>::res://Content/Scripts/Crosses/GoldenCross.cs<>uid://bmnjn4tqb7t5m::::res://Content/Sprites/Interface/GoldenCrossesAnimation.png<>uid://ixwvo35psihl::::res://Content/Sprites/Crosses/GoldenCross.png<>uid://b2yuhey8vnsqk::::res://Content/Sounds/Crosses/OnGoldenCrossCollected1.mp3<>uid://pt4ssvnfc64t::::res://Content/Sounds/Crosses/OnGoldenCrossCollected2.mp3<>uid://4gxbtrc21wvn::::res://Content/Scenes/Interface&Menu/OffscreenPointer.tscn<>uid://btp8llsfw6hi3::::res://Content/Sprites/Interface/GoldenPointingArrow.png
 GreenElementalCrossPart.tscn::PackedScene::1505690371645961626::1731696286::0::1::::<><>::uid://daf6vfh6akpiv::::res://Content/Sounds/Crosses/GreenElementalCrossSpawnSound.mp3<>res://Content/Scripts/Crosses/GreenElementalCrossPart.cs<>uid://bia3ek48x2oph::::res://Content/Sounds/Crosses/MicroExplosion.mp3<>uid://covatekkrpqu3::::res://Content/Sprites/Crosses/GreenElementCrossVine.png<>uid://dclk66snfbku6::::res://Content/Sprites/Crosses/GreenElementalCrossPartVar4.png<>uid://bln6ojf3x2auj::::res://Content/Scenes/Crosses/SmallExplosionAnimation.tscn
 HelicopterBomb.tscn::PackedScene::4060246916888496497::1733786095::0::1::::<><>::uid://cceqrm4tkdmc2::::res://Content/Sounds/Crosses/Explosion.mp3<>res://Content/Scripts/Crosses/HelicopterBomb.cs<>uid://bt41vubjcqv8p::::res://Content/Scenes/Crosses/ExplosionAnimation.tscn<>uid://0tt2fv11qvro::::res://Content/Sprites/Crosses/HelicopterBomb.png
 RedElementalCrossPart.tscn::PackedScene::3745351843106605918::1731696285::0::1::::<><>::uid://djemtqgignvr::::res://Content/Sprites/Crosses/RedElementalCrossPart.png<>uid://do0uifwll8alm::::res://Content/Sounds/Crosses/RedElementalCrossSpawnSound.mp3<>res://Content/Scripts/Crosses/RedElementalCrossPart.cs<>uid://bia3ek48x2oph::::res://Content/Sounds/Crosses/MicroExplosion.mp3<>uid://bln6ojf3x2auj::::res://Content/Scenes/Crosses/SmallExplosionAnimation.tscn
@@ -254,7 +254,7 @@ DefaultRigidBody.tscn::PackedScene::6899017663510267137::1727962572::0::1::::<><
 Sprite2D.tscn::PackedScene::5142193769891440809::1727976947::0::1::::<><>::uid://bf6l830aawvwo::::res://Content/Sprites/Interface/LevelEditor/DefaultSprite.png
 TextureRect.tscn::PackedScene::9047259137045468641::1727976947::0::1::::<><>::uid://bf6l830aawvwo::::res://Content/Sprites/Interface/LevelEditor/DefaultSprite.png
 TogglableButton.tscn::PackedScene::6396017243863994239::1727975019::0::1::::<><>::res://Content/Scripts/Levels/LevelEditorDefaultButton.cs<>uid://nlwphmf6wah0::::res://Content/Sprites/Levels/Level8/Button.png
-::res://Content/Scenes/Interface&Menu/::1738118733
+::res://Content/Scenes/Interface&Menu/::1738201088
 AchievementsMenu.tscn::PackedScene::2465208516054364638::1736310343::0::1::::<><>::uid://cb3550p76ubc8::::res://Content/Scenes/Interface&Menu/DraggableWindow.tscn<>res://Content/Scripts/Interface&Menu/AchievementsMenu.cs<>uid://dkitr1ftp0yhs::::res://Content/Other/Menu.tres<>res://Content/Scripts/Interface&Menu/ScrollableContainer.cs
 AdditionalGuiLayer.tscn::PackedScene::4813527504343416296::1737515006::0::1::::<><>::res://Content/Scripts/Interface&Menu/AdditionalGuiLayer.cs<>uid://cdbeqxy4ybfl6::::res://Content/Scenes/Interface&Menu/GoldenCrossesAmount.tscn<>uid://b424yc63hw1am::::res://Content/Sounds/Interface&Menu/GoldenCrossesRecievedAdditionalSound.mp3
 AnnotationBox.tscn::PackedScene::7486163156534229598::1734649071::0::1::::<><>::res://Content/Scripts/Interface&Menu/AnnotationBox.cs<>uid://7r0hpuodjrlj::::res://Content/Sprites/Interface/SmallWindowBase.png
@@ -269,7 +269,7 @@ FlexibleWindow.tscn::PackedScene::2258835094256850006::1736310343::0::1::::<><>:
 GoldenCrossesAmount.tscn::PackedScene::4985744963190007377::1737516567::0::1::::<><>::uid://dkitr1ftp0yhs::::res://Content/Other/Menu.tres<>res://Content/Scripts/Interface&Menu/GoldenCrossesAmount.cs<>uid://bmnjn4tqb7t5m::::res://Content/Sprites/Interface/GoldenCrossesAnimation.png
 HintCanvasLayer.tscn::PackedScene::5387601287167500234::1734385685::0::1::::<><>::res://Content/Scripts/Levels/HintCanvasLayer.cs<>uid://cij0pc53cmvqd::::res://Content/Sounds/Other/Snare.mp3<>uid://6nyi0tpol518::::res://Content/Sprites/Other/HintGlitch.png<>uid://2xdh4hpisqfj::::res://Content/Sounds/Other/HintGlitch.mp3
 InfoWindow.tscn::PackedScene::5129834191427671618::1736556664::0::1::::<><>::uid://cb3550p76ubc8::::res://Content/Scenes/Interface&Menu/DraggableWindow.tscn<>res://Content/Scripts/Interface&Menu/ConfirmationWindow.cs<>uid://dkitr1ftp0yhs::::res://Content/Other/Menu.tres<>uid://ci0nrongv6pih::::res://Content/Scenes/Interface&Menu/MenuButton.tscn<>uid://b8abnpf38b77x::::res://Content/Sprites/Interface/Buttons/4XAcceptButton.png
-InitializationScene.tscn::PackedScene::2013028201891906424::1738118733::0::1::::<><>::res://Content/Scripts/Interface&Menu/InitializationScene.cs<>uid://bwpstpk1xmkah::::res://Content/Scenes/Interface&Menu/Button.tscn<>uid://vb7vdsdjg4xa::::res://Content/Sprites/Interface/USADiscordFlag.png<>uid://hcoc3411pyvj::::res://Content/Sprites/Interface/RussiaDiscordFlag.png
+InitializationScene.tscn::PackedScene::2013028201891906424::1738201088::0::1::::<><>::res://Content/Scripts/Interface&Menu/InitializationScene.cs<>uid://bwpstpk1xmkah::::res://Content/Scenes/Interface&Menu/Button.tscn<>uid://vb7vdsdjg4xa::::res://Content/Sprites/Interface/USADiscordFlag.png<>uid://hcoc3411pyvj::::res://Content/Sprites/Interface/RussiaDiscordFlag.png
 LevelButton.tscn::PackedScene::6803955634510818098::1737516567::0::1::::<><>::uid://bwpstpk1xmkah::::res://Content/Scenes/Interface&Menu/Button.tscn<>uid://71vomw6byask::::res://Content/Sprites/Interface/Buttons/LevelIconButton.png<>uid://kaxj86lxg5nq::::res://Content/Sprites/Interface/Buttons/LevelIconButtonDisabled.png<>uid://bppnbtehdr3md::::res://Content/Sprites/Interface/LevelsIcons.png
 LevelsMenu.tscn::PackedScene::7025468511006834813::1737683965::0::1::::<><>::res://Content/Scripts/Interface&Menu/LevelsMenu.cs<>uid://bwpstpk1xmkah::::res://Content/Scenes/Interface&Menu/Button.tscn<>uid://bvogrd2bqhwmt::::res://Content/Sprites/Other/OblivionNoise.png<>uid://bv6ampi04qu7h::::res://Content/Sprites/Interface/LevelsMenuBox.png<>uid://dkitr1ftp0yhs::::res://Content/Other/Menu.tres<>uid://dy6lncevmnf3o::::res://Content/Sounds/Other/WhiteNoise.mp3<>uid://b2ay51k3qped::::res://Content/Sprites/Interface/Buttons/MicroLockSprite.png<>uid://1ua2wp4j8ce::::res://Content/Sprites/Interface/Buttons/LevelListScrollButtonLeft.png<>uid://dk6qvinkosaoa::::res://Content/Sprites/Interface/Buttons/LevelListScrollButtonDisabled.png<>uid://c6v5r4xne78e0::::res://Content/Sprites/Interface/Buttons/LevelListScrollButtonRight.png<>uid://c365fjpfqoj67::::res://Content/Scenes/Interface&Menu/LevelButton.tscn<>uid://ci0nrongv6pih::::res://Content/Scenes/Interface&Menu/MenuButton.tscn<>uid://b8abnpf38b77x::::res://Content/Sprites/Interface/Buttons/4XAcceptButton.png<>uid://ba7grlwd3ygbr::::res://Content/Sprites/Interface/LevelsMenuLevel5IconWindow.png
 MenuButton.tscn::PackedScene::5386781995455573915::1736909672::0::1::::<><>::uid://bwpstpk1xmkah::::res://Content/Scenes/Interface&Menu/Button.tscn<>uid://glq8rf30o1q3::::res://Content/Sprites/Interface/Buttons/4XCancelButton.png<>uid://dt52ve0jyuro::::res://Content/Sprites/Interface/Buttons/4XButtonBase.png
@@ -383,22 +383,22 @@ Sleepy.tscn::PackedScene::8786647963015132764::1733535813::0::1::::<><>::uid://c
 Slippey.tscn::PackedScene::5963397431566171653::1733783768::0::1::::<><>::uid://060bgiw5i00k::::res://Content/Sprites/PlayerSkins/Slippey.png<>res://Content/Scripts/Other/SkinScript.cs
 Strawman.tscn::PackedScene::4709437864414350358::1733533516::0::1::::<><>::uid://b486fyylpidxt::::res://Content/Sprites/PlayerSkins/Strawman.png<>res://Content/Scripts/Other/SkinScript.cs<>uid://bau0b6quvib5h::::res://Content/Sprites/Other/Note.png<>uid://br6tvgd3qi7jp::::res://Content/Sounds/Soundtrack/StrawMusic.mp3
 ::res://Content/Scripts/::1736813672
-::res://Content/Scripts/Crosses/::1738124226
+::res://Content/Scripts/Crosses/::1738201008
 BlueElementalCrossPart.cs::CSharpScript::-1::1738000611::0::1::::<>Node2D<>::
 BlumCross.cs::CSharpScript::-1::1738106335::0::1::::<>Node2D<>::
 CannonCross.cs::CSharpScript::-1::1738092788::0::1::::<>Path2D<>::
 CrossSpawner.cs::CSharpScript::-1::1738098952::0::1::::<>Node2D<>::
 DefaultCross.cs::CSharpScript::-1::1738000591::0::1::::<>Node2D<>::
 ElementalCross.cs::CSharpScript::-1::1738000785::0::1::::<>Node2D<>::
-ElementaryParticleScript.cs::CSharpScript::-1::1738124226::0::1::::<>Node2D<>::
+ElementaryParticleScript.cs::CSharpScript::-1::1738201008::0::1::::<>Node2D<>::
 EnhancedBlumCross.cs::CSharpScript::-1::1738106348::0::1::::<>Node2D<>::
 EnhancedCannonCross.cs::CSharpScript::-1::1738029188::0::1::::<>Node2D<>::
 EnhancedDefaultCross.cs::CSharpScript::-1::1738000595::0::1::::<>Node2D<>::
 EnhancedElementalCross.cs::CSharpScript::-1::1734563926::0::1::::<>Node2D<>::
-EnhancedGoldenCross.cs::CSharpScript::-1::1738000691::0::1::::<>Node2D<>::
+EnhancedGoldenCross.cs::CSharpScript::-1::1738200623::0::1::::<>Node2D<>::
 EnhancedRestlessCross.cs::CSharpScript::-1::1734564581::0::1::::<>Node2D<>::
 ExplosionAnimation.cs::CSharpScript::-1::1731614064::0::1::::<>AnimatedSprite2D<>::
-GoldenCross.cs::CSharpScript::-1::1738000711::0::1::::<>Node2D<>::
+GoldenCross.cs::CSharpScript::-1::1738124853::0::1::::<>Node2D<>::
 GreenElementalCrossPart.cs::CSharpScript::-1::1727563695::0::1::::<>Node2D<>::
 HelicopterBomb.cs::CSharpScript::-1::1696199870::0::1::::<>Node2D<>::
 RedElementalCrossPart.cs::CSharpScript::-1::1738000727::0::1::::<>Node2D<>::
@@ -487,7 +487,7 @@ PresentedLevel5Rain.cs::CSharpScript::-1::1697653456::0::1::::<>Node2D<>::
 Subtitles.cs::CSharpScript::-1::1734552393::0::1::::<>RichTextLabel<>::
 TutorialCanvasLayer.cs::CSharpScript::-1::1732978304::0::1::::<>CanvasLayer<>::
 TutorialTvScreen.cs::CSharpScript::-1::1720234769::0::1::::<>Control<>::
-::res://Content/Scripts/Other/::1738099678
+::res://Content/Scripts/Other/::1738174302
 Achievement.cs::CSharpScript::-1::1732729754::0::1::::<>Control<>::
 AchievementArea.cs::CSharpScript::-1::1734228543::0::1::::<>Area2D<>::
 AnimationRandomizer.cs::CSharpScript::-1::1696105480::0::1::::<>AnimationPlayer<>::
@@ -521,7 +521,7 @@ OtherExtension.cs::CSharpScript::-1::1738107107::0::1::::<><>::
 Skins.cs::CSharpScript::-1::1737730470::0::1::::<>Node<>::
 UnchangableMeta.cs::CSharpScript::-1::1737685425::0::1::::<>Node<>::
 ::res://Content/Sounds/::1737514977
-::res://Content/Sounds/Crosses/::1737161834
+::res://Content/Sounds/Crosses/::1738200073
 BlueElementalCrossPartSoundVar1.mp3::AudioStreamMP3::7515156397364083251::1696285631::1727708650::1::::<><>::
 BlueElementalCrossPartSoundVar2.mp3::AudioStreamMP3::5794584899614354905::1696285717::1727708650::1::::<><>::
 BlueElementalCrossPartSoundVar3.mp3::AudioStreamMP3::7057477337942766302::1696285729::1727708650::1::::<><>::
@@ -535,8 +535,10 @@ Explosion.mp3::AudioStreamMP3::4922479072015450727::1698148219::1727708650::1:::
 GreenElementalCrossSpawnSound.mp3::AudioStreamMP3::7171503943136655697::1696285892::1727708650::1::::<><>::
 MegaExplosion.mp3::AudioStreamMP3::7814481729450718325::1696285899::1727708650::1::::<><>::
 MicroExplosion.mp3::AudioStreamMP3::2949639223334452837::1696286008::1727708650::1::::<><>::
-OnGoldenCrossCollected1.mp3::AudioStreamMP3::4332291617126744522::1737161768::1737161834::1::::<><>::
-OnGoldenCrossCollected2.mp3::AudioStreamMP3::1093849747436790057::1737161832::1737161834::1::::<><>::
+OnEnhancedGoldenCrossCollected1.mp3::AudioStreamMP3::6058756822618618484::1738207056::1738207058::1::::<><>::
+OnEnhancedGoldenCrossCollected2.mp3::AudioStreamMP3::3805494184675962732::1738207039::1738207058::1::::<><>::
+OnGoldenCrossCollected1.mp3::AudioStreamMP3::4332291617126744522::1738199948::1738199950::1::::<><>::
+OnGoldenCrossCollected2.mp3::AudioStreamMP3::1093849747436790057::1738200071::1738200073::1::::<><>::
 RedElementalCrossSpawnSound.mp3::AudioStreamMP3::8194744229188054042::1696286016::1727708650::1::::<><>::
 RestlessCrossSignal.mp3::AudioStreamMP3::4565128954929443859::1696286024::1727708650::1::::<><>::
 ::res://Content/Sounds/Interface&Menu/::1737689217
@@ -644,9 +646,10 @@ TutorialShakyPlatformFall.mp3::AudioStreamMP3::667696946821285868::1699394950::1
 TutorialTileMapBreaking.mp3::AudioStreamMP3::7238194981686561426::1699552785::1727708649::1::::<><>::
 TutorialTVFallingSound.mp3::AudioStreamMP3::8616109957786844158::1698922680::1727708649::1::::<><>::
 TutorialYOUWIN.mp3::AudioStreamMP3::2801095764714041324::1699655697::1727708649::1::::<><>::
-::res://Content/Sounds/Other/::1737515038
+::res://Content/Sounds/Other/::1738182109
 AlbedoBasalt.mp3::AudioStreamMP3::3961474364756076854::1696287364::1727708649::1::::<><>::
 Anthem of Alpelandia.mp3::AudioStreamMP3::1280333752614986770::1696287358::1727708649::1::::<><>::
+baby-crying-64996.mp3::AudioStreamMP3::8471724973433576445::1738131843::1738182109::1::::<><>::
 CH032.png::CompressedTexture2D::4292145435754268762::1716678880::1727708653::1::::<><>::
 EpicIntro.mp3::AudioStreamMP3::6220583476316016566::1697845878::1727708649::1::::<><>::
 FastWhiteNoise.mp3::AudioStreamMP3::7023530445799627225::1697486778::1727708649::1::::<><>::
@@ -733,7 +736,7 @@ RestlessCrossHiRes.png::CompressedTexture2D::3426077542880924879::1733521178::17
 RestlessCrossWarning.png::CompressedTexture2D::3867371827372338988::1695331874::1727708653::1::::<><>::
 RestlessCrossWarningHiRes.png::CompressedTexture2D::6512445614659817217::1733521199::1733521202::1::::<><>::
 TornCannonBarrel.png::CompressedTexture2D::1002712612040136697::1673783657::1727708653::1::::<><>::
-::res://Content/Sprites/Interface/::1738124736
+::res://Content/Sprites/Interface/::1738124754
 4XBlueBox.png::CompressedTexture2D::625186965437105982::1732906154::1732906155::1::::<><>::
 4XMiniGoldenCross.png::CompressedTexture2D::922741346343981211::1737511878::1737511880::1::::<><>::
 4XSmallWindowBase.png::CompressedTexture2D::1604393456607599178::1732977774::1732977775::1::::<><>::
