@@ -9,8 +9,12 @@
 texture = ExtResource("2_f5lgi")
 region_rect = Rect2(135, 0, 45, 45)
 
+[node name="RewardBox2" parent="Sprite2D" index="1"]
+visible = true
+
 [node name="Name" parent="." index="1"]
 text = "The first flower of the plain"
 
 [node name="Text" parent="." index="2"]
+offset_right = 448.0
 text = "Complete level 4 on \"Hard\" difficulty"

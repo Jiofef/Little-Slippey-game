@@ -58,7 +58,6 @@ public partial class Camera : Camera2D
         LimitBottom = (int)(Defaultlimits.End.Y + plus3);
         LimitRight = (int)(Defaultlimits.End.X + plus2);
 
-
         if (DoResetSmoothing)
             ResetSmoothing();
     }

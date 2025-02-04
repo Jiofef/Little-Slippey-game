@@ -1,6 +1,8 @@
 using Godot;
 using GodotSteam;
 using System;
+using System.Threading.Tasks;
+using static OtherExtension.FastInstanceCreator;
 
 public partial class Player : CharacterBody2D
 {
@@ -22,6 +24,8 @@ public partial class Player : CharacterBody2D
     [Signal] public delegate void CameraLimitsChangedEventHandler(bool doResetSmoothing, float top, float right, float bottom, float left);
 
     [Signal] public delegate void PlayerDiedEventHandler();
+
+    [Signal] public delegate void PlayerResurrectedEventHandler();
 
     ///////////////////////////
 
@@ -475,6 +479,12 @@ public partial class Player : CharacterBody2D
                 _skinAnimationPlayerEnabled = true;
                 _animationPlayer = _animatedSprite.GetNode<AnimationPlayer>("AnimationPlayer");
             }
+
+            if (skin.HasDeathAnimation)
+            {
+                _animationPlayer = _animatedSprite.GetNode<AnimationPlayer>("AnimationPlayer");
+                Connect("PlayerResurrected", new Callable(_animationPlayer, "stop"));
+            }
         }
 
         skinContainer.AddChild(_animatedSprite);
@@ -589,11 +599,23 @@ public partial class Player : CharacterBody2D
         UnchangableMeta.SaveToFile();
 
         EmitSignal("PlayerDied");
+
+        //Resurrect();
     }
 
-    public void Resurrect()
+    public async void Resurrect()
     {
         if (!G.IsPlayerDead || !preDeathParams.HasSavedParams) return;
+        // >>Before resurrection
+
+        // Resurrection effects
+        var resurrectionEffect = LoadResScene("Interface&Menu/ResurrectionEffect.tscn");
+        var resurrectionAnimation = resurrectionEffect.GetNode<AnimationPlayer>("AnimationPlayer");
+        G.AdditionalGuiLayer.AddChild(resurrectionEffect);
+        // The only time the animation changes is when the player must be resurrected
+        await ToSignal(resurrectionAnimation, "animation_changed");
+
+        // >>After resurrection
 
         preDeathParams.LoadParams();
 
@@ -605,12 +627,14 @@ public partial class Player : CharacterBody2D
         GetNode<AudioStreamPlayer>("Sounds/Death").Stop();
 
         Camera.OnPlayerResurrected();
+
+        EmitSignal("PlayerResurrected");
     }
 
 
     public void SetCameraLimits(Vector4 value, bool doResetSmoothing = false)
     {
-        SetCameraLimits(new Rect2(value.W, value.X, value.Y, value.Z), doResetSmoothing);
+        SetCameraLimits(new Rect2(value[3], value[0], value[1] - value[3], value[2] - value[0]), doResetSmoothing);
     }
 
     public void SetCameraLimits(Rect2 value, bool doResetSmoothing = false)

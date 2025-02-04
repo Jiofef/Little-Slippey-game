@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://dl02wnkllntn2"]
+
+[ext_resource type="Theme" uid="uid://dkitr1ftp0yhs" path="res://Content/Other/Menu.tres" id="1_1p2fy"]
+
+[node name="NewSkinInTheShop" type="RichTextLabel"]
+offset_left = -9.0
+offset_top = -9.0
+offset_right = 135.0
+offset_bottom = 135.0
+scale = Vector2(0.125, 0.125)
+theme = ExtResource("1_1p2fy")
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+bbcode_enabled = true
+text = "
+
+[center]New skin!"

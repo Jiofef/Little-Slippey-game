@@ -6,7 +6,7 @@ public partial class SkinScript : AnimatedSprite2D
 
     public override void _Ready()
 	{
-		SetPhysicsProcess(HasSideJumpAndFallFrame || Meta.Instance.Gameplay.ChosenSkinKey == "Sleepy");
+		SetPhysicsProcess(HasSideJumpAndFallFrame);
 	}
     public override void _PhysicsProcess(double delta)
     {

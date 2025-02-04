@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=4 uid="uid://c2nxiddufnutu"]
+[gd_scene load_steps=58 format=4 uid="uid://c2nxiddufnutu"]
 
 [ext_resource type="Script" path="res://Content/Scripts/Other/MainScript.cs" id="1_52yug"]
 [ext_resource type="Script" path="res://Content/Scripts/Levels/Level10MusicPlayer.cs" id="2_1fwqt"]
@@ -19,6 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://dpf24jfhstqid" path="res://Content/Sprites/Levels/Level10/PortableControlledDroneCapsule.png" id="15_h6grn"]
 [ext_resource type="AudioStream" uid="uid://cfsrycvyi23la" path="res://Content/Sounds/Levels/Level10ElectronicBroken.mp3" id="16_frlwx"]
 [ext_resource type="AudioStream" uid="uid://c0lbb7mb40ipw" path="res://Content/Sounds/Levels/Level10ManipulatorSound.mp3" id="16_mt6pq"]
+[ext_resource type="Script" path="res://Content/Scripts/Crosses/CrossSpawner.cs" id="20_ervhf"]
 [ext_resource type="PackedScene" uid="uid://tjddwdxopw2u" path="res://Content/Scenes/Interface&Menu/Pause.tscn" id="20_hj1ty"]
 [ext_resource type="PackedScene" uid="uid://c7psxdkakrw5x" path="res://Content/Scenes/Other/EpicIntro.tscn" id="21_qva4a"]
 [ext_resource type="PackedScene" uid="uid://catydhrk62at1" path="res://Content/Scenes/Interface&Menu/AdditionalGuiLayer.tscn" id="22_xxqx4"]
@@ -1104,6 +1105,9 @@ one_shot = true
 
 [node name="ManipulatorSound" type="AudioStreamPlayer" parent="Level/PositionCrutch/DroneCapsule"]
 stream = ExtResource("16_mt6pq")
+
+[node name="CrossSpawner" type="Node2D" parent="."]
+script = ExtResource("20_ervhf")
 
 [node name="Pause" parent="." instance=ExtResource("20_hj1ty")]
 

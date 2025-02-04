@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://droytgvtf3o2k"]
+[gd_scene load_steps=5 format=3 uid="uid://droytgvtf3o2k"]
 
 [ext_resource type="PackedScene" uid="uid://d27nwc3cdixbo" path="res://Content/Scenes/Achievements/DefaultAchievement.tscn" id="1_8v8y0"]
 [ext_resource type="Texture2D" uid="uid://bppnbtehdr3md" path="res://Content/Sprites/Interface/LevelsIcons.png" id="2_flqev"]
 [ext_resource type="Texture2D" uid="uid://daeeo1lq7usi6" path="res://Content/Sprites/PlayerSkins/Hostey.png" id="3_0p4lu"]
+[ext_resource type="PackedScene" uid="uid://dl02wnkllntn2" path="res://Content/Scenes/Interface&Menu/RareScenes/NewSkinInTheShop.tscn" id="4_o0prk"]
 
 [node name="Achievement" instance=ExtResource("1_8v8y0")]
 
@@ -14,9 +15,12 @@ region_rect = Rect2(270, 90, 45, 45)
 visible = true
 
 [node name="RewardSprite" parent="Sprite2D/RewardBox2" index="0"]
+modulate = Color(0, 0, 0, 1)
 texture = ExtResource("3_0p4lu")
 region_enabled = true
 region_rect = Rect2(0, 0, 16, 16)
+
+[node name="NewSkinInTheShop" parent="Sprite2D/RewardBox2" index="1" instance=ExtResource("4_o0prk")]
 
 [node name="Star2" parent="Sprite2D/Ratings" index="1"]
 visible = true

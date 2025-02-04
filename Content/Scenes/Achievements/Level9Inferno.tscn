@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://bexfvmi5dfsnw"]
+[gd_scene load_steps=7 format=3 uid="uid://bexfvmi5dfsnw"]
 
 [ext_resource type="PackedScene" uid="uid://d27nwc3cdixbo" path="res://Content/Scenes/Achievements/DefaultAchievement.tscn" id="1_eeqrh"]
 [ext_resource type="Texture2D" uid="uid://bppnbtehdr3md" path="res://Content/Sprites/Interface/LevelsIcons.png" id="2_41wfu"]
 [ext_resource type="Texture2D" uid="uid://b6h1343aeq7e6" path="res://Content/Sprites/PlayerSkins/JioYobaFefskiHead.png" id="3_dxk8w"]
 [ext_resource type="Texture2D" uid="uid://cqf70mpnkx8ob" path="res://Content/Sprites/PlayerSkins/JioYobaFefskiLeg.png" id="4_33jra"]
 [ext_resource type="Texture2D" uid="uid://dve0odv51cuq7" path="res://Content/Sprites/PlayerSkins/JioYobaFefskiHand.png" id="5_0isxs"]
+[ext_resource type="PackedScene" uid="uid://dl02wnkllntn2" path="res://Content/Scenes/Interface&Menu/RareScenes/NewSkinInTheShop.tscn" id="6_opyhg"]
 
 [node name="Achievement" instance=ExtResource("1_eeqrh")]
 
@@ -16,6 +17,7 @@ region_rect = Rect2(360, 90, 45, 45)
 visible = true
 
 [node name="RewardSprite" parent="Sprite2D/RewardBox2" index="0"]
+modulate = Color(0, 0, 0, 1)
 position = Vector2(0, -1)
 scale = Vector2(0.08, 0.08)
 texture = ExtResource("3_dxk8w")
@@ -39,6 +41,8 @@ position = Vector2(-52, 32)
 texture = ExtResource("5_0isxs")
 region_enabled = true
 region_rect = Rect2(150, 0, 75, 100)
+
+[node name="NewSkinInTheShop" parent="Sprite2D/RewardBox2" index="1" instance=ExtResource("6_opyhg")]
 
 [node name="Star2" parent="Sprite2D/Ratings" index="1"]
 visible = true

@@ -2,8 +2,8 @@ using Godot;
 using GodotSteam;
 using System;
 using System.Collections.Generic;
-using System.Runtime.Serialization;
 using System.Text.Json;
+using System.Threading.Tasks;
 
 public partial class Achievements : Node
 {
@@ -20,8 +20,13 @@ public partial class Achievements : Node
         {
             IsHidden = false;
         }
+        public Data(int goldenCrossesRewardAmount)
+        {
+
+        }
         public bool IsHidden { get; set; }
         public bool IsReceived { get; set; } = false;
+        public int RewardAmount { get; set; } = 0;
 
     }
 
@@ -104,32 +109,65 @@ public partial class Achievements : Node
             }
         }
     }
-    public static AdditionalGuiLayer CurrentAdditionalGuiLayer = null;
     public static int AchievementPopupTimerMultiplier = 0;
     public static void GetAchievement(string name) // Do not ruin someone else's experience and do not give away game achievements for nothing. If you are making a cheat map or mod, mark it in the title/preview
     {
         Steam.SetAchievement(name);
         if (AllTheAchievements[name].IsReceived) return;
         var achievement = (Control)ResourceLoader.Load<PackedScene>("res://Content/Scenes/Achievements/" + name + ".tscn").Instantiate();
-        CurrentAdditionalGuiLayer.AddChild(achievement);
-        achievement.GetNode<Timer>("PopupVersionPart/PopupTimer").Start(0.05f + 0.3f * AchievementPopupTimerMultiplier);
+        G.AdditionalGuiLayer.AddChild(achievement);
+        achievement.GetNode<Godot.Timer>("PopupVersionPart/PopupTimer").Start(0.05f + 0.3f * AchievementPopupTimerMultiplier);
         achievement.FocusMode = Control.FocusModeEnum.None;
         achievement.MouseFilter = Control.MouseFilterEnum.Ignore;
         AllTheAchievements[name].IsReceived = true;
-        SaveAchievements();
+        SaveAchievementStatuses();
         AchievementPopupTimerMultiplier++;
 
         if (AchievementsCount() == (AllTheAchievements.Count - 1))
             GetAchievement("Thank you for everything, player");
     } 
+    public async static void GetAchievementAfter(float timer, string name)
+    {
+        await Task.Delay((int)(timer * 1000));
+        GetAchievement(name);
+    }
+    public async static void GetAchievementAfter(Task task, string name)
+    {
+        await task;
+        GetAchievement(name);
+    }
 
-    public static void SaveAchievements()
+    public static void SaveAchievementStatuses()
     {
         try
         {
-            var SaveData = JsonSerializer.Serialize(AllTheAchievements);
-            FileSystemExtension.SaveInJson(SaveData, "user://achievements.json");
+            var SaveData = JsonSerializer.Serialize(GetJSON());
+            FileSystemExtension.SaveInJson(GetJSON(), "user://achievements.json");
         }
         catch { }
+    }
+    public static void LoadAchievementStatuses()
+    {
+        try
+        {
+            var model = FileSystemExtension.GetSystemJsonModel("user://achievements.json");
+
+            foreach(var achievement in model)
+            {
+                AllTheAchievements[achievement.Key].IsReceived = (bool)achievement.Value;
+            }
+        }
+        catch { }
+    }
+
+    public static Dictionary<string, bool> GetJSON()
+    {
+        Dictionary<string, bool> dic = new();
+
+        foreach(var achievement in AllTheAchievements)
+        {
+            dic.Add(achievement.Key, achievement.Value.IsReceived);
+        }
+        return dic;
     }
 }

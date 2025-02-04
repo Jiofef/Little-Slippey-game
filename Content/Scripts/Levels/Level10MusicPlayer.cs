@@ -1,8 +1,12 @@
 using Godot;
 using System;
+using static Level10ScientistScript;
+using static OtherExtension.ActionTools;
+
 
 public partial class Level10MusicPlayer : AudioStreamPlayer
 {
+    public LevelState LevelState;
     private float _position => GetPlaybackPosition();
     private float[,] _partsTimeCodes = new float[,]
     {
@@ -15,7 +19,9 @@ public partial class Level10MusicPlayer : AudioStreamPlayer
 
     public override void _Ready()
 	{
-        G.BindLevelStartEventToNodeSafely(this, "StartPlaying");
+        BindEventToNodeSafely(this, "StartPlaying", G.OnLevelStarted);
+
+        LevelState = GetNode<Level10ScientistScript>("../Level/ScientistNode")._level;
     }
 
     public void StartPlaying()
@@ -31,14 +37,14 @@ public partial class Level10MusicPlayer : AudioStreamPlayer
 
     public override void _PhysicsProcess(double delta)
 	{
-        if (G.Scores > _partsRelatedScores[(int)G.TransitiveVariant[5]])
+        if (G.Scores > _partsRelatedScores[LevelState.CurrentMusicPart])
         {
-            G.TransitiveVariant[5] = (int)G.TransitiveVariant[5] + 1;
-            Play(_partsTimeCodes[(int)G.TransitiveVariant[5] - 1, 1]);
+            LevelState.CurrentMusicPart = LevelState.CurrentMusicPart + 1;
+            Play(_partsTimeCodes[LevelState.CurrentMusicPart - 1, 1]);
         }
-        if (_position >= _partsTimeCodes[(int)G.TransitiveVariant[5], 1])
+        if (_position >= _partsTimeCodes[LevelState.CurrentMusicPart, 1])
         {
-            Play(_partsTimeCodes[(int)G.TransitiveVariant[5], 0]);
+            Play(_partsTimeCodes[LevelState.CurrentMusicPart, 0]);
         }
 	}
 }

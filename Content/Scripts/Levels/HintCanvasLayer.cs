@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using static OtherExtension.ActionTools;
 
 public partial class HintCanvasLayer : CanvasLayer
 {
@@ -15,7 +16,7 @@ public partial class HintCanvasLayer : CanvasLayer
     #region Sorry for shitcode :P
     public override void _Ready()
     {
-        G.BindLevelStartEventToNodeSafely(this, "OnLevelStarted", true);
+        BindEventToNodeSafelyWithoutArgs(this, "OnLevelStarted", G.OnLevelStarted, true);
 
         if (UnchangableMeta.HintsStatus[HintID] == 1)
         {

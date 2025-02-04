@@ -162,8 +162,8 @@ public partial class Crosses : Node
     public static Cross[] CurrentCrossesPack;
 
     public static Cross CurrentGoldenCross;
-    public static bool EnableGoldenCrossSpawning;
-    public const int DEFAULT_GOLDEN_CROSS_RARITY = 10;
+    public static bool EnableGoldenCrossSpawning, KeepGoldenCrossSpawningWhenProgressProgress = false;
+    public const int DEFAULT_GOLDEN_CROSS_RARITY = 100;
     public static int GoldenCrossSpawnRarity;
 
     public int CurrentCrossesCount => CurrentCrossesPack.Length + (CurrentGoldenCross != null ? 1 : 0);
@@ -194,6 +194,7 @@ public partial class Crosses : Node
         Cross goldenCross = new Cross("GoldenCross");
         goldenCross.SpawnRectMode = Cross.SpawnRectModeEnum.CameraLimits;
         goldenCross.MinimumSpawnDistanceToPlayer = 100;
+        KeepGoldenCrossSpawningWhenProgressProgress = false;
 
         // Blum cross method binding
         crosses[3].CallOnPositionSettedMethod = true;
@@ -219,12 +220,13 @@ public partial class Crosses : Node
         Cross goldenCross = new Cross("EnhancedGoldenCross");
         goldenCross.SpawnRectMode = Cross.SpawnRectModeEnum.CameraLimits;
         goldenCross.MinimumSpawnDistanceToPlayer = 200;
+        KeepGoldenCrossSpawningWhenProgressProgress = false;
 
         // Helicopter cross setting up
         crosses[4].SetSpawnSide(false, false, false, false, true, false); // Helicopter must spawn at the top camera limit corner
         crosses[4].SpawnRectCorrection = new Rect2(-640, -1280, 640, 0);
 
-        SetCurrentCrossesPack("LightweightTNT2.0", crosses, goldenCross);
+        SetCurrentCrossesPack("LightweightTNT2.0", crosses, goldenCross, 150);
     }
 
     /// <summary>
@@ -363,7 +365,7 @@ public partial class Crosses : Node
     {
         UpdateLastCrossWeight();
 
-        if (EnableGoldenCrossSpawning && _random.Next(GoldenCrossSpawnRarity) == 0) return CurrentGoldenCross;
+        if (EnableGoldenCrossSpawning && (KeepGoldenCrossSpawningWhenProgressProgress || !IsProgressPaused) && _random.Next(GoldenCrossSpawnRarity) == 0) return CurrentGoldenCross;
 
         int SelectedCrossNumber;
         float RandomNumber = _random.NextSingle() * CrossesWeight.Sum();
@@ -410,7 +412,7 @@ public partial class Crosses : Node
         {
             var CanvasTransfrom = parentNode.GetCanvasTransform();
 
-            spawnRect = new Rect2(-CanvasTransfrom.Origin, parentNode.GetViewportRect().Size / CanvasTransfrom.Scale);
+            spawnRect = new Rect2(-CanvasTransfrom.Origin / CanvasTransfrom.Scale, parentNode.GetViewportRect().Size / CanvasTransfrom.Scale);
         }
         else if (cross.SpawnRectMode == Cross.SpawnRectModeEnum.CameraLimits)
         {

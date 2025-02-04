@@ -8,14 +8,14 @@ public partial class AdditionalGuiLayer : CanvasLayer
 
     public override void _Ready()
 	{
-        Achievements.CurrentAdditionalGuiLayer = this;
+        G.AdditionalGuiLayer = this;
 	}
 
     public override void _ExitTree()
     {
-        if (Achievements.CurrentAdditionalGuiLayer == this)
+        if (G.AdditionalGuiLayer == this)
         {
-            Achievements.CurrentAdditionalGuiLayer = null;
+            G.AdditionalGuiLayer = null;
         }
     }
 

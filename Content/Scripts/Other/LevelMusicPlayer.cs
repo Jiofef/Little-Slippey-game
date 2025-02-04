@@ -47,7 +47,7 @@ public partial class LevelMusicPlayer : AudioStreamPlayer
         }
     }
 
-    public void StopMusic(float DisappearanceDuration = 0)
+    public void StopMusic(float DisappearanceDuration, bool forgetMusicState)
     {
         var musicAnimationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
         if (DisappearanceDuration > 0)
@@ -59,6 +59,37 @@ public partial class LevelMusicPlayer : AudioStreamPlayer
             VolumeDb = -20;
         }
         _currentMusicName = "";
+
+        if (forgetMusicState)
+        {
+            G.ResetMusicVariables();
+        }
+    }
+    public void StopMusic(float DisappearanceDuration)
+    {
+        var musicAnimationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
+        if (DisappearanceDuration > 0)
+            musicAnimationPlayer.Play("MusicStopping", -1, 1 / DisappearanceDuration);
+        else
+        {
+            musicAnimationPlayer.Stop();
+            Stop();
+            VolumeDb = -20;
+        }
+        _currentMusicName = "";
+
+        G.ResetMusicVariables();
+    }
+    public void StopMusic()
+    {
+        var musicAnimationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
+        musicAnimationPlayer.Stop();
+        Stop();
+        VolumeDb = -20;
+
+        _currentMusicName = "";
+
+        G.ResetMusicVariables();
     }
 
     private void OnMusicFinished()

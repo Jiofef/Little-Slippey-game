@@ -1,0 +1,132 @@
+[gd_scene load_steps=8 format=3 uid="uid://cecbypuw3jkk3"]
+
+[ext_resource type="Script" path="res://Content/Scripts/Other/MicroScripts/ResurrectionEffect.cs" id="1_ja54i"]
+[ext_resource type="AudioStream" uid="uid://dtnh245w5l58p" path="res://Content/Sounds/Other/Shot.mp3" id="1_kp3fq"]
+[ext_resource type="AudioStream" uid="uid://bh4hc5oplq1p7" path="res://Content/Sounds/Player/ResurrectionSound.mp3" id="2_fc2ms"]
+
+[sub_resource type="Animation" id="Animation_hwouc"]
+resource_name = "AfterResurrection"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ResurrectionSound:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_44l60"]
+resource_name = "PreResurrection"
+length = 0.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(2, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Shot:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_7pbto"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Shot:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ResurrectionSound:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wtoqx"]
+_data = {
+"AfterResurrection": SubResource("Animation_hwouc"),
+"PreResurrection": SubResource("Animation_44l60"),
+"RESET": SubResource("Animation_7pbto")
+}
+
+[node name="ResurrectionEffect" type="ColorRect"]
+offset_right = 1280.0
+offset_bottom = 720.0
+mouse_filter = 2
+script = ExtResource("1_ja54i")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_wtoqx")
+}
+autoplay = "PreResurrection"
+next/PreResurrection = &"AfterResurrection"
+
+[node name="Shot" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_kp3fq")
+volume_db = 8.0
+bus = &"Player"
+
+[node name="ResurrectionSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_fc2ms")
+volume_db = 12.0
+bus = &"Player"
+
+[connection signal="finished" from="ResurrectionSound" to="." method="Finished"]

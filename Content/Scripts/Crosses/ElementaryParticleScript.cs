@@ -141,9 +141,9 @@ public partial class ElementaryParticleScript : Node2D
 
             // Giving the reward
             UnchangableMeta.GoldenCrossesAmount += Price;
-            if (Achievements.CurrentAdditionalGuiLayer != null)
+            if (G.AdditionalGuiLayer != null)
             {
-                Achievements.CurrentAdditionalGuiLayer.OnGoldenCrossesRecieved(Price);
+                G.AdditionalGuiLayer.OnGoldenCrossesRecieved(Price);
             }
 
             // Creating a collect popup

@@ -1,4 +1,6 @@
 using Godot;
+using System;
+using static OtherExtension.ActionTools;
 public partial class MainScript : Node2D
 {
     [Signal] public delegate void RecalculateCrossWeightEventHandler();
@@ -24,10 +26,9 @@ public partial class MainScript : Node2D
                 G.Main = null;
         };
 
-        G.OnMusicPlayerSetted += () => 
-        { 
-            G.MusicPlayer.StreamPaused = false; 
-        };
+        Action unpauseMusicPlayerAction = () => G.MusicPlayer.StreamPaused = false;
+        BindEventSafelyTo(G.OnMusicPlayerSetted, unpauseMusicPlayerAction);
+
 
         Connect("RecalculateCrossWeight", new Callable(GetNode(LevelNodePath), "RecalculateCrossWeight"));
 

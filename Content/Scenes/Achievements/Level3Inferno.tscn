@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://5hqti54mnm4t"]
+[gd_scene load_steps=5 format=3 uid="uid://5hqti54mnm4t"]
 
 [ext_resource type="PackedScene" uid="uid://d27nwc3cdixbo" path="res://Content/Scenes/Achievements/DefaultAchievement.tscn" id="1_tpp5l"]
 [ext_resource type="Texture2D" uid="uid://bppnbtehdr3md" path="res://Content/Sprites/Interface/LevelsIcons.png" id="2_kd0a3"]
 [ext_resource type="Texture2D" uid="uid://vjcab56ymxqr" path="res://Content/Sprites/PlayerSkins/Pineplum.png" id="3_b7ccc"]
+[ext_resource type="PackedScene" uid="uid://dl02wnkllntn2" path="res://Content/Scenes/Interface&Menu/RareScenes/NewSkinInTheShop.tscn" id="4_2pd0h"]
 
 [node name="Achievement" instance=ExtResource("1_tpp5l")]
 
@@ -14,9 +15,12 @@ region_rect = Rect2(90, 90, 45, 45)
 visible = true
 
 [node name="RewardSprite" parent="Sprite2D/RewardBox2" index="0"]
+modulate = Color(0, 0, 0, 1)
 texture = ExtResource("3_b7ccc")
 region_enabled = true
 region_rect = Rect2(0, 0, 16, 16)
+
+[node name="NewSkinInTheShop" parent="Sprite2D/RewardBox2" index="1" instance=ExtResource("4_2pd0h")]
 
 [node name="Star2" parent="Sprite2D/Ratings" index="1"]
 visible = true
@@ -24,9 +28,11 @@ visible = true
 [node name="Star3" parent="Sprite2D/Ratings" index="2"]
 visible = true
 
-[node name="Name" parent="." index="1"]
-text = "Kept treading – treading – till it seemed"
+[node name="Star3" parent="Texture/StarsC" index="0"]
+modulate = Color(1, 1, 1, 1)
 
-[node name="Text" parent="." index="2"]
-offset_right = 448.0
-text = "Complete level 3 on \"Inferno\" difficulty"
+[node name="Star2" parent="Texture/StarsC" index="1"]
+modulate = Color(1, 1, 1, 1)
+
+[node name="Star1" parent="Texture/StarsC" index="2"]
+modulate = Color(1, 1, 1, 1)

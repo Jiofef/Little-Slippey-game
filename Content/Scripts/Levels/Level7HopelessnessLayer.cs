@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using static OtherExtension.ActionTools;
 
 public partial class Level7HopelessnessLayer : CanvasLayer
 {
@@ -7,7 +8,6 @@ public partial class Level7HopelessnessLayer : CanvasLayer
 
 	private float _tumorSpawnTimer = 10;
 
-    private G.LevelStartedEventHandler _onLevelStartedHandler;
 
     AnimatedSprite2D _0;
     Label _playerScores;
@@ -15,8 +15,7 @@ public partial class Level7HopelessnessLayer : CanvasLayer
     public override void _Ready()
     {
         _mindTumor = ResourceLoader.Load<PackedScene>("res://Content/Scenes/Other/Level7MindTumor.tscn");
-        _onLevelStartedHandler = (bool wasIntroShown) => OnLevelStarted();
-        G.OnLevelStarted += _onLevelStartedHandler;
+        BindEventToNodeSafelyWithoutArgs(this, "OnLevelStarted", G.OnLevelStarted);
 
         _0 = GetNode<AnimatedSprite2D>("2D");
     }
@@ -28,9 +27,6 @@ public partial class Level7HopelessnessLayer : CanvasLayer
     public override void _ExitTree()
     {
         AudioServer.SetBusEffectEnabled(0, 0, false);
-
-        if (_onLevelStartedHandler != null)
-            G.OnLevelStarted -= _onLevelStartedHandler;
     }
 
 

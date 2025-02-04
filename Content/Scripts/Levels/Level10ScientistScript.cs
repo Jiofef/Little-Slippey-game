@@ -4,7 +4,7 @@ using System.Linq;
 
 public partial class Level10ScientistScript : Node2D
 {
-
+    // To save between restarts
     public class LevelState
     {
         public bool IsFakeLevelEntry;
@@ -18,6 +18,7 @@ public partial class Level10ScientistScript : Node2D
         public int CurrentPhraseIndex;
         public float MegaphoneTimer;
         public float MusicPlayerVolume;
+        public int CurrentMusicPart;
         public float MegaphonePlaybackPosition;
 
 
@@ -45,7 +46,7 @@ public partial class Level10ScientistScript : Node2D
     }
     public SubtitlesState _subtitles = new SubtitlesState();
 
-
+    // Signals
     [Signal] public delegate void SetScoresEventHandler();
     [Signal] public delegate void SetResetDisabledEventHandler();
     [Signal] public delegate void ShowTextQueueEventHandler();
@@ -53,207 +54,98 @@ public partial class Level10ScientistScript : Node2D
     [Signal] public delegate void SetCrossesProgressCoeffEventHandler();
     [Signal] public delegate void RecalculateCrossWeightEventHandler();
 
-    const int TIMER_BREAK_TIME = 150;
+    // Nodes
     AudioStreamPlayer2D _megaphone;
     Level10MusicPlayer _musicPlayer;
     Player _player;
     MainScript _mainScript;
+
+    // Phrases
     private float _megaphonePhraseTimer = 0;
-    private float[] _scriptedPhrasesTimeCodes = {3, 50, 150, 250, 290, 300};
-    Random random = new Random();
-    private float[][] _phrasesTimeCodes =
+    private readonly float[] _scriptedPhrasesTimeCodes = {3, 50, 150, 250, 290, 300};
+    private readonly float[][] _phrasesTimeCodes =
     {
-        new float[]
-        {
-            0, 4.4f, 9.15f, 11.5f, 15, 18.3f, 20.75f,24.7f, 25.55f, 27
-        },
-        new float[]
-        {
-            0,3.6f, 7.1f, 11.7f, 13.4f
-        },
-        new float[]
-        {
-            0, 3.7f, 7
-        },
-        new float[]
-        {
-            0, 3
-        },
-        new float[]
-        {
-            0, 2
-        },
-        new float[]
-        {
-            0, 2.3f, 4.3f, 6.35f, 8.1f, 11, 13.5f, 15.8f, 20
-        },
-        new float[]
-        {
-            0, 4.4f
-        },
-        new float[]
-        {
-            0, 2
-        },
-        new float[]
-        {
-            0, 2
-        },
-        new float[]
-        {
-            0, 2
-        },
-        new float[]
-        {
-            0, 2
-        },
-        new float[]
-        {
-            0, 2
-        },
-        new float[]
-        {
-            0, 2
-        },
-        new float[]
-        {
-            0, 2.5f
-        },
+        [0, 4.4f, 9.15f, 11.5f, 15, 18.3f, 20.75f,24.7f, 25.55f, 27],
+        [0,3.6f, 7.1f, 11.7f, 13.4f],
+        [0, 3.7f, 7],
+        [0, 3],
+        [0, 2],
+        [0, 2.3f, 4.3f, 6.35f, 8.1f, 11, 13.5f, 15.8f, 20],
+        [0, 4.4f],
+        [0, 2],
+        [0, 2],
+        [0, 2],
+        [0, 2],
+        [0, 2],
+        [0, 2],
+        [0, 2.5f],
     };
-    private float[][] _phrasesTimeCodesRu =
+    private readonly float[][] _phrasesTimeCodesRu =
     {
-        new float[]
-        {
-            0.25f, 4.5f, 9.3f, 11.4f, 15.1f, 17.8f, 19.85f,23.65f, 24.15f, 26
-        },
-        new float[]
-        {
-            0, 2.9f, 6.25f, 9.9f, 12
-        },
-        new float[]
-        {
-            0, 3.9f, 7
-        },
-        new float[]
-        {
-            0, 2.5f
-        },
-        new float[]
-        {
-            0, 2
-        },
-        new float[]
-        {
-            0, 2.4f, 3.9f, 6.25f, 8.15f, 9.7f, 10.8f, 13.2f, 17
-        },
-        new float[]
-        {
-            0, 4
-        },
-        new float[]
-        {
-            0, 2
-        },
-        new float[]
-        {
-            0, 2
-        },
-        new float[]
-        {
-            0, 2
-        },
-        new float[]
-        {
-            0, 1.5f
-        },
-        new float[]
-        {
-            0, 2.3f
-        },
-        new float[]
-        {
-            0, 2
-        },
-        new float[]
-        {
-            0, 2.5f
-        },
+        [0.25f, 4.5f, 9.3f, 11.4f, 15.1f, 17.8f, 19.85f,23.65f, 24.15f, 26],
+        [0, 2.9f, 6.25f, 9.9f, 12],
+        [0, 3.9f, 7],
+        [0, 2.5f],
+        [0, 2],
+        [0, 2.4f, 3.9f, 6.25f, 8.15f, 9.7f, 10.8f, 13.2f, 17],
+        [0, 4],
+        [0, 2],
+        [0, 2],
+        [0, 2],
+        [0, 1.5f],
+        [0, 2.3f],
+        [0, 2],
+        [0, 2.5f],
     };
-    private string[][] _phrasesSubtitles =
+    private readonly string[][] _phrasesSubtitles =
     {
-        new string[]
-        {
-            "Hey! Listen. I pulled you out of the previous test.", "The bad guys who are keeping you here wanted to make you go through a handful more test chambers,",
+        ["Hey! Listen. I pulled you out of the previous test.", "The bad guys who are keeping you here wanted to make you go through a handful more test chambers,",
             "but I can see that you've suffered enough.", "Hold on, I'll try to break this test and get you free.", "I will be able to do this only after three hundred seconds,",
             "that's how long it takes to pass this chamber.",
             "It's a lot, but don't worry, I'll figure out how to help you.",
             "As for now...",
-            "JUST LIVE!"
-        },
-        new string[]
-        {
-            "Listen, I think there's an opportunity to break the timer here.",
+            "JUST LIVE!"],
+
+        ["Listen, I think there's an opportunity to break the timer here.",
             "This will stop it from zeroing out every time a bomb hits you.",
             "He's got some kind of twisted security system here, but I'll figure something out.",
-            "Just live for now!"
-        },
-        new string[]
-        {
-            "YES! I DID IT! LIVE, SLIPPEY, LIVE!",
-            "YOU HAVE EVERY CHANCE TO LIVE UP TO THREE HUNDRED SECONDS!"
-        },
-        new string[]
-        {
-            "JUST A LITTLE BIT! DOO IT!"
-        },
-        new string[]
-        {
-            "10 SECONDS!!!"
-        },
-        new string[]
-        {
-            "YEAH! YOU DID IT!",
+            "Just live for now!"],
+
+        ["YES! I DID IT! LIVE, SLIPPEY, LIVE!",
+            "YOU HAVE EVERY CHANCE TO LIVE UP TO THREE HUNDRED SECONDS!"],
+        ["JUST A LITTLE BIT! DOO IT!"],
+
+        ["10 SECONDS!!!"],
+
+        ["YEAH! YOU DID IT!",
             "Congratulations!",
             "Well, I'm gonna...",
             "he... hey, wha...",
             "the timer was... fixed?",
             "I... I don't understand...",
             "I ca... I can't... I can't contro...*laugh*",
-            "I can't control the crosses, hey, what's with them ;)"
-        },
-        new string[]
-        {
-            "Come on, I'll push the crosses out from you so it won't be so hard!"
-        },
-        new string[]
-        {
-            "Come on, hold on!"
-        },
-        new string[]
-        {
-            "I'm rooting for you!"
-        },
-        new string[]
-        {
-            "Don't give up!"
-        },
-        new string[]
-        {
-            "You'll slip away!"
-        },
-        new string[]
-        {
-            "I'm with you, my friend!"
-        },
-        new string[]
-        {
-            "I believe in you!"
-        },
-        new string[]
-        {
-            "Hold on, it will be over soon!"
-        }
+            "I can't control the crosses, hey, what's with them ;)"],
+
+        ["Come on, I'll push the crosses out from you so it won't be so hard!"],
+
+        ["Come on, hold on!"],
+
+        ["I'm rooting for you!"],
+
+        ["Don't give up!"],
+
+        ["You'll slip away!"],
+
+        ["I'm with you, my friend!"],
+
+        ["I believe in you!"],
+
+        ["Hold on, it will be over soon!"]
     };
+
+    // Other vars
+    Random random = new Random();
+    const int TIMER_BREAK_TIME = 150;
 
     public override void _Ready()
     {
@@ -370,13 +262,15 @@ public partial class Level10ScientistScript : Node2D
         // Pushing the crosses away from the player
         if (_level.DeathCount >= 5) 
         {
-            var AllCrossesOnScreen = GetTree().GetNodesInGroup("Crosses");
+            // It should not push away the golden and enhanced blum crosses
+            var AllCrossesOnScreen = GetTree().GetNodesInGroup("Crosses").Where(child => !(child is BlueElementalCrossPart) && !(child is EnhancedBlumCross));
+            const float PUSH_SPEED = 5f;
             if (AllCrossesOnScreen.Count() > 0)
             {
                 var FirstCross = (Node2D)AllCrossesOnScreen.First();
-                FirstCross.Position -= FirstCross.GlobalPosition.DirectionTo(_player.GlobalPosition) * 5;
+                FirstCross.Position -= FirstCross.GlobalPosition.DirectionTo(_player.GlobalPosition) * PUSH_SPEED;
                 var LastCross = (Node2D)AllCrossesOnScreen.Last();
-                LastCross.Position -= LastCross.GlobalPosition.DirectionTo(_player.GlobalPosition) * 5;
+                LastCross.Position -= LastCross.GlobalPosition.DirectionTo(_player.GlobalPosition) * PUSH_SPEED;
             }
         }
 

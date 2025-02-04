@@ -22,10 +22,19 @@ public partial class Level9PlatformerSection : Node2D
     }
     public void AhahahSilly()
     {
+        // The possibility of skipping the platform part in the future
         UnchangableMeta.IsLevel9PlatformSectionSkipAllowed = true;
         UnchangableMeta.SaveToFile();
+
+        // Preparing to load the next scene
         G.LevelAdditionalLink = "WithoutPlatformSection";
+        G.MusicPlayer.StopMusic();
+
+        // Loading the next scene
         Connect("LoadScene", new Callable(GetNode("../.."), "LoadScene"));
         EmitSignal("LoadScene", "res://Content/Scenes/Levels/FullParts/Level" + G.CurrentLevel + G.LevelAdditionalLink + ".tscn");
+
+        // Issuing an achievement after switching the scene
+        Achievements.GetAchievementAfter(0.3f, "Did you really fall for that");
     }
 }

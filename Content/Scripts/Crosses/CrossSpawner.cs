@@ -28,6 +28,7 @@ public partial class CrossSpawner : Node2D
             if (_random.Next(RandomRange) == 0)
             {
                 CanvasItem Cross = SpawnRandomCrossIn(this);
+                Cross.AddToGroup("Crosses");
             }
         }
     }

@@ -1,5 +1,6 @@
 using Godot;
 using Godot.Collections;
+using Godot.NativeInterop;
 using System.IO;
 using System.Linq;
 using System.Text.Json;
@@ -67,10 +68,16 @@ public partial class FileSystemExtension : Node
         file.Close();
         return model;
     }
+
     public static System.Collections.Generic.Dictionary<string, object> GetSystemJsonModel(string path)
     {
+        return GetSystemJsonModel<string, object>(path);
+    }
+
+    public static System.Collections.Generic.Dictionary<TKey, TValue> GetSystemJsonModel<TKey, TValue>(string path)
+    {
         using Godot.FileAccess file = Godot.FileAccess.Open(path, Godot.FileAccess.ModeFlags.Read);
-        var model = JsonSerializer.Deserialize(file.GetAsText(), typeof(System.Collections.Generic.Dictionary<string, object>)) as System.Collections.Generic.Dictionary<string, object>;
+        var model = JsonSerializer.Deserialize(file.GetAsText(), typeof(System.Collections.Generic.Dictionary<TKey, TValue>)) as System.Collections.Generic.Dictionary<TKey, TValue>;
         file.Close();
         return model;
     }
@@ -85,7 +92,7 @@ public partial class FileSystemExtension : Node
     {
         SaveInJson(Json.Stringify(what), where);
     }
-    public static void SaveInJson(System.Collections.Generic.Dictionary<string, object> what, string where)
+    public static void SaveInJson<T>(System.Collections.Generic.Dictionary<string, T> what, string where)
     {
         SaveInJson(JsonSerializer.Serialize(what), where);
     }

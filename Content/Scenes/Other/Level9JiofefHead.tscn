@@ -28,7 +28,7 @@
 [ext_resource type="AudioStream" uid="uid://cc2geqtaxri8x" path="res://Content/Sounds/Levels/Level9BullDashWarning.mp3" id="26_lgiml"]
 [ext_resource type="AudioStream" uid="uid://csgsf0xguw2f4" path="res://Content/Sounds/Levels/Level9BullDash.mp3" id="27_srbdk"]
 [ext_resource type="AudioStream" uid="uid://48bslaf2ccfu" path="res://Content/Sounds/Levels/Level9BrakingHead.mp3" id="28_b1qr1"]
-[ext_resource type="AudioStream" uid="uid://dl6kkpeoy8786" path="res://Content/Sounds/Levels/Level9Jiofef(V)Laugh.mp3" id="29_2nwli"]
+[ext_resource type="AudioStream" uid="uid://08jvbcvxr4nf" path="res://Content/Sounds/Levels/Level000000000Screamer.mp3" id="30_g6143"]
 [ext_resource type="AudioStream" uid="uid://dk1mbskwwoo0k" path="res://Content/Sounds/Levels/Level9UnpinningCrunch1.mp3" id="30_ykji2"]
 [ext_resource type="AudioStream" uid="uid://bmxssvm0wjcg0" path="res://Content/Sounds/Levels/Level9UnpinningCrunch2.mp3" id="31_nlfvg"]
 [ext_resource type="AudioStream" uid="uid://bjttvhebuv2kx" path="res://Content/Sounds/Levels/Level9UnpinningCrunch.mp3" id="32_rdpjy"]
@@ -2879,9 +2879,9 @@ volume_db = -4.0
 bus = &"JiofefHead"
 
 [node name="Laugh" type="AudioStreamPlayer" parent="Sounds"]
-stream = ExtResource("29_2nwli")
-volume_db = 2.0
-bus = &"JiofefHead"
+stream = ExtResource("30_g6143")
+volume_db = -4.0
+bus = &"Enviromnment"
 
 [node name="UnpinningCrunch1" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("30_ykji2")

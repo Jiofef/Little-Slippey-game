@@ -3,6 +3,7 @@ using Godot.Collections;
 using System;
 using System.IO;
 using System.Linq;
+using static OtherExtension.ActionTools;
 
 /// <summary>
 /// G is gameplay singleton, that having importal information or methods which may be needed in various places of the game. They will not save after exiting the game
@@ -83,7 +84,7 @@ public partial class G : Node
     /// </summary>
     public static void OnLevelStartedFunc(bool wasIntroShown)
     {
-        OnLevelStarted.Invoke(wasIntroShown);
+        OnLevelStarted.Handler.Invoke(wasIntroShown);
     }
     #endregion
 
@@ -181,6 +182,13 @@ public partial class G : Node
         return player;
     }
 
+    public static void ResetMusicVariables()
+    {
+        MusicName = "";
+        MusicStartPosition = 0;
+        MusicStopTimeCode = 0;
+    }
+
     #region Frequently used nodes
 
     public static Player Player
@@ -196,11 +204,10 @@ public partial class G : Node
             player = value;
 
             if (value != null)
-                OnPlayerSetted?.Invoke();
+                OnPlayerSetted.Handler?.Invoke();
         }
     }
-    public delegate void PlayerSettedEventHandler();
-    public static event PlayerSettedEventHandler OnPlayerSetted = delegate { };
+    public static EventWrapper OnPlayerSetted = new();
 
     public static MainScript Main
     {
@@ -215,11 +222,10 @@ public partial class G : Node
             main = value;
 
             if (value != null)
-                OnMainSetted?.Invoke();
+                OnMainSetted.Handler?.Invoke();
         }
     }
-    public delegate void MainSettedEventHandler();
-    public static event MainSettedEventHandler OnMainSetted = delegate { };
+    public static EventWrapper OnMainSetted = new();
 
 
     public static LevelMusicPlayer MusicPlayer
@@ -235,11 +241,12 @@ public partial class G : Node
             musicPlayer = value;
 
             if (value != null)
-                OnMusicPlayerSetted?.Invoke();
+                OnMusicPlayerSetted.Handler?.Invoke();
         }
     }
-    public delegate void MusicPlayerSettedEventHandler();
-    public static event MusicPlayerSettedEventHandler OnMusicPlayerSetted = delegate { };
+    public static EventWrapper OnMusicPlayerSetted = new();
+
+    public static AdditionalGuiLayer AdditionalGuiLayer = null;
 
 
     private static Player player;
@@ -248,32 +255,6 @@ public partial class G : Node
     #endregion
 
     #region Useful events
-    /// <summary>
-    /// Be careful if you use this method multiple times to the same node. AI told me there might be problems with it :P
-    /// <para>includeWasIntroShown determines whether the WasIntroShown argument is bound to the call. If so, it is placed before the arguments you insert or not.</para>
-    /// </summary>
-    public static void BindLevelStartEventToNodeSafely(Node node, string methodName, bool includeWasIntroShown = false, params Variant[] @args)
-    {
-        LevelStartedEventHandler @event;
-        @event = (bool wasIntroShown) =>
-        {
-            Variant[] callArgs = includeWasIntroShown
-            ? @args.Concat(new Variant[] { wasIntroShown }).ToArray()
-            : @args;
-
-            node.Call(methodName, callArgs);
-        };
-        OnLevelStarted += @event;
-
-        node.TreeExiting += () =>
-        {
-            if (@event != null)
-            {
-                OnLevelStarted -= @event;
-            }
-        };
-    }
-    public delegate void LevelStartedEventHandler(bool wasIntroShown);
     /// <summary>
     /// Use this if you want to do something at the end of the level intro, or if the intro is skipped (e.g. it was already there). 
     /// 
@@ -300,7 +281,7 @@ public partial class G : Node
     /// </para>
     /// 
     /// </summary>
-    public static event LevelStartedEventHandler OnLevelStarted = delegate { };
+    public static EventWrapper1A<bool> OnLevelStarted = new();
 
     #endregion
 

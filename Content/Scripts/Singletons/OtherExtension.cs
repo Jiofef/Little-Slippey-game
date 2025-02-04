@@ -1,7 +1,9 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text.Json.Serialization;
+using static OtherExtension.ActionTools;
 
 // is neither a script nor a singleton, but a namespace. Since it is one of a kind, I don't want to create a separate folder for it
 namespace OtherExtension
@@ -221,6 +223,139 @@ namespace OtherExtension
             toPrint = toPrint.Remove(toPrint.Length - delimiter.Length, delimiter.Length);
 
             GD.Print(toPrint);
+        }
+    }
+
+    public static class FastInstanceCreator
+    {
+        public const string DEFAULT_RES_SCENES_PATH = "res://Content/Scenes/";
+        /// <summary>
+        /// The paths starts from "res://Content/Scenes/"
+        /// </summary>
+        public static T LoadResScene<T>(string path) where T : Node
+        {
+            return LoadScene<T>(DEFAULT_RES_SCENES_PATH + path);
+        }
+        public static Node LoadResScene(string path)
+        {
+            return LoadScene(DEFAULT_RES_SCENES_PATH + path);
+        }
+
+        public static T LoadScene<T>(string path) where T : Node
+        {
+            return GD.Load<PackedScene>(path).Instantiate<T>();
+        }
+        public static Node LoadScene(string path)
+        {
+            return GD.Load<PackedScene>(path).Instantiate();
+        }
+    }
+
+    // DON'T LOOK OVER HERE. GOT IT?
+    public static class ActionTools
+    {
+        public class EventWrapper
+        {
+            public Action Handler;
+        }
+        public class EventWrapper1A<T>
+        {
+            public Action<T> Handler;
+        }
+        public class EventWrapper2A<T1, T2>
+        {
+            public Action<T1, T2> Handler;
+        }
+        public class EventWrapper3A<T1, T2, T3>
+        {
+            public Action<T1, T2, T3> Handler;
+        }
+
+        public static void BindEventSafelyTo(EventWrapper eventDelegate, Action action)
+        {
+            Action handler = action;
+            eventDelegate.Handler += handler;
+        }
+        public static void BindEventSafelyTo<T>(EventWrapper1A<T> eventDelegate, Action<T> action)
+        {
+            Action<T> handler = action;
+            eventDelegate.Handler += handler;
+        }
+        public static void BindEventSafelyTo<T1, T2>(EventWrapper2A<T1, T2> eventDelegate, Action<T1, T2> action)
+        {
+            Action<T1, T2> handler = action;
+            eventDelegate.Handler += handler;
+        }
+        public static void BindEventSafelyTo<T1, T2, T3>(EventWrapper3A<T1, T2, T3> eventDelegate, Action<T1, T2, T3> action)
+        {
+            Action<T1, T2, T3> handler = action;
+            eventDelegate.Handler += handler;
+        }
+
+        public static void BindEventToNodeSafely(Node node, string methodName, EventWrapper eventDelegate, params Variant[] args)
+        {
+            Action handler = () => node.Call(methodName, args);
+            eventDelegate.Handler += handler;
+            node.TreeExiting += () => eventDelegate.Handler -= handler;
+        }
+        public static void BindEventToNodeSafely<T>(Node node, string methodName, EventWrapper1A<T> eventWrapper, params Variant[] args)
+        {
+            Action<T> handler = (T arg) =>
+            {
+                Variant[] callArgs = args.Concat(new Variant[] { Variant.From(arg) }).ToArray();
+                node.Call(methodName, callArgs);
+            };
+
+            eventWrapper.Handler += handler;
+            node.TreeExiting += () => eventWrapper.Handler -= handler;
+        }
+        public static void BindEventToNodeSafely<T1, T2>(Node node, string methodName, EventWrapper2A<T1, T2> eventDelegate, params Variant[] args)
+        {
+            Action<T1, T2> handler = (a1, a2) =>
+            {
+                Variant[] callArgs = args.Concat(new Variant[] { Variant.From(a1), Variant.From(a2) }).ToArray();
+                node.Call(methodName, callArgs);
+            };
+            eventDelegate.Handler += handler;
+            node.TreeExiting += () => eventDelegate.Handler -= handler;
+        }
+        public static void BindEventToNodeSafely<T1, T2, T3>(Node node, string methodName, EventWrapper3A<T1, T2, T3> eventDelegate, params Variant[] args)
+        {
+            Action<T1, T2, T3> handler = (a1, a2, a3) =>
+            {
+                Variant[] callArgs = args.Concat(new Variant[] { Variant.From(a1), Variant.From(a2), Variant.From(a3)}).ToArray();
+                node.Call(methodName, callArgs);
+            };
+            eventDelegate.Handler += handler;
+            node.TreeExiting += () => eventDelegate.Handler -= handler;
+        }
+
+        /// <summary>
+        /// only refers to the built-in arguments of the event. The arguments you send here will bind normally.
+        /// </summary>
+        public static void BindEventToNodeSafelyWithoutArgs<T>(Node node, string methodName, EventWrapper1A<T> eventDelegate, params Variant[] args)
+        {
+            Action<T> handler = (a1) => node.Call(methodName, args);
+            eventDelegate.Handler += handler;
+            node.TreeExiting += () => eventDelegate.Handler -= handler;
+        }
+        /// <summary>
+        /// only refers to the built-in arguments of the event. The arguments you send here will bind normally.
+        /// </summary>
+        public static void BindEventToNodeSafelyWithoutArgs<T1, T2>(Node node, string methodName, EventWrapper2A<T1, T2> eventDelegate, params Variant[] args)
+        {
+            Action<T1, T2> handler = (a1, a2) => node.Call(methodName, args);
+            eventDelegate.Handler += handler;
+            node.TreeExiting += () => eventDelegate.Handler -= handler;
+        }
+        /// <summary>
+        /// only refers to the built-in arguments of the event. The arguments you send here will bind normally.
+        /// </summary>
+        public static void BindEventToNodeSafelyWithoutArgs<T1, T2, T3>(Node node, string methodName, EventWrapper3A<T1, T2, T3> eventDelegate, params Variant[] args)
+        {
+            Action<T1, T2, T3> handler = (a1, a2, a3) => node.Call(methodName, args);
+            eventDelegate.Handler += handler;
+            node.TreeExiting += () => eventDelegate.Handler -= handler;
         }
     }
 }

@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using static OtherExtension.ActionTools;
 
 public partial class Level5Rain : Node2D
 {
@@ -8,28 +9,20 @@ public partial class Level5Rain : Node2D
     private Color _defaultFogColor = new Color(0, 0.12f, 0.12f, 0.70f);
     private Random _random = new Random();
 
-    private G.LevelStartedEventHandler _onLevelStartedHandler;
-
     public override void _Ready()
     {
         _fog = GetNode<ColorRect>("CanvasLayer/Fog?");
         _thunderLight = GetNode<ColorRect>("CanvasLayer/ThunderLight");
 
-        _onLevelStartedHandler = (bool wasIntroShown) => OnLevelStarted();
-        G.OnLevelStarted += _onLevelStartedHandler;
+        BindEventToNodeSafelyWithoutArgs(this, "OnLevelStarted", G.OnLevelStarted);
     }
 
-    private void OnLevelStarted()
+    public void OnLevelStarted()
     {
         ThunderStart();
         GetNode<AudioStreamPlayer>("RainSound").Playing = true;
     }
 
-    public override void _ExitTree()
-    {
-        if (_onLevelStartedHandler != null)
-            G.OnLevelStarted -= _onLevelStartedHandler;
-    }
 
     public override void _PhysicsProcess(double delta)
     {
