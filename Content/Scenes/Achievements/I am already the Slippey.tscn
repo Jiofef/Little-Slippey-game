@@ -1,24 +1,25 @@
-[gd_scene load_steps=3 format=3 uid="uid://b8spitj62aw1c"]
+[gd_scene load_steps=4 format=3 uid="uid://b8spitj62aw1c"]
 
 [ext_resource type="PackedScene" uid="uid://d27nwc3cdixbo" path="res://Content/Scenes/Achievements/DefaultAchievement.tscn" id="1_tyiob"]
-[ext_resource type="Texture2D" uid="uid://cxusn8e4odfu0" path="res://Content/Sprites/PlayerSkins/Samey.png" id="2_bbc5c"]
+[ext_resource type="Texture2D" uid="uid://8yt60jrdtl3" path="res://Content/Sprites/Interface/AchievementIcons.png" id="2_fidj0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y2ux5"]
+atlas = ExtResource("2_fidj0")
+region = Rect2(135, 0, 45, 45)
 
 [node name="Achievement" instance=ExtResource("1_tyiob")]
+Icon = SubResource("AtlasTexture_y2ux5")
+PositionInAtlas = Vector2(3, 0)
+StarsCount = 1
 
-[node name="RewardSprite" parent="Sprite2D/RewardBox1" index="0"]
-region_rect = Rect2(135, 0, 45, 45)
+[node name="Texture" parent="Texture/IconB/MarginC" index="0"]
+texture = SubResource("AtlasTexture_y2ux5")
 
-[node name="RewardBox2" parent="Sprite2D" index="1"]
+[node name="Star1" parent="Texture/StarsC" index="2"]
 visible = true
 
-[node name="RewardSprite" parent="Sprite2D/RewardBox2" index="0"]
-texture = ExtResource("2_bbc5c")
-region_enabled = true
-region_rect = Rect2(0, 0, 16, 16)
-
-[node name="Name" parent="." index="1"]
-text = "I am already the Slippey"
-
-[node name="Text" parent="." index="2"]
-offset_right = 446.0
+[node name="Text" parent="DescScrollC" index="0"]
 text = "Complete the tutorial"
+
+[node name="Name" parent="NameScrollC" index="0"]
+text = "I am already the Slippey"

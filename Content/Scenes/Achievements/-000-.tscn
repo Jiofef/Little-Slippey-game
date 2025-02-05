@@ -1,14 +1,25 @@
-[gd_scene load_steps=2 format=3 uid="uid://dmujsgmnr53b7"]
+[gd_scene load_steps=4 format=3 uid="uid://dmujsgmnr53b7"]
 
 [ext_resource type="PackedScene" uid="uid://d27nwc3cdixbo" path="res://Content/Scenes/Achievements/DefaultAchievement.tscn" id="1_25204"]
+[ext_resource type="Texture2D" uid="uid://8yt60jrdtl3" path="res://Content/Sprites/Interface/AchievementIcons.png" id="2_u54o2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v7pfn"]
+atlas = ExtResource("2_u54o2")
+region = Rect2(45, 0, 45, 45)
 
 [node name="Achievement" instance=ExtResource("1_25204")]
+Icon = SubResource("AtlasTexture_v7pfn")
+PositionInAtlas = Vector2(1, 0)
+StarsCount = 1
 
-[node name="RewardSprite" parent="Sprite2D/RewardBox1" index="0"]
-region_rect = Rect2(45, 0, 45, 45)
+[node name="Texture" parent="Texture/IconB/MarginC" index="0"]
+texture = SubResource("AtlasTexture_v7pfn")
 
-[node name="Name" parent="." index="1"]
-text = "-000-"
+[node name="Star1" parent="Texture/StarsC" index="2"]
+visible = true
 
-[node name="Text" parent="." index="2"]
+[node name="Text" parent="DescScrollC" index="0"]
 text = "Using the accumulated knowledge about controlling, find a new, unplanned path at the tutorial"
+
+[node name="Name" parent="NameScrollC" index="0"]
+text = "-000-"

@@ -1,11 +1,11 @@
 using Godot;
-using System.Collections.Generic;
 using System.Linq;
+using System.IO;
 
 [Tool]
 public partial class Achievement : Control
 {
-    [Export] public bool IsPopupVersion = false;
+    public bool IsPopupVersion = false;
     [ExportGroup("Icon")]
     [Export] public TextureRect IconNode;
     private AtlasTexture _icon;
@@ -25,6 +25,7 @@ public partial class Achievement : Control
         set
         {
             _hideIcon = value;
+            UpdateIconVisible();
         }
     }
     private Vector2 _positionInAtlas = new Vector2(0, 0);
@@ -81,7 +82,8 @@ public partial class Achievement : Control
         }
     }
 
-
+    private Achievements.Data _data;
+    private string _achievementKey;
 
 
     #region Visual update
@@ -106,7 +108,10 @@ public partial class Achievement : Control
     }
     public void UpdateStarsTexture()
     {
-
+        for (int i = 1; i <= MAX_STARS; i++)
+        {
+            GetNode<TextureRect>("Texture/StarsC/Star" + i).Texture = StarTexture;
+        }
     }
 
     // Icon
@@ -114,14 +119,69 @@ public partial class Achievement : Control
     {
         Icon.Region = new Rect2(_atlasStep * _positionInAtlas, _atlasStep);
     }
+    public void UpdateIconVisible()
+    {
+        GetNode<TextureRect>("Texture/IconB").Visible = !HideIcon;
+    }
+
+    // Golden crosses reward
+    public void UpdateReward()
+    {
+        var rewardText = GetNode<Label>("Texture/GoldenCrossesAnimation/RewardAmount");
+        rewardText.Text = _data.RewardAmount.ToString();
+
+        // Hiding the reward amount if there is no reward 
+        GetNode<Control>("Texture/GoldenCrossesAnimation").Visible = _data.RewardAmount > 0;
+    }
+
+    // Other
+    public void SetRecieved(bool value)
+    {
+        GetNode<Label>("NameScrollC/Name").Visible = !value;
+        GetNode<VBoxContainer>("Texture/StarsC").Visible = !value;
+        GetNode<TextureRect>("Texture/IconB/MarginC/Texture").Modulate = !value ? new Color(0, 0, 0, 0.5f) : new Color(1, 1, 1);
+        Modulate = !value ? new Color(0.5f, 0.5f, 0.5f) : new Color(1, 1, 1);
+    }
+
+    private string _savedDesc;
+    private bool _hidden = false;
+    public void SetHiddenIfIsntRecieved(bool value)
+    {
+        var desc = GetNode<RichTextLabel>("DescScrollC/Text");
+
+        if (value && !_hidden)
+            _savedDesc = desc.Text;
+
+        if (value)
+        {
+            desc.Text = "[HIDDEN]";
+            _hidden = true;
+        }
+        else
+        {
+            desc.Text = _savedDesc;
+            _hidden = false;
+        }
+    }
     #endregion
 
     private ColorRect _focusRect;
-    public override void _Ready()
+    public override async void _Ready()
     {
         // Initializing nodes
         _focusRect = GetNode<ColorRect>("FocusRect");
         _icon = (AtlasTexture)IconNode.Texture;
+
+        _achievementKey = Path.GetFileNameWithoutExtension(SceneFilePath);
+        _data = Achievements.AllTheAchievements[_achievementKey];
+        UpdateReward();
+
+        await ToSignal(GetTree(), "process_frame");
+
+        if (IsPopupVersion)
+        {
+            ScrollTexts();
+        }
     }
 
     public override void _PhysicsProcess(double delta)
@@ -131,6 +191,16 @@ public partial class Achievement : Control
         Mathf.Clamp(HasFocus() ? _focusRect.Modulate.A + 0.2f : _focusRect.Modulate.A - 0.2f, 0, 1));
     }
 
+    public void ScrollTexts()
+    {
+        var descScrollC = GetNode<AutoScrollContainer>("DescScrollC");
+        var nameScrollC = GetNode<AutoScrollContainer>("NameScrollC");
+
+        descScrollC.CallDeferred("ScrollDown");
+        nameScrollC.CallDeferred("ScrollRight");
+    }
+
+    // Popup effects
     public void TimerDeleted()
     {
         Achievements.AchievementPopupTimerMultiplier--;

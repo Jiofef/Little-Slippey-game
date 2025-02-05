@@ -1,14 +1,25 @@
-[gd_scene load_steps=2 format=3 uid="uid://droytgvtf3o2k"]
+[gd_scene load_steps=4 format=3 uid="uid://droytgvtf3o2k"]
 
 [ext_resource type="PackedScene" uid="uid://d27nwc3cdixbo" path="res://Content/Scenes/Achievements/DefaultAchievement.tscn" id="1_pomvh"]
+[ext_resource type="Texture2D" uid="uid://8yt60jrdtl3" path="res://Content/Sprites/Interface/AchievementIcons.png" id="2_2alhj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6tbwp"]
+atlas = ExtResource("2_2alhj")
+region = Rect2(450, 0, 45, 45)
 
 [node name="Achievement" instance=ExtResource("1_pomvh")]
+Icon = SubResource("AtlasTexture_6tbwp")
+PositionInAtlas = Vector2(10, 0)
+StarsCount = 1
 
-[node name="RewardSprite" parent="Sprite2D/RewardBox1" index="0"]
-region_rect = Rect2(450, 0, 45, 45)
+[node name="Texture" parent="Texture/IconB/MarginC" index="0"]
+texture = SubResource("AtlasTexture_6tbwp")
 
-[node name="Name" parent="." index="1"]
-text = "Eureka"
+[node name="Star1" parent="Texture/StarsC" index="2"]
+visible = true
 
-[node name="Text" parent="." index="2"]
+[node name="Text" parent="DescScrollC" index="0"]
 text = "Find one of the secret ways at level 8"
+
+[node name="Name" parent="NameScrollC" index="0"]
+text = "Eureka"

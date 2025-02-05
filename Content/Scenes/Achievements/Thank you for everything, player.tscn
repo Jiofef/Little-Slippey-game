@@ -1,8 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://bwk6bdkajm12k"]
+[gd_scene load_steps=8 format=3 uid="uid://bwk6bdkajm12k"]
 
 [ext_resource type="PackedScene" uid="uid://d27nwc3cdixbo" path="res://Content/Scenes/Achievements/DefaultAchievement.tscn" id="1_c5fvi"]
+[ext_resource type="Texture2D" uid="uid://8yt60jrdtl3" path="res://Content/Sprites/Interface/AchievementIcons.png" id="2_ocodb"]
 [ext_resource type="Texture2D" uid="uid://01o8bu8kwj2h" path="res://Content/Sprites/Other/AchievementStarParticle.png" id="2_qw2yi"]
 [ext_resource type="Texture2D" uid="uid://p8n66ul13xdu" path="res://Content/Sprites/PlayerSkins/Corey.png" id="3_nj34s"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_etfob"]
+atlas = ExtResource("2_ocodb")
+region = Rect2(405, 45, 45, 45)
 
 [sub_resource type="Animation" id="Animation_4htkv"]
 resource_name = "Rotating"
@@ -26,67 +31,67 @@ _data = {
 }
 
 [node name="Achievement" instance=ExtResource("1_c5fvi")]
+Icon = SubResource("AtlasTexture_etfob")
+PositionInAtlas = Vector2(9, 1)
+StarsCount = 3
+StarsColor = Color(0.924167, 0.35, 1, 1)
 
-[node name="RewardSprite" parent="Sprite2D/RewardBox1" index="0"]
-position = Vector2(0, 1)
-scale = Vector2(1, 1)
-texture = ExtResource("2_qw2yi")
-offset = Vector2(0, -1)
-region_enabled = false
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D/RewardBox1/RewardSprite" index="0"]
-libraries = {
-"": SubResource("AnimationLibrary_uchl4")
-}
-autoplay = "Rotating"
-
-[node name="RewardBox2" parent="Sprite2D" index="1"]
-visible = true
-
-[node name="RewardSprite" parent="Sprite2D/RewardBox2" index="0"]
-texture = ExtResource("3_nj34s")
-region_enabled = true
-region_rect = Rect2(0, 0, 16, 16)
-
-[node name="Hand" type="Sprite2D" parent="Sprite2D/RewardBox2/RewardSprite" index="0"]
+[node name="Sprite2D_RewardBox2_RewardSprite#Hand" type="Sprite2D" parent="." index="0"]
 position = Vector2(-6, 2)
 texture = ExtResource("3_nj34s")
 region_enabled = true
 region_rect = Rect2(16, 0, 2, 2)
 
-[node name="Hand2" type="Sprite2D" parent="Sprite2D/RewardBox2/RewardSprite" index="1"]
+[node name="Sprite2D_RewardBox2_RewardSprite#Hand2" type="Sprite2D" parent="." index="1"]
 position = Vector2(6, 2)
 texture = ExtResource("3_nj34s")
 flip_h = true
 region_enabled = true
 region_rect = Rect2(16, 0, 2, 2)
 
-[node name="Leg1" type="Sprite2D" parent="Sprite2D/RewardBox2/RewardSprite" index="2"]
+[node name="Sprite2D_RewardBox2_RewardSprite#Leg1" type="Sprite2D" parent="." index="2"]
 position = Vector2(-3, 7)
 texture = ExtResource("3_nj34s")
 region_enabled = true
 region_rect = Rect2(19, 0, 2, 2)
 
-[node name="Leg2" type="Sprite2D" parent="Sprite2D/RewardBox2/RewardSprite" index="3"]
+[node name="Sprite2D_RewardBox2_RewardSprite#Leg2" type="Sprite2D" parent="." index="3"]
 position = Vector2(3, 7)
 texture = ExtResource("3_nj34s")
 region_enabled = true
 region_rect = Rect2(19, 0, 2, 2)
 
-[node name="Star1" parent="Sprite2D/Ratings" index="0"]
-modulate = Color(1, 0, 1, 1)
+[node name="Texture" parent="Texture/IconB/MarginC" index="0"]
+visible = false
+texture = SubResource("AtlasTexture_etfob")
 
-[node name="Star2" parent="Sprite2D/Ratings" index="1"]
+[node name="RewardSprite" type="Sprite2D" parent="Texture/IconB" index="1"]
+position = Vector2(43, 47)
+scale = Vector2(4, 4)
+texture = ExtResource("2_qw2yi")
+offset = Vector2(0, -1)
+region_rect = Rect2(0, 0, 45, 45)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Texture/IconB/RewardSprite" index="0"]
+libraries = {
+"": SubResource("AnimationLibrary_uchl4")
+}
+autoplay = "Rotating"
+
+[node name="Star3" parent="Texture/StarsC" index="0"]
 visible = true
-modulate = Color(1, 0, 1, 1)
+modulate = Color(0.924167, 0.35, 1, 1)
 
-[node name="Star3" parent="Sprite2D/Ratings" index="2"]
+[node name="Star2" parent="Texture/StarsC" index="1"]
 visible = true
-modulate = Color(1, 0, 1, 1)
+modulate = Color(0.924167, 0.35, 1, 1)
 
-[node name="Name" parent="." index="1"]
-text = "Thank you for everything, player :)"
+[node name="Star1" parent="Texture/StarsC" index="2"]
+visible = true
+modulate = Color(0.924167, 0.35, 1, 1)
 
-[node name="Text" parent="." index="2"]
-offset_right = 446.0
+[node name="Text" parent="DescScrollC" index="0"]
 text = "Complete all other achievements"
+
+[node name="Name" parent="NameScrollC" index="0"]
+text = "Thank you for everything, player :)"

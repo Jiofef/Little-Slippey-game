@@ -1,37 +1,31 @@
-[gd_scene load_steps=5 format=3 uid="uid://c6yfxl1byf8gd"]
+[gd_scene load_steps=4 format=3 uid="uid://c6yfxl1byf8gd"]
 
 [ext_resource type="PackedScene" uid="uid://d27nwc3cdixbo" path="res://Content/Scenes/Achievements/DefaultAchievement.tscn" id="1_s5oqv"]
 [ext_resource type="Texture2D" uid="uid://bppnbtehdr3md" path="res://Content/Sprites/Interface/LevelsIcons.png" id="2_si10j"]
-[ext_resource type="Texture2D" uid="uid://ddbl3u1r26kie" path="res://Content/Sprites/PlayerSkins/SlippeyChad.png" id="3_3llhw"]
-[ext_resource type="PackedScene" uid="uid://dl02wnkllntn2" path="res://Content/Scenes/Interface&Menu/RareScenes/NewSkinInTheShop.tscn" id="4_0hk3h"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bse4v"]
+atlas = ExtResource("2_si10j")
+region = Rect2(405, 90, 45, 45)
 
 [node name="Achievement" instance=ExtResource("1_s5oqv")]
+Icon = SubResource("AtlasTexture_bse4v")
+PositionInAtlas = Vector2(9, 2)
+StarsCount = 3
 
-[node name="RewardSprite" parent="Sprite2D/RewardBox1" index="0"]
-texture = ExtResource("2_si10j")
-region_rect = Rect2(405, 90, 45, 45)
+[node name="Texture" parent="Texture/IconB/MarginC" index="0"]
+texture = SubResource("AtlasTexture_bse4v")
 
-[node name="RewardBox2" parent="Sprite2D" index="1"]
+[node name="Star3" parent="Texture/StarsC" index="0"]
 visible = true
 
-[node name="RewardSprite" parent="Sprite2D/RewardBox2" index="0"]
-modulate = Color(0, 0, 0, 1)
-scale = Vector2(0.06, 0.06)
-texture = ExtResource("3_3llhw")
-region_enabled = true
-region_rect = Rect2(750, 0, 250, 300)
-
-[node name="NewSkinInTheShop" parent="Sprite2D/RewardBox2" index="1" instance=ExtResource("4_0hk3h")]
-
-[node name="Star2" parent="Sprite2D/Ratings" index="1"]
+[node name="Star2" parent="Texture/StarsC" index="1"]
 visible = true
 
-[node name="Star3" parent="Sprite2D/Ratings" index="2"]
+[node name="Star1" parent="Texture/StarsC" index="2"]
 visible = true
 
-[node name="Name" parent="." index="1"]
-text = "And creak across my Soul..."
-
-[node name="Text" parent="." index="2"]
-offset_right = 448.0
+[node name="Text" parent="DescScrollC" index="0"]
 text = "Complete level 10 on \"Inferno\" difficulty"
+
+[node name="Name" parent="NameScrollC" index="0"]
+text = "And creak across my Soul..."

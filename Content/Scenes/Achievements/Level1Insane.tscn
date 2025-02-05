@@ -1,19 +1,28 @@
-[gd_scene load_steps=3 format=3 uid="uid://b0oou860eqxdn"]
+[gd_scene load_steps=4 format=3 uid="uid://b0oou860eqxdn"]
 
 [ext_resource type="PackedScene" uid="uid://d27nwc3cdixbo" path="res://Content/Scenes/Achievements/DefaultAchievement.tscn" id="1_o1ft1"]
 [ext_resource type="Texture2D" uid="uid://bppnbtehdr3md" path="res://Content/Sprites/Interface/LevelsIcons.png" id="2_87qiv"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_pwtvo"]
+atlas = ExtResource("2_87qiv")
+region = Rect2(0, 45, 45, 45)
+
 [node name="Achievement" instance=ExtResource("1_o1ft1")]
+Icon = SubResource("AtlasTexture_pwtvo")
+PositionInAtlas = Vector2(0, 1)
+StarsCount = 2
 
-[node name="RewardSprite" parent="Sprite2D/RewardBox1" index="0"]
-texture = ExtResource("2_87qiv")
-region_rect = Rect2(0, 45, 45, 45)
+[node name="Texture" parent="Texture/IconB/MarginC" index="0"]
+texture = SubResource("AtlasTexture_pwtvo")
 
-[node name="Star2" parent="Sprite2D/Ratings" index="1"]
+[node name="Star2" parent="Texture/StarsC" index="1"]
 visible = true
 
-[node name="Name" parent="." index="1"]
-text = "The bright sun was extinguish'd, and the stars"
+[node name="Star1" parent="Texture/StarsC" index="2"]
+visible = true
 
-[node name="Text" parent="." index="2"]
+[node name="Text" parent="DescScrollC" index="0"]
 text = "Complete level 1 on \"Insane\" difficulty"
+
+[node name="Name" parent="NameScrollC" index="0"]
+text = "The bright sun was extinguish'd, and the stars"

@@ -1,36 +1,31 @@
-[gd_scene load_steps=5 format=3 uid="uid://c2vom2ul323b3"]
+[gd_scene load_steps=4 format=3 uid="uid://c2vom2ul323b3"]
 
 [ext_resource type="PackedScene" uid="uid://d27nwc3cdixbo" path="res://Content/Scenes/Achievements/DefaultAchievement.tscn" id="1_xn567"]
 [ext_resource type="Texture2D" uid="uid://bppnbtehdr3md" path="res://Content/Sprites/Interface/LevelsIcons.png" id="2_ocyl8"]
-[ext_resource type="Texture2D" uid="uid://bd15vnp18h7qk" path="res://Content/Sprites/PlayerSkins/Sanboy.png" id="3_aewm3"]
-[ext_resource type="PackedScene" uid="uid://dl02wnkllntn2" path="res://Content/Scenes/Interface&Menu/RareScenes/NewSkinInTheShop.tscn" id="4_kvmcg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vagy7"]
+atlas = ExtResource("2_ocyl8")
+region = Rect2(0, 90, 45, 45)
 
 [node name="Achievement" instance=ExtResource("1_xn567")]
+Icon = SubResource("AtlasTexture_vagy7")
+PositionInAtlas = Vector2(0, 2)
+StarsCount = 3
 
-[node name="RewardSprite" parent="Sprite2D/RewardBox1" index="0"]
-texture = ExtResource("2_ocyl8")
-region_rect = Rect2(0, 90, 45, 45)
+[node name="Texture" parent="Texture/IconB/MarginC" index="0"]
+texture = SubResource("AtlasTexture_vagy7")
 
-[node name="RewardBox2" parent="Sprite2D" index="1"]
+[node name="Star3" parent="Texture/StarsC" index="0"]
 visible = true
 
-[node name="RewardSprite" parent="Sprite2D/RewardBox2" index="0"]
-modulate = Color(0, 0, 0, 1)
-texture = ExtResource("3_aewm3")
-region_enabled = true
-region_rect = Rect2(0, 0, 16, 16)
-
-[node name="NewSkinInTheShop" parent="Sprite2D/RewardBox2" index="1" instance=ExtResource("4_kvmcg")]
-
-[node name="Star2" parent="Sprite2D/Ratings" index="1"]
+[node name="Star2" parent="Texture/StarsC" index="1"]
 visible = true
 
-[node name="Star3" parent="Sprite2D/Ratings" index="2"]
+[node name="Star1" parent="Texture/StarsC" index="2"]
 visible = true
 
-[node name="Name" parent="." index="1"]
-text = "I felt a Funeral, in my Brain"
-
-[node name="Text" parent="." index="2"]
-offset_right = 448.0
+[node name="Text" parent="DescScrollC" index="0"]
 text = "Complete level 1 on \"Inferno\" difficulty"
+
+[node name="Name" parent="NameScrollC" index="0"]
+text = "I felt a Funeral, in my Brain"

@@ -1,6 +1,7 @@
+res://Content/Scripts/Interface&Menu
+D:/games/Little Slippey
 res://Content/Scripts/Other/MicroScripts
 res://Content/Scenes/Interface&Menu
-res://Content/Scripts/Interface&Menu
 res://Content/Scenes/Interface&Menu/RareScenes
 res://Content/Sprites/Interface
 res://Content/Scripts/Singletons
@@ -10,7 +11,6 @@ res://Content/Scenes/Crosses
 res://Content/Scenes/Other
 res://Content/Scripts/Other
 res://Content/Scripts/Levels
-D:/games/Little Slippey
 res://Content/Sprites/Levels/Level000000000
 res://Content/Sprites/Levels/Level7
 res://Content/Scenes/Levels/FullParts
@@ -20,5 +20,3 @@ res://Content/Sprites/PlayerSkins
 res://Content/Scenes/Interface&Menu/LevelEditor
 res://Content/Scripts/Interface&Menu/LevelEditor
 res://Content
-D:/Великие Калловые Архивы/Little Slip
-C:/Users/Jiofef/Documents/GitHub/Little-Slippey-game

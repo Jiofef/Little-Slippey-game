@@ -22,7 +22,12 @@ public partial class Achievements : Node
         }
         public Data(int goldenCrossesRewardAmount)
         {
-
+            RewardAmount = goldenCrossesRewardAmount;
+        }
+        public Data(int goldenCrossesRewardAmount, bool isHidden)
+        {
+            RewardAmount = goldenCrossesRewardAmount;
+            IsHidden = isHidden;
         }
         public bool IsHidden { get; set; }
         public bool IsReceived { get; set; } = false;
@@ -114,11 +119,16 @@ public partial class Achievements : Node
     {
         Steam.SetAchievement(name);
         if (AllTheAchievements[name].IsReceived) return;
-        var achievement = (Control)ResourceLoader.Load<PackedScene>("res://Content/Scenes/Achievements/" + name + ".tscn").Instantiate();
+        var achievement = (Achievement)ResourceLoader.Load<PackedScene>("res://Content/Scenes/Achievements/" + name + ".tscn").Instantiate();
         G.AdditionalGuiLayer.AddChild(achievement);
-        achievement.GetNode<Godot.Timer>("PopupVersionPart/PopupTimer").Start(0.05f + 0.3f * AchievementPopupTimerMultiplier);
+
+        achievement.IsPopupVersion = true;
+
+        achievement.GetNode<Timer>("PopupVersionPart/PopupTimer").Start(0.05f + 0.3f * AchievementPopupTimerMultiplier);
+
         achievement.FocusMode = Control.FocusModeEnum.None;
         achievement.MouseFilter = Control.MouseFilterEnum.Ignore;
+
         AllTheAchievements[name].IsReceived = true;
         SaveAchievementStatuses();
         AchievementPopupTimerMultiplier++;

@@ -1,26 +1,40 @@
-[gd_scene load_steps=3 format=3 uid="uid://be6dlqe1dooq3"]
+[gd_scene load_steps=5 format=3 uid="uid://be6dlqe1dooq3"]
 
 [ext_resource type="PackedScene" uid="uid://d27nwc3cdixbo" path="res://Content/Scenes/Achievements/DefaultAchievement.tscn" id="1_12vyg"]
 [ext_resource type="Texture2D" uid="uid://cm6fulwrltkeq" path="res://Content/Sprites/Interface/AchievementHeart.png" id="2_3a1t2"]
+[ext_resource type="Texture2D" uid="uid://8yt60jrdtl3" path="res://Content/Sprites/Interface/AchievementIcons.png" id="2_3tr05"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hepbm"]
+atlas = ExtResource("2_3tr05")
+region = Rect2(405, 0, 45, 45)
 
 [node name="Achievement" instance=ExtResource("1_12vyg")]
+Icon = SubResource("AtlasTexture_hepbm")
+PositionInAtlas = Vector2(9, 0)
+StarsCount = 3
+StarTexture = ExtResource("2_3a1t2")
+StarsColor = Color(1, 1, 1, 1)
 
-[node name="RewardSprite" parent="Sprite2D/RewardBox1" index="0"]
-region_rect = Rect2(405, 0, 45, 45)
+[node name="Texture" parent="Texture/IconB/MarginC" index="0"]
+texture = SubResource("AtlasTexture_hepbm")
 
-[node name="Star1" parent="Sprite2D/Ratings" index="0"]
-texture = ExtResource("2_3a1t2")
-
-[node name="Star2" parent="Sprite2D/Ratings" index="1"]
+[node name="Star3" parent="Texture/StarsC" index="0"]
 visible = true
+modulate = Color(1, 1, 1, 1)
 texture = ExtResource("2_3a1t2")
 
-[node name="Star3" parent="Sprite2D/Ratings" index="2"]
+[node name="Star2" parent="Texture/StarsC" index="1"]
 visible = true
+modulate = Color(1, 1, 1, 1)
 texture = ExtResource("2_3a1t2")
 
-[node name="Name" parent="." index="1"]
-text = "At least I got to hobnob with royalty"
+[node name="Star1" parent="Texture/StarsC" index="2"]
+visible = true
+modulate = Color(1, 1, 1, 1)
+texture = ExtResource("2_3a1t2")
 
-[node name="Text" parent="." index="2"]
+[node name="Text" parent="DescScrollC" index="0"]
 text = "Check the author's Boosty, YouTube or Discord"
+
+[node name="Name" parent="NameScrollC" index="0"]
+text = "At least I got to hobnob with royalty"

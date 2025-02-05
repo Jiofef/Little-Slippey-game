@@ -1,19 +1,28 @@
-[gd_scene load_steps=3 format=3 uid="uid://d346vbtmc34am"]
+[gd_scene load_steps=4 format=3 uid="uid://d346vbtmc34am"]
 
 [ext_resource type="PackedScene" uid="uid://d27nwc3cdixbo" path="res://Content/Scenes/Achievements/DefaultAchievement.tscn" id="1_7wgyx"]
 [ext_resource type="Texture2D" uid="uid://bppnbtehdr3md" path="res://Content/Sprites/Interface/LevelsIcons.png" id="2_kfbuq"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_dbbiq"]
+atlas = ExtResource("2_kfbuq")
+region = Rect2(90, 45, 45, 45)
+
 [node name="Achievement" instance=ExtResource("1_7wgyx")]
+Icon = SubResource("AtlasTexture_dbbiq")
+PositionInAtlas = Vector2(2, 1)
+StarsCount = 2
 
-[node name="RewardSprite" parent="Sprite2D/RewardBox1" index="0"]
-texture = ExtResource("2_kfbuq")
-region_rect = Rect2(90, 45, 45, 45)
+[node name="Texture" parent="Texture/IconB/MarginC" index="0"]
+texture = SubResource("AtlasTexture_dbbiq")
 
-[node name="Star2" parent="Sprite2D/Ratings" index="1"]
+[node name="Star2" parent="Texture/StarsC" index="1"]
 visible = true
 
-[node name="Name" parent="." index="1"]
-text = "Rayless and pathless, and the icy earth"
+[node name="Star1" parent="Texture/StarsC" index="2"]
+visible = true
 
-[node name="Text" parent="." index="2"]
+[node name="Text" parent="DescScrollC" index="0"]
 text = "Complete level 3 on \"Insane\" difficulty"
+
+[node name="Name" parent="NameScrollC" index="0"]
+text = "Rayless and pathless, and the icy earth"

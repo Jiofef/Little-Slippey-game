@@ -1,8 +1,8 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1738635808
-default_bus_layout.tres::AudioBusLayout::5491450156466921558::1738635818::0::1::::<><>::
-default_env.tres::Environment::9038263142653210561::1738630717::0::1::::<><>::
-export_presets.cfg::TextFile::-1::1737077466::0::1::::<><>::
+::res://::1738682723
+default_bus_layout.tres::AudioBusLayout::5491450156466921558::1738682726::0::1::::<><>::
+default_env.tres::Environment::9038263142653210561::1738643506::0::1::::<><>::
+export_presets.cfg::TextFile::-1::1738643679::0::1::::<><>::
 icon.png::CompressedTexture2D::3916059988824051122::1670150219::1727708651::1::::<><>::
 README.md::TextFile::-1::1698159925::0::1::::<><>::
 дневник вдохновений.txt::TextFile::-1::1721345038::0::1::::<><>::
@@ -17,7 +17,7 @@ godotsteam.gdextension::GDExtension::-1::1731950749::0::1::::<><>::
 ::res://addons/godotsteam/osx/libgodotsteam.macos.template_release.framework/::1731950749
 ::res://addons/godotsteam/osx/libgodotsteam.macos.template_release.framework/Resources/::1731950749
 ::res://addons/godotsteam/win32/::1731950749
-::res://addons/godotsteam/win64/::1738635800
+::res://addons/godotsteam/win64/::1738682716
 ::res://addons/godotsteam_csharpbindings/::1731950750
 Methods.cs::CSharpScript::-1::1731950750::0::1::::<><>::
 Signals.cs::CSharpScript::-1::1731950750::0::1::::<><>::
@@ -147,11 +147,11 @@ TextFilteringContext.cs::CSharpScript::-1::1731950750::0::1::::<><>::
 ::res://addons/godotsteam_csharpbindings/Video/::1731950750
 BroadcastStatus.cs::CSharpScript::-1::1731950750::0::1::::<><>::
 ::res://Content/::1737065771
-::res://Content/Other/::1738631279
+::res://Content/Other/::1738643893
 AhahahSillyVideo.ogv::VideoStreamTheora::-1::1694090016::0::1::::<><>::
 AhahahSillyVideoRussian.ogv::VideoStreamTheora::-1::1694090016::0::1::::<><>::
-BlurShader.gdshader::Shader::-1::1738631279::0::1::::<><>::
-BrightnessShader.gdshader::Shader::-1::1738631279::0::1::::<><>::
+BlurShader.gdshader::Shader::-1::1738643893::0::1::::<><>::
+BrightnessShader.gdshader::Shader::-1::1738643893::0::1::::<><>::
 CH032.png::CompressedTexture2D::6617125560179867686::1716678946::1727708653::1::::<><>::
 CRT.gdshader::Shader::-1::1728347031::0::1::::<><>::
 Default.theme::Theme::154039918873755752::1728348342::0::1::::<><>::uid://cw7y82t02txrj::::res://Content/Other/Retro_Gaming.ttf
@@ -161,7 +161,7 @@ LevelEditor.tres::StyleBoxFlat::6729138501489595488::1728738988::0::1::::<><>::
 Localization.csv::Translation::3460745547113634::1736995973::1736995974::1::::<><>::
 Localization.en.translation::OptimizedTranslation::7671026739815582790::1736995974::0::1::::<><>::
 Localization.ru.translation::OptimizedTranslation::2390283781597524638::1736995974::0::1::::<><>::
-Menu.tres::Theme::7878850865066505784::1738615960::0::1::::<><>::uid://dsjclghg3lapq::::res://Content/Sprites/Interface/Buttons/SliderGrabber.png<>uid://cl2nf0eg2ercq::::res://Content/Sprites/Interface/Buttons/SliderGrabberDisabled.png<>uid://cjd856tjg6ypp::::res://Content/Sprites/Interface/Buttons/SliderGrabberHighLight.png<>uid://cxbdoanflw7rj::::res://Content/Sprites/Interface/Buttons/2XHChecked.png<>uid://ba2vy7u4nt5m::::res://Content/Sprites/Interface/Buttons/2XHUnchecked.png<>uid://cudtk1f5uq0jf::::res://Content/Sprites/Interface/Buttons/4XChecked.png<>uid://w4gejppfm3h3::::res://Content/Sprites/Interface/4XSmallWindowBase.png<>uid://bu38gr86054gc::::res://Content/Sprites/Interface/Buttons/4XUnchecked.png<>uid://ddtuc8tni3hx3::::res://Content/Sprites/Interface/Buttons/4XRadioChecked.png<>uid://bi6letybp2eon::::res://Content/Sprites/Interface/Buttons/4XRadioUnchecked.png<>uid://c7x4oe6run7mi::::res://Content/Sprites/Interface/Buttons/4XArrowDown.png<>uid://dnhm3dus2bloj::::res://Content/Sprites/Interface/Buttons/4XSmallButtonBaseDisabled.png<>uid://l0pe4c0c7708::::res://Content/Sprites/Interface/DownloadBar320X40.png<>uid://30hcwqu8a7ei::::res://Content/Sprites/Interface/Buttons/4XSmallButtonBase.png<>uid://cymom0adyn60n::::res://Content/Sprites/Interface/Buttons/4XSmallButtonBaseHighlight.png<>uid://dc2cdkenoasq2::::res://Content/Sprites/Interface/UpDown.png
+Menu.tres::Theme::7878850865066505784::1738635996::0::1::::<><>::uid://dsjclghg3lapq::::res://Content/Sprites/Interface/Buttons/SliderGrabber.png<>uid://cl2nf0eg2ercq::::res://Content/Sprites/Interface/Buttons/SliderGrabberDisabled.png<>uid://cjd856tjg6ypp::::res://Content/Sprites/Interface/Buttons/SliderGrabberHighLight.png<>uid://cxbdoanflw7rj::::res://Content/Sprites/Interface/Buttons/2XHChecked.png<>uid://ba2vy7u4nt5m::::res://Content/Sprites/Interface/Buttons/2XHUnchecked.png<>uid://cudtk1f5uq0jf::::res://Content/Sprites/Interface/Buttons/4XChecked.png<>uid://w4gejppfm3h3::::res://Content/Sprites/Interface/4XSmallWindowBase.png<>uid://bu38gr86054gc::::res://Content/Sprites/Interface/Buttons/4XUnchecked.png<>uid://ddtuc8tni3hx3::::res://Content/Sprites/Interface/Buttons/4XRadioChecked.png<>uid://bi6letybp2eon::::res://Content/Sprites/Interface/Buttons/4XRadioUnchecked.png<>uid://c7x4oe6run7mi::::res://Content/Sprites/Interface/Buttons/4XArrowDown.png<>uid://dnhm3dus2bloj::::res://Content/Sprites/Interface/Buttons/4XSmallButtonBaseDisabled.png<>uid://l0pe4c0c7708::::res://Content/Sprites/Interface/DownloadBar320X40.png<>uid://30hcwqu8a7ei::::res://Content/Sprites/Interface/Buttons/4XSmallButtonBase.png<>uid://cymom0adyn60n::::res://Content/Sprites/Interface/Buttons/4XSmallButtonBaseHighlight.png<>uid://dc2cdkenoasq2::::res://Content/Sprites/Interface/UpDown.png
 MenuTextLabelSettings.tres::LabelSettings::6012759116879165699::1738615960::0::1::::<><>::
 PixelateShader.gdshader::Shader::-1::1728347031::0::1::::<><>::
 PostProcessing.gdshader::Shader::-1::1728347031::0::1::::<><>::
@@ -170,7 +170,7 @@ SaturationShader.gdshader::Shader::-1::1728347031::0::1::::<><>::
 StaticNoiseShader.gdshader::Shader::-1::1738617921::0::1::::<><>::
 VintageFilterVideo.ogv::VideoStreamTheora::-1::1690385134::0::1::::<><>::
 ::res://Content/Scenes/::1737827803
-::res://Content/Scenes/Achievements/::1738630717
+::res://Content/Scenes/Achievements/::1738643506
 _000.tscn::PackedScene::8147287638889938378::1734546948::0::1::::<><>::uid://d27nwc3cdixbo::::res://Content/Scenes/Achievements/DefaultAchievement.tscn
 000-.tscn::PackedScene::8072247858464155150::1734112313::0::1::::<><>::uid://d27nwc3cdixbo::::res://Content/Scenes/Achievements/DefaultAchievement.tscn
 -000-.tscn::PackedScene::8043394661334417234::1734546940::0::1::::<><>::uid://d27nwc3cdixbo::::res://Content/Scenes/Achievements/DefaultAchievement.tscn
@@ -181,7 +181,7 @@ Congratulations!0.tscn::PackedScene::4914701998375397926::1734547036::0::1::::<>
 Congratulations!1.tscn::PackedScene::7533616876835813758::1734547056::0::1::::<><>::uid://d27nwc3cdixbo::::res://Content/Scenes/Achievements/DefaultAchievement.tscn
 Congratulations!2.tscn::PackedScene::5011690241454149353::1734547075::0::1::::<><>::uid://d27nwc3cdixbo::::res://Content/Scenes/Achievements/DefaultAchievement.tscn
 Congratulations!3.tscn::PackedScene::8924063132069434595::1734547118::0::1::::<><>::uid://d27nwc3cdixbo::::res://Content/Scenes/Achievements/DefaultAchievement.tscn
-DefaultAchievement.tscn::PackedScene::9121249674204406972::1738630717::0::1::::<><>::uid://w03njd07hf8e::::res://Content/Sprites/Interface/AchievementBox.png<>res://Content/Scripts/Other/Achievement.cs<>uid://01o8bu8kwj2h::::res://Content/Sprites/Other/AchievementStarParticle.png<>uid://bpldglo3qd7mh::::res://Content/Sprites/Interface/AchievementRewardBox.png<>uid://bcy80tqeqbgxw::::res://Content/Sprites/Interface/WhiteAchievementStar.png<>uid://8yt60jrdtl3::::res://Content/Sprites/Interface/AchievementIcons.png<>uid://ca1ra0emtaeth::::res://Content/Sounds/Interface&Menu/AchievementSound.mp3<>uid://brgquvu7soyfx::::res://Content/Sprites/Interface/AchievementStar.png<>uid://dkitr1ftp0yhs::::res://Content/Other/Menu.tres
+DefaultAchievement.tscn::PackedScene::9121249674204406972::1738643506::0::1::::<><>::uid://w03njd07hf8e::::res://Content/Sprites/Interface/AchievementBox.png<>res://Content/Scripts/Other/Achievement.cs<>uid://01o8bu8kwj2h::::res://Content/Sprites/Other/AchievementStarParticle.png<>uid://bpldglo3qd7mh::::res://Content/Sprites/Interface/AchievementRewardBox.png<>uid://bcy80tqeqbgxw::::res://Content/Sprites/Interface/WhiteAchievementStar.png<>uid://8yt60jrdtl3::::res://Content/Sprites/Interface/AchievementIcons.png<>uid://ca1ra0emtaeth::::res://Content/Sounds/Interface&Menu/AchievementSound.mp3<>uid://brgquvu7soyfx::::res://Content/Sprites/Interface/AchievementStar.png<>uid://dkitr1ftp0yhs::::res://Content/Other/Menu.tres
 Did you really fall for that.tscn::PackedScene::1810997641356555891::1734547217::0::1::::<><>::uid://d27nwc3cdixbo::::res://Content/Scenes/Achievements/DefaultAchievement.tscn<>uid://cx42eys4hmvdl::::res://Content/Sprites/Other/Jiofef.png
 Eureka.tscn::PackedScene::8382865167845344680::1734547395::0::1::::<><>::uid://d27nwc3cdixbo::::res://Content/Scenes/Achievements/DefaultAchievement.tscn
 I am already the Slippey.tscn::PackedScene::4740737377855479838::1734551512::0::1::::<><>::uid://d27nwc3cdixbo::::res://Content/Scenes/Achievements/DefaultAchievement.tscn<>uid://cxusn8e4odfu0::::res://Content/Sprites/PlayerSkins/Samey.png
@@ -253,7 +253,7 @@ DefaultRigidBody.tscn::PackedScene::6899017663510267137::1727962572::0::1::::<><
 Sprite2D.tscn::PackedScene::5142193769891440809::1727976947::0::1::::<><>::uid://bf6l830aawvwo::::res://Content/Sprites/Interface/LevelEditor/DefaultSprite.png
 TextureRect.tscn::PackedScene::9047259137045468641::1727976947::0::1::::<><>::uid://bf6l830aawvwo::::res://Content/Sprites/Interface/LevelEditor/DefaultSprite.png
 TogglableButton.tscn::PackedScene::6396017243863994239::1727975019::0::1::::<><>::res://Content/Scripts/Levels/LevelEditorDefaultButton.cs<>uid://nlwphmf6wah0::::res://Content/Sprites/Levels/Level8/Button.png
-::res://Content/Scenes/Interface&Menu/::1738630717
+::res://Content/Scenes/Interface&Menu/::1738643506
 AchievementsMenu.tscn::PackedScene::2465208516054364638::1736310343::0::1::::<><>::uid://cb3550p76ubc8::::res://Content/Scenes/Interface&Menu/DraggableWindow.tscn<>res://Content/Scripts/Interface&Menu/AchievementsMenu.cs<>uid://dkitr1ftp0yhs::::res://Content/Other/Menu.tres<>res://Content/Scripts/Interface&Menu/ScrollableContainer.cs
 AdditionalGuiLayer.tscn::PackedScene::4813527504343416296::1737515006::0::1::::<><>::res://Content/Scripts/Interface&Menu/AdditionalGuiLayer.cs<>uid://cdbeqxy4ybfl6::::res://Content/Scenes/Interface&Menu/GoldenCrossesAmount.tscn<>uid://b424yc63hw1am::::res://Content/Sounds/Interface&Menu/GoldenCrossesRecievedAdditionalSound.mp3
 AnnotationBox.tscn::PackedScene::7486163156534229598::1734649071::0::1::::<><>::res://Content/Scripts/Interface&Menu/AnnotationBox.cs<>uid://7r0hpuodjrlj::::res://Content/Sprites/Interface/SmallWindowBase.png
@@ -269,7 +269,7 @@ FlexibleWindow.tscn::PackedScene::2258835094256850006::1736310343::0::1::::<><>:
 GoldenCrossesAmount.tscn::PackedScene::4985744963190007377::1737516567::0::1::::<><>::uid://dkitr1ftp0yhs::::res://Content/Other/Menu.tres<>res://Content/Scripts/Interface&Menu/GoldenCrossesAmount.cs<>uid://bmnjn4tqb7t5m::::res://Content/Sprites/Interface/GoldenCrossesAnimation.png
 HintCanvasLayer.tscn::PackedScene::5387601287167500234::1734385685::0::1::::<><>::res://Content/Scripts/Levels/HintCanvasLayer.cs<>uid://cij0pc53cmvqd::::res://Content/Sounds/Other/Snare.mp3<>uid://6nyi0tpol518::::res://Content/Sprites/Other/HintGlitch.png<>uid://2xdh4hpisqfj::::res://Content/Sounds/Other/HintGlitch.mp3
 InfoWindow.tscn::PackedScene::5129834191427671618::1736556664::0::1::::<><>::uid://cb3550p76ubc8::::res://Content/Scenes/Interface&Menu/DraggableWindow.tscn<>res://Content/Scripts/Interface&Menu/ConfirmationWindow.cs<>uid://dkitr1ftp0yhs::::res://Content/Other/Menu.tres<>uid://ci0nrongv6pih::::res://Content/Scenes/Interface&Menu/MenuButton.tscn<>uid://b8abnpf38b77x::::res://Content/Sprites/Interface/Buttons/4XAcceptButton.png
-InitializationScene.tscn::PackedScene::2013028201891906424::1738630717::0::1::::<><>::res://Content/Scripts/Interface&Menu/InitializationScene.cs<>uid://bwpstpk1xmkah::::res://Content/Scenes/Interface&Menu/Button.tscn<>uid://vb7vdsdjg4xa::::res://Content/Sprites/Interface/USADiscordFlag.png<>uid://hcoc3411pyvj::::res://Content/Sprites/Interface/RussiaDiscordFlag.png
+InitializationScene.tscn::PackedScene::2013028201891906424::1738643505::0::1::::<><>::res://Content/Scripts/Interface&Menu/InitializationScene.cs<>uid://bwpstpk1xmkah::::res://Content/Scenes/Interface&Menu/Button.tscn<>uid://vb7vdsdjg4xa::::res://Content/Sprites/Interface/USADiscordFlag.png<>uid://hcoc3411pyvj::::res://Content/Sprites/Interface/RussiaDiscordFlag.png
 LevelButton.tscn::PackedScene::6803955634510818098::1737516567::0::1::::<><>::uid://bwpstpk1xmkah::::res://Content/Scenes/Interface&Menu/Button.tscn<>uid://71vomw6byask::::res://Content/Sprites/Interface/Buttons/LevelIconButton.png<>uid://kaxj86lxg5nq::::res://Content/Sprites/Interface/Buttons/LevelIconButtonDisabled.png<>uid://bppnbtehdr3md::::res://Content/Sprites/Interface/LevelsIcons.png
 LevelsMenu.tscn::PackedScene::7025468511006834813::1737683965::0::1::::<><>::res://Content/Scripts/Interface&Menu/LevelsMenu.cs<>uid://bwpstpk1xmkah::::res://Content/Scenes/Interface&Menu/Button.tscn<>uid://bvogrd2bqhwmt::::res://Content/Sprites/Other/OblivionNoise.png<>uid://bv6ampi04qu7h::::res://Content/Sprites/Interface/LevelsMenuBox.png<>uid://dkitr1ftp0yhs::::res://Content/Other/Menu.tres<>uid://dy6lncevmnf3o::::res://Content/Sounds/Other/WhiteNoise.mp3<>uid://b2ay51k3qped::::res://Content/Sprites/Interface/Buttons/MicroLockSprite.png<>uid://1ua2wp4j8ce::::res://Content/Sprites/Interface/Buttons/LevelListScrollButtonLeft.png<>uid://dk6qvinkosaoa::::res://Content/Sprites/Interface/Buttons/LevelListScrollButtonDisabled.png<>uid://c6v5r4xne78e0::::res://Content/Sprites/Interface/Buttons/LevelListScrollButtonRight.png<>uid://c365fjpfqoj67::::res://Content/Scenes/Interface&Menu/LevelButton.tscn<>uid://ci0nrongv6pih::::res://Content/Scenes/Interface&Menu/MenuButton.tscn<>uid://b8abnpf38b77x::::res://Content/Sprites/Interface/Buttons/4XAcceptButton.png<>uid://ba7grlwd3ygbr::::res://Content/Sprites/Interface/LevelsMenuLevel5IconWindow.png
 MenuButton.tscn::PackedScene::5386781995455573915::1736909672::0::1::::<><>::uid://bwpstpk1xmkah::::res://Content/Scenes/Interface&Menu/Button.tscn<>uid://glq8rf30o1q3::::res://Content/Sprites/Interface/Buttons/4XCancelButton.png<>uid://dt52ve0jyuro::::res://Content/Sprites/Interface/Buttons/4XButtonBase.png
@@ -282,7 +282,7 @@ OptionsMenu.tscn::PackedScene::1818367011722652459::1736310343::0::1::::<><>::re
 OptionsSetByDefaultConfirmation.tscn::PackedScene::6783508664353862794::1733271816::0::1::::<><>::uid://twinoyaw5kfj::::res://Content/Scenes/Interface&Menu/ConfirmationWindow.tscn
 Pause.tscn::PackedScene::1352356098481623162::1733954383::0::1::::<><>::res://Content/Scripts/Interface&Menu/Pause.cs<>uid://4udch8ejvu08::::res://Content/Sprites/Interface/PauseButtonsFrame.png<>uid://bwpstpk1xmkah::::res://Content/Scenes/Interface&Menu/Button.tscn<>uid://dhr0k5tpvpg7n::::res://Content/Sprites/Interface/Buttons/UnpauseButton.png<>uid://bqua21jbasqml::::res://Content/Sprites/Interface/Buttons/PauseRewindButton.png<>uid://be5mi0sdy4bep::::res://Content/Sprites/Interface/Buttons/PauseOptionsButton.png<>uid://blp8i7meimekf::::res://Content/Sprites/Interface/Buttons/PauseMenuButton.png
 RecycleBinMenu.tscn::PackedScene::4460102140614332204::1736392375::0::1::::<><>::res://Content/Scripts/Interface&Menu/RecycleBinMenu.cs<>uid://cb3550p76ubc8::::res://Content/Scenes/Interface&Menu/DraggableWindow.tscn<>uid://bwpstpk1xmkah::::res://Content/Scenes/Interface&Menu/Button.tscn<>uid://c4vm1al1458fw::::res://Content/Sprites/Interface/Buttons/TXTFileIcon.png<>uid://sey4s4u68gsq::::res://Content/Sprites/Interface/Buttons/PictureIcon.png<>res://Content/Scripts/Interface&Menu/RecycleBinIcon.cs<>uid://dvnx6uvqwda4a::::res://Content/Sprites/Interface/Buttons/BoostyIcon.png<>uid://xrdfs0in8rkd::::res://Content/Sprites/Interface/Buttons/Discord.png<>uid://vb7vdsdjg4xa::::res://Content/Sprites/Interface/USADiscordFlag.png<>uid://hcoc3411pyvj::::res://Content/Sprites/Interface/RussiaDiscordFlag.png<>uid://vrn404e8k71d::::res://Content/Sprites/Interface/Buttons/YoutubeIcon.png<>uid://b10vsjrgf7cdp::::res://Content/Sprites/Interface/TXTFileBox.png<>uid://cm6fulwrltkeq::::res://Content/Sprites/Interface/AchievementHeart.png<>uid://cex2ep5xuxri7::::res://Content/Sprites/Interface/ImageFileBox.png<>uid://cds38uodpjth6::::res://Content/Sprites/Interface/Dem01.jpg<>uid://bgj44t1ysu411::::res://Content/Sprites/Interface/Dem02.jpg<>uid://daei5x1ck5jj7::::res://Content/Sprites/Interface/Dem03.jpg<>uid://dxedg74f6xxu8::::res://Content/Sprites/Interface/Dem04.jpg<>uid://pwonybf7j5mh::::res://Content/Sprites/Interface/Dem05.jpg<>uid://cewa30mmexpwc::::res://Content/Sprites/Interface/Memory1.jpg<>uid://dmddbmpujb7bd::::res://Content/Sprites/Interface/Memory2.jpg<>uid://o2ifde5e7hnf::::res://Content/Sprites/Interface/Memory3.jpg<>uid://dveghayrdn6a1::::res://Content/Sprites/Interface/Memory4.jpg<>uid://cgg2xfjcefbop::::res://Content/Sprites/Interface/Eternity.jpg
-ResurrectionEffect.tscn::PackedScene::5057829893276638048::1738630717::0::1::::<><>::res://Content/Scripts/Other/MicroScripts/ResurrectionEffect.cs<>uid://dtnh245w5l58p::::res://Content/Sounds/Other/Shot.mp3<>uid://bh4hc5oplq1p7::::res://Content/Sounds/Player/ResurrectionSound.mp3
+ResurrectionEffect.tscn::PackedScene::5057829893276638048::1738643506::0::1::::<><>::res://Content/Scripts/Other/MicroScripts/ResurrectionEffect.cs<>uid://dtnh245w5l58p::::res://Content/Sounds/Other/Shot.mp3<>uid://bh4hc5oplq1p7::::res://Content/Sounds/Player/ResurrectionSound.mp3
 SkinButton.tscn::PackedScene::2308478220022445906::1737762840::0::1::::<><>::uid://bwpstpk1xmkah::::res://Content/Scenes/Interface&Menu/Button.tscn<>uid://dkitr1ftp0yhs::::res://Content/Other/Menu.tres<>uid://dxt3rcbkxua06::::res://Content/Sprites/Interface/Buttons/SkinButton.png<>uid://cr6ilqqdmo4ug::::res://Content/Sprites/Interface/Buttons/SkinButtonDisabled.png<>res://Content/Scripts/Interface&Menu/SkinButton.cs<>uid://blm0gtq86usr7::::res://Content/Sprites/Interface/BlockedSkinSign.png
 SkinsMenu.tscn::PackedScene::1415137320480733622::1738617849::0::1::::<><>::res://Content/Scripts/Interface&Menu/SkinsMenu.cs<>uid://cb3550p76ubc8::::res://Content/Scenes/Interface&Menu/DraggableWindow.tscn<>uid://dkitr1ftp0yhs::::res://Content/Other/Menu.tres<>uid://060bgiw5i00k::::res://Content/Sprites/PlayerSkins/Slippey.png<>uid://75ikfwlafbnm::::res://Content/Scenes/Interface&Menu/SkinButton.tscn<>res://Content/Scripts/Interface&Menu/FixFlowContainer.cs<>uid://bd15vnp18h7qk::::res://Content/Sprites/PlayerSkins/Sanboy.png<>uid://cxusn8e4odfu0::::res://Content/Sprites/PlayerSkins/Samey.png<>uid://vjcab56ymxqr::::res://Content/Sprites/PlayerSkins/Pineplum.png<>uid://b486fyylpidxt::::res://Content/Sprites/PlayerSkins/Strawman.png<>uid://bbo5rgyrh6rwk::::res://Content/Sprites/PlayerSkins/Bondey.png<>uid://d1lge7hswejye::::res://Content/Sprites/PlayerSkins/Sleepy.png<>uid://daeeo1lq7usi6::::res://Content/Sprites/PlayerSkins/Hostey.png<>uid://c2f5fnganxvf6::::res://Content/Sprites/Other/SleepyZ.png<>uid://cdbeqxy4ybfl6::::res://Content/Scenes/Interface&Menu/GoldenCrossesAmount.tscn<>uid://dwetbbrr6umbh::::res://Content/Sprites/PlayerSkins/Daley.png<>uid://c0oi6sksegxxi::::res://Content/Scenes/PlayerSkins/JioYobaFefski.tscn<>uid://emmwsjgbgjod::::res://Content/Sprites/PlayerSkins/CompressMass.png<>uid://ddbl3u1r26kie::::res://Content/Sprites/PlayerSkins/SlippeyChad.png<>res://Content/Scripts/Other/MISSINGNULL.cs<>uid://p8n66ul13xdu::::res://Content/Sprites/PlayerSkins/Corey.png
 TurnOffMenu.tscn::PackedScene::528505460439202570::1736390724::0::1::::<><>::res://Content/Scripts/Interface&Menu/TurnOffMenu.cs<>uid://twinoyaw5kfj::::res://Content/Scenes/Interface&Menu/ConfirmationWindow.tscn
@@ -345,7 +345,7 @@ PresentedLevel9.tscn::PackedScene::8504972863549515511::1726946392::0::1::::<><>
 PresentedLevel9WithoutPlatformSection.tscn::PackedScene::6808738368724450185::1726946534::0::1::::<><>::uid://dsbmsydekaqyb::::res://Content/Sprites/Levels/Level9/VolcanoInterior.png<>uid://cwlb2ggj7gmuh::::res://Content/Sprites/Levels/Level9/VulcanInteriorLavaAnimation.png<>uid://d2gkb2n1pgjkq::::res://Content/Sprites/Levels/Level9/VolcanoStalactites.png<>uid://q2j1uuqfjmos::::res://Content/Sprites/Levels/BaseTileSet.png<>uid://dlx8ycfcvywk5::::res://Content/Sprites/Levels/InMyHeadTileset.png<>uid://dgluki8hnwb62::::res://Content/Sprites/Levels/Level8/AcidAndLavaTileset.png<>uid://dxd8sjpbxlk4r::::res://Content/Sprites/Levels/Level9/JiofefHeadSpriteList.png<>uid://bvogrd2bqhwmt::::res://Content/Sprites/Other/OblivionNoise.png<>uid://bsbmpibq56lwj::::res://Content/Sprites/Levels/Level9/WhyDontYouSleep.png
 PresentedLevel10.tscn::PackedScene::9064776118095697904::1726946632::0::1::::<><>::uid://b3eihc4teio4x::::res://Content/Sprites/Levels/Level10/Sky.png<>uid://dbduwv6h0rkr::::res://Content/Sprites/Levels/Level10/Clouds.png<>uid://co1mpijobgmvi::::res://Content/Sprites/Levels/Level10/BackCloudLayer.png<>uid://datptqmcpau44::::res://Content/Sprites/Levels/Level10/MiddleCloudLayer.png<>uid://cgmqr4byx6tjy::::res://Content/Sprites/Levels/Level10/FrontCloudLayer.png<>uid://cjieb76jdv80v::::res://Content/Sprites/Levels/ANineGreetingsTileset.png
 PresentedLevel10True.tscn::PackedScene::304435217530099046::1726946674::0::1::::<><>::uid://bif1cr6n4hvie::::res://Content/Sprites/Levels/Level10/TestChamber.png<>uid://cp7kra2fyq5jn::::res://Content/Sprites/Levels/Level10/BackPipes.png<>uid://vymh2b710qgl::::res://Content/Sprites/Levels/Level10/ForePipes.png<>uid://bom6incv53ok1::::res://Content/Sprites/Levels/Level10/Rail.png<>res://Content/Scripts/Other/AnimationRandomizer.cs<>uid://bx0f1c20d2wai::::res://Content/Sprites/Levels/DropesAndHeamsTileset.png
-::res://Content/Scenes/Other/::1738630717
+::res://Content/Scenes/Other/::1738643506
 CH032.png::CompressedTexture2D::1632619527501374598::1716678919::1727708653::1::::<><>::
 CrutchedArea2D.tscn::PackedScene::9167807233984998788::1727913022::0::1::::<><>::res://Content/Scripts/Levels/Level8DisposableButton.cs
 EndOfAnEverything.tscn::PackedScene::2859740782946816338::1735489617::0::1::::<><>::res://Content/Scripts/Levels/Level7EndOfAnEverything.cs<>uid://ia5n2h8yioy6::::res://Content/Sounds/Levels/Level7AverythingStruggling.mp3
@@ -363,7 +363,7 @@ Level9JiofefHeadDeathParticles.tscn::PackedScene::8850364128636456527::173197328
 Level9SpitCross.tscn::PackedScene::7377969078040567693::1733848439::0::1::::<><>::uid://b53a4snnwbhr1::::res://Content/Sprites/Levels/Level9/SpitCross.png<>res://Content/Scripts/Levels/Level9SpitCross.cs<>uid://bv5jkxumbdvb2::::res://Content/Sprites/Levels/Level9/SpitCrossWarning.png<>uid://bia3ek48x2oph::::res://Content/Sounds/Crosses/MicroExplosion.mp3<>uid://bt41vubjcqv8p::::res://Content/Scenes/Crosses/ExplosionAnimation.tscn<>uid://bg2mvitb1ih7q::::res://Content/Sprites/Other/Explosion.png
 Level9VomitCross.tscn::PackedScene::428996956776627387::1733848439::0::1::::<><>::res://Content/Scripts/Levels/Level9VomitCross.cs<>uid://b53a4snnwbhr1::::res://Content/Sprites/Levels/Level9/SpitCross.png<>uid://bv5jkxumbdvb2::::res://Content/Sprites/Levels/Level9/SpitCrossWarning.png<>uid://bia3ek48x2oph::::res://Content/Sounds/Crosses/MicroExplosion.mp3<>uid://bt41vubjcqv8p::::res://Content/Scenes/Crosses/ExplosionAnimation.tscn<>uid://bg2mvitb1ih7q::::res://Content/Sprites/Other/Explosion.png
 LevelLayout.tscn::PackedScene::2126656670042431071::1738038864::0::1::::<><>::res://Content/Scripts/Other/MainScript.cs<>res://Content/Scripts/Other/LevelMusicPlayer.cs<>res://Content/Scripts/Levels/BaseLevelScript.cs<>res://Content/Scripts/Crosses/CrossSpawner.cs<>uid://tjddwdxopw2u::::res://Content/Scenes/Interface&Menu/Pause.tscn<>uid://c7psxdkakrw5x::::res://Content/Scenes/Other/EpicIntro.tscn<>uid://catydhrk62at1::::res://Content/Scenes/Interface&Menu/AdditionalGuiLayer.tscn
-Player.tscn::PackedScene::7968655578767370644::1738630717::0::1::::<><>::res://Content/Scripts/Other/Player.cs<>uid://422y36f6ucnf::::res://Content/Sounds/Player/Climb.mp3<>uid://ctpwmgkvyooy1::::res://Content/Sounds/Player/Death.mp3<>uid://blkua1p6uqioe::::res://Content/Sounds/Player/GroundHit.mp3<>uid://b3cwlsvshgdvx::::res://Content/Sounds/Player/Jump.mp3<>res://Content/Scripts/Interface&Menu/StandBar.cs<>uid://cq27bdhehtatn::::res://Content/Sprites/Interface/StandBarEmpty.png<>uid://p26mliplwayb::::res://Content/Sounds/Player/PullDown.mp3<>uid://c2vlstlfjauxy::::res://Content/Sprites/Interface/StandBar.png<>uid://060bgiw5i00k::::res://Content/Sprites/PlayerSkins/Slippey.png<>uid://dlkiscny21m58::::res://Content/Sprites/Interface/ClimbBarEmpty.png<>uid://br5w2ioqt3fqq::::res://Content/Sprites/Interface/ClimbBar.png<>uid://nmw5orvjy6f8::::res://Content/Sprites/Other/PlayerGhost.png<>uid://t73lfqyo0ovn::::res://Content/Sprites/Other/Shine.png<>uid://dy6lncevmnf3o::::res://Content/Sounds/Other/WhiteNoise.mp3<>res://Content/Scripts/Other/Camera.cs<>uid://bvogrd2bqhwmt::::res://Content/Sprites/Other/OblivionNoise.png
+Player.tscn::PackedScene::7968655578767370644::1738643505::0::1::::<><>::res://Content/Scripts/Other/Player.cs<>uid://422y36f6ucnf::::res://Content/Sounds/Player/Climb.mp3<>uid://ctpwmgkvyooy1::::res://Content/Sounds/Player/Death.mp3<>uid://blkua1p6uqioe::::res://Content/Sounds/Player/GroundHit.mp3<>uid://b3cwlsvshgdvx::::res://Content/Sounds/Player/Jump.mp3<>res://Content/Scripts/Interface&Menu/StandBar.cs<>uid://cq27bdhehtatn::::res://Content/Sprites/Interface/StandBarEmpty.png<>uid://p26mliplwayb::::res://Content/Sounds/Player/PullDown.mp3<>uid://c2vlstlfjauxy::::res://Content/Sprites/Interface/StandBar.png<>uid://060bgiw5i00k::::res://Content/Sprites/PlayerSkins/Slippey.png<>uid://dlkiscny21m58::::res://Content/Sprites/Interface/ClimbBarEmpty.png<>uid://br5w2ioqt3fqq::::res://Content/Sprites/Interface/ClimbBar.png<>uid://nmw5orvjy6f8::::res://Content/Sprites/Other/PlayerGhost.png<>uid://t73lfqyo0ovn::::res://Content/Sprites/Other/Shine.png<>uid://dy6lncevmnf3o::::res://Content/Sounds/Other/WhiteNoise.mp3<>res://Content/Scripts/Other/Camera.cs<>uid://bvogrd2bqhwmt::::res://Content/Sprites/Other/OblivionNoise.png
 PopupText.tscn::PackedScene::9218245634345453778::1737426090::0::1::::<><>::res://Content/Scripts/Other/PopupText.cs
 RandomVectorTest.tscn::PackedScene::9077610249330419206::1738038863::0::1::::<><>::res://Content/Scripts/Other/RandomVectorTest.cs
 RootIntro.tscn::PackedScene::1073710547589150574::1735500760::0::1::::<><>::res://Content/Other/BrightnessShader.gdshader<>res://Content/Scripts/Other/RootIntro.cs<>uid://0ritvrmr8r7h::::res://Content/Sounds/Other/RootIntro.mp3<>res://Content/Scripts/Other/PostProcessingRect.cs
@@ -448,11 +448,11 @@ LevelEditorCreateNodeButton.cs::CSharpScript::-1::1732657149::0::1::::<>TextureB
 NodeMode.cs::CSharpScript::-1::1736456903::0::1::::<>Control<>::
 SavePage.cs::CSharpScript::-1::1733587277::0::1::::<>Control<>::
 TileMode.cs::CSharpScript::-1::1733537434::0::1::::<>Control<>::
-::res://Content/Scripts/Levels/::1738630954
+::res://Content/Scripts/Levels/::1738643049
 BaseLevelScript.cs::CSharpScript::-1::1738099674::0::1::::<>Node2D<>::
 Foreground.cs::CSharpScript::-1::1733518866::0::1::::<>Node2D<>::
 GlitchLevelScript.cs::CSharpScript::-1::1735425725::0::1::::<>Node2D<>::
-HintCanvasLayer.cs::CSharpScript::-1::1734478020::0::1::::<>CanvasLayer<>::
+HintCanvasLayer.cs::CSharpScript::-1::1738641220::0::1::::<>CanvasLayer<>::
 Level000000000Revelation.cs::CSharpScript::-1::1737174305::0::1::::<>Node2D<>::
 Level1AdditionalBrightnessAnimationPlayer.cs::CSharpScript::-1::1715314046::0::1::::<>AnimationPlayer<>::
 Level1MainScript.cs::CSharpScript::-1::1737165640::0::1::::<>Node2D<>::
@@ -460,12 +460,12 @@ Level1TutorialDarkeningAnimationPlayer.cs::CSharpScript::-1::1702605087::0::1:::
 Level4CircularSawScreechSound.cs::CSharpScript::-1::1737066824::0::1::::<>AudioStreamPlayer<>::
 Level4CircularSawScript.cs::CSharpScript::-1::1695150963::0::1::::<>Node2D<>::
 Level5MusicStarter.cs::CSharpScript::-1::1733518898::0::1::::<>Area2D<>::
-Level5Rain.cs::CSharpScript::-1::1738630954::0::1::::<>Node2D<>::
+Level5Rain.cs::CSharpScript::-1::1738640235::0::1::::<>Node2D<>::
 Level6FlyingCar.cs::CSharpScript::-1::1701801921::0::1::::<>AnimatableBody2D<>::
 Level6FlyingCarSpawner.cs::CSharpScript::-1::1698162845::0::1::::<>Node2D<>::
 Level6SneakyAssArea.cs::CSharpScript::-1::1718579013::0::1::::<>Area2D<>::
 Level7EndOfAnEverything.cs::CSharpScript::-1::1735480755::0::1::::<>CanvasLayer<>::
-Level7HopelessnessLayer.cs::CSharpScript::-1::1735605218::0::1::::<>CanvasLayer<>::
+Level7HopelessnessLayer.cs::CSharpScript::-1::1738643049::0::1::::<>CanvasLayer<>::
 Level7MindTumor.cs::CSharpScript::-1::1735602419::0::1::::<>Area2D<>::
 Level7TumorSprite.cs::CSharpScript::-1::1735501517::0::1::::<>Node2D<>::
 Level8DisposableButton.cs::CSharpScript::-1::1734371152::0::1::::<>Area2D<>::
@@ -482,7 +482,7 @@ Level9PlatformerSection.cs::CSharpScript::-1::1738377114::0::1::::<>Node2D<>::
 Level9SpitCross.cs::CSharpScript::-1::1691783496::0::1::::<>Node2D<>::
 Level9VomitCross.cs::CSharpScript::-1::1733839653::0::1::::<>Node2D<>::
 Level10DroneCapsule.cs::CSharpScript::-1::1735264745::0::1::::<>Node2D<>::
-Level10MusicPlayer.cs::CSharpScript::-1::1738617690::0::1::::<>AudioStreamPlayer<>::
+Level10MusicPlayer.cs::CSharpScript::-1::1738637018::0::1::::<>AudioStreamPlayer<>::
 Level10RealityDissector.cs::CSharpScript::-1::1735264559::0::1::::<>Node<>::
 Level10ScientistScript.cs::CSharpScript::-1::1738617609::0::1::::<>Node2D<>::
 LevelEditorDefaultButton.cs::CSharpScript::-1::1727975725::0::1::::<>Area2D<>::
@@ -490,18 +490,17 @@ PresentedLevel5Rain.cs::CSharpScript::-1::1697653456::0::1::::<>Node2D<>::
 Subtitles.cs::CSharpScript::-1::1734552393::0::1::::<>RichTextLabel<>::
 TutorialCanvasLayer.cs::CSharpScript::-1::1732978304::0::1::::<>CanvasLayer<>::
 TutorialTvScreen.cs::CSharpScript::-1::1720234769::0::1::::<>Control<>::
-::res://Content/Scripts/Other/::1738627014
-Achievement.cs::CSharpScript::-1::1738627014::0::1::::<>Control<>::
+::res://Content/Scripts/Other/::1738643899
+Achievement.cs::CSharpScript::-1::1738643201::0::1::::<>Control<>::
 AchievementArea.cs::CSharpScript::-1::1734228543::0::1::::<>Area2D<>::
 AnimationRandomizer.cs::CSharpScript::-1::1696105480::0::1::::<>AnimationPlayer<>::
-ButItRefusedScript.txt::TextFile::-1::1738333701::0::1::::<><>::
 Camera.cs::CSharpScript::-1::1738364529::0::1::::<>Camera2D<>::
 CH032.png::CompressedTexture2D::271053071139646284::1716678900::1727708653::1::::<><>::
 DidLevelIntroPassedSet.cs::CSharpScript::-1::1715397584::0::1::::<>AnimationPlayer<>::
 EpicIntro.cs::CSharpScript::-1::1737070714::0::1::::<>CanvasLayer<>::
 Extensions.cs::CSharpScript::-1::1735424818::0::1::::<><>::
 LevelMusicPlayer.cs::CSharpScript::-1::1738618316::0::1::::<>AudioStreamPlayer<>::
-MainScript.cs::CSharpScript::-1::1737172475::0::1::::<>Node2D<>::
+MainScript.cs::CSharpScript::-1::1738641758::0::1::::<>Node2D<>::
 MISSINGNULL.cs::CSharpScript::-1::1703195965::0::1::::<>AnimatedSprite2D<>::
 Player.cs::CSharpScript::-1::1738620510::0::1::::<>CharacterBody2D<>::
 PopupText.cs::CSharpScript::-1::1737260911::0::1::::<>Label<>::
@@ -515,17 +514,17 @@ UserLevelScript.cs::CSharpScript::-1::1738099678::0::1::::<>Node2D<>::
 UserMainScript.cs::CSharpScript::-1::1733496832::0::1::::<>Node2D<>::
 ::res://Content/Scripts/Other/MicroScripts/::1738619813
 ResurrectionEffect.cs::CSharpScript::-1::1738619813::0::1::::<>ColorRect<>::
-::res://Content/Scripts/Singletons/::1738631119
-Achievements.cs::CSharpScript::-1::1738628732::0::1::::<>Node<>::
+::res://Content/Scripts/Singletons/::1738642704
+Achievements.cs::CSharpScript::-1::1738638102::0::1::::<>Node<>::
 Crosses.cs::CSharpScript::-1::1738627633::0::1::::<>Node<>::
 FileSystemExtension.cs::CSharpScript::-1::1738629503::0::1::::<>Node<>::
-G.cs::CSharpScript::-1::1738631119::0::1::::<>Node<>::
+G.cs::CSharpScript::-1::1738640873::0::1::::<>Node<>::
 Meta.cs::CSharpScript::-1::1737685477::0::1::::<>Node<>::
 ModDataManager.cs::CSharpScript::-1::1736909669::0::1::::<>Node<>::
 ModManager.cs::CSharpScript::-1::1737070763::0::1::::<>Node<>::
-OtherExtension.cs::CSharpScript::-1::1738617110::0::1::::<><>::
+OtherExtension.cs::CSharpScript::-1::1738641513::0::1::::<><>::
 Skins.cs::CSharpScript::-1::1737730470::0::1::::<>Node<>::
-UnchangableMeta.cs::CSharpScript::-1::1738629573::0::1::::<>Node<>::
+UnchangableMeta.cs::CSharpScript::-1::1738642704::0::1::::<>Node<>::
 ::res://Content/Sounds/::1737514977
 ::res://Content/Sounds/Crosses/::1738207058
 BlueElementalCrossPartSoundVar1.mp3::AudioStreamMP3::7515156397364083251::1696285631::1727708650::1::::<><>::

@@ -1,19 +1,28 @@
-[gd_scene load_steps=3 format=3 uid="uid://cac1cth5veu3"]
+[gd_scene load_steps=4 format=3 uid="uid://cac1cth5veu3"]
 
 [ext_resource type="PackedScene" uid="uid://d27nwc3cdixbo" path="res://Content/Scenes/Achievements/DefaultAchievement.tscn" id="1_oqvdp"]
 [ext_resource type="Texture2D" uid="uid://bppnbtehdr3md" path="res://Content/Sprites/Interface/LevelsIcons.png" id="2_1la6o"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_tuobl"]
+atlas = ExtResource("2_1la6o")
+region = Rect2(405, 45, 45, 45)
+
 [node name="Achievement" instance=ExtResource("1_oqvdp")]
+Icon = SubResource("AtlasTexture_tuobl")
+PositionInAtlas = Vector2(9, 1)
+StarsCount = 2
 
-[node name="RewardSprite" parent="Sprite2D/RewardBox1" index="0"]
-texture = ExtResource("2_1la6o")
-region_rect = Rect2(405, 45, 45, 45)
+[node name="Texture" parent="Texture/IconB/MarginC" index="0"]
+texture = SubResource("AtlasTexture_tuobl")
 
-[node name="Star2" parent="Sprite2D/Ratings" index="1"]
+[node name="Star2" parent="Texture/StarsC" index="1"]
 visible = true
 
-[node name="Name" parent="." index="1"]
-text = "The palaces of crowned kings — were burnt."
+[node name="Star1" parent="Texture/StarsC" index="2"]
+visible = true
 
-[node name="Text" parent="." index="2"]
+[node name="Text" parent="DescScrollC" index="0"]
 text = "Complete level 10 on \"Insane\" difficulty"
+
+[node name="Name" parent="NameScrollC" index="0"]
+text = "The palaces of crowned kings — were burnt."

@@ -1,20 +1,31 @@
-[gd_scene load_steps=2 format=3 uid="uid://dflltmdh00lkg"]
+[gd_scene load_steps=4 format=3 uid="uid://dflltmdh00lkg"]
 
 [ext_resource type="PackedScene" uid="uid://d27nwc3cdixbo" path="res://Content/Scenes/Achievements/DefaultAchievement.tscn" id="1_71f6o"]
+[ext_resource type="Texture2D" uid="uid://8yt60jrdtl3" path="res://Content/Sprites/Interface/AchievementIcons.png" id="2_0nij2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o1ejo"]
+atlas = ExtResource("2_0nij2")
+region = Rect2(135, 45, 45, 45)
 
 [node name="Achievement" instance=ExtResource("1_71f6o")]
+Icon = SubResource("AtlasTexture_o1ejo")
+PositionInAtlas = Vector2(3, 1)
+StarsCount = 3
 
-[node name="RewardSprite" parent="Sprite2D/RewardBox1" index="0"]
-region_rect = Rect2(135, 45, 45, 45)
+[node name="Texture" parent="Texture/IconB/MarginC" index="0"]
+texture = SubResource("AtlasTexture_o1ejo")
 
-[node name="Star2" parent="Sprite2D/Ratings" index="1"]
+[node name="Star3" parent="Texture/StarsC" index="0"]
 visible = true
 
-[node name="Star3" parent="Sprite2D/Ratings" index="2"]
+[node name="Star2" parent="Texture/StarsC" index="1"]
 visible = true
 
-[node name="Name" parent="." index="1"]
-text = "Congratulations!"
+[node name="Star1" parent="Texture/StarsC" index="2"]
+visible = true
 
-[node name="Text" parent="." index="2"]
+[node name="Text" parent="DescScrollC" index="0"]
 text = "Pass the final exam"
+
+[node name="Name" parent="NameScrollC" index="0"]
+text = "Congratulations!"

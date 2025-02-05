@@ -1,17 +1,25 @@
-[gd_scene load_steps=3 format=3 uid="uid://chqdnsjjiodbi"]
+[gd_scene load_steps=4 format=3 uid="uid://chqdnsjjiodbi"]
 
 [ext_resource type="PackedScene" uid="uid://d27nwc3cdixbo" path="res://Content/Scenes/Achievements/DefaultAchievement.tscn" id="1_e5tib"]
 [ext_resource type="Texture2D" uid="uid://bppnbtehdr3md" path="res://Content/Sprites/Interface/LevelsIcons.png" id="2_h0adi"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_4i5dx"]
+atlas = ExtResource("2_h0adi")
+region = Rect2(225, 0, 45, 45)
+
 [node name="Achievement" instance=ExtResource("1_e5tib")]
+Icon = SubResource("AtlasTexture_4i5dx")
+PositionInAtlas = Vector2(5, 0)
+StarsCount = 1
 
-[node name="RewardSprite" parent="Sprite2D/RewardBox1" index="0"]
-texture = ExtResource("2_h0adi")
-region_rect = Rect2(225, 0, 45, 45)
+[node name="Texture" parent="Texture/IconB/MarginC" index="0"]
+texture = SubResource("AtlasTexture_4i5dx")
 
-[node name="Name" parent="." index="1"]
-scale = Vector2(0.6, 0.6)
-text = "When forest glades are teeming with bright forms"
+[node name="Star1" parent="Texture/StarsC" index="2"]
+visible = true
 
-[node name="Text" parent="." index="2"]
+[node name="Text" parent="DescScrollC" index="0"]
 text = "Complete level 6 on \"Hard\" difficulty"
+
+[node name="Name" parent="NameScrollC" index="0"]
+text = "When forest glades are teeming with bright forms"

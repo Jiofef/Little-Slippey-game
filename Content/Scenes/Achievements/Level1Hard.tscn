@@ -1,20 +1,33 @@
-[gd_scene load_steps=3 format=3 uid="uid://dukruigt3bu8k"]
+[gd_scene load_steps=5 format=3 uid="uid://dukruigt3bu8k"]
 
 [ext_resource type="PackedScene" uid="uid://d27nwc3cdixbo" path="res://Content/Scenes/Achievements/DefaultAchievement.tscn" id="1_chtnq"]
 [ext_resource type="Texture2D" uid="uid://bppnbtehdr3md" path="res://Content/Sprites/Interface/LevelsIcons.png" id="2_es74v"]
+[ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/AutoScrollContainer.cs" id="3_km0dx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ycrp"]
+atlas = ExtResource("2_es74v")
+region = Rect2(0, 0, 45, 45)
 
 [node name="Achievement" instance=ExtResource("1_chtnq")]
+Icon = SubResource("AtlasTexture_2ycrp")
+StarsCount = 1
 
-[node name="RewardSprite" parent="Sprite2D/RewardBox1" index="0"]
-position = Vector2(5.42937e-06, -1.01328e-06)
-texture = ExtResource("2_es74v")
+[node name="Texture" parent="Texture/IconB/MarginC" index="0"]
+texture = SubResource("AtlasTexture_2ycrp")
 
-[node name="RewardBox2" parent="Sprite2D" index="1"]
+[node name="Star1" parent="Texture/StarsC" index="2"]
 visible = true
 
-[node name="Name" parent="." index="1"]
+[node name="DescScrollC" parent="." index="3"]
+script = ExtResource("3_km0dx")
+
+[node name="Text" parent="DescScrollC" index="0"]
+text = "Complete level 1 on \"Hard\" difficulty"
+
+[node name="NameScrollC" parent="." index="4"]
+script = ExtResource("3_km0dx")
+
+[node name="Name" parent="NameScrollC" index="0"]
 text = "When the warm sun, that brings"
 
-[node name="Text" parent="." index="2"]
-offset_right = 446.0
-text = "Complete level 1 on \"Hard\" difficulty"
+[connection signal="focus_entered" from="." to="." method="ScrollText"]

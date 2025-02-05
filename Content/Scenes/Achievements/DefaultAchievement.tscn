@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://d27nwc3cdixbo"]
+[gd_scene load_steps=22 format=3 uid="uid://d27nwc3cdixbo"]
 
 [ext_resource type="Texture2D" uid="uid://w03njd07hf8e" path="res://Content/Sprites/Interface/AchievementBox.png" id="1_11rdp"]
 [ext_resource type="Script" path="res://Content/Scripts/Other/Achievement.cs" id="1_u1lly"]
@@ -7,12 +7,74 @@
 [ext_resource type="Texture2D" uid="uid://bcy80tqeqbgxw" path="res://Content/Sprites/Interface/WhiteAchievementStar.png" id="3_hi4or"]
 [ext_resource type="Texture2D" uid="uid://8yt60jrdtl3" path="res://Content/Sprites/Interface/AchievementIcons.png" id="4_7bny4"]
 [ext_resource type="AudioStream" uid="uid://ca1ra0emtaeth" path="res://Content/Sounds/Interface&Menu/AchievementSound.mp3" id="4_338ko"]
-[ext_resource type="Texture2D" uid="uid://brgquvu7soyfx" path="res://Content/Sprites/Interface/AchievementStar.png" id="4_ndwic"]
+[ext_resource type="Texture2D" uid="uid://bmnjn4tqb7t5m" path="res://Content/Sprites/Interface/GoldenCrossesAnimation.png" id="6_kyk46"]
 [ext_resource type="Theme" uid="uid://dkitr1ftp0yhs" path="res://Content/Other/Menu.tres" id="6_ui8eo"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_l7mjc"]
 atlas = ExtResource("4_7bny4")
 region = Rect2(0, 0, 45, 45)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hrufl"]
+atlas = ExtResource("6_kyk46")
+region = Rect2(0, 0, 17, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6glml"]
+atlas = ExtResource("6_kyk46")
+region = Rect2(17, 0, 17, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0htyy"]
+atlas = ExtResource("6_kyk46")
+region = Rect2(34, 0, 17, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bjnud"]
+atlas = ExtResource("6_kyk46")
+region = Rect2(51, 0, 17, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qeu4c"]
+atlas = ExtResource("6_kyk46")
+region = Rect2(68, 0, 17, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j6amb"]
+atlas = ExtResource("6_kyk46")
+region = Rect2(85, 0, 17, 17)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jnjer"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hrufl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6glml")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0htyy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bjnud")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qeu4c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j6amb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qeu4c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bjnud")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0htyy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6glml")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="Gradient" id="Gradient_6pdph"]
 offsets = PackedFloat32Array(0, 0.03, 1)
@@ -79,45 +141,9 @@ mouse_filter = 1
 script = ExtResource("1_u1lly")
 IconNode = NodePath("Texture/IconB/MarginC/Texture")
 Icon = SubResource("AtlasTexture_l7mjc")
+StarsCount = 0
+StarTexture = ExtResource("3_hi4or")
 StarsColor = Color(0.97, 0.89725, 0.485, 1)
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(4, 4)
-texture = ExtResource("1_11rdp")
-centered = false
-
-[node name="RewardBox1" type="Sprite2D" parent="Sprite2D"]
-position = Vector2(100, 22)
-texture = ExtResource("3_blldf")
-
-[node name="RewardSprite" type="Sprite2D" parent="Sprite2D/RewardBox1"]
-scale = Vector2(0.355555, 0.355556)
-texture = ExtResource("4_7bny4")
-region_enabled = true
-region_rect = Rect2(0, 0, 45, 45)
-
-[node name="RewardBox2" type="Sprite2D" parent="Sprite2D"]
-visible = false
-position = Vector2(79, 22)
-texture = ExtResource("3_blldf")
-
-[node name="RewardSprite" type="Sprite2D" parent="Sprite2D/RewardBox2"]
-
-[node name="Ratings" type="Node2D" parent="Sprite2D"]
-
-[node name="Star1" type="Sprite2D" parent="Sprite2D/Ratings"]
-position = Vector2(114, 29.5)
-texture = ExtResource("4_ndwic")
-
-[node name="Star2" type="Sprite2D" parent="Sprite2D/Ratings"]
-visible = false
-position = Vector2(114, 22)
-texture = ExtResource("4_ndwic")
-
-[node name="Star3" type="Sprite2D" parent="Sprite2D/Ratings"]
-visible = false
-position = Vector2(114, 14.5)
-texture = ExtResource("4_ndwic")
 
 [node name="Texture" type="TextureRect" parent="."]
 clip_contents = true
@@ -175,6 +201,7 @@ layout_mode = 2
 texture = ExtResource("3_hi4or")
 
 [node name="Star1" type="TextureRect" parent="Texture/StarsC"]
+visible = false
 modulate = Color(0.97, 0.89725, 0.485, 1)
 custom_minimum_size = Vector2(28, 28)
 layout_mode = 2
@@ -184,6 +211,41 @@ texture = ExtResource("3_hi4or")
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="GoldenCrossesAnimation" type="Control" parent="Texture"]
+custom_minimum_size = Vector2(68, 68)
+layout_mode = 3
+anchors_preset = 0
+offset_left = 300.0
+offset_top = 95.0
+offset_right = 368.0
+offset_bottom = 163.0
+scale = Vector2(0.5, 0.5)
+size_flags_vertical = 0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Texture/GoldenCrossesAnimation"]
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_jnjer")
+autoplay = "default"
+frame_progress = 0.51975
+centered = false
+
+[node name="RewardAmount" type="Label" parent="Texture/GoldenCrossesAnimation"]
+layout_mode = 0
+offset_left = -32.0
+offset_top = -58.0
+offset_right = 34.0
+offset_bottom = -30.0
+scale = Vector2(2, 2)
+theme = ExtResource("6_ui8eo")
+theme_override_colors/font_color = Color(0.968627, 0.894118, 0.462745, 1)
+theme_override_colors/font_shadow_color = Color(0.952941, 0.839216, 0.192157, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/shadow_outline_size = 0
+text = "100"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="PopupVersionPart" type="Node2D" parent="."]
 
@@ -231,7 +293,7 @@ metadata/_edit_lock_ = true
 layout_mode = 2
 offset_left = 8.0
 offset_top = 44.0
-offset_right = 464.0
+offset_right = 376.0
 offset_bottom = 164.0
 scale = Vector2(0.75, 0.75)
 size_flags_horizontal = 3
@@ -248,6 +310,7 @@ theme = ExtResource("6_ui8eo")
 theme_override_colors/default_color = Color(0.196078, 0.196078, 0.196078, 1)
 theme_override_font_sizes/normal_font_size = 22
 text = "Description"
+fit_content = true
 scroll_active = false
 metadata/_edit_lock_ = true
 

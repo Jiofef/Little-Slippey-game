@@ -1,11 +1,8 @@
 res://default_env.tres
-res://Content/Scenes/Interface&Menu/InitializationScene.tscn
+res://Content/Scenes/Achievements/DefaultAchievement.tscn
 res://Content/Other/Menu.tres
 res://Content/Other/BrightnessShader.gdshader
 res://Content/Other/BlurShader.gdshader
-res://Content/Scenes/Other/Player.tscn
-res://Content/Scenes/Interface&Menu/ResurrectionEffect.tscn
-res://Content/Scenes/Achievements/DefaultAchievement.tscn
 res://Content/Scripts/Crosses/BlueElementalCrossPart.cs
 res://Content/Scripts/Other/UserLevelScript.cs
 res://Content/Scripts/Interface&Menu/LevelEditor/LevelEditor.cs
@@ -136,3 +133,58 @@ res://Content/Scripts/Interface&Menu/ScrollableRichTextLabel.cs
 res://Content/Scripts/Interface&Menu/OptionsMenu.cs
 res://Content/Scripts/Interface&Menu/ButtonWithText.cs
 res://Content/Scripts/Levels/Level10RealityDissector.cs
+res://Content/Scenes/Achievements/Level1Hard.tscn
+res://Content/Scenes/Achievements/Level1Inferno.tscn
+res://Content/Scenes/Achievements/Level1Insane.tscn
+res://Content/Scenes/Achievements/Level2Hard.tscn
+res://Content/Scenes/Achievements/Level2Inferno.tscn
+res://Content/Scenes/Achievements/Level2Insane.tscn
+res://Content/Scenes/Achievements/Level3Hard.tscn
+res://Content/Scenes/Achievements/Level3Inferno.tscn
+res://Content/Scenes/Achievements/Level3Insane.tscn
+res://Content/Scenes/Achievements/Level4Hard.tscn
+res://Content/Scenes/Achievements/Level4Inferno.tscn
+res://Content/Scenes/Achievements/Level4Insane.tscn
+res://Content/Scenes/Achievements/Level5Hard.tscn
+res://Content/Scenes/Achievements/Level5Inferno.tscn
+res://Content/Scenes/Achievements/Level5Insane.tscn
+res://Content/Scenes/Achievements/Level6Hard.tscn
+res://Content/Scenes/Achievements/Level6Inferno.tscn
+res://Content/Scenes/Achievements/Level6Insane.tscn
+res://Content/Scenes/Achievements/Level7Hard.tscn
+res://Content/Scenes/Achievements/Level7Inferno.tscn
+res://Content/Scenes/Achievements/Level7Insane.tscn
+res://Content/Scenes/Achievements/Level8Hard.tscn
+res://Content/Scenes/Achievements/Level8Inferno.tscn
+res://Content/Scenes/Achievements/Level8Insane.tscn
+res://Content/Scenes/Achievements/Level9Hard.tscn
+res://Content/Scenes/Achievements/Level9Inferno.tscn
+res://Content/Scenes/Achievements/Level9Insane.tscn
+res://Content/Scenes/Achievements/Level10Hard.tscn
+res://Content/Scenes/Achievements/Level10Inferno.tscn
+res://Content/Scenes/Achievements/Level10Insane.tscn
+res://Content/Scenes/Achievements/-000-.tscn
+res://Content/Scenes/Achievements/000-.tscn
+res://Content/Scenes/Achievements/_000.tscn
+res://Content/Scenes/Achievements/A criminal against humanity.tscn
+res://Content/Scenes/Achievements/At least I got to hobnob with royalty.tscn
+res://Content/Scenes/Achievements/Congratulations!0.tscn
+res://Content/Scenes/Achievements/Congratulations!1.tscn
+res://Content/Scenes/Achievements/Congratulations!2.tscn
+res://Content/Scenes/Achievements/Congratulations!3.tscn
+res://Content/Scenes/Achievements/Did you really fall for that.tscn
+res://Content/Scenes/Achievements/Eureka.tscn
+res://Content/Scenes/Achievements/I am already the Slippey.tscn
+res://Content/Scenes/Achievements/I Have No Eyes, and I Must Oversee.tscn
+res://Content/Scenes/Achievements/I'm no stranger to.tscn
+res://Content/Scenes/Achievements/Laziness is our everything.tscn
+res://Content/Scenes/Achievements/It's worth a shot.tscn
+res://Content/Scenes/Achievements/Marathoner.tscn
+res://Content/Scenes/Achievements/Over and over and over and over and over and.tscn
+res://Content/Scenes/Achievements/Thank you for everything, player.tscn
+res://Content/Scenes/Achievements/you were deceived..tscn
+res://Content/Scenes/Achievements/You will regret it..tscn
+res://Content/Scenes/Achievements/You're getting somewhere.tscn
+res://Content/Scenes/Other/Player.tscn
+res://Content/Scripts/Interface&Menu/AutoScrollContainer.cs
+res://Content/Scenes/Interface&Menu/GoldenCrossesAmount.tscn

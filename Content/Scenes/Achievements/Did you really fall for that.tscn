@@ -1,24 +1,29 @@
-[gd_scene load_steps=3 format=3 uid="uid://02i4p0no1ej8"]
+[gd_scene load_steps=4 format=3 uid="uid://02i4p0no1ej8"]
 
 [ext_resource type="PackedScene" uid="uid://d27nwc3cdixbo" path="res://Content/Scenes/Achievements/DefaultAchievement.tscn" id="1_b1ny7"]
 [ext_resource type="Texture2D" uid="uid://cx42eys4hmvdl" path="res://Content/Sprites/Other/Jiofef.png" id="2_e1l2r"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_fauym"]
+atlas = ExtResource("2_e1l2r")
+region = Rect2(0, 0, 340, 420)
+
 [node name="Achievement" instance=ExtResource("1_b1ny7")]
+Icon = SubResource("AtlasTexture_fauym")
+AtlasStep = Vector2(340, 420)
 
-[node name="RewardBox1" parent="Sprite2D" index="0"]
-position = Vector2(13, 22)
+[node name="IconB" parent="Texture" index="0"]
+offset_left = 8.0
+offset_right = 94.0
 
-[node name="RewardSprite" parent="Sprite2D/RewardBox1" index="0"]
-position = Vector2(7.18236e-06, 4.88758e-06)
-scale = Vector2(0.0470589, 0.0380952)
-texture = ExtResource("2_e1l2r")
-region_enabled = false
+[node name="Texture" parent="Texture/IconB/MarginC" index="0"]
+texture = SubResource("AtlasTexture_fauym")
+expand_mode = 2
 
-[node name="Star1" parent="Sprite2D/Ratings" index="0"]
+[node name="GoldenCrossesAnimation" parent="Texture" index="3"]
 visible = false
 
-[node name="Name" parent="." index="1"]
+[node name="Text" parent="DescScrollC" index="0"]
+text = ""
+
+[node name="Name" parent="NameScrollC" index="0"]
 text = "Did you really fall for that?"
-
-[node name="Text" parent="." index="2"]
-visible = false

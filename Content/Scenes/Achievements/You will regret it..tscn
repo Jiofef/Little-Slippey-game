@@ -1,6 +1,24 @@
-[gd_scene load_steps=4 format=3 uid="uid://cw33s06n42f6h"]
+[gd_scene load_steps=10 format=3 uid="uid://cw33s06n42f6h"]
 
 [ext_resource type="PackedScene" uid="uid://d27nwc3cdixbo" path="res://Content/Scenes/Achievements/DefaultAchievement.tscn" id="1_8l8hh"]
+[ext_resource type="Texture2D" uid="uid://bg2mvitb1ih7q" path="res://Content/Sprites/Other/Explosion.png" id="2_21qj3"]
+[ext_resource type="Texture2D" uid="uid://6nyi0tpol518" path="res://Content/Sprites/Other/HintGlitch.png" id="3_nyxvi"]
+[ext_resource type="Texture2D" uid="uid://b4hmjhr0f8v51" path="res://Content/Sprites/Other/Shoesofef.png" id="4_joaif"]
+[ext_resource type="Texture2D" uid="uid://btkf2pyqd0m2s" path="res://Content/Sprites/Other/PleaseStandBy.png" id="5_2ppu6"]
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_moiqb"]
+frames = 4
+speed_scale = -0.7
+frame_0/texture = ExtResource("2_21qj3")
+frame_1/texture = ExtResource("3_nyxvi")
+frame_1/duration = 0.75
+frame_2/texture = ExtResource("4_joaif")
+frame_2/duration = 1.24
+frame_3/texture = ExtResource("5_2ppu6")
+frame_3/duration = 0.64
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5y7iv"]
+atlas = SubResource("AnimatedTexture_moiqb")
 
 [sub_resource type="Animation" id="Animation_ewv13"]
 resource_name = "GLTCHCHCHCHed"
@@ -10,7 +28,7 @@ step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:text")
+tracks/0/path = NodePath("Text:text")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -27,23 +45,40 @@ _data = {
 }
 
 [node name="Achievement" instance=ExtResource("1_8l8hh")]
+HideIcon = true
+StarsCount = 1
+StarTexture = SubResource("AtlasTexture_5y7iv")
 
-[node name="RewardSprite" parent="Sprite2D/RewardBox1" index="0"]
+[node name="IconB" parent="Texture" index="0"]
 visible = false
-region_rect = Rect2(351.195, 35.365, 45, 45)
 
-[node name="Star1" parent="Sprite2D/Ratings" index="0"]
-modulate = Color(0.501961, 0, 1, 1)
-skew = -1.26885
+[node name="StarsC" parent="Texture" index="1"]
+offset_left = 283.23
+offset_top = -56.825
+offset_right = 429.23
+offset_bottom = 138.175
 
-[node name="Name" parent="." index="1"]
-text = "You will regret it."
+[node name="Star3" parent="Texture/StarsC" index="0"]
+texture = SubResource("AtlasTexture_5y7iv")
 
-[node name="Text" parent="." index="2"]
+[node name="Star2" parent="Texture/StarsC" index="1"]
+texture = SubResource("AtlasTexture_5y7iv")
+
+[node name="Star1" parent="Texture/StarsC" index="2"]
+visible = true
+custom_minimum_size = Vector2(28, 100)
+texture = SubResource("AtlasTexture_5y7iv")
+expand_mode = 2
+flip_h = true
+
+[node name="Text" parent="DescScrollC" index="0"]
 text = "%$809*&^467)0*)$&("
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Text" index="1"]
+[node name="Text#AnimationPlayer" type="AnimationPlayer" parent="DescScrollC" index="1"]
 libraries = {
 "": SubResource("AnimationLibrary_egxmt")
 }
 autoplay = "GLTCHCHCHCHed"
+
+[node name="Name" parent="NameScrollC" index="0"]
+text = "You will regret it."

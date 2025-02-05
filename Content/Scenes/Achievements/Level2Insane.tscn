@@ -1,19 +1,28 @@
-[gd_scene load_steps=3 format=3 uid="uid://ic7qy517tq16"]
+[gd_scene load_steps=4 format=3 uid="uid://ic7qy517tq16"]
 
 [ext_resource type="PackedScene" uid="uid://d27nwc3cdixbo" path="res://Content/Scenes/Achievements/DefaultAchievement.tscn" id="1_wcn4m"]
 [ext_resource type="Texture2D" uid="uid://bppnbtehdr3md" path="res://Content/Sprites/Interface/LevelsIcons.png" id="2_j4u4j"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_oqpv6"]
+atlas = ExtResource("2_j4u4j")
+region = Rect2(45, 45, 45, 45)
+
 [node name="Achievement" instance=ExtResource("1_wcn4m")]
+Icon = SubResource("AtlasTexture_oqpv6")
+PositionInAtlas = Vector2(1, 1)
+StarsCount = 2
 
-[node name="RewardSprite" parent="Sprite2D/RewardBox1" index="0"]
-texture = ExtResource("2_j4u4j")
-region_rect = Rect2(45, 45, 45, 45)
+[node name="Texture" parent="Texture/IconB/MarginC" index="0"]
+texture = SubResource("AtlasTexture_oqpv6")
 
-[node name="Star2" parent="Sprite2D/Ratings" index="1"]
+[node name="Star2" parent="Texture/StarsC" index="1"]
 visible = true
 
-[node name="Name" parent="." index="1"]
-text = "Did wander darkling in the eternal space,"
+[node name="Star1" parent="Texture/StarsC" index="2"]
+visible = true
 
-[node name="Text" parent="." index="2"]
+[node name="Text" parent="DescScrollC" index="0"]
 text = "Complete level 2 on \"Insane\" difficulty"
+
+[node name="Name" parent="NameScrollC" index="0"]
+text = "Did wander darkling in the eternal space,"

@@ -1,16 +1,25 @@
-[gd_scene load_steps=3 format=3 uid="uid://bfrvhom0iatvg"]
+[gd_scene load_steps=4 format=3 uid="uid://bfrvhom0iatvg"]
 
 [ext_resource type="PackedScene" uid="uid://d27nwc3cdixbo" path="res://Content/Scenes/Achievements/DefaultAchievement.tscn" id="1_7mu46"]
 [ext_resource type="Texture2D" uid="uid://bppnbtehdr3md" path="res://Content/Sprites/Interface/LevelsIcons.png" id="2_f38s7"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_yj56g"]
+atlas = ExtResource("2_f38s7")
+region = Rect2(315, 0, 45, 45)
+
 [node name="Achievement" instance=ExtResource("1_7mu46")]
+Icon = SubResource("AtlasTexture_yj56g")
+PositionInAtlas = Vector2(7, 0)
+StarsCount = 1
 
-[node name="RewardSprite" parent="Sprite2D/RewardBox1" index="0"]
-texture = ExtResource("2_f38s7")
-region_rect = Rect2(315, 0, 45, 45)
+[node name="Texture" parent="Texture/IconB/MarginC" index="0"]
+texture = SubResource("AtlasTexture_yj56g")
 
-[node name="Name" parent="." index="1"]
-text = "The coming-on of storms."
+[node name="Star1" parent="Texture/StarsC" index="2"]
+visible = true
 
-[node name="Text" parent="." index="2"]
+[node name="Text" parent="DescScrollC" index="0"]
 text = "Complete level 8 on \"Hard\" difficulty"
+
+[node name="Name" parent="NameScrollC" index="0"]
+text = "The coming-on of storms."

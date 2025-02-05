@@ -1,20 +1,31 @@
-[gd_scene load_steps=2 format=3 uid="uid://cdnx2n2mrukrp"]
+[gd_scene load_steps=4 format=3 uid="uid://cdnx2n2mrukrp"]
 
 [ext_resource type="PackedScene" uid="uid://d27nwc3cdixbo" path="res://Content/Scenes/Achievements/DefaultAchievement.tscn" id="1_fkxbi"]
+[ext_resource type="Texture2D" uid="uid://8yt60jrdtl3" path="res://Content/Sprites/Interface/AchievementIcons.png" id="2_8xx12"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kjpeg"]
+atlas = ExtResource("2_8xx12")
+region = Rect2(180, 45, 45, 45)
 
 [node name="Achievement" instance=ExtResource("1_fkxbi")]
+Icon = SubResource("AtlasTexture_kjpeg")
+PositionInAtlas = Vector2(4, 1)
+StarsCount = 3
 
-[node name="RewardSprite" parent="Sprite2D/RewardBox1" index="0"]
-region_rect = Rect2(180, 45, 45, 45)
+[node name="Texture" parent="Texture/IconB/MarginC" index="0"]
+texture = SubResource("AtlasTexture_kjpeg")
 
-[node name="Star2" parent="Sprite2D/Ratings" index="1"]
+[node name="Star3" parent="Texture/StarsC" index="0"]
 visible = true
 
-[node name="Star3" parent="Sprite2D/Ratings" index="2"]
+[node name="Star2" parent="Texture/StarsC" index="1"]
 visible = true
 
-[node name="Name" parent="." index="1"]
-text = "Congratulations!"
+[node name="Star1" parent="Texture/StarsC" index="2"]
+visible = true
 
-[node name="Text" parent="." index="2"]
+[node name="Text" parent="DescScrollC" index="0"]
 text = "Pass the viability check"
+
+[node name="Name" parent="NameScrollC" index="0"]
+text = "Congratulations!"
