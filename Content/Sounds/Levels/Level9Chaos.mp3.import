@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/Level9Chaos.mp3-7f000c456192f74d6e27da0ebcfa8
 
 [params]
 
-loop=false
+loop=true
 loop_offset=0
 bpm=0
 beat_count=0

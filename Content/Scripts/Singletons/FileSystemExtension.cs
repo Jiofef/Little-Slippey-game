@@ -61,9 +61,21 @@ public partial class FileSystemExtension : Node
                 return newPath;
         }
     }
+
+    public static Dictionary<TKey, TValue> GetJsonModel<[MustBeVariant] TKey, [MustBeVariant] TValue> (string path)
+    {
+        using Godot.FileAccess file = Godot.FileAccess.Open(path, Godot.FileAccess.ModeFlags.Read);
+        if (file == null) { GD.Print(path + " doesn't exist"); return null; };
+
+        var model = Json.ParseString(file.GetAsText()).Obj as Dictionary<TKey, TValue>;
+        file.Close();
+        return model;
+    }
     public static Dictionary GetJsonModel(string path)
     {
         using Godot.FileAccess file = Godot.FileAccess.Open(path, Godot.FileAccess.ModeFlags.Read);
+        if (file == null) { GD.Print(path + " doesn't exist"); return null; };
+
         var model = Json.ParseString(file.GetAsText()).Obj as Dictionary;
         file.Close();
         return model;
@@ -73,10 +85,16 @@ public partial class FileSystemExtension : Node
     {
         return GetSystemJsonModel<string, object>(path);
     }
+    public static System.Collections.Generic.Dictionary<string, T> GetSystemJsonModel<T>(string path)
+    {
+        return GetSystemJsonModel<string, T>(path);
+    }
 
     public static System.Collections.Generic.Dictionary<TKey, TValue> GetSystemJsonModel<TKey, TValue>(string path)
     {
         using Godot.FileAccess file = Godot.FileAccess.Open(path, Godot.FileAccess.ModeFlags.Read);
+        if (file == null) { GD.Print(path + " doesn't exist"); return null; };
+
         var model = JsonSerializer.Deserialize(file.GetAsText(), typeof(System.Collections.Generic.Dictionary<TKey, TValue>)) as System.Collections.Generic.Dictionary<TKey, TValue>;
         file.Close();
         return model;

@@ -1,9 +1,13 @@
 using Godot;
 using System;
+using GodotSteam;
+using System.Collections.Generic;
+using System.Linq;
 
 public partial class Pause : CanvasLayer
 {
     const float RESET_SPEED_MULTIPLIER = 2;
+    const float DEFAULT_RESET_TIMER = 1.5f;
     TextureButton _rewindButton;
 
     private bool _isPaused = false;
@@ -19,17 +23,31 @@ public partial class Pause : CanvasLayer
         if (Input.IsActionJustPressed("Cancel") && !_subMenusOpened && G.DidLevelIntroPassed && !G.Main.IsPauseDisabled)
             UnPause();
         if (_rewindButton.ButtonPressed && !G.Main.IsResetDisabled)
-            G.ResetTimer += 0.016667f * 2 * RESET_SPEED_MULTIPLIER;
+            G.ResetTimer += G.FLOAT_DELTA * 2 * RESET_SPEED_MULTIPLIER;
 
         if (ResetProcessDisabled) return;
 
 
         if (Input.IsActionPressed("Reset") && G.DidLevelIntroPassed && !G.Main.IsResetDisabled)
-            G.ResetTimer += 0.016667f * RESET_SPEED_MULTIPLIER;
-        else G.ResetTimer = G.ResetTimer > 0 ? G.ResetTimer - 0.016667f * RESET_SPEED_MULTIPLIER : 0;
+            G.ResetTimer += G.FLOAT_DELTA * RESET_SPEED_MULTIPLIER;
+        else G.ResetTimer = G.ResetTimer > 0 ? G.ResetTimer - G.FLOAT_DELTA * RESET_SPEED_MULTIPLIER : 0;
 
-        if (G.ResetTimer > 1.5f)
+        if (G.ResetTimer > DEFAULT_RESET_TIMER)
             Reset();
+    }
+
+    // For pausing when controller is disabled
+    private List<int> _prevControllers = new List<int>();
+    public override void _Process(double delta)
+    {
+        var currentControllers = Input.GetConnectedJoypads();
+
+        if (currentControllers.Count < _prevControllers.Count && !_isPaused)
+        {
+            UnPause();
+        }
+
+        _prevControllers = currentControllers.ToList();
     }
 
     private void Reset()
@@ -101,7 +119,7 @@ public partial class Pause : CanvasLayer
         if (G.IsLevelVanilla)
         {
             UnchangableMeta.SaveRecords();
-            UnchangableMeta.SaveToFile();
+            UnchangableMeta.SaveToFile(true);
             GetTree().ChangeSceneToFile("res://Content/Scenes/Interface&Menu/WelcomeToGOS.tscn");
         }
         else

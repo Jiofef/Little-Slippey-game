@@ -1,4 +1,4 @@
-[gd_scene load_steps=223 format=4 uid="uid://bdgksx0p0ar7"]
+[gd_scene load_steps=226 format=4 uid="uid://bdgksx0p0ar7"]
 
 [ext_resource type="Script" path="res://Content/Scripts/Other/MainScript.cs" id="1_ejqbl"]
 [ext_resource type="Script" path="res://Content/Scripts/Other/LevelMusicPlayer.cs" id="2_okxpt"]
@@ -47,6 +47,8 @@
 [ext_resource type="AudioStream" uid="uid://dy6lncevmnf3o" path="res://Content/Sounds/Other/WhiteNoise.mp3" id="44_6mcov"]
 [ext_resource type="AudioStream" uid="uid://du0ycpo1qy4w5" path="res://Content/Sounds/Levels/TutorialTVFallingSound.mp3" id="46_6hxhb"]
 [ext_resource type="PackedScene" uid="uid://tjddwdxopw2u" path="res://Content/Scenes/Interface&Menu/Pause.tscn" id="47_1wkgd"]
+[ext_resource type="Script" path="res://Content/Scripts/Crosses/CrossSpawner.cs" id="47_87l5c"]
+[ext_resource type="PackedScene" uid="uid://catydhrk62at1" path="res://Content/Scenes/Interface&Menu/AdditionalGuiLayer.tscn" id="50_5xgrq"]
 [ext_resource type="PackedScene" uid="uid://c7psxdkakrw5x" path="res://Content/Scenes/Other/EpicIntro.tscn" id="53_fjvcg"]
 
 [sub_resource type="Animation" id="Animation_p3npb"]
@@ -1641,19 +1643,19 @@ resource_name = "NoiseDisappearing"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sound:playing")
+tracks/0/path = NodePath(".:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sound:volume_db")
+tracks/1/path = NodePath("WhiteNoise/Sound:volume_db")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -1665,20 +1667,60 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath(".:modulate")
+tracks/2/path = NodePath("WhiteNoise/Sound:playing")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_127gt"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Particles:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WhiteNoise:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("WhiteNoise/Sound:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_peutq"]
 _data = {
 "FellDown": SubResource("Animation_4xbwr"),
-"NoiseDisappearing": SubResource("Animation_i01qk")
+"NoiseDisappearing": SubResource("Animation_i01qk"),
+"RESET": SubResource("Animation_127gt")
 }
 
 [sub_resource type="Gradient" id="Gradient_mywan"]
@@ -2370,6 +2412,129 @@ interpolation_mode = 2
 offsets = PackedFloat32Array(0, 0.25, 0.5, 1)
 colors = PackedColorArray(1, 0, 1, 1, 1, 0, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1)
 
+[sub_resource type="Animation" id="Animation_metye"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Screen/Text:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Screen/Text2:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Screen/Text3:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Screen/Text4:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Screen/Text5:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Screen/Text6:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Screen/Text7:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("YOUWIN:playing")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Spangles:emitting")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("../../SunLightLayerContainer/SunLightLayer/SunLight:modulate")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_dsetv"]
 resource_name = "YOUWIN"
 length = 42.0
@@ -2520,129 +2685,6 @@ tracks/11/keys = {
 "args": ["I am already the Slippey"],
 "method": &"GiveAchievement"
 }]
-}
-
-[sub_resource type="Animation" id="Animation_metye"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Screen/Text:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Screen/Text2:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Screen/Text3:modulate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Screen/Text4:modulate")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Screen/Text5:modulate")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("Screen/Text6:modulate")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("Screen/Text7:modulate")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
-}
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("YOUWIN:playing")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/8/type = "value"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("Spangles:emitting")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/9/type = "value"
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/path = NodePath("../../SunLightLayerContainer/SunLightLayer/SunLight:modulate")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tosue"]
@@ -3867,6 +3909,7 @@ vertical_alignment = 1
 
 [node name="WhiteNoise" type="AnimatedSprite2D" parent="Level/TileMap5/ShakyPlatform/TutorialTV/Screen"]
 visible = false
+modulate = Color(1, 1, 1, 0)
 scale = Vector2(0.25, 0.222222)
 sprite_frames = SubResource("SpriteFrames_0gekv")
 autoplay = "default"
@@ -4185,7 +4228,6 @@ scale = Vector2(0.75, 0.75)
 
 [node name="Screen" parent="Level/TileMap6/TutorialTV" index="1"]
 script = ExtResource("20_15uq2")
-_isThereASecondSpriteForGamepad = false
 
 [node name="SlippeyHead" parent="Level/TileMap6/TutorialTV/Screen" index="1"]
 position = Vector2(-3.73333, -3.73333)
@@ -4208,7 +4250,7 @@ text = "
 [center]To DownDash, press 
 [img]res://Content/Sprites/Interface/ControllerButtons/KeyboardButtonDown.png[/img] or [img]res://Content/Sprites/Interface/ControllerButtons/KeyboardButtonS.png[/img] during flight[/center]"
 
-[node name="GamepadText" type="RichTextLabel" parent="Level/TileMap6/TutorialTV/Screen" index="3"]
+[node name="XBoxText" type="RichTextLabel" parent="Level/TileMap6/TutorialTV/Screen" index="3"]
 visible = false
 layout_mode = 0
 offset_right = 320.0
@@ -4219,13 +4261,26 @@ bbcode_enabled = true
 text = "
 
 
-[center]To pulldown, press 
-[img]res://Content/Sprites/Interface/ControllerButtons/ControllerStickDown.png[/img] or [img]res://Content/Sprites/Interface/ControllerButtons/ControllerDPadDown.png[/img] during flight[/center]"
+[center]To DownDash, press 
+[img]res://Content/Sprites/Interface/ControllerButtons/ControllerStickDown.png[/img],  [img]res://Content/Sprites/Interface/ControllerButtons/ControllerDPadDown.png[/img] or [img]res://Content/Sprites/Interface/ControllerButtons/XControllerB.png[/img] during flight[/center]"
 
-[node name="WhiteNoise" parent="Level/TileMap6/TutorialTV/Screen" index="4"]
+[node name="PSText" type="RichTextLabel" parent="Level/TileMap6/TutorialTV/Screen" index="4"]
+visible = false
+offset_right = 320.0
+offset_bottom = 160.0
+scale = Vector2(0.25, 0.25)
+theme_override_colors/default_color = Color(0.196078, 0.196078, 0.196078, 1)
+bbcode_enabled = true
+text = "
+
+
+[center]To DownDash, press 
+[img]res://Content/Sprites/Interface/ControllerButtons/ControllerStickDown.png[/img],  [img]res://Content/Sprites/Interface/ControllerButtons/ControllerDPadDown.png[/img] or [img]res://Content/Sprites/Interface/ControllerButtons/PSControllerSquare.png[/img] during flight[/center]"
+
+[node name="WhiteNoise" parent="Level/TileMap6/TutorialTV/Screen" index="5"]
 visible = false
 
-[node name="AnimationPlayer" parent="Level/TileMap6/TutorialTV/Screen" index="5"]
+[node name="AnimationPlayer" parent="Level/TileMap6/TutorialTV/Screen" index="6"]
 libraries = {
 "": SubResource("AnimationLibrary_g0wyp")
 }
@@ -4518,6 +4573,7 @@ vertical_alignment = 1
 
 [node name="WhiteNoise" type="AnimatedSprite2D" parent="Level/TileMap7/TutorialTV/Screen"]
 visible = false
+modulate = Color(1, 1, 1, 0)
 scale = Vector2(0.25, 0.222222)
 sprite_frames = SubResource("SpriteFrames_0gekv")
 autoplay = "default"
@@ -4527,7 +4583,7 @@ centered = false
 
 [node name="Sound" type="AudioStreamPlayer" parent="Level/TileMap7/TutorialTV/Screen/WhiteNoise"]
 stream = ExtResource("44_6mcov")
-volume_db = -15.0
+volume_db = -5.0
 bus = &"Interface"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Level/TileMap7/TutorialTV/Screen"]
@@ -4632,6 +4688,9 @@ offset_right = 1280.0
 offset_bottom = 720.0
 color = Color(0.27451, 0, 0.164706, 0)
 
+[node name="CrossSpawner" type="Node2D" parent="."]
+script = ExtResource("47_87l5c")
+
 [node name="Pause" parent="." instance=ExtResource("47_1wkgd")]
 
 [node name="EpicIntro" parent="." instance=ExtResource("53_fjvcg")]
@@ -4642,9 +4701,7 @@ visible = false
 [node name="Glare" parent="EpicIntro" index="2"]
 visible = false
 
-[node name="PopupAchievementsLayer" type="CanvasLayer" parent="."]
-process_mode = 3
-layer = 100
+[node name="AdditionalGUILayer" parent="." instance=ExtResource("50_5xgrq")]
 
 [connection signal="ready" from="." to="." method="SetTransitiveValue" flags=6 binds= [0, true]]
 [connection signal="animation_finished" from="LevelMusicPlayer/AnimationPlayer" to="." method="MusicAnimationFinished"]

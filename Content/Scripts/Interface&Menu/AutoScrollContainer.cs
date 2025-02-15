@@ -12,11 +12,14 @@ public partial class AutoScrollContainer : ScrollContainer
     private Vector2 _maxSize;
     private Vector2 _minSize;
     private Vector2 _scrollMaxValues;
+    private Vector2 _defaultScrollValues;
 
     private HScrollBar _hScrollBar;
     private VScrollBar _vScrollBar;
 
     private int _timer => (int)(PauseDuration * 1000);
+
+    private bool _disposed = false;
 
     public override async void _Ready()
     {
@@ -28,6 +31,9 @@ public partial class AutoScrollContainer : ScrollContainer
         _maxSize.X = (float)_hScrollBar.MaxValue;
         _maxSize.Y = (float)_vScrollBar.MaxValue;
 
+        _defaultScrollValues.X = (float)_hScrollBar.Value;
+        _defaultScrollValues.Y = (float)_vScrollBar.Value;
+
         _minSize = Size;
 
         _scrollMaxValues = _maxSize - _minSize;
@@ -37,6 +43,8 @@ public partial class AutoScrollContainer : ScrollContainer
             ScrollRight();
             ScrollDown();
         }
+
+        TreeExited += () => _disposed = true;
     }
 
     public void ScrollRight()
@@ -84,36 +92,57 @@ public partial class AutoScrollContainer : ScrollContainer
 
     private enum _directionKey {vertical, horizontal};
 
+    private Tween _currentTween;
     private void Scroll(float where, float duration, _directionKey directionKey, Action callback)
     {
-        Tween tweenDown = GetTree().CreateTween();
-        tweenDown.TweenProperty(this, "scroll_" + directionKey.ToString(), where, duration);
+        _currentTween = GetTree().CreateTween();
+        _currentTween.TweenProperty(this, "scroll_" + directionKey.ToString(), where, duration);
 
         if (EnableCycleScrolling)
-            tweenDown.TweenCallback(Callable.From(callback));
+            _currentTween.TweenCallback(Callable.From(callback));
+    }
+    public void Stop()
+    {
+        if (_currentTween != null)
+        {
+            _currentTween.Stop();
+            _currentTween.Kill();
+        }
+
+
+        _hScrollBar.Value = _defaultScrollValues.X;
+        _vScrollBar.Value = _defaultScrollValues.Y;
     }
 
     private async void RightScrollFinished()
     {
         await Task.Delay(_timer);
+        if (_disposed) return;
+
         ScrollLeft();
     }
 
     private async void LeftScrollFinished()
     {
         await Task.Delay(_timer);
+        if (_disposed) return;
+
         ScrollRight();
     }
 
     private async void DownScrollFinished()
     {
         await Task.Delay(_timer);
+        if (_disposed) return;
+
         ScrollUp();
     }
 
     private async void UpScrollFinished()
     {
         await Task.Delay(_timer);
+        if (_disposed) return;
+
         ScrollDown();
     }
 }

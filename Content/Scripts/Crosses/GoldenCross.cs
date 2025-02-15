@@ -116,11 +116,7 @@ public partial class GoldenCross : Node2D
         GetNode<AudioStreamPlayer>("Path2D/Cross/OnGoldenCrossCollected" + _random.Next(1, 3)).Play();
 
         // Giving the reward
-        UnchangableMeta.GoldenCrossesAmount += Price;
-        if (G.AdditionalGuiLayer != null)
-        {
-            G.AdditionalGuiLayer.OnGoldenCrossesRecieved(Price);
-        }
+        UnchangableMeta.AddGoldenCrosses(Price);
 
         // Creating a collect popup
         if (G.Player != null)

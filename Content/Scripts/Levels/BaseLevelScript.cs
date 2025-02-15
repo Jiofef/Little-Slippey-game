@@ -50,6 +50,7 @@ public partial class BaseLevelScript : Node2D
 
         //
         Steam.OverlayToggled += (bool active, bool userInitiated, uint appId) => GetParent().Call("ChangePause", active);
+        Steam.InputDeviceDisconnected += (junk) => GetParent().Call("ChangePause", true);
     }
 
     public void StartLevel()

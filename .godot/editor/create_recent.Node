@@ -1,6 +1,11 @@
+CanvasLayer
+TileMapLayer
+RichTextLabel
 Label
-AnimationPlayer
+ParallaxLayer
 ColorRect
+Node2D
+AnimationPlayer
 TextureRect
 HBoxContainer
 HScrollBar
@@ -8,8 +13,3 @@ ScrollContainer
 VBoxContainer
 MarginContainer
 NinePatchRect
-FlowContainer
-RichTextLabel
-AnimatedSprite2D
-CPUParticles2D
-VSlider

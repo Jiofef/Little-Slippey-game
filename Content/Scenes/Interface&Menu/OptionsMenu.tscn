@@ -1,7 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://053iekkefhol"]
+[gd_scene load_steps=16 format=3 uid="uid://053iekkefhol"]
 
 [ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/OptionsMenu.cs" id="1_kmdmx"]
 [ext_resource type="PackedScene" uid="uid://cb3550p76ubc8" path="res://Content/Scenes/Interface&Menu/DraggableWindow.tscn" id="1_tw6c3"]
+[ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/SpinBoxEnhanced.cs" id="5_w13me"]
 [ext_resource type="Texture2D" uid="uid://vb7vdsdjg4xa" path="res://Content/Sprites/Interface/USADiscordFlag.png" id="7_3d3xi"]
 [ext_resource type="Texture2D" uid="uid://hcoc3411pyvj" path="res://Content/Sprites/Interface/RussiaDiscordFlag.png" id="8_42rvm"]
 [ext_resource type="Theme" uid="uid://dkitr1ftp0yhs" path="res://Content/Other/Menu.tres" id="8_ui2mu"]
@@ -57,6 +58,8 @@ current_tab = 0
 
 [node name="Video" type="ScrollContainer" parent="MarginContainer/VBoxContainer/Tabs" index="1"]
 layout_mode = 2
+follow_focus = true
+script = ExtResource("11_qsm8k")
 metadata/_tab_index = 0
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Tabs/Video" index="0"]
@@ -84,6 +87,7 @@ text = "Window mode"
 
 [node name="OptionButton" type="OptionButton" parent="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer/ScreenMode" index="1"]
 layout_mode = 2
+focus_neighbor_bottom = NodePath("../../WindowSize/OptionButton")
 selected = 0
 item_count = 2
 popup/item_0/text = "Fullscreen"
@@ -107,6 +111,8 @@ text = "Window size"
 
 [node name="OptionButton" type="OptionButton" parent="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer/WindowSize" index="1"]
 layout_mode = 2
+focus_neighbor_top = NodePath("../../ScreenMode/OptionButton")
+focus_neighbor_bottom = NodePath("../../VSync/CheckBox")
 selected = 3
 item_count = 8
 popup/item_0/text = "640X360"
@@ -144,6 +150,8 @@ text = "VSync"
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+focus_neighbor_top = NodePath("../../WindowSize/OptionButton")
+focus_neighbor_bottom = NodePath("../../MaxFrameRate/SpinBox")
 
 [node name="Mi" type="HSeparator" parent="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer" index="5"]
 layout_mode = 2
@@ -161,9 +169,15 @@ text = "Max frame rate"
 
 [node name="SpinBox" type="SpinBox" parent="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer/MaxFrameRate" index="1"]
 layout_mode = 2
+focus_neighbor_top = NodePath("../../VSync/CheckBox")
+focus_neighbor_bottom = NodePath("../../ScoresLabelMode/OptionButton")
+focus_mode = 2
 min_value = 10.0
 max_value = 1000.0
 value = 60.0
+script = ExtResource("5_w13me")
+MaxChangingSpeed = 50.0
+ChangingAccelerationPeriod = 5.0
 
 [node name="Mi2" type="HSeparator" parent="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer" index="7"]
 layout_mode = 2
@@ -181,6 +195,8 @@ text = "Scores label mode"
 
 [node name="OptionButton" type="OptionButton" parent="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer/ScoresLabelMode" index="1"]
 layout_mode = 2
+focus_neighbor_top = NodePath("../../MaxFrameRate/SpinBox")
+focus_neighbor_bottom = NodePath("../../ScoresLabelLocation/GridContainer/CheckBox0X0Y")
 selected = 0
 item_count = 3
 popup/item_0/text = "Large"
@@ -210,38 +226,56 @@ columns = 3
 
 [node name="CheckBox0X0Y" type="CheckBox" parent="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer/ScoresLabelLocation/GridContainer" index="0"]
 layout_mode = 2
+focus_neighbor_top = NodePath("../../../ScoresLabelMode/OptionButton")
+focus_neighbor_bottom = NodePath("../CheckBox0X1Y")
 button_group = SubResource("ButtonGroup_0o8lr")
 
 [node name="CheckBox1X0Y" type="CheckBox" parent="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer/ScoresLabelLocation/GridContainer" index="1"]
 layout_mode = 2
+focus_neighbor_top = NodePath("../../../ScoresLabelMode/OptionButton")
+focus_neighbor_bottom = NodePath("../CheckBox1X1Y")
 button_group = SubResource("ButtonGroup_0o8lr")
 
 [node name="CheckBox2X0Y" type="CheckBox" parent="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer/ScoresLabelLocation/GridContainer" index="2"]
 layout_mode = 2
+focus_neighbor_top = NodePath("../../../ScoresLabelMode/OptionButton")
+focus_neighbor_bottom = NodePath("../CheckBox2X1Y")
 button_group = SubResource("ButtonGroup_0o8lr")
 
 [node name="CheckBox0X1Y" type="CheckBox" parent="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer/ScoresLabelLocation/GridContainer" index="3"]
 layout_mode = 2
+focus_neighbor_top = NodePath("../CheckBox0X0Y")
+focus_neighbor_bottom = NodePath("../CheckBox0X2Y")
 button_group = SubResource("ButtonGroup_0o8lr")
 
 [node name="CheckBox1X1Y" type="CheckBox" parent="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer/ScoresLabelLocation/GridContainer" index="4"]
 layout_mode = 2
+focus_neighbor_top = NodePath("../CheckBox1X0Y")
+focus_neighbor_bottom = NodePath("../CheckBox1X2Y")
 button_group = SubResource("ButtonGroup_0o8lr")
 
 [node name="CheckBox2X1Y" type="CheckBox" parent="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer/ScoresLabelLocation/GridContainer" index="5"]
 layout_mode = 2
+focus_neighbor_top = NodePath("../CheckBox2X0Y")
+focus_neighbor_bottom = NodePath("../CheckBox2X2Y")
 button_group = SubResource("ButtonGroup_0o8lr")
 
 [node name="CheckBox0X2Y" type="CheckBox" parent="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer/ScoresLabelLocation/GridContainer" index="6"]
 layout_mode = 2
+focus_neighbor_top = NodePath("../CheckBox0X1Y")
+focus_neighbor_bottom = NodePath("../../../CameraZoom/Slider")
 button_group = SubResource("ButtonGroup_0o8lr")
 
 [node name="CheckBox1X2Y" type="CheckBox" parent="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer/ScoresLabelLocation/GridContainer" index="7"]
 layout_mode = 2
+focus_neighbor_top = NodePath("../CheckBox1X1Y")
+focus_neighbor_bottom = NodePath("../../../CameraZoom/Slider")
 button_group = SubResource("ButtonGroup_0o8lr")
 
 [node name="CheckBox2X2Y" type="CheckBox" parent="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer/ScoresLabelLocation/GridContainer" index="8"]
 layout_mode = 2
+focus_neighbor_top = NodePath("../CheckBox2X1Y")
+focus_neighbor_bottom = NodePath("../../../CameraZoom/Slider")
 button_group = SubResource("ButtonGroup_0o8lr")
 
 [node name="So" type="HSeparator" parent="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer" index="11"]
@@ -267,6 +301,8 @@ text = "1.25x"
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 size_flags_vertical = 4
+focus_neighbor_top = NodePath("../../ScoresLabelLocation/GridContainer/CheckBox1X2Y")
+focus_neighbor_bottom = NodePath("../../CrossRotationWhenSpawning/CheckBox")
 min_value = 1.25
 max_value = 2.0
 step = 0.15
@@ -291,6 +327,8 @@ text = "Cross rotation when spawning"
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+focus_neighbor_top = NodePath("../../CameraZoom/Slider")
+focus_neighbor_bottom = NodePath("../../Language/OptionButton")
 button_pressed = true
 
 [node name="La2" type="HSeparator" parent="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer" index="15"]
@@ -309,6 +347,8 @@ text = "Language"
 
 [node name="OptionButton" type="OptionButton" parent="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer/Language" index="1"]
 layout_mode = 2
+focus_neighbor_top = NodePath("../../CrossRotationWhenSpawning/CheckBox")
+focus_neighbor_bottom = NodePath("../../../../../../HBoxContainer/AcceptButton")
 selected = 0
 item_count = 2
 popup/item_0/text = "English"
@@ -334,6 +374,7 @@ text = "Gnomes (ó﹏ò｡)"
 [node name="TextEdit" type="TextEdit" parent="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer/SmallGnomes" index="1"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
+focus_neighbor_top = NodePath("../../Language/OptionButton")
 text = "No!"
 
 [node name="Do2" type="HSeparator" parent="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer" index="19"]
@@ -343,6 +384,8 @@ theme_override_constants/separation = 12
 [node name="Sound" type="ScrollContainer" parent="MarginContainer/VBoxContainer/Tabs" index="2"]
 visible = false
 layout_mode = 2
+follow_focus = true
+script = ExtResource("11_qsm8k")
 metadata/_tab_index = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Tabs/Sound" index="0"]
@@ -563,6 +606,8 @@ theme_override_constants/separation = 12
 [node name="Controls" type="ScrollContainer" parent="MarginContainer/VBoxContainer/Tabs" index="3"]
 visible = false
 layout_mode = 2
+follow_focus = true
+script = ExtResource("11_qsm8k")
 metadata/_tab_index = 2
 
 [node name="ControlsMenu" type="Control" parent="MarginContainer/VBoxContainer/Tabs/Controls" index="0"]
@@ -724,6 +769,7 @@ custom_minimum_size = Vector2(180, 72)
 
 [node name="AcceptButton" parent="MarginContainer/VBoxContainer/HBoxContainer" index="1" instance=ExtResource("9_kbbo8")]
 layout_mode = 2
+focus_neighbor_top = NodePath("../../Tabs/Video/MarginContainer/VBoxContainer/Language/OptionButton")
 texture_normal = ExtResource("11_5wnor")
 Description = "Apply"
 DisableProcessDisabling = false

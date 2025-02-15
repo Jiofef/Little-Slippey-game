@@ -111,7 +111,7 @@ Sanboy,Sanboy,Сэнбой
 Strawman,Strawman,Страумен
 Pineplum,Pineplum,Пинплам
 Bondey,Bondey,Банди
-Sleepy,Sleepy,Слипи
+Sleepy,Sleepy,Соня
 Daley,Daley,Дэли
 ???,???,???
 Compress Mass,Compress Mass,"Масса 
@@ -213,7 +213,7 @@ And creak across my Soul...,And creak across my Soul...,Сложу — и буд
 -000-,-000-,-000-
 000-,000-,000-
 "Using the accumulated knowledge about controlling, find a new, unplanned path at the tutorial","Using the accumulated knowledge about controlling, find a new, unplanned path at the tutorial","Пользуясь накопленными знаниями об управлении, откройте новый, незапланированный путь на уровне обучения"
-I am already the Slippey,I am already the Slippey,Я уже Сливка
+I am the Slippey,I am the Slippey,Я уже Сливка
 Complete the tutorial,Complete the tutorial,Пройдите обучение
 It's worth a shot,It's worth a shot,Попытка - не пытка
 Die 2 times,Die 2 times,Умрите 2 раза
@@ -229,7 +229,7 @@ Try 150 to complete the level!","Прожить 50 секунд.
 "I Have No Eyes, and I Must Oversee","I Have No Eyes, and I Must Oversee","У меня нет глаз, но я должен глядеть"
 Complete a level with maximum camera zoom set in options,Complete a level with maximum camera zoom set in options,"Пройдите уровень с максимальным приближением камеры, выставленным в настройках"
 At least I got to hobnob with royalty,At least I got to hobnob with royalty,На хорошем счету у королевской семьи
-"Check the author's Boosty, YouTube or Discord","Check the author's Boosty, YouTube or Discord","Перейдите на Бусти, Ютуб или Дискорд автора"
+Check the author's YouTube or Discord,Check the author's YouTube or Discord,Перейдите на Ютуб или Дискорд автора
 Did you really fall for that?,Did you really fall for that?,Ты реально на это повёлся?
 Eureka,Eureka,Эврика
 Find one of the secret ways at level 8,Find one of the secret ways at level 8,Найдите один из потайных ходов на 8 уровне
@@ -320,10 +320,8 @@ I want to thank:
 FFF Media Inc and Daymarius for the fonts.
 sfxBUZZ and SoundJay for some sounds.
 Pixabay for various assets, mostly sounds.
-The developers of Katana ZERO for the sound of laughter.
 
-Everything else was done by the only employee of the Paradise Underground studio under
-the nickname Jiofef
+Almost everything else was done by the only employee of the Paradise Underground studio called Jiofef
 
 
 
@@ -335,47 +333,39 @@ I want to thank:
 FFF Media Inc and Daymarius for the fonts.
 sfxBUZZ and SoundJay for some sounds.
 Pixabay for various assets, mostly sounds.
-The developers of Katana ZERO for the sound of laughter.
 
-Everything else was done by the only employee of the Paradise Underground studio under
-the nickname Jiofef
+Almost everything else was done by the only employee of the Paradise Underground studio called Jiofef
 
 
 
 All rights reserved btw ;p","
 От: Джиофефа.
 Кому: Всем.
-За больше года разработки я не использовал почти ни одного чужого ассета. Некоторые вещи однако я не смог создать сам в той форме, в которой хотел, поэтому мне пришлось позаимствовать
+За больше двух лет разработки я не использовал почти ни одного чужого ассета. Некоторые вещи однако я не смог создать сам в той форме, в которой хотел, поэтому мне пришлось позаимствовать
 Хочу поблагодарить:
 FFF Media Inc и Daymarius за шрифты
 sfxBUZZ и SoundJay за некоторые звуки
 Pixabay за различные ассеты, в основном звуки
-Разработчикам Katana ZERO за звук смеха
 
-Всё остальное сделал единственный работник студии Paradise Underground под ником Jiofef
+По большей части всё остальное сделал единственный работник студии Paradise Underground под ником Jiofef
+
+
+
 
 Все права сохранены кста ;P"
 "
-Huge Thanks from Jiofef to Alexandr Steif, Diana Steif, Tengi, Frontend Pashtet, 
-Factorio developers, Pizza Tower developers, Arsi ""Hakita"" Patala, Edmund McMillen,
-Gooseworx, Nelward, Toby Fox, Richard David James, Mike Paradinas, NikeTheHuman,
-Guk Svetlana, Alexey Panasenko, Dmitriy Pogodaev, Serbina Valentina, Konstanin Panov,
-Sergey HellYeah Belyakov, Roman Hudyakov, Elena Kishenko,
-Xenia, my mom, and You, Player.
+Huge Thanks from Jiofef to: Alexander Steif, Diana Steif, Tengi, Flamik, Frontend Pashtet, developers of the famous factory building game, developers of the old-school pizza platformer, Arsi “Hakita” Patala, Edmund McMillen, Cooper Smith Goodwin, Nick Elward, Igor Vlasyev, Toby Fox, Richard David James, Mike Paradinas, Thomas Jenkinson, Nikita Zhizhov, Svetlana Guk, Alexei Panasenko, Dmitry Pogodaev, Valentina Serbina, Konstantin Panov, Sergei Belyakov, Roman Khudyakov, Elena Kishchenko,
+Xenia, my mom and you, Player.
 
-Without you all this game wouldn't exist","
-Huge Thanks from Jiofef to Alexandr Steif, Diana Steif, Tengi, Frontend Pashtet, 
-Factorio developers, Pizza Tower developers, Arsi ""Hakita"" Patala, Edmund McMillen,
-Gooseworx, Nelward, Toby Fox, Richard David James, Mike Paradinas, NikeTheHuman,
-Guk Svetlana, Alexey Panasenko, Dmitriy Pogodaev, Serbina Valentina, Konstanin Panov,
-Sergey HellYeah Belyakov, Roman Hudyakov, Elena Kishenko,
-Xenia, my mom, and You, Player.
+Without all of you, this game would not exist [img]res://Content/Sprites/Interface/4XAchievementHeart.png[/img]","
+Huge Thanks from Jiofef to: Alexander Steif, Diana Steif, Tengi, Flamik, Frontend Pashtet, developers of the famous factory building game, developers of the old-school pizza platformer, Arsi “Hakita” Patala, Edmund McMillen, Cooper Smith Goodwin, Nick Elward, Igor Vlasyev, Toby Fox, Richard David James, Mike Paradinas, Thomas Jenkinson, Nikita Zhizhov, Svetlana Guk, Alexei Panasenko, Dmitry Pogodaev, Valentina Serbina, Konstantin Panov, Sergei Belyakov, Roman Khudyakov, Elena Kishchenko,
+Xenia, my mom and you, Player.
 
-Without you all this game wouldn't exist","
-Jiofef хочет лично поблагодарить: Александра Стейф, Диану Стейф, Tengi, Фронтенд Паштета, разработчиков Factorio, разработчиков Pizza Tower, Арси ""Хакита"" Паталу, Эдмунда МакМиллена, Gooseworx, Нелварда, Тоби Фокса, Ричарда Дэвида Джеймса, Майка Парадинаса, Никиту Жижова, Гук Светлану, Алексея Панасенко, Дмитрия Погодаева, Сербину Валентину, Константина Панова, Сергея-HellYeah-Белякова, Романа Худякова, Елену Кищенко,
+Without all of you, this game would not exist [img]res://Content/Sprites/Interface/4XAchievementHeart.png[/img]","
+Jiofef хочет лично поблагодарить: Александра Стейф, Диану Стейф, Tengi, Фламика, Фронтенд Паштета, разработчиков знаменитой игры про заводы, разработчиков олдскульного платформера про пиццу, Арси ""Хакита"" Паталу, Эдмунда МакМиллена, Купера Смита Гудвина, Ника Элварда, Игоря Власьева, Тоби Фокса, Ричарда Дэвида Джеймса, Майка Парадинаса, Томаса Дженкинсона, Никиту Жижова, Гук Светлану, Алексея Панасенко, Дмитрия Погодаева, Сербину Валентину, Константина Панова, Сергея-HellYeah-Белякова, Романа Худякова, Елену Кищенко,
 Ксению, мою маму и Тебя, Игрок.
 
-Без вас всех этой игры бы не существовало"
+Без вас всех этой игры бы не существовало [img]res://Content/Sprites/Interface/4XAchievementHeart.png[/img]"
 "
 To the Board of Directors of Giero.
 I am glad to inform you that the testing and training of object 24 ""Slippey"" (hereinafter
@@ -585,15 +575,28 @@ Oh...,Oh...,Ой...
 
 
 [center]To DownDash, press 
-[img]res://Content/Sprites/Interface/ControllerButtons/ControllerStickDown.png[/img] or [img]res://Content/Sprites/Interface/ControllerButtons/ControllerDPadDown.png[/img] during flight[/center]","
+[img]res://Content/Sprites/Interface/ControllerButtons/ControllerStickDown.png[/img],  [img]res://Content/Sprites/Interface/ControllerButtons/ControllerDPadDown.png[/img] or [img]res://Content/Sprites/Interface/ControllerButtons/XControllerB.png[/img] during flight[/center]","
 
 
 [center]To DownDash, press 
-[img]res://Content/Sprites/Interface/ControllerButtons/ControllerStickDown.png[/img] or [img]res://Content/Sprites/Interface/ControllerButtons/ControllerDPadDown.png[/img] during flight[/center]","
+[img]res://Content/Sprites/Interface/ControllerButtons/ControllerStickDown.png[/img],  [img]res://Content/Sprites/Interface/ControllerButtons/ControllerDPadDown.png[/img] or [img]res://Content/Sprites/Interface/ControllerButtons/XControllerB.png[/img] during flight[/center]","
 
 
-[center]Для рывка вниз, нажми
-[img]res://Content/Sprites/Interface/ControllerButtons/ControllerStickDown.png[/img] или [img]res://Content/Sprites/Interface/ControllerButtons/ControllerDPadDown.png[/img] в полёте[/center]"
+[center]Для рывка вниз, нажми 
+[img]res://Content/Sprites/Interface/ControllerButtons/ControllerStickDown.png[/img],  [img]res://Content/Sprites/Interface/ControllerButtons/ControllerDPadDown.png[/img] или [img]res://Content/Sprites/Interface/ControllerButtons/XControllerB.png[/img] в полёте[/center]"
+"
+
+
+[center]To DownDash, press 
+[img]res://Content/Sprites/Interface/ControllerButtons/ControllerStickDown.png[/img],  [img]res://Content/Sprites/Interface/ControllerButtons/ControllerDPadDown.png[/img] or [img]res://Content/Sprites/Interface/ControllerButtons/PSControllerSquare.png[/img] during flight[/center]","
+
+
+[center]To DownDash, press 
+[img]res://Content/Sprites/Interface/ControllerButtons/ControllerStickDown.png[/img],  [img]res://Content/Sprites/Interface/ControllerButtons/ControllerDPadDown.png[/img] or [img]res://Content/Sprites/Interface/ControllerButtons/PSControllerSquare.png[/img] during flight[/center]","
+
+
+[center]Для рывка вниз, нажми 
+[img]res://Content/Sprites/Interface/ControllerButtons/ControllerStickDown.png[/img],  [img]res://Content/Sprites/Interface/ControllerButtons/ControllerDPadDown.png[/img] или [img]res://Content/Sprites/Interface/ControllerButtons/PSControllerSquare.png[/img] в полёте[/center]"
 !YOU WIN!,!YOU WIN!,!ТЫ ПОБЕДИЛ!
 "You're probably
 wondering why you 

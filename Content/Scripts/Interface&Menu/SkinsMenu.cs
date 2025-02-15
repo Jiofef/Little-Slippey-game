@@ -26,6 +26,10 @@ public partial class SkinsMenu : DraggableWindow
                 sB.ButtonDown += () => OnSkinButtonDown(sB);
             }
         }
+
+        // I did it to keep the bug I liked :P
+        UnchangableMeta.SetAutoSaveWhenClosing(false);
+        TreeExited += () => UnchangableMeta.SetAutoSaveWhenClosing(true);
     }
 
     private async void OnSkinButtonDown(SkinButton button)

@@ -19,7 +19,7 @@ public partial class RandomVectorTest : Node2D
     public override void _Draw()
     {
         for (int i = 0; i < amount; i++)
-            DrawCircle(OtherExtension.RandomTools.RandomVectorAt(new Vector2(200, 200), new Vector2(250, 500),(int)circleSize), circlesSizes, circleColor);
+            DrawCircle(OtherExtension.RandomTools.RandomVectorInAlt(new Rect2(0, 0, 300, 300), new Vector2(100, 100),(int)circleSize), circlesSizes, circleColor);
     }
 
     public void SetAmount(float value)

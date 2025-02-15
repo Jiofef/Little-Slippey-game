@@ -1,5 +1,5 @@
 res://Content/Scenes/Achievements/AchievementArea.tscn::a9fe53bf40cb9093dfc94df9e758c571::1701378097::res://.godot/exported/133200997/export-6c103cc147e12f940c2383ccb16537ff-AchievementArea.scn
-res://Content/Scenes/Achievements/DefaultAchievement.tscn::3790f726241a43a35fc2cca36f7e5830::1738643506::res://.godot/exported/133200997/export-ed944ce15993891f8a49703c199c857e-DefaultAchievement.scn
+res://Content/Scenes/Achievements/DefaultAchievement.tscn::3881ae0a208e2d56412c5b99fa32b5f6::1738794645::res://.godot/exported/133200997/export-ed944ce15993891f8a49703c199c857e-DefaultAchievement.scn
 res://Content/Scenes/Crosses/BlueElementalCrossPart.tscn::431c63c7ff86041d3cbdfb93cd291860::1731696286::res://.godot/exported/133200997/export-814c6a008afd8051ef568d41f7c5205f-BlueElementalCrossPart.scn
 res://Content/Scenes/Crosses/Cross1.tscn::20d404aae0bba7bf6426d582db47692a::1738038863::res://.godot/exported/133200997/export-54a30e87ed5418d57d07f5e5a90c4a41-Cross1.scn
 res://Content/Scenes/Crosses/Cross2.tscn::bd5f2c8bd9d0ff6a0de6a6998e50694c::1737172849::res://.godot/exported/133200997/export-7d1bea2873f03792b6d137583e89ab96-Cross2.scn
@@ -16,20 +16,20 @@ res://Content/Scenes/Crosses/ExplosionAnimation.tscn::ac80c8b8606a238a94df54307b
 res://Content/Scenes/Crosses/GreenElementalCrossPart.tscn::9d1cc3e270f934dbc05feb65ed820e4b::1731696286::res://.godot/exported/133200997/export-9608969349aa031643c07ae5d1cd7dd6-GreenElementalCrossPart.scn
 res://Content/Scenes/Crosses/HelicopterBomb.tscn::2b214433eeccf1c6c9e648a2fef2effd::1733786095::res://.godot/exported/133200997/export-942e23b735cc74644f6a31dc1caa6dac-HelicopterBomb.scn
 res://Content/Scenes/Crosses/RedElementalCrossPart.tscn::69c35521bd12a2fc2ad72ca7a5ee2e23::1731696285::res://.godot/exported/133200997/export-df217c40cde9d32b1dc38beab4928438-RedElementalCrossPart.scn
-res://Content/Scenes/Interface&Menu/AchievementsMenu.tscn::5580874f3649c1b5f62ec0df69d58237::1736310343::res://.godot/exported/133200997/export-e9e845f2ab4901864586657b4f7b547e-AchievementsMenu.scn
+res://Content/Scenes/Interface&Menu/AchievementsMenu.tscn::79d5c84f3f70e9bbee916cf1424165c9::1738789245::res://.godot/exported/133200997/export-e9e845f2ab4901864586657b4f7b547e-AchievementsMenu.scn
 res://Content/Scenes/Interface&Menu/Button.tscn::d9790736199f27c27c22c5ca11b32e00::1737683965::res://.godot/exported/133200997/export-c7a814f3f361afb05ab1899fb0f29e9b-Button.scn
 res://Content/Scenes/Interface&Menu/FinalLetter.tscn::4c6fb8f53cc8b9749a7474b149d2e4ab::1737072164::res://.godot/exported/133200997/export-5b86f05ece530ee88bec5246a085485b-FinalLetter.scn
-res://Content/Scenes/Interface&Menu/InitializationScene.tscn::65d39a7014567ae9c2d2b398c26f065e::1738643505::res://.godot/exported/133200997/export-d4ab32c26e517af2a916f892b3f88343-InitializationScene.scn
+res://Content/Scenes/Interface&Menu/InitializationScene.tscn::65d39a7014567ae9c2d2b398c26f065e::1739402459::res://.godot/exported/133200997/export-d4ab32c26e517af2a916f892b3f88343-InitializationScene.scn
 res://Content/Scenes/Interface&Menu/LevelButton.tscn::99dfaa7afd08855e01d501aff99b59b5::1737516567::res://.godot/exported/133200997/export-a7c005406efd622228ad63efc0eb1bea-LevelButton.scn
 res://Content/Scenes/Interface&Menu/LevelsMenu.tscn::be69c9585dad67ed9e086ddbe72974dd::1737683965::res://.godot/exported/133200997/export-6d869cde953de3bcbee4f69770a1aa1e-LevelsMenu.scn
-res://Content/Scenes/Interface&Menu/OptionsMenu.tscn::c423f2719049dfc6d0fd8ac8a075596e::1736310343::res://.godot/exported/133200997/export-e8b6eafa74d2101fb9094001f621860f-OptionsMenu.scn
-res://Content/Scenes/Interface&Menu/RecycleBinMenu.tscn::f9b6ddc2ef506965d8e2d7746b7d14f1::1736392375::res://.godot/exported/133200997/export-d4612187423560ace322b23de5e38246-RecycleBinMenu.scn
-res://Content/Scenes/Interface&Menu/SkinsMenu.tscn::f4375738f60b7ca2ad3fc5d2afb4804a::1738617849::res://.godot/exported/133200997/export-6406f08ca77ddd086b07c1a52d578368-SkinsMenu.scn
-res://Content/Scenes/Interface&Menu/WelcomeToGOS.tscn::4a433793837971b1895cc98ae451d4d9::1737683965::res://.godot/exported/133200997/export-6cfabdd3be1c49dfcb58cbd9df1eb1e0-WelcomeToGOS.scn
-res://Content/Scenes/Levels/FullParts/Level1.tscn::a1c62a9cb33c38ce59eab376cb8973b7::1738619414::res://.godot/exported/133200997/export-7d6e36fdd98080b65e35f542fd6783cc-Level1.scn
-res://Content/Scenes/Levels/FullParts/Level1Tutorial.tscn::07d1a4b07a79ec24bbc616781ff46f95::1737069241::res://.godot/exported/133200997/export-d99bf1e3894113d84ccd1d6f85d80768-Level1Tutorial.scn
-res://Content/Scenes/Levels/FullParts/Level2.tscn::484256409fbd866b41c9acbc26ca8bad::1737263406::res://.godot/exported/133200997/export-513feb8604e3789028467574f65350e2-Level2.scn
-res://Content/Scenes/Levels/FullParts/Level3.tscn::1bba5294654e3163bb5bf024cc018453::1736201318::res://.godot/exported/133200997/export-9be22fec9a7f580803ea5c67ba1f2b9e-Level3.scn
+res://Content/Scenes/Interface&Menu/OptionsMenu.tscn::5b511f83137b484d95649197a8270418::1739402459::res://.godot/exported/133200997/export-e8b6eafa74d2101fb9094001f621860f-OptionsMenu.scn
+res://Content/Scenes/Interface&Menu/RecycleBinMenu.tscn::1097a54525466cbebf08129cb1f6bde4::1739293331::res://.godot/exported/133200997/export-d4612187423560ace322b23de5e38246-RecycleBinMenu.scn
+res://Content/Scenes/Interface&Menu/SkinsMenu.tscn::4cd64cbf2ae772c20197683c77151825::1739293716::res://.godot/exported/133200997/export-6406f08ca77ddd086b07c1a52d578368-SkinsMenu.scn
+res://Content/Scenes/Interface&Menu/WelcomeToGOS.tscn::576592bc76b5a0883ece670d6669df97::1738789245::res://.godot/exported/133200997/export-6cfabdd3be1c49dfcb58cbd9df1eb1e0-WelcomeToGOS.scn
+res://Content/Scenes/Levels/FullParts/Level1.tscn::a1c62a9cb33c38ce59eab376cb8973b7::1739402459::res://.godot/exported/133200997/export-7d6e36fdd98080b65e35f542fd6783cc-Level1.scn
+res://Content/Scenes/Levels/FullParts/Level1Tutorial.tscn::c707097c6d4603dcb6528045d0756ee6::1739402571::res://.godot/exported/133200997/export-d99bf1e3894113d84ccd1d6f85d80768-Level1Tutorial.scn
+res://Content/Scenes/Levels/FullParts/Level2.tscn::484256409fbd866b41c9acbc26ca8bad::1739233743::res://.godot/exported/133200997/export-513feb8604e3789028467574f65350e2-Level2.scn
+res://Content/Scenes/Levels/FullParts/Level3.tscn::1bba5294654e3163bb5bf024cc018453::1738900711::res://.godot/exported/133200997/export-9be22fec9a7f580803ea5c67ba1f2b9e-Level3.scn
 res://Content/Scenes/Levels/FullParts/Level4.tscn::40cb6015ac042fd5e79a247361d21356::1737069244::res://.godot/exported/133200997/export-87571ef791311d725f34195bd2aa0ba5-Level4.scn
 res://Content/Scenes/Levels/FullParts/Level5.tscn::80fa28dfad633bfdd93e9e5eb0dd1264::1735575989::res://.godot/exported/133200997/export-75d30e1c170dd1808b747e13265663ee-Level5.scn
 res://Content/Scenes/Levels/FullParts/Level6.tscn::f7afbd23aa9e7decfc0cebef2a3c11ed::1737077302::res://.godot/exported/133200997/export-43c863df8373ef410bd63d3f7308a3ad-Level6.scn
@@ -70,11 +70,11 @@ res://Content/Scenes/Other/Level7MindTumor.tscn::92994cdf56f817e9943783e8740cb96
 res://Content/Scenes/Other/Level8DisposableButton.tscn::769a2b2a02bec296d5fe076ea5345e08::1701910968::res://.godot/exported/133200997/export-6ebabf75e0caae6a3130441aabb4e2cd-Level8DisposableButton.scn
 res://Content/Scenes/Other/Level9AhahahSilly.tscn::a6e40e3eeaaf6ef5a2122835dcd3f7ac::1738378615::res://.godot/exported/133200997/export-f4166515b4e1cdd7f39dffb5f4b6f08f-Level9AhahahSilly.scn
 res://Content/Scenes/Other/Level9JiofefEye.tscn::c0c4d46e38f47e24e8dc96a3c23f848c::1701910968::res://.godot/exported/133200997/export-98db34e1f09e12e449cf60bae62cd2e8-Level9JiofefEye.scn
-res://Content/Scenes/Other/Level9JiofefHead.tscn::c6db83a1bebaf0ae02c65e9196d56251::1738378616::res://.godot/exported/133200997/export-a1b110441d41f6db6f2ebfd508579557-Level9JiofefHead.scn
-res://Content/Scenes/Other/Level9JiofefHeadDeathParticles.tscn::78d24e9f9320175f4e8418b5622fd9d1::1731973285::res://.godot/exported/133200997/export-a232db572c408b9b2dfd905c24147b63-Level9JiofefHeadDeathParticles.scn
+res://Content/Scenes/Other/Level9JiofefHead.tscn::9d8ecc0911811df2b654d2ab0b8d46f4::1738792958::res://.godot/exported/133200997/export-a1b110441d41f6db6f2ebfd508579557-Level9JiofefHead.scn
+res://Content/Scenes/Other/Level9JiofefHeadDeathParticles.tscn::1ef815019f9243fafe38f30f8148d00e::1738792958::res://.godot/exported/133200997/export-a232db572c408b9b2dfd905c24147b63-Level9JiofefHeadDeathParticles.scn
 res://Content/Scenes/Other/Level9SpitCross.tscn::4d81fbe29eb2755db12d5419f5221c6b::1733848439::res://.godot/exported/133200997/export-2dab222ba7edd9d6b9aea53b7c6258b8-Level9SpitCross.scn
 res://Content/Scenes/Other/Level9VomitCross.tscn::c7641d2a193c3e802db51f1cbf243b86::1733848439::res://.godot/exported/133200997/export-bb14d574f6775c13b12d6cb90bb78e09-Level9VomitCross.scn
-res://Content/Scenes/Other/Player.tscn::70710a6c281340cf2386f2b1bd651233::1738643505::res://.godot/exported/133200997/export-08e29164f95ea26d6d33a834f168ef8c-Player.scn
+res://Content/Scenes/Other/Player.tscn::70710a6c281340cf2386f2b1bd651233::1739214611::res://.godot/exported/133200997/export-08e29164f95ea26d6d33a834f168ef8c-Player.scn
 res://Content/Scenes/Other/TutorialTV.tscn::563b7ec1a096279f899b3fa50e138e08::1727137606::res://.godot/exported/133200997/export-3bd25ff7696ec31e396e3ae06604914b-TutorialTV.scn
 res://Content/Scenes/PlayerSkins/Bondey.tscn::9073cc515b685dd3b94beea430320c2f::1733535730::res://.godot/exported/133200997/export-9c70f6575daefe098851f39949d2ed54-Bondey.scn
 res://Content/Scenes/PlayerSkins/CompressMass.tscn::57ccb13bac4354c9aa079589a73a4104::1733533350::res://.godot/exported/133200997/export-c8b52aff2cac2745f5ada215ee0e397d-CompressMass.scn
@@ -89,8 +89,8 @@ res://Content/Scenes/PlayerSkins/Sanboy.tscn::b6b4f972e82067345f4ebdbdd7043865::
 res://Content/Scenes/PlayerSkins/Sleepy.tscn::d0427b12f8205cf9b52c5f629f371750::1733535813::res://.godot/exported/133200997/export-f06bf3234d4e03fcc7e42487e68440f6-Sleepy.scn
 res://Content/Scenes/PlayerSkins/Slippey.tscn::dbfe82e6d4322faee80959da29b300ba::1733783768::res://.godot/exported/133200997/export-4ab42f21adf0a7abd6c337943acacdb2-Slippey.scn
 res://Content/Scenes/PlayerSkins/Strawman.tscn::672da43531bce9b89b2236ae6602fb0d::1733533516::res://.godot/exported/133200997/export-5e32b4e0a9568ad754564981443f1838-Strawman.scn
-res://default_bus_layout.tres::dbf1f299c680515c9d4911d4e2bbe841::1738635818::res://.godot/exported/133200997/export-19246414aa9fb561ced4b8dce477acec-default_bus_layout.res
-res://default_env.tres::1e86f20772a1bacc00288e461559116b::1738643506::res://.godot/exported/133200997/export-7cf3fd67ad9f55210191d77b582b8209-default_env.res
+res://default_bus_layout.tres::dbf1f299c680515c9d4911d4e2bbe841::1739400523::res://.godot/exported/133200997/export-19246414aa9fb561ced4b8dce477acec-default_bus_layout.res
+res://default_env.tres::1e86f20772a1bacc00288e461559116b::1739402571::res://.godot/exported/133200997/export-7cf3fd67ad9f55210191d77b582b8209-default_env.res
 res://Content/Scenes/Interface&Menu/TurnOffMenu.tscn::d895fbf77e0e520e97f93fa9ab108453::1736390724::res://.godot/exported/133200997/export-1c77c0c2653eb0311bca620b08a29cb0-TurnOffMenu.scn
 res://Content/Scenes/Other/LevelLayout.tscn::28282b64f4c3271bc9ce86f9f0665def::1738038864::res://.godot/exported/133200997/export-8618379c39e4b28688053f486c4aebe1-LevelLayout.scn
 res://Content/Other/LevelEditor.tres::60193cd55a98d6a748d9473a3ffdc879::1728738988::res://.godot/exported/133200997/export-d52e9773a51b48652817201764a9b6c4-LevelEditor.res
@@ -104,62 +104,62 @@ res://Content/Scenes/DefaultLevelEditorObjects/TextureRect.tscn::dc03475f22a5a83
 res://Content/Scenes/DefaultLevelEditorObjects/TogglableButton.tscn::5518926c5b09cd0cc976f84456a4f094::1727975019::res://.godot/exported/133200997/export-c2f93fd988d9dd72a39eee47c3803055-TogglableButton.scn
 res://Content/Scenes/Interface&Menu/ModButton.tscn::9543a18a57a60697c6d88295c3d6faa4::1736978905::res://.godot/exported/133200997/export-88dbf27b9b6343e7b437e2a2317bfa58-ModButton.scn
 res://Content/Scenes/Interface&Menu/ModPreviewLayout.tscn::918fed10b8ba3169ca2ab0ab48ee2c8b::1736568853::res://.godot/exported/133200997/export-124316eb7e852061ac06457568ff7936-ModPreviewLayout.scn
-res://Content/Scenes/Interface&Menu/WorkShopMenu.tscn::04a446d7e2f0f9fbab7091af7c90dedb::1736909672::res://.godot/exported/133200997/export-660a8758caa0b15989af0a310d1ee056-WorkShopMenu.scn
+res://Content/Scenes/Interface&Menu/WorkShopMenu.tscn::e40b7ad48e48b2c7099ba973d6f7233e::1739293690::res://.godot/exported/133200997/export-660a8758caa0b15989af0a310d1ee056-WorkShopMenu.scn
 res://Content/Scenes/Other/UserLevelLayout.tscn::e7cfcd960cfd7fd7d3d261b0f38c0951::1738038864::res://.godot/exported/133200997/export-5f4c536e95a331f947b6a23846c9bc0f-UserLevelLayout.scn
-res://Content/Other/Menu.tres::099ddfa1660a1b9659160fdb61cadfc1::1738635996::res://.godot/exported/133200997/export-394f81ae0e0a63feeae91d3abbbdc84f-Menu.res
-res://Content/Other/MenuTextLabelSettings.tres::b91bcadb3e2e137a9eb8b38e442da862::1738615960::res://.godot/exported/133200997/export-034379abe4ba516c2485fd6ba7e4e037-MenuTextLabelSettings.res
-res://Content/Scenes/Achievements/_000.tscn::46d61fd5b5f31634e4cc2d51d579c48e::1734546948::res://.godot/exported/133200997/export-b13158df51b3b275d05343b31c568405-_000.scn
-res://Content/Scenes/Achievements/000-.tscn::a579eb1db4986fa98979310c2547bb49::1734112313::res://.godot/exported/133200997/export-0ccff73b7ae474aecb77330c9b4f2a1a-000-.scn
-res://Content/Scenes/Achievements/-000-.tscn::e12543dff041edb812d55bc0499e19fb::1734546940::res://.godot/exported/133200997/export-816b73bcdeb7a48b38f08e0f34b65c8d--000-.scn
-res://Content/Scenes/Achievements/A criminal against humanity.tscn::9845cb10c2612875df96d1baaa9b54b1::1734546974::res://.godot/exported/133200997/export-d218236639b2d03d0a68ade0eabb7e27-A criminal against humanity.scn
-res://Content/Scenes/Achievements/At least I got to hobnob with royalty.tscn::135d5101274621d6ba055f1946bd937d::1734551511::res://.godot/exported/133200997/export-2e0dbfb3d4d8f5b121d44858a217600a-At least I got to hobnob with royalty.scn
-res://Content/Scenes/Achievements/Congratulations!0.tscn::38d2166883dac2217a06468d579bb517::1734547036::res://.godot/exported/133200997/export-8986de0ff4a20c1dc213f582c49584a3-Congratulations!0.scn
-res://Content/Scenes/Achievements/Congratulations!1.tscn::7ad7993ac8b604adf261336f309d8db2::1734547056::res://.godot/exported/133200997/export-a38e83483565e74a61a21a1d06a7b871-Congratulations!1.scn
-res://Content/Scenes/Achievements/Congratulations!2.tscn::953e05dd5caeb1e1dff2a3e536879ca7::1734547075::res://.godot/exported/133200997/export-40a047b8c6da8081ce177ef3e25f8362-Congratulations!2.scn
-res://Content/Scenes/Achievements/Congratulations!3.tscn::8e33aeac4442b9118f554f2a21a2d9ef::1734547118::res://.godot/exported/133200997/export-af1f357171810fa633d1e4d6dcb89e2f-Congratulations!3.scn
-res://Content/Scenes/Achievements/Did you really fall for that.tscn::d9553f7fe2a5ccfa3334b27469e8f13c::1734547217::res://.godot/exported/133200997/export-102cb1d539aea727b547af16a2d99cc8-Did you really fall for that.scn
-res://Content/Scenes/Achievements/Eureka.tscn::1dc29d540c1fb1d5a804b296b00556fc::1734547395::res://.godot/exported/133200997/export-b2c521da563eb3013c9e03f4098eb9e3-Eureka.scn
-res://Content/Scenes/Achievements/I am already the Slippey.tscn::149a0749ac7c45f38e28e1af4af6526f::1734551512::res://.godot/exported/133200997/export-88f12aa97b7e59a39c29aaf91d5e3192-I am already the Slippey.scn
-res://Content/Scenes/Achievements/I Have No Eyes, and I Must Oversee.tscn::d154674b430f974bc4a5008ea7884b1b::1734547548::res://.godot/exported/133200997/export-53cdfc935a4da6558243951d8b4341d3-I Have No Eyes, and I Must Oversee.scn
-res://Content/Scenes/Achievements/I'm no stranger to.tscn::387a538d302abbd6890b5d80f3a6eb8b::1734547566::res://.godot/exported/133200997/export-7da4c4f60822f070f31c11acc1a95c16-I'm no stranger to.scn
-res://Content/Scenes/Achievements/It's worth a shot.tscn::e1afbdae3c36c8de0927ac74aca6ee05::1734547582::res://.godot/exported/133200997/export-3ba0f967bedc9ff3fc65b717e47dcd04-It's worth a shot.scn
-res://Content/Scenes/Achievements/Laziness is our everything.tscn::89ccdc77f98afacc0252964b32ca07cc::1734547604::res://.godot/exported/133200997/export-1a03918d5d3cafbc88340862795177b5-Laziness is our everything.scn
-res://Content/Scenes/Achievements/Level1Hard.tscn::2c37c6805e79b46a3436d01cf19ebdaa::1738367922::res://.godot/exported/133200997/export-8a535e92ffaaac27f75860ef04b3d892-Level1Hard.scn
-res://Content/Scenes/Achievements/Level1Inferno.tscn::58f967d4403a6f04fef588ddd84c0d82::1738383912::res://.godot/exported/133200997/export-e90f937f1b1fa6eddd5e2e501ea1142a-Level1Inferno.scn
-res://Content/Scenes/Achievements/Level1Insane.tscn::e054e849efc4f3575ddb0a11aed86dbc::1734551511::res://.godot/exported/133200997/export-55918c563001d3dba1d07e8db2e3a429-Level1Insane.scn
-res://Content/Scenes/Achievements/Level2Hard.tscn::062e42c9e69f63dacae69643eb7220c3::1738374968::res://.godot/exported/133200997/export-19494eae0b87d12c14ecff7abe46a8d9-Level2Hard.scn
-res://Content/Scenes/Achievements/Level2Inferno.tscn::72e9fa6590611e4e901ed91b61d302bf::1738383919::res://.godot/exported/133200997/export-45f461f8d0f62e99cbb1a291f7f42e23-Level2Inferno.scn
-res://Content/Scenes/Achievements/Level2Insane.tscn::1401eed2c99fe48f10463743ca8aee5d::1734551511::res://.godot/exported/133200997/export-92b9bdf6075eb5b47188ee148cb8c52d-Level2Insane.scn
-res://Content/Scenes/Achievements/Level3Hard.tscn::90963755093437e4eb1a9c4f3f18d78a::1738367932::res://.godot/exported/133200997/export-150a491b72afc4d8614a3f46521747b0-Level3Hard.scn
-res://Content/Scenes/Achievements/Level3Inferno.tscn::4b568593d37a7be2e4ad8807152fe5ec::1738617849::res://.godot/exported/133200997/export-c4104bd2cd675edb9f34632892df09ad-Level3Inferno.scn
-res://Content/Scenes/Achievements/Level3Insane.tscn::c164a5463553a7af44d359248022d63d::1734546751::res://.godot/exported/133200997/export-e09adbac3b98505587128623514fe93c-Level3Insane.scn
-res://Content/Scenes/Achievements/Level4Hard.tscn::435fe8ed9c475028a65fa188b8304415::1738374974::res://.godot/exported/133200997/export-9ff9b7b4932a79fe90433f053a7d8337-Level4Hard.scn
-res://Content/Scenes/Achievements/Level4Inferno.tscn::da59b81970232c2dc4dfa9c5144deb01::1738384277::res://.godot/exported/133200997/export-b20bfad341af1da898c6c8de459060dc-Level4Inferno.scn
-res://Content/Scenes/Achievements/Level4Insane.tscn::f19cf6f805604fdc3f762ce40dfb1d59::1734551512::res://.godot/exported/133200997/export-a2a545975ce891912a5a65b45ac2cf85-Level4Insane.scn
-res://Content/Scenes/Achievements/Level5Hard.tscn::e8a0754c74bf6ab7009a68bff9879cdd::1734551512::res://.godot/exported/133200997/export-e0275c1bf748eb45db13d487691a3ab2-Level5Hard.scn
-res://Content/Scenes/Achievements/Level5Inferno.tscn::8f273cf43432a8a6fb2049feff5c8db1::1738384286::res://.godot/exported/133200997/export-4fd9475ef51da9c9bd962070b7a602b4-Level5Inferno.scn
-res://Content/Scenes/Achievements/Level5Insane.tscn::11566ca75b9de1ff620c3be9fdeced54::1734551512::res://.godot/exported/133200997/export-c2298968fac884b951b956226c0cbff4-Level5Insane.scn
-res://Content/Scenes/Achievements/Level6Hard.tscn::436f04d183ceb1eb2eccf104139c898a::1734551512::res://.godot/exported/133200997/export-3fe639ae986f0ddd07b9f02a2e317427-Level6Hard.scn
-res://Content/Scenes/Achievements/Level6Inferno.tscn::f3b05ffafbcb44ba407e4a0bd9540013::1738617849::res://.godot/exported/133200997/export-cf2a6398eb2659bf8f88ce993e2e307b-Level6Inferno.scn
-res://Content/Scenes/Achievements/Level6Insane.tscn::c9391289f1c1c60569f9fe781a8d5172::1734546801::res://.godot/exported/133200997/export-8b8b9146fd8a5d0b8557683aadc6ee88-Level6Insane.scn
-res://Content/Scenes/Achievements/Level7Hard.tscn::5adca23cc0e038f37a10ca5c6f9f86f7::1734551512::res://.godot/exported/133200997/export-6ba3efc5ed14aaac12571b995f13c04a-Level7Hard.scn
-res://Content/Scenes/Achievements/Level7Inferno.tscn::4e805f363980aa526c7770d34f5c9c2d::1738384312::res://.godot/exported/133200997/export-88803a2f3a022ddfc2e0fac30e402ad1-Level7Inferno.scn
-res://Content/Scenes/Achievements/Level7Insane.tscn::87c73315f28365a9ceddb55b4ea45383::1734546815::res://.godot/exported/133200997/export-36b15d06ff7ea59048a21e729a69adb4-Level7Insane.scn
-res://Content/Scenes/Achievements/Level8Hard.tscn::53d591fcc3588169928489aa77206424::1734551512::res://.godot/exported/133200997/export-746ab0afb57a0b6f4a62cebfebb2a5c3-Level8Hard.scn
-res://Content/Scenes/Achievements/Level8Inferno.tscn::b309d71a5a2d2ee624df1d82ef0c98b5::1738384319::res://.godot/exported/133200997/export-7da37a1e076c868dcc6ae0bc6c76f2ad-Level8Inferno.scn
-res://Content/Scenes/Achievements/Level8Insane.tscn::90335551b5dec56030aad32d42b1258d::1734546828::res://.godot/exported/133200997/export-b11a4070fbba2f2c18e2ea0b54780822-Level8Insane.scn
-res://Content/Scenes/Achievements/Level9Hard.tscn::b31cb3522e1fe00f59dd936caaea9b20::1734551511::res://.godot/exported/133200997/export-b0bf3d29f07ba06a7a8e539499e9e47c-Level9Hard.scn
-res://Content/Scenes/Achievements/Level9Inferno.tscn::01f92c5e8ff6b26cd5b12b425ac6b769::1738384325::res://.godot/exported/133200997/export-b950082c58f3ecf727447d8f0c359b40-Level9Inferno.scn
-res://Content/Scenes/Achievements/Level9Insane.tscn::06619b6d841fbba7bd6fe026c599dc23::1734551512::res://.godot/exported/133200997/export-2711a94756d9c9ddae2b1c14b2260dcb-Level9Insane.scn
-res://Content/Scenes/Achievements/Level10Hard.tscn::2b6b439fb9e0a025e234f394fae679cd::1734551511::res://.godot/exported/133200997/export-b4c3400b41834c9d6b3ba561ca027546-Level10Hard.scn
-res://Content/Scenes/Achievements/Level10Inferno.tscn::1980ba45d9076945e4631870ca4d3028::1738384330::res://.godot/exported/133200997/export-c754658ede0ed33805bcfc2e5f0d2029-Level10Inferno.scn
-res://Content/Scenes/Achievements/Level10Insane.tscn::a1000e902a90c5b059f055f6c164af6b::1734546852::res://.godot/exported/133200997/export-b3dc1b51b2b328c15a998e78445d5671-Level10Insane.scn
-res://Content/Scenes/Achievements/Marathoner.tscn::fb729c858edf8bc0d1fa7c4f634e2b33::1734547517::res://.godot/exported/133200997/export-24d2bae3f2850dd9ce3e5bcea78fa217-Marathoner.scn
-res://Content/Scenes/Achievements/Over and over and over and over and over and.tscn::c0c34457d2824532b5fcfce1ec48229f::1734547629::res://.godot/exported/133200997/export-03f057269d9eb216f6b92c79b88bd162-Over and over and over and over and over and.scn
-res://Content/Scenes/Achievements/Thank you for everything, player.tscn::c7f24dd4bcdbbb3680f531354a6fd66c::1734551513::res://.godot/exported/133200997/export-f805d4f7f37f40f5779bbff6a35dfd28-Thank you for everything, player.scn
-res://Content/Scenes/Achievements/you were deceived..tscn::8b10a7634da897b1aed317b2ce660838::1734547687::res://.godot/exported/133200997/export-92527e9b41f6f199ad4b4e83dc9121a7-you were deceived..scn
-res://Content/Scenes/Achievements/You will regret it..tscn::ddc55dc090e4c7c27545630f83e63cbf::1734547772::res://.godot/exported/133200997/export-425b794a89ee185ac5b8dd8c70ccc408-You will regret it..scn
-res://Content/Scenes/Achievements/You're getting somewhere.tscn::7956a49a89c6118d88db8da1f659361c::1734547791::res://.godot/exported/133200997/export-51d68956f99b87eca2f71024e3b60e48-You're getting somewhere.scn
+res://Content/Other/Menu.tres::046f66016cf45477aa77ce5f9982d4bd::1739400596::res://.godot/exported/133200997/export-394f81ae0e0a63feeae91d3abbbdc84f-Menu.res
+res://Content/Other/MenuTextLabelSettings.tres::b91bcadb3e2e137a9eb8b38e442da862::1739400596::res://.godot/exported/133200997/export-034379abe4ba516c2485fd6ba7e4e037-MenuTextLabelSettings.res
+res://Content/Scenes/Achievements/_000.tscn::f9358d645abf3b031adf0e71e3065dee::1738731551::res://.godot/exported/133200997/export-b13158df51b3b275d05343b31c568405-_000.scn
+res://Content/Scenes/Achievements/000-.tscn::246e42e08a4fb252b988a2317f966a45::1738731558::res://.godot/exported/133200997/export-0ccff73b7ae474aecb77330c9b4f2a1a-000-.scn
+res://Content/Scenes/Achievements/-000-.tscn::2414d8814e526ae4929df299f004d35f::1738731562::res://.godot/exported/133200997/export-816b73bcdeb7a48b38f08e0f34b65c8d--000-.scn
+res://Content/Scenes/Achievements/A criminal against humanity.tscn::5e6089b279c83d51869a1aff3a44ade7::1738784883::res://.godot/exported/133200997/export-d218236639b2d03d0a68ade0eabb7e27-A criminal against humanity.scn
+res://Content/Scenes/Achievements/At least I got to hobnob with royalty.tscn::dcebd8b06225a52379c86c04c3c3a3cc::1739293448::res://.godot/exported/133200997/export-2e0dbfb3d4d8f5b121d44858a217600a-At least I got to hobnob with royalty.scn
+res://Content/Scenes/Achievements/Congratulations!0.tscn::83d4dfea3b5f7e50598f5dc66fc84e0b::1738731945::res://.godot/exported/133200997/export-8986de0ff4a20c1dc213f582c49584a3-Congratulations!0.scn
+res://Content/Scenes/Achievements/Congratulations!1.tscn::60b811f242451898f760e4e12550ff62::1738731948::res://.godot/exported/133200997/export-a38e83483565e74a61a21a1d06a7b871-Congratulations!1.scn
+res://Content/Scenes/Achievements/Congratulations!2.tscn::0ebb80c18d3f2bfaa80251ebfc2d09d6::1738731958::res://.godot/exported/133200997/export-40a047b8c6da8081ce177ef3e25f8362-Congratulations!2.scn
+res://Content/Scenes/Achievements/Congratulations!3.tscn::76b9eae02cbe09acb63bb52f31d52c7c::1738731963::res://.godot/exported/133200997/export-af1f357171810fa633d1e4d6dcb89e2f-Congratulations!3.scn
+res://Content/Scenes/Achievements/Did you really fall for that.tscn::5b9b464c9e1d9be10da00c34671ecfb3::1738731837::res://.godot/exported/133200997/export-102cb1d539aea727b547af16a2d99cc8-Did you really fall for that.scn
+res://Content/Scenes/Achievements/Eureka.tscn::5a3fc4d99a3ddc3977569155484bea51::1738731877::res://.godot/exported/133200997/export-b2c521da563eb3013c9e03f4098eb9e3-Eureka.scn
+res://Content/Scenes/Achievements/I am already the Slippey.tscn::eb302d2098edcce89db5836cee913097::1738780998::res://.godot/exported/133200997/export-88f12aa97b7e59a39c29aaf91d5e3192-I am already the Slippey.scn
+res://Content/Scenes/Achievements/I Have No Eyes, and I Must Oversee.tscn::79d4747b1270a72f85019bdb2bb30cf4::1738731804::res://.godot/exported/133200997/export-53cdfc935a4da6558243951d8b4341d3-I Have No Eyes, and I Must Oversee.scn
+res://Content/Scenes/Achievements/I'm no stranger to.tscn::efc8d85cddca94f9055e5a74acc41a9c::1738731701::res://.godot/exported/133200997/export-7da4c4f60822f070f31c11acc1a95c16-I'm no stranger to.scn
+res://Content/Scenes/Achievements/It's worth a shot.tscn::f78078336c92daf0ab72b9214fc6aeee::1738731689::res://.godot/exported/133200997/export-3ba0f967bedc9ff3fc65b717e47dcd04-It's worth a shot.scn
+res://Content/Scenes/Achievements/Laziness is our everything.tscn::c527d3f27270bbbf5094027c0af48d03::1738731913::res://.godot/exported/133200997/export-1a03918d5d3cafbc88340862795177b5-Laziness is our everything.scn
+res://Content/Scenes/Achievements/Level1Hard.tscn::138b8237eb77a2f7eb4bea90268b3d69::1738784883::res://.godot/exported/133200997/export-8a535e92ffaaac27f75860ef04b3d892-Level1Hard.scn
+res://Content/Scenes/Achievements/Level1Inferno.tscn::35fef75a33ee3094d49be8bc1e6860d3::1738784883::res://.godot/exported/133200997/export-e90f937f1b1fa6eddd5e2e501ea1142a-Level1Inferno.scn
+res://Content/Scenes/Achievements/Level1Insane.tscn::6ae5a26d227b0aa09932bb4c54b387bb::1738728635::res://.godot/exported/133200997/export-55918c563001d3dba1d07e8db2e3a429-Level1Insane.scn
+res://Content/Scenes/Achievements/Level2Hard.tscn::f5d6730c4d3afde4746da05a0a523a54::1738728147::res://.godot/exported/133200997/export-19494eae0b87d12c14ecff7abe46a8d9-Level2Hard.scn
+res://Content/Scenes/Achievements/Level2Inferno.tscn::611f3911aedde9a803a41839fae3f9d8::1738729063::res://.godot/exported/133200997/export-45f461f8d0f62e99cbb1a291f7f42e23-Level2Inferno.scn
+res://Content/Scenes/Achievements/Level2Insane.tscn::46e937ea5605735bd8ecfa27582af4bc::1738728639::res://.godot/exported/133200997/export-92b9bdf6075eb5b47188ee148cb8c52d-Level2Insane.scn
+res://Content/Scenes/Achievements/Level3Hard.tscn::b82957328d81b4819eb85a1f0b60b1f7::1738728277::res://.godot/exported/133200997/export-150a491b72afc4d8614a3f46521747b0-Level3Hard.scn
+res://Content/Scenes/Achievements/Level3Inferno.tscn::25eec2f7338cf7e43034a41ad7e3592c::1738729071::res://.godot/exported/133200997/export-c4104bd2cd675edb9f34632892df09ad-Level3Inferno.scn
+res://Content/Scenes/Achievements/Level3Insane.tscn::2a9982edc9bba9314b1ae0341f2949d4::1738728643::res://.godot/exported/133200997/export-e09adbac3b98505587128623514fe93c-Level3Insane.scn
+res://Content/Scenes/Achievements/Level4Hard.tscn::4bf40a24974b91adb0287a7760ab6865::1738728481::res://.godot/exported/133200997/export-9ff9b7b4932a79fe90433f053a7d8337-Level4Hard.scn
+res://Content/Scenes/Achievements/Level4Inferno.tscn::6cdd784eed61c67b0cd78cffe9cc400a::1738729079::res://.godot/exported/133200997/export-b20bfad341af1da898c6c8de459060dc-Level4Inferno.scn
+res://Content/Scenes/Achievements/Level4Insane.tscn::2aea78a0258881198500066d5850905a::1738728647::res://.godot/exported/133200997/export-a2a545975ce891912a5a65b45ac2cf85-Level4Insane.scn
+res://Content/Scenes/Achievements/Level5Hard.tscn::491357837365d60bb678d787a217fcfc::1738728485::res://.godot/exported/133200997/export-e0275c1bf748eb45db13d487691a3ab2-Level5Hard.scn
+res://Content/Scenes/Achievements/Level5Inferno.tscn::be53328d843e2bd207b346403fb6b7fc::1738729085::res://.godot/exported/133200997/export-4fd9475ef51da9c9bd962070b7a602b4-Level5Inferno.scn
+res://Content/Scenes/Achievements/Level5Insane.tscn::8be06c0a1e5f8f8402b003bb7d206306::1738728652::res://.godot/exported/133200997/export-c2298968fac884b951b956226c0cbff4-Level5Insane.scn
+res://Content/Scenes/Achievements/Level6Hard.tscn::b98443e4bed7f9d26c60ed803faa7e74::1738728491::res://.godot/exported/133200997/export-3fe639ae986f0ddd07b9f02a2e317427-Level6Hard.scn
+res://Content/Scenes/Achievements/Level6Inferno.tscn::3df9617ca8a63c00a2430a2ff76e1018::1738729089::res://.godot/exported/133200997/export-cf2a6398eb2659bf8f88ce993e2e307b-Level6Inferno.scn
+res://Content/Scenes/Achievements/Level6Insane.tscn::a539e00f695baa452b8a13e1425fd659::1738728659::res://.godot/exported/133200997/export-8b8b9146fd8a5d0b8557683aadc6ee88-Level6Insane.scn
+res://Content/Scenes/Achievements/Level7Hard.tscn::6a6c886a2d2378497a3d7abba0df5d05::1738728495::res://.godot/exported/133200997/export-6ba3efc5ed14aaac12571b995f13c04a-Level7Hard.scn
+res://Content/Scenes/Achievements/Level7Inferno.tscn::7b5f6731ff59b65b6a6a26114d52fe7a::1738729094::res://.godot/exported/133200997/export-88803a2f3a022ddfc2e0fac30e402ad1-Level7Inferno.scn
+res://Content/Scenes/Achievements/Level7Insane.tscn::d118e7d431420eec53ba515618b8a5e2::1738728666::res://.godot/exported/133200997/export-36b15d06ff7ea59048a21e729a69adb4-Level7Insane.scn
+res://Content/Scenes/Achievements/Level8Hard.tscn::92aee4b5db60ffa5af1a0ac3411f92a8::1738728499::res://.godot/exported/133200997/export-746ab0afb57a0b6f4a62cebfebb2a5c3-Level8Hard.scn
+res://Content/Scenes/Achievements/Level8Inferno.tscn::673cf09058eb5204b7de1fdcc127c278::1738729099::res://.godot/exported/133200997/export-7da37a1e076c868dcc6ae0bc6c76f2ad-Level8Inferno.scn
+res://Content/Scenes/Achievements/Level8Insane.tscn::aa9c4ae8ec2ecf32aeeefbbfe7b1546c::1738728672::res://.godot/exported/133200997/export-b11a4070fbba2f2c18e2ea0b54780822-Level8Insane.scn
+res://Content/Scenes/Achievements/Level9Hard.tscn::eb27f71b1c0044c0219f9be414cbe467::1738728506::res://.godot/exported/133200997/export-b0bf3d29f07ba06a7a8e539499e9e47c-Level9Hard.scn
+res://Content/Scenes/Achievements/Level9Inferno.tscn::6a20758e1fdb16fec4fb92c5695eb356::1738729104::res://.godot/exported/133200997/export-b950082c58f3ecf727447d8f0c359b40-Level9Inferno.scn
+res://Content/Scenes/Achievements/Level9Insane.tscn::a54c5f0b3b5ed0e4b44bc4d987d7c354::1738728678::res://.godot/exported/133200997/export-2711a94756d9c9ddae2b1c14b2260dcb-Level9Insane.scn
+res://Content/Scenes/Achievements/Level10Hard.tscn::e70742d36c935af7c92b94410206a47f::1738728516::res://.godot/exported/133200997/export-b4c3400b41834c9d6b3ba561ca027546-Level10Hard.scn
+res://Content/Scenes/Achievements/Level10Inferno.tscn::e88948065a7d133f6ab4c02a357f8a71::1738729133::res://.godot/exported/133200997/export-c754658ede0ed33805bcfc2e5f0d2029-Level10Inferno.scn
+res://Content/Scenes/Achievements/Level10Insane.tscn::9fd7d24c52562da4df104befe9228edb::1738728683::res://.godot/exported/133200997/export-b3dc1b51b2b328c15a998e78445d5671-Level10Insane.scn
+res://Content/Scenes/Achievements/Marathoner.tscn::14993a2f4914b99da7cba92d84b09106::1738731895::res://.godot/exported/133200997/export-24d2bae3f2850dd9ce3e5bcea78fa217-Marathoner.scn
+res://Content/Scenes/Achievements/Over and over and over and over and over and.tscn::1f2babac83bc671c1d61c114ed49718d::1738731721::res://.godot/exported/133200997/export-03f057269d9eb216f6b92c79b88bd162-Over and over and over and over and over and.scn
+res://Content/Scenes/Achievements/Thank you for everything, player.tscn::e30f237c4195630617738c1c8e0888fa::1738732034::res://.godot/exported/133200997/export-f805d4f7f37f40f5779bbff6a35dfd28-Thank you for everything, player.scn
+res://Content/Scenes/Achievements/you were deceived..tscn::89b2214fa73f298e1e784b255ba506b6::1738791751::res://.godot/exported/133200997/export-92527e9b41f6f199ad4b4e83dc9121a7-you were deceived..scn
+res://Content/Scenes/Achievements/You will regret it..tscn::2fd173f71aa5bd84d7744fa96db5adf8::1738732019::res://.godot/exported/133200997/export-425b794a89ee185ac5b8dd8c70ccc408-You will regret it..scn
+res://Content/Scenes/Achievements/You're getting somewhere.tscn::1352ca527fd45d7474d4e38d9d982780::1738731785::res://.godot/exported/133200997/export-51d68956f99b87eca2f71024e3b60e48-You're getting somewhere.scn
 res://Content/Scenes/Interface&Menu/LevelEditor/CodeMode.tscn::18ae363938c018e5b95ce7392dbf8acb::1734740635::res://.godot/exported/133200997/export-ea9145df2694bf85d119dd0fe5aa1bbd-CodeMode.scn
 res://Content/Scenes/Interface&Menu/LevelEditor/LevelEditor.tscn::76e6863679052ba6adc4b3e098f882cf::1733606001::res://.godot/exported/133200997/export-2d28f4aa69248fb19a0681581f82d274-LevelEditor.scn
 res://Content/Scenes/Interface&Menu/LevelEditor/LevelEditorSmallButton.tscn::121fde6ac12c543eea17246910b6e557::1733606001::res://.godot/exported/133200997/export-832ae0a63b11861a6c0e6fcbee699130-LevelEditorSmallButton.scn
@@ -197,10 +197,11 @@ res://Content/Scenes/Crosses/GoldenCross.tscn::ea530d09b2619c4d20f231e9eb5494ac:
 res://Content/Scenes/Interface&Menu/RareScenes/NewSkinInTheShop.tscn::9530b0c3e65fb8100e92aa6ed671ed18::1738383909::res://.godot/exported/133200997/export-1d067c677a658ff8eb78eaefb894bc70-NewSkinInTheShop.scn
 res://Content/Scenes/Interface&Menu/AdditionalGuiLayer.tscn::3bb7e9bbb545c2f793e30826a2c929dc::1737515006::res://.godot/exported/133200997/export-cdf14cb263a42297cc7d43d7eca72723-AdditionalGuiLayer.scn
 res://Content/Scenes/Interface&Menu/FixFlowContainer.tscn::77b753184db1f75c69b84a5f88391621::1738382220::res://.godot/exported/133200997/export-c6fede4183ebcaf84d8d31382db4b42b-FixFlowContainer.scn
-res://Content/Scenes/Interface&Menu/GoldenCrossesAmount.tscn::72d511ee61de43a125fdfd41bf49f8d4::1737516567::res://.godot/exported/133200997/export-88c153948aea21a7c3a0f6bd8c0ca823-GoldenCrossesAmount.scn
+res://Content/Scenes/Interface&Menu/GoldenCrossesAmount.tscn::72d511ee61de43a125fdfd41bf49f8d4::1738730445::res://.godot/exported/133200997/export-88c153948aea21a7c3a0f6bd8c0ca823-GoldenCrossesAmount.scn
 res://Content/Scenes/Interface&Menu/OffscreenPointer.tscn::ab57f9e9cd7f6ad9a80a1c0fce52a618::1737833320::res://.godot/exported/133200997/export-4c9ad62752a9b75f9ee4bd6e7ae521de-OffscreenPointer.scn
 res://Content/Scenes/Interface&Menu/ResurrectionEffect.tscn::a7cce12f7f53ec6729429e52e126f4c1::1738643506::res://.godot/exported/133200997/export-d4d427bf329b3f52c0e7f54663347a34-ResurrectionEffect.scn
 res://Content/Scenes/Interface&Menu/SkinButton.tscn::ccec1f7b01bb70ca0d2ba4d7d9fcb097::1737762840::res://.godot/exported/133200997/export-0ea130e2a744eed5e234b329a36789bb-SkinButton.scn
 res://Content/Scenes/Other/PopupText.tscn::846b043abaf661c41e2c81677e7c6e8d::1737426090::res://.godot/exported/133200997/export-021dd103ec33a57b2c22952cfc87edb3-PopupText.scn
-res://Content/Scenes/Other/RandomVectorTest.tscn::612d9eb4c63538bf85e0f4063874ed1c::1738038863::res://.godot/exported/133200997/export-12dd52c9b51545a2f59ad4edfbdafb4d-RandomVectorTest.scn
+res://Content/Scenes/Other/RandomVectorTest.tscn::612d9eb4c63538bf85e0f4063874ed1c::1739248745::res://.godot/exported/133200997/export-12dd52c9b51545a2f59ad4edfbdafb4d-RandomVectorTest.scn
 res://Content/Scenes/PlayerSkins/Chad.tscn::c801b6a73c0c90db116a37a3f91aa1cd::1733533511::res://.godot/exported/133200997/export-ccbd84d533308dbcebfa2ebba6a5310d-Chad.scn
+res://Content/Scenes/Interface&Menu/NotificationCounter.tscn::83c43312879a9b6f37cd1b473ba57d59::1738789245::res://.godot/exported/133200997/export-15d9030e3415705438f305ea0885e39e-NotificationCounter.scn

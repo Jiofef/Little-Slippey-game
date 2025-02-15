@@ -20,7 +20,7 @@ public partial class Meta : Node
 
     public class VideoClass
     {
-        public bool IsFullScreen = false;
+        public bool IsFullScreen = true;
         public Vector2I WindowSize = new Vector2I(1280, 720);
         public bool VSyncOn = false;
         public int MaxFrameRate = 60;
@@ -148,6 +148,8 @@ public partial class Meta : Node
     public void LoadOptions()
     {
         var model = GetSystemJsonModel("user://options.json");
+
+        if (model == null) return;
 
         void TryLoad<T>(string key, Action<T> setValue, string errorLog = null)
         {

@@ -1,8 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://b6deeu4t1saw"]
+[gd_scene load_steps=14 format=3 uid="uid://b6deeu4t1saw"]
 
 [ext_resource type="PackedScene" uid="uid://cb3550p76ubc8" path="res://Content/Scenes/Interface&Menu/DraggableWindow.tscn" id="1_db0af"]
 [ext_resource type="Theme" uid="uid://dkitr1ftp0yhs" path="res://Content/Other/Menu.tres" id="2_2kps5"]
 [ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/WorkshopMenu.cs" id="3_hxjko"]
+[ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/ScrollableContainer.cs" id="4_i5ru5"]
 [ext_resource type="Texture2D" uid="uid://w4gejppfm3h3" path="res://Content/Sprites/Interface/4XSmallWindowBase.png" id="4_n3dup"]
 [ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/ScrollableRichTextLabel.cs" id="6_yqfp4"]
 [ext_resource type="PackedScene" uid="uid://bfcv2jyesu362" path="res://Content/Scenes/Interface&Menu/ButtonWithText.tscn" id="7_sxybr"]
@@ -13,7 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://3kpc4fuqg0da" path="res://Content/Sprites/Interface/Buttons/4XMoreInfoButton.png" id="12_5kcb7"]
 [ext_resource type="Texture2D" uid="uid://c1d2p0ba42csh" path="res://Content/Sprites/Interface/Buttons/AcceptButton.png" id="12_7pfwf"]
 
-[node name="WorkshopMenu" node_paths=PackedStringArray("_tabs") instance=ExtResource("1_db0af")]
+[node name="WorkshopMenu" instance=ExtResource("1_db0af")]
 custom_minimum_size = Vector2(1060, 720)
 offset_left = 120.0
 offset_right = -100.0
@@ -21,31 +22,6 @@ offset_bottom = 0.0
 theme = ExtResource("2_2kps5")
 script = ExtResource("3_hxjko")
 WindowTitle = "Workshop"
-_isChangingSize = false
-_changingBorderName = ""
-_initialRect = Rect2(0, 0, 0, 0)
-_windowTitle = "Workshop"
-_canClose = true
-_previousFocusOwner = null
-_isBlueBoxHovered = false
-_isDragging = false
-Velocity = Vector2(0, 0)
-_savedMousePos = Vector2(0, 0)
-_mouseVelocity = Vector2(0, 0)
-_selectedMod = -1
-_selectedModFolder = ""
-_directories = PackedStringArray("C:/Users/Jiofef/AppData/Roaming/Little Slippey/mods/CustomMap")
-_selectedModButton = null
-_lastFocusOwner = null
-_currentModPreview = null
-_createAModWindowOpened = false
-_settedModName = ""
-_settedModFolderName = ""
-_settedModDescription = ""
-_settedImagePath = ""
-_isFolderNameCorrect = true
-_wereChangesMade = false
-_tabs = NodePath("MarginContainer/VBoxContainer/Tabs")
 
 [node name="WindowTitle" parent="MarginContainer/VBoxContainer/BlueBox" index="1"]
 text = "Workshop"
@@ -57,6 +33,7 @@ current_tab = 0
 
 [node name="Mods" type="ScrollContainer" parent="MarginContainer/VBoxContainer/Tabs" index="1"]
 layout_mode = 2
+script = ExtResource("4_i5ru5")
 metadata/_tab_index = 0
 
 [node name="MarginC" type="MarginContainer" parent="MarginContainer/VBoxContainer/Tabs/Mods" index="0"]
@@ -166,6 +143,7 @@ custom_minimum_size = Vector2(160, 72)
 [node name="Mod Options" type="ScrollContainer" parent="MarginContainer/VBoxContainer/Tabs" index="2"]
 visible = false
 layout_mode = 2
+script = ExtResource("4_i5ru5")
 metadata/_tab_index = 1
 
 [node name="MarginC" type="MarginContainer" parent="MarginContainer/VBoxContainer/Tabs/Mod Options" index="0"]
@@ -187,6 +165,7 @@ size_flags_horizontal = 3
 [node name="Edit Mod Data" type="ScrollContainer" parent="MarginContainer/VBoxContainer/Tabs" index="3"]
 visible = false
 layout_mode = 2
+script = ExtResource("4_i5ru5")
 metadata/_tab_index = 2
 
 [node name="MarginC" type="MarginContainer" parent="MarginContainer/VBoxContainer/Tabs/Edit Mod Data" index="0"]

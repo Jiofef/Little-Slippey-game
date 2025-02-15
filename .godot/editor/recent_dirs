@@ -1,10 +1,11 @@
-res://Content/Scripts/Interface&Menu
+res://Content/Other
 D:/games/Little Slippey
-res://Content/Scripts/Other/MicroScripts
-res://Content/Scenes/Interface&Menu
-res://Content/Scenes/Interface&Menu/RareScenes
-res://Content/Sprites/Interface
+res://Content/Scripts/Interface&Menu
 res://Content/Scripts/Singletons
+res://Content/Scenes/Interface&Menu
+res://Content/Sprites/Interface
+res://Content/Scripts/Other/MicroScripts
+res://Content/Scenes/Interface&Menu/RareScenes
 res://
 res://Content/Scripts/Crosses
 res://Content/Scenes/Crosses
@@ -14,7 +15,6 @@ res://Content/Scripts/Levels
 res://Content/Sprites/Levels/Level000000000
 res://Content/Sprites/Levels/Level7
 res://Content/Scenes/Levels/FullParts
-res://Content/Other
 res://Content/Sprites/Other
 res://Content/Sprites/PlayerSkins
 res://Content/Scenes/Interface&Menu/LevelEditor

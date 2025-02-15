@@ -3,6 +3,7 @@ using Godot.Collections;
 using System;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using static OtherExtension.ActionTools;
 
 /// <summary>
@@ -10,6 +11,16 @@ using static OtherExtension.ActionTools;
 /// </summary>
 public partial class G : Node
 {
+    private static G _instance;
+    /// <summary>
+    /// G singleton instance
+    /// </summary>
+    public static G Inst { get => _instance; }
+    public override void _Ready()
+    {
+        _instance = this;
+    }
+
     #region NOTE: Only in-game variables. Don't touch it if you're a modder please, or i will ban your map :)
     public static bool IsSystemInitiated, IsLevelVanilla = true;
     public static int CurrentLevel;
@@ -84,7 +95,7 @@ public partial class G : Node
     /// </summary>
     public static void OnLevelStartedFunc(bool wasIntroShown)
     {
-        OnLevelStarted.Handler.Invoke(wasIntroShown);
+        OnLevelStarted.Handler?.Invoke(wasIntroShown);
     }
     #endregion
 
@@ -120,7 +131,7 @@ public partial class G : Node
         set 
         {
             _cameraLimits = value;
-            OnCameraLimitsChanged.Invoke(value);
+            OnCameraLimitsChanged?.Invoke(value);
         }
     }
     public delegate void CameraLimitsChangedEventHandler(Rect2 limits);
@@ -129,6 +140,8 @@ public partial class G : Node
     public static Variant[] TransitiveVariant = new Variant[64]; // You can store almost anything here for anything. The game deletes the data only after entering the menu. If you need to save some data after restarting a level or moving to another scene, this option is perfect for you
     public static object[] TransitiveObject = new object[64]; // Addition to Variant, if some required data types are not supported
     // P.s. we HIGHLY recommend commenting out these variables in your code to avoid confusion. Especially if you use a lot of them.
+
+    public const float FLOAT_DELTA = 0.016667f; // Default physics delta for 60 fps
 
     public static Dictionary<string, Variant> TransitiveVariantD = new Dictionary<string, Variant>(); // TransitiveVariant, but for those who don't want to get confused by unnamed array elements and don't need to comment out the elements.
 
@@ -180,6 +193,14 @@ public partial class G : Node
         player.Play();
 
         return player;
+    }
+
+    public static async Task ToScore(float scoreTarget, int checkDelay = 100)
+    {
+        while (Scores < scoreTarget)
+        {
+            await Task.Delay(checkDelay);
+        }
     }
 
     public static void ResetMusicVariables()

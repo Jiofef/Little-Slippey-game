@@ -376,11 +376,6 @@ public partial class Level10ScientistScript : Node2D
         Achievements.GetAchievement("Congratulations!2");
         Achievements.GetAchievement("Congratulations!3");
 
-        if (UnchangableMeta.LevelCompleteStatus[9] == 0)
-        {
-            UnchangableMeta.NotifyRecycleBinNewContent();
-            UnchangableMeta.SaveToFile();
-        }
         Connect("SetCrossesProgressCoeff", new Callable(GetNode("../.."), "SetCrossesProgressCoeff"));
         EmitSignal("SetCrossesProgressCoeff", 0.01f);
         Connect("RecalculateCrossWeight", new Callable(GetNode(".."), "RecalculateCrossWeight"));

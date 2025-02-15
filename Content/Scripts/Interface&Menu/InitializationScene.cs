@@ -29,6 +29,8 @@ public partial class InitializationScene : Control
         Meta.Instance.ApplyOptions();
         UnchangableMeta.LoadSave();
 
+        UnchangableMeta.SetAutoSaveWhenClosing(true);
+
 
         if (!UnchangableMeta.IsLanguageSetted)
         {
@@ -79,6 +81,8 @@ public partial class InitializationScene : Control
         Meta.Instance.Video.language = language;
         UnchangableMeta.IsLanguageSetted = true;
         Meta.Instance.ApplyOptions();
+
+        // !PRERELEASE DEBUG. I SHOULD REMOVE SLASHES LATER!
         Meta.Instance.SaveToFile();
         UnchangableMeta.SaveToFile();
     }

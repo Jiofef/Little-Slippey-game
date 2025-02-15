@@ -33,8 +33,11 @@ visible = true
 modulate = Color(1, 1, 1, 1)
 texture = ExtResource("2_3a1t2")
 
+[node name="RewardAmount" parent="Texture/GoldenCrossesAnimation" index="1"]
+text = "2"
+
 [node name="Text" parent="DescScrollC" index="0"]
-text = "Check the author's Boosty, YouTube or Discord"
+text = "Check the author's YouTube or Discord"
 
 [node name="Name" parent="NameScrollC" index="0"]
 text = "At least I got to hobnob with royalty"

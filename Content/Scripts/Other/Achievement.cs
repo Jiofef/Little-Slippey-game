@@ -137,9 +137,9 @@ public partial class Achievement : Control
     // Other
     public void SetRecieved(bool value)
     {
-        GetNode<Label>("NameScrollC/Name").Visible = !value;
+        GetNode<Label>("NameScrollC/Name").Visible = value;
         GetNode<VBoxContainer>("Texture/StarsC").Visible = !value;
-        GetNode<TextureRect>("Texture/IconB/MarginC/Texture").Modulate = !value ? new Color(0, 0, 0, 0.5f) : new Color(1, 1, 1);
+        GetNode<TextureRect>("Texture/IconB").Visible = value;
         Modulate = !value ? new Color(0.5f, 0.5f, 0.5f) : new Color(1, 1, 1);
     }
 
@@ -149,7 +149,7 @@ public partial class Achievement : Control
     {
         var desc = GetNode<RichTextLabel>("DescScrollC/Text");
 
-        if (value && !_hidden)
+        if (!_hidden)
             _savedDesc = desc.Text;
 
         if (value)
@@ -181,6 +181,8 @@ public partial class Achievement : Control
         if (IsPopupVersion)
         {
             ScrollTexts();
+            FocusMode = FocusModeEnum.None;
+            MouseFilter = MouseFilterEnum.Ignore;
         }
     }
 
@@ -198,6 +200,14 @@ public partial class Achievement : Control
 
         descScrollC.CallDeferred("ScrollDown");
         nameScrollC.CallDeferred("ScrollRight");
+    }
+    public void StopScrollingTexts()
+    {
+        var descScrollC = GetNode<AutoScrollContainer>("DescScrollC");
+        var nameScrollC = GetNode<AutoScrollContainer>("NameScrollC");
+
+        descScrollC.CallDeferred("Stop");
+        nameScrollC.CallDeferred("Stop");
     }
 
     // Popup effects

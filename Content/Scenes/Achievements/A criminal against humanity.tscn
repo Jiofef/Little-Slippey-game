@@ -1,11 +1,74 @@
-[gd_scene load_steps=4 format=3 uid="uid://cw33s06n42f6h"]
+[gd_scene load_steps=12 format=3 uid="uid://cw33s06n42f6h"]
 
 [ext_resource type="PackedScene" uid="uid://d27nwc3cdixbo" path="res://Content/Scenes/Achievements/DefaultAchievement.tscn" id="1_cwaqe"]
 [ext_resource type="Texture2D" uid="uid://8yt60jrdtl3" path="res://Content/Sprites/Interface/AchievementIcons.png" id="2_uyv8e"]
+[ext_resource type="Texture2D" uid="uid://byhlgb0ldma5o" path="res://Content/Sprites/Interface/GrayGoldenCrossesAnimation.png" id="3_7uogi"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bdc4g"]
 atlas = ExtResource("2_uyv8e")
 region = Rect2(315, 45, 45, 45)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c88rm"]
+atlas = ExtResource("3_7uogi")
+region = Rect2(0, 0, 17, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4eu0a"]
+atlas = ExtResource("3_7uogi")
+region = Rect2(17, 0, 17, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4hr3k"]
+atlas = ExtResource("3_7uogi")
+region = Rect2(34, 0, 17, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_scnrk"]
+atlas = ExtResource("3_7uogi")
+region = Rect2(51, 0, 17, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yh03j"]
+atlas = ExtResource("3_7uogi")
+region = Rect2(68, 0, 17, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0vk47"]
+atlas = ExtResource("3_7uogi")
+region = Rect2(85, 0, 17, 17)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_350ds"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c88rm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4eu0a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4hr3k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_scnrk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yh03j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0vk47")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yh03j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_scnrk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4hr3k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4eu0a")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="Achievement" instance=ExtResource("1_cwaqe")]
 Icon = SubResource("AtlasTexture_bdc4g")
@@ -27,6 +90,15 @@ modulate = Color(0.75, 0, 0.0625001, 1)
 [node name="Star1" parent="Texture/StarsC" index="2"]
 visible = true
 modulate = Color(0.75, 0, 0.0625001, 1)
+
+[node name="AnimatedSprite2D" parent="Texture/GoldenCrossesAnimation" index="0"]
+sprite_frames = SubResource("SpriteFrames_350ds")
+frame_progress = 0.767672
+
+[node name="RewardAmount" parent="Texture/GoldenCrossesAnimation" index="1"]
+theme_override_colors/font_color = Color(0.97, 0.97, 0.97, 1)
+theme_override_colors/font_shadow_color = Color(0.5, 0.5, 0.5, 1)
+text = "30"
 
 [node name="Text" parent="DescScrollC" index="0"]
 text = "Train the artificial life form \"Slippey\" to be used as a live weapon for military operations"

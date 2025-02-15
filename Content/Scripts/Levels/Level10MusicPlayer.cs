@@ -19,7 +19,7 @@ public partial class Level10MusicPlayer : AudioStreamPlayer
 
     public override void _Ready()
 	{
-        BindEventToNodeSafely(this, "StartPlaying", G.OnLevelStarted);
+        BindEventToNodeSafelyWithoutArgs(this, "StartPlaying", G.OnLevelStarted);
 
         LevelState = GetNode<Level10ScientistScript>("../Level/ScientistNode")._level;
     }

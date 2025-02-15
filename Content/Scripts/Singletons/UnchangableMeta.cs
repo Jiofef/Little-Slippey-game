@@ -2,6 +2,9 @@ using Godot;
 using System;
 using System.Text.Json;
 using System.Collections.Generic;
+using static OtherExtension.OtherTools;
+using static OtherExtension.DicTools;
+using System.Runtime.CompilerServices;
 
 public partial class UnchangableMeta : Node
 {
@@ -18,6 +21,16 @@ public partial class UnchangableMeta : Node
     }
     public delegate void GoldenCrossesAmountChangedEventHandler(int value);
     public static event GoldenCrossesAmountChangedEventHandler GoldenCrossesAmountChanged = delegate { };
+    public static void AddGoldenCrosses(int amount)
+    {
+        if (amount <= 0) return;
+
+        GoldenCrossesAmount += amount;
+        if (G.AdditionalGuiLayer != null)
+        {
+            G.AdditionalGuiLayer.OnGoldenCrossesRecieved(amount);
+        }
+    }
 
     public static int[][] LevelRecords =
     {
@@ -31,18 +44,20 @@ public partial class UnchangableMeta : Node
     public static int[] LevelCompleteStatus = new int[G.LevelsInGameTotal];
     public static int[] LevelPlayedStatus = new int[G.LevelsInGameTotal]; //I made it as byte[] because of retard Godot that can't save a boolean array >:( // UPD: On top of that, the JSON.Stringify method converts an array of bytes into a string. To avoid doing bdsm, I converted the bytes to int. Sorry.
 
-    public static bool IsLanguageSetted = false, IsTutorialPlayed, IsLevel9PlatformSectionFirstTimeCompleted, IsLevel9PlatformSectionSkipAllowed, IsFakeLevel10SkipAllowed, IsThereNewContentInRecycleBin = true, WasThereRecycleBinAudioNotify = true;
-    public static void NotifyRecycleBinNewContent()
+    public static bool IsLanguageSetted = false, IsTutorialPlayed, IsLevel9PlatformSectionFirstTimeCompleted, IsLevel9PlatformSectionSkipAllowed, IsFakeLevel10SkipAllowed;
+
+    public static Dictionary<string, int> NotificationsAmount = new Dictionary<string, int>()
     {
-        IsThereNewContentInRecycleBin = true;
-        WasThereRecycleBinAudioNotify = false;
-    }
+        {"RecycleBin", 1},
+        {"SkinsMenu", 0},
+    };
+
     public static bool DidModsCrushedTheGame = false;
     public static int[] HintsStatus = //1 - was showed. 0 - hasn't.
     {
         0, // id 0 is Level 2 standing penalty hint
     };
-    public static float DeathsNumber = 0;
+    public static long DeathsNumber = 0;
 
     public static void SaveRecords()
     {
@@ -100,8 +115,8 @@ public partial class UnchangableMeta : Node
             {"level_complete_status", LevelCompleteStatus},
             {"level_played_status", LevelPlayedStatus},
             {"hints_status", HintsStatus},
-            {"is_there_new_content_in_recycle_bin", IsThereNewContentInRecycleBin},
-            {"was_there_recycle_bin_audio_notify", WasThereRecycleBinAudioNotify},
+            {"deaths_number", DeathsNumber},
+            {"notifications_amount", NotificationsAmount},
             {"is_skin_bought_dic", Skins.IsSkinBoughtDic},
 
             {"is_language_setted", IsLanguageSetted},
@@ -111,15 +126,45 @@ public partial class UnchangableMeta : Node
             {"is_fake_level10_skip_allowed", IsFakeLevel10SkipAllowed},
         };
     }
-    public static void SaveToFile()
+
+    private static Dictionary<string, object> _lastSave = new();
+    /// <summary>
+    /// If forceSave == false, saving is aborted if the data is the same as before except for some variables
+    /// </summary>
+    public static void SaveToFile(bool forceSave = false)
     {
         try
         {
             var SaveData = GetJsonSave();
+            if (SaveData == null || SaveData.Count == 0)
+            {
+                GD.PrintErr("Error: Save data is empty! Aborting save.");
+                return;
+            }
+
+            #region to avoid unnecessary overwriting of data unnecessarily (Yeah, guys, I'm worried about the kilobytes of overwriting your SSD.)
+            if (!forceSave)
+            {
+                string[] exceptKeys = ["deaths_number"];
+                if (AreDictionariesEqual(SaveData, _lastSave, exceptKeys))
+                {
+                    GD.Print("There are no changes, the file has not been overwritten");
+                    return;
+                }
+            }
+            _lastSave = SaveData.Copy();
+            #endregion
+
+
             FileSystemExtension.SaveInJson(SaveData, "user://save.json");
+            GD.Print("Save completed successfully.");
         }
-        catch { }
+        catch (Exception e)
+        {
+            GD.PrintErr("Error during save: " + e.Message);
+        }
     }
+
     public static void LoadSave()
     {
         
@@ -128,6 +173,8 @@ public partial class UnchangableMeta : Node
             // Save file
             {
                 var model = FileSystemExtension.GetSystemJsonModel("user://save.json");
+
+                if (model == null) return;
 
                 void TryLoad<T>(string key, Action<T> setValue, string errorLog = null)
                 {
@@ -208,13 +255,12 @@ public partial class UnchangableMeta : Node
 
                 TryLoadArray("hints_status", value => HintsStatus = value, length => new int[length], HintsStatus.Length);
 
-
-                TryLoad<bool>("is_there_new_content_in_recycle_bin", value => IsThereNewContentInRecycleBin = value);
-                TryLoad<bool>("was_there_recycle_bin_audio_notify", value => WasThereRecycleBinAudioNotify = value);
+                TryLoadDictionary("notifications_amount", value => NotificationsAmount = value, () => NotificationsAmount, true, "notifications_amount");
 
                 TryLoadDictionary("is_skin_bought_dic", value => Skins.IsSkinBoughtDic = value, () => Skins.IsSkinBoughtDic, true, "is_skin_bought_dic");
 
 
+                TryLoad<long>("deaths_number", value => DeathsNumber = value);
                 TryLoad<bool>("is_language_setted", value => IsLanguageSetted = value);
                 TryLoad<bool>("is_tutorial_played", value => IsTutorialPlayed = value);
                 TryLoad<bool>("is_level9_platform_section_first_time_completed", value => IsLevel9PlatformSectionFirstTimeCompleted = value);
@@ -226,7 +272,30 @@ public partial class UnchangableMeta : Node
 
 
 
-        } catch{}
+        } catch (Exception e)
+        { 
+            GD.Print("Error during loading:" + e.Message); 
+        }
 
+    }
+
+
+    // Saving the game when its closed through system
+    public override void _Notification(int what)
+    {
+        if (what == NotificationWMCloseRequest)
+        {
+            if (!_enableAutoSaveWhenClosing) return;
+
+            SaveToFile();
+        }
+    }
+
+    // I did it to keep the bug I liked :P
+    private static bool _enableAutoSaveWhenClosing = false; // Enabled in the initialization scene
+    public static void SetAutoSaveWhenClosing(bool value)
+    {
+        _enableAutoSaveWhenClosing = value;
+        GD.Print("_enableAutoSaveWhenClosing " + (value ? "enabled" : "disabled"));
     }
 }

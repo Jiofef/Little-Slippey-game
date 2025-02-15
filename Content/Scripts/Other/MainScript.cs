@@ -84,6 +84,11 @@ public partial class MainScript : Node2D
         if (IsInsideTree()) //In very rare cases (e.g. with a level 7 black screen), the node is not deleted correctly when the scene is changed. This fixes this bug.
             QueueFree();
     }
+    public void SaveTheGame()
+    {
+        UnchangableMeta.SaveToFile();
+    }
+
     public void SetCrossesEnabled(bool value)
     {
         G.IsCrossesEnabled = value;

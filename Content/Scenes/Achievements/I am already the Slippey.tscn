@@ -18,8 +18,14 @@ texture = SubResource("AtlasTexture_y2ux5")
 [node name="Star1" parent="Texture/StarsC" index="2"]
 visible = true
 
+[node name="GoldenCrossesAnimation" parent="Texture" index="3"]
+visible = false
+
+[node name="RewardAmount" parent="Texture/GoldenCrossesAnimation" index="1"]
+text = "0"
+
 [node name="Text" parent="DescScrollC" index="0"]
 text = "Complete the tutorial"
 
 [node name="Name" parent="NameScrollC" index="0"]
-text = "I am already the Slippey"
+text = "I am the Slippey"

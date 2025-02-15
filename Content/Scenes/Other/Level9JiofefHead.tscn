@@ -2964,7 +2964,7 @@ sprite_frames = SubResource("SpriteFrames_5mopu")
 position = Vector2(20, 1000)
 scale = Vector2(1.3, 1.3)
 sprite_frames = SubResource("SpriteFrames_dc8ls")
-animation = &"Fist"
+animation = &"Default"
 
 [node name="FocusPocusParticles" type="CPUParticles2D" parent="HandAnimatedSprite"]
 position = Vector2(-105.385, 26.9231)

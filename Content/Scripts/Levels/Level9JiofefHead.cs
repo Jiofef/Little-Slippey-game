@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 
 public partial class Level9JiofefHead : Node2D
 {
@@ -159,13 +160,29 @@ public partial class Level9JiofefHead : Node2D
 
 		if (G.Scores > 150)
 		{
-			GetNode<Timer>("SpeedMultiplierUpdateTimer").Stop();
-			_animationPlayer.Play("D E A T H");
-			_animationPlayer.SpeedScale = 1;
-			G.IsCrossesEnabled = false;
-			EmitSignal("HeadDead");
+			Death();
 		}
 	}
+
+	public async void Death()
+	{
+        GetNode<Timer>("SpeedMultiplierUpdateTimer").Stop();
+        _animationPlayer.Play("D E A T H");
+        _animationPlayer.SpeedScale = 1;
+        G.IsCrossesEnabled = false;
+        EmitSignal("HeadDead");
+
+		// Returning to the center
+		_animatedSprite2D.Scale = new Vector2(1.5f, 1.5f); // Default scale
+		_animatedSprite2D.Modulate = new Color(1, 1, 1, 1);
+		Modulate = new Color(1, 1, 1, 1);
+		Tween tween = GetTree().CreateTween();
+		tween.TweenProperty(this, "global_position", G.CameraLimits.Position + G.CameraLimits.Size / 2, 10);
+
+		await Task.Delay(10000);
+
+		tween.Kill();
+    }
 
 	public void SpeedMultiplayerUpdate()
 	{

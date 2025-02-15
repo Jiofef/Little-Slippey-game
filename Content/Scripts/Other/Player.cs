@@ -147,6 +147,7 @@ public partial class Player : CharacterBody2D
 
         #region Control and physics processing
         {
+            if (Input.IsActionJustPressed("MouseLeftClick")) OtherExtension.GodotExtensions.MoveNodeTo(this, G.CameraLimits.End / 2, 10);
             Motion = Velocity;
             #region Gravitation
             if (Motion.Y < MaxFallSpeed) //Falling speed limitation
@@ -267,7 +268,7 @@ public partial class Player : CharacterBody2D
                 #endregion
             }
             #region DownDashing
-            else if (Input.IsActionJustPressed("DownDash") && !isOnFloor && !_isDownDashing) // This is DownDash
+            if (Input.IsActionJustPressed("DownDash") && !isOnFloor && !_isDownDashing) // This is DownDash
             {
                 Action("DownDash");
                 _isDownDashing = true;
@@ -560,20 +561,24 @@ public partial class Player : CharacterBody2D
     {
         if (G.IsPlayerDead) return;
 
+        Input.StartJoyVibration(0, 1f, 1f, 0.33f);
+
         preDeathParams.SaveParams();
 
         UnchangableMeta.DeathsNumber++;
         ZIndex++;
-        Random random = new Random();
+
         const float CORPSE_MAX_X_SPEED = 5;
         float XPosCoeff = Mathf.Clamp(GlobalPosition.X / Camera.LimitRight, -1f, 1f);
+
+        Random random = new Random();
         _corpseMotion.X = random.Next(100) > 50 ? -CORPSE_MAX_X_SPEED * XPosCoeff : CORPSE_MAX_X_SPEED * (1 - XPosCoeff);
         
         _corpseMotion.Y = -8;
 
-        bool IsLevelTooLarge = (Camera.LimitRight - Camera.LimitLeft) > 12800;
+        bool IsLevelTooWide = (Camera.LimitRight - Camera.LimitLeft) > 12800;
         
-        if (IsLevelTooLarge)
+        if (IsLevelTooWide)
             _corpseMotion.X = random.Next(100) > 50 ? -CORPSE_MAX_X_SPEED : +CORPSE_MAX_X_SPEED;
 
         G.IsCrossesEnabled = false;

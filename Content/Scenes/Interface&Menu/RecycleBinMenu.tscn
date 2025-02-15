@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://b4srh3us7jexg"]
+[gd_scene load_steps=25 format=3 uid="uid://b4srh3us7jexg"]
 
 [ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/RecycleBinMenu.cs" id="1_a6dy1"]
 [ext_resource type="PackedScene" uid="uid://cb3550p76ubc8" path="res://Content/Scenes/Interface&Menu/DraggableWindow.tscn" id="1_wk4jw"]
@@ -6,13 +6,11 @@
 [ext_resource type="Texture2D" uid="uid://c4vm1al1458fw" path="res://Content/Sprites/Interface/Buttons/TXTFileIcon.png" id="3_hpaob"]
 [ext_resource type="Texture2D" uid="uid://sey4s4u68gsq" path="res://Content/Sprites/Interface/Buttons/PictureIcon.png" id="4_hbnvg"]
 [ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/RecycleBinIcon.cs" id="5_f303m"]
-[ext_resource type="Texture2D" uid="uid://dvnx6uvqwda4a" path="res://Content/Sprites/Interface/Buttons/BoostyIcon.png" id="5_h7g8x"]
 [ext_resource type="Texture2D" uid="uid://xrdfs0in8rkd" path="res://Content/Sprites/Interface/Buttons/Discord.png" id="6_hnjhh"]
 [ext_resource type="Texture2D" uid="uid://vb7vdsdjg4xa" path="res://Content/Sprites/Interface/USADiscordFlag.png" id="7_vfq1x"]
 [ext_resource type="Texture2D" uid="uid://hcoc3411pyvj" path="res://Content/Sprites/Interface/RussiaDiscordFlag.png" id="8_7bxqy"]
 [ext_resource type="Texture2D" uid="uid://vrn404e8k71d" path="res://Content/Sprites/Interface/Buttons/YoutubeIcon.png" id="9_hn5vf"]
 [ext_resource type="Texture2D" uid="uid://b10vsjrgf7cdp" path="res://Content/Sprites/Interface/TXTFileBox.png" id="11_m33u8"]
-[ext_resource type="Texture2D" uid="uid://cm6fulwrltkeq" path="res://Content/Sprites/Interface/AchievementHeart.png" id="12_d2061"]
 [ext_resource type="Texture2D" uid="uid://cex2ep5xuxri7" path="res://Content/Sprites/Interface/ImageFileBox.png" id="12_jsxs2"]
 [ext_resource type="Texture2D" uid="uid://cds38uodpjth6" path="res://Content/Sprites/Interface/Dem01.jpg" id="13_00rjr"]
 [ext_resource type="Texture2D" uid="uid://bgj44t1ysu411" path="res://Content/Sprites/Interface/Dem02.jpg" id="14_f0qg6"]
@@ -152,37 +150,7 @@ text = "Titles.txt"
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="BoostyLink" parent="MarginContainer/VBoxContainer/Icons" index="3" instance=ExtResource("2_cpq08")]
-clip_contents = false
-custom_minimum_size = Vector2(64, 64)
-layout_mode = 2
-texture_normal = ExtResource("5_h7g8x")
-stretch_mode = 0
-script = ExtResource("5_f303m")
-iconType = 1
-Link = "https://boosty.to/paradiseunderground"
-
-[node name="BoostyLinkLabel" type="Label" parent="MarginContainer/VBoxContainer/Icons/BoostyLink" index="3"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = -0.179688
-anchor_top = 1.39063
-anchor_right = 1.01563
-anchor_bottom = 1.60938
-offset_left = 11.5
-offset_top = -21.0
-offset_right = 88.0
-offset_bottom = -7.0
-grow_horizontal = 2
-grow_vertical = 0
-scale = Vector2(0.5, 0.5)
-theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
-theme_override_font_sizes/font_size = 22
-text = "Boosty.link"
-horizontal_alignment = 1
-metadata/_edit_use_anchors_ = true
-
-[node name="YoutubeLink" parent="MarginContainer/VBoxContainer/Icons" index="4" instance=ExtResource("2_cpq08")]
+[node name="YoutubeLink" parent="MarginContainer/VBoxContainer/Icons" index="3" instance=ExtResource("2_cpq08")]
 clip_contents = false
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
@@ -213,7 +181,7 @@ text = "YouTube
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="DiscordEngLink" parent="MarginContainer/VBoxContainer/Icons" index="5" instance=ExtResource("2_cpq08")]
+[node name="DiscordEngLink" parent="MarginContainer/VBoxContainer/Icons" index="4" instance=ExtResource("2_cpq08")]
 clip_contents = false
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
@@ -250,7 +218,7 @@ Eng.link"
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="DiscordRusLink" parent="MarginContainer/VBoxContainer/Icons" index="6" instance=ExtResource("2_cpq08")]
+[node name="DiscordRusLink" parent="MarginContainer/VBoxContainer/Icons" index="5" instance=ExtResource("2_cpq08")]
 clip_contents = false
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
@@ -287,7 +255,7 @@ Rus.link"
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="TheTestIsOverTxt" parent="MarginContainer/VBoxContainer/Icons" index="7" instance=ExtResource("2_cpq08")]
+[node name="TheTestIsOverTxt" parent="MarginContainer/VBoxContainer/Icons" index="6" instance=ExtResource("2_cpq08")]
 clip_contents = false
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
@@ -295,15 +263,15 @@ texture_normal = ExtResource("3_hpaob")
 stretch_mode = 0
 script = ExtResource("5_f303m")
 iconType = 0
-Link = "TheTestIsOverTxt"
+Link = "GratitudeDiaryTxt"
 
 [node name="TheTestIsOverTxtLabel" type="Label" parent="MarginContainer/VBoxContainer/Icons/TheTestIsOverTxt" index="3"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = -0.0234375
-anchor_top = 0.90625
-anchor_right = 1.01563
-anchor_bottom = 1.36719
+anchor_left = -0.242188
+anchor_top = 0.84375
+anchor_right = 1.6875
+anchor_bottom = 1.94531
 offset_left = 1.5
 offset_top = 10.0
 offset_right = 68.0
@@ -318,7 +286,7 @@ Diary.txt"
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="GratitudeDiaryTxt" parent="MarginContainer/VBoxContainer/Icons" index="8" instance=ExtResource("2_cpq08")]
+[node name="GratitudeDiaryTxt" parent="MarginContainer/VBoxContainer/Icons" index="7" instance=ExtResource("2_cpq08")]
 clip_contents = false
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
@@ -326,15 +294,15 @@ texture_normal = ExtResource("3_hpaob")
 stretch_mode = 0
 script = ExtResource("5_f303m")
 iconType = 0
-Link = "GratitudeDiaryTxt"
+Link = "TheTestIsOverTxt"
 
 [node name="GratitudeDiaryTxtLabel" type="Label" parent="MarginContainer/VBoxContainer/Icons/GratitudeDiaryTxt" index="3"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = -0.367188
-anchor_top = 0.90625
-anchor_right = 0.90625
-anchor_bottom = 1.36719
+anchor_left = -0.382812
+anchor_top = 0.921875
+anchor_right = 0.890625
+anchor_bottom = 1.96094
 offset_left = 16.5
 offset_top = 10.0
 offset_right = 98.0
@@ -349,7 +317,7 @@ Over.txt"
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="Dem01" parent="MarginContainer/VBoxContainer/Icons" index="9" instance=ExtResource("2_cpq08")]
+[node name="Dem01" parent="MarginContainer/VBoxContainer/Icons" index="8" instance=ExtResource("2_cpq08")]
 clip_contents = false
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
@@ -379,7 +347,7 @@ text = "Dem01.img"
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="Dem02" parent="MarginContainer/VBoxContainer/Icons" index="10" instance=ExtResource("2_cpq08")]
+[node name="Dem02" parent="MarginContainer/VBoxContainer/Icons" index="9" instance=ExtResource("2_cpq08")]
 clip_contents = false
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
@@ -409,7 +377,7 @@ text = "Dem02.img"
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="Dem03" parent="MarginContainer/VBoxContainer/Icons" index="11" instance=ExtResource("2_cpq08")]
+[node name="Dem03" parent="MarginContainer/VBoxContainer/Icons" index="10" instance=ExtResource("2_cpq08")]
 clip_contents = false
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
@@ -439,7 +407,7 @@ text = "Dem03.img"
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="Dem04" parent="MarginContainer/VBoxContainer/Icons" index="12" instance=ExtResource("2_cpq08")]
+[node name="Dem04" parent="MarginContainer/VBoxContainer/Icons" index="11" instance=ExtResource("2_cpq08")]
 clip_contents = false
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
@@ -469,7 +437,7 @@ text = "Dem04.img"
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="Dem05" parent="MarginContainer/VBoxContainer/Icons" index="13" instance=ExtResource("2_cpq08")]
+[node name="Dem05" parent="MarginContainer/VBoxContainer/Icons" index="12" instance=ExtResource("2_cpq08")]
 clip_contents = false
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
@@ -499,7 +467,7 @@ text = "Dem05.img"
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="Memory1" parent="MarginContainer/VBoxContainer/Icons" index="14" instance=ExtResource("2_cpq08")]
+[node name="Memory1" parent="MarginContainer/VBoxContainer/Icons" index="13" instance=ExtResource("2_cpq08")]
 clip_contents = false
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
@@ -530,7 +498,7 @@ text = "Memory1
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="Memory2" parent="MarginContainer/VBoxContainer/Icons" index="15" instance=ExtResource("2_cpq08")]
+[node name="Memory2" parent="MarginContainer/VBoxContainer/Icons" index="14" instance=ExtResource("2_cpq08")]
 clip_contents = false
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
@@ -561,7 +529,7 @@ text = "Memory2
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="Memory3" parent="MarginContainer/VBoxContainer/Icons" index="16" instance=ExtResource("2_cpq08")]
+[node name="Memory3" parent="MarginContainer/VBoxContainer/Icons" index="15" instance=ExtResource("2_cpq08")]
 clip_contents = false
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
@@ -592,7 +560,7 @@ text = "Memory3
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="Memory4" parent="MarginContainer/VBoxContainer/Icons" index="17" instance=ExtResource("2_cpq08")]
+[node name="Memory4" parent="MarginContainer/VBoxContainer/Icons" index="16" instance=ExtResource("2_cpq08")]
 clip_contents = false
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
@@ -623,7 +591,7 @@ text = "Memory4
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="Eternity" parent="MarginContainer/VBoxContainer/Icons" index="18" instance=ExtResource("2_cpq08")]
+[node name="Eternity" parent="MarginContainer/VBoxContainer/Icons" index="17" instance=ExtResource("2_cpq08")]
 clip_contents = false
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
@@ -741,10 +709,8 @@ I want to thank:
 FFF Media Inc and Daymarius for the fonts.
 sfxBUZZ and SoundJay for some sounds.
 Pixabay for various assets, mostly sounds.
-The developers of Katana ZERO for the sound of laughter.
 
-Everything else was done by the only employee of the Paradise Underground studio under
-the nickname Jiofef
+Almost everything else was done by the only employee of the Paradise Underground studio called Jiofef
 
 
 
@@ -796,19 +762,12 @@ offset_right = 923.0
 offset_bottom = 384.0
 scale = Vector2(0.25, 0.25)
 theme_override_colors/default_color = Color(0.196078, 0.196078, 0.196078, 1)
+bbcode_enabled = true
 text = "
-Huge Thanks from Jiofef to Alexandr Steif, Diana Steif, Tengi, Frontend Pashtet, 
-Factorio developers, Pizza Tower developers, Arsi \"Hakita\" Patala, Edmund McMillen,
-Gooseworx, Nelward, Toby Fox, Richard David James, Mike Paradinas, NikeTheHuman,
-Guk Svetlana, Alexey Panasenko, Dmitriy Pogodaev, Serbina Valentina, Konstanin Panov,
-Sergey HellYeah Belyakov, Roman Hudyakov, Elena Kishenko,
-Xenia, my mom, and You, Player.
+Huge Thanks from Jiofef to: Alexander Steif, Diana Steif, Tengi, Flamik, Frontend Pashtet, developers of the famous factory building game, developers of the old-school pizza platformer, Arsi “Hakita” Patala, Edmund McMillen, Cooper Smith Goodwin, Nick Elward, Igor Vlasyev, Toby Fox, Richard David James, Mike Paradinas, Thomas Jenkinson, Nikita Zhizhov, Svetlana Guk, Alexei Panasenko, Dmitry Pogodaev, Valentina Serbina, Konstantin Panov, Sergei Belyakov, Roman Khudyakov, Elena Kishchenko,
+Xenia, my mom and you, Player.
 
-Without you all this game wouldn't exist"
-
-[node name="ILoveYouAllGuys<3" type="Sprite2D" parent="FileBoxes/GratitudeDiaryTxt" index="2"]
-position = Vector2(105, 48)
-texture = ExtResource("12_d2061")
+Without all of you, this game would not exist [img]res://Content/Sprites/Interface/4XAchievementHeart.png[/img]"
 
 [node name="Dem01" type="Sprite2D" parent="FileBoxes" index="5"]
 visible = false

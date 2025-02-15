@@ -3,6 +3,9 @@ using System;
 
 public partial class AppearingText : RichTextLabel
 {
+	[Signal] public delegate void AppearingFinishedEventHandler();
+	[Signal] public delegate void CharAppearedEventHandler(int visibleCharsCount, int invisibleCharsLeft, int appearedCharsForThisFrame);
+
 	public const float DEFAULT_CHARS_PER_SEC = 15;
 	[Export] public float CharactersPerSecond = DEFAULT_CHARS_PER_SEC;
 	[Export] public bool AutoStart = false, PopSound = true, AppearSound = true;
@@ -35,11 +38,17 @@ public partial class AppearingText : RichTextLabel
             VisibleCharacters += IntLettersToShow;
             _charactersToShow -= IntLettersToShow;
 
+			EmitSignal(SignalName.CharAppeared, VisibleCharacters, _currentText.Length - VisibleCharacters, IntLettersToShow);
+
 			if (PopSound)
 				GetNode<AudioStreamPlayer>("Pop").Play();
 
 			if (VisibleCharacters >= _currentText.Length) // Stopping appearing when all text is shown
-				Appearing = false;
+			{
+                Appearing = false;
+
+				EmitSignal(SignalName.AppearingFinished);
+            }
 		}
 	}
 

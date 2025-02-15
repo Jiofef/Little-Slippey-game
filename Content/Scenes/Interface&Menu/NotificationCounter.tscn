@@ -1,0 +1,76 @@
+[gd_scene load_steps=7 format=3 uid="uid://cas00jlo5rgv1"]
+
+[ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/NotificationCounter.cs" id="1_clxrb"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ygsdd"]
+bg_color = Color(0.788235, 0.141176, 0.392157, 1)
+expand_margin_left = 2.0
+expand_margin_top = 6.0
+expand_margin_right = 2.0
+
+[sub_resource type="Theme" id="Theme_cuo3w"]
+Label/colors/font_color = Color(0.97, 0.97, 0.97, 1)
+Label/colors/font_outline_color = Color(0.788235, 0.141176, 0.392157, 1)
+Label/font_sizes/font_size = 22
+Label/styles/normal = SubResource("StyleBoxFlat_ygsdd")
+
+[sub_resource type="Animation" id="Animation_dg1ia"]
+resource_name = "Bouncing"
+length = 2.0
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Amount:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.5, 0.7, 1),
+"transitions": PackedFloat32Array(0.5, 2, 0.5, 2, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -16), Vector2(0, 0), Vector2(0, -8), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_vqx2o"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Amount:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pnu8i"]
+_data = {
+"Bouncing": SubResource("Animation_dg1ia"),
+"RESET": SubResource("Animation_vqx2o")
+}
+
+[node name="NotificationCounter" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+mouse_filter = 2
+script = ExtResource("1_clxrb")
+
+[node name="Amount" type="Label" parent="."]
+layout_mode = 0
+offset_right = 22.0
+offset_bottom = 28.0
+theme = SubResource("Theme_cuo3w")
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+justification_flags = 227
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_pnu8i")
+}
+autoplay = "Bouncing"

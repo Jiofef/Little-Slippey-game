@@ -24,6 +24,9 @@ visible = true
 [node name="Star1" parent="Texture/StarsC" index="2"]
 visible = true
 
+[node name="RewardAmount" parent="Texture/GoldenCrossesAnimation" index="1"]
+text = "50"
+
 [node name="Text" parent="DescScrollC" index="0"]
 text = "Complete level 1 on \"Inferno\" difficulty"
 

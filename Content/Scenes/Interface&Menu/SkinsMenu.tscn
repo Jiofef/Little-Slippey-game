@@ -1,4 +1,4 @@
-[gd_scene load_steps=70 format=3 uid="uid://ufrdtjstxptm"]
+[gd_scene load_steps=71 format=3 uid="uid://ufrdtjstxptm"]
 
 [ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/SkinsMenu.cs" id="1_81lvq"]
 [ext_resource type="PackedScene" uid="uid://cb3550p76ubc8" path="res://Content/Scenes/Interface&Menu/DraggableWindow.tscn" id="1_w6uws"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://060bgiw5i00k" path="res://Content/Sprites/PlayerSkins/Slippey.png" id="4_4fnp7"]
 [ext_resource type="PackedScene" uid="uid://75ikfwlafbnm" path="res://Content/Scenes/Interface&Menu/SkinButton.tscn" id="4_pnw2u"]
 [ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/FixFlowContainer.cs" id="4_t6cmg"]
+[ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/ScrollableContainer.cs" id="4_y3nwf"]
 [ext_resource type="Texture2D" uid="uid://bd15vnp18h7qk" path="res://Content/Sprites/PlayerSkins/Sanboy.png" id="7_o713s"]
 [ext_resource type="Texture2D" uid="uid://cxusn8e4odfu0" path="res://Content/Sprites/PlayerSkins/Samey.png" id="7_q6ji3"]
 [ext_resource type="Texture2D" uid="uid://vjcab56ymxqr" path="res://Content/Sprites/PlayerSkins/Pineplum.png" id="9_2om8k"]
@@ -449,6 +450,7 @@ text = "Skins (1 of 14)"
 layout_mode = 2
 size_flags_vertical = 3
 theme = ExtResource("3_16fyc")
+script = ExtResource("4_y3nwf")
 
 [node name="SkinButtons" type="FlowContainer" parent="MarginContainer/VBoxContainer/ScrollContainer" index="0" node_paths=PackedStringArray("FixedElement")]
 layout_mode = 2
@@ -481,7 +483,6 @@ button_group = SubResource("ButtonGroup_fkx8u")
 SkinName = "Samey"
 SkinKey = "Samey"
 NeededAchievementKey = "I am already the Slippey"
-SkinPrice = 30
 
 [node name="SkinName" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button2" index="0"]
 text = "???"
@@ -493,9 +494,6 @@ scale = Vector2(8, 8)
 sprite_frames = SubResource("SpriteFrames_7adh7")
 autoplay = "default"
 
-[node name="SkinPrice" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button2" index="2"]
-text = "[center]30 [img]res://Content/Sprites/Interface/4XMiniGoldenCross.png[/img]"
-
 [node name="?" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button2" index="3"]
 visible = true
 
@@ -506,7 +504,7 @@ button_group = SubResource("ButtonGroup_fkx8u")
 SkinName = "Sanboy"
 SkinKey = "Sanboy"
 NeededAchievementKey = "Level1Hard"
-SkinPrice = 30
+SkinPrice = 150
 
 [node name="SkinName" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button3" index="0"]
 text = "???"
@@ -519,7 +517,7 @@ sprite_frames = SubResource("SpriteFrames_81p7v")
 autoplay = "default"
 
 [node name="SkinPrice" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button3" index="2"]
-text = "[center]30 [img]res://Content/Sprites/Interface/4XMiniGoldenCross.png[/img]"
+text = "[center]150 [img]res://Content/Sprites/Interface/4XMiniGoldenCross.png[/img]"
 
 [node name="?" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button3" index="3"]
 visible = true
@@ -531,7 +529,7 @@ button_group = SubResource("ButtonGroup_fkx8u")
 SkinName = "Strawman"
 SkinKey = "Strawman"
 NeededAchievementKey = "Level2Hard"
-SkinPrice = 30
+SkinPrice = 125
 
 [node name="SkinName" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button4" index="0"]
 text = "???"
@@ -544,7 +542,7 @@ sprite_frames = SubResource("SpriteFrames_yxqqj")
 autoplay = "default"
 
 [node name="SkinPrice" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button4" index="2"]
-text = "[center]30 [img]res://Content/Sprites/Interface/4XMiniGoldenCross.png[/img]"
+text = "[center]125 [img]res://Content/Sprites/Interface/4XMiniGoldenCross.png[/img]"
 
 [node name="?" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button4" index="3"]
 visible = true
@@ -559,7 +557,7 @@ button_group = SubResource("ButtonGroup_fkx8u")
 SkinName = "Pineplum"
 SkinKey = "Pineplum"
 NeededAchievementKey = "Level3Hard"
-SkinPrice = 30
+SkinPrice = 100
 
 [node name="SkinName" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button5" index="0"]
 text = "???"
@@ -572,7 +570,7 @@ sprite_frames = SubResource("SpriteFrames_u7xvk")
 autoplay = "default"
 
 [node name="SkinPrice" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button5" index="2"]
-text = "[center]30 [img]res://Content/Sprites/Interface/4XMiniGoldenCross.png[/img]"
+text = "[center]100 [img]res://Content/Sprites/Interface/4XMiniGoldenCross.png[/img]"
 
 [node name="?" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button5" index="3"]
 visible = true
@@ -584,7 +582,7 @@ button_group = SubResource("ButtonGroup_fkx8u")
 SkinName = "Bondey"
 SkinKey = "Bondey"
 NeededAchievementKey = "Level4Hard"
-SkinPrice = 30
+SkinPrice = 69
 
 [node name="SkinName" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button6" index="0"]
 text = "???"
@@ -597,7 +595,7 @@ sprite_frames = SubResource("SpriteFrames_68l6o")
 autoplay = "default"
 
 [node name="SkinPrice" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button6" index="2"]
-text = "[center]30 [img]res://Content/Sprites/Interface/4XMiniGoldenCross.png[/img]"
+text = "[center]69 [img]res://Content/Sprites/Interface/4XMiniGoldenCross.png[/img]"
 
 [node name="?" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button6" index="3"]
 visible = true
@@ -609,7 +607,7 @@ button_group = SubResource("ButtonGroup_fkx8u")
 SkinName = "Sleepy"
 SkinKey = "Sleepy"
 NeededAchievementKey = "Level5Hard"
-SkinPrice = 30
+SkinPrice = 125
 
 [node name="SkinName" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button7" index="0"]
 text = "???"
@@ -638,7 +636,7 @@ scale_amount_curve = SubResource("Curve_ms4ib")
 color_ramp = SubResource("Gradient_f54j1")
 
 [node name="SkinPrice" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button7" index="2"]
-text = "[center]30 [img]res://Content/Sprites/Interface/4XMiniGoldenCross.png[/img]"
+text = "[center]125 [img]res://Content/Sprites/Interface/4XMiniGoldenCross.png[/img]"
 
 [node name="?" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button7" index="3"]
 visible = true
@@ -650,7 +648,7 @@ button_group = SubResource("ButtonGroup_fkx8u")
 SkinName = "Daley"
 SkinKey = "Daley"
 NeededAchievementKey = "Level6Hard"
-SkinPrice = 30
+SkinPrice = 130
 
 [node name="SkinName" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button8" index="0"]
 text = "???"
@@ -663,7 +661,7 @@ sprite_frames = SubResource("SpriteFrames_qsjm7")
 autoplay = "default"
 
 [node name="SkinPrice" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button8" index="2"]
-text = "[center]30 [img]res://Content/Sprites/Interface/4XMiniGoldenCross.png[/img]"
+text = "[center]130 [img]res://Content/Sprites/Interface/4XMiniGoldenCross.png[/img]"
 
 [node name="?" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button8" index="3"]
 visible = true
@@ -675,7 +673,7 @@ button_group = SubResource("ButtonGroup_fkx8u")
 SkinName = "???"
 SkinKey = "Hostey"
 NeededAchievementKey = "Level7Hard"
-SkinPrice = 30
+SkinPrice = 100
 
 [node name="SkinName" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button9" index="0"]
 text = "???"
@@ -688,7 +686,7 @@ sprite_frames = SubResource("SpriteFrames_540tk")
 autoplay = "default"
 
 [node name="SkinPrice" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button9" index="2"]
-text = "[center]30 [img]res://Content/Sprites/Interface/4XMiniGoldenCross.png[/img]"
+text = "[center]100 [img]res://Content/Sprites/Interface/4XMiniGoldenCross.png[/img]"
 
 [node name="?" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button9" index="3"]
 visible = true
@@ -700,7 +698,7 @@ button_group = SubResource("ButtonGroup_fkx8u")
 SkinName = "Compress Mass"
 SkinKey = "CompressMass"
 NeededAchievementKey = "Level8Hard"
-SkinPrice = 30
+SkinPrice = 175
 
 [node name="SkinName" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button10" index="0"]
 text = "???"
@@ -713,7 +711,7 @@ sprite_frames = SubResource("SpriteFrames_rej27")
 autoplay = "default"
 
 [node name="SkinPrice" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button10" index="2"]
-text = "[center]30 [img]res://Content/Sprites/Interface/4XMiniGoldenCross.png[/img]"
+text = "[center]175 [img]res://Content/Sprites/Interface/4XMiniGoldenCross.png[/img]"
 
 [node name="?" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button10" index="3"]
 visible = true
@@ -725,7 +723,7 @@ button_group = SubResource("ButtonGroup_fkx8u")
 SkinName = "Jio Yoba Fefski"
 SkinKey = "JioYobaFefski"
 NeededAchievementKey = "Level9Hard"
-SkinPrice = 30
+SkinPrice = 273
 
 [node name="SkinName" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button11" index="0"]
 text = "???"
@@ -742,7 +740,7 @@ frame_progress = 0.0520097
 script = null
 
 [node name="SkinPrice" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button11" index="2"]
-text = "[center]30 [img]res://Content/Sprites/Interface/4XMiniGoldenCross.png[/img]"
+text = "[center]273 [img]res://Content/Sprites/Interface/4XMiniGoldenCross.png[/img]"
 
 [node name="?" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button11" index="3"]
 visible = true
@@ -754,7 +752,7 @@ button_group = SubResource("ButtonGroup_fkx8u")
 SkinName = "Chad"
 SkinKey = "Chad"
 NeededAchievementKey = "Level10Hard"
-SkinPrice = 30
+SkinPrice = 333
 
 [node name="SkinName" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button12" index="0"]
 text = "???"
@@ -767,7 +765,7 @@ sprite_frames = SubResource("SpriteFrames_6jrs7")
 autoplay = "default"
 
 [node name="SkinPrice" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button12" index="2"]
-text = "[center]30 [img]res://Content/Sprites/Interface/4XMiniGoldenCross.png[/img]"
+text = "[center]333 [img]res://Content/Sprites/Interface/4XMiniGoldenCross.png[/img]"
 
 [node name="?" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button12" index="3"]
 visible = true
@@ -779,7 +777,7 @@ button_group = SubResource("ButtonGroup_fkx8u")
 SkinName = "M7SSINGNULL"
 SkinKey = "MISSINGNULL"
 NeededAchievementKey = "You will regret it."
-SkinPrice = 30
+SkinPrice = -1
 
 [node name="SkinName" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button13" index="0"]
 text = "???"
@@ -810,7 +808,7 @@ scale_amount_max = 100.0
 color_initial_ramp = SubResource("Gradient_jgll3")
 
 [node name="SkinPrice" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button13" index="2"]
-text = "[center]30 [img]res://Content/Sprites/Interface/4XMiniGoldenCross.png[/img]"
+text = "[center]-1 [img]res://Content/Sprites/Interface/4XMiniGoldenCross.png[/img]"
 
 [node name="?" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button13" index="3"]
 visible = true
@@ -822,7 +820,6 @@ button_group = SubResource("ButtonGroup_fkx8u")
 SkinName = "Corey"
 SkinKey = "Corey"
 NeededAchievementKey = "Thank you for everything, player"
-SkinPrice = 30
 
 [node name="SkinName" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button14" index="0"]
 text = "???"
@@ -862,9 +859,6 @@ libraries = {
 "": SubResource("AnimationLibrary_dqx3r")
 }
 autoplay = "Idle"
-
-[node name="SkinPrice" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button14" index="2"]
-text = "[center]30 [img]res://Content/Sprites/Interface/4XMiniGoldenCross.png[/img]"
 
 [node name="?" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button14" index="3"]
 visible = true

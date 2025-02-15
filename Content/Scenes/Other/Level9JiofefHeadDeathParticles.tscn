@@ -91,7 +91,7 @@ one_shot = true
 autostart = true
 
 [node name="ParticlesEmittingTimer" type="Timer" parent="."]
-wait_time = 4.5
+wait_time = 7.5
 one_shot = true
 autostart = true
 

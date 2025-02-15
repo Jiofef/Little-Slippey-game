@@ -1,10 +1,10 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using OtherExtension;
+using System.Linq;
 using static G;
 using static OtherExtension.RandomTools;
-using System.Linq;
-using System.Diagnostics;
 
 public partial class Crosses : Node
 {
@@ -188,12 +188,12 @@ public partial class Crosses : Node
             new Cross("Cross1", 30, 600),
             new Cross("Cross2", 30, 170),
             new Cross("Cross3", 30, 80),
-            new Cross("Cross4", 30, 40),
+            new Cross("Cross4", 30, 40, 200),
             new Cross("Cross5", 30, 110),
         };
         Cross goldenCross = new Cross("GoldenCross");
         goldenCross.SpawnRectMode = Cross.SpawnRectModeEnum.CameraLimits;
-        goldenCross.MinimumSpawnDistanceToPlayer = 100;
+        goldenCross.MinimumSpawnDistanceToPlayer = 350;
         KeepGoldenCrossSpawningWhenProgressProgress = false;
 
         // Blum cross method binding
@@ -214,12 +214,12 @@ public partial class Crosses : Node
             new Cross("EnhancedCross1", 30, 650),
             new Cross("EnhancedCross2", 30, 265),
             new Cross("EnhancedCross3", 30, 45),
-            new Cross("EnhancedCross4", 30, 15),
+            new Cross("EnhancedCross4", 30, 15, 200),
             new Cross("EnhancedCross5", 30, 25),
         };
         Cross goldenCross = new Cross("EnhancedGoldenCross");
         goldenCross.SpawnRectMode = Cross.SpawnRectModeEnum.CameraLimits;
-        goldenCross.MinimumSpawnDistanceToPlayer = 200;
+        goldenCross.MinimumSpawnDistanceToPlayer = 350;
         KeepGoldenCrossSpawningWhenProgressProgress = false;
 
         // Helicopter cross setting up
@@ -422,7 +422,11 @@ public partial class Crosses : Node
 
         if (cross.AllowedSpawnSidesDic["FullRect"])
         {
-            position = RandomVectorAt(spawnRect.GetCenter(), spawnRect.Size, cross.MinimumSpawnDistanceToPlayer);
+            // The less the player moves, the more often the crosses will spawn near the center of the screen
+            float CrossGathering = _random.Next(100) < (1 - PlayerMoveCoeff) * 50 ? 3 - PlayerMoveCoeff * 2 : 1;
+            spawnRect = GeometryTools.ResizeRectWithAbsoluteAnchor(spawnRect, spawnRect.Size / CrossGathering, G.Player.GlobalPosition);
+
+            position = RandomVectorInAlt(spawnRect, G.Player.GlobalPosition, cross.MinimumSpawnDistanceToPlayer);
         }
         else
         {
