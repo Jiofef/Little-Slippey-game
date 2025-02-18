@@ -156,19 +156,12 @@ public partial class SkinButton : EnhancedButton
     {
         EmitSignal(nameof(TryingToBuySkin));
         ButtonPressed = false;
-        if (UnchangableMeta.GoldenCrossesAmount >= SkinPrice)
+        if (UnchangableMeta.TryBuy(SkinPrice))
             BuySkin();
-        else
-        {
-            G.PlayOneshotSound("Interface&Menu/CantBuy.mp3", GetTree().Root, "Interface");
-        }
     }
 
     public void BuySkin()
     {
-        G.PlayOneshotSound("Interface&Menu/Buy.mp3", GetTree().Root, "Interface");
-        UnchangableMeta.GoldenCrossesAmount -= SkinPrice;
-
         IsSkinBoughtDic[SkinKey] = true;
 
         SetVisualState(State.Bought);

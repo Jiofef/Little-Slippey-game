@@ -51,6 +51,9 @@ public partial class GoldenCross : Node2D
         if (G.Player != null)
             G.Player.Connect("PlayerDied", new Callable(offscreenPointer, "queue_free"));
 
+        // Connecting a pointer to despawn when collected
+        Connect("OnCollected", new Callable(offscreenPointer, "queue_free"));
+
     }
 
     public override void _PhysicsProcess(double delta)

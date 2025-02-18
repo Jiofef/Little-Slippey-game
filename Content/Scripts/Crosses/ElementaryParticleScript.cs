@@ -4,6 +4,8 @@ using System.Diagnostics;
 
 public partial class ElementaryParticleScript : Node2D
 {
+    [Signal] public delegate void OnAnihilatedEventHandler();
+
     // One of the particles must be the primary particle to interact with the second particle
     [Export] public bool IsMainParticle;
     [Export] public float AttractionForce = 3000f;
@@ -41,6 +43,9 @@ public partial class ElementaryParticleScript : Node2D
         var offscreenPointer = GetNode<OffscreenPointer>("OffscreenPointer");
         if (G.Player != null)
             G.Player.Connect("PlayerDied", new Callable(offscreenPointer, "queue_free"));
+
+        // Connecting a pointer to despawn when collected
+        Connect("OnAnihilated", new Callable(offscreenPointer, "queue_free"));
 
         // Adding in group
         AddToGroup("UnstableCrosses");

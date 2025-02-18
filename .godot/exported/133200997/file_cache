@@ -1,5 +1,5 @@
 res://Content/Scenes/Achievements/AchievementArea.tscn::a9fe53bf40cb9093dfc94df9e758c571::1701378097::res://.godot/exported/133200997/export-6c103cc147e12f940c2383ccb16537ff-AchievementArea.scn
-res://Content/Scenes/Achievements/DefaultAchievement.tscn::3881ae0a208e2d56412c5b99fa32b5f6::1738794645::res://.godot/exported/133200997/export-ed944ce15993891f8a49703c199c857e-DefaultAchievement.scn
+res://Content/Scenes/Achievements/DefaultAchievement.tscn::6f2396855867cfe056b5c120bf023b2b::1739408956::res://.godot/exported/133200997/export-ed944ce15993891f8a49703c199c857e-DefaultAchievement.scn
 res://Content/Scenes/Crosses/BlueElementalCrossPart.tscn::431c63c7ff86041d3cbdfb93cd291860::1731696286::res://.godot/exported/133200997/export-814c6a008afd8051ef568d41f7c5205f-BlueElementalCrossPart.scn
 res://Content/Scenes/Crosses/Cross1.tscn::20d404aae0bba7bf6426d582db47692a::1738038863::res://.godot/exported/133200997/export-54a30e87ed5418d57d07f5e5a90c4a41-Cross1.scn
 res://Content/Scenes/Crosses/Cross2.tscn::bd5f2c8bd9d0ff6a0de6a6998e50694c::1737172849::res://.godot/exported/133200997/export-7d1bea2873f03792b6d137583e89ab96-Cross2.scn
@@ -19,14 +19,14 @@ res://Content/Scenes/Crosses/RedElementalCrossPart.tscn::69c35521bd12a2fc2ad72ca
 res://Content/Scenes/Interface&Menu/AchievementsMenu.tscn::79d5c84f3f70e9bbee916cf1424165c9::1738789245::res://.godot/exported/133200997/export-e9e845f2ab4901864586657b4f7b547e-AchievementsMenu.scn
 res://Content/Scenes/Interface&Menu/Button.tscn::d9790736199f27c27c22c5ca11b32e00::1737683965::res://.godot/exported/133200997/export-c7a814f3f361afb05ab1899fb0f29e9b-Button.scn
 res://Content/Scenes/Interface&Menu/FinalLetter.tscn::4c6fb8f53cc8b9749a7474b149d2e4ab::1737072164::res://.godot/exported/133200997/export-5b86f05ece530ee88bec5246a085485b-FinalLetter.scn
-res://Content/Scenes/Interface&Menu/InitializationScene.tscn::65d39a7014567ae9c2d2b398c26f065e::1739402459::res://.godot/exported/133200997/export-d4ab32c26e517af2a916f892b3f88343-InitializationScene.scn
+res://Content/Scenes/Interface&Menu/InitializationScene.tscn::65d39a7014567ae9c2d2b398c26f065e::1739696104::res://.godot/exported/133200997/export-d4ab32c26e517af2a916f892b3f88343-InitializationScene.scn
 res://Content/Scenes/Interface&Menu/LevelButton.tscn::99dfaa7afd08855e01d501aff99b59b5::1737516567::res://.godot/exported/133200997/export-a7c005406efd622228ad63efc0eb1bea-LevelButton.scn
 res://Content/Scenes/Interface&Menu/LevelsMenu.tscn::be69c9585dad67ed9e086ddbe72974dd::1737683965::res://.godot/exported/133200997/export-6d869cde953de3bcbee4f69770a1aa1e-LevelsMenu.scn
 res://Content/Scenes/Interface&Menu/OptionsMenu.tscn::5b511f83137b484d95649197a8270418::1739402459::res://.godot/exported/133200997/export-e8b6eafa74d2101fb9094001f621860f-OptionsMenu.scn
 res://Content/Scenes/Interface&Menu/RecycleBinMenu.tscn::1097a54525466cbebf08129cb1f6bde4::1739293331::res://.godot/exported/133200997/export-d4612187423560ace322b23de5e38246-RecycleBinMenu.scn
 res://Content/Scenes/Interface&Menu/SkinsMenu.tscn::4cd64cbf2ae772c20197683c77151825::1739293716::res://.godot/exported/133200997/export-6406f08ca77ddd086b07c1a52d578368-SkinsMenu.scn
 res://Content/Scenes/Interface&Menu/WelcomeToGOS.tscn::576592bc76b5a0883ece670d6669df97::1738789245::res://.godot/exported/133200997/export-6cfabdd3be1c49dfcb58cbd9df1eb1e0-WelcomeToGOS.scn
-res://Content/Scenes/Levels/FullParts/Level1.tscn::a1c62a9cb33c38ce59eab376cb8973b7::1739402459::res://.godot/exported/133200997/export-7d6e36fdd98080b65e35f542fd6783cc-Level1.scn
+res://Content/Scenes/Levels/FullParts/Level1.tscn::a1c62a9cb33c38ce59eab376cb8973b7::1739696106::res://.godot/exported/133200997/export-7d6e36fdd98080b65e35f542fd6783cc-Level1.scn
 res://Content/Scenes/Levels/FullParts/Level1Tutorial.tscn::c707097c6d4603dcb6528045d0756ee6::1739402571::res://.godot/exported/133200997/export-d99bf1e3894113d84ccd1d6f85d80768-Level1Tutorial.scn
 res://Content/Scenes/Levels/FullParts/Level2.tscn::484256409fbd866b41c9acbc26ca8bad::1739233743::res://.godot/exported/133200997/export-513feb8604e3789028467574f65350e2-Level2.scn
 res://Content/Scenes/Levels/FullParts/Level3.tscn::1bba5294654e3163bb5bf024cc018453::1738900711::res://.godot/exported/133200997/export-9be22fec9a7f580803ea5c67ba1f2b9e-Level3.scn
@@ -35,8 +35,8 @@ res://Content/Scenes/Levels/FullParts/Level5.tscn::80fa28dfad633bfdd93e9e5eb0dd1
 res://Content/Scenes/Levels/FullParts/Level6.tscn::f7afbd23aa9e7decfc0cebef2a3c11ed::1737077302::res://.godot/exported/133200997/export-43c863df8373ef410bd63d3f7308a3ad-Level6.scn
 res://Content/Scenes/Levels/FullParts/Level7.tscn::b52f54b84b0f4a652a4b4ffa78e474d3::1736200793::res://.godot/exported/133200997/export-b254d0e3f28410cb804c12736843fd7f-Level7.scn
 res://Content/Scenes/Levels/FullParts/Level8.tscn::8f712a388ab6fa9bc883462ef925b690::1735575993::res://.godot/exported/133200997/export-0d5f6e10351a5ab1eb8d99ebda34a756-Level8.scn
-res://Content/Scenes/Levels/FullParts/Level9.tscn::df932b48821190ff09305bbf1bc8f1cf::1738378615::res://.godot/exported/133200997/export-51d1fbdff4e42d7f1485a1117ec42fee-Level9.scn
-res://Content/Scenes/Levels/FullParts/Level9WithoutPlatformSection.tscn::60dfb3441ad466bb8ca3cea396650e10::1738378616::res://.godot/exported/133200997/export-ea1c8fdf7633cf81c21bf3f70cb4ec14-Level9WithoutPlatformSection.scn
+res://Content/Scenes/Levels/FullParts/Level9.tscn::0e9d250fee054bf4b81b2c2e06e9b3d7::1739696105::res://.godot/exported/133200997/export-51d1fbdff4e42d7f1485a1117ec42fee-Level9.scn
+res://Content/Scenes/Levels/FullParts/Level9WithoutPlatformSection.tscn::0ce0f5ace0f7e395c805f921c9eff1d1::1739696105::res://.godot/exported/133200997/export-ea1c8fdf7633cf81c21bf3f70cb4ec14-Level9WithoutPlatformSection.scn
 res://Content/Scenes/Levels/FullParts/Level10.tscn::dcfd9bf545c4f6b9234c784eb29b7633::1738620549::res://.godot/exported/133200997/export-fa9350d9fa2aa389cd9e0b882f13eb25-Level10.scn
 res://Content/Scenes/Levels/FullParts/Level10True.tscn::07f4240ce1e4c6455f960abda3c341d8::1738620549::res://.godot/exported/133200997/export-07e9e79be66e017b08cf5b38837698aa-Level10True.scn
 res://Content/Scenes/Levels/Level8TileMaps/TileMap0.tscn::8f1182b19db3f273008d73a862a8e76b::1734228583::res://.godot/exported/133200997/export-b6708ab8fb8be86734d4e5ca070ef502-TileMap0.scn
@@ -58,7 +58,7 @@ res://Content/Scenes/Levels/PresentedParts/PresentedLevel5.tscn::f7deef0dc4d8e4b
 res://Content/Scenes/Levels/PresentedParts/PresentedLevel6.tscn::f5b3e4ffcad4e51e6c996a647a631b5c::1726945975::res://.godot/exported/133200997/export-abf1c2eb20600f2af5fb5a51cfcff57c-PresentedLevel6.scn
 res://Content/Scenes/Levels/PresentedParts/PresentedLevel7.tscn::2601f679a2809f3a320095251c5e58ee::1690991241::res://.godot/exported/133200997/export-b9d8db4fe5344f008aed89d8f49d9c78-PresentedLevel7.scn
 res://Content/Scenes/Levels/PresentedParts/PresentedLevel8.tscn::cccbf426497e1a540777883757764dc3::1726946176::res://.godot/exported/133200997/export-308afeb560016837575e328cb4e3b76e-PresentedLevel8.scn
-res://Content/Scenes/Levels/PresentedParts/PresentedLevel9.tscn::55fef22f4da92f988ade4dc10a961732::1726946392::res://.godot/exported/133200997/export-3c3a34b5314fdf28f0d78737ba5382f6-PresentedLevel9.scn
+res://Content/Scenes/Levels/PresentedParts/PresentedLevel9.tscn::95247d2ab0e472cbcd24e601ab103ecb::1739408956::res://.godot/exported/133200997/export-3c3a34b5314fdf28f0d78737ba5382f6-PresentedLevel9.scn
 res://Content/Scenes/Levels/PresentedParts/PresentedLevel9WithoutPlatformSection.tscn::c241394ca0fe94464108bc4a9680525d::1726946534::res://.godot/exported/133200997/export-3be7c202a4725c9333be9bd1e7467f07-PresentedLevel9WithoutPlatformSection.scn
 res://Content/Scenes/Levels/PresentedParts/PresentedLevel10.tscn::c9b7edd8452d5ce3f29fb609ab55cf5f::1726946632::res://.godot/exported/133200997/export-c7c7de0784357b49fa8363d2dc02e2ba-PresentedLevel10.scn
 res://Content/Scenes/Levels/PresentedParts/PresentedLevel10True.tscn::39d6a3ae32e8d9496729ced81db88d42::1726946674::res://.godot/exported/133200997/export-cff3acc4fdf3ae8ca0f0eed1008ae302-PresentedLevel10True.scn
@@ -68,7 +68,7 @@ res://Content/Scenes/Other/Level6FlyingCar.tscn::6b257ba16be879d284f5776f7a1981c
 res://Content/Scenes/Other/Level7HopelessnesLayer.tscn::b8f7917b0541d5b61afb6d0633a79372::1735606895::res://.godot/exported/133200997/export-cbad044303d1679edb272d9bf0f17419-Level7HopelessnesLayer.scn
 res://Content/Scenes/Other/Level7MindTumor.tscn::92994cdf56f817e9943783e8740cb960::1735602454::res://.godot/exported/133200997/export-4fd3cf1cd4f193e6010ff78a08e47a04-Level7MindTumor.scn
 res://Content/Scenes/Other/Level8DisposableButton.tscn::769a2b2a02bec296d5fe076ea5345e08::1701910968::res://.godot/exported/133200997/export-6ebabf75e0caae6a3130441aabb4e2cd-Level8DisposableButton.scn
-res://Content/Scenes/Other/Level9AhahahSilly.tscn::a6e40e3eeaaf6ef5a2122835dcd3f7ac::1738378615::res://.godot/exported/133200997/export-f4166515b4e1cdd7f39dffb5f4b6f08f-Level9AhahahSilly.scn
+res://Content/Scenes/Other/Level9AhahahSilly.tscn::a6e40e3eeaaf6ef5a2122835dcd3f7ac::1739696105::res://.godot/exported/133200997/export-f4166515b4e1cdd7f39dffb5f4b6f08f-Level9AhahahSilly.scn
 res://Content/Scenes/Other/Level9JiofefEye.tscn::c0c4d46e38f47e24e8dc96a3c23f848c::1701910968::res://.godot/exported/133200997/export-98db34e1f09e12e449cf60bae62cd2e8-Level9JiofefEye.scn
 res://Content/Scenes/Other/Level9JiofefHead.tscn::9d8ecc0911811df2b654d2ab0b8d46f4::1738792958::res://.godot/exported/133200997/export-a1b110441d41f6db6f2ebfd508579557-Level9JiofefHead.scn
 res://Content/Scenes/Other/Level9JiofefHeadDeathParticles.tscn::1ef815019f9243fafe38f30f8148d00e::1738792958::res://.godot/exported/133200997/export-a232db572c408b9b2dfd905c24147b63-Level9JiofefHeadDeathParticles.scn
@@ -89,8 +89,8 @@ res://Content/Scenes/PlayerSkins/Sanboy.tscn::b6b4f972e82067345f4ebdbdd7043865::
 res://Content/Scenes/PlayerSkins/Sleepy.tscn::d0427b12f8205cf9b52c5f629f371750::1733535813::res://.godot/exported/133200997/export-f06bf3234d4e03fcc7e42487e68440f6-Sleepy.scn
 res://Content/Scenes/PlayerSkins/Slippey.tscn::dbfe82e6d4322faee80959da29b300ba::1733783768::res://.godot/exported/133200997/export-4ab42f21adf0a7abd6c337943acacdb2-Slippey.scn
 res://Content/Scenes/PlayerSkins/Strawman.tscn::672da43531bce9b89b2236ae6602fb0d::1733533516::res://.godot/exported/133200997/export-5e32b4e0a9568ad754564981443f1838-Strawman.scn
-res://default_bus_layout.tres::dbf1f299c680515c9d4911d4e2bbe841::1739400523::res://.godot/exported/133200997/export-19246414aa9fb561ced4b8dce477acec-default_bus_layout.res
-res://default_env.tres::1e86f20772a1bacc00288e461559116b::1739402571::res://.godot/exported/133200997/export-7cf3fd67ad9f55210191d77b582b8209-default_env.res
+res://default_bus_layout.tres::dbf1f299c680515c9d4911d4e2bbe841::1739694676::res://.godot/exported/133200997/export-19246414aa9fb561ced4b8dce477acec-default_bus_layout.res
+res://default_env.tres::1e86f20772a1bacc00288e461559116b::1739696106::res://.godot/exported/133200997/export-7cf3fd67ad9f55210191d77b582b8209-default_env.res
 res://Content/Scenes/Interface&Menu/TurnOffMenu.tscn::d895fbf77e0e520e97f93fa9ab108453::1736390724::res://.godot/exported/133200997/export-1c77c0c2653eb0311bca620b08a29cb0-TurnOffMenu.scn
 res://Content/Scenes/Other/LevelLayout.tscn::28282b64f4c3271bc9ce86f9f0665def::1738038864::res://.godot/exported/133200997/export-8618379c39e4b28688053f486c4aebe1-LevelLayout.scn
 res://Content/Other/LevelEditor.tres::60193cd55a98d6a748d9473a3ffdc879::1728738988::res://.godot/exported/133200997/export-d52e9773a51b48652817201764a9b6c4-LevelEditor.res
@@ -105,8 +105,8 @@ res://Content/Scenes/DefaultLevelEditorObjects/TogglableButton.tscn::5518926c5b0
 res://Content/Scenes/Interface&Menu/ModButton.tscn::9543a18a57a60697c6d88295c3d6faa4::1736978905::res://.godot/exported/133200997/export-88dbf27b9b6343e7b437e2a2317bfa58-ModButton.scn
 res://Content/Scenes/Interface&Menu/ModPreviewLayout.tscn::918fed10b8ba3169ca2ab0ab48ee2c8b::1736568853::res://.godot/exported/133200997/export-124316eb7e852061ac06457568ff7936-ModPreviewLayout.scn
 res://Content/Scenes/Interface&Menu/WorkShopMenu.tscn::e40b7ad48e48b2c7099ba973d6f7233e::1739293690::res://.godot/exported/133200997/export-660a8758caa0b15989af0a310d1ee056-WorkShopMenu.scn
-res://Content/Scenes/Other/UserLevelLayout.tscn::e7cfcd960cfd7fd7d3d261b0f38c0951::1738038864::res://.godot/exported/133200997/export-5f4c536e95a331f947b6a23846c9bc0f-UserLevelLayout.scn
-res://Content/Other/Menu.tres::046f66016cf45477aa77ce5f9982d4bd::1739400596::res://.godot/exported/133200997/export-394f81ae0e0a63feeae91d3abbbdc84f-Menu.res
+res://Content/Scenes/Other/UserLevelLayout.tscn::e7cfcd960cfd7fd7d3d261b0f38c0951::1739696105::res://.godot/exported/133200997/export-5f4c536e95a331f947b6a23846c9bc0f-UserLevelLayout.scn
+res://Content/Other/Menu.tres::046f66016cf45477aa77ce5f9982d4bd::1739694751::res://.godot/exported/133200997/export-394f81ae0e0a63feeae91d3abbbdc84f-Menu.res
 res://Content/Other/MenuTextLabelSettings.tres::b91bcadb3e2e137a9eb8b38e442da862::1739400596::res://.godot/exported/133200997/export-034379abe4ba516c2485fd6ba7e4e037-MenuTextLabelSettings.res
 res://Content/Scenes/Achievements/_000.tscn::f9358d645abf3b031adf0e71e3065dee::1738731551::res://.godot/exported/133200997/export-b13158df51b3b275d05343b31c568405-_000.scn
 res://Content/Scenes/Achievements/000-.tscn::246e42e08a4fb252b988a2317f966a45::1738731558::res://.godot/exported/133200997/export-0ccff73b7ae474aecb77330c9b4f2a1a-000-.scn
@@ -179,7 +179,7 @@ res://Content/Scenes/Interface&Menu/OptionsSetByDefaultConfirmation.tscn::7f1a80
 res://Content/Scenes/Interface&Menu/Pause.tscn::c0f0594373ad814358a334e1540eea63::1733954383::res://.godot/exported/133200997/export-cb3d404d213bba343908c1d168d7b782-Pause.scn
 res://Content/Scenes/Interface&Menu/WarningWindow.tscn::e5cf012772ea3d6d349d4bd6e60b7c86::1736473328::res://.godot/exported/133200997/export-37132141041e285baf89d910584c3664-WarningWindow.scn
 res://Content/Scenes/Interface&Menu/WorkShopMenufff.tscn::9789d26c8df8d74579c2caa398affc78::1734747002::res://.godot/exported/133200997/export-af4f1345f9ededf18134522254f064a6-WorkShopMenufff.scn
-res://Content/Scenes/Levels/FullParts/Level000000000.tscn::fe1973aa3b89768257866a29cf54cc31::1736200792::res://.godot/exported/133200997/export-0c4e71bc86c99ce1291134a12d548983-Level000000000.scn
+res://Content/Scenes/Levels/FullParts/Level000000000.tscn::7056cb8beca12c248d82b81e375d47e2::1739696105::res://.godot/exported/133200997/export-0c4e71bc86c99ce1291134a12d548983-Level000000000.scn
 res://Content/Scenes/Other/EndOfAnEverything.tscn::86de00df5e6e756f8e8061f861272dfe::1735489617::res://.godot/exported/133200997/export-2afdc1a5f22b8425dad6ee4c080733f9-EndOfAnEverything.scn
 res://Content/Scenes/Other/EpicIntro.tscn::d801bd425606e11a0d82c433f5d82fb3::1735500760::res://.godot/exported/133200997/export-df94920ecdd40a43ccc2c48abd42079b-EpicIntro.scn
 res://Content/Scenes/Other/Level000000000Revelation.tscn::8bb86241bdd8e6922b99424ea379d192::1737259154::res://.godot/exported/133200997/export-b297be21501b6dc52456e3d870d62f16-Level000000000Revelation.scn

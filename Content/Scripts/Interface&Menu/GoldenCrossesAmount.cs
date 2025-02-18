@@ -3,7 +3,7 @@ using System;
 
 public partial class GoldenCrossesAmount : MarginContainer
 {
-	[Export] public bool UpdateAutomatically = true;
+	[Export] public bool UpdateAutomatically = true, NotificateWhenCannotBuy = true, NotificateWhenBought = true;
 	UnchangableMeta.GoldenCrossesAmountChangedEventHandler GoldenCrossesAmountChanged;
 
 	public Label AmountLabel;
@@ -24,7 +24,25 @@ public partial class GoldenCrossesAmount : MarginContainer
 				UnchangableMeta.GoldenCrossesAmountChanged -= UpdateAmount;
 			};
 		}
-	}
+		if (NotificateWhenCannotBuy)
+		{
+			UnchangableMeta.CannotBuy += OnCannotBuy;
+
+			TreeExited += () =>
+			{
+				UnchangableMeta.CannotBuy -= OnCannotBuy;
+			};
+		}
+        if (NotificateWhenBought)
+        {
+            UnchangableMeta.Bought += OnBought;
+
+            TreeExited += () =>
+            {
+                UnchangableMeta.Bought -= OnBought;
+            };
+        }
+    }
 
 	public void UpdateAmount(int value)
 	{
@@ -33,5 +51,15 @@ public partial class GoldenCrossesAmount : MarginContainer
     public void UpdateAmount()
     {
         AmountLabel.Text = UnchangableMeta.GoldenCrossesAmount.ToString();
+    }
+
+	public void OnCannotBuy()
+	{
+        G.PlayOneshotSound("Interface&Menu/CantBuy.mp3", GetTree().Root, "Interface");
+    }
+
+	public void OnBought()
+	{
+        G.PlayOneshotSound("Interface&Menu/Buy.mp3", GetTree().Root, "Interface");
     }
 }

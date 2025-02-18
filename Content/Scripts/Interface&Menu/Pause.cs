@@ -9,6 +9,7 @@ public partial class Pause : CanvasLayer
     const float RESET_SPEED_MULTIPLIER = 2;
     const float DEFAULT_RESET_TIMER = 1.5f;
     TextureButton _rewindButton;
+    Control _lastFocusedControl;
 
     private bool _isPaused = false;
     public bool ResetProcessDisabled = false;
@@ -58,6 +59,7 @@ public partial class Pause : CanvasLayer
         G.IsProgressPaused = false;
         G.CrossSpawnMultiplier = 1;
         G.Main.EmitSignal("OnLevelResetting");
+
         if (G.IsLevelVanilla)
         {
             UnchangableMeta.SaveRecords();
@@ -69,9 +71,9 @@ public partial class Pause : CanvasLayer
         }
     }
 
-    private void UnPause()
+    public void UnPause()
     {
-        ChangePause(GetTree().Paused);
+        SetPause(!GetTree().Paused);
     }
 
     public override void _ExitTree()
@@ -83,23 +85,61 @@ public partial class Pause : CanvasLayer
         }
     }
 
-    private void ChangePause(bool IsPaused)
+    private void SetPause(bool value)
     {
-        _isPaused = !IsPaused;
-        AudioServer.SetBusEffectEnabled(2, 0, !IsPaused);
-        AudioServer.SetBusEffectEnabled(6, 0, !IsPaused);
-        GetNode<TextureButton>("Interface/ButtonsFrame/Resume").GrabFocus();
-        GetNode<TextureButton>("Interface/ButtonsFrame/Rewind").Disabled = G.Main.IsResetDisabled;
+        _isPaused = value;
+
 
         var animationPlayer = GetNode<AnimationPlayer>("Interface/AnimationPlayer");
-        if (!IsPaused)
+        if (_isPaused)
+        {
+            G.AdditionalGuiLayer.AlwaysShowGoldenCrossesAmount = true;
+            // Muting the music and environment
+            AudioServer.SetBusEffectEnabled(2, 0, true);
+            AudioServer.SetBusEffectEnabled(6, 0, true);
+
+            // UI preparation
+            _lastFocusedControl = GetViewport().GuiGetFocusOwner();
+
+            if (_lastFocusedControl != null && !_lastFocusedControl.IsConnected("tree_exited", new Callable(this, "ResetLastFocusedControl")))
+                _lastFocusedControl.Connect("tree_exited", new Callable(this, "ResetLastFocusedControl"));
+
+            GetNode<TextureButton>("Interface/ButtonsFrame/Resume").GrabFocus();
+            GetNode<TextureButton>("Interface/ButtonsFrame/Rewind").Disabled = G.Main.IsResetDisabled;
+
+            // Pause animation
             animationPlayer.Play("Pause");
+
+            // Showing the mouse
+            Input.MouseMode = Input.MouseModeEnum.Visible;
+
+            // Pausing
+            GetTree().Paused = true;
+        }
         else
+        {
+            G.AdditionalGuiLayer.AlwaysShowGoldenCrossesAmount = false;
+            // Unmuting the music and environment
+            AudioServer.SetBusEffectEnabled(2, 0, false);
+            AudioServer.SetBusEffectEnabled(6, 0, false);
+
+            // A return of focus, if there's anything to it
+            _lastFocusedControl?.GrabFocus();
+
+            // Unpause animation
             animationPlayer.PlayBackwards("Pause");
 
-        Input.MouseMode = IsPaused ? Input.MouseModeEnum.Hidden : Input.MouseModeEnum.Visible;
+            // Hiding the mouse
+            Input.MouseMode = Input.MouseModeEnum.Hidden;
 
-        GetTree().Paused = !IsPaused;
+            // Unpausing
+            GetTree().Paused = false;
+        }
+    }
+
+    private void ResetLastFocusedControl()
+    {
+        _lastFocusedControl = null;
     }
 
     private void Options()
@@ -113,7 +153,7 @@ public partial class Pause : CanvasLayer
 
         _subMenusOpened = true;
     }
-    private void Menu()
+    public void Menu()
     {
         GetTree().Paused = false;
         if (G.IsLevelVanilla)
@@ -145,7 +185,7 @@ public partial class Pause : CanvasLayer
     {
         if (what == MainLoop.NotificationApplicationFocusOut && !GetTree().Paused)
         {
-            ChangePause(false);
+            SetPause(false);
         }
     }
 }

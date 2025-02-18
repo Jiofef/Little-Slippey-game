@@ -1,7 +1,8 @@
-[gd_scene load_steps=36 format=3 uid="uid://dlscufxb5f1ca"]
+[gd_scene load_steps=45 format=3 uid="uid://dlscufxb5f1ca"]
 
 [ext_resource type="Script" path="res://Content/Scripts/Other/Player.cs" id="1"]
 [ext_resource type="AudioStream" uid="uid://422y36f6ucnf" path="res://Content/Sounds/Player/Climb.mp3" id="2_bn55d"]
+[ext_resource type="Script" path="res://Content/Scripts/Other/InGameGui.cs" id="3_3x0js"]
 [ext_resource type="AudioStream" uid="uid://ctpwmgkvyooy1" path="res://Content/Sounds/Player/Death.mp3" id="3_e2byo"]
 [ext_resource type="AudioStream" uid="uid://blkua1p6uqioe" path="res://Content/Sounds/Player/GroundHit.mp3" id="4_eqohp"]
 [ext_resource type="AudioStream" uid="uid://b3cwlsvshgdvx" path="res://Content/Sounds/Player/Jump.mp3" id="5_4c4de"]
@@ -10,8 +11,10 @@
 [ext_resource type="AudioStream" uid="uid://p26mliplwayb" path="res://Content/Sounds/Player/PullDown.mp3" id="6_ouqh1"]
 [ext_resource type="Texture2D" uid="uid://c2vlstlfjauxy" path="res://Content/Sprites/Interface/StandBar.png" id="7_71iex"]
 [ext_resource type="Texture2D" uid="uid://060bgiw5i00k" path="res://Content/Sprites/PlayerSkins/Slippey.png" id="8_36ypt"]
+[ext_resource type="AudioStream" uid="uid://cgelok2uogftd" path="res://Content/Sounds/Interface&Menu/NewRecord.mp3" id="8_me3jk"]
 [ext_resource type="Texture2D" uid="uid://dlkiscny21m58" path="res://Content/Sprites/Interface/ClimbBarEmpty.png" id="8_s2o7p"]
 [ext_resource type="Texture2D" uid="uid://br5w2ioqt3fqq" path="res://Content/Sprites/Interface/ClimbBar.png" id="9_d4mc5"]
+[ext_resource type="PackedScene" uid="uid://88vg4cfkcfl3" path="res://Content/Scenes/Interface&Menu/MenuOnlyTextButton.tscn" id="9_vbwj1"]
 [ext_resource type="Texture2D" uid="uid://nmw5orvjy6f8" path="res://Content/Sprites/Other/PlayerGhost.png" id="10"]
 [ext_resource type="Texture2D" uid="uid://t73lfqyo0ovn" path="res://Content/Sprites/Other/Shine.png" id="10_3mkpq"]
 [ext_resource type="AudioStream" uid="uid://dy6lncevmnf3o" path="res://Content/Sounds/Other/WhiteNoise.mp3" id="12_jom63"]
@@ -31,10 +34,10 @@ size = Vector2(40, 56)
 size = Vector2(4, 56)
 
 [sub_resource type="LabelSettings" id="LabelSettings_nyxhd"]
-font_size = 22
+font_size = 88
 shadow_size = 0
 shadow_color = Color(0.223529, 0.203922, 0.341176, 1)
-shadow_offset = Vector2(2, 0)
+shadow_offset = Vector2(8, 0)
 
 [sub_resource type="Gradient" id="Gradient_lmxa7"]
 offsets = PackedFloat32Array(0, 0.25, 0.75, 1)
@@ -42,6 +45,214 @@ colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
 
 [sub_resource type="Gradient" id="Gradient_4fxyx"]
 colors = PackedColorArray(1, 1, 1, 0.501961, 1, 1, 1, 1)
+
+[sub_resource type="Animation" id="Animation_ssyiw"]
+resource_name = "Appearing"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("NewRecord:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_foxk7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("NewRecord:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_oycsg"]
+_data = {
+"Appearing": SubResource("Animation_ssyiw"),
+"RESET": SubResource("Animation_foxk7")
+}
+
+[sub_resource type="Animation" id="Animation_dvmnv"]
+resource_name = "OnDeath"
+length = 3.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AfterDeathElements/HoldR:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.5, 1),
+"transitions": PackedFloat32Array(0.333333, 1),
+"update": 0,
+"values": [Vector2(280, 728), Vector2(280, 548)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AfterDeathElements:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AfterDeathElements/Scores:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1.2, 1.7),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector2(0, -132), Vector2(0, 4)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AfterDeathElements/Buttons:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(2, 3),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector2(-272, 0), Vector2(0, 0)]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"FocusAfterDeathButton"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_jxwlk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AfterDeathElements/HoldR:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(0.333333),
+"update": 0,
+"values": [Vector2(280, 728)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AfterDeathElements:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AfterDeathElements/Scores:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 4)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AfterDeathElements/Buttons:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bpyln"]
+_data = {
+"OnDeath": SubResource("Animation_dvmnv"),
+"RESET": SubResource("Animation_jxwlk")
+}
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gciug"]
 atlas = ExtResource("15")
@@ -214,27 +425,23 @@ editor_draw_limits = true
 script = ExtResource("13")
 
 [node name="GUICanvas" type="CanvasLayer" parent="Camera2D"]
-offset = Vector2(600, 0)
-scale = Vector2(4, 4)
-transform = Transform2D(4, 0, 0, 4, 600, 0)
 
 [node name="GUI" type="Control" parent="Camera2D/GUICanvas"]
 layout_mode = 3
 anchors_preset = 0
-offset_left = -150.0
-offset_right = 170.0
-offset_bottom = 180.0
+offset_right = 1280.0
+offset_bottom = 720.0
 mouse_filter = 2
+script = ExtResource("3_3x0js")
 
 [node name="StandBar" type="TextureProgressBar" parent="Camera2D/GUICanvas/GUI"]
 visible = false
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -16.0
+custom_minimum_size = Vector2(96, 16)
+layout_mode = 0
+offset_top = 656.0
 offset_right = 96.0
-grow_vertical = 0
+offset_bottom = 672.0
+scale = Vector2(4, 4)
 size_flags_horizontal = 0
 size_flags_vertical = 0
 min_value = -0.2
@@ -247,12 +454,66 @@ script = ExtResource("5_88r4t")
 
 [node name="Scores" type="Label" parent="Camera2D/GUICanvas/GUI"]
 visible = false
+custom_minimum_size = Vector2(0, 132)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 16.0
+offset_right = -8.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.223529, 0.203922, 0.341176, 1)
+theme_override_constants/shadow_offset_x = 8
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/shadow_outline_size = 0
+theme_override_font_sizes/font_size = 132
+text = "000000000"
+horizontal_alignment = 1
+
+[node name="AfterDeathElements" type="Control" parent="Camera2D/GUICanvas/GUI"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="HoldR" type="RichTextLabel" parent="Camera2D/GUICanvas/GUI/AfterDeathElements"]
+clip_contents = false
+custom_minimum_size = Vector2(720, 320)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -360.0
+offset_top = 8.0
+offset_right = 360.0
+offset_bottom = 328.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+theme_override_colors/font_shadow_color = Color(0.223529, 0.203922, 0.341176, 1)
+theme_override_constants/shadow_offset_x = 8
+theme_override_constants/shadow_outline_size = 0
+theme_override_font_sizes/normal_font_size = 66
+bbcode_enabled = true
+text = "[center]Hold [img={width}96{height}]res://Content/Sprites/Interface/ControllerButtons/KeyboardButtonBigR.png[/img]
+to restart"
+
+[node name="Scores" type="Label" parent="Camera2D/GUICanvas/GUI/AfterDeathElements"]
+custom_minimum_size = Vector2(0, 132)
 layout_mode = 0
-offset_left = 2.0
 offset_top = 4.0
-offset_right = 213.0
-offset_bottom = 124.0
-scale = Vector2(1.5, 1.5)
+offset_right = 1280.0
+offset_bottom = 136.0
 size_flags_vertical = 0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_shadow_color = Color(0.223529, 0.203922, 0.341176, 1)
@@ -260,54 +521,34 @@ theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 0
 theme_override_constants/shadow_outline_size = 0
 theme_override_font_sizes/font_size = 22
-text = "000000000"
+text = "Score: "
 label_settings = SubResource("LabelSettings_nyxhd")
 horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="EmergingElements" type="Node2D" parent="Camera2D/GUICanvas/GUI"]
-modulate = Color(1, 1, 1, 0)
-z_index = -1
-position = Vector2(150, 0)
-
-[node name="Scores" type="Label" parent="Camera2D/GUICanvas/GUI/EmergingElements"]
+[node name="NewRecord" type="Label" parent="Camera2D/GUICanvas/GUI/AfterDeathElements"]
 visible = false
-offset_left = -130.0
-offset_top = 5.0
-offset_right = 150.0
-offset_bottom = 45.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_shadow_color = Color(0.223529, 0.203922, 0.341176, 1)
-theme_override_constants/shadow_offset_x = 2
+layout_mode = 0
+offset_top = 130.0
+offset_right = 1280.0
+offset_bottom = 214.0
+scale = Vector2(1e-05, 1e-05)
+pivot_offset = Vector2(640, 42)
+theme_override_colors/font_color = Color(0.97, 0.89725, 0.485, 1)
+theme_override_colors/font_shadow_color = Color(0.811765, 0.698039, 0.0470588, 1)
+theme_override_constants/shadow_offset_x = 4
 theme_override_constants/shadow_offset_y = 0
 theme_override_constants/shadow_outline_size = 0
-theme_override_font_sizes/font_size = 22
-text = "Score: "
+theme_override_font_sizes/font_size = 66
+text = "New Record!"
 horizontal_alignment = 1
 
-[node name="NewRecordScores" type="Label" parent="Camera2D/GUICanvas/GUI/EmergingElements"]
-visible = false
-offset_left = -130.0
-offset_top = 5.0
-offset_right = 126.0
-offset_bottom = 55.0
-scale = Vector2(1.1, 1.1)
-theme_override_colors/font_color = Color(1, 1, 0, 1)
-theme_override_colors/font_shadow_color = Color(0.839216, 0.690196, 0, 1)
-theme_override_colors/font_outline_color = Color(1, 0.760784, 0, 1)
-theme_override_constants/shadow_offset_x = 2
-theme_override_constants/shadow_offset_y = 0
-theme_override_constants/outline_size = 4
-theme_override_constants/shadow_outline_size = 0
-theme_override_font_sizes/font_size = 22
-text = "New Record!
-Score: "
-horizontal_alignment = 1
-
-[node name="Shine1" type="CPUParticles2D" parent="Camera2D/GUICanvas/GUI/EmergingElements/NewRecordScores"]
-position = Vector2(127, 8)
-emitting = false
+[node name="Shine1" type="CPUParticles2D" parent="Camera2D/GUICanvas/GUI/AfterDeathElements/NewRecord"]
+position = Vector2(630, 36)
+scale = Vector2(4, 4)
 amount = 20
 lifetime = 6.0
+local_coords = true
 texture = ExtResource("10_3mkpq")
 emission_shape = 3
 emission_rect_extents = Vector2(64, 11)
@@ -316,45 +557,50 @@ gravity = Vector2(0, 0)
 initial_velocity_max = 1.0
 scale_amount_min = 0.25
 scale_amount_max = 0.25
-color = Color(1, 1, 0.501961, 0.501961)
+color = Color(0.97, 0.89725, 0.485, 0.501961)
 color_ramp = SubResource("Gradient_lmxa7")
 color_initial_ramp = SubResource("Gradient_4fxyx")
 
-[node name="Shine2" type="CPUParticles2D" parent="Camera2D/GUICanvas/GUI/EmergingElements/NewRecordScores"]
-position = Vector2(129, 33)
-emitting = false
-amount = 15
-lifetime = 6.0
-texture = ExtResource("10_3mkpq")
-emission_shape = 3
-emission_rect_extents = Vector2(55, 11)
-spread = 180.0
-gravity = Vector2(0, 0)
-initial_velocity_max = 1.0
-scale_amount_min = 0.25
-scale_amount_max = 0.25
-color = Color(1, 1, 0.501961, 0.501961)
-color_ramp = SubResource("Gradient_lmxa7")
-color_initial_ramp = SubResource("Gradient_4fxyx")
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Camera2D/GUICanvas/GUI/AfterDeathElements/NewRecord"]
+libraries = {
+"": SubResource("AnimationLibrary_oycsg")
+}
 
-[node name="Hold R" type="RichTextLabel" parent="Camera2D/GUICanvas/GUI/EmergingElements"]
-clip_contents = false
-offset_left = -150.0
-offset_top = 139.0
-offset_right = 63.0
-offset_bottom = 168.0
-scale = Vector2(1.5, 1.5)
-theme_override_colors/font_shadow_color = Color(0.223529, 0.203922, 0.341176, 1)
-theme_override_constants/shadow_offset_y = 0
-theme_override_constants/shadow_offset_x = 2
-theme_override_constants/shadow_outline_size = 0
-theme_override_font_sizes/normal_font_size = 22
-bbcode_enabled = true
-text = "[center]Hold [img]res://Content/Sprites/Interface/ControllerButtons/KeyboardButtonBigR.png[/img]"
+[node name="NewRecord" type="AudioStreamPlayer" parent="Camera2D/GUICanvas/GUI/AfterDeathElements/NewRecord"]
+stream = ExtResource("8_me3jk")
+volume_db = 8.0
+
+[node name="Buttons" type="VBoxContainer" parent="Camera2D/GUICanvas/GUI/AfterDeathElements"]
+custom_minimum_size = Vector2(272, 0)
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 272.0
+grow_vertical = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="ReturnToMenu" parent="Camera2D/GUICanvas/GUI/AfterDeathElements/Buttons" instance=ExtResource("9_vbwj1")]
+layout_mode = 2
+Text = "Return to menu"
+
+[node name="Text" parent="Camera2D/GUICanvas/GUI/AfterDeathElements/Buttons/ReturnToMenu/MarginC" index="0"]
+text = "[center]Return to menu"
+
+[node name="Resurrect" parent="Camera2D/GUICanvas/GUI/AfterDeathElements/Buttons" instance=ExtResource("9_vbwj1")]
+custom_minimum_size = Vector2(96, 128)
+layout_mode = 2
+Text = "75 [img]res://Content/Sprites/Interface/4XMiniGoldenCross.png[/img][center]Resurrect"
+
+[node name="GuiAnimations" type="AnimationPlayer" parent="Camera2D/GUICanvas/GUI"]
+libraries = {
+"": SubResource("AnimationLibrary_bpyln")
+}
 
 [node name="RestartNoise" type="AnimatedSprite2D" parent="Camera2D/GUICanvas"]
 modulate = Color(1, 1, 1, 0)
-position = Vector2(10, 90)
+position = Vector2(640, 360)
+scale = Vector2(4, 4)
 sprite_frames = SubResource("37")
 frame_progress = 0.601279
 
@@ -439,4 +685,8 @@ color_ramp = SubResource("Gradient_u843o")
 [connection signal="body_exited" from="Areas/WallDirectionLeftDetector" to="." method="WallUndetected" unbinds=1]
 [connection signal="body_entered" from="Areas/WallDirectionRightDetector" to="." method="RightWallDetect" unbinds=1]
 [connection signal="body_exited" from="Areas/WallDirectionRightDetector" to="." method="WallUndetected" unbinds=1]
+[connection signal="pressed" from="Camera2D/GUICanvas/GUI/AfterDeathElements/Buttons/ReturnToMenu" to="Camera2D/GUICanvas/GUI" method="ReturnToMenu"]
+[connection signal="pressed" from="Camera2D/GUICanvas/GUI/AfterDeathElements/Buttons/Resurrect" to="Camera2D/GUICanvas/GUI" method="BuyAResurrection"]
 [connection signal="draw" from="Camera2D/ClimbsBar" to="Camera2D/ClimbsBar/AnimationPlayer" method="play" binds= ["Disappearing"]]
+
+[editable path="Camera2D/GUICanvas/GUI/AfterDeathElements/Buttons/ReturnToMenu"]

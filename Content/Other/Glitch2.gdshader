@@ -12,7 +12,7 @@ uniform vec4 affected = vec4(0.0, 0.0, 1.0, 1.0);
 float Hash21(vec2 p) {
 	p = fract(p*vec2(123.34, 456.21));
 	p += dot(p, p+45.32);
-	
+
 	return fract(p.x*p.y);
 }
 
@@ -29,12 +29,12 @@ vec4 chroma(vec2 uv, sampler2D tex) {
 		col.r = texture(tex, vec2(uv.x + red_offset.x, uv.y + red_offset.y)).r;
 	}
 	if (abs(green_offset.x) + abs(green_offset.y) > 0.001) {
-		col.g = texture(tex, vec2(uv.x + green_offset.x, uv.y + green_offset.y)).g;	
+		col.g = texture(tex, vec2(uv.x + green_offset.x, uv.y + green_offset.y)).g;
 	}
 	if (abs(blue_offset.x) + abs(blue_offset.y) > 0.001) {
 		col.b = texture(tex, vec2(uv.x + blue_offset.x, uv.y + blue_offset.y)).b;
 	}
-	
+
 	return col;
 }
 

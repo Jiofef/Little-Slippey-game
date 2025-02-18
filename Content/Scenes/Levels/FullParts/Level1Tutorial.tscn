@@ -3314,6 +3314,12 @@ bus = &"Enviromnment"
 position = Vector2(624, 450)
 rotation = 0.174533
 EnableStandingPenalty = false
+DisableScoresLabel = true
+DisableAfterDeathScoresLabel = true
+DisableNewRecordLabel = true
+DisableReturnToMenuButton = true
+DisableResurrectButton = true
+ShowGoldenCrossesAmountAfterDeath = false
 
 [node name="Camera2D" parent="Level/Player" index="2"]
 position_smoothing_enabled = false
@@ -4266,6 +4272,7 @@ text = "
 
 [node name="PSText" type="RichTextLabel" parent="Level/TileMap6/TutorialTV/Screen" index="4"]
 visible = false
+layout_mode = 0
 offset_right = 320.0
 offset_bottom = 160.0
 scale = Vector2(0.25, 0.25)
@@ -4788,6 +4795,7 @@ visible = false
 [connection signal="animation_finished" from="Level/TutorialCanvasLayer/WhiteNoiseGlitch" to="Level/TutorialCanvasLayer/WhiteNoiseGlitch" method="set_visible" binds= [false]]
 
 [editable path="Level/Player"]
+[editable path="Level/Player/Camera2D/GUICanvas/GUI/AfterDeathElements/Buttons/ReturnToMenu"]
 [editable path="Level/TileMap/TutorialTV"]
 [editable path="Level/TileMap2/TutorialTV"]
 [editable path="Level/TileMap4/TutorialTV"]

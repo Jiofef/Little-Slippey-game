@@ -36,6 +36,9 @@ public partial class G : Node
         PlayerCorpseFlightTimer, // Starts after player dies
         AfterPlayerCorpseFlightTimer, // Starts when player death GUI starts appearing (Scores and "Press R")
         MusicStopTimeCode = 0; // It is necessary to put the music in the same position after restarting the level
+
+    public static int ResurrectionsInARow = 0; // To increase the price of resurrections after each resurrection
+
     public static bool BlockSavingSomeValues = false; // Due to bugs in the engine, if you first remove a scene and then add it to the tree again, it starts to behave strangely when deleting it. One of the cases is that music player saves timecode after all main values in G are reset. This variable is designed for such moments. It is disabled in the menu. If you use it in your own way on a level, you may need to disable it yourself.
 
     public static readonly Vector2[] LevelXYSizes =
@@ -61,6 +64,11 @@ public partial class G : Node
     {
         return 1 - GetPlayerCorpseFlightTimerCoeff();
     } 
+
+    public static int GetResurrectionCost()
+    {
+        return MinResurrectionCost + (ResurrectionsInARow * MinResurrectionCost / 3);
+    }
     public static readonly int LevelsInGameTotal = 10, CrossesInGameTotal = 5, DificultiesInGameTotal = 3;
 
     public static string LevelAdditionalLink, MusicName = "", ModMapPath, ModMapFolder, 
@@ -103,7 +111,8 @@ public partial class G : Node
 
     #region May be used to some if statements or something, but be careful if you change it. There are other, more correct ways to change them.
     public static bool IsPlayerDead, // To change correctly, call Death() or Ressurect() in player's script
-                       IsNewRecordReached; // I don't know why you even might want to change it
+                       IsNewRecordReached, // I don't know why you even might want to change it
+                       HasLevelBeenCompleted;
     #endregion
 
     ////////////////////////////
@@ -111,7 +120,7 @@ public partial class G : Node
     #region May be used however you want
     public static bool IsProgressPaused = false, // Enables or disables the earning of points and increasing the difficulty of crosses
                        IsCrossesEnabled = true, // Enables or disables the spawn of crosses
-                       IsDebugEnabled = true, // If enabled, Alt+Z enables immortality, Alt+X disables player's physics, Alt+C disables the crosses. Also Alt + scrolling up your mouse wheel gives you +5 scores for every "scroll step" (Alt + scrolling down does the opposite)
+                       IsDebugEnabled = false, // If enabled, Alt+Z enables immortality, Alt+X disables player's physics, Alt+C disables the crosses. Also Alt + scrolling up your mouse wheel gives you +5 scores for every "scroll step" (Alt + scrolling down does the opposite)
                        
                        DidLevelIntroPassed, // If the intro is missing or changed in your level, you may want to set this value yourself
                        WasTheLevelRestarted; // Essentially a continuation of the previous variable. But this one obviously has the difference that it becomes true only when the level is reloaded
@@ -122,6 +131,9 @@ public partial class G : Node
                        CrossesProgressCoeff = 1, // Default crosses evolve every 30 seconds. If this equals 2, they will do it every 15 seconds. If it's 0.5 then 60 seconds. The evolve time can also change through CrossSpawner in the editor or code
                        MusicStartPosition = 0, // When music ends, if it can restart, it starts with this position. 1 = 1 second
                        LevelCompleteTime = 150; // When this second comes, the level is passed. Can be used for different things
+
+    public const int DEFAULT_RESURRECTION_COST = 75;
+    public static int MinResurrectionCost = DEFAULT_RESURRECTION_COST;
 
 
     private static Rect2 _cameraLimits;
@@ -176,7 +188,11 @@ public partial class G : Node
         return value;
     }
 
-    public static AudioStreamPlayer PlayOneshotSound(string soundPath, Node parent, string busName = "Master", float volumeDb = 0) // Plays the sound once at the given path from res://Content/Sounds/
+    /// <summary>
+    /// Plays the sound once at the given path.
+    /// <para>The default path for loading sounds is "res://Content/Sounds/". Remove this part from the path you send. Example soundPath: : "Interface&Menu/UI.mp3"</para>
+    /// </summary>
+    public static AudioStreamPlayer PlayOneshotSound(string soundPath, Node parent, string busName = "Master", float volumeDb = 0)
     {
         const string PATH_START = "res://Content/Sounds/";
 
@@ -316,11 +332,13 @@ public partial class G : Node
     {
         //
 		IsNewRecordReached = false;
+        HasLevelBeenCompleted = false;
 
         // Consequences after death
         IsPlayerDead = false;
         PlayerCorpseFlightTimer = 0;
 		AfterPlayerCorpseFlightTimer = 0;
+        ResurrectionsInARow = 0;
 
         // Numbers? Idk
         ResetTimer = 0;
@@ -341,6 +359,8 @@ public partial class G : Node
         WasTheLevelRestarted = false;
 
         IsProgressPaused = false;
+
+        MinResurrectionCost = DEFAULT_RESURRECTION_COST;
 
         //Crosses
 		IsCrossesEnabled = true;

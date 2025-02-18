@@ -27,9 +27,11 @@ animations = [{
 "speed": 30.0
 }]
 
-[node name="HintLayer" type="CanvasLayer"]
+[node name="HintLayer" type="CanvasLayer" node_paths=PackedStringArray("AppearingTextsToSpeedUp", "SoundsToSpeedUp")]
 process_mode = 3
 script = ExtResource("1_6pbvn")
+AppearingTextsToSpeedUp = []
+SoundsToSpeedUp = []
 
 [node name="DarkBackground" type="ColorRect" parent="."]
 visible = false

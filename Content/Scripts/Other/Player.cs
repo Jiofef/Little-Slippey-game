@@ -14,14 +14,106 @@ public partial class Player : CharacterBody2D
     [Export] public float Speed = 430, Gravity = 18.6f, JumpForce = 620;
     private int _maxClimbs = 3;
     [Export] public int MaxClimbs { get { return _maxClimbs; } set { _maxClimbs = value; GetNode<TextureProgressBar>("Camera2D/ClimbsBar").MaxValue = value; } }
-    [Export] public bool EnableStandingPenalty = true, EnableRigidBodyPhysics = false;
+    private bool _enableStandingPenalty = true;
+    [Export] public bool EnableStandingPenalty {
+        get => _enableStandingPenalty; 
+
+        set
+        {_enableStandingPenalty = value;
+            GetGui().Options.DisableStandBar = !value;
+            GetGui().CallDeferred("UpdateStandingBarOptions");}}
+
+    [Export] public bool EnableRigidBodyPhysics = false;
     [Export] public float RigidBodyPushForce = 8;
 
     [ExportGroup("Secondary settings")]
     [Export] public float CoyoteTime = 0.1f, WallJumpInertion = 1.4f, InertionControl = 3.3f, DownDashSpeed = 1250, MaxFallSpeed = 1250;
 
+    [ExportGroup("GUI")]
+    #region hell no
+    [ExportSubgroup("Main GUI")]
+    [Export]
+    public bool DisableScoresLabel
+    {
+        get => GetGui().Options.DisableScoresLabel;
+        set => CallDeferred("SetDisableScoresLabel", value);
+    }
+    private void SetDisableScoresLabel(bool value)
+    {
+        GetGui().Options.DisableScoresLabel = value;
+    }
+    [ExportSubgroup("After death GUI")]
+    [Export]
+    public bool DisableAfterDeathGui
+    {
+        get => GetGui().Options.DisableAfterDeathGui;
+        set => CallDeferred("SetDisableAfterDeathGui", value);
+    }
+    private void SetDisableAfterDeathGui(bool value)
+    {
+        GetGui().Options.DisableAfterDeathGui = value;
+    }
+    [Export]
+    public bool DisableAfterDeathScoresLabel
+    {
+        get => GetGui().Options.DisableAfterDeathScoresLabel;
+        set => CallDeferred("SetDisableAfterDeathScoresLabel", value);
+    }
+    private void SetDisableAfterDeathScoresLabel(bool value)
+    {
+        GetGui().Options.DisableAfterDeathScoresLabel = value;
+    }
+    [Export]
+    public bool DisableNewRecordLabel
+    {
+        get => GetGui().Options.DisableNewRecordLabel;
+        set => CallDeferred("SetDisableNewRecordLabel", value);
+    }
+    private void SetDisableNewRecordLabel(bool value)
+    {
+        GetGui().Options.DisableNewRecordLabel = value;
+    }
+    [Export]
+    public bool DisableHoldRText
+    {
+        get => GetGui().Options.DisableHoldRText;
+        set => CallDeferred("SetDisableHoldRText", value);
+    }
+    private void SetDisableHoldRText(bool value)
+    {
+        GetGui().Options.DisableHoldRText = value;
+    }
+    [Export]
+    public bool DisableReturnToMenuButton
+    {
+        get => GetGui().Options.DisableReturnToMenuButton;
+        set => CallDeferred("SetDisableReturnToMenuButton", value);
+    }
+    private void SetDisableReturnToMenuButton(bool value)
+    {
+        GetGui().Options.DisableReturnToMenuButton = value;
+    }
+    [Export]
+    public bool DisableResurrectButton
+    {
+        get => GetGui().Options.DisableResurrectButton;
+        set => CallDeferred("SetDisableResurrectButton", value);
+    }
+    private void SetDisableResurrectButton(bool value)
+    {
+        GetGui().Options.DisableResurrectButton = value;
+    }
+    [Export]
+    public bool ShowGoldenCrossesAmountAfterDeath = true;
+
+    public void UpdateGUIOptions()
+    {
+        GetGui().UpdateAllTheOptions();
+    }
+    #endregion
+
     // The values in the camera used to be changed via this signal. Now it's just an auxiliary signal for modders.
-    [Signal] public delegate void CameraLimitsChangedEventHandler(bool doResetSmoothing, float top, float right, float bottom, float left);
+    [Signal] public delegate void CameraLimitsChangedEventHandler(bool doResetSmoothing, Rect2 limits);
 
     [Signal] public delegate void PlayerDiedEventHandler();
 
@@ -68,8 +160,9 @@ public partial class Player : CharacterBody2D
 
     private string[] _lastActions = new string[10];
 
+    // Nodes
     public Camera Camera;
-    public Control GUI;
+    public InGameGui GUI;
 
     /// <summary>
     /// Default action names: Stand, Jump, Walk, Fall, WallCatch, Climb, WallJump, DownDash
@@ -106,7 +199,7 @@ public partial class Player : CharacterBody2D
 
 
         Camera = GetNode<Camera>("Camera2D");
-        GUI = Camera.GetNode<Control>("GUICanvas/GUI");
+        GUI = GetGui();
 
         UpdateSkin();
 
@@ -117,6 +210,12 @@ public partial class Player : CharacterBody2D
         _readyAlready = true;
 
         Action("Fall");
+
+        SetDeferred("DisableScoresLabel", false);
+    }
+    public InGameGui GetGui()
+    {
+        return GetNode<InGameGui>("Camera2D/GUICanvas/GUI");
     }
 
 
@@ -147,7 +246,6 @@ public partial class Player : CharacterBody2D
 
         #region Control and physics processing
         {
-            if (Input.IsActionJustPressed("MouseLeftClick")) OtherExtension.GodotExtensions.MoveNodeTo(this, G.CameraLimits.End / 2, 10);
             Motion = Velocity;
             #region Gravitation
             if (Motion.Y < MaxFallSpeed) //Falling speed limitation
@@ -584,8 +682,6 @@ public partial class Player : CharacterBody2D
         G.IsCrossesEnabled = false;
         G.IsProgressPaused = true;
 
-        Camera.OnPlayerDead();
-
         PlaySound("Death");
         G.MusicPlayer?.Set("stream_paused", true);
         GetNode<CollisionShape2D>("FullBodyCollider").SetDeferred("disabled", true);
@@ -602,6 +698,9 @@ public partial class Player : CharacterBody2D
         }
         UnchangableMeta.SaveRecords();
         UnchangableMeta.SaveToFile();
+
+        Camera.OnPlayerDead();
+        GUI.OnPlayerDead();
 
         EmitSignal("PlayerDied");
 
@@ -624,14 +723,15 @@ public partial class Player : CharacterBody2D
 
         preDeathParams.LoadParams();
 
+
         G.IsPlayerDead = false;
         G.AfterPlayerCorpseFlightTimer = 0;
         G.PlayerCorpseFlightTimer = 0;
 
-
         GetNode<AudioStreamPlayer>("Sounds/Death").Stop();
 
         Camera.OnPlayerResurrected();
+        GUI.OnPlayerResurrected();
 
         EmitSignal("PlayerResurrected");
     }
@@ -650,7 +750,7 @@ public partial class Player : CharacterBody2D
             Camera.CallDeferred("reset_smoothing");
 
         // The values in the camera used to be changed via this signal. Now it's just an auxiliary signal for modders.
-        EmitSignal("CameraLimitsChanged", doResetSmoothing, 0, 0, 0, 0);
+        EmitSignal("CameraLimitsChanged", doResetSmoothing, value);
     }
 
     public void SetCameraPositionSmoothingSpeed (float value)

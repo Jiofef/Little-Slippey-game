@@ -123,7 +123,7 @@ M7SSINGNULL,M7SSINGNULL,М7SSINGNULL
 Corey,Corey,Кори
 Skins: ,Skins: ,Скины:
 of,of,из
-,,
+or,or,или
 ,,
 ,,
 ,,
@@ -619,16 +619,19 @@ seconds.","Просто подожди
 And where?..,And where?..,И где?..
 "Oh, I almost forgot.","Oh, I almost forgot.","А, я забыл."
 Done :),Done :),Готово :)
-[center]Hold [img]res://Content/Sprites/Interface/ControllerButtons/KeyboardButtonBigR.png[/img],[center]Hold [img]res://Content/Sprites/Interface/ControllerButtons/KeyboardButtonBigR.png[/img],[center]Зажмите [img]res://Content/Sprites/Interface/ControllerButtons/KeyboardButtonBigR.png[/img]
-[center]Hold [img]res://Content/Sprites/Interface/ControllerButtons/PSControllerBigTriangle.png[/img],[center]Hold [img]res://Content/Sprites/Interface/PSControllerBigTriangle.png[/img],[center]Зажмите [img]res://Content/Sprites/Interface/ControllerButtons/PSControllerBigTriangle.png[/img]
-[center]Hold [img]res://Content/Sprites/Interface/ControllerButtons/XControllerBigY.png[/img],[center]Hold [img]res://Content/Sprites/Interface/XControllerBigY.png[/img],[center]Зажмите [img]res://Content/Sprites/Interface/ControllerButtons/XControllerBigY.png[/img]
+HoldR Part1,[center]Hold ,[center]Зажмите 
+HoldR Part2,\r\n to restart,\r\n для рестарта
+Resurrect,Resurrect,Воскреситься
+Return to menu,Return to menu,Вернуться в меню
+A new level is open!,A new level is open!,Открыт новый уровень!
+New Record!,New Record!,Новый рекорд!
+,,
+,,
+,,
 Score: ,Score: ,Очки: 
-"New Record!
-Score: ","New Record!
-Score: ","Новый Рекорд!
-Очки: "
-GratitudeDiaryHeartXPos,106,124
-GratitudeDiaryHeartYPos,48,54
+,,
+,,
+,,
 "AHA
 
 

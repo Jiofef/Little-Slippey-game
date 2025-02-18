@@ -31,6 +31,31 @@ public partial class UnchangableMeta : Node
             G.AdditionalGuiLayer.OnGoldenCrossesRecieved(amount);
         }
     }
+    public static Action CannotBuy;
+    public static Action Bought;
+    public static bool CanBuy(int cost)
+    {
+        bool canBuy = GoldenCrossesAmount >= cost;
+
+        if (!canBuy)
+        {
+            CannotBuy();
+        }
+
+        return canBuy;
+    }
+    public static bool TryBuy(int cost)
+    {
+        bool result = CanBuy(cost);
+
+        if (result)
+        {
+            GoldenCrossesAmount -= cost;
+            Bought();
+        }
+
+        return result;
+    }
 
     public static int[][] LevelRecords =
     {
@@ -82,6 +107,7 @@ public partial class UnchangableMeta : Node
             if (G.Scores >= G.LevelCompleteTime && Meta.Instance.Gameplay.Dificulty + 1 > LevelCompleteStatus[G.CurrentLevel - 1])
             {
                 LevelCompleteStatus[G.CurrentLevel - 1] = Meta.Instance.Gameplay.Dificulty + 1;
+                G.HasLevelBeenCompleted = true;
                 Achievements.GetLevelAchievements();
             }
         }

@@ -401,6 +401,9 @@ tile_set = SubResource("TileSet_kc0ya")
 [node name="Player" parent="Level" index="3" instance=ExtResource("3")]
 position = Vector2(640, 375)
 EnableStandingPenalty = false
+DisableReturnToMenuButton = true
+DisableResurrectButton = true
+ShowGoldenCrossesAmountAfterDeath = false
 
 [node name="DecorationMap" type="TileMapLayer" parent="Level" index="4"]
 modulate = Color(0.5, 0.5, 0.5, 1)
