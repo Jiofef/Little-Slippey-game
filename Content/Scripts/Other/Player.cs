@@ -581,8 +581,15 @@ public partial class Player : CharacterBody2D
 
             if (skin.HasDeathAnimation)
             {
+                GD.Print("KAX");
                 _animationPlayer = _animatedSprite.GetNode<AnimationPlayer>("AnimationPlayer");
-                Connect("PlayerResurrected", new Callable(_animationPlayer, "stop"));
+
+                if (!IsConnected("PlayerResurrected", new Callable(_animationPlayer, "stop")))
+                {
+                    Connect("PlayerResurrected", new Callable(_animationPlayer, "stop"));
+                    PlayerResurrected += () => _animationPlayer.Play("RESET");
+                }
+
             }
         }
 

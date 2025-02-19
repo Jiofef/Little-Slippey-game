@@ -39,7 +39,7 @@ public partial class UnchangableMeta : Node
 
         if (!canBuy)
         {
-            CannotBuy();
+            CannotBuy?.Invoke();
         }
 
         return canBuy;
@@ -51,7 +51,7 @@ public partial class UnchangableMeta : Node
         if (result)
         {
             GoldenCrossesAmount -= cost;
-            Bought();
+            Bought?.Invoke();
         }
 
         return result;

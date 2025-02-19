@@ -195,9 +195,13 @@ public partial class G : Node
     public static AudioStreamPlayer PlayOneshotSound(string soundPath, Node parent, string busName = "Master", float volumeDb = 0)
     {
         const string PATH_START = "res://Content/Sounds/";
-
-        AudioStreamPlayer player = new AudioStreamPlayer();
         AudioStream stream = GD.Load<AudioStream>(PATH_START + soundPath);
+
+        return PlayOneshotSound(stream, parent, busName, volumeDb);
+    }
+    public static AudioStreamPlayer PlayOneshotSound(AudioStream stream, Node parent, string busName = "Master", float volumeDb = 0)
+    {
+        AudioStreamPlayer player = new AudioStreamPlayer();
 
         player.Stream = stream;
         player.Finished += player.QueueFree;

@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://dlscufxb5f1ca"]
+[gd_scene load_steps=46 format=3 uid="uid://dlscufxb5f1ca"]
 
 [ext_resource type="Script" path="res://Content/Scripts/Other/Player.cs" id="1"]
 [ext_resource type="AudioStream" uid="uid://422y36f6ucnf" path="res://Content/Sounds/Player/Climb.mp3" id="2_bn55d"]
@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://88vg4cfkcfl3" path="res://Content/Scenes/Interface&Menu/MenuOnlyTextButton.tscn" id="9_vbwj1"]
 [ext_resource type="Texture2D" uid="uid://nmw5orvjy6f8" path="res://Content/Sprites/Other/PlayerGhost.png" id="10"]
 [ext_resource type="Texture2D" uid="uid://t73lfqyo0ovn" path="res://Content/Sprites/Other/Shine.png" id="10_3mkpq"]
+[ext_resource type="PackedScene" uid="uid://dqx4su0c00n3v" path="res://Content/Scenes/Interface&Menu/ConfirmMenuOnlyTextButton.tscn" id="10_cmlhm"]
 [ext_resource type="AudioStream" uid="uid://dy6lncevmnf3o" path="res://Content/Sounds/Other/WhiteNoise.mp3" id="12_jom63"]
 [ext_resource type="Script" path="res://Content/Scripts/Other/Camera.cs" id="13"]
 [ext_resource type="Texture2D" uid="uid://bvogrd2bqhwmt" path="res://Content/Sprites/Other/OblivionNoise.png" id="15"]
@@ -587,10 +588,14 @@ Text = "Return to menu"
 [node name="Text" parent="Camera2D/GUICanvas/GUI/AfterDeathElements/Buttons/ReturnToMenu/MarginC" index="0"]
 text = "[center]Return to menu"
 
-[node name="Resurrect" parent="Camera2D/GUICanvas/GUI/AfterDeathElements/Buttons" instance=ExtResource("9_vbwj1")]
+[node name="Resurrect" parent="Camera2D/GUICanvas/GUI/AfterDeathElements/Buttons" instance=ExtResource("10_cmlhm")]
 custom_minimum_size = Vector2(96, 128)
 layout_mode = 2
+ConfirmationText = "75 [img]res://Content/Sprites/Interface/4XMiniGoldenCross.png[/img][center]Click again to purchase"
 Text = "75 [img]res://Content/Sprites/Interface/4XMiniGoldenCross.png[/img][center]Resurrect"
+EnableBuying = true
+BuyingPrice = 75
+DisableWhenBought = true
 
 [node name="GuiAnimations" type="AnimationPlayer" parent="Camera2D/GUICanvas/GUI"]
 libraries = {
@@ -686,7 +691,7 @@ color_ramp = SubResource("Gradient_u843o")
 [connection signal="body_entered" from="Areas/WallDirectionRightDetector" to="." method="RightWallDetect" unbinds=1]
 [connection signal="body_exited" from="Areas/WallDirectionRightDetector" to="." method="WallUndetected" unbinds=1]
 [connection signal="pressed" from="Camera2D/GUICanvas/GUI/AfterDeathElements/Buttons/ReturnToMenu" to="Camera2D/GUICanvas/GUI" method="ReturnToMenu"]
-[connection signal="pressed" from="Camera2D/GUICanvas/GUI/AfterDeathElements/Buttons/Resurrect" to="Camera2D/GUICanvas/GUI" method="BuyAResurrection"]
+[connection signal="OnBought" from="Camera2D/GUICanvas/GUI/AfterDeathElements/Buttons/Resurrect" to="Camera2D/GUICanvas/GUI" method="BuyAResurrection"]
 [connection signal="draw" from="Camera2D/ClimbsBar" to="Camera2D/ClimbsBar/AnimationPlayer" method="play" binds= ["Disappearing"]]
 
 [editable path="Camera2D/GUICanvas/GUI/AfterDeathElements/Buttons/ReturnToMenu"]

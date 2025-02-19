@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://dqx4su0c00n3v"]
+
+[ext_resource type="PackedScene" uid="uid://88vg4cfkcfl3" path="res://Content/Scenes/Interface&Menu/MenuOnlyTextButton.tscn" id="1_kk4hm"]
+[ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/ConfirmMenuOnlyTextButton.cs" id="2_1ekh7"]
+
+[node name="Button" instance=ExtResource("1_kk4hm")]
+script = ExtResource("2_1ekh7")
+ConfirmationText = "Press again to confirm"
+DeclineConfirmationWhenUnfocused = true

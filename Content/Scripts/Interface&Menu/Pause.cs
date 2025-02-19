@@ -185,7 +185,7 @@ public partial class Pause : CanvasLayer
     {
         if (what == MainLoop.NotificationApplicationFocusOut && !GetTree().Paused)
         {
-            SetPause(false);
+            SetPause(true);
         }
     }
 }

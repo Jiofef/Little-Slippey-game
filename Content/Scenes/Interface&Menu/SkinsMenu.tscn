@@ -701,6 +701,9 @@ NeededAchievementKey = "Level8Hard"
 SkinPrice = 175
 
 [node name="SkinName" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button10" index="0"]
+offset_right = 292.0
+offset_bottom = 204.0
+scale = Vector2(0.6, 0.6)
 text = "???"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button10" index="1"]
@@ -726,6 +729,9 @@ NeededAchievementKey = "Level9Hard"
 SkinPrice = 273
 
 [node name="SkinName" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button11" index="0"]
+offset_right = 292.0
+offset_bottom = 204.0
+scale = Vector2(0.6, 0.6)
 text = "???"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button11" index="1"]
@@ -736,7 +742,6 @@ sprite_frames = SubResource("SpriteFrames_fcnt3")
 
 [node name="JioYobaFefski" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button11/AnimatedSprite2D" index="0" instance=ExtResource("17_2vjuo")]
 scale = Vector2(0.18, 0.18)
-frame_progress = 0.0520097
 script = null
 
 [node name="SkinPrice" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button11" index="2"]

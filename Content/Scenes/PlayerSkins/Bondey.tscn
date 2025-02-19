@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://bb1mgrg3u3fjx"]
+[gd_scene load_steps=27 format=3 uid="uid://bb1mgrg3u3fjx"]
 
 [ext_resource type="Texture2D" uid="uid://bbo5rgyrh6rwk" path="res://Content/Sprites/PlayerSkins/Bondey.png" id="2_lm8m3"]
 [ext_resource type="Script" path="res://Content/Scripts/Other/SkinScript.cs" id="3_q8sv5"]
@@ -187,9 +187,25 @@ tracks/0/keys = {
 "values": [true]
 }
 
+[sub_resource type="Animation" id="Animation_0olau"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CPUParticles2D:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_wcnf8"]
 _data = {
-"Death": SubResource("Animation_xlbkx")
+"Death": SubResource("Animation_xlbkx"),
+"RESET": SubResource("Animation_0olau")
 }
 
 [node name="Bondey" type="AnimatedSprite2D"]

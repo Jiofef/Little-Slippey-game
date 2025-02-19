@@ -11,7 +11,7 @@ public partial class SkinButton : EnhancedButton
     [Signal] public delegate void TryingToBuySkinEventHandler();
     // Properties
     private string _skinName = "Skin";
-    [Export] public string SkinName 
+    [Export(PropertyHint.MultilineText)] public string SkinName 
     {
         get => _skinName;
         set

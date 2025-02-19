@@ -9,6 +9,7 @@ public partial class MenuOnlyTextButton : EnhancedButton
         return GetNode<RichTextLabel>("MarginC/Text");
     }
 
+    protected const string PREFIX = "[center]";
     private string _text = "Text";
     [Export(PropertyHint.MultilineText)] public string Text
     {
@@ -20,7 +21,15 @@ public partial class MenuOnlyTextButton : EnhancedButton
     }
     public void UpdateText()
     {
-        GetLabel().Text = "[center]" + Tr(_text);
+        SetLabelText(_text);
+    }
+
+    /// <summary>
+    /// Sets the text without changing the text property (calling UpdateText will return the old text)
+    /// </summary>
+    public void SetLabelText(string text)
+    {
+        GetLabel().Text = PREFIX + Tr(text);
     }
 
 
@@ -42,19 +51,19 @@ public partial class MenuOnlyTextButton : EnhancedButton
 
 
 
-    private Color _fontColor = new Color("323232");
-    [Export]
-    public Color FontColor
-    {
-        get => _fontColor;
-        set
-        {
-            _fontColor = value;
-            CallDeferred("UpdateFontColor");
-        }
-    }
-    public void UpdateFontColor()
-    {
-        GetLabel().AddThemeColorOverride("font_color", _fontColor);
-    }
+    //private Color _fontColor = new Color("323232");
+    //[Export]
+    //public Color FontColor
+    //{
+    //    get => _fontColor;
+    //    set
+    //    {
+    //        _fontColor = value;
+    //        CallDeferred("UpdateFontColor");
+    //    }
+    //}
+    //public void UpdateFontColor()
+    //{
+    //    GetLabel().AddThemeColorOverride("font_color", _fontColor);
+    //}
 }

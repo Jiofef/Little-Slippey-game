@@ -33,4 +33,38 @@ public partial class EnhancedButton : TextureButton
 		float Brightness = ButtonPressed ? 0.5f : 1;
 		Modulate = new Color(Brightness, Brightness, Brightness);
 	}
+
+	#region Buy segment
+	[ExportGroup("Buying functions")]
+	[Export] public bool EnableBuying = false;
+	[Export] public int BuyingPrice = 0;
+	[Export] public bool DisableWhenBought = false;
+	[ExportSubgroup("Buying sound")]
+	[Export] public AudioStream BuyingSound = null;
+	[Export] public float BuyingSoundVolumeDB = 0;
+	[Export] public string BuyingSoundBus = "Interface";
+	[Signal] public delegate void OnBoughtEventHandler();
+	public static Action AOnBought;
+
+    public override void _Pressed()
+    {
+		if (EnableBuying)
+			TryBuy();
+    }
+
+    public void TryBuy()
+	{
+		if (UnchangableMeta.TryBuy(BuyingPrice))
+		{
+			EmitSignal("OnBought");
+			AOnBought?.Invoke();
+
+			if (BuyingSound != null)
+				G.PlayOneshotSound(BuyingSound, GetTree().Root, BuyingSoundBus, BuyingSoundVolumeDB);
+
+			if (DisableWhenBought)
+				Disabled = true;
+		}
+	}
+    #endregion
 }

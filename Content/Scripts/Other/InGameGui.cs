@@ -14,7 +14,7 @@ public partial class InGameGui : Control
     public Label NewRecordLabel;
     public RichTextLabel HoldRText;
     public MenuOnlyTextButton ReturnToMenuButton;
-    public MenuOnlyTextButton ResurrectButton;
+    public ConfirmMenuOnlyTextButton ResurrectButton;
 
     public class GuiOptions
     {
@@ -40,7 +40,7 @@ public partial class InGameGui : Control
         NewRecordLabel = GetNode<Label>("AfterDeathElements/NewRecord");
         HoldRText = GetNode<RichTextLabel>("AfterDeathElements/HoldR");
         ReturnToMenuButton = GetNode<MenuOnlyTextButton>("AfterDeathElements/Buttons/ReturnToMenu");
-        ResurrectButton = GetNode<MenuOnlyTextButton>("AfterDeathElements/Buttons/Resurrect");
+        ResurrectButton = GetNode<ConfirmMenuOnlyTextButton>("AfterDeathElements/Buttons/Resurrect");
 
         UpdateAllTheOptions();
     }
@@ -85,6 +85,8 @@ public partial class InGameGui : Control
             NewRecordLabel.GetNode<AnimationPlayer>("AnimationPlayer").Play("Appearing");
         }
 
+        ResurrectButton.Disabled = false;
+
 
         UpdateAfterDeathGuiOptions(true);
 
@@ -92,7 +94,6 @@ public partial class InGameGui : Control
         animationPlayer.Play("OnDeath");
 
         if (G.Player.DisableAfterDeathGui) return;
-
     }
 
     public void OnPlayerResurrected()
@@ -138,7 +139,10 @@ public partial class InGameGui : Control
         }
 
         // Resurrection
-        ResurrectButton.Text = G.GetResurrectionCost().ToString() + " [img]res://Content/Sprites/Interface/4XMiniGoldenCross.png[/img]\r\n[center]" + Tr("Resurrect");
+        int cost = G.GetResurrectionCost();
+        ResurrectButton.Text = cost.ToString() + " [img]res://Content/Sprites/Interface/4XMiniGoldenCross.png[/img]\r\n[center]" + Tr("Resurrect");
+        ResurrectButton.ConfirmationText = cost.ToString() + " [img]res://Content/Sprites/Interface/4XMiniGoldenCross.png[/img]\r\n[center]" + Tr("Click again to purchase");
+        ResurrectButton.BuyingPrice = cost;
     }
 
     public void FocusAfterDeathButton()
@@ -156,16 +160,9 @@ public partial class InGameGui : Control
 
     public void BuyAResurrection()
     {
-        BuyAResurrectionConfirm();
-    }
-    public void BuyAResurrectionConfirm()
-    {
-        if (UnchangableMeta.TryBuy(G.GetResurrectionCost()))
-        {
-            G.ResurrectionsInARow++;
+        G.ResurrectionsInARow++;
 
-            G.Player.Resurrect();
-        }
+        G.Player.Resurrect();
     }
 
     public void ReturnToMenu()

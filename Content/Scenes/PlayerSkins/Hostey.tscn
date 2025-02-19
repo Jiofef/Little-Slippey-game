@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://ctfxv22vhkyya"]
+[gd_scene load_steps=35 format=3 uid="uid://ctfxv22vhkyya"]
 
 [ext_resource type="Texture2D" uid="uid://daeeo1lq7usi6" path="res://Content/Sprites/PlayerSkins/Hostey.png" id="1_t7ymd"]
 [ext_resource type="Script" path="res://Content/Scripts/Other/SkinScript.cs" id="2_1qpmb"]
@@ -305,9 +305,49 @@ tracks/5/keys = {
 "values": [true]
 }
 
+[sub_resource type="Animation" id="Animation_qnbcs"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Idle"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(4, 4)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0jro5"]
 _data = {
-"Death": SubResource("Animation_35v3i")
+"Death": SubResource("Animation_35v3i"),
+"RESET": SubResource("Animation_qnbcs")
 }
 
 [sub_resource type="Gradient" id="Gradient_6ppe5"]

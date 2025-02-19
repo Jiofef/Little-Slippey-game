@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://cx7c3g50pyio4"]
+[gd_scene load_steps=30 format=3 uid="uid://cx7c3g50pyio4"]
 
 [ext_resource type="Texture2D" uid="uid://vjcab56ymxqr" path="res://Content/Sprites/PlayerSkins/Pineplum.png" id="1_2n4ri"]
 [ext_resource type="Script" path="res://Content/Scripts/Other/SkinScript.cs" id="2_bom76"]
@@ -213,9 +213,25 @@ tracks/0/keys = {
 "values": [true]
 }
 
+[sub_resource type="Animation" id="Animation_1tl8e"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BrokenGlass:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_lejrn"]
 _data = {
-"Death": SubResource("Animation_rnhil")
+"Death": SubResource("Animation_rnhil"),
+"RESET": SubResource("Animation_1tl8e")
 }
 
 [node name="Pineplum" type="AnimatedSprite2D"]

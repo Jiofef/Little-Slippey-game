@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://b3m6nctk376qm"]
+[gd_scene load_steps=36 format=3 uid="uid://b3m6nctk376qm"]
 
 [ext_resource type="Texture2D" uid="uid://ddbl3u1r26kie" path="res://Content/Sprites/PlayerSkins/SlippeyChad.png" id="1_ae76r"]
 [ext_resource type="Script" path="res://Content/Scripts/Other/SkinScript.cs" id="2_xusc5"]
@@ -284,15 +284,55 @@ tracks/2/keys = {
 "values": [Vector2(0, 0), Vector2(0, 0), Vector2(0, -128), Vector2(0, 256)]
 }
 
+[sub_resource type="Animation" id="Animation_cwgr7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1.7411),
+"update": 1,
+"values": [&"Idle"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_r5na4"]
 _data = {
-"Death": SubResource("Animation_xkhnr")
+"Death": SubResource("Animation_xkhnr"),
+"RESET": SubResource("Animation_cwgr7")
 }
 
 [node name="SlippeyChad" type="AnimatedSprite2D"]
 scale = Vector2(0.3, 0.3)
 sprite_frames = SubResource("SpriteFrames_b58yy")
-animation = &"Death"
+animation = &"Idle"
 autoplay = "Idle"
 script = ExtResource("2_xusc5")
 HasDeathAnimation = true
