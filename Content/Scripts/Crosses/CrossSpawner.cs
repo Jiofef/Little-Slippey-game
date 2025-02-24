@@ -14,7 +14,8 @@ public partial class CrossSpawner : Node2D
 
     public override void _Ready()
 	{
-
+        if (G.Player != null)
+            G.Player.PlayerResurrected += OnPlayerResurrected;
 	}
 
 
@@ -31,5 +32,12 @@ public partial class CrossSpawner : Node2D
                 Cross.AddToGroup("Crosses");
             }
         }
+    }
+
+    // Removing crosses after resurrection so that there is no instant death
+    public void OnPlayerResurrected()
+    {
+        foreach (Node cross in GetTree().GetNodesInGroup("Crosses"))
+            cross.QueueFree();
     }
 }

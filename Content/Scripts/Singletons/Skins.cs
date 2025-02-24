@@ -27,6 +27,16 @@ public partial class Skins : Node
         return VanillaSkinNames.Length + ModSkinNames.Length;
     }
 
+    public static void SetSkin(string key)
+    {
+        Meta.Instance.Gameplay.ChosenSkinKey = key;
+        Meta.Instance.SaveToFile();
+    }
+    public static void SetDefaultSkin()
+    {
+        SetSkin(VanillaSkinNames[0]);
+    }
+
     // Mod skins
     public static string[] ModSkinNames = [];
 }

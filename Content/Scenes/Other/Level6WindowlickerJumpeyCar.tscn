@@ -1,0 +1,45 @@
+[gd_scene load_steps=7 format=3 uid="uid://s1n2sd5u3dmn"]
+
+[ext_resource type="PackedScene" uid="uid://cyxwargnw8p37" path="res://Content/Scenes/Other/Level6JumpeyCar.tscn" id="1_qb50l"]
+[ext_resource type="Texture2D" uid="uid://274fb545klg0" path="res://Content/Sprites/Levels/Level6/WindowlickerJumpey.png" id="2_gcof7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7gh42"]
+size = Vector2(320, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dualu"]
+size = Vector2(304, 52)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_44nq3"]
+size = Vector2(296, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_61nq3"]
+size = Vector2(304, 6)
+
+[node name="Level6FlyingCar" instance=ExtResource("1_qb50l")]
+
+[node name="CollisionShape2D" parent="PathFollow2D/Car" index="0"]
+shape = SubResource("RectangleShape2D_7gh42")
+
+[node name="CollisionShape2D" parent="PathFollow2D/Car/CarArea" index="0"]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_dualu")
+
+[node name="CollisionShape2D" parent="PathFollow2D/Car/AdditionalExplosiveArea" index="0"]
+shape = SubResource("RectangleShape2D_44nq3")
+
+[node name="BackHalf" parent="PathFollow2D/Car/Model" index="0"]
+position = Vector2(-80, 0)
+texture = ExtResource("2_gcof7")
+region_rect = Rect2(0, 0, 40, 16)
+
+[node name="FrontHalf" parent="PathFollow2D/Car/Model" index="1"]
+position = Vector2(80, 0)
+texture = ExtResource("2_gcof7")
+region_rect = Rect2(40, 0, 40, 16)
+
+[node name="CarDetector" parent="PathFollow2D/Car" index="7"]
+position = Vector2(292, 0)
+
+[node name="CollisionShape2D" parent="PathFollow2D/Car/TrampolineArea" index="0"]
+position = Vector2(-4, -3)
+shape = SubResource("RectangleShape2D_61nq3")

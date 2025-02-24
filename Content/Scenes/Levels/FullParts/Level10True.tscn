@@ -965,6 +965,7 @@ visible = false
 modulate = Color(1, 1, 1, 0)
 offset_right = 1280.0
 offset_bottom = 720.0
+mouse_filter = 2
 metadata/_edit_lock_ = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Level/CanvasLayer/ColorRect"]
@@ -1032,6 +1033,7 @@ offset_left = -96.0
 offset_top = -60.0
 offset_right = 96.0
 offset_bottom = 452.0
+mouse_filter = 2
 
 [node name="ManipulatorCord" type="Sprite2D" parent="Level/PositionCrutch/DroneCapsule/Control"]
 position = Vector2(96, -78)
@@ -1099,10 +1101,6 @@ libraries = {
 "": SubResource("AnimationLibrary_urued")
 }
 
-[node name="Timer" type="Timer" parent="Level/PositionCrutch/DroneCapsule"]
-wait_time = 4.5
-one_shot = true
-
 [node name="ManipulatorSound" type="AudioStreamPlayer" parent="Level/PositionCrutch/DroneCapsule"]
 stream = ExtResource("16_mt6pq")
 
@@ -1118,8 +1116,7 @@ script = ExtResource("20_ervhf")
 [connection signal="finished" from="Level/ScientistNode/Megaphone" to="Level/ScientistNode" method="PhraseFinished" flags=3]
 [connection signal="TextAppearing" from="Level/ScientistNode/CanvasLayer/Subtitles" to="Level/ScientistNode/CanvasLayer/SubtitlesRect/AnimationPlayer" method="play" binds= ["Appearing"]]
 [connection signal="TextClearing" from="Level/ScientistNode/CanvasLayer/Subtitles" to="Level/ScientistNode/CanvasLayer/SubtitlesRect/AnimationPlayer" method="play" binds= ["Disappearing"]]
-[connection signal="area_entered" from="Level/Player/Areas/PlayerDamageDetector" to="Level/PositionCrutch/DroneCapsule/Timer" method="start" flags=6 unbinds=1]
 [connection signal="animation_finished" from="Level/CanvasLayer/WhiteNoiseGlitch" to="Level/CanvasLayer/WhiteNoiseGlitch" method="set_visible" binds= [false]]
-[connection signal="timeout" from="Level/PositionCrutch/DroneCapsule/Timer" to="Level/PositionCrutch/DroneCapsule" method="Departure"]
 
 [editable path="Level/Player"]
+[editable path="Level/Player/Camera2D/GUICanvas/GUI/AfterDeathElements/Buttons/ReturnToMenu"]

@@ -35,6 +35,7 @@ FileSystemExtension="*res://Content/Scripts/Singletons/FileSystemExtension.cs"
 G="*res://Content/Scripts/Singletons/G.cs"
 Skins="*res://Content/Scripts/Singletons/Skins.cs"
 Crosses="*res://Content/Scripts/Singletons/Crosses.cs"
+Resources="*res://Content/Scripts/Singletons/Resources.cs"
 
 [display]
 

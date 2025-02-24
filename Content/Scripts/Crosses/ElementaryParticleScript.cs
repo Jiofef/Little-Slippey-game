@@ -116,6 +116,8 @@ public partial class ElementaryParticleScript : Node2D
     {
         _state = StateEnum.Collected;
 
+        EmitSignal(nameof(OnAnihilated));
+
         var animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
         animationPlayer.Stop(true); // If you don't save the state, the next animation fails.
         animationPlayer.Play("OnCollected");

@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text.Json.Serialization;
@@ -220,9 +221,21 @@ namespace OtherExtension
             return min + _random.NextDouble() * (max - min);
         }
 
-        public static T RandomIn<T>(T max) where T : IComparable, IComparable<T>, IConvertible, IEquatable<T>, IFormattable
+        public static int RandomIn(int range)
         {
-            return RandomIn(max);
+            return _random.Next(range);
+        }
+        public static long RandomIn(long range)
+        {
+            return _random.NextInt64(range);
+        }
+        public static float RandomIn(float range)
+        {
+            return _random.NextSingle() * range;
+        }
+        public static double RandomIn(double range)
+        {
+            return _random.NextDouble() * range;
         }
 
         /// <summary>
@@ -242,6 +255,24 @@ namespace OtherExtension
             }
 
             return array[_random.Next(array.Length)];
+        }
+
+        public static T PickRandomByWeight<T>(IReadOnlyList<T> items, IReadOnlyList<float> weights)
+        {
+            if (items == null || weights == null || items.Count != weights.Count || items.Count == 0)
+                throw new ArgumentException("Items and weights must have the same non-zero length.");
+
+            float totalWeight = weights.Sum();
+            float randomValue = (float)(_random.NextDouble() * totalWeight);
+
+            for (int i = 0; i < items.Count; i++)
+            {
+                if (randomValue < weights[i])
+                    return items[i];
+                randomValue -= weights[i];
+            }
+
+            return items[^1];
         }
     }
     /// <summary>
@@ -422,6 +453,57 @@ namespace OtherExtension
         {
             return num >= lower && num <= upper;
         }
+        public static bool IsInRange(float num, Vector2 range)
+        {
+            return num >= range[0] && num <= range[1];
+        }
+
+        public static float ClosenessToBorders(float value, float min, float max, float rangeMin = 0, float rangeMax = 0)
+        {
+            float result = 0;
+
+            if (rangeMin != 0 && value < min + rangeMin)
+            {
+                result = ClosenessToFloor(value, min, rangeMin);
+            }
+            else if (rangeMax != 0 && value > max - rangeMax)
+            {
+                result = ClosenessToCeil(value, max, rangeMax);   
+            }
+
+            return result;
+        }
+
+        public static float ClosenessTo(float value1, float value2, float range)
+        {
+            if (range == 0) return 0;
+
+            return Mathf.Max(0, 1 - Mathf.Abs((value1 - value2) / range));
+        }
+
+        public static float ClosenessToCeil(float value, float ceil, float range)
+        {
+            if (range == 0) return value > ceil ? 1 : 0;
+
+            if (value < ceil)
+                return Mathf.Max(0, 1 - Mathf.Abs((ceil - value) / range));
+            else return 1;
+        }
+
+        public static float ClosenessToFloor(float value, float floor, float range)
+        {
+            if (range == 0) return floor > value ? 1 : 0;
+
+            if (floor < value)
+                return Mathf.Max(0, 1 - Mathf.Abs((floor - value) / range));
+            else return 1;
+        }
+
+
+        public static float Difference(float value1, float value2)
+        {
+            return Math.Abs(value1 - value2);
+        }
     }
 
     public static class DicTools
@@ -505,7 +587,19 @@ namespace OtherExtension
 
     public static class FastInstanceCreator
     {
+
         public const string DEFAULT_RES_SCENES_PATH = "res://Content/Scenes/";
+        /// <summary>
+        /// The paths starts from "res://Content/Scenes/"
+        /// </summary>
+        public static PackedScene LoadPackedResScene(string path)
+        {
+            return GD.Load<PackedScene>(DEFAULT_RES_SCENES_PATH + path);
+        }
+        public static PackedScene LoadPackedScene(string path)
+        {
+            return GD.Load<PackedScene>(path);
+        }
         /// <summary>
         /// The paths starts from "res://Content/Scenes/"
         /// </summary>
@@ -517,6 +611,7 @@ namespace OtherExtension
         {
             return LoadScene(DEFAULT_RES_SCENES_PATH + path);
         }
+
 
         public static T LoadScene<T>(string path) where T : Node
         {
@@ -701,6 +796,29 @@ namespace OtherExtension
             }
 
             StackOverflow(treeRoot);
+        }
+
+        /// <summary>
+        /// Returns the ancestor of the represented type, if it exists. If not, returns null
+        /// </summary>
+        public static T FindParent<T>(Node node) where T : class
+        {
+            while (node != null)
+            {
+                if (node is T result)
+                {
+                    return result;
+                }
+
+                node = node.GetParent();
+            }
+
+            return default(T);
+        }
+
+        public static async Task WaitForFrame()
+        {
+            await G.Inst.ToSignal(G.Inst.GetTree(), "process_frame");
         }
     }
 

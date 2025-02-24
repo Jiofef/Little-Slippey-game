@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://c6ftcglw1vb5r"]
+
+[ext_resource type="PackedScene" uid="uid://dct3ltljwt56o" path="res://Content/Scenes/Other/Level6DefaultCar.tscn" id="1_6dnup"]
+[ext_resource type="Texture2D" uid="uid://cfd12k20thitc" path="res://Content/Sprites/Levels/Level6/Windowlicker.png" id="2_kl8pu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7gh42"]
+size = Vector2(320, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dualu"]
+size = Vector2(304, 56)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pw8kg"]
+size = Vector2(290, 16)
+
+[node name="WindowlickerCar" instance=ExtResource("1_6dnup")]
+_minSpeed = 3.0
+_maxSpeed = 5.0
+
+[node name="CollisionShape2D" parent="PathFollow2D/Car" index="0"]
+shape = SubResource("RectangleShape2D_7gh42")
+
+[node name="CollisionShape2D" parent="PathFollow2D/Car/CarArea" index="0"]
+shape = SubResource("RectangleShape2D_dualu")
+
+[node name="CollisionShape2D" parent="PathFollow2D/Car/AdditionalExplosiveArea" index="0"]
+position = Vector2(0, 40)
+shape = SubResource("RectangleShape2D_pw8kg")
+
+[node name="BackHalf" parent="PathFollow2D/Car/Model" index="0"]
+position = Vector2(-80, 0)
+texture = ExtResource("2_kl8pu")
+region_rect = Rect2(0, 0, 40, 16)
+
+[node name="FrontHalf" parent="PathFollow2D/Car/Model" index="1"]
+position = Vector2(80, 0)
+texture = ExtResource("2_kl8pu")
+region_rect = Rect2(40, 0, 40, 16)
+
+[node name="CarDetector" parent="PathFollow2D/Car" index="7"]
+position = Vector2(292, 0)

@@ -1,4 +1,5 @@
 using Godot;
+using static OtherExtension.FastInstanceCreator;
 
 public partial class LevelsMenu : Control
 {
@@ -100,6 +101,12 @@ public partial class LevelsMenu : Control
             return;
         }
 
+        if (value == 10 && Meta.Instance.Gameplay.ChosenSkinKey != "Slippey" && !_hasThereBeenLevel10Confirmation)
+        {
+            Level10Confirmation();
+            return;
+        }
+
         G.LevelAdditionalLink = additionalLevelLink;
         G.CurrentLevel = value;
         GetNode<AnimationPlayer>("Camera2D/AnimationPlayer").Play("OpenLevel");
@@ -178,5 +185,17 @@ public partial class LevelsMenu : Control
     {
         for (int i = 0; i < _dificultiesNames.Length; i ++)
             GetNode<Label>("Visual/" + _dificultiesNames[i] + "BestResult").Visible = Meta.Instance.Gameplay.Dificulty == i;
+    }
+
+    private bool _hasThereBeenLevel10Confirmation = false;
+    private void Level10Confirmation()
+    {
+        _hasThereBeenLevel10Confirmation = true;
+
+        var confirmationWindow = LoadResScene<ConfirmationWindow>("Interface&Menu/RareScenes/Level10StandardSkinWarning.tscn");
+        confirmationWindow.Accepted += Skins.SetDefaultSkin;
+        confirmationWindow.ZIndex = 1;
+
+        AddChild(confirmationWindow);
     }
 }

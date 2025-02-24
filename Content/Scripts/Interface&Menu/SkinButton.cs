@@ -176,8 +176,7 @@ public partial class SkinButton : EnhancedButton
 
     public void SetSkin()
     {
-        Meta.Instance.Gameplay.ChosenSkinKey = SkinKey;
-        Meta.Instance.SaveToFile();
+        Skins.SetSkin(SkinKey);
     }
     #endregion
 }

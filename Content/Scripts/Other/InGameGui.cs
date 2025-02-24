@@ -77,6 +77,8 @@ public partial class InGameGui : Control
         Options.DisableStandBar = true;
         UpdateStandingBarOptions();
 
+        if (G.Player.DisableAfterDeathGui) return;
+
         Input.MouseMode = Input.MouseModeEnum.Visible;
         G.AdditionalGuiLayer.AlwaysShowGoldenCrossesAmount = G.Player.ShowGoldenCrossesAmountAfterDeath;
 
@@ -92,8 +94,6 @@ public partial class InGameGui : Control
 
         var animationPlayer = GetNode<AnimationPlayer>("GuiAnimations");
         animationPlayer.Play("OnDeath");
-
-        if (G.Player.DisableAfterDeathGui) return;
     }
 
     public void OnPlayerResurrected()
@@ -101,6 +101,7 @@ public partial class InGameGui : Control
         Options.DisableScoresLabel = false;
         UpdateScoresOptions();
 
+        Options.DisableStandBar = !G.Player.EnableStandingPenalty;
         UpdateStandingBarOptions();
 
         Input.MouseMode = Input.MouseModeEnum.Hidden;

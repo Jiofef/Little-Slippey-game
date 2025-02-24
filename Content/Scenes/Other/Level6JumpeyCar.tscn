@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://cyxwargnw8p37"]
+
+[ext_resource type="PackedScene" uid="uid://dct3ltljwt56o" path="res://Content/Scenes/Other/Level6DefaultCar.tscn" id="1_pq0qk"]
+[ext_resource type="Texture2D" uid="uid://c4y7aabki7stn" path="res://Content/Sprites/Levels/Level6/Jumpey.png" id="2_prj7f"]
+[ext_resource type="AudioStream" uid="uid://bxk7stxyehfnj" path="res://Content/Sounds/Levels/Level6Trampoline.mp3" id="3_cm5yq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rtjbx"]
+size = Vector2(112, 6)
+
+[node name="Level6FlyingCar" instance=ExtResource("1_pq0qk")]
+
+[node name="BackHalf" parent="PathFollow2D/Car/Model" index="0"]
+texture = ExtResource("2_prj7f")
+
+[node name="FrontHalf" parent="PathFollow2D/Car/Model" index="1"]
+texture = ExtResource("2_prj7f")
+
+[node name="TrampolineArea" type="Area2D" parent="PathFollow2D/Car" index="8"]
+position = Vector2(0, -32)
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PathFollow2D/Car/TrampolineArea" index="0"]
+position = Vector2(-2, -3)
+shape = SubResource("RectangleShape2D_rtjbx")
+
+[node name="TrampolineSound" type="AudioStreamPlayer" parent="PathFollow2D/Car" index="9"]
+stream = ExtResource("3_cm5yq")
+volume_db = 4.0
+bus = &"Enviromnment"
+
+[connection signal="body_entered" from="PathFollow2D/Car/TrampolineArea" to="." method="TossTheCharacter"]

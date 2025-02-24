@@ -265,20 +265,7 @@ public partial class Crosses : Node
     {
         if (EnableGoldenCrossSpawning && _random.Next(GoldenCrossSpawnRarity) == 0) return CurrentGoldenCross;
 
-
-        int SelectedCrossNumber;
-        float RandomNumber = _random.NextSingle() * _defaultCrossesWeight.Sum();
-        for (int i = 0; ; i++)
-        {
-            if (RandomNumber < _defaultCrossesWeight[i])
-            {
-                SelectedCrossNumber = i;
-                break;
-            }
-            else RandomNumber -= _defaultCrossesWeight[i];
-        }
-
-        return GetCross(SelectedCrossNumber);
+        return PickRandomByWeight(CurrentCrossesPack, _defaultCrossesWeight);
     }
 
     // Local values
@@ -337,7 +324,7 @@ public partial class Crosses : Node
         _currentCrossWeightTimer += Scores - _lastWeightUpdateScore;
         _lastWeightUpdateScore = Scores;
 
-        float weightCapTime = CurrentCrossesPack[LastAviableCrossNumber].MaxWeightGainTime;
+        float weightCapTime = CurrentCrossesPack[LastAviableCrossNumber].MaxWeightGainTime / CrossesProgressCoeff;
 
         if (_currentCrossWeightTimer < weightCapTime)
         {
@@ -367,18 +354,7 @@ public partial class Crosses : Node
 
         if (EnableGoldenCrossSpawning && (KeepGoldenCrossSpawningWhenProgressProgress || !IsProgressPaused) && _random.Next(GoldenCrossSpawnRarity) == 0) return CurrentGoldenCross;
 
-        int SelectedCrossNumber;
-        float RandomNumber = _random.NextSingle() * CrossesWeight.Sum();
-        for (int i = 0; ; i++)
-        {
-            if (RandomNumber < _defaultCrossesWeight[i])
-            {
-                SelectedCrossNumber = i;
-                break;
-            }
-            else RandomNumber -= _defaultCrossesWeight[i];
-        }
-        return GetCross(SelectedCrossNumber);
+        return PickRandomByWeight(CurrentCrossesPack, CrossesWeight);
     }
 
     public static void ResetLocalValues()

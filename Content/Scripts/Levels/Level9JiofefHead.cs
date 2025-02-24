@@ -8,7 +8,6 @@ public partial class Level9JiofefHead : Node2D
 	[Signal] public delegate void HeadDeadEventHandler();
 	AnimationPlayer _animationPlayer;
 	AnimatedSprite2D _animatedSprite2D;
-	CharacterBody2D _player;
 	PackedScene _spitCross, _vomitCross, _jiofefEye;
 
 	Vector2 _dashDirection, _spiderMovingDirection, _bullDashDirection, _moveDirection;
@@ -26,7 +25,6 @@ public partial class Level9JiofefHead : Node2D
 
 		_animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
 		_animatedSprite2D = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
-        _player = GetNode<CharacterBody2D>("../Player");
         _spitCross = ResourceLoader.Load<PackedScene>("res://Content/Scenes/Other/Level9SpitCross.tscn");
         _vomitCross = ResourceLoader.Load<PackedScene>("res://Content/Scenes/Other/Level9VomitCross.tscn");
 		_jiofefEye = ResourceLoader.Load<PackedScene>("res://Content/Scenes/Other/Level9JiofefEye.tscn");
@@ -35,7 +33,15 @@ public partial class Level9JiofefHead : Node2D
 			_animationPlayer.AnimationSetNext(_attackAnimationsList[i] + "Attack", "Idle");
         _animationPlayer.AnimationSetNext("Hahahahahahahaha", "Idle");
         _animationPlayer.AnimationSetNext("Unpinning", "Idle");
+
+		G.Player.Connect("PlayerResurrected", new Callable(this, nameof(OnPlayerResurrected)));
     }
+
+	public void OnPlayerResurrected()
+	{
+		_animationPlayer.Stop();
+		_animationPlayer.Play("Idle");
+	}
 
 	public override void _PhysicsProcess(double delta)
 	{
@@ -62,7 +68,7 @@ public partial class Level9JiofefHead : Node2D
 
 		if (_animationPlayer.CurrentAnimation == "CrossSpitAttack" || _animationPlayer.CurrentAnimation == "CrossVomitAttack" && _animatedSprite2D.Frame == 2)
 		{
-            Rotation += GetAngleTo(_player.Position);
+            Rotation += GetAngleTo(G.Player.Position);
 			float RotationDegreesBy360 = RotationDegrees % 360;
             _animatedSprite2D.FlipV = RotationDegreesBy360 > 90 && RotationDegreesBy360 < 270 || RotationDegreesBy360 < -90 && RotationDegreesBy360 > -270;
         }
@@ -83,12 +89,12 @@ public partial class Level9JiofefHead : Node2D
 
 		if (_animationPlayer.CurrentAnimation == "SpinAttack" && _animationPlayer.CurrentAnimationPosition > 4.5f)
 		{
-            float DistanceToPlayerCoeff = Position.DistanceTo(_player.Position) / 100;
+            float DistanceToPlayerCoeff = Position.DistanceTo(G.Player.Position) / 100;
             if (DistanceToPlayerCoeff < 1)
                 DistanceToPlayerCoeff = 1;
 
-			Vector2 PlayerDirectionToHead = _player.GlobalPosition.DirectionTo(GlobalPosition);
-            _player.Velocity += new Vector2(PlayerDirectionToHead.X / (DistanceToPlayerCoeff / 2) * 2f,PlayerDirectionToHead.Y / (DistanceToPlayerCoeff / 1.5f) * 90);
+			Vector2 PlayerDirectionToHead = G.Player.GlobalPosition.DirectionTo(GlobalPosition);
+            G.Player.Velocity += new Vector2(PlayerDirectionToHead.X / (DistanceToPlayerCoeff / 2) * 2f,PlayerDirectionToHead.Y / (DistanceToPlayerCoeff / 1.5f) * 90);
 
 			var AllCrossesOnScreen = GetTree().GetNodesInGroup("Crosses");
 			for (int  i = 0; i < AllCrossesOnScreen.Count; i++)
@@ -110,7 +116,7 @@ public partial class Level9JiofefHead : Node2D
 				Translate(_dashDirection);
 				_dashDirection -= _dashDirection / 20;
 			}
-			_spiderMovingDirection += (GlobalPosition.DirectionTo(_player.GlobalPosition) * ((75 - DashStackedDirection) / 75) * 5) - _spiderMovingDirection;
+			_spiderMovingDirection += (GlobalPosition.DirectionTo(G.Player.GlobalPosition) * ((75 - DashStackedDirection) / 75) * 5) - _spiderMovingDirection;
 			Translate(_spiderMovingDirection);
 		}
 		else
@@ -214,7 +220,7 @@ public partial class Level9JiofefHead : Node2D
 
 	public void PreparingToDash()
 	{
-		_dashDirection = GlobalPosition.DirectionTo(_player.GlobalPosition) * 50;
+		_dashDirection = GlobalPosition.DirectionTo(G.Player.GlobalPosition) * 50;
         _initialDashStackedDirection = Math.Abs(_dashDirection.X) + Math.Abs(_dashDirection.Y);
         _isPreparingForDash = true;
 	}
@@ -229,7 +235,7 @@ public partial class Level9JiofefHead : Node2D
 		_isBullDashing = false;
         _bullDashDirection = new Vector2(_random.Next(2) == 0 ? -1 : 1, 0);
 		Scale = new Vector2(_bullDashDirection.X, Scale.Y);
-		GlobalPosition = new Vector2(_bullDashDirection.X == 1 ? -300 : 2860, _player.GlobalPosition.Y + _random.Next(-100, 100));
+		GlobalPosition = new Vector2(_bullDashDirection.X == 1 ? -300 : 2860, G.Player.GlobalPosition.Y + _random.Next(-100, 100));
 	}
 
 	public void SetBullDashState(bool value)
@@ -244,7 +250,7 @@ public partial class Level9JiofefHead : Node2D
 
     public void TeleportToPlayer()
 	{
-		GlobalPosition = _player.GlobalPosition;
+		GlobalPosition = G.Player.GlobalPosition;
 	}
 
     public void TeleportToRandomPoint()

@@ -9,7 +9,7 @@ public partial class ConfirmationWindow : DraggableWindow
     [Signal] public delegate void DeclinedEventHandler();
 
 
-    [Export] public string Description
+    [Export(PropertyHint.MultilineText)] public string Description
     {
         get => _description;
         set

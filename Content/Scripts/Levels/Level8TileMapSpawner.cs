@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using static Crosses;
 
 public partial class Level8TileMapSpawner : Node2D
 {
@@ -12,15 +13,23 @@ public partial class Level8TileMapSpawner : Node2D
     private float _spawnedTileMapsNumber = 0, _tileMapsPassed = 1;
 	private int _lastTileMapID;
 
-	public override void _Ready()
+	public override async void _Ready()
 	{
 		_player = GetNode<CharacterBody2D>("../Player");
 		for (int i = 0; i < _tileMaps.Length; i++)
 			_tileMaps[i] = ResourceLoader.Load<PackedScene>("res://Content/Scenes/Levels/Level8TileMaps/TileMap" + i + ".tscn");
 		_previousTileMaps[0] = GetNode<TileMapLayer>("../TileMap");
+
+        // CameraLimits is inadequately large at this level, so it would make more sense to spawn gold tags near the player
+        await ToSignal(GetTree(), "process_frame");
+
+		CurrentPackName = "LightweightTNT1.0 Modified";
+
+        CurrentGoldenCross.SpawnRectCorrection = new Rect2(640, 0, 1280, 0);
+        CurrentGoldenCross.SpawnRectMode = Cross.SpawnRectModeEnum.Viewport;
 	}
 
-	public override void _PhysicsProcess(double delta)
+    public override void _PhysicsProcess(double delta)
 	{
         if (_player.Position.X > 1280 + _spawnedTileMapsNumber * 2560)
 		{

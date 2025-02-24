@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://dqp6q1agu664i"]
+[gd_scene load_steps=10 format=3 uid="uid://dqp6q1agu664i"]
 
 [ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/FinalLetter.cs" id="1_kdln6"]
 [ext_resource type="Texture2D" uid="uid://b10vsjrgf7cdp" path="res://Content/Sprites/Interface/TXTFileBox.png" id="2_4fh3w"]
 [ext_resource type="PackedScene" uid="uid://ci0nrongv6pih" path="res://Content/Scenes/Interface&Menu/MenuButton.tscn" id="3_c1rlx"]
 [ext_resource type="Texture2D" uid="uid://c1d2p0ba42csh" path="res://Content/Sprites/Interface/Buttons/AcceptButton.png" id="5_buo5e"]
 [ext_resource type="AudioStream" uid="uid://ca6p10kdqii0m" path="res://Content/Sounds/Soundtrack/Explosive Is Gone.mp3" id="5_u2ta7"]
+[ext_resource type="PackedScene" uid="uid://catydhrk62at1" path="res://Content/Scenes/Interface&Menu/AdditionalGuiLayer.tscn" id="6_lambv"]
 
 [sub_resource type="Animation" id="Animation_ema7o"]
 resource_name = "Appearing"
@@ -198,6 +199,6 @@ stream = ExtResource("5_u2ta7")
 volume_db = 15.0
 bus = &"Music"
 
-[node name="PopupAchievementsLayer" type="CanvasLayer" parent="."]
+[node name="AdditionalGUILayer" parent="." instance=ExtResource("6_lambv")]
 
 [connection signal="button_down" from="Letter/Button" to="Letter/AnimationPlayer" method="set_current_animation" flags=6 binds= ["Disappearing"]]

@@ -2,13 +2,15 @@ using Godot;
 
 public partial class Level8WallOfCompress : Node2D
 {
-	CharacterBody2D _player;
+	Player _player;
 
     private readonly float[] _tileMapWallSpeedMotificators = { 1.4f, 1, 1, 0.85f, 1.1f, 0.6f, 0.8f, 0.9f, 0.5f, 1.25f, };
     private float _wallDefaultSpeed = 3, _wallSpeed, _wallSpeedSmoothedModificator = 1, _wallSpeedHardModificator = 1;
 	public override void _Ready()
 	{
-		_player = GetNode<CharacterBody2D>("../Player");
+		_player = GetNode<Player>("../Player");
+
+		_player.PlayerResurrected += OnPlayerResurrected;
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -21,5 +23,11 @@ public partial class Level8WallOfCompress : Node2D
 	public void UpdateWallSpeedModificator(int value)
 	{
         _wallSpeedHardModificator = _tileMapWallSpeedMotificators[value];
+	}
+
+	public void OnPlayerResurrected()
+	{
+		const int DISTANCE_TO_THE_PLAYER_WHEN_RESURRECTING = 1280;
+		Position = new Vector2(_player.Position.X - DISTANCE_TO_THE_PLAYER_WHEN_RESURRECTING, Position.Y);
 	}
 }

@@ -12,13 +12,21 @@ using static OtherExtension.ActionTools;
 public partial class G : Node
 {
     private static G _instance;
+    private static SceneTree _sceneTree;
+    private static Node _root;
+
     /// <summary>
     /// G singleton instance
     /// </summary>
     public static G Inst { get => _instance; }
+    public static SceneTree SceneTree { get => _sceneTree; }
+    public static Node Root { get => _root; }
+
     public override void _Ready()
     {
         _instance = this;
+        _sceneTree = _instance.GetTree();
+        _root = _sceneTree.Root;
     }
 
     #region NOTE: Only in-game variables. Don't touch it if you're a modder please, or i will ban your map :)
@@ -49,7 +57,7 @@ public partial class G : Node
         new Vector2(2560, 1280),
         new Vector2(2560, 1280),
         new Vector2(2560, 640),
-        new Vector2(2560, 1280),
+        new Vector2(3840, 2560),
         new Vector2(1280, 640),
         new Vector2(999999999, 640),
         new Vector2(2560, 1280),
@@ -128,7 +136,7 @@ public partial class G : Node
 
     public static float Scores = 0, // Speaks for itself
                        CrossSpawnMultiplier = 1, // Too
-                       CrossesProgressCoeff = 1, // Default crosses evolve every 30 seconds. If this equals 2, they will do it every 15 seconds. If it's 0.5 then 60 seconds. The evolve time can also change through CrossSpawner in the editor or code
+                       CrossesProgressCoeff = 1, // Default crosses evolve every 30 seconds. If this equals 2, they will do it every 15 seconds. If it's 0.5 then 60 seconds. The evolve time can also change through Crosses singleton or the editor
                        MusicStartPosition = 0, // When music ends, if it can restart, it starts with this position. 1 = 1 second
                        LevelCompleteTime = 150; // When this second comes, the level is passed. Can be used for different things
 
@@ -392,6 +400,6 @@ public partial class G : Node
 
     public override void _PhysicsProcess(double delta) // This for debugging.
     {
-        //GD.Print(Mathf.Cos(new Vector2(-2, 2).Angle()));
+        //GD.Print();
     }
 }

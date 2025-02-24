@@ -27,7 +27,7 @@ public partial class Player : CharacterBody2D
     [Export] public float RigidBodyPushForce = 8;
 
     [ExportGroup("Secondary settings")]
-    [Export] public float CoyoteTime = 0.1f, WallJumpInertion = 1.4f, InertionControl = 3.3f, DownDashSpeed = 1250, MaxFallSpeed = 1250;
+    [Export] public float CoyoteTime = 0.1f, WallJumpInertion = 1.4f, InertionControl = 3.3f, DownDashSpeed = 1250, MaxFallSpeed = 1250, ResurrectionImmortalityTime = 5f;
 
     [ExportGroup("GUI")]
     #region hell no
@@ -581,7 +581,6 @@ public partial class Player : CharacterBody2D
 
             if (skin.HasDeathAnimation)
             {
-                GD.Print("KAX");
                 _animationPlayer = _animatedSprite.GetNode<AnimationPlayer>("AnimationPlayer");
 
                 if (!IsConnected("PlayerResurrected", new Callable(_animationPlayer, "stop")))
@@ -617,6 +616,7 @@ public partial class Player : CharacterBody2D
         public bool IsProgressPaused;
         public bool IsMusicPaused;
         public bool IsCollisionDisabled;
+        public bool IsDamageCollisionDisabled;
 
         public Vector2 Position;
 
@@ -631,9 +631,13 @@ public partial class Player : CharacterBody2D
             if (G.MusicPlayer != null)
                 IsMusicPaused = G.MusicPlayer.StreamPaused;
 
-            var collision = player.GetNode<CollisionShape2D>("FullBodyCollider");
+            var collision = player.GetNodeOrNull<CollisionShape2D>("FullBodyCollider");
             if (collision != null)
                 IsCollisionDisabled = collision.Disabled;
+
+            var damageCollision = player.GetNodeOrNull<CollisionShape2D>("Areas/PlayerDamageDetector/CollisionShape2D");
+            if (damageCollision != null)
+                IsDamageCollisionDisabled = damageCollision.Disabled;
 
 
             Position = player.Position;
@@ -656,6 +660,10 @@ public partial class Player : CharacterBody2D
             var collision = player.GetNode<CollisionShape2D>("FullBodyCollider");
             if (collision != null)
                 collision.Disabled = IsCollisionDisabled;
+
+            var damageCollision = player.GetNodeOrNull<CollisionShape2D>("Areas/PlayerDamageDetector/CollisionShape2D");
+            if (damageCollision != null)
+                damageCollision.Disabled = IsDamageCollisionDisabled;
 
             player.Position = Position;
         }
@@ -692,6 +700,7 @@ public partial class Player : CharacterBody2D
         PlaySound("Death");
         G.MusicPlayer?.Set("stream_paused", true);
         GetNode<CollisionShape2D>("FullBodyCollider").SetDeferred("disabled", true);
+        GetNode<CollisionShape2D>("Areas/PlayerDamageDetector/CollisionShape2D").SetDeferred("disabled", true);
         _animatedSprite.Animation = "Death";
         if (Convert.ToBoolean((string)_animatedSprite.GetMeta("HasDeathPlayerAnimation")))
             _animatedSprite.GetNode<AnimationPlayer>("AnimationPlayer").Play("Death");
@@ -710,8 +719,6 @@ public partial class Player : CharacterBody2D
         GUI.OnPlayerDead();
 
         EmitSignal("PlayerDied");
-
-        //Resurrect();
     }
 
     public async void Resurrect()
@@ -730,6 +737,11 @@ public partial class Player : CharacterBody2D
 
         preDeathParams.LoadParams();
 
+        // Resurrection immortability
+        bool dmgCollisionDisabled = GetNode<CollisionShape2D>("Areas/PlayerDamageDetector/CollisionShape2D").Disabled;
+        if (!dmgCollisionDisabled)
+            AddImmortality(ResurrectionImmortalityTime);
+
 
         G.IsPlayerDead = false;
         G.AfterPlayerCorpseFlightTimer = 0;
@@ -742,6 +754,34 @@ public partial class Player : CharacterBody2D
 
         EmitSignal("PlayerResurrected");
     }
+
+    private void ImmortalityIsOver()
+    {
+        var immortabilityShield = GetNode<TextureProgressBar>("Camera2D/ImmortalityShield");
+        immortabilityShield.Visible = false;
+
+        GetNode<CollisionShape2D>("Areas/PlayerDamageDetector/CollisionShape2D").SetDeferred("disabled", false);
+    }
+
+    public void AddImmortality(float time)
+    {
+        var immortabilityShield = GetNode<TextureProgressBar>("Camera2D/ImmortalityShield");
+        var immortabilityTimer = immortabilityShield.GetNode<Timer>("Timer");
+
+        double timeLeft = immortabilityTimer.IsStopped() ? 0 : immortabilityTimer.TimeLeft;
+
+        immortabilityTimer.Stop();
+
+        double newTime = timeLeft + time;
+        immortabilityTimer.Start(newTime);
+        immortabilityTimer.SetProcess(true);
+
+        immortabilityShield.MaxValue = newTime;
+        immortabilityShield.Visible = true;
+
+        GetNode<CollisionShape2D>("Areas/PlayerDamageDetector/CollisionShape2D").SetDeferred("disabled", true);
+    }
+
 
 
     public void SetCameraLimits(Vector4 value, bool doResetSmoothing = false)

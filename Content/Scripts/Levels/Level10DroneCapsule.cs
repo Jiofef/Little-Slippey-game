@@ -1,26 +1,33 @@
 using Godot;
+using System.Threading.Tasks;
 
 public partial class Level10DroneCapsule : Node2D
 {
     bool _isTrueFinaling;
 
-    public override void _PhysicsProcess(double delta)
+    public override void _Ready()
     {
-        if (G.Scores > 300)
-        {
-            if (Input.IsActionPressed("Reset") || _isTrueFinaling)
-                G.ResetTimer += 0.003f;
-            else if (G.ResetTimer > 0)
-                G.ResetTimer -= 0.01f;
-            if (G.ResetTimer >= 2f)
-                GetTree().ChangeSceneToFile("res://Content/Scenes/Interface&Menu/FinalLetter.tscn");
-        }
+        G.Player.PlayerDied += Departure;
     }
 
-    public void Departure()
+    public override void _PhysicsProcess(double delta)
+    {
+        if (G.Scores < 300) return;
+
+
+        if (_isTrueFinaling)
+            G.ResetTimer += 0.003f;
+
+        if (G.ResetTimer >= 2f)
+            GetTree().ChangeSceneToFile("res://Content/Scenes/Interface&Menu/FinalLetter.tscn");
+    }
+
+    public async void Departure()
     {
         if (G.Scores > 300)
         {
+            await ToSignal(GetTree().CreateTimer(4.5f), SceneTreeTimer.SignalName.Timeout);
+
             GetNode<AnimationPlayer>("AnimationPlayer").Play("TakingSlippey");
 
             GetParent<Node2D>().GlobalPosition = G.Player.GlobalPosition;

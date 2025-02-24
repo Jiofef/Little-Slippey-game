@@ -7,3 +7,9 @@
 script = ExtResource("2_1ekh7")
 ConfirmationText = "Press again to confirm"
 DeclineConfirmationWhenUnfocused = true
+
+[node name="MarginC" parent="." index="1"]
+mouse_filter = 2
+
+[node name="Text" parent="MarginC" index="0"]
+mouse_filter = 2

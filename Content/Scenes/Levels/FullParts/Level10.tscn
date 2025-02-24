@@ -729,6 +729,7 @@ stream = SubResource("AudioStreamWAV_hms8y")
 modulate = Color(1, 1, 1, 0)
 offset_right = 1280.0
 offset_bottom = 720.0
+mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
 [node name="RealityDessection" type="CanvasLayer" parent="Level/RealityDissector"]
@@ -887,6 +888,7 @@ horizontal_alignment = 1
 [node name="Player" parent="Level" instance=ExtResource("14_8rk7d")]
 position = Vector2(13856, 608)
 EnableStandingPenalty = false
+DisableResurrectButton = true
 
 [node name="TileMap" type="Node2D" parent="Level"]
 clip_children = 1
@@ -952,6 +954,7 @@ offset_left = -13824.0
 offset_top = -128.0
 offset_right = 13824.0
 offset_bottom = 357.0
+mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
 [node name="FloorTouchDetector" type="Area2D" parent="Level/Boundaries"]
@@ -988,6 +991,7 @@ tile_set = SubResource("TileSet_huswe")
 [node name="ColorRect" type="ColorRect" parent="Level/CanvasLayer"]
 offset_right = 1280.0
 offset_bottom = 720.0
+mouse_filter = 2
 color = Color(1, 1, 1, 0.0588235)
 
 [node name="BrightnessRect" type="ColorRect" parent="Level/CanvasLayer"]

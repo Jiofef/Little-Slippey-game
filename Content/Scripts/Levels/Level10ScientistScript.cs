@@ -23,6 +23,7 @@ public partial class Level10ScientistScript : Node2D
 
 
         public bool IsLevelComplete;
+        public bool IsCrossesConfiguredAfterLevelCompleted;
         public int LastRandomPhrase;
         public bool ShowIntro;
     }
@@ -254,7 +255,16 @@ public partial class Level10ScientistScript : Node2D
         {
             if (!G.IsPlayerDead)
             {
-                G.IsCrossesEnabled = true;
+                if (!_level.IsCrossesConfiguredAfterLevelCompleted)
+                {
+                    _level.IsCrossesConfiguredAfterLevelCompleted = true;
+
+                    G.IsCrossesEnabled = true;
+                    G.CrossesProgressCoeff = 0.05f;
+                    Crosses.UpdateCrossesWeight();
+                    Crosses.EnableGoldenCrossSpawning = false;
+                    Crosses.CurrentPackName = "LightweightTNT2.0 Modified";
+                }
                 G.CrossSpawnMultiplier *= 1.01f;
             }
         }
@@ -313,6 +323,9 @@ public partial class Level10ScientistScript : Node2D
             _level.IsTimerBroken = true;
             G.Scores -= random.Next(5, 15);
             _level.SavedScores = G.Scores;
+            Crosses.UpdateCrossesWeight();
+
+            // Switch to secret level
             if (_level.SavedScores < 0 && ModManager.IsStandartTimerLibLoaded && !ModManager.IsModsDisabled)
             {
                 G.TransitiveVariantD.Add("SavedScores", G.Scores);
@@ -362,7 +375,11 @@ public partial class Level10ScientistScript : Node2D
         G.Main.IsPauseDisabled = true;
         G.Main.IsResetDisabled = true;
         G.CrossSpawnMultiplier = 0.25f;
+
         G.Player.SetGUIVisible(false);
+        G.Player.DisableAfterDeathGui = true;
+        G.Player.UpdateGUIOptions();
+
         _megaphonePhraseTimer = 0;
         var AllCrossesOnScreen = GetTree().GetNodesInGroup("Crosses");
         for (int i = 0; AllCrossesOnScreen.Count > i; i++)
@@ -400,12 +417,17 @@ public partial class Level10ScientistScript : Node2D
         PlayPhrase("Scripted" + (NextPhraseNumber + 1));
 
         EmitSignal("ShowTextQueue", _phrasesSubtitles[NextPhraseNumber], Meta.Instance.Video.language == Meta.VideoClass.Language.en ? _phrasesTimeCodes[NextPhraseNumber] : _phrasesTimeCodesRu[NextPhraseNumber], 1);
+
+        // Breaking the timer
         if (PhraseNumber == 1)
         {
             EmitSignal("SetResetDisabled", true);
 
             GetNode<AnimationPlayer>("../CanvasLayer/ColorRect/AnimationPlayer").Play("Blumxd");
             GetNode<AudioStreamPlayer>("../CanvasLayer/TimerBroken").Play();
+
+            G.Player.DisableAfterDeathGui = true;
+            G.Player.UpdateGUIOptions();
         }
         else if (PhraseNumber == 3)
             _megaphonePhraseTimer = 0;

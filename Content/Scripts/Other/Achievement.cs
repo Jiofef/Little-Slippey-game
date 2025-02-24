@@ -166,6 +166,7 @@ public partial class Achievement : Control
     #endregion
 
     private ColorRect _focusRect;
+    private bool _isDisposed;
     public override async void _Ready()
     {
         // Initializing nodes
@@ -176,10 +177,15 @@ public partial class Achievement : Control
         _data = Achievements.AllTheAchievements[_achievementKey];
         UpdateReward();
 
+        TreeExited += () => _isDisposed = true;
+
+        // wait until IsPopupVersion is set
         await ToSignal(GetTree(), "process_frame");
 
         if (IsPopupVersion)
         {
+            await ToSignal(GetTree().CreateTimer(2f), SceneTreeTimer.SignalName.Timeout);
+
             ScrollTexts();
             FocusMode = FocusModeEnum.None;
             MouseFilter = MouseFilterEnum.Ignore;

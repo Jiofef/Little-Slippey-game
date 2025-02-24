@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://dlscufxb5f1ca"]
+[gd_scene load_steps=48 format=3 uid="uid://dlscufxb5f1ca"]
 
 [ext_resource type="Script" path="res://Content/Scripts/Other/Player.cs" id="1"]
 [ext_resource type="AudioStream" uid="uid://422y36f6ucnf" path="res://Content/Sounds/Player/Climb.mp3" id="2_bn55d"]
@@ -20,7 +20,9 @@
 [ext_resource type="PackedScene" uid="uid://dqx4su0c00n3v" path="res://Content/Scenes/Interface&Menu/ConfirmMenuOnlyTextButton.tscn" id="10_cmlhm"]
 [ext_resource type="AudioStream" uid="uid://dy6lncevmnf3o" path="res://Content/Sounds/Other/WhiteNoise.mp3" id="12_jom63"]
 [ext_resource type="Script" path="res://Content/Scripts/Other/Camera.cs" id="13"]
+[ext_resource type="Texture2D" uid="uid://du0ghsnijxwcb" path="res://Content/Sprites/Interface/ImmortalityShield.png" id="13_fc0ia"]
 [ext_resource type="Texture2D" uid="uid://bvogrd2bqhwmt" path="res://Content/Sprites/Other/OblivionNoise.png" id="15"]
+[ext_resource type="Script" path="res://Content/Scripts/Other/UpdaterTimer.cs" id="15_4f468"]
 
 [sub_resource type="RectangleShape2D" id="1"]
 size = Vector2(40, 56)
@@ -391,6 +393,7 @@ collision_layer = 0
 collision_mask = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/PlayerDamageDetector"]
+unique_name_in_owner = true
 shape = SubResource("RectangleShape2D_y6w3b")
 
 [node name="FullBodyHitBox" type="Area2D" parent="Areas"]
@@ -614,6 +617,27 @@ stream = ExtResource("12_jom63")
 volume_db = -5.0
 bus = &"Player"
 
+[node name="ImmortalityShield" type="TextureProgressBar" parent="Camera2D"]
+process_mode = 1
+visible = false
+offset_left = -32.0
+offset_top = -108.0
+offset_right = 32.0
+offset_bottom = -44.0
+max_value = 4.0
+step = 0.0
+fill_mode = 5
+nine_patch_stretch = true
+texture_progress = ExtResource("13_fc0ia")
+
+[node name="Timer" type="Timer" parent="Camera2D/ImmortalityShield" node_paths=PackedStringArray("NodeToUpdate")]
+unique_name_in_owner = true
+one_shot = true
+script = ExtResource("15_4f468")
+NodeToUpdate = NodePath("..")
+PropertyToUpdate = "value"
+ProcessStoppedWhenFinished = true
+
 [node name="ClimbsBar" type="TextureProgressBar" parent="Camera2D"]
 visible = false
 z_index = 10
@@ -692,6 +716,7 @@ color_ramp = SubResource("Gradient_u843o")
 [connection signal="body_exited" from="Areas/WallDirectionRightDetector" to="." method="WallUndetected" unbinds=1]
 [connection signal="pressed" from="Camera2D/GUICanvas/GUI/AfterDeathElements/Buttons/ReturnToMenu" to="Camera2D/GUICanvas/GUI" method="ReturnToMenu"]
 [connection signal="OnBought" from="Camera2D/GUICanvas/GUI/AfterDeathElements/Buttons/Resurrect" to="Camera2D/GUICanvas/GUI" method="BuyAResurrection"]
+[connection signal="timeout" from="Camera2D/ImmortalityShield/Timer" to="." method="ImmortalityIsOver"]
 [connection signal="draw" from="Camera2D/ClimbsBar" to="Camera2D/ClimbsBar/AnimationPlayer" method="play" binds= ["Disappearing"]]
 
 [editable path="Camera2D/GUICanvas/GUI/AfterDeathElements/Buttons/ReturnToMenu"]
