@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://7vgkaba3qbfp"
-path="res://.godot/imported/BillboardsAnimation.png-1aac6682d17d2c2a7ed8029f95f980d3.ctex"
+uid="uid://4m3mqs50jhds"
+path="res://.godot/imported/rgb.png-300066925bcc338135768e6c94fbbbd6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Content/Sprites/Levels/Level6/BillboardsAnimation.png"
-dest_files=["res://.godot/imported/BillboardsAnimation.png-1aac6682d17d2c2a7ed8029f95f980d3.ctex"]
+source_file="res://Content/Sprites/Levels/Level6/rgb.png"
+dest_files=["res://.godot/imported/rgb.png-300066925bcc338135768e6c94fbbbd6.ctex"]
 
 [params]
 

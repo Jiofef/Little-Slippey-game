@@ -6,3 +6,7 @@ res://Content/Other/BlurShader.gdshader
 res://Content/Other/Glitch.gdshader
 res://Content/Other/Glitch2.gdshader
 res://Content/Scenes/Other/Player.tscn
+res://Content/Scenes/Levels/FullParts/Level1.tscn
+res://Content/Scenes/Levels/PresentedParts/PresentedLevel6.tscn
+res://Content/Scenes/Levels/PresentedParts/PresentedLevel2.tscn
+res://Content/Other/PresentedLevelCameraMoving.res

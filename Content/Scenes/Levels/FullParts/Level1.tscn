@@ -298,7 +298,6 @@ texture = ExtResource("2_xqbfl")
 
 [node name="SunRays" type="AnimatedSprite2D" parent="Level/Background/Sky" index="1"]
 position = Vector2(1044, 148)
-rotation = 4.3354
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_rhhkn")
 

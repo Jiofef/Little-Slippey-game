@@ -1,16 +1,17 @@
-[gd_scene load_steps=48 format=4 uid="uid://cb5qp5c88hxxs"]
+[gd_scene load_steps=50 format=4 uid="uid://cb5qp5c88hxxs"]
 
 [ext_resource type="PackedScene" uid="uid://5kfyvxsdpsk2" path="res://Content/Scenes/Other/LevelLayout.tscn" id="1_k46p1"]
 [ext_resource type="Texture2D" uid="uid://cl251rqg2xbw0" path="res://Content/Sprites/Levels/Level6/Sky.png" id="2_suw6p"]
 [ext_resource type="Texture2D" uid="uid://dj5m4kmysh1li" path="res://Content/Sprites/Levels/Level6/BackCity.png" id="3_cqcgm"]
+[ext_resource type="Texture2D" uid="uid://640d6c4ipunr" path="res://Content/Sprites/Levels/Level6/Clouds.png" id="3_hdddp"]
 [ext_resource type="Texture2D" uid="uid://d1fsqrkn16u5n" path="res://Content/Sprites/Levels/Level6/BackgroundGieroFarFlyingCar.png" id="4_7bagj"]
+[ext_resource type="Texture2D" uid="uid://ddb70ed7c1wu1" path="res://Content/Sprites/Levels/Level6/Backrgb.png" id="4_bxxmu"]
 [ext_resource type="Texture2D" uid="uid://cy1lov1ry2p21" path="res://Content/Sprites/Levels/Level6/MiddleCity.png" id="5_jgavc"]
-[ext_resource type="Texture2D" uid="uid://7vgkaba3qbfp" path="res://Content/Sprites/Levels/Level6/BillboardsAnimation.png" id="6_1miky"]
+[ext_resource type="Texture2D" uid="uid://4m3mqs50jhds" path="res://Content/Sprites/Levels/Level6/rgb.png" id="6_72kl0"]
 [ext_resource type="Texture2D" uid="uid://dxr4mhlbsc3" path="res://Content/Sprites/Levels/Level6/BackgroundGieroFlyingCar.png" id="7_1657n"]
 [ext_resource type="Texture2D" uid="uid://dvbdc2wlk062n" path="res://Content/Sprites/Levels/Level6/FrontCity.png" id="8_bedts"]
 [ext_resource type="PackedScene" uid="uid://dct3ltljwt56o" path="res://Content/Scenes/Other/Level6DefaultCar.tscn" id="9_amo5x"]
 [ext_resource type="PackedScene" uid="uid://dlscufxb5f1ca" path="res://Content/Scenes/Other/Player.tscn" id="9_aum6r"]
-[ext_resource type="Texture2D" uid="uid://cea624qo2aq72" path="res://Content/Sprites/Levels/Level6/x.png" id="9_o8lm5"]
 [ext_resource type="Texture2D" uid="uid://q2j1uuqfjmos" path="res://Content/Sprites/Levels/BaseTileSet.png" id="10_gawwt"]
 [ext_resource type="Texture2D" uid="uid://b1dppreruk7js" path="res://Content/Sprites/Levels/poliSiSagEtilEseT.png" id="11_fgsae"]
 [ext_resource type="Texture2D" uid="uid://duk32e0otnfky" path="res://Content/Sprites/Levels/FuckItVolume2Tileset.png" id="11_yecq0"]
@@ -57,41 +58,82 @@ _data = {
 "MusicStopping": SubResource("Animation_n61s8")
 }
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_dsyb6"]
-atlas = ExtResource("6_1miky")
-region = Rect2(0, 0, 341, 240)
+[sub_resource type="Animation" id="Animation_nbc5f"]
+resource_name = "CloudsMoving"
+length = 60.0
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:motion_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 60),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1200, 0)]
+}
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_o57nh"]
-atlas = ExtResource("6_1miky")
-region = Rect2(0, 240, 341, 240)
+[sub_resource type="Animation" id="Animation_h0f6w"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:motion_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_js5gn"]
-atlas = ExtResource("6_1miky")
-region = Rect2(0, 480, 341, 240)
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bl81i"]
+_data = {
+"CloudsMoving": SubResource("Animation_nbc5f"),
+"RESET": SubResource("Animation_h0f6w")
+}
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_6nm2x"]
-atlas = ExtResource("6_1miky")
-region = Rect2(0, 720, 341, 240)
+[sub_resource type="Animation" id="Animation_3265a"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_fnpwm"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_dsyb6")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_o57nh")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_js5gn")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_6nm2x")
-}],
-"loop": true,
-"name": &"default",
-"speed": 8.0
-}]
+[sub_resource type="Animation" id="Animation_50kj8"]
+resource_name = "rgb"
+length = 6.0
+loop_mode = 2
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_33km3"]
+_data = {
+"RESET": SubResource("Animation_3265a"),
+"rgb": SubResource("Animation_50kj8")
+}
 
 [sub_resource type="Curve" id="Curve_xlk0d"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.25, 1), 0.0, 0.0, 0, 0, Vector2(0.75, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -110,9 +152,9 @@ point_count = 1
 offsets = PackedFloat32Array(0, 0.25, 0.75, 1)
 colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
 
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_cuf44"]
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_x2nd3"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mxbjq"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_y1m7g"]
 texture = ExtResource("10_gawwt")
 0:0/next_alternative_id = 8
 0:0/0 = 0
@@ -124,7 +166,7 @@ texture = ExtResource("10_gawwt")
 2:0/0 = 0
 2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bio4k"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_54rrs"]
 texture = ExtResource("11_yecq0")
 0:0/0 = 0
 1:0/0 = 0
@@ -157,7 +199,7 @@ texture = ExtResource("11_yecq0")
 2:6/0 = 0
 3:6/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_v11dt"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4qss4"]
 texture = ExtResource("11_fgsae")
 0:0/0 = 0
 1:0/0 = 0
@@ -220,7 +262,7 @@ texture = ExtResource("11_fgsae")
 1:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, -5, -8, -5)
 1:3/0/physics_layer_0/polygon_0/one_way = true
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sg3ud"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ytpac"]
 texture = ExtResource("13_wpl2e")
 0:0/0 = 0
 1:0/0 = 0
@@ -243,19 +285,19 @@ texture = ExtResource("13_wpl2e")
 [sub_resource type="TileSet" id="TileSet_6qmag"]
 physics_layer_0/collision_layer = 4
 physics_layer_0/collision_mask = 3
-physics_layer_0/physics_material = SubResource("PhysicsMaterial_cuf44")
-sources/0 = SubResource("TileSetAtlasSource_mxbjq")
-sources/2 = SubResource("TileSetAtlasSource_v11dt")
-sources/1 = SubResource("TileSetAtlasSource_bio4k")
-sources/3 = SubResource("TileSetAtlasSource_sg3ud")
+physics_layer_0/physics_material = SubResource("PhysicsMaterial_x2nd3")
+sources/0 = SubResource("TileSetAtlasSource_y1m7g")
+sources/2 = SubResource("TileSetAtlasSource_4qss4")
+sources/1 = SubResource("TileSetAtlasSource_54rrs")
+sources/3 = SubResource("TileSetAtlasSource_ytpac")
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mjv4l"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kfg54"]
 texture = ExtResource("10_gawwt")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_meifs"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5im25"]
 texture = ExtResource("11_fgsae")
 0:0/next_alternative_id = 2
 0:0/0 = 0
@@ -271,8 +313,8 @@ texture = ExtResource("11_fgsae")
 2:2/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_7xnum"]
-sources/0 = SubResource("TileSetAtlasSource_mjv4l")
-sources/1 = SubResource("TileSetAtlasSource_meifs")
+sources/0 = SubResource("TileSetAtlasSource_kfg54")
+sources/1 = SubResource("TileSetAtlasSource_5im25")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_juenn"]
 size = Vector2(696, 2880)
@@ -329,25 +371,50 @@ scale = Vector2(4, 4)
 texture = ExtResource("2_suw6p")
 centered = false
 
-[node name="BackCity" type="ParallaxLayer" parent="Level/Background" index="1"]
-visible = false
+[node name="Clouds" type="ParallaxLayer" parent="Level/Background" index="1"]
+motion_scale = Vector2(0.2, 0.2)
+motion_mirroring = Vector2(1200, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Level/Background/Clouds" index="0"]
+scale = Vector2(4, 4)
+texture = ExtResource("3_hdddp")
+centered = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Level/Background/Clouds" index="1"]
+libraries = {
+"": SubResource("AnimationLibrary_bl81i")
+}
+autoplay = "CloudsMoving"
+
+[node name="BackCity" type="ParallaxLayer" parent="Level/Background" index="2"]
 motion_scale = Vector2(0.3, 0.3)
 
 [node name="Sprite2D" type="Sprite2D" parent="Level/Background/BackCity" index="0"]
-position = Vector2(800, 420)
 scale = Vector2(4, 4)
 texture = ExtResource("3_cqcgm")
+centered = false
 
-[node name="SkyTrafficFlow" type="CPUParticles2D" parent="Level/Background/BackCity" index="1"]
-position = Vector2(90, 360)
+[node name="rgb" type="Sprite2D" parent="Level/Background/BackCity" index="1"]
+scale = Vector2(4, 4)
+texture = ExtResource("4_bxxmu")
+centered = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Level/Background/BackCity/rgb" index="0"]
+libraries = {
+"": SubResource("AnimationLibrary_33km3")
+}
+autoplay = "rgb"
+
+[node name="SkyTrafficFlow" type="CPUParticles2D" parent="Level/Background/BackCity" index="2"]
+position = Vector2(0, 700)
 amount = 48
-lifetime = 15.0
+lifetime = 18.0
 preprocess = 16.0
 speed_scale = 1.5
 local_coords = true
 texture = ExtResource("4_7bagj")
 emission_shape = 3
-emission_rect_extents = Vector2(0, 320)
+emission_rect_extents = Vector2(0, 480)
 spread = 15.0
 gravity = Vector2(0, 0)
 initial_velocity_min = 100.0
@@ -355,17 +422,17 @@ initial_velocity_max = 125.0
 scale_amount_min = 3.0
 scale_amount_max = 4.0
 
-[node name="SkyTrafficFlow2" type="CPUParticles2D" parent="Level/Background/BackCity" index="2"]
-position = Vector2(1485, 360)
+[node name="SkyTrafficFlow2" type="CPUParticles2D" parent="Level/Background/BackCity" index="3"]
+position = Vector2(2080, 700)
 scale = Vector2(-1, 1)
 amount = 48
-lifetime = 15.0
+lifetime = 18.0
 preprocess = 16.0
 speed_scale = 1.5
 local_coords = true
 texture = ExtResource("4_7bagj")
 emission_shape = 3
-emission_rect_extents = Vector2(0, 320)
+emission_rect_extents = Vector2(0, 480)
 spread = 15.0
 gravity = Vector2(0, 0)
 initial_velocity_min = 100.0
@@ -373,31 +440,43 @@ initial_velocity_max = 125.0
 scale_amount_min = 3.0
 scale_amount_max = 4.0
 
-[node name="MiddleCity" type="ParallaxLayer" parent="Level/Background" index="2"]
+[node name="Fog2" type="ColorRect" parent="Level/Background" index="3"]
+offset_right = 1280.0
+offset_bottom = 720.0
+mouse_filter = 2
+color = Color(0, 0.98, 0.98, 0.117647)
+
+[node name="MiddleCity" type="ParallaxLayer" parent="Level/Background" index="4"]
 motion_scale = Vector2(0.5, 0.5)
 
 [node name="Sprite2D" type="Sprite2D" parent="Level/Background/MiddleCity" index="0"]
+position = Vector2(0, -64)
 scale = Vector2(4, 4)
 texture = ExtResource("5_jgavc")
 centered = false
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Level/Background/MiddleCity" index="1"]
-position = Vector2(808, 452)
+[node name="rgb" type="Sprite2D" parent="Level/Background/MiddleCity" index="1"]
+position = Vector2(0, -64)
 scale = Vector2(4, 4)
-sprite_frames = SubResource("SpriteFrames_fnpwm")
-autoplay = "default"
-frame_progress = 0.606947
+texture = ExtResource("6_72kl0")
+centered = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Level/Background/MiddleCity/rgb" index="0"]
+libraries = {
+"": SubResource("AnimationLibrary_33km3")
+}
+autoplay = "rgb"
 
 [node name="SkyTrafficFlow" type="CPUParticles2D" parent="Level/Background/MiddleCity" index="2"]
-position = Vector2(160, 420)
+position = Vector2(0, 920)
 amount = 32
-lifetime = 14.0
+lifetime = 18.0
 preprocess = 16.0
 speed_scale = 1.5
 local_coords = true
 texture = ExtResource("7_1657n")
 emission_shape = 3
-emission_rect_extents = Vector2(0, 640)
+emission_rect_extents = Vector2(0, 960)
 spread = 15.0
 gravity = Vector2(0, 0)
 initial_velocity_min = 125.0
@@ -406,16 +485,16 @@ scale_amount_min = 3.0
 scale_amount_max = 4.0
 
 [node name="SkyTrafficFlow2" type="CPUParticles2D" parent="Level/Background/MiddleCity" index="3"]
-position = Vector2(1820, 420)
+position = Vector2(2560, 920)
 scale = Vector2(-1, 1)
 amount = 32
-lifetime = 15.0
+lifetime = 18.0
 preprocess = 16.0
 speed_scale = 1.5
 local_coords = true
 texture = ExtResource("7_1657n")
 emission_shape = 3
-emission_rect_extents = Vector2(0, 420)
+emission_rect_extents = Vector2(0, 960)
 spread = 15.0
 gravity = Vector2(0, 0)
 initial_velocity_min = 125.0
@@ -423,30 +502,19 @@ initial_velocity_max = 150.0
 scale_amount_min = 3.0
 scale_amount_max = 4.0
 
-[node name="FrontCity" type="ParallaxLayer" parent="Level/Background" index="3"]
-visible = false
+[node name="FrontCity" type="ParallaxLayer" parent="Level/Background" index="5"]
 motion_scale = Vector2(0.75, 0.75)
 
 [node name="Sprite2D" type="Sprite2D" parent="Level/Background/FrontCity" index="0"]
-position = Vector2(1000, 500)
 scale = Vector2(4, 4)
 texture = ExtResource("8_bedts")
+centered = false
 
-[node name="Fog" type="ColorRect" parent="Level/Background" index="4"]
+[node name="Fog" type="ColorRect" parent="Level/Background" index="6"]
 offset_right = 1280.0
 offset_bottom = 720.0
+mouse_filter = 2
 color = Color(0, 0.980392, 0.980392, 0.0588235)
-
-[node name="Penis" type="ParallaxLayer" parent="Level/Background" index="5"]
-visible = false
-position = Vector2(0, -128)
-scale = Vector2(0.5, 0.5)
-motion_scale = Vector2(0.5, 0.5)
-
-[node name="Sprite2D" type="Sprite2D" parent="Level/Background/Penis" index="0"]
-scale = Vector2(4, 4)
-texture = ExtResource("9_o8lm5")
-centered = false
 
 [node name="SunLightLayerContainer" type="ParallaxBackground" parent="Level" index="1"]
 layer = 0
@@ -505,7 +573,6 @@ tile_set = SubResource("TileSet_6qmag")
 collision_enabled = false
 
 [node name="BackgroundMap" type="TileMapLayer" parent="Level/TileMap" index="3"]
-visible = false
 modulate = Color(0.5, 0.5, 0.5, 1)
 z_index = -1
 use_parent_material = true
@@ -515,7 +582,6 @@ tile_set = SubResource("TileSet_6qmag")
 collision_enabled = false
 
 [node name="BackgroundMap2" type="TileMapLayer" parent="Level/TileMap" index="4"]
-visible = false
 modulate = Color(0.5, 0.5, 0.5, 1)
 z_index = -1
 use_parent_material = true
@@ -648,16 +714,13 @@ position = Vector2(1920, 800)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/PlayMusicTrigger" index="0"]
 shape = SubResource("RectangleShape2D_ftna0")
 
-[node name="EpicIntro" parent="." index="4"]
-visible = false
-
 [connection signal="body_entered" from="Level/BuildingForeground/TileMap/ForegroundArea" to="Level/BuildingForeground" method="Hide" unbinds=1]
 [connection signal="body_entered" from="Level/BuildingForeground/TileMap/ForegroundArea" to="Level/BuildingForeground/TileMap/ForegroundArea" method="Entered" unbinds=1]
 [connection signal="body_exited" from="Level/BuildingForeground/TileMap/ForegroundArea" to="Level/BuildingForeground" method="Show" unbinds=1]
 [connection signal="body_exited" from="Level/BuildingForeground/TileMap/ForegroundArea" to="Level/BuildingForeground/TileMap/ForegroundArea" method="Exited" unbinds=1]
 [connection signal="AreaEnteredNoArgs" from="Level/BottomTeleportBorder" to="." method="TeleportPlayerTo" binds= [Vector2(3668, 2438)]]
-[connection signal="ButtonPressed" from="Level/PlayMusicTrigger" to="." method="SetCrossesSpawnMultiplier" flags=6 binds= [0.6]]
 [connection signal="ButtonPressed" from="Level/PlayMusicTrigger" to="." method="SetProgressPaused" flags=6 binds= [false]]
+[connection signal="ButtonPressed" from="Level/PlayMusicTrigger" to="." method="SetCrossesSpawnMultiplier" flags=6 binds= [0.6]]
 [connection signal="ButtonPressed" from="Level/PlayMusicTrigger" to="LevelMusicPlayer" method="PlayMusic" flags=6 binds= ["Clair De Phare", 10.19, 0.0]]
 
 [editable path="Level/FlyingCarSpawner/Level6FlyingCar"]

@@ -1,10 +1,10 @@
+AnimationPlayer
 Sprite2D
 ParallaxLayer
 Area2D
 Timer
 TextureProgressBar
 CollisionShape2D
-AnimationPlayer
 ColorRect
 PathFollow2D
 Path2D
@@ -12,4 +12,3 @@ AnimatableBody2D
 Node2D
 MarginContainer
 RichTextLabel
-AudioStreamPlayer
