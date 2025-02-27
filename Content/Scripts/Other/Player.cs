@@ -1,6 +1,7 @@
 using Godot;
 using GodotSteam;
 using System;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using static OtherExtension.FastInstanceCreator;
 
@@ -261,6 +262,11 @@ public partial class Player : CharacterBody2D
                 Action("Stand");
             #endregion
 
+            #region Jumping off one way platforms
+            if (isOnFloor && Input.IsActionJustPressed("DownDash"))
+                Position += new Vector2(0, 1);
+            #endregion
+
 
             #region Effect of inertia on control
             if (_state == State.Inerted)
@@ -366,7 +372,8 @@ public partial class Player : CharacterBody2D
                 #endregion
             }
             #region DownDashing
-            if (Input.IsActionJustPressed("DownDash") && !isOnFloor && !_isDownDashing) // This is DownDash
+            const float DOWN_DASH_CEILING_THRESHOLD = 50f;
+            if (Input.IsActionJustPressed("DownDash") && !isOnFloor && Motion.Y < (DownDashSpeed - DOWN_DASH_CEILING_THRESHOLD)) // This is DownDash
             {
                 Action("DownDash");
                 _isDownDashing = true;

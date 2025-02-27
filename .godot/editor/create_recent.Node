@@ -1,5 +1,9 @@
-AnimationPlayer
 Sprite2D
+RemoteTransform2D
+Node2D
+TextureRect
+RayCast2D
+AnimationPlayer
 ParallaxLayer
 Area2D
 Timer
@@ -8,7 +12,3 @@ CollisionShape2D
 ColorRect
 PathFollow2D
 Path2D
-AnimatableBody2D
-Node2D
-MarginContainer
-RichTextLabel

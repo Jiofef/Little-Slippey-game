@@ -374,7 +374,7 @@ animations = [{
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
 [node name="Player" type="CharacterBody2D"]
-collision_mask = 452
+collision_mask = 964
 platform_on_leave = 1
 platform_floor_layers = 132
 platform_wall_layers = 132
@@ -601,6 +601,7 @@ BuyingPrice = 75
 DisableWhenBought = true
 
 [node name="GuiAnimations" type="AnimationPlayer" parent="Camera2D/GUICanvas/GUI"]
+process_mode = 1
 libraries = {
 "": SubResource("AnimationLibrary_bpyln")
 }
@@ -708,6 +709,11 @@ initial_velocity_max = 160.0
 scale_amount_min = 4.0
 scale_amount_max = 4.0
 color_ramp = SubResource("Gradient_u843o")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(0, -40)
+collision_mask = 8
+collide_with_areas = true
 
 [connection signal="area_entered" from="Areas/PlayerDamageDetector" to="." method="Death" unbinds=1]
 [connection signal="body_entered" from="Areas/WallDirectionLeftDetector" to="." method="LeftWallDetect" unbinds=1]

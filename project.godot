@@ -276,6 +276,7 @@ locale/language_filter=["en", "ru"]
 2d_physics/layer_7="ForegroundArea"
 2d_physics/layer_8="Level6FlyingCar"
 2d_physics/layer_9="RigidBodies"
+2d_physics/layer_10="OneWayCollisionTiles"
 
 [mono]
 

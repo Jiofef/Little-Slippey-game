@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using OtherExtension;
+using System.Security.Cryptography.X509Certificates;
 
 public partial class Level6Car : SwooshObject
 {
@@ -17,7 +18,7 @@ public partial class Level6Car : SwooshObject
 	{
         base._Ready();
         // Initializing nodes
-        Car = GetNode<AnimatableBody2D>("PathFollow2D/Car");
+        Car = GetNode<AnimatableBody2D>("Car");
         Collision = Car.GetNode<CollisionShape2D>("CollisionShape2D");
         AreaCollision = Car.GetNode<CollisionShape2D>("CarArea/CollisionShape2D");
 
@@ -54,9 +55,9 @@ public partial class Level6Car : SwooshObject
         Collision.SetDeferred("disabled", !value);
         AreaCollision.SetDeferred("disabled", !value);
 
-        var additionalExplosiveArea = GetNodeOrNull<CollisionShape2D>("PathFollow2D/Car/AdditionalExplosiveArea/CollisionShape2D");
+        var additionalExplosiveArea = GetNodeOrNull<CollisionShape2D>("Car/AdditionalExplosiveArea/CollisionShape2D");
         additionalExplosiveArea?.SetDeferred("disabled", !value);
-        var trampolineCollision = GetNodeOrNull<CollisionShape2D>("PathFollow2D/Car/TrampolineArea/CollisionShape2D");
+        var trampolineCollision = GetNodeOrNull<CollisionShape2D>("Car/TrampolineArea/CollisionShape2D");
         trampolineCollision?.SetDeferred("disabled", !value);
     }
 
@@ -71,13 +72,18 @@ public partial class Level6Car : SwooshObject
     }
 
     // When player's hitbox or other car's area enters the collision of this car
+    public bool IsExploded = false;
     public void Explode()
     {
+        if (IsExploded) return;
+
+        IsExploded = true;
+
         IsStopped = true;
 
         SetCollisionEnabled(false);
 
-        GetNode<AnimationPlayer>("PathFollow2D/Car/AnimationPlayer").Play("Explode");
+        Car.GetNode<AnimationPlayer>("AnimationPlayer").Play("Explode");
     }
     public void Delete()
     {
@@ -96,7 +102,7 @@ public partial class Level6Car : SwooshObject
         else
             YVelocity /= 1.1f;
 
-        Translate(new Vector2(0, YVelocity));
+        PathFollow.VOffset += YVelocity;
     }
 
     public void TheCarAhead(Area2D area)
@@ -110,6 +116,22 @@ public partial class Level6Car : SwooshObject
         _carsAhead--;
     }
 
+    private const float NEEDED_PLAYER_VELOCITY_TO_RAM_THE_BOTTOM = 600;
+    public void OnBottomHitted(Node2D body)
+    {
+        if (body is Player player && -player.Velocity.Y >= NEEDED_PLAYER_VELOCITY_TO_RAM_THE_BOTTOM)
+            Explode();
+    }
+    private const float PLAYER_COLLIDE_EXPLOSION_VELOCITY_CEILING = 900f;
+    public void OnCollided(Node2D body)
+    {
+        if (body is Player player)
+        {
+            if (player.Velocity.Y <= PLAYER_COLLIDE_EXPLOSION_VELOCITY_CEILING)
+                Explode();
+        }
+    }
+
     // For Trampoline cars
     [Export] public float CharacterToss = 1200f;
     public void TossTheCharacter(Node2D node)
@@ -118,6 +140,6 @@ public partial class Level6Car : SwooshObject
 
         character.Velocity = new Vector2(0, -CharacterToss);
 
-        GetNode<AudioStreamPlayer>("PathFollow2D/Car/TrampolineSound").Play();
+        Car.GetNode<AudioStreamPlayer>("TrampolineSound").Play();
     }
 }

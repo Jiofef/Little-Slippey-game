@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://w0rqkr07nalr"]
+
+[ext_resource type="Script" path="res://Content/Scripts/Other/BonusSpawner.cs" id="1_fqnyu"]
+
+[node name="BonusSpawner" type="Node2D"]
+script = ExtResource("1_fqnyu")
+
+[node name="DefaultSprite" type="Sprite2D" parent="."]

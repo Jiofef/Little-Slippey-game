@@ -816,9 +816,37 @@ namespace OtherExtension
             return default(T);
         }
 
+        public static void DoForEachParent(Action<Node> action, Node node)
+        {
+            node = node.GetParent();
+
+            while (node != null)
+            {
+                action(node);
+
+                node = node.GetParent();
+            }
+        }
+
         public static async Task WaitForFrame()
         {
             await G.Inst.ToSignal(G.Inst.GetTree(), "process_frame");
+        }
+
+        public static Color GetGlobalModulateOf(CanvasItem item)
+        {
+            Node currentNode = item;
+            Color resultModulate = new Color(1, 1, 1, 1);
+
+            while (currentNode != null)
+            {
+                if (currentNode is CanvasItem canvasItem)
+                    resultModulate *= canvasItem.Modulate;
+
+                currentNode = currentNode.GetParent();
+            }
+
+            return resultModulate;
         }
     }
 

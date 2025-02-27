@@ -573,7 +573,7 @@ tile_map_data = PackedByteArray("AAAVAAAAAAAAAAMAAAAVAAEAAAABAAIAAAAVAAMAAAABAAI
 tile_set = SubResource("TileSet_sdcfh")
 
 [node name="SecretShortCut" type="TileMapLayer" parent="Level/TileMap" index="2"]
-modulate = Color(1, 1, 1, 0.941176)
+modulate = Color(1, 1, 1, 0.784314)
 z_index = 1
 use_parent_material = true
 tile_map_data = PackedByteArray("AAAbAAgAAAADAAAAAwAcAAgAAAAAAAEAAAAdAAgAAAAAAAEAAAAeAAgAAAAAAAEAAAAfAAgAAAAAAAEAAAAgAAgAAAAAAAEAAAAhAAgAAAAAAAEAAAAiAAgAAAAAAAEAAAAjAAgAAAADAAAAAQAbAAcAAAADAAAAAwAcAAcAAAAAAAEAAAAdAAcAAAAAAAEAAAAeAAcAAAADAAAAAgAfAAcAAAADAAAAAgAgAAcAAAADAAAAAgAhAAcAAAADAAAAAgAiAAcAAAADAAAAAgAjAAcAAAADAAAAAQA=")
@@ -584,6 +584,7 @@ position = Vector2(504, 136)
 _achievementName = "Eureka"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/TileMap/SecretShortCut/AchievementArea" index="0"]
+visible = false
 shape = SubResource("RectangleShape2D_rmh6m")
 
 [node name="Railings" type="TileMapLayer" parent="Level/TileMap" index="3"]

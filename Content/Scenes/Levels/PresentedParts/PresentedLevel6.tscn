@@ -523,7 +523,10 @@ script = ExtResource("3_wesb5")
 position = Vector2(640, 1123.52)
 _isPreSpawned = true
 
-[node name="PathFollow2D" parent="FlyingCarSpawner/Level6FlyingCar" index="0"]
+[node name="Car" parent="FlyingCarSpawner/Level6FlyingCar" index="0"]
+position = Vector2(1117.65, 0)
+
+[node name="PathFollow2D" parent="FlyingCarSpawner/Level6FlyingCar" index="1"]
 position = Vector2(1117.65, 0)
 progress = 1117.65
 
@@ -538,7 +541,10 @@ position = Vector2(3200, 1155)
 scale = Vector2(-1, 1)
 _isPreSpawned = true
 
-[node name="PathFollow2D" parent="FlyingCarSpawner/Level6FlyingCar3" index="0"]
+[node name="Car" parent="FlyingCarSpawner/Level6FlyingCar3" index="0"]
+position = Vector2(515.839, 0)
+
+[node name="PathFollow2D" parent="FlyingCarSpawner/Level6FlyingCar3" index="1"]
 position = Vector2(515.839, 0)
 progress = 515.84
 
@@ -547,7 +553,10 @@ position = Vector2(3200, 234)
 scale = Vector2(-1, 1)
 _isPreSpawned = true
 
-[node name="PathFollow2D" parent="FlyingCarSpawner/Level6FlyingCar4" index="0"]
+[node name="Car" parent="FlyingCarSpawner/Level6FlyingCar4" index="0"]
+position = Vector2(1159.42, 0)
+
+[node name="PathFollow2D" parent="FlyingCarSpawner/Level6FlyingCar4" index="1"]
 position = Vector2(1159.42, 0)
 progress = 1159.42
 
@@ -559,7 +568,10 @@ _isPreSpawned = true
 position = Vector2(640, 696)
 _isPreSpawned = true
 
-[node name="PathFollow2D" parent="FlyingCarSpawner/Level6FlyingCar6" index="0"]
+[node name="Car" parent="FlyingCarSpawner/Level6FlyingCar6" index="0"]
+position = Vector2(707.839, 0)
+
+[node name="PathFollow2D" parent="FlyingCarSpawner/Level6FlyingCar6" index="1"]
 position = Vector2(707.839, 0)
 progress = 707.84
 
@@ -567,7 +579,10 @@ progress = 707.84
 position = Vector2(640, 1984.22)
 _isPreSpawned = true
 
-[node name="PathFollow2D" parent="FlyingCarSpawner/Level6FlyingCar8" index="0"]
+[node name="Car" parent="FlyingCarSpawner/Level6FlyingCar8" index="0"]
+position = Vector2(602.367, 0)
+
+[node name="PathFollow2D" parent="FlyingCarSpawner/Level6FlyingCar8" index="1"]
 position = Vector2(602.367, 0)
 progress = 602.368
 

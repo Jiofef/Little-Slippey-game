@@ -5,27 +5,23 @@
 [ext_resource type="AudioStream" uid="uid://bxk7stxyehfnj" path="res://Content/Sounds/Levels/Level6Trampoline.mp3" id="3_cm5yq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rtjbx"]
-size = Vector2(112, 6)
+size = Vector2(124, 8)
 
 [node name="Level6FlyingCar" instance=ExtResource("1_pq0qk")]
 
-[node name="BackHalf" parent="PathFollow2D/Car/Model" index="0"]
+[node name="Model" parent="Car" index="3"]
 texture = ExtResource("2_prj7f")
 
-[node name="FrontHalf" parent="PathFollow2D/Car/Model" index="1"]
-texture = ExtResource("2_prj7f")
-
-[node name="TrampolineArea" type="Area2D" parent="PathFollow2D/Car" index="8"]
-position = Vector2(0, -32)
+[node name="TrampolineArea" type="Area2D" parent="Car" index="9"]
+position = Vector2(0, -36)
 collision_layer = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PathFollow2D/Car/TrampolineArea" index="0"]
-position = Vector2(-2, -3)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Car/TrampolineArea" index="0"]
 shape = SubResource("RectangleShape2D_rtjbx")
 
-[node name="TrampolineSound" type="AudioStreamPlayer" parent="PathFollow2D/Car" index="9"]
+[node name="TrampolineSound" type="AudioStreamPlayer" parent="Car" index="10"]
 stream = ExtResource("3_cm5yq")
 volume_db = 4.0
 bus = &"Enviromnment"
 
-[connection signal="body_entered" from="PathFollow2D/Car/TrampolineArea" to="." method="TossTheCharacter"]
+[connection signal="body_entered" from="Car/TrampolineArea" to="." method="TossTheCharacter"]

@@ -169,7 +169,7 @@ tile_map_data = PackedByteArray("AAANAAcAAAAAAAAAAQANAAgAAAAAAAAAAQANAAkAAAAAAAA
 tile_set = SubResource("TileSet_sdcfh")
 
 [node name="SecretShortCut" type="TileMapLayer" parent="."]
-modulate = Color(1, 1, 1, 0.941176)
+modulate = Color(1, 1, 1, 0.784314)
 z_index = 1
 use_parent_material = true
 tile_map_data = PackedByteArray("AAAGAAEAAAAAAAAAAQAGAAIAAAAAAAAAAQAGAAAAAAADAAAAAwA=")
