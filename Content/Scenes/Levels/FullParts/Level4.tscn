@@ -1,11 +1,14 @@
-[gd_scene load_steps=45 format=4 uid="uid://biit1jgjtou15"]
+[gd_scene load_steps=55 format=4 uid="uid://biit1jgjtou15"]
 
 [ext_resource type="PackedScene" uid="uid://5kfyvxsdpsk2" path="res://Content/Scenes/Other/LevelLayout.tscn" id="1_yi0hb"]
 [ext_resource type="Texture2D" uid="uid://b5p3n4aaw5n7h" path="res://Content/Sprites/Levels/Level4/Background.png" id="2_ao0lm"]
 [ext_resource type="Texture2D" uid="uid://d3ctks0vyqrll" path="res://Content/Sprites/Levels/Level4/SawHolder.png" id="3_a2wqw"]
+[ext_resource type="Texture2D" uid="uid://nqcf8lait5yr" path="res://Content/Sprites/Levels/Level4/Object4.png" id="3_ilgct"]
 [ext_resource type="Texture2D" uid="uid://d03h2q54r8eox" path="res://Content/Sprites/Levels/Level4/SawPistonRod.png" id="4_ds7bx"]
+[ext_resource type="Texture2D" uid="uid://d4mqmv706juv7" path="res://Content/Sprites/Levels/Level4/TubeEng.png" id="4_uv6oj"]
 [ext_resource type="Texture2D" uid="uid://ceenyhg3xfoon" path="res://Content/Sprites/Levels/Level4/SawPistonPart.png" id="5_uqvlw"]
 [ext_resource type="Script" path="res://Content/Scripts/Other/Rotator.cs" id="6_si15i"]
+[ext_resource type="Texture2D" uid="uid://ckh1sclq3fji3" path="res://Content/Sprites/Other/PointLight.png" id="6_v4lj0"]
 [ext_resource type="Texture2D" uid="uid://dsukwby7alfd" path="res://Content/Sprites/Levels/Level4/UltraBigSaw.png" id="7_qvllt"]
 [ext_resource type="Texture2D" uid="uid://oy0q0tel1241" path="res://Content/Sprites/Levels/Level4/BigSaw.png" id="8_y7824"]
 [ext_resource type="Texture2D" uid="uid://dse3qddcaf5o4" path="res://Content/Sprites/Levels/Level4/TheMostOrdinaryUnremarkableSawWhichSurprisinglyCanKillAPlayerWithoutProblemsBecauseItHasAHitboxOnTheSameLayerAsTheExplosionOfCrossesThatsInShort.png" id="9_b6lcq"]
@@ -17,8 +20,11 @@
 [ext_resource type="Script" path="res://Content/Scripts/Other/Trail.cs" id="15_4vqng"]
 [ext_resource type="PackedScene" uid="uid://dlscufxb5f1ca" path="res://Content/Scenes/Other/Player.tscn" id="15_f0cdm"]
 [ext_resource type="Script" path="res://Content/Scripts/Levels/Foreground.cs" id="16_yd5fs"]
+[ext_resource type="PackedScene" uid="uid://bhxyqlefne8jb" path="res://Content/Scenes/Other/WallJumpPad.tscn" id="17_0m8r4"]
 [ext_resource type="Shader" path="res://Content/Other/BlurShader.gdshader" id="17_61d51"]
 [ext_resource type="PackedScene" uid="uid://d3u7pfig07yrs" path="res://Content/Scenes/Other/CrutchedArea2D.tscn" id="18_axctq"]
+[ext_resource type="Script" path="res://Content/Scripts/Other/EnhancedArea2D.cs" id="19_iqc6a"]
+[ext_resource type="AudioStream" uid="uid://cc2geqtaxri8x" path="res://Content/Sounds/Levels/Level9BullDashWarning.mp3" id="20_71t27"]
 
 [sub_resource type="Animation" id="Animation_p3npb"]
 resource_name = "MusicStarting"
@@ -125,8 +131,49 @@ _data = {
 "SawSpinning": SubResource("Animation_bhfph")
 }
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_gvc2j"]
+blend_mode = 1
+
+[sub_resource type="Animation" id="Animation_2tpp8"]
+resource_name = "WARNING"
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_n4w42"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hr3hq"]
+_data = {
+"RESET": SubResource("Animation_n4w42"),
+"WARNING": SubResource("Animation_2tpp8")
+}
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_wn5uk"]
-radius = 25.0
+radius = 20.0
 
 [sub_resource type="Curve" id="Curve_hbtk7"]
 min_value = -360.0
@@ -154,7 +201,7 @@ sources/0 = SubResource("TileSetAtlasSource_6r1jg")
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_43cxx"]
 load_path = "res://.godot/imported/NePeretrudilsyaTileset.png-7f0f27ec9ca0b26320667dd01aec6a7d.ctex"
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ekxoi"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ygb48"]
 texture = SubResource("CompressedTexture2D_43cxx")
 1:0/0 = 0
 1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -175,7 +222,7 @@ texture = SubResource("CompressedTexture2D_43cxx")
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_2a044"]
 load_path = "res://.godot/imported/BaseTileSet.png-dac811be5d14166fafb0b92137c4ede6.ctex"
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_22h5y"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_233ex"]
 texture = SubResource("CompressedTexture2D_2a044")
 0:0/0 = 0
 1:0/0 = 0
@@ -184,7 +231,7 @@ texture = SubResource("CompressedTexture2D_2a044")
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_g4jmp"]
 load_path = "res://.godot/imported/FuckItVolume2Tileset.png-e75c2328ece74a32f2b63fa14968c737.ctex"
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5sqhe"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7d82w"]
 texture = SubResource("CompressedTexture2D_g4jmp")
 1:1/0 = 0
 1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -192,7 +239,7 @@ texture = SubResource("CompressedTexture2D_g4jmp")
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_jhlu0"]
 load_path = "res://.godot/imported/WorkingPleaseWaitTileset.png-8aa34094d6d1c3c168161da4057da0b3.ctex"
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_f0id8"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nhdfy"]
 texture = SubResource("CompressedTexture2D_jhlu0")
 0:0/0 = 0
 1:0/0 = 0
@@ -219,10 +266,10 @@ texture = SubResource("CompressedTexture2D_jhlu0")
 [sub_resource type="TileSet" id="TileSet_cudp5"]
 physics_layer_0/collision_layer = 4
 physics_layer_0/collision_mask = 0
-sources/3 = SubResource("TileSetAtlasSource_f0id8")
-sources/0 = SubResource("TileSetAtlasSource_ekxoi")
-sources/1 = SubResource("TileSetAtlasSource_22h5y")
-sources/2 = SubResource("TileSetAtlasSource_5sqhe")
+sources/3 = SubResource("TileSetAtlasSource_nhdfy")
+sources/0 = SubResource("TileSetAtlasSource_ygb48")
+sources/1 = SubResource("TileSetAtlasSource_233ex")
+sources/2 = SubResource("TileSetAtlasSource_7d82w")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_er0q3"]
 texture = ExtResource("14_hwiy7")
@@ -258,6 +305,16 @@ motion_scale = Vector2(0.25, 0.3)
 scale = Vector2(4.7, 4.7)
 texture = ExtResource("2_ao0lm")
 centered = false
+
+[node name="Object4" type="Sprite2D" parent="Level/Background/Background" index="1"]
+position = Vector2(115.125, 150.425)
+scale = Vector2(4.7, 4.7)
+texture = ExtResource("3_ilgct")
+
+[node name="Tube" type="Sprite2D" parent="Level/Background/Background" index="2"]
+position = Vector2(334, 470)
+scale = Vector2(4.7, 4.7)
+texture = ExtResource("4_uv6oj")
 
 [node name="SawHolder" type="ParallaxLayer" parent="Level/Background" index="1"]
 motion_scale = Vector2(0.85, 0.6)
@@ -335,6 +392,25 @@ region_rect = Rect2(0, 0, 80, 16)
 offset_right = 1280.0
 offset_bottom = 720.0
 color = Color(0.0313726, 0, 0.392157, 0.235294)
+
+[node name="SunLightLayer" type="ParallaxLayer" parent="Level/Background" index="3"]
+modulate = Color(1, 0, 0, 1)
+z_as_relative = false
+motion_scale = Vector2(0.3, 0.3)
+
+[node name="Sprite2D" type="Sprite2D" parent="Level/Background/SunLightLayer" index="0"]
+modulate = Color(0.97, 0.97, 0.97, 1)
+clip_children = 2
+material = SubResource("CanvasItemMaterial_gvc2j")
+position = Vector2(800, -120)
+scale = Vector2(4, 4)
+texture = ExtResource("6_v4lj0")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Level/Background/SunLightLayer/Sprite2D" index="0"]
+libraries = {
+"": SubResource("AnimationLibrary_hr3hq")
+}
+autoplay = "WARNING"
 
 [node name="BackCircularSaw" type="Node2D" parent="Level" index="1" node_paths=PackedStringArray("Target")]
 position = Vector2(1307, 674)
@@ -431,7 +507,7 @@ position = Vector2(40, 0)
 modulate = Color(1, 1, 1, 0.501961)
 top_level = true
 points = PackedVector2Array(1947, 674, 1945.43, 709.139, 1940.76, 743.916, 1933.04, 777.972, 1922.4, 810.963, 1908.98, 842.56, 1892.99, 872.459, 1874.65, 900.381, 1854.24, 926.082, 1832.03, 949.351, 1808.36, 970.019, 1783.55, 987.957, 1757.96, 1003.08, 1731.93, 1015.35, 1705.82, 1024.78, 1679.99, 1031.42, 1654.76, 1035.36, 1630.47, 1036.74, 1607.41, 1035.74, 1585.86, 1032.58, 1566.06, 1027.51, 1548.22, 1020.8, 1532.5, 1012.76, 1519.03, 1003.7, 1507.9, 993.959, 1499.15, 983.875, 1492.76, 973.789, 1488.69, 964.037, 1486.85, 954.944, 1487.08, 946.821, 1489.22, 939.954, 1493.06, 934.607, 1498.33, 931.008, 1504.78, 929.354, 1512.1, 929.802, 1519.97, 932.468, 1528.06, 937.424, 1536.03, 944.697, 1543.55, 954.271, 1550.28, 966.082, 1555.89, 980.026, 1560.09, 995.952, 1562.57, 1013.67, 1563.09, 1032.96, 1561.41, 1053.56, 1557.34, 1075.18, 1550.73, 1097.52, 1541.46, 1120.24, 1529.45, 1142.99, 1514.7, 1165.44, 1497.21, 1187.22, 1477.05, 1207.98, 1454.34, 1227.4, 1429.22, 1245.15, 1401.89, 1260.93, 1372.58, 1274.46, 1341.56, 1285.5, 1309.13, 1293.84, 1275.59, 1299.32, 1241.29, 1301.81, 1206.58, 1301.21, 1171.82, 1297.5, 1137.38, 1290.68, 1106.16, 1281.67, 1073.29, 1269.16, 1041.74, 1253.8, 1011.82, 1235.79, 983.838, 1215.33, 958.047, 1192.68, 934.677, 1168.11, 913.919, 1141.94, 895.924, 1114.49, 880.797, 1086.1, 868.602, 1057.14, 859.355, 1027.96, 853.026, 998.909, 849.542, 970.344, 848.783, 942.597, 850.591, 915.984, 854.768, 890.797, 861.08, 867.299, 869.262, 845.718, 879.024, 826.247, 890.054, 809.039, 902.022, 794.202, 914.591, 781.802, 927.417, 771.86, 940.158, 764.35, 952.479, 759.202, 964.06, 756.304, 974.596, 755.501, 983.81, 756.599, 991.449, 759.372, 997.297, 763.56, 1001.17, 768.877, 1002.93, 775.018, 1002.48, 781.657, 999.758, 788.464, 994.758, 795.099, 987.514, 801.225, 978.105, 806.514, 966.656, 810.649, 953.329, 813.332, 938.328, 814.288, 921.89, 813.273, 904.284, 810.072, 885.807, 804.511)
-width = 130.0
+width = 150.0
 width_curve = SubResource("Curve_kh8xi")
 gradient = SubResource("Gradient_un66f")
 joint_mode = 2
@@ -468,6 +544,24 @@ use_parent_material = true
 tile_map_data = PackedByteArray("AAD//wAAAAACAAAAAQD//wEAAAACAAAAASD//wIAAAACAAAAASD//wMAAAACAAAAAQD//wQAAAACAAAAASD//wUAAAACAAAAAQD//wYAAAACAAAAASD//wcAAAACAAAAAQD//wgAAAACAAAAASD//wkAAAACAAAAASD//woAAAACAAAAASD//wsAAAACAAAAASD//wwAAAACAAAAAQD//w0AAAACAAAAAQD//w4AAAACAAAAAQD//w8AAAACAAAAAQD//xAAAAACAAAAASD//xEAAAACAAAAAQD//xIAAAACAAAAAQD//xMAAAACAAAAASAAAP//AAACAAAAAhABAP//AAACAAAAAgACAP//AAACAAAAAhADAP//AAACAAAAAgAEAP//AAACAAAAAgAFAP//AAACAAAAAgAGAP//AAACAAAAAhAHAP//AAACAAAAAgAIAP//AAACAAAAAhAJAP//AAACAAAAAhAKAP//AAACAAAAAgALAP//AAACAAAAAgAMAP//AAACAAAAAhANAP//AAACAAAAAhAOAP//AAACAAAAAgAPAP//AAACAAAAAhAQAP//AAACAAAAAhARAP//AAACAAAAAhASAP//AAACAAAAAgATAP//AAACAAAAAhAUAP//AAACAAAAAgAVAP//AAACAAAAAgAWAP//AAACAAAAAhAXAP//AAACAAAAAhAYAP//AAACAAAAAgAZAP//AAACAAAAAgAaAP//AAACAAAAAhAbAP//AAACAAAAAgAcAP//AAACAAAAAhAdAP//AAACAAAAAhAeAP//AAACAAAAAhAfAP//AAACAAAAAgAgAP//AAACAAAAAgAhAP//AAACAAAAAhAiAP//AAACAAAAAgAjAP//AAACAAAAAhAkAP//AAACAAAAAhAlAP//AAACAAAAAhAmAP//AAACAAAAAhAnAP//AAACAAAAAhAoAAAAAAACAAAAAAAoAAEAAAACAAAAAAAoAAIAAAACAAAAAAAoAAMAAAACAAAAAAAoAAQAAAACAAAAAAAoAAUAAAACAAAAACAoAAYAAAACAAAAACAoAAcAAAACAAAAAAAoAAgAAAACAAAAACAoAAkAAAACAAAAACAoAAoAAAACAAAAACAoAAsAAAACAAAAACAoAAwAAAACAAAAAAAoAA0AAAACAAAAACAoAA4AAAACAAAAACAoAA8AAAACAAAAACAoABAAAAACAAAAAAAoABEAAAACAAAAACAoABIAAAACAAAAACAoABMAAAACAAAAAAAAABQAAAACAAAAAxABABQAAAACAAAAAwACABQAAAACAAAAAwADABQAAAACAAAAAwAEABQAAAACAAAAAwAFABQAAAACAAAAAwAGABQAAAACAAAAAwAHABQAAAACAAAAAwAIABQAAAACAAAAAxAJABQAAAACAAAAAxAKABQAAAACAAAAAxALABQAAAACAAAAAwAMABQAAAACAAAAAwANABQAAAACAAAAAxAOABQAAAACAAAAAwAPABQAAAACAAAAAwAQABQAAAACAAAAAwARABQAAAACAAAAAxASABQAAAACAAAAAxATABQAAAACAAAAAwAUABQAAAACAAAAAwAVABQAAAACAAAAAxAWABQAAAACAAAAAwAXABQAAAACAAAAAxAYABQAAAACAAAAAxAZABQAAAACAAAAAwAaABQAAAACAAAAAxAbABQAAAACAAAAAwAcABQAAAACAAAAAxAdABQAAAACAAAAAxAeABQAAAACAAAAAwAfABQAAAACAAAAAxAgABQAAAACAAAAAxAhABQAAAACAAAAAxAiABQAAAACAAAAAxAjABQAAAACAAAAAwAkABQAAAACAAAAAwAlABQAAAACAAAAAxAmABQAAAACAAAAAwAnABQAAAACAAAAAwA=")
 tile_set = SubResource("TileSet_cudp5")
 
+[node name="WallJumpPad" parent="Level/TileMap" index="2" instance=ExtResource("17_0m8r4")]
+position = Vector2(224, 136)
+scale = Vector2(1, 1)
+
+[node name="WallJumpPad2" parent="Level/TileMap" index="3" instance=ExtResource("17_0m8r4")]
+position = Vector2(432, 136)
+scale = Vector2(-1, 1)
+
+[node name="WallJumpPad3" parent="Level/TileMap" index="4" instance=ExtResource("17_0m8r4")]
+position = Vector2(304, 104)
+scale = Vector2(1, 1)
+CharacterToss = 600.0
+
+[node name="WallJumpPad4" parent="Level/TileMap" index="5" instance=ExtResource("17_0m8r4")]
+position = Vector2(352, 104)
+scale = Vector2(-1, 1)
+CharacterToss = 600.0
+
 [node name="CrutchTileMap" type="TileMapLayer" parent="Level" index="6"]
 modulate = Color(1, 1, 1, 0.196078)
 use_parent_material = true
@@ -488,10 +582,18 @@ layer_0/tile_data = PackedInt32Array(1245197, 65536, 0, 1179660, 65536, 0, 11796
 
 [node name="Area2D" type="Area2D" parent="Level/WallForeground/DecorationMap" index="1"]
 collision_layer = 64
+script = ExtResource("19_iqc6a")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Level/WallForeground/DecorationMap/Area2D" index="0"]
 visible = false
-polygon = PackedVector2Array(272, 320, 272, 304, 224, 288, 208, 256, 192, 224, 176, 180, 192, 127.75, 208, 64, 224, 48, 271.75, 32, 328, 16, 384, 32, 432.25, 48, 448, 63.75, 464, 112, 480, 171.5, 464.25, 224, 448, 256, 432.25, 288, 384, 304.25, 384, 320, 640, 320.25, 640, 0, 0, 0, 0, 320)
+polygon = PackedVector2Array(272, 320, 272, 304, 224, 288, 176, 180, 211, 52.25, 328, 16, 432.25, 48, 480, 148, 464.25, 224, 432.25, 288, 384, 304.25, 384, 320, 640, 320.25, 640, 0, 0, 0, 0, 320)
+
+[node name="Timer" type="Timer" parent="Level/WallForeground/DecorationMap/Area2D" index="1"]
+one_shot = true
+
+[node name="Level9BullDashWarning" type="AudioStreamPlayer" parent="Level/WallForeground/DecorationMap/Area2D/Timer" index="0"]
+stream = ExtResource("20_71t27")
+bus = &"Enviromnment"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Level" index="8"]
 
@@ -509,7 +611,12 @@ shape = SubResource("RectangleShape2D_yv5wh")
 
 [connection signal="CirclePassed" from="Level/BackCircularSaw" to="Level/BackCircularSaw/Saw/MiddleCircularSaw/ScreechSound" method="PlayReccurentSound"]
 [connection signal="CirclePassed" from="Level/BackCircularSaw" to="Level/BackCircularSaw/Saw/MiddleCircularSaw/MetalSparks" method="set_emitting" binds= [true]]
+[connection signal="BodyEnteredNoArgs" from="Level/WallForeground/DecorationMap/Area2D" to="Level/WallForeground/DecorationMap/Area2D/Timer" method="start"]
+[connection signal="BodyExitedNoArgs" from="Level/WallForeground/DecorationMap/Area2D" to="Level/WallForeground/DecorationMap/Area2D/Timer" method="stop"]
+[connection signal="BodyExitedNoArgs" from="Level/WallForeground/DecorationMap/Area2D" to="Level/Player" method="SetMaxMoveCoeff" binds= [1.0]]
 [connection signal="body_entered" from="Level/WallForeground/DecorationMap/Area2D" to="Level/WallForeground" method="Hide" unbinds=1]
 [connection signal="body_exited" from="Level/WallForeground/DecorationMap/Area2D" to="Level/WallForeground" method="Show" unbinds=1]
+[connection signal="timeout" from="Level/WallForeground/DecorationMap/Area2D/Timer" to="Level/WallForeground/DecorationMap/Area2D/Timer/Level9BullDashWarning" method="play"]
+[connection signal="timeout" from="Level/WallForeground/DecorationMap/Area2D/Timer" to="Level/Player" method="SetMaxMoveCoeff" binds= [0.05]]
 [connection signal="ButtonPressed" from="Level/PlayMusicTrigger" to="." method="SetCrossesSpawnMultiplier" flags=6 binds= [0.6]]
 [connection signal="ButtonPressed" from="Level/PlayMusicTrigger" to="LevelMusicPlayer" method="PlayMusic" flags=6 binds= ["Hygienic Perforator", 11.9, 0.0]]

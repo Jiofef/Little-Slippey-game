@@ -257,12 +257,15 @@ namespace OtherExtension
             return array[_random.Next(array.Length)];
         }
 
-        public static T PickRandomByWeight<T>(IReadOnlyList<T> items, IReadOnlyList<float> weights)
+        public static T PickRandomByWeight<T>(IReadOnlyList<T> items, IReadOnlyList<float> weights, bool returnNullIfWeightsAreEmpty = false)
         {
             if (items == null || weights == null || items.Count != weights.Count || items.Count == 0)
                 throw new ArgumentException("Items and weights must have the same non-zero length.");
 
             float totalWeight = weights.Sum();
+
+            if (totalWeight <= 0) return returnNullIfWeightsAreEmpty ? default : items[0];
+
             float randomValue = (float)(_random.NextDouble() * totalWeight);
 
             for (int i = 0; i < items.Count; i++)

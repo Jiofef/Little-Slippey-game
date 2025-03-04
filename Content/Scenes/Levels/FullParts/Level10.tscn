@@ -1,4 +1,4 @@
-[gd_scene load_steps=72 format=4 uid="uid://cma82s1tmg4rd"]
+[gd_scene load_steps=70 format=4 uid="uid://cma82s1tmg4rd"]
 
 [ext_resource type="Script" path="res://Content/Scripts/Other/MainScript.cs" id="1_r4pva"]
 [ext_resource type="Script" path="res://Content/Scripts/Levels/Level10RealityDissector.cs" id="2_a7alo"]
@@ -18,6 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://cgmqr4byx6tjy" path="res://Content/Sprites/Levels/Level10/FrontCloudLayer.png" id="12_nl5i8"]
 [ext_resource type="Texture2D" uid="uid://d2ynxw1edp8w0" path="res://Content/Sprites/Levels/Level10/CoolEasterEgg.png" id="13_3ulqn"]
 [ext_resource type="PackedScene" uid="uid://dlscufxb5f1ca" path="res://Content/Scenes/Other/Player.tscn" id="14_8rk7d"]
+[ext_resource type="Texture2D" uid="uid://ckh1sclq3fji3" path="res://Content/Sprites/Other/PointLight.png" id="15_45dcj"]
 [ext_resource type="Texture2D" uid="uid://cjieb76jdv80v" path="res://Content/Sprites/Levels/ANineGreetingsTileset.png" id="15_pem8j"]
 [ext_resource type="AudioStream" uid="uid://x0nebyfepo5c" path="res://Content/Sounds/Levels/Level10HereYouAre.mp3" id="16_7kux4"]
 [ext_resource type="AudioStream" uid="uid://cuvkdo1lyvynu" path="res://Content/Sounds/Other/EpicIntro.mp3" id="17_yr0y3"]
@@ -421,22 +422,8 @@ texture = SubResource("CompressedTexture2D_bkcup")
 sources/2 = SubResource("TileSetAtlasSource_o0u0w")
 sources/0 = SubResource("TileSetAtlasSource_3a1es")
 
-[sub_resource type="Curve" id="Curve_0wxcu"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.25, 1), 0.0, 0.0, 0, 0, Vector2(0.75, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 4
-
-[sub_resource type="Curve" id="Curve_hhqtc"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
-point_count = 1
-
-[sub_resource type="Curve" id="Curve_e4vus"]
-max_value = 128.0
-_data = [Vector2(0, 128), 0.0, 0.0, 0, 0]
-point_count = 1
-
-[sub_resource type="Gradient" id="Gradient_tayne"]
-offsets = PackedFloat32Array(0, 0.25, 0.75, 1)
-colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_a3sa5"]
+blend_mode = 1
 
 [sub_resource type="FontFile" id="FontFile_i8clp"]
 subpixel_positioning = 0
@@ -840,35 +827,16 @@ offset_right = 1280.0
 offset_bottom = 720.0
 color = Color(0, 0, 0, 0)
 
-[node name="SunLightLayerContainer" type="ParallaxBackground" parent="Level"]
-layer = 0
-
-[node name="SunLightLayer" type="ParallaxLayer" parent="Level/SunLightLayerContainer"]
+[node name="SunLightLayer" type="ParallaxLayer" parent="Level/Background"]
 z_as_relative = false
 motion_scale = Vector2(0, 0)
 
-[node name="SunLight" type="CPUParticles2D" parent="Level/SunLightLayerContainer/SunLightLayer"]
+[node name="Sprite2D" type="Sprite2D" parent="Level/Background/SunLightLayer"]
+modulate = Color(0.97, 0.89725, 0.485, 0.627451)
+material = SubResource("CanvasItemMaterial_a3sa5")
 position = Vector2(700, -217)
-amount = 128
-lifetime = 6.0
-preprocess = 6.0
-local_coords = true
-emission_shape = 1
-emission_sphere_radius = 128.0
-direction = Vector2(0, -1)
-gravity = Vector2(0, 0)
-angular_velocity_min = -2.5
-angular_velocity_max = 2.5
-angle_min = -720.0
-angle_max = 720.0
-scale_amount_min = 16.0
-scale_amount_max = 64.0
-scale_amount_curve = SubResource("Curve_0wxcu")
-split_scale = true
-scale_curve_x = SubResource("Curve_hhqtc")
-scale_curve_y = SubResource("Curve_e4vus")
-color = Color(1, 1, 0.501961, 0.0117647)
-color_ramp = SubResource("Gradient_tayne")
+scale = Vector2(8, 8)
+texture = ExtResource("15_45dcj")
 
 [node name="CoolEasterEgg" type="Sprite2D" parent="Level"]
 position = Vector2(25088, -1863)
@@ -1026,7 +994,6 @@ script = ExtResource("23_ttllf")
 [connection signal="ButtonPressed" from="Level/RealityDissector/ByNoMeansArtificalBoundaries" to="LevelMusicPlayer" method="PlayMusic" flags=6 binds= ["Matter Porn", 44.0, 0.0]]
 [connection signal="ButtonPressed" from="Level/RealityDissector/ByNoMeansArtificalBoundaries" to="Level/RealityDissector/ByNoMeansArtificalBoundaries/AnimationPlayer" method="play" flags=6 binds= ["RealityTumor"]]
 [connection signal="ButtonPressed" from="Level/RealityDissector/ByNoMeansArtificalBoundaries" to="Level/RealityDissector/CanvasLayer/WhiteNoiseGlitch" method="set_visible" binds= [true]]
-[connection signal="ButtonPressed" from="Level/RealityDissector/ByNoMeansArtificalBoundaries" to="Level/SunLightLayerContainer/SunLightLayer/SunLight" method="set_visible" binds= [false]]
 [connection signal="ButtonPressed" from="Level/RealityDissector/ByNoMeansArtificalBoundaries" to="Level/Player" method="set_global_position" binds= [Vector2(13856, 608)]]
 [connection signal="ButtonPressed" from="Level/RealityDissector/ByNoMeansArtificalBoundaries" to="Level/Player" method="SetCameraLimits" binds= [Vector4(-100000, 100000, 100000, -100000), true]]
 [connection signal="area_entered" from="Level/RealityDissector/ByNoMeansArtificalBoundaries" to="Level/RealityDissector/ByNoMeansArtificalBoundaries" method="AreaEntered" unbinds=1]

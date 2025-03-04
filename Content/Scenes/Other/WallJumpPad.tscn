@@ -1,0 +1,78 @@
+[gd_scene load_steps=10 format=3 uid="uid://bhxyqlefne8jb"]
+
+[ext_resource type="Script" path="res://Content/Scenes/Other/WallJumpPad.cs" id="1_0shhy"]
+[ext_resource type="Texture2D" uid="uid://xde7humutrpl" path="res://Content/Sprites/Other/WallJumpPadSpriteList.png" id="2_ayfoq"]
+[ext_resource type="AudioStream" uid="uid://bxk7stxyehfnj" path="res://Content/Sounds/Levels/Level6Trampoline.mp3" id="3_urx6k"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o6hn8"]
+atlas = ExtResource("2_ayfoq")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ys12e"]
+atlas = ExtResource("2_ayfoq")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ngisi"]
+atlas = ExtResource("2_ayfoq")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mdmq3"]
+atlas = ExtResource("2_ayfoq")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lrks2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o6hn8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ys12e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ngisi")
+}, {
+"duration": 5.0,
+"texture": SubResource("AtlasTexture_mdmq3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ngisi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ys12e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o6hn8")
+}],
+"loop": false,
+"name": &"default",
+"speed": 20.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k4x00"]
+size = Vector2(3, 16)
+
+[node name="WallJumpPad" type="Node2D"]
+scale = Vector2(4, 4)
+script = ExtResource("1_0shhy")
+CharacterToss = 900.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(8, 0)
+sprite_frames = SubResource("SpriteFrames_lrks2")
+frame = 6
+frame_progress = 1.0
+
+[node name="TossSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_urx6k")
+volume_db = 4.0
+bus = &"Enviromnment"
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(1.5, 0)
+shape = SubResource("RectangleShape2D_k4x00")
+
+[connection signal="body_entered" from="Area2D" to="." method="TossTheCharacter"]

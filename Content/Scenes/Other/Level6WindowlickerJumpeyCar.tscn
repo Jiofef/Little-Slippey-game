@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://s1n2sd5u3dmn"]
+[gd_scene load_steps=7 format=3 uid="uid://s1n2sd5u3dmn"]
 
 [ext_resource type="PackedScene" uid="uid://cyxwargnw8p37" path="res://Content/Scenes/Other/Level6JumpeyCar.tscn" id="1_qb50l"]
 [ext_resource type="Texture2D" uid="uid://274fb545klg0" path="res://Content/Sprites/Levels/Level6/WindowlickerJumpey.png" id="2_gcof7"]
@@ -14,9 +14,6 @@ size = Vector2(360, 48)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mkndr"]
 size = Vector2(304, 8)
-
-[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_2pv4r"]
-polygon = PackedVector2Array(-160, -28, -156, -28, -156, -32, 156, -32, 156, -28, 160, -28, 160, 28, 156, 28, 156, 32, -156, 32, -156, 28, -160, 28)
 
 [node name="Level6FlyingCar" instance=ExtResource("1_qb50l")]
 
@@ -41,8 +38,3 @@ position = Vector2(292, 0)
 
 [node name="CollisionShape2D" parent="Car/TrampolineArea" index="0"]
 shape = SubResource("RectangleShape2D_mkndr")
-
-[node name="LightOccluder2D" parent="Car" index="11"]
-occluder = SubResource("OccluderPolygon2D_2pv4r")
-
-[connection signal="body_entered" from="Car/AdditionalExplosiveArea" to="." method="Explode" flags=6 unbinds=1]

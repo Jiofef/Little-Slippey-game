@@ -30,7 +30,7 @@ public partial class Player : CharacterBody2D
     [Export] public float RigidBodyPushForce = 8;
 
     [ExportGroup("Secondary settings")]
-    [Export] public float CoyoteTime = 0.1f, WallJumpInertion = 1.4f, InertionControl = 3.3f, DownDashSpeed = 1250, MaxFallSpeed = 1250, ResurrectionImmortalityTime = 5f;
+    [Export] public float CoyoteTime = 0.1f, WallJumpInertion = 1.4f, InertionControl = 3.3f, DownDashSpeed = 1250, MaxFallSpeed = 1250, ResurrectionImmortalityTime = 5f, MinMoveCoeff = 0, MaxMoveCoeff = 1;
 
     [ExportGroup("GUI")]
     #region hell no
@@ -425,7 +425,7 @@ public partial class Player : CharacterBody2D
                     var climbBar = GetNode<TextureProgressBar>("Camera2D/ClimbsBar");
                     climbBar.Value = _climbBufer;
 
-                    var climbBarAnimation = GetNode<AnimationPlayer>("Camera2D/ClimbsBar/AnimationPlayer");
+                    var climbBarAnimation = climbBar.GetNode<AnimationPlayer>("AnimationPlayer");
                     climbBarAnimation.Stop();
                     climbBarAnimation.Play("Disappearing");
                 }
@@ -549,21 +549,16 @@ public partial class Player : CharacterBody2D
                 foreach (var position in _savedPastPositions)
                     PastPosSum += position;
                 _averagePosition = PastPosSum / _savedPastPositions.Length;
-
-
-                //BOO
-                if (GetNode<Sprite2D>("Ghost").Visible)
-                    GetNode<Sprite2D>("Ghost").GlobalPosition = new Vector2(_savedPastPositions[0].X, _savedPastPositions[0].Y);
             }
 
 
-            if (EnableStandingPenalty)
+            if (_enableStandingPenalty)
             {
                 Vector2 CorrectedAveragePosition = GlobalPosition - _averagePosition;
                 CorrectedAveragePosition.Y *= 1.5f;
                 float MoveDist = Mathf.Sqrt(CorrectedAveragePosition.X * CorrectedAveragePosition.X + CorrectedAveragePosition.Y * CorrectedAveragePosition.Y);
                 _moveCoeff += (MoveDist < 300 ? -0.6f + MoveDist / 300 : 0.4f) / 60;
-                _moveCoeff = Mathf.Clamp(_moveCoeff, 0, 1);
+                _moveCoeff = Mathf.Clamp(_moveCoeff, MinMoveCoeff, MaxMoveCoeff);
             }
 
             G.PlayerMoveCoeff = _moveCoeff;
@@ -890,11 +885,20 @@ public partial class Player : CharacterBody2D
             _moveCoeff = 1;
     }
 
+    public void SetMinMoveCoeff(float value)
+    {
+        MinMoveCoeff = value;
+    }
+    public void SetMaxMoveCoeff(float value)
+    {
+        MaxMoveCoeff = value;
+    }
+
     public void Toss(float velocity)
     {
         // To avoid unnecessary _lastActions entries
         BlockActsFor([Act.Walk, Act.Stand], 0.02f);
-        BlockActFor(Act.Jump, 0.33f);
+        BlockActsFor([Act.Jump, Act.Climb], 0.33f);
 
         Velocity = new Vector2(0, -velocity);
 

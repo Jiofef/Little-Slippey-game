@@ -354,7 +354,9 @@ public partial class Crosses : Node
 
         if (EnableGoldenCrossSpawning && (KeepGoldenCrossSpawningWhenProgressProgress || !IsProgressPaused) && _random.Next(GoldenCrossSpawnRarity) == 0) return CurrentGoldenCross;
 
-        return PickRandomByWeight(CurrentCrossesPack, CrossesWeight);
+
+
+        return PickRandomByWeight(CurrentCrossesPack, CrossesWeight, false);
     }
 
     public static void ResetLocalValues()

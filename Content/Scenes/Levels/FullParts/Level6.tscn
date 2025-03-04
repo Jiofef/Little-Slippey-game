@@ -1,4 +1,4 @@
-[gd_scene load_steps=67 format=4 uid="uid://cb5qp5c88hxxs"]
+[gd_scene load_steps=65 format=4 uid="uid://cb5qp5c88hxxs"]
 
 [ext_resource type="PackedScene" uid="uid://5kfyvxsdpsk2" path="res://Content/Scenes/Other/LevelLayout.tscn" id="1_k46p1"]
 [ext_resource type="Texture2D" uid="uid://cl251rqg2xbw0" path="res://Content/Sprites/Levels/Level6/Sky.png" id="2_suw6p"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://dct3ltljwt56o" path="res://Content/Scenes/Other/Level6DefaultCar.tscn" id="9_amo5x"]
 [ext_resource type="PackedScene" uid="uid://dlscufxb5f1ca" path="res://Content/Scenes/Other/Player.tscn" id="9_aum6r"]
 [ext_resource type="Texture2D" uid="uid://q2j1uuqfjmos" path="res://Content/Sprites/Levels/BaseTileSet.png" id="10_gawwt"]
+[ext_resource type="Texture2D" uid="uid://ckh1sclq3fji3" path="res://Content/Sprites/Other/PointLight.png" id="11_b4t5x"]
 [ext_resource type="Texture2D" uid="uid://b1dppreruk7js" path="res://Content/Sprites/Levels/poliSiSagEtilEseT.png" id="11_fgsae"]
 [ext_resource type="Texture2D" uid="uid://duk32e0otnfky" path="res://Content/Sprites/Levels/FuckItVolume2Tileset.png" id="11_yecq0"]
 [ext_resource type="Script" path="res://Content/Scripts/Levels/Foreground.cs" id="12_ib3hj"]
@@ -136,22 +137,8 @@ _data = {
 "rgb": SubResource("Animation_50kj8")
 }
 
-[sub_resource type="Curve" id="Curve_xlk0d"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.25, 1), 0.0, 0.0, 0, 0, Vector2(0.75, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 4
-
-[sub_resource type="Curve" id="Curve_eorc2"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
-point_count = 1
-
-[sub_resource type="Curve" id="Curve_qvp02"]
-max_value = 128.0
-_data = [Vector2(0, 128), 0.0, 0.0, 0, 0]
-point_count = 1
-
-[sub_resource type="Gradient" id="Gradient_ya28m"]
-offsets = PackedFloat32Array(0, 0.25, 0.75, 1)
-colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_b1x7e"]
+blend_mode = 1
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_x2nd3"]
 
@@ -703,32 +690,14 @@ layer = 0
 
 [node name="SunLightLayer" type="ParallaxLayer" parent="Level/SunLightLayerContainer" index="0"]
 z_as_relative = false
-motion_scale = Vector2(0.2, 0)
+motion_scale = Vector2(0.2, 0.5)
 
-[node name="SunLight" type="CPUParticles2D" parent="Level/SunLightLayerContainer/SunLightLayer" index="0"]
-visible = false
-position = Vector2(900, -217)
-amount = 128
-lifetime = 6.0
-preprocess = 6.0
-speed_scale = 3.0
-local_coords = true
-emission_shape = 1
-emission_sphere_radius = 128.0
-direction = Vector2(0, -1)
-gravity = Vector2(0, 0)
-angular_velocity_min = -2.5
-angular_velocity_max = 2.5
-angle_min = -720.0
-angle_max = 720.0
-scale_amount_min = 16.0
-scale_amount_max = 64.0
-scale_amount_curve = SubResource("Curve_xlk0d")
-split_scale = true
-scale_curve_x = SubResource("Curve_eorc2")
-scale_curve_y = SubResource("Curve_qvp02")
-color = Color(1, 1, 0.501961, 0.0117647)
-color_ramp = SubResource("Gradient_ya28m")
+[node name="Sprite2D" type="Sprite2D" parent="Level/SunLightLayerContainer/SunLightLayer" index="0"]
+modulate = Color(0.97, 0.89725, 0.485, 0.313726)
+material = SubResource("CanvasItemMaterial_b1x7e")
+position = Vector2(836, -160)
+scale = Vector2(8, 8)
+texture = ExtResource("11_b4t5x")
 
 [node name="Player" parent="Level" index="2" instance=ExtResource("9_aum6r")]
 position = Vector2(1920, 800)

@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://dm0exyex0n85q"]
+[gd_scene load_steps=9 format=3 uid="uid://dm0exyex0n85q"]
 
 [ext_resource type="Texture2D" uid="uid://b44rk1g0wwsxv" path="res://Content/Sprites/Levels/Level1/TutorialBackLayer.png" id="1_2508x"]
 [ext_resource type="Texture2D" uid="uid://bg822kab2yxmo" path="res://Content/Sprites/Levels/Level1/TutorialBackClouds.png" id="2_84xpu"]
 [ext_resource type="Texture2D" uid="uid://bp5qyqbjlin54" path="res://Content/Sprites/Levels/Level1/TutorialClouds.png" id="3_yd6nk"]
 [ext_resource type="Texture2D" uid="uid://74ngw6nw8jkq" path="res://Content/Sprites/Levels/Level1/TutorialFrontLayer.png" id="4_4vlsp"]
+[ext_resource type="Texture2D" uid="uid://ckh1sclq3fji3" path="res://Content/Sprites/Other/PointLight.png" id="5_usoqg"]
 
 [sub_resource type="Animation" id="Animation_dxr07"]
 resource_name = "CloudsMoving"
@@ -40,22 +41,8 @@ _data = {
 "CloudsMoving": SubResource("Animation_dxr07")
 }
 
-[sub_resource type="Curve" id="Curve_3nfru"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.25, 1), 0.0, 0.0, 0, 0, Vector2(0.75, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 4
-
-[sub_resource type="Curve" id="Curve_3ic8e"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
-point_count = 1
-
-[sub_resource type="Curve" id="Curve_f3qlc"]
-max_value = 128.0
-_data = [Vector2(0, 128), 0.0, 0.0, 0, 0]
-point_count = 1
-
-[sub_resource type="Gradient" id="Gradient_mym3i"]
-offsets = PackedFloat32Array(0, 0.25, 0.75, 1)
-colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_qqos4"]
+blend_mode = 1
 
 [node name="PresentedLevel1Tutorial" type="Node2D"]
 
@@ -86,10 +73,10 @@ scale = Vector2(4, 4)
 texture = ExtResource("3_yd6nk")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Background/Clouds"]
-autoplay = "CloudsMoving"
 libraries = {
 "": SubResource("AnimationLibrary_vyn6q")
 }
+autoplay = "CloudsMoving"
 
 [node name="FrontLayer" type="ParallaxLayer" parent="Background"]
 motion_scale = Vector2(0.75, 0.8)
@@ -106,25 +93,13 @@ color = Color(0, 0.705882, 0.705882, 0.313726)
 [node name="Camera2D" type="Camera2D" parent="Background"]
 zoom = Vector2(1.2, 1.2)
 
-[node name="SunLight" type="CPUParticles2D" parent="."]
-position = Vector2(794, -600)
-amount = 128
-lifetime = 6.0
-preprocess = 6.0
-local_coords = true
-emission_shape = 1
-emission_sphere_radius = 128.0
-direction = Vector2(0, -1)
-gravity = Vector2(0, 0)
-angular_velocity_min = -2.5
-angular_velocity_max = 2.5
-angle_min = -720.0
-angle_max = 720.0
-scale_amount_min = 16.0
-scale_amount_max = 64.0
-scale_amount_curve = SubResource("Curve_3nfru")
-split_scale = true
-scale_curve_x = SubResource("Curve_3ic8e")
-scale_curve_y = SubResource("Curve_f3qlc")
-color = Color(1, 1, 0.501961, 0.0117647)
-color_ramp = SubResource("Gradient_mym3i")
+[node name="SunLightLayer" type="ParallaxLayer" parent="Background"]
+z_as_relative = false
+motion_scale = Vector2(0.2, 0.2)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/SunLightLayer"]
+modulate = Color(0.97, 0.89725, 0.485, 0.501961)
+material = SubResource("CanvasItemMaterial_qqos4")
+position = Vector2(111, -345)
+scale = Vector2(6, 6)
+texture = ExtResource("5_usoqg")

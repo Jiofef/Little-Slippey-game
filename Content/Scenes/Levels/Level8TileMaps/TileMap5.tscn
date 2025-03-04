@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=4 uid="uid://bhdk3hc3a3lwy"]
+[gd_scene load_steps=36 format=4 uid="uid://bhdk3hc3a3lwy"]
 
 [ext_resource type="Texture2D" uid="uid://duk32e0otnfky" path="res://Content/Sprites/Levels/FuckItVolume2Tileset.png" id="1_4iiti"]
 [ext_resource type="PackedScene" uid="uid://dgxxv3neagyw" path="res://Content/Scenes/Other/Level8DisposableButton.tscn" id="2_og6f4"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://be6qklxwpawql" path="res://Content/Sprites/Levels/Level8/Gotcha.png" id="3_tnkf2"]
 [ext_resource type="PackedScene" uid="uid://buj5ooik0q3l0" path="res://Content/Scenes/Achievements/AchievementArea.tscn" id="5_mu3p2"]
 [ext_resource type="Texture2D" uid="uid://dgluki8hnwb62" path="res://Content/Sprites/Levels/Level8/AcidAndLavaTileset.png" id="5_r11w0"]
+[ext_resource type="Texture2D" uid="uid://ckh1sclq3fji3" path="res://Content/Sprites/Other/PointLight.png" id="7_q4orm"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wv2uq"]
 texture = ExtResource("1_4iiti")
@@ -535,6 +536,9 @@ sources/0 = SubResource("TileSetAtlasSource_sd8ca")
 offsets = PackedFloat32Array(0, 0.516556, 1)
 colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0)
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_lck7r"]
+blend_mode = 1
+
 [node name="TileMap" type="TileMapLayer"]
 use_parent_material = true
 scale = Vector2(4, 4)
@@ -737,6 +741,12 @@ scale_amount_min = 200.0
 scale_amount_max = 200.0
 color = Color(0, 1, 0, 0.0156863)
 color_ramp = SubResource("Gradient_ryyd1")
+
+[node name="Bloom" type="Sprite2D" parent="Acid"]
+modulate = Color(0.183333, 1, 0, 0.498039)
+material = SubResource("CanvasItemMaterial_lck7r")
+position = Vector2(457.75, 142)
+texture = ExtResource("7_q4orm")
 
 [connection signal="draw" from="Secret/Sprite2D" to="Secret/Sprite2D/StaticBody2D/CollisionShape2D" method="set_disabled" flags=6 binds= [false]]
 [connection signal="ButtonPressed" from="Secret/DisposableButton" to="Secret/Sprite2D" method="show"]

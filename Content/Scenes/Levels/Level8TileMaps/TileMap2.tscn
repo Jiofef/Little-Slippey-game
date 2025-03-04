@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=4 uid="uid://cjwyqhm2hfmhr"]
+[gd_scene load_steps=13 format=4 uid="uid://cjwyqhm2hfmhr"]
 
 [ext_resource type="Texture2D" uid="uid://duk32e0otnfky" path="res://Content/Sprites/Levels/FuckItVolume2Tileset.png" id="1_8mgyt"]
 [ext_resource type="Texture2D" uid="uid://dgluki8hnwb62" path="res://Content/Sprites/Levels/Level8/AcidAndLavaTileset.png" id="2_xu2os"]
+[ext_resource type="Texture2D" uid="uid://ckh1sclq3fji3" path="res://Content/Sprites/Other/PointLight.png" id="3_sgg57"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_28pgq"]
 texture = ExtResource("1_8mgyt")
@@ -173,6 +174,9 @@ sources/0 = SubResource("TileSetAtlasSource_sd8ca")
 offsets = PackedFloat32Array(0, 0.516556, 1)
 colors = PackedColorArray(1, 1, 1, 0, 0.602649, 0.602649, 0.602649, 1, 1, 1, 1, 0)
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_afkyw"]
+blend_mode = 1
+
 [node name="TileMap" type="TileMapLayer"]
 use_parent_material = true
 scale = Vector2(4, 4)
@@ -217,3 +221,10 @@ scale_amount_min = 4.0
 scale_amount_max = 4.0
 color = Color(0.784314, 0.627451, 0, 1)
 color_ramp = SubResource("Gradient_dm10q")
+
+[node name="Bloom" type="Sprite2D" parent="Lava"]
+modulate = Color(1, 0.626, 0.32, 0.501961)
+material = SubResource("CanvasItemMaterial_afkyw")
+position = Vector2(223, 170)
+scale = Vector2(2, 1)
+texture = ExtResource("3_sgg57")

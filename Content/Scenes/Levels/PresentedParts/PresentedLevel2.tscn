@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=4 uid="uid://b66eaywic6lo1"]
+[gd_scene load_steps=44 format=4 uid="uid://b66eaywic6lo1"]
 
 [ext_resource type="Texture2D" uid="uid://ba64m2i1e8tsn" path="res://Content/Sprites/Levels/Level2/Sky.png" id="1_ptacx"]
 [ext_resource type="Texture2D" uid="uid://ccgm5hyl1wawi" path="res://Content/Sprites/Levels/Level2/Clouds.png" id="2_rwtq5"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://dxxqxy5rj1wb5" path="res://Content/Sprites/Levels/Level2/Combine.png" id="7_lhr0j"]
 [ext_resource type="Texture2D" uid="uid://q2j1uuqfjmos" path="res://Content/Sprites/Levels/BaseTileSet.png" id="7_w4y2o"]
 [ext_resource type="Texture2D" uid="uid://46e35tif3q1r" path="res://Content/Sprites/Levels/Level2/wtf.png" id="9_ioykt"]
+[ext_resource type="Texture2D" uid="uid://ckh1sclq3fji3" path="res://Content/Sprites/Other/PointLight.png" id="11_pmfy6"]
 [ext_resource type="Texture2D" uid="uid://cerokowoh71s2" path="res://Content/Sprites/Levels/Level2/SmokeAnimation.png" id="11_tlap3"]
 [ext_resource type="Texture2D" uid="uid://b2eyigkc1t4fw" path="res://Content/Sprites/Levels/Level2/ShOatAnimation.png" id="12_sx7jh"]
 
@@ -296,6 +297,9 @@ _data = {
 "Default": SubResource("Animation_8sdl3")
 }
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_eaom4"]
+blend_mode = 1
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hl1pk"]
 texture = ExtResource("7_acygi")
 0:0/next_alternative_id = 7
@@ -506,23 +510,6 @@ _data = {
 "RESET": SubResource("Animation_yfk10")
 }
 
-[sub_resource type="Curve" id="Curve_w8w5q"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.25, 1), 0.0, 0.0, 0, 0, Vector2(0.75, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 4
-
-[sub_resource type="Curve" id="Curve_4ec6s"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
-point_count = 1
-
-[sub_resource type="Curve" id="Curve_di4tl"]
-max_value = 128.0
-_data = [Vector2(0, 128), 0.0, 0.0, 0, 0]
-point_count = 1
-
-[sub_resource type="Gradient" id="Gradient_8k3t3"]
-offsets = PackedFloat32Array(0, 0.25, 0.75, 1)
-colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
-
 [node name="PresentedLevel2" type="Node2D"]
 
 [node name="Background" type="ParallaxBackground" parent="."]
@@ -689,6 +676,18 @@ offset_right = 1280.0
 offset_bottom = 720.0
 color = Color(0.180392, 0.270588, 1, 0.152941)
 
+[node name="SunLightLayer" type="ParallaxLayer" parent="Background"]
+z_as_relative = false
+motion_scale = Vector2(0.1, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/SunLightLayer"]
+modulate = Color(0.97, 0.8245, 0, 0.376471)
+clip_children = 2
+material = SubResource("CanvasItemMaterial_eaom4")
+position = Vector2(800, -128)
+scale = Vector2(8, 8)
+texture = ExtResource("11_pmfy6")
+
 [node name="TileMap" type="TileMapLayer" parent="."]
 modulate = Color(0.952941, 0.952941, 0.952941, 1)
 use_parent_material = true
@@ -718,33 +717,3 @@ libraries = {
 "": SubResource("AnimationLibrary_kli7e")
 }
 autoplay = "CameraMoving2X1"
-
-[node name="SunLightLayerContainer" type="ParallaxBackground" parent="."]
-layer = 0
-
-[node name="SunLightLayer" type="ParallaxLayer" parent="SunLightLayerContainer"]
-z_as_relative = false
-motion_scale = Vector2(0.2, 0)
-
-[node name="SunLight" type="CPUParticles2D" parent="SunLightLayerContainer/SunLightLayer"]
-position = Vector2(184, -217)
-amount = 128
-lifetime = 6.0
-preprocess = 6.0
-local_coords = true
-emission_shape = 1
-emission_sphere_radius = 128.0
-direction = Vector2(0, -1)
-gravity = Vector2(0, 0)
-angular_velocity_min = -2.5
-angular_velocity_max = 2.5
-angle_min = -720.0
-angle_max = 720.0
-scale_amount_min = 16.0
-scale_amount_max = 64.0
-scale_amount_curve = SubResource("Curve_w8w5q")
-split_scale = true
-scale_curve_x = SubResource("Curve_4ec6s")
-scale_curve_y = SubResource("Curve_di4tl")
-color = Color(1, 1, 0.501961, 0.0117647)
-color_ramp = SubResource("Gradient_8k3t3")

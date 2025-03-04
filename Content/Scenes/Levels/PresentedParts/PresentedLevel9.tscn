@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=4 uid="uid://dtf4wpreutr2f"]
+[gd_scene load_steps=24 format=4 uid="uid://dtf4wpreutr2f"]
 
 [ext_resource type="Texture2D" uid="uid://q2j1uuqfjmos" path="res://Content/Sprites/Levels/BaseTileSet.png" id="1_w15ua"]
 [ext_resource type="Texture2D" uid="uid://duk32e0otnfky" path="res://Content/Sprites/Levels/FuckItVolume2Tileset.png" id="2_jm2km"]
@@ -9,7 +9,11 @@
 [ext_resource type="Texture2D" uid="uid://02x0pnqhruvm" path="res://Content/Sprites/Levels/Level9/HellVolcanoSmokeAnimation.png" id="7_vpwx5"]
 [ext_resource type="Texture2D" uid="uid://b5xgijs68t8r" path="res://Content/Sprites/Levels/Level9/HellGround.png" id="8_4chix"]
 [ext_resource type="Texture2D" uid="uid://nlwphmf6wah0" path="res://Content/Sprites/Levels/Level8/Button.png" id="9_h21wv"]
+[ext_resource type="Texture2D" uid="uid://ckh1sclq3fji3" path="res://Content/Sprites/Other/PointLight.png" id="9_ovcnp"]
 [ext_resource type="Texture2D" uid="uid://dgluki8hnwb62" path="res://Content/Sprites/Levels/Level8/AcidAndLavaTileset.png" id="14_u0rcf"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_i5m1s"]
+blend_mode = 1
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6cprf"]
 atlas = ExtResource("7_vpwx5")
@@ -142,6 +146,13 @@ position = Vector2(0, 80)
 scale = Vector2(8.5, 8.5)
 texture = ExtResource("5_1v74w")
 
+[node name="Bloom3" type="Sprite2D" parent="PlatformerSection/Background"]
+modulate = Color(1, 0.626, 0.32, 0.501961)
+material = SubResource("CanvasItemMaterial_i5m1s")
+position = Vector2(-229, -83)
+scale = Vector2(16, 8)
+texture = ExtResource("9_ovcnp")
+
 [node name="Hell" type="Sprite2D" parent="PlatformerSection/Background"]
 position = Vector2(0, 400)
 scale = Vector2(4.5, 4.5)
@@ -169,6 +180,20 @@ offset_top = -320.0
 offset_right = 1350.0
 offset_bottom = 1120.0
 color = Color(0.501961, 0, 0, 0.294118)
+
+[node name="Bloom" type="Sprite2D" parent="PlatformerSection/Background"]
+modulate = Color(1, 0.626, 0.32, 0.25098)
+material = SubResource("CanvasItemMaterial_i5m1s")
+position = Vector2(-273.75, 205.5)
+scale = Vector2(3, 3)
+texture = ExtResource("9_ovcnp")
+
+[node name="Bloom2" type="Sprite2D" parent="PlatformerSection/Background"]
+modulate = Color(1, 0.626, 0.32, 0.25098)
+material = SubResource("CanvasItemMaterial_i5m1s")
+position = Vector2(-794, 761.5)
+scale = Vector2(3, 3)
+texture = ExtResource("9_ovcnp")
 
 [node name="Button" type="Sprite2D" parent="PlatformerSection"]
 position = Vector2(-1060, -40)
@@ -218,6 +243,20 @@ scale_amount_min = 4.0
 scale_amount_max = 4.0
 color = Color(0.784314, 0.627451, 0, 1)
 color_ramp = SubResource("Gradient_esflp")
+
+[node name="Bloom" type="Sprite2D" parent="PlatformerSection/Lava"]
+modulate = Color(1, 0.626, 0.32, 0.501961)
+material = SubResource("CanvasItemMaterial_i5m1s")
+position = Vector2(753.75, 772.75)
+scale = Vector2(5, 1)
+texture = ExtResource("9_ovcnp")
+
+[node name="Bloom2" type="Sprite2D" parent="PlatformerSection/Lava"]
+modulate = Color(1, 0.626, 0.32, 0.501961)
+material = SubResource("CanvasItemMaterial_i5m1s")
+position = Vector2(116.25, 342)
+scale = Vector2(1.5, 1)
+texture = ExtResource("9_ovcnp")
 
 [node name="Fog" type="ColorRect" parent="PlatformerSection"]
 offset_left = -1350.0
