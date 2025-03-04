@@ -82,7 +82,7 @@ tracks/4/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_gf8ss"]
 _data = {
-&"SawSpinning": SubResource("Animation_bhfph")
+"SawSpinning": SubResource("Animation_bhfph")
 }
 
 [sub_resource type="Curve" id="Curve_imc5f"]
@@ -247,10 +247,10 @@ length = 0.001
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kli7e"]
 _data = {
-&"RESET": SubResource("Animation_yfk10"),
-&"CameraMoving1X1": SubResource("Animation_qnl8m"),
-&"CameraMoving2X1": SubResource("Animation_2yfre"),
-&"CameraMoving2X2": SubResource("Animation_lcayd")
+"CameraMoving1X1": SubResource("Animation_qnl8m"),
+"CameraMoving2X1": SubResource("Animation_2yfre"),
+"CameraMoving2X2": SubResource("Animation_lcayd"),
+"RESET": SubResource("Animation_yfk10")
 }
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_t1m5d"]
@@ -284,7 +284,7 @@ centered = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Background/SawHolder"]
 libraries = {
-&"": SubResource("AnimationLibrary_gf8ss")
+"": SubResource("AnimationLibrary_gf8ss")
 }
 autoplay = "SawSpinning"
 speed_scale = 1.5
@@ -449,7 +449,7 @@ zoom = Vector2(0.6, 0.6)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CameraPath/PathFollow2D"]
 libraries = {
-&"": SubResource("AnimationLibrary_kli7e")
+"": SubResource("AnimationLibrary_kli7e")
 }
 autoplay = "CameraMoving2X2"
 

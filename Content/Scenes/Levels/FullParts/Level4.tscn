@@ -1,11 +1,11 @@
-[gd_scene load_steps=42 format=4 uid="uid://biit1jgjtou15"]
+[gd_scene load_steps=45 format=4 uid="uid://biit1jgjtou15"]
 
 [ext_resource type="PackedScene" uid="uid://5kfyvxsdpsk2" path="res://Content/Scenes/Other/LevelLayout.tscn" id="1_yi0hb"]
 [ext_resource type="Texture2D" uid="uid://b5p3n4aaw5n7h" path="res://Content/Sprites/Levels/Level4/Background.png" id="2_ao0lm"]
 [ext_resource type="Texture2D" uid="uid://d3ctks0vyqrll" path="res://Content/Sprites/Levels/Level4/SawHolder.png" id="3_a2wqw"]
 [ext_resource type="Texture2D" uid="uid://d03h2q54r8eox" path="res://Content/Sprites/Levels/Level4/SawPistonRod.png" id="4_ds7bx"]
 [ext_resource type="Texture2D" uid="uid://ceenyhg3xfoon" path="res://Content/Sprites/Levels/Level4/SawPistonPart.png" id="5_uqvlw"]
-[ext_resource type="Script" path="res://Content/Scripts/Levels/Level4CircularSawScript.cs" id="6_x411r"]
+[ext_resource type="Script" path="res://Content/Scripts/Other/Rotator.cs" id="6_si15i"]
 [ext_resource type="Texture2D" uid="uid://dsukwby7alfd" path="res://Content/Sprites/Levels/Level4/UltraBigSaw.png" id="7_qvllt"]
 [ext_resource type="Texture2D" uid="uid://oy0q0tel1241" path="res://Content/Sprites/Levels/Level4/BigSaw.png" id="8_y7824"]
 [ext_resource type="Texture2D" uid="uid://dse3qddcaf5o4" path="res://Content/Sprites/Levels/Level4/TheMostOrdinaryUnremarkableSawWhichSurprisinglyCanKillAPlayerWithoutProblemsBecauseItHasAHitboxOnTheSameLayerAsTheExplosionOfCrossesThatsInShort.png" id="9_b6lcq"]
@@ -14,6 +14,7 @@
 [ext_resource type="Script" path="res://Content/Scripts/Levels/Level4CircularSawScreechSound.cs" id="12_epg78"]
 [ext_resource type="Texture2D" uid="uid://cekfjaqu85oq2" path="res://Content/Sprites/Levels/Level4/UltraBigSawStud.png" id="13_emngo"]
 [ext_resource type="Texture2D" uid="uid://kcd1m7tkh45l" path="res://Content/Sprites/Levels/NePeretrudilsyaTileset.png" id="14_hwiy7"]
+[ext_resource type="Script" path="res://Content/Scripts/Other/Trail.cs" id="15_4vqng"]
 [ext_resource type="PackedScene" uid="uid://dlscufxb5f1ca" path="res://Content/Scenes/Other/Player.tscn" id="15_f0cdm"]
 [ext_resource type="Script" path="res://Content/Scripts/Levels/Foreground.cs" id="16_yd5fs"]
 [ext_resource type="Shader" path="res://Content/Other/BlurShader.gdshader" id="17_61d51"]
@@ -135,6 +136,13 @@ point_count = 2
 
 [sub_resource type="Gradient" id="Gradient_dbmlr"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="Curve" id="Curve_kh8xi"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_un66f"]
+colors = PackedColorArray(0.788235, 0.141176, 0.392157, 1, 0.196078, 0.196078, 0.196078, 1)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6r1jg"]
 texture = ExtResource("14_hwiy7")
@@ -328,33 +336,35 @@ offset_right = 1280.0
 offset_bottom = 720.0
 color = Color(0.0313726, 0, 0.392157, 0.235294)
 
-[node name="BackCircularSaw" type="Node2D" parent="Level" index="1"]
+[node name="BackCircularSaw" type="Node2D" parent="Level" index="1" node_paths=PackedStringArray("Target")]
 position = Vector2(1307, 674)
 scale = Vector2(4, 4)
-script = ExtResource("6_x411r")
-_rotationSpeed = 0.045
+script = ExtResource("6_si15i")
+RotationSpeed = 0.03
+Target = NodePath("Saw")
 
 [node name="Saw" type="Sprite2D" parent="Level/BackCircularSaw" index="0"]
 self_modulate = Color(0.784314, 0.784314, 0.784314, 1)
 rotation = 6.28319
 texture = ExtResource("7_qvllt")
 
-[node name="MiddleCircularSaw" type="Node2D" parent="Level/BackCircularSaw/Saw" index="0"]
+[node name="MiddleCircularSaw" type="Node2D" parent="Level/BackCircularSaw/Saw" index="0" node_paths=PackedStringArray("Target")]
 modulate = Color(0.933333, 0.933333, 0.933333, 1)
 position = Vector2(120, 0)
-script = ExtResource("6_x411r")
-_rotationSpeed = 0.15
+script = ExtResource("6_si15i")
+Target = NodePath("Saw")
 
 [node name="Saw" type="Sprite2D" parent="Level/BackCircularSaw/Saw/MiddleCircularSaw" index="0"]
 self_modulate = Color(0.901961, 0.901961, 0.901961, 1)
 texture = ExtResource("8_y7824")
 
-[node name="FrontCircularSaw" type="Node2D" parent="Level/BackCircularSaw/Saw/MiddleCircularSaw/Saw" index="0"]
+[node name="FrontCircularSaw" type="Node2D" parent="Level/BackCircularSaw/Saw/MiddleCircularSaw/Saw" index="0" node_paths=PackedStringArray("Target")]
 z_index = 1
 position = Vector2(40, 0)
 scale = Vector2(0.5, 0.5)
-script = ExtResource("6_x411r")
-_rotationSpeed = 0.3
+script = ExtResource("6_si15i")
+RotationSpeed = 0.3
+Target = NodePath("Saw")
 
 [node name="Saw" type="Sprite2D" parent="Level/BackCircularSaw/Saw/MiddleCircularSaw/Saw/FrontCircularSaw" index="0"]
 scale = Vector2(2, 2)
@@ -400,18 +410,51 @@ self_modulate = Color(0.784314, 0.784314, 0.784314, 1)
 position = Vector2(1.25, 0)
 texture = ExtResource("13_emngo")
 
-[node name="DecorationMap" type="TileMapLayer" parent="Level" index="2"]
+[node name="WARNING" type="Node2D" parent="Level" index="2" node_paths=PackedStringArray("Target")]
+position = Vector2(1307, 674)
+rotation = 3.14159
+scale = Vector2(4, 4)
+script = ExtResource("6_si15i")
+RotationSpeed = 0.03
+Target = NodePath(".")
+
+[node name="WARNING" type="Node2D" parent="Level/WARNING" index="0" node_paths=PackedStringArray("Target")]
+position = Vector2(120, 0)
+rotation = 4.18879
+script = ExtResource("6_si15i")
+Target = NodePath(".")
+
+[node name="WARNING" type="Node2D" parent="Level/WARNING/WARNING" index="0"]
+position = Vector2(40, 0)
+
+[node name="WARNING2" type="Line2D" parent="Level/WARNING/WARNING/WARNING" index="0"]
+modulate = Color(1, 1, 1, 0.501961)
+top_level = true
+points = PackedVector2Array(1947, 674, 1945.43, 709.139, 1940.76, 743.916, 1933.04, 777.972, 1922.4, 810.963, 1908.98, 842.56, 1892.99, 872.459, 1874.65, 900.381, 1854.24, 926.082, 1832.03, 949.351, 1808.36, 970.019, 1783.55, 987.957, 1757.96, 1003.08, 1731.93, 1015.35, 1705.82, 1024.78, 1679.99, 1031.42, 1654.76, 1035.36, 1630.47, 1036.74, 1607.41, 1035.74, 1585.86, 1032.58, 1566.06, 1027.51, 1548.22, 1020.8, 1532.5, 1012.76, 1519.03, 1003.7, 1507.9, 993.959, 1499.15, 983.875, 1492.76, 973.789, 1488.69, 964.037, 1486.85, 954.944, 1487.08, 946.821, 1489.22, 939.954, 1493.06, 934.607, 1498.33, 931.008, 1504.78, 929.354, 1512.1, 929.802, 1519.97, 932.468, 1528.06, 937.424, 1536.03, 944.697, 1543.55, 954.271, 1550.28, 966.082, 1555.89, 980.026, 1560.09, 995.952, 1562.57, 1013.67, 1563.09, 1032.96, 1561.41, 1053.56, 1557.34, 1075.18, 1550.73, 1097.52, 1541.46, 1120.24, 1529.45, 1142.99, 1514.7, 1165.44, 1497.21, 1187.22, 1477.05, 1207.98, 1454.34, 1227.4, 1429.22, 1245.15, 1401.89, 1260.93, 1372.58, 1274.46, 1341.56, 1285.5, 1309.13, 1293.84, 1275.59, 1299.32, 1241.29, 1301.81, 1206.58, 1301.21, 1171.82, 1297.5, 1137.38, 1290.68, 1106.16, 1281.67, 1073.29, 1269.16, 1041.74, 1253.8, 1011.82, 1235.79, 983.838, 1215.33, 958.047, 1192.68, 934.677, 1168.11, 913.919, 1141.94, 895.924, 1114.49, 880.797, 1086.1, 868.602, 1057.14, 859.355, 1027.96, 853.026, 998.909, 849.542, 970.344, 848.783, 942.597, 850.591, 915.984, 854.768, 890.797, 861.08, 867.299, 869.262, 845.718, 879.024, 826.247, 890.054, 809.039, 902.022, 794.202, 914.591, 781.802, 927.417, 771.86, 940.158, 764.35, 952.479, 759.202, 964.06, 756.304, 974.596, 755.501, 983.81, 756.599, 991.449, 759.372, 997.297, 763.56, 1001.17, 768.877, 1002.93, 775.018, 1002.48, 781.657, 999.758, 788.464, 994.758, 795.099, 987.514, 801.225, 978.105, 806.514, 966.656, 810.649, 953.329, 813.332, 938.328, 814.288, 921.89, 813.273, 904.284, 810.072, 885.807, 804.511)
+width = 130.0
+width_curve = SubResource("Curve_kh8xi")
+gradient = SubResource("Gradient_un66f")
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+sharp_limit = 64.0
+round_precision = 32
+antialiased = true
+script = ExtResource("15_4vqng")
+MaxLength = 107
+
+[node name="DecorationMap" type="TileMapLayer" parent="Level" index="3"]
 modulate = Color(0.501961, 0.501961, 0.501961, 1)
 use_parent_material = true
 scale = Vector2(4, 4)
 tile_map_data = PackedByteArray("AAAMABIAAAABAAAAAAALABIAAAABAAAAAAALABMAAAABAAAAAAAIAA4AAAABAAAAAAAHAAsAAAABAAAAAAAHAAwAAAABAAAAAAAGAAoAAAABAAAAAAAGAAkAAAABAAAAAAAFAAkAAAABAAAAAAAEAAcAAAABAAAAAAACAAYAAAABAAAAAAABAAYAAAABAAAAAAAAAAcAAAABAAAAAAAAAAgAAAABAAAAAAAAAAkAAAABAAAAAAAAAAoAAAABAAAAAAAAAAsAAAABAAAAAAAAAA0AAAABAAAAAAAAAA4AAAABAAAAAAAAAA8AAAABAAAAAAAAABAAAAABAAAAAAAAABEAAAABAAAAAAAAABIAAAABAAAAAAAAABMAAAABAAAAAAACABMAAAABAAAAAAADABMAAAABAAAAAAAEABMAAAABAAAAAAAFABMAAAABAAAAAAAGABMAAAABAAAAAAAHABMAAAABAAAAAAAIABMAAAABAAAAAAAJABMAAAABAAAAAAAKABMAAAABAAAAAAAFABIAAAABAAAAAAAGABIAAAABAAAAAAAHABIAAAABAAAAAAAIABIAAAABAAAAAAAJABIAAAABAAAAAAAKABIAAAABAAAAAAADABEAAAABAAAAAAADABIAAAABAAAAAAABABEAAAABAAAAAAABABIAAAABAAAAAAACABAAAAABAAAAAAACABEAAAABAAAAAAADABAAAAABAAAAAAAGAAwAAAABAAAAAAAGAA0AAAABAAAAAAAGAA4AAAABAAAAAAAGAA8AAAABAAAAAAAGABAAAAABAAAAAAAIAA8AAAABAAAAAAAIABAAAAABAAAAAAAIABEAAAABAAAAAAAJABEAAAABAAAAAAABAA4AAAABAAAAAAACAA4AAAABAAAAAAADAA4AAAABAAAAAAAEAA4AAAABAAAAAAACAA0AAAABAAAAAAAEAAsAAAABAAAAAAAEAAwAAAABAAAAAAAEAA0AAAABAAAAAAADAAwAAAABAAAAAAAFAAsAAAABAAAAAAAGAAsAAAABAAAAAAAHAAoAAAABAAAAAAADAAkAAAABAAAAAAAEAAkAAAABAAAAAAACAAoAAAABAAAAAAADAAoAAAABAAAAAAABAAsAAAABAAAAAAACAAsAAAABAAAAAAABAAwAAAABAAAAAAACAAcAAAABAAAAAAACAAgAAAABAAAAAAAaABMAAAABAAAAAAAcABIAAAABAAAAAAAgAAsAAAABAAAAAAAgAAoAAAABAAAAAAAhAAkAAAABAAAAAAAgAAkAAAABAAAAAAAhAAoAAAABAAAAAAAhAAsAAAABAAAAAAAjAAoAAAABAAAAAAAkAAoAAAABAAAAAAAmAAsAAAABAAAAAAAnAAsAAAABAAAAAAAmAAoAAAABAAAAAAAnAAkAAAABAAAAAAAkAAsAAAABAAAAAAAjAAwAAAABAAAAAAAkAAwAAAABAAAAAAAlAAwAAAABAAAAAAAmAAwAAAABAAAAAAAmAA0AAAABAAAAAAAnAA0AAAABAAAAAAAiAA4AAAABAAAAAAAjAA4AAAABAAAAAAAkAA4AAAABAAAAAAAlAA4AAAABAAAAAAAmAA4AAAABAAAAAAAgAA0AAAABAAAAAAAgAA4AAAABAAAAAAAgAA8AAAABAAAAAAAgABAAAAABAAAAAAAfABAAAAABAAAAAAAfABEAAAABAAAAAAAfABIAAAABAAAAAAAfABMAAAABAAAAAAAdABIAAAABAAAAAAAdABMAAAABAAAAAAAgABMAAAABAAAAAAAhABMAAAABAAAAAAAhABIAAAABAAAAAAAiABIAAAABAAAAAAAiABEAAAABAAAAAAAiABAAAAABAAAAAAAjABAAAAABAAAAAAAkABAAAAABAAAAAAAkABEAAAABAAAAAAAkABIAAAABAAAAAAAkABMAAAABAAAAAAAjABMAAAABAAAAAAAlABMAAAABAAAAAAAmABMAAAABAAAAAAAnABMAAAABAAAAAAAmABEAAAABAAAAAAAmABIAAAABAAAAAAAlABAAAAABAAAAAAAnAA8AAAABAAAAAAAnABAAAAABAAAAAAAnABEAAAABAAAAAAAmAA8AAAABAAAAAAAgAAcAAAABAAAAAAAgAAgAAAABAAAAAAAOABMAAAABAAAAAAAAAAUAAAABAAAAAAAAAAYAAAABAAAAAAAdABEAAAABAAAAAAAKABAAAAABAAAAAAAKABEAAAABAAAAAAALABEAAAABAAAAAAAJAA4AAAABAAAAAAAJAA0AAAABAAAAAAAJAA8AAAABAAAAAAAJABAAAAABAAAAAAAKAA8AAAABAAAAAAAJAAwAAAABAAAAAAAKAA4AAAABAAAAAAALABAAAAABAAAAAAAJAAsAAAABAAAAAAAdABAAAAABAAAAAAAdAA8AAAABAAAAAAAfAA4AAAABAAAAAAAfAA0AAAABAAAAAAA=")
 tile_set = SubResource("TileSet_hthw8")
 
-[node name="Player" parent="Level" index="3" instance=ExtResource("15_f0cdm")]
+[node name="Player" parent="Level" index="4" instance=ExtResource("15_f0cdm")]
 modulate = Color(0.956863, 0.956863, 0.956863, 1)
 position = Vector2(1312, 672)
 
-[node name="TileMap" type="Node2D" parent="Level" index="4"]
+[node name="TileMap" type="Node2D" parent="Level" index="5"]
 modulate = Color(0.952941, 0.952941, 0.952941, 1)
 scale = Vector2(4, 4)
 
@@ -425,14 +468,14 @@ use_parent_material = true
 tile_map_data = PackedByteArray("AAD//wAAAAACAAAAAQD//wEAAAACAAAAASD//wIAAAACAAAAASD//wMAAAACAAAAAQD//wQAAAACAAAAASD//wUAAAACAAAAAQD//wYAAAACAAAAASD//wcAAAACAAAAAQD//wgAAAACAAAAASD//wkAAAACAAAAASD//woAAAACAAAAASD//wsAAAACAAAAASD//wwAAAACAAAAAQD//w0AAAACAAAAAQD//w4AAAACAAAAAQD//w8AAAACAAAAAQD//xAAAAACAAAAASD//xEAAAACAAAAAQD//xIAAAACAAAAAQD//xMAAAACAAAAASAAAP//AAACAAAAAhABAP//AAACAAAAAgACAP//AAACAAAAAhADAP//AAACAAAAAgAEAP//AAACAAAAAgAFAP//AAACAAAAAgAGAP//AAACAAAAAhAHAP//AAACAAAAAgAIAP//AAACAAAAAhAJAP//AAACAAAAAhAKAP//AAACAAAAAgALAP//AAACAAAAAgAMAP//AAACAAAAAhANAP//AAACAAAAAhAOAP//AAACAAAAAgAPAP//AAACAAAAAhAQAP//AAACAAAAAhARAP//AAACAAAAAhASAP//AAACAAAAAgATAP//AAACAAAAAhAUAP//AAACAAAAAgAVAP//AAACAAAAAgAWAP//AAACAAAAAhAXAP//AAACAAAAAhAYAP//AAACAAAAAgAZAP//AAACAAAAAgAaAP//AAACAAAAAhAbAP//AAACAAAAAgAcAP//AAACAAAAAhAdAP//AAACAAAAAhAeAP//AAACAAAAAhAfAP//AAACAAAAAgAgAP//AAACAAAAAgAhAP//AAACAAAAAhAiAP//AAACAAAAAgAjAP//AAACAAAAAhAkAP//AAACAAAAAhAlAP//AAACAAAAAhAmAP//AAACAAAAAhAnAP//AAACAAAAAhAoAAAAAAACAAAAAAAoAAEAAAACAAAAAAAoAAIAAAACAAAAAAAoAAMAAAACAAAAAAAoAAQAAAACAAAAAAAoAAUAAAACAAAAACAoAAYAAAACAAAAACAoAAcAAAACAAAAAAAoAAgAAAACAAAAACAoAAkAAAACAAAAACAoAAoAAAACAAAAACAoAAsAAAACAAAAACAoAAwAAAACAAAAAAAoAA0AAAACAAAAACAoAA4AAAACAAAAACAoAA8AAAACAAAAACAoABAAAAACAAAAAAAoABEAAAACAAAAACAoABIAAAACAAAAACAoABMAAAACAAAAAAAAABQAAAACAAAAAxABABQAAAACAAAAAwACABQAAAACAAAAAwADABQAAAACAAAAAwAEABQAAAACAAAAAwAFABQAAAACAAAAAwAGABQAAAACAAAAAwAHABQAAAACAAAAAwAIABQAAAACAAAAAxAJABQAAAACAAAAAxAKABQAAAACAAAAAxALABQAAAACAAAAAwAMABQAAAACAAAAAwANABQAAAACAAAAAxAOABQAAAACAAAAAwAPABQAAAACAAAAAwAQABQAAAACAAAAAwARABQAAAACAAAAAxASABQAAAACAAAAAxATABQAAAACAAAAAwAUABQAAAACAAAAAwAVABQAAAACAAAAAxAWABQAAAACAAAAAwAXABQAAAACAAAAAxAYABQAAAACAAAAAxAZABQAAAACAAAAAwAaABQAAAACAAAAAxAbABQAAAACAAAAAwAcABQAAAACAAAAAxAdABQAAAACAAAAAxAeABQAAAACAAAAAwAfABQAAAACAAAAAxAgABQAAAACAAAAAxAhABQAAAACAAAAAxAiABQAAAACAAAAAxAjABQAAAACAAAAAwAkABQAAAACAAAAAwAlABQAAAACAAAAAxAmABQAAAACAAAAAwAnABQAAAACAAAAAwA=")
 tile_set = SubResource("TileSet_cudp5")
 
-[node name="CrutchTileMap" type="TileMapLayer" parent="Level" index="5"]
+[node name="CrutchTileMap" type="TileMapLayer" parent="Level" index="6"]
 modulate = Color(1, 1, 1, 0.196078)
 use_parent_material = true
 scale = Vector2(4, 4)
 tile_map_data = PackedByteArray("AAANAAAAAAABAAEAAAANAAIAAAABAAEAAAANAAMAAAABAAEAAAANAAQAAAABAAEAAAANAAUAAAABAAEAAAANAAYAAAABAAEAAAANAA8AAAABAAEAAAANABAAAAABAAEAAAANABEAAAABAAEAAAAQABAAAAABAAEAAAAQABEAAAABAAEAAAAQABIAAAABAAEAAAAQABMAAAABAAEAAAARAAAAAAABAAEAAAARAAEAAAABAAEAAAARAAIAAAABAAEAAAARAAMAAAABAAEAAAARAAQAAAABAAEAAAARAAYAAAABAAEAAAARAAcAAAABAAEAAAARAAsAAAABAAEAAAARAAwAAAABAAEAAAARAA0AAAABAAEAAAARAA4AAAABAAEAAAARAA8AAAABAAEAAAAUAAAAAAABAAEAAAAUAAEAAAABAAEAAAAUAAIAAAABAAEAAAAUAAMAAAABAAEAAAAUAAQAAAABAAEAAAAUAAUAAAABAAEAAAAUAAYAAAABAAEAAAAUAAcAAAABAAEAAAAUAAgAAAABAAEAAAAUAAkAAAABAAEAAAAUAAoAAAABAAEAAAAUAAsAAAABAAEAAAAUAA4AAAABAAEAAAAUAA8AAAABAAEAAAAUABAAAAABAAEAAAAUABIAAAABAAEAAAAUABMAAAABAAEAAAAXAAAAAAABAAEAAAAXAAEAAAABAAEAAAAXAAIAAAABAAEAAAAXAAMAAAABAAEAAAAXAAQAAAABAAEAAAAXAAYAAAABAAEAAAAXAAcAAAABAAEAAAAXAAsAAAABAAEAAAAXAAwAAAABAAEAAAAXAA0AAAABAAEAAAAXAA4AAAABAAEAAAAXAA8AAAABAAEAAAAYABAAAAABAAEAAAAYABEAAAABAAEAAAAYABIAAAABAAEAAAAYABMAAAABAAEAAAAbAAAAAAABAAEAAAAbAAIAAAABAAEAAAAbAAMAAAABAAEAAAAbAAQAAAABAAEAAAAbAAUAAAABAAEAAAAbAAYAAAABAAEAAAAbAA8AAAABAAEAAAAbABAAAAABAAEAAAAbABEAAAABAAEAAAA=")
 tile_set = SubResource("TileSet_2keek")
 
-[node name="WallForeground" type="Node2D" parent="Level" index="6"]
+[node name="WallForeground" type="Node2D" parent="Level" index="7"]
 modulate = Color(1, 1, 1, 0.784314)
 script = ExtResource("16_yd5fs")
 
@@ -450,7 +493,7 @@ collision_layer = 64
 visible = false
 polygon = PackedVector2Array(272, 320, 272, 304, 224, 288, 208, 256, 192, 224, 176, 180, 192, 127.75, 208, 64, 224, 48, 271.75, 32, 328, 16, 384, 32, 432.25, 48, 448, 63.75, 464, 112, 480, 171.5, 464.25, 224, 448, 256, 432.25, 288, 384, 304.25, 384, 320, 640, 320.25, 640, 0, 0, 0, 0, 320)
 
-[node name="CanvasLayer" type="CanvasLayer" parent="Level" index="7"]
+[node name="CanvasLayer" type="CanvasLayer" parent="Level" index="8"]
 
 [node name="PostProcessingRect" type="ColorRect" parent="Level/CanvasLayer" index="0"]
 material = SubResource("ShaderMaterial_vjxsh")
@@ -458,7 +501,7 @@ offset_right = 1280.0
 offset_bottom = 720.0
 mouse_filter = 2
 
-[node name="PlayMusicTrigger" parent="Level" index="8" instance=ExtResource("18_axctq")]
+[node name="PlayMusicTrigger" parent="Level" index="9" instance=ExtResource("18_axctq")]
 position = Vector2(1312, 672)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/PlayMusicTrigger" index="0"]

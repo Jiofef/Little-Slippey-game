@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://cq7yjw2oh3wvt"]
+[gd_scene load_steps=27 format=3 uid="uid://cq7yjw2oh3wvt"]
 
 [ext_resource type="Texture2D" uid="uid://060bgiw5i00k" path="res://Content/Sprites/PlayerSkins/Slippey.png" id="1_6xh0i"]
 [ext_resource type="Script" path="res://Content/Scripts/Other/SkinScript.cs" id="2_ktwy3"]
@@ -195,6 +195,9 @@ animations = [{
 "speed": 0.0
 }]
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_7jkk8"]
+polygon = PackedVector2Array(-20, -20, -16, -20, -16, -24, 16, -24, 16, -20, 20, -20, 20, 8, 16, 8, 16, 12, -16, 12, -16, 8, -20, 8)
+
 [node name="Slippey" type="AnimatedSprite2D"]
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_ha5cw")
@@ -204,3 +207,7 @@ frame_progress = 0.66071
 script = ExtResource("2_ktwy3")
 metadata/HasAnimationPlayer = false
 metadata/HasDeathPlayerAnimation = false
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+scale = Vector2(0.25, 0.25)
+occluder = SubResource("OccluderPolygon2D_7jkk8")

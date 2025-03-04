@@ -231,6 +231,13 @@ public partial class G : Node
         }
     }
 
+    public static async Task WaitFor(float timeSec)
+    {
+        var timer = SceneTree.CreateTimer(timeSec);
+
+        await timer.ToSignal(timer, "timeout");
+    }
+
     public static void ResetMusicVariables()
     {
         MusicName = "";

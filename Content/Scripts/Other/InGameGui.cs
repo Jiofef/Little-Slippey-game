@@ -204,32 +204,32 @@ public partial class InGameGui : Control
 
     public void UpdateStandingBarOptions()
     {
-        StandBar.Visible = !Options.DisableStandBar;
+        GetNode<StandBar>("StandBar").Visible = !Options.DisableStandBar;
     }
 
     public void UpdateAfterDeathGuiOptions(bool isDead = false)
     {
-        AfterDeathGui.Visible = !Options.DisableAfterDeathGui && isDead;
+        GetNode<Control>("AfterDeathElements").Visible = !Options.DisableAfterDeathGui && isDead;
     }
     public void UpdateAfterDeathScoresLabelOptions()
     {
-        AfterDeathScores.Visible = !Options.DisableAfterDeathScoresLabel;
+        GetNode<Label>("AfterDeathElements/Scores").Visible = !Options.DisableAfterDeathScoresLabel;
     }
     public void UpdateNewRecordLabelOptions()
     {
-        NewRecordLabel.Visible = !Options.DisableNewRecordLabel;
+        GetNode<Label>("AfterDeathElements/NewRecord").Visible = !Options.DisableNewRecordLabel;
     }
     public void UpdateHoldRTextOptions()
     {
-        HoldRText.Visible = !Options.DisableHoldRText;
+        GetNode<RichTextLabel>("AfterDeathElements/HoldR").Visible = !Options.DisableHoldRText;
     }
     public void UpdateReturnToMenuButtonOptions()
     {
-        ReturnToMenuButton.Visible = !Options.DisableReturnToMenuButton;
+        GetNode<MenuOnlyTextButton>("AfterDeathElements/Buttons/ReturnToMenu").Visible = !Options.DisableReturnToMenuButton;
     }
     public void UpdateResurrectButtonOptions()
     {
-        ResurrectButton.Visible = !Options.DisableResurrectButton;
+        GetNode<ConfirmMenuOnlyTextButton>("AfterDeathElements/Buttons/Resurrect").Visible = !Options.DisableResurrectButton;
     }
     #endregion
 }

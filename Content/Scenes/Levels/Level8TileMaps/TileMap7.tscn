@@ -336,6 +336,7 @@ shape = SubResource("RectangleShape2D_iewxf")
 
 [node name="AchievementArea" parent="Secret (!)" instance=ExtResource("2_0hp2c")]
 position = Vector2(192, 144)
+_achievementName = "Eureka"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Secret (!)/AchievementArea"]
 position = Vector2(8, 0)

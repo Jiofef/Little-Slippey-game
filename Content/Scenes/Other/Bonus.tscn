@@ -1,0 +1,93 @@
+[gd_scene load_steps=12 format=3 uid="uid://h6yvv8kafov7"]
+
+[ext_resource type="Texture2D" uid="uid://4yfolelqyois" path="res://Content/Sprites/Other/Bonus.png" id="1_aqwd3"]
+[ext_resource type="Script" path="res://Content/Scripts/Other/Bonus.cs" id="1_hl3h0"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hu4hj"]
+radius = 32.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qsvxc"]
+atlas = ExtResource("1_aqwd3")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_le8t6"]
+atlas = ExtResource("1_aqwd3")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1vk2b"]
+atlas = ExtResource("1_aqwd3")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pguv6"]
+atlas = ExtResource("1_aqwd3")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o38gp"]
+atlas = ExtResource("1_aqwd3")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cskdj"]
+atlas = ExtResource("1_aqwd3")
+region = Rect2(32, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7jvkp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qsvxc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_le8t6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1vk2b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pguv6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o38gp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cskdj")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="Curve" id="Curve_v0p37"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="Bonus" type="Node2D"]
+script = ExtResource("1_hl3h0")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_hu4hj")
+
+[node name="Orb" type="AnimatedSprite2D" parent="."]
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_7jvkp")
+autoplay = "default"
+frame_progress = 0.607846
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 24
+one_shot = true
+explosiveness = 1.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 200.0
+orbit_velocity_min = -1.66
+orbit_velocity_max = 1.66
+scale_amount_min = 4.0
+scale_amount_max = 4.0
+scale_amount_curve = SubResource("Curve_v0p37")
+
+[connection signal="body_entered" from="Area2D" to="." method="OnPlayerEntered" flags=6 unbinds=1]

@@ -1,15 +1,17 @@
 using Godot;
+using Godot.Collections;
 using GodotSteam;
 using System;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using static OtherExtension.FastInstanceCreator;
+using static Player;
 
 public partial class Player : CharacterBody2D
 {
 
     ///////////////////////////
-    
+
     //InEditor options
     [ExportGroup("Main settings")]
     [Export] public float Speed = 430, Gravity = 18.6f, JumpForce = 620;
@@ -17,12 +19,12 @@ public partial class Player : CharacterBody2D
     [Export] public int MaxClimbs { get { return _maxClimbs; } set { _maxClimbs = value; GetNode<TextureProgressBar>("Camera2D/ClimbsBar").MaxValue = value; } }
     private bool _enableStandingPenalty = true;
     [Export] public bool EnableStandingPenalty {
-        get => _enableStandingPenalty; 
+        get => _enableStandingPenalty;
 
         set
-        {_enableStandingPenalty = value;
+        { _enableStandingPenalty = value;
             GetGui().Options.DisableStandBar = !value;
-            GetGui().CallDeferred("UpdateStandingBarOptions");}}
+            GetGui().CallDeferred("UpdateStandingBarOptions"); } }
 
     [Export] public bool EnableRigidBodyPhysics = false;
     [Export] public float RigidBodyPushForce = 8;
@@ -123,7 +125,7 @@ public partial class Player : CharacterBody2D
     ///////////////////////////
 
     // For the future if we have to access some Player nodes, and their path will be changed.
-    public const string CAMERA_PATH = "Camera2D", SCORES_PATH = "Camera2D/GUICanvas/GUI/Scores", GUI_CONTROL_PATH = "Camera2D/GUICanvas/GUI", GUI_CANVAS_PATH = "Camera2D/GUICanvas", AFTER_DEATH_GUI_PATH = "Camera2D/GUICanvas/GUI/EmergingElements"; 
+    public const string CAMERA_PATH = "Camera2D", SCORES_PATH = "Camera2D/GUICanvas/GUI/Scores", GUI_CONTROL_PATH = "Camera2D/GUICanvas/GUI", GUI_CANVAS_PATH = "Camera2D/GUICanvas", AFTER_DEATH_GUI_PATH = "Camera2D/GUICanvas/GUI/EmergingElements";
 
 
     // Numeric variables
@@ -146,7 +148,7 @@ public partial class Player : CharacterBody2D
 
     private string _animationName;
 
-    private enum State {OnFloor, InAir, Climb, Inerted}
+    private enum State { OnFloor, InAir, Climb, Inerted }
     State _state = State.OnFloor;
 
     AnimatedSprite2D _animatedSprite;
@@ -159,21 +161,74 @@ public partial class Player : CharacterBody2D
 
     private Vector2 _corpseMotion, _corpseMotionMultiplier = new Vector2(1, 1);
 
-    private string[] _lastActions = new string[10];
-
     // Nodes
     public Camera Camera;
     public InGameGui GUI;
 
-    /// <summary>
-    /// Default action names: Stand, Jump, Walk, Fall, WallCatch, Climb, WallJump, DownDash
-    /// <para>Use to write an action</para>
-    /// </summary>
-    private void Action(string actionName)
+    // Player Actions
+    public enum Act { Stand, Jump, Walk, Fall, WallCatch, Climb, WallJump, DownDash, // Basic actions
+        HardJump, Tossed} // Secondary or secret actions
+    [ExportGroup("Actions")]
+    [Export] public Dictionary<Act, bool> DefaultActBlockedState = new Dictionary<Act, bool>()
     {
-        for (int i = _lastActions.Length - 1; i > 0; i--)
-            _lastActions[i] = _lastActions[i - 1];
-        _lastActions[0] = actionName;
+        { Act.Stand, false },
+        { Act.Jump, false },
+        { Act.Walk, false },
+        { Act.Fall, false },
+        { Act.WallCatch, false },
+        { Act.Climb, false},
+        { Act.WallJump, false },
+        { Act.DownDash, false },
+        { Act.HardJump, false },
+    };
+    public Dictionary<Act, bool> IsActBlocked;
+
+
+    public Act[] LastActions { get; private set; } = new Act[10];
+    /// <summary>
+    /// Use to write an action
+    /// </summary>
+    private void Action(Act action)
+    {
+        for (int i = LastActions.Length - 1; i > 0; i--)
+            LastActions[i] = LastActions[i - 1];
+        LastActions[0] = action;
+
+        //GD.Print(action.ToString());
+    }
+
+    public async void BlockActFor(Act act, Task task)
+    {
+        if (IsActBlocked[act]) return;
+
+        IsActBlocked[act] = true;
+
+        await task;
+
+        IsActBlocked[act] = DefaultActBlockedState[act];
+    }
+    public async void BlockActFor(Act act, float timeSec)
+    {
+        if (IsActBlocked[act]) return;
+
+        IsActBlocked[act] = true;
+
+        var timer = GetTree().CreateTimer(timeSec, false);
+        await ToSignal(timer, "timeout");
+
+        IsActBlocked[act] = DefaultActBlockedState[act];
+    }
+
+    public async void BlockActsFor(Act[] acts, float timeSec)
+    {
+        foreach (Act act in acts)
+            IsActBlocked[act] = true;
+
+        var timer = GetTree().CreateTimer(timeSec, false);
+        await ToSignal(timer, "timeout");
+
+        foreach (Act act in acts)
+            IsActBlocked[act] = DefaultActBlockedState[act];
     }
 
     ///////////////////////////
@@ -188,15 +243,19 @@ public partial class Player : CharacterBody2D
     {
         G.Player = this;
     }
+    public bool IsDisposed { get; private set; }
     public override void _Ready()
     {
         TreeExited += () =>
         {
             if (G.Player == this)
                 G.Player = null;
+            IsDisposed = true;
         };
 
         if (_readyAlready) return;
+
+        IsActBlocked = DefaultActBlockedState.Duplicate();
 
 
         Camera = GetNode<Camera>("Camera2D");
@@ -210,7 +269,7 @@ public partial class Player : CharacterBody2D
 
         _readyAlready = true;
 
-        Action("Fall");
+        Action(Act.Fall);
 
         SetDeferred("DisableScoresLabel", false);
     }
@@ -254,12 +313,13 @@ public partial class Player : CharacterBody2D
             #endregion
 
             #region Walking
-            Motion.X += Input.GetActionStrength("ui_right") - Input.GetActionStrength("ui_left"); // Walking
+            if (!IsActBlocked[Act.Walk])
+                Motion.X += Input.GetActionStrength("ui_right") - Input.GetActionStrength("ui_left"); // Walking
             Motion.X *= Speed;
-            if (_lastActions[0] != "Walk" && Motion.X != 0 && isOnFloor)
-                Action("Walk");
-            else if (_lastActions[0] != "Stand" && Motion.X == 0 && isOnFloor)
-                Action("Stand");
+            if (LastActions[0] != Act.Walk && Motion.X != 0 && isOnFloor && !IsActBlocked[Act.Walk])
+                Action(Act.Walk);
+            else if (LastActions[0] != Act.Stand && Motion.X == 0 && isOnFloor && !IsActBlocked[Act.Stand])
+                Action(Act.Stand);
             #endregion
 
             #region Jumping off one way platforms
@@ -277,10 +337,10 @@ public partial class Player : CharacterBody2D
             #endregion
 
             #region WallCatching
-            if (Input.IsActionPressed("WallCatch") && _wallDetectNumber != 0 && !isOnFloor && Motion.Y > 0 && (!Input.IsActionPressed("Jump") || _inertion != 0))
+            if (Input.IsActionPressed("WallCatch") && _wallDetectNumber != 0 && !isOnFloor && Motion.Y > 0 && (!Input.IsActionPressed("Jump") || _inertion != 0) && !IsActBlocked[Act.WallCatch])
             {
-                if (_lastActions[0] != "WallCatch")
-                    Action("WallCatch");
+                if (LastActions[0] != Act.WallCatch)
+                    Action(Act.WallCatch);
                 Motion.Y = 15;
                 _animationName = "WallCatch";
                 if (_inertion == 0 && _state != State.InAir)
@@ -305,9 +365,9 @@ public partial class Player : CharacterBody2D
             if (Input.IsActionPressed("Jump"))
             {
                 #region Jumping
-                if (isOnFloor && _state == State.OnFloor || _coyoteTimer > 0)
+                if ((isOnFloor && _state == State.OnFloor || _coyoteTimer > 0) && !IsActBlocked[Act.Jump])
                 {
-                    Action("Jump");
+                    Action(Act.Jump);
                     
                     Motion.Y = -JumpForce;
                     _coyoteTimer = 0;
@@ -316,19 +376,19 @@ public partial class Player : CharacterBody2D
                 }
                 #endregion
                 #region WallJumping
-                else if (Input.IsActionPressed("WallCatch") && _wallDetectNumber != 0 && _inertion == 0 && _wallJumpTimer <= 0 && _climbTimer <= 0)
+                else if (Input.IsActionPressed("WallCatch") && _wallDetectNumber != 0 && _inertion == 0 && _wallJumpTimer <= 0 && _climbTimer <= 0 && !IsActBlocked[Act.WallJump])
                 {
                     _savedWallNumber = _wallDetectNumber;
-                    if (Motion.Y <= 0 && _lastActions[0] == "WallJump" && _lastActions[1] == "Climb") // Secret mechanic
+                    if (Motion.Y <= 0 && LastActions[0] == Act.WallJump && LastActions[1] == Act.Climb && !IsActBlocked[Act.HardJump]) // Secret mechanic
                     {
-                        Action("HardJump");
+                        Action(Act.HardJump);
                         GetNode<CpuParticles2D>("HardJumpParticles").Emitting = true;
                         Motion.Y = -JumpForce * 1.25f;
                         _inertion = WallJumpInertion * -_savedWallNumber * 1.25f;
                     }
                     else
                     {
-                        Action("WallJump");
+                        Action(Act.WallJump);
                         Motion.Y = -JumpForce;
                         _inertion = WallJumpInertion * -_savedWallNumber;
                     }
@@ -340,9 +400,9 @@ public partial class Player : CharacterBody2D
                 }
                 #endregion
                 #region  Climbing
-                else if (!Input.IsActionPressed("WallCatch") && _wallDetectNumber != 0 && _lastXMoveVector == _wallDetectNumber && _climbTimer < 0 && _climbBufer > 0)
+                else if (!Input.IsActionPressed("WallCatch") && _wallDetectNumber != 0 && _lastXMoveVector == _wallDetectNumber && _climbTimer < 0 && _climbBufer > 0 && !IsActBlocked[Act.Climb])
                 {
-                    Action("Climb");
+                    Action(Act.Climb);
                     if (_skinAnimationPlayerEnabled)
                         _animationPlayer.Play("Climb");
 
@@ -373,9 +433,9 @@ public partial class Player : CharacterBody2D
             }
             #region DownDashing
             const float DOWN_DASH_CEILING_THRESHOLD = 50f;
-            if (Input.IsActionJustPressed("DownDash") && !isOnFloor && Motion.Y < (DownDashSpeed - DOWN_DASH_CEILING_THRESHOLD)) // This is DownDash
+            if (Input.IsActionJustPressed("DownDash") && !isOnFloor && Motion.Y < (DownDashSpeed - DOWN_DASH_CEILING_THRESHOLD) && !IsActBlocked[Act.DownDash]) // This is DownDash
             {
-                Action("DownDash");
+                Action(Act.DownDash);
                 _isDownDashing = true;
                 Motion.Y = 1250;
                 PlaySound("DownDash");
@@ -417,7 +477,7 @@ public partial class Player : CharacterBody2D
             #region Fall processing
             else if (_state != State.OnFloor)
             {
-                Action("Fall");
+                Action(Act.Fall);
                 _savedWallNumber = 0;
                 _inertion = 0;
                 _wallJumpTimer = 0.3f;
@@ -828,6 +888,17 @@ public partial class Player : CharacterBody2D
         GUI.GetNode<TextureProgressBar>("StandBar").Visible = value;
         if (value == false)
             _moveCoeff = 1;
+    }
+
+    public void Toss(float velocity)
+    {
+        // To avoid unnecessary _lastActions entries
+        BlockActsFor([Act.Walk, Act.Stand], 0.02f);
+        BlockActFor(Act.Jump, 0.33f);
+
+        Velocity = new Vector2(0, -velocity);
+
+        Action(Act.Tossed);
     }
 
 

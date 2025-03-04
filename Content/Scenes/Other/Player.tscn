@@ -381,6 +381,7 @@ platform_wall_layers = 132
 script = ExtResource("1")
 metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
+metadata/_edit_vertical_guides_ = [-212.0]
 
 [node name="FullBodyCollider" type="CollisionShape2D" parent="."]
 position = Vector2(0, 4)
@@ -709,11 +710,6 @@ initial_velocity_max = 160.0
 scale_amount_min = 4.0
 scale_amount_max = 4.0
 color_ramp = SubResource("Gradient_u843o")
-
-[node name="RayCast2D" type="RayCast2D" parent="."]
-target_position = Vector2(0, -40)
-collision_mask = 8
-collide_with_areas = true
 
 [connection signal="area_entered" from="Areas/PlayerDamageDetector" to="." method="Death" unbinds=1]
 [connection signal="body_entered" from="Areas/WallDirectionLeftDetector" to="." method="LeftWallDetect" unbinds=1]

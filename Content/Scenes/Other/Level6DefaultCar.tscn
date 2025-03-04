@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dct3ltljwt56o"]
+[gd_scene load_steps=17 format=3 uid="uid://dct3ltljwt56o"]
 
 [ext_resource type="PackedScene" uid="uid://dotiod4doue2r" path="res://Content/Scenes/Other/SwooshObject.tscn" id="1_l4ohe"]
 [ext_resource type="Script" path="res://Content/Scripts/Levels/Level6Car.cs" id="2_g7t7p"]
@@ -20,7 +20,7 @@ size = Vector2(128, 64)
 size = Vector2(112, 48)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ll1th"]
-size = Vector2(104, 32)
+size = Vector2(168, 48)
 
 [sub_resource type="Gradient" id="Gradient_qa2ky"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
@@ -215,6 +215,9 @@ _data = {
 "RESET": SubResource("Animation_hpg7h")
 }
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_g0d26"]
+polygon = PackedVector2Array(-64, -28, -60, -28, -60, -32, 60, -32, 60, -28, 64, -28, 64, 28, 60, 28, 60, 32, -60, 32, -60, 28, -64, 28)
+
 [node name="Level6FlyingCar" instance=ExtResource("1_l4ohe")]
 curve = SubResource("Curve2D_0ceuc")
 script = ExtResource("2_g7t7p")
@@ -246,7 +249,7 @@ shape = SubResource("RectangleShape2D_bkpm6")
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Car/AdditionalExplosiveArea" index="0"]
-position = Vector2(0, 48)
+position = Vector2(0, 56)
 shape = SubResource("RectangleShape2D_ll1th")
 
 [node name="Model" type="Sprite2D" parent="Car" index="3"]
@@ -293,6 +296,9 @@ libraries = {
 "": SubResource("AnimationLibrary_y22gm")
 }
 
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Car" index="9"]
+occluder = SubResource("OccluderPolygon2D_g0d26")
+
 [node name="PathFollow2D" parent="." index="1"]
 rotates = false
 
@@ -306,6 +312,6 @@ remote_path = NodePath("../../Car")
 
 [connection signal="area_entered" from="Car/CarArea" to="." method="Explode" flags=6 unbinds=1]
 [connection signal="body_entered" from="Car/CarArea" to="." method="OnCollided"]
-[connection signal="body_entered" from="Car/AdditionalExplosiveArea" to="." method="Explode" flags=6 unbinds=1]
+[connection signal="body_entered" from="Car/AdditionalExplosiveArea" to="." method="OnBottomHitted"]
 [connection signal="area_entered" from="Car/CarDetector" to="." method="TheCarAhead"]
 [connection signal="area_exited" from="Car/CarDetector" to="." method="TheCarNoLongerAhead" unbinds=1]

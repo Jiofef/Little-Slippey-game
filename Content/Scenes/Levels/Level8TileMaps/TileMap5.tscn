@@ -615,6 +615,7 @@ rotation = 3.14159
 
 [node name="AchievementArea" parent="Secret" instance=ExtResource("5_mu3p2")]
 position = Vector2(296, 16)
+_achievementName = "Eureka"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Secret/AchievementArea"]
 shape = SubResource("RectangleShape2D_3cqvc")

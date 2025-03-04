@@ -116,10 +116,10 @@ public partial class Level6Car : SwooshObject
         _carsAhead--;
     }
 
-    private const float NEEDED_PLAYER_VELOCITY_TO_RAM_THE_BOTTOM = 600;
+    private const float NEEDED_PLAYER_VELOCITY_TO_RAM_THE_BOTTOM = 700;
     public void OnBottomHitted(Node2D body)
     {
-        if (body is Player player && -player.Velocity.Y >= NEEDED_PLAYER_VELOCITY_TO_RAM_THE_BOTTOM)
+        if (body is Player player && player.LastActions[0] is Player.Act.Tossed && player.Velocity.Y < 100f)
             Explode();
     }
     private const float PLAYER_COLLIDE_EXPLOSION_VELOCITY_CEILING = 900f;
@@ -138,7 +138,12 @@ public partial class Level6Car : SwooshObject
     {
         if (node is not CharacterBody2D character) return;
 
-        character.Velocity = new Vector2(0, -CharacterToss);
+        if (character is Player player)
+        {
+            player.CallDeferred("Toss", CharacterToss);
+        }
+        else
+            character.Velocity = new Vector2(0, -CharacterToss);
 
         Car.GetNode<AudioStreamPlayer>("TrampolineSound").Play();
     }

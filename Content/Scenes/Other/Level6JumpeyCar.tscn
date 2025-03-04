@@ -5,7 +5,7 @@
 [ext_resource type="AudioStream" uid="uid://bxk7stxyehfnj" path="res://Content/Sounds/Levels/Level6Trampoline.mp3" id="3_cm5yq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rtjbx"]
-size = Vector2(124, 8)
+size = Vector2(116, 8)
 
 [node name="Level6FlyingCar" instance=ExtResource("1_pq0qk")]
 
