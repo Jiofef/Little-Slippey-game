@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://bt0tqjsfwc8fu" path="res://Content/Scenes/Interface&Menu/WarningWindow.tscn" id="1_o4b15"]
 [ext_resource type="Texture2D" uid="uid://ccj6gqc1b4phn" path="res://Content/Sprites/Interface/Buttons/4XDownloadButton.png" id="2_b202d"]
 [ext_resource type="Theme" uid="uid://dkitr1ftp0yhs" path="res://Content/Other/Menu.tres" id="2_rgbi2"]
-[ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/TimerLibNotFound.cs" id="3_5oh1s"]
+[ext_resource type="Script" uid="uid://c415ou1056pls" path="res://Content/Scripts/Interface&Menu/TimerLibNotFound.cs" id="3_5oh1s"]
 [ext_resource type="AudioStream" uid="uid://b06sfgf3d6hg2" path="res://Content/Sounds/Interface&Menu/UI.mp3" id="4_y0hfq"]
 
 [sub_resource type="Animation" id="Animation_j1xib"]
@@ -150,8 +150,8 @@ tracks/4/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_s3k1f"]
 _data = {
-"Downloading": SubResource("Animation_j1xib"),
-"RESET": SubResource("Animation_h544w")
+&"Downloading": SubResource("Animation_j1xib"),
+&"RESET": SubResource("Animation_h544w")
 }
 
 [node name="TimerLibWarningWindow" instance=ExtResource("1_o4b15")]

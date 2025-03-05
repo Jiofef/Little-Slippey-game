@@ -238,6 +238,11 @@ public partial class G : Node
         await timer.ToSignal(timer, "timeout");
     }
 
+    public static async Task WaitForFrame()
+    {
+        await _sceneTree.ToSignal(_sceneTree, "process_frame");
+    }
+
     public static void ResetMusicVariables()
     {
         MusicName = "";

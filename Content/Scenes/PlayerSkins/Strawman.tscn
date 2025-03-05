@@ -1,7 +1,7 @@
 [gd_scene load_steps=28 format=3 uid="uid://b8dj0vej7f2vy"]
 
 [ext_resource type="Texture2D" uid="uid://b486fyylpidxt" path="res://Content/Sprites/PlayerSkins/Strawman.png" id="1_gkapj"]
-[ext_resource type="Script" path="res://Content/Scripts/Other/SkinScript.cs" id="2_lclxa"]
+[ext_resource type="Script" uid="uid://cmyx6k86y6f5y" path="res://Content/Scripts/Other/SkinScript.cs" id="2_lclxa"]
 [ext_resource type="Texture2D" uid="uid://bau0b6quvib5h" path="res://Content/Sprites/Other/Note.png" id="3_no3bw"]
 [ext_resource type="AudioStream" uid="uid://br6tvgd3qi7jp" path="res://Content/Sounds/Soundtrack/StrawMusic.mp3" id="4_m2c72"]
 
@@ -253,12 +253,12 @@ tracks/3/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hudjw"]
 _data = {
-"Death": SubResource("Animation_tdq7i"),
-"RESET": SubResource("Animation_g0wq7")
+&"Death": SubResource("Animation_tdq7i"),
+&"RESET": SubResource("Animation_g0wq7")
 }
 
 [sub_resource type="Curve" id="Curve_fmbe2"]
-max_value = 10.0
+_limits = [0.0, 10.0, 0.0, 1.0]
 _data = [Vector2(0, 10), 0.0, 0.0, 0, 0]
 point_count = 1
 

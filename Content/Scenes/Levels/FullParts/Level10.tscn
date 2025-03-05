@@ -1,17 +1,17 @@
 [gd_scene load_steps=70 format=4 uid="uid://cma82s1tmg4rd"]
 
-[ext_resource type="Script" path="res://Content/Scripts/Other/MainScript.cs" id="1_r4pva"]
-[ext_resource type="Script" path="res://Content/Scripts/Levels/Level10RealityDissector.cs" id="2_a7alo"]
-[ext_resource type="Script" path="res://Content/Scripts/Other/LevelMusicPlayer.cs" id="2_s5qx3"]
-[ext_resource type="Script" path="res://Content/Scripts/Levels/Level8DisposableButton.cs" id="3_7iv8k"]
-[ext_resource type="Script" path="res://Content/Scripts/Levels/BaseLevelScript.cs" id="3_dk2ue"]
+[ext_resource type="Script" uid="uid://cjbhhew83nwxn" path="res://Content/Scripts/Other/MainScript.cs" id="1_r4pva"]
+[ext_resource type="Script" uid="uid://rufr4p4sxl1l" path="res://Content/Scripts/Levels/Level10RealityDissector.cs" id="2_a7alo"]
+[ext_resource type="Script" uid="uid://d23sexuaxdruy" path="res://Content/Scripts/Other/LevelMusicPlayer.cs" id="2_s5qx3"]
+[ext_resource type="Script" uid="uid://d2jn0oh6nkh6" path="res://Content/Scripts/Levels/Level8DisposableButton.cs" id="3_7iv8k"]
+[ext_resource type="Script" uid="uid://b55o38rlxdiq" path="res://Content/Scripts/Levels/BaseLevelScript.cs" id="3_dk2ue"]
 [ext_resource type="PackedScene" uid="uid://d3u7pfig07yrs" path="res://Content/Scenes/Other/CrutchedArea2D.tscn" id="4_a6s5x"]
 [ext_resource type="Texture2D" uid="uid://bvogrd2bqhwmt" path="res://Content/Sprites/Other/OblivionNoise.png" id="5_jaem3"]
-[ext_resource type="Shader" path="res://Content/Other/BrightnessShader.gdshader" id="6_hnlpt"]
+[ext_resource type="Shader" uid="uid://breyoli2teo11" path="res://Content/Other/BrightnessShader.gdshader" id="6_hnlpt"]
 [ext_resource type="AudioStream" uid="uid://igyg85eq8ea5" path="res://Content/Sounds/Levels/Level10Void.mp3" id="7_f14yg"]
-[ext_resource type="Script" path="res://Content/Scripts/Other/PostProcessingRect.cs" id="7_fj1rh"]
+[ext_resource type="Script" uid="uid://55p0trm68pg6" path="res://Content/Scripts/Other/PostProcessingRect.cs" id="7_fj1rh"]
 [ext_resource type="Texture2D" uid="uid://b3eihc4teio4x" path="res://Content/Sprites/Levels/Level10/Sky.png" id="8_235lo"]
-[ext_resource type="Shader" path="res://Content/Other/StaticNoiseShader.gdshader" id="8_x5t6k"]
+[ext_resource type="Shader" uid="uid://nmu2cf7pnw8d" path="res://Content/Other/StaticNoiseShader.gdshader" id="8_x5t6k"]
 [ext_resource type="Texture2D" uid="uid://dbduwv6h0rkr" path="res://Content/Sprites/Levels/Level10/Clouds.png" id="9_mi3tm"]
 [ext_resource type="Texture2D" uid="uid://co1mpijobgmvi" path="res://Content/Sprites/Levels/Level10/BackCloudLayer.png" id="10_c5mrw"]
 [ext_resource type="Texture2D" uid="uid://datptqmcpau44" path="res://Content/Sprites/Levels/Level10/MiddleCloudLayer.png" id="11_8vlae"]
@@ -24,7 +24,7 @@
 [ext_resource type="AudioStream" uid="uid://cuvkdo1lyvynu" path="res://Content/Sounds/Other/EpicIntro.mp3" id="17_yr0y3"]
 [ext_resource type="Texture2D" uid="uid://bx0f1c20d2wai" path="res://Content/Sprites/Levels/DropesAndHeamsTileset.png" id="18_ew1u5"]
 [ext_resource type="PackedScene" uid="uid://tjddwdxopw2u" path="res://Content/Scenes/Interface&Menu/Pause.tscn" id="23_d0li1"]
-[ext_resource type="Script" path="res://Content/Scripts/Crosses/CrossSpawner.cs" id="23_ttllf"]
+[ext_resource type="Script" uid="uid://dy61y3klqo4lg" path="res://Content/Scripts/Crosses/CrossSpawner.cs" id="23_ttllf"]
 [ext_resource type="PackedScene" uid="uid://c7psxdkakrw5x" path="res://Content/Scenes/Other/EpicIntro.tscn" id="24_23g0w"]
 [ext_resource type="PackedScene" uid="uid://catydhrk62at1" path="res://Content/Scenes/Interface&Menu/AdditionalGuiLayer.tscn" id="25_3firf"]
 
@@ -60,8 +60,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jcmm3"]
 _data = {
-"MusicStarting": SubResource("Animation_p3npb"),
-"MusicStopping": SubResource("Animation_n61s8")
+&"MusicStarting": SubResource("Animation_p3npb"),
+&"MusicStopping": SubResource("Animation_n61s8")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mapyl"]
@@ -288,8 +288,8 @@ tracks/13/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_np0vx"]
 resource_local_to_scene = true
 _data = {
-"RESET": SubResource("Animation_irq8v"),
-"RealityTumor": SubResource("Animation_4s1sj")
+&"RESET": SubResource("Animation_irq8v"),
+&"RealityTumor": SubResource("Animation_4s1sj")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i2jhq"]
@@ -626,7 +626,7 @@ tracks/6/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_d840e"]
 _data = {
-"HereYouAre": SubResource("Animation_nnjx3")
+&"HereYouAre": SubResource("Animation_nnjx3")
 }
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4bdfn"]

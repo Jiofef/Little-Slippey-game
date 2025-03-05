@@ -1,11 +1,11 @@
 [gd_scene load_steps=28 format=4 uid="uid://dkibh4v7pkdaf"]
 
 [ext_resource type="Texture2D" uid="uid://bup1u0y7qgmvb" path="res://Content/Sprites/Interface/MenuBackground.png" id="1_gbq5h"]
-[ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/WelcomeToGOS.cs" id="1_u85jq"]
+[ext_resource type="Script" uid="uid://do06s2kjtas0u" path="res://Content/Scripts/Interface&Menu/WelcomeToGOS.cs" id="1_u85jq"]
 [ext_resource type="Texture2D" uid="uid://bqony8evt35hm" path="res://Content/Sprites/Interface/MenuBackgroundPattern.png" id="2_ann8g"]
-[ext_resource type="Shader" path="res://Content/Other/BlurShader.gdshader" id="3_24u3b"]
-[ext_resource type="Shader" path="res://Content/Other/PixelateShader.gdshader" id="5_h17kw"]
-[ext_resource type="Shader" path="res://Content/Other/CRT.gdshader" id="5_v2xk6"]
+[ext_resource type="Shader" uid="uid://dllmyqqldb58f" path="res://Content/Other/BlurShader.gdshader" id="3_24u3b"]
+[ext_resource type="Shader" uid="uid://dqv7vckjbc0l7" path="res://Content/Other/PixelateShader.gdshader" id="5_h17kw"]
+[ext_resource type="Shader" uid="uid://c3qc7vvqy6oni" path="res://Content/Other/CRT.gdshader" id="5_v2xk6"]
 [ext_resource type="PackedScene" uid="uid://bwpstpk1xmkah" path="res://Content/Scenes/Interface&Menu/Button.tscn" id="7_0t5ux"]
 [ext_resource type="PackedScene" uid="uid://catydhrk62at1" path="res://Content/Scenes/Interface&Menu/AdditionalGuiLayer.tscn" id="7_bb6fw"]
 [ext_resource type="Texture2D" uid="uid://ce4oq2adhljwh" path="res://Content/Sprites/Interface/Buttons/LevelsMenuIcon.png" id="8_ftgus"]
@@ -68,7 +68,7 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fo2ut"]
 _data = {
-"BackgroundAnimation": SubResource("Animation_651af")
+&"BackgroundAnimation": SubResource("Animation_651af")
 }
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_v8mvj"]
@@ -272,9 +272,9 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_81kv7"]
 _data = {
-"BackToGOS": SubResource("Animation_0im2c"),
-"Initialization": SubResource("Animation_267tr"),
-"RESET": SubResource("Animation_j4ndi")
+&"BackToGOS": SubResource("Animation_0im2c"),
+&"Initialization": SubResource("Animation_267tr"),
+&"RESET": SubResource("Animation_j4ndi")
 }
 
 [node name="WelcomeToGOS" type="Control"]

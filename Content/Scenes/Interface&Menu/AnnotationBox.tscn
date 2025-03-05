@@ -1,6 +1,6 @@
 [gd_scene load_steps=15 format=3 uid="uid://dewmapsqmn8uk"]
 
-[ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/AnnotationBox.cs" id="1_gvbgn"]
+[ext_resource type="Script" uid="uid://b5hvu0sfdx5to" path="res://Content/Scripts/Interface&Menu/AnnotationBox.cs" id="1_gvbgn"]
 [ext_resource type="Texture2D" uid="uid://7r0hpuodjrlj" path="res://Content/Sprites/Interface/SmallWindowBase.png" id="2_n5p4w"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_t1ql4"]
@@ -73,8 +73,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_xtxak"]
 _data = {
-"Appearing": SubResource("Animation_hlg0i"),
-"RESET": SubResource("Animation_uolno")
+&"Appearing": SubResource("Animation_hlg0i"),
+&"RESET": SubResource("Animation_uolno")
 }
 
 [node name="AnnotationBox" type="Control"]

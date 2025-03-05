@@ -1,7 +1,7 @@
 [gd_scene load_steps=28 format=4 uid="uid://cmuiupnjgqyvr"]
 
 [ext_resource type="Texture2D" uid="uid://duk32e0otnfky" path="res://Content/Sprites/Levels/FuckItVolume2Tileset.png" id="1_b5f1i"]
-[ext_resource type="Script" path="res://Content/Scripts/Levels/Level8FragileTile.cs" id="2_ad6m7"]
+[ext_resource type="Script" uid="uid://cmjb61utqcw0" path="res://Content/Scripts/Levels/Level8FragileTile.cs" id="2_ad6m7"]
 [ext_resource type="Texture2D" uid="uid://dgluki8hnwb62" path="res://Content/Sprites/Levels/Level8/AcidAndLavaTileset.png" id="3_46a3p"]
 [ext_resource type="Texture2D" uid="uid://ckh1sclq3fji3" path="res://Content/Sprites/Other/PointLight.png" id="4_xl8yo"]
 

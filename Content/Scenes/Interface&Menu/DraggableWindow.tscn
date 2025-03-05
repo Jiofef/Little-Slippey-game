@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://7ggxixinwr0a" path="res://Content/Scenes/Interface&Menu/FlexibleWindow.tscn" id="1_rnubb"]
 [ext_resource type="Texture2D" uid="uid://i530dds7xb5g" path="res://Content/Sprites/Interface/4XBlueBox.png" id="2_cyb7u"]
-[ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/DraggableWindow.cs" id="2_qyxa4"]
+[ext_resource type="Script" uid="uid://hcsafefo0ey8" path="res://Content/Scripts/Interface&Menu/DraggableWindow.cs" id="2_qyxa4"]
 [ext_resource type="LabelSettings" uid="uid://crwvi8nldyh0f" path="res://Content/Other/MenuTextLabelSettings.tres" id="3_oiy22"]
 [ext_resource type="PackedScene" uid="uid://bwpstpk1xmkah" path="res://Content/Scenes/Interface&Menu/Button.tscn" id="5_yytyp"]
 [ext_resource type="Texture2D" uid="uid://dtc2oxakvimcu" path="res://Content/Sprites/Interface/Buttons/SmallCancelButton.png" id="6_rgx8a"]

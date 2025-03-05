@@ -1,7 +1,7 @@
 [gd_scene load_steps=30 format=3 uid="uid://cx7c3g50pyio4"]
 
 [ext_resource type="Texture2D" uid="uid://vjcab56ymxqr" path="res://Content/Sprites/PlayerSkins/Pineplum.png" id="1_2n4ri"]
-[ext_resource type="Script" path="res://Content/Scripts/Other/SkinScript.cs" id="2_bom76"]
+[ext_resource type="Script" uid="uid://cmyx6k86y6f5y" path="res://Content/Scripts/Other/SkinScript.cs" id="2_bom76"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jcl41"]
 atlas = ExtResource("1_2n4ri")
@@ -230,8 +230,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_lejrn"]
 _data = {
-"Death": SubResource("Animation_rnhil"),
-"RESET": SubResource("Animation_1tl8e")
+&"Death": SubResource("Animation_rnhil"),
+&"RESET": SubResource("Animation_1tl8e")
 }
 
 [node name="Pineplum" type="AnimatedSprite2D"]

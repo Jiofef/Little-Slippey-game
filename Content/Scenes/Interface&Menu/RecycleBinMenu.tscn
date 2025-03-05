@@ -1,11 +1,11 @@
 [gd_scene load_steps=25 format=3 uid="uid://b4srh3us7jexg"]
 
-[ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/RecycleBinMenu.cs" id="1_a6dy1"]
+[ext_resource type="Script" uid="uid://bngqbkd65k1wa" path="res://Content/Scripts/Interface&Menu/RecycleBinMenu.cs" id="1_a6dy1"]
 [ext_resource type="PackedScene" uid="uid://cb3550p76ubc8" path="res://Content/Scenes/Interface&Menu/DraggableWindow.tscn" id="1_wk4jw"]
 [ext_resource type="PackedScene" uid="uid://bwpstpk1xmkah" path="res://Content/Scenes/Interface&Menu/Button.tscn" id="2_cpq08"]
 [ext_resource type="Texture2D" uid="uid://c4vm1al1458fw" path="res://Content/Sprites/Interface/Buttons/TXTFileIcon.png" id="3_hpaob"]
 [ext_resource type="Texture2D" uid="uid://sey4s4u68gsq" path="res://Content/Sprites/Interface/Buttons/PictureIcon.png" id="4_hbnvg"]
-[ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/RecycleBinIcon.cs" id="5_f303m"]
+[ext_resource type="Script" uid="uid://cytysp3mkddb" path="res://Content/Scripts/Interface&Menu/RecycleBinIcon.cs" id="5_f303m"]
 [ext_resource type="Texture2D" uid="uid://xrdfs0in8rkd" path="res://Content/Sprites/Interface/Buttons/Discord.png" id="6_hnjhh"]
 [ext_resource type="Texture2D" uid="uid://vb7vdsdjg4xa" path="res://Content/Sprites/Interface/USADiscordFlag.png" id="7_vfq1x"]
 [ext_resource type="Texture2D" uid="uid://hcoc3411pyvj" path="res://Content/Sprites/Interface/RussiaDiscordFlag.png" id="8_7bxqy"]
@@ -41,7 +41,7 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_bj0h5"]
 _data = {
-"Opening": SubResource("Animation_207cr")
+&"Opening": SubResource("Animation_207cr")
 }
 
 [node name="RecycleBinMenu" instance=ExtResource("1_wk4jw")]

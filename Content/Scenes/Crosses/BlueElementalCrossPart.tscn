@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://daihu7vaujeu7" path="res://Content/Sprites/Crosses/BlueElementalCrossPart.png" id="2"]
 [ext_resource type="AudioStream" uid="uid://bia3ek48x2oph" path="res://Content/Sounds/Crosses/MicroExplosion.mp3" id="2_ph2ue"]
-[ext_resource type="Script" path="res://Content/Scripts/Crosses/BlueElementalCrossPart.cs" id="3"]
+[ext_resource type="Script" uid="uid://beew6fxjddvs0" path="res://Content/Scripts/Crosses/BlueElementalCrossPart.cs" id="3"]
 [ext_resource type="PackedScene" uid="uid://bln6ojf3x2auj" path="res://Content/Scenes/Crosses/SmallExplosionAnimation.tscn" id="4_jn1o5"]
 
 [sub_resource type="Curve2D" id="2"]

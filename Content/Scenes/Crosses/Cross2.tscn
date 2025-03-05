@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://c0w7ccrl7jm2x"]
 
-[ext_resource type="Script" path="res://Content/Scripts/Crosses/RestlessCross.cs" id="1"]
+[ext_resource type="Script" uid="uid://dial2dc8hejry" path="res://Content/Scripts/Crosses/RestlessCross.cs" id="1"]
 [ext_resource type="AudioStream" uid="uid://cceqrm4tkdmc2" path="res://Content/Sounds/Crosses/Explosion.mp3" id="2_lph7f"]
 [ext_resource type="PackedScene" uid="uid://bt41vubjcqv8p" path="res://Content/Scenes/Crosses/ExplosionAnimation.tscn" id="3"]
 [ext_resource type="AudioStream" uid="uid://b6bnah80osolv" path="res://Content/Sounds/Crosses/RestlessCrossSignal.mp3" id="3_s8ftd"]

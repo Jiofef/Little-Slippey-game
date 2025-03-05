@@ -9,8 +9,8 @@
 [ext_resource type="Texture2D" uid="uid://bav4r4nw86irw" path="res://Content/Sprites/Levels/Level3/Yacht.png" id="6_yxpvn"]
 [ext_resource type="Texture2D" uid="uid://b3qe45464w8st" path="res://Content/Sprites/Levels/Level3/SeaObjects.png" id="7_o4cnx"]
 [ext_resource type="Texture2D" uid="uid://ckh1sclq3fji3" path="res://Content/Sprites/Other/PointLight.png" id="9_sjfur"]
-[ext_resource type="Shader" path="res://Content/Other/LightShader.gdshader" id="10_4ncfn"]
-[ext_resource type="Script" path="res://Content/Scripts/Other/ShadingRect.cs" id="11_211tr"]
+[ext_resource type="Shader" uid="uid://ieq50g3ohn26" path="res://Content/Other/LightShader.gdshader" id="10_4ncfn"]
+[ext_resource type="Script" uid="uid://dq8vsqu387ncw" path="res://Content/Scripts/Other/ShadingRect.cs" id="11_211tr"]
 [ext_resource type="PackedScene" uid="uid://crhv6ovf1rq2p" path="res://Content/Scenes/Other/UniversalTileMapLayer.tscn" id="14_wpt71"]
 
 [sub_resource type="Curve" id="Curve_dw7nl"]
@@ -51,11 +51,11 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_bwmv0"]
 _data = {
-"CloudsMoving": SubResource("Animation_su7vf")
+&"CloudsMoving": SubResource("Animation_su7vf")
 }
 
 [sub_resource type="Curve" id="Curve_1jyjc"]
-max_value = 4.0
+_limits = [0.0, 4.0, 0.0, 1.0]
 _data = [Vector2(0, 4), 0.0, 0.0, 0, 0]
 point_count = 1
 
@@ -125,7 +125,7 @@ tracks/3/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2um0l"]
 _data = {
-"Sailing": SubResource("Animation_5kxcw")
+&"Sailing": SubResource("Animation_5kxcw")
 }
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_wmgsy"]
@@ -147,9 +147,9 @@ use_hdr = true
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_sf3sq"]
 shader = ExtResource("10_4ncfn")
+shader_parameter/shadow_to_light = SubResource("GradientTexture1D_x0kn7")
 shader_parameter/brightness = 1.0
 shader_parameter/shadow_max_dist = 100.0
-shader_parameter/shadow_to_light = SubResource("GradientTexture1D_x0kn7")
 shader_parameter/gradientTexture = SubResource("GradientTexture2D_tgebs")
 
 [sub_resource type="Curve2D" id="Curve2D_6f2vp"]
@@ -214,10 +214,10 @@ length = 0.001
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kli7e"]
 _data = {
-"CameraMoving1X1": SubResource("Animation_qnl8m"),
-"CameraMoving2X1": SubResource("Animation_2yfre"),
-"CameraMoving2X2": SubResource("Animation_lcayd"),
-"RESET": SubResource("Animation_yfk10")
+&"CameraMoving1X1": SubResource("Animation_qnl8m"),
+&"CameraMoving2X1": SubResource("Animation_2yfre"),
+&"CameraMoving2X2": SubResource("Animation_lcayd"),
+&"RESET": SubResource("Animation_yfk10")
 }
 
 [node name="PresentedLevel3" type="Node2D"]

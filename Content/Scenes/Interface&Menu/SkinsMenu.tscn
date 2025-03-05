@@ -1,12 +1,12 @@
 [gd_scene load_steps=71 format=3 uid="uid://ufrdtjstxptm"]
 
-[ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/SkinsMenu.cs" id="1_81lvq"]
+[ext_resource type="Script" uid="uid://clbvop6lt140v" path="res://Content/Scripts/Interface&Menu/SkinsMenu.cs" id="1_81lvq"]
 [ext_resource type="PackedScene" uid="uid://cb3550p76ubc8" path="res://Content/Scenes/Interface&Menu/DraggableWindow.tscn" id="1_w6uws"]
 [ext_resource type="Theme" uid="uid://dkitr1ftp0yhs" path="res://Content/Other/Menu.tres" id="3_16fyc"]
 [ext_resource type="Texture2D" uid="uid://060bgiw5i00k" path="res://Content/Sprites/PlayerSkins/Slippey.png" id="4_4fnp7"]
 [ext_resource type="PackedScene" uid="uid://75ikfwlafbnm" path="res://Content/Scenes/Interface&Menu/SkinButton.tscn" id="4_pnw2u"]
-[ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/FixFlowContainer.cs" id="4_t6cmg"]
-[ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/ScrollableContainer.cs" id="4_y3nwf"]
+[ext_resource type="Script" uid="uid://cwcfl6dk7i0v7" path="res://Content/Scripts/Interface&Menu/FixFlowContainer.cs" id="4_t6cmg"]
+[ext_resource type="Script" uid="uid://cgelawnq1r5rc" path="res://Content/Scripts/Interface&Menu/ScrollableContainer.cs" id="4_y3nwf"]
 [ext_resource type="Texture2D" uid="uid://bd15vnp18h7qk" path="res://Content/Sprites/PlayerSkins/Sanboy.png" id="7_o713s"]
 [ext_resource type="Texture2D" uid="uid://cxusn8e4odfu0" path="res://Content/Sprites/PlayerSkins/Samey.png" id="7_q6ji3"]
 [ext_resource type="Texture2D" uid="uid://vjcab56ymxqr" path="res://Content/Sprites/PlayerSkins/Pineplum.png" id="9_2om8k"]
@@ -20,7 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://c0oi6sksegxxi" path="res://Content/Scenes/PlayerSkins/JioYobaFefski.tscn" id="17_2vjuo"]
 [ext_resource type="Texture2D" uid="uid://emmwsjgbgjod" path="res://Content/Sprites/PlayerSkins/CompressMass.png" id="17_mm622"]
 [ext_resource type="Texture2D" uid="uid://ddbl3u1r26kie" path="res://Content/Sprites/PlayerSkins/SlippeyChad.png" id="18_n2prt"]
-[ext_resource type="Script" path="res://Content/Scripts/Other/MISSINGNULL.cs" id="19_r3u0u"]
+[ext_resource type="Script" uid="uid://xv5av4wpa1ds" path="res://Content/Scripts/Other/MISSINGNULL.cs" id="19_r3u0u"]
 [ext_resource type="Texture2D" uid="uid://p8n66ul13xdu" path="res://Content/Sprites/PlayerSkins/Corey.png" id="20_jh25b"]
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_fkx8u"]
@@ -340,9 +340,9 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_35a7h"]
 _data = {
-"RegionGlitch1": SubResource("Animation_1vtst"),
-"RegionGlitch2": SubResource("Animation_ht2kx"),
-"RegionGlitch3": SubResource("Animation_opwea")
+&"RegionGlitch1": SubResource("Animation_1vtst"),
+&"RegionGlitch2": SubResource("Animation_ht2kx"),
+&"RegionGlitch3": SubResource("Animation_opwea")
 }
 
 [sub_resource type="Gradient" id="Gradient_jgll3"]
@@ -431,7 +431,7 @@ tracks/4/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dqx3r"]
 _data = {
-"Idle": SubResource("Animation_1enmt")
+&"Idle": SubResource("Animation_1enmt")
 }
 
 [node name="SkinsMenu" instance=ExtResource("1_w6uws")]

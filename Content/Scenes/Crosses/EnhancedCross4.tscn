@@ -1,6 +1,6 @@
 [gd_scene load_steps=24 format=3 uid="uid://ckwc2sf7ili08"]
 
-[ext_resource type="Script" path="res://Content/Scripts/Crosses/EnhancedBlumCross.cs" id="2_t11fp"]
+[ext_resource type="Script" uid="uid://ckmo0x6ijwppn" path="res://Content/Scripts/Crosses/EnhancedBlumCross.cs" id="2_t11fp"]
 [ext_resource type="Texture2D" uid="uid://bs7uef7wkpd40" path="res://Content/Sprites/Crosses/EnhancedBlumCross.png" id="3_iro5u"]
 [ext_resource type="Texture2D" uid="uid://6cxf6dabdomb" path="res://Content/Sprites/Crosses/EnhancedBlumCrossWarning.png" id="4_iwu4o"]
 [ext_resource type="Texture2D" uid="uid://sb76vc7slrym" path="res://Content/Sprites/Crosses/EnhancedBlumCrossCrystalAnimation.png" id="5_0sw4k"]

@@ -1,12 +1,12 @@
 [gd_scene load_steps=47 format=3 uid="uid://dlscufxb5f1ca"]
 
-[ext_resource type="Script" path="res://Content/Scripts/Other/Player.cs" id="1"]
+[ext_resource type="Script" uid="uid://d0k62171vfabf" path="res://Content/Scripts/Other/Player.cs" id="1"]
 [ext_resource type="AudioStream" uid="uid://422y36f6ucnf" path="res://Content/Sounds/Player/Climb.mp3" id="2_bn55d"]
-[ext_resource type="Script" path="res://Content/Scripts/Other/InGameGui.cs" id="3_3x0js"]
+[ext_resource type="Script" uid="uid://so6impla0t7d" path="res://Content/Scripts/Other/InGameGui.cs" id="3_3x0js"]
 [ext_resource type="AudioStream" uid="uid://ctpwmgkvyooy1" path="res://Content/Sounds/Player/Death.mp3" id="3_e2byo"]
 [ext_resource type="AudioStream" uid="uid://blkua1p6uqioe" path="res://Content/Sounds/Player/GroundHit.mp3" id="4_eqohp"]
 [ext_resource type="AudioStream" uid="uid://b3cwlsvshgdvx" path="res://Content/Sounds/Player/Jump.mp3" id="5_4c4de"]
-[ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/StandBar.cs" id="5_88r4t"]
+[ext_resource type="Script" uid="uid://bls2tesh0ap78" path="res://Content/Scripts/Interface&Menu/StandBar.cs" id="5_88r4t"]
 [ext_resource type="Texture2D" uid="uid://cq27bdhehtatn" path="res://Content/Sprites/Interface/StandBarEmpty.png" id="6_ddctq"]
 [ext_resource type="AudioStream" uid="uid://p26mliplwayb" path="res://Content/Sounds/Player/PullDown.mp3" id="6_ouqh1"]
 [ext_resource type="Texture2D" uid="uid://c2vlstlfjauxy" path="res://Content/Sprites/Interface/StandBar.png" id="7_71iex"]
@@ -18,10 +18,10 @@
 [ext_resource type="Texture2D" uid="uid://t73lfqyo0ovn" path="res://Content/Sprites/Other/Shine.png" id="10_3mkpq"]
 [ext_resource type="PackedScene" uid="uid://dqx4su0c00n3v" path="res://Content/Scenes/Interface&Menu/ConfirmMenuOnlyTextButton.tscn" id="10_cmlhm"]
 [ext_resource type="AudioStream" uid="uid://dy6lncevmnf3o" path="res://Content/Sounds/Other/WhiteNoise.mp3" id="12_jom63"]
-[ext_resource type="Script" path="res://Content/Scripts/Other/Camera.cs" id="13"]
+[ext_resource type="Script" uid="uid://bv1t2ppkmwd6a" path="res://Content/Scripts/Other/Camera.cs" id="13"]
 [ext_resource type="Texture2D" uid="uid://du0ghsnijxwcb" path="res://Content/Sprites/Interface/ImmortalityShield.png" id="13_fc0ia"]
 [ext_resource type="Texture2D" uid="uid://bvogrd2bqhwmt" path="res://Content/Sprites/Other/OblivionNoise.png" id="15"]
-[ext_resource type="Script" path="res://Content/Scripts/Other/UpdaterTimer.cs" id="15_4f468"]
+[ext_resource type="Script" uid="uid://n8wxcl8c6if0" path="res://Content/Scripts/Other/UpdaterTimer.cs" id="15_4f468"]
 
 [sub_resource type="RectangleShape2D" id="1"]
 size = Vector2(40, 56)
@@ -128,8 +128,8 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_oycsg"]
 _data = {
-"Appearing": SubResource("Animation_ssyiw"),
-"RESET": SubResource("Animation_foxk7")
+&"Appearing": SubResource("Animation_ssyiw"),
+&"RESET": SubResource("Animation_foxk7")
 }
 
 [sub_resource type="Animation" id="Animation_dvmnv"]
@@ -252,8 +252,8 @@ tracks/3/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_bpyln"]
 _data = {
-"OnDeath": SubResource("Animation_dvmnv"),
-"RESET": SubResource("Animation_jxwlk")
+&"OnDeath": SubResource("Animation_dvmnv"),
+&"RESET": SubResource("Animation_jxwlk")
 }
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gciug"]
@@ -350,8 +350,8 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vul4l"]
 _data = {
-"Disappearing": SubResource("Animation_5ikrs"),
-"RESET": SubResource("Animation_xrnrv")
+&"Disappearing": SubResource("Animation_5ikrs"),
+&"RESET": SubResource("Animation_xrnrv")
 }
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_icdi5"]
@@ -551,9 +551,9 @@ horizontal_alignment = 1
 position = Vector2(630, 36)
 scale = Vector2(4, 4)
 amount = 20
+texture = ExtResource("10_3mkpq")
 lifetime = 6.0
 local_coords = true
-texture = ExtResource("10_3mkpq")
 emission_shape = 3
 emission_rect_extents = Vector2(64, 11)
 spread = 180.0
@@ -567,7 +567,7 @@ color_initial_ramp = SubResource("Gradient_4fxyx")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Camera2D/GUICanvas/GUI/AfterDeathElements/NewRecord"]
 libraries = {
-"": SubResource("AnimationLibrary_oycsg")
+&"": SubResource("AnimationLibrary_oycsg")
 }
 
 [node name="NewRecord" type="AudioStreamPlayer" parent="Camera2D/GUICanvas/GUI/AfterDeathElements/NewRecord"]
@@ -603,7 +603,7 @@ DisableWhenBought = true
 [node name="GuiAnimations" type="AnimationPlayer" parent="Camera2D/GUICanvas/GUI"]
 process_mode = 1
 libraries = {
-"": SubResource("AnimationLibrary_bpyln")
+&"": SubResource("AnimationLibrary_bpyln")
 }
 
 [node name="RestartNoise" type="AnimatedSprite2D" parent="Camera2D/GUICanvas"]
@@ -655,7 +655,7 @@ texture_progress = ExtResource("9_d4mc5")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Camera2D/ClimbsBar"]
 libraries = {
-"": SubResource("AnimationLibrary_vul4l")
+&"": SubResource("AnimationLibrary_vul4l")
 }
 
 [node name="Sounds" type="Node" parent="."]

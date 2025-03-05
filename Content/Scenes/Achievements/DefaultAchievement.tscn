@@ -1,7 +1,7 @@
 [gd_scene load_steps=23 format=3 uid="uid://d27nwc3cdixbo"]
 
 [ext_resource type="Texture2D" uid="uid://w03njd07hf8e" path="res://Content/Sprites/Interface/AchievementBox.png" id="1_11rdp"]
-[ext_resource type="Script" path="res://Content/Scripts/Other/Achievement.cs" id="1_u1lly"]
+[ext_resource type="Script" uid="uid://cqlov2mistvs8" path="res://Content/Scripts/Other/Achievement.cs" id="1_u1lly"]
 [ext_resource type="Texture2D" uid="uid://01o8bu8kwj2h" path="res://Content/Sprites/Other/AchievementStarParticle.png" id="2_tnofe"]
 [ext_resource type="Texture2D" uid="uid://bpldglo3qd7mh" path="res://Content/Sprites/Interface/AchievementRewardBox.png" id="3_blldf"]
 [ext_resource type="Texture2D" uid="uid://bcy80tqeqbgxw" path="res://Content/Sprites/Interface/WhiteAchievementStar.png" id="3_hi4or"]
@@ -9,7 +9,7 @@
 [ext_resource type="AudioStream" uid="uid://ca1ra0emtaeth" path="res://Content/Sounds/Interface&Menu/AchievementSound.mp3" id="4_338ko"]
 [ext_resource type="Texture2D" uid="uid://bmnjn4tqb7t5m" path="res://Content/Sprites/Interface/GoldenCrossesAnimation.png" id="6_kyk46"]
 [ext_resource type="Theme" uid="uid://dkitr1ftp0yhs" path="res://Content/Other/Menu.tres" id="6_ui8eo"]
-[ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/AutoScrollContainer.cs" id="10_ictur"]
+[ext_resource type="Script" uid="uid://lud5e1i1aqu8" path="res://Content/Scripts/Interface&Menu/AutoScrollContainer.cs" id="10_ictur"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_l7mjc"]
 atlas = ExtResource("4_7bny4")
@@ -126,7 +126,7 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_o11fi"]
 _data = {
-"Gaining": SubResource("Animation_8wvyk")
+&"Gaining": SubResource("Animation_8wvyk")
 }
 
 [node name="Achievement" type="Control" node_paths=PackedStringArray("IconNode")]

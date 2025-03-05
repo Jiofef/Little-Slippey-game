@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://dof0nf2kfi53m"]
 
-[ext_resource type="Script" path="res://Content/Scripts/Levels/Level9JiofefEye.cs" id="1_a88yv"]
+[ext_resource type="Script" uid="uid://b0ofblxle2c45" path="res://Content/Scripts/Levels/Level9JiofefEye.cs" id="1_a88yv"]
 [ext_resource type="Texture2D" uid="uid://c3plfjipt2uqv" path="res://Content/Sprites/Levels/Level9/JiofefEye.png" id="1_facbb"]
 [ext_resource type="Texture2D" uid="uid://c6mjnwwukug26" path="res://Content/Sprites/Levels/Level9/OpticNerveAnimation.png" id="2_ywqwc"]
 [ext_resource type="PackedScene" uid="uid://bt41vubjcqv8p" path="res://Content/Scenes/Crosses/ExplosionAnimation.tscn" id="3_dn1tu"]

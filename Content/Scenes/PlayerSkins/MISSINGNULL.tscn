@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://detui3qloy3kf"]
 
-[ext_resource type="Script" path="res://Content/Scripts/Other/MISSINGNULL.cs" id="1_qgi0y"]
+[ext_resource type="Script" uid="uid://xv5av4wpa1ds" path="res://Content/Scripts/Other/MISSINGNULL.cs" id="1_qgi0y"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_lwpf0"]
 animations = [{
@@ -90,9 +90,9 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_35a7h"]
 _data = {
-"RegionGlitch1": SubResource("Animation_1vtst"),
-"RegionGlitch2": SubResource("Animation_ht2kx"),
-"RegionGlitch3": SubResource("Animation_opwea")
+&"RegionGlitch1": SubResource("Animation_1vtst"),
+&"RegionGlitch2": SubResource("Animation_ht2kx"),
+&"RegionGlitch3": SubResource("Animation_opwea")
 }
 
 [sub_resource type="Gradient" id="Gradient_u1dru"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=19 format=3 uid="uid://cqxxf07okbp3j"]
 
-[ext_resource type="Script" path="res://Content/Scripts/Crosses/GoldenCross.cs" id="1_6aek6"]
+[ext_resource type="Script" uid="uid://r15yojaoeo2h" path="res://Content/Scripts/Crosses/GoldenCross.cs" id="1_6aek6"]
 [ext_resource type="Texture2D" uid="uid://bmnjn4tqb7t5m" path="res://Content/Sprites/Interface/GoldenCrossesAnimation.png" id="1_d3wju"]
 [ext_resource type="Texture2D" uid="uid://ixwvo35psihl" path="res://Content/Sprites/Crosses/GoldenCross.png" id="2_cerrl"]
 [ext_resource type="AudioStream" uid="uid://b2yuhey8vnsqk" path="res://Content/Sounds/Crosses/OnGoldenCrossCollected1.mp3" id="3_mnqio"]
@@ -149,10 +149,10 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_m800w"]
 _data = {
-"Appearing": SubResource("Animation_yvvx0"),
-"Disappearing": SubResource("Animation_2llam"),
-"OnCollected": SubResource("Animation_83rnd"),
-"RESET": SubResource("Animation_yvqqx")
+&"Appearing": SubResource("Animation_yvvx0"),
+&"Disappearing": SubResource("Animation_2llam"),
+&"OnCollected": SubResource("Animation_83rnd"),
+&"RESET": SubResource("Animation_yvqqx")
 }
 
 [node name="GoldenCross" type="Node2D"]

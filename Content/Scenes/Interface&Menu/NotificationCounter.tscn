@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://cas00jlo5rgv1"]
 
-[ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/NotificationCounter.cs" id="1_clxrb"]
+[ext_resource type="Script" uid="uid://b36mksf5b1pvp" path="res://Content/Scripts/Interface&Menu/NotificationCounter.cs" id="1_clxrb"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ygsdd"]
 bg_color = Color(0.788235, 0.141176, 0.392157, 1)
@@ -49,8 +49,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_pnu8i"]
 _data = {
-"Bouncing": SubResource("Animation_dg1ia"),
-"RESET": SubResource("Animation_vqx2o")
+&"Bouncing": SubResource("Animation_dg1ia"),
+&"RESET": SubResource("Animation_vqx2o")
 }
 
 [node name="NotificationCounter" type="Control"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://bg0jro5km8uhm"]
 
-[ext_resource type="Script" path="res://Content/Scripts/Levels/Level7EndOfAnEverything.cs" id="1_wkjk5"]
+[ext_resource type="Script" uid="uid://nsljv672iofh" path="res://Content/Scripts/Levels/Level7EndOfAnEverything.cs" id="1_wkjk5"]
 [ext_resource type="AudioStream" uid="uid://ia5n2h8yioy6" path="res://Content/Sounds/Levels/Level7AverythingStruggling.mp3" id="2_cg8pa"]
 
 [sub_resource type="Animation" id="Animation_m1its"]
@@ -37,8 +37,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_puop8"]
 _data = {
-"RESET": SubResource("Animation_m1its"),
-"new_animation_new_animation_new_animation_new_animation": SubResource("Animation_4r4p5")
+&"RESET": SubResource("Animation_m1its"),
+&"new_animation_new_animation_new_animation_new_animation": SubResource("Animation_4r4p5")
 }
 
 [node name="EndOfAnEverything" type="CanvasLayer"]

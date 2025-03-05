@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://vpmrarf3nuni"]
 
 [ext_resource type="AudioStream" uid="uid://daf6vfh6akpiv" path="res://Content/Sounds/Crosses/GreenElementalCrossSpawnSound.mp3" id="2_7vkob"]
-[ext_resource type="Script" path="res://Content/Scripts/Crosses/GreenElementalCrossPart.cs" id="3"]
+[ext_resource type="Script" uid="uid://d1rghvepi7fsn" path="res://Content/Scripts/Crosses/GreenElementalCrossPart.cs" id="3"]
 [ext_resource type="AudioStream" uid="uid://bia3ek48x2oph" path="res://Content/Sounds/Crosses/MicroExplosion.mp3" id="3_llx6o"]
 [ext_resource type="Texture2D" uid="uid://covatekkrpqu3" path="res://Content/Sprites/Crosses/GreenElementCrossVine.png" id="4_4o822"]
 [ext_resource type="Texture2D" uid="uid://dclk66snfbku6" path="res://Content/Sprites/Crosses/GreenElementalCrossPartVar4.png" id="5"]

@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://bkts22v0lwcwq" path="res://Content/Sprites/Crosses/BlumAbortButton.png" id="4"]
 [ext_resource type="AudioStream" uid="uid://djlnmwp104edh" path="res://Content/Sounds/Crosses/MegaExplosion.mp3" id="5_1dola"]
 [ext_resource type="AudioStream" uid="uid://b0nob4fj2vei4" path="res://Content/Sounds/Crosses/BlumCrossSignal.mp3" id="5_6l5wt"]
-[ext_resource type="Script" path="res://Content/Scripts/Crosses/BlumCross.cs" id="6"]
+[ext_resource type="Script" uid="uid://preev01vcxdj" path="res://Content/Scripts/Crosses/BlumCross.cs" id="6"]
 [ext_resource type="AudioStream" uid="uid://ckf50n64bwv6i" path="res://Content/Sounds/Crosses/BlumCrossAbortButtonPressed.mp3" id="6_n4818"]
 [ext_resource type="PackedScene" uid="uid://c2bqt07ll783d" path="res://Content/Scenes/Crosses/BigExplosionAnimation.tscn" id="8_jkioe"]
 

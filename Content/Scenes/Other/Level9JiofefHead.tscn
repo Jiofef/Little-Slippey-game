@@ -1,6 +1,6 @@
 [gd_scene load_steps=133 format=3 uid="uid://c3dqig02x5lyb"]
 
-[ext_resource type="Script" path="res://Content/Scripts/Levels/Level9JiofefHead.cs" id="1_xp4yv"]
+[ext_resource type="Script" uid="uid://bcvk65sa1hy5q" path="res://Content/Scripts/Levels/Level9JiofefHead.cs" id="1_xp4yv"]
 [ext_resource type="AudioStream" uid="uid://c76u7p63yub80" path="res://Content/Sounds/Levels/Level9Hibernation.mp3" id="2_r1nrf"]
 [ext_resource type="AudioStream" uid="uid://bfua2l1sq2crb" path="res://Content/Sounds/Levels/Level9TurningOn.mp3" id="3_740io"]
 [ext_resource type="AudioStream" uid="uid://5jxx0m85kg31" path="res://Content/Sounds/Levels/Level9PreSpit.mp3" id="4_7r62f"]
@@ -2712,19 +2712,19 @@ tracks/5/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4era0"]
 _data = {
-"BiteAttack": SubResource("Animation_lsy6a"),
-"BullUltAttack": SubResource("Animation_34ldc"),
-"CrossSpitAttack": SubResource("Animation_x45o8"),
-"CrossVomitAttack": SubResource("Animation_o0nwc"),
-"D E A T H": SubResource("Animation_whemq"),
-"EyeGougingAttack": SubResource("Animation_k8t22"),
-"Hahahahahahahaha": SubResource("Animation_3hbj4"),
-"Hibernation": SubResource("Animation_jdpnq"),
-"Idle": SubResource("Animation_sy2xy"),
-"SpiderAttack": SubResource("Animation_pcy0i"),
-"SpinAttack": SubResource("Animation_daim2"),
-"TurningOn": SubResource("Animation_knpxt"),
-"Unpinning": SubResource("Animation_jvope")
+&"BiteAttack": SubResource("Animation_lsy6a"),
+&"BullUltAttack": SubResource("Animation_34ldc"),
+&"CrossSpitAttack": SubResource("Animation_x45o8"),
+&"CrossVomitAttack": SubResource("Animation_o0nwc"),
+&"D E A T H": SubResource("Animation_whemq"),
+&"EyeGougingAttack": SubResource("Animation_k8t22"),
+&"Hahahahahahahaha": SubResource("Animation_3hbj4"),
+&"Hibernation": SubResource("Animation_jdpnq"),
+&"Idle": SubResource("Animation_sy2xy"),
+&"SpiderAttack": SubResource("Animation_pcy0i"),
+&"SpinAttack": SubResource("Animation_daim2"),
+&"TurningOn": SubResource("Animation_knpxt"),
+&"Unpinning": SubResource("Animation_jvope")
 }
 
 [node name="JiofefHead" type="Node2D"]

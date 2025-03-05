@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://ci02ahah4pg1w"]
 
-[ext_resource type="Script" path="res://Content/Scripts/Levels/HintCanvasLayer.cs" id="1_6pbvn"]
+[ext_resource type="Script" uid="uid://ccucxj16vy1sb" path="res://Content/Scripts/Levels/HintCanvasLayer.cs" id="1_6pbvn"]
 [ext_resource type="AudioStream" uid="uid://cij0pc53cmvqd" path="res://Content/Sounds/Other/Snare.mp3" id="2_4atta"]
 [ext_resource type="Texture2D" uid="uid://6nyi0tpol518" path="res://Content/Sprites/Other/HintGlitch.png" id="3_1cepg"]
 [ext_resource type="AudioStream" uid="uid://2xdh4hpisqfj" path="res://Content/Sounds/Other/HintGlitch.mp3" id="4_e27mp"]

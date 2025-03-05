@@ -41,7 +41,7 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_egxmt"]
 _data = {
-"GLTCHCHCHCHed": SubResource("Animation_ewv13")
+&"GLTCHCHCHCHed": SubResource("Animation_ewv13")
 }
 
 [node name="Achievement" instance=ExtResource("1_8l8hh")]

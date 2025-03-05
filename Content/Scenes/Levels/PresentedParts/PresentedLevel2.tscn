@@ -46,7 +46,7 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_gkaxv"]
 _data = {
-"Moving": SubResource("Animation_etf5i")
+&"Moving": SubResource("Animation_etf5i")
 }
 
 [sub_resource type="Curve2D" id="Curve2D_utgof"]
@@ -86,7 +86,7 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_f1ma7"]
 _data = {
-"Combining": SubResource("Animation_geswg")
+&"Combining": SubResource("Animation_geswg")
 }
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bp8qh"]
@@ -294,7 +294,7 @@ tracks/8/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2hg7h"]
 _data = {
-"Default": SubResource("Animation_8sdl3")
+&"Default": SubResource("Animation_8sdl3")
 }
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_eaom4"]
@@ -505,9 +505,9 @@ length = 0.001
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kli7e"]
 _data = {
-"CameraMoving1X1": SubResource("Animation_qnl8m"),
-"CameraMoving2X1": SubResource("Animation_2yfre"),
-"RESET": SubResource("Animation_yfk10")
+&"CameraMoving1X1": SubResource("Animation_qnl8m"),
+&"CameraMoving2X1": SubResource("Animation_2yfre"),
+&"RESET": SubResource("Animation_yfk10")
 }
 
 [node name="PresentedLevel2" type="Node2D"]

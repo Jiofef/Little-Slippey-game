@@ -1,6 +1,6 @@
 [gd_scene load_steps=22 format=3 uid="uid://gd2rt5ce45cx"]
 
-[ext_resource type="Script" path="res://Content/Scripts/Levels/Level9VomitCross.cs" id="2_012gw"]
+[ext_resource type="Script" uid="uid://dlu1oie1d76t4" path="res://Content/Scripts/Levels/Level9VomitCross.cs" id="2_012gw"]
 [ext_resource type="Texture2D" uid="uid://b53a4snnwbhr1" path="res://Content/Sprites/Levels/Level9/SpitCross.png" id="3_jof67"]
 [ext_resource type="Texture2D" uid="uid://bv5jkxumbdvb2" path="res://Content/Sprites/Levels/Level9/SpitCrossWarning.png" id="4_2lxfp"]
 [ext_resource type="AudioStream" uid="uid://bia3ek48x2oph" path="res://Content/Sounds/Crosses/MicroExplosion.mp3" id="4_v2rgn"]

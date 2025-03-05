@@ -833,7 +833,7 @@ namespace OtherExtension
 
         public static async Task WaitForFrame()
         {
-            await G.Inst.ToSignal(G.Inst.GetTree(), "process_frame");
+            await G.SceneTree.ToSignal(G.SceneTree, "process_frame");
         }
 
         public static Color GetGlobalModulateOf(CanvasItem item)

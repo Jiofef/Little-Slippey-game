@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://buj5ooik0q3l0"]
 
-[ext_resource type="Script" path="res://Content/Scripts/Other/AchievementArea.cs" id="1_6mm4m"]
+[ext_resource type="Script" uid="uid://b82tqr4pgly0y" path="res://Content/Scripts/Other/AchievementArea.cs" id="1_6mm4m"]
 
 [node name="AchievementArea" type="Area2D"]
 collision_layer = 0

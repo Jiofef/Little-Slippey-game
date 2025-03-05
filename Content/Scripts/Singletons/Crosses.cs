@@ -105,9 +105,15 @@ public partial class Crosses : Node
             PackedScene = GD.Load<PackedScene>("res://Content/Scenes/Crosses/" + vanillaName + ".tscn");
         }
 
-
+        List<UnusualCrossNode> savedPool;
         public CanvasItem GetInstance()
         {
+            bool hasSavedInstance = false;
+
+            if (hasSavedInstance)
+            {
+                return savedPool[0];
+            }
             return (CanvasItem)PackedScene.Instantiate();
         }
 
@@ -353,8 +359,6 @@ public partial class Crosses : Node
         UpdateLastCrossWeight();
 
         if (EnableGoldenCrossSpawning && (KeepGoldenCrossSpawningWhenProgressProgress || !IsProgressPaused) && _random.Next(GoldenCrossSpawnRarity) == 0) return CurrentGoldenCross;
-
-
 
         return PickRandomByWeight(CurrentCrossesPack, CrossesWeight, false);
     }

@@ -4,8 +4,36 @@
 [ext_resource type="Texture2D" uid="uid://cp7kra2fyq5jn" path="res://Content/Sprites/Levels/Level10/BackPipes.png" id="2_im10v"]
 [ext_resource type="Texture2D" uid="uid://vymh2b710qgl" path="res://Content/Sprites/Levels/Level10/ForePipes.png" id="3_gka5r"]
 [ext_resource type="Texture2D" uid="uid://bom6incv53ok1" path="res://Content/Sprites/Levels/Level10/Rail.png" id="4_17ajx"]
-[ext_resource type="Script" path="res://Content/Scripts/Other/AnimationRandomizer.cs" id="5_hflu3"]
+[ext_resource type="Script" uid="uid://bsyar0f2le73h" path="res://Content/Scripts/Other/AnimationRandomizer.cs" id="5_hflu3"]
 [ext_resource type="Texture2D" uid="uid://bx0f1c20d2wai" path="res://Content/Sprites/Levels/DropesAndHeamsTileset.png" id="6_q5u8n"]
+
+[sub_resource type="Animation" id="Animation_kodqi"]
+resource_name = "PortaPottyPassage"
+length = 8.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Rail/Object:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Rect2(91, 8, 18, 34)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Rail/Object:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-75, 2), Vector2(575, 2)]
+}
 
 [sub_resource type="Animation" id="Animation_cj33v"]
 resource_name = "CapsulePassage"
@@ -63,34 +91,6 @@ tracks/1/keys = {
 "values": [Vector2(-75, 2), Vector2(575, 2)]
 }
 
-[sub_resource type="Animation" id="Animation_kodqi"]
-resource_name = "PortaPottyPassage"
-length = 8.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Rail/Object:region_rect")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [Rect2(91, 8, 18, 34)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Rail/Object:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 8),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(-75, 2), Vector2(575, 2)]
-}
-
 [sub_resource type="Animation" id="Animation_3tvvv"]
 resource_name = "TramPassage"
 length = 8.0
@@ -121,9 +121,9 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_i8hg0"]
 _data = {
-&"PortaPottyPassage": SubResource("Animation_kodqi"),
 &"CapsulePassage": SubResource("Animation_cj33v"),
 &"ManipulatorPassage": SubResource("Animation_uhn5l"),
+&"PortaPottyPassage": SubResource("Animation_kodqi"),
 &"TramPassage": SubResource("Animation_3tvvv")
 }
 
@@ -417,6 +417,26 @@ _data = {
 }
 point_count = 5
 
+[sub_resource type="Animation" id="Animation_yfk10"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_lcayd"]
+resource_name = "CameraMoving2X2"
+length = 20.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4, 6, 8, 10, 14, 15.9, 18, 20),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 1440.0, 1440.0, 2080.0, 2080.0, 3520.0, 3520.0, 4160.0, 4160.0]
+}
+
 [sub_resource type="Animation" id="Animation_qnl8m"]
 resource_name = "CameraMoving"
 length = 6.0
@@ -451,32 +471,12 @@ tracks/0/keys = {
 "values": [0.0, 1440.0, 1440.0, 0.0]
 }
 
-[sub_resource type="Animation" id="Animation_lcayd"]
-resource_name = "CameraMoving2X2"
-length = 20.0
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:progress")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 4, 6, 8, 10, 14, 15.9, 18, 20),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [0.0, 1440.0, 1440.0, 2080.0, 2080.0, 3520.0, 3520.0, 4160.0, 4160.0]
-}
-
-[sub_resource type="Animation" id="Animation_yfk10"]
-length = 0.001
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kli7e"]
 _data = {
-&"RESET": SubResource("Animation_yfk10"),
-&"CameraMoving2X2": SubResource("Animation_lcayd"),
 &"CameraMoving1X1": SubResource("Animation_qnl8m"),
-&"CameraMoving2X1": SubResource("Animation_2yfre")
+&"CameraMoving2X1": SubResource("Animation_2yfre"),
+&"CameraMoving2X2": SubResource("Animation_lcayd"),
+&"RESET": SubResource("Animation_yfk10")
 }
 
 [node name="PresentedLevel10True" type="Node2D"]

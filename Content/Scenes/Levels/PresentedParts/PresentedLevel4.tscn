@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://ceenyhg3xfoon" path="res://Content/Sprites/Levels/Level4/SawPistonPart.png" id="4_adry8"]
 [ext_resource type="Texture2D" uid="uid://ckh1sclq3fji3" path="res://Content/Sprites/Other/PointLight.png" id="5_poybo"]
 [ext_resource type="Texture2D" uid="uid://dsukwby7alfd" path="res://Content/Sprites/Levels/Level4/UltraBigSaw.png" id="6_epugq"]
-[ext_resource type="Script" path="res://Content/Scripts/Levels/Level4CircularSawScript.cs" id="7_naypd"]
+[ext_resource type="Script" uid="uid://dn8skdribj1tr" path="res://Content/Scripts/Levels/Level4CircularSawScript.cs" id="7_naypd"]
 [ext_resource type="Texture2D" uid="uid://dse3qddcaf5o4" path="res://Content/Sprites/Levels/Level4/TheMostOrdinaryUnremarkableSawWhichSurprisinglyCanKillAPlayerWithoutProblemsBecauseItHasAHitboxOnTheSameLayerAsTheExplosionOfCrossesThatsInShort.png" id="8_4hoje"]
 [ext_resource type="Texture2D" uid="uid://oy0q0tel1241" path="res://Content/Sprites/Levels/Level4/BigSaw.png" id="8_sytfx"]
 [ext_resource type="Texture2D" uid="uid://op4k0tjuspxj" path="res://Content/Sprites/Levels/Level4/Stud.png" id="9_k1lmd"]
@@ -83,11 +83,26 @@ tracks/4/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_gf8ss"]
 _data = {
-"SawSpinning": SubResource("Animation_bhfph")
+&"SawSpinning": SubResource("Animation_bhfph")
 }
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_gis7f"]
 blend_mode = 1
+
+[sub_resource type="Animation" id="Animation_n4w42"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_2tpp8"]
 resource_name = "WARNING"
@@ -106,30 +121,14 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_n4w42"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:self_modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hr3hq"]
 _data = {
-"RESET": SubResource("Animation_n4w42"),
-"WARNING": SubResource("Animation_2tpp8")
+&"RESET": SubResource("Animation_n4w42"),
+&"WARNING": SubResource("Animation_2tpp8")
 }
 
 [sub_resource type="Curve" id="Curve_imc5f"]
-min_value = -360.0
-max_value = 360.0
+_limits = [-360.0, 360.0, 0.0, 1.0]
 _data = [Vector2(0.00549451, -327.273), 0.0, 0.0, 0, 0, Vector2(1, 360), 0.0, 0.0, 0, 0]
 point_count = 2
 
@@ -288,10 +287,10 @@ length = 0.001
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kli7e"]
 _data = {
-"CameraMoving1X1": SubResource("Animation_qnl8m"),
-"CameraMoving2X1": SubResource("Animation_2yfre"),
-"CameraMoving2X2": SubResource("Animation_lcayd"),
-"RESET": SubResource("Animation_yfk10")
+&"CameraMoving1X1": SubResource("Animation_qnl8m"),
+&"CameraMoving2X1": SubResource("Animation_2yfre"),
+&"CameraMoving2X2": SubResource("Animation_lcayd"),
+&"RESET": SubResource("Animation_yfk10")
 }
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_t1m5d"]

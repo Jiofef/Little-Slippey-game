@@ -1,8 +1,8 @@
 [gd_scene load_steps=36 format=3 uid="uid://b3m6nctk376qm"]
 
 [ext_resource type="Texture2D" uid="uid://ddbl3u1r26kie" path="res://Content/Sprites/PlayerSkins/SlippeyChad.png" id="1_ae76r"]
-[ext_resource type="Script" path="res://Content/Scripts/Other/SkinScript.cs" id="2_xusc5"]
-[ext_resource type="Script" path="res://Content/Scripts/Other/SlippeyChadCorpseMotionMultiplierCrutch.cs" id="3_dtkvy"]
+[ext_resource type="Script" uid="uid://cmyx6k86y6f5y" path="res://Content/Scripts/Other/SkinScript.cs" id="2_xusc5"]
+[ext_resource type="Script" uid="uid://b50bxjl16dicm" path="res://Content/Scripts/Other/SlippeyChadCorpseMotionMultiplierCrutch.cs" id="3_dtkvy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5cx31"]
 atlas = ExtResource("1_ae76r")
@@ -325,8 +325,8 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_r5na4"]
 _data = {
-"Death": SubResource("Animation_xkhnr"),
-"RESET": SubResource("Animation_cwgr7")
+&"Death": SubResource("Animation_xkhnr"),
+&"RESET": SubResource("Animation_cwgr7")
 }
 
 [node name="SlippeyChad" type="AnimatedSprite2D"]

@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=3 uid="uid://c7psxdkakrw5x"]
 
-[ext_resource type="Script" path="res://Content/Scripts/Other/EpicIntro.cs" id="1_q2jgx"]
-[ext_resource type="Shader" path="res://Content/Other/BrightnessShader.gdshader" id="2_fixsl"]
-[ext_resource type="Script" path="res://Content/Scripts/Other/PostProcessingRect.cs" id="3_pa25h"]
+[ext_resource type="Script" uid="uid://dbnfj41oiqid6" path="res://Content/Scripts/Other/EpicIntro.cs" id="1_q2jgx"]
+[ext_resource type="Shader" uid="uid://breyoli2teo11" path="res://Content/Other/BrightnessShader.gdshader" id="2_fixsl"]
+[ext_resource type="Script" uid="uid://55p0trm68pg6" path="res://Content/Scripts/Other/PostProcessingRect.cs" id="3_pa25h"]
 [ext_resource type="AudioStream" uid="uid://cuvkdo1lyvynu" path="res://Content/Sounds/Other/EpicIntro.mp3" id="4_m8abx"]
 
 [sub_resource type="Animation" id="Animation_l41e4"]
@@ -73,7 +73,7 @@ tracks/4/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_emurq"]
 _data = {
-"EpicIntro": SubResource("Animation_l41e4")
+&"EpicIntro": SubResource("Animation_l41e4")
 }
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xv08t"]

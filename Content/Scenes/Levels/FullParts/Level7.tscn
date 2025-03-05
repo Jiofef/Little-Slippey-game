@@ -39,8 +39,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jcmm3"]
 _data = {
-"MusicStarting": SubResource("Animation_p3npb"),
-"MusicStopping": SubResource("Animation_n61s8")
+&"MusicStarting": SubResource("Animation_p3npb"),
+&"MusicStopping": SubResource("Animation_n61s8")
 }
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5l671"]

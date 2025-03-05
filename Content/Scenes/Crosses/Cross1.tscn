@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://53uh2aqy4q1p" path="res://Content/Sprites/Crosses/DefaultCross.png" id="1"]
 [ext_resource type="Texture2D" uid="uid://doeu7dyjmu0db" path="res://Content/Sprites/Crosses/DefaultCrossWarning.png" id="2"]
-[ext_resource type="Script" path="res://Content/Scripts/Crosses/DefaultCross.cs" id="3"]
+[ext_resource type="Script" uid="uid://dpbyolfoxayiw" path="res://Content/Scripts/Crosses/DefaultCross.cs" id="3"]
 [ext_resource type="AudioStream" uid="uid://cceqrm4tkdmc2" path="res://Content/Sounds/Crosses/Explosion.mp3" id="4_jfxsp"]
 [ext_resource type="PackedScene" uid="uid://bt41vubjcqv8p" path="res://Content/Scenes/Crosses/ExplosionAnimation.tscn" id="5"]
 [ext_resource type="Texture2D" uid="uid://bg2mvitb1ih7q" path="res://Content/Sprites/Other/Explosion.png" id="6_q8c7e"]

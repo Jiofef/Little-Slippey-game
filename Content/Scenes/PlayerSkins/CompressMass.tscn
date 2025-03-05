@@ -1,7 +1,7 @@
 [gd_scene load_steps=27 format=3 uid="uid://b5vdhtg5rdda7"]
 
 [ext_resource type="Texture2D" uid="uid://emmwsjgbgjod" path="res://Content/Sprites/PlayerSkins/CompressMass.png" id="1_5x6sv"]
-[ext_resource type="Script" path="res://Content/Scripts/Other/SkinScript.cs" id="2_60qb7"]
+[ext_resource type="Script" uid="uid://cmyx6k86y6f5y" path="res://Content/Scripts/Other/SkinScript.cs" id="2_60qb7"]
 [ext_resource type="AudioStream" uid="uid://cxl4a0a34ne6j" path="res://Content/Sounds/Player/CompressPileDeathSound.mp3" id="3_eg3kj"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s4guf"]
@@ -372,8 +372,8 @@ tracks/7/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_q7ju3"]
 _data = {
-"Death": SubResource("Animation_6qilu"),
-"RESET": SubResource("Animation_2yujn")
+&"Death": SubResource("Animation_6qilu"),
+&"RESET": SubResource("Animation_2yujn")
 }
 
 [node name="CompressMass" type="AnimatedSprite2D"]

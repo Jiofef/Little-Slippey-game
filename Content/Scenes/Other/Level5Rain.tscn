@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://7oocby8a4s1s"]
 
-[ext_resource type="Script" path="res://Content/Scripts/Levels/Level5Rain.cs" id="1_r23l0"]
+[ext_resource type="Script" uid="uid://b0sfxmctkhlu5" path="res://Content/Scripts/Levels/Level5Rain.cs" id="1_r23l0"]
 [ext_resource type="AudioStream" uid="uid://hqp1es4u8fk4" path="res://Content/Sounds/Levels/Level5Thunder.mp3" id="2_6h37r"]
 [ext_resource type="AudioStream" uid="uid://kus4k0ea0aj2" path="res://Content/Sounds/Levels/Level5Ambience1.mp3" id="3_bybth"]
 [ext_resource type="AudioStream" uid="uid://bo64hggnj03vc" path="res://Content/Sounds/Levels/Level5Ambience2.mp3" id="4_dv01f"]

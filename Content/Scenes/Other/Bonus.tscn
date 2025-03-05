@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://h6yvv8kafov7"]
 
 [ext_resource type="Texture2D" uid="uid://4yfolelqyois" path="res://Content/Sprites/Other/Bonus.png" id="1_aqwd3"]
-[ext_resource type="Script" path="res://Content/Scripts/Other/Bonus.cs" id="1_hl3h0"]
+[ext_resource type="Script" uid="uid://c48dlff630psb" path="res://Content/Scripts/Other/Bonus.cs" id="1_hl3h0"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hu4hj"]
 radius = 32.0

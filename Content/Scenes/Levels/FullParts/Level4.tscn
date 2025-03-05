@@ -7,23 +7,23 @@
 [ext_resource type="Texture2D" uid="uid://d03h2q54r8eox" path="res://Content/Sprites/Levels/Level4/SawPistonRod.png" id="4_ds7bx"]
 [ext_resource type="Texture2D" uid="uid://d4mqmv706juv7" path="res://Content/Sprites/Levels/Level4/TubeEng.png" id="4_uv6oj"]
 [ext_resource type="Texture2D" uid="uid://ceenyhg3xfoon" path="res://Content/Sprites/Levels/Level4/SawPistonPart.png" id="5_uqvlw"]
-[ext_resource type="Script" path="res://Content/Scripts/Other/Rotator.cs" id="6_si15i"]
+[ext_resource type="Script" uid="uid://cgho2b0byfum" path="res://Content/Scripts/Other/Rotator.cs" id="6_si15i"]
 [ext_resource type="Texture2D" uid="uid://ckh1sclq3fji3" path="res://Content/Sprites/Other/PointLight.png" id="6_v4lj0"]
 [ext_resource type="Texture2D" uid="uid://dsukwby7alfd" path="res://Content/Sprites/Levels/Level4/UltraBigSaw.png" id="7_qvllt"]
 [ext_resource type="Texture2D" uid="uid://oy0q0tel1241" path="res://Content/Sprites/Levels/Level4/BigSaw.png" id="8_y7824"]
 [ext_resource type="Texture2D" uid="uid://dse3qddcaf5o4" path="res://Content/Sprites/Levels/Level4/TheMostOrdinaryUnremarkableSawWhichSurprisinglyCanKillAPlayerWithoutProblemsBecauseItHasAHitboxOnTheSameLayerAsTheExplosionOfCrossesThatsInShort.png" id="9_b6lcq"]
 [ext_resource type="Texture2D" uid="uid://op4k0tjuspxj" path="res://Content/Sprites/Levels/Level4/Stud.png" id="10_doto4"]
 [ext_resource type="Texture2D" uid="uid://cfic0bnuc1ocj" path="res://Content/Sprites/Levels/Level4/BigSawStud.png" id="11_b28h6"]
-[ext_resource type="Script" path="res://Content/Scripts/Levels/Level4CircularSawScreechSound.cs" id="12_epg78"]
+[ext_resource type="Script" uid="uid://cclonjgacqtln" path="res://Content/Scripts/Levels/Level4CircularSawScreechSound.cs" id="12_epg78"]
 [ext_resource type="Texture2D" uid="uid://cekfjaqu85oq2" path="res://Content/Sprites/Levels/Level4/UltraBigSawStud.png" id="13_emngo"]
 [ext_resource type="Texture2D" uid="uid://kcd1m7tkh45l" path="res://Content/Sprites/Levels/NePeretrudilsyaTileset.png" id="14_hwiy7"]
-[ext_resource type="Script" path="res://Content/Scripts/Other/Trail.cs" id="15_4vqng"]
+[ext_resource type="Script" uid="uid://dotpd8b5flmxs" path="res://Content/Scripts/Other/Trail.cs" id="15_4vqng"]
 [ext_resource type="PackedScene" uid="uid://dlscufxb5f1ca" path="res://Content/Scenes/Other/Player.tscn" id="15_f0cdm"]
-[ext_resource type="Script" path="res://Content/Scripts/Levels/Foreground.cs" id="16_yd5fs"]
+[ext_resource type="Script" uid="uid://bgake27ctmc1q" path="res://Content/Scripts/Levels/Foreground.cs" id="16_yd5fs"]
 [ext_resource type="PackedScene" uid="uid://bhxyqlefne8jb" path="res://Content/Scenes/Other/WallJumpPad.tscn" id="17_0m8r4"]
-[ext_resource type="Shader" path="res://Content/Other/BlurShader.gdshader" id="17_61d51"]
+[ext_resource type="Shader" uid="uid://dllmyqqldb58f" path="res://Content/Other/BlurShader.gdshader" id="17_61d51"]
 [ext_resource type="PackedScene" uid="uid://d3u7pfig07yrs" path="res://Content/Scenes/Other/CrutchedArea2D.tscn" id="18_axctq"]
-[ext_resource type="Script" path="res://Content/Scripts/Other/EnhancedArea2D.cs" id="19_iqc6a"]
+[ext_resource type="Script" uid="uid://c2ijxex52fi2x" path="res://Content/Scripts/Other/EnhancedArea2D.cs" id="19_iqc6a"]
 [ext_resource type="AudioStream" uid="uid://cc2geqtaxri8x" path="res://Content/Sounds/Levels/Level9BullDashWarning.mp3" id="20_71t27"]
 
 [sub_resource type="Animation" id="Animation_p3npb"]
@@ -58,8 +58,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jcmm3"]
 _data = {
-"MusicStarting": SubResource("Animation_p3npb"),
-"MusicStopping": SubResource("Animation_n61s8")
+&"MusicStarting": SubResource("Animation_p3npb"),
+&"MusicStopping": SubResource("Animation_n61s8")
 }
 
 [sub_resource type="Animation" id="Animation_bhfph"]
@@ -128,11 +128,26 @@ tracks/4/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_gf8ss"]
 _data = {
-"SawSpinning": SubResource("Animation_bhfph")
+&"SawSpinning": SubResource("Animation_bhfph")
 }
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_gvc2j"]
 blend_mode = 1
+
+[sub_resource type="Animation" id="Animation_n4w42"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_2tpp8"]
 resource_name = "WARNING"
@@ -151,33 +166,17 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_n4w42"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:self_modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hr3hq"]
 _data = {
-"RESET": SubResource("Animation_n4w42"),
-"WARNING": SubResource("Animation_2tpp8")
+&"RESET": SubResource("Animation_n4w42"),
+&"WARNING": SubResource("Animation_2tpp8")
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wn5uk"]
 radius = 20.0
 
 [sub_resource type="Curve" id="Curve_hbtk7"]
-min_value = -360.0
-max_value = 360.0
+_limits = [-360.0, 360.0, 0.0, 1.0]
 _data = [Vector2(0.00549451, -327.273), 0.0, 0.0, 0, 0, Vector2(1, 360), 0.0, 0.0, 0, 0]
 point_count = 2
 

@@ -1,7 +1,7 @@
 [gd_scene load_steps=47 format=4 uid="uid://dlx8yjd3gp608"]
 
 [ext_resource type="PackedScene" uid="uid://5kfyvxsdpsk2" path="res://Content/Scenes/Other/LevelLayout.tscn" id="1_t253m"]
-[ext_resource type="Script" path="res://Content/Scripts/Levels/Level1MainScript.cs" id="2_0n0cx"]
+[ext_resource type="Script" uid="uid://bapvfin3xna8k" path="res://Content/Scripts/Levels/Level1MainScript.cs" id="2_0n0cx"]
 [ext_resource type="Texture2D" uid="uid://q2j1uuqfjmos" path="res://Content/Sprites/Levels/BaseTileSet.png" id="2_5coah"]
 [ext_resource type="Texture2D" uid="uid://cjoa8meyv5ehu" path="res://Content/Sprites/Levels/Level1/Sky.png" id="2_xqbfl"]
 [ext_resource type="PackedScene" uid="uid://dlscufxb5f1ca" path="res://Content/Scenes/Other/Player.tscn" id="3"]
@@ -15,9 +15,9 @@
 [ext_resource type="PackedScene" uid="uid://buj5ooik0q3l0" path="res://Content/Scenes/Achievements/AchievementArea.tscn" id="10_uiaak"]
 [ext_resource type="Texture2D" uid="uid://lb7nl781jkgt" path="res://Content/Sprites/Levels/FallenDawnTileset.png" id="12_mapxc"]
 [ext_resource type="PackedScene" uid="uid://d3u7pfig07yrs" path="res://Content/Scenes/Other/CrutchedArea2D.tscn" id="13_4r1fn"]
-[ext_resource type="Shader" path="res://Content/Other/BrightnessShader.gdshader" id="14_xtgka"]
-[ext_resource type="Script" path="res://Content/Scripts/Other/PostProcessingRect.cs" id="15_xfrww"]
-[ext_resource type="Script" path="res://Content/Scripts/Levels/Level1AdditionalBrightnessAnimationPlayer.cs" id="16_qypfv"]
+[ext_resource type="Shader" uid="uid://breyoli2teo11" path="res://Content/Other/BrightnessShader.gdshader" id="14_xtgka"]
+[ext_resource type="Script" uid="uid://55p0trm68pg6" path="res://Content/Scripts/Other/PostProcessingRect.cs" id="15_xfrww"]
+[ext_resource type="Script" uid="uid://roj1d6dao8yt" path="res://Content/Scripts/Levels/Level1AdditionalBrightnessAnimationPlayer.cs" id="16_qypfv"]
 
 [sub_resource type="Animation" id="Animation_p3npb"]
 resource_name = "MusicStarting"
@@ -51,8 +51,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jcmm3"]
 _data = {
-"MusicStarting": SubResource("Animation_p3npb"),
-"MusicStopping": SubResource("Animation_n61s8")
+&"MusicStarting": SubResource("Animation_p3npb"),
+&"MusicStopping": SubResource("Animation_n61s8")
 }
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6c1h1"]
@@ -96,7 +96,7 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ku48g"]
 _data = {
-"Rotation": SubResource("Animation_sycmi")
+&"Rotation": SubResource("Animation_sycmi")
 }
 
 [sub_resource type="Animation" id="Animation_yn5s4"]
@@ -131,7 +131,7 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ul4do"]
 _data = {
-"CloudsMoving": SubResource("Animation_yn5s4")
+&"CloudsMoving": SubResource("Animation_yn5s4")
 }
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ukheu"]
@@ -262,7 +262,7 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_487s0"]
 _data = {
-"Brightening": SubResource("Animation_2bi7u")
+&"Brightening": SubResource("Animation_2bi7u")
 }
 
 [node name="Main" instance=ExtResource("1_t253m")]

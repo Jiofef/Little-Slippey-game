@@ -100,9 +100,9 @@ length = 0.001
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kli7e"]
 _data = {
-"CameraMoving1X1": SubResource("Animation_qnl8m"),
-"CameraMoving2X1": SubResource("Animation_2yfre"),
-"RESET": SubResource("Animation_yfk10")
+&"CameraMoving1X1": SubResource("Animation_qnl8m"),
+&"CameraMoving2X1": SubResource("Animation_2yfre"),
+&"RESET": SubResource("Animation_yfk10")
 }
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6c1h1"]
@@ -146,7 +146,7 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ku48g"]
 _data = {
-"Rotation": SubResource("Animation_sycmi")
+&"Rotation": SubResource("Animation_sycmi")
 }
 
 [sub_resource type="Animation" id="Animation_yn5s4"]
@@ -181,7 +181,7 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ul4do"]
 _data = {
-"CloudsMoving": SubResource("Animation_yn5s4")
+&"CloudsMoving": SubResource("Animation_yn5s4")
 }
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ukheu"]

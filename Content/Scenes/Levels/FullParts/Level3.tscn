@@ -10,8 +10,8 @@
 [ext_resource type="Texture2D" uid="uid://b3qe45464w8st" path="res://Content/Sprites/Levels/Level3/SeaObjects.png" id="8_7k126"]
 [ext_resource type="Texture2D" uid="uid://cm4bhp47bpkw4" path="res://Content/Sprites/Levels/Level3/Grass.png" id="9_h10sl"]
 [ext_resource type="Texture2D" uid="uid://ckh1sclq3fji3" path="res://Content/Sprites/Other/PointLight.png" id="10_8q5q1"]
-[ext_resource type="Shader" path="res://Content/Other/LightShader.gdshader" id="11_thkev"]
-[ext_resource type="Script" path="res://Content/Scripts/Other/ShadingRect.cs" id="12_baexn"]
+[ext_resource type="Shader" uid="uid://ieq50g3ohn26" path="res://Content/Other/LightShader.gdshader" id="11_thkev"]
+[ext_resource type="Script" uid="uid://dq8vsqu387ncw" path="res://Content/Scripts/Other/ShadingRect.cs" id="12_baexn"]
 [ext_resource type="PackedScene" uid="uid://dlscufxb5f1ca" path="res://Content/Scenes/Other/Player.tscn" id="13_ow2n4"]
 [ext_resource type="PackedScene" uid="uid://d3u7pfig07yrs" path="res://Content/Scenes/Other/CrutchedArea2D.tscn" id="14_611ct"]
 [ext_resource type="PackedScene" uid="uid://crhv6ovf1rq2p" path="res://Content/Scenes/Other/UniversalTileMapLayer.tscn" id="16_gmo45"]
@@ -48,8 +48,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jcmm3"]
 _data = {
-"MusicStarting": SubResource("Animation_p3npb"),
-"MusicStopping": SubResource("Animation_n61s8")
+&"MusicStarting": SubResource("Animation_p3npb"),
+&"MusicStopping": SubResource("Animation_n61s8")
 }
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_afp56"]
@@ -96,11 +96,11 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_bwmv0"]
 _data = {
-"CloudsMoving": SubResource("Animation_su7vf")
+&"CloudsMoving": SubResource("Animation_su7vf")
 }
 
 [sub_resource type="Curve" id="Curve_y8vhj"]
-max_value = 4.0
+_limits = [0.0, 4.0, 0.0, 1.0]
 _data = [Vector2(0, 4), 0.0, 0.0, 0, 0]
 point_count = 1
 
@@ -170,7 +170,7 @@ tracks/3/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2um0l"]
 _data = {
-"Sailing": SubResource("Animation_5kxcw")
+&"Sailing": SubResource("Animation_5kxcw")
 }
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_pe6pq"]
@@ -192,9 +192,9 @@ use_hdr = true
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4r1wg"]
 shader = ExtResource("11_thkev")
+shader_parameter/shadow_to_light = SubResource("GradientTexture1D_hbqxc")
 shader_parameter/brightness = 1.0
 shader_parameter/shadow_max_dist = 100.0
-shader_parameter/shadow_to_light = SubResource("GradientTexture1D_hbqxc")
 shader_parameter/gradientTexture = SubResource("GradientTexture2D_fwc1p")
 
 [sub_resource type="Curve" id="Curve_aahec"]
@@ -212,7 +212,7 @@ size = Vector2(128, 128)
 
 [node name="AnimationPlayer" parent="LevelMusicPlayer" index="0"]
 libraries = {
-"": SubResource("AnimationLibrary_jcmm3")
+&"": SubResource("AnimationLibrary_jcmm3")
 }
 
 [node name="Background" type="ParallaxBackground" parent="Level" index="0"]
@@ -229,10 +229,10 @@ centered = false
 material = SubResource("CanvasItemMaterial_afp56")
 position = Vector2(600, 140)
 amount = 24
+texture = ExtResource("3_vtwd4")
 lifetime = 16.0
 preprocess = 16.0
 local_coords = true
-texture = ExtResource("3_vtwd4")
 emission_shape = 3
 emission_rect_extents = Vector2(600, 140)
 spread = 180.0
@@ -264,7 +264,7 @@ centered = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Level/Background/BackClouds" index="1"]
 libraries = {
-"": SubResource("AnimationLibrary_bwmv0")
+&"": SubResource("AnimationLibrary_bwmv0")
 }
 autoplay = "CloudsMoving"
 
@@ -341,7 +341,7 @@ texture = ExtResource("7_id1r3")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Level/Background/Sea/Yacht" index="0"]
 libraries = {
-"": SubResource("AnimationLibrary_2um0l")
+&"": SubResource("AnimationLibrary_2um0l")
 }
 autoplay = "Sailing"
 

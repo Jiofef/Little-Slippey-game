@@ -1,7 +1,7 @@
 [gd_scene load_steps=27 format=3 uid="uid://dsgkgs1vfcwxd"]
 
 [ext_resource type="Texture2D" uid="uid://bd15vnp18h7qk" path="res://Content/Sprites/PlayerSkins/Sanboy.png" id="1_yxxtr"]
-[ext_resource type="Script" path="res://Content/Scripts/Other/SkinScript.cs" id="2_t4gni"]
+[ext_resource type="Script" uid="uid://cmyx6k86y6f5y" path="res://Content/Scripts/Other/SkinScript.cs" id="2_t4gni"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s2mio"]
 atlas = ExtResource("1_yxxtr")
@@ -426,8 +426,8 @@ tracks/9/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_nmx5j"]
 _data = {
-"Death": SubResource("Animation_fqx7t"),
-"RESET": SubResource("Animation_asttb")
+&"Death": SubResource("Animation_fqx7t"),
+&"RESET": SubResource("Animation_asttb")
 }
 
 [node name="Sanboy" type="AnimatedSprite2D"]

@@ -1,13 +1,13 @@
 [gd_scene load_steps=19 format=3 uid="uid://dhpudi781np1e"]
 
-[ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/WorkshopMenu.cs" id="1_y8ofb"]
+[ext_resource type="Script" uid="uid://csej1sdpsmrbv" path="res://Content/Scripts/Interface&Menu/WorkshopMenu.cs" id="1_y8ofb"]
 [ext_resource type="Texture2D" uid="uid://dwloy3yjsqa53" path="res://Content/Sprites/Interface/WorkShopBox.png" id="2_y6w1l"]
-[ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/ScrollableContainer.cs" id="3_ei7qp"]
+[ext_resource type="Script" uid="uid://cgelawnq1r5rc" path="res://Content/Scripts/Interface&Menu/ScrollableContainer.cs" id="3_ei7qp"]
 [ext_resource type="PackedScene" uid="uid://duv6361wgul0d" path="res://Content/Scenes/Interface&Menu/ModButton.tscn" id="3_ujc5x"]
 [ext_resource type="PackedScene" uid="uid://bwpstpk1xmkah" path="res://Content/Scenes/Interface&Menu/Button.tscn" id="3_wh83q"]
 [ext_resource type="Texture2D" uid="uid://cwxoq374yceom" path="res://Content/Sprites/Interface/Buttons/OpenTheDirectoryButton.png" id="4_faqv8"]
 [ext_resource type="Texture2D" uid="uid://bmldgxs7k8p6" path="res://Content/Sprites/Interface/Buttons/OpenInEditorButton.png" id="5_tmdrm"]
-[ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/ScrollableRichTextLabel.cs" id="7_lmrig"]
+[ext_resource type="Script" uid="uid://dbk1tiu7v3fsj" path="res://Content/Scripts/Interface&Menu/ScrollableRichTextLabel.cs" id="7_lmrig"]
 [ext_resource type="Texture2D" uid="uid://c1d2p0ba42csh" path="res://Content/Sprites/Interface/Buttons/AcceptButton.png" id="8_4njlo"]
 [ext_resource type="Texture2D" uid="uid://d0sqlunqacimf" path="res://Content/Sprites/Interface/Buttons/CancelButton.png" id="9_casy6"]
 [ext_resource type="PackedScene" uid="uid://3pxsh7u8scxi" path="res://Content/Scenes/Interface&Menu/ModPreviewLayout.tscn" id="10_xw0ix"]
@@ -31,7 +31,7 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_u8saj"]
 _data = {
-"Appearance": SubResource("Animation_fu4ro")
+&"Appearance": SubResource("Animation_fu4ro")
 }
 
 [sub_resource type="Animation" id="Animation_5hdve"]
@@ -52,7 +52,7 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ckval"]
 _data = {
-"Appearance": SubResource("Animation_5hdve")
+&"Appearance": SubResource("Animation_5hdve")
 }
 
 [sub_resource type="Animation" id="Animation_tgptk"]
@@ -85,7 +85,7 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_24sii"]
 _data = {
-"WARNING": SubResource("Animation_tgptk")
+&"WARNING": SubResource("Animation_tgptk")
 }
 
 [node name="WorkshopMenu" type="Control"]

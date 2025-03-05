@@ -1,7 +1,7 @@
 [gd_scene load_steps=127 format=4 uid="uid://dmcvluugcu1nb"]
 
 [ext_resource type="PackedScene" uid="uid://5kfyvxsdpsk2" path="res://Content/Scenes/Other/LevelLayout.tscn" id="1_rw6g8"]
-[ext_resource type="Script" path="res://Content/Scripts/Levels/GlitchLevelScript.cs" id="2_0eems"]
+[ext_resource type="Script" uid="uid://dipntq4mwmj3o" path="res://Content/Scripts/Levels/GlitchLevelScript.cs" id="2_0eems"]
 [ext_resource type="Texture2D" uid="uid://cruiixgjdbckl" path="res://Content/Sprites/Levels/CakeTileSet.png" id="2_1bngn"]
 [ext_resource type="PackedScene" uid="uid://dlscufxb5f1ca" path="res://Content/Scenes/Other/Player.tscn" id="2_4wixc"]
 [ext_resource type="AudioStream" uid="uid://bvwumbvxjl6ct" path="res://Content/Sounds/Levels/Levle10ShuttingDownTheTestChamber.mp3" id="3_bpddh"]
@@ -30,7 +30,7 @@
 [ext_resource type="Texture2D" uid="uid://jf522wbk7t1h" path="res://Content/Sprites/Levels/Level7/BackLayer.png" id="27_7vxaw"]
 [ext_resource type="Texture2D" uid="uid://3dmk0kl75t76" path="res://Content/Sprites/Levels/FuckItTileset.png" id="27_ramul"]
 [ext_resource type="Texture2D" uid="uid://dgbqetimrygb0" path="res://Content/Sprites/Levels/Level7/FrontLayer.png" id="28_jk815"]
-[ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/AppearingText.cs" id="29_1fu8u"]
+[ext_resource type="Script" uid="uid://c47f2mqiipk1m" path="res://Content/Scripts/Interface&Menu/AppearingText.cs" id="29_1fu8u"]
 [ext_resource type="Texture2D" uid="uid://cjoa8meyv5ehu" path="res://Content/Sprites/Levels/Level1/Sky.png" id="29_1k30v"]
 [ext_resource type="Texture2D" uid="uid://qe6r82b6f7np" path="res://Content/Sprites/Levels/Level1/SunRaysAnimation.png" id="30_uj5yt"]
 [ext_resource type="Texture2D" uid="uid://ua4neh4wkukk" path="res://Content/Sprites/Levels/Level1/BackClouds.png" id="31_muggx"]
@@ -38,7 +38,7 @@
 [ext_resource type="Texture2D" uid="uid://iyc2n8rea3ew" path="res://Content/Sprites/Levels/Level1/FrontLayer.png" id="33_3jwhu"]
 [ext_resource type="Texture2D" uid="uid://de74d3epufxbk" path="res://Content/Sprites/Levels/Level1/StreamAnimation.png" id="34_10u2g"]
 [ext_resource type="PackedScene" uid="uid://buj5ooik0q3l0" path="res://Content/Scenes/Achievements/AchievementArea.tscn" id="35_nms3q"]
-[ext_resource type="Shader" path="res://Content/Other/Glitch.gdshader" id="38_qogn5"]
+[ext_resource type="Shader" uid="uid://oqqsvmqxsxba" path="res://Content/Other/Glitch.gdshader" id="38_qogn5"]
 [ext_resource type="Texture2D" uid="uid://lb7nl781jkgt" path="res://Content/Sprites/Levels/FallenDawnTileset.png" id="39_81b3f"]
 [ext_resource type="Texture2D" uid="uid://cjieb76jdv80v" path="res://Content/Sprites/Levels/ANineGreetingsTileset.png" id="40_0qsx8"]
 [ext_resource type="Texture2D" uid="uid://bx0f1c20d2wai" path="res://Content/Sprites/Levels/DropesAndHeamsTileset.png" id="41_6fp2t"]
@@ -275,11 +275,11 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_bwmv0"]
 _data = {
-"CloudsMoving": SubResource("Animation_su7vf")
+&"CloudsMoving": SubResource("Animation_su7vf")
 }
 
 [sub_resource type="Curve" id="Curve_k8qxn"]
-max_value = 4.0
+_limits = [0.0, 4.0, 0.0, 1.0]
 _data = [Vector2(0, 4), 0.0, 0.0, 0, 0]
 point_count = 1
 
@@ -349,7 +349,7 @@ tracks/3/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2um0l"]
 _data = {
-"Sailing": SubResource("Animation_5kxcw")
+&"Sailing": SubResource("Animation_5kxcw")
 }
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qku3f"]
@@ -954,7 +954,7 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ku48g"]
 _data = {
-"Rotation": SubResource("Animation_sycmi")
+&"Rotation": SubResource("Animation_sycmi")
 }
 
 [sub_resource type="Animation" id="Animation_yn5s4"]
@@ -989,7 +989,7 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ul4do"]
 _data = {
-"CloudsMoving": SubResource("Animation_yn5s4")
+&"CloudsMoving": SubResource("Animation_yn5s4")
 }
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ukheu"]
@@ -1090,8 +1090,8 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_bwyvf"]
 _data = {
-"Glare": SubResource("Animation_sahv6"),
-"RESET": SubResource("Animation_nmhua")
+&"Glare": SubResource("Animation_sahv6"),
+&"RESET": SubResource("Animation_nmhua")
 }
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5q17f"]

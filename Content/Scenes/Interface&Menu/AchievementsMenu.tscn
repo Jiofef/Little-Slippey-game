@@ -1,9 +1,9 @@
 [gd_scene load_steps=8 format=3 uid="uid://bbefvhpfglkty"]
 
 [ext_resource type="PackedScene" uid="uid://cb3550p76ubc8" path="res://Content/Scenes/Interface&Menu/DraggableWindow.tscn" id="1_3wmdj"]
-[ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/AchievementsMenu.cs" id="1_xte5a"]
+[ext_resource type="Script" uid="uid://d3oggglxqi11w" path="res://Content/Scripts/Interface&Menu/AchievementsMenu.cs" id="1_xte5a"]
 [ext_resource type="Theme" uid="uid://dkitr1ftp0yhs" path="res://Content/Other/Menu.tres" id="3_6f771"]
-[ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/ScrollableContainer.cs" id="4_rv65g"]
+[ext_resource type="Script" uid="uid://cgelawnq1r5rc" path="res://Content/Scripts/Interface&Menu/ScrollableContainer.cs" id="4_rv65g"]
 
 [sub_resource type="Animation" id="Animation_q7m3v"]
 resource_name = "Appearance"
@@ -23,7 +23,7 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tgxxh"]
 _data = {
-"Appearance": SubResource("Animation_q7m3v")
+&"Appearance": SubResource("Animation_q7m3v")
 }
 
 [sub_resource type="Theme" id="Theme_3dv30"]

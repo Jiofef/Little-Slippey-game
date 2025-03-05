@@ -1,10 +1,10 @@
 [gd_scene load_steps=111 format=4 uid="uid://cyguctos1c5pv"]
 
-[ext_resource type="Script" path="res://Content/Scripts/Other/MainScript.cs" id="1_evesd"]
-[ext_resource type="Script" path="res://Content/Scripts/Other/LevelMusicPlayer.cs" id="2_78ana"]
+[ext_resource type="Script" uid="uid://cjbhhew83nwxn" path="res://Content/Scripts/Other/MainScript.cs" id="1_evesd"]
+[ext_resource type="Script" uid="uid://d23sexuaxdruy" path="res://Content/Scripts/Other/LevelMusicPlayer.cs" id="2_78ana"]
 [ext_resource type="Texture2D" uid="uid://dsbmsydekaqyb" path="res://Content/Sprites/Levels/Level9/VolcanoInterior.png" id="2_jrbcf"]
 [ext_resource type="Texture2D" uid="uid://cwlb2ggj7gmuh" path="res://Content/Sprites/Levels/Level9/VulcanInteriorLavaAnimation.png" id="3_72pi6"]
-[ext_resource type="Script" path="res://Content/Scripts/Levels/BaseLevelScript.cs" id="3_ql480"]
+[ext_resource type="Script" uid="uid://b55o38rlxdiq" path="res://Content/Scripts/Levels/BaseLevelScript.cs" id="3_ql480"]
 [ext_resource type="Texture2D" uid="uid://d2gkb2n1pgjkq" path="res://Content/Sprites/Levels/Level9/VolcanoStalactites.png" id="4_ub0dp"]
 [ext_resource type="Texture2D" uid="uid://q2j1uuqfjmos" path="res://Content/Sprites/Levels/BaseTileSet.png" id="5_jw4yg"]
 [ext_resource type="Texture2D" uid="uid://dlx8ycfcvywk5" path="res://Content/Sprites/Levels/InMyHeadTileset.png" id="6_a4qu0"]
@@ -12,7 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://dgluki8hnwb62" path="res://Content/Sprites/Levels/Level8/AcidAndLavaTileset.png" id="8_vlshh"]
 [ext_resource type="PackedScene" uid="uid://c3dqig02x5lyb" path="res://Content/Scenes/Other/Level9JiofefHead.tscn" id="9_52yyg"]
 [ext_resource type="Texture2D" uid="uid://duk32e0otnfky" path="res://Content/Sprites/Levels/FuckItVolume2Tileset.png" id="10_6in3n"]
-[ext_resource type="Script" path="res://Content/Scripts/Levels/Level9PlatformerSection.cs" id="11_7vtnw"]
+[ext_resource type="Script" uid="uid://bpti358pc6o10" path="res://Content/Scripts/Levels/Level9PlatformerSection.cs" id="11_7vtnw"]
 [ext_resource type="Texture2D" uid="uid://bjeikbnsrvbn6" path="res://Content/Sprites/Levels/Level9/HellHorizon.png" id="12_5nfh0"]
 [ext_resource type="Texture2D" uid="uid://bfuhg3cpar3xt" path="res://Content/Sprites/Levels/Level9/Hell.png" id="13_d3uin"]
 [ext_resource type="Texture2D" uid="uid://02x0pnqhruvm" path="res://Content/Sprites/Levels/Level9/HellVolcanoSmokeAnimation.png" id="14_8p6ep"]
@@ -23,14 +23,14 @@
 [ext_resource type="PackedScene" uid="uid://d3u7pfig07yrs" path="res://Content/Scenes/Other/CrutchedArea2D.tscn" id="18_jbgj3"]
 [ext_resource type="PackedScene" uid="uid://dgxxv3neagyw" path="res://Content/Scenes/Other/Level8DisposableButton.tscn" id="19_pf8ra"]
 [ext_resource type="Texture2D" uid="uid://b80jw2mpdhli5" path="res://Content/Sprites/Levels/Level9/DAaAAaAaArk.png" id="20_dk2p4"]
-[ext_resource type="Script" path="res://Content/Scripts/Levels/Level8DisposableButton.cs" id="21_bj3te"]
+[ext_resource type="Script" uid="uid://d2jn0oh6nkh6" path="res://Content/Scripts/Levels/Level8DisposableButton.cs" id="21_bj3te"]
 [ext_resource type="Texture2D" uid="uid://c1748jvidnif" path="res://Content/Sprites/Levels/Level9/NoWayBro.png" id="22_vx5u8"]
 [ext_resource type="PackedScene" uid="uid://buj5ooik0q3l0" path="res://Content/Scenes/Achievements/AchievementArea.tscn" id="23_jff28"]
-[ext_resource type="Script" path="res://Content/Scripts/Levels/Level8FragileTile.cs" id="24_do62h"]
+[ext_resource type="Script" uid="uid://cmjb61utqcw0" path="res://Content/Scripts/Levels/Level8FragileTile.cs" id="24_do62h"]
 [ext_resource type="Texture2D" uid="uid://dum4qduobam4q" path="res://Content/Sprites/Levels/Level9/DoomApproachesAnimation.png" id="25_rrbgu"]
-[ext_resource type="Script" path="res://Content/Scripts/Levels/Level9DoomApproachesAnimation.cs" id="26_py352"]
+[ext_resource type="Script" uid="uid://b7x0wkqnf1ivn" path="res://Content/Scripts/Levels/Level9DoomApproachesAnimation.cs" id="26_py352"]
 [ext_resource type="PackedScene" uid="uid://tjddwdxopw2u" path="res://Content/Scenes/Interface&Menu/Pause.tscn" id="29_pnjni"]
-[ext_resource type="Script" path="res://Content/Scripts/Crosses/CrossSpawner.cs" id="29_q31gy"]
+[ext_resource type="Script" uid="uid://dy61y3klqo4lg" path="res://Content/Scripts/Crosses/CrossSpawner.cs" id="29_q31gy"]
 [ext_resource type="PackedScene" uid="uid://c7psxdkakrw5x" path="res://Content/Scenes/Other/EpicIntro.tscn" id="30_kviqb"]
 [ext_resource type="PackedScene" uid="uid://catydhrk62at1" path="res://Content/Scenes/Interface&Menu/AdditionalGuiLayer.tscn" id="31_h5p8f"]
 
@@ -66,8 +66,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jcmm3"]
 _data = {
-"MusicStarting": SubResource("Animation_p3npb"),
-"MusicStopping": SubResource("Animation_n61s8")
+&"MusicStarting": SubResource("Animation_p3npb"),
+&"MusicStopping": SubResource("Animation_n61s8")
 }
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5xpao"]
@@ -385,7 +385,7 @@ tracks/3/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_a3tob"]
 _data = {
-"NoWayBro": SubResource("Animation_kljkw")
+&"NoWayBro": SubResource("Animation_kljkw")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4us4l"]
@@ -588,11 +588,11 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mmhq2"]
 _data = {
-"Dark": SubResource("Animation_mlu0y"),
-"DoomDoorClosing": SubResource("Animation_kvom3"),
-"FlashOfLight": SubResource("Animation_d78t2"),
-"FrontDoorClosing": SubResource("Animation_wtpxm"),
-"LavaRising": SubResource("Animation_ewr70")
+&"Dark": SubResource("Animation_mlu0y"),
+&"DoomDoorClosing": SubResource("Animation_kvom3"),
+&"FlashOfLight": SubResource("Animation_d78t2"),
+&"FrontDoorClosing": SubResource("Animation_wtpxm"),
+&"LavaRising": SubResource("Animation_ewr70")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6tacu"]
@@ -719,7 +719,7 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_m0b1v"]
 _data = {
-"FlyingUp": SubResource("Animation_yfjtx")
+&"FlyingUp": SubResource("Animation_yfjtx")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bg0m8"]

@@ -1,8 +1,8 @@
 [gd_scene load_steps=43 format=3 uid="uid://bajxkgbvef738"]
 
 [ext_resource type="Texture2D" uid="uid://dnn6gvvg4t2sr" path="res://Content/Sprites/Crosses/EnhancedGoldenCross.png" id="1_egfsr"]
-[ext_resource type="Script" path="res://Content/Scripts/Crosses/EnhancedGoldenCross.cs" id="1_vafaw"]
-[ext_resource type="Script" path="res://Content/Scripts/Crosses/ElementaryParticleScript.cs" id="2_nucrf"]
+[ext_resource type="Script" uid="uid://cr8eug35xmamm" path="res://Content/Scripts/Crosses/EnhancedGoldenCross.cs" id="1_vafaw"]
+[ext_resource type="Script" uid="uid://b8pv7mn1g18jh" path="res://Content/Scripts/Crosses/ElementaryParticleScript.cs" id="2_nucrf"]
 [ext_resource type="PackedScene" uid="uid://4gxbtrc21wvn" path="res://Content/Scenes/Interface&Menu/OffscreenPointer.tscn" id="3_n6rmv"]
 [ext_resource type="Texture2D" uid="uid://bmnjn4tqb7t5m" path="res://Content/Sprites/Interface/GoldenCrossesAnimation.png" id="4_j0by6"]
 [ext_resource type="Texture2D" uid="uid://btp8llsfw6hi3" path="res://Content/Sprites/Interface/GoldenPointingArrow.png" id="4_v7afd"]
@@ -14,7 +14,7 @@
 radius = 32.0
 
 [sub_resource type="Curve" id="Curve_ev2uc"]
-min_value = -1.0
+_limits = [-1.0, 1.0, 0.0, 1.0]
 _data = [Vector2(0, 0.254412), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 
@@ -211,10 +211,10 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1lqn2"]
 _data = {
-"Appearing": SubResource("Animation_6fhwm"),
-"Disappearing": SubResource("Animation_hj34s"),
-"OnCollected": SubResource("Animation_2f1xp"),
-"RESET": SubResource("Animation_rjf4e")
+&"Appearing": SubResource("Animation_6fhwm"),
+&"Disappearing": SubResource("Animation_hj34s"),
+&"OnCollected": SubResource("Animation_2f1xp"),
+&"RESET": SubResource("Animation_rjf4e")
 }
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6shwi"]
@@ -226,7 +226,7 @@ _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="Curve" id="Curve_7soco"]
-min_value = -1.0
+_limits = [-1.0, 1.0, 0.0, 1.0]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 10), 0.0, 0.0, 0, 0]
 point_count = 2
 

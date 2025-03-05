@@ -157,7 +157,7 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8dhd6"]
 _data = {
-"Floating": SubResource("Animation_b550i")
+&"Floating": SubResource("Animation_b550i")
 }
 
 [sub_resource type="Curve" id="Curve_rkg7m"]

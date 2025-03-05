@@ -38,7 +38,7 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vyn6q"]
 _data = {
-"CloudsMoving": SubResource("Animation_dxr07")
+&"CloudsMoving": SubResource("Animation_dxr07")
 }
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_qqos4"]

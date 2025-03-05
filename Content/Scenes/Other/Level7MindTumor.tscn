@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://ctfykvmbo5pjb"]
 
-[ext_resource type="Script" path="res://Content/Scripts/Levels/Level7MindTumor.cs" id="1_bjhm2"]
-[ext_resource type="Script" path="res://Content/Scripts/Levels/Level7TumorSprite.cs" id="2_6kndf"]
+[ext_resource type="Script" uid="uid://dltq64vvixycx" path="res://Content/Scripts/Levels/Level7MindTumor.cs" id="1_bjhm2"]
+[ext_resource type="Script" uid="uid://bl7boccqeagug" path="res://Content/Scripts/Levels/Level7TumorSprite.cs" id="2_6kndf"]
 [ext_resource type="Texture2D" uid="uid://dk3kpbxaofddl" path="res://Content/Sprites/Levels/Level7/MindTumor.png" id="2_qrpy6"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_p6ola"]

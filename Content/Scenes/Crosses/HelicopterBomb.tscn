@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://bx32w5tx4u2sr"]
 
 [ext_resource type="AudioStream" uid="uid://cceqrm4tkdmc2" path="res://Content/Sounds/Crosses/Explosion.mp3" id="2_gvc14"]
-[ext_resource type="Script" path="res://Content/Scripts/Crosses/HelicopterBomb.cs" id="2_hrhph"]
+[ext_resource type="Script" uid="uid://cyv3au6v86oso" path="res://Content/Scripts/Crosses/HelicopterBomb.cs" id="2_hrhph"]
 [ext_resource type="PackedScene" uid="uid://bt41vubjcqv8p" path="res://Content/Scenes/Crosses/ExplosionAnimation.tscn" id="3_c65yf"]
 [ext_resource type="Texture2D" uid="uid://0tt2fv11qvro" path="res://Content/Sprites/Crosses/HelicopterBomb.png" id="3_hirod"]
 

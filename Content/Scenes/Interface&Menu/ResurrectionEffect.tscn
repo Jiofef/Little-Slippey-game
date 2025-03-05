@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://cecbypuw3jkk3"]
 
-[ext_resource type="Script" path="res://Content/Scripts/Other/MicroScripts/ResurrectionEffect.cs" id="1_ja54i"]
+[ext_resource type="Script" uid="uid://gsjbs4unary7" path="res://Content/Scripts/Other/MicroScripts/ResurrectionEffect.cs" id="1_ja54i"]
 [ext_resource type="AudioStream" uid="uid://dtnh245w5l58p" path="res://Content/Sounds/Other/Shot.mp3" id="1_kp3fq"]
 [ext_resource type="AudioStream" uid="uid://bh4hc5oplq1p7" path="res://Content/Sounds/Player/ResurrectionSound.mp3" id="2_fc2ms"]
 
@@ -101,9 +101,9 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_wtoqx"]
 _data = {
-"AfterResurrection": SubResource("Animation_hwouc"),
-"PreResurrection": SubResource("Animation_44l60"),
-"RESET": SubResource("Animation_7pbto")
+&"AfterResurrection": SubResource("Animation_hwouc"),
+&"PreResurrection": SubResource("Animation_44l60"),
+&"RESET": SubResource("Animation_7pbto")
 }
 
 [node name="ResurrectionEffect" type="ColorRect"]

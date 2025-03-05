@@ -4,7 +4,7 @@
 [ext_resource type="AudioStream" uid="uid://bql4va5bvejv5" path="res://Content/Sounds/Crosses/CannonChargingSound.mp3" id="2_2un0t"]
 [ext_resource type="Texture2D" uid="uid://f066ngoira7" path="res://Content/Sprites/Crosses/CannonWheel.png" id="3"]
 [ext_resource type="AudioStream" uid="uid://d5xg7ux58s7a" path="res://Content/Sounds/Crosses/CannonShot.mp3" id="3_rkcw1"]
-[ext_resource type="Script" path="res://Content/Scripts/Crosses/CannonCross.cs" id="4"]
+[ext_resource type="Script" uid="uid://ccn1vc8tib7pw" path="res://Content/Scripts/Crosses/CannonCross.cs" id="4"]
 [ext_resource type="Texture2D" uid="uid://wf2tjey7r0fu" path="res://Content/Sprites/Crosses/CannonBall.png" id="6"]
 
 [sub_resource type="Curve2D" id="1"]

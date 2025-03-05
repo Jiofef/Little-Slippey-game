@@ -1,10 +1,10 @@
 [gd_scene load_steps=12 format=3 uid="uid://dydgg68xlbmyx"]
 
-[ext_resource type="Script" path="res://Content/Scripts/Levels/Level9JiofefHeadDeathParticles.cs" id="1_5djou"]
+[ext_resource type="Script" uid="uid://dkea68vnhc6jb" path="res://Content/Scripts/Levels/Level9JiofefHeadDeathParticles.cs" id="1_5djou"]
 [ext_resource type="AudioStream" uid="uid://bb57chgdorit5" path="res://Content/Sounds/Levels/Level9Chaos.mp3" id="2_cncxe"]
 [ext_resource type="AudioStream" uid="uid://j3eptu8vfa8h" path="res://Content/Sounds/Levels/Level9ChaosIsOver.mp3" id="3_putbu"]
-[ext_resource type="Shader" path="res://Content/Other/BrightnessShader.gdshader" id="4_i402c"]
-[ext_resource type="Script" path="res://Content/Scripts/Other/PostProcessingRect.cs" id="5_5wsfb"]
+[ext_resource type="Shader" uid="uid://breyoli2teo11" path="res://Content/Other/BrightnessShader.gdshader" id="4_i402c"]
+[ext_resource type="Script" uid="uid://55p0trm68pg6" path="res://Content/Scripts/Other/PostProcessingRect.cs" id="5_5wsfb"]
 
 [sub_resource type="Curve" id="Curve_ef4hr"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.0412371, 1), 0.0, 0.0, 0, 0, Vector2(0.190722, 0.043956), 0.0, 0.0, 0, 0, Vector2(0.453608, 1), 0.0, 0.0, 0, 0, Vector2(0.685567, 0.142857), 0.0, 0.0, 0, 0, Vector2(0.860825, 0.912088), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -52,7 +52,7 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ts14y"]
 _data = {
-"Chaos": SubResource("Animation_hdrgd")
+&"Chaos": SubResource("Animation_hdrgd")
 }
 
 [node name="JiofefHeadDeathParticles" type="CPUParticles2D"]

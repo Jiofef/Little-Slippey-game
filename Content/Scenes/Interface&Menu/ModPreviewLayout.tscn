@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://3pxsh7u8scxi"]
 
-[ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/ModPreview.cs" id="1_y23h1"]
+[ext_resource type="Script" uid="uid://dg4jhhlrkuih5" path="res://Content/Scripts/Interface&Menu/ModPreview.cs" id="1_y23h1"]
 
 [node name="ModPreview" type="Control"]
 custom_minimum_size = Vector2(340, 340)

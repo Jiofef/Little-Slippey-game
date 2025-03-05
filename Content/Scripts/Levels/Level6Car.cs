@@ -116,7 +116,6 @@ public partial class Level6Car : SwooshObject
         _carsAhead--;
     }
 
-    private const float NEEDED_PLAYER_VELOCITY_TO_RAM_THE_BOTTOM = 700;
     public void OnBottomHitted(Node2D body)
     {
         if (body is Player player && player.LastActions[0] is Player.Act.Tossed && player.Velocity.Y < 100f)

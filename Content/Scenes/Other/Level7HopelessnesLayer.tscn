@@ -1,7 +1,7 @@
 [gd_scene load_steps=15 format=3 uid="uid://45vtxkc30vn7"]
 
-[ext_resource type="Script" path="res://Content/Scripts/Levels/Level7HopelessnessLayer.cs" id="1_52qy1"]
-[ext_resource type="VideoStream" path="res://Content/Other/VintageFilterVideo.ogv" id="2_rc8ov"]
+[ext_resource type="Script" uid="uid://bpxlcsix6yj5u" path="res://Content/Scripts/Levels/Level7HopelessnessLayer.cs" id="1_52qy1"]
+[ext_resource type="VideoStream" uid="uid://cdou0fuguuvqf" path="res://Content/Other/VintageFilterVideo.ogv" id="2_rc8ov"]
 [ext_resource type="AudioStream" uid="uid://dfy21dsuhqjdy" path="res://Content/Sounds/Levels/Level7FilmNoise.mp3" id="3_3ai6c"]
 [ext_resource type="Texture2D" uid="uid://cnlwwst8nlark" path="res://Content/Sprites/Levels/Level7/_.png" id="4_onq4x"]
 [ext_resource type="AudioStream" uid="uid://mf86dd16dr3k" path="res://Content/Sounds/Levels/Level7.mp3" id="5_hfmoq"]

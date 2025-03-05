@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://tjddwdxopw2u"]
 
-[ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/Pause.cs" id="1_xur51"]
+[ext_resource type="Script" uid="uid://c8wa0ggp5kp7b" path="res://Content/Scripts/Interface&Menu/Pause.cs" id="1_xur51"]
 [ext_resource type="Texture2D" uid="uid://4udch8ejvu08" path="res://Content/Sprites/Interface/PauseButtonsFrame.png" id="2_yplvv"]
 [ext_resource type="PackedScene" uid="uid://bwpstpk1xmkah" path="res://Content/Scenes/Interface&Menu/Button.tscn" id="3_rrriy"]
 [ext_resource type="Texture2D" uid="uid://dhr0k5tpvpg7n" path="res://Content/Sprites/Interface/Buttons/UnpauseButton.png" id="4_k1txw"]
@@ -166,9 +166,9 @@ tracks/3/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4p2pf"]
 _data = {
-"OpeningSubMenu": SubResource("Animation_gr4ul"),
-"Pause": SubResource("Animation_qdctp"),
-"RESET": SubResource("Animation_jexqq")
+&"OpeningSubMenu": SubResource("Animation_gr4ul"),
+&"Pause": SubResource("Animation_qdctp"),
+&"RESET": SubResource("Animation_jexqq")
 }
 
 [node name="Pause" type="CanvasLayer"]

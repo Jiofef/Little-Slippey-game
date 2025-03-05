@@ -1,9 +1,9 @@
 [gd_scene load_steps=10 format=3 uid="uid://pkd4dmid83nm"]
 
-[ext_resource type="Shader" path="res://Content/Other/BrightnessShader.gdshader" id="2_bd5vs"]
-[ext_resource type="Script" path="res://Content/Scripts/Other/RootIntro.cs" id="2_gxks7"]
+[ext_resource type="Shader" uid="uid://breyoli2teo11" path="res://Content/Other/BrightnessShader.gdshader" id="2_bd5vs"]
+[ext_resource type="Script" uid="uid://c0qroualuvm3y" path="res://Content/Scripts/Other/RootIntro.cs" id="2_gxks7"]
 [ext_resource type="AudioStream" uid="uid://0ritvrmr8r7h" path="res://Content/Sounds/Other/RootIntro.mp3" id="3_j3mvi"]
-[ext_resource type="Script" path="res://Content/Scripts/Other/PostProcessingRect.cs" id="3_n4e2q"]
+[ext_resource type="Script" uid="uid://55p0trm68pg6" path="res://Content/Scripts/Other/PostProcessingRect.cs" id="3_n4e2q"]
 
 [sub_resource type="Animation" id="Animation_sn303"]
 resource_name = "EpicIntro"
@@ -221,8 +221,8 @@ tracks/5/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_e6knk"]
 _data = {
-"EpicIntro": SubResource("Animation_sn303"),
-"RESET": SubResource("Animation_rem4u")
+&"EpicIntro": SubResource("Animation_sn303"),
+&"RESET": SubResource("Animation_rem4u")
 }
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xv08t"]
@@ -230,7 +230,7 @@ shader = ExtResource("2_bd5vs")
 shader_parameter/brightness = 1.0
 
 [sub_resource type="Curve" id="Curve_qe4gd"]
-max_value = 16.0
+_limits = [0.0, 16.0, 0.0, 1.0]
 _data = [Vector2(0, 16), 0.0, 0.0, 0, 0]
 point_count = 1
 

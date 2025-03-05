@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cxejp71wxw7mh"]
 
-[ext_resource type="Script" path="res://Content/Scripts/Levels/LevelEditorDefaultButton.cs" id="1_cc6ex"]
+[ext_resource type="Script" uid="uid://c4haab7nb3rs7" path="res://Content/Scripts/Levels/LevelEditorDefaultButton.cs" id="1_cc6ex"]
 [ext_resource type="Texture2D" uid="uid://nlwphmf6wah0" path="res://Content/Sprites/Levels/Level8/Button.png" id="2_8unr7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_shptl"]

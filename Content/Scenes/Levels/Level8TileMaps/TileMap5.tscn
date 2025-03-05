@@ -311,7 +311,7 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_21yo4"]
 _data = {
-"Opening": SubResource("Animation_fkyqf")
+&"Opening": SubResource("Animation_fkyqf")
 }
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_arrqn"]
@@ -441,7 +441,7 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_lksg7"]
 _data = {
-"Opening": SubResource("Animation_u1qcf")
+&"Opening": SubResource("Animation_u1qcf")
 }
 
 [sub_resource type="Animation" id="Animation_o3hvb"]
@@ -462,7 +462,7 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hhu4q"]
 _data = {
-"Opening": SubResource("Animation_o3hvb")
+&"Opening": SubResource("Animation_o3hvb")
 }
 
 [sub_resource type="Animation" id="Animation_vqvkn"]
@@ -483,7 +483,7 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3j25n"]
 _data = {
-"Opening": SubResource("Animation_vqvkn")
+&"Opening": SubResource("Animation_vqvkn")
 }
 
 [sub_resource type="Animation" id="Animation_nl1be"]
@@ -504,7 +504,7 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_d36to"]
 _data = {
-"Opening": SubResource("Animation_nl1be")
+&"Opening": SubResource("Animation_nl1be")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h77bd"]

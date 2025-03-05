@@ -106,7 +106,7 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_s3t3c"]
 _data = {
-"CameraMovingLolXXd": SubResource("Animation_dfq6x")
+&"CameraMovingLolXXd": SubResource("Animation_dfq6x")
 }
 
 [node name="PresentedLevel10" type="Node2D"]

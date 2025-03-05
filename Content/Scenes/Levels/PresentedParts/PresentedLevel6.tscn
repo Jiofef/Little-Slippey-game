@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://640d6c4ipunr" path="res://Content/Sprites/Levels/Level6/Clouds.png" id="2_x1h64"]
 [ext_resource type="Texture2D" uid="uid://d1fsqrkn16u5n" path="res://Content/Sprites/Levels/Level6/BackgroundGieroFarFlyingCar.png" id="3_jjxvf"]
 [ext_resource type="Texture2D" uid="uid://dj5m4kmysh1li" path="res://Content/Sprites/Levels/Level6/BackCity.png" id="3_qdav7"]
-[ext_resource type="Script" path="res://Content/Scripts/Levels/Level6FlyingCarSpawner.cs" id="3_wesb5"]
+[ext_resource type="Script" uid="uid://cljy5m8cpxjru" path="res://Content/Scripts/Levels/Level6FlyingCarSpawner.cs" id="3_wesb5"]
 [ext_resource type="PackedScene" uid="uid://dct3ltljwt56o" path="res://Content/Scenes/Other/Level6DefaultCar.tscn" id="4_40qb7"]
 [ext_resource type="Texture2D" uid="uid://dxr4mhlbsc3" path="res://Content/Sprites/Levels/Level6/BackgroundGieroFlyingCar.png" id="4_bgwu4"]
 [ext_resource type="Texture2D" uid="uid://cy1lov1ry2p21" path="res://Content/Sprites/Levels/Level6/MiddleCity.png" id="4_f451i"]
@@ -52,8 +52,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_bl81i"]
 _data = {
-"CloudsMoving": SubResource("Animation_nbc5f"),
-"RESET": SubResource("Animation_h0f6w")
+&"CloudsMoving": SubResource("Animation_nbc5f"),
+&"RESET": SubResource("Animation_h0f6w")
 }
 
 [sub_resource type="Animation" id="Animation_3265a"]
@@ -91,8 +91,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_33km3"]
 _data = {
-"RESET": SubResource("Animation_3265a"),
-"rgb": SubResource("Animation_50kj8")
+&"RESET": SubResource("Animation_3265a"),
+&"rgb": SubResource("Animation_50kj8")
 }
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_7xp21"]
@@ -292,7 +292,7 @@ centered = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Background/Clouds"]
 libraries = {
-"": SubResource("AnimationLibrary_bl81i")
+&"": SubResource("AnimationLibrary_bl81i")
 }
 autoplay = "CloudsMoving"
 
@@ -311,18 +311,18 @@ centered = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Background/BackCity/rgb"]
 libraries = {
-"": SubResource("AnimationLibrary_33km3")
+&"": SubResource("AnimationLibrary_33km3")
 }
 autoplay = "rgb"
 
 [node name="SkyTrafficFlow" type="CPUParticles2D" parent="Background/BackCity"]
 position = Vector2(0, 700)
 amount = 48
+texture = ExtResource("3_jjxvf")
 lifetime = 18.0
 preprocess = 16.0
 speed_scale = 1.5
 local_coords = true
-texture = ExtResource("3_jjxvf")
 emission_shape = 3
 emission_rect_extents = Vector2(0, 480)
 spread = 15.0
@@ -336,11 +336,11 @@ scale_amount_max = 4.0
 position = Vector2(2080, 700)
 scale = Vector2(-1, 1)
 amount = 48
+texture = ExtResource("3_jjxvf")
 lifetime = 18.0
 preprocess = 16.0
 speed_scale = 1.5
 local_coords = true
-texture = ExtResource("3_jjxvf")
 emission_shape = 3
 emission_rect_extents = Vector2(0, 480)
 spread = 15.0
@@ -373,18 +373,18 @@ centered = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Background/MiddleCity/rgb"]
 libraries = {
-"": SubResource("AnimationLibrary_33km3")
+&"": SubResource("AnimationLibrary_33km3")
 }
 autoplay = "rgb"
 
 [node name="SkyTrafficFlow" type="CPUParticles2D" parent="Background/MiddleCity"]
 position = Vector2(0, 920)
 amount = 32
+texture = ExtResource("4_bgwu4")
 lifetime = 18.0
 preprocess = 16.0
 speed_scale = 1.5
 local_coords = true
-texture = ExtResource("4_bgwu4")
 emission_shape = 3
 emission_rect_extents = Vector2(0, 960)
 spread = 15.0
@@ -398,11 +398,11 @@ scale_amount_max = 4.0
 position = Vector2(2560, 920)
 scale = Vector2(-1, 1)
 amount = 32
+texture = ExtResource("4_bgwu4")
 lifetime = 18.0
 preprocess = 16.0
 speed_scale = 1.5
 local_coords = true
-texture = ExtResource("4_bgwu4")
 emission_shape = 3
 emission_rect_extents = Vector2(0, 960)
 spread = 15.0
@@ -569,7 +569,7 @@ zoom = Vector2(0.6, 0.6)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CameraPath/PathFollow2D"]
 libraries = {
-"": ExtResource("16_gawet")
+&"": ExtResource("16_gawet")
 }
 autoplay = "CameraMoving3X4"
 

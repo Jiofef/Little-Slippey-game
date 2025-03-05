@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://duk32e0otnfky" path="res://Content/Sprites/Levels/FuckItVolume2Tileset.png" id="1_622f4"]
 [ext_resource type="PackedScene" uid="uid://buj5ooik0q3l0" path="res://Content/Scenes/Achievements/AchievementArea.tscn" id="2_4ddd2"]
-[ext_resource type="Script" path="res://Content/Scripts/Levels/Level4CircularSawScript.cs" id="2_43ctl"]
+[ext_resource type="Script" uid="uid://dn8skdribj1tr" path="res://Content/Scripts/Levels/Level4CircularSawScript.cs" id="2_43ctl"]
 [ext_resource type="Texture2D" uid="uid://oy0q0tel1241" path="res://Content/Sprites/Levels/Level4/BigSaw.png" id="3_8hif1"]
 [ext_resource type="Texture2D" uid="uid://dse3qddcaf5o4" path="res://Content/Sprites/Levels/Level4/TheMostOrdinaryUnremarkableSawWhichSurprisinglyCanKillAPlayerWithoutProblemsBecauseItHasAHitboxOnTheSameLayerAsTheExplosionOfCrossesThatsInShort.png" id="4_x0u2j"]
 [ext_resource type="Texture2D" uid="uid://op4k0tjuspxj" path="res://Content/Sprites/Levels/Level4/Stud.png" id="5_1y7dn"]

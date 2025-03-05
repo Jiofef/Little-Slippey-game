@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://yxwyqxrx2p8s"]
 
-[ext_resource type="Script" path="res://Content/Scripts/Crosses/EnhancedCannonCross.cs" id="1_jei06"]
+[ext_resource type="Script" uid="uid://b2l2rmqusis2v" path="res://Content/Scripts/Crosses/EnhancedCannonCross.cs" id="1_jei06"]
 [ext_resource type="Texture2D" uid="uid://dxgtoqpjnurps" path="res://Content/Sprites/Crosses/Helicopter.png" id="2_77f4a"]
 
 [sub_resource type="Animation" id="Animation_frvpa"]
@@ -23,7 +23,7 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_r06m4"]
 _data = {
-"BladesTorsion": SubResource("Animation_frvpa")
+&"BladesTorsion": SubResource("Animation_frvpa")
 }
 
 [node name="EnhancedCannonCross" type="Node2D"]

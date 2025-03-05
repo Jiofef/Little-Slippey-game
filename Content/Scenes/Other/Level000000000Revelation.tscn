@@ -1,7 +1,7 @@
 [gd_scene load_steps=34 format=3 uid="uid://t6ux1gxr8d4w"]
 
 [ext_resource type="Texture2D" uid="uid://cpcf4ybsmoxc3" path="res://Content/Sprites/Levels/Level000000000/Revelation.png" id="1_25deo"]
-[ext_resource type="Script" path="res://Content/Scripts/Levels/Level000000000Revelation.cs" id="1_xwnnl"]
+[ext_resource type="Script" uid="uid://cr7lm6upa2a2p" path="res://Content/Scripts/Levels/Level000000000Revelation.cs" id="1_xwnnl"]
 [ext_resource type="AudioStream" uid="uid://wkemwcvldiu2" path="res://Content/Sounds/Soundtrack/his.mp3" id="3_fc1lf"]
 [ext_resource type="AudioStream" uid="uid://c67b7n0eur5kv" path="res://Content/Sounds/Levels/Level000000000Laugh.mp3" id="3_gous1"]
 [ext_resource type="AudioStream" uid="uid://iyai4rv2ye0r" path="res://Content/Sounds/Levels/Level000000000LaughX3.mp3" id="4_32ya0"]
@@ -371,9 +371,9 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_j3u0w"]
 _data = {
-"HeadAppearing": SubResource("Animation_fdjcn"),
-"HeadDisappearing": SubResource("Animation_4kscg"),
-"RESET": SubResource("Animation_cnyad")
+&"HeadAppearing": SubResource("Animation_fdjcn"),
+&"HeadDisappearing": SubResource("Animation_4kscg"),
+&"RESET": SubResource("Animation_cnyad")
 }
 
 [node name="RevelationOfBygoneDays" type="Node2D"]

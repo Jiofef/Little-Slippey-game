@@ -27,7 +27,7 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_uchl4"]
 _data = {
-"Rotating": SubResource("Animation_4htkv")
+&"Rotating": SubResource("Animation_4htkv")
 }
 
 [node name="Achievement" instance=ExtResource("1_c5fvi")]

@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://cddpgkqkd7y6f"]
 
 [ext_resource type="Texture2D" uid="uid://c0itqenhjy70i" path="res://Content/Sprites/Crosses/ElementalCrossRedPart.png" id="2_e3oq0"]
-[ext_resource type="Script" path="res://Content/Scripts/Crosses/ElementalCross.cs" id="3"]
+[ext_resource type="Script" uid="uid://b2vkg0bf243ua" path="res://Content/Scripts/Crosses/ElementalCross.cs" id="3"]
 [ext_resource type="Texture2D" uid="uid://cdl7yyi08tviv" path="res://Content/Sprites/Crosses/ElementalCrossBluePart.png" id="3_sl8ky"]
 [ext_resource type="Texture2D" uid="uid://b82encpmbxl78" path="res://Content/Sprites/Crosses/ElementalCrossGreenPart.png" id="4_meaka"]
 [ext_resource type="Texture2D" uid="uid://dtj2i2vard88n" path="res://Content/Sprites/Crosses/ElementalCrossCore.png" id="5_85jrq"]

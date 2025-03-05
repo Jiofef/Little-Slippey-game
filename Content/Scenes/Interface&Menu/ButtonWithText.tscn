@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://bwpstpk1xmkah" path="res://Content/Scenes/Interface&Menu/Button.tscn" id="1_hrdtf"]
 [ext_resource type="Texture2D" uid="uid://dt52ve0jyuro" path="res://Content/Sprites/Interface/Buttons/4XButtonBase.png" id="2_w5xiy"]
 [ext_resource type="Theme" uid="uid://dkitr1ftp0yhs" path="res://Content/Other/Menu.tres" id="2_wnwbw"]
-[ext_resource type="Script" path="res://Content/Scripts/Interface&Menu/ButtonWithText.cs" id="3_ek235"]
+[ext_resource type="Script" uid="uid://nnvpkvk4r88x" path="res://Content/Scripts/Interface&Menu/ButtonWithText.cs" id="3_ek235"]
 [ext_resource type="Texture2D" uid="uid://glq8rf30o1q3" path="res://Content/Sprites/Interface/Buttons/4XCancelButton.png" id="3_qg1d2"]
 
 [sub_resource type="Animation" id="Animation_duut4"]
@@ -86,9 +86,9 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tn67c"]
 _data = {
-"Appearing": SubResource("Animation_duut4"),
-"Disappearing": SubResource("Animation_puv5q"),
-"RESET": SubResource("Animation_axrtu")
+&"Appearing": SubResource("Animation_duut4"),
+&"Disappearing": SubResource("Animation_puv5q"),
+&"RESET": SubResource("Animation_axrtu")
 }
 
 [node name="Button" instance=ExtResource("1_hrdtf")]

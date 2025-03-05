@@ -16,12 +16,12 @@
 [ext_resource type="Texture2D" uid="uid://ckh1sclq3fji3" path="res://Content/Sprites/Other/PointLight.png" id="11_b4t5x"]
 [ext_resource type="Texture2D" uid="uid://b1dppreruk7js" path="res://Content/Sprites/Levels/poliSiSagEtilEseT.png" id="11_fgsae"]
 [ext_resource type="Texture2D" uid="uid://duk32e0otnfky" path="res://Content/Sprites/Levels/FuckItVolume2Tileset.png" id="11_yecq0"]
-[ext_resource type="Script" path="res://Content/Scripts/Levels/Foreground.cs" id="12_ib3hj"]
-[ext_resource type="Script" path="res://Content/Scripts/Levels/Level6SneakyAssArea.cs" id="13_8nggt"]
-[ext_resource type="Script" path="res://Content/Scripts/Levels/Level6FlyingCarSpawner.cs" id="13_528ge"]
+[ext_resource type="Script" uid="uid://bgake27ctmc1q" path="res://Content/Scripts/Levels/Foreground.cs" id="12_ib3hj"]
+[ext_resource type="Script" uid="uid://dxtdgsaqwx44q" path="res://Content/Scripts/Levels/Level6SneakyAssArea.cs" id="13_8nggt"]
+[ext_resource type="Script" uid="uid://cljy5m8cpxjru" path="res://Content/Scripts/Levels/Level6FlyingCarSpawner.cs" id="13_528ge"]
 [ext_resource type="Texture2D" uid="uid://c1a8v62iy3ybh" path="res://Content/Sprites/Levels/WhyIsItStillRainingTileset.png" id="13_wpl2e"]
 [ext_resource type="PackedScene" uid="uid://d3u7pfig07yrs" path="res://Content/Scenes/Other/CrutchedArea2D.tscn" id="15_uy6ib"]
-[ext_resource type="Script" path="res://Content/Scripts/Other/EnhancedArea2D.cs" id="16_j68af"]
+[ext_resource type="Script" uid="uid://c2ijxex52fi2x" path="res://Content/Scripts/Other/EnhancedArea2D.cs" id="16_j68af"]
 [ext_resource type="Texture2D" uid="uid://bxsdifl84h3j4" path="res://Content/Sprites/Levels/DEATHDEATHDEATHDEATH.png" id="18_3oav4"]
 
 [sub_resource type="Animation" id="Animation_p3npb"]
@@ -56,8 +56,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jcmm3"]
 _data = {
-"MusicStarting": SubResource("Animation_p3npb"),
-"MusicStopping": SubResource("Animation_n61s8")
+&"MusicStarting": SubResource("Animation_p3npb"),
+&"MusicStopping": SubResource("Animation_n61s8")
 }
 
 [sub_resource type="Animation" id="Animation_nbc5f"]
@@ -94,8 +94,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_bl81i"]
 _data = {
-"CloudsMoving": SubResource("Animation_nbc5f"),
-"RESET": SubResource("Animation_h0f6w")
+&"CloudsMoving": SubResource("Animation_nbc5f"),
+&"RESET": SubResource("Animation_h0f6w")
 }
 
 [sub_resource type="Animation" id="Animation_3265a"]
@@ -133,8 +133,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_33km3"]
 _data = {
-"RESET": SubResource("Animation_3265a"),
-"rgb": SubResource("Animation_50kj8")
+&"RESET": SubResource("Animation_3265a"),
+&"rgb": SubResource("Animation_50kj8")
 }
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_b1x7e"]
@@ -163,7 +163,7 @@ polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_54rrs"]
 texture = ExtResource("11_yecq0")
 0:0/0 = 0
-0:0/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_41xms")
+0:0/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_41xms")
 1:0/0 = 0
 2:0/0 = 0
 3:0/0 = 0
@@ -183,7 +183,7 @@ texture = ExtResource("11_yecq0")
 3:3/0 = 0
 0:4/0 = 0
 1:4/0 = 0
-1:4/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_uuqry")
+1:4/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_uuqry")
 2:4/0 = 0
 3:4/0 = 0
 0:5/0 = 0
@@ -222,9 +222,9 @@ polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4qss4"]
 texture = ExtResource("11_fgsae")
 0:0/0 = 0
-0:0/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_44uj1")
+0:0/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_44uj1")
 1:0/0 = 0
-1:0/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_lq5eg")
+1:0/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_lq5eg")
 2:0/0 = 0
 2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 0:1/next_alternative_id = 3
@@ -262,19 +262,19 @@ texture = ExtResource("11_fgsae")
 4:0/0 = 0
 3:0/0 = 0
 5:0/0 = 0
-5:0/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_wvoro")
+5:0/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_wvoro")
 3:1/0 = 0
 2:2/0 = 0
 0:4/0 = 0
-0:4/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_wawia")
+0:4/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_wawia")
 0:5/0 = 0
-0:5/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_b5gyi")
+0:5/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_b5gyi")
 1:5/0 = 0
-1:5/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_ae3m4")
+1:5/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_ae3m4")
 2:4/0 = 0
-2:4/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_6oaqr")
+2:4/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_6oaqr")
 1:4/0 = 0
-1:4/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_tdm3e")
+1:4/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_tdm3e")
 3:5/0 = 0
 4:5/0 = 0
 5:5/0 = 0
@@ -526,7 +526,7 @@ size = Vector2(128, 128)
 
 [node name="AnimationPlayer" parent="LevelMusicPlayer" index="0"]
 libraries = {
-"": SubResource("AnimationLibrary_jcmm3")
+&"": SubResource("AnimationLibrary_jcmm3")
 }
 
 [node name="Background" type="ParallaxBackground" parent="Level" index="0"]
@@ -551,7 +551,7 @@ centered = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Level/Background/Clouds" index="1"]
 libraries = {
-"": SubResource("AnimationLibrary_bl81i")
+&"": SubResource("AnimationLibrary_bl81i")
 }
 autoplay = "CloudsMoving"
 
@@ -570,18 +570,18 @@ centered = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Level/Background/BackCity/rgb" index="0"]
 libraries = {
-"": SubResource("AnimationLibrary_33km3")
+&"": SubResource("AnimationLibrary_33km3")
 }
 autoplay = "rgb"
 
 [node name="SkyTrafficFlow" type="CPUParticles2D" parent="Level/Background/BackCity" index="2"]
 position = Vector2(0, 700)
 amount = 48
+texture = ExtResource("4_7bagj")
 lifetime = 18.0
 preprocess = 16.0
 speed_scale = 1.5
 local_coords = true
-texture = ExtResource("4_7bagj")
 emission_shape = 3
 emission_rect_extents = Vector2(0, 480)
 spread = 15.0
@@ -595,11 +595,11 @@ scale_amount_max = 4.0
 position = Vector2(2080, 700)
 scale = Vector2(-1, 1)
 amount = 48
+texture = ExtResource("4_7bagj")
 lifetime = 18.0
 preprocess = 16.0
 speed_scale = 1.5
 local_coords = true
-texture = ExtResource("4_7bagj")
 emission_shape = 3
 emission_rect_extents = Vector2(0, 480)
 spread = 15.0
@@ -632,18 +632,18 @@ centered = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Level/Background/MiddleCity/rgb" index="0"]
 libraries = {
-"": SubResource("AnimationLibrary_33km3")
+&"": SubResource("AnimationLibrary_33km3")
 }
 autoplay = "rgb"
 
 [node name="SkyTrafficFlow" type="CPUParticles2D" parent="Level/Background/MiddleCity" index="2"]
 position = Vector2(0, 920)
 amount = 32
+texture = ExtResource("7_1657n")
 lifetime = 18.0
 preprocess = 16.0
 speed_scale = 1.5
 local_coords = true
-texture = ExtResource("7_1657n")
 emission_shape = 3
 emission_rect_extents = Vector2(0, 960)
 spread = 15.0
@@ -657,11 +657,11 @@ scale_amount_max = 4.0
 position = Vector2(2560, 920)
 scale = Vector2(-1, 1)
 amount = 32
+texture = ExtResource("7_1657n")
 lifetime = 18.0
 preprocess = 16.0
 speed_scale = 1.5
 local_coords = true
-texture = ExtResource("7_1657n")
 emission_shape = 3
 emission_rect_extents = Vector2(0, 960)
 spread = 15.0
@@ -895,8 +895,8 @@ shape = SubResource("RectangleShape2D_ftna0")
 [connection signal="body_exited" from="Level/BuildingForeground/TileMap/ForegroundArea" to="Level/BuildingForeground" method="Show" unbinds=1]
 [connection signal="body_exited" from="Level/BuildingForeground/TileMap/ForegroundArea" to="Level/BuildingForeground/TileMap/ForegroundArea" method="Exited" unbinds=1]
 [connection signal="AreaEnteredNoArgs" from="Level/BottomTeleportBorder" to="." method="TeleportPlayerTo" binds= [Vector2(3668, 2438)]]
-[connection signal="ButtonPressed" from="Level/PlayMusicTrigger" to="." method="SetCrossesSpawnMultiplier" flags=6 binds= [0.6]]
 [connection signal="ButtonPressed" from="Level/PlayMusicTrigger" to="." method="SetProgressPaused" flags=6 binds= [false]]
+[connection signal="ButtonPressed" from="Level/PlayMusicTrigger" to="." method="SetCrossesSpawnMultiplier" flags=6 binds= [0.6]]
 [connection signal="ButtonPressed" from="Level/PlayMusicTrigger" to="LevelMusicPlayer" method="PlayMusic" flags=6 binds= ["Clair De Phare", 10.19, 0.0]]
 
 [editable path="Level/FlyingCarSpawner/Level6FlyingCar"]
