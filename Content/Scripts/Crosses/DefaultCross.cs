@@ -1,18 +1,11 @@
 using Godot;
 using System;
 
-public partial class DefaultCross : Node2D
+public partial class DefaultCross : CrossNode
 {
-    Sprite2D _crossSprite, _warningSprite;
+    CrossRotator R;
 
-    private const int MAX_ROTATION = 30;
-
-    private int _ticksToExplosion = 60;
-    private float _defaultTicksToAppear = 60;
-    private float _ticksToAppear = 0;
-
-    private float _defaultRotation;
-    private float _rotationGoal;
+    const int TICKS_TO_APPEAR = 60, TICKS_TO_EXPLOSION = 90;
 
     // Visual rotating effect
     private bool _shouldRotate = Meta.Instance.Video.CrossRotationWhenSpawning;
@@ -21,68 +14,67 @@ public partial class DefaultCross : Node2D
     public override void _Ready()
     {
         // Initializing nodes
-        _crossSprite = GetNode<Sprite2D>("CrossSprite");
-        _warningSprite = GetNode<Sprite2D>("WarningSprite");
+        CrossSprite = GetNode<Sprite2D>("CrossSprite");
+        WarningSprite = GetNode<Sprite2D>("WarningSprite");
+        ExplosionAnimation = GetNode<ExplosionAnimation>("ExplosionAnimation");
+        ExplosiveArea = GetNode<CollisionShape2D>("ExplosiveArea/CollisionShape2D");
+        ExplosionSound = GetNode<AudioStreamPlayer>("ExplosionSound");
 
         // Spawn properties
         Scale = new Vector2(3, 3);
-        Modulate = new Color(Modulate.R, Modulate.G, Modulate.B, 0);
+        Modulate = _mod;
 
 
-        _ticksToAppear = _defaultTicksToAppear;
+
+        // Setting up the properties
 
         if (_shouldRotate)
-        {
-            Random random = new Random();
-            _defaultRotation = random.Next(-75, 75);
-            _rotationGoal = random.Next(-MAX_ROTATION, MAX_ROTATION);
-
-            RotationDegrees = _defaultRotation;
-        }
+            R = new(this, 75, 30);
     }
+
+    private Color _mod = new Color(1, 1, 1, 0), _spriteMod = new Color(1, 1, 1);
     public override void _PhysicsProcess(double delta)
     {
-        if (_ticksToAppear > 0)
+        base._PhysicsProcess(delta);
+
+        if (TicksLived <= TICKS_TO_APPEAR)
         {
-            _ticksToAppear--;
-            float TicksCoeff = 1 - (_ticksToAppear / _defaultTicksToAppear);
+            float TicksCoeff = TicksLived / TICKS_TO_APPEAR;
             TicksCoeff = Mathf.Lerp(0.0f, 1.0f, 1 - (1 - TicksCoeff) * (1 - TicksCoeff) * (1 - TicksCoeff));
 
             if (_shouldRotate)
-                RotationDegrees = _defaultRotation + _rotationGoal * TicksCoeff;
-            _warningSprite.GlobalPosition = _crossSprite.GlobalPosition - new Vector2(2, 2) * (3 - 2 * TicksCoeff);
+                R.Rotate(TicksCoeff);
+            WarningSprite.GlobalPosition = CrossSprite.GlobalPosition - new Vector2(2, 2) * (3 - 2 * TicksCoeff);
             Scale = new Vector2(3 - 2 * TicksCoeff, 3 - 2 * TicksCoeff);
-            Modulate = new Color(Modulate.R, Modulate.G, Modulate.B, TicksCoeff);
+
+            _mod.A = TicksCoeff;
+            Modulate = _mod;
         }
-        if (_ticksToExplosion > 0 && (_ticksToAppear <= 0 || _ticksToAppear <= 30))
+        if (TicksLived <= TICKS_TO_EXPLOSION && TicksLived >= TICKS_TO_APPEAR - 30)
         {
-            _ticksToExplosion--;
-            _crossSprite.Modulate = new Color(_crossSprite.Modulate.R, _crossSprite.Modulate.G, _crossSprite.Modulate.B, _crossSprite.Modulate.A - 0.1f);
+            _spriteMod.A = CrossSprite.Modulate.A - 0.1f;
 
-            if (_ticksToExplosion % 15 == 0)
-                _crossSprite.Modulate = new Color(_crossSprite.Modulate.R, _crossSprite.Modulate.G, _crossSprite.Modulate.B, 1);
+            if (TicksLived % 15 == 0)
+                _spriteMod.A = 1f;
+
+            CrossSprite.Modulate = _spriteMod;
         }
-        else if (_ticksToExplosion <= 0)
-        {
-            var explosionAnimation = GetNode<AnimatedSprite2D>("ExplosionAnimation");
-            var explosiveArea = GetNode<CollisionShape2D>("ExplosiveArea/CollisionShape2D");
+        else if (TicksLived >= TICKS_TO_EXPLOSION)
+            Explode();
+    }
 
-            if (!explosionAnimation.IsPlaying())
-            {
-                _crossSprite.QueueFree();
-                _warningSprite.QueueFree();
-                GetNode<AudioStreamPlayer>("ExplosionSound").Play();
-                explosionAnimation.Visible = true;
-                explosionAnimation.Play();
-                explosiveArea.Disabled = false;
-                return;
-            }
+    public override void Respawn()
+    {
+        base.Respawn();
 
-            explosiveArea.Disabled = true;
-            SetPhysicsProcess(false);
+        // Base settings
+        Scale = new Vector2(3, 3);
+        Modulate = new Color(Modulate.R, Modulate.G, Modulate.B, 0);
 
-            foreach (var group in GetGroups())
-                RemoveFromGroup(group);
-        }
+        // Returning the old settings
+        CrossSprite.Visible = true;
+        WarningSprite.Visible = true;
+
+        ExplosionAnimation.Visible = false;
     }
 }

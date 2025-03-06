@@ -105,16 +105,30 @@ public partial class Crosses : Node
             PackedScene = GD.Load<PackedScene>("res://Content/Scenes/Crosses/" + vanillaName + ".tscn");
         }
 
-        List<UnusualCrossNode> savedPool;
-        public CanvasItem GetInstance()
+        List<UnusualCrossNode> savedPool = new();
+        public UnusualCrossNode GetInstance(out bool isReusing)
         {
-            bool hasSavedInstance = false;
+            UnusualCrossNode inst;
 
-            if (hasSavedInstance)
+            if (savedPool.Count > 0)
             {
-                return savedPool[0];
+                int id = savedPool.Count - 1;
+                inst = savedPool[id];
+                savedPool.RemoveAt(id);
+                inst.Respawn();
+                GD.Print("Respawn " + savedPool.Count);
+
+                isReusing = true;
+                return inst;
             }
-            return (CanvasItem)PackedScene.Instantiate();
+
+            inst = (UnusualCrossNode)PackedScene.Instantiate();
+            inst.TreeExited += () => savedPool.Remove(inst);
+            inst.Save += () => savedPool.Add(inst);
+            inst.ShouldBeSavedInPool = true;
+
+            isReusing = false;
+            return inst;
         }
 
 
@@ -181,9 +195,11 @@ public partial class Crosses : Node
     {
         return CurrentCrossesPack[index];
     }
-    public static CanvasItem GetCrossInstance(int index)
+    public static CanvasItem GetCrossInstance(int index, out bool isReusing)
     {
-        return CurrentCrossesPack[index].GetInstance();
+        var inst = CurrentCrossesPack[index].GetInstance(out bool _isReusing);
+        isReusing = _isReusing;
+        return inst;
     }
 
     public static void SetDefaultCrossesPack()
@@ -379,9 +395,10 @@ public partial class Crosses : Node
     {
         Cross cross = GetLocalRandomCross();
 
-        var scene = cross.GetInstance();
+        var scene = cross.GetInstance(out bool isReusing);
 
-        parentNode.AddChild(scene);
+        if (!isReusing)
+            parentNode.AddChild(scene);
 
         Vector2 position = new Vector2();
 

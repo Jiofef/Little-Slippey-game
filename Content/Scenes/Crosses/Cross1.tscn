@@ -130,5 +130,6 @@ bus = &"Explosions"
 
 [node name="ExplosionAnimation" parent="." instance=ExtResource("5")]
 sprite_frames = SubResource("8")
+DeleteWhenFinished = false
 
-[connection signal="animation_finished" from="ExplosionAnimation" to="." method="queue_free"]
+[connection signal="animation_finished" from="ExplosionAnimation" to="." method="OnFinished"]

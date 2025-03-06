@@ -1,53 +1,73 @@
 ﻿using Godot;
-using System;
-using OtherExtension;
 using static OtherExtension.RandomTools;
 using static IRespawnable;
 
-interface IRespawnable
+public interface IRespawnable
 {
     public void Respawn();
 
     public delegate void SaveEventHandler();
-
     public event SaveEventHandler Save;
+
+    public delegate void UnSaveEventHandler();
+    public event UnSaveEventHandler UnSave;
 }
 
-class CrossRotator
+public class CrossRotator
 {
     public CrossRotator(UnusualCrossNode node, int initialRotationRange, float finalRotationRange)
     {
         this.node = node;
 
-        initialRotation = RandomIn(-initialRotationRange, initialRotationRange);
-        node.Ready += () => node.RotationDegrees = initialRotation;
+        _initialRotationRange = initialRotationRange;
+        _finalRotationRange = finalRotationRange;
 
-        _rotationGoal = RandomIn(-finalRotationRange, finalRotationRange);
+        Randomize();
+        node.Ready += () => node.RotationDegrees = _initialRotation;
+    }
+
+    public void Randomize()
+    {
+        _initialRotation = RandomIn(-_initialRotationRange, _initialRotationRange);
+        node.Rotation = _initialRotation;
+
+        _rotationGoal = RandomIn(-_finalRotationRange, _finalRotationRange);
     }
     UnusualCrossNode node;
 
-    private float _rotationGoal, initialRotation;
+    private float _rotationGoal, _initialRotation, _initialRotationRange, _finalRotationRange;
 
     public void Rotate(float ticks, float maxTicks)
     {
         float TicksCoeff = 1 - (ticks / maxTicks);
         TicksCoeff = Mathf.Lerp(0.0f, 1.0f, 1 - (1 - TicksCoeff) * (1 - TicksCoeff) * (1 - TicksCoeff));
 
-        node.RotationDegrees = initialRotation + _rotationGoal * TicksCoeff;
+        node.RotationDegrees = _initialRotation + _rotationGoal * TicksCoeff;
+    }
+
+    public void Rotate(float ticksCoeff)
+    {
+        node.RotationDegrees = _initialRotation + _rotationGoal * ticksCoeff;
     }
 }
 
-abstract partial class UnusualCrossNode : Node2D, IRespawnable
+public abstract partial class UnusualCrossNode : Node2D, IRespawnable
 {
     // Respawn properties and methods
     public event SaveEventHandler Save = delegate { };
+    public event UnSaveEventHandler UnSave = delegate { };
 
     public bool ShouldBeSavedInPool;
 
     protected bool _isInRespawnPool = false;
     public bool IsInRespawnPool { get => _isInRespawnPool; }
 
-    public abstract void Respawn();
+    public virtual void Respawn()
+    {
+        UnSave?.Invoke();
+
+        _isInRespawnPool = false;
+    }
 
     public void SendToRespawnPool()
     {
@@ -56,10 +76,12 @@ abstract partial class UnusualCrossNode : Node2D, IRespawnable
         TicksLived = 0;
 
         _isInRespawnPool = true;
+
+        Save?.Invoke();
     }
 
     // Life cycle
-    public int TicksLived = 0;
+    public float TicksLived = 0;
     public override void _PhysicsProcess(double delta)
     {
         base._PhysicsProcess(delta);
@@ -67,7 +89,7 @@ abstract partial class UnusualCrossNode : Node2D, IRespawnable
     }
 }
 
-abstract partial class CrossNode : UnusualCrossNode
+abstract public partial class CrossNode : UnusualCrossNode
 {
     public CollisionShape2D ExplosiveArea;
     public ExplosionAnimation ExplosionAnimation;
@@ -79,29 +101,46 @@ abstract partial class CrossNode : UnusualCrossNode
     public async virtual void Explode()
     {
         // Visual
-        CrossSprite.QueueFree();
-        WarningSprite.QueueFree();
-        ExplosionAnimation.Visible = true;
-        ExplosionAnimation.Play();
+        if (CrossSprite != null) CrossSprite.Visible = false;
+
+        if (WarningSprite != null) WarningSprite.Visible = false;
+
+        if (ExplosionAnimation != null)
+        {
+            ExplosionAnimation.Visible = true;
+            ExplosionAnimation.Play();
+        }
 
         // Audio
-        ExplosionSound.Play();
+        ExplosionSound?.Play();
 
         // Physics
-        ExplosiveArea.Disabled = false;
+        if (ExplosiveArea != null)
+            ExplosiveArea.Disabled = false;
+        SetPhysicsProcess(false);
 
         // Waiting one frame to disable explosion collision
-        await GodotExtensions.WaitForFrame();
-        ExplosiveArea.Disabled = true;
-        SetPhysicsProcess(false);
+        await G.WaitForFrame();
+        await G.WaitForFrame();
+        if (ExplosiveArea != null)
+            ExplosiveArea.Disabled = true;
 
         // Groups
         foreach (var group in GetGroups())
             RemoveFromGroup(group);
     }
 
+    public virtual void OnFinished() 
+    {
+        if (ShouldBeSavedInPool)
+            SendToRespawnPool();
+        else
+            QueueFree();
+    }
+
     public override void Respawn()
     {
+        base.Respawn();
         ProcessMode = ProcessModeEnum.Inherit;
         SetPhysicsProcess(true);
 

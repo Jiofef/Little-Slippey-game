@@ -1,11 +1,8 @@
 using Godot;
 using Godot.Collections;
-using GodotSteam;
 using System;
-using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using static OtherExtension.FastInstanceCreator;
-using static Player;
 
 public partial class Player : CharacterBody2D
 {
@@ -284,7 +281,6 @@ public partial class Player : CharacterBody2D
 
     public override void _PhysicsProcess(double delta)
     {
-        Random random = new Random();
         if (G.IsPlayerDead) //smertb
         {
             if (G.PlayerCorpseFlightTimer != 4.5f)
