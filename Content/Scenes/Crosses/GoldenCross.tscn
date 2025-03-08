@@ -251,4 +251,6 @@ libraries = {
 }
 autoplay = "Appearing"
 
+[connection signal="area_entered" from="Path2D/Cross/CollectArea" to="." method="onCollected" unbinds=1]
+
 [editable path="Path2D/Cross/OffscreenPointer"]

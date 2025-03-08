@@ -32,7 +32,7 @@ public partial class DefaultCross : CrossNode
         if (TicksLived <= TICKS_TO_APPEAR)
         {
             float TicksCoeff = TicksLived / TICKS_TO_APPEAR;
-            TicksCoeff = Mathf.Lerp(0.0f, 1.0f, 1 - (1 - TicksCoeff) * (1 - TicksCoeff) * (1 - TicksCoeff));
+            TicksCoeff = MathTools.EaseOut(TicksCoeff, 0.5f);
 
             if (_shouldRotate)
                 R.Rotate(TicksCoeff);

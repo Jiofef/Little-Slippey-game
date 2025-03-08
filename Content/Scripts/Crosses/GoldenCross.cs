@@ -110,6 +110,7 @@ public partial class GoldenCross : UnusualCrossNode
         onCollectedParticles1.Amount = Price;
 
         GetNode<CpuParticles2D>("Path2D/Cross/OnCollectedParticles2").Emitting = true;
+        GetNode<Area2D>("Path2D/Cross/CollectArea").Monitoring = false;
 
         var animationPlayer = GetNode<AnimationPlayer>("Path2D/Cross/AnimationPlayer");
         animationPlayer.Stop(true); // If you don't save the state, the next animation fails.

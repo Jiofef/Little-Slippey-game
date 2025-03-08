@@ -359,7 +359,7 @@ frame_progress = 0.475692
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="NegativePart"]
 libraries = {
-"": SubResource("AnimationLibrary_1lqn2")
+&"": SubResource("AnimationLibrary_1lqn2")
 }
 autoplay = "Appearing"
 
@@ -386,9 +386,9 @@ shape = SubResource("CircleShape2D_tkbld")
 [node name="OnCollectedParticles1" type="CPUParticles2D" parent="PositivePart/OnCollectedEffects"]
 emitting = false
 amount = 4
+texture = SubResource("AtlasTexture_6shwi")
 one_shot = true
 explosiveness = 0.9
-texture = SubResource("AtlasTexture_6shwi")
 spread = 180.0
 gravity = Vector2(0, 0)
 initial_velocity_min = 400.0
@@ -464,7 +464,7 @@ volume_db = 8.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="PositivePart"]
 libraries = {
-"": SubResource("AnimationLibrary_1lqn2")
+&"": SubResource("AnimationLibrary_1lqn2")
 }
 autoplay = "Appearing"
 
