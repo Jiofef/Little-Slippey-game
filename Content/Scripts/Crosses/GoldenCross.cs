@@ -1,6 +1,6 @@
 using Godot;
 using System;
-public partial class GoldenCross : Node2D
+public partial class GoldenCross : UnusualCrossNode
 {
     [Signal] public delegate void OnCollectedEventHandler();
 
@@ -12,6 +12,7 @@ public partial class GoldenCross : Node2D
 
 
     // Moving
+    const float LIFETIME_PER_100PX = 0.5f;
     public float LifeTime = 6f;
     public enum StateEnum {Default, Disappearing, Collected}
     private StateEnum _state = StateEnum.Default;
@@ -40,7 +41,6 @@ public partial class GoldenCross : Node2D
         RotationAcceleration = -MAX_ROTATION_ACCELERATION + (_random.NextSingle() * MAX_ROTATION_ACCELERATION * 2);
 
         // Lifetime determination
-        const float LIFETIME_PER_100PX = 0.5f;
         LifeTime = 3f + LIFETIME_PER_100PX * GlobalPosition.DistanceTo(G.Player.GlobalPosition) / 100;
 
         // Price determination
@@ -139,5 +139,24 @@ public partial class GoldenCross : Node2D
 
         await ToSignal(shineParticles, "finished");
         QueueFree();
+    }
+
+    public override void Respawn()
+    {
+        base.Respawn();
+
+        _state = StateEnum.Default;
+
+        RotationDegrees = _random.Next(-360, 360);
+        _cross.GlobalRotationDegrees = 0;
+        RotationSpeed = 0;
+        RotationAcceleration = -MAX_ROTATION_ACCELERATION + (_random.NextSingle() * MAX_ROTATION_ACCELERATION * 2);
+
+        LifeTime = 3f + (GlobalPosition.DistanceTo(G.Player.GlobalPosition) / 100 * LIFETIME_PER_100PX);
+        Price = _random.Next(DEFAULT_MIN_PRICE, DEFAULT_MAX_PRICE);
+
+        GetNode<Area2D>("Path2D/Cross/CollectArea").Monitoring = true;
+        GetNode<AnimationPlayer>("Path2D/Cross/AnimationPlayer").Stop();
+        GetNode<CpuParticles2D>("Path2D/Cross/ShineParticles").Emitting = true;
     }
 }

@@ -711,7 +711,6 @@ color_ramp = SubResource("Gradient_u843o")
 [connection signal="body_entered" from="Areas/WallDirectionRightDetector" to="." method="RightWallDetect" unbinds=1]
 [connection signal="body_exited" from="Areas/WallDirectionRightDetector" to="." method="WallUndetected" unbinds=1]
 [connection signal="pressed" from="Camera2D/GUICanvas/GUI/AfterDeathElements/Buttons/ReturnToMenu" to="Camera2D/GUICanvas/GUI" method="ReturnToMenu"]
-[connection signal="OnBought" from="Camera2D/GUICanvas/GUI/AfterDeathElements/Buttons/Resurrect" to="Camera2D/GUICanvas/GUI" method="BuyAResurrection"]
 [connection signal="timeout" from="Camera2D/ImmortalityShield/Timer" to="." method="ImmortalityIsOver"]
 [connection signal="draw" from="Camera2D/ClimbsBar" to="Camera2D/ClimbsBar/AnimationPlayer" method="play" binds= ["Disappearing"]]
 

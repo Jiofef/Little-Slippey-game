@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class RedElementalCrossPart : Node2D
+public partial class RedElementalCrossPart : ElementalCrossPart
 {
     [Signal] public delegate void ElementExplodedEventHandler();
     private Sprite2D _sprite;
@@ -10,8 +10,10 @@ public partial class RedElementalCrossPart : Node2D
     public override void _Ready()
     {
         // Initializing nodes
-        _sprite = GetNode<Sprite2D>("Path2D/PathFollow2D/Sprite2D");
-        _pathFollow2D = GetNode<PathFollow2D>("Path2D/PathFollow2D");
+        NodesInit();
+
+        LifeTime = 2.0f;
+        RandomizePathVec(new Rect2(-90, -300, 90 * 2, 240));
 
         Random random = new Random();
         GetNode<Path2D>("Path2D").Scale = new Vector2(random.Next(10, 100) * (random.Next(100) > 50 ? 1 : -1) / 100f, random.Next(20, 100) / 100f);
@@ -29,21 +31,7 @@ public partial class RedElementalCrossPart : Node2D
         }
         else
         {
-            const string link = "Path2D/PathFollow2D/";
-            var explosionAnimation = GetNode<AnimatedSprite2D>(link + "ExplosionAnimation");
-            var explosiveArea = GetNode<CollisionShape2D>(link + "ExplosiveArea/CollisionShape2D");
-            if (explosionAnimation.IsPlaying())
-            {
-                explosiveArea.Disabled = true;
-                SetPhysicsProcess(false);
-                return;
-            }
-            GetNode<Sprite2D>(link + "Sprite2D").QueueFree();
-            GetNode<AudioStreamPlayer>("ExplosionSound").Play();
-            explosionAnimation.Visible = true;
-            explosionAnimation.Play();
-            explosiveArea.Disabled = false;
-            EmitSignal("ElementExploded");
+            // Explode();
         }
     }
 }

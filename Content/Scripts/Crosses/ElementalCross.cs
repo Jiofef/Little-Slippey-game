@@ -1,7 +1,8 @@
 using Godot;
 using System;
+using OtherExtension;
 
-public partial class ElementalCross : Node2D
+public partial class ElementalCross : UnusualCrossNode
 {
     private enum ElementalType { Red = 0, Green = 1, Blue = 2 };
     private ElementalType _elementalType;
@@ -18,8 +19,8 @@ public partial class ElementalCross : Node2D
     private Random _random = new Random();
     private Color _currentDefaultColor;
     private PackedScene _summonableElemental;
-    private Sprite2D _core, _redPart, _greenPart, _bluePart;
-    private Node2D _sprites;
+    public Sprite2D Core, RedPart, GreenPart, BluePart;
+    public Node2D Sprites;
 
     // Visual rotating effect
     private bool _shouldRotate = Meta.Instance.Video.CrossRotationWhenSpawning;
@@ -27,30 +28,29 @@ public partial class ElementalCross : Node2D
     public override void _Ready()
     {
         // Initializing nodes
-        _core = GetNode<Sprite2D>("Sprites/Core");
-        _redPart = GetNode<Sprite2D>("Sprites/RedPart");
-        _greenPart = GetNode<Sprite2D>("Sprites/GreenPart");
-        _bluePart = GetNode<Sprite2D>("Sprites/BluePart");
-        _sprites = GetNode<Node2D>("Sprites");
+        Core = GetNode<Sprite2D>("Sprites/Core");
+        RedPart = GetNode<Sprite2D>("Sprites/RedPart");
+        GreenPart = GetNode<Sprite2D>("Sprites/GreenPart");
+        BluePart = GetNode<Sprite2D>("Sprites/BluePart");
+        Sprites = GetNode<Node2D>("Sprites");
 
         //Spawn properties
         Scale = new Vector2(3, 3);
 
-        Random random = new Random();
-        _elementalType = (ElementalType)random.Next(0, 3);
+        _elementalType = (ElementalType)_random.Next(0, 3);
 
         _ticksToAppear = _defaultTicksToAppear;
 
         if (_shouldRotate)
         {
-            _defaultRotation = random.Next(-30, 30);
-            _rotationDirection = random.Next(2) == 0 ? 2 : -2;
+            _defaultRotation = _random.Next(-30, 30);
+            _rotationDirection = _random.Next(2) == 0 ? 2 : -2;
 
             RotationDegrees = _defaultRotation;
         }
 
 
-        _sprites.Modulate = new Color(_core.SelfModulate.R, _core.SelfModulate.G, _core.SelfModulate.B, 0);
+        Sprites.Modulate = new Color(Core.SelfModulate.R, Core.SelfModulate.G, Core.SelfModulate.B, 0);
         _elementsToSpawn = _random.Next(6, 11);
         _defaultElementsToSpawn = _elementsToSpawn;
         _xSpriteMotion = _random.Next(-2, 3);
@@ -69,7 +69,7 @@ public partial class ElementalCross : Node2D
             Scale = new Vector2(3 - 2 * TicksCoeff, 3 - 2 * TicksCoeff);
 
             Modulate = new Color(Modulate.R, Modulate.G, Modulate.B, TicksCoeff);
-            _sprites.Modulate = new Color(_core.SelfModulate.R, _core.SelfModulate.G, _core.SelfModulate.B, _sprites.SelfModulate.A + 0.0125f);
+            Sprites.Modulate = new Color(Core.SelfModulate.R, Core.SelfModulate.G, Core.SelfModulate.B, Sprites.SelfModulate.A + 0.0125f);
 
             if (_ticksToAppear % 20 == 0 && _ticksToAppear > 0)
             {
@@ -105,7 +105,7 @@ public partial class ElementalCross : Node2D
                     element.GlobalRotation = 0;
                     element.Position = new Vector2(_random.Next(-30, 31), _random.Next(-30, 31));
 
-                    _core.Modulate += (new Color(1, 1, 1) - _currentDefaultColor) / _defaultElementsToSpawn;
+                    Core.Modulate += (new Color(1, 1, 1) - _currentDefaultColor) / _defaultElementsToSpawn;
 
                     if (_elementsToSpawn <= 0 && _elementalType != ElementalType.Green)
                         ExplodeCore();
@@ -113,20 +113,20 @@ public partial class ElementalCross : Node2D
             }
             else if (_elementalType != ElementalType.Green || _isLastElementExploded)
             {
-                _sprites.Modulate = new Color(_sprites.Modulate.R, _sprites.Modulate.G, _sprites.Modulate.B, _sprites.Modulate.A - 0.02f);
+                Sprites.Modulate = new Color(Sprites.Modulate.R, Sprites.Modulate.G, Sprites.Modulate.B, Sprites.Modulate.A - 0.02f);
                 _ySpriteMotion += _gravity / 100;
-                _redPart.GlobalTranslate(new Vector2(0.5f, _ySpriteMotion * 2));
-                _redPart.GlobalRotation += -0.02f;
-                _greenPart.GlobalTranslate(new Vector2(-2, _ySpriteMotion));
-                _greenPart.GlobalRotation += -0.04f;
-                _bluePart.GlobalTranslate(new Vector2(2, _ySpriteMotion));
-                _bluePart.GlobalRotation += 0.04f;
+                RedPart.GlobalTranslate(new Vector2(0.5f, _ySpriteMotion * 2));
+                RedPart.GlobalRotation += -0.02f;
+                GreenPart.GlobalTranslate(new Vector2(-2, _ySpriteMotion));
+                GreenPart.GlobalRotation += -0.04f;
+                BluePart.GlobalTranslate(new Vector2(2, _ySpriteMotion));
+                BluePart.GlobalRotation += 0.04f;
             }
         }
     }
     public void LastElementDeleted()
     {
-        QueueFree();
+        OnFinished();
     }
     public void LastElementExploded()
     {
@@ -154,16 +154,66 @@ public partial class ElementalCross : Node2D
         switch (_elementalType)
         {
             case ElementalType.Red:
-                _core.Modulate = new Color(1, 0.302f, 0.408f);
+                Core.Modulate = new Color(1, 0.302f, 0.408f);
                 break;
             case ElementalType.Green:
-                _core.Modulate = new Color(0.631f, 1, 0.353f);
+                Core.Modulate = new Color(0.631f, 1, 0.353f);
                 break;
             case ElementalType.Blue:
-                _core.Modulate = new Color(0.067f, 0.678f, 1);
+                Core.Modulate = new Color(0.067f, 0.678f, 1);
                 break;
         }
-        _currentDefaultColor = _core.Modulate;
+        _currentDefaultColor = Core.Modulate;
         GetNode<CpuParticles2D>("ChangeElementParticles").Emitting = true;
+    }
+
+    public override void Respawn()
+    {
+        base.Respawn();
+
+        Core.Modulate = new Color(1, 1, 1, 1);
+
+        RedPart.Position = new Vector2(0, -31.5f);
+        GreenPart.Position = new Vector2(-28, 14);
+        BluePart.Position = new Vector2(31.5f, 17.5f);
+
+        if (_shouldRotate)
+        {
+            _defaultRotation = _random.Next(-30, 30);
+            _rotationDirection = _random.Next(2) == 0 ? 2 : -2;
+
+            RotationDegrees = _defaultRotation;
+        }
+
+        Sprites.Modulate = new Color(Core.SelfModulate.R, Core.SelfModulate.G, Core.SelfModulate.B, 0);
+        _elementsToSpawn = _random.Next(6, 11);
+        _defaultElementsToSpawn = _elementsToSpawn;
+        _xSpriteMotion = _random.Next(-2, 3);
+    }
+}
+
+
+abstract public partial class ElementalCrossPart : CrossNode
+{
+    public Vector2 PathVec;
+    public Vector2 StartPosition;
+    public void RandomizePathVec(Rect2 vecBounds)
+    {
+        StartPosition = Position;
+        PathVec = RandomTools.RandomVectorIn(vecBounds);
+    }
+    public float LifeTime, TimeLived = 0f;
+
+    public void UpdatePosition(float coeff)
+    {
+        Position = StartPosition + PathVec * (TimeLived / LifeTime);
+    }
+
+    public override void NodesInit()
+    {
+        CrossSprite = GetNode<Sprite2D>("Sprite");
+        ExplosionAnimation = GetNode<ExplosionAnimation>("ExplosionAnimation");
+        ExplosiveArea = GetNode<CollisionShape2D>("ExplosiveArea/CollisionShape2D");
+        ExplosionSound = GetNode<AudioStreamPlayer>("ExplosionSound");
     }
 }

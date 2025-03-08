@@ -406,6 +406,7 @@ stream = ExtResource("9_s8yf4")
 bus = &"Explosions"
 
 [node name="ExplosionAnimation" parent="." instance=ExtResource("10_64ovj")]
+DeleteWhenFinished = false
 
 [connection signal="area_entered" from="WearAcceleratingArea2D" to="." method="EnableWearAccelerating" unbinds=1]
 [connection signal="area_exited" from="WearAcceleratingArea2D" to="." method="DisableWearAccelerating" unbinds=1]

@@ -6,21 +6,22 @@ public partial class EnhancedRestlessCross : RestlessCross
     public override void _PhysicsProcess(double delta)
     {
         base._PhysicsProcess(delta);
-        if (_ticksToExplosion > 0)
+
+        if (TicksLived >= TICKS_TO_APPEAR && TicksLived < TICKS_TO_EXPLOSION)
         {
             Vector2 playerPos = G.Player.GlobalPosition;
-            float RotationValue = GetAngleTo(playerPos) * 3;
+            float rotationValue = GetAngleTo(playerPos) * 3;
+            rotationValue = Mathf.Clamp(rotationValue, -1.5f, 1.5f);
 
-            RotationValue = Mathf.Clamp(RotationValue, -1.5f, 1.5f);
-            if (_ticksToAppear > 0)
-                _defaultRotation += RotationValue;
-            else 
-                RotationDegrees += RotationValue;
-
+            if (_shouldRotate)
+                R.InitialRotation = rotationValue;
+            else
+                Rotation += rotationValue;
 
             var pointingRect = GetNode<Node2D>("PointingRect");
-            pointingRect.Rotation += pointingRect.GetAngleTo(playerPos) / 30;
-            pointingRect.RotationDegrees = Mathf.Clamp(pointingRect.RotationDegrees, -70, 70);
+            float targetAngle = pointingRect.GetAngleTo(playerPos);
+            pointingRect.Rotation = Mathf.LerpAngle(pointingRect.Rotation, targetAngle, 0.033f);
+            pointingRect.Rotation = Mathf.Clamp(pointingRect.Rotation, Mathf.DegToRad(-70), Mathf.DegToRad(70));
         }
     }
 }

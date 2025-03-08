@@ -1,8 +1,8 @@
 ﻿using Godot;
 using static OtherExtension.RandomTools;
-using static IRespawnable;
+using static CrossesNodesAbstract;
 
-public interface IRespawnable
+public interface CrossesNodesAbstract
 {
     public void Respawn();
 
@@ -15,43 +15,43 @@ public interface IRespawnable
 
 public class CrossRotator
 {
-    public CrossRotator(UnusualCrossNode node, int initialRotationRange, float finalRotationRange)
+    public CrossRotator(UnusualCrossNode cross, int initialRotationRange, float finalRotationRange)
     {
-        this.node = node;
+        Cross = cross;
 
-        _initialRotationRange = initialRotationRange;
-        _finalRotationRange = finalRotationRange;
+        InitialRotationRange = initialRotationRange;
+        FinalRotationRange = finalRotationRange;
 
         Randomize();
-        node.Ready += () => node.RotationDegrees = _initialRotation;
+        cross.Ready += () => cross.RotationDegrees = InitialRotation;
     }
 
     public void Randomize()
     {
-        _initialRotation = RandomIn(-_initialRotationRange, _initialRotationRange);
-        node.Rotation = _initialRotation;
+        InitialRotation = RandomIn(-InitialRotationRange, InitialRotationRange);
+        Cross.Rotation = InitialRotation;
 
-        _rotationGoal = RandomIn(-_finalRotationRange, _finalRotationRange);
+        RotationGoal = RandomIn(-FinalRotationRange, FinalRotationRange);
     }
-    UnusualCrossNode node;
+    public UnusualCrossNode Cross;
 
-    private float _rotationGoal, _initialRotation, _initialRotationRange, _finalRotationRange;
+    public float RotationGoal, InitialRotation, InitialRotationRange, FinalRotationRange;
 
     public void Rotate(float ticks, float maxTicks)
     {
         float TicksCoeff = 1 - (ticks / maxTicks);
         TicksCoeff = Mathf.Lerp(0.0f, 1.0f, 1 - (1 - TicksCoeff) * (1 - TicksCoeff) * (1 - TicksCoeff));
 
-        node.RotationDegrees = _initialRotation + _rotationGoal * TicksCoeff;
+        Cross.RotationDegrees = InitialRotation + RotationGoal * TicksCoeff;
     }
 
     public void Rotate(float ticksCoeff)
     {
-        node.RotationDegrees = _initialRotation + _rotationGoal * ticksCoeff;
+        Cross.RotationDegrees = InitialRotation + RotationGoal * ticksCoeff;
     }
 }
 
-public abstract partial class UnusualCrossNode : Node2D, IRespawnable
+public abstract partial class UnusualCrossNode : Node2D, CrossesNodesAbstract
 {
     // Respawn properties and methods
     public event SaveEventHandler Save = delegate { };
@@ -78,6 +78,14 @@ public abstract partial class UnusualCrossNode : Node2D, IRespawnable
         _isInRespawnPool = true;
 
         Save?.Invoke();
+    }
+
+    public virtual void OnFinished()
+    {
+        if (ShouldBeSavedInPool)
+            SendToRespawnPool();
+        else
+            QueueFree();
     }
 
     // Life cycle
@@ -112,7 +120,14 @@ abstract public partial class CrossNode : UnusualCrossNode
         }
 
         // Audio
-        ExplosionSound?.Play();
+        if (ExplosionSound != null)
+        {
+            const float PITCH_RANGE = 0.2f, PITCH_MIN = 1 - PITCH_RANGE, PITCH_MAX = 1 + PITCH_RANGE;
+            const float VOLUME_RANGE = 0.15f, VOLUME_MIN = 0 - VOLUME_RANGE, VOLUME_MAX = 0 + VOLUME_RANGE;
+            ExplosionSound.PitchScale = RandomIn(PITCH_MIN, PITCH_MAX);
+            ExplosionSound.VolumeDb = RandomIn(VOLUME_MIN, VOLUME_MAX);
+            ExplosionSound.Play();
+        }
 
         // Physics
         if (ExplosiveArea != null)
@@ -130,14 +145,6 @@ abstract public partial class CrossNode : UnusualCrossNode
             RemoveFromGroup(group);
     }
 
-    public virtual void OnFinished() 
-    {
-        if (ShouldBeSavedInPool)
-            SendToRespawnPool();
-        else
-            QueueFree();
-    }
-
     public override void Respawn()
     {
         base.Respawn();
@@ -148,4 +155,18 @@ abstract public partial class CrossNode : UnusualCrossNode
 
         _isInRespawnPool = false;
     }
+
+    /// <summary>
+    /// Initializes all standard nodes for cross to standard paths. Nodes: CrossSprite, WarningSprite, ExplosionAnimation, ExplosiveArea, ExplosionSound.
+    /// <para>By default all have the same path as their name, except ExplosiveArea, its path is "ExplosiveArea/CollisionShape2D"</para>
+    /// </summary>
+    public virtual void NodesInit()
+    {
+        CrossSprite = GetNode<Sprite2D>("CrossSprite");
+        WarningSprite = GetNode<Sprite2D>("WarningSprite");
+        ExplosionAnimation = GetNode<ExplosionAnimation>("ExplosionAnimation");
+        ExplosiveArea = GetNode<CollisionShape2D>("ExplosiveArea/CollisionShape2D");
+        ExplosionSound = GetNode<AudioStreamPlayer>("ExplosionSound");
+    }
 }
+

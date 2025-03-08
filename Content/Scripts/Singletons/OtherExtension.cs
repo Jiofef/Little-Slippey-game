@@ -1,9 +1,7 @@
 using Godot;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using static OtherExtension.OtherTools;
@@ -506,6 +504,24 @@ namespace OtherExtension
         public static float Difference(float value1, float value2)
         {
             return Math.Abs(value1 - value2);
+        }
+
+        public static float EaseIn(float t, float power = 2)
+        {
+            return Mathf.Pow(t, power);
+        }
+
+        public static float EaseOut(float t, float power = 2)
+        {
+            return 1 - Mathf.Pow(1 - t, power);
+        }
+
+        public static float EaseInOut(float t, float power = 2)
+        {
+            if (t < 0.5f)
+                return Mathf.Pow(t * 2, power) / 2;
+            else
+                return 1 - Mathf.Pow((1 - t) * 2, power) / 2;
         }
     }
 

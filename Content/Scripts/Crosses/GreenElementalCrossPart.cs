@@ -1,7 +1,8 @@
 using Godot;
 using System;
+using OtherExtension;
 
-public partial class GreenElementalCrossPart : Node2D
+public partial class GreenElementalCrossPart : ElementalCrossPart
 {
     [Signal] public delegate void ElementExplodedEventHandler();
     private const int _flowerSpritesCount = 4;
@@ -11,12 +12,15 @@ public partial class GreenElementalCrossPart : Node2D
     private bool _doExplosed = false;
     public override void _Ready()
     {
-        Random random = new Random();
-
-        _sprite = GetNode<Sprite2D>("Path2D/PathFollow2D/Sprite2D");
+        // Initializing nodes
+        NodesInit();
         _vineSprite = GetNode<Sprite2D>("Path2D/Vine");
-        _sprite.Texture = ResourceLoader.Load("res://Content/Sprites/Crosses/GreenElementalCrossPartVar" + (random.Next(_flowerSpritesCount) + 1) + ".png") as Texture2D;
-        _pathFollow2D = GetNode<PathFollow2D>("Path2D/PathFollow2D");
+        Random random = new Random();
+        CrossSprite.Texture = ResourceLoader.Load("res://Content/Sprites/Crosses/GreenElementalCrossPartVar" + (random.Next(_flowerSpritesCount) + 1) + ".png") as Texture2D;
+
+        LifeTime = 1.5f;
+        RandomizePathVec(new Rect2(-225, -60, 170, 120));
+        PathVec.X *= RandomTools.FiftyFifty() ? 1 : -1; // Mirroring the vec randomly
 
         GetNode<Path2D>("Path2D").Scale = new Vector2(random.Next(25, 100) / 100f * (random.Next(100) > 50 ? 1 : -1), random.Next(40, 100) / 100f);
         _pathFollow2D.GlobalScale = new Vector2(1, 1);

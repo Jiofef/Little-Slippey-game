@@ -187,9 +187,9 @@ color_ramp = SubResource("Gradient_d55e1")
 [node name="OnCollectedParticles1" type="CPUParticles2D" parent="Path2D/Cross"]
 emitting = false
 amount = 4
+texture = SubResource("AtlasTexture_o5kcy")
 one_shot = true
 explosiveness = 0.9
-texture = SubResource("AtlasTexture_o5kcy")
 spread = 180.0
 gravity = Vector2(0, 0)
 initial_velocity_min = 400.0
@@ -247,10 +247,8 @@ bus = &"Interface"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Path2D/Cross"]
 libraries = {
-"": SubResource("AnimationLibrary_m800w")
+&"": SubResource("AnimationLibrary_m800w")
 }
 autoplay = "Appearing"
-
-[connection signal="area_entered" from="Path2D/Cross/CollectArea" to="." method="onCollected" flags=6 unbinds=1]
 
 [editable path="Path2D/Cross/OffscreenPointer"]

@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using OtherExtension;
 
 public partial class DefaultCross : CrossNode
 {
@@ -10,23 +11,14 @@ public partial class DefaultCross : CrossNode
     // Visual rotating effect
     private bool _shouldRotate = Meta.Instance.Video.CrossRotationWhenSpawning;
 
-
     public override void _Ready()
     {
         // Initializing nodes
-        CrossSprite = GetNode<Sprite2D>("CrossSprite");
-        WarningSprite = GetNode<Sprite2D>("WarningSprite");
-        ExplosionAnimation = GetNode<ExplosionAnimation>("ExplosionAnimation");
-        ExplosiveArea = GetNode<CollisionShape2D>("ExplosiveArea/CollisionShape2D");
-        ExplosionSound = GetNode<AudioStreamPlayer>("ExplosionSound");
+        NodesInit();
 
         // Spawn properties
         Scale = new Vector2(3, 3);
         Modulate = _mod;
-
-
-
-        // Setting up the properties
 
         if (_shouldRotate)
             R = new(this, 75, 30);
@@ -44,6 +36,7 @@ public partial class DefaultCross : CrossNode
 
             if (_shouldRotate)
                 R.Rotate(TicksCoeff);
+
             WarningSprite.GlobalPosition = CrossSprite.GlobalPosition - new Vector2(2, 2) * (3 - 2 * TicksCoeff);
             Scale = new Vector2(3 - 2 * TicksCoeff, 3 - 2 * TicksCoeff);
 
@@ -68,8 +61,11 @@ public partial class DefaultCross : CrossNode
         base.Respawn();
 
         // Base settings
+        _shouldRotate = Meta.Instance.Video.CrossRotationWhenSpawning;
+
         Scale = new Vector2(3, 3);
         Modulate = new Color(Modulate.R, Modulate.G, Modulate.B, 0);
+        R.Randomize();
 
         // Returning the old settings
         CrossSprite.Visible = true;

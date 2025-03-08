@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class BlueElementalCrossPart : Node2D
+public partial class BlueElementalCrossPart : ElementalCrossPart
 {
     [Signal] public delegate void ElementExplodedEventHandler();
     private Sprite2D _sprite;
@@ -10,8 +10,10 @@ public partial class BlueElementalCrossPart : Node2D
     public override void _Ready()
     {
         // Initializing nodes
-        _sprite = GetNode<Sprite2D>("Path2D/PathFollow2D/Sprite2D");
-        _pathFollow2D = GetNode<PathFollow2D>("Path2D/PathFollow2D");
+        NodesInit();
+
+        LifeTime = 1.0f;
+        RandomizePathVec(new Rect2(-125, 360 / 5, 125 * 2, 360 - 360/5));
 
         Random random = new Random();
         GetNode<Path2D>("Path2D").Scale = new Vector2(random.Next(10,100) * (random.Next(100) > 50 ? 1 : -1) / 100f, random.Next(20, 100) / 100f);

@@ -33,15 +33,15 @@ position = Vector2(0, -31.5)
 scale = Vector2(7, 7)
 texture = ExtResource("2_e3oq0")
 
+[node name="GreenPart" type="Sprite2D" parent="Sprites"]
+position = Vector2(-28, 17.5)
+scale = Vector2(7, 7)
+texture = ExtResource("4_meaka")
+
 [node name="BluePart" type="Sprite2D" parent="Sprites"]
 position = Vector2(31.5, 17.5)
 scale = Vector2(7, 7)
 texture = ExtResource("3_sl8ky")
-
-[node name="GreenPart" type="Sprite2D" parent="Sprites"]
-position = Vector2(-28, 14)
-scale = Vector2(7, 7)
-texture = ExtResource("4_meaka")
 
 [node name="Core" type="Sprite2D" parent="Sprites"]
 scale = Vector2(7, 7)

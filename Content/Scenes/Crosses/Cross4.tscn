@@ -65,8 +65,9 @@ volume_db = -7.0
 bus = &"Crosses"
 
 [node name="ExplosionAnimation" parent="." instance=ExtResource("8_jkioe")]
+DeleteWhenFinished = false
 
 [connection signal="body_entered" from="AbortButton/PressButtonArea" to="." method="AbortButtonPressed" flags=6 unbinds=1]
 [connection signal="body_entered" from="AbortButton/PressButtonArea" to="ExplosionSignal" method="stop" flags=6 unbinds=1]
 [connection signal="finished" from="ExplosionSignal" to="." method="SignalPlayed"]
-[connection signal="finished" from="ExplosionSound" to="." method="queue_free"]
+[connection signal="finished" from="ExplosionSound" to="." method="OnFinished"]

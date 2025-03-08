@@ -2870,13 +2870,17 @@ format = 1
 [node name="Main" type="Node2D"]
 process_mode = 1
 script = ExtResource("1_ejqbl")
+LevelNodePath = null
+DoIgnoreIntro = null
 metadata/_edit_vertical_guides_ = [-234.0]
 
 [node name="LevelMusicPlayer" type="AudioStreamPlayer" parent="."]
 process_mode = 3
 bus = &"Music"
 script = ExtResource("2_okxpt")
+RestartMusicWhenItFinished = null
 SaveTimeCodeWhenLevelResets = false
+KeepPlayingWhenLevelResets = null
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="LevelMusicPlayer"]
 libraries = {
@@ -2885,6 +2889,7 @@ libraries = {
 
 [node name="Level" type="Node2D" parent="."]
 script = ExtResource("2_v16o6")
+BeforeResetCrossesSpawnStartTimer = null
 
 [node name="Ambient" type="AudioStreamPlayer" parent="Level"]
 stream = ExtResource("4_va86u")
@@ -3565,6 +3570,7 @@ z_index = 1
 [node name="Screen" parent="Level/TileMap2/TutorialTV" index="1"]
 z_index = 1
 script = ExtResource("20_15uq2")
+_isThereASecondSpriteForGamepad = null
 
 [node name="AnimationPlayer" parent="Level/TileMap2/TutorialTV/Screen/SlippeyHead" index="0"]
 libraries = {
@@ -3691,6 +3697,7 @@ position = Vector2(6264, 608)
 
 [node name="Screen" parent="Level/TileMap4/TutorialTV" index="1"]
 script = ExtResource("20_15uq2")
+_isThereASecondSpriteForGamepad = null
 
 [node name="AnimationPlayer" parent="Level/TileMap4/TutorialTV/Screen/SlippeyHead" index="0"]
 libraries = {
@@ -3826,6 +3833,7 @@ scale = Vector2(0.9, 0.9)
 
 [node name="Screen" parent="Level/TileMap5/TutorialTV" index="1"]
 script = ExtResource("20_15uq2")
+_isThereASecondSpriteForGamepad = null
 
 [node name="AnimationPlayer" parent="Level/TileMap5/TutorialTV/Screen/SlippeyHead" index="0"]
 libraries = {
@@ -4074,6 +4082,7 @@ bus = &"Enviromnment"
 [node name="ExplosionAnimation" parent="Level/TileMap5/ShakyPlatform" instance=ExtResource("28_p563d")]
 position = Vector2(8832, 760)
 scale = Vector2(1.5, 1.5)
+DeleteWhenFinished = null
 
 [node name="FallingSound" type="AudioStreamPlayer" parent="Level/TileMap5/ShakyPlatform"]
 stream = ExtResource("29_j64pr")
@@ -4343,6 +4352,7 @@ scale = Vector2(0.75, 0.75)
 
 [node name="Screen" parent="Level/TileMap6/TutorialTV" index="1"]
 script = ExtResource("20_15uq2")
+_isThereASecondSpriteForGamepad = null
 
 [node name="SlippeyHead" parent="Level/TileMap6/TutorialTV/Screen" index="1"]
 position = Vector2(-3.73333, -3.73333)
@@ -4806,6 +4816,7 @@ color = Color(0, 0, 0, 0.176471)
 
 [node name="CrossSpawner" type="Node2D" parent="."]
 script = ExtResource("47_87l5c")
+CannonsMode = null
 
 [node name="Pause" parent="." instance=ExtResource("47_1wkgd")]
 
@@ -4813,6 +4824,7 @@ script = ExtResource("47_87l5c")
 
 [node name="BrightnessRect" parent="EpicIntro" index="1"]
 visible = false
+_mode = null
 
 [node name="Glare" parent="EpicIntro" index="2"]
 visible = false
@@ -4821,82 +4833,27 @@ visible = false
 
 [connection signal="ready" from="." to="." method="SetTransitiveValue" flags=6 binds= [0, true]]
 [connection signal="animation_finished" from="LevelMusicPlayer/AnimationPlayer" to="." method="MusicAnimationFinished"]
-[connection signal="ButtonPressed" from="Level/Rail/CameraLimitsSetTrigger" to="Level/Player" method="SetCameraLimits" flags=6 binds= [Vector4(-100000, 100000, 100000, -100000), true]]
 [connection signal="animation_finished" from="Level/Rail/AnimationPlayer" to="Level/Rail" method="queue_free" unbinds=1]
-[connection signal="PlayerDied" from="Level/Player" to="Level/TutorialCanvasLayer" method="PlayerDied" flags=6]
-[connection signal="PlayerDied" from="Level/Player" to="Level/Player" method="SetCorpseMotionMultiplierX" flags=6 binds= [0.25]]
-[connection signal="ButtonPressed" from="Level/TileMap/CameraLimitsSetTrigger" to="Level/Player" method="SetCameraLimits" flags=6 binds= [Vector4(3520, 15552, 4032, 13504), false]]
-[connection signal="ButtonPressed" from="Level/TileMap/CameraLimitsSetTrigger" to="Level/TileMap/TutorialTV/AnimationPlayer" method="play" flags=6 binds= ["FallingDown"]]
 [connection signal="screen_entered" from="Level/TileMap/TutorialTV/VisibleOnScreenNotifier2D" to="Level/TileMap/TutorialTV/Screen" method="UpdateScreen"]
-[connection signal="ButtonPressed" from="Level/TileMap/TeleporterArea" to="Level/Ambient" method="stop" flags=6]
-[connection signal="ButtonPressed" from="Level/TileMap/TeleporterArea" to="Level/TileMap" method="queue_free" flags=7]
-[connection signal="ButtonPressed" from="Level/TileMap/TeleporterArea" to="Level/TutorialCanvasLayer" method="Glitch" flags=6]
-[connection signal="ButtonPressed" from="Level/TileMap/TeleporterArea" to="LevelMusicPlayer" method="PlayMusic" flags=6 binds= ["Base 314, Please Respond", 0.0, 0.0]]
-[connection signal="ButtonPressed" from="Level/TileMap/TeleporterArea" to="Level/Player" method="set_position" flags=6 binds= [Vector2(16296, 3864)]]
-[connection signal="ButtonPressed" from="Level/TileMap/TeleporterArea" to="Level/Player" method="SetCameraLimits" binds= [Vector4(3392, 18496, 4032, 16000), true]]
-[connection signal="ButtonPressed" from="Level/TileMap/TeleporterArea" to="Level/TileMap2/TutorialTV/AnimationPlayer" method="play" flags=6 binds= ["FallingDown"]]
 [connection signal="screen_entered" from="Level/TileMap2/TutorialTV/VisibleOnScreenNotifier2D" to="Level/TileMap2/TutorialTV/Screen" method="UpdateScreen"]
-[connection signal="ButtonPressed" from="Level/TileMap2/TeleporterArea" to="Level/TileMap2" method="queue_free" flags=7]
-[connection signal="ButtonPressed" from="Level/TileMap2/TeleporterArea" to="Level/TutorialCanvasLayer" method="Glitch"]
-[connection signal="ButtonPressed" from="Level/TileMap2/TeleporterArea" to="Level/Player" method="set_position" flags=6 binds= [Vector2(19296, 3864)]]
-[connection signal="ButtonPressed" from="Level/TileMap2/TeleporterArea" to="Level/Player" method="SetCameraLimits" flags=6 binds= [Vector4(1536, 21376, 4032, 18944), true]]
-[connection signal="ButtonPressed" from="Level/TileMap3/TeleporterArea" to="Level/TileMap3" method="queue_free" flags=7]
-[connection signal="ButtonPressed" from="Level/TileMap3/TeleporterArea" to="Level/TutorialCanvasLayer" method="Glitch"]
-[connection signal="ButtonPressed" from="Level/TileMap3/TeleporterArea" to="Level/Player" method="set_position" flags=6 binds= [Vector2(21984, 3864)]]
-[connection signal="ButtonPressed" from="Level/TileMap3/TeleporterArea" to="Level/Player" method="SetCameraLimits" flags=6 binds= [Vector4(-100000, 27136, 4032, 21824), true]]
 [connection signal="screen_entered" from="Level/TileMap4/TutorialTV/VisibleOnScreenNotifier2D" to="Level/TileMap4/TutorialTV/Screen" method="UpdateScreen"]
-[connection signal="ButtonPressed" from="Level/TileMap4/TVFallTrigger" to="Level/TileMap4/TutorialTV/AnimationPlayer" method="play" flags=6 binds= ["FallingDown"]]
-[connection signal="ButtonPressed" from="Level/TileMap4/TeleporterArea2" to="Level/TileMap4" method="queue_free" flags=7]
-[connection signal="ButtonPressed" from="Level/TileMap4/TeleporterArea2" to="Level/TutorialCanvasLayer" method="Glitch"]
-[connection signal="ButtonPressed" from="Level/TileMap4/TeleporterArea2" to="Level/Player" method="set_position" flags=6 binds= [Vector2(27812, 4003)]]
-[connection signal="ButtonPressed" from="Level/TileMap4/TeleporterArea2" to="Level/Player" method="SetCameraLimits" flags=6 binds= [Vector4(-1e+06, 100000, 4032, 27584), true]]
-[connection signal="ButtonPressed" from="Level/TileMap4/TeleporterArea2" to="Level/TileMap5/ShakyPlatform/TutorialTV/Screen/SlippeyHead/AnimationPlayer" method="play" flags=6 binds= ["BangerFilm"]]
-[connection signal="ButtonPressed" from="Level/TileMap4/ShowSecretArea" to="Level/TileMap4/ShowSecretArea/AnimationPlayer" method="play" flags=6 binds= ["Appearing"]]
 [connection signal="area_entered" from="Level/TileMap4/ShowSecretArea" to="Level/TileMap4/ShowSecretArea" method="AreaEntered" unbinds=1]
-[connection signal="ButtonPressed" from="Level/TileMap5/TVFallTrigger" to="Level/TileMap5/TutorialTV/AnimationPlayer" method="play" flags=6 binds= ["RisingUp"]]
 [connection signal="screen_entered" from="Level/TileMap5/TutorialTV/VisibleOnScreenNotifier2D" to="Level/TileMap5/TutorialTV/Screen" method="UpdateScreen"]
-[connection signal="ButtonPressed" from="Level/TileMap5/QuickRock/Area2D" to="Level/TileMap5/QuickRock/AnimationPlayer" method="play" flags=6 binds= ["Quicking"]]
 [connection signal="area_entered" from="Level/TileMap5/QuickRock/Area2D" to="Level/TileMap5/QuickRock/Area2D" method="AreaEntered" flags=6 unbinds=1]
-[connection signal="ButtonPressed" from="Level/TileMap5/ShakyPlatform/Area2D" to="Level/TileMap5/ShakyPlatform/AnimationPlayer" method="play" flags=6 binds= ["FallingDown"]]
-[connection signal="ButtonPressed" from="Level/TileMap5/ShakyPlatform/Area2D" to="Level/TileMap5/ShakyPlatform/TutorialTV/Screen/Text" method="set_visible" flags=6 binds= [false]]
-[connection signal="ButtonPressed" from="Level/TileMap5/ShakyPlatform/Area2D" to="Level/TileMap5/ShakyPlatform/TutorialTV/Screen/Text2" method="set_visible" flags=6 binds= [true]]
-[connection signal="ButtonPressed" from="Level/TileMap5/ShakyPlatform/Area2D" to="Level/TileMap5/FlowersParticles" method="set_emitting" flags=6 binds= [true]]
 [connection signal="area_entered" from="Level/TileMap5/ShakyPlatform/Area2D" to="Level/TileMap5/ShakyPlatform/Area2D" method="AreaEntered" unbinds=1]
 [connection signal="animation_finished" from="Level/TileMap5/ShakyPlatform/AnimationPlayer" to="Level/TileMap5/ShakyPlatform/TutorialTV" method="queue_free" flags=6 unbinds=1]
 [connection signal="animation_finished" from="Level/TileMap5/ShakyPlatform/ExplosionAnimation" to="Level/TileMap5/ShakyPlatform/ExplosionAnimation" method="queue_free" flags=6]
 [connection signal="area_entered" from="Level/TileMap5/SecretActivationArea" to="Level/TileMap5/SecretActivationArea/Timer" method="start" unbinds=1]
 [connection signal="area_exited" from="Level/TileMap5/SecretActivationArea" to="Level/TileMap5/SecretActivationArea/Timer" method="stop" unbinds=1]
 [connection signal="timeout" from="Level/TileMap5/SecretActivationArea/Timer" to="Level/TileMap5/SecretActivationArea/AnimationPlayer" method="play" flags=6 binds= ["PlatformCrashing"]]
-[connection signal="ButtonPressed" from="Level/TileMap5/TeleporterArea2" to="Level/TileMap5" method="queue_free" flags=7]
-[connection signal="ButtonPressed" from="Level/TileMap5/TeleporterArea2" to="Level/TutorialCanvasLayer" method="Glitch"]
-[connection signal="ButtonPressed" from="Level/TileMap5/TeleporterArea2" to="Level/Player" method="set_position" flags=6 binds= [Vector2(42776, 4000)]]
-[connection signal="ButtonPressed" from="Level/TileMap5/TeleporterArea2" to="Level/Player" method="SetCameraLimits" flags=6 binds= [Vector4(-100000, 100000, 4032, 42496), true]]
-[connection signal="ButtonPressed" from="Level/TileMap5/TeleporterArea2" to="Level/TutorialCanvasLayer/Fog?" method="set_color" flags=6 binds= [Color(0, 1, 1, 0.0156863)]]
 [connection signal="area_entered" from="Level/TileMap5/DarkeningArea" to="Level/TileMap5/DarkeningArea/AnimationPlayer" method="Darkening" unbinds=1]
 [connection signal="area_exited" from="Level/TileMap5/DarkeningArea" to="Level/TileMap5/DarkeningArea/AnimationPlayer" method="Lightening" unbinds=1]
-[connection signal="ButtonPressed" from="Level/TileMap6/DisposableButton" to="Level/TileMap6/DisposableButton/OpeningDoor/AnimationPlayer" method="play" binds= ["Opening"]]
-[connection signal="ButtonPressed" from="Level/TileMap6/DisposableButton" to="Level/TileMap6/TVAppearingTrigger/CollisionShape2D" method="set_disabled" flags=7 binds= [false]]
 [connection signal="area_entered" from="Level/TileMap6/DisposableButton" to="Level/TileMap6/DisposableButton" method="AreaEntered" unbinds=1]
 [connection signal="area_exited" from="Level/TileMap6/DisposableButton" to="Level/TileMap6/DisposableButton/Timer" method="start" unbinds=1]
-[connection signal="ButtonPressed" from="Level/TileMap6/DisposableButton/FinalOpeningArea" to="Level/TileMap6/DisposableButton/Timer" method="stop" flags=6]
-[connection signal="ButtonPressed" from="Level/TileMap6/DisposableButton/FinalOpeningArea" to="Level/TileMap6/DisposableButton/OpeningDoor/AnimationPlayer" method="play" flags=6 binds= ["FinalOpening"]]
 [connection signal="area_entered" from="Level/TileMap6/DisposableButton/FinalOpeningArea" to="Level/TileMap6/DisposableButton/FinalOpeningArea" method="AreaEntered" unbinds=1]
 [connection signal="timeout" from="Level/TileMap6/DisposableButton/Timer" to="Level/TileMap6/DisposableButton/OpeningDoor/AnimationPlayer" method="play" binds= ["Closing"]]
 [connection signal="screen_entered" from="Level/TileMap6/TutorialTV/VisibleOnScreenNotifier2D" to="Level/TileMap6/TutorialTV/Screen" method="UpdateScreen"]
-[connection signal="ButtonPressed" from="Level/TileMap6/CameraLimitsSetter" to="Level/Player" method="SetCameraLimits" flags=6 binds= [Vector4(-100000, 100000, 1e+06, -100000), false]]
-[connection signal="ButtonPressed" from="Level/TileMap6/CameraLimitsSetter" to="Level/TileMap6/CPUParticles2D" method="set_emitting" flags=6 binds= [true]]
-[connection signal="ButtonPressed" from="Level/TileMap6/MovingTileMap/Area2D" to="Level/TileMap6/MovingTileMap/AnimationPlayer" method="play" flags=6 binds= ["Its\"Not\"Over"]]
 [connection signal="area_entered" from="Level/TileMap6/MovingTileMap/Area2D" to="Level/TileMap6/MovingTileMap/Area2D" method="AreaEntered" unbinds=1]
-[connection signal="ButtonPressed" from="Level/TileMap6/TeleporterArea" to="Level/Ambient" method="play" flags=6]
-[connection signal="ButtonPressed" from="Level/TileMap6/TeleporterArea" to="Level/TileMap6" method="queue_free" flags=7]
-[connection signal="ButtonPressed" from="Level/TileMap6/TeleporterArea" to="Level/TutorialCanvasLayer" method="Glitch" flags=6]
-[connection signal="ButtonPressed" from="Level/TileMap6/TeleporterArea" to="LevelMusicPlayer" method="StopMusic" flags=6 binds= [0.0]]
-[connection signal="ButtonPressed" from="Level/TileMap6/TeleporterArea" to="Level/SunLightLayerContainer/ChurchLightLayer" method="set_visible" binds= [false]]
-[connection signal="ButtonPressed" from="Level/TileMap6/TeleporterArea" to="Level/Player" method="set_position" flags=6 binds= [Vector2(54176, 4000)]]
-[connection signal="ButtonPressed" from="Level/TileMap6/TeleporterArea" to="Level/Player" method="SetCameraLimits" flags=6 binds= [Vector4(3520, 54656, 4032, 53696), true]]
-[connection signal="ButtonPressed" from="Level/TileMap6/TeleporterArea" to="Level/TileMap7/TutorialTV/Screen/SlippeyHead/AnimationPlayer" method="play" flags=6 binds= ["BangerFilm"]]
-[connection signal="ButtonPressed" from="Level/TileMap6/TeleporterArea" to="Level/TileMap7/TutorialTV/AnimationPlayer" method="play" flags=6 binds= ["YOUWIN"]]
-[connection signal="ButtonPressed" from="Level/TileMap6/TVAppearingTrigger" to="Level/TileMap6/TutorialTV/AnimationPlayer" method="play" flags=6 binds= ["Appearing"]]
 [connection signal="area_entered" from="Level/TileMap6/TVAppearingTrigger" to="Level/TileMap6/TVAppearingTrigger" method="AreaEntered" unbinds=1]
 [connection signal="area_entered" from="Level/TileMap6/DarkeningArea" to="Level/TileMap6/DarkeningArea/AnimationPlayer" method="Darkening" unbinds=1]
 [connection signal="area_exited" from="Level/TileMap6/DarkeningArea" to="Level/TileMap6/DarkeningArea/AnimationPlayer" method="Lightening" unbinds=1]

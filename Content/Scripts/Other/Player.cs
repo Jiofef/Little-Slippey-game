@@ -15,13 +15,18 @@ public partial class Player : CharacterBody2D
     private int _maxClimbs = 3;
     [Export] public int MaxClimbs { get { return _maxClimbs; } set { _maxClimbs = value; GetNode<TextureProgressBar>("Camera2D/ClimbsBar").MaxValue = value; } }
     private bool _enableStandingPenalty = true;
-    [Export] public bool EnableStandingPenalty {
+    [Export]
+    public bool EnableStandingPenalty
+    {
         get => _enableStandingPenalty;
 
         set
-        { _enableStandingPenalty = value;
+        {
+            _enableStandingPenalty = value;
             GetGui().Options.DisableStandBar = !value;
-            GetGui().CallDeferred("UpdateStandingBarOptions"); } }
+            GetGui().CallDeferred("UpdateStandingBarOptions");
+        }
+    }
 
     [Export] public bool EnableRigidBodyPhysics = false;
     [Export] public float RigidBodyPushForce = 8;
@@ -163,10 +168,14 @@ public partial class Player : CharacterBody2D
     public InGameGui GUI;
 
     // Player Actions
-    public enum Act { Stand, Jump, Walk, Fall, WallCatch, Climb, WallJump, DownDash, // Basic actions
-        HardJump, Tossed} // Secondary or secret actions
+    public enum Act
+    {
+        Stand, Jump, Walk, Fall, WallCatch, Climb, WallJump, DownDash, // Basic actions
+        HardJump, Tossed
+    } // Secondary or secret actions
     [ExportGroup("Actions")]
-    [Export] public Dictionary<Act, bool> DefaultActBlockedState = new Dictionary<Act, bool>()
+    [Export]
+    public Dictionary<Act, bool> DefaultActBlockedState = new Dictionary<Act, bool>()
     {
         { Act.Stand, false },
         { Act.Jump, false },
@@ -364,7 +373,7 @@ public partial class Player : CharacterBody2D
                 if ((isOnFloor && _state == State.OnFloor || _coyoteTimer > 0) && !IsActBlocked[Act.Jump])
                 {
                     Action(Act.Jump);
-                    
+
                     Motion.Y = -JumpForce;
                     _coyoteTimer = 0;
 
@@ -529,7 +538,7 @@ public partial class Player : CharacterBody2D
 
         #region Physics injection
         {
-            _moveCalculationFramesTimer ++;
+            _moveCalculationFramesTimer++;
             if (_moveCalculationFramesTimer > 2)
             {
                 _moveCalculationFramesTimer = 0;
@@ -744,11 +753,11 @@ public partial class Player : CharacterBody2D
 
         Random random = new Random();
         _corpseMotion.X = random.Next(100) > 50 ? -CORPSE_MAX_X_SPEED * XPosCoeff : CORPSE_MAX_X_SPEED * (1 - XPosCoeff);
-        
+
         _corpseMotion.Y = -8;
 
         bool IsLevelTooWide = (Camera.LimitRight - Camera.LimitLeft) > 12800;
-        
+
         if (IsLevelTooWide)
             _corpseMotion.X = random.Next(100) > 50 ? -CORPSE_MAX_X_SPEED : +CORPSE_MAX_X_SPEED;
 
@@ -858,7 +867,7 @@ public partial class Player : CharacterBody2D
         EmitSignal("CameraLimitsChanged", doResetSmoothing, value);
     }
 
-    public void SetCameraPositionSmoothingSpeed (float value)
+    public void SetCameraPositionSmoothingSpeed(float value)
     {
         Camera.PositionSmoothingSpeed = value;
     }

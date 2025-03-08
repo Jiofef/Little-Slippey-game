@@ -1,95 +1,75 @@
 using Godot;
 using System;
 
-public partial class RestlessCross : Node2D
+public partial class RestlessCross : CrossNode
 {
-    Sprite2D _crossSprite, _warningSprite;
-
-    private const int MAX_ROTATION = 45;
-
-    protected int _ticksToExplosion = 60;
-    protected float _defaultTicksToAppear = 60;
-    protected float _ticksToAppear = 0;
-
-    protected float _defaultRotation;
-    protected float _rotationGoal;
-
-    private bool _isSignaled;
-    private float _timerToExplosion;
-
-    // Visual rotating effect
-    private bool _shouldRotate = Meta.Instance.Video.CrossRotationWhenSpawning;
-
+    protected CrossRotator R;
+    protected const int TICKS_TO_APPEAR = 60;
+    protected const int TICKS_TO_START_MOVE = TICKS_TO_APPEAR - 30;
+    protected const int TICKS_TO_EXPLOSION = 90;
+    protected bool _didSignaled;
+    protected bool _shouldRotate = Meta.Instance.Video.CrossRotationWhenSpawning;
 
     public override void _Ready()
     {
         // Initializing nodes
-        _crossSprite = GetNode<Sprite2D>("CrossSprite");
-        _warningSprite = GetNode<Sprite2D>("WarningSprite");
+        NodesInit();
 
         // Spawn properties
         Scale = new Vector2(3, 3);
-        Modulate = new Color(Modulate.R, Modulate.G, Modulate.B, 0);
-
-
-        _ticksToAppear = _defaultTicksToAppear;
-
-        Random random = new Random();
-        _defaultRotation = random.Next(-180, 180);
-        RotationDegrees = _defaultRotation;
+        Modulate = new Color(1, 1, 1, 0);
 
         if (_shouldRotate)
-            _rotationGoal = random.Next(-MAX_ROTATION, MAX_ROTATION);
+            R = new(this, 180, 45);
     }
 
+    private Color _mod = new Color(1, 1, 1, 0);
     public override void _PhysicsProcess(double delta)
     {
-        if (_ticksToAppear > 0)
+        base._PhysicsProcess(delta);
+
+        if (TicksLived <= TICKS_TO_APPEAR)
         {
-            _ticksToAppear--;
-            float TicksCoeff = 1 - (_ticksToAppear / _defaultTicksToAppear);
+            float TicksCoeff = TicksLived / TICKS_TO_APPEAR;
             TicksCoeff = Mathf.Lerp(0.0f, 1.0f, 1 - (1 - TicksCoeff) * (1 - TicksCoeff) * (1 - TicksCoeff));
 
-            RotationDegrees = _defaultRotation;
             if (_shouldRotate)
-                RotationDegrees += _rotationGoal * TicksCoeff;
+                R.Rotate(TicksCoeff);
 
-            _warningSprite.GlobalPosition = _crossSprite.GlobalPosition - new Vector2(2, 2) * (3 - 2 * TicksCoeff);
+            WarningSprite.GlobalPosition = CrossSprite.GlobalPosition - new Vector2(2, 2) * (3 - 2 * TicksCoeff);
             Scale = new Vector2(3 - 2 * TicksCoeff, 3 - 2 * TicksCoeff);
-            Modulate = new Color(Modulate.R, Modulate.G, Modulate.B, TicksCoeff);
-        }
-        if (_ticksToExplosion > 0 && (_ticksToAppear <= 0 || _ticksToAppear <= 30))
-        {
-            if (!_isSignaled)
-            {
-                _isSignaled = true;
-                GetNode<AudioStreamPlayer>("StartSignal").Play();
-            }
-            Translate(new Vector2(10f * _timerToExplosion, 0).Rotated(Rotation));
-            _timerToExplosion += 0.016667f;
-            _ticksToExplosion--;
-        }
-        else if (_ticksToExplosion <= 0)
-        {
-            var explosionAnimation = GetNode<AnimatedSprite2D>("ExplosionAnimation");
-            var explosiveArea = GetNode<CollisionShape2D>("ExplosiveArea/CollisionShape2D");
 
-            if (!explosionAnimation.IsPlaying())
+            _mod.A = TicksCoeff;
+            Modulate = _mod;
+        }
+
+        if (TicksLived >= TICKS_TO_START_MOVE && TicksLived < TICKS_TO_EXPLOSION)
+        {
+            if (!_didSignaled)
             {
-                _crossSprite.QueueFree();
-                _warningSprite.QueueFree();
-                GetNode<AudioStreamPlayer>("ExplosionSound").Play();
-                explosionAnimation.Visible = true;
-                explosionAnimation.Play();
-                explosiveArea.Disabled = false;
-                return;
+                _didSignaled = true;
+                GetNode<AudioStreamPlayer>("StartSignal").Play();   
             }
 
-            explosiveArea.Disabled = true;
-            SetPhysicsProcess(false);
-
-            foreach (var group in GetGroups())
-                RemoveFromGroup(group);
+            Translate(new Vector2(10f * (TicksLived - TICKS_TO_START_MOVE) / 60f, 0).Rotated(Rotation));
         }
+        else if (TicksLived >= TICKS_TO_EXPLOSION)
+        {
+            Explode();
+        }
+    }
+
+    public override void Respawn()
+    {
+        base.Respawn();
+        _shouldRotate = Meta.Instance.Video.CrossRotationWhenSpawning;
+
+        Scale = new Vector2(3, 3);
+        Modulate = new Color(1, 1, 1, 0);
+        R?.Randomize();
+        CrossSprite.Visible = true;
+        WarningSprite.Visible = true;
+        ExplosionAnimation.Visible = false;
+        _didSignaled = false;
     }
 }

@@ -1,15 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://c8sdugxtwovh6"]
+[gd_scene load_steps=6 format=3 uid="uid://c8sdugxtwovh6"]
 
 [ext_resource type="Texture2D" uid="uid://daihu7vaujeu7" path="res://Content/Sprites/Crosses/BlueElementalCrossPart.png" id="2"]
 [ext_resource type="AudioStream" uid="uid://bia3ek48x2oph" path="res://Content/Sounds/Crosses/MicroExplosion.mp3" id="2_ph2ue"]
 [ext_resource type="Script" uid="uid://beew6fxjddvs0" path="res://Content/Scripts/Crosses/BlueElementalCrossPart.cs" id="3"]
 [ext_resource type="PackedScene" uid="uid://bln6ojf3x2auj" path="res://Content/Scenes/Crosses/SmallExplosionAnimation.tscn" id="4_jn1o5"]
-
-[sub_resource type="Curve2D" id="2"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 123, 358)
-}
-point_count = 2
 
 [sub_resource type="CircleShape2D" id="1"]
 radius = 20.0
@@ -25,22 +19,17 @@ volume_db = 5.0
 stream = ExtResource("2_ph2ue")
 volume_db = -7.0
 
-[node name="Path2D" type="Path2D" parent="."]
-curve = SubResource("2")
-
-[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
-rotates = false
-
-[node name="ExplosiveArea" type="Area2D" parent="Path2D/PathFollow2D"]
+[node name="ExplosiveArea" type="Area2D" parent="."]
 collision_layer = 16
 collision_mask = 8
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Path2D/PathFollow2D/ExplosiveArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExplosiveArea"]
 shape = SubResource("1")
 disabled = true
 
-[node name="Sprite2D" type="Sprite2D" parent="Path2D/PathFollow2D"]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(5, 5)
 texture = ExtResource("2")
 
-[node name="ExplosionAnimation" parent="Path2D/PathFollow2D" instance=ExtResource("4_jn1o5")]
+[node name="ExplosionAnimation" parent="." instance=ExtResource("4_jn1o5")]
+DeleteWhenFinished = false

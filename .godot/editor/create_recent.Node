@@ -1,3 +1,4 @@
+Node
 ParallaxBackground
 TileMap
 Node2D
@@ -12,4 +13,3 @@ DirectionalLight2D
 WorldEnvironment
 TileMapLayer
 LightOccluder2D
-SubViewport

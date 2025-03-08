@@ -210,7 +210,7 @@ public partial class Crosses : Node
             new Cross("Cross1", 30, 600),
             new Cross("Cross2", 30, 170),
             new Cross("Cross3", 30, 80),
-            new Cross("Cross4", 30, 40, 200),
+            new Cross("Cross4", 30, 40, 400),
             new Cross("Cross5", 30, 110),
         };
         Cross goldenCross = new Cross("GoldenCross");
@@ -236,7 +236,7 @@ public partial class Crosses : Node
             new Cross("EnhancedCross1", 30, 650),
             new Cross("EnhancedCross2", 30, 265),
             new Cross("EnhancedCross3", 30, 45),
-            new Cross("EnhancedCross4", 30, 15, 200),
+            new Cross("EnhancedCross4", 30, 15, 400),
             new Cross("EnhancedCross5", 30, 25),
         };
         Cross goldenCross = new Cross("EnhancedGoldenCross");
@@ -335,6 +335,8 @@ public partial class Crosses : Node
             AreAllCrossWeightsSet = true;
             LastAviableCrossNumber = CrossesWeight.Length - 1;
         }
+
+        OtherTools.PrintAnArray(CrossesWeight);
     }
 
     private static float _lastWeightUpdateScore = 0;

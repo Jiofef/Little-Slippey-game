@@ -128,7 +128,7 @@ public partial class G : Node
     #region May be used however you want
     public static bool IsProgressPaused = false, // Enables or disables the earning of points and increasing the difficulty of crosses
                        IsCrossesEnabled = true, // Enables or disables the spawn of crosses
-                       IsDebugEnabled = false, // If enabled, Alt+Z enables immortality, Alt+X disables player's physics, Alt+C disables the crosses. Also Alt + scrolling up your mouse wheel gives you +5 scores for every "scroll step" (Alt + scrolling down does the opposite)
+                       IsDebugEnabled = true, // If enabled, Alt+Z enables immortality, Alt+X disables player's physics, Alt+C disables the crosses. Also Alt + scrolling up your mouse wheel gives you +5 scores for every "scroll step" (Alt + scrolling down does the opposite)
                        
                        DidLevelIntroPassed, // If the intro is missing or changed in your level, you may want to set this value yourself
                        WasTheLevelRestarted; // Essentially a continuation of the previous variable. But this one obviously has the difference that it becomes true only when the level is reloaded

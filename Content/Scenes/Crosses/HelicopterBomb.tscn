@@ -46,6 +46,7 @@ disabled = true
 
 [node name="ExplosionAnimation" parent="." instance=ExtResource("3_c65yf")]
 scale = Vector2(3, 3)
+DeleteWhenFinished = false
 
 [connection signal="body_entered" from="Hitbox" to="." method="Explosion" unbinds=1]
 [connection signal="timeout" from="Hitbox/EnablingTimer" to="Hitbox/CollisionShape2D" method="set_disabled" flags=6 binds= [false]]
