@@ -1,0 +1,223 @@
+[gd_scene load_steps=10 format=4 uid="uid://d1wkus3syv8ms"]
+
+[ext_resource type="Texture2D" uid="uid://blju7km18lxu0" path="res://Content/Sprites/Levels/Level8/BackLayer.png" id="1_kygxx"]
+[ext_resource type="Texture2D" uid="uid://dmrf7wrobrp34" path="res://Content/Sprites/Levels/Level8/FrontLayer.png" id="2_o6ysa"]
+[ext_resource type="Texture2D" uid="uid://duk32e0otnfky" path="res://Content/Sprites/Levels/FuckItVolume2Tileset.png" id="3_oqvix"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wv2uq"]
+texture = ExtResource("3_oqvix")
+0:0/next_alternative_id = 2
+0:0/0 = 0
+0:0/1 = 1
+0:0/1/transpose = true
+1:0/next_alternative_id = 4
+1:0/0 = 0
+1:0/1 = 1
+1:0/1/transpose = true
+1:0/2 = 2
+1:0/2/flip_h = true
+1:0/3 = 3
+1:0/3/flip_v = true
+1:0/3/transpose = true
+2:0/next_alternative_id = 4
+2:0/0 = 0
+2:0/1 = 1
+2:0/1/flip_h = true
+2:0/2 = 2
+2:0/2/flip_h = true
+2:0/2/flip_v = true
+2:0/3 = 3
+2:0/3/flip_v = true
+3:0/next_alternative_id = 4
+3:0/0 = 0
+3:0/1 = 1
+3:0/1/transpose = true
+3:0/2 = 2
+3:0/2/flip_v = true
+3:0/3 = 3
+3:0/3/flip_h = true
+3:0/3/transpose = true
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+0:4/0 = 0
+0:2/0 = 0
+3:1/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+0:3/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_nowum"]
+physics_layer_0/collision_layer = 4
+physics_layer_0/collision_mask = 0
+sources/1 = SubResource("TileSetAtlasSource_wv2uq")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wo38c"]
+texture = ExtResource("3_oqvix")
+0:0/next_alternative_id = 2
+0:0/0 = 0
+0:0/1 = 1
+0:0/1/transpose = true
+1:0/next_alternative_id = 5
+1:0/0 = 0
+1:0/1 = 1
+1:0/1/transpose = true
+1:0/2 = 2
+1:0/2/flip_h = true
+1:0/3 = 3
+1:0/3/flip_v = true
+1:0/3/transpose = true
+2:0/next_alternative_id = 4
+2:0/0 = 0
+2:0/1 = 1
+2:0/1/flip_h = true
+2:0/2 = 2
+2:0/2/flip_h = true
+2:0/2/flip_v = true
+2:0/3 = 3
+2:0/3/flip_v = true
+3:0/next_alternative_id = 4
+3:0/0 = 0
+3:0/1 = 1
+3:0/1/transpose = true
+3:0/2 = 2
+3:0/2/flip_v = true
+3:0/3 = 3
+3:0/3/flip_h = true
+3:0/3/transpose = true
+0:1/0 = 0
+2:1/0 = 0
+1:1/0 = 0
+0:3/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+3:1/0 = 0
+0:4/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_wtx08"]
+sources/0 = SubResource("TileSetAtlasSource_wo38c")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4su74"]
+texture = ExtResource("3_oqvix")
+0:0/next_alternative_id = 2
+0:0/0 = 0
+0:0/1 = 1
+0:0/1/transpose = true
+1:0/next_alternative_id = 5
+1:0/0 = 0
+1:0/1 = 1
+1:0/1/transpose = true
+1:0/2 = 2
+1:0/2/flip_h = true
+1:0/3 = 3
+1:0/3/flip_v = true
+1:0/3/transpose = true
+2:0/next_alternative_id = 4
+2:0/0 = 0
+2:0/1 = 1
+2:0/1/flip_h = true
+2:0/2 = 2
+2:0/2/flip_h = true
+2:0/2/flip_v = true
+2:0/3 = 3
+2:0/3/flip_v = true
+3:0/next_alternative_id = 4
+3:0/0 = 0
+3:0/1 = 1
+3:0/1/transpose = true
+3:0/2 = 2
+3:0/2/flip_v = true
+3:0/3 = 3
+3:0/3/flip_h = true
+3:0/3/transpose = true
+0:1/0 = 0
+2:1/0 = 0
+1:1/0 = 0
+0:3/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+3:1/0 = 0
+0:4/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_pr7u5"]
+sources/0 = SubResource("TileSetAtlasSource_4su74")
+
+[node name="PresentedLevel8" type="Node2D"]
+
+[node name="Background" type="Node2D" parent="."]
+
+[node name="BackLayer" type="Sprite2D" parent="Background"]
+position = Vector2(580, 320)
+scale = Vector2(4, 4)
+texture = ExtResource("1_kygxx")
+
+[node name="FrontLayer" type="Sprite2D" parent="Background"]
+position = Vector2(580, 320)
+scale = Vector2(4, 4)
+texture = ExtResource("2_o6ysa")
+
+[node name="Fog" type="ColorRect" parent="Background"]
+offset_left = -60.0
+offset_top = -64.0
+offset_right = 1220.0
+offset_bottom = 704.0
+color = Color(0.117647, 0, 0, 0.313726)
+
+[node name="TileMap" type="TileMapLayer" parent="."]
+use_parent_material = true
+scale = Vector2(4, 4)
+tile_map_data = PackedByteArray("AAAAAAoAAQACAAEAAAABAP//AQABAAEAAAABAAoAAQACAAEAAAACAP//AQABAAEAAAACAAoAAQACAAEAAAADAP//AQABAAEAAAADAAoAAQACAAEAAAAEAP//AQABAAEAAAAEAAoAAQACAAEAAAAFAP//AQABAAEAAAAFAAoAAQACAAEAAAAGAP//AQABAAEAAAAGAAoAAQACAAEAAAAHAP//AQABAAEAAAAHAAoAAQACAAEAAAAIAP//AQABAAEAAAAIAAoAAQACAAEAAAAJAP//AQABAAEAAAAJAAoAAQACAAEAAAAKAP//AQABAAEAAAAKAAoAAQACAAEAAAALAP//AQACAAAAAgALAAoAAQACAAAAAQAMAP//AQADAAAAAgAMAAoAAQAAAAAAAAANAP//AQADAAAAAgANAAoAAQAAAAAAAAAOAP//AQADAAAAAgAOAAYAAQADAAAAAgAOAAoAAQAAAAAAAAAPAP//AQADAAAAAgAPAAYAAQADAAAAAgAPAAoAAQAAAAAAAAAQAP//AQADAAAAAgAQAAoAAQAAAAAAAAARAP//AQADAAAAAgARAAoAAQAAAAAAAAADAAYAAQABAAMAAAAEAAYAAQABAAMAAAAFAAYAAQACAAMAAAAFAAcAAQADAAMAAAAFAAgAAQADAAMAAAAFAAkAAQADAAMAAAAGAAYAAQABAAMAAAAHAAYAAQABAAMAAAAIAAYAAQACAAMAAAAIAAcAAQADAAMAAAAIAAgAAQADAAMAAAAIAAkAAQADAAMAAAAJAAYAAQABAAMAAAAKAAYAAQABAAMAAAALAAAAAQAAAAAAAQALAAEAAQAAAAAAAQALAAIAAQAAAAAAAQALAAYAAQADAAAAAwALAAcAAQAAAAAAAQALAAgAAQAAAAAAAQALAAkAAQAAAAAAAQD//woAAQACAAEAAAASAAkAAQADAAAAAwASAAgAAQADAAAAAwASAAcAAQADAAAAAwASAAYAAQADAAAAAwASAAUAAQADAAAAAwASAAQAAQADAAAAAwASAAMAAQACAAAAAgASAAEAAQACAAAAAQASAAAAAQADAAAAAwASAP//AQADAAAAAgASAAoAAQADAAAAAAAAAP//AQABAAEAAAD/////AQABAAEAAAA=")
+tile_set = SubResource("TileSet_nowum")
+
+[node name="Railings" type="TileMapLayer" parent="TileMap"]
+z_index = 1
+use_parent_material = true
+tile_map_data = PackedByteArray("AAAFAAUAAAAAAAQAAAAGAAUAAAAAAAQAAAAHAAUAAAAAAAQAAAAIAAUAAAAAAAQAAAAJAAUAAAAAAAQAAAAKAAUAAAAAAAQAAAA=")
+tile_set = SubResource("TileSet_wtx08")
+
+[node name="CollapsingBridge" type="TileMapLayer" parent="TileMap"]
+show_behind_parent = true
+use_parent_material = true
+position = Vector2(15, -11)
+rotation = -1.0472
+tile_map_data = PackedByteArray("AAD6/wUAAAABAAMAAAA=")
+tile_set = SubResource("TileSet_wtx08")
+
+[node name="DecorationTile>;(" type="TileMapLayer" parent="."]
+modulate = Color(0.392157, 0.392157, 0.392157, 1)
+use_parent_material = true
+scale = Vector2(4, 4)
+tile_map_data = PackedByteArray("AAASAAIAAAABAAIAAAA=")
+tile_set = SubResource("TileSet_pr7u5")
+
+[node name="DecorationMap" type="TileMapLayer" parent="."]
+modulate = Color(0.588235, 0.588235, 0.588235, 1)
+use_parent_material = true
+scale = Vector2(4, 4)
+tile_map_data = PackedByteArray("AAALAAMAAAAAAAAAAQALAAQAAAAAAAAAAQALAAUAAAAAAAAAAQAMAAAAAAAAAAMAAAAMAAEAAAABAAIAAAAMAAIAAAABAAIAAAAMAAMAAAABAAIAAAAMAAQAAAABAAIAAAAMAAUAAAABAAIAAAAMAAYAAAAAAAAAAAAMAAcAAAABAAIAAAAMAAgAAAABAAIAAAAMAAkAAAABAAIAAAANAAAAAAABAAIAAAANAAEAAAABAAIAAAANAAIAAAABAAIAAAANAAMAAAABAAIAAAANAAQAAAACAAIAAAANAAUAAAABAAIAAAANAAYAAAAAAAAAAAANAAcAAAABAAIAAAANAAgAAAACAAIAAAANAAkAAAABAAIAAAAOAAAAAAABAAIAAAAOAAEAAAABAAIAAAAOAAIAAAABAAIAAAAOAAMAAAABAAIAAAAOAAQAAAABAAIAAAAOAAUAAAABAAIAAAAOAAcAAAADAAAAAwAOAAgAAAADAAAAAwAOAAkAAAADAAAAAwAPAAAAAAACAAIAAAAPAAEAAAABAAIAAAAPAAIAAAACAAIAAAAPAAMAAAABAAIAAAAPAAQAAAABAAIAAAAPAAUAAAABAAIAAAAPAAcAAAADAAAAAQAPAAgAAAADAAAAAQAPAAkAAAADAAAAAQAQAAAAAAABAAIAAAAQAAEAAAABAAIAAAAQAAIAAAABAAIAAAAQAAMAAAABAAIAAAAQAAQAAAABAAIAAAAQAAUAAAABAAIAAAAQAAYAAAAAAAAAAAAQAAcAAAABAAIAAAAQAAgAAAABAAIAAAAQAAkAAAABAAIAAAARAAAAAAAAAAMAAAARAAEAAAABAAIAAAARAAIAAAADAAIAAAARAAMAAAABAAIAAAARAAQAAAABAAIAAAARAAUAAAACAAIAAAARAAYAAAAAAAAAAAARAAcAAAABAAIAAAARAAgAAAADAAIAAAARAAkAAAABAAIAAAA=")
+tile_set = SubResource("TileSet_wtx08")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(576, 320)
+zoom = Vector2(0.6, 0.6)
+
+[node name="Fog?" type="ColorRect" parent="."]
+offset_left = -64.0
+offset_top = -64.0
+offset_right = 1220.0
+offset_bottom = 704.0
+color = Color(0.196078, 0, 0, 0.117647)

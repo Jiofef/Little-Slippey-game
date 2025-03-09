@@ -10,9 +10,7 @@ public partial class CannonCross : UnusualCrossNode
     public CollisionShape2D BallCollision;
     private float _ballYMotion = 0.5f, _appearedCoeff = 0, _afterShotCoeff = 0;
 
-    private Rect2 _ballBounds = new Rect2(
-        G.CameraLimits.Position + new Vector2(-256, -256),
-        G.CameraLimits.Size + new Vector2(256, 512));
+    private Rect2 _ballBounds;
 
     private bool _didCannonShot, _isLevelTooWide = G.CameraLimits.Size.X / G.CameraLimits.Size.Y > 10;
     public override void _Ready()
@@ -30,9 +28,9 @@ public partial class CannonCross : UnusualCrossNode
         ChargeSound = GetNode<AudioStreamPlayer>("PathFollow2D/Cannon/Sounds/Charge");
         #endregion
 
-
-
-        // 25 and 125 are off-camera positions that don't show the sudden appearance of the cannon
+        _ballBounds = new Rect2(
+        G.CameraLimits.Position + new Vector2(-256, -256),
+        G.CameraLimits.Size + new Vector2(512, 512));
 
         // If level is too wide or infinite
         if (_isLevelTooWide)
@@ -162,6 +160,6 @@ public partial class CannonCross : UnusualCrossNode
 
         _ballBounds = new Rect2(
         G.CameraLimits.Position + new Vector2(-256, -256),
-        G.CameraLimits.Size + new Vector2(256, 512));
+        G.CameraLimits.Size + new Vector2(512, 512));
     }
 }

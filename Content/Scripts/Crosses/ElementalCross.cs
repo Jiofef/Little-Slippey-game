@@ -62,7 +62,7 @@ public partial class ElementalCross : UnusualCrossNode
         {
             _ticksToAppear--;
             float TicksCoeff = 1 - (_ticksToAppear / _defaultTicksToAppear);
-            TicksCoeff = Mathf.Lerp(0.0f, 1.0f, 1 - (1 - TicksCoeff) * (1 - TicksCoeff) * (1 - TicksCoeff));
+            TicksCoeff = MathTools.EaseOut(TicksCoeff, 2);
 
             if (_shouldRotate)
                 RotationDegrees += _rotationDirection * Mathf.Sqrt(_ticksToAppear / _defaultTicksToAppear);
@@ -195,18 +195,47 @@ public partial class ElementalCross : UnusualCrossNode
 
 abstract public partial class ElementalCrossPart : CrossNode
 {
+    [Signal] public delegate void ElementExplodedEventHandler();
+
     public Vector2 PathVec;
     public Vector2 StartPosition;
     public void RandomizePathVec(Rect2 vecBounds)
     {
-        StartPosition = Position;
+        StartPosition = GlobalPosition;
         PathVec = RandomTools.RandomVectorIn(vecBounds);
     }
-    public float LifeTime, TimeLived = 0f;
+    public float LifeTime, TimeLived = 0f, MoveCoeff = 1;
 
-    public void UpdatePosition(float coeff)
+    public virtual void UpdatePosition(float coeff)
     {
-        Position = StartPosition + PathVec * (TimeLived / LifeTime);
+        GlobalPosition = StartPosition + PathVec * MathTools.EaseOut(TimeLived / LifeTime, coeff);
+    }
+    protected Color _mod = new Color(1, 1, 1, 0);
+    const float MODULATE_GROWTH_SPEED = 0.1f;
+    public override void _PhysicsProcess(double delta)
+    {
+        base._PhysicsProcess(delta);
+        TimeLived += G.FLOAT_DELTA;
+
+        if (TimeLived < LifeTime)
+        {
+            UpdatePosition(MoveCoeff);
+
+            _mod.A += MODULATE_GROWTH_SPEED;
+            CrossSprite.Modulate = _mod;
+        }
+        else
+        {
+            EmitSignal("ElementExploded");
+            Explode();
+        }
+    }
+
+    public override void Respawn()
+    {
+        base.Respawn();
+
+        UpdatePosition(MoveCoeff);
     }
 
     public override void NodesInit()

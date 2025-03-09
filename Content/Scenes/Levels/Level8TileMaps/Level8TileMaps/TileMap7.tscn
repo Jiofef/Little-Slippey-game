@@ -1,0 +1,543 @@
+[gd_scene load_steps=30 format=4 uid="uid://8pub57isffbv"]
+
+[ext_resource type="PackedScene" uid="uid://buj5ooik0q3l0" path="res://Content/Scenes/Achievements/AchievementArea.tscn" id="2_0hp2c"]
+[ext_resource type="PackedScene" uid="uid://dgxxv3neagyw" path="res://Content/Scenes/Other/Level8DisposableButton.tscn" id="2_5k45f"]
+[ext_resource type="Texture2D" uid="uid://duk32e0otnfky" path="res://Content/Sprites/Levels/FuckItVolume2Tileset.png" id="2_76mna"]
+[ext_resource type="PackedScene" uid="uid://bt41vubjcqv8p" path="res://Content/Scenes/Crosses/ExplosionAnimation.tscn" id="3_isuv8"]
+[ext_resource type="Texture2D" uid="uid://8ddls1rsr5x" path="res://Content/Sprites/Other/EXPOLZION.png" id="5_ax7ap"]
+[ext_resource type="AudioStream" uid="uid://djlnmwp104edh" path="res://Content/Sounds/Crosses/MegaExplosion.mp3" id="5_gfefn"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wv2uq"]
+texture = ExtResource("2_76mna")
+0:0/next_alternative_id = 2
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:0/1 = 1
+0:0/1/transpose = true
+0:0/1/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:0/next_alternative_id = 4
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:0/1 = 1
+1:0/1/transpose = true
+1:0/1/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:0/2 = 2
+1:0/2/flip_h = true
+1:0/2/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:0/3 = 3
+1:0/3/flip_v = true
+1:0/3/transpose = true
+1:0/3/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:0/next_alternative_id = 4
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:0/1 = 1
+2:0/1/flip_h = true
+2:0/1/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:0/2 = 2
+2:0/2/flip_h = true
+2:0/2/flip_v = true
+2:0/2/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:0/3 = 3
+2:0/3/flip_v = true
+2:0/3/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:0/next_alternative_id = 4
+3:0/0 = 0
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:0/1 = 1
+3:0/1/transpose = true
+3:0/1/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:0/2 = 2
+3:0/2/flip_v = true
+3:0/2/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:0/3 = 3
+3:0/3/flip_h = true
+3:0/3/transpose = true
+3:0/3/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:1/0 = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:1/0 = 0
+2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:3/0 = 0
+1:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, -1, -8, -1)
+2:3/0 = 0
+2:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, -1, 4, -1, 4, 8, -4, 8, -4, -1, -8, -1)
+3:3/0 = 0
+3:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -8, 4, -8, 4, 8, -4, 8)
+0:4/0 = 0
+0:2/0 = 0
+0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:1/0 = 0
+3:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+0:3/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_gtmsj"]
+physics_layer_0/collision_layer = 4
+physics_layer_0/collision_mask = 0
+sources/1 = SubResource("TileSetAtlasSource_wv2uq")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ua1ox"]
+texture = ExtResource("2_76mna")
+0:0/next_alternative_id = 2
+0:0/0 = 0
+0:0/1 = 1
+0:0/1/transpose = true
+1:0/next_alternative_id = 5
+1:0/0 = 0
+1:0/1 = 1
+1:0/1/transpose = true
+1:0/2 = 2
+1:0/2/flip_h = true
+1:0/3 = 3
+1:0/3/flip_v = true
+1:0/3/transpose = true
+2:0/next_alternative_id = 4
+2:0/0 = 0
+2:0/1 = 1
+2:0/1/flip_h = true
+2:0/2 = 2
+2:0/2/flip_h = true
+2:0/2/flip_v = true
+2:0/3 = 3
+2:0/3/flip_v = true
+3:0/next_alternative_id = 4
+3:0/0 = 0
+3:0/1 = 1
+3:0/1/transpose = true
+3:0/2 = 2
+3:0/2/flip_v = true
+3:0/3 = 3
+3:0/3/flip_h = true
+3:0/3/transpose = true
+0:1/0 = 0
+2:1/0 = 0
+1:1/0 = 0
+0:3/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+3:1/0 = 0
+0:4/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_s0rms"]
+sources/0 = SubResource("TileSetAtlasSource_ua1ox")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wo38c"]
+texture = ExtResource("2_76mna")
+0:0/next_alternative_id = 2
+0:0/0 = 0
+0:0/1 = 1
+0:0/1/transpose = true
+1:0/next_alternative_id = 5
+1:0/0 = 0
+1:0/1 = 1
+1:0/1/transpose = true
+1:0/2 = 2
+1:0/2/flip_h = true
+1:0/3 = 3
+1:0/3/flip_v = true
+1:0/3/transpose = true
+2:0/next_alternative_id = 4
+2:0/0 = 0
+2:0/1 = 1
+2:0/1/flip_h = true
+2:0/2 = 2
+2:0/2/flip_h = true
+2:0/2/flip_v = true
+2:0/3 = 3
+2:0/3/flip_v = true
+3:0/next_alternative_id = 4
+3:0/0 = 0
+3:0/1 = 1
+3:0/1/transpose = true
+3:0/2 = 2
+3:0/2/flip_v = true
+3:0/3 = 3
+3:0/3/flip_h = true
+3:0/3/transpose = true
+0:1/0 = 0
+2:1/0 = 0
+1:1/0 = 0
+0:3/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+3:1/0 = 0
+0:4/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_sdcfh"]
+sources/0 = SubResource("TileSetAtlasSource_wo38c")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iewxf"]
+size = Vector2(16, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tpii1"]
+size = Vector2(72, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_36kcc"]
+size = Vector2(112, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0sg1q"]
+atlas = ExtResource("5_ax7ap")
+region = Rect2(0, 0, 216, 216)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vbwc3"]
+atlas = ExtResource("5_ax7ap")
+region = Rect2(216, 0, 216, 216)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kkkdu"]
+atlas = ExtResource("5_ax7ap")
+region = Rect2(432, 0, 216, 216)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_10kc4"]
+atlas = ExtResource("5_ax7ap")
+region = Rect2(648, 0, 216, 216)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wlnef"]
+atlas = ExtResource("5_ax7ap")
+region = Rect2(0, 216, 216, 216)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cyvy0"]
+atlas = ExtResource("5_ax7ap")
+region = Rect2(216, 216, 216, 216)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g543n"]
+atlas = ExtResource("5_ax7ap")
+region = Rect2(432, 216, 216, 216)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bc5jh"]
+atlas = ExtResource("5_ax7ap")
+region = Rect2(648, 216, 216, 216)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rsvv3"]
+atlas = ExtResource("5_ax7ap")
+region = Rect2(0, 432, 216, 216)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uqqpr"]
+atlas = ExtResource("5_ax7ap")
+region = Rect2(216, 432, 216, 216)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f4x1y"]
+atlas = ExtResource("5_ax7ap")
+region = Rect2(432, 432, 216, 216)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0gsxw"]
+atlas = ExtResource("5_ax7ap")
+region = Rect2(648, 432, 216, 216)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ysh1g"]
+atlas = ExtResource("5_ax7ap")
+region = Rect2(0, 648, 216, 216)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hde38"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0sg1q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vbwc3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kkkdu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_10kc4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wlnef")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cyvy0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g543n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bc5jh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rsvv3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uqqpr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f4x1y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0gsxw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ysh1g")
+}],
+"loop": false,
+"name": &"default",
+"speed": 12.0
+}]
+
+[node name="TileMap" type="TileMapLayer"]
+use_parent_material = true
+scale = Vector2(4, 4)
+tile_map_data = PackedByteArray("AAAAAP3/AQABAAEAAAAAAP7/AQABAAEAAAAAAP//AQABAAEAAAAAAAoAAQACAAEAAAAAAAsAAQABAAEAAAAAAAwAAQABAAEAAAABAP3/AQABAAEAAAABAP7/AQABAAEAAAABAP//AQABAAEAAAABAAoAAQACAAEAAAABAAsAAQABAAEAAAABAAwAAQABAAEAAAACAP3/AQABAAEAAAACAP7/AQABAAEAAAACAP//AQABAAEAAAACAAoAAQACAAEAAAACAAsAAQABAAEAAAACAAwAAQABAAEAAAADAP3/AQABAAEAAAADAP7/AQABAAEAAAADAP//AQABAAEAAAADAAoAAQACAAEAAAADAAsAAQABAAEAAAADAAwAAQABAAEAAAAEAP3/AQABAAEAAAAEAP7/AQABAAEAAAAEAP//AQABAAEAAAAEAAoAAQACAAEAAAAEAAsAAQABAAEAAAAEAAwAAQABAAEAAAAFAP3/AQABAAEAAAAFAP7/AQABAAEAAAAFAP//AQABAAEAAAAFAAoAAQACAAEAAAAFAAsAAQABAAEAAAAFAAwAAQABAAEAAAAGAP3/AQABAAEAAAAGAP7/AQABAAEAAAAGAP//AQABAAEAAAAGAAoAAQACAAEAAAAGAAsAAQABAAEAAAAGAAwAAQABAAEAAAAHAP3/AQABAAEAAAAHAP7/AQADAAEAAAAHAP//AQABAAEAAAAHAAoAAQACAAEAAAAHAAsAAQABAAEAAAAHAAwAAQABAAEAAAAIAP3/AQADAAEAADAIAP7/AQADAAEAAAAIAP//AQABAAEAAAAIAAoAAQACAAEAAAAIAAsAAQABAAEAAAAIAAwAAQADAAEAAAAJAP3/AQADAAEAADAJAP7/AQADAAEAADAJAP//AQABAAEAAAAJAAoAAQACAAEAAAAJAAsAAQABAAEAAAAJAAwAAQADAAEAADAKAP3/AQADAAEAADAKAP7/AQABAAEAAAAKAP//AQABAAEAAAALAP3/AQADAAEAADALAP7/AQABAAEAAAALAP//AQABAAEAAAAMAP3/AQADAAEAAAAMAP7/AQABAAEAAAAMAP//AQABAAEAAAANAP3/AQABAAEAAAANAP7/AQABAAEAAAANAP//AQABAAEAAAAOAP3/AQABAAEAAAAOAP7/AQABAAEAAAAOAP//AQABAAEAAAAPAP3/AQABAAEAAAAPAP7/AQABAAEAAAAPAP//AQABAAEAAAAQAP3/AQABAAEAAAAQAP7/AQABAAEAAAAQAP//AQABAAEAAAAQAAwAAQABAAEAAAARAP3/AQABAAEAAAARAP7/AQABAAEAAAARAP//AQABAAEAAAARAAwAAQABAAEAAAASAP3/AQABAAEAAAASAP7/AQABAAEAAAASAP//AQABAAEAAAASAAwAAQABAAEAAAATAP3/AQABAAEAAAATAP7/AQADAAEAADATAP//AQABAAEAAAATAAwAAQABAAEAAAAUAP3/AQABAAEAAAAUAP7/AQADAAEAAAAUAP//AQABAAEAAAAUAAwAAQABAAEAAAAVAP3/AQABAAEAAAAVAP7/AQADAAEAABAVAP//AQABAAEAAAAVAAwAAQABAAEAAAAWAP3/AQADAAEAAAAWAP7/AQABAAEAAAAWAP//AQABAAEAAAAWAAwAAQABAAEAAAAXAP3/AQABAAEAAAAXAP7/AQABAAEAAAAXAP//AQABAAEAAAAXAAwAAQADAAEAADAYAP3/AQABAAEAAAAYAP7/AQABAAEAAAAYAP//AQABAAEAAAAYAAwAAQABAAEAAAAZAP3/AQABAAEAAAAZAP7/AQABAAEAAAAZAP//AQABAAEAAAAZAAwAAQABAAEAAAAaAP3/AQABAAEAAAAaAP7/AQABAAEAAAAaAP//AQABAAEAAAAaAAwAAQABAAEAAAAbAP3/AQABAAEAAAAbAP7/AQABAAEAAAAbAP//AQABAAEAAAAbAAwAAQABAAEAAAAcAP3/AQABAAEAAAAcAP7/AQABAAEAAAAcAP//AQABAAEAAAAcAAwAAQABAAEAAAAdAP3/AQABAAEAAAAdAP7/AQABAAEAAAAdAP//AQABAAEAAAAdAAwAAQADAAEAADAeAP3/AQABAAEAAAAeAP7/AQABAAEAAAAeAP//AQABAAEAAAAeAAwAAQADAAEAADAfAP3/AQABAAEAAAAfAP7/AQABAAEAAAAfAP//AQABAAEAAAAfAAwAAQADAAEAAAAgAP3/AQABAAEAAAAgAP7/AQADAAEAADAgAP//AQABAAEAAAAgAAwAAQABAAEAAAAhAP3/AQADAAEAAAAhAP7/AQADAAEAADAhAP//AQABAAEAAAAhAAwAAQABAAEAAAAiAP3/AQADAAEAADAiAP7/AQADAAEAADAiAP//AQABAAEAAAAiAAwAAQABAAEAAAAjAP3/AQADAAEAABAjAP7/AQADAAEAAAAjAP//AQABAAEAAAAjAAwAAQABAAEAAAAkAP3/AQABAAEAAAAkAP7/AQADAAEAAAAkAP//AQABAAEAAAAkAAwAAQABAAEAAAAlAP3/AQADAAEAADAlAP7/AQADAAEAADAlAP//AQABAAEAAAAlAAwAAQABAAEAAAAmAP7/AQADAAEAADAmAP//AQABAAEAAAAmAAwAAQABAAEAAAAnAP3/AQABAAEAAAAnAP7/AQABAAEAAAAnAP//AQABAAEAAAAnAAwAAQADAAEAABAKAAoAAQABAAEAAAAKAAsAAQABAAEAAAAKAAwAAQADAAEAABALAAoAAQABAAEAAAALAAsAAQADAAEAADALAAwAAQADAAEAADAMAAoAAQABAAEAAAAMAAsAAQADAAEAABAMAAwAAQADAAEAADANAAoAAQABAAEAAAANAAsAAQABAAEAAAANAAwAAQADAAEAADAOAAoAAQABAAEAAAAOAAsAAQABAAEAAAAOAAwAAQABAAEAAAAPAAwAAQABAAEAAAAPAAoAAQABAAEAAAAPAAsAAQABAAEAAAAQAAoAAQACAAEAAAAQAAsAAQABAAEAAAARAAoAAQACAAEAAAARAAsAAQABAAEAAAASAAoAAQADAAEAABASAAsAAQABAAEAAAATAAoAAQADAAEAADATAAsAAQABAAEAAAAUAAsAAQABAAEAAAAVAAoAAQADAAEAAAAVAAsAAQADAAEAABAWAAoAAQADAAEAADAWAAsAAQADAAEAADAXAAoAAQADAAEAADAXAAsAAQADAAEAABAYAAoAAQADAAEAADAYAAsAAQADAAEAADAZAAoAAQADAAEAABAZAAsAAQABAAEAAAAaAAoAAQACAAEAAAAaAAsAAQABAAEAAAAbAAoAAQACAAEAAAAbAAsAAQABAAEAAAAcAAoAAQABAAEAAAAcAAsAAQABAAEAAAAdAAoAAQABAAEAAAAdAAsAAQADAAEAABAeAAoAAQADAAEAAAAeAAsAAQADAAEAADAfAAoAAQABAAEAAAAfAAsAAQADAAEAADAgAAoAAQABAAEAAAAgAAsAAQADAAEAADAhAAoAAQABAAEAAAAhAAsAAQABAAEAAAAiAAoAAQABAAEAAAAiAAsAAQABAAEAAAAjAAoAAQABAAEAAAAjAAsAAQABAAEAAAAkAAoAAQADAAEAABAkAAsAAQABAAEAAAAlAAoAAQADAAEAAAAlAAsAAQABAAEAAAAmAAoAAQADAAEAAAAmAAsAAQADAAEAADAnAAoAAQADAAEAABAnAAsAAQADAAEAADAUAAoAAQADAAEAADADAAQAAQABAAAAAgAEAAQAAQAAAAAAAAAFAAQAAQAAAAAAAAAGAAQAAQAAAAAAAAAHAAEAAQACAAEAAAAHAAQAAQAAAAAAAAAIAAEAAQACAAEAAAAIAAcAAQABAAAAAgAJAAEAAQACAAEAAAAJAAcAAQAAAAAAAAAKAAEAAQACAAEAAAAKAAcAAQAAAAAAAAALAAEAAQACAAEAAAALAAIAAQABAAEAAAALAAMAAQABAAEAAAALAAQAAQABAAEAAAALAAUAAQABAAEAAAALAAYAAQABAAEAAAALAAcAAQAAAAAAAAAMAAUAAQABAAEAAAAMAAYAAQABAAAAAwAMAAcAAQACAAAAAAANAAUAAQADAAEAADANAAYAAQABAAEAAAANAAcAAQABAAEAAAAOAAUAAQADAAEAABAOAAYAAQADAAEAADAOAAcAAQABAAEAAAAPAAIAAQABAAEAAAAQAAIAAQABAAEAAAARAAIAAQABAAEAAAASAAIAAQABAAEAAAASAAMAAQABAAEAAAASAAQAAQABAAEAAAASAAUAAQABAAEAAAASAAYAAQABAAEAAAASAAcAAQADAAEAABAXAAcAAQAAAAIAAAAYAAcAAQAAAAIAAAAZAAMAAQACAAAAAgAaAAMAAQAAAAAAAAAbAAMAAQAAAAAAAAAEAAAAAQADAAEAADAEAAEAAQADAAEAADAEAAIAAQADAAEAADAIAAQAAQABAAAAAAAMAAEAAQACAAEAAAAMAAIAAQABAAEAAAAMAAMAAQADAAEAABAMAAQAAQADAAEAADAPAAUAAQADAAEAADAPAAYAAQADAAEAADAPAAcAAQABAAEAAAATAAIAAQABAAEAAAATAAMAAQABAAEAAAATAAQAAQADAAEAADATAAUAAQADAAEAABATAAYAAQADAAEAABATAAcAAQADAAEAAAAZAAQAAQABAAAAAQAZAAcAAQAAAAIAAAAcAAMAAQACAAAAAwAcAAQAAQAAAAAAAQAcAAUAAQAAAAAAAQAcAAYAAQADAAAAAwAcAAcAAQABAAAAAQAcAAgAAQABAAEAAAAcAAkAAQABAAEAAAAUAAIAAQABAAEAAAAVAAIAAQABAAEAAAAWAAIAAQABAAEAAAAPAAEAAQABAAEAAAAdAAYAAQAAAAAAAAAdAAcAAQADAAEAADAdAAgAAQADAAEAADAdAAkAAQABAAEAAAAeAAYAAQABAAAAAAAeAAcAAQADAAEAADAeAAgAAQADAAEAADAeAAkAAQABAAEAAAAfAAcAAQADAAEAAAAfAAgAAQABAAEAAAAfAAkAAQABAAEAAAAgAAcAAQADAAEAADAgAAgAAQABAAEAAAAgAAkAAQABAAEAAAAhAAcAAQABAAEAAAAhAAgAAQABAAEAAAAhAAkAAQABAAEAAAAiAAQAAQADAAEAADAiAAUAAQABAAEAAAAiAAYAAQABAAEAAAAiAAcAAQADAAEAABAiAAgAAQADAAEAADAiAAkAAQABAAEAAAAjAAkAAQADAAEAADAkAAkAAQADAAEAADAhAAQAAQADAAEAABAhAAUAAQADAAEAABAhAAYAAQADAAEAADAZAAgAAQAAAAIAAAAmAP3/AQABAAEAAAAPAAkAAQABAAEAAAAPAAgAAQABAAEAAAA=")
+tile_set = SubResource("TileSet_gtmsj")
+
+[node name="DecorationMap" type="TileMapLayer" parent="."]
+modulate = Color(0.501961, 0.501961, 0.501961, 1)
+z_index = -1
+use_parent_material = true
+tile_map_data = PackedByteArray("AAACAAUAAAABAAEAAAACAAYAAAABAAEAAAACAAcAAAABAAEAAAACAAgAAAABAAEAAAACAAkAAAABAAEAAAADAAUAAAABAAEAAAADAAYAAAABAAEAAAADAAcAAAABAAEAAAADAAgAAAABAAEAAAADAAkAAAABAAEAAAAEAAUAAAABAAEAAAAEAAYAAAABAAEAAAAEAAcAAAABAAEAAAAEAAgAAAABAAEAAAAEAAkAAAABAAEAAAAFAAUAAAABAAEAAAAFAAYAAAABAAEAAAAFAAcAAAABAAEAAAAFAAgAAAABAAEAAAAFAAkAAAABAAEAAAAGAAUAAAABAAEAAAAGAAYAAAABAAEAAAAGAAcAAAABAAEAAAAGAAgAAAABAAEAAAAGAAkAAAABAAEAAAABAAcAAAABAAEAAAABAAgAAAABAAEAAAABAAkAAAABAAEAAAAAAAkAAAABAAEAAAADAAMAAAABAAEAAAAEAAMAAAABAAEAAAAFAAMAAAABAAEAAAAFAAAAAAAAAAMAAAAFAAEAAAACAAIAAAAFAAIAAAABAAEAAAAGAAAAAAACAAIAAAAGAAEAAAABAAEAAAAGAAIAAAABAAEAAAAGAAMAAAABAAEAAAAHAAIAAAABAAEAAAAHAAMAAAABAAEAAAAIAAIAAAABAAEAAAAIAAMAAAABAAEAAAAJAAIAAAACAAIAAAAJAAMAAAABAAEAAAAKAAMAAAACAAIAAAAJAAQAAAABAAEAAAAJAAUAAAABAAEAAAAJAAYAAAABAAEAAAAKAAQAAAABAAEAAAAKAAUAAAABAAEAAAAKAAYAAAABAAEAAAAHAAgAAAABAAEAAAAHAAkAAAABAAEAAAAIAAgAAAABAAEAAAAIAAkAAAABAAEAAAAJAAgAAAABAAEAAAAJAAkAAAABAAEAAAAHAAUAAAABAAEAAAAHAAYAAAABAAEAAAAIAAUAAAABAAEAAAAIAAYAAAABAAEAAAAHAAcAAAABAAEAAAAHAAAAAAABAAEAAAAIAAAAAAABAAEAAAAJAAAAAAABAAEAAAAKAAAAAAABAAEAAAALAAAAAAABAAEAAAAMAAAAAAABAAEAAAANAAAAAAACAAIAAAAOAAAAAAADAAIAAAANAAEAAAABAAEAAAANAAIAAAABAAEAAAANAAMAAAADAAEAAAANAAQAAAADAAEAAAAOAAEAAAACAAIAAAAOAAIAAAABAAEAAAAOAAMAAAABAAEAAAAOAAQAAAADAAEAAAAPAAMAAAABAAEAAAAPAAQAAAABAAEAAAAQAAMAAAABAAEAAAAQAAQAAAABAAEAAAARAAQAAAABAAEAAAARAAMAAAABAAEAAAAQAAUAAAABAAEAAAAQAAYAAAABAAEAAAAQAAcAAAABAAEAAAAQAAgAAAABAAEAAAAQAAkAAAABAAEAAAARAAUAAAABAAEAAAARAAYAAAABAAEAAAARAAcAAAABAAEAAAARAAgAAAABAAEAAAARAAkAAAADAAEAAAASAAgAAAABAAEAAAASAAkAAAADAAEAAAATAAgAAAADAAEAAAATAAkAAAADAAEAAAAUAAgAAAADAAEAAAAUAAkAAAADAAEAAAAVAAgAAAADAAEAAAAVAAkAAAADAAEAAAAWAAgAAAABAAEAAAAWAAkAAAADAAEAAAAXAAgAAAABAAEAAAAXAAkAAAADAAEAAAAYAAgAAAABAAEAAAAYAAkAAAADAAEAAAAZAAgAAAABAAEAAAAZAAkAAAABAAEAAAAaAAgAAAABAAEAAAAaAAkAAAABAAEAAAAbAAgAAAABAAEAAAAbAAkAAAABAAEAAAAaAAQAAAACAAIAAAAaAAUAAAABAAEAAAAaAAYAAAABAAEAAAAaAAcAAAABAAEAAAAbAAQAAAAAAAMAAAAbAAUAAAACAAIAAAAbAAYAAAABAAEAAAAbAAcAAAABAAEAAAAUAAUAAAABAAEAAAAUAAYAAAABAAEAAAAVAAUAAAABAAEAAAAVAAYAAAABAAEAAAAWAAUAAAABAAEAAAAWAAYAAAABAAEAAAAXAAUAAAABAAEAAAAXAAYAAAABAAEAAAAYAAUAAAABAAEAAAAYAAYAAAABAAEAAAAZAAUAAAABAAEAAAAZAAYAAAABAAEAAAAUAAcAAAABAAEAAAAVAAcAAAABAAEAAAAWAAcAAAABAAEAAAAUAAQAAAABAAEAAAAUAAMAAAABAAEAAAAVAAMAAAABAAEAAAAVAAQAAAABAAEAAAAWAAMAAAABAAEAAAAWAAQAAAABAAEAAAAXAAMAAAABAAEAAAAXAAQAAAABAAEAAAAYAAMAAAABAAEAAAAYAAQAAAABAAEAAAAXAAAAAAABAAEAAAAXAAEAAAABAAEAAAAXAAIAAAABAAEAAAAYAAAAAAABAAEAAAAYAAEAAAABAAEAAAAYAAIAAAABAAEAAAAZAAAAAAABAAEAAAAZAAEAAAABAAEAAAAZAAIAAAABAAEAAAAaAAAAAAABAAEAAAAaAAEAAAABAAEAAAAaAAIAAAADAAEAAAAbAAAAAAABAAEAAAAbAAEAAAADAAEAAAAbAAIAAAADAAEAAAAcAAAAAAABAAEAAAAcAAEAAAADAAEAAAAcAAIAAAADAAEAAAAdAAAAAAADAAEAAAAdAAEAAAADAAEAAAAdAAIAAAADAAEAAAAeAAAAAAADAAEAAAAeAAEAAAADAAEAAAAeAAIAAAADAAEAAAAdAAMAAAADAAEAAAAdAAQAAAADAAEAAAAdAAUAAAADAAEAAAAeAAMAAAADAAEAAAAeAAQAAAADAAEAAAAeAAUAAAADAAEAAAAfAAAAAAADAAEAAAAfAAEAAAADAAEAAAAfAAIAAAADAAEAAAAfAAMAAAADAAEAAAAfAAQAAAADAAEAAAAfAAUAAAADAAEAAAAfAAYAAAADAAEAAAAgAAAAAAADAAEAAAAgAAEAAAADAAEAAAAgAAIAAAADAAEAAAAgAAMAAAADAAEAAAAgAAQAAAADAAEAAAAgAAUAAAADAAEAAAAgAAYAAAADAAEAAAAhAAAAAAADAAEAAAAhAAEAAAADAAEAAAAhAAIAAAADAAEAAAAhAAMAAAADAAEAAAAiAAAAAAADAAEAAAAiAAEAAAADAAEAAAAiAAIAAAADAAEAAAAiAAMAAAADAAEAAAAjAAAAAAADAAEAAAAjAAEAAAADAAEAAAAjAAIAAAADAAEAAAAjAAMAAAADAAEAAAAjAAQAAAADAAEAAAAjAAUAAAADAAEAAAAjAAYAAAADAAEAAAAjAAcAAAADAAEAAAAkAAAAAAABAAEAAAAkAAEAAAABAAEAAAAkAAIAAAABAAEAAAAkAAMAAAADAAEAAAAkAAQAAAADAAEAAAAkAAUAAAADAAEAAAAkAAYAAAADAAEAAAAkAAcAAAADAAEAAAAjAAgAAAADAAEAAAAkAAgAAAADAAEAAAAlAAAAAAABAAEAAAAlAAEAAAABAAEAAAAlAAIAAAABAAEAAAAlAAMAAAABAAEAAAAlAAQAAAABAAEAAAAlAAUAAAABAAEAAAAlAAYAAAABAAEAAAAlAAcAAAADAAEAAAAlAAgAAAADAAEAAAAlAAkAAAADAAEAAAAnAAcAAAABAAEAAAAnAAgAAAABAAEAAAAnAAkAAAADAAEAAAAmAAIAAAABAAEAAAAmAAMAAAABAAEAAAAmAAQAAAABAAEAAAAmAAUAAAABAAEAAAAmAAYAAAABAAEAAAAmAAcAAAABAAEAAAAmAAgAAAADAAEAAAAmAAkAAAADAAEAAAAKAAIAAAAAAAMAAAAKAAgAAAABAAEAAAAKAAkAAAABAAEAAAALAAgAAAABAAEAAAALAAkAAAABAAEAAAAMAAgAAAABAAEAAAAMAAkAAAABAAEAAAANAAgAAAABAAEAAAANAAkAAAABAAEAAAAOAAgAAAABAAEAAAAOAAkAAAABAAEAAAA=")
+tile_set = SubResource("TileSet_s0rms")
+
+[node name="DecorationMap2" type="TileMapLayer" parent="."]
+modulate = Color(0.501961, 0.501961, 0.501961, 1)
+z_index = -1
+use_parent_material = true
+tile_map_data = PackedByteArray("AAADAAUAAAADAAMAAAADAAYAAAADAAMAAAADAAcAAAADAAMAAAADAAgAAAADAAMAAAADAAkAAAADAAMAAAAIAAUAAAADAAMAAAAIAAYAAAADAAMAAAAIAAgAAAADAAMAAAAIAAkAAAADAAMAAAAEAAMAAAADAAMAAAAHAAIAAAADAAMAAAAHAAMAAAADAAMAAAAFAAUAAAADAAMAAAAFAAYAAAADAAMAAAAFAAcAAAADAAMAAAAFAAgAAAADAAMAAAAFAAkAAAADAAMAAAAPAAMAAAADAAMAAAAPAAQAAAADAAMAAAAMAAAAAAADAAMAAAASAAgAAAADAAMAAAASAAkAAAADAAMAAAATAAgAAAADAAMAAAATAAkAAAADAAMAAAAWAAMAAAADAAMAAAAWAAQAAAADAAMAAAAWAAUAAAADAAMAAAAWAAYAAAADAAMAAAAWAAcAAAADAAMAAAAWAAgAAAADAAMAAAAWAAkAAAADAAMAAAAZAAUAAAADAAMAAAAZAAYAAAADAAMAAAAZAAkAAAADAAMAAAAXAAgAAAADAAMAAAAXAAkAAAADAAMAAAAaAAQAAAADAAMAAAAaAAUAAAADAAMAAAAaAAYAAAADAAMAAAAaAAcAAAADAAMAAAAaAAgAAAADAAMAAAAaAAkAAAADAAMAAAAZAAAAAAADAAMAAAAZAAEAAAADAAMAAAAZAAIAAAADAAMAAAAcAAAAAAADAAMAAAAcAAEAAAADAAMAAAAcAAIAAAADAAMAAAAHAAAAAAADAAMAAAA=")
+tile_set = SubResource("TileSet_s0rms")
+
+[node name="Secret (!)" type="Node2D" parent="."]
+z_index = 1
+
+[node name="TileMap" type="TileMapLayer" parent="Secret (!)"]
+use_parent_material = true
+rotation = 1.5708
+tile_map_data = PackedByteArray("AAAIAPb/AAADAAIAAAAJAPb/AAADAAIAAAA=")
+tile_set = SubResource("TileSet_sdcfh")
+
+[node name="TileMap1" type="TileMapLayer" parent="Secret (!)"]
+modulate = Color(1, 1, 1, 0.901961)
+z_index = 1
+use_parent_material = true
+tile_map_data = PackedByteArray("AAAKAAcAAAAAAAAAAAAKAAgAAAABAAEAAAAKAAkAAAABAAEAAAALAAcAAAAAAAAAAAALAAgAAAABAAEAAAALAAkAAAABAAEAAAAMAAcAAAACAAAAAAANAAcAAAABAAEAAAAMAAgAAAABAAEAAAAMAAkAAAABAAEAAAAOAAcAAAABAAEAAAA=")
+tile_set = SubResource("TileSet_sdcfh")
+
+[node name="TileMap2" type="TileMapLayer" parent="Secret (!)"]
+modulate = Color(1, 0.8, 0.8, 0.901961)
+z_index = 1
+use_parent_material = true
+tile_map_data = PackedByteArray("AAANAAgAAAABAAEAAAANAAkAAAABAAEAAAAOAAgAAAABAAEAAAAOAAkAAAABAAEAAAA=")
+tile_set = SubResource("TileSet_sdcfh")
+
+[node name="ahahahahhahaha" type="Area2D" parent="Secret (!)"]
+visible = false
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Secret (!)/ahahahahhahaha"]
+position = Vector2(216, 144)
+shape = SubResource("RectangleShape2D_iewxf")
+
+[node name="AchievementArea" parent="Secret (!)" instance=ExtResource("2_0hp2c")]
+position = Vector2(192, 144)
+_achievementName = "Eureka"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Secret (!)/AchievementArea"]
+position = Vector2(8, 0)
+shape = SubResource("RectangleShape2D_tpii1")
+
+[node name="SecretShortCut" type="TileMapLayer" parent="."]
+modulate = Color(1, 1, 1, 0.784314)
+z_index = 1
+use_parent_material = true
+tile_map_data = PackedByteArray("AAAPAAAAAAABAAEAAAAQAAAAAAABAAEAAAARAAAAAAABAAEAAAASAAAAAAABAAEAAAATAAAAAAABAAEAAAAUAAAAAAABAAEAAAAVAAAAAAABAAEAAAAWAAAAAAABAAEAAAAQAAEAAAABAAEAAAARAAEAAAABAAEAAAASAAEAAAABAAEAAAATAAEAAAABAAEAAAAUAAEAAAABAAEAAAAVAAEAAAABAAEAAAAWAAEAAAABAAEAAAAPAP//AAABAAEAAAAQAP//AAABAAEAAAARAP//AAABAAEAAAASAP//AAABAAEAAAATAP//AAABAAEAAAAUAP//AAABAAEAAAAVAP//AAABAAEAAAAWAP//AAABAAEAAAA=")
+tile_set = SubResource("TileSet_s0rms")
+
+[node name="AchievementArea" parent="SecretShortCut" instance=ExtResource("2_0hp2c")]
+position = Vector2(304, 16)
+_achievementName = "Eureka"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SecretShortCut/AchievementArea"]
+shape = SubResource("RectangleShape2D_36kcc")
+
+[node name="DisposableButton" parent="." instance=ExtResource("2_5k45f")]
+z_index = -1
+position = Vector2(480, 92)
+
+[node name="TileMap" type="TileMapLayer" parent="DisposableButton"]
+z_index = 1
+use_parent_material = true
+position = Vector2(0, 4)
+rotation = 1.5708
+tile_map_data = PackedByteArray("AAD6//3/AQAAAAIAADD6//7/AQADAAEAADD7//3/AQADAAEAAHD7//7/AQADAAEAAHD8//3/AQADAAEAAHD8//7/AQADAAEAAHD9//3/AQADAAEAAGD9//7/AQADAAEAAHD+//3/AQADAAEAAGD+//7/AQADAAEAAHD///3/AQADAAEAAHD///7/AQADAAEAAHAAAP3/AQADAAEAAAAAAP7/AQADAAEAAHA=")
+tile_set = SubResource("TileSet_gtmsj")
+
+[node name="Explosion" type="Node2D" parent="DisposableButton"]
+position = Vector2(32, -40)
+metadata/_edit_group_ = true
+
+[node name="ExplosionAnimation" parent="DisposableButton/Explosion" instance=ExtResource("3_isuv8")]
+scale = Vector2(1, 1)
+sprite_frames = SubResource("SpriteFrames_hde38")
+frame = 12
+frame_progress = 1.0
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="DisposableButton/Explosion"]
+emitting = false
+amount = 200
+lifetime = 2.5
+one_shot = true
+explosiveness = 1.0
+emission_shape = 3
+emission_rect_extents = Vector2(16, 48)
+spread = 180.0
+initial_velocity_min = 150.0
+initial_velocity_max = 200.0
+scale_amount_min = 16.0
+scale_amount_max = 16.0
+color = Color(0.784314, 0.784314, 0.705882, 1)
+
+[node name="ExplosionSound" type="AudioStreamPlayer" parent="DisposableButton/Explosion"]
+stream = ExtResource("5_gfefn")
+
+[node name="DisposableButton2" parent="." instance=ExtResource("2_5k45f")]
+z_index = -1
+position = Vector2(512, 108)
+
+[node name="TileMap" type="TileMapLayer" parent="DisposableButton2"]
+z_index = 1
+use_parent_material = true
+position = Vector2(0, 4)
+rotation = 1.5708
+tile_map_data = PackedByteArray("AAD5//3/AQADAAEAAED5//7/AQADAAEAAED6//3/AQADAAEAAFD6//7/AQADAAEAAED7//3/AQADAAEAAED7//7/AQADAAEAAED8//3/AQADAAEAAED8//7/AQADAAEAAFA=")
+tile_set = SubResource("TileSet_gtmsj")
+
+[node name="Explosion" type="Node2D" parent="DisposableButton2"]
+position = Vector2(32, -78)
+metadata/_edit_group_ = true
+
+[node name="ExplosionAnimation" parent="DisposableButton2/Explosion" instance=ExtResource("3_isuv8")]
+scale = Vector2(1, 1)
+sprite_frames = SubResource("SpriteFrames_hde38")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="DisposableButton2/Explosion"]
+emitting = false
+amount = 200
+lifetime = 2.5
+one_shot = true
+explosiveness = 1.0
+emission_shape = 3
+emission_rect_extents = Vector2(16, 48)
+spread = 180.0
+initial_velocity_min = 150.0
+initial_velocity_max = 200.0
+scale_amount_min = 16.0
+scale_amount_max = 16.0
+color = Color(0.784314, 0.784314, 0.705882, 1)
+
+[node name="ExplosionSound" type="AudioStreamPlayer" parent="DisposableButton2/Explosion"]
+stream = ExtResource("5_gfefn")
+
+[node name="DisposableButton3" parent="." instance=ExtResource("2_5k45f")]
+z_index = -1
+position = Vector2(544, 60)
+
+[node name="TileMap" type="TileMapLayer" parent="DisposableButton3"]
+z_index = 1
+use_parent_material = true
+position = Vector2(0, 4)
+rotation = 1.5708
+tile_map_data = PackedByteArray("AAD8//3/AQADAAEAAED8//7/AQADAAEAAED9//3/AQADAAEAAED9//7/AQADAAEAAED+//3/AQADAAEAAFD+//7/AQADAAEAAFD///3/AQADAAEAAED///7/AQADAAEAAEAAAP3/AQADAAEAAEAAAP7/AQADAAEAAFABAP3/AQADAAEAAFABAP7/AQADAAEAAEACAP3/AQADAAEAAFACAP7/AQADAAEAAFADAP3/AQADAAEAAEADAP7/AQADAAEAAFAEAP3/AQADAAEAAEAEAP7/AQADAAEAAEA=")
+tile_set = SubResource("TileSet_gtmsj")
+
+[node name="Explosion" type="Node2D" parent="DisposableButton3"]
+position = Vector2(32, 12)
+metadata/_edit_group_ = true
+
+[node name="ExplosionAnimation" parent="DisposableButton3/Explosion" instance=ExtResource("3_isuv8")]
+scale = Vector2(1, 1)
+sprite_frames = SubResource("SpriteFrames_hde38")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="DisposableButton3/Explosion"]
+emitting = false
+amount = 200
+lifetime = 2.5
+one_shot = true
+explosiveness = 1.0
+emission_shape = 3
+emission_rect_extents = Vector2(16, 48)
+spread = 180.0
+initial_velocity_min = 150.0
+initial_velocity_max = 200.0
+scale_amount_min = 16.0
+scale_amount_max = 16.0
+color = Color(0.784314, 0.784314, 0.705882, 1)
+
+[node name="ExplosionSound" type="AudioStreamPlayer" parent="DisposableButton3/Explosion"]
+stream = ExtResource("5_gfefn")
+
+[node name="DisposableButton4" parent="." instance=ExtResource("2_5k45f")]
+z_index = -1
+position = Vector2(576, 140)
+
+[node name="TileMap" type="TileMapLayer" parent="DisposableButton4"]
+z_index = 1
+use_parent_material = true
+position = Vector2(0, 4)
+rotation = 1.5708
+tile_map_data = PackedByteArray("AAD3//7/AQADAAEAAFD4//7/AQADAAEAAED5//7/AQADAAEAAGD6//7/AQADAAEAAGD7//7/AQADAAEAAFD8//7/AQADAAEAAGD9//7/AQADAAEAAED+//7/AQADAAEAAGD///7/AQADAAEAAGAAAP7/AQADAAEAAFA=")
+tile_set = SubResource("TileSet_gtmsj")
+
+[node name="Explosion" type="Node2D" parent="DisposableButton4"]
+position = Vector2(24, -64)
+metadata/_edit_group_ = true
+
+[node name="ExplosionAnimation" parent="DisposableButton4/Explosion" instance=ExtResource("3_isuv8")]
+scale = Vector2(1, 1)
+sprite_frames = SubResource("SpriteFrames_hde38")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="DisposableButton4/Explosion"]
+emitting = false
+amount = 200
+lifetime = 2.5
+one_shot = true
+explosiveness = 1.0
+emission_shape = 3
+emission_rect_extents = Vector2(16, 48)
+spread = 180.0
+initial_velocity_min = 150.0
+initial_velocity_max = 200.0
+scale_amount_min = 16.0
+scale_amount_max = 16.0
+color = Color(0.784314, 0.784314, 0.705882, 1)
+
+[node name="ExplosionSound" type="AudioStreamPlayer" parent="DisposableButton4/Explosion"]
+stream = ExtResource("5_gfefn")
+
+[connection signal="ButtonPressed" from="DisposableButton" to="DisposableButton/TileMap" method="queue_free" flags=3]
+[connection signal="ButtonPressed" from="DisposableButton" to="DisposableButton/Explosion/ExplosionAnimation" method="play"]
+[connection signal="ButtonPressed" from="DisposableButton" to="DisposableButton/Explosion/ExplosionSound" method="play"]
+[connection signal="ButtonPressed" from="DisposableButton" to="DisposableButton/Explosion/ExplosionAnimation" method="set_visible" binds= [true]]
+[connection signal="ButtonPressed" from="DisposableButton" to="DisposableButton/Explosion/CPUParticles2D" method="set_emitting" binds= [true]]
+[connection signal="animation_finished" from="DisposableButton/Explosion/ExplosionAnimation" to="DisposableButton/Explosion/ExplosionAnimation" method="set_visible" binds= [false]]
+[connection signal="ButtonPressed" from="DisposableButton2" to="DisposableButton2/TileMap" method="queue_free" flags=3]
+[connection signal="ButtonPressed" from="DisposableButton2" to="DisposableButton2/Explosion/ExplosionAnimation" method="play"]
+[connection signal="ButtonPressed" from="DisposableButton2" to="DisposableButton2/Explosion/ExplosionSound" method="play"]
+[connection signal="ButtonPressed" from="DisposableButton2" to="DisposableButton2/Explosion/ExplosionAnimation" method="set_visible" binds= [true]]
+[connection signal="ButtonPressed" from="DisposableButton2" to="DisposableButton2/Explosion/CPUParticles2D" method="set_emitting" binds= [true]]
+[connection signal="animation_finished" from="DisposableButton2/Explosion/ExplosionAnimation" to="DisposableButton2/Explosion/ExplosionAnimation" method="set_visible" binds= [false]]
+[connection signal="ButtonPressed" from="DisposableButton3" to="DisposableButton3/TileMap" method="queue_free" flags=3]
+[connection signal="ButtonPressed" from="DisposableButton3" to="DisposableButton3/Explosion/ExplosionAnimation" method="play"]
+[connection signal="ButtonPressed" from="DisposableButton3" to="DisposableButton3/Explosion/ExplosionSound" method="play"]
+[connection signal="ButtonPressed" from="DisposableButton3" to="DisposableButton3/Explosion/ExplosionAnimation" method="set_visible" binds= [true]]
+[connection signal="ButtonPressed" from="DisposableButton3" to="DisposableButton3/Explosion/CPUParticles2D" method="set_emitting" binds= [true]]
+[connection signal="animation_finished" from="DisposableButton3/Explosion/ExplosionAnimation" to="DisposableButton3/Explosion/ExplosionAnimation" method="set_visible" binds= [false]]
+[connection signal="ButtonPressed" from="DisposableButton4" to="DisposableButton4/TileMap" method="queue_free" flags=3]
+[connection signal="ButtonPressed" from="DisposableButton4" to="DisposableButton4/Explosion/ExplosionAnimation" method="play"]
+[connection signal="ButtonPressed" from="DisposableButton4" to="DisposableButton4/Explosion/ExplosionSound" method="play"]
+[connection signal="ButtonPressed" from="DisposableButton4" to="DisposableButton4/Explosion/ExplosionAnimation" method="set_visible" binds= [true]]
+[connection signal="ButtonPressed" from="DisposableButton4" to="DisposableButton4/Explosion/CPUParticles2D" method="set_emitting" binds= [true]]
+[connection signal="animation_finished" from="DisposableButton4/Explosion/ExplosionAnimation" to="DisposableButton4/Explosion/ExplosionAnimation" method="set_visible" binds= [false]]

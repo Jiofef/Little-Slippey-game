@@ -106,8 +106,11 @@ abstract public partial class CrossNode : UnusualCrossNode
     public Sprite2D CrossSprite;
     public Sprite2D WarningSprite;
 
+    public bool Exploded = false;
+
     public async virtual void Explode()
     {
+        Exploded = true;
         // Visual
         if (CrossSprite != null) CrossSprite.Visible = false;
 
@@ -148,6 +151,9 @@ abstract public partial class CrossNode : UnusualCrossNode
     public override void Respawn()
     {
         base.Respawn();
+
+        Exploded = false;
+
         ProcessMode = ProcessModeEnum.Inherit;
         SetPhysicsProcess(true);
 

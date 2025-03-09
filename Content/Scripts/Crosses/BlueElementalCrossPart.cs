@@ -1,55 +1,29 @@
 using Godot;
+using OtherExtension;
 using System;
 
 public partial class BlueElementalCrossPart : ElementalCrossPart
 {
-    [Signal] public delegate void ElementExplodedEventHandler();
-    private Sprite2D _sprite;
-    private PathFollow2D _pathFollow2D;
-    private float _elementSpeed = 1.5f;
     public override void _Ready()
     {
         // Initializing nodes
         NodesInit();
 
-        LifeTime = 1.0f;
+        LifeTime = 1.25f;
+        MoveCoeff = 2;
         RandomizePathVec(new Rect2(-125, 360 / 5, 125 * 2, 360 - 360/5));
+        UpdatePosition(MoveCoeff);
 
-        Random random = new Random();
-        GetNode<Path2D>("Path2D").Scale = new Vector2(random.Next(10,100) * (random.Next(100) > 50 ? 1 : -1) / 100f, random.Next(20, 100) / 100f);
-        _pathFollow2D.GlobalScale = new Vector2(1, 1);
-
-        _sprite.Modulate = new Color(_sprite.Modulate.R, _sprite.Modulate.G, _sprite.Modulate.B, 0);
+        CrossSprite.Modulate = new Color(CrossSprite.Modulate.R, CrossSprite.Modulate.G, CrossSprite.Modulate.B, 0);
 
         var spawnSound = GetNode<AudioStreamPlayer>("SpawnSound");
+        Random random = new Random();
         spawnSound.Stream = ResourceLoader.Load<AudioStream>("res://Content/Sounds/Crosses/BlueElementalCrossPartSoundVar" + (random.Next(3) + 1) + ".mp3");
         spawnSound.Play();
     }
-    public override void _PhysicsProcess(double delta)
+
+    public override void UpdatePosition(float coeff)
     {
-        if (_pathFollow2D.ProgressRatio < 0.98f)
-        {
-            _pathFollow2D.Progress += _elementSpeed;
-            _elementSpeed += 0.12f;
-            _sprite.Modulate = new Color(_sprite.Modulate.R, _sprite.Modulate.G, _sprite.Modulate.B, _sprite.Modulate.A + 0.1f);
-        }
-        else
-        {
-            const string link = "Path2D/PathFollow2D/";
-            var explosionAnimation = GetNode<AnimatedSprite2D>(link +"ExplosionAnimation");
-            var explosiveArea = GetNode<CollisionShape2D>(link + "ExplosiveArea/CollisionShape2D");
-            if (explosionAnimation.IsPlaying())
-            {
-                explosiveArea.Disabled = true;
-                SetPhysicsProcess(false);
-                return;
-            }
-            GetNode<Sprite2D>(link + "Sprite2D").QueueFree();
-            GetNode<AudioStreamPlayer>("ExplosionSound").Play();
-            explosionAnimation.Visible = true;
-            explosionAnimation.Play();
-            explosiveArea.Disabled = false;
-            EmitSignal("ElementExploded");
-        }
+        GlobalPosition = StartPosition + PathVec * MathTools.EaseIn(TimeLived / LifeTime, coeff);
     }
 }

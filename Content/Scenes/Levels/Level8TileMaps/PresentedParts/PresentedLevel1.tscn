@@ -1,0 +1,344 @@
+[gd_scene load_steps=37 format=4 uid="uid://7nscuvf5qefr"]
+
+[ext_resource type="Texture2D" uid="uid://cjoa8meyv5ehu" path="res://Content/Sprites/Levels/Level1/Sky.png" id="1_nafe2"]
+[ext_resource type="Texture2D" uid="uid://iyc2n8rea3ew" path="res://Content/Sprites/Levels/Level1/FrontLayer.png" id="2_0q8vt"]
+[ext_resource type="Texture2D" uid="uid://lb7nl781jkgt" path="res://Content/Sprites/Levels/FallenDawnTileset.png" id="2_hijj5"]
+[ext_resource type="Texture2D" uid="uid://qe6r82b6f7np" path="res://Content/Sprites/Levels/Level1/SunRaysAnimation.png" id="3_6dai4"]
+[ext_resource type="Texture2D" uid="uid://q2j1uuqfjmos" path="res://Content/Sprites/Levels/BaseTileSet.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://ua4neh4wkukk" path="res://Content/Sprites/Levels/Level1/BackClouds.png" id="4_7ug8n"]
+[ext_resource type="Texture2D" uid="uid://7bqjeef5asfb" path="res://Content/Sprites/Levels/Level1/Clouds.png" id="5_tu28h"]
+[ext_resource type="Texture2D" uid="uid://de74d3epufxbk" path="res://Content/Sprites/Levels/Level1/StreamAnimation.png" id="7_x1oxe"]
+[ext_resource type="Texture2D" uid="uid://ckh1sclq3fji3" path="res://Content/Sprites/Other/PointLight.png" id="9_mjw07"]
+[ext_resource type="Texture2D" uid="uid://b830neidt3avy" path="res://Content/Sprites/Levels/Mort'sTileset.png" id="9_rlr2t"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ylmhp"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_y0rn6"]
+texture = ExtResource("4")
+0:0/next_alternative_id = 8
+0:0/0 = 0
+1:0/next_alternative_id = 8
+1:0/0 = 0
+2:0/next_alternative_id = 8
+2:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+0:2/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0dp5c"]
+texture = ExtResource("2_hijj5")
+0:2/next_alternative_id = 2
+0:2/0 = 0
+0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSet" id="TileSet_tgein"]
+physics_layer_0/collision_layer = 4
+physics_layer_0/collision_mask = 3
+physics_layer_0/physics_material = SubResource("PhysicsMaterial_ylmhp")
+sources/0 = SubResource("TileSetAtlasSource_y0rn6")
+sources/1 = SubResource("TileSetAtlasSource_0dp5c")
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_wsuk3"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mxbjq"]
+texture = ExtResource("4")
+0:0/next_alternative_id = 8
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:0/next_alternative_id = 8
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:0/next_alternative_id = 8
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+0:2/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mnnu6"]
+texture = ExtResource("2_hijj5")
+0:2/0 = 0
+0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSet" id="TileSet_qeks3"]
+physics_layer_0/collision_layer = 4
+physics_layer_0/collision_mask = 3
+physics_layer_0/physics_material = SubResource("PhysicsMaterial_wsuk3")
+sources/0 = SubResource("TileSetAtlasSource_mxbjq")
+sources/1 = SubResource("TileSetAtlasSource_mnnu6")
+
+[sub_resource type="Curve2D" id="Curve2D_jua4w"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 560, 320, 0, 0, 0, 0, 720, 320)
+}
+point_count = 2
+
+[sub_resource type="Animation" id="Animation_qnl8m"]
+resource_name = "CameraMoving"
+length = 6.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5, 3, 4.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 160.0, 160.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_2yfre"]
+resource_name = "CameraMoving2X1"
+
+[sub_resource type="Animation" id="Animation_yfk10"]
+length = 0.001
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kli7e"]
+_data = {
+&"CameraMoving1X1": SubResource("Animation_qnl8m"),
+&"CameraMoving2X1": SubResource("Animation_2yfre"),
+&"RESET": SubResource("Animation_yfk10")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6c1h1"]
+atlas = ExtResource("3_6dai4")
+region = Rect2(0, 0, 74, 75)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mdlje"]
+atlas = ExtResource("3_6dai4")
+region = Rect2(74, 0, 74, 75)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5fdcv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6c1h1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mdlje")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[sub_resource type="Animation" id="Animation_sycmi"]
+resource_name = "Rotation"
+length = 30.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 30),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.28319]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ku48g"]
+_data = {
+&"Rotation": SubResource("Animation_sycmi")
+}
+
+[sub_resource type="Animation" id="Animation_yn5s4"]
+resource_name = "CloudsMoving"
+length = 90.0
+loop_mode = 1
+step = 45.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:motion_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 90),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(2560, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../BackClouds:motion_offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 90),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1280, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ul4do"]
+_data = {
+&"CloudsMoving": SubResource("Animation_yn5s4")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ukheu"]
+atlas = ExtResource("7_x1oxe")
+region = Rect2(0, 0, 170, 72)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rv6l4"]
+atlas = ExtResource("7_x1oxe")
+region = Rect2(170, 0, 170, 72)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2sfi3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ukheu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rv6l4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_bu1oi"]
+blend_mode = 1
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4uqr8"]
+texture = ExtResource("9_rlr2t")
+2:2/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_kn2dc"]
+sources/2 = SubResource("TileSetAtlasSource_4uqr8")
+
+[node name="PresentedLevel1" type="Node2D"]
+
+[node name="DecorationMap" type="TileMapLayer" parent="."]
+modulate = Color(0.5, 0.5, 0.5, 1)
+z_index = -1
+use_parent_material = true
+scale = Vector2(4, 4)
+tile_map_data = PackedByteArray("AAAQAAAAAAABAAAAAAARAAAAAAABAAAAAAACAAAAAAABAAAAAAADAAAAAAABAAAAAAAAAAcAAAABAAAAAAABAAcAAAABAAAAAAACAAcAAAABAAAAAAADAAkAAAABAAAAAAAQAAgAAAABAAAAAAAQAAkAAAABAAAAAAARAAgAAAABAAAAAAARAAkAAAABAAAAAAA=")
+tile_set = SubResource("TileSet_tgein")
+
+[node name="TileMap" type="TileMapLayer" parent="."]
+use_parent_material = true
+scale = Vector2(4, 4)
+tile_map_data = PackedByteArray("AAD/////AAABAAAAAAAAAP//AAABAAAAAAABAP//AAABAAAAAAACAP//AAABAAAAAAADAP//AAABAAAAAAAEAP//AAABAAAAAAAFAP//AAABAAAAAAAOAP//AAABAAAAAAAPAP//AAABAAAAAAD//wAAAAABAAAAAAD//wEAAAABAAAAAAD//wIAAAABAAAAAAD//wMAAAABAAAAAAD//wQAAAABAAAAAAD//wUAAAABAAAAAAD//wYAAAABAAAAAAD//wcAAAABAAAAAAD//wgAAAABAAAAAAD//wkAAAABAAAAAAAUAP//AAABAAAAAAAQAP//AAABAAAAAAARAP//AAABAAAAAAASAP//AAABAAAAAAATAP//AAABAAAAAAAUAAoAAAABAAAAAAATAAoAAAABAAAAAAASAAoAAAABAAAAAAARAAoAAAACAAAAAAAQAAoAAAACAAAAAAAPAAoAAAACAAAAAAAOAAoAAAACAAAAAAANAAoAAAACAAAAAAAGAAoAAAACAAAAAAAFAAoAAAACAAAAAAAEAAoAAAACAAAAAAADAAoAAAACAAAAAAACAAoAAAABAAAAAAABAAoAAAABAAAAAAAAAAoAAAABAAAAAAD//woAAAABAAAAAAANAP//AAABAAAAAAAHAP//AAABAAAAAAAGAP//AAABAAAAAAAIAP//AAABAAAAAAAJAP//AAABAAAAAAAKAP//AAABAAAAAAALAP//AAABAAAAAAAMAP//AAABAAAAAAAMAAoAAAACAAAAAAALAAoAAAACAAAAAAAKAAoAAAACAAAAAAAJAAoAAAACAAAAAAAIAAoAAAACAAAAAAAHAAoAAAACAAAAAAAUAAAAAAABAAAAAAAUAAEAAAABAAAAAAAUAAIAAAABAAAAAAAUAAcAAAABAAAAAAASAAAAAAABAAAAAAASAAEAAAABAAAAAAASAAIAAAABAAAAAAASAAcAAAABAAAAAAATAAAAAAABAAAAAAATAAEAAAABAAAAAAATAAIAAAABAAAAAAATAAcAAAABAAAAAAATAAgAAAABAAAAAAATAAkAAAABAAAAAAAUAAMAAAABAAAAAAAUAAQAAAABAAAAAAAUAAUAAAABAAAAAAAUAAYAAAABAAAAAAAUAAgAAAABAAAAAAAUAAkAAAABAAAAAAABAAgAAAABAAAAAAAAAAgAAAABAAAAAAAAAAkAAAABAAAAAAABAAkAAAABAAAAAAAAAAIAAAABAAAAAAAAAAAAAAABAAAAAAAAAAEAAAABAAAAAAABAAMAAAABAAAAAAABAAQAAAABAAAAAAAAAAMAAAABAAAAAAAAAAQAAAABAAAAAAAMAAUAAQAAAAIAAAABAAAAAAABAAAAAAABAAEAAAABAAAAAAABAAIAAAABAAAAAAACAAkAAAABAAAAAAACAAgAAAABAAAAAAASAAgAAAABAAAAAAASAAkAAAABAAAAAAAPAAUAAQAAAAIAAAAGAAIAAQAAAAIAAAAGAAYAAQAAAAIAAAAHAAIAAQAAAAIAAAAHAAYAAQAAAAIAAAAHAAcAAQAAAAIAAAAFAAYAAQAAAAIAAAAFAAIAAQAAAAIAAAANAAQAAQAAAAIAAAAOAAQAAQAAAAIAAAAPAAYAAQAAAAIAAAAMAAQAAQAAAAIAAAAPAAQAAQAAAAIAAAANAAUAAQAAAAIAAAAOAAUAAQAAAAIAAAAOAAYAAQAAAAIAAAAMAAYAAQAAAAIAAAANAAYAAQAAAAIAAAABAB4AAAACAAEAAAAEACAAAAABAAEAAAAGACAAAAAAAAIAAAAJACAAAAABAAEAAAALACAAAAAAAAEAAAAMACAAAAAAAAIAAAANABoAAAACAAEAAAAOACAAAAABAAEAABAQACAAAAACAAEAAAARACAAAAAAAAIAAAABAAcAAAACAAEAAAAEAAkAAAABAAEAAAAGAAkAAAAAAAIAAAAJAAkAAAABAAEAAAALAAkAAAAAAAEAAAAMAAkAAAAAAAIAAAANAAMAAAACAAEAAAAOAAkAAAABAAEAABAQAAkAAAACAAEAAAARAAkAAAAAAAIAAAA=")
+tile_set = SubResource("TileSet_qeks3")
+
+[node name="CameraPath" type="Path2D" parent="."]
+curve = SubResource("Curve2D_jua4w")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="CameraPath"]
+position = Vector2(560, 320)
+rotates = false
+
+[node name="Camera2D" type="Camera2D" parent="CameraPath/PathFollow2D"]
+zoom = Vector2(0.6, 0.6)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CameraPath/PathFollow2D"]
+libraries = {
+"": SubResource("AnimationLibrary_kli7e")
+}
+autoplay = "CameraMoving1X1"
+
+[node name="Background" type="ParallaxBackground" parent="."]
+
+[node name="Sky" type="ParallaxLayer" parent="Background"]
+motion_scale = Vector2(0.2, 0.2)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Sky"]
+position = Vector2(600, 320)
+scale = Vector2(4, 4)
+texture = ExtResource("1_nafe2")
+
+[node name="SunRays" type="AnimatedSprite2D" parent="Background/Sky"]
+position = Vector2(1084, 148)
+rotation = -1.94779
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_5fdcv")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Background/Sky/SunRays"]
+libraries = {
+"": SubResource("AnimationLibrary_ku48g")
+}
+autoplay = "Rotation"
+
+[node name="BackClouds" type="ParallaxLayer" parent="Background"]
+motion_scale = Vector2(0.5, 0.5)
+motion_mirroring = Vector2(1280, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/BackClouds"]
+scale = Vector2(4, 4)
+texture = ExtResource("4_7ug8n")
+centered = false
+
+[node name="Clouds" type="ParallaxLayer" parent="Background"]
+motion_scale = Vector2(0.6, 0.6)
+motion_mirroring = Vector2(1280, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Clouds"]
+scale = Vector2(4, 4)
+texture = ExtResource("5_tu28h")
+centered = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Background/Clouds"]
+libraries = {
+"": SubResource("AnimationLibrary_ul4do")
+}
+autoplay = "CloudsMoving"
+
+[node name="Fog" type="ColorRect" parent="Background"]
+offset_right = 1280.0
+offset_bottom = 720.0
+color = Color(1, 1, 1, 0.156863)
+
+[node name="FrontLayer" type="ParallaxLayer" parent="Background"]
+motion_scale = Vector2(0.9, 0.6)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/FrontLayer"]
+position = Vector2(640, 440)
+scale = Vector2(4, 4)
+texture = ExtResource("2_0q8vt")
+
+[node name="Stream" type="AnimatedSprite2D" parent="Background/FrontLayer"]
+position = Vector2(600, 472)
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_2sfi3")
+autoplay = "default"
+centered = false
+
+[node name="Fog2" type="ColorRect" parent="Background"]
+offset_right = 1280.0
+offset_bottom = 720.0
+color = Color(0, 0.607843, 0.607843, 0.313726)
+
+[node name="SunLightLayer" type="ParallaxLayer" parent="Background"]
+z_as_relative = false
+motion_scale = Vector2(0.2, 0.2)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/SunLightLayer"]
+modulate = Color(0.97, 0.89725, 0.485, 0.313726)
+material = SubResource("CanvasItemMaterial_bu1oi")
+position = Vector2(1046, 156)
+scale = Vector2(8, 8)
+texture = ExtResource("9_mjw07")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+offset_right = 1280.0
+offset_bottom = 720.0
+color = Color(0, 1, 1, 0.0313726)
+
+[node name="CrutchTileMap" type="TileMapLayer" parent="."]
+use_parent_material = true
+scale = Vector2(4, 4)
+tile_map_data = PackedByteArray("AAAFAAAAAgACAAIAAAAFAAEAAgACAAIAAAAHAAAAAgACAAIAAAAHAAEAAgACAAIAAAAGAAMAAgACAAIAAAAGAAQAAgACAAIAAAAGAAUAAgACAAIAAAAMAAAAAgACAAIAAAAMAAEAAgACAAIAAAAMAAIAAgACAAIAAAAMAAMAAgACAAIAAAAPAAAAAgACAAIAAAAPAAEAAgACAAIAAAAPAAIAAgACAAIAAAAPAAMAAgACAAIAAAAPAAcAAgACAAIAAAAPAAgAAgACAAIAAAAPAAkAAgACAAIAAAAFAAcAAgACAAIAAAAFAAgAAgACAAIAAAAFAAkAAgACAAIAAAA=")
+tile_set = SubResource("TileSet_kn2dc")

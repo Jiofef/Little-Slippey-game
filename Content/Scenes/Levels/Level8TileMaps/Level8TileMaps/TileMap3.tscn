@@ -1,0 +1,607 @@
+[gd_scene load_steps=14 format=4 uid="uid://bo4jqtdxh3bia"]
+
+[ext_resource type="Texture2D" uid="uid://duk32e0otnfky" path="res://Content/Sprites/Levels/FuckItVolume2Tileset.png" id="1_622f4"]
+[ext_resource type="PackedScene" uid="uid://buj5ooik0q3l0" path="res://Content/Scenes/Achievements/AchievementArea.tscn" id="2_4ddd2"]
+[ext_resource type="Script" uid="uid://dn8skdribj1tr" path="res://Content/Scripts/Levels/Level4CircularSawScript.cs" id="2_43ctl"]
+[ext_resource type="Texture2D" uid="uid://oy0q0tel1241" path="res://Content/Sprites/Levels/Level4/BigSaw.png" id="3_8hif1"]
+[ext_resource type="Texture2D" uid="uid://dse3qddcaf5o4" path="res://Content/Sprites/Levels/Level4/TheMostOrdinaryUnremarkableSawWhichSurprisinglyCanKillAPlayerWithoutProblemsBecauseItHasAHitboxOnTheSameLayerAsTheExplosionOfCrossesThatsInShort.png" id="4_x0u2j"]
+[ext_resource type="Texture2D" uid="uid://op4k0tjuspxj" path="res://Content/Sprites/Levels/Level4/Stud.png" id="5_1y7dn"]
+[ext_resource type="Texture2D" uid="uid://cfic0bnuc1ocj" path="res://Content/Sprites/Levels/Level4/BigSawStud.png" id="6_sdn3l"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_28pgq"]
+texture = ExtResource("1_622f4")
+0:0/next_alternative_id = 2
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:0/1 = 1
+0:0/1/transpose = true
+0:0/1/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:0/next_alternative_id = 4
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:0/1 = 1
+1:0/1/transpose = true
+1:0/1/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:0/2 = 2
+1:0/2/flip_h = true
+1:0/2/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:0/3 = 3
+1:0/3/flip_v = true
+1:0/3/transpose = true
+1:0/3/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:0/next_alternative_id = 4
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:0/1 = 1
+2:0/1/flip_h = true
+2:0/1/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:0/2 = 2
+2:0/2/flip_h = true
+2:0/2/flip_v = true
+2:0/2/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:0/3 = 3
+2:0/3/flip_v = true
+2:0/3/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:0/next_alternative_id = 4
+3:0/0 = 0
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:0/1 = 1
+3:0/1/transpose = true
+3:0/1/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:0/2 = 2
+3:0/2/flip_v = true
+3:0/2/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:0/3 = 3
+3:0/3/flip_h = true
+3:0/3/transpose = true
+3:0/3/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:1/0 = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:1/0 = 0
+2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:3/0 = 0
+1:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, -1, -8, -1)
+2:3/0 = 0
+2:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, -1, 4, -1, 4, 8, -4, 8, -4, -1, -8, -1)
+3:3/0 = 0
+3:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -8, 4, -8, 4, 8, -4, 8)
+0:4/0 = 0
+0:2/0 = 0
+0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:1/0 = 0
+3:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+0:3/0 = 0
+3:6/0 = 0
+2:6/0 = 0
+1:6/0 = 0
+0:6/0 = 0
+0:5/0 = 0
+1:5/0 = 0
+2:5/0 = 0
+3:5/0 = 0
+3:4/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_gtmsj"]
+physics_layer_0/collision_layer = 4
+physics_layer_0/collision_mask = 0
+sources/1 = SubResource("TileSetAtlasSource_28pgq")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ua1ox"]
+texture = ExtResource("1_622f4")
+0:0/next_alternative_id = 2
+0:0/0 = 0
+0:0/1 = 1
+0:0/1/transpose = true
+1:0/next_alternative_id = 5
+1:0/0 = 0
+1:0/1 = 1
+1:0/1/transpose = true
+1:0/2 = 2
+1:0/2/flip_h = true
+1:0/3 = 3
+1:0/3/flip_v = true
+1:0/3/transpose = true
+2:0/next_alternative_id = 4
+2:0/0 = 0
+2:0/1 = 1
+2:0/1/flip_h = true
+2:0/2 = 2
+2:0/2/flip_h = true
+2:0/2/flip_v = true
+2:0/3 = 3
+2:0/3/flip_v = true
+3:0/next_alternative_id = 4
+3:0/0 = 0
+3:0/1 = 1
+3:0/1/transpose = true
+3:0/2 = 2
+3:0/2/flip_v = true
+3:0/3 = 3
+3:0/3/flip_h = true
+3:0/3/transpose = true
+0:1/0 = 0
+2:1/0 = 0
+1:1/0 = 0
+0:3/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+3:1/0 = 0
+0:4/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_sdcfh"]
+sources/0 = SubResource("TileSetAtlasSource_ua1ox")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6w1io"]
+size = Vector2(8, 32)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_typ5x"]
+radius = 17.5
+
+[node name="TileMap" type="TileMapLayer"]
+use_parent_material = true
+scale = Vector2(4, 4)
+tile_map_data = PackedByteArray("AAAdAP//AQAAAAAAAAAdAP7/AQABAAEAAAAdAP3/AQABAAEAAAAAAP3/AQABAAEAAAAAAP7/AQABAAEAAAAAAP//AQABAAEAAAAAAAoAAQACAAEAAAAAAAsAAQABAAEAAAAAAAwAAQABAAEAAAABAAwAAQABAAEAAAABAAsAAQABAAEAAAABAAoAAQACAAEAAAABAP//AQABAAEAAAABAP7/AQABAAEAAAABAP3/AQABAAEAAAACAP3/AQABAAEAAAACAP7/AQABAAEAAAACAP//AQACAAAAAgACAAoAAQACAAEAAAACAAsAAQABAAEAAAACAAwAAQABAAEAAAADAAwAAQABAAEAAAADAAsAAQABAAEAAAADAAoAAQACAAEAAAADAP//AQAAAAAAAAADAP7/AQABAAEAAAADAP3/AQABAAEAAAAEAP3/AQABAAEAAAAEAP7/AQABAAEAAAAEAP//AQAAAAAAAAAEAAoAAQACAAEAAAAEAAsAAQABAAEAAAAEAAwAAQABAAEAAAAFAAwAAQABAAEAAAAFAAsAAQABAAEAAAAFAAoAAQACAAEAAAAFAP//AQAAAAAAAAAFAP7/AQABAAEAAAAFAP3/AQABAAEAAAAGAP3/AQABAAEAAAAGAP7/AQABAAEAAAAGAP//AQADAAAAAgAGAAoAAQACAAEAAAAGAAsAAQABAAEAAAAGAAwAAQABAAEAAAAHAAwAAQABAAEAAAAHAAsAAQABAAEAAAAHAAoAAQACAAEAAAAHAP//AQAAAAAAAAAHAP7/AQABAAEAAAAHAP3/AQABAAEAAAAIAP3/AQABAAEAAAAIAP7/AQABAAEAAAAIAP//AQAAAAAAAAAIAAoAAQACAAEAAAAIAAsAAQABAAEAAAAIAAwAAQABAAEAAAAJAAwAAQABAAEAAAAJAAsAAQABAAEAAAAJAAoAAQACAAAAAQAJAP//AQAAAAAAAAAJAP7/AQABAAEAAAAJAP3/AQABAAEAAAAKAP3/AQABAAEAAAAKAP7/AQABAAEAAAAKAP//AQAAAAAAAAAKAAoAAQAAAAAAAAAKAAsAAQABAAEAAAAKAAwAAQABAAEAAAALAAwAAQABAAEAAAALAAsAAQABAAEAAAALAAoAAQAAAAAAAAALAP//AQAAAAAAAAALAP7/AQABAAEAAAALAP3/AQABAAEAAAAMAP3/AQABAAEAAAAMAP7/AQABAAEAAAAMAP//AQAAAAAAAAAMAAoAAQAAAAAAAAAMAAsAAQABAAEAAAAMAAwAAQABAAEAAAANAAwAAQABAAEAAAANAAsAAQABAAEAAAANAAoAAQAAAAAAAAAOAAoAAQAAAAAAAAAOAAsAAQABAAEAAAAOAAwAAQABAAEAAAAPAAwAAQABAAEAAAAPAAsAAQABAAEAAAAPAAoAAQAAAAAAAAAQAAoAAQAAAAAAAAAQAAsAAQABAAEAAAAQAAwAAQABAAEAAAARAAwAAQABAAEAAAARAAsAAQABAAEAAAARAAoAAQAAAAAAAAASAP//AQAAAAAAAAASAP7/AQABAAEAAAASAP3/AQABAAEAAAARAP3/AQABAAEAAAAQAP3/AQABAAEAAAAPAP3/AQABAAEAAAAOAP3/AQABAAEAAAANAP3/AQABAAEAAAANAP7/AQABAAEAAAANAP//AQAAAAAAAAAOAP//AQAAAAAAAAAOAP7/AQABAAEAAAAPAP7/AQABAAEAAAAPAP//AQAAAAAAAAAQAP//AQAAAAAAAAAQAP7/AQABAAEAAAARAP7/AQABAAEAAAARAP//AQAAAAAAAAATAP3/AQABAAEAAAATAP7/AQABAAEAAAATAP//AQAAAAAAAAASAAoAAQAAAAAAAAASAAsAAQABAAEAAAASAAwAAQABAAEAAAATAAwAAQABAAEAAAATAAsAAQABAAEAAAATAAoAAQAAAAAAAAAUAP//AQAAAAAAAAAUAP7/AQABAAEAAAAUAP3/AQABAAEAAAAVAP3/AQABAAEAAAAVAP7/AQABAAEAAAAVAP//AQAAAAAAAAAVAAoAAQAAAAAAAAAUAAoAAQAAAAAAAAAUAAsAAQABAAEAAAAUAAwAAQABAAEAAAAVAAwAAQABAAEAAAAVAAsAAQABAAEAAAAWAAsAAQABAAEAAAAWAAoAAQAAAAAAAAAWAP//AQAAAAAAAAAWAP7/AQABAAEAAAAWAP3/AQABAAEAAAAXAP3/AQABAAEAAAAXAP7/AQABAAEAAAAXAP//AQAAAAAAAAAXAAoAAQAAAAAAAAAXAAsAAQABAAEAAAAXAAwAAQABAAEAAAAWAAwAAQABAAEAAAAYAAwAAQABAAEAAAAYAAsAAQABAAEAAAAYAAoAAQAAAAAAAAAYAP//AQAAAAAAAAAYAP7/AQABAAEAAAAYAP3/AQABAAEAAAAZAP3/AQABAAEAAAAZAP7/AQABAAEAAAAZAP//AQAAAAAAAAAZAAoAAQAAAAAAAAAZAAsAAQABAAEAAAAZAAwAAQABAAEAAAAaAAwAAQABAAEAAAAaAAsAAQABAAEAAAAaAAoAAQAAAAAAAAAaAP//AQAAAAAAAAAaAP7/AQABAAEAAAAaAP3/AQABAAEAAAAbAP3/AQABAAEAAAAbAP7/AQABAAEAAAAbAP//AQAAAAAAAAAbAAoAAQAAAAAAAAAbAAsAAQABAAEAAAAbAAwAAQABAAEAAAAcAAwAAQABAAEAAAAcAAsAAQABAAEAAAAcAAoAAQAAAAAAAAAcAP//AQAAAAAAAAAcAP7/AQABAAEAAAAcAP3/AQABAAEAAAAdAAoAAQAAAAAAAAAdAAsAAQABAAEAAAAdAAwAAQABAAEAAAAeAAwAAQABAAEAAAAeAAsAAQABAAEAAAAeAAoAAQAAAAAAAAAeAP//AQAAAAAAAAAeAP7/AQABAAEAAAAeAP3/AQABAAEAAAAfAP3/AQABAAEAAAAfAP7/AQABAAEAAAAfAP//AQAAAAAAAAAfAAoAAQAAAAAAAAAfAAsAAQABAAEAAAAfAAwAAQABAAEAAAAgAAwAAQABAAEAAAAgAAsAAQABAAEAAAAgAAoAAQAAAAAAAAAgAP//AQAAAAAAAAAgAP7/AQABAAEAAAAgAP3/AQABAAEAAAAhAP3/AQABAAEAAAAhAP7/AQABAAEAAAAhAP//AQAAAAAAAAAhAAoAAQAAAAAAAAAhAAsAAQABAAEAAAAhAAwAAQABAAEAAAAiAAwAAQABAAEAAAAiAAsAAQABAAEAAAAiAAoAAQACAAAAAAAiAP//AQAAAAAAAAAiAP7/AQABAAEAAAAiAP3/AQABAAEAAAAjAP3/AQABAAEAAAAjAP7/AQABAAEAAAAjAP//AQAAAAAAAAAjAAoAAQABAAEAAAAjAAsAAQABAAEAAAAjAAwAAQABAAEAAAAkAAwAAQABAAEAAAAkAAsAAQABAAEAAAAkAAoAAQABAAEAAAAkAP//AQAAAAAAAAAkAP7/AQABAAEAAAAkAP3/AQABAAEAAAAlAP3/AQABAAEAAAAlAP7/AQABAAEAAAAlAP//AQADAAAAAgAlAAoAAQABAAEAAAAlAAsAAQABAAEAAAAlAAwAAQABAAEAAAAmAAwAAQABAAEAAAAmAAsAAQABAAEAAAAmAAoAAQABAAEAAAAmAP//AQABAAEAAAAmAP7/AQABAAEAAAAmAP3/AQABAAEAAAAnAP3/AQABAAEAAAAnAP7/AQABAAEAAAAnAP//AQABAAEAAAAnAAoAAQACAAEAAAAnAAsAAQABAAEAAAAnAAwAAQABAAEAAAAJAAQAAQAAAAAAAQAJAAUAAQAAAAAAAQAJAAYAAQAAAAAAAQAJAAcAAQAAAAAAAQAJAAgAAQAAAAAAAQAJAAkAAQADAAAAAQAGAAMAAQAAAAAAAQAGAAAAAQADAAAAAwAJAAAAAQAAAAAAAAAHAAAAAQAAAAAAAAAIAAAAAQAAAAAAAAAGAAQAAQAAAAAAAQAGAAUAAQAAAAAAAQAGAAYAAQACAAAAAAAJAAMAAQACAAAAAgAFAAYAAQABAAAAAgAFAAkAAQABAAAAAgAGAAkAAQAAAAAAAAAHAAkAAQAAAAAAAAAIAAkAAQAAAAAAAAAKAAAAAQABAAAAAAAKAAMAAQABAAAAAAANAAYAAQABAAAAAwARAAQAAQABAAAAAwAVAAcAAQABAAAAAwAYAAQAAQABAAAAAwAeAAUAAQABAAAAAwAhAAMAAQABAAAAAgAiAAMAAQACAAAAAwAiAAQAAQAAAAAAAQAiAAUAAQAAAAAAAQAiAAYAAQAAAAAAAQAiAAcAAQAAAAAAAQAiAAgAAQAAAAAAAQAiAAkAAQADAAAAAwAjAAkAAQAAAAAAAAAkAAkAAQAAAAAAAAAlAAkAAQAAAAAAAAAlAAYAAQACAAAAAQAlAAMAAQAAAAAAAQAlAAQAAQAAAAAAAQAlAAUAAQAAAAAAAQAmAAYAAQABAAAAAAAmAAkAAQABAAAAAAAlAAAAAQADAAAAAQAlAAEAAQAAAAAAAQAlAAIAAQAAAAAAAQAhAAAAAQABAAAAAgAiAAAAAQAAAAAAAAAjAAAAAQAAAAAAAAAkAAAAAQAAAAAAAAACAAMAAQABAAAAAQA=")
+tile_set = SubResource("TileSet_gtmsj")
+
+[node name="Layer1" type="TileMapLayer" parent="."]
+modulate = Color(0.686275, 0.686275, 0.686275, 1)
+z_index = -1
+use_parent_material = true
+tile_map_data = PackedByteArray("AAAHAAEAAQADAAIAAAAHAAIAAQADAAIAAAAIAAEAAQABAAIAAAAIAAIAAQABAAIAAAAJAAEAAQABAAIAAAAJAAIAAQABAAIAAAAKAAEAAQABAAIAAAAKAAIAAQABAAIAAAALAAEAAQABAAIAAAALAAIAAQABAAIAAAAMAAEAAQABAAIAAAAMAAIAAQABAAIAAAANAAEAAQACAAIAAAANAAIAAQABAAIAAAAOAAEAAQABAAIAAAAOAAIAAQABAAIAAAAPAAEAAQABAAIAAAAPAAIAAQABAAIAAAAQAAEAAQABAAIAAAAQAAIAAQABAAIAAAARAAEAAQAAAAMAAAARAAIAAQABAAIAAAALAAAAAQAAAAMAAAAMAAAAAQABAAIAAAANAAAAAQABAAIAAAAOAAAAAQABAAIAAAAPAAAAAQABAAIAAAAQAAAAAQABAAIAAAARAAAAAQABAAIAAAASAAAAAQABAAIAAAATAAAAAQABAAIAAAAUAAAAAQABAAIAAAAVAAAAAQABAAIAAAAWAAAAAQABAAIAAAAXAAAAAQABAAIAAAAYAAAAAQABAAIAAAAZAAAAAQABAAIAAAAaAAAAAQABAAIAAAAbAAAAAQABAAIAAAAcAAAAAQABAAIAAAAdAAAAAQABAAIAAAAeAAAAAQABAAIAAAAfAAAAAQABAAIAAAAgAAAAAQAAAAMAAAASAAEAAQABAAIAAAASAAIAAQABAAIAAAATAAEAAQABAAIAAAATAAIAAQABAAIAAAAUAAEAAQABAAIAAAAUAAIAAQABAAIAAAAVAAEAAQABAAIAAAAVAAIAAQABAAIAAAAWAAEAAQABAAIAAAAWAAIAAQABAAIAAAAXAAEAAQABAAIAAAAXAAIAAQABAAIAAAAYAAEAAQAAAAMAAAAYAAIAAQABAAIAAAAZAAEAAQABAAIAAAAZAAIAAQABAAIAAAAaAAEAAQABAAIAAAAaAAIAAQABAAIAAAAbAAEAAQABAAIAAAAbAAIAAQABAAIAAAAcAAEAAQACAAIAAAAcAAIAAQABAAIAAAAdAAEAAQABAAIAAAAdAAIAAQABAAIAAAAeAAEAAQABAAIAAAAeAAIAAQAAAAMAAAAfAAEAAQABAAIAAAAfAAIAAQABAAIAAAAgAAEAAQABAAIAAAAgAAIAAQABAAIAAAAhAAEAAQABAAIAAAAhAAIAAQABAAIAAAAiAAEAAQABAAIAAAAiAAIAAQABAAIAAAAjAAEAAQABAAIAAAAjAAIAAQABAAIAAAAkAAEAAQABAAIAAAAkAAIAAQABAAIAAAAKAAQAAQABAAIAAAAKAAUAAQABAAIAAAAKAAYAAQABAAIAAAAKAAcAAQABAAIAAAAKAAgAAQABAAIAAAALAAQAAQABAAIAAAALAAUAAQABAAIAAAALAAYAAQABAAIAAAALAAcAAQABAAIAAAALAAgAAQABAAIAAAAMAAQAAQABAAIAAAAMAAUAAQABAAIAAAAMAAYAAQABAAIAAAAMAAcAAQABAAIAAAAMAAgAAQABAAIAAAALAAMAAQABAAIAAAAMAAMAAQABAAIAAAAKAAkAAQABAAIAAAALAAkAAQABAAIAAAAMAAkAAQABAAIAAAAOAAMAAQABAAIAAAAOAAQAAQABAAIAAAAOAAUAAQABAAIAAAAOAAYAAQABAAIAAAAOAAcAAQABAAIAAAAOAAgAAQABAAIAAAAOAAkAAQABAAIAAAAPAAMAAQABAAIAAAAPAAQAAQABAAIAAAAPAAUAAQABAAIAAAAPAAYAAQABAAIAAAAPAAcAAQABAAIAAAAPAAgAAQABAAIAAAAPAAkAAQABAAIAAAAQAAMAAQABAAIAAAAQAAQAAQABAAIAAAAQAAUAAQABAAIAAAAQAAYAAQABAAIAAAAQAAcAAQABAAIAAAAQAAgAAQABAAIAAAAQAAkAAQABAAIAAAANAAMAAQAAAAMAAAANAAQAAQABAAIAAAANAAUAAQABAAIAAAARAAMAAQABAAIAAAASAAMAAQABAAIAAAATAAMAAQABAAIAAAAUAAMAAQABAAIAAAAVAAMAAQACAAIAAAAWAAMAAQABAAIAAAAXAAMAAQABAAIAAAAYAAMAAQABAAIAAAAZAAMAAQABAAIAAAAaAAMAAQABAAIAAAAbAAMAAQABAAIAAAAcAAMAAQABAAIAAAAdAAMAAQABAAIAAAAeAAMAAQABAAIAAAAfAAMAAQABAAIAAAAfAAQAAQABAAIAAAAfAAUAAQABAAIAAAAfAAYAAQABAAIAAAAfAAcAAQABAAIAAAAfAAgAAQABAAIAAAAfAAkAAQABAAIAAAAgAAQAAQABAAIAAAAgAAUAAQABAAIAAAAgAAYAAQABAAIAAAAgAAcAAQABAAIAAAAgAAgAAQABAAIAAAAgAAkAAQABAAIAAAAhAAQAAQABAAIAAAAhAAUAAQABAAIAAAAhAAYAAQABAAIAAAAhAAcAAQABAAIAAAAhAAgAAQABAAIAAAAhAAkAAQABAAIAAAAgAAMAAQABAAIAAAAZAAQAAQABAAIAAAAaAAQAAQABAAIAAAAbAAQAAQABAAIAAAAcAAQAAQABAAIAAAAdAAQAAQABAAIAAAAeAAQAAQABAAIAAAAZAAUAAQABAAIAAAAZAAYAAQABAAIAAAAZAAcAAQABAAIAAAAZAAgAAQABAAIAAAAZAAkAAQABAAIAAAAaAAUAAQABAAIAAAAaAAYAAQABAAIAAAAaAAcAAQABAAIAAAAaAAgAAQABAAIAAAAaAAkAAQABAAIAAAAbAAUAAQABAAIAAAAbAAYAAQABAAIAAAAbAAcAAQABAAIAAAAbAAgAAQABAAIAAAAbAAkAAQABAAIAAAAcAAUAAQABAAIAAAAcAAYAAQABAAIAAAAcAAcAAQABAAIAAAAcAAgAAQABAAIAAAAcAAkAAQABAAIAAAAdAAUAAQABAAIAAAAdAAYAAQABAAIAAAAdAAcAAQABAAIAAAAdAAgAAQABAAIAAAAdAAkAAQABAAIAAAAWAAQAAQABAAIAAAAWAAUAAQABAAIAAAAWAAYAAQABAAIAAAAWAAcAAQABAAIAAAAWAAgAAQABAAIAAAAWAAkAAQABAAIAAAAXAAQAAQABAAIAAAAXAAUAAQABAAIAAAAXAAYAAQABAAIAAAAXAAcAAQABAAIAAAAXAAgAAQABAAIAAAAXAAkAAQABAAIAAAASAAQAAQABAAIAAAASAAUAAQABAAIAAAASAAYAAQABAAIAAAASAAcAAQABAAIAAAASAAgAAQABAAIAAAASAAkAAQABAAIAAAATAAQAAQABAAIAAAATAAUAAQABAAIAAAATAAYAAQABAAIAAAATAAcAAQABAAIAAAATAAgAAQABAAIAAAATAAkAAQABAAIAAAAUAAQAAQABAAIAAAAUAAUAAQABAAIAAAAUAAYAAQABAAIAAAAUAAcAAQABAAIAAAAUAAgAAQABAAIAAAAUAAkAAQABAAIAAAAVAAQAAQAAAAMAAAAVAAUAAQABAAIAAAAVAAYAAQABAAIAAAA=")
+tile_set = SubResource("TileSet_gtmsj")
+
+[node name="DecorationMap2" type="TileMapLayer" parent="."]
+modulate = Color(0.501961, 0.501961, 0.501961, 1)
+use_parent_material = true
+tile_map_data = PackedByteArray("AAANAAcAAAAAAAAAAQANAAgAAAAAAAAAAQANAAkAAAAAAAAAAQARAAUAAAAAAAAAAQARAAYAAAAAAAAAAQARAAcAAAAAAAAAAQARAAgAAAAAAAAAAQARAAkAAAAAAAAAAQAVAAgAAAAAAAAAAQAVAAkAAAAAAAAAAQAYAAUAAAAAAAAAAQAYAAYAAAAAAAAAAQAYAAcAAAAAAAAAAQAYAAgAAAAAAAAAAQAYAAkAAAAAAAAAAQAeAAYAAAAAAAAAAQAeAAcAAAAAAAAAAQAeAAgAAAAAAAAAAQAeAAkAAAAAAAAAAQACAAAAAAAAAAAAAQACAAEAAAAAAAAAAQACAAIAAAAAAAAAAQAFAAcAAAABAAIAAAAFAAgAAAABAAIAAAAGAAcAAAABAAIAAAAGAAgAAAABAAIAAAAHAAcAAAABAAIAAAAHAAgAAAABAAIAAAAIAAcAAAABAAIAAAAIAAgAAAABAAIAAAAHAAMAAAABAAIAAAAHAAQAAAABAAIAAAAHAAUAAAABAAIAAAAHAAYAAAABAAIAAAAIAAMAAAABAAIAAAAIAAQAAAABAAIAAAAIAAUAAAABAAIAAAAIAAYAAAABAAIAAAAjAAcAAAABAAIAAAAjAAgAAAABAAIAAAAkAAcAAAABAAIAAAAkAAgAAAABAAIAAAAlAAcAAAABAAIAAAAlAAgAAAABAAIAAAAmAAcAAAABAAIAAAAmAAgAAAABAAIAAAAjAAMAAAABAAIAAAAjAAQAAAABAAIAAAAjAAUAAAABAAIAAAAjAAYAAAABAAIAAAAkAAMAAAABAAIAAAAkAAQAAAABAAIAAAAkAAUAAAABAAIAAAAkAAYAAAABAAIAAAA=")
+tile_set = SubResource("TileSet_sdcfh")
+
+[node name="SecretShortCut" type="TileMapLayer" parent="."]
+modulate = Color(1, 1, 1, 0.784314)
+z_index = 1
+use_parent_material = true
+tile_map_data = PackedByteArray("AAAGAAEAAAAAAAAAAQAGAAIAAAAAAAAAAQAGAAAAAAADAAAAAwA=")
+tile_set = SubResource("TileSet_sdcfh")
+
+[node name="AchievementArea" parent="SecretShortCut" instance=ExtResource("2_4ddd2")]
+position = Vector2(104, 32)
+_achievementName = "Eureka"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SecretShortCut/AchievementArea"]
+shape = SubResource("RectangleShape2D_6w1io")
+
+[node name="Saws" type="Node2D" parent="."]
+
+[node name="MiddleSaws" type="Node2D" parent="Saws"]
+
+[node name="MiddleCircularSaw1" type="Node2D" parent="Saws/MiddleSaws"]
+modulate = Color(0.933333, 0.933333, 0.933333, 1)
+z_index = -1
+position = Vector2(40, 56)
+script = ExtResource("2_43ctl")
+_rotationSpeed = 0.04
+metadata/_edit_group_ = true
+
+[node name="Saw" type="Sprite2D" parent="Saws/MiddleSaws/MiddleCircularSaw1"]
+self_modulate = Color(0.901961, 0.901961, 0.901961, 1)
+texture = ExtResource("3_8hif1")
+
+[node name="Stud" type="Sprite2D" parent="Saws/MiddleSaws/MiddleCircularSaw1"]
+self_modulate = Color(0.901961, 0.901961, 0.901961, 1)
+texture = ExtResource("6_sdn3l")
+
+[node name="MiddleCircularSaw2" type="Node2D" parent="Saws/MiddleSaws"]
+modulate = Color(0.933333, 0.933333, 0.933333, 1)
+z_index = -1
+position = Vector2(216, 104)
+scale = Vector2(0.75, 0.75)
+script = ExtResource("2_43ctl")
+_rotationSpeed = 0.07
+metadata/_edit_group_ = true
+
+[node name="Saw" type="Sprite2D" parent="Saws/MiddleSaws/MiddleCircularSaw2"]
+self_modulate = Color(0.901961, 0.901961, 0.901961, 1)
+texture = ExtResource("3_8hif1")
+
+[node name="FrontCircularSaw" type="Node2D" parent="Saws/MiddleSaws/MiddleCircularSaw2/Saw"]
+z_index = 1
+position = Vector2(40, 0)
+scale = Vector2(0.5, 0.5)
+script = ExtResource("2_43ctl")
+_rotationSpeed = 0.3
+
+[node name="Saw" type="Sprite2D" parent="Saws/MiddleSaws/MiddleCircularSaw2/Saw/FrontCircularSaw"]
+scale = Vector2(2, 2)
+texture = ExtResource("4_x0u2j")
+
+[node name="HitBox" type="Area2D" parent="Saws/MiddleSaws/MiddleCircularSaw2/Saw/FrontCircularSaw/Saw"]
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Saws/MiddleSaws/MiddleCircularSaw2/Saw/FrontCircularSaw/Saw/HitBox"]
+shape = SubResource("CircleShape2D_typ5x")
+
+[node name="Stud" type="Sprite2D" parent="Saws/MiddleSaws/MiddleCircularSaw2/Saw/FrontCircularSaw"]
+scale = Vector2(2, 2)
+texture = ExtResource("5_1y7dn")
+
+[node name="Stud" type="Sprite2D" parent="Saws/MiddleSaws/MiddleCircularSaw2"]
+self_modulate = Color(0.901961, 0.901961, 0.901961, 1)
+texture = ExtResource("6_sdn3l")
+
+[node name="MiddleCircularSaw3" type="Node2D" parent="Saws/MiddleSaws"]
+modulate = Color(0.933333, 0.933333, 0.933333, 1)
+z_index = -1
+position = Vector2(280, 72)
+scale = Vector2(0.75, 0.75)
+script = ExtResource("2_43ctl")
+_rotationSpeed = 0.06
+metadata/_edit_group_ = true
+
+[node name="Saw" type="Sprite2D" parent="Saws/MiddleSaws/MiddleCircularSaw3"]
+self_modulate = Color(0.901961, 0.901961, 0.901961, 1)
+texture = ExtResource("3_8hif1")
+
+[node name="FrontCircularSaw" type="Node2D" parent="Saws/MiddleSaws/MiddleCircularSaw3/Saw"]
+z_index = 1
+position = Vector2(40, 0)
+scale = Vector2(0.5, 0.5)
+script = ExtResource("2_43ctl")
+_rotationSpeed = 0.3
+
+[node name="Saw" type="Sprite2D" parent="Saws/MiddleSaws/MiddleCircularSaw3/Saw/FrontCircularSaw"]
+scale = Vector2(2, 2)
+texture = ExtResource("4_x0u2j")
+
+[node name="HitBox" type="Area2D" parent="Saws/MiddleSaws/MiddleCircularSaw3/Saw/FrontCircularSaw/Saw"]
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Saws/MiddleSaws/MiddleCircularSaw3/Saw/FrontCircularSaw/Saw/HitBox"]
+shape = SubResource("CircleShape2D_typ5x")
+
+[node name="Stud" type="Sprite2D" parent="Saws/MiddleSaws/MiddleCircularSaw3/Saw/FrontCircularSaw"]
+scale = Vector2(2, 2)
+texture = ExtResource("5_1y7dn")
+
+[node name="Stud" type="Sprite2D" parent="Saws/MiddleSaws/MiddleCircularSaw3"]
+self_modulate = Color(0.901961, 0.901961, 0.901961, 1)
+texture = ExtResource("6_sdn3l")
+
+[node name="MiddleCircularSaw4" type="Node2D" parent="Saws/MiddleSaws"]
+modulate = Color(0.933333, 0.933333, 0.933333, 1)
+z_index = -1
+position = Vector2(344, 120)
+scale = Vector2(0.75, 0.75)
+script = ExtResource("2_43ctl")
+_rotationSpeed = 0.07
+metadata/_edit_group_ = true
+
+[node name="Saw" type="Sprite2D" parent="Saws/MiddleSaws/MiddleCircularSaw4"]
+self_modulate = Color(0.901961, 0.901961, 0.901961, 1)
+texture = ExtResource("3_8hif1")
+
+[node name="FrontCircularSaw" type="Node2D" parent="Saws/MiddleSaws/MiddleCircularSaw4/Saw"]
+z_index = 1
+position = Vector2(40, 0)
+scale = Vector2(0.5, 0.5)
+script = ExtResource("2_43ctl")
+_rotationSpeed = 0.3
+
+[node name="Saw" type="Sprite2D" parent="Saws/MiddleSaws/MiddleCircularSaw4/Saw/FrontCircularSaw"]
+scale = Vector2(2, 2)
+texture = ExtResource("4_x0u2j")
+
+[node name="HitBox" type="Area2D" parent="Saws/MiddleSaws/MiddleCircularSaw4/Saw/FrontCircularSaw/Saw"]
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Saws/MiddleSaws/MiddleCircularSaw4/Saw/FrontCircularSaw/Saw/HitBox"]
+shape = SubResource("CircleShape2D_typ5x")
+
+[node name="Stud" type="Sprite2D" parent="Saws/MiddleSaws/MiddleCircularSaw4/Saw/FrontCircularSaw"]
+scale = Vector2(2, 2)
+texture = ExtResource("5_1y7dn")
+
+[node name="Stud" type="Sprite2D" parent="Saws/MiddleSaws/MiddleCircularSaw4"]
+self_modulate = Color(0.901961, 0.901961, 0.901961, 1)
+texture = ExtResource("6_sdn3l")
+
+[node name="MiddleCircularSaw5" type="Node2D" parent="Saws/MiddleSaws"]
+modulate = Color(0.933333, 0.933333, 0.933333, 1)
+z_index = -1
+position = Vector2(392, 72)
+scale = Vector2(0.75, 0.75)
+script = ExtResource("2_43ctl")
+_rotationSpeed = 0.06
+metadata/_edit_group_ = true
+
+[node name="Saw" type="Sprite2D" parent="Saws/MiddleSaws/MiddleCircularSaw5"]
+self_modulate = Color(0.901961, 0.901961, 0.901961, 1)
+texture = ExtResource("3_8hif1")
+
+[node name="FrontCircularSaw" type="Node2D" parent="Saws/MiddleSaws/MiddleCircularSaw5/Saw"]
+z_index = 1
+position = Vector2(40, 0)
+scale = Vector2(0.5, 0.5)
+script = ExtResource("2_43ctl")
+_rotationSpeed = 0.3
+
+[node name="Saw" type="Sprite2D" parent="Saws/MiddleSaws/MiddleCircularSaw5/Saw/FrontCircularSaw"]
+scale = Vector2(2, 2)
+texture = ExtResource("4_x0u2j")
+
+[node name="HitBox" type="Area2D" parent="Saws/MiddleSaws/MiddleCircularSaw5/Saw/FrontCircularSaw/Saw"]
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Saws/MiddleSaws/MiddleCircularSaw5/Saw/FrontCircularSaw/Saw/HitBox"]
+shape = SubResource("CircleShape2D_typ5x")
+
+[node name="Stud" type="Sprite2D" parent="Saws/MiddleSaws/MiddleCircularSaw5/Saw/FrontCircularSaw"]
+scale = Vector2(2, 2)
+texture = ExtResource("5_1y7dn")
+
+[node name="Stud" type="Sprite2D" parent="Saws/MiddleSaws/MiddleCircularSaw5"]
+self_modulate = Color(0.901961, 0.901961, 0.901961, 1)
+texture = ExtResource("6_sdn3l")
+
+[node name="MiddleCircularSaw6" type="Node2D" parent="Saws/MiddleSaws"]
+modulate = Color(0.933333, 0.933333, 0.933333, 1)
+z_index = -1
+position = Vector2(488, 88)
+scale = Vector2(0.75, 0.75)
+script = ExtResource("2_43ctl")
+_rotationSpeed = 0.07
+metadata/_edit_group_ = true
+
+[node name="Saw" type="Sprite2D" parent="Saws/MiddleSaws/MiddleCircularSaw6"]
+self_modulate = Color(0.901961, 0.901961, 0.901961, 1)
+texture = ExtResource("3_8hif1")
+
+[node name="FrontCircularSaw" type="Node2D" parent="Saws/MiddleSaws/MiddleCircularSaw6/Saw"]
+z_index = 1
+position = Vector2(40, 0)
+scale = Vector2(0.5, 0.5)
+script = ExtResource("2_43ctl")
+_rotationSpeed = 0.3
+
+[node name="Saw" type="Sprite2D" parent="Saws/MiddleSaws/MiddleCircularSaw6/Saw/FrontCircularSaw"]
+scale = Vector2(2, 2)
+texture = ExtResource("4_x0u2j")
+
+[node name="HitBox" type="Area2D" parent="Saws/MiddleSaws/MiddleCircularSaw6/Saw/FrontCircularSaw/Saw"]
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Saws/MiddleSaws/MiddleCircularSaw6/Saw/FrontCircularSaw/Saw/HitBox"]
+shape = SubResource("CircleShape2D_typ5x")
+
+[node name="Stud" type="Sprite2D" parent="Saws/MiddleSaws/MiddleCircularSaw6/Saw/FrontCircularSaw"]
+scale = Vector2(2, 2)
+texture = ExtResource("5_1y7dn")
+
+[node name="Stud" type="Sprite2D" parent="Saws/MiddleSaws/MiddleCircularSaw6"]
+self_modulate = Color(0.901961, 0.901961, 0.901961, 1)
+texture = ExtResource("6_sdn3l")
+
+[node name="FrontSaws" type="Node2D" parent="Saws"]
+
+[node name="FrontCircularSaw" type="Node2D" parent="Saws/FrontSaws"]
+z_index = 1
+position = Vector2(176.25, 145.5)
+scale = Vector2(0.5, 0.5)
+script = ExtResource("2_43ctl")
+_rotationSpeed = 0.3
+metadata/_edit_group_ = true
+
+[node name="Saw" type="Sprite2D" parent="Saws/FrontSaws/FrontCircularSaw"]
+scale = Vector2(2, 2)
+texture = ExtResource("4_x0u2j")
+
+[node name="HitBox" type="Area2D" parent="Saws/FrontSaws/FrontCircularSaw/Saw"]
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Saws/FrontSaws/FrontCircularSaw/Saw/HitBox"]
+shape = SubResource("CircleShape2D_typ5x")
+
+[node name="Stud" type="Sprite2D" parent="Saws/FrontSaws/FrontCircularSaw"]
+scale = Vector2(2, 2)
+texture = ExtResource("5_1y7dn")
+
+[node name="FrontCircularSaw2" type="Node2D" parent="Saws/FrontSaws"]
+z_index = 1
+position = Vector2(219, 155.25)
+scale = Vector2(0.5, 0.5)
+script = ExtResource("2_43ctl")
+_rotationSpeed = 0.3
+metadata/_edit_group_ = true
+
+[node name="Saw" type="Sprite2D" parent="Saws/FrontSaws/FrontCircularSaw2"]
+scale = Vector2(2, 2)
+texture = ExtResource("4_x0u2j")
+
+[node name="HitBox" type="Area2D" parent="Saws/FrontSaws/FrontCircularSaw2/Saw"]
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Saws/FrontSaws/FrontCircularSaw2/Saw/HitBox"]
+shape = SubResource("CircleShape2D_typ5x")
+
+[node name="Stud" type="Sprite2D" parent="Saws/FrontSaws/FrontCircularSaw2"]
+scale = Vector2(2, 2)
+texture = ExtResource("5_1y7dn")
+
+[node name="FrontCircularSaw3" type="Node2D" parent="Saws/FrontSaws"]
+z_index = 1
+position = Vector2(261.75, 151.25)
+scale = Vector2(0.5, 0.5)
+script = ExtResource("2_43ctl")
+_rotationSpeed = 0.3
+metadata/_edit_group_ = true
+
+[node name="Saw" type="Sprite2D" parent="Saws/FrontSaws/FrontCircularSaw3"]
+scale = Vector2(2, 2)
+texture = ExtResource("4_x0u2j")
+
+[node name="HitBox" type="Area2D" parent="Saws/FrontSaws/FrontCircularSaw3/Saw"]
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Saws/FrontSaws/FrontCircularSaw3/Saw/HitBox"]
+shape = SubResource("CircleShape2D_typ5x")
+
+[node name="Stud" type="Sprite2D" parent="Saws/FrontSaws/FrontCircularSaw3"]
+scale = Vector2(2, 2)
+texture = ExtResource("5_1y7dn")
+
+[node name="FrontCircularSaw4" type="Node2D" parent="Saws/FrontSaws"]
+z_index = 1
+position = Vector2(306, 160.75)
+scale = Vector2(0.5, 0.5)
+script = ExtResource("2_43ctl")
+_rotationSpeed = 0.3
+metadata/_edit_group_ = true
+
+[node name="Saw" type="Sprite2D" parent="Saws/FrontSaws/FrontCircularSaw4"]
+scale = Vector2(2, 2)
+texture = ExtResource("4_x0u2j")
+
+[node name="HitBox" type="Area2D" parent="Saws/FrontSaws/FrontCircularSaw4/Saw"]
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Saws/FrontSaws/FrontCircularSaw4/Saw/HitBox"]
+shape = SubResource("CircleShape2D_typ5x")
+
+[node name="Stud" type="Sprite2D" parent="Saws/FrontSaws/FrontCircularSaw4"]
+scale = Vector2(2, 2)
+texture = ExtResource("5_1y7dn")
+
+[node name="FrontCircularSaw5" type="Node2D" parent="Saws/FrontSaws"]
+z_index = 1
+position = Vector2(342.25, 144)
+scale = Vector2(0.5, 0.5)
+script = ExtResource("2_43ctl")
+_rotationSpeed = 0.3
+metadata/_edit_group_ = true
+
+[node name="Saw" type="Sprite2D" parent="Saws/FrontSaws/FrontCircularSaw5"]
+scale = Vector2(2, 2)
+texture = ExtResource("4_x0u2j")
+
+[node name="HitBox" type="Area2D" parent="Saws/FrontSaws/FrontCircularSaw5/Saw"]
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Saws/FrontSaws/FrontCircularSaw5/Saw/HitBox"]
+shape = SubResource("CircleShape2D_typ5x")
+
+[node name="Stud" type="Sprite2D" parent="Saws/FrontSaws/FrontCircularSaw5"]
+scale = Vector2(2, 2)
+texture = ExtResource("5_1y7dn")
+
+[node name="FrontCircularSaw6" type="Node2D" parent="Saws/FrontSaws"]
+z_index = 1
+position = Vector2(388.5, 154)
+scale = Vector2(0.5, 0.5)
+script = ExtResource("2_43ctl")
+_rotationSpeed = 0.3
+metadata/_edit_group_ = true
+
+[node name="Saw" type="Sprite2D" parent="Saws/FrontSaws/FrontCircularSaw6"]
+scale = Vector2(2, 2)
+texture = ExtResource("4_x0u2j")
+
+[node name="HitBox" type="Area2D" parent="Saws/FrontSaws/FrontCircularSaw6/Saw"]
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Saws/FrontSaws/FrontCircularSaw6/Saw/HitBox"]
+shape = SubResource("CircleShape2D_typ5x")
+
+[node name="Stud" type="Sprite2D" parent="Saws/FrontSaws/FrontCircularSaw6"]
+scale = Vector2(2, 2)
+texture = ExtResource("5_1y7dn")
+
+[node name="FrontCircularSaw7" type="Node2D" parent="Saws/FrontSaws"]
+z_index = 1
+position = Vector2(436, 149.25)
+scale = Vector2(0.5, 0.5)
+script = ExtResource("2_43ctl")
+_rotationSpeed = 0.3
+metadata/_edit_group_ = true
+
+[node name="Saw" type="Sprite2D" parent="Saws/FrontSaws/FrontCircularSaw7"]
+scale = Vector2(2, 2)
+texture = ExtResource("4_x0u2j")
+
+[node name="HitBox" type="Area2D" parent="Saws/FrontSaws/FrontCircularSaw7/Saw"]
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Saws/FrontSaws/FrontCircularSaw7/Saw/HitBox"]
+shape = SubResource("CircleShape2D_typ5x")
+
+[node name="Stud" type="Sprite2D" parent="Saws/FrontSaws/FrontCircularSaw7"]
+scale = Vector2(2, 2)
+texture = ExtResource("5_1y7dn")
+
+[node name="FrontCircularSaw8" type="Node2D" parent="Saws/FrontSaws"]
+z_index = 1
+position = Vector2(484.75, 154)
+scale = Vector2(0.5, 0.5)
+script = ExtResource("2_43ctl")
+_rotationSpeed = 0.3
+metadata/_edit_group_ = true
+
+[node name="Saw" type="Sprite2D" parent="Saws/FrontSaws/FrontCircularSaw8"]
+scale = Vector2(2, 2)
+texture = ExtResource("4_x0u2j")
+
+[node name="HitBox" type="Area2D" parent="Saws/FrontSaws/FrontCircularSaw8/Saw"]
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Saws/FrontSaws/FrontCircularSaw8/Saw/HitBox"]
+shape = SubResource("CircleShape2D_typ5x")
+
+[node name="Stud" type="Sprite2D" parent="Saws/FrontSaws/FrontCircularSaw8"]
+scale = Vector2(2, 2)
+texture = ExtResource("5_1y7dn")
+
+[node name="FrontCircularSaw9" type="Node2D" parent="Saws/FrontSaws"]
+z_index = 1
+position = Vector2(527, 142.25)
+scale = Vector2(0.5, 0.5)
+script = ExtResource("2_43ctl")
+_rotationSpeed = 0.3
+metadata/_edit_group_ = true
+
+[node name="Saw" type="Sprite2D" parent="Saws/FrontSaws/FrontCircularSaw9"]
+scale = Vector2(2, 2)
+texture = ExtResource("4_x0u2j")
+
+[node name="HitBox" type="Area2D" parent="Saws/FrontSaws/FrontCircularSaw9/Saw"]
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Saws/FrontSaws/FrontCircularSaw9/Saw/HitBox"]
+shape = SubResource("CircleShape2D_typ5x")
+
+[node name="Stud" type="Sprite2D" parent="Saws/FrontSaws/FrontCircularSaw9"]
+scale = Vector2(2, 2)
+texture = ExtResource("5_1y7dn")

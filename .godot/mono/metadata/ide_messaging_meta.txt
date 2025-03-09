@@ -1,2 +1,0 @@
-﻿50971
-C:/Program Files/Godot 4.4 mono/Godot_v4.4-stable_mono_win64.exe

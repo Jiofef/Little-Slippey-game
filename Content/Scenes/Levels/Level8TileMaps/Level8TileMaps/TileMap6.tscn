@@ -1,0 +1,883 @@
+[gd_scene load_steps=28 format=4 uid="uid://cmuiupnjgqyvr"]
+
+[ext_resource type="Texture2D" uid="uid://duk32e0otnfky" path="res://Content/Sprites/Levels/FuckItVolume2Tileset.png" id="1_b5f1i"]
+[ext_resource type="Script" uid="uid://cmjb61utqcw0" path="res://Content/Scripts/Levels/Level8FragileTile.cs" id="2_ad6m7"]
+[ext_resource type="Texture2D" uid="uid://dgluki8hnwb62" path="res://Content/Sprites/Levels/Level8/AcidAndLavaTileset.png" id="3_46a3p"]
+[ext_resource type="Texture2D" uid="uid://ckh1sclq3fji3" path="res://Content/Sprites/Other/PointLight.png" id="4_xl8yo"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wv2uq"]
+texture = ExtResource("1_b5f1i")
+0:0/next_alternative_id = 2
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:0/1 = 1
+0:0/1/transpose = true
+0:0/1/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:0/next_alternative_id = 4
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:0/1 = 1
+1:0/1/transpose = true
+1:0/1/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:0/2 = 2
+1:0/2/flip_h = true
+1:0/2/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:0/3 = 3
+1:0/3/flip_v = true
+1:0/3/transpose = true
+1:0/3/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:0/next_alternative_id = 4
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:0/1 = 1
+2:0/1/flip_h = true
+2:0/1/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:0/2 = 2
+2:0/2/flip_h = true
+2:0/2/flip_v = true
+2:0/2/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:0/3 = 3
+2:0/3/flip_v = true
+2:0/3/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:0/next_alternative_id = 4
+3:0/0 = 0
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:0/1 = 1
+3:0/1/transpose = true
+3:0/1/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:0/2 = 2
+3:0/2/flip_v = true
+3:0/2/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:0/3 = 3
+3:0/3/flip_h = true
+3:0/3/transpose = true
+3:0/3/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:1/0 = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:1/0 = 0
+2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:3/0 = 0
+1:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, -1, -8, -1)
+2:3/0 = 0
+2:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, -1, 4, -1, 4, 8, -4, 8, -4, -1, -8, -1)
+3:3/0 = 0
+3:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -8, 4, -8, 4, 8, -4, 8)
+0:4/0 = 0
+0:2/0 = 0
+0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:1/0 = 0
+3:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+0:3/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+3:4/next_alternative_id = 2
+3:4/0 = 0
+3:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:4/1 = 1
+3:4/1/transpose = true
+3:4/1/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:5/next_alternative_id = 4
+3:5/0 = 0
+3:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:5/1 = 1
+3:5/1/transpose = true
+3:5/1/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:5/2 = 2
+3:5/2/flip_v = true
+3:5/2/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:5/3 = 3
+3:5/3/flip_h = true
+3:5/3/transpose = true
+3:5/3/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:5/next_alternative_id = 3
+2:5/0 = 0
+2:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:5/next_alternative_id = 4
+1:5/0 = 0
+1:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:5/1 = 1
+1:5/1/flip_h = true
+1:5/1/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:5/2 = 2
+1:5/2/flip_h = true
+1:5/2/flip_v = true
+1:5/2/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:5/3 = 3
+1:5/3/flip_v = true
+1:5/3/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:5/next_alternative_id = 6
+0:5/0 = 0
+0:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:5/2 = 2
+0:5/2/flip_h = true
+0:5/2/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:5/4 = 4
+0:5/4/transpose = true
+0:5/4/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:5/5 = 5
+0:5/5/flip_v = true
+0:5/5/transpose = true
+0:6/0 = 0
+1:6/0 = 0
+2:6/0 = 0
+3:6/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_gtmsj"]
+physics_layer_0/collision_layer = 4
+physics_layer_0/collision_mask = 0
+sources/1 = SubResource("TileSetAtlasSource_wv2uq")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gcp6o"]
+texture = ExtResource("1_b5f1i")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+0:4/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+3:4/0 = 0
+0:5/0 = 0
+1:5/0 = 0
+2:5/0 = 0
+3:5/0 = 0
+0:6/0 = 0
+1:6/0 = 0
+2:6/0 = 0
+3:6/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_q8ol7"]
+sources/0 = SubResource("TileSetAtlasSource_gcp6o")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fie0q"]
+size = Vector2(32, 32)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ua1ox"]
+texture = ExtResource("1_b5f1i")
+0:0/next_alternative_id = 2
+0:0/0 = 0
+0:0/1 = 1
+0:0/1/transpose = true
+1:0/next_alternative_id = 5
+1:0/0 = 0
+1:0/1 = 1
+1:0/1/transpose = true
+1:0/2 = 2
+1:0/2/flip_h = true
+1:0/3 = 3
+1:0/3/flip_v = true
+1:0/3/transpose = true
+2:0/next_alternative_id = 4
+2:0/0 = 0
+2:0/1 = 1
+2:0/1/flip_h = true
+2:0/2 = 2
+2:0/2/flip_h = true
+2:0/2/flip_v = true
+2:0/3 = 3
+2:0/3/flip_v = true
+3:0/next_alternative_id = 4
+3:0/0 = 0
+3:0/1 = 1
+3:0/1/transpose = true
+3:0/2 = 2
+3:0/2/flip_v = true
+3:0/3 = 3
+3:0/3/flip_h = true
+3:0/3/transpose = true
+0:1/0 = 0
+2:1/0 = 0
+1:1/0 = 0
+0:3/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+3:1/0 = 0
+0:4/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+3:4/next_alternative_id = 3
+3:4/0 = 0
+3:4/1 = 1
+3:4/1/transpose = true
+3:5/next_alternative_id = 4
+3:5/0 = 0
+3:5/1 = 1
+3:5/1/transpose = true
+3:5/2 = 2
+3:5/2/flip_v = true
+3:5/3 = 3
+3:5/3/flip_h = true
+3:5/3/transpose = true
+2:5/0 = 0
+1:5/next_alternative_id = 4
+1:5/0 = 0
+1:5/1 = 1
+1:5/1/flip_h = true
+1:5/2 = 2
+1:5/2/flip_h = true
+1:5/2/flip_v = true
+1:5/3 = 3
+1:5/3/flip_v = true
+0:5/next_alternative_id = 4
+0:5/0 = 0
+0:5/1 = 1
+0:5/1/transpose = true
+0:5/2 = 2
+0:5/2/flip_h = true
+0:5/3 = 3
+0:5/3/flip_v = true
+0:5/3/transpose = true
+1:4/0 = 0
+2:4/0 = 0
+0:6/0 = 0
+1:6/0 = 0
+2:6/0 = 0
+3:6/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_8tpds"]
+sources/0 = SubResource("TileSetAtlasSource_ua1ox")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nnofw"]
+size = Vector2(32.5, 32.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mmmbn"]
+size = Vector2(32.5, 32.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_636iv"]
+size = Vector2(16, 512)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ois04"]
+size = Vector2(80, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nvrnf"]
+size = Vector2(18.5, 514)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xc2xe"]
+size = Vector2(64.5, 17)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xjlky"]
+size = Vector2(32.5, 32.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_klhr2"]
+size = Vector2(112, 16)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2iinq"]
+texture = ExtResource("1_b5f1i")
+0:0/next_alternative_id = 2
+0:0/0 = 0
+0:0/1 = 1
+0:0/1/transpose = true
+1:0/next_alternative_id = 5
+1:0/0 = 0
+1:0/1 = 1
+1:0/1/transpose = true
+1:0/2 = 2
+1:0/2/flip_h = true
+1:0/3 = 3
+1:0/3/flip_v = true
+1:0/3/transpose = true
+2:0/next_alternative_id = 4
+2:0/0 = 0
+2:0/1 = 1
+2:0/1/flip_h = true
+2:0/2 = 2
+2:0/2/flip_h = true
+2:0/2/flip_v = true
+2:0/3 = 3
+2:0/3/flip_v = true
+3:0/next_alternative_id = 4
+3:0/0 = 0
+3:0/1 = 1
+3:0/1/transpose = true
+3:0/2 = 2
+3:0/2/flip_v = true
+3:0/3 = 3
+3:0/3/flip_h = true
+3:0/3/transpose = true
+0:1/0 = 0
+2:1/0 = 0
+1:1/0 = 0
+0:3/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+3:1/0 = 0
+0:4/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_sdcfh"]
+sources/0 = SubResource("TileSetAtlasSource_2iinq")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qgtth"]
+size = Vector2(112.5, 16.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7pobi"]
+size = Vector2(528, 42)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sd8ca"]
+texture = ExtResource("3_46a3p")
+0:0/animation_columns = 2
+0:0/animation_frame_0/duration = 0.5
+0:0/animation_frame_1/duration = 0.5
+0:0/0 = 0
+0:1/animation_columns = 2
+0:1/animation_frame_0/duration = 0.5
+0:1/animation_frame_1/duration = 0.5
+0:1/0 = 0
+2:0/animation_columns = 2
+2:0/animation_frame_0/duration = 0.5
+2:0/animation_frame_1/duration = 0.5
+2:0/0 = 0
+2:1/animation_columns = 2
+2:1/animation_frame_0/duration = 0.5
+2:1/animation_frame_1/duration = 0.5
+2:1/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_macir"]
+sources/0 = SubResource("TileSetAtlasSource_sd8ca")
+
+[sub_resource type="Gradient" id="Gradient_istma"]
+offsets = PackedFloat32Array(0, 0.516556, 1)
+colors = PackedColorArray(1, 1, 1, 0, 0.602649, 0.602649, 0.602649, 1, 1, 1, 1, 0)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_tkf6g"]
+blend_mode = 1
+
+[node name="TileMap" type="TileMapLayer"]
+use_parent_material = true
+scale = Vector2(4, 4)
+tile_map_data = PackedByteArray("AAAAAP3/AQABAAEAAAAAAP7/AQABAAEAAAAAAP//AQABAAEAAAAAAAsAAQABAAEAAAAAAAwAAQABAAEAAAABAP3/AQABAAEAAAABAP7/AQABAAEAAAABAP//AQABAAEAAAABAAsAAQABAAEAAAABAAwAAQABAAEAAAACAP3/AQABAAEAAAACAP7/AQABAAEAAAACAP//AQABAAEAAAADAP3/AQABAAEAAAADAP7/AQABAAEAAAADAP//AQABAAEAAAAEAP3/AQABAAEAAAAEAP7/AQABAAEAAAAEAP//AQABAAEAAAAFAP3/AQABAAEAAAAFAP7/AQABAAEAAAAFAP//AQABAAEAAAAGAP3/AQABAAEAAAAGAP7/AQABAAEAAAAGAP//AQABAAEAAAAHAP3/AQABAAEAAAAHAP7/AQABAAEAAAAHAP//AQABAAEAAAAIAP3/AQABAAEAAAAIAP7/AQABAAEAAAAIAP//AQABAAEAAAAJAP3/AQABAAEAAAAJAP7/AQABAAEAAAAJAP//AQABAAEAAAAKAP3/AQABAAEAAAAKAP7/AQABAAEAAAAKAP//AQABAAEAAAALAP3/AQABAAEAAAALAP7/AQABAAEAAAALAP//AQABAAEAAAAMAP3/AQABAAEAAAAMAP7/AQABAAEAAAAMAP//AQABAAEAAAANAP3/AQABAAEAAAANAP7/AQABAAEAAAANAP//AQABAAEAAAAOAP3/AQABAAEAAAAOAP7/AQABAAEAAAAOAP//AQABAAEAAAAPAP3/AQABAAEAAAAPAP7/AQABAAEAAAAPAP//AQABAAEAAAAQAP3/AQABAAEAAAAQAP7/AQABAAEAAAAQAP//AQABAAEAAAARAP3/AQABAAEAAAARAP7/AQABAAEAAAARAP//AQABAAEAAAASAP3/AQABAAEAAAASAP7/AQABAAEAAAASAP//AQABAAEAAAATAP3/AQABAAEAAAATAP7/AQABAAEAAAATAP//AQABAAEAAAAUAP3/AQABAAEAAAAUAP7/AQABAAEAAAAUAP//AQABAAEAAAAVAP3/AQABAAEAAAAVAP7/AQABAAEAAAAVAP//AQABAAEAAAAWAP3/AQABAAEAAAAWAP7/AQABAAAAAgAWAP//AQABAAEAAAAXAP3/AQABAAEAAAAXAP7/AQADAAAAAgAXAP//AQAAAAAAAQAYAP3/AQABAAEAAAAYAP7/AQAAAAAAAAAYAP//AQABAAEAAAAZAP3/AQABAAEAAAAZAP7/AQAAAAAAAAAZAP//AQABAAEAAAAaAP3/AQABAAEAAAAaAP7/AQAAAAAAAAAaAP//AQABAAEAAAAbAP3/AQABAAEAAAAbAP7/AQAAAAAAAAAbAP//AQABAAEAAAAcAP3/AQABAAEAAAAcAP7/AQAAAAAAAAAcAP//AQABAAEAAAAdAP3/AQABAAEAAAAdAP7/AQAAAAAAAAAdAP//AQABAAEAAAAeAP3/AQABAAEAAAAeAP7/AQAAAAAAAAAeAP//AQABAAEAAAAfAP3/AQABAAEAAAAfAP7/AQAAAAAAAAAfAP//AQABAAEAAAAgAP3/AQABAAEAAAAgAP7/AQAAAAAAAAAgAP//AQABAAEAAAAhAP3/AQABAAEAAAAhAP7/AQAAAAAAAAAhAP//AQABAAEAAAAiAP3/AQABAAEAAAAiAP7/AQAAAAAAAAAiAP//AQABAAEAAAAjAP3/AQABAAEAAAAjAP7/AQAAAAAAAAAjAP//AQABAAEAAAAkAP3/AQABAAEAAAAkAP7/AQAAAAAAAAAkAP//AQABAAEAAAAlAP3/AQABAAEAAAAlAP7/AQAAAAAAAAAlAP//AQABAAEAAAAmAP3/AQABAAEAAAAmAP7/AQACAAAAAwAmAP//AQAAAAAAAQAmAAsAAQABAAEAAAAmAAwAAQABAAEAAAAnAP3/AQABAAEAAAAnAP7/AQABAAEAAAAnAP//AQABAAEAAAAnAAsAAQABAAEAAAAnAAwAAQABAAEAAAAAAAoAAQACAAEAAAABAAoAAQACAAEAAAAmAAoAAQABAAAAAAAnAAoAAQACAAEAAAAXAAAAAQAAAAAAAQAXAAEAAQAAAAAAAQAXAAIAAQABAAAAAQAkAAoAAQAAAAAAAAAkAAsAAQABAAEAAAAkAAwAAQABAAEAAAAlAAoAAQAAAAAAAAAlAAsAAQABAAEAAAAlAAwAAQABAAEAAAAmAAAAAQAAAAAAAQAmAAEAAQAAAAAAAQAmAAIAAQAAAAAAAQAmAAMAAQAAAAAAAQAmAAQAAQAAAAAAAQAmAAUAAQAAAAAAAQAmAAYAAQAAAAAAAQAmAAcAAQABAAAAAQAjAAIAAQABAAAAAwAjAAMAAQAAAAAAAQAjAAQAAQAAAAAAAQAjAAUAAQAAAAAAAQAjAAYAAQAAAAAAAQAjAAcAAQAAAAAAAQAjAAgAAQAAAAAAAQAjAAkAAQAAAAAAAQAjAAoAAQACAAAAAQAjAAsAAQABAAEAAAAjAAwAAQABAAEAAAACAAwAAQAAAAIAAAADAAwAAQAAAAIAAAAEAAwAAQAAAAIAAAAFAAwAAQAAAAIAAAAGAAwAAQAAAAIAAAAHAAwAAQAAAAIAAAAIAAwAAQAAAAIAAAAJAAwAAQAAAAIAAAAKAAwAAQAAAAIAAAALAAwAAQAAAAIAAAAMAAwAAQAAAAIAAAANAAwAAQAAAAIAAAAOAAwAAQAAAAIAAAAPAAwAAQAAAAIAAAAQAAwAAQAAAAIAAAARAAwAAQAAAAIAAAASAAwAAQAAAAIAAAATAAwAAQAAAAIAAAAUAAwAAQAAAAIAAAAVAAwAAQAAAAIAAAAWAAwAAQAAAAIAAAAXAAwAAQAAAAIAAAAYAAwAAQAAAAIAAAAZAAwAAQAAAAIAAAAaAAwAAQAAAAIAAAAbAAwAAQAAAAIAAAAcAAwAAQAAAAIAAAAdAAwAAQAAAAIAAAAeAAwAAQAAAAIAAAAfAAwAAQAAAAIAAAAgAAwAAQAAAAIAAAAhAAwAAQAAAAIAAAAiAAwAAQAAAAIAAAA=")
+tile_set = SubResource("TileSet_gtmsj")
+
+[node name="DecorationMap" type="TileMapLayer" parent="."]
+modulate = Color(0.501961, 0.501961, 0.501961, 1)
+z_index = -1
+use_parent_material = true
+tile_map_data = PackedByteArray("AAAEAAoAAAABAAEAAAAEAAsAAAABAAEAAAAFAAoAAAADAAEAAAAFAAsAAAABAAEAAAAGAAoAAAADAAEAAAAGAAsAAAABAAEAAAAHAAoAAAADAAEAAAAHAAsAAAABAAEAAAAFAAkAAAABAAEAAAAGAAkAAAADAAEAAAAGAAgAAAABAAEAAAAHAAgAAAABAAEAAAAHAAkAAAADAAEAAAAIAAkAAAABAAEAAAAIAAoAAAABAAEAAAAIAAsAAAABAAEAAAAJAAsAAAABAAEAAAAKAAsAAAABAAEAAAALAAsAAAABAAEAAAAMAAsAAAABAAEAAAANAAsAAAABAAEAAAAJAAoAAAABAAEAAAAKAAoAAAABAAEAAAAMAAoAAAABAAEAAAANAAkAAAABAAEAAAAMAAkAAAABAAEAAAANAAgAAAABAAEAAAAMAAgAAAABAAEAAAALAAoAAAABAAEAAAANAAoAAAABAAEAAAAOAAsAAAABAAEAAAALAAkAAAABAAEAAAALAAgAAAABAAEAAAAMAAcAAAABAAEAAAANAAcAAAABAAEAAAAOAAkAAAABAAEAAAAOAAoAAAABAAEAAAAPAAsAAAABAAEAAAAZAAAAAAABAAEAAAAaAAAAAAABAAEAAAAbAAAAAAABAAEAAAAYAAAAAAABAAEAAAAYAAEAAAABAAEAAAAYAAIAAAABAAEAAAAZAAEAAAABAAEAAAAaAAEAAAABAAEAAAAcAAAAAAABAAEAAAAcAAEAAAABAAEAAAAbAAEAAAABAAEAAAAcAAIAAAABAAEAAAAbAAIAAAABAAEAAAAaAAIAAAABAAEAAAAaAAMAAAABAAEAAAAaAAQAAAADAAEAAAAbAAQAAAADAAEAAAAbAAUAAAADAAEAAAAaAAUAAAADAAEAAAAZAAMAAAABAAEAAAAZAAIAAAABAAEAAAAaAAYAAAADAAEAAAAbAAYAAAADAAEAAAAaAAcAAAADAAEAAAAZAAcAAAABAAEAAAAZAAYAAAADAAEAAAAaAAgAAAABAAEAAAAbAAgAAAABAAEAAAAbAAcAAAADAAEAAAAcAAcAAAADAAEAAAAcAAgAAAABAAEAAAAZAAQAAAABAAEAAAAZAAUAAAABAAEAAAAcAAYAAAABAAEAAAAdAAYAAAABAAEAAAAeAAUAAAABAAEAAAAeAAYAAAABAAEAAAAdAAcAAAABAAEAAAAfAAUAAAABAAEAAAAfAAYAAAABAAEAAAAhAAYAAAABAAEAAAAgAAYAAAABAAEAAAAgAAUAAAABAAEAAAAhAAUAAAABAAEAAAAiAAQAAAABAAEAAAAiAAMAAAABAAEAAAAiAAIAAAABAAEAAAAiAAEAAAABAAEAAAAiAAAAAAABAAEAAAAjAAAAAAABAAEAAAAfAAAAAAABAAEAAAAfAAEAAAADAAEAAAAfAAIAAAADAAEAAAAfAAMAAAADAAEAAAAfAAQAAAABAAEAAAAgAAAAAAABAAEAAAAgAAEAAAADAAEAAAAgAAIAAAADAAEAAAAgAAMAAAADAAEAAAAgAAQAAAADAAEAAAAhAAAAAAABAAEAAAAhAAEAAAABAAEAAAAhAAIAAAABAAEAAAAhAAMAAAABAAEAAAAhAAQAAAADAAEAAAAbAAMAAAABAAEAAAAcAAMAAAABAAEAAAAcAAQAAAABAAEAAAAcAAUAAAADAAEAAAAdAAAAAAABAAEAAAAdAAEAAAABAAEAAAAdAAIAAAABAAEAAAAdAAMAAAABAAEAAAAdAAQAAAABAAEAAAAdAAUAAAABAAEAAAAeAAAAAAABAAEAAAAeAAEAAAABAAEAAAAeAAIAAAADAAEAAAAeAAMAAAADAAEAAAAeAAQAAAABAAEAAAA=")
+tile_set = SubResource("TileSet_q8ol7")
+
+[node name="FragileTiles" type="Node2D" parent="."]
+
+[node name="FragileTile1" type="AnimatableBody2D" parent="FragileTiles"]
+position = Vector2(112, 160)
+collision_layer = 4
+collision_mask = 0
+collision_priority = 2.0
+script = ExtResource("2_ad6m7")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FragileTiles/FragileTile1"]
+shape = SubResource("RectangleShape2D_fie0q")
+
+[node name="TileMap" type="TileMapLayer" parent="FragileTiles/FragileTile1"]
+use_parent_material = true
+tile_map_data = PackedByteArray("AAD//wAAAAADAAEAAAAAAAAAAAADAAEAAAD/////AAAAAAIAAAAAAP//AAAAAAIAAAA=")
+tile_set = SubResource("TileSet_8tpds")
+
+[node name="Particles" type="CPUParticles2D" parent="FragileTiles/FragileTile1"]
+emitting = false
+amount = 500
+one_shot = true
+explosiveness = 0.1
+lifetime_randomness = 1.0
+emission_shape = 3
+emission_rect_extents = Vector2(16, 16)
+spread = 180.0
+initial_velocity_min = 10.0
+initial_velocity_max = 30.0
+scale_amount_min = 4.0
+scale_amount_max = 4.0
+color = Color(0.596078, 0.529412, 0.537255, 1)
+
+[node name="Particles2" type="CPUParticles2D" parent="FragileTiles/FragileTile1"]
+emitting = false
+amount = 500
+one_shot = true
+explosiveness = 1.0
+lifetime_randomness = 1.0
+emission_shape = 3
+emission_rect_extents = Vector2(16, 16)
+spread = 180.0
+initial_velocity_min = 20.0
+initial_velocity_max = 40.0
+scale_amount_min = 4.0
+scale_amount_max = 4.0
+color = Color(0.596078, 0.529412, 0.537255, 1)
+
+[node name="Area2D" type="Area2D" parent="FragileTiles/FragileTile1"]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FragileTiles/FragileTile1/Area2D"]
+shape = SubResource("RectangleShape2D_nnofw")
+
+[node name="FragileTile2" type="AnimatableBody2D" parent="FragileTiles"]
+position = Vector2(208, 144)
+collision_layer = 4
+collision_mask = 0
+collision_priority = 2.0
+script = ExtResource("2_ad6m7")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FragileTiles/FragileTile2"]
+shape = SubResource("RectangleShape2D_fie0q")
+
+[node name="TileMap" type="TileMap" parent="FragileTiles/FragileTile2"]
+tile_set = SubResource("TileSet_8tpds")
+format = 2
+layer_0/tile_data = PackedInt32Array(65535, 196608, 1, 0, 196608, 1, -1, 0, 2, -65536, 0, 2)
+
+[node name="Particles" type="CPUParticles2D" parent="FragileTiles/FragileTile2"]
+emitting = false
+amount = 500
+one_shot = true
+explosiveness = 0.1
+lifetime_randomness = 1.0
+emission_shape = 3
+emission_rect_extents = Vector2(16, 16)
+spread = 180.0
+initial_velocity_min = 10.0
+initial_velocity_max = 30.0
+scale_amount_min = 4.0
+scale_amount_max = 4.0
+color = Color(0.596078, 0.529412, 0.537255, 1)
+
+[node name="Particles2" type="CPUParticles2D" parent="FragileTiles/FragileTile2"]
+emitting = false
+amount = 500
+one_shot = true
+explosiveness = 1.0
+lifetime_randomness = 1.0
+emission_shape = 3
+emission_rect_extents = Vector2(16, 16)
+spread = 180.0
+initial_velocity_min = 20.0
+initial_velocity_max = 40.0
+scale_amount_min = 4.0
+scale_amount_max = 4.0
+color = Color(0.596078, 0.529412, 0.537255, 1)
+
+[node name="Area2D" type="Area2D" parent="FragileTiles/FragileTile2"]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FragileTiles/FragileTile2/Area2D"]
+shape = SubResource("RectangleShape2D_mmmbn")
+
+[node name="FragileTile3" type="AnimatableBody2D" parent="FragileTiles"]
+position = Vector2(272, 128)
+collision_layer = 4
+collision_mask = 0
+collision_priority = 2.0
+script = ExtResource("2_ad6m7")
+TimeToFall = 0.2
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FragileTiles/FragileTile3"]
+position = Vector2(-8, -208)
+shape = SubResource("RectangleShape2D_636iv")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="FragileTiles/FragileTile3"]
+position = Vector2(-184, -72)
+shape = SubResource("RectangleShape2D_ois04")
+
+[node name="TileMap" type="TileMapLayer" parent="FragileTiles/FragileTile3"]
+use_parent_material = true
+tile_map_data = PackedByteArray("AAD//wAAAAADAAEAAAD/////AAADAAEAADD///r/AAADAAEAAAD///v/AAADAAEAACD///z/AAADAAEAAAD///3/AAADAAEAAAD///7/AAADAAEAACD//wEAAAADAAEAAAD//wIAAAADAAEAACD///j/AAADAAEAADD///n/AAADAAEAADD//+P/AAADAAEAACD//+T/AAADAAEAAAD//+X/AAADAAEAACD//+b/AAADAAEAACD//+f/AAADAAEAAAD//+j/AAADAAEAACD//+n/AAADAAEAADD//+r/AAADAAEAAAD//+v/AAADAAEAAAD//+z/AAADAAEAAAD//+3/AAADAAEAAAD//+7/AAADAAEAAAD///X/AAADAAEAAAD///b/AAADAAEAAAD///f/AAADAAEAADDy//v/AAAAAAUAAgDz//v/AAADAAQAAAD0//v/AAADAAQAAAD1//v/AAADAAQAAAD2//v/AAAAAAUAAAD//+//AAADAAEAADD///D/AAADAAEAAAD///H/AAADAAEAACD///L/AAADAAEAAAD///P/AAADAAEAADD///T/AAADAAEAADA=")
+tile_set = SubResource("TileSet_8tpds")
+
+[node name="DecorationMap" type="TileMapLayer" parent="FragileTiles/FragileTile3"]
+modulate = Color(0.501961, 0.501961, 0.501961, 1)
+z_index = -1
+use_parent_material = true
+tile_map_data = PackedByteArray("AAD0//X/AAADAAMAAAD0//b/AAADAAMAAAD0//f/AAADAAMAAAD0//j/AAADAAMAAAD0//n/AAADAAMAAAD0//T/AAADAAMAAAD0//r/AAADAAMAAAA=")
+tile_set = SubResource("TileSet_8tpds")
+
+[node name="Particles" type="CPUParticles2D" parent="FragileTiles/FragileTile3"]
+position = Vector2(-8, -48)
+emitting = false
+amount = 500
+one_shot = true
+explosiveness = 0.1
+lifetime_randomness = 1.0
+emission_shape = 3
+emission_rect_extents = Vector2(8, 96)
+spread = 180.0
+initial_velocity_min = 20.0
+initial_velocity_max = 60.0
+scale_amount_min = 4.0
+scale_amount_max = 4.0
+color = Color(0.596078, 0.529412, 0.537255, 1)
+
+[node name="Particles2" type="CPUParticles2D" parent="FragileTiles/FragileTile3"]
+position = Vector2(-8, -48)
+emitting = false
+amount = 500
+one_shot = true
+explosiveness = 1.0
+lifetime_randomness = 1.0
+emission_shape = 3
+emission_rect_extents = Vector2(8, 96)
+spread = 180.0
+initial_velocity_min = 20.0
+initial_velocity_max = 40.0
+scale_amount_min = 4.0
+scale_amount_max = 4.0
+color = Color(0.596078, 0.529412, 0.537255, 1)
+
+[node name="Area2D" type="Area2D" parent="FragileTiles/FragileTile3"]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FragileTiles/FragileTile3/Area2D"]
+position = Vector2(-8, -208)
+shape = SubResource("RectangleShape2D_nvrnf")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="FragileTiles/FragileTile3/Area2D"]
+position = Vector2(-175.75, -72)
+shape = SubResource("RectangleShape2D_xc2xe")
+
+[node name="FragileTile4" type="AnimatableBody2D" parent="FragileTiles"]
+position = Vector2(192, 48)
+collision_layer = 4
+collision_mask = 0
+collision_priority = 2.0
+script = ExtResource("2_ad6m7")
+TimeToFall = 1.5
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FragileTiles/FragileTile4"]
+shape = SubResource("RectangleShape2D_fie0q")
+
+[node name="TileMap" type="TileMap" parent="FragileTiles/FragileTile4"]
+tile_set = SubResource("TileSet_8tpds")
+format = 2
+layer_0/tile_data = PackedInt32Array(65535, 196608, 1, 0, 196608, 1, -1, 0, 2, -65536, 0, 2)
+
+[node name="Particles" type="CPUParticles2D" parent="FragileTiles/FragileTile4"]
+emitting = false
+amount = 500
+one_shot = true
+explosiveness = 0.1
+lifetime_randomness = 1.0
+emission_shape = 3
+emission_rect_extents = Vector2(16, 16)
+spread = 180.0
+initial_velocity_min = 10.0
+initial_velocity_max = 30.0
+scale_amount_min = 4.0
+scale_amount_max = 4.0
+color = Color(0.596078, 0.529412, 0.537255, 1)
+
+[node name="Particles2" type="CPUParticles2D" parent="FragileTiles/FragileTile4"]
+emitting = false
+amount = 500
+one_shot = true
+explosiveness = 1.0
+lifetime_randomness = 1.0
+emission_shape = 3
+emission_rect_extents = Vector2(16, 16)
+spread = 180.0
+initial_velocity_min = 20.0
+initial_velocity_max = 40.0
+scale_amount_min = 4.0
+scale_amount_max = 4.0
+color = Color(0.596078, 0.529412, 0.537255, 1)
+
+[node name="Area2D" type="Area2D" parent="FragileTiles/FragileTile4"]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FragileTiles/FragileTile4/Area2D"]
+shape = SubResource("RectangleShape2D_xjlky")
+
+[node name="FragileTile5" type="AnimatableBody2D" parent="FragileTiles"]
+position = Vector2(288, 48)
+collision_layer = 4
+collision_mask = 0
+collision_priority = 2.0
+script = ExtResource("2_ad6m7")
+TimeToFall = 0.3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FragileTiles/FragileTile5"]
+position = Vector2(40, 8)
+shape = SubResource("RectangleShape2D_klhr2")
+
+[node name="TileMap" type="TileMapLayer" parent="FragileTiles/FragileTile5"]
+use_parent_material = true
+tile_map_data = PackedByteArray("AAD//wAAAAADAAEAAAAAAAAAAAADAAEAABABAAAAAAADAAEAABACAAAAAAADAAEAACADAAAAAAADAAEAAAAEAAAAAAADAAEAAAAFAAAAAAAAAAIAAAA=")
+tile_set = SubResource("TileSet_sdcfh")
+
+[node name="Particles" type="CPUParticles2D" parent="FragileTiles/FragileTile5"]
+position = Vector2(40, 8)
+emitting = false
+amount = 500
+one_shot = true
+explosiveness = 0.1
+lifetime_randomness = 1.0
+emission_shape = 3
+emission_rect_extents = Vector2(56, 8)
+spread = 180.0
+initial_velocity_min = 10.0
+initial_velocity_max = 30.0
+scale_amount_min = 4.0
+scale_amount_max = 4.0
+color = Color(0.596078, 0.529412, 0.537255, 1)
+
+[node name="Particles2" type="CPUParticles2D" parent="FragileTiles/FragileTile5"]
+position = Vector2(40, 8)
+emitting = false
+amount = 500
+one_shot = true
+explosiveness = 1.0
+lifetime_randomness = 1.0
+emission_shape = 3
+emission_rect_extents = Vector2(56, 8)
+spread = 180.0
+initial_velocity_min = 20.0
+initial_velocity_max = 40.0
+scale_amount_min = 4.0
+scale_amount_max = 4.0
+color = Color(0.596078, 0.529412, 0.537255, 1)
+
+[node name="Area2D" type="Area2D" parent="FragileTiles/FragileTile5"]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FragileTiles/FragileTile5/Area2D"]
+position = Vector2(40, 8)
+shape = SubResource("RectangleShape2D_qgtth")
+
+[node name="FragileTile6" type="AnimatableBody2D" parent="FragileTiles"]
+position = Vector2(432, 112)
+collision_layer = 4
+collision_mask = 0
+collision_priority = 2.0
+script = ExtResource("2_ad6m7")
+TimeToFall = 0.1
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FragileTiles/FragileTile6"]
+shape = SubResource("RectangleShape2D_fie0q")
+
+[node name="TileMap" type="TileMapLayer" parent="FragileTiles/FragileTile6"]
+use_parent_material = true
+tile_map_data = PackedByteArray("AAD//wAAAAADAAEAAAAAAAAAAAADAAEAAAD/////AAAAAAIAAAAAAP//AAAAAAIAAAA=")
+tile_set = SubResource("TileSet_sdcfh")
+
+[node name="Particles" type="CPUParticles2D" parent="FragileTiles/FragileTile6"]
+emitting = false
+amount = 500
+one_shot = true
+explosiveness = 0.1
+lifetime_randomness = 1.0
+emission_shape = 3
+emission_rect_extents = Vector2(16, 16)
+spread = 180.0
+initial_velocity_min = 10.0
+initial_velocity_max = 30.0
+scale_amount_min = 4.0
+scale_amount_max = 4.0
+color = Color(0.596078, 0.529412, 0.537255, 1)
+
+[node name="Particles2" type="CPUParticles2D" parent="FragileTiles/FragileTile6"]
+emitting = false
+amount = 500
+one_shot = true
+explosiveness = 1.0
+lifetime_randomness = 1.0
+emission_shape = 3
+emission_rect_extents = Vector2(16, 16)
+spread = 180.0
+initial_velocity_min = 20.0
+initial_velocity_max = 40.0
+scale_amount_min = 4.0
+scale_amount_max = 4.0
+color = Color(0.596078, 0.529412, 0.537255, 1)
+
+[node name="Area2D" type="Area2D" parent="FragileTiles/FragileTile6"]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FragileTiles/FragileTile6/Area2D"]
+shape = SubResource("RectangleShape2D_nnofw")
+
+[node name="FragileTile7" type="AnimatableBody2D" parent="FragileTiles"]
+position = Vector2(528, 80)
+collision_layer = 4
+collision_mask = 0
+collision_priority = 2.0
+script = ExtResource("2_ad6m7")
+TimeToFall = 0.1
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FragileTiles/FragileTile7"]
+shape = SubResource("RectangleShape2D_fie0q")
+
+[node name="TileMap2" type="TileMapLayer" parent="FragileTiles/FragileTile7"]
+use_parent_material = true
+tile_map_data = PackedByteArray("AAD//wAAAAADAAEAAAAAAAAAAAADAAEAAAD/////AAAAAAIAAAAAAP//AAAAAAIAAAA=")
+tile_set = SubResource("TileSet_sdcfh")
+
+[node name="Particles" type="CPUParticles2D" parent="FragileTiles/FragileTile7"]
+emitting = false
+amount = 500
+one_shot = true
+explosiveness = 0.1
+lifetime_randomness = 1.0
+emission_shape = 3
+emission_rect_extents = Vector2(16, 16)
+spread = 180.0
+initial_velocity_min = 10.0
+initial_velocity_max = 30.0
+scale_amount_min = 4.0
+scale_amount_max = 4.0
+color = Color(0.596078, 0.529412, 0.537255, 1)
+
+[node name="Particles2" type="CPUParticles2D" parent="FragileTiles/FragileTile7"]
+emitting = false
+amount = 500
+one_shot = true
+explosiveness = 1.0
+lifetime_randomness = 1.0
+emission_shape = 3
+emission_rect_extents = Vector2(16, 16)
+spread = 180.0
+initial_velocity_min = 20.0
+initial_velocity_max = 40.0
+scale_amount_min = 4.0
+scale_amount_max = 4.0
+color = Color(0.596078, 0.529412, 0.537255, 1)
+
+[node name="Area2D" type="Area2D" parent="FragileTiles/FragileTile7"]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FragileTiles/FragileTile7/Area2D"]
+shape = SubResource("RectangleShape2D_nnofw")
+
+[node name="FragileTile8" type="AnimatableBody2D" parent="FragileTiles"]
+position = Vector2(592, 48)
+collision_layer = 4
+collision_mask = 0
+collision_priority = 2.0
+script = ExtResource("2_ad6m7")
+TimeToFall = 0.0
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FragileTiles/FragileTile8"]
+shape = SubResource("RectangleShape2D_fie0q")
+
+[node name="TileMap" type="TileMapLayer" parent="FragileTiles/FragileTile8"]
+use_parent_material = true
+tile_map_data = PackedByteArray("AAD//wAAAAADAAEAAAAAAAAAAAADAAEAAAD/////AAAAAAIAAAAAAP//AAAAAAIAAAA=")
+tile_set = SubResource("TileSet_sdcfh")
+
+[node name="Particles" type="CPUParticles2D" parent="FragileTiles/FragileTile8"]
+emitting = false
+amount = 500
+one_shot = true
+explosiveness = 0.1
+lifetime_randomness = 1.0
+emission_shape = 3
+emission_rect_extents = Vector2(16, 16)
+spread = 180.0
+initial_velocity_min = 10.0
+initial_velocity_max = 30.0
+scale_amount_min = 4.0
+scale_amount_max = 4.0
+color = Color(0.596078, 0.529412, 0.537255, 1)
+
+[node name="Particles2" type="CPUParticles2D" parent="FragileTiles/FragileTile8"]
+emitting = false
+amount = 500
+one_shot = true
+explosiveness = 1.0
+lifetime_randomness = 1.0
+emission_shape = 3
+emission_rect_extents = Vector2(16, 16)
+spread = 180.0
+initial_velocity_min = 20.0
+initial_velocity_max = 40.0
+scale_amount_min = 4.0
+scale_amount_max = 4.0
+color = Color(0.596078, 0.529412, 0.537255, 1)
+
+[node name="Area2D" type="Area2D" parent="FragileTiles/FragileTile8"]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FragileTiles/FragileTile8/Area2D"]
+shape = SubResource("RectangleShape2D_nnofw")
+
+[node name="Lava" type="Node2D" parent="."]
+
+[node name="DeathZone" type="Area2D" parent="Lava"]
+position = Vector2(216, 180)
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lava/DeathZone"]
+position = Vector2(80, 7)
+shape = SubResource("RectangleShape2D_7pobi")
+
+[node name="TileMap" type="TileMapLayer" parent="Lava"]
+use_parent_material = true
+tile_map_data = PackedByteArray("AAAEAAoAAAAAAAAAAAAFAAoAAAAAAAAAAAAGAAoAAAAAAAAAAAAHAAoAAAAAAAAAAAAIAAoAAAAAAAAAAAAJAAoAAAAAAAAAAAAKAAoAAAAAAAAAAAALAAoAAAAAAAAAAAAMAAoAAAAAAAAAAAANAAoAAAAAAAAAAAAOAAoAAAAAAAAAAAAPAAoAAAAAAAAAAAAQAAoAAAAAAAAAAAARAAoAAAAAAAAAAAASAAoAAAAAAAAAAAATAAoAAAAAAAAAAAAUAAoAAAAAAAAAAAAVAAoAAAAAAAAAAAAWAAoAAAAAAAAAAAAXAAoAAAAAAAAAAAAEAAsAAAAAAAEAAAAFAAsAAAAAAAEAAAAGAAsAAAAAAAEAAAAHAAsAAAAAAAEAAAAIAAsAAAAAAAEAAAAJAAsAAAAAAAEAAAAKAAsAAAAAAAEAAAALAAsAAAAAAAEAAAAMAAsAAAAAAAEAAAANAAsAAAAAAAEAAAAOAAsAAAAAAAEAAAAPAAsAAAAAAAEAAAAQAAsAAAAAAAEAAAARAAsAAAAAAAEAAAASAAsAAAAAAAEAAAATAAsAAAAAAAEAAAAUAAsAAAAAAAEAAAAVAAsAAAAAAAEAAAAWAAsAAAAAAAEAAAAXAAsAAAAAAAEAAAACAAoAAAAAAAAAAAADAAoAAAAAAAAAAAADAAsAAAAAAAEAAAAYAAoAAAAAAAAAAAAZAAoAAAAAAAAAAAAaAAoAAAAAAAAAAAAbAAoAAAAAAAAAAAAcAAoAAAAAAAAAAAAdAAoAAAAAAAAAAAAeAAoAAAAAAAAAAAAfAAoAAAAAAAAAAAAgAAoAAAAAAAAAAAAhAAoAAAAAAAAAAAAiAAoAAAAAAAAAAAACAAsAAAAAAAEAAAACAAwAAAAAAAEAAAADAAwAAAAAAAEAAAAEAAwAAAAAAAEAAAAFAAwAAAAAAAEAAAAGAAwAAAAAAAEAAAAHAAwAAAAAAAEAAAAIAAwAAAAAAAEAAAAJAAwAAAAAAAEAAAAKAAwAAAAAAAEAAAALAAwAAAAAAAEAAAAMAAwAAAAAAAEAAAANAAwAAAAAAAEAAAAOAAwAAAAAAAEAAAAPAAwAAAAAAAEAAAAQAAwAAAAAAAEAAAARAAwAAAAAAAEAAAASAAwAAAAAAAEAAAATAAwAAAAAAAEAAAAUAAwAAAAAAAEAAAAVAAwAAAAAAAEAAAAWAAwAAAAAAAEAAAAXAAwAAAAAAAEAAAAYAAsAAAAAAAEAAAAYAAwAAAAAAAEAAAAZAAsAAAAAAAEAAAAZAAwAAAAAAAEAAAAaAAsAAAAAAAEAAAAaAAwAAAAAAAEAAAAbAAsAAAAAAAEAAAAbAAwAAAAAAAEAAAAcAAsAAAAAAAEAAAAcAAwAAAAAAAEAAAAdAAsAAAAAAAEAAAAdAAwAAAAAAAEAAAAeAAsAAAAAAAEAAAAeAAwAAAAAAAEAAAAfAAsAAAAAAAEAAAAfAAwAAAAAAAEAAAAgAAsAAAAAAAEAAAAgAAwAAAAAAAEAAAAhAAsAAAAAAAEAAAAhAAwAAAAAAAEAAAAiAAsAAAAAAAEAAAAiAAwAAAAAAAEAAAA=")
+tile_set = SubResource("TileSet_macir")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Lava"]
+position = Vector2(296, 80)
+amount = 50
+lifetime = 5.0
+preprocess = 3.0
+randomness = 1.0
+emission_shape = 3
+emission_rect_extents = Vector2(272, 80)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 2.0
+initial_velocity_max = 4.0
+scale_amount_min = 4.0
+scale_amount_max = 4.0
+color = Color(0.784314, 0.627451, 0, 1)
+color_ramp = SubResource("Gradient_istma")
+
+[node name="Bloom" type="Sprite2D" parent="Lava"]
+modulate = Color(1, 0.626, 0.32, 0.501961)
+material = SubResource("CanvasItemMaterial_tkf6g")
+position = Vector2(296, 187)
+scale = Vector2(2.5, 1)
+texture = ExtResource("4_xl8yo")
+
+[connection signal="area_entered" from="FragileTiles/FragileTile1/Area2D" to="FragileTiles/FragileTile1" method="FallingStart" unbinds=1]
+[connection signal="area_entered" from="FragileTiles/FragileTile2/Area2D" to="FragileTiles/FragileTile2" method="FallingStart" flags=6 unbinds=1]
+[connection signal="area_entered" from="FragileTiles/FragileTile3/Area2D" to="FragileTiles/FragileTile3" method="FallingStart" flags=6 unbinds=1]
+[connection signal="area_entered" from="FragileTiles/FragileTile4/Area2D" to="FragileTiles/FragileTile4" method="FallingStart" unbinds=1]
+[connection signal="area_entered" from="FragileTiles/FragileTile5/Area2D" to="FragileTiles/FragileTile5" method="FallingStart" flags=6 unbinds=1]
+[connection signal="area_entered" from="FragileTiles/FragileTile6/Area2D" to="FragileTiles/FragileTile6" method="FallingStart" flags=6 unbinds=1]
+[connection signal="area_entered" from="FragileTiles/FragileTile7/Area2D" to="FragileTiles/FragileTile7" method="FallingStart" flags=6 unbinds=1]
+[connection signal="area_entered" from="FragileTiles/FragileTile8/Area2D" to="FragileTiles/FragileTile8" method="FallingStart" flags=6 unbinds=1]

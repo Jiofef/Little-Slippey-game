@@ -93,7 +93,7 @@ public partial class GoldenCross : UnusualCrossNode
     {
         var shineParticles = GetNode<CpuParticles2D>("Path2D/Cross/ShineParticles");
         shineParticles.Emitting = false;
-        GetNode<Area2D>("Path2D/Cross/CollectArea").Monitoring = false;
+        GetNode<Area2D>("Path2D/Cross/CollectArea").SetDeferred("monitoring", false);
 
         await ToSignal(shineParticles, "finished");
         QueueFree();
@@ -110,7 +110,7 @@ public partial class GoldenCross : UnusualCrossNode
         onCollectedParticles1.Amount = Price;
 
         GetNode<CpuParticles2D>("Path2D/Cross/OnCollectedParticles2").Emitting = true;
-        GetNode<Area2D>("Path2D/Cross/CollectArea").Monitoring = false;
+        GetNode<Area2D>("Path2D/Cross/CollectArea").SetDeferred("monitoring", false);
 
         var animationPlayer = GetNode<AnimationPlayer>("Path2D/Cross/AnimationPlayer");
         animationPlayer.Stop(true); // If you don't save the state, the next animation fails.
@@ -156,7 +156,7 @@ public partial class GoldenCross : UnusualCrossNode
         LifeTime = 3f + (GlobalPosition.DistanceTo(G.Player.GlobalPosition) / 100 * LIFETIME_PER_100PX);
         Price = _random.Next(DEFAULT_MIN_PRICE, DEFAULT_MAX_PRICE);
 
-        GetNode<Area2D>("Path2D/Cross/CollectArea").Monitoring = true;
+        GetNode<Area2D>("Path2D/Cross/CollectArea").SetDeferred("monitoring", true);
         GetNode<AnimationPlayer>("Path2D/Cross/AnimationPlayer").Stop();
         GetNode<CpuParticles2D>("Path2D/Cross/ShineParticles").Emitting = true;
     }

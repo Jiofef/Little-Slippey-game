@@ -1,4 +1,5 @@
 using Godot;
+using OtherExtension;
 using System;
 
 public partial class RestlessCross : CrossNode
@@ -31,7 +32,7 @@ public partial class RestlessCross : CrossNode
         if (TicksLived <= TICKS_TO_APPEAR)
         {
             float TicksCoeff = TicksLived / TICKS_TO_APPEAR;
-            TicksCoeff = Mathf.Lerp(0.0f, 1.0f, 1 - (1 - TicksCoeff) * (1 - TicksCoeff) * (1 - TicksCoeff));
+            TicksCoeff = MathTools.EaseOut(TicksCoeff, 3);
 
             if (_shouldRotate)
                 R.Rotate(TicksCoeff);
