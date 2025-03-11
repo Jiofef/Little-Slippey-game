@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Linq;
+using System.Collections.Generic;
 using static Crosses;
 
 public partial class CrossSpawner : Node2D
@@ -10,7 +11,7 @@ public partial class CrossSpawner : Node2D
 
     Random _random = new Random();
 
-    private readonly float _floatDelta = 0.016667f;
+    public Dictionary<string, object> EverythingImportant = new();
 
     public override void _Ready()
 	{

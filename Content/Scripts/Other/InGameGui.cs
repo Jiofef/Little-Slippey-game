@@ -42,6 +42,8 @@ public partial class InGameGui : Control
         ReturnToMenuButton = GetNode<MenuOnlyTextButton>("AfterDeathElements/Buttons/ReturnToMenu");
         ResurrectButton = GetNode<ConfirmMenuOnlyTextButton>("AfterDeathElements/Buttons/Resurrect");
 
+        ResurrectButton.OnBought += BuyAResurrection;
+
         UpdateAllTheOptions();
     }
 

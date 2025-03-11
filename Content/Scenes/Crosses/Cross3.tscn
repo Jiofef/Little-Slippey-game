@@ -24,6 +24,7 @@ metadata/_snap_count = 4
 
 [node name="ElementalCross" type="Node2D"]
 z_index = 3
+position = Vector2(421, 208)
 script = ExtResource("3")
 
 [node name="Sprites" type="Node2D" parent="."]

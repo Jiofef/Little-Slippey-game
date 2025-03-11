@@ -21,6 +21,8 @@ public partial class GreenElementalCrossPart : ElementalCrossPart
         PathVec.X *= RandomTools.FiftyFifty() ? 1 : -1; // Mirroring the vec randomly
         UpdatePosition(MoveCoeff);
 
+        _vineSprite.LookAt(StartPosition - PathVec);
+
         _vineSprite.GlobalScale = new Vector2(4, 4);
         CrossSprite.Modulate = _mod;
         GetNode<CpuParticles2D>("ScrapsParticles").Emitting = true;
@@ -31,9 +33,9 @@ public partial class GreenElementalCrossPart : ElementalCrossPart
         base._PhysicsProcess(delta);
         if (TimeLived < LifeTime)
         {
-            //_vineSprite.RegionRect = new Rect2(0, 0, new Vector2(_pathFollow2D.Progress / _vineSprite.Scale.X, 7));
+            _vineSprite.RegionRect = new Rect2(0, 0, new Vector2(GlobalPosition.DistanceTo(GlobalPosition + PathVec * TimeLived / LifeTime) / 4, 7));
         }
-        else if (Exploded)
+        else if (IsExploded)
         {
             _vineSprite.Modulate = new Color(_vineSprite.Modulate.R - 0.03f, _vineSprite.Modulate.G - 0.03f, _vineSprite.Modulate.B - 0.03f, _vineSprite.Modulate.A - 0.03f);
         }
@@ -54,5 +56,13 @@ public partial class GreenElementalCrossPart : ElementalCrossPart
         CrossSprite.Visible = true;
         CrossSprite.SelfModulate = new Color(1, 1, 1, 0);
         GetNode<CpuParticles2D>("Vine/FireParticles").Emitting = true;
+    }
+
+    public override void Respawn()
+    {
+        base.Respawn();
+
+        // ¬Œ“ “”“  –»¬¿
+        _vineSprite.LookAt(StartPosition - PathVec);
     }
 }

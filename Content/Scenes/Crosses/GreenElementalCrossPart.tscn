@@ -37,7 +37,6 @@ bus = &"Explosions"
 
 [node name="Vine" type="Sprite2D" parent="."]
 position = Vector2(-3.8147e-06, -9.53674e-07)
-rotation = -2.87979
 scale = Vector2(9, 4)
 texture = ExtResource("4_4o822")
 centered = false
@@ -103,3 +102,5 @@ scale_amount_min = 4.0
 scale_amount_max = 9.0
 color = Color(0.631373, 0.898039, 0.352941, 1)
 color_ramp = SubResource("22")
+
+[connection signal="animation_finished" from="Sprite/ExplosionAnimation" to="." method="OnFinished"]

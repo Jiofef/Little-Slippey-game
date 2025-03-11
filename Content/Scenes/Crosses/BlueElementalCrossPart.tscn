@@ -33,3 +33,5 @@ texture = ExtResource("2")
 
 [node name="ExplosionAnimation" parent="." instance=ExtResource("4_jn1o5")]
 DeleteWhenFinished = false
+
+[connection signal="animation_finished" from="ExplosionAnimation" to="." method="OnFinished"]

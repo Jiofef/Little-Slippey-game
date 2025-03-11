@@ -1,16 +1,16 @@
 ﻿using Godot;
 using static OtherExtension.RandomTools;
 using static CrossesNodesAbstract;
+using System.Security.Cryptography.X509Certificates;
+using System;
 
 public interface CrossesNodesAbstract
 {
     public void Respawn();
 
-    public delegate void SaveEventHandler();
-    public event SaveEventHandler Save;
+    [Signal] public delegate void SaveEventHandler();
 
-    public delegate void UnSaveEventHandler();
-    public event UnSaveEventHandler UnSave;
+    [Signal] public delegate void UnSaveEventHandler();
 }
 
 public class CrossRotator
@@ -54,17 +54,20 @@ public class CrossRotator
 public abstract partial class UnusualCrossNode : Node2D, CrossesNodesAbstract
 {
     // Respawn properties and methods
-    public event SaveEventHandler Save = delegate { };
-    public event UnSaveEventHandler UnSave = delegate { };
+    [Signal] public delegate void SaveEventHandler();
+    [Signal] public delegate void UnSaveEventHandler();
 
-    public bool ShouldBeSavedInPool;
+    [Signal] public delegate void RespawnedEventHandler();
+    [Signal] public delegate void FinishedEventHandler();
+
+    public bool ShouldBeSavedInPool = false;
 
     protected bool _isInRespawnPool = false;
     public bool IsInRespawnPool { get => _isInRespawnPool; }
 
     public virtual void Respawn()
     {
-        UnSave?.Invoke();
+        EmitSignal("UnSave");
 
         _isInRespawnPool = false;
     }
@@ -77,11 +80,13 @@ public abstract partial class UnusualCrossNode : Node2D, CrossesNodesAbstract
 
         _isInRespawnPool = true;
 
-        Save?.Invoke();
+        EmitSignal("Save");
     }
 
     public virtual void OnFinished()
     {
+        EmitSignal("Finished");
+
         if (ShouldBeSavedInPool)
             SendToRespawnPool();
         else
@@ -99,6 +104,8 @@ public abstract partial class UnusualCrossNode : Node2D, CrossesNodesAbstract
 
 abstract public partial class CrossNode : UnusualCrossNode
 {
+    [Signal] public delegate void ExplodedEventHandler();
+
     public CollisionShape2D ExplosiveArea;
     public ExplosionAnimation ExplosionAnimation;
     public AudioStreamPlayer ExplosionSound;
@@ -106,11 +113,11 @@ abstract public partial class CrossNode : UnusualCrossNode
     public Sprite2D CrossSprite;
     public Sprite2D WarningSprite;
 
-    public bool Exploded = false;
+    public bool IsExploded = false;
 
     public async virtual void Explode()
     {
-        Exploded = true;
+        IsExploded = true;
         // Visual
         if (CrossSprite != null) CrossSprite.Visible = false;
 
@@ -146,13 +153,15 @@ abstract public partial class CrossNode : UnusualCrossNode
         // Groups
         foreach (var group in GetGroups())
             RemoveFromGroup(group);
+
+        EmitSignal("Exploded");
     }
 
     public override void Respawn()
     {
         base.Respawn();
 
-        Exploded = false;
+        IsExploded = false;
 
         ProcessMode = ProcessModeEnum.Inherit;
         SetPhysicsProcess(true);
@@ -160,6 +169,8 @@ abstract public partial class CrossNode : UnusualCrossNode
         Visible = true;
 
         _isInRespawnPool = false;
+
+        EmitSignal("Respawned");
     }
 
     /// <summary>
