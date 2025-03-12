@@ -1,5 +1,4 @@
 using Godot;
-using System;
 using OtherExtension;
 
 public partial class DefaultCross : CrossNode

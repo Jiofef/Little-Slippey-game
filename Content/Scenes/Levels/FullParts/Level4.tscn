@@ -18,7 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://cekfjaqu85oq2" path="res://Content/Sprites/Levels/Level4/UltraBigSawStud.png" id="13_emngo"]
 [ext_resource type="Texture2D" uid="uid://kcd1m7tkh45l" path="res://Content/Sprites/Levels/NePeretrudilsyaTileset.png" id="14_hwiy7"]
 [ext_resource type="Script" uid="uid://dotpd8b5flmxs" path="res://Content/Scripts/Other/Trail.cs" id="15_4vqng"]
-[ext_resource type="PackedScene" uid="uid://dlscufxb5f1ca" path="res://Content/Scenes/Other/Player.tscn" id="15_f0cdm"]
+[ext_resource type="PackedScene" uid="uid://dlscufxb5f1ca" path="res://Content/Scenes/Interface&Menu/RareScenes/Player.tscn" id="15_f0cdm"]
 [ext_resource type="Script" uid="uid://bgake27ctmc1q" path="res://Content/Scripts/Levels/Foreground.cs" id="16_yd5fs"]
 [ext_resource type="PackedScene" uid="uid://bhxyqlefne8jb" path="res://Content/Scenes/Other/WallJumpPad.tscn" id="17_0m8r4"]
 [ext_resource type="Shader" uid="uid://dllmyqqldb58f" path="res://Content/Other/BlurShader.gdshader" id="17_61d51"]

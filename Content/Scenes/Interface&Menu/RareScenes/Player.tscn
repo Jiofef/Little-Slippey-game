@@ -515,9 +515,8 @@ to restart"
 [node name="Scores" type="Label" parent="Camera2D/GUICanvas/GUI/AfterDeathElements"]
 custom_minimum_size = Vector2(0, 132)
 layout_mode = 0
-offset_top = 4.0
+offset_top = -132.0
 offset_right = 1280.0
-offset_bottom = 136.0
 size_flags_vertical = 0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_shadow_color = Color(0.223529, 0.203922, 0.341176, 1)
@@ -579,7 +578,7 @@ custom_minimum_size = Vector2(272, 0)
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
-offset_right = 272.0
+offset_left = -272.0
 grow_vertical = 2
 theme_override_constants/separation = 16
 alignment = 1

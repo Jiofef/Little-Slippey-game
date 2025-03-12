@@ -13,7 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://b2eyigkc1t4fw" path="res://Content/Sprites/Levels/Level2/ShOatAnimation.png" id="11_i3q7l"]
 [ext_resource type="Texture2D" uid="uid://ckh1sclq3fji3" path="res://Content/Sprites/Other/PointLight.png" id="12_b4ghp"]
 [ext_resource type="Texture2D" uid="uid://b830neidt3avy" path="res://Content/Sprites/Levels/Mort'sTileset.png" id="12_chrfp"]
-[ext_resource type="PackedScene" uid="uid://dlscufxb5f1ca" path="res://Content/Scenes/Other/Player.tscn" id="13_bkmnr"]
+[ext_resource type="PackedScene" uid="uid://dlscufxb5f1ca" path="res://Content/Scenes/Interface&Menu/RareScenes/Player.tscn" id="13_bkmnr"]
 [ext_resource type="Texture2D" uid="uid://q2j1uuqfjmos" path="res://Content/Sprites/Levels/BaseTileSet.png" id="14_n3thr"]
 [ext_resource type="PackedScene" uid="uid://ci02ahah4pg1w" path="res://Content/Scenes/Interface&Menu/HintCanvasLayer.tscn" id="16_ffab2"]
 [ext_resource type="Texture2D" uid="uid://cq27bdhehtatn" path="res://Content/Sprites/Interface/StandBarEmpty.png" id="18_25g4a"]
@@ -1097,6 +1097,11 @@ _data = {
 
 [node name="Main" instance=ExtResource("1_xrr5q")]
 
+[node name="LevelMusicPlayer" parent="." index="0"]
+RestartMusicWhenItFinished = true
+SaveTimeCodeWhenLevelResets = true
+KeepPlayingWhenLevelResets = true
+
 [node name="AnimationPlayer" parent="LevelMusicPlayer" index="0"]
 libraries = {
 &"": SubResource("AnimationLibrary_jcmm3")
@@ -1295,6 +1300,9 @@ tile_map_data = PackedByteArray("AAAAAAoAAQACAAAAAAABAAoAAQACAAAAAAACAAoAAQACAAA
 tile_set = SubResource("TileSet_ok3g5")
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="Level" index="4"]
+
+[node name="CrossSpawner" parent="." index="2"]
+CannonsMode = 0
 
 [node name="HintLayer" parent="." index="5" node_paths=PackedStringArray("AnimationPlayer", "AppearingTextsToSpeedUp") instance=ExtResource("16_ffab2")]
 visible = false

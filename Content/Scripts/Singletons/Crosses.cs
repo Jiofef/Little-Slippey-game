@@ -188,7 +188,7 @@ public partial class Crosses : Node
 
     public int CurrentCrossesCount => CurrentCrossesPack.Length + (CurrentGoldenCross != null ? 1 : 0);
 
-    private static float[] _defaultCrossesWeight, _crossesTimings;
+    private static float[] _defaultCrossesWeight;
 
 
     public static Cross GetCross(int index)

@@ -3,7 +3,8 @@ using System;
 
 public partial class BlumCross : CrossNode
 {
-    private float _cycleSpeedMultiplier = 1f / 60 / 2, _xSpriteMotion, _ySpriteMotion = -3, _gravity = 9.8f;
+    private float _cycleSpeedMultiplier = 1f / 60 / 2, _xSpriteMotion, _ySpriteMotion = -3;
+    private const float GRAVITY = 9.8f;
     private byte _cyclesToExplosion = 10;
     public Sprite2D AbortButton;
     private AudioStreamPlayer _explosiveSignal;
@@ -44,11 +45,11 @@ public partial class BlumCross : CrossNode
             {
                 Modulate = new Color(Modulate.R, Modulate.G, Modulate.B, Modulate.A - 0.03f);
                 Translate(new Vector2(_xSpriteMotion, _ySpriteMotion));
-                _ySpriteMotion += _gravity / 100;
+                _ySpriteMotion += GRAVITY / 100;
                 Rotation += 0.01f;
                 return;
             }
-            else QueueFree();
+            else OnFinished();
         }
 
         if (_cyclesToExplosion > 0)
@@ -83,6 +84,7 @@ public partial class BlumCross : CrossNode
 
     public void AbortButtonPressed()
     {
+        _explosiveSignal.Stop();
         GetNode<AudioStreamPlayer>("AbortButtonPressedSound").Play();
         _abortButtonPressed = true;
     }
@@ -94,6 +96,9 @@ public partial class BlumCross : CrossNode
         // Base settings
         Modulate = new Color(Modulate.R, Modulate.G, Modulate.B, 0);
 
+        CrossSprite.Modulate = new Color(CrossSprite.Modulate.R + _cycleSpeedMultiplier, CrossSprite.Modulate.G, CrossSprite.Modulate.B);
+        _xSpriteMotion = _random.Next(-2, 3);
+
         // Returning the old settings
         CrossSprite.Visible = true;
         WarningSprite.Visible = true;
@@ -102,5 +107,19 @@ public partial class BlumCross : CrossNode
 
         AbortButton.Visible = true;
         AbortButton.ProcessMode = ProcessModeEnum.Inherit;
+
+        Rotation = 0;
+
+        _abortButtonPressed = false;
+        _cyclesToExplosion = 10;
+        _cycleSpeedMultiplier = 1f / 60 / 2;
+        _ySpriteMotion = -3;
+
+        _explosiveSignal.Play();
+        _explosiveSignal.PitchScale = 0.25f;
+        GetNode<AudioStreamPlayer>("AbortButtonPressedSound").Stop();
+
+
+        OnPositionSetted();
     }
 }

@@ -3,6 +3,7 @@ using static OtherExtension.RandomTools;
 using static CrossesNodesAbstract;
 using System.Security.Cryptography.X509Certificates;
 using System;
+using System.Xml.Linq;
 
 public interface CrossesNodesAbstract
 {
@@ -165,6 +166,8 @@ abstract public partial class CrossNode : UnusualCrossNode
 
         ProcessMode = ProcessModeEnum.Inherit;
         SetPhysicsProcess(true);
+
+        MoveToFront();
 
         Visible = true;
 

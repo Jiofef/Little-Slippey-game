@@ -6,7 +6,7 @@ public partial class GreenElementalCrossPart : ElementalCrossPart
 {
     private const int _flowerSpritesCount = 4;
     private Sprite2D _vineSprite;
-    public override void _Ready()
+    public override async void _Ready()
     {
         // Initializing nodes
         NodesInit();
@@ -26,19 +26,8 @@ public partial class GreenElementalCrossPart : ElementalCrossPart
         _vineSprite.GlobalScale = new Vector2(4, 4);
         CrossSprite.Modulate = _mod;
         GetNode<CpuParticles2D>("ScrapsParticles").Emitting = true;
-    }
 
-    public override void _PhysicsProcess(double delta)
-    {
-        base._PhysicsProcess(delta);
-        if (TimeLived < LifeTime)
-        {
-            _vineSprite.RegionRect = new Rect2(0, 0, new Vector2(GlobalPosition.DistanceTo(GlobalPosition + PathVec * TimeLived / LifeTime) / 4, 7));
-        }
-        else if (IsExploded)
-        {
-            _vineSprite.Modulate = new Color(_vineSprite.Modulate.R - 0.03f, _vineSprite.Modulate.G - 0.03f, _vineSprite.Modulate.B - 0.03f, _vineSprite.Modulate.A - 0.03f);
-        }
+
     }
 
     public override void NodesInit()
@@ -55,14 +44,27 @@ public partial class GreenElementalCrossPart : ElementalCrossPart
 
         CrossSprite.Visible = true;
         CrossSprite.SelfModulate = new Color(1, 1, 1, 0);
-        GetNode<CpuParticles2D>("Vine/FireParticles").Emitting = true;
+        var fireParticles = GetNode<CpuParticles2D>("Vine/FireParticles");
+        fireParticles.Position = new Vector2(_vineSprite.RegionRect.Size.X / 2, 0);
+        fireParticles.EmissionRectExtents = new Vector2(fireParticles.Position.X * 9, 1);
+        fireParticles.Emitting = true;
+
+        // Vine sprite disappearing (burning)
+        CreateTween().TweenProperty(_vineSprite, "modulate", new Color(0, 0, 0, 0), 0.5);
+    }
+
+    public override void UpdatePosition(float coeff)
+    {
+        coeff = MathTools.EaseOut(TimeLived / LifeTime, coeff);
+        GlobalPosition = StartPosition + PathVec * coeff;
+
+        _vineSprite.RegionRect = new Rect2(0, 0, new Vector2(GlobalPosition.DistanceTo(GlobalPosition + PathVec * coeff) / 4, 7));
     }
 
     public override void Respawn()
     {
         base.Respawn();
 
-        // ¬Œ“ “”“  –»¬¿
         _vineSprite.LookAt(StartPosition - PathVec);
     }
 }

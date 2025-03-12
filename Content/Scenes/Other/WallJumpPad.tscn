@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://bhxyqlefne8jb"]
 
-[ext_resource type="Script" uid="uid://dst73f48wcij7" path="res://Content/Scenes/Other/WallJumpPad.cs" id="1_0shhy"]
+[ext_resource type="Script" uid="uid://dst73f48wcij7" path="res://Content/Scripts/Other/WallJumpPad.cs" id="1_0shhy"]
 [ext_resource type="Texture2D" uid="uid://xde7humutrpl" path="res://Content/Sprites/Other/WallJumpPadSpriteList.png" id="2_ayfoq"]
 [ext_resource type="AudioStream" uid="uid://bxk7stxyehfnj" path="res://Content/Sounds/Levels/Level6Trampoline.mp3" id="3_urx6k"]
 

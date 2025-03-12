@@ -87,6 +87,8 @@ public partial class ElementalCross : UnusualCrossNode
         _xSpriteMotion = _random.Next(-2, 3);
         ChangeElementType();
     }
+
+    Color _spritesMod = new Color(1, 1, 1, 1);
     public override void _PhysicsProcess(double delta)
     {
         base._PhysicsProcess(delta);
@@ -129,7 +131,8 @@ public partial class ElementalCross : UnusualCrossNode
             }
             else if (_elementalType != ElementalType.Green || _isLastElementExploded)
             {
-                Sprites.Modulate = new Color(Sprites.Modulate.R, Sprites.Modulate.G, Sprites.Modulate.B, Sprites.Modulate.A - 0.02f);
+                _spritesMod.A -= 0.04f;
+                Sprites.Modulate = _spritesMod;
                 _ySpriteMotion += GRAVITY / 100;
                 RedPart.GlobalTranslate(new Vector2(0.5f, _ySpriteMotion * 2));
                 RedPart.GlobalRotation += -0.02f;
@@ -163,6 +166,10 @@ public partial class ElementalCross : UnusualCrossNode
             int id = _currentPartsPool.Count - 1;
             element = _currentPartsPool[id];
             _currentPartsPool.RemoveAt(id);
+
+            element.GlobalRotation = 0;
+            element.Position = Position;
+
             element.Respawn();
         }
         else
@@ -171,11 +178,16 @@ public partial class ElementalCross : UnusualCrossNode
 
             if (_currentPartsPool != null)
                 element.Save += () => _currentPartsPool.Add(element);
+
+            element.GlobalRotation = 0;
+            element.Position = Position;
+
+            element.MoveToFront();
+
+            GetParent().AddChild(element);
         }
 
-        AddChild(element);
-        element.GlobalRotation = 0;
-        element.GlobalPosition = GlobalPosition;
+
         element.Translate(new Vector2(_random.Next(-30, 31), _random.Next(-30, 31)));
 
         if (_elementsToSpawn == 0)

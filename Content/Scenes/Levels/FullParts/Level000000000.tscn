@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://5kfyvxsdpsk2" path="res://Content/Scenes/Other/LevelLayout.tscn" id="1_rw6g8"]
 [ext_resource type="Script" uid="uid://dipntq4mwmj3o" path="res://Content/Scripts/Levels/GlitchLevelScript.cs" id="2_0eems"]
 [ext_resource type="Texture2D" uid="uid://cruiixgjdbckl" path="res://Content/Sprites/Levels/CakeTileSet.png" id="2_1bngn"]
-[ext_resource type="PackedScene" uid="uid://dlscufxb5f1ca" path="res://Content/Scenes/Other/Player.tscn" id="2_4wixc"]
+[ext_resource type="PackedScene" uid="uid://dlscufxb5f1ca" path="res://Content/Scenes/Interface&Menu/RareScenes/Player.tscn" id="2_4wixc"]
 [ext_resource type="AudioStream" uid="uid://bvwumbvxjl6ct" path="res://Content/Sounds/Levels/Levle10ShuttingDownTheTestChamber.mp3" id="3_bpddh"]
 [ext_resource type="Texture2D" uid="uid://dn2e1dstn30j8" path="res://Content/Sprites/Other/_.png" id="5_xqt7m"]
 [ext_resource type="Texture2D" uid="uid://cr0lk5qipck6y" path="res://Content/Sprites/Levels/Level3/Sky.png" id="6_5aep2"]

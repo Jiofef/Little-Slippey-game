@@ -38,18 +38,16 @@ public partial class BaseLevelScript : Node2D
         if (Meta.Instance.Gameplay.AdditionStatuses[2])
         {
             var level9JiofefHead = (Node2D)ResourceLoader.Load<PackedScene>("res://Content/Scenes/Other/Level9JiofefHead.tscn").Instantiate();
-            level9JiofefHead.Position = G.LevelXYSizes[G.CurrentLevel] / 2;
+            level9JiofefHead.Position = G.CameraLimits.Position + G.CameraLimits.Size / 2;
 
-            if (G.CurrentLevel == 8)
-                level9JiofefHead.Position = new Vector2(1280, 320);
+            if (G.CameraLimits.Size.X > 25600 || G.CameraLimits.Size.Y > 12800)
+                level9JiofefHead.Position = G.CameraLimits.Position + new Vector2(1280, 320);
 
             AddChild(level9JiofefHead);
         }
 
 
 
-        //
-        Steam.OverlayToggled += (bool active, bool userInitiated, uint appId) => GetParent().Call("ChangePause", active);
         Steam.InputDeviceDisconnected += (junk) => GetParent().Call("ChangePause", true);
     }
 

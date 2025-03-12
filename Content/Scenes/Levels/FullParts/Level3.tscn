@@ -12,7 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://ckh1sclq3fji3" path="res://Content/Sprites/Other/PointLight.png" id="10_8q5q1"]
 [ext_resource type="Shader" uid="uid://ieq50g3ohn26" path="res://Content/Other/LightShader.gdshader" id="11_thkev"]
 [ext_resource type="Script" uid="uid://dq8vsqu387ncw" path="res://Content/Scripts/Other/ShadingRect.cs" id="12_baexn"]
-[ext_resource type="PackedScene" uid="uid://dlscufxb5f1ca" path="res://Content/Scenes/Other/Player.tscn" id="13_ow2n4"]
+[ext_resource type="PackedScene" uid="uid://dlscufxb5f1ca" path="res://Content/Scenes/Interface&Menu/RareScenes/Player.tscn" id="13_ow2n4"]
 [ext_resource type="PackedScene" uid="uid://d3u7pfig07yrs" path="res://Content/Scenes/Other/CrutchedArea2D.tscn" id="14_611ct"]
 [ext_resource type="PackedScene" uid="uid://crhv6ovf1rq2p" path="res://Content/Scenes/Other/UniversalTileMapLayer.tscn" id="16_gmo45"]
 

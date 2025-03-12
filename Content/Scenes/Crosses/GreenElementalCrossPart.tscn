@@ -45,29 +45,28 @@ region_enabled = true
 region_rect = Rect2(0, 0, 0, 7)
 
 [node name="FireParticles" type="CPUParticles2D" parent="Vine"]
-show_behind_parent = true
-position = Vector2(13, -7.96153e-05)
+position = Vector2(7.5, 0)
 scale = Vector2(0.111111, 0.25)
 emitting = false
 amount = 16
-lifetime = 0.6
+lifetime = 0.5
 one_shot = true
-explosiveness = 0.6
+explosiveness = 0.3
 emission_shape = 3
-emission_rect_extents = Vector2(13, 1)
-direction = Vector2(0, 1)
+emission_rect_extents = Vector2(60, 1)
+spread = 180.0
 gravity = Vector2(0, 0)
-initial_velocity_min = 40.0
-initial_velocity_max = 40.0
+initial_velocity_min = 150.0
+initial_velocity_max = 150.0
 damping_min = 100.0
 damping_max = 200.0
-scale_amount_min = 16.0
-scale_amount_max = 16.0
+scale_amount_min = 4.0
+scale_amount_max = 8.0
 color_ramp = SubResource("Gradient_qgunv")
 color_initial_ramp = SubResource("Gradient_6hwij")
 
 [node name="Sprite" type="Sprite2D" parent="."]
-scale = Vector2(6, 6)
+scale = Vector2(4, 4)
 texture = ExtResource("5")
 
 [node name="ExplosiveArea" type="Area2D" parent="Sprite"]
@@ -80,7 +79,7 @@ shape = SubResource("2")
 disabled = true
 
 [node name="ExplosionAnimation" parent="Sprite" instance=ExtResource("6_v5mtj")]
-scale = Vector2(0.666667, 0.666667)
+scale = Vector2(1, 1)
 frame = 8
 frame_progress = 1.0
 DeleteWhenFinished = false
