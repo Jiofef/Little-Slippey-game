@@ -10,7 +10,8 @@ public partial class RedElementalCrossPart : ElementalCrossPart
 
         LifeTime = 2.0f;
         MoveCoeff = 2;
-        RandomizePathVec(new Rect2(-90, -300, 90 * 2, 240));
+        SpawnVecBounds = new Rect2(-90, -300, 90 * 2, 240);
+        RandomizePathVec();
         UpdatePosition(MoveCoeff);
 
         CrossSprite.Modulate = new Color(CrossSprite.Modulate.R, CrossSprite.Modulate.G, CrossSprite.Modulate.B, 0);

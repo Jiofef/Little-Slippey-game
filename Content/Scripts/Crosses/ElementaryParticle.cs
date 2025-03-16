@@ -1,8 +1,9 @@
 using Godot;
 using System;
 using System.Diagnostics;
+using static Crosses;
 
-public partial class ElementaryParticleScript : Node2D
+public partial class ElementaryParticle : UnusualCrossNode
 {
     [Signal] public delegate void OnAnihilatedEventHandler();
 
@@ -26,59 +27,60 @@ public partial class ElementaryParticleScript : Node2D
 
     public Vector2 Velocity;
 
-    private float _rotationSpeed = 0;
+    public float RotationSpeed = 0;
 
 
 
     public override void _Ready()
     {
+        QueueFree();
         // Rotation randomizing
         const int MAX_ROTATION_SPEED = 3;
-        _rotationSpeed = OtherExtension.RandomTools.RandomIn(-MAX_ROTATION_SPEED, MAX_ROTATION_SPEED);
+        RotationSpeed = OtherExtension.RandomTools.RandomIn(-MAX_ROTATION_SPEED, MAX_ROTATION_SPEED);
 
         // Price determination
         Price = _random.Next(DEFAULT_MIN_PRICE, DEFAULT_MAX_PRICE);
 
-        // Connecting a pointer to despawn when player dies
-        var offscreenPointer = GetNode<OffscreenPointer>("OffscreenPointer");
+        // Connecting a pointer to hide when player dies
+        Callable updateOffscreenPointer = new Callable(this, "UpdateOffscreenPointer");
         if (G.Player != null)
-            G.Player.Connect("PlayerDied", new Callable(offscreenPointer, "queue_free"));
+            G.Player.Connect("PlayerDied", updateOffscreenPointer);
 
-        // Connecting a pointer to despawn when collected
-        Connect("OnAnihilated", new Callable(offscreenPointer, "queue_free"));
+        // Connecting a pointer to hide when collected
+        Connect("OnAnihilated", updateOffscreenPointer);
 
         // Adding in group
         AddToGroup("UnstableCrosses");
     }
 
-
+    private Vector2 _acceleration, _playerGlobalPos;
     public override void _PhysicsProcess(double delta)
     {
         if (G.Player == null) return;
 
         // Rotation
-        RotationDegrees += _rotationSpeed;
+        RotationDegrees += RotationSpeed;
 
 
         // Moving
-        Vector2 globalPlayerPos = G.Player.GlobalPosition;
+        _playerGlobalPos = G.Player.GlobalPosition;
 
-        Vector2 acceleration = GlobalPosition.DirectionTo(globalPlayerPos) * AttractionForce / GlobalPosition.DistanceSquaredTo(globalPlayerPos);
+        _acceleration = GlobalPosition.DirectionTo(_playerGlobalPos) * AttractionForce / GlobalPosition.DistanceSquaredTo(_playerGlobalPos);
 
-        foreach(ElementaryParticleScript cross in GetTree().GetNodesInGroup("UnstableCrosses"))
+        foreach(ElementaryParticle cross in GetTree().GetNodesInGroup("UnstableCrosses"))
         {
             if (cross != this)
             {
                 // IsMainParticle is different for particles with different symbols. If the symbols are different, the particles attract, and vice versa.
                 float symbol = cross.IsMainParticle != IsMainParticle ? 1 : -1;
-                acceleration += GlobalPosition.DirectionTo(cross.GlobalPosition) * AttractionForce / GlobalPosition.DistanceSquaredTo(cross.GlobalPosition) * symbol;
+                _acceleration += GlobalPosition.DirectionTo(cross.GlobalPosition) * AttractionForce / GlobalPosition.DistanceSquaredTo(cross.GlobalPosition) * symbol;
             }
         }
 
-        if (acceleration.Length() > AccelerationCap)
-            acceleration = acceleration.Normalized() * AccelerationCap;
+        if (_acceleration.Length() > AccelerationCap)
+            _acceleration = _acceleration.Normalized() * AccelerationCap;
         
-        Velocity += acceleration;
+        Velocity += _acceleration;
 
         if (Velocity.Length() > SpeedCap)
             Velocity = Velocity.Normalized() * SpeedCap;
@@ -88,8 +90,7 @@ public partial class ElementaryParticleScript : Node2D
 
 
         // DisAppearing
-        const float FLOAT_DELTA = 0.016667f;
-        LifeTime -= FLOAT_DELTA;
+        LifeTime -= G.FLOAT_DELTA;
 
         const float DISAPPEARING_ANIMATION_LENGTH = 3f;
         if (LifeTime < DISAPPEARING_ANIMATION_LENGTH && _state == StateEnum.Default) // Default state in the condition so that the tag can't start disappearing while being collected.
@@ -108,7 +109,7 @@ public partial class ElementaryParticleScript : Node2D
         RemoveFromGroup("UnstableCrosses");
 
         await ToSignal(microParticles, "finished");
-        QueueFree();
+        OnFinished();
     }
 
     // Yes, I know that a proton and an electron do not anihilate together. Think of it as a metaphor
@@ -129,7 +130,7 @@ public partial class ElementaryParticleScript : Node2D
 
         if (IsMainParticle)
         {
-            var antiParticle = particleArea.GetParent<ElementaryParticleScript>();
+            var antiParticle = particleArea.GetParent<ElementaryParticle>();
             antiParticle.Anihilate(GetNode<Area2D>("ChargeArea"));
 
             // Collect effects
@@ -168,7 +169,7 @@ public partial class ElementaryParticleScript : Node2D
         microParticles.Emitting = false;
 
         await ToSignal(microParticles, "finished");
-        QueueFree();
+        OnFinished();
     }
 
     public void SetAreaDisabled(bool value)
@@ -176,5 +177,37 @@ public partial class ElementaryParticleScript : Node2D
         var area = GetNode<Area2D>("ChargeArea");
         area.SetDeferred("monitoring", !value);
         area.SetDeferred("monitorable", !value);
+    }
+
+    public void UpdateOffscreenPointer()
+    {
+        GetNode<OffscreenPointer>("OffscreenPointer").IsHidden = G.IsPlayerDead || _state == StateEnum.Collected;
+    }
+
+    public override void Respawn()
+    {
+        base.Respawn();
+
+
+        _state = StateEnum.Default;
+
+        Velocity = Vector2.Zero;
+        RotationDegrees = _random.Next(-360, 360);
+        GlobalRotationDegrees = 0;
+        const int MAX_ROTATION_SPEED = 3;
+        RotationSpeed = OtherExtension.RandomTools.RandomIn(-MAX_ROTATION_SPEED, MAX_ROTATION_SPEED);
+
+        LifeTime = 15f;
+        Price = _random.Next(DEFAULT_MIN_PRICE, DEFAULT_MAX_PRICE);
+
+        GetNode<Area2D>("ChargeArea").SetDeferred("monitoring", true);
+        var animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
+        animationPlayer.Stop();
+        animationPlayer.Play("Appearing");
+        GetNode<CpuParticles2D>("MicroParticles").Emitting = true;
+
+        AddToGroup("UnstableCrosses");
+
+        UpdateOffscreenPointer();
     }
 }

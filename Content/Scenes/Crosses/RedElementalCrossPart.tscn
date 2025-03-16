@@ -10,7 +10,7 @@
 radius = 20.0
 
 [node name="RedElementalCrossPart" type="Node2D"]
-z_index = 2
+z_index = 3
 script = ExtResource("3")
 
 [node name="SpawnSound" type="AudioStreamPlayer" parent="."]

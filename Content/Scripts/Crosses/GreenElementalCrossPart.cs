@@ -17,7 +17,8 @@ public partial class GreenElementalCrossPart : ElementalCrossPart
 
         LifeTime = 1.5f;
         MoveCoeff = 2;
-        RandomizePathVec(new Rect2(-225, -60, 170, 120));
+        SpawnVecBounds = new Rect2(-225, -60, 170, 120);
+        RandomizePathVec();
         PathVec.X *= RandomTools.FiftyFifty() ? 1 : -1; // Mirroring the vec randomly
         UpdatePosition(MoveCoeff);
 
@@ -65,6 +66,12 @@ public partial class GreenElementalCrossPart : ElementalCrossPart
     {
         base.Respawn();
 
+        PathVec.X *= RandomTools.FiftyFifty() ? 1 : -1;
+        UpdatePosition(MoveCoeff);
+
         _vineSprite.LookAt(StartPosition - PathVec);
+        _vineSprite.Modulate = new Color(1, 1, 1, 1f);
+
+        CrossSprite.SelfModulate = new Color(1, 1, 1, 1);
     }
 }

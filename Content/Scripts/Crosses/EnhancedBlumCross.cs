@@ -1,89 +1,91 @@
 using Godot;
+using Godot.Collections;
 using System;
 
-public partial class EnhancedBlumCross : Node2D
+public partial class EnhancedBlumCross : CrossNode
 {
-    private float _xSpriteMotion, _ySpriteMotion = -3, _gravity = 9.8f, _timerToControllerExplosion = 5, _timerToExplosion = 1;
-    private byte _controllersLeft = 4;
-    private string _controlledCrossesGroupIndex;
-    private bool _isWearAccelerated = false;
-    private Sprite2D _warningSprite;
-    private AudioStreamPlayer _explosiveSignal;
-    private Random _random = new Random();
+    // Nodes
+    public AudioStreamPlayer ExplosionSignal;
 
-    private Node2D[] ControlledCrosses = new Node2D[4];
+    // Explosion
+    private const float TIME_TO_CONTROLLER_EXPLOSION = 5f;
+    private float _timerToControllerExplosion = TIME_TO_CONTROLLER_EXPLOSION, _timerToExplosion = 1;
+    private bool _isWearAccelerated = false;
+
+    // Nodes moving
+    private const byte CONTROLLERS_COUNT = 4;
+    public byte ControllersLeft { get; private set; } = CONTROLLERS_COUNT;
+    private string _controlledCrossesGroupIndex;
+
+
+    private Random _random = new Random();
 
     public override void _Ready()
 	{
         // Initializing nodes
-        _warningSprite = GetNode<Sprite2D>("WarningSprite");
+        NodesInit();
+        ExplosionSignal = GetNode<AudioStreamPlayer>("ExplosionSignal");
+
+        AddToGroup("Crosses");
 
         // Spawn properties
         Modulate = new Color(Modulate.R, Modulate.G, Modulate.B, 0);
 
         _controlledCrossesGroupIndex = "ControlledCrosses_" + Name;
 
-        for (int i = 0; i < _controllersLeft; i++)
-            GetNode<Node2D>("EnergyPoints/Point" + (4 - i) + "/EnergyBeam").Modulate = new Color(1, 1, 1, 1f / _controllersLeft);
+        // Binding the signals
+        var wearAcceleratingArea = GetNode<Area2D>("WearAcceleratingArea2D");
+        wearAcceleratingArea.AreaEntered += (a) => _isWearAccelerated = true;
+        wearAcceleratingArea.AreaExited += (a) => _isWearAccelerated = false;
+        ExplosionSound.Finished += OnFinished;
+
+        for (int i = 0; i < ControllersLeft; i++)
+            GetNode<Control>("Controllers/Crystal" + (4 - i) + "/EnergyBeam").Modulate = new Color(1, 1, 1, 1f / ControllersLeft);
     }
 
+    private Array<Node> _allTheCrossesOnScreen, _allTheControlledCrosses;
 	public override void _PhysicsProcess(double delta)
 	{
         if (Modulate.A < 1)
             Modulate = new Color(Modulate.R, Modulate.G, Modulate.B, Modulate.A + 0.01f);
-        else if (_controllersLeft > 0)
+        else if (ControllersLeft > 0)
         {
             _timerToControllerExplosion -= 0.016667f * (_isWearAccelerated ? 8 : 1);
-            _warningSprite.Modulate = new Color(_warningSprite.Modulate.R, _warningSprite.Modulate.G, _warningSprite.Modulate.B, _timerToControllerExplosion / 5);
-            GetNode<Control>("EnergyPoints/Point" + (5 - _controllersLeft) + "/Crystal").Size = new Vector2(170, _timerToControllerExplosion * 44);
+            WarningSprite.Modulate = new Color(WarningSprite.Modulate.R, WarningSprite.Modulate.G, WarningSprite.Modulate.B, _timerToControllerExplosion / 5);
+            GetNode<Control>("Controllers/Crystal" + (5 - ControllersLeft) + "/Sprite").Size = new Vector2(170, _timerToControllerExplosion * 44);
             if (_timerToControllerExplosion < 0)
             {
-                GetNode<AudioStreamPlayer>("CrystalBreaking").Play();
-                GetNode<Node2D>("EnergyPoints/Point" + (5 - _controllersLeft)).QueueFree();
-                GetNode<CpuParticles2D>("EnergyPoints/CrystallParticles" + (5 - _controllersLeft)).Emitting = true;
-                var controlledCrosses = GetTree().GetNodesInGroup(_controlledCrossesGroupIndex);
-                if (controlledCrosses.Count == _controllersLeft)
-                    controlledCrosses[_controllersLeft - 1].RemoveFromGroup(_controlledCrossesGroupIndex);
-                _controllersLeft--;
-
-                if (_controllersLeft == 0)
-                    GetNode<AudioStreamPlayer>("ExplosionSignal").Play();
-                for (int i = 0; i < _controllersLeft; i++)
-                    GetNode<Node2D>("EnergyPoints/Point" + (4 - i) + "/EnergyBeam").Modulate = new Color(1, 1, 1, 1f / _controllersLeft);
-
-                _timerToControllerExplosion = 5;
+                CrystalExplode();
             }
 
-            var AllCrossesOnScreen = GetTree().GetNodesInGroup("Crosses");
-            if (GetTree().GetNodesInGroup(_controlledCrossesGroupIndex).Count < _controllersLeft && AllCrossesOnScreen.Count > 0)
+            _allTheCrossesOnScreen = GetTree().GetNodesInGroup("Crosses");
+            if (GetTree().GetNodesInGroup(_controlledCrossesGroupIndex).Count < ControllersLeft && _allTheCrossesOnScreen.Count > 0)
             {
-                var AddableCross = (Node2D)AllCrossesOnScreen.PickRandom();
+                var addableCross = (Node2D)_allTheCrossesOnScreen.PickRandom();
 
-                if (AddableCross.Material == null || AddableCross.Material.ResourceName != "StaticNoise")
-                    if (AddableCross.SceneFilePath != "res://Content/Scenes/Crosses/EnhancedCross5.tscn")
-                        if (AddableCross.SceneFilePath != "res://Content/Scenes/Crosses/EnhancedCross4.tscn" || _random.Next(25) == 0)
-                        AddableCross.AddToGroup(_controlledCrossesGroupIndex);
+                if (addableCross.SceneFilePath != "res://Content/Scenes/Crosses/EnhancedCross5.tscn")
+                    if (addableCross.SceneFilePath != "res://Content/Scenes/Crosses/EnhancedCross4.tscn" || _random.Next(25) == 0)
+                        addableCross.AddToGroup(_controlledCrossesGroupIndex);
             }
                 
 
-            var AllControlledCrosses = GetTree().GetNodesInGroup(_controlledCrossesGroupIndex);
+            _allTheControlledCrosses = GetTree().GetNodesInGroup(_controlledCrossesGroupIndex);
 
-            for (int i = 0; i < _controllersLeft; i++)
+            for (int i = 0; i < ControllersLeft; i++)
             {
-                var showingRangeController = GetNode<Control>("EnergyPoints/Point" + (4 - i) + "/EnergyBeam/ShowingRangeController");
-                var energyBeam = GetNode<Node2D>("EnergyPoints/Point" + (4 - i) + "/EnergyBeam");
+                var energyBeam = GetNode<Control>("Controllers/Crystal" + (4 - i) + "/EnergyBeam");
 
-                if (AllControlledCrosses.Count > i)
+                if (_allTheControlledCrosses.Count > i)
                 {
                     if (!energyBeam.Visible)
                         energyBeam.Visible = true;
                     
-                    var ControlledCross = (Node2D)AllControlledCrosses[i];
-                    if (ControlledCross.Name != "Ball" || ControlledCross.Visible)
-                        ControlledCross.GlobalTranslate(ControlledCross.GlobalPosition.DirectionTo(G.Player.GlobalPosition) * 5 / _controllersLeft);
-                    showingRangeController.Size = new Vector2(showingRangeController.GlobalPosition.DistanceTo(ControlledCross.GlobalPosition), showingRangeController.Size.Y);
+                    var controlledCross = (Node2D)_allTheControlledCrosses[i];
+                    if (controlledCross.Name != "Ball" || controlledCross.Visible)
+                        controlledCross.GlobalTranslate(controlledCross.GlobalPosition.DirectionTo(G.Player.GlobalPosition) * 5 / ControllersLeft);
+                    energyBeam.Size = new Vector2(energyBeam.GlobalPosition.DistanceTo(controlledCross.GlobalPosition), energyBeam.Size.Y);
 
-                    energyBeam.Rotation += energyBeam.GetAngleTo(ControlledCross.GlobalPosition);           
+                    energyBeam.Rotation = new Vector2(energyBeam.GlobalPosition.X, energyBeam.GlobalPosition.Y + energyBeam.PivotOffset.Y).AngleToPoint(controlledCross.GlobalPosition) - energyBeam.GetParent<Node2D>().Rotation;
                 }
                 else
                     energyBeam.Visible = false;
@@ -93,37 +95,70 @@ public partial class EnhancedBlumCross : Node2D
         else if (_timerToExplosion > 0)
         {
             _timerToExplosion -= 0.016667f;
-            _warningSprite.Modulate = new Color(_warningSprite.Modulate.R, _warningSprite.Modulate.G, _warningSprite.Modulate.B, (float)_random.NextDouble());
+            WarningSprite.Modulate = new Color(WarningSprite.Modulate.R, WarningSprite.Modulate.G, WarningSprite.Modulate.B, (float)_random.NextDouble());
         }
         else
         {
-            var explosionAnimation = GetNode<AnimatedSprite2D>("ExplosionAnimation");
-            var explosiveArea = GetNode<CollisionShape2D>("ExplosiveArea/CollisionShape2D");
-            if (explosionAnimation.IsPlaying())
-            {
-                explosiveArea.Disabled = true;
-                SetPhysicsProcess(false);
-                return;
-            }
-            GetNode<Sprite2D>("CrossSprite").QueueFree();
-            _warningSprite.QueueFree();
-            GetNode<AudioStreamPlayer>("ExplosionSound").Play();
-            explosionAnimation.Visible = true;
-            explosionAnimation.Play();
-            explosiveArea.Disabled = false;
-
-            var Groups = GetGroups();
-            for (int i = 0; i < Groups.Count; i++)
-                RemoveFromGroup(Groups[i]);
+            Explode();
         }
     }
 
-    public void EnableWearAccelerating()
+    public void CrystalExplode()
     {
-        _isWearAccelerated = true;
+        // Breaking sound
+        GetNode<AudioStreamPlayer>("CrystalBreaking").Play();
+
+        // Breaking visual effects
+        int controllerId = CONTROLLERS_COUNT + 1 - ControllersLeft;
+        var controller = GetNode<Node2D>("Controllers/Crystal" + controllerId);
+        controller.Hide();
+        controller.ProcessMode = ProcessModeEnum.Disabled;
+        GetNode<CpuParticles2D>("Controllers/CrystallParticles" + controllerId).Emitting = true;
+
+        //
+        _allTheControlledCrosses = GetTree().GetNodesInGroup(_controlledCrossesGroupIndex);
+        if (_allTheControlledCrosses.Count == ControllersLeft)
+            _allTheControlledCrosses[ControllersLeft - 1].RemoveFromGroup(_controlledCrossesGroupIndex);
+
+        ControllersLeft--;
+
+        if (ControllersLeft == 0)
+            GetNode<AudioStreamPlayer>("ExplosionSignal").Play();
+
+        for (int i = 0; i < ControllersLeft; i++)
+            GetNode<Control>("Controllers/Crystal" + (4 - i) + "/EnergyBeam").Modulate = new Color(1, 1, 1, 1f / ControllersLeft);
+
+        _timerToControllerExplosion = TIME_TO_CONTROLLER_EXPLOSION;
     }
-    public void DisableWearAccelerating()
+
+    public override void Respawn()
     {
+        base.Respawn();
+
+        AddToGroup("Crosses");
+
+        Modulate = new Color(Modulate.R, Modulate.G, Modulate.B, 0);
+
+        // Returning the old settings
+        CrossSprite.Visible = true;
+        WarningSprite.Visible = true;
+
+        ExplosionAnimation.Visible = false;
+
+        _timerToControllerExplosion = TIME_TO_CONTROLLER_EXPLOSION;
+        _timerToExplosion = 1;
         _isWearAccelerated = false;
+        ControllersLeft = CONTROLLERS_COUNT;
+
+        ExplosionSound.Stop();
+        // Returning crystals to the initial state
+        for (int i = 0; i < CONTROLLERS_COUNT; i ++)
+        {
+            int controllerId = CONTROLLERS_COUNT - i;
+            var controller = GetNode<Node2D>("Controllers/Crystal" + controllerId);
+            controller.Show();
+            controller.ProcessMode = ProcessModeEnum.Inherit;
+            controller.GetNode<Control>("Sprite").Size = new Vector2(170, 220); // 170X220 is the default size of the control
+        }
     }
 }

@@ -22,7 +22,7 @@ radius = 20.0
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
 [node name="GreenElementalCrossPart" type="Node2D"]
-z_index = 2
+z_index = 3
 script = ExtResource("3")
 
 [node name="SpawnSound" type="AudioStreamPlayer" parent="."]

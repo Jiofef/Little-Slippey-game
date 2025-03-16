@@ -1,9 +1,5 @@
 ﻿using Godot;
 using static OtherExtension.RandomTools;
-using static CrossesNodesAbstract;
-using System.Security.Cryptography.X509Certificates;
-using System;
-using System.Xml.Linq;
 
 public interface CrossesNodesAbstract
 {
@@ -68,9 +64,12 @@ public abstract partial class UnusualCrossNode : Node2D, CrossesNodesAbstract
 
     public virtual void Respawn()
     {
-        EmitSignal("UnSave");
+        ProcessMode = ProcessModeEnum.Inherit;
+        Visible = true;
 
         _isInRespawnPool = false;
+
+        EmitSignal("UnSave");
     }
 
     public void SendToRespawnPool()
@@ -142,7 +141,7 @@ abstract public partial class CrossNode : UnusualCrossNode
 
         // Physics
         if (ExplosiveArea != null)
-            ExplosiveArea.Disabled = false;
+            ExplosiveArea.SetDeferred("disabled", false);
         SetPhysicsProcess(false);
 
         // Waiting one frame to disable explosion collision
@@ -164,14 +163,9 @@ abstract public partial class CrossNode : UnusualCrossNode
 
         IsExploded = false;
 
-        ProcessMode = ProcessModeEnum.Inherit;
         SetPhysicsProcess(true);
 
         MoveToFront();
-
-        Visible = true;
-
-        _isInRespawnPool = false;
 
         EmitSignal("Respawned");
     }

@@ -1,50 +1,50 @@
-[gd_scene load_steps=5 format=3 uid="uid://yxwyqxrx2p8s"]
+[gd_scene load_steps=6 format=3 uid="uid://yxwyqxrx2p8s"]
 
 [ext_resource type="Script" uid="uid://b2l2rmqusis2v" path="res://Content/Scripts/Crosses/EnhancedCannonCross.cs" id="1_jei06"]
 [ext_resource type="Texture2D" uid="uid://dxgtoqpjnurps" path="res://Content/Sprites/Crosses/Helicopter.png" id="2_77f4a"]
 
-[sub_resource type="Animation" id="Animation_frvpa"]
-resource_name = "BladesTorsion"
-length = 0.05
-loop_mode = 2
-step = 0.05
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.05),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(0.05, 1)]
-}
+[sub_resource type="Curve" id="Curve_gag26"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_r06m4"]
-_data = {
-&"BladesTorsion": SubResource("Animation_frvpa")
-}
+[sub_resource type="Gradient" id="Gradient_gag26"]
+offsets = PackedFloat32Array(0, 0.5, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="Gradient" id="Gradient_y26np"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.5)
+colors = PackedColorArray(0.607843, 0.611765, 0.509804, 1, 0.376471, 0.423529, 0.505882, 1)
 
 [node name="EnhancedCannonCross" type="Node2D"]
 z_index = 3
 script = ExtResource("1_jei06")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="HelicopterSprite" type="Sprite2D" parent="."]
 scale = Vector2(4, 4)
 texture = ExtResource("2_77f4a")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-offset_left = -86.0
+[node name="BladesParticles" type="CPUParticles2D" parent="."]
+position = Vector2(64, 0)
+amount = 48
+lifetime = 1.5
+emission_shape = 3
+emission_rect_extents = Vector2(64, 1)
+direction = Vector2(0, 1)
+gravity = Vector2(0, -250)
+initial_velocity_min = 300.0
+initial_velocity_max = 500.0
+angular_velocity_max = 630.0
+scale_amount_min = 4.0
+scale_amount_max = 8.0
+scale_amount_curve = SubResource("Curve_gag26")
+color_ramp = SubResource("Gradient_gag26")
+color_initial_ramp = SubResource("Gradient_y26np")
+
+[node name="Blades" type="ColorRect" parent="."]
+offset_left = -84.0
 offset_top = -86.0
-offset_right = 214.0
+offset_right = 216.0
 offset_bottom = -80.0
-scale = Vector2(0.888224, 1)
 pivot_offset = Vector2(150, 3)
 color = Color(0.223529, 0.203922, 0.341176, 1)
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="ColorRect"]
-libraries = {
-"": SubResource("AnimationLibrary_r06m4")
-}
-autoplay = "BladesTorsion"

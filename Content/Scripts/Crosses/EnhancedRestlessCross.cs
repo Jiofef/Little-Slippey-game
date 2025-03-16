@@ -3,25 +3,41 @@ using System;
 
 public partial class EnhancedRestlessCross : RestlessCross
 {
+    public Node2D PointingRect;
     public override void _PhysicsProcess(double delta)
     {
         base._PhysicsProcess(delta);
 
-        if (TicksLived >= TICKS_TO_APPEAR && TicksLived < TICKS_TO_EXPLOSION)
+        if (TicksLived < TICKS_TO_EXPLOSION && G.Player != null)
         {
             Vector2 playerPos = G.Player.GlobalPosition;
             float rotationValue = GetAngleTo(playerPos) * 3;
             rotationValue = Mathf.Clamp(rotationValue, -1.5f, 1.5f);
 
-            if (_shouldRotate)
-                R.InitialRotation = rotationValue;
+            if (TicksLived < TICKS_TO_APPEAR)
+                R.InitialRotation += rotationValue;
             else
-                Rotation += rotationValue;
+                RotationDegrees += rotationValue;
 
-            var pointingRect = GetNode<Node2D>("PointingRect");
-            float targetAngle = pointingRect.GetAngleTo(playerPos);
-            pointingRect.Rotation = Mathf.LerpAngle(pointingRect.Rotation, targetAngle, 0.033f);
-            pointingRect.Rotation = Mathf.Clamp(pointingRect.Rotation, Mathf.DegToRad(-70), Mathf.DegToRad(70));
+            float targetAngle = PointingRect.GetAngleTo(playerPos);
+            PointingRect.Rotation = Mathf.LerpAngle(PointingRect.Rotation, targetAngle, 0.033f);
+            PointingRect.RotationDegrees = Mathf.Clamp(PointingRect.RotationDegrees, -70, 70);
         }
+    }
+
+    public override void _Ready()
+    {
+        base._Ready();
+
+        PointingRect = GetNode<Node2D>("PointingRect");
+        Exploded += PointingRect.Hide;
+    }
+
+    public override void Respawn()
+    {
+        base.Respawn();
+
+        PointingRect.Show();
+        PointingRect.Rotation = 0;
     }
 }

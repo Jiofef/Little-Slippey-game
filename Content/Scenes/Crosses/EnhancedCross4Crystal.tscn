@@ -1,0 +1,114 @@
+[gd_scene load_steps=13 format=3 uid="uid://bwsp608gd1u82"]
+
+[ext_resource type="Texture2D" uid="uid://sb76vc7slrym" path="res://Content/Sprites/Crosses/EnhancedBlumCrossCrystalAnimation.png" id="1_dohqc"]
+[ext_resource type="Texture2D" uid="uid://csq1qdkb418s" path="res://Content/Sprites/Crosses/EnhancedBlumCrossCrystalHead.png" id="2_1ha4j"]
+[ext_resource type="Texture2D" uid="uid://r3iyalnukxbo" path="res://Content/Sprites/Crosses/EnhancedBlumCrossEnergyBeamAnimation.png" id="3_3qhaa"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vy3rc"]
+atlas = ExtResource("1_dohqc")
+region = Rect2(0, 0, 17, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_accut"]
+atlas = ExtResource("1_dohqc")
+region = Rect2(17, 0, 17, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cp1rd"]
+atlas = ExtResource("1_dohqc")
+region = Rect2(34, 0, 17, 22)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kdarv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vy3rc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_accut")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cp1rd")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fqsfr"]
+atlas = ExtResource("3_3qhaa")
+region = Rect2(0, 0, 720, 3)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nb6ee"]
+atlas = ExtResource("3_3qhaa")
+region = Rect2(0, 4, 720, 3)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yyfl6"]
+atlas = ExtResource("3_3qhaa")
+region = Rect2(0, 8, 720, 3)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1drlb"]
+atlas = ExtResource("3_3qhaa")
+region = Rect2(0, 12, 720, 3)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fc84j"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fqsfr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nb6ee")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yyfl6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1drlb")
+}],
+"loop": true,
+"name": &"default",
+"speed": 20.0
+}]
+
+[node name="Crystal" type="Node2D"]
+
+[node name="Sprite" type="Control" parent="."]
+clip_contents = true
+layout_mode = 3
+anchors_preset = 0
+offset_left = 85.0
+offset_top = -85.0
+offset_right = 255.0
+offset_bottom = 135.0
+rotation = -3.14159
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Sprite"]
+scale = Vector2(10, 10)
+sprite_frames = SubResource("SpriteFrames_kdarv")
+autoplay = "default"
+frame = 2
+frame_progress = 0.728425
+centered = false
+
+[node name="CrystallHead" type="Sprite2D" parent="."]
+position = Vector2(-3.8147e-06, -40)
+rotation = 3.14159
+scale = Vector2(10, 10)
+texture = ExtResource("2_1ha4j")
+
+[node name="EnergyBeam" type="Control" parent="."]
+visible = false
+clip_contents = true
+layout_mode = 3
+anchors_preset = 0
+offset_top = -7.5
+offset_right = 30.0
+offset_bottom = 7.5
+pivot_offset = Vector2(0, 7.5)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="EnergyBeam"]
+z_index = 1
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_fc84j")
+autoplay = "default"
+frame_progress = 0.305153
+centered = false

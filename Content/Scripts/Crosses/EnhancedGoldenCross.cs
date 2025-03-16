@@ -2,22 +2,54 @@ using Godot;
 using System;
 using static OtherExtension.RandomTools;
 
-public partial class EnhancedGoldenCross : Node2D
+public partial class EnhancedGoldenCross : UnusualCrossNode
 {
-    // This node is just a container for the proton-electron pair, so it can simply be removed.
+    // This node is just a spawner and respawner of the proton-electron pair;
+
+    public ElementaryParticle NegativePart, PositivePart;
+    public byte FinishedParts = 0;
     public override void _Ready()
 	{
         // Initializing nodes
-        Node2D negativePart = GetNode<Node2D>("NegativePart");
-        Node2D positivePart = GetNode<Node2D>("PositivePart");
+        NegativePart = GetNode<ElementaryParticle>("NegativePart");
+        PositivePart = GetNode<ElementaryParticle>("PositivePart");
 
-		negativePart.Reparent(GetParent());
-		positivePart.Reparent(GetParent());
+		NegativePart.Reparent(GetParent());
+		PositivePart.Reparent(GetParent());
 
-        negativePart.GlobalPosition = RandomVectorInCameraBorders();
-        positivePart.GlobalPosition = RandomVectorIn(G.CameraLimits, negativePart.GlobalPosition, 500);
+        NegativePart.GlobalPosition = RandomVectorInCameraBorders();
+        PositivePart.GlobalPosition = RandomVectorIn(G.CameraLimits, NegativePart.GlobalPosition, 500);
 
+        NegativePart.ShouldBeSavedInPool = ShouldBeSavedInPool;
+        PositivePart.ShouldBeSavedInPool = ShouldBeSavedInPool;
 
-		QueueFree();
+        NegativePart.Finished += PartFinished;
+        PositivePart.Finished += PartFinished;
+
+        // So as not to waste an extra two and a half operations per frame
+        ProcessMode = ProcessModeEnum.Disabled;
+    }
+
+    public void PartFinished()
+    {
+        FinishedParts++;
+
+        if (FinishedParts == 2)
+            OnFinished();
+    }
+
+    public override void Respawn()
+    {
+        base.Respawn();
+
+        FinishedParts = 0;
+
+        NegativePart.GlobalPosition = RandomVectorInCameraBorders();
+        PositivePart.GlobalPosition = RandomVectorIn(G.CameraLimits, NegativePart.GlobalPosition, 500);
+
+        NegativePart.Respawn();
+        PositivePart.Respawn();
+
+        ProcessMode = ProcessModeEnum.Disabled;
     }
 }

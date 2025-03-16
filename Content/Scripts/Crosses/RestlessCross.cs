@@ -16,6 +16,8 @@ public partial class RestlessCross : CrossNode
         // Initializing nodes
         NodesInit();
 
+        AddToGroup("Crosses");
+
         // Spawn properties
         Scale = new Vector2(3, 3);
         Modulate = new Color(1, 1, 1, 0);
@@ -63,6 +65,9 @@ public partial class RestlessCross : CrossNode
     public override void Respawn()
     {
         base.Respawn();
+
+        AddToGroup("Crosses");
+
         _shouldRotate = Meta.Instance.Video.CrossRotationWhenSpawning;
 
         Scale = new Vector2(3, 3);

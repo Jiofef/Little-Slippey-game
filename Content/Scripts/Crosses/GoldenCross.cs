@@ -34,6 +34,8 @@ public partial class GoldenCross : UnusualCrossNode
         // Initializing the nodes
         _cross = GetNode<PathFollow2D>("Path2D/Cross");
 
+        AddToGroup("Crosses");
+
         // Randomizing the transform
         RotationDegrees = _random.Next(-360, 360);
         _cross.GlobalRotationDegrees = 0;
@@ -46,14 +48,13 @@ public partial class GoldenCross : UnusualCrossNode
         // Price determination
         Price = _random.Next(DEFAULT_MIN_PRICE, DEFAULT_MAX_PRICE);
 
-        // Connecting a pointer to despawn when player dies
-        var offscreenPointer = GetNode<OffscreenPointer>("Path2D/Cross/OffscreenPointer");
+        // Connecting a pointer to hide when player dies
+        Callable updateOffscreenPointer = new Callable(this, "UpdateOffscreenPointer");
         if (G.Player != null)
-            G.Player.Connect("PlayerDied", new Callable(offscreenPointer, "queue_free"));
+            G.Player.Connect("PlayerDied", updateOffscreenPointer);
 
-        // Connecting a pointer to despawn when collected
-        Connect("OnCollected", new Callable(offscreenPointer, "queue_free"));
-
+        // Connecting a pointer to hide when collected
+        Connect("OnCollected", updateOffscreenPointer);
     }
 
     public override void _PhysicsProcess(double delta)
@@ -96,7 +97,7 @@ public partial class GoldenCross : UnusualCrossNode
         GetNode<Area2D>("Path2D/Cross/CollectArea").SetDeferred("monitoring", false);
 
         await ToSignal(shineParticles, "finished");
-        QueueFree();
+        OnFinished();
     }
 
     public async void onCollected()
@@ -139,12 +140,19 @@ public partial class GoldenCross : UnusualCrossNode
         shineParticles.Emitting = false;
 
         await ToSignal(shineParticles, "finished");
-        QueueFree();
+        OnFinished();
+    }
+
+    public void UpdateOffscreenPointer()
+    {
+        GetNode<OffscreenPointer>("Path2D/Cross/OffscreenPointer").IsHidden = G.IsPlayerDead || _state == StateEnum.Collected;
     }
 
     public override void Respawn()
     {
         base.Respawn();
+
+        AddToGroup("Crosses");
 
         _state = StateEnum.Default;
 
@@ -157,7 +165,11 @@ public partial class GoldenCross : UnusualCrossNode
         Price = _random.Next(DEFAULT_MIN_PRICE, DEFAULT_MAX_PRICE);
 
         GetNode<Area2D>("Path2D/Cross/CollectArea").SetDeferred("monitoring", true);
-        GetNode<AnimationPlayer>("Path2D/Cross/AnimationPlayer").Stop();
+        var animationPlayer = GetNode<AnimationPlayer>("Path2D/Cross/AnimationPlayer");
+        animationPlayer.Stop();
+        animationPlayer.Play("Appearing");
         GetNode<CpuParticles2D>("Path2D/Cross/ShineParticles").Emitting = true;
+
+        UpdateOffscreenPointer();
     }
 }

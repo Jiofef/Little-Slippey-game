@@ -1,107 +1,135 @@
 using Godot;
 using System;
+using OtherExtension;
 
-public partial class EnhancedDefaultCross : Node2D
+public partial class EnhancedDefaultCross : CrossNode
 {
-    Sprite2D _crossSprite, _warningSprite;
+    // Time constants (in ticks)
+    private const int TICKS_TO_APPEAR = 60;
+    private const int TICKS_TO_EXPLOSION_START = 40;
+    private const int TICKS_TO_EXPLOSION_END = 90;
 
-    private const int MAX_ROTATION = 30;
-
-    private int _ticksToExplosion = 90;
-    private float _warningSpriteFallSpeedMultiplier = -1f;
-
-    private float _defaultTicksToAppear = 60;
-    private float _ticksToAppear = 0;
-
-    private float _defaultRotation;
-    private float _rotationGoal;
-
-    // Visual rotating effect
+    // Rotation
+    private CrossRotator R;
+    private const int INITIAL_ROTATION_RANGE = 75;
+    private const int FINAL_ROTATION_RANGE = 30;
     private bool _shouldRotate = Meta.Instance.Video.CrossRotationWhenSpawning;
+
+    // Effects
+    private float _warningSpriteFallSpeedMultiplier = -1f;
 
     public override void _Ready()
     {
-        // Initializing nodes
-        _crossSprite = GetNode<Sprite2D>("CrossSprite");
-        _warningSprite = GetNode<Sprite2D>("WarningSprite");
+        NodesInit();
 
-        // Spawn properties
+        AddToGroup("Crosses");
+
+        // Initialize spawn properties
         Scale = new Vector2(3, 3);
-        Modulate = new Color(Modulate.R, Modulate.G, Modulate.B, 0);
+        Modulate = new Color(1, 1, 1, 0);
 
-
-        _ticksToAppear = _defaultTicksToAppear;
-
+        // Initialize rotator
         if (_shouldRotate)
         {
-            Random random = new Random();
-            _defaultRotation = random.Next(-75, 75);
-            _rotationGoal = random.Next(-MAX_ROTATION, MAX_ROTATION);
-
-            RotationDegrees = _defaultRotation;
+            R = new CrossRotator(this, INITIAL_ROTATION_RANGE, FINAL_ROTATION_RANGE);
+            R.Randomize();
         }
     }
+
+    Color _crossMod = new Color(1, 1, 1, 1);
     public override void _PhysicsProcess(double delta)
     {
-        if (_ticksToAppear > 0)
-        {
-            _ticksToAppear--;
-            float TicksCoeff = 1 - (_ticksToAppear / _defaultTicksToAppear);
-            TicksCoeff = Mathf.Lerp(0.0f, 1.0f, 1 - (1 - TicksCoeff) * (1 - TicksCoeff) * (1 - TicksCoeff));
+        base._PhysicsProcess(delta);
 
+        // Spawn phase
+        if (TicksLived <= TICKS_TO_APPEAR)
+        {
+            float TicksCoeff = TicksLived / TICKS_TO_APPEAR;
+            TicksCoeff = MathTools.EaseOut(TicksCoeff, 3);
+
+            // Rotation animation
             if (_shouldRotate)
-                RotationDegrees = _defaultRotation + _rotationGoal * TicksCoeff;
-            Scale = new Vector2(3 - 2 * TicksCoeff, 3 - 2 * TicksCoeff);
-            Modulate = new Color(Modulate.R, Modulate.G, Modulate.B, TicksCoeff);
-        }
-        if (_ticksToAppear < 40)
-        {
-            if (_ticksToExplosion > 0)
-            {
-                _ticksToExplosion--;
+                R.Rotate(TicksCoeff);
 
-                if (_ticksToExplosion == 89)
+            // Scale and transparency
+            Scale = new Vector2(3 - 2 * TicksCoeff, 3 - 2 * TicksCoeff);
+            Modulate = new Color(1, 1, 1, TicksCoeff);
+        }
+
+        // Rest of the logic remains unchanged
+        if (TicksLived >= TICKS_TO_EXPLOSION_START)
+        {
+            if (TicksLived < TICKS_TO_EXPLOSION_END)
+            {
+                if (TicksLived == TICKS_TO_EXPLOSION_START)
                     GetNode<CollisionShape2D>("TriggerArea/CollisionShape2D").Disabled = false;
 
-                _crossSprite.Modulate = new Color(_crossSprite.Modulate.R, _crossSprite.Modulate.G, _crossSprite.Modulate.B, _crossSprite.Modulate.A - 0.05f);
-                if (_ticksToExplosion == 70 || _ticksToExplosion == 50 || _ticksToExplosion == 30 || _ticksToExplosion == 0)
-                    _crossSprite.Modulate = new Color(_crossSprite.Modulate.R, _crossSprite.Modulate.G, _crossSprite.Modulate.B, 1);
-            }
-            else if (_warningSprite.Scale > Vector2.Zero)
-            {
-                _crossSprite.Modulate = new Color(_crossSprite.Modulate.R, _crossSprite.Modulate.G, _crossSprite.Modulate.B, _crossSprite.Modulate.A - 0.02f);
-                _warningSprite.Scale -= new Vector2(1f * _warningSpriteFallSpeedMultiplier, 1f * _warningSpriteFallSpeedMultiplier);
-                _warningSpriteFallSpeedMultiplier += 0.08f;
+                _crossMod.A -= 0.05f;
+                if ((TicksLived % 20) == 0)
+                    _crossMod.A = 1f;
+
+                CrossSprite.Modulate = _crossMod;
             }
             else
             {
-                var explosionAnimation = GetNode<AnimatedSprite2D>("ExplosionAnimation");
-                var explosiveArea = GetNode<CollisionShape2D>("ExplosiveArea/CollisionShape2D");
-                if (explosionAnimation.IsPlaying())
+                if (WarningSprite.Scale > Vector2.Zero)
                 {
-                    explosiveArea.Disabled = true;
-                    SetPhysicsProcess(false);
-                    return;
+                    CrossSprite.Modulate = new Color(1, 1, 1, CrossSprite.Modulate.A - 0.02f);
+                    WarningSprite.Scale -= new Vector2(1f * _warningSpriteFallSpeedMultiplier, 1f * _warningSpriteFallSpeedMultiplier);
+                    _warningSpriteFallSpeedMultiplier += 0.08f;
                 }
-                _crossSprite.QueueFree();
-                _warningSprite.Visible = false;
-                GetNode<AudioStreamPlayer>("ExplosionSound").Play();
-                GetNode<CollisionShape2D>("TriggerArea/CollisionShape2D").Disabled = true;
-                explosionAnimation.Visible = true;
-                explosionAnimation.Play();
-                explosiveArea.Disabled = false;
-
-                var Groups = GetGroups();
-                for (int i = 0; i < Groups.Count; i++)
-                    RemoveFromGroup(Groups[i]);
+                else
+                {
+                    Explode();
+                }
             }
         }
-
     }
 
+
+    public override void Explode()
+    {
+        if (IsExploded) return;
+        base.Explode();
+
+        // Enhanced-specific actions
+        GetNode<CollisionShape2D>("TriggerArea/CollisionShape2D").Disabled = true;
+    }
+
+    public override void Respawn()
+    {
+        base.Respawn();
+
+        AddToGroup("Crosses");
+
+        // Base settings
+        _shouldRotate = Meta.Instance.Video.CrossRotationWhenSpawning;
+        _crossMod = new Color(1, 1, 1, 1);
+
+        Scale = new Vector2(3, 3);
+        Modulate = new Color(Modulate.R, Modulate.G, Modulate.B, 0);
+        R.Randomize();
+
+        // Returning the old settings
+        CrossSprite.Visible = true;
+        WarningSprite.Visible = true;
+
+        ExplosionAnimation.Visible = false;
+
+        // Base enhanced options
+        _warningSpriteFallSpeedMultiplier = -1f;
+        WarningSprite.Scale = new Vector2(10, 10);
+        CrossSprite.Modulate = new Color(1, 1, 1, 1);
+        GetNode<CollisionShape2D>("TriggerArea/CollisionShape2D").Disabled = true;
+    }
+
+    // When player enters the cross area
     public void TRIGGERED()
     {
-        _crossSprite.Modulate = new Color(_crossSprite.Modulate.R, _crossSprite.Modulate.G, _crossSprite.Modulate.B, 1);
-        _ticksToExplosion = 0;
+        if (TicksLived < TICKS_TO_EXPLOSION_END)
+        {
+            TicksLived = TICKS_TO_EXPLOSION_END;
+            CrossSprite.Modulate = new Color(1, 1, 1, 1);
+        }
     }
 }

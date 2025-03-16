@@ -1107,6 +1107,9 @@ libraries = {
 &"": SubResource("AnimationLibrary_jcmm3")
 }
 
+[node name="Level" parent="." index="1"]
+BeforeResetCrossesSpawnStartTimer = 0.0
+
 [node name="Background" type="ParallaxBackground" parent="Level" index="0"]
 
 [node name="Sky" type="ParallaxLayer" parent="Level/Background" index="0"]

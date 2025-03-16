@@ -116,7 +116,6 @@ public partial class Crosses : Node
                 inst = savedPool[id];
                 savedPool.RemoveAt(id);
                 inst.Respawn();
-                GD.Print("Respawn " + savedPool.Count);
 
                 isReusing = true;
                 return inst;
@@ -248,7 +247,7 @@ public partial class Crosses : Node
         crosses[4].SetSpawnSide(false, false, false, false, true, false); // Helicopter must spawn at the top camera limit corner
         crosses[4].SpawnRectCorrection = new Rect2(-640, -1280, 640, 0);
 
-        SetCurrentCrossesPack("LightweightTNT2.0", crosses, goldenCross, 150);
+        SetCurrentCrossesPack("LightweightTNT2.0", crosses, goldenCross, 125 / 4);
     }
 
     /// <summary>

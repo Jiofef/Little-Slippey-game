@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://dnn6gvvg4t2sr" path="res://Content/Sprites/Crosses/EnhancedGoldenCross.png" id="1_egfsr"]
 [ext_resource type="Script" uid="uid://cr8eug35xmamm" path="res://Content/Scripts/Crosses/EnhancedGoldenCross.cs" id="1_vafaw"]
-[ext_resource type="Script" uid="uid://b8pv7mn1g18jh" path="res://Content/Scripts/Crosses/ElementaryParticleScript.cs" id="2_nucrf"]
+[ext_resource type="Script" uid="uid://b8pv7mn1g18jh" path="res://Content/Scripts/Crosses/ElementaryParticle.cs" id="2_nucrf"]
 [ext_resource type="PackedScene" uid="uid://4gxbtrc21wvn" path="res://Content/Scenes/Interface&Menu/OffscreenPointer.tscn" id="3_n6rmv"]
 [ext_resource type="Texture2D" uid="uid://bmnjn4tqb7t5m" path="res://Content/Sprites/Interface/GoldenCrossesAnimation.png" id="4_j0by6"]
 [ext_resource type="Texture2D" uid="uid://btp8llsfw6hi3" path="res://Content/Sprites/Interface/GoldenPointingArrow.png" id="4_v7afd"]
@@ -468,7 +468,7 @@ libraries = {
 }
 autoplay = "Appearing"
 
-[connection signal="area_entered" from="PositivePart/ChargeArea" to="PositivePart" method="Anihilate" flags=6]
+[connection signal="area_entered" from="PositivePart/ChargeArea" to="PositivePart" method="Anihilate"]
 
 [editable path="NegativePart/OffscreenPointer"]
 [editable path="PositivePart/OffscreenPointer"]

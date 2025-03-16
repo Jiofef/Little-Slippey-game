@@ -29,8 +29,7 @@ offset_right = 74.0
 offset_bottom = 3.0
 grow_vertical = 2
 pivot_offset = Vector2(0, 5)
+mouse_filter = 2
 
 [node name="ExplosionAnimation" parent="." index="6"]
 use_parent_material = true
-
-[connection signal="draw" from="ExplosionAnimation" to="PointingRect/ColorRect" method="queue_free"]

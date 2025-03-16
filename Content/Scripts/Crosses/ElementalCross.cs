@@ -54,6 +54,8 @@ public partial class ElementalCross : UnusualCrossNode
         BluePart = GetNode<Sprite2D>("Sprites/BluePart");
         Sprites = GetNode<Node2D>("Sprites");
 
+        AddToGroup("Crosses");
+
         //Spawn properties
         Scale = new Vector2(3, 3);
 
@@ -67,10 +69,6 @@ public partial class ElementalCross : UnusualCrossNode
                 spawner.EverythingImportant.Add("GreenEESavedPool", new List<ElementalCrossPart>());
                 spawner.EverythingImportant.Add("BlueEESavedPool", new List<ElementalCrossPart>());
             }
-            ElementalType finalType = _elementalType + (int)(TICKS_TO_APPEAR / TICKS_TO_CHANGE_TYPE);
-            if ((int)finalType >= ELEMENTAL_TYPES_COUNT)
-                finalType = (ElementalType)((int)finalType % (ELEMENTAL_TYPES_COUNT - 1));
-            _currentPartsPool = ParentSpawner.EverythingImportant[finalType.ToString() + "EESavedPool"] as List<ElementalCrossPart>;
         }
 
         if (_shouldRotate)
@@ -112,12 +110,7 @@ public partial class ElementalCross : UnusualCrossNode
         }
         if (TicksLived > TICKS_TO_START_SPAWNING)
         {
-            if (_summonableElemental == null)
-            {
-                Modulate = new Color(1, 1, 1);
-                _summonableElemental = ResourceLoader.Load<PackedScene>("res://Content/Scenes/Crosses/" + _elementalType.ToString() + "ElementalCrossPart.tscn");
-            }
-            else if (_elementsToSpawn > 0)
+            if (_elementsToSpawn > 0)
             {
                 if (--_ticksToNextSpawn == 0)
                 {
@@ -167,8 +160,8 @@ public partial class ElementalCross : UnusualCrossNode
             element = _currentPartsPool[id];
             _currentPartsPool.RemoveAt(id);
 
-            element.GlobalRotation = 0;
             element.Position = Position;
+            element.Translate(new Vector2(_random.Next(-30, 31), _random.Next(-30, 31)));
 
             element.Respawn();
         }
@@ -176,19 +169,23 @@ public partial class ElementalCross : UnusualCrossNode
         {
             element = (ElementalCrossPart)_summonableElemental.Instantiate();
 
-            if (_currentPartsPool != null)
-                element.Save += () => _currentPartsPool.Add(element);
+            element.ShouldBeSavedInPool = ShouldBeSavedInPool;
 
-            element.GlobalRotation = 0;
+            if (_currentPartsPool != null)
+            {
+                var currentLinkToPool = _currentPartsPool;
+                element.Save += () => currentLinkToPool.Add(element);
+            }
+
             element.Position = Position;
 
-            element.MoveToFront();
-
             GetParent().AddChild(element);
+
+            element.Translate(new Vector2(_random.Next(-30, 31), _random.Next(-30, 31)));
         }
 
-
-        element.Translate(new Vector2(_random.Next(-30, 31), _random.Next(-30, 31)));
+        element.MoveToFront();
+        element.GlobalRotation = 0;
 
         if (_elementsToSpawn == 0)
         {
@@ -196,11 +193,11 @@ public partial class ElementalCross : UnusualCrossNode
             {
                 await ToSignal(element, "Exploded");
                 if (_isDisposed) return;
-                LastElementExploded();
+                CallDeferred("LastElementExploded");
             }
             await ToSignal(element, "Finished");
             if (_isDisposed) return;
-            LastElementFinished();
+            CallDeferred("LastElementFinished");
         }
     }
 
@@ -235,11 +232,22 @@ public partial class ElementalCross : UnusualCrossNode
         }
         _currentDefaultColor = Core.Modulate;
         GetNode<CpuParticles2D>("ChangeElementParticles").Emitting = true;
+
+        // The last time the cross changes type
+        if (TicksLived >= TICKS_TO_START_SPAWNING - TICKS_TO_START_SPAWNING % TICKS_TO_CHANGE_TYPE)
+        {
+            Modulate = new Color(1, 1, 1);
+            _summonableElemental = ResourceLoader.Load<PackedScene>("res://Content/Scenes/Crosses/" + _elementalType.ToString() + "ElementalCrossPart.tscn");
+            if (ParentSpawner != null)
+                _currentPartsPool = ParentSpawner.EverythingImportant[_elementalType.ToString() + "EESavedPool"] as List<ElementalCrossPart>;
+        }
     }
 
     public override void Respawn()
     {
         base.Respawn();
+
+        AddToGroup("Crosses");
 
         _ticksToNextSpawn = 7;
         _ySpriteMotion = -3;
@@ -250,16 +258,11 @@ public partial class ElementalCross : UnusualCrossNode
         Core.Modulate = new Color(1, 1, 1, 1);
 
         RedPart.Position = new Vector2(0, -31.5f);
-        GreenPart.Position = new Vector2(-28, 14);
+        GreenPart.Position = new Vector2(-28, 17.5f);
         BluePart.Position = new Vector2(31.5f, 17.5f);
         RedPart.Rotation = 0;
         GreenPart.Rotation = 0;
         BluePart.Rotation = 0;
-
-        ElementalType finalType = _elementalType + (int)(TICKS_TO_APPEAR / TICKS_TO_CHANGE_TYPE);
-        if ((int)finalType >= ELEMENTAL_TYPES_COUNT)
-            finalType = (ElementalType)((int)finalType % (ELEMENTAL_TYPES_COUNT - 1));
-        _currentPartsPool = ParentSpawner.EverythingImportant[finalType.ToString() + "EESavedPool"] as List<ElementalCrossPart>;
 
         if (_shouldRotate)
         {
@@ -273,6 +276,8 @@ public partial class ElementalCross : UnusualCrossNode
         _elementsToSpawn = _random.Next(6, 11);
         _defaultElementsToSpawn = _elementsToSpawn;
         _xSpriteMotion = _random.Next(-2, 3);
+
+        _spritesMod = new Color(1, 1, 1, 1);
     }
 
     public override void _ExitTree()
@@ -290,10 +295,11 @@ abstract public partial class ElementalCrossPart : CrossNode
 
     public Vector2 PathVec;
     public Vector2 StartPosition;
-    public void RandomizePathVec(Rect2 vecBounds)
+    public Rect2 SpawnVecBounds;
+    public void RandomizePathVec()
     {
         StartPosition = GlobalPosition;
-        PathVec = RandomTools.RandomVectorIn(vecBounds);
+        PathVec = RandomTools.RandomVectorIn(SpawnVecBounds);
     }
     public float LifeTime, TimeLived = 0f, MoveCoeff = 1;
 
@@ -326,6 +332,14 @@ abstract public partial class ElementalCrossPart : CrossNode
     {
         base.Respawn();
 
+        CrossSprite.Visible = true;
+
+        _mod = new Color(1, 1, 1, 0);
+        CrossSprite.Modulate = _mod;
+
+        TimeLived = 0f;
+
+        RandomizePathVec();
         UpdatePosition(MoveCoeff);
     }
 

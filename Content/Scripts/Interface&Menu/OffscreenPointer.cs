@@ -8,6 +8,8 @@ public partial class OffscreenPointer : Node2D
 	// Nodes
 	public Node2D PointerSprite;
 
+	public bool IsHidden = false;
+
 	public override void _Ready()
 	{
 		PointerSprite = GetNode<Node2D>("Pointer");
@@ -31,7 +33,7 @@ public partial class OffscreenPointer : Node2D
         newPos.Y = Clamp(GlobalPosition.Y, bounds.Position.Y, bounds.End.Y);
         PointerSprite.GlobalPosition = newPos;
 
-		if (bounds.HasPoint(GlobalPosition))
+		if (bounds.HasPoint(GlobalPosition) || IsHidden)
 			Hide();
 		else
 			Show();

@@ -6,9 +6,6 @@ using static Crosses;
 
 public partial class CrossSpawner : Node2D
 {
-    public enum CannonsModeEnum {Horizontal, Vertical, Both}
-    [Export] public CannonsModeEnum CannonsMode = CannonsModeEnum.Horizontal;
-
     Random _random = new Random();
 
     public Dictionary<string, object> EverythingImportant = new();
@@ -30,7 +27,7 @@ public partial class CrossSpawner : Node2D
             if (_random.Next(RandomRange) == 0)
             {
                 CanvasItem Cross = SpawnRandomCrossIn(this);
-                Cross.AddToGroup("Crosses");
+                if (Cross is not EnhancedCannonCross and not CannonCross) Cross.QueueFree();
             }
         }
     }
@@ -38,7 +35,7 @@ public partial class CrossSpawner : Node2D
     // Removing crosses after resurrection so that there is no instant death
     public void OnPlayerResurrected()
     {
-        foreach (Node cross in GetTree().GetNodesInGroup("Crosses"))
-            cross.QueueFree();
+        foreach (UnusualCrossNode cross in GetTree().GetNodesInGroup("Crosses"))
+            cross.OnFinished();
     }
 }

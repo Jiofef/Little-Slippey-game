@@ -1,5 +1,6 @@
 using Godot;
 using OtherExtension;
+using static Crosses;
 
 public partial class DefaultCross : CrossNode
 {
@@ -14,6 +15,8 @@ public partial class DefaultCross : CrossNode
     {
         // Initializing nodes
         NodesInit();
+
+        AddToGroup("Crosses");
 
         // Spawn properties
         Scale = new Vector2(3, 3);
@@ -58,6 +61,8 @@ public partial class DefaultCross : CrossNode
     public override void Respawn()
     {
         base.Respawn();
+
+        AddToGroup("Crosses");
 
         // Base settings
         _shouldRotate = Meta.Instance.Video.CrossRotationWhenSpawning;

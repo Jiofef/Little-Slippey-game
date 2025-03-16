@@ -9,6 +9,7 @@ public partial class CannonCross : UnusualCrossNode
     public AudioStreamPlayer ChargeSound;
     public CollisionShape2D BallCollision;
     private float _ballYMotion = 0.5f, _appearedCoeff = 0, _afterShotCoeff = 0;
+    private CompressedTexture2D _defaultTexture, _tornTexture;
 
     private Rect2 _ballBounds;
 
@@ -27,6 +28,9 @@ public partial class CannonCross : UnusualCrossNode
         Barrel = GetNode<Sprite2D>("PathFollow2D/Cannon/Sprites/Barrel");
         ChargeSound = GetNode<AudioStreamPlayer>("PathFollow2D/Cannon/Sounds/Charge");
         #endregion
+
+        _defaultTexture = GD.Load<CompressedTexture2D>("res://Content/Sprites/Crosses/CannonBarrel.png");
+        _tornTexture = GD.Load<CompressedTexture2D>("res://Content/Sprites/Crosses/TornCannonBarrel.png");
 
         _ballBounds = new Rect2(
         G.CameraLimits.Position + new Vector2(-256, -256),
@@ -77,7 +81,7 @@ public partial class CannonCross : UnusualCrossNode
                 GetNode<CpuParticles2D>("PathFollow2D/Cannon/ExplosionParticles").Emitting = true;
                 GetNode<CpuParticles2D>("PathFollow2D/Cannon/Ball/CPUParticles2D").Emitting = true;
                 BallCollision.SetDeferred("disabled", false);
-                Barrel.Texture = GD.Load<CompressedTexture2D>("res://Content/Sprites/Crosses/TornCannonBarrel.png");
+                Barrel.Texture = _tornTexture;
                 Ball.Visible = true;
                 _didCannonShot = true;
 
@@ -153,13 +157,21 @@ public partial class CannonCross : UnusualCrossNode
 
         Barrel.RotationDegrees = -120;
         Barrel.Modulate = new Color(1, 1, 1);
+        Barrel.Texture = _defaultTexture;
+        Barrel.Scale = Vector2.One;
 
-        Ball.GlobalPosition = new Vector2(-5, 3);
+        Ball.Position = new Vector2(-5, 3);
         Ball.Visible = false;
         BallCollision.SetDeferred("disabled", true);
 
         _ballBounds = new Rect2(
         G.CameraLimits.Position + new Vector2(-256, -256),
         G.CameraLimits.Size + new Vector2(512, 512));
+
+        _appearedCoeff = 0;
+        _afterShotCoeff = 0;
+        _ballYMotion = 0.5f;
+
+        _didCannonShot = false;
     }
 }

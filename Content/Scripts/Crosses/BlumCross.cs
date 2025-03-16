@@ -17,6 +17,8 @@ public partial class BlumCross : CrossNode
         // Initializing nodes
         NodesInit();
 
+        AddToGroup("Crosses");
+
         AbortButton = GetNode<Sprite2D>("AbortButton");
         _explosiveSignal = GetNode<AudioStreamPlayer>("ExplosionSignal");
 
@@ -92,6 +94,8 @@ public partial class BlumCross : CrossNode
     public override void Respawn()
     {
         base.Respawn();
+
+        AddToGroup("Crosses");
 
         // Base settings
         Modulate = new Color(Modulate.R, Modulate.G, Modulate.B, 0);
