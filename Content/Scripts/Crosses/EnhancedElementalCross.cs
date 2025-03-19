@@ -1,35 +1,158 @@
 using Godot;
 using System;
+using OtherExtension;
+using System.Collections.Generic;
 
 public partial class EnhancedElementalCross : UnusualCrossNode
 {
-    private ShaderMaterial _noiseShader;
-    private Random _random = new Random();
-    private PackedScene[] _crosses = new PackedScene[2];
+    // For object pooling
+    public CrossSpawner ParentSpawner;
+    private List<FakeCross> _fakeCrossesPool;
+
+    // Resources
+    private PackedScene _fakeCross;
+
+    // Moving
+    public const float ACCELERATION_RATIO_MULTIPLIER = 1.005f;
+    public float SpeedRatio = 0.01f;
+    public float ProgressRatioLinear = 0.0f, ProgressRatio = 0.0f;
+
+    public const int CYCLES_INIT = 25;
+    public int CyclesLeft = CYCLES_INIT;
+
+    public Vector2 StartPosition, PathVec;
+
+
+    // Other
+    private Color _mod = new Color(1, 1, 1, 0);
 
     public override void _Ready()
     {
-        QueueFree();
-        _noiseShader = (ShaderMaterial)Material;
-        for (int i = 0; i < _crosses.Length; i++)
-            _crosses[i] = ResourceLoader.Load<PackedScene>("res://Content/Scenes/Crosses/EnhancedCross" + (i + 1) + ".tscn");
-    }
-    public override void _PhysicsProcess(double delta)
-	{
-        Modulate = new Color(1, 1, 1, (float)_random.Next(10) / 100);
-        if (_random.Next (150) == 0)
+        _fakeCross = FastInstanceCreator.LoadPackedResScene("Crosses/FakeCross.tscn");
+
+        if (GetParent() is CrossSpawner spawner)
         {
-            var Cross = (Node2D)_crosses[_random.Next(_crosses.Length)].Instantiate();
-            Cross.GlobalPosition = GlobalPosition;
-            Cross.Material = _noiseShader;
-            Cross.GetNode<Area2D>("ExplosiveArea").Monitorable = false;
-            GetParent().AddChild(Cross);
+            ParentSpawner = spawner;
+            if (!spawner.EverythingImportant.ContainsKey("FakeCrossesSavedPool"))
+            {
+                spawner.EverythingImportant.Add("FakeCrossesSavedPool", new List<FakeCross>());
+            }
+
+            _fakeCrossesPool = spawner.EverythingImportant["FakeCrossesSavedPool"] as List<FakeCross>;
         }
 
-        if (_random.Next(30) == 0)
-            GlobalPosition = G.Player.GlobalPosition + new Vector2(_random.Next(-450, 450), _random.Next(-250, 250));
+        Vector2 spawnRange = G.GetCameraRect(this).Size;
+        SpawnRange = new Rect2(spawnRange / 2, spawnRange);
 
-        if (_random.Next(500) == 0)
-            OnFinished();
+        Modulate = _mod;
+    }
+    public override void OnPositionSetted()
+    {
+        RandomizePathVec();
+    }
+
+    public Rect2 SpawnRange;
+    public void RandomizePathVec()
+    {
+        StartPosition = GlobalPosition;
+
+        PathVec = RandomTools.RandomVectorInViewport(this) - StartPosition;
+    }
+
+    
+    public override void _PhysicsProcess(double delta)
+	{
+        if (Modulate.A <= 1f)
+        {
+            _mod.A += 0.01f;
+            Modulate = _mod;
+        }
+
+        ProgressRatioLinear += SpeedRatio;
+        ProgressRatio = MathTools.EaseInOut(ProgressRatioLinear, 3);
+        GlobalPosition = StartPosition + PathVec * ProgressRatio;
+
+        SpeedRatio *= ACCELERATION_RATIO_MULTIPLIER;
+
+
+
+        if (ProgressRatioLinear >= 1)
+        {
+            SpawnFakeCross();
+
+            StartPosition = GlobalPosition;
+            ProgressRatioLinear = 0f;
+            RandomizePathVec();
+
+            CyclesLeft--;
+        }
+
+        if (CyclesLeft <= 0)
+        {
+            GetNode<AnimatedSprite2D>("AnimatedSprite2D").Play("Collapse");
+            GetNode<AudioStreamPlayer>("Glitch").Stop();
+            GetNode<AudioStreamPlayer>("Finished").Play();
+            SetPhysicsProcess(false);
+        }
+    }
+
+    public virtual void UpdatePosition(float coeff)
+    {
+        GlobalPosition = StartPosition + PathVec * MathTools.EaseOut(ProgressRatioLinear, coeff);
+    }
+
+    public void SpawnFakeCross()
+    {
+        FakeCross fakeCross;
+
+        if (_fakeCrossesPool != null && _fakeCrossesPool.Count > 0)
+        {
+            int id = _fakeCrossesPool.Count - 1;
+            fakeCross = _fakeCrossesPool[id];
+            _fakeCrossesPool.RemoveAt(id);
+
+            fakeCross.Respawn();
+        }
+        else
+        {
+            fakeCross = (FakeCross)_fakeCross.Instantiate();
+            fakeCross.ShouldBeSavedInPool = ShouldBeSavedInPool;
+
+            if (_fakeCrossesPool != null)
+            {
+                fakeCross.Save += () => _fakeCrossesPool.Add(fakeCross);
+            }
+
+            GetParent().AddChild(fakeCross);
+        }
+
+        fakeCross.MoveToFront();
+        fakeCross.GlobalRotation = 0;
+        fakeCross.Position = Position;
+    }
+
+    public override void Respawn()
+    {
+        base.Respawn();
+
+        CyclesLeft = CYCLES_INIT;
+        ProgressRatioLinear = 0;
+        SpeedRatio = 0.01f;
+
+        StartPosition = GlobalPosition;
+
+        _mod = new Color(1, 1, 1, 0);
+        Modulate = _mod;
+
+        Vector2 spawnRange = G.GetCameraRect(this).Size;
+        SpawnRange = new Rect2(spawnRange / 2, spawnRange);
+
+        var sprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
+        sprite.Show();
+        sprite.Play("default");
+
+        SetPhysicsProcess(true);
+
+        GetNode<AudioStreamPlayer>("Glitch").Play();
     }
 }

@@ -199,8 +199,6 @@ public partial class Player : CharacterBody2D
         for (int i = LastActions.Length - 1; i > 0; i--)
             LastActions[i] = LastActions[i - 1];
         LastActions[0] = action;
-
-        //GD.Print(action.ToString());
     }
 
     public async void BlockActFor(Act act, Task task)

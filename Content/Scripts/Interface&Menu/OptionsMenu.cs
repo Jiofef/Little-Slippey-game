@@ -120,8 +120,6 @@ public partial class OptionsMenu : DraggableWindow
             GetNode<Label>(TABS_LINK + "Sound/MarginContainer/VBoxContainer/" + SliderNames[i] + "/Value").Text = ((int)(Meta.Instance.Sound.BusVolumes[i] * 100)).ToString();
         }
 
-
-
         GetNode<OptionButton>(TABS_LINK + "Video/MarginContainer/VBoxContainer/ScreenMode/OptionButton").Selected = Meta.Instance.Video.IsFullScreen ? 0 : 1;
 
         Meta.Instance.Video.IsFullScreen = DisplayServer.WindowGetMode() == DisplayServer.WindowMode.Fullscreen;
@@ -129,7 +127,6 @@ public partial class OptionsMenu : DraggableWindow
         for (int i = 0; i <= windowSizeOptions.ItemCount - 1; i++)
             if (Meta.Instance.Video.WindowSize == _windowSizes[i])
                 windowSizeOptions.Selected = i;
-
 
         GetNode<CheckBox>(TABS_LINK + "Video/MarginContainer/VBoxContainer/VSync/CheckBox").ButtonPressed = Meta.Instance.Video.VSyncOn;
 
@@ -142,6 +139,7 @@ public partial class OptionsMenu : DraggableWindow
         GetNode<Label>(TABS_LINK + "Video/MarginContainer/VBoxContainer/CameraZoom/Value").Text =  Meta.Instance.Video.CameraZoom + "x";
 
         GetNode<CheckBox>(TABS_LINK + "Video/MarginContainer/VBoxContainer/CrossRotationWhenSpawning/CheckBox").ButtonPressed = Meta.Instance.Video.CrossRotationWhenSpawning;
+        GetNode<CheckBox>(TABS_LINK + "Video/MarginContainer/VBoxContainer/ExplosionsGlow/CheckBox").ButtonPressed = Meta.Instance.Video.ExplosionBloom;
 
         GetNode<OptionButton>(TABS_LINK + "Video/MarginContainer/VBoxContainer/Language/OptionButton").Selected = (int)Meta.Instance.Video.language;
     }
@@ -214,6 +212,10 @@ public partial class OptionsMenu : DraggableWindow
     public void ChangeCrossRotationWhenSpawning(bool value)
     {
         Meta.Instance.Video.CrossRotationWhenSpawning = value;
+    }
+    public void ChangeExplosionBloom(bool value)
+    {
+        Meta.Instance.Video.ExplosionBloom = value;
     }
     public void SetLanguage(int languageNumber)
     {

@@ -1,0 +1,66 @@
+[gd_scene load_steps=11 format=3 uid="uid://dtun7aomm27fh"]
+
+[ext_resource type="Texture2D" uid="uid://doeu7dyjmu0db" path="res://Content/Sprites/Crosses/DefaultCrossWarning.png" id="1_osumb"]
+[ext_resource type="PackedScene" uid="uid://bt41vubjcqv8p" path="res://Content/Scenes/Crosses/ExplosionAnimation.tscn" id="1_r7qku"]
+[ext_resource type="Texture2D" uid="uid://ndt6h7a4aa35" path="res://Content/Sprites/Crosses/FakeCross.png" id="1_udqjn"]
+[ext_resource type="Script" uid="uid://h47u8vhmh61y" path="res://Content/Scripts/Crosses/FakeCross.cs" id="1_usq6h"]
+[ext_resource type="Texture2D" uid="uid://53uh2aqy4q1p" path="res://Content/Sprites/Crosses/DefaultCross.png" id="3_tb6be"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_usq6h"]
+atlas = ExtResource("1_udqjn")
+region = Rect2(0, 0, 17, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tb6be"]
+atlas = ExtResource("1_udqjn")
+region = Rect2(17, 0, 17, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jo2c7"]
+atlas = ExtResource("1_udqjn")
+region = Rect2(34, 0, 17, 17)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6iwx5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_usq6h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tb6be")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jo2c7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_tb6be")
+}],
+"loop": true,
+"name": &"default",
+"speed": 20.0
+}]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_jo2c7"]
+blend_mode = 2
+
+[node name="FakeCross" type="Node2D"]
+script = ExtResource("1_usq6h")
+
+[node name="CrossSprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(-1.19209e-07, 0)
+scale = Vector2(10, 10)
+sprite_frames = SubResource("SpriteFrames_6iwx5")
+autoplay = "default"
+frame_progress = 0.257497
+
+[node name="WarningSprite" type="Sprite2D" parent="."]
+position = Vector2(-2, -2)
+scale = Vector2(10, 10)
+texture = ExtResource("1_osumb")
+
+[node name="ExplosionAnimation" parent="." instance=ExtResource("1_r7qku")]
+material = SubResource("CanvasItemMaterial_jo2c7")
+frame = 11
+frame_progress = 1.0
+DeleteWhenFinished = false
+EnableBloom = false
+
+[connection signal="animation_finished" from="ExplosionAnimation" to="." method="OnFinished"]

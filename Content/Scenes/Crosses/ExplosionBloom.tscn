@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://ome4f7a6eqpb"]
+
+[ext_resource type="Texture2D" uid="uid://b7eybfolkwwkj" path="res://Content/Sprites/Other/PointLight96X96.png" id="1_r5knv"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_dt4eq"]
+blend_mode = 1
+
+[node name="Bloom" type="Sprite2D"]
+modulate = Color(1, 0.627451, 0.321569, 0.501961)
+material = SubResource("CanvasItemMaterial_dt4eq")
+texture = ExtResource("1_r5knv")

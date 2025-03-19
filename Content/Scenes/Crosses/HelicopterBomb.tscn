@@ -48,6 +48,7 @@ disabled = true
 [node name="ExplosionAnimation" parent="." instance=ExtResource("3_c65yf")]
 scale = Vector2(3, 3)
 DeleteWhenFinished = false
+BloomColor = Color(1, 0.627, 0.322, 0.4)
 
 [node name="MaxLifeTimer" type="Timer" parent="."]
 wait_time = 4.0

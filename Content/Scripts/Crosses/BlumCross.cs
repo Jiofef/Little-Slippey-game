@@ -33,7 +33,7 @@ public partial class BlumCross : CrossNode
         _xSpriteMotion = _random.Next(-2, 3);
     }
 
-    public void OnPositionSetted()
+    public override void OnPositionSetted()
     {
         ShakeCenter = CrossSprite.GlobalPosition;
     }

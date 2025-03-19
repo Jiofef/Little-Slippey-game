@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://btmjnrxmkl52y"]
+[gd_scene load_steps=8 format=3 uid="uid://btmjnrxmkl52y"]
 
 [ext_resource type="Texture2D" uid="uid://djemtqgignvr" path="res://Content/Sprites/Crosses/RedElementalCrossPart.png" id="2"]
 [ext_resource type="AudioStream" uid="uid://do0uifwll8alm" path="res://Content/Sounds/Crosses/RedElementalCrossSpawnSound.mp3" id="2_xvkad"]
 [ext_resource type="Script" uid="uid://qttfw54ma3k" path="res://Content/Scripts/Crosses/RedElementalCrossPart.cs" id="3"]
 [ext_resource type="AudioStream" uid="uid://bia3ek48x2oph" path="res://Content/Sounds/Crosses/MicroExplosion.mp3" id="3_cmohk"]
 [ext_resource type="PackedScene" uid="uid://bln6ojf3x2auj" path="res://Content/Scenes/Crosses/SmallExplosionAnimation.tscn" id="5_5lgmt"]
+[ext_resource type="Texture2D" uid="uid://ddvmvvhxjrkwc" path="res://Content/Sprites/Other/PointLight32X32.png" id="6_5tdwj"]
 
 [sub_resource type="CircleShape2D" id="2"]
 radius = 20.0
@@ -37,5 +38,7 @@ texture = ExtResource("2")
 
 [node name="ExplosionAnimation" parent="." instance=ExtResource("5_5lgmt")]
 DeleteWhenFinished = false
+BloomColor = Color(1, 0.627, 0.322, 0.25)
+BloomTextureOverride = ExtResource("6_5tdwj")
 
 [connection signal="animation_finished" from="ExplosionAnimation" to="." method="OnFinished"]

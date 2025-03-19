@@ -845,7 +845,7 @@ script = ExtResource("2_78ana")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="LevelMusicPlayer"]
 libraries = {
-"": SubResource("AnimationLibrary_jcmm3")
+&"": SubResource("AnimationLibrary_jcmm3")
 }
 
 [node name="Level" type="Node2D" parent="."]
@@ -1292,7 +1292,7 @@ shape = SubResource("RectangleShape2D_2mk8l")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Level/PlatformerSection/NoWayBro"]
 libraries = {
-"": SubResource("AnimationLibrary_a3tob")
+&"": SubResource("AnimationLibrary_a3tob")
 }
 
 [node name="AchievementArea" parent="Level/PlatformerSection/NoWayBro" instance=ExtResource("23_jff28")]
@@ -1360,7 +1360,7 @@ shape = SubResource("RectangleShape2D_fly8i")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Level/PlatformerSection"]
 libraries = {
-"": SubResource("AnimationLibrary_mmhq2")
+&"": SubResource("AnimationLibrary_mmhq2")
 }
 autoplay = "Dark"
 
@@ -1822,7 +1822,7 @@ tile_set = SubResource("TileSet_vqo8l")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Level/PlatformerSection/FlyingUpStone"]
 libraries = {
-"": SubResource("AnimationLibrary_m0b1v")
+&"": SubResource("AnimationLibrary_m0b1v")
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/PlatformerSection/FlyingUpStone"]

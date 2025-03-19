@@ -200,6 +200,7 @@ focus_neighbor_bottom = NodePath("../../ScoresLabelLocation/GridContainer/CheckB
 selected = 0
 item_count = 3
 popup/item_0/text = "Large"
+popup/item_0/id = 0
 popup/item_1/text = "Small"
 popup/item_1/id = 1
 popup/item_2/text = "Hide"
@@ -335,7 +336,29 @@ button_pressed = true
 layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="Language" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer" index="16"]
+[node name="ExplosionsGlow" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer" index="16"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Name" type="Label" parent="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer/ExplosionsGlow" index="0"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+text = "Explosions glow"
+
+[node name="CheckBox" type="CheckBox" parent="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer/ExplosionsGlow" index="1"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_neighbor_top = NodePath("../../CameraZoom/Slider")
+focus_neighbor_bottom = NodePath("../../Language/OptionButton")
+button_pressed = true
+
+[node name="La3" type="HSeparator" parent="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer" index="17"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Language" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer" index="18"]
 layout_mode = 2
 theme_override_constants/separation = 16
 
@@ -353,15 +376,16 @@ selected = 0
 item_count = 2
 popup/item_0/text = "English"
 popup/item_0/icon = ExtResource("7_3d3xi")
+popup/item_0/id = 0
 popup/item_1/text = "Russian"
 popup/item_1/icon = ExtResource("8_42rvm")
 popup/item_1/id = 1
 
-[node name="Ti" type="HSeparator" parent="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer" index="17"]
+[node name="Ti" type="HSeparator" parent="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer" index="19"]
 layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="SmallGnomes" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer" index="18"]
+[node name="SmallGnomes" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer" index="20"]
 layout_mode = 2
 theme_override_constants/separation = 16
 
@@ -377,7 +401,7 @@ layout_mode = 2
 focus_neighbor_top = NodePath("../../Language/OptionButton")
 text = "No!"
 
-[node name="Do2" type="HSeparator" parent="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer" index="19"]
+[node name="Do2" type="HSeparator" parent="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer" index="21"]
 layout_mode = 2
 theme_override_constants/separation = 12
 
@@ -616,7 +640,7 @@ layout_mode = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="MarginContainer/VBoxContainer/Tabs/Controls/ControlsMenu" index="0"]
 libraries = {
-"": SubResource("AnimationLibrary_nja3y")
+&"": SubResource("AnimationLibrary_nja3y")
 }
 
 [node name="Sprite2D" type="Sprite2D" parent="MarginContainer/VBoxContainer/Tabs/Controls/ControlsMenu" index="1"]
@@ -795,6 +819,7 @@ DisableProcessDisabling = false
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer/ScoresLabelLocation/GridContainer/CheckBox2X2Y" to="." method="ChangeScoresLabelLocation" binds= [2, 2]]
 [connection signal="value_changed" from="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer/CameraZoom/Slider" to="." method="CameraZoomChanged"]
 [connection signal="toggled" from="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer/CrossRotationWhenSpawning/CheckBox" to="." method="ChangeCrossRotationWhenSpawning"]
+[connection signal="toggled" from="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer/ExplosionsGlow/CheckBox" to="." method="ChangeExplosionBloom"]
 [connection signal="item_selected" from="MarginContainer/VBoxContainer/Tabs/Video/MarginContainer/VBoxContainer/Language/OptionButton" to="." method="SetLanguage"]
 [connection signal="value_changed" from="MarginContainer/VBoxContainer/Tabs/Sound/MarginContainer/VBoxContainer/Global/Slider" to="." method="SoundChanging" binds= [0]]
 [connection signal="value_changed" from="MarginContainer/VBoxContainer/Tabs/Sound/MarginContainer/VBoxContainer/Interface/Slider" to="." method="SoundChanging" binds= [1]]

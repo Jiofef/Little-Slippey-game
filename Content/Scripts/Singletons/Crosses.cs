@@ -26,11 +26,6 @@ public partial class Crosses : Node
 
         public bool IsSelfPositioningOnSpawn = false;
 
-        /// <summary>
-        /// You can add an OnPositionSetted() method to the cross script to, for example, set object properties based on a setted position.
-        /// </summary>
-        public bool CallOnPositionSettedMethod = false;
-
         public Dictionary<string, bool> AllowedSpawnSidesDic = new Dictionary<string, bool>
         {
             {"FullRect", true },
@@ -217,12 +212,8 @@ public partial class Crosses : Node
         goldenCross.MinimumSpawnDistanceToPlayer = 350;
         KeepGoldenCrossSpawningWhenProgressProgress = false;
 
-        // Blum cross method binding
-        crosses[3].CallOnPositionSettedMethod = true;
-
         // Cannon cross setting up
         crosses[4].IsSelfPositioningOnSpawn = true;
-
 
         SetCurrentCrossesPack("LightweightTNT1.0", crosses, goldenCross);
     }
@@ -234,7 +225,7 @@ public partial class Crosses : Node
         Cross[] crosses = {
             new Cross("EnhancedCross1", 30, 650),
             new Cross("EnhancedCross2", 30, 265),
-            new Cross("EnhancedCross3", 30, 45),
+            new Cross("EnhancedCross3", 30, 20),
             new Cross("EnhancedCross4", 30, 15, 400),
             new Cross("EnhancedCross5", 30, 25),
         };
@@ -472,8 +463,7 @@ public partial class Crosses : Node
 
         scene.Set("global_position", position);
 
-        if (cross.CallOnPositionSettedMethod)
-            scene.Call("OnPositionSetted");
+        scene.OnPositionSetted();
 
         return scene;
     }

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://gqjqjb7xbjek"]
+[gd_scene load_steps=12 format=3 uid="uid://gqjqjb7xbjek"]
 
 [ext_resource type="Texture2D" uid="uid://detxcerqfck3s" path="res://Content/Sprites/Crosses/BlumCross.png" id="2"]
 [ext_resource type="Texture2D" uid="uid://rd1mytt3ov2w" path="res://Content/Sprites/Crosses/BlumCrossWarning.png" id="3"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://preev01vcxdj" path="res://Content/Scripts/Crosses/BlumCross.cs" id="6"]
 [ext_resource type="AudioStream" uid="uid://ckf50n64bwv6i" path="res://Content/Sounds/Crosses/BlumCrossAbortButtonPressed.mp3" id="6_n4818"]
 [ext_resource type="PackedScene" uid="uid://c2bqt07ll783d" path="res://Content/Scenes/Crosses/BigExplosionAnimation.tscn" id="8_jkioe"]
+[ext_resource type="Texture2D" uid="uid://ckh1sclq3fji3" path="res://Content/Sprites/Other/PointLight.png" id="9_pwm4u"]
 
 [sub_resource type="RectangleShape2D" id="4"]
 size = Vector2(650, 650)
@@ -66,6 +67,8 @@ bus = &"Crosses"
 
 [node name="ExplosionAnimation" parent="." instance=ExtResource("8_jkioe")]
 DeleteWhenFinished = false
+BloomColor = Color(1, 0.627, 0.322, 1)
+BloomTextureOverride = ExtResource("9_pwm4u")
 
 [connection signal="body_entered" from="AbortButton/PressButtonArea" to="." method="AbortButtonPressed" unbinds=1]
 [connection signal="finished" from="ExplosionSignal" to="." method="SignalPlayed"]

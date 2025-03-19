@@ -36,10 +36,13 @@ public partial class AdditionalGuiLayer : CanvasLayer
 
     public override void _Ready()
 	{
-        G.AdditionalGuiLayer = this;
-
         // Initializing the nodes
         _goldenCrossesCountAnimation = GetNode<AnimationPlayer>("ScreenControl/MarginC/GoldenCrossesAmount/AnimationPlayer");
+    }
+
+    public override void _EnterTree()
+    {
+        G.AdditionalGuiLayer = this;
     }
 
     public override void _ExitTree()

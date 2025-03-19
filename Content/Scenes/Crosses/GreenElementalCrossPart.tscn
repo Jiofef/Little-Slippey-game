@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://vpmrarf3nuni"]
+[gd_scene load_steps=12 format=3 uid="uid://vpmrarf3nuni"]
 
 [ext_resource type="AudioStream" uid="uid://daf6vfh6akpiv" path="res://Content/Sounds/Crosses/GreenElementalCrossSpawnSound.mp3" id="2_7vkob"]
 [ext_resource type="Script" uid="uid://d1rghvepi7fsn" path="res://Content/Scripts/Crosses/GreenElementalCrossPart.cs" id="3"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://covatekkrpqu3" path="res://Content/Sprites/Crosses/GreenElementCrossVine.png" id="4_4o822"]
 [ext_resource type="Texture2D" uid="uid://dclk66snfbku6" path="res://Content/Sprites/Crosses/GreenElementalCrossPartVar4.png" id="5"]
 [ext_resource type="PackedScene" uid="uid://bln6ojf3x2auj" path="res://Content/Scenes/Crosses/SmallExplosionAnimation.tscn" id="6_v5mtj"]
+[ext_resource type="Texture2D" uid="uid://ddvmvvhxjrkwc" path="res://Content/Sprites/Other/PointLight32X32.png" id="7_gatil"]
 
 [sub_resource type="Gradient" id="Gradient_qgunv"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
@@ -83,6 +84,8 @@ scale = Vector2(1, 1)
 frame = 8
 frame_progress = 1.0
 DeleteWhenFinished = false
+BloomColor = Color(1, 0.627451, 0.321569, 0.12549)
+BloomTextureOverride = ExtResource("7_gatil")
 
 [node name="ScrapsParticles" type="CPUParticles2D" parent="."]
 emitting = false

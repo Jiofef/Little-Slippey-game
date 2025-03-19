@@ -17,7 +17,7 @@ public partial class EnhancedGoldenCross : UnusualCrossNode
 		NegativePart.Reparent(GetParent());
 		PositivePart.Reparent(GetParent());
 
-        NegativePart.GlobalPosition = RandomVectorInCameraBorders();
+        NegativePart.GlobalPosition = RandomVectorInCameraLimits();
         PositivePart.GlobalPosition = RandomVectorIn(G.CameraLimits, NegativePart.GlobalPosition, 500);
 
         NegativePart.ShouldBeSavedInPool = ShouldBeSavedInPool;
@@ -44,7 +44,7 @@ public partial class EnhancedGoldenCross : UnusualCrossNode
 
         FinishedParts = 0;
 
-        NegativePart.GlobalPosition = RandomVectorInCameraBorders();
+        NegativePart.GlobalPosition = RandomVectorInCameraLimits();
         PositivePart.GlobalPosition = RandomVectorIn(G.CameraLimits, NegativePart.GlobalPosition, 500);
 
         NegativePart.Respawn();

@@ -93,6 +93,8 @@ public abstract partial class UnusualCrossNode : Node2D, CrossesNodesAbstract
             QueueFree();
     }
 
+    public virtual void OnPositionSetted() { }
+
     // Life cycle
     public float TicksLived = 0;
     public override void _PhysicsProcess(double delta)

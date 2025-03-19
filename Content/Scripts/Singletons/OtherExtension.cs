@@ -13,7 +13,10 @@ namespace OtherExtension
     {
         private static readonly Random _random = new Random();
 
-        public static Vector2 RandomVectorInCameraBorders(float minDistanceToPlayer = 0)
+        /// <summary>
+        /// 
+        /// </summary>
+        public static Vector2 RandomVectorInCameraLimits(float minDistanceToPlayer = 0)
         {
             Vector2 vector;
 

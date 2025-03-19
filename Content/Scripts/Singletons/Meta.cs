@@ -27,6 +27,7 @@ public partial class Meta : Node
         public float CameraZoom = 1.25f;
         public byte ScoresLabelLocationX = 1, ScoresLabelLocationY = 0, ScoresShowingFormatIndex = 0;
         public bool CrossRotationWhenSpawning = true;
+        public bool ExplosionBloom = true;
         public enum Language { en, ru }
         public Language language;
     }
@@ -73,6 +74,7 @@ public partial class Meta : Node
         ReturnMeta.Video.ScoresLabelLocationX = Video.ScoresLabelLocationX;
         ReturnMeta.Video.ScoresLabelLocationY = Video.ScoresLabelLocationY;
         ReturnMeta.Video.CrossRotationWhenSpawning = Video.CrossRotationWhenSpawning;
+        ReturnMeta.Video.ExplosionBloom = Video.ExplosionBloom;
         ReturnMeta.Video.language = Video.language;
 
         //Gameplay
@@ -98,6 +100,7 @@ public partial class Meta : Node
             {"scores_label_location_y", Video.ScoresLabelLocationY},
             {"camera_zoom", Video.CameraZoom},
             {"cross_rotation_when_spawning", Video.CrossRotationWhenSpawning},
+            {"explosion_bloom", Video.ExplosionBloom},
             {"language", Convert.ToInt32(Video.language)},
             {"dificulty", Gameplay.Dificulty},
             {"addition_statuses", Gameplay.AdditionStatuses},
@@ -225,6 +228,7 @@ public partial class Meta : Node
         TryLoad<byte>("scores_label_location_x", value => Video.ScoresLabelLocationX = value, "scores_label_location_x");
         TryLoad<byte>("scores_label_location_y", value => Video.ScoresLabelLocationY = value, "scores_label_location_y");
         TryLoad<bool>( "cross_rotation_when_spawning", value => Video.CrossRotationWhenSpawning = value,"cross_rotation_when_spawning" );
+        TryLoad<bool>("explosion_bloom", value => Video.ExplosionBloom = value, "explosion_bloom");
         TryLoad<float>("camera_zoom", value => Video.CameraZoom = value,"camera_zoom" );
         TryLoad<int>("language",value => Video.language = (VideoClass.Language)value,"language" );
 

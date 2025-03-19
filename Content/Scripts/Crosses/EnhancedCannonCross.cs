@@ -37,9 +37,6 @@ public partial class EnhancedCannonCross : UnusualCrossNode
         }
 
         _movementPoint = new Vector2(_random.Next(-300, 300), -275 + _random.Next(-75, 75));
-
-        Save += () => GD.Print("SEX");
-        UnSave += () => GD.Print("UNSEX");
     }
 
     // Blades animation

@@ -26,8 +26,7 @@ public partial class CrossSpawner : Node2D
 
             if (_random.Next(RandomRange) == 0)
             {
-                CanvasItem Cross = SpawnRandomCrossIn(this);
-                if (Cross is not EnhancedCannonCross and not CannonCross) Cross.QueueFree();
+                SpawnRandomCrossIn(this);
             }
         }
     }

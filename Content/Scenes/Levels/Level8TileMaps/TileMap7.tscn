@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=4 uid="uid://8pub57isffbv"]
+[gd_scene load_steps=31 format=4 uid="uid://8pub57isffbv"]
 
 [ext_resource type="PackedScene" uid="uid://buj5ooik0q3l0" path="res://Content/Scenes/Achievements/AchievementArea.tscn" id="2_0hp2c"]
 [ext_resource type="PackedScene" uid="uid://dgxxv3neagyw" path="res://Content/Scenes/Other/Level8DisposableButton.tscn" id="2_5k45f"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bt41vubjcqv8p" path="res://Content/Scenes/Crosses/ExplosionAnimation.tscn" id="3_isuv8"]
 [ext_resource type="Texture2D" uid="uid://8ddls1rsr5x" path="res://Content/Sprites/Other/EXPOLZION.png" id="5_ax7ap"]
 [ext_resource type="AudioStream" uid="uid://djlnmwp104edh" path="res://Content/Sounds/Crosses/MegaExplosion.mp3" id="5_gfefn"]
+[ext_resource type="Texture2D" uid="uid://cp3p4tqjfaip8" path="res://Content/Sprites/Other/PointLight128X128.png" id="6_cpfkm"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wv2uq"]
 texture = ExtResource("2_76mna")
@@ -384,6 +385,8 @@ scale = Vector2(1, 1)
 sprite_frames = SubResource("SpriteFrames_hde38")
 frame = 12
 frame_progress = 1.0
+BloomColor = Color(1, 0.627451, 0.321569, 1)
+BloomTextureOverride = ExtResource("6_cpfkm")
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="DisposableButton/Explosion"]
 emitting = false
@@ -422,6 +425,8 @@ metadata/_edit_group_ = true
 [node name="ExplosionAnimation" parent="DisposableButton2/Explosion" instance=ExtResource("3_isuv8")]
 scale = Vector2(1, 1)
 sprite_frames = SubResource("SpriteFrames_hde38")
+BloomColor = Color(1, 0.627451, 0.321569, 1)
+BloomTextureOverride = ExtResource("6_cpfkm")
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="DisposableButton2/Explosion"]
 emitting = false
@@ -460,6 +465,8 @@ metadata/_edit_group_ = true
 [node name="ExplosionAnimation" parent="DisposableButton3/Explosion" instance=ExtResource("3_isuv8")]
 scale = Vector2(1, 1)
 sprite_frames = SubResource("SpriteFrames_hde38")
+BloomColor = Color(1, 0.627451, 0.321569, 1)
+BloomTextureOverride = ExtResource("6_cpfkm")
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="DisposableButton3/Explosion"]
 emitting = false
@@ -498,6 +505,8 @@ metadata/_edit_group_ = true
 [node name="ExplosionAnimation" parent="DisposableButton4/Explosion" instance=ExtResource("3_isuv8")]
 scale = Vector2(1, 1)
 sprite_frames = SubResource("SpriteFrames_hde38")
+BloomColor = Color(1, 0.627451, 0.321569, 1)
+BloomTextureOverride = ExtResource("6_cpfkm")
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="DisposableButton4/Explosion"]
 emitting = false
