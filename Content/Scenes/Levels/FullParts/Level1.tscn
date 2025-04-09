@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://bapvfin3xna8k" path="res://Content/Scripts/Levels/Level1MainScript.cs" id="2_0n0cx"]
 [ext_resource type="Texture2D" uid="uid://q2j1uuqfjmos" path="res://Content/Sprites/Levels/BaseTileSet.png" id="2_5coah"]
 [ext_resource type="Texture2D" uid="uid://cjoa8meyv5ehu" path="res://Content/Sprites/Levels/Level1/Sky.png" id="2_xqbfl"]
-[ext_resource type="PackedScene" uid="uid://dlscufxb5f1ca" path="res://Content/Scenes/Interface&Menu/RareScenes/Player.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://dlscufxb5f1ca" path="res://Content/Scenes/Other/Player.tscn" id="3"]
 [ext_resource type="Texture2D" uid="uid://qe6r82b6f7np" path="res://Content/Sprites/Levels/Level1/SunRaysAnimation.png" id="3_th2o3"]
 [ext_resource type="Texture2D" uid="uid://iyc2n8rea3ew" path="res://Content/Sprites/Levels/Level1/FrontLayer.png" id="4_abssm"]
 [ext_resource type="Texture2D" uid="uid://ua4neh4wkukk" path="res://Content/Sprites/Levels/Level1/BackClouds.png" id="4_bng71"]
@@ -268,10 +268,18 @@ _data = {
 [node name="Main" instance=ExtResource("1_t253m")]
 script = ExtResource("2_0n0cx")
 
+[node name="LevelMusicPlayer" parent="." index="0"]
+RestartMusicWhenItFinished = true
+SaveTimeCodeWhenLevelResets = true
+KeepPlayingWhenLevelResets = true
+
 [node name="AnimationPlayer" parent="LevelMusicPlayer" index="0"]
 libraries = {
-"": SubResource("AnimationLibrary_jcmm3")
+&"": SubResource("AnimationLibrary_jcmm3")
 }
+
+[node name="Level" parent="." index="1"]
+BeforeResetCrossesSpawnStartTimer = 0.0
 
 [node name="Background" type="ParallaxBackground" parent="Level" index="0"]
 
@@ -290,7 +298,7 @@ sprite_frames = SubResource("SpriteFrames_rhhkn")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Level/Background/Sky/SunRays" index="0"]
 libraries = {
-"": SubResource("AnimationLibrary_ku48g")
+&"": SubResource("AnimationLibrary_ku48g")
 }
 autoplay = "Rotation"
 
@@ -314,7 +322,7 @@ centered = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Level/Background/Clouds" index="1"]
 libraries = {
-"": SubResource("AnimationLibrary_ul4do")
+&"": SubResource("AnimationLibrary_ul4do")
 }
 autoplay = "CloudsMoving"
 
@@ -421,7 +429,7 @@ _value = 4.0
 [node name="AnimationPlayer" type="AnimationPlayer" parent="AdditionalBrightnessLayer/AdditionalBrightnessRect" index="0"]
 root_node = NodePath("../../../Level")
 libraries = {
-"": SubResource("AnimationLibrary_487s0")
+&"": SubResource("AnimationLibrary_487s0")
 }
 script = ExtResource("16_qypfv")
 

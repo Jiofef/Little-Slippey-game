@@ -25,6 +25,8 @@ public partial class EnhancedCannonCross : UnusualCrossNode
 
         Bomb = ResourceLoader.Load<PackedScene>("res://Content/Scenes/Crosses/HelicopterBomb.tscn");
 
+        AddToGroup("UnusualCrosses");
+
         if (GetParent() is CrossSpawner spawner)
         {
             ParentSpawner = spawner;
@@ -95,7 +97,10 @@ public partial class EnhancedCannonCross : UnusualCrossNode
 
             case State.FlyingAway:
 				if (GlobalPosition.Y < G.CameraLimits.Position.Y - 250)
-					OnFinished();
+                {
+                    RemoveFromGroup("UnusualCrosses");
+                    OnFinished();
+                }
                 break;
         }
 	}
@@ -145,6 +150,8 @@ public partial class EnhancedCannonCross : UnusualCrossNode
     public override void Respawn()
     {
         base.Respawn();
+
+        AddToGroup("UnusualCrosses");
 
         _movementPoint = new Vector2(_random.Next(-300, 300), -275 + _random.Next(-75, 75));
         _state = State.FlyingToPlayer;

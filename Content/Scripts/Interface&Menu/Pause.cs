@@ -51,22 +51,7 @@ public partial class Pause : CanvasLayer
 
     private void Reset()
     {
-        G.WasTheLevelRestarted = true;
-
-        G.IsCrossesEnabled = true;
-        G.IsProgressPaused = false;
-        G.CrossSpawnMultiplier = 1;
-        G.Main.EmitSignal("OnLevelResetting");
-
-        if (G.IsLevelVanilla)
-        {
-            UnchangableMeta.SaveRecords();
-            G.Main.LoadScene("res://Content/Scenes/Levels/FullParts/Level" + G.CurrentLevel + G.LevelAdditionalLink + ".tscn");
-        }
-        else
-        {
-            G.Main.LoadScene(G.ModMapPath);
-        }
+        G.Main.Reset();
     }
 
     public void UnPause()
@@ -82,6 +67,9 @@ public partial class Pause : CanvasLayer
             AudioServer.SetBusEffectEnabled(6, 0, false);
         }
     }
+
+    // The variable is needed to avoid accidentally causing an overflow on the byte variable of the mouse display in G.
+    private bool _mouseShowed = false;
 
     private void SetPause(bool value)
     {
@@ -109,7 +97,12 @@ public partial class Pause : CanvasLayer
             animationPlayer.Play("Pause");
 
             // Showing the mouse
-            Input.MouseMode = Input.MouseModeEnum.Visible;
+            if (!_mouseShowed)
+            {
+                _mouseShowed = true;
+                G.ShowMouseDuringGameplay++;
+            }
+
 
             // Pausing
             GetTree().Paused = true;
@@ -128,7 +121,11 @@ public partial class Pause : CanvasLayer
             animationPlayer.PlayBackwards("Pause");
 
             // Hiding the mouse
-            Input.MouseMode = Input.MouseModeEnum.Hidden;
+            if (_mouseShowed)
+            {
+                _mouseShowed = false;
+                G.ShowMouseDuringGameplay--;
+            }
 
             // Unpausing
             GetTree().Paused = false;

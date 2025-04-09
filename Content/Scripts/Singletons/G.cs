@@ -31,7 +31,7 @@ public partial class G : Node
 
     #region NOTE: Only in-game variables. Don't touch it if you're a modder please, or i will ban your map :)
     public static bool IsSystemInitiated, IsLevelVanilla = true;
-    public static int CurrentLevel;
+    public static int CurrentLevel; // The variable is most often used to understand whether the player is in a level or in the menu. If the player is on a level from the mod, the value is -1 
     public static Variant VanillaTransitiveValue;
     public static Array<Node> NodeCopyBuffer = new Array<Node>();
     #endregion
@@ -46,6 +46,14 @@ public partial class G : Node
         MusicStopTimeCode = 0; // It is necessary to put the music in the same position after restarting the level
 
     public static int ResurrectionsInARow = 0; // To increase the price of resurrections after each resurrection
+    public static byte ShowMouseDuringGameplay // Not a bool but a byte, because several objects (such as optional parts of the interface) may want the mouse to be visible at once. To avoid this problem, the mouse is only invisible when the variable is 0. To make it visible, add 1 to the variable and subtract that 1 when your object no longer needs a visible mouse.
+    { get => _showMouseDuringGameplay; set { _showMouseDuringGameplay = value; UpdateMouseVisible(); } }
+    private static byte _showMouseDuringGameplay = 0;
+    public static void UpdateMouseVisible()
+    {
+        bool hideMouse = IsOnLevel && _showMouseDuringGameplay == 0;
+        Input.MouseMode = hideMouse ? Input.MouseModeEnum.Hidden : Input.MouseModeEnum.Visible;
+    }
 
     public static bool BlockSavingSomeValues = false; // Due to bugs in the engine, if you first remove a scene and then add it to the tree again, it starts to behave strangely when deleting it. One of the cases is that music player saves timecode after all main values in G are reset. This variable is designed for such moments. It is disabled in the menu. If you use it in your own way on a level, you may need to disable it yourself.
 
@@ -139,6 +147,8 @@ public partial class G : Node
                        CrossesProgressCoeff = 1, // Default crosses evolve every 30 seconds. If this equals 2, they will do it every 15 seconds. If it's 0.5 then 60 seconds. The evolve time can also change through Crosses singleton or the editor
                        MusicStartPosition = 0, // When music ends, if it can restart, it starts with this position. 1 = 1 second
                        LevelCompleteTime = 150; // When this second comes, the level is passed. Can be used for different things
+
+    public static bool IsOnLevel => CurrentLevel != 0;
 
     public const int DEFAULT_RESURRECTION_COST = 75;
     public static int MinResurrectionCost = DEFAULT_RESURRECTION_COST;
@@ -374,6 +384,8 @@ public partial class G : Node
 		AfterPlayerCorpseFlightTimer = 0;
         ResurrectionsInARow = 0;
 
+        ShowMouseDuringGameplay = 0;
+
         // Numbers? Idk
         ResetTimer = 0;
         Scores = 0;
@@ -388,6 +400,8 @@ public partial class G : Node
         //Level info
         CurrentLevel = 0;
         LevelAdditionalLink = null;
+
+        UpdateMouseVisible();
 
         DidLevelIntroPassed = false;
         WasTheLevelRestarted = false;

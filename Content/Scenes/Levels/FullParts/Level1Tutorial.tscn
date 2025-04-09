@@ -15,7 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://b80jw2mpdhli5" path="res://Content/Sprites/Levels/Level9/DAaAAaAaArk.png" id="12_el0kx"]
 [ext_resource type="Texture2D" uid="uid://c0g4fox8munqc" path="res://Content/Sprites/Levels/Level9/CornerShadow.png" id="13_a8dww"]
 [ext_resource type="AudioStream" uid="uid://c4dbd70ansjp4" path="res://Content/Sounds/Levels/TutorialIntroAmbient.mp3" id="14_7m1td"]
-[ext_resource type="PackedScene" uid="uid://dlscufxb5f1ca" path="res://Content/Scenes/Interface&Menu/RareScenes/Player.tscn" id="15_k43j6"]
+[ext_resource type="PackedScene" uid="uid://dlscufxb5f1ca" path="res://Content/Scenes/Other/Player.tscn" id="15_k43j6"]
 [ext_resource type="Texture2D" uid="uid://lb7nl781jkgt" path="res://Content/Sprites/Levels/FallenDawnTileset.png" id="16_j2v6f"]
 [ext_resource type="Texture2D" uid="uid://duk32e0otnfky" path="res://Content/Sprites/Levels/FuckItVolume2Tileset.png" id="17_ic8as"]
 [ext_resource type="Texture2D" uid="uid://c1a8v62iy3ybh" path="res://Content/Sprites/Levels/WhyIsItStillRainingTileset.png" id="18_wud24"]

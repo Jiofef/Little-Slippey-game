@@ -108,7 +108,7 @@ public partial class EnhancedDefaultCross : CrossNode
 
         Scale = new Vector2(3, 3);
         Modulate = new Color(Modulate.R, Modulate.G, Modulate.B, 0);
-        R.Randomize();
+        R?.Randomize();
 
         // Returning the old settings
         CrossSprite.Visible = true;

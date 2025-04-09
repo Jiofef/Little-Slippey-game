@@ -132,6 +132,22 @@ public partial class Achievements : Node
             }
         }
     }
+    public static void UpdateLevelAchievements(int levelId)
+    {
+        int levelStatus = UnchangableMeta.LevelCompleteStatus[levelId];
+        
+        for (int i = 0; i <= G.DificultiesInGameTotal; i++)
+        {
+            if (i <  levelStatus)
+            {
+                GetAchievement("Level" + levelId + Meta.Instance.Gameplay.DificultyNames[i]);
+            }
+            else
+            {
+                RemoveAchievement("Level" + levelId + Meta.Instance.Gameplay.DificultyNames[i]);
+            }
+        }
+    }
     public static int AchievementPopupTimerMultiplier = 0;
     public static void GetAchievement(string name) // Do not ruin someone else's experience and do not give away game achievements for nothing. If you are making a cheat map or mod, mark it in the title/preview
     {
@@ -175,6 +191,17 @@ public partial class Achievements : Node
     {
         await task;
         GetAchievement(name);
+    }
+
+    public static void RemoveAchievement(string name)
+    {
+        Data achievement = AllTheAchievements[name];
+
+        achievement.IsReceived = false;
+        UnchangableMeta.GoldenCrossesAmount -= achievement.RewardAmount;
+        
+        if (achievement.NotificationKey != null && UnchangableMeta.NotificationsAmount[achievement.NotificationKey] > 0)
+            UnchangableMeta.NotificationsAmount[achievement.NotificationKey]--;
     }
 
     public static void SaveAchievementStatuses()

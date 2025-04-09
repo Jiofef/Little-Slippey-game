@@ -33,13 +33,14 @@ public partial class ElementaryParticle : UnusualCrossNode
 
     public override void _Ready()
     {
-        QueueFree();
         // Rotation randomizing
         const int MAX_ROTATION_SPEED = 3;
         RotationSpeed = OtherExtension.RandomTools.RandomIn(-MAX_ROTATION_SPEED, MAX_ROTATION_SPEED);
 
         // Price determination
         Price = _random.Next(DEFAULT_MIN_PRICE, DEFAULT_MAX_PRICE);
+
+        AddToGroup("UnusualCrosses");
 
         // Connecting a pointer to hide when player dies
         Callable updateOffscreenPointer = new Callable(this, "UpdateOffscreenPointer");
@@ -123,6 +124,7 @@ public partial class ElementaryParticle : UnusualCrossNode
         animationPlayer.Stop(true); // If you don't save the state, the next animation fails.
         animationPlayer.Play("OnCollected");
 
+        RemoveFromGroup("UnusualCrosses");
         RemoveFromGroup("UnstableCrosses");
 
         // Disabling area
@@ -188,6 +190,7 @@ public partial class ElementaryParticle : UnusualCrossNode
     {
         base.Respawn();
 
+        AddToGroup("UnusualCrosses");
 
         _state = StateEnum.Default;
 
@@ -200,7 +203,7 @@ public partial class ElementaryParticle : UnusualCrossNode
         LifeTime = 15f;
         Price = _random.Next(DEFAULT_MIN_PRICE, DEFAULT_MAX_PRICE);
 
-        GetNode<Area2D>("ChargeArea").SetDeferred("monitoring", true);
+        SetAreaDisabled(false);
         var animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
         animationPlayer.Stop();
         animationPlayer.Play("Appearing");

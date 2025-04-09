@@ -1,9 +1,13 @@
 using Godot;
 using System;
+using System.Collections;
+using System.Threading.Tasks;
 using static OtherExtension.ActionTools;
 
 public partial class Level7HopelessnessLayer : CanvasLayer
 {
+    [Signal] public delegate void NegativeValueSquaredEventHandler();
+
 	PackedScene _mindTumor = new PackedScene();
 
 	private float _tumorSpawnTimer = 10;
@@ -83,7 +87,7 @@ public partial class Level7HopelessnessLayer : CanvasLayer
         root.AddChild(endOfEverything);
     }
 
-    public void Root() // On RootTimer timeout
+    public async Task Root() // On RootTimer timeout
     {
         _playerScores.Modulate = _savedScoresModulate;
 
@@ -91,7 +95,26 @@ public partial class Level7HopelessnessLayer : CanvasLayer
             G.Scores = Mathf.Sqrt(G.Scores);
         else
         {
+            EmitSignal(nameof(NegativeValueSquared));
 
+            
+            // Jaming the film
+            var vintageFilm = GetNode<VideoStreamPlayer>("VintageFilter");
+            G.PlayOneshotSound("Levels/Level10WTH.mp3", this);
+            vintageFilm.Stream = GD.Load<VideoStreamTheora>("res://Content/Other/FilmJam.ogv");
+
+            vintageFilm.Play();
+            await OtherExtension.GodotExtensions.ShowNodeSlowly(vintageFilm, 4f);
+            var tween = CreateTween();
+            tween.TweenProperty(vintageFilm, "position", new Vector2(0, -720), 0.2f);
+
+            //* I need to put a jam sound here
+
+            await ToSignal(tween, "finished");
+
+            //* Need to do something with scores label
+
+            QueueFree();
         }
     }
 }

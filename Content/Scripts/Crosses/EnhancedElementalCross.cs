@@ -30,6 +30,8 @@ public partial class EnhancedElementalCross : UnusualCrossNode
     {
         _fakeCross = FastInstanceCreator.LoadPackedResScene("Crosses/FakeCross.tscn");
 
+        AddToGroup("UnusualCrosses");
+
         if (GetParent() is CrossSpawner spawner)
         {
             ParentSpawner = spawner;
@@ -134,6 +136,8 @@ public partial class EnhancedElementalCross : UnusualCrossNode
     public override void Respawn()
     {
         base.Respawn();
+
+        AddToGroup("UnusualCrosses");
 
         CyclesLeft = CYCLES_INIT;
         ProgressRatioLinear = 0;

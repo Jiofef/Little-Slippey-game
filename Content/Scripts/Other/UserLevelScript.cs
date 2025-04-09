@@ -6,7 +6,6 @@ public partial class UserLevelScript : Node2D
     public void StartLevel()
     {
         G.ResetValues();
-        Input.MouseMode = !GetTree().Paused ? Input.MouseModeEnum.Hidden : Input.MouseModeEnum.Visible;
     }
     public override void _Ready()
 	{

@@ -214,6 +214,16 @@ public partial class Level10ScientistScript : Node2D
         {
             LoadSubtitlesSavedState();
         }
+
+        // !Secret level test!
+        OtherExtension.ActionTools.BindEventSafelyTo(G.OnLevelStarted, (a) =>
+        {
+                G.TransitiveVariantD.Add("SavedScores", G.Scores);
+                G.TransitiveVariantD.Add("PlayerSavedPos", _player.Position);
+                GetTree().ChangeSceneToFile("res://Content/Scenes/Levels/FullParts/Level000000000.tscn");
+                return;
+        });
+
     }
 
     public void LoadMegaphoneInitialState()
@@ -273,7 +283,7 @@ public partial class Level10ScientistScript : Node2D
         if (_level.DeathCount >= 5) 
         {
             // It should not push away the golden and enhanced blum crosses
-            var AllCrossesOnScreen = GetTree().GetNodesInGroup("Crosses").Where(child => !(child is BlueElementalCrossPart) && !(child is EnhancedBlumCross));
+            var AllCrossesOnScreen = GetTree().GetNodesInGroup("Crosses").Where(child => !(child is ElementaryParticle) && !(child is EnhancedBlumCross));
             const float PUSH_SPEED = 5f;
             if (AllCrossesOnScreen.Count() > 0)
             {
@@ -381,9 +391,13 @@ public partial class Level10ScientistScript : Node2D
         G.Player.UpdateGUIOptions();
 
         _megaphonePhraseTimer = 0;
-        var AllCrossesOnScreen = GetTree().GetNodesInGroup("Crosses");
-        for (int i = 0; AllCrossesOnScreen.Count > i; i++)
-            AllCrossesOnScreen[i].QueueFree();
+
+        // Removing all the crosses on screen
+        foreach (UnusualCrossNode cross in GetTree().GetNodesInGroup("Crosses"))
+            cross.OnFinished();
+        foreach (UnusualCrossNode cross in GetTree().GetNodesInGroup("UnusualCrosses"))
+            cross.OnFinished();
+
         GetNode<AnimationPlayer>("../CanvasLayer/ColorRect/AnimationPlayer").Play("Blumxd");
         GetNode<AudioStreamPlayer>("../CanvasLayer/ColorRect/AudioStreamPlayer").Play();
 

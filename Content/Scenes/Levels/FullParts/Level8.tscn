@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://dmrf7wrobrp34" path="res://Content/Sprites/Levels/Level8/FrontLayer.png" id="3_e633r"]
 [ext_resource type="Script" uid="uid://cnr6xavu26ahr" path="res://Content/Scripts/Levels/Level8TileMapSpawner.cs" id="4_a482v"]
 [ext_resource type="Texture2D" uid="uid://duk32e0otnfky" path="res://Content/Sprites/Levels/FuckItVolume2Tileset.png" id="5_xwpld"]
-[ext_resource type="PackedScene" uid="uid://dlscufxb5f1ca" path="res://Content/Scenes/Interface&Menu/RareScenes/Player.tscn" id="6_f43mb"]
+[ext_resource type="PackedScene" uid="uid://dlscufxb5f1ca" path="res://Content/Scenes/Other/Player.tscn" id="6_f43mb"]
 [ext_resource type="PackedScene" uid="uid://buj5ooik0q3l0" path="res://Content/Scenes/Achievements/AchievementArea.tscn" id="7_e7up1"]
 [ext_resource type="Script" uid="uid://bfe8ghammfj2a" path="res://Content/Scripts/Levels/Level8WallOfCompress.cs" id="8_1q6ct"]
 [ext_resource type="Texture2D" uid="uid://q2j1uuqfjmos" path="res://Content/Sprites/Levels/BaseTileSet.png" id="8_fnqcu"]
@@ -660,7 +660,7 @@ size = Vector2(128, 128)
 
 [node name="AnimationPlayer" parent="LevelMusicPlayer" index="0"]
 libraries = {
-"": SubResource("AnimationLibrary_jcmm3")
+&"": SubResource("AnimationLibrary_jcmm3")
 }
 
 [node name="Background" type="ParallaxBackground" parent="Level" index="0"]

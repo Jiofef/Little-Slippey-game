@@ -14,7 +14,7 @@ public partial class EnhancedGoldenCross : UnusualCrossNode
         NegativePart = GetNode<ElementaryParticle>("NegativePart");
         PositivePart = GetNode<ElementaryParticle>("PositivePart");
 
-		NegativePart.Reparent(GetParent());
+        NegativePart.Reparent(GetParent());
 		PositivePart.Reparent(GetParent());
 
         NegativePart.GlobalPosition = RandomVectorInCameraLimits();
@@ -41,6 +41,8 @@ public partial class EnhancedGoldenCross : UnusualCrossNode
     public override void Respawn()
     {
         base.Respawn();
+
+        AddToGroup("UnusualCrosses");
 
         FinishedParts = 0;
 

@@ -7,6 +7,8 @@ using static OtherExtension.GeometryTools;
 using static OtherExtension.GodotExtensions;
 using System.Linq;
 using System.Collections.Generic;
+using System.Reflection.PortableExecutable;
+using System.Drawing;
 
 public partial class GlitchLevelScript : BaseLevelScript
 {
@@ -58,11 +60,10 @@ public partial class GlitchLevelScript : BaseLevelScript
         }
     }
     GlitchShader _glitchShader = new();
-
+    
     public override void _Ready()
     {
         base._Ready();
-
         //Initializing nodes
         _player = GetNode<Player>("Player");
         _main = GetNode<MainScript>("..");
@@ -89,6 +90,17 @@ public partial class GlitchLevelScript : BaseLevelScript
 
         //Binding important events
         _main.OnLevelResetting += OnLevelReset;
+
+        // !!
+        G.IsCrossesEnabled = false;
+        G.Scores = -5;
+
+        // Binding the film layer signal
+        var filmLayer = FindNodeOfType<Level7HopelessnessLayer>(this);
+        if (filmLayer != null)
+        {
+            filmLayer.NegativeValueSquared += ProgressScript;
+        }
     }
 
     public void OnLevelReset()
@@ -101,7 +113,7 @@ public partial class GlitchLevelScript : BaseLevelScript
         
     }
 
-    public async void ProgressScript()
+    public async void ProgressScript() // Starts when the timer brokes due to the root of the negative number
     {
         //...
         //...
@@ -143,13 +155,12 @@ public partial class GlitchLevelScript : BaseLevelScript
     }
 
     #region TileMaps manipulating
-    public void DisableTileMapsIn(Node parent)
+        public void SetChildrenTileMapsEnabled(Node parent, bool value)
     {
-        ActionWithANodeTree(parent, (node) =>
+        foreach (var child in parent.GetChildren().OfType<TileMapLayer>())
         {
-            if (node is TileMapLayer tileMap)
-                tileMap.Enabled = false;
-        });
+            child.Enabled = value;
+        }
     }
 
     public void SpawnRandomGlitchBlock(Rect2 spawnRect)
@@ -199,11 +210,11 @@ public partial class GlitchLevelScript : BaseLevelScript
 
     public void CopyToUnHologramedTileMap(params TileMapLayer[] tileMaps)
     {
+        _unHologramedTiles.Clear();
         foreach (var tileMap in tileMaps)
         {
             foreach (Vector2I cell in tileMap.GetUsedCells())
             {
-                _unHologramedTiles.Clear();
                 _unHologramedTiles.SetCell(cell, 0, new Vector2I(0, 1));
             }
         }
@@ -300,9 +311,18 @@ public partial class GlitchLevelScript : BaseLevelScript
                 ChangeScene(Scenes.Revelation);
                 break;
         }
-    }
-    #endregion
+    }    
 
+    public void GlareEffect()
+    {
+        var colorRect = GetNode<ColorRect>("Level/CanvasLayer/Glare");
+        colorRect.GetNode<AnimationPlayer>("AnimationPlayer").Play();
+
+        colorRect.GetNode<AudioStreamPlayer>("LampBulp").Play();
+    }
+
+    #endregion
+// 
     public enum Scenes {Default = 0, Level3 = 1, Level4 = 2, Level5 = 3, Level6 = 4, Level7 = 5, Revelation = 6}
     private int _lastSceneNumber = 0;
     /// <summary>
@@ -323,30 +343,37 @@ public partial class GlitchLevelScript : BaseLevelScript
 
             case Scenes.Level3:
                 _unHologramedTiles.CollisionEnabled = false;
+                _player.GlobalPosition = new Vector2(1280, 640);
                 break;
 
             case Scenes.Level4:
-                DisableTileMapsIn(GetPart("Level3"));
+                SetChildrenTileMapsEnabled(GetPart("Level3"), false);
                 CopyToUnHologramedTileMap(GetNode<TileMapLayer>("LevelParts/Level3/TileMap"));
-                await MoveNodeTo(G.Player, new Vector2(1280, 640));
+                await Task.WhenAll(MoveNodeTo(G.Player, new Vector2(1280, 640)), HideNodeSlowly(GetPart("Level3")));
+                GlareEffect();
                 break;
 
             case Scenes.Level5:
-                DisableTileMapsIn(GetPart("Level4"));
+                SetChildrenTileMapsEnabled(GetPart("Level4"), false);
                 CopyToUnHologramedTileMap(GetNode<TileMapLayer>("LevelParts/Level4/TileMap"));
-                await MoveNodeTo(G.Player, new Vector2(1280, 1248));
+                await Task.WhenAll(MoveNodeTo(G.Player, new Vector2(1280, 1248)), HideNodeSlowly(GetPart("Level3")));
+                GlareEffect();
                 break;
 
             case Scenes.Level6:
-                DisableTileMapsIn(GetPart("Level5"));
+                SetChildrenTileMapsEnabled(GetPart("Level5"), false);
                 CopyToUnHologramedTileMap(GetNode<TileMapLayer>("LevelParts/Level5/Layer1"));
-                await MoveNodeTo(G.Player, new Vector2(1216, 320));
+                await Task.WhenAll(MoveNodeTo(G.Player, new Vector2(1216, 320)), HideNodeSlowly(GetPart("Level3")));
+                GlareEffect();
+
                 break;
 
             case Scenes.Level7:
-                DisableTileMapsIn(GetPart("Level6"));
+                SetChildrenTileMapsEnabled(GetPart("Level6"), false);
                 CopyToUnHologramedTileMap(GetNode<TileMapLayer>("LevelParts/Level6/TileMap"), GetNode<TileMapLayer>("LevelParts/Level6/ToEnable"));
-                await MoveNodeTo(G.Player, new Vector2(640, 320));
+                await Task.WhenAll(MoveNodeTo(G.Player, new Vector2(640, 320)), HideNodeSlowly(GetPart("Level3")));
+                GlareEffect();
+
                 break;
 
             case Scenes.Revelation:
@@ -354,6 +381,7 @@ public partial class GlitchLevelScript : BaseLevelScript
                 Rect2I rectToRemove = (Rect2I)PosEndRect(new Vector2I(0, 10), new Vector2(19, 12));
                 SetRectOnTileMap(_glitchTileMap, rectToRemove);
 
+                _player.Gravity = Player.DEFAULT_GRAVITY / 2; 
                 break;
         }
     }

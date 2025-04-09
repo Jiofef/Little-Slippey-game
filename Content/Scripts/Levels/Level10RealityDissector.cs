@@ -26,7 +26,10 @@ public partial class Level10RealityDissector : Node
 
 	public void ChangeLevelToTrueVersion()
 	{
-		G.TransitiveVariantD.Add("ImFromTheFakeLevel10", true);
+		// Returning spawn multiplier to default state
+        G.CrossSpawnMultiplier = 1f;
+
+        G.TransitiveVariantD.Add("ImFromTheFakeLevel10", true);
 		if (!UnchangableMeta.IsFakeLevel10SkipAllowed)
 			UnchangableMeta.IsFakeLevel10SkipAllowed = true;
 		G.LevelAdditionalLink = "True";

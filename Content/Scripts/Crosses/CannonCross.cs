@@ -29,6 +29,8 @@ public partial class CannonCross : UnusualCrossNode
         ChargeSound = GetNode<AudioStreamPlayer>("PathFollow2D/Cannon/Sounds/Charge");
         #endregion
 
+        AddToGroup("UnusualCrosses");
+
         _defaultTexture = GD.Load<CompressedTexture2D>("res://Content/Sprites/Crosses/CannonBarrel.png");
         _tornTexture = GD.Load<CompressedTexture2D>("res://Content/Sprites/Crosses/TornCannonBarrel.png");
 
@@ -118,6 +120,7 @@ public partial class CannonCross : UnusualCrossNode
 
             if (IsBallOutOfBounds())
             {
+                RemoveFromGroup("UnusualCrosses");
                 OnFinished();
             }
         }
@@ -131,6 +134,8 @@ public partial class CannonCross : UnusualCrossNode
     public override void Respawn()
     {
         base.Respawn();
+
+        AddToGroup("UnusualCrosses");
 
         _isLevelTooWide = G.CameraLimits.Size.X / G.CameraLimits.Size.Y > 10;
 

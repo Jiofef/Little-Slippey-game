@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://5kfyvxsdpsk2" path="res://Content/Scenes/Other/LevelLayout.tscn" id="1_juf54"]
 [ext_resource type="Texture2D" uid="uid://jf522wbk7t1h" path="res://Content/Sprites/Levels/Level7/BackLayer.png" id="2_lukkn"]
 [ext_resource type="Texture2D" uid="uid://dgbqetimrygb0" path="res://Content/Sprites/Levels/Level7/FrontLayer.png" id="3_2lpei"]
-[ext_resource type="PackedScene" uid="uid://dlscufxb5f1ca" path="res://Content/Scenes/Interface&Menu/RareScenes/Player.tscn" id="4_tk5ms"]
+[ext_resource type="PackedScene" uid="uid://dlscufxb5f1ca" path="res://Content/Scenes/Other/Player.tscn" id="4_tk5ms"]
 [ext_resource type="Texture2D" uid="uid://3dmk0kl75t76" path="res://Content/Sprites/Levels/FuckItTileset.png" id="5_x26g2"]
 [ext_resource type="PackedScene" uid="uid://d3u7pfig07yrs" path="res://Content/Scenes/Other/CrutchedArea2D.tscn" id="6_7ob3a"]
 
@@ -69,7 +69,7 @@ size = Vector2(128, 128)
 
 [node name="AnimationPlayer" parent="LevelMusicPlayer" index="0"]
 libraries = {
-"": SubResource("AnimationLibrary_jcmm3")
+&"": SubResource("AnimationLibrary_jcmm3")
 }
 
 [node name="Level" parent="." index="1"]

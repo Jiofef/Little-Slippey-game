@@ -84,6 +84,27 @@ public partial class MainScript : Node2D
         if (IsInsideTree()) //In very rare cases (e.g. with a level 7 black screen), the node is not deleted correctly when the scene is changed. This fixes this bug.
             QueueFree();
     }
+    public void Reset()
+    {
+        G.WasTheLevelRestarted = true;
+
+        G.IsCrossesEnabled = true;
+        G.IsProgressPaused = false;
+        G.CrossSpawnMultiplier = 1;
+        EmitSignal("OnLevelResetting");
+
+        G.ResetValues();
+
+        if (G.IsLevelVanilla)
+        {
+            UnchangableMeta.SaveRecords();
+            LoadScene("res://Content/Scenes/Levels/FullParts/Level" + G.CurrentLevel + G.LevelAdditionalLink + ".tscn");
+        }
+        else
+        {
+            LoadScene(G.ModMapPath);
+        }
+    }
     public void SaveTheGame()
     {
         UnchangableMeta.SaveToFile();

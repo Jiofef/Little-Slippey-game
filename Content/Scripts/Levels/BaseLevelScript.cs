@@ -19,10 +19,6 @@ public partial class BaseLevelScript : Node2D
         else
             SetDefaultCrossesPack();
 
-        G.ResetValues();
-
-
-        Input.MouseMode = !GetTree().Paused ? Input.MouseModeEnum.Hidden : Input.MouseModeEnum.Visible;
         AudioServer.SetBusMute(2, Meta.Instance.Sound.BusVolumes[2] <= -30);
 
 

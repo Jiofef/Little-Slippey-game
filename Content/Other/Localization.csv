@@ -40,6 +40,7 @@ On,On,Вкл
 Off,Off,Выкл
 Max frame rate,Max frame rate,Максимальная частота кадров
 Cross rotation when spawning,Cross rotation when spawning,Вращение меток при спавне
+Explosions glow,Explosions glow,Свечение от взрывов
 Scores label mode,Scores label mode,Режим отображения очков
 Large,Large,Большие
 Small,Small,Маленькие
@@ -124,7 +125,6 @@ Corey,Corey,Кори
 Skins: ,Skins: ,Скины:
 of,of,из
 or,or,или
-,,
 ,,
 ,,
 ,,

@@ -1,7 +1,8 @@
-using Godot;
+п»їusing Godot;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using static OtherExtension.OtherTools;
@@ -252,7 +253,7 @@ namespace OtherExtension
         {
             if (array == null || array.Length == 0)
             {
-                throw new ArgumentException("Массив не может быть null или пустым.");
+                throw new ArgumentException("Array can't be null or empty.");
             }
 
             return array[_random.Next(array.Length)];
@@ -806,6 +807,23 @@ namespace OtherExtension
             }
         }
 
+        public static async Task HideNodeSlowly(CanvasItem node, float duration = 1f, bool disableVisibility = false)
+        {
+            var tween = node.CreateTween().TweenProperty(node, "modulate", new Color(1, 1, 1, 0), duration);
+
+            await node.ToSignal(tween, "finished");
+
+            if (disableVisibility)
+                node.Visible = false;
+        }
+        
+        public static async Task ShowNodeSlowly(CanvasItem node, float duration = 1f)
+        {
+            node.Visible = true;
+            var tween = node.CreateTween().TweenProperty(node, "modulate", new Color(1, 1, 1, 1), duration);
+
+            await node.ToSignal(tween, "finished");
+        }
         public static void ActionWithANodeTree(Node treeRoot, Action<Node> action)
         {
             void StackOverflow(Node parent)
@@ -869,6 +887,46 @@ namespace OtherExtension
             }
 
             return resultModulate;
+        }
+
+        public static string GetTreePretty(Node node, string indent = "", bool last = true)
+        {
+            StringBuilder sb = new StringBuilder();
+
+            sb.Append(indent);
+            if (last)
+            {
+                sb.Append("в””в”Ђ ");
+                indent += "   ";
+            }
+            else
+            {
+                sb.Append("в”њв”Ђ ");
+                indent += "в”‚  ";
+            }
+            sb.AppendLine(node.Name);
+
+            int childCount = node.GetChildCount();
+            for (int i = 0; i < childCount; i++)
+            {
+                Node child = node.GetChild(i);
+                bool isLast = i == childCount - 1;
+                sb.Append(GetTreePretty(child, indent, isLast));
+            }
+
+            return sb.ToString();
+        }
+
+        /// <summary>
+        /// ID exists in case the nodes can be more than one and not the first of them is needed
+        /// </summary>
+        public static Type FindNodeOfType<Type>(Node parent, int id = 0) where Type : class
+        {
+            var children = parent.GetChildren().OfType<Type>().ToArray();
+            if (children.Count() > id)
+                return children[id];
+
+            return null;
         }
     }
 

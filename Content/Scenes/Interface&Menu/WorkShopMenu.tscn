@@ -103,7 +103,6 @@ theme_override_font_sizes/normal_font_size = 22
 text = "Note: Before starting the construction of a test chamber, it is necessary to ensure the integrity, effectiveness and sufficient cruelty of its concept. In the workshop, you can design your own test chambers, activate the simulation in them, and also try out test chambers made by other scientists."
 fit_content = true
 script = ExtResource("6_yqfp4")
-_scrollingSpeed = null
 
 [node name="ActionButtons" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Tabs/Mods/MarginC/VBoxC" index="1"]
 layout_mode = 2
@@ -116,6 +115,7 @@ visible = false
 layout_mode = 2
 texture_normal = ExtResource("8_ue32r")
 Description = "Play"
+DisableProcessDisabling = false
 
 [node name="Description" parent="MarginContainer/VBoxContainer/Tabs/Mods/MarginC/VBoxC/ActionButtons/PlayMapButton/Face" index="1"]
 custom_minimum_size = Vector2(96, 72)
@@ -126,16 +126,19 @@ visible = false
 layout_mode = 2
 texture_normal = ExtResource("9_oa3ny")
 Description = "Open in editor"
+DisableProcessDisabling = false
 
 [node name="MakeAModButton" parent="MarginContainer/VBoxContainer/Tabs/Mods/MarginC/VBoxC/ActionButtons" index="2" instance=ExtResource("7_sxybr")]
 layout_mode = 2
 texture_normal = ExtResource("10_ihewl")
 Description = "Create a mod"
+DisableProcessDisabling = false
 
 [node name="OpenTheDirectoryButton" parent="MarginContainer/VBoxContainer/Tabs/Mods/MarginC/VBoxC/ActionButtons" index="3" instance=ExtResource("7_sxybr")]
 layout_mode = 2
 texture_normal = ExtResource("11_qede0")
 Description = "Open the directory"
+DisableProcessDisabling = false
 
 [node name="Description" parent="MarginContainer/VBoxContainer/Tabs/Mods/MarginC/VBoxC/ActionButtons/OpenTheDirectoryButton/Face" index="1"]
 custom_minimum_size = Vector2(160, 72)
@@ -260,12 +263,14 @@ theme_override_constants/separation = 8
 layout_mode = 2
 texture_normal = ExtResource("10_ihewl")
 Description = "Create a group"
+DisableProcessDisabling = false
 
 [node name="ModOptionsMoreInfoButton" parent="MarginContainer/VBoxContainer/Tabs/Edit Mod Data/MarginC/HBoxC/VBoxC/MarginC/ScrollC/VBoxC/HBoxContainer" index="1" instance=ExtResource("7_sxybr")]
 layout_mode = 2
 size_flags_horizontal = 0
 texture_normal = ExtResource("12_5kcb7")
 Description = "More info"
+DisableProcessDisabling = false
 
 [node name="ModOptionEditC" type="MarginContainer" parent="MarginContainer/VBoxContainer/Tabs/Edit Mod Data/MarginC/HBoxC/VBoxC/MarginC/ScrollC/VBoxC" index="11"]
 layout_mode = 2
@@ -377,6 +382,7 @@ grow_vertical = 2
 size_flags_horizontal = 0
 texture_normal = ExtResource("11_qede0")
 Description = "Change the picture"
+DisableProcessDisabling = false
 
 [node name="Description" parent="MarginContainer/VBoxContainer/Tabs/Edit Mod Data/MarginC/HBoxC/VBoxC2/NPR2/MarginC/VBoxC/Control/ChangeThePictureButton/Face" index="1"]
 custom_minimum_size = Vector2(192, 72)
@@ -396,6 +402,7 @@ grow_horizontal = 0
 grow_vertical = 2
 texture_normal = ExtResource("12_7pfwf")
 Description = "Save the changes"
+DisableProcessDisabling = false
 
 [node name="Description" parent="MarginContainer/VBoxContainer/Tabs/Edit Mod Data/MarginC/HBoxC/VBoxC2/NPR2/MarginC/VBoxC/Control/SaveChangesButton/Face" index="1"]
 custom_minimum_size = Vector2(192, 72)

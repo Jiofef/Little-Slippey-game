@@ -332,6 +332,8 @@ public partial class WorkshopMenu : DraggableWindow
     {
         CurrentModMapFolderName = Path.GetDirectoryName(_selectedModFolder);
         G.IsLevelVanilla = false;
+
+        G.ResetValues();
     }
 
     public void OpenModFolder()

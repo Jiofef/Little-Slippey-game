@@ -182,7 +182,7 @@ public partial class Crosses : Node
 
     public int CurrentCrossesCount => CurrentCrossesPack.Length + (CurrentGoldenCross != null ? 1 : 0);
 
-    private static float[] _defaultCrossesWeight;
+    private static float[] _defaultCrossesWeight = new float[0];
 
 
     public static Cross GetCross(int index)
@@ -238,7 +238,7 @@ public partial class Crosses : Node
         crosses[4].SetSpawnSide(false, false, false, false, true, false); // Helicopter must spawn at the top camera limit corner
         crosses[4].SpawnRectCorrection = new Rect2(-640, -1280, 640, 0);
 
-        SetCurrentCrossesPack("LightweightTNT2.0", crosses, goldenCross, 125 / 4);
+        SetCurrentCrossesPack("LightweightTNT2.0", crosses, goldenCross, 125);
     }
 
     /// <summary>
@@ -268,6 +268,8 @@ public partial class Crosses : Node
         {
             _defaultCrossesWeight[i] = crosses[i].Weight;
         }
+
+        ResetLocalValues();
     }
 
     /// <summary>

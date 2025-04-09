@@ -81,7 +81,7 @@ public partial class InGameGui : Control
 
         if (G.Player.DisableAfterDeathGui) return;
 
-        Input.MouseMode = Input.MouseModeEnum.Visible;
+        G.ShowMouseDuringGameplay++;
         G.AdditionalGuiLayer.AlwaysShowGoldenCrossesAmount = G.Player.ShowGoldenCrossesAmountAfterDeath;
 
         if (G.IsNewRecordReached)
@@ -106,7 +106,7 @@ public partial class InGameGui : Control
         Options.DisableStandBar = !G.Player.EnableStandingPenalty;
         UpdateStandingBarOptions();
 
-        Input.MouseMode = Input.MouseModeEnum.Hidden;
+        G.ShowMouseDuringGameplay--;
         G.AdditionalGuiLayer.AlwaysShowGoldenCrossesAmount = false;
 
         UpdateAfterDeathGuiOptions(false);
@@ -184,7 +184,7 @@ public partial class InGameGui : Control
         UpdateScoresOptions();
 
         UpdateStandingBarOptions();
-        UpdateAfterDeathGuiOptions();
+        UpdateAfterDeathGuiOptions(G.IsPlayerDead);
         UpdateAfterDeathGui();
         UpdateAfterDeathScoresLabelOptions();
         UpdateNewRecordLabelOptions();

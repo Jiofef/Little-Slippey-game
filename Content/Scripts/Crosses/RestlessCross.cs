@@ -1,5 +1,6 @@
 using Godot;
 using OtherExtension;
+using static OtherExtension.RandomTools;
 using System;
 
 public partial class RestlessCross : CrossNode
@@ -24,6 +25,8 @@ public partial class RestlessCross : CrossNode
 
         if (_shouldRotate)
             R = new(this, 180, 45);
+        else
+            RotationDegrees = RandomIn(-180, 180);
     }
 
     private Color _mod = new Color(1, 1, 1, 0);
@@ -73,6 +76,8 @@ public partial class RestlessCross : CrossNode
         Scale = new Vector2(3, 3);
         Modulate = new Color(1, 1, 1, 0);
         R?.Randomize();
+        if (!_shouldRotate)
+            RotationDegrees = RandomIn(-180, 180);
         CrossSprite.Visible = true;
         WarningSprite.Visible = true;
         ExplosionAnimation.Visible = false;

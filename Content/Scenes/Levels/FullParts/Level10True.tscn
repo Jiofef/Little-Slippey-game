@@ -11,7 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://bom6incv53ok1" path="res://Content/Sprites/Levels/Level10/Rail.png" id="7_ave4d"]
 [ext_resource type="Script" uid="uid://bsyar0f2le73h" path="res://Content/Scripts/Other/AnimationRandomizer.cs" id="8_hunrt"]
 [ext_resource type="Texture2D" uid="uid://bx0f1c20d2wai" path="res://Content/Sprites/Levels/DropesAndHeamsTileset.png" id="9_hxedc"]
-[ext_resource type="PackedScene" uid="uid://dlscufxb5f1ca" path="res://Content/Scenes/Interface&Menu/RareScenes/Player.tscn" id="10_qwhv0"]
+[ext_resource type="PackedScene" uid="uid://dlscufxb5f1ca" path="res://Content/Scenes/Other/Player.tscn" id="10_qwhv0"]
 [ext_resource type="AudioStream" uid="uid://byjljrba2hdri" path="res://Content/Sounds/Levels/Level10LampBulp.mp3" id="11_i50es"]
 [ext_resource type="Texture2D" uid="uid://bvogrd2bqhwmt" path="res://Content/Sprites/Other/OblivionNoise.png" id="12_dy6ub"]
 [ext_resource type="AudioStream" uid="uid://dy6lncevmnf3o" path="res://Content/Sounds/Other/WhiteNoise.mp3" id="13_ailj6"]
@@ -847,7 +847,7 @@ color = Color(0.117647, 0.117647, 0.117647, 0.352941)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Level/ScientistNode/CanvasLayer/SubtitlesRect"]
 libraries = {
-"": SubResource("AnimationLibrary_pai8u")
+&"": SubResource("AnimationLibrary_pai8u")
 }
 
 [node name="Subtitles" type="RichTextLabel" parent="Level/ScientistNode/CanvasLayer"]
@@ -909,7 +909,7 @@ region_rect = Rect2(110, 8, 32, 38)
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Level/Background/Rail/Rail/Object"]
 root_node = NodePath("../../..")
 libraries = {
-"": SubResource("AnimationLibrary_i8hg0")
+&"": SubResource("AnimationLibrary_i8hg0")
 }
 autoplay = "ManipulatorPassage"
 script = ExtResource("8_hunrt")
@@ -975,7 +975,7 @@ volume_db = 6.0
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Level/CanvasLayer/ColorRect"]
 root_node = NodePath("../..")
 libraries = {
-"": SubResource("AnimationLibrary_dxx2d")
+&"": SubResource("AnimationLibrary_dxx2d")
 }
 
 [node name="NoiseNoise" type="AnimatedSprite2D" parent="Level/CanvasLayer"]
@@ -991,7 +991,7 @@ bus = &"Player"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Level/CanvasLayer/NoiseNoise"]
 libraries = {
-"": SubResource("AnimationLibrary_gy5u0")
+&"": SubResource("AnimationLibrary_gy5u0")
 }
 
 [node name="WhiteNoiseGlitch" type="AnimatedSprite2D" parent="Level/CanvasLayer"]
@@ -1098,7 +1098,7 @@ region_rect = Rect2(66, 27, 8, 5)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Level/PositionCrutch/DroneCapsule"]
 libraries = {
-"": SubResource("AnimationLibrary_urued")
+&"": SubResource("AnimationLibrary_urued")
 }
 
 [node name="ManipulatorSound" type="AudioStreamPlayer" parent="Level/PositionCrutch/DroneCapsule"]

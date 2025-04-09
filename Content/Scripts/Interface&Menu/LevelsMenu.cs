@@ -113,6 +113,7 @@ public partial class LevelsMenu : Control
     }
     public void OpenLevel()
     {
+        G.ResetValues();
         GetTree().ChangeSceneToFile("res://Content/Scenes/Levels/FullParts/Level" + G.CurrentLevel + G.LevelAdditionalLink + ".tscn");
     }
     public void CloseStartOptions(int levelNumber)

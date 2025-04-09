@@ -17,7 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://datptqmcpau44" path="res://Content/Sprites/Levels/Level10/MiddleCloudLayer.png" id="11_8vlae"]
 [ext_resource type="Texture2D" uid="uid://cgmqr4byx6tjy" path="res://Content/Sprites/Levels/Level10/FrontCloudLayer.png" id="12_nl5i8"]
 [ext_resource type="Texture2D" uid="uid://d2ynxw1edp8w0" path="res://Content/Sprites/Levels/Level10/CoolEasterEgg.png" id="13_3ulqn"]
-[ext_resource type="PackedScene" uid="uid://dlscufxb5f1ca" path="res://Content/Scenes/Interface&Menu/RareScenes/Player.tscn" id="14_8rk7d"]
+[ext_resource type="PackedScene" uid="uid://dlscufxb5f1ca" path="res://Content/Scenes/Other/Player.tscn" id="14_8rk7d"]
 [ext_resource type="Texture2D" uid="uid://ckh1sclq3fji3" path="res://Content/Sprites/Other/PointLight.png" id="15_45dcj"]
 [ext_resource type="Texture2D" uid="uid://cjieb76jdv80v" path="res://Content/Sprites/Levels/ANineGreetingsTileset.png" id="15_pem8j"]
 [ext_resource type="AudioStream" uid="uid://x0nebyfepo5c" path="res://Content/Sounds/Levels/Level10HereYouAre.mp3" id="16_7kux4"]
@@ -659,7 +659,7 @@ script = ExtResource("2_s5qx3")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="LevelMusicPlayer"]
 libraries = {
-"": SubResource("AnimationLibrary_jcmm3")
+&"": SubResource("AnimationLibrary_jcmm3")
 }
 
 [node name="Level" type="Node2D" parent="."]
@@ -684,7 +684,7 @@ shape = SubResource("RectangleShape2D_mapyl")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Level/RealityDissector/ByNoMeansArtificalBoundaries"]
 libraries = {
-"": SubResource("AnimationLibrary_np0vx")
+&"": SubResource("AnimationLibrary_np0vx")
 }
 
 [node name="CameraLimitsSetTrigger" parent="Level/RealityDissector" instance=ExtResource("4_a6s5x")]
@@ -937,7 +937,7 @@ shape = SubResource("RectangleShape2D_hggg6")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Level/Boundaries/FloorTouchDetector"]
 libraries = {
-"": SubResource("AnimationLibrary_d840e")
+&"": SubResource("AnimationLibrary_d840e")
 }
 
 [node name="FallSound" type="AudioStreamPlayer" parent="Level/Boundaries/FloorTouchDetector"]

@@ -53,9 +53,6 @@ metadata/_edit_vertical_guides_ = [-234.0]
 process_mode = 3
 bus = &"Music"
 script = ExtResource("2_4qm76")
-RestartMusicWhenItFinished = null
-SaveTimeCodeWhenLevelResets = null
-KeepPlayingWhenLevelResets = null
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="LevelMusicPlayer"]
 libraries = {
@@ -68,7 +65,6 @@ BeforeResetCrossesSpawnStartTimer = null
 
 [node name="CrossSpawner" type="Node2D" parent="."]
 script = ExtResource("4_ddpkh")
-CannonsMode = null
 
 [node name="Pause" parent="." instance=ExtResource("4_s6iig")]
 

@@ -36,6 +36,7 @@ G="*res://Content/Scripts/Singletons/G.cs"
 Skins="*res://Content/Scripts/Singletons/Skins.cs"
 Crosses="*res://Content/Scripts/Singletons/Crosses.cs"
 Resources="*res://Content/Scripts/Singletons/Resources.cs"
+CommandConsole="*res://addons/csharpConsole/CommandConsole.cs"
 
 [display]
 
@@ -53,6 +54,10 @@ window/glow/upscale_mode=0
 [dotnet]
 
 project/assembly_name="Little Slippey"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/csharpConsole/plugin.cfg")
 
 [file_customization]
 

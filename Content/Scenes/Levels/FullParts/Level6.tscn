@@ -11,7 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://dxr4mhlbsc3" path="res://Content/Sprites/Levels/Level6/BackgroundGieroFlyingCar.png" id="7_1657n"]
 [ext_resource type="Texture2D" uid="uid://dvbdc2wlk062n" path="res://Content/Sprites/Levels/Level6/FrontCity.png" id="8_bedts"]
 [ext_resource type="PackedScene" uid="uid://dct3ltljwt56o" path="res://Content/Scenes/Other/Level6DefaultCar.tscn" id="9_amo5x"]
-[ext_resource type="PackedScene" uid="uid://dlscufxb5f1ca" path="res://Content/Scenes/Interface&Menu/RareScenes/Player.tscn" id="9_aum6r"]
+[ext_resource type="PackedScene" uid="uid://dlscufxb5f1ca" path="res://Content/Scenes/Other/Player.tscn" id="9_aum6r"]
 [ext_resource type="Texture2D" uid="uid://q2j1uuqfjmos" path="res://Content/Sprites/Levels/BaseTileSet.png" id="10_gawwt"]
 [ext_resource type="Texture2D" uid="uid://ckh1sclq3fji3" path="res://Content/Sprites/Other/PointLight.png" id="11_b4t5x"]
 [ext_resource type="Texture2D" uid="uid://b1dppreruk7js" path="res://Content/Sprites/Levels/poliSiSagEtilEseT.png" id="11_fgsae"]
@@ -140,9 +140,9 @@ _data = {
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_b1x7e"]
 blend_mode = 1
 
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_x2nd3"]
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_3w3h8"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_y1m7g"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nwujo"]
 texture = ExtResource("10_gawwt")
 0:0/next_alternative_id = 8
 0:0/0 = 0
@@ -160,7 +160,7 @@ polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_uuqry"]
 polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_54rrs"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ls5bn"]
 texture = ExtResource("11_yecq0")
 0:0/0 = 0
 0:0/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_41xms")
@@ -219,7 +219,7 @@ polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_wvoro"]
 polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4qss4"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nxug1"]
 texture = ExtResource("11_fgsae")
 0:0/0 = 0
 0:0/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_44uj1")
@@ -291,7 +291,7 @@ texture = ExtResource("11_fgsae")
 1:3/0/physics_layer_0/polygon_0/one_way = true
 4:1/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ytpac"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_n4nvl"]
 texture = ExtResource("13_wpl2e")
 0:0/0 = 0
 1:0/0 = 0
@@ -315,11 +315,11 @@ texture = ExtResource("13_wpl2e")
 occlusion_layer_0/light_mask = 1
 physics_layer_0/collision_layer = 4
 physics_layer_0/collision_mask = 3
-physics_layer_0/physics_material = SubResource("PhysicsMaterial_x2nd3")
-sources/0 = SubResource("TileSetAtlasSource_y1m7g")
-sources/2 = SubResource("TileSetAtlasSource_4qss4")
-sources/1 = SubResource("TileSetAtlasSource_54rrs")
-sources/3 = SubResource("TileSetAtlasSource_ytpac")
+physics_layer_0/physics_material = SubResource("PhysicsMaterial_3w3h8")
+sources/0 = SubResource("TileSetAtlasSource_nwujo")
+sources/2 = SubResource("TileSetAtlasSource_nxug1")
+sources/1 = SubResource("TileSetAtlasSource_ls5bn")
+sources/3 = SubResource("TileSetAtlasSource_n4nvl")
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_dvd8c"]
 
@@ -524,10 +524,18 @@ size = Vector2(128, 128)
 
 [node name="Main" instance=ExtResource("1_k46p1")]
 
+[node name="LevelMusicPlayer" parent="." index="0"]
+RestartMusicWhenItFinished = true
+SaveTimeCodeWhenLevelResets = true
+KeepPlayingWhenLevelResets = true
+
 [node name="AnimationPlayer" parent="LevelMusicPlayer" index="0"]
 libraries = {
 &"": SubResource("AnimationLibrary_jcmm3")
 }
+
+[node name="Level" parent="." index="1"]
+BeforeResetCrossesSpawnStartTimer = 0.0
 
 [node name="Background" type="ParallaxBackground" parent="Level" index="0"]
 
@@ -895,8 +903,8 @@ shape = SubResource("RectangleShape2D_ftna0")
 [connection signal="body_exited" from="Level/BuildingForeground/TileMap/ForegroundArea" to="Level/BuildingForeground" method="Show" unbinds=1]
 [connection signal="body_exited" from="Level/BuildingForeground/TileMap/ForegroundArea" to="Level/BuildingForeground/TileMap/ForegroundArea" method="Exited" unbinds=1]
 [connection signal="AreaEnteredNoArgs" from="Level/BottomTeleportBorder" to="." method="TeleportPlayerTo" binds= [Vector2(3668, 2438)]]
-[connection signal="ButtonPressed" from="Level/PlayMusicTrigger" to="." method="SetProgressPaused" flags=6 binds= [false]]
 [connection signal="ButtonPressed" from="Level/PlayMusicTrigger" to="." method="SetCrossesSpawnMultiplier" flags=6 binds= [0.6]]
+[connection signal="ButtonPressed" from="Level/PlayMusicTrigger" to="." method="SetProgressPaused" flags=6 binds= [false]]
 [connection signal="ButtonPressed" from="Level/PlayMusicTrigger" to="LevelMusicPlayer" method="PlayMusic" flags=6 binds= ["Clair De Phare", 10.19, 0.0]]
 
 [editable path="Level/FlyingCarSpawner/Level6FlyingCar"]

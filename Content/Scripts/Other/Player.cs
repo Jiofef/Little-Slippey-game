@@ -11,8 +11,11 @@ public partial class Player : CharacterBody2D
 
     //InEditor options
     [ExportGroup("Main settings")]
-    [Export] public float Speed = 430, Gravity = 18.6f, JumpForce = 620;
-    private int _maxClimbs = 3;
+    public const float DEFAULT_SPEED = 430, DEFAULT_GRAVITY = 9.8f * 2f, DEFAULT_JUMP_FORCE = 620;
+    [Export] public float Speed = DEFAULT_SPEED, Gravity = DEFAULT_GRAVITY, JumpForce = DEFAULT_JUMP_FORCE;
+
+    public const int DEFAULT_MAX_CLIMBS = 3;
+    private int _maxClimbs = DEFAULT_MAX_CLIMBS;
     [Export] public int MaxClimbs { get { return _maxClimbs; } set { _maxClimbs = value; GetNode<TextureProgressBar>("Camera2D/ClimbsBar").MaxValue = value; } }
     private bool _enableStandingPenalty = true;
     [Export]
@@ -121,7 +124,6 @@ public partial class Player : CharacterBody2D
     [Signal] public delegate void CameraLimitsChangedEventHandler(bool doResetSmoothing, Rect2 limits);
 
     [Signal] public delegate void PlayerDiedEventHandler();
-
     [Signal] public delegate void PlayerResurrectedEventHandler();
 
     ///////////////////////////
