@@ -1,4 +1,4 @@
-[gd_scene load_steps=142 format=4 uid="uid://dmcvluugcu1nb"]
+[gd_scene load_steps=145 format=4 uid="uid://dmcvluugcu1nb"]
 
 [ext_resource type="PackedScene" uid="uid://5kfyvxsdpsk2" path="res://Content/Scenes/Other/LevelLayout.tscn" id="1_rw6g8"]
 [ext_resource type="Script" uid="uid://dipntq4mwmj3o" path="res://Content/Scripts/Levels/GlitchLevelScript.cs" id="2_0eems"]
@@ -351,6 +351,152 @@ tracks/3/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2um0l"]
 _data = {
 &"Sailing": SubResource("Animation_5kxcw")
+}
+
+[sub_resource type="Animation" id="Animation_7ginq"]
+resource_name = "BackgroundAppearing"
+length = 0.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sky:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BackClouds:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("FrontClouds:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sea:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Grass:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../../../CanvasLayer/Dark:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.235294), Color(1, 1, 1, 0)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../../../CanvasLayer/Glare/LampBulp:playing")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_7ok77"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../../../CanvasLayer/Dark:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.235294)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../../../CanvasLayer/Glare/LampBulp:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5p7ue"]
+_data = {
+&"BackgroundAppearing": SubResource("Animation_7ginq"),
+&"RESET": SubResource("Animation_7ok77")
 }
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qku3f"]
@@ -2237,6 +2383,11 @@ shader_parameter/shake_color_rate = 0.01
 
 [node name="Main" instance=ExtResource("1_rw6g8")]
 
+[node name="LevelMusicPlayer" parent="." index="0"]
+RestartMusicWhenItFinished = false
+SaveTimeCodeWhenLevelResets = false
+KeepPlayingWhenLevelResets = false
+
 [node name="Level" parent="." index="1"]
 script = ExtResource("2_0eems")
 BeforeResetCrossesSpawnStartTimer = 0.0
@@ -2274,6 +2425,7 @@ visible = false
 visible = false
 
 [node name="Sky" type="ParallaxLayer" parent="Level/LevelParts/Level3/Background" index="0"]
+modulate = Color(1, 1, 1, 0)
 motion_scale = Vector2(0.1, 0.3)
 
 [node name="Sprite2D" type="Sprite2D" parent="Level/LevelParts/Level3/Background/Sky" index="0"]
@@ -2304,6 +2456,7 @@ color = Color(1, 1, 1, 0.501961)
 color_ramp = SubResource("Gradient_ijx4c")
 
 [node name="BackClouds" type="ParallaxLayer" parent="Level/LevelParts/Level3/Background" index="1"]
+modulate = Color(1, 1, 1, 0)
 motion_scale = Vector2(0.15, 0.3)
 motion_mirroring = Vector2(1280, 0)
 
@@ -2319,6 +2472,7 @@ libraries = {
 autoplay = "CloudsMoving"
 
 [node name="FrontClouds" type="ParallaxLayer" parent="Level/LevelParts/Level3/Background" index="2"]
+modulate = Color(1, 1, 1, 0)
 motion_scale = Vector2(0.2, 0.3)
 motion_mirroring = Vector2(1280, 0)
 
@@ -2328,6 +2482,7 @@ texture = ExtResource("9_62ej3")
 centered = false
 
 [node name="Sea" type="ParallaxLayer" parent="Level/LevelParts/Level3/Background" index="3"]
+modulate = Color(1, 1, 1, 0)
 motion_scale = Vector2(0.2, 0.3)
 
 [node name="Sprite2D" type="Sprite2D" parent="Level/LevelParts/Level3/Background/Sea" index="0"]
@@ -2343,6 +2498,7 @@ anchors_preset = 0
 offset_top = 478.0
 offset_right = 1351.0
 offset_bottom = 820.0
+mouse_filter = 2
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="Level/LevelParts/Level3/Background/Sea/ParticlesContainer" index="0"]
 position = Vector2(675, 171)
@@ -2402,6 +2558,7 @@ texture = ExtResource("12_e1uk0")
 centered = false
 
 [node name="Grass" type="ParallaxLayer" parent="Level/LevelParts/Level3/Background" index="4"]
+modulate = Color(1, 1, 1, 0)
 motion_scale = Vector2(0.625, 0.75)
 
 [node name="Sprite2D" type="Sprite2D" parent="Level/LevelParts/Level3/Background/Grass" index="0"]
@@ -2413,8 +2570,14 @@ centered = false
 [node name="Fog" type="ColorRect" parent="Level/LevelParts/Level3/Background" index="5"]
 offset_right = 1280.0
 offset_bottom = 720.0
+mouse_filter = 2
 color = Color(0.180392, 0.270588, 1, 0.117647)
 metadata/_edit_lock_ = true
+
+[node name="AppearingAnimationPlayer" type="AnimationPlayer" parent="Level/LevelParts/Level3/Background" index="6"]
+libraries = {
+&"": SubResource("AnimationLibrary_5p7ue")
+}
 
 [node name="DecorationMap" type="TileMapLayer" parent="Level/LevelParts/Level3" index="1"]
 modulate = Color(0.501961, 0.501961, 0.501961, 1)
@@ -2514,6 +2677,7 @@ region_rect = Rect2(0, 0, 80, 16)
 [node name="Fog" type="ColorRect" parent="Level/LevelParts/Level4/Background" index="2"]
 offset_right = 1280.0
 offset_bottom = 720.0
+mouse_filter = 2
 color = Color(0.0313726, 0, 0.392157, 0.235294)
 
 [node name="DecorationMap" type="TileMapLayer" parent="Level/LevelParts/Level4" index="1"]
@@ -2658,6 +2822,7 @@ offset_top = -87.0
 offset_right = -8.0
 offset_bottom = -58.0
 scale = Vector2(2, 2)
+mouse_filter = 2
 bbcode_enabled = true
 text = "[center]I burned all the furniture in the house"
 script = ExtResource("29_1fu8u")
@@ -2672,6 +2837,7 @@ offset_top = -87.0
 offset_right = -8.0
 offset_bottom = -58.0
 scale = Vector2(2, 2)
+mouse_filter = 2
 bbcode_enabled = true
 text = "[center]I burned down my wh0le fami["
 script = ExtResource("29_1fu8u")
@@ -2729,6 +2895,7 @@ autoplay = "CloudsMoving"
 [node name="Fog" type="ColorRect" parent="Level/LevelParts/Level7/Background2" index="3"]
 offset_right = 1280.0
 offset_bottom = 720.0
+mouse_filter = 2
 color = Color(1, 1, 1, 0.117647)
 metadata/_edit_use_anchors_ = true
 
@@ -2750,6 +2917,7 @@ centered = false
 [node name="Fog2" type="ColorRect" parent="Level/LevelParts/Level7/Background2" index="5"]
 offset_right = 1280.0
 offset_bottom = 720.0
+mouse_filter = 2
 color = Color(0, 0.607843, 0.607843, 0.235294)
 metadata/_edit_use_anchors_ = true
 
@@ -2765,16 +2933,18 @@ tile_set = SubResource("TileSet_o8a4u")
 [node name="CanvasLayer" type="CanvasLayer" parent="Level" index="2"]
 
 [node name="Dark" type="ColorRect" parent="Level/CanvasLayer" index="0"]
+modulate = Color(1, 1, 1, 0.235294)
 material = SubResource("CanvasItemMaterial_7ginq")
 offset_right = 1280.0
 offset_bottom = 720.0
-color = Color(1, 1, 1, 0.235294)
+mouse_filter = 2
 
 [node name="Glare" type="ColorRect" parent="Level/CanvasLayer" index="1"]
 modulate = Color(1, 1, 1, 0)
 material = SubResource("CanvasItemMaterial_u5e82")
 offset_right = 1280.0
 offset_bottom = 720.0
+mouse_filter = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Level/CanvasLayer/Glare" index="0"]
 libraries = {
@@ -2785,7 +2955,6 @@ autoplay = "Glare"
 [node name="ShuttingDownTheTestChamber" type="AudioStreamPlayer" parent="Level/CanvasLayer/Glare" index="1"]
 stream = ExtResource("3_bpddh")
 volume_db = 4.0
-autoplay = true
 bus = &"Enviromnment"
 
 [node name="LampBulp" type="AudioStreamPlayer" parent="Level/CanvasLayer/Glare" index="2"]
@@ -2798,9 +2967,11 @@ tile_set = SubResource("TileSet_pfk37")
 visible = false
 
 [node name="GlitchRect" type="ColorRect" parent="AdditionalGUILayer" index="1"]
+visible = false
 material = SubResource("ShaderMaterial_v18n7")
 offset_right = 1280.0
 offset_bottom = 720.0
+mouse_filter = 2
 
 [connection signal="ready" from="Level/CanvasLayer" to="Level/CanvasLayer" method="show"]
 

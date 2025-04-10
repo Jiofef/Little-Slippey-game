@@ -1,4 +1,5 @@
 using Godot;
+using GodotPlugins.Game;
 using System;
 using System.Linq;
 
@@ -165,7 +166,7 @@ public partial class Level10ScientistScript : Node2D
         Connect("ClearText", new Callable(GetNode("CanvasLayer/Subtitles"), "ClearText"));
         Connect("SetResetDisabled", new Callable(_mainScript, "SetResetDisabled"));
         _player.Connect("PlayerDied", new Callable (this, "PlayerDied"));
-        _mainScript.Connect("OnLevelResetting", new Callable(this, "OnLevelReset"));
+        _mainScript.Connect(nameof(MainScript.LevelReset), new Callable(this, "OnLevelReset"));
 
 
 
@@ -219,7 +220,7 @@ public partial class Level10ScientistScript : Node2D
         OtherExtension.ActionTools.BindEventSafelyTo(G.OnLevelStarted, (a) =>
         {
                 G.TransitiveVariantD.Add("SavedScores", G.Scores);
-                G.TransitiveVariantD.Add("PlayerSavedPos", _player.Position);
+                G.TransitiveVariantD.Add("PlayerSavedPos", G.Player.Position);
                 GetTree().ChangeSceneToFile("res://Content/Scenes/Levels/FullParts/Level000000000.tscn");
                 return;
         });

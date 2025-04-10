@@ -5,10 +5,10 @@ public partial class MainScript : Node2D
 {
     [Signal] public delegate void RecalculateCrossWeightEventHandler();
 
-    [Signal] public delegate void OnLevelResettingEventHandler();
+    [Signal] public delegate void LevelResetEventHandler();
 
-    [Signal] public delegate void OnLevelStartedEventHandler(bool wasIntroShown);
-    [Signal] public delegate void OnLevelStartedNoBoolEventHandler();
+    [Signal] public delegate void LevelStartedEventHandler(bool wasIntroShown);
+    [Signal] public delegate void LevelStartedNoArgEventHandler();
     public bool IsPauseDisabled = false, IsResetDisabled = false;
 
     [Export] public string LevelNodePath = "Level";
@@ -51,13 +51,13 @@ public partial class MainScript : Node2D
     private void CallOnLevelStarted(bool wasIntroShown)
     {
         G.OnLevelStartedFunc(wasIntroShown);
-        EmitSignal("OnLevelStarted", wasIntroShown);
-        EmitSignal("OnLevelStartedNoBool");
+        EmitSignal(nameof(LevelStarted), wasIntroShown);
+        EmitSignal(nameof(LevelStartedNoArg));
     }
     public void OnIntroFinished()
     {
         GetTree().Paused = false;
-        CallDeferred("CallOnLevelStarted", true);
+        CallDeferred(nameof(CallOnLevelStarted), true);
     }
 
 
@@ -91,7 +91,7 @@ public partial class MainScript : Node2D
         G.IsCrossesEnabled = true;
         G.IsProgressPaused = false;
         G.CrossSpawnMultiplier = 1;
-        EmitSignal("OnLevelResetting");
+        EmitSignal(nameof(LevelReset));
 
         G.ResetValues();
 

@@ -5,10 +5,10 @@ using OtherExtension;
 using static OtherExtension.RandomTools;
 using static OtherExtension.GeometryTools;
 using static OtherExtension.GodotExtensions;
+using static G;
 using System.Linq;
 using System.Collections.Generic;
 using System.Reflection.PortableExecutable;
-using System.Drawing;
 
 public partial class GlitchLevelScript : BaseLevelScript
 {
@@ -20,6 +20,9 @@ public partial class GlitchLevelScript : BaseLevelScript
     Random _random = new Random();
     private List<Vector2I> _spawnedGlitchBlocks = [];
     private TileMapLayer _glitchTileMap, _unHologramedTiles;
+    private ColorRect _dark;
+
+    public Dictionary<string, Node2D> LevelParts = new Dictionary<string, Node2D>();
     private float _glitchBlockDeSpawnSpeed = 1f;
     private float _averageMaxGlitchBlocks = 13;
 
@@ -63,15 +66,24 @@ public partial class GlitchLevelScript : BaseLevelScript
     
     public override void _Ready()
     {
+        G.LevelAdditionalLink = "000000000";
         base._Ready();
         //Initializing nodes
         _player = GetNode<Player>("Player");
         _main = GetNode<MainScript>("..");
 
         _glitchTileMap = GetNode<TileMapLayer>("GlitchTileMap");
-        _glitchTileMap = GetNode<TileMapLayer>("LevelParts/Default/UnHologramedTiles");
+        _unHologramedTiles = GetNode<TileMapLayer>("LevelParts/Default/UnHologramedTiles");
+
+        _dark = GetNode<ColorRect>("CanvasLayer/Dark");
 
         _glitchShader.Shader = ((ShaderMaterial)GetNode<ColorRect>("../AdditionalGUILayer/GlitchRect").Material).Shader;
+
+        // "Caching" the level parts
+        foreach (var levelPart in GetNode("LevelParts").GetChildren())
+            LevelParts.Add(levelPart.Name, GetPart(levelPart.Name));
+
+        GetNode<AudioStreamPlayer>("CanvasLayer/Glare/ShuttingDownTheTestChamber").Play();
 
         // For async methods
         TreeExited += () => _isDisposed = true;
@@ -89,11 +101,12 @@ public partial class GlitchLevelScript : BaseLevelScript
         _player.Position = playerSavedPos;
 
         //Binding important events
-        _main.OnLevelResetting += OnLevelReset;
+        _main.LevelReset += OnLevelReset;
 
         // !!
         G.IsCrossesEnabled = false;
         G.Scores = -5;
+        G.IsProgressPaused = true;
 
         // Binding the film layer signal
         var filmLayer = FindNodeOfType<Level7HopelessnessLayer>(this);
@@ -106,20 +119,26 @@ public partial class GlitchLevelScript : BaseLevelScript
     public void OnLevelReset()
     {
         G.TransitiveVariantD.Add("ImFromLevel000000000", true);
+        LevelAdditionalLink = "True";
     }
 
     public override void _PhysicsProcess(double delta)
     {
-        
+        base._PhysicsProcess(delta);
     }
 
     public async void ProgressScript() // Starts when the timer brokes due to the root of the negative number
     {
-        //...
-        //...
-        //...
+        // When film jams
+        var darkeningTween =_dark.CreateTween();
+        darkeningTween.TweenProperty(_dark, "modulate", new Color(1, 1, 1, 1), 4f);
+        await ToSignal(darkeningTween, "finished");
 
         ChangeScene(Scenes.Level3);
+        var lighteringTween =_dark.CreateTween();
+        lighteringTween.TweenProperty(_dark, "modulate", new Color(1, 1, 1, 0.235f), 4f);
+        await ToSignal(darkeningTween, "finished");
+        
 
         await G.ToScore(75);
 
@@ -344,36 +363,56 @@ public partial class GlitchLevelScript : BaseLevelScript
             case Scenes.Level3:
                 _unHologramedTiles.CollisionEnabled = false;
                 _player.GlobalPosition = new Vector2(1280, 640);
+
+                SwitchSceneNode(LevelParts["Default"], LevelParts["Level3"]);
+
+                await WaitFor(7f);
+                // Enabling the lights
+                GetNode<AnimationPlayer>("LevelParts/Level3/Background/AppearingAnimationPlayer").Play("BackgroundAppearing");
+
+                // Fun begins
+                Scores = 0;
+                IsProgressPaused = false;
+                IsCrossesEnabled = true;
+
+                G.MusicPlayer.PlayMusic("Born To Pyramid Demo");
+
                 break;
 
             case Scenes.Level4:
-                SetChildrenTileMapsEnabled(GetPart("Level3"), false);
+                SetChildrenTileMapsEnabled(LevelParts["Level3"], false);
                 CopyToUnHologramedTileMap(GetNode<TileMapLayer>("LevelParts/Level3/TileMap"));
-                await Task.WhenAll(MoveNodeTo(G.Player, new Vector2(1280, 640)), HideNodeSlowly(GetPart("Level3")));
+                await Task.WhenAll(MoveNodeTo(G.Player, new Vector2(1280, 640)), HideNodeSlowly(LevelParts["Level3"]));
                 GlareEffect();
+
+                Scores = 0;
                 break;
 
             case Scenes.Level5:
-                SetChildrenTileMapsEnabled(GetPart("Level4"), false);
+                SetChildrenTileMapsEnabled(LevelParts["Level4"], false);
                 CopyToUnHologramedTileMap(GetNode<TileMapLayer>("LevelParts/Level4/TileMap"));
-                await Task.WhenAll(MoveNodeTo(G.Player, new Vector2(1280, 1248)), HideNodeSlowly(GetPart("Level3")));
+                await Task.WhenAll(MoveNodeTo(G.Player, new Vector2(1280, 1248)), HideNodeSlowly(LevelParts["Level4"]));
                 GlareEffect();
+
+                Scores = 0;
                 break;
 
             case Scenes.Level6:
-                SetChildrenTileMapsEnabled(GetPart("Level5"), false);
+                SetChildrenTileMapsEnabled(LevelParts["Level5"], false);
                 CopyToUnHologramedTileMap(GetNode<TileMapLayer>("LevelParts/Level5/Layer1"));
-                await Task.WhenAll(MoveNodeTo(G.Player, new Vector2(1216, 320)), HideNodeSlowly(GetPart("Level3")));
+                await Task.WhenAll(MoveNodeTo(G.Player, new Vector2(1216, 320)), HideNodeSlowly(LevelParts["Level5"]));
                 GlareEffect();
 
+                Scores = 0;
                 break;
 
             case Scenes.Level7:
-                SetChildrenTileMapsEnabled(GetPart("Level6"), false);
+                SetChildrenTileMapsEnabled(LevelParts["Level6"], false);
                 CopyToUnHologramedTileMap(GetNode<TileMapLayer>("LevelParts/Level6/TileMap"), GetNode<TileMapLayer>("LevelParts/Level6/ToEnable"));
-                await Task.WhenAll(MoveNodeTo(G.Player, new Vector2(640, 320)), HideNodeSlowly(GetPart("Level3")));
+                await Task.WhenAll(MoveNodeTo(G.Player, new Vector2(640, 320)), HideNodeSlowly(LevelParts["Level6"]));
                 GlareEffect();
 
+                Scores = 0;
                 break;
 
             case Scenes.Revelation:
@@ -385,4 +424,14 @@ public partial class GlitchLevelScript : BaseLevelScript
                 break;
         }
     }
+
+    public void SwitchSceneNode(Node2D from, Node2D to)
+    {
+        // Visibility
+        from.QueueFree();
+        to.Visible = true;
+
+        // TileMaps
+        SetChildrenTileMapsEnabled(to, true);
+    }    
 }

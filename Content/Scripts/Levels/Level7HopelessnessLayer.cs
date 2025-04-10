@@ -14,8 +14,6 @@ public partial class Level7HopelessnessLayer : CanvasLayer
 
 
     AnimatedSprite2D _0;
-    Label _playerScores;
-
     public override void _Ready()
     {
         _mindTumor = ResourceLoader.Load<PackedScene>("res://Content/Scenes/Other/Level7MindTumor.tscn");
@@ -26,7 +24,6 @@ public partial class Level7HopelessnessLayer : CanvasLayer
     private void OnLevelStarted()
     {
         GetNode<AudioStreamPlayer>("FilmCracking").Playing = true;
-        _playerScores = G.Player.GetNode<Label>(Player.SCORES_PATH);
     }
     public override void _ExitTree()
     {
@@ -63,9 +60,9 @@ public partial class Level7HopelessnessLayer : CanvasLayer
     Color _savedScoresModulate;
     public void n2evf7yUH3ZLT3x3N0___() // On hole entered
     {
-        _savedScoresModulate = _playerScores.Modulate;
+        _savedScoresModulate = G.Player.GUI.Scores.Modulate;
 
-        _playerScores.Modulate = new Color(0, 0, 0);
+        G.Player.GUI.Scores.Modulate = new Color(0, 0, 0);
 
         _0.Show();
         _0.Play();
@@ -87,9 +84,9 @@ public partial class Level7HopelessnessLayer : CanvasLayer
         root.AddChild(endOfEverything);
     }
 
-    public async Task Root() // On RootTimer timeout
+    public async void Root() // On RootTimer timeout
     {
-        _playerScores.Modulate = _savedScoresModulate;
+        G.Player.GUI.Scores.Modulate = _savedScoresModulate;
 
         if (G.Scores >= 0)
             G.Scores = Mathf.Sqrt(G.Scores);
@@ -97,18 +94,20 @@ public partial class Level7HopelessnessLayer : CanvasLayer
         {
             EmitSignal(nameof(NegativeValueSquared));
 
-            
+            G.Player.GUI.SetScoresText("NaN");
+
             // Jaming the film
             var vintageFilm = GetNode<VideoStreamPlayer>("VintageFilter");
-            G.PlayOneshotSound("Levels/Level10WTH.mp3", this);
+            G.PlayOneshotSound("Levels/Level10WTH.mp3", this, "Master", 12);
             vintageFilm.Stream = GD.Load<VideoStreamTheora>("res://Content/Other/FilmJam.ogv");
 
             vintageFilm.Play();
-            await OtherExtension.GodotExtensions.ShowNodeSlowly(vintageFilm, 4f);
+            _ = OtherExtension.GodotExtensions.ShowNodeSlowly(vintageFilm, 1f);
+            await G.WaitFor(4f);
             var tween = CreateTween();
             tween.TweenProperty(vintageFilm, "position", new Vector2(0, -720), 0.2f);
 
-            //* I need to put a jam sound here
+            G.PlayOneshotSound("Levels/Level7FilmJamming.mp3", this, "Master", 15);
 
             await ToSignal(tween, "finished");
 

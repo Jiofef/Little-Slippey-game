@@ -27,6 +27,19 @@ public partial class InGameGui : Control
 
     public GuiOptions Options = new();
 
+    #region Scores
+    public enum ScoresLabelModeEnum {UpdateEveryFrame, Static}
+    public ScoresLabelModeEnum ScoresLabelMode = ScoresLabelModeEnum.UpdateEveryFrame;
+
+    public void SetScoresText(string text, bool setScoresModeStatic = true)
+    {
+        if (setScoresModeStatic)
+            ScoresLabelMode = ScoresLabelModeEnum.Static;
+    
+        Scores.Text = text;
+    }
+    #endregion
+
 
     public override void _Ready()
     {
@@ -53,7 +66,8 @@ public partial class InGameGui : Control
     {
         if (Scores.Visible)
         {
-            Scores.Text = ((int)G.Scores).ToString();
+            if (ScoresLabelMode == ScoresLabelModeEnum.UpdateEveryFrame)
+                Scores.Text = ((int)G.Scores).ToString();
             if (Meta.Instance.Video.ScoresLabelLocationY == 0)
                 Scores.Modulate = new Color(Scores.Modulate.R, Scores.Modulate.G, Scores.Modulate.B, G.Player.Position.Y > G.CameraLimits.Position.Y + 200 ? 1 : G.Player.Position.Y / (G.CameraLimits.Position.Y + 200));
 

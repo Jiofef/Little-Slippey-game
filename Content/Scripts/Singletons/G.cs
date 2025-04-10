@@ -426,8 +426,14 @@ public partial class G : Node
         AudioServer.SetBusEffectEnabled(2, 0, false);
 		AudioServer.SetBusEffectEnabled(6, 0, false);
         
-        for (int i = 0; i < TransitiveVariant.Length; i++)
+                for (int i = 0; i < TransitiveVariant.Length; i++)
             TransitiveVariant[i] = "";
+
+        for (int i = 0; i < TransitiveObject.Length; i++)
+            TransitiveObject[i] = null;
+
+        foreach (string v in TransitiveVariantD.Keys)
+            TransitiveVariantD.Remove(v);
 
         //For mods
         IsLevelVanilla = true;

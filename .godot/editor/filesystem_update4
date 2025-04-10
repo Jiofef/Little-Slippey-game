@@ -1,11 +1,10 @@
-res://Content/Scripts/Levels/GlitchLevelScript.cs
+res://Content/Scripts/Levels/Level7HopelessnessLayer.cs
 res://default_env.tres
 res://Content/Scenes/Levels/FullParts/Level000000000.tscn
 res://Content/Other/Menu.tres
 res://Content/Other/StaticNoiseShader.gdshader
 res://Content/Scenes/Interface&Menu/InitializationScene.tscn
-res://Content/Scenes/Levels/FullParts/Level1.tscn
-res://Content/Scenes/Levels/FullParts/Level6.tscn
+res://Content/Scenes/Other/Level7HopelessnesLayer.tscn
 res://addons/csharpConsole/CommandConsole.cs
 res://Content/Scripts/Other/WallJumpPad.cs
 res://Content/Scripts/Interface&Menu/LevelEditor/LevelEditorCreateNodeButton.cs
@@ -78,6 +77,7 @@ res://Content/Scripts/Interface&Menu/Titles.cs
 res://Content/Scripts/Other/Rotator.cs
 res://Content/Scripts/Levels/Level7EndOfAnEverything.cs
 res://Content/Scripts/Levels/Subtitles.cs
+res://Content/Scripts/Levels/GlitchLevelScript.cs
 res://Content/Scripts/Interface&Menu/Monologue.cs
 res://addons/csharpConsole/Console_Plugin.cs
 res://Content/Scripts/Interface&Menu/LevelEditor/LevelEditor.cs
@@ -120,7 +120,6 @@ res://Content/Scripts/Interface&Menu/ModOptionEdit.cs
 res://Content/Scripts/Other/PopupText.cs
 res://Content/Scripts/Interface&Menu/LevelEditor/SavePage.cs
 res://Content/Scripts/Levels/TutorialTvScreen.cs
-res://Content/Scripts/Levels/Level7HopelessnessLayer.cs
 res://Content/Scripts/Levels/Level9VomitCross.cs
 res://Content/Scripts/Interface&Menu/RecycleBinMenu.cs
 res://Content/Scripts/Interface&Menu/ConfirmMenuOnlyTextButton.cs
@@ -155,13 +154,5 @@ res://Content/Scripts/Interface&Menu/GoldenCrossesAmount.cs
 res://Content/Scripts/Interface&Menu/CreateAModWindow.cs
 res://Content/Scripts/Levels/LevelEditorDefaultButton.cs
 res://Content/Scripts/Interface&Menu/LevelsMenu.cs
-res://Content/Scenes/Other/Level7HopelessnesLayer.tscn
-res://Content/Scenes/Levels/FullParts/Level7.tscn
-res://Content/Scenes/Other/LevelLayout.tscn
-res://Content/Scenes/Levels/FullParts/Level3.tscn
-res://Content/Scenes/Levels/FullParts/Level10.tscn
-res://Content/Scenes/Levels/FullParts/Level9.tscn
-res://Content/Scenes/Levels/FullParts/Level10True.tscn
-res://Content/Scenes/Levels/FullParts/Level8.tscn
-res://Content/Scenes/Other/Level5Rain.tscn
-res://export_presets.cfg
+res://Content/Scenes/Other/Player.tscn
+res://Content/Scenes/Levels/FullParts/Level1.tscn
