@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=4 uid="uid://cb5qp5c88hxxs"]
+[gd_scene load_steps=66 format=4 uid="uid://cb5qp5c88hxxs"]
 
 [ext_resource type="PackedScene" uid="uid://5kfyvxsdpsk2" path="res://Content/Scenes/Other/LevelLayout.tscn" id="1_k46p1"]
 [ext_resource type="Texture2D" uid="uid://cl251rqg2xbw0" path="res://Content/Sprites/Levels/Level6/Sky.png" id="2_suw6p"]
@@ -19,6 +19,7 @@
 [ext_resource type="Script" uid="uid://bgake27ctmc1q" path="res://Content/Scripts/Levels/Foreground.cs" id="12_ib3hj"]
 [ext_resource type="Script" uid="uid://dxtdgsaqwx44q" path="res://Content/Scripts/Levels/Level6SneakyAssArea.cs" id="13_8nggt"]
 [ext_resource type="Script" uid="uid://cljy5m8cpxjru" path="res://Content/Scripts/Levels/Level6FlyingCarSpawner.cs" id="13_528ge"]
+[ext_resource type="Script" uid="uid://cctuvf1t6dawi" path="res://Content/Scripts/Other/SeamlessBoundaryController.cs" id="13_nwujo"]
 [ext_resource type="Texture2D" uid="uid://c1a8v62iy3ybh" path="res://Content/Sprites/Levels/WhyIsItStillRainingTileset.png" id="13_wpl2e"]
 [ext_resource type="PackedScene" uid="uid://d3u7pfig07yrs" path="res://Content/Scenes/Other/CrutchedArea2D.tscn" id="15_uy6ib"]
 [ext_resource type="Script" uid="uid://c2ijxex52fi2x" path="res://Content/Scripts/Other/EnhancedArea2D.cs" id="16_j68af"]
@@ -524,11 +525,6 @@ size = Vector2(128, 128)
 
 [node name="Main" instance=ExtResource("1_k46p1")]
 
-[node name="LevelMusicPlayer" parent="." index="0"]
-RestartMusicWhenItFinished = true
-SaveTimeCodeWhenLevelResets = true
-KeepPlayingWhenLevelResets = true
-
 [node name="AnimationPlayer" parent="LevelMusicPlayer" index="0"]
 libraries = {
 &"": SubResource("AnimationLibrary_jcmm3")
@@ -709,8 +705,14 @@ texture = ExtResource("11_b4t5x")
 
 [node name="Player" parent="Level" index="2" instance=ExtResource("9_aum6r")]
 position = Vector2(1920, 800)
+_initialCameraLimits = Rect2(0, 0, 3840, 2560)
 
-[node name="TileMap" type="Node2D" parent="Level" index="3"]
+[node name="PlayerHolder" type="Node" parent="Level" index="3" node_paths=PackedStringArray("NodeToKeepInBorders")]
+script = ExtResource("13_nwujo")
+NodeToKeepInBorders = NodePath("../Player")
+GlobalBorders2D = Rect2(640, 128, 2560, 1280)
+
+[node name="TileMap" type="Node2D" parent="Level" index="4"]
 
 [node name="TileMap" type="TileMapLayer" parent="Level/TileMap" index="0"]
 use_parent_material = true
@@ -756,7 +758,7 @@ tile_map_data = PackedByteArray("AAAAAP//AgAEAAAAAAABAP//AgAFAAEAAAACAP//AgAEAAA
 tile_set = SubResource("TileSet_6qmag")
 collision_enabled = false
 
-[node name="BuildingForeground" type="Node2D" parent="Level" index="4"]
+[node name="BuildingForeground" type="Node2D" parent="Level" index="5"]
 modulate = Color(1, 1, 1, 0.784314)
 script = ExtResource("12_ib3hj")
 
@@ -780,7 +782,7 @@ shape = SubResource("RectangleShape2D_juenn")
 position = Vector2(3492, 1312)
 shape = SubResource("RectangleShape2D_1m1eg")
 
-[node name="DeathZone" type="Area2D" parent="Level" index="5"]
+[node name="DeathZone" type="Area2D" parent="Level" index="6"]
 position = Vector2(1920, 2560)
 collision_layer = 16
 collision_mask = 0
@@ -798,7 +800,7 @@ scale = Vector2(4, 4)
 texture = ExtResource("18_3oav4")
 stretch_mode = 1
 
-[node name="BottomTeleportBorder" type="Area2D" parent="Level" index="6"]
+[node name="BottomTeleportBorder" type="Area2D" parent="Level" index="7"]
 position = Vector2(1920, 2752)
 collision_layer = 0
 collision_mask = 8
@@ -808,7 +810,7 @@ script = ExtResource("16_j68af")
 position = Vector2(0, 32)
 shape = SubResource("RectangleShape2D_4tgqd")
 
-[node name="FlyingCarSpawner" type="Node2D" parent="Level" index="7"]
+[node name="FlyingCarSpawner" type="Node2D" parent="Level" index="8"]
 script = ExtResource("13_528ge")
 
 [node name="Level6FlyingCar" parent="Level/FlyingCarSpawner" index="0" instance=ExtResource("9_amo5x")]
@@ -878,7 +880,7 @@ position = Vector2(602.367, 0)
 position = Vector2(602.367, 0)
 progress = 602.368
 
-[node name="CanvasLayer" type="CanvasLayer" parent="Level" index="8"]
+[node name="CanvasLayer" type="CanvasLayer" parent="Level" index="9"]
 
 [node name="ColorRect" type="ColorRect" parent="Level/CanvasLayer" index="0"]
 offset_right = 1280.0
@@ -892,7 +894,7 @@ offset_right = 1280.0
 offset_bottom = 720.0
 mouse_filter = 2
 
-[node name="PlayMusicTrigger" parent="Level" index="9" instance=ExtResource("15_uy6ib")]
+[node name="PlayMusicTrigger" parent="Level" index="10" instance=ExtResource("15_uy6ib")]
 position = Vector2(1920, 800)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/PlayMusicTrigger" index="0"]
@@ -903,8 +905,8 @@ shape = SubResource("RectangleShape2D_ftna0")
 [connection signal="body_exited" from="Level/BuildingForeground/TileMap/ForegroundArea" to="Level/BuildingForeground" method="Show" unbinds=1]
 [connection signal="body_exited" from="Level/BuildingForeground/TileMap/ForegroundArea" to="Level/BuildingForeground/TileMap/ForegroundArea" method="Exited" unbinds=1]
 [connection signal="AreaEnteredNoArgs" from="Level/BottomTeleportBorder" to="." method="TeleportPlayerTo" binds= [Vector2(3668, 2438)]]
-[connection signal="ButtonPressed" from="Level/PlayMusicTrigger" to="." method="SetCrossesSpawnMultiplier" flags=6 binds= [0.6]]
 [connection signal="ButtonPressed" from="Level/PlayMusicTrigger" to="." method="SetProgressPaused" flags=6 binds= [false]]
+[connection signal="ButtonPressed" from="Level/PlayMusicTrigger" to="." method="SetCrossesSpawnMultiplier" flags=6 binds= [0.6]]
 [connection signal="ButtonPressed" from="Level/PlayMusicTrigger" to="LevelMusicPlayer" method="PlayMusic" flags=6 binds= ["Clair De Phare", 10.19, 0.0]]
 
 [editable path="Level/FlyingCarSpawner/Level6FlyingCar"]

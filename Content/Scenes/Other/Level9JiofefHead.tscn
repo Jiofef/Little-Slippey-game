@@ -3116,7 +3116,7 @@ debug_color = Color(0, 0.6, 0.701961, 0.419608)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_4era0")
+&"": SubResource("AnimationLibrary_4era0")
 }
 autoplay = "Hibernation"
 

@@ -294,6 +294,9 @@ libraries = {
 &"": SubResource("AnimationLibrary_jcmm3")
 }
 
+[node name="Level" parent="." index="1"]
+BeforeResetCrossesSpawnStartTimer = 0.0
+
 [node name="Background" type="ParallaxBackground" parent="Level" index="0"]
 
 [node name="Background" type="ParallaxLayer" parent="Level/Background" index="0"]
@@ -528,6 +531,7 @@ tile_set = SubResource("TileSet_hthw8")
 [node name="Player" parent="Level" index="4" instance=ExtResource("15_f0cdm")]
 modulate = Color(0.956863, 0.956863, 0.956863, 1)
 position = Vector2(1312, 672)
+_initialCameraLimits = Rect2(0, 0, 2560, 1280)
 
 [node name="TileMap" type="Node2D" parent="Level" index="5"]
 modulate = Color(0.952941, 0.952941, 0.952941, 1)

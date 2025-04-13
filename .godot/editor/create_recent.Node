@@ -1,8 +1,15 @@
-AnimationPlayer
+Node
+ColorRect
+CollisionShape2D
 Node2D
+Area2D
+Parallax2D
+ParallaxLayer
+ParallaxBackground
+Timer
+AnimationPlayer
 CanvasLayer
 AudioStreamPlayer
 AnimatedSprite2D
 Sprite2D
-Timer
 CPUParticles2D

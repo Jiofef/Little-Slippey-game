@@ -233,17 +233,21 @@ public partial class G : Node
         return player;
     }
 
-    public static async Task ToScore(float scoreTarget, int checkDelay = 100)
+	/// <summary>
+	/// Using example: await G.ToScore(30f, () => _isDisposed);
+	/// <para>you can update bool _isDisposed with _EnterTree() and _ExitTree()</para>
+	/// </summary>
+    public static async Task ToScore(float scoreTarget, Func<bool> isNodeDisposed, int checkDelay = 100)
     {
-        while (Scores < scoreTarget)
+        while (Scores < scoreTarget && !isNodeDisposed())
         {
             await Task.Delay(checkDelay);
         }
     }
 
-    public static async Task WaitFor(float timeSec)
+    public static async Task WaitFor(float timeSec, bool ignorePause = true)
     {
-        var timer = SceneTree.CreateTimer(timeSec);
+        var timer = SceneTree.CreateTimer(timeSec, ignorePause);
 
         await timer.ToSignal(timer, "timeout");
     }

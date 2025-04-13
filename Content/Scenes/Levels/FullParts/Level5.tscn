@@ -116,6 +116,9 @@ size = Vector2(128, 128)
 
 [node name="Main" instance=ExtResource("1_e0lt1")]
 
+[node name="Level" parent="." index="1"]
+BeforeResetCrossesSpawnStartTimer = 0.0
+
 [node name="Background" type="ParallaxBackground" parent="Level" index="0"]
 
 [node name="Sky" type="ParallaxLayer" parent="Level/Background" index="0"]
@@ -144,6 +147,7 @@ collision_enabled = false
 
 [node name="Player" parent="Level" index="2" instance=ExtResource("5_imudf")]
 position = Vector2(160, 160)
+_initialCameraLimits = Rect2(0, 0, 2560, 640)
 
 [node name="TileMap" type="Node2D" parent="Level" index="3"]
 scale = Vector2(4, 4)

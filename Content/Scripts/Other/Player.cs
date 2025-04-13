@@ -11,6 +11,7 @@ public partial class Player : CharacterBody2D
 
     //InEditor options
     [ExportGroup("Main settings")]
+	[Export] private Rect2 _initialCameraLimits = new Rect2(0, 0, 1280, 640); 	// This export affect global state on start
     public const float DEFAULT_SPEED = 430, DEFAULT_GRAVITY = 9.8f * 2f, DEFAULT_JUMP_FORCE = 620;
     [Export] public float Speed = DEFAULT_SPEED, Gravity = DEFAULT_GRAVITY, JumpForce = DEFAULT_JUMP_FORCE;
 
@@ -266,6 +267,9 @@ public partial class Player : CharacterBody2D
 
         Camera = GetNode<Camera>("Camera2D");
         GUI = GetGui();
+
+		if (_initialCameraLimits != new Rect2(0, 0, 1280, 640))
+			SetCameraLimits(_initialCameraLimits, true);
 
         UpdateSkin();
 

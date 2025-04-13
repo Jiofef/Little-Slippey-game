@@ -640,7 +640,7 @@ tile_set = SubResource("TileSet_gtmsj")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="OpenableTileMaps/DisposableButton/TileMap"]
 libraries = {
-"": SubResource("AnimationLibrary_21yo4")
+&"": SubResource("AnimationLibrary_21yo4")
 }
 
 [node name="DisposableButton2" parent="OpenableTileMaps" instance=ExtResource("2_og6f4")]
@@ -656,7 +656,7 @@ tile_set = SubResource("TileSet_kg6r8")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="OpenableTileMaps/DisposableButton2/TileMap"]
 libraries = {
-"": SubResource("AnimationLibrary_lksg7")
+&"": SubResource("AnimationLibrary_lksg7")
 }
 
 [node name="DisposableButton3" parent="OpenableTileMaps" instance=ExtResource("2_og6f4")]
@@ -672,7 +672,7 @@ tile_set = SubResource("TileSet_gtmsj")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="OpenableTileMaps/DisposableButton3/TileMap"]
 libraries = {
-"": SubResource("AnimationLibrary_hhu4q")
+&"": SubResource("AnimationLibrary_hhu4q")
 }
 
 [node name="DisposableButton4" parent="OpenableTileMaps" instance=ExtResource("2_og6f4")]
@@ -688,7 +688,7 @@ tile_set = SubResource("TileSet_gtmsj")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="OpenableTileMaps/DisposableButton4/TileMap"]
 libraries = {
-"": SubResource("AnimationLibrary_3j25n")
+&"": SubResource("AnimationLibrary_3j25n")
 }
 
 [node name="DisposableButton5" parent="OpenableTileMaps" instance=ExtResource("2_og6f4")]
@@ -704,7 +704,7 @@ tile_set = SubResource("TileSet_gtmsj")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="OpenableTileMaps/DisposableButton5/TileMap"]
 libraries = {
-"": SubResource("AnimationLibrary_d36to")
+&"": SubResource("AnimationLibrary_d36to")
 }
 
 [node name="Acid" type="Node2D" parent="."]
@@ -744,6 +744,7 @@ color_ramp = SubResource("Gradient_ryyd1")
 
 [node name="Bloom" type="Sprite2D" parent="Acid"]
 modulate = Color(0.183333, 1, 0, 0.498039)
+z_index = 1
 material = SubResource("CanvasItemMaterial_lck7r")
 position = Vector2(457.75, 142)
 texture = ExtResource("7_q4orm")

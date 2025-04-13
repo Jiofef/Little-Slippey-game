@@ -614,7 +614,7 @@ bus = &"Interface"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Visual/LevelPresenter/WhiteNoise"]
 libraries = {
-"": SubResource("AnimationLibrary_g0wyp")
+&"": SubResource("AnimationLibrary_g0wyp")
 }
 
 [node name="HighestTime" type="Label" parent="Visual"]
@@ -643,7 +643,7 @@ vertical_alignment = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Visual/HardBestResult"]
 libraries = {
-"": SubResource("AnimationLibrary_ojs51")
+&"": SubResource("AnimationLibrary_ojs51")
 }
 autoplay = "TextShake"
 
@@ -679,7 +679,7 @@ color = Color(0.0666667, 0.678431, 0.756863, 1)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Visual/InsaneBestResult"]
 libraries = {
-"": SubResource("AnimationLibrary_sje61")
+&"": SubResource("AnimationLibrary_sje61")
 }
 autoplay = "TextShake"
 
@@ -716,7 +716,7 @@ color_ramp = SubResource("Gradient_kr0se")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Visual/InfernoBestResult"]
 libraries = {
-"": SubResource("AnimationLibrary_jb4jw")
+&"": SubResource("AnimationLibrary_jb4jw")
 }
 autoplay = "TextShake"
 
@@ -728,7 +728,7 @@ offset_right = 1117.0
 offset_bottom = 224.0
 scale = Vector2(1.5, 1.5)
 theme_override_colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
-text = "Dificulties:"
+text = "Difficulties:"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -1181,7 +1181,7 @@ color = Color(1, 1, 1, 0.784314)
 [node name="AnimationPlayer" type="AnimationPlayer" parent="LevelsList/LevelsIconsContainer/SubContainer/Level5Button/WindowView"]
 root_node = NodePath("../..")
 libraries = {
-"": SubResource("AnimationLibrary_80l7y")
+&"": SubResource("AnimationLibrary_80l7y")
 }
 autoplay = "LightingAndBlackoutAnimation1"
 
@@ -1343,7 +1343,7 @@ focus_neighbor_left = NodePath("../Yes")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="LevelsList/LevelsIconsContainer/SubContainer"]
 libraries = {
-"": SubResource("AnimationLibrary_lgy1q")
+&"": SubResource("AnimationLibrary_lgy1q")
 }
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -1356,7 +1356,7 @@ limit_bottom = 720
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Camera2D"]
 root_node = NodePath("../../..")
 libraries = {
-"": SubResource("AnimationLibrary_y6ucn")
+&"": SubResource("AnimationLibrary_y6ucn")
 }
 autoplay = "Appearance"
 

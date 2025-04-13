@@ -224,6 +224,7 @@ color_ramp = SubResource("Gradient_dm10q")
 
 [node name="Bloom" type="Sprite2D" parent="Lava"]
 modulate = Color(1, 0.626, 0.32, 0.501961)
+z_index = 1
 material = SubResource("CanvasItemMaterial_afkyw")
 position = Vector2(223, 170)
 scale = Vector2(2, 1)

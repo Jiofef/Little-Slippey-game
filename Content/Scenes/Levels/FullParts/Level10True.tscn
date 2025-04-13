@@ -937,6 +937,7 @@ tile_set = SubResource("TileSet_uat3s")
 [node name="Player" parent="Level" instance=ExtResource("10_qwhv0")]
 z_index = 2
 position = Vector2(1280, 1248)
+_initialCameraLimits = Rect2(0, 0, 2560, 1280)
 
 [node name="TileMap" type="Node2D" parent="Level"]
 modulate = Color(0.952941, 0.952941, 0.952941, 1)

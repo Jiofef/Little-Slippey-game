@@ -12,6 +12,8 @@ public partial class Level7HopelessnessLayer : CanvasLayer
 
 	private float _tumorSpawnTimer = 10;
 
+	private bool _isDisposed = false;
+
 
     AnimatedSprite2D _0;
     public override void _Ready()
@@ -25,9 +27,15 @@ public partial class Level7HopelessnessLayer : CanvasLayer
     {
         GetNode<AudioStreamPlayer>("FilmCracking").Playing = true;
     }
+
+	public override void _EnterTree()
+	{
+		_isDisposed = false;
+	}
     public override void _ExitTree()
     {
         AudioServer.SetBusEffectEnabled(0, 0, false);
+		_isDisposed = true;
     }
 
 
@@ -103,13 +111,15 @@ public partial class Level7HopelessnessLayer : CanvasLayer
 
             vintageFilm.Play();
             _ = OtherExtension.GodotExtensions.ShowNodeSlowly(vintageFilm, 1f);
-            await G.WaitFor(4f);
+            await G.WaitFor(4f, false);
+			if (_isDisposed) return;
             var tween = CreateTween();
             tween.TweenProperty(vintageFilm, "position", new Vector2(0, -720), 0.2f);
 
             G.PlayOneshotSound("Levels/Level7FilmJamming.mp3", this, "Master", 15);
 
             await ToSignal(tween, "finished");
+			if (_isDisposed) return;
 
             //* Need to do something with scores label
 

@@ -394,10 +394,7 @@ public partial class Level10ScientistScript : Node2D
         _megaphonePhraseTimer = 0;
 
         // Removing all the crosses on screen
-        foreach (UnusualCrossNode cross in GetTree().GetNodesInGroup("Crosses"))
-            cross.OnFinished();
-        foreach (UnusualCrossNode cross in GetTree().GetNodesInGroup("UnusualCrosses"))
-            cross.OnFinished();
+        Crosses.RemoveAllSpawnedCrosses();
 
         GetNode<AnimationPlayer>("../CanvasLayer/ColorRect/AnimationPlayer").Play("Blumxd");
         GetNode<AudioStreamPlayer>("../CanvasLayer/ColorRect/AudioStreamPlayer").Play();

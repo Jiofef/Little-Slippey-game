@@ -212,7 +212,7 @@ region_rect = Rect2(16, 48, 16, 16)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Capsule1/Object"]
 libraries = {
-"": SubResource("AnimationLibrary_8dhd6")
+&"": SubResource("AnimationLibrary_8dhd6")
 }
 autoplay = "Floating"
 
@@ -267,7 +267,7 @@ region_rect = Rect2(0, 48, 16, 16)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Capsule2/Object"]
 libraries = {
-"": SubResource("AnimationLibrary_8dhd6")
+&"": SubResource("AnimationLibrary_8dhd6")
 }
 autoplay = "Floating"
 
@@ -363,7 +363,7 @@ region_rect = Rect2(32, 48, 24, 16)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Capsule4/Object"]
 libraries = {
-"": SubResource("AnimationLibrary_8dhd6")
+&"": SubResource("AnimationLibrary_8dhd6")
 }
 autoplay = "Floating"
 

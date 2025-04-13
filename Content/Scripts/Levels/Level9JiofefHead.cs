@@ -39,8 +39,11 @@ public partial class Level9JiofefHead : Node2D
 
 	public void OnPlayerResurrected()
 	{
-		_animationPlayer.Stop();
-		_animationPlayer.Play("Idle");
+		if (_animationPlayer.CurrentAnimation != "Hibernation")
+		{
+			_animationPlayer.Stop();
+			_animationPlayer.Play("Idle");
+		}
 	}
 
 	public override void _PhysicsProcess(double delta)

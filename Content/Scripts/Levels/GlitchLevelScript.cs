@@ -22,9 +22,13 @@ public partial class GlitchLevelScript : BaseLevelScript
     private TileMapLayer _glitchTileMap, _unHologramedTiles;
     private ColorRect _dark;
 
+
     public Dictionary<string, Node2D> LevelParts = new Dictionary<string, Node2D>();
     private float _glitchBlockDeSpawnSpeed = 1f;
-    private float _averageMaxGlitchBlocks = 13;
+    private float _maxGlitchBlocks = 13;
+
+	private float _scoresUpdateChance = 10f;
+	private bool _enableGlitchedTilesSpawning = false;
 
     // For async methods
     private bool _isDisposed = false;
@@ -73,20 +77,21 @@ public partial class GlitchLevelScript : BaseLevelScript
         _main = GetNode<MainScript>("..");
 
         _glitchTileMap = GetNode<TileMapLayer>("GlitchTileMap");
-        _unHologramedTiles = GetNode<TileMapLayer>("LevelParts/Default/UnHologramedTiles");
+        _unHologramedTiles = GetNode<TileMapLayer>("UnHologramedTiles");
 
         _dark = GetNode<ColorRect>("CanvasLayer/Dark");
 
         _glitchShader.Shader = ((ShaderMaterial)GetNode<ColorRect>("../AdditionalGUILayer/GlitchRect").Material).Shader;
 
         // "Caching" the level parts
-        foreach (var levelPart in GetNode("LevelParts").GetChildren())
-            LevelParts.Add(levelPart.Name, GetPart(levelPart.Name));
+        foreach (var levelPart in GetNode("LevelParts").GetChildren().OfType<Node2D>())
+            LevelParts.Add(levelPart.Name, levelPart);
 
         GetNode<AudioStreamPlayer>("CanvasLayer/Glare/ShuttingDownTheTestChamber").Play();
 
         // For async methods
         TreeExited += () => _isDisposed = true;
+		TreeEntered += () => _isDisposed = false;
 
         //Removing transitive values from level 10
         G.TransitiveVariant[0] = "";
@@ -137,28 +142,30 @@ public partial class GlitchLevelScript : BaseLevelScript
         ChangeScene(Scenes.Level3);
         var lighteringTween =_dark.CreateTween();
         lighteringTween.TweenProperty(_dark, "modulate", new Color(1, 1, 1, 0.235f), 4f);
-        await ToSignal(darkeningTween, "finished");
+        await ToSignal(lighteringTween, "finished");
         
-
-        await G.ToScore(75);
-
+        await ToScore(75, () => _isDisposed);
+		Scores = 0;
         ChangeScene(Scenes.Level4);
 
-        await G.ToScore(75);
-
+        await ToScore(75, () => _isDisposed);
+		Scores = 0;
         ChangeScene(Scenes.Level5);
 
-        await G.ToScore(75);
-
+        await ToScore(75, () => _isDisposed);
+		Scores = 0;
         ChangeScene(Scenes.Level6);
 
-        await G.ToScore(75);
-
+        await ToScore(75, () => _isDisposed);
+		Scores = 0;
         ChangeScene(Scenes.Level7);
     }
 
 
-
+	public override void _EnterTree()
+	{
+		base._EnterTree();
+	}
     public async void GlitchTheScreen()
     {
         float lastShakeRate = _glitchShader.ShakeRate;
@@ -174,7 +181,7 @@ public partial class GlitchLevelScript : BaseLevelScript
     }
 
     #region TileMaps manipulating
-        public void SetChildrenTileMapsEnabled(Node parent, bool value)
+    public void SetChildrenTileMapsEnabled(Node parent, bool value)
     {
         foreach (var child in parent.GetChildren().OfType<TileMapLayer>())
         {
@@ -182,10 +189,17 @@ public partial class GlitchLevelScript : BaseLevelScript
         }
     }
 
+	public void SetChildrenTileMapsCollision(Node parent, bool value)
+	{
+		foreach (var child in parent.GetChildren().OfType<TileMapLayer>())
+        {
+            child.CollisionEnabled = value;
+        }
+	}
     public void SpawnRandomGlitchBlock(Rect2 spawnRect)
     {
         Rect2 correctedSpawnRect = new Rect2(
-            spawnRect.Position / _glitchTileMap.GlobalScale / _glitchTileMap.TileSet.TileSize + _glitchTileMap.GlobalScale * _glitchTileMap.TileSet.TileSize,
+            spawnRect.Position / _glitchTileMap.GlobalScale / _glitchTileMap.TileSet.TileSize,
             spawnRect.Size / _glitchTileMap.GlobalScale / _glitchTileMap.TileSet.TileSize);
 
         Vector2I spawnPos = RandomVectorIn(correctedSpawnRect);
@@ -227,6 +241,20 @@ public partial class GlitchLevelScript : BaseLevelScript
         _spawnedGlitchBlocks.Clear();
     }
 
+	public void OnGlitchBlockTimerFinished()
+	{
+		float  spawnChance = _spawnedGlitchBlocks.Count == 0 ? 1 : 1f -_spawnedGlitchBlocks.Count / _maxGlitchBlocks;
+		if (TryRand(spawnChance, 1f))
+			SpawnRandomGlitchBlock(CameraLimits);
+
+		if (TryRand(50))
+			DespawnRandomGlitchBlock();
+	}
+
+	public void SetGlitchBlockSpawning(bool value)
+	{
+		_enableGlitchedTilesSpawning = value;
+	}
     public void CopyToUnHologramedTileMap(params TileMapLayer[] tileMaps)
     {
         _unHologramedTiles.Clear();
@@ -270,7 +298,7 @@ public partial class GlitchLevelScript : BaseLevelScript
                     const int CYCLE_DELAY_MS = 3000;
 
                     const int DEFAULT_CHANCE_TO_SPAWN = 75;
-                    float chanceToDespawnPerSpawnedBlock = (100 - DEFAULT_CHANCE_TO_SPAWN) / _averageMaxGlitchBlocks;
+                    float chanceToDespawnPerSpawnedBlock = (100 - DEFAULT_CHANCE_TO_SPAWN) / _maxGlitchBlocks;
                     float chanceToSpawn = DEFAULT_CHANCE_TO_SPAWN - chanceToDespawnPerSpawnedBlock * _spawnedGlitchBlocks.Count;
 
                     if (TryRand(chanceToSpawn))
@@ -334,12 +362,19 @@ public partial class GlitchLevelScript : BaseLevelScript
 
     public void GlareEffect()
     {
-        var colorRect = GetNode<ColorRect>("Level/CanvasLayer/Glare");
+        var colorRect = GetNode<ColorRect>("CanvasLayer/Glare");
         colorRect.GetNode<AnimationPlayer>("AnimationPlayer").Play();
 
         colorRect.GetNode<AudioStreamPlayer>("LampBulp").Play();
     }
 
+	private List<string>  _availableScoresTexts = 
+	[""];
+	public void TryRandomizeScoresLabelText()
+	{
+		if (TryRand(_scoresUpdateChance))
+			_player.GUI.SetScoresText(GetRandomGlitchedShit());
+	}
     #endregion
 // 
     public enum Scenes {Default = 0, Level3 = 1, Level4 = 2, Level5 = 3, Level6 = 4, Level7 = 5, Revelation = 6}
@@ -361,12 +396,16 @@ public partial class GlitchLevelScript : BaseLevelScript
                 break;
 
             case Scenes.Level3:
+				GetNode<Timer>("GlitchActionsTimer").Start();
+				SetGlitchBlockSpawning(true);
+				_maxGlitchBlocks = 5;
                 _unHologramedTiles.CollisionEnabled = false;
+				_unHologramedTiles.Visible = false;
                 _player.GlobalPosition = new Vector2(1280, 640);
 
                 SwitchSceneNode(LevelParts["Default"], LevelParts["Level3"]);
 
-                await WaitFor(7f);
+                await WaitFor(7f, false);
                 // Enabling the lights
                 GetNode<AnimationPlayer>("LevelParts/Level3/Background/AppearingAnimationPlayer").Play("BackgroundAppearing");
 
@@ -374,51 +413,104 @@ public partial class GlitchLevelScript : BaseLevelScript
                 Scores = 0;
                 IsProgressPaused = false;
                 IsCrossesEnabled = true;
+				CrossesProgressCoeff = 2f;
 
-                G.MusicPlayer.PlayMusic("Born To Pyramid Demo");
+                MusicPlayer.PlayMusic("Born To Pyramid Demo");
 
                 break;
 
             case Scenes.Level4:
-                SetChildrenTileMapsEnabled(LevelParts["Level3"], false);
-                CopyToUnHologramedTileMap(GetNode<TileMapLayer>("LevelParts/Level3/TileMap"));
-                await Task.WhenAll(MoveNodeTo(G.Player, new Vector2(1280, 640)), HideNodeSlowly(LevelParts["Level3"]));
+				_scoresUpdateChance = 20f;
+				_maxGlitchBlocks = 25;
+				DespawnAllTheRandomGlitchBlocks();
+                CopyToUnHologramedTileMap(LevelParts["Level3"].GetNode<TileMapLayer>("TileMap"));
+				_player.AddImmortality(5f);
+
+				SetChildrenTileMapsCollision(LevelParts["Level3"], false);
+                await Task.WhenAll(MoveNodeTo(_player, new Vector2(1280, 640)), HideNodeSlowly(LevelParts["Level3"]));
+
+				Crosses.RemoveAllSpawnedCrosses();
+				Crosses.UpdateCrossesWeight();
+				MusicPlayer.NextStage();
+				SwitchSceneNode(LevelParts["Level3"], LevelParts["Level4"]);
+				LevelParts["Level4"].ProcessMode = ProcessModeEnum.Inherit;
+				SetChildrenTileMapsEnabled(LevelParts["Level4"].GetNode("TileMap"), true);
+				LevelParts["Level4"].GetNode<ParallaxBackground>("Background").Show();
                 GlareEffect();
 
-                Scores = 0;
+
                 break;
 
             case Scenes.Level5:
-                SetChildrenTileMapsEnabled(LevelParts["Level4"], false);
-                CopyToUnHologramedTileMap(GetNode<TileMapLayer>("LevelParts/Level4/TileMap"));
-                await Task.WhenAll(MoveNodeTo(G.Player, new Vector2(1280, 1248)), HideNodeSlowly(LevelParts["Level4"]));
+				_scoresUpdateChance = 30f;
+				_maxGlitchBlocks = 20;
+				DespawnAllTheRandomGlitchBlocks();
+                CopyToUnHologramedTileMap(LevelParts["Level4"].GetNode<TileMapLayer>("TileMap/Layer0"));
+				_player.AddImmortality(5f);
+
+				SetChildrenTileMapsCollision(LevelParts["Level4"], false);
+				SetChildrenTileMapsCollision(LevelParts["Level4"].GetNode("TileMap"), false);
+                await Task.WhenAll(MoveNodeTo(_player, new Vector2(1280, 1248)), HideNodeSlowly(LevelParts["Level4"]));
+
+				Crosses.RemoveAllSpawnedCrosses();
+				Crosses.UpdateCrossesWeight();
+				MusicPlayer.NextStage();
+				SwitchSceneNode(LevelParts["Level4"], LevelParts["Level5"]);
+				LevelParts["Level5"].ProcessMode = ProcessModeEnum.Inherit;
+				LevelParts["Level5"].GetNode<ParallaxBackground>("Background").Show();
                 GlareEffect();
 
                 Scores = 0;
                 break;
 
             case Scenes.Level6:
-                SetChildrenTileMapsEnabled(LevelParts["Level5"], false);
-                CopyToUnHologramedTileMap(GetNode<TileMapLayer>("LevelParts/Level5/Layer1"));
-                await Task.WhenAll(MoveNodeTo(G.Player, new Vector2(1216, 320)), HideNodeSlowly(LevelParts["Level5"]));
+				_scoresUpdateChance = 60f;
+				_maxGlitchBlocks = 40;
+				DespawnAllTheRandomGlitchBlocks();
+                CopyToUnHologramedTileMap(LevelParts["Level5"].GetNode<TileMapLayer>("Layer1"));
+				_player.AddImmortality(5f);
+
+				SetChildrenTileMapsCollision(LevelParts["Level5"], false);
+                await Task.WhenAll(MoveNodeTo(_player, new Vector2(1216, 320)), HideNodeSlowly(LevelParts["Level5"]));
+				
+				Crosses.RemoveAllSpawnedCrosses();
+				Crosses.UpdateCrossesWeight();
+				MusicPlayer.NextStage();
+				SwitchSceneNode(LevelParts["Level5"], LevelParts["Level6"]);
+				LevelParts["Level6"].ProcessMode = ProcessModeEnum.Inherit;
                 GlareEffect();
 
                 Scores = 0;
                 break;
 
             case Scenes.Level7:
-                SetChildrenTileMapsEnabled(LevelParts["Level6"], false);
-                CopyToUnHologramedTileMap(GetNode<TileMapLayer>("LevelParts/Level6/TileMap"), GetNode<TileMapLayer>("LevelParts/Level6/ToEnable"));
-                await Task.WhenAll(MoveNodeTo(G.Player, new Vector2(640, 320)), HideNodeSlowly(LevelParts["Level6"]));
+				_scoresUpdateChance = 20f;
+				_maxGlitchBlocks = 10;
+				DespawnAllTheRandomGlitchBlocks();
+                CopyToUnHologramedTileMap(LevelParts["Level6"].GetNode<TileMapLayer>("TileMap"), LevelParts["Level6"].GetNode<TileMapLayer>("ToEnable"));
+				_player.AddImmortality(5f);
+
+				SetChildrenTileMapsCollision(LevelParts["Level6"], false);
+                await Task.WhenAll(MoveNodeTo(_player, new Vector2(640, 320)), HideNodeSlowly(LevelParts["Level6"]));
+				
+				Crosses.RemoveAllSpawnedCrosses();
+				Crosses.UpdateCrossesWeight();
+				MusicPlayer.StopMusic(5f);
+				SwitchSceneNode(LevelParts["Level6"], LevelParts["Level7"]);
+				LevelParts["Level7"].ProcessMode = ProcessModeEnum.Inherit;
+				LevelParts["Level7"].GetNode<ParallaxBackground>("Background").Show();
                 GlareEffect();
 
                 Scores = 0;
                 break;
 
             case Scenes.Revelation:
+				_scoresUpdateChance = 80f;
+				SetGlitchBlockSpawning(false);
                 // Removing the floor
                 Rect2I rectToRemove = (Rect2I)PosEndRect(new Vector2I(0, 10), new Vector2(19, 12));
                 SetRectOnTileMap(_glitchTileMap, rectToRemove);
+				LevelParts["Revelation"].ProcessMode = ProcessModeEnum.Inherit;
 
                 _player.Gravity = Player.DEFAULT_GRAVITY / 2; 
                 break;

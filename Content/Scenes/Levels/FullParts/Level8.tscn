@@ -663,6 +663,9 @@ libraries = {
 &"": SubResource("AnimationLibrary_jcmm3")
 }
 
+[node name="Level" parent="." index="1"]
+BeforeResetCrossesSpawnStartTimer = 0.0
+
 [node name="Background" type="ParallaxBackground" parent="Level" index="0"]
 
 [node name="BackLayer" type="ParallaxLayer" parent="Level/Background" index="0"]
@@ -693,6 +696,7 @@ script = ExtResource("4_a482v")
 
 [node name="Player" parent="Level" index="2" instance=ExtResource("6_f43mb")]
 position = Vector2(832, 352)
+_initialCameraLimits = Rect2(0, 0, 1e+09, 640)
 
 [node name="TileMap" type="TileMapLayer" parent="Level" index="3"]
 use_parent_material = true

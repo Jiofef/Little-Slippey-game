@@ -285,7 +285,7 @@ public partial class Crosses : Node
     // Local values
     public static float[] CrossesWeight;
 
-    public static int LastAviableCrossNumber = 0;
+    public static int LastAvailableCrossNumber = 0;
     public static float LastCheckedScoresValue = 0;
 
     public static bool AreAllCrossWeightsSet;
@@ -295,37 +295,37 @@ public partial class Crosses : Node
         float weightMultiplier = Scores / 30 * CrossesProgressCoeff;
 
         CrossesWeight = new float[_defaultCrossesWeight.Length];
-        LastAviableCrossNumber = 0;
+        LastAvailableCrossNumber = 0;
 
         AreAllCrossWeightsSet = false;
 
         // Distribute the weight across the crosses
-        while (weightMultiplier > 0 && LastAviableCrossNumber < CrossesWeight.Length)
+        while (weightMultiplier > 0 && LastAvailableCrossNumber < CrossesWeight.Length)
         {
             // Calculate the remaining weight that can be added to the current cross
-            float remainingWeight = _defaultCrossesWeight[LastAviableCrossNumber] - CrossesWeight[LastAviableCrossNumber];
+            float remainingWeight = _defaultCrossesWeight[LastAvailableCrossNumber] - CrossesWeight[LastAvailableCrossNumber];
 
             // Determine how much weight to add (either the remaining weight or the full multiplier)
-            float weightToAdd = Math.Min(weightMultiplier * _defaultCrossesWeight[LastAviableCrossNumber], remainingWeight);
+            float weightToAdd = Math.Min(weightMultiplier * _defaultCrossesWeight[LastAvailableCrossNumber], remainingWeight);
 
             // Add the calculated weight to the current cross
-            CrossesWeight[LastAviableCrossNumber] += weightToAdd;
+            CrossesWeight[LastAvailableCrossNumber] += weightToAdd;
 
             // Reduce the multiplier by the proportion of weight added
-            weightMultiplier -= weightToAdd / _defaultCrossesWeight[LastAviableCrossNumber];
+            weightMultiplier -= weightToAdd / _defaultCrossesWeight[LastAvailableCrossNumber];
 
             // If the current cross has reached its maximum weight
-            if (CrossesWeight[LastAviableCrossNumber] >= _defaultCrossesWeight[LastAviableCrossNumber])
+            if (CrossesWeight[LastAvailableCrossNumber] >= _defaultCrossesWeight[LastAvailableCrossNumber])
             {
-                LastAviableCrossNumber++;
+                LastAvailableCrossNumber++;
             }
         }
 
         // If all crosses have been processed
-        if (LastAviableCrossNumber >= CrossesWeight.Length)
+        if (LastAvailableCrossNumber >= CrossesWeight.Length)
         {
             AreAllCrossWeightsSet = true;
-            LastAviableCrossNumber = CrossesWeight.Length - 1;
+            LastAvailableCrossNumber = CrossesWeight.Length - 1;
         }
 
         OtherTools.PrintAnArray(CrossesWeight);
@@ -340,26 +340,34 @@ public partial class Crosses : Node
         _currentCrossWeightTimer += Scores - _lastWeightUpdateScore;
         _lastWeightUpdateScore = Scores;
 
-        float weightCapTime = CurrentCrossesPack[LastAviableCrossNumber].MaxWeightGainTime / CrossesProgressCoeff;
+        float weightCapTime = CurrentCrossesPack[LastAvailableCrossNumber].MaxWeightGainTime / CrossesProgressCoeff;
 
         if (_currentCrossWeightTimer < weightCapTime)
         {
-            CrossesWeight[LastAviableCrossNumber] = _defaultCrossesWeight[LastAviableCrossNumber] * _currentCrossWeightTimer / weightCapTime;
+            CrossesWeight[LastAvailableCrossNumber] = _defaultCrossesWeight[LastAvailableCrossNumber] * _currentCrossWeightTimer / weightCapTime;
         }
         else
         {
             _currentCrossWeightTimer -= weightCapTime;
-            CrossesWeight[LastAviableCrossNumber] = _defaultCrossesWeight[LastAviableCrossNumber];
-            LastAviableCrossNumber++;
+            CrossesWeight[LastAvailableCrossNumber] = _defaultCrossesWeight[LastAvailableCrossNumber];
+            LastAvailableCrossNumber++;
 
-            if (LastAviableCrossNumber >= CrossesWeight.Length)
+            if (LastAvailableCrossNumber >= CrossesWeight.Length)
             {
-                LastAviableCrossNumber = CrossesWeight.Length - 1;
+                LastAvailableCrossNumber = CrossesWeight.Length - 1;
                 AreAllCrossWeightsSet = true;
             }
         }
     }
 
+	public static void RemoveAllSpawnedCrosses()
+	{
+		foreach (UnusualCrossNode cross in G.SceneTree.GetNodesInGroup("Crosses"))
+            cross.OnFinished();
+		
+		foreach (UnusualCrossNode cross in G.SceneTree.GetNodesInGroup("UnusualCrosses"))
+            cross.OnFinished();
+	}
 
     /// <summary>
     /// For correct operation, call only on the level. In the interface it is better to use GetGlobalRandomCross
@@ -377,7 +385,7 @@ public partial class Crosses : Node
     {
         CrossesWeight = new float[_defaultCrossesWeight.Length];
 
-        LastAviableCrossNumber = 0;
+        LastAvailableCrossNumber = 0;
         LastCheckedScoresValue = 0;
         _lastWeightUpdateScore = 0;
         _currentCrossWeightTimer = 0;

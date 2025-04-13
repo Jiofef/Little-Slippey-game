@@ -279,7 +279,65 @@ namespace OtherExtension
 
             return items[^1];
         }
-    }
+
+		// Random strings
+		public static string GetFakeHexString()
+		{
+		    return "0x" + _random.Next(0, int.MaxValue).ToString("X8");
+		}
+
+		public static string GetRandomAsciiString(int length)
+		{
+			Random rand = new Random();
+			return new string(Enumerable.Range(0, length)
+				.Select(_ => (char)rand.Next(33, 126))
+				.ToArray());
+		}
+
+		private static string[] _glitchMessages = {
+			"> Allocating...",
+			"> NULL REF @ 0x" + GetFakeHexString(),
+			"> Buffer overflow",
+			"> Writing to stack...",
+			"> Injecting DLL",
+			"> ERROR: CODE 0x" + GetFakeHexString(),
+			"> Stack pointer mismatch"
+			};
+		public static string GetRandomGlitchLog()
+		{
+			Random rand = new Random();
+			return _glitchMessages[rand.Next(_glitchMessages.Length)];
+		}
+
+		public static string GenerateWeirdWord()
+		{
+			string[] syllables = { "ka", "zo", "ul", "bri", "nek", "dra", "xi", "mur", "tek", "la", "gron", "zu" };
+			Random rand = new Random();
+			int count = rand.Next(2, 5);
+			return string.Concat(Enumerable.Range(0, count).Select(_ => syllables[rand.Next(syllables.Length)]));
+		}
+
+		public static string GetRandomGlitchedShit()
+		{
+			switch (_random.Next(0, 12))
+			{
+				case 0 or 1 or 10:
+					return GetFakeHexString();
+				case 2 or 3:
+					return GetRandomAsciiString(6);
+				case 4 or 5:
+					return GetRandomGlitchLog();
+				case 6 or 7:
+					return GenerateWeirdWord();
+				case 8:
+					return "[memory leak]";
+				case 9:
+					return "[corrupted]";
+				default:
+					return "NaN";
+			}
+		}
+	}
     /// <summary>
     /// Not related to Godot nodes. Created for storing organized objects with the ability to add children to the objects.
     /// </summary>
@@ -767,13 +825,12 @@ namespace OtherExtension
         /// <summary>
         /// 
         /// </summary>
-        public static async Task MoveNodeTo(Node2D node, Vector2 globalPosition, float pxPerFrame = 15f, float accelerationTime = 3f, float nodeControllabilityCoeff = 1f, float minimumFinishDistancePx = 30f, float controlTimeAfterFinishing = 0f)
+        public static async Task MoveNodeTo(Node2D node, Vector2 globalPosition, float pxPerFrame = 25f, float accelerationTime = 3f, float maxTime = 15f, float nodeControllabilityCoeff = 1f, float minimumFinishDistancePx = 40f, float controlTimeAfterFinishing = 0f)
         {
             Vector2 velocity = Vector2.Zero;
             float afterFinishingTimer = controlTimeAfterFinishing;
             float timer = 0;
-
-            while (node.GlobalPosition.DistanceTo(globalPosition) > minimumFinishDistancePx || afterFinishingTimer > 0)
+            while (timer < maxTime && (node.GlobalPosition.DistanceTo(globalPosition) > minimumFinishDistancePx || afterFinishingTimer > 0))
             {
                 // Timer
                 float delta = (float)node.GetProcessDeltaTime();
@@ -790,9 +847,10 @@ namespace OtherExtension
                 }
 
                 // Applying the movement
-                node.GlobalPosition = node.GlobalPosition.DistanceSquaredTo(globalPosition) > velocity.LengthSquared() ? node.GlobalPosition + velocity : globalPosition;
+				float distanceSquared = node.GlobalPosition.DistanceSquaredTo(globalPosition);
+                node.GlobalPosition = distanceSquared > velocity.LengthSquared() ? node.GlobalPosition + velocity : globalPosition;
 
-                if (node.GlobalPosition.DistanceSquaredTo(globalPosition) > velocity.LengthSquared())
+                if (distanceSquared > velocity.LengthSquared())
                 {
                     node.GlobalPosition += velocity;
                 }
@@ -806,13 +864,29 @@ namespace OtherExtension
                 await node.ToSignal(node.GetTree(), "process_frame");
             }
         }
-
+		public static async Task MoveNodeTo(Node2D node, Vector2 globalPosition, MoveNodeProperties properties)
+		{
+			await MoveNodeTo(node, globalPosition, properties.PxPerFrame, properties.AccelerationTime, properties.MaxTime, properties.NodeControllabilityCoeff, properties.MinimumFinishDistancePx, properties.ControlTimeAfterFinishing);
+		}
+		public class MoveNodeProperties
+		{
+			public float PxPerFrame, AccelerationTime, MaxTime, NodeControllabilityCoeff, MinimumFinishDistancePx, ControlTimeAfterFinishing;
+			public MoveNodeProperties(float pxPerFrame = 25f, float accelerationTime = 3f, float maxTime = 15f, float nodeControllabilityCoeff = 1f, float minimumFinishDistancePx = 40f, float controlTimeAfterFinishing = 0f)
+			{
+				PxPerFrame = pxPerFrame;
+				AccelerationTime = accelerationTime;
+				MaxTime = maxTime;
+				NodeControllabilityCoeff = nodeControllabilityCoeff;
+				MinimumFinishDistancePx = minimumFinishDistancePx;
+				ControlTimeAfterFinishing = controlTimeAfterFinishing;
+			}
+		}
         public static async Task HideNodeSlowly(CanvasItem node, float duration = 1f, bool disableVisibility = false)
         {
             var tween = node.CreateTween().TweenProperty(node, "modulate", new Color(1, 1, 1, 0), duration);
 
             await node.ToSignal(tween, "finished");
-
+			
             if (disableVisibility)
                 node.Visible = false;
         }

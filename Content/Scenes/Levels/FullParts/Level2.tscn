@@ -1097,11 +1097,6 @@ _data = {
 
 [node name="Main" instance=ExtResource("1_xrr5q")]
 
-[node name="LevelMusicPlayer" parent="." index="0"]
-RestartMusicWhenItFinished = true
-SaveTimeCodeWhenLevelResets = true
-KeepPlayingWhenLevelResets = true
-
 [node name="AnimationPlayer" parent="LevelMusicPlayer" index="0"]
 libraries = {
 &"": SubResource("AnimationLibrary_jcmm3")
@@ -1294,6 +1289,7 @@ tile_set = SubResource("TileSet_gw0j2")
 [node name="Player" parent="Level" index="2" instance=ExtResource("13_bkmnr")]
 modulate = Color(0.956863, 0.956863, 0.956863, 1)
 position = Vector2(1440, 288)
+_initialCameraLimits = Rect2(0, 0, 2560, 640)
 EnableStandingPenalty = false
 
 [node name="TileMap" type="TileMapLayer" parent="Level" index="3"]

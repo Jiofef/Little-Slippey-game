@@ -172,8 +172,11 @@ height = 450.0
 
 [node name="AnimationPlayer" parent="LevelMusicPlayer" index="0"]
 libraries = {
-"": SubResource("AnimationLibrary_jcmm3")
+&"": SubResource("AnimationLibrary_jcmm3")
 }
+
+[node name="Level" parent="." index="1"]
+BeforeResetCrossesSpawnStartTimer = 0.0
 
 [node name="Background" type="ParallaxBackground" parent="Level" index="0"]
 
@@ -245,6 +248,7 @@ tile_set = SubResource("TileSet_fyg2g")
 
 [node name="Player" parent="Level" index="3" instance=ExtResource("7_wh1e3")]
 position = Vector2(1280, 992)
+_initialCameraLimits = Rect2(0, 0, 2560, 1280)
 
 [node name="TileMap" type="TileMapLayer" parent="Level" index="4"]
 use_parent_material = true
