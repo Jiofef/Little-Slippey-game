@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using static OtherExtension.ActionTools;
 
 /// <summary>
-/// G is gameplay singleton, that having importal information or methods which may be needed in various places of the game. They will not save after exiting the game
+/// G is gameplay singleton, that having important information or methods which may be needed in various places of the game. They will not save after exiting the game
 /// </summary>
 public partial class G : Node
 {
@@ -29,11 +29,11 @@ public partial class G : Node
         _root = _sceneTree.Root;
     }
 
-    #region NOTE: Only in-game variables. Don't touch it if you're a modder please, or i will ban your map :)
+    #region NOTE: Only in-game variables. Don't touch it if you're a modder please, or i will ban your mod :)
     public static bool IsSystemInitiated, IsLevelVanilla = true;
     public static int CurrentLevel; // The variable is most often used to understand whether the player is in a level or in the menu. If the player is on a level from the mod, the value is -1 
     public static Variant VanillaTransitiveValue;
-    public static Array<Node> NodeCopyBuffer = new Array<Node>();
+    public static Array<Node> NodeCopyBuffer = new Array<Node>(); // Copied nodes from level editor
     #endregion
 
     ////////////////////////////
@@ -126,7 +126,7 @@ public partial class G : Node
     ////////////////////////////
 
     #region May be used to some if statements or something, but be careful if you change it. There are other, more correct ways to change them.
-    public static bool IsPlayerDead, // To change correctly, call Death() or Ressurect() in player's script
+    public static bool IsPlayerDead, // To change correctly, call Death() or Resurrect() in player's script
                        IsNewRecordReached, // I don't know why you even might want to change it
                        HasLevelBeenCompleted;
     #endregion

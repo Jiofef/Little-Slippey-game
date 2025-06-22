@@ -4,8 +4,9 @@ using System;
 public partial class SeamlessBoundaryController : Node
 {
 	[Export] public Node2D NodeToKeepInBorders;
-	[Export] public bool EnableCameraSmoothTransition = true;
+	[Export] public bool TeleportPlayerWithoutGlitchEffect = false;
 	[Export] public Rect2 GlobalBorders2D = new Rect2(0, 0, 1280, 640);
+	//[Export] public float 
 
 	public override void _PhysicsProcess(double delta)
 	{
@@ -27,14 +28,10 @@ public partial class SeamlessBoundaryController : Node
 			else if (nodePos.Y < GlobalBorders2D.Position.Y)
 				offsetPos.Y = GlobalBorders2D.Size.Y;
 			
-			NodeToKeepInBorders.GlobalPosition += offsetPos;
-
-			if (EnableCameraSmoothTransition)
-			{
-				var camera = GetViewport().GetCamera2D();
-				if (camera is null) return;
-				camera.ResetSmoothing();
-			}
+			if (NodeToKeepInBorders is Player player && G.Main != null)
+				G.Main.TeleportPlayerTo(player.GlobalPosition + offsetPos, TeleportPlayerWithoutGlitchEffect);
+			else
+				NodeToKeepInBorders.GlobalPosition += offsetPos;
 		}
 	}
 }

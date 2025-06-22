@@ -41,7 +41,7 @@ public partial class CrossSpawner : Node2D
 	{
         if (G.IsCrossesEnabled)
         {
-            int RandomRange = 20 - Meta.Instance.Gameplay.Dificulty * 5;
+            int RandomRange = 20 - Meta.Instance.Gameplay.Difficulty * 5;
             RandomRange = (int)((RandomRange - (RandomRange / 2 - G.PlayerMoveCoeff * RandomRange / 2)) / G.CrossSpawnMultiplier);
 
             if (_random.Next(RandomRange) == 0)

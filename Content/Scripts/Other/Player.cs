@@ -11,13 +11,12 @@ public partial class Player : CharacterBody2D
 
     //InEditor options
     [ExportGroup("Main settings")]
-	[Export] private Rect2 _initialCameraLimits = new Rect2(0, 0, 1280, 640); 	// This export affect global state on start
     public const float DEFAULT_SPEED = 430, DEFAULT_GRAVITY = 9.8f * 2f, DEFAULT_JUMP_FORCE = 620;
     [Export] public float Speed = DEFAULT_SPEED, Gravity = DEFAULT_GRAVITY, JumpForce = DEFAULT_JUMP_FORCE;
 
     public const int DEFAULT_MAX_CLIMBS = 3;
     private int _maxClimbs = DEFAULT_MAX_CLIMBS;
-    [Export] public int MaxClimbs { get { return _maxClimbs; } set { _maxClimbs = value; GetNode<TextureProgressBar>("Camera2D/ClimbsBar").MaxValue = value; } }
+    [Export] public int MaxClimbs { get { return _maxClimbs; } set { _maxClimbs = value; GetNode<TextureProgressBar>("PlayerPinnedGUI/ClimbsBar").MaxValue = value; } }
     private bool _enableStandingPenalty = true;
     [Export]
     public bool EnableStandingPenalty
@@ -35,8 +34,8 @@ public partial class Player : CharacterBody2D
     [Export] public bool EnableRigidBodyPhysics = false;
     [Export] public float RigidBodyPushForce = 8;
 
-    [ExportGroup("Secondary settings")]
-    [Export] public float CoyoteTime = 0.1f, WallJumpInertion = 1.4f, InertionControl = 3.3f, DownDashSpeed = 1250, MaxFallSpeed = 1250, ResurrectionImmortalityTime = 5f, MinMoveCoeff = 0, MaxMoveCoeff = 1;
+    [ExportGroup("Secondary Settings")]
+    [Export] public float CoyoteTime = 0.1f, WallJumpInertia = 1.4f, InertiaControl = 3.3f, DownDashSpeed = 1250, MaxFallSpeed = 1250, ResurrectionImmortalityTime = 5f, MinMoveCoeff = 0, MaxMoveCoeff = 1;
 
     [ExportGroup("GUI")]
     #region hell no
@@ -121,6 +120,8 @@ public partial class Player : CharacterBody2D
     }
     #endregion
 
+	[ExportGroup("Camera Settings")]
+	[Export] private Rect2 _initialCameraLimits = new Rect2(0, 0, 1280, 640); 	// This export affect global state on start
     // The values in the camera used to be changed via this signal. Now it's just an auxiliary signal for modders.
     [Signal] public delegate void CameraLimitsChangedEventHandler(bool doResetSmoothing, Rect2 limits);
 
@@ -134,13 +135,13 @@ public partial class Player : CharacterBody2D
 
 
     // Numeric variables
-    private float _inertion, _wallJumpTimer = 0, //WallJumping
+    private float _inertia, _wallJumpTimer = 0, //WallJumping
           _climbTimer, _climbUncontrollingTimer, //Climbing
           _coyoteTimer, //Jumping
           _moveCoeff = 1, // Hardcore =)
           _moveCalculationFramesTimer = 0; //Other
     private int _wallDetectNumber, _nearWallsCount, _savedWallNumber, //WallJumping
-        _climbBufer = 3, _savedClimbWallNumber; //Climbing
+        _climbBuffer = 3, _savedClimbWallNumber; //Climbing
 
     readonly float _floatDelta = 0.016667f; // 1/60 fps
 
@@ -221,7 +222,9 @@ public partial class Player : CharacterBody2D
         IsActBlocked[act] = true;
 
         var timer = GetTree().CreateTimer(timeSec, false);
-        await ToSignal(timer, "timeout");
+		try { 
+		await ToSignal(timer, "timeout");} catch (ObjectDisposedException) {return;}
+		if (IsDisposed) return;
 
         IsActBlocked[act] = DefaultActBlockedState[act];
     }
@@ -232,7 +235,10 @@ public partial class Player : CharacterBody2D
             IsActBlocked[act] = true;
 
         var timer = GetTree().CreateTimer(timeSec, false);
-        await ToSignal(timer, "timeout");
+		try { 
+		await ToSignal(timer, "timeout");} catch (ObjectDisposedException) {return;}
+
+		if (IsDisposed) return;
 
         foreach (Act act in acts)
             IsActBlocked[act] = DefaultActBlockedState[act];
@@ -340,32 +346,32 @@ public partial class Player : CharacterBody2D
             #region Effect of inertia on control
             if (_state == State.Inerted)
             {
-                float uncontrolling = Motion.X * _inertion / InertionControl;
-                Motion.X += _inertion > 0 ? -uncontrolling : uncontrolling;
+                float uncontrolling = Motion.X * _inertia / InertiaControl;
+                Motion.X += _inertia > 0 ? -uncontrolling : uncontrolling;
             }
             #endregion
 
             #region WallCatching
-            if (Input.IsActionPressed("WallCatch") && _wallDetectNumber != 0 && !isOnFloor && Motion.Y > 0 && (!Input.IsActionPressed("Jump") || _inertion != 0) && !IsActBlocked[Act.WallCatch])
+            if (Input.IsActionPressed("WallCatch") && _wallDetectNumber != 0 && !isOnFloor && Motion.Y > 0 && (!Input.IsActionPressed("Jump") || _inertia != 0) && !IsActBlocked[Act.WallCatch])
             {
                 if (LastActions[0] != Act.WallCatch)
                     Action(Act.WallCatch);
                 Motion.Y = 15;
                 _animationName = "WallCatch";
-                if (_inertion == 0 && _state != State.InAir)
+                if (_inertia == 0 && _state != State.InAir)
                 {
                     _state = State.InAir;
                     _climbUncontrollingTimer = 0;
-                    _climbBufer = MaxClimbs;
+                    _climbBuffer = MaxClimbs;
                     _climbTimer = 0;
-                    _inertion = 0;
+                    _inertia = 0;
                 }
                 _isDownDashing = false;
             }
             #endregion
 
-            #region Climb inertion
-            if (_climbBufer < 3 && _climbUncontrollingTimer > 0)
+            #region Climb inertia
+            if (_climbBuffer < 3 && _climbUncontrollingTimer > 0)
                 Motion.X /= Motion.X / _savedClimbWallNumber < 0 ? _climbUncontrollingTimer * 3 + 1 : 1;
             #endregion
 
@@ -385,7 +391,7 @@ public partial class Player : CharacterBody2D
                 }
                 #endregion
                 #region WallJumping
-                else if (Input.IsActionPressed("WallCatch") && _wallDetectNumber != 0 && _inertion == 0 && _wallJumpTimer <= 0 && _climbTimer <= 0 && !IsActBlocked[Act.WallJump])
+                else if (Input.IsActionPressed("WallCatch") && _wallDetectNumber != 0 && _inertia == 0 && _wallJumpTimer <= 0 && _climbTimer <= 0 && !IsActBlocked[Act.WallJump])
                 {
                     _savedWallNumber = _wallDetectNumber;
                     if (Motion.Y <= 0 && LastActions[0] == Act.WallJump && LastActions[1] == Act.Climb && !IsActBlocked[Act.HardJump]) // Secret mechanic
@@ -393,13 +399,13 @@ public partial class Player : CharacterBody2D
                         Action(Act.HardJump);
                         GetNode<CpuParticles2D>("HardJumpParticles").Emitting = true;
                         Motion.Y = -JumpForce * 1.25f;
-                        _inertion = WallJumpInertion * -_savedWallNumber * 1.25f;
+                        _inertia = WallJumpInertia * -_savedWallNumber * 1.25f;
                     }
                     else
                     {
                         Action(Act.WallJump);
                         Motion.Y = -JumpForce;
-                        _inertion = WallJumpInertion * -_savedWallNumber;
+                        _inertia = WallJumpInertia * -_savedWallNumber;
                     }
 
 
@@ -409,14 +415,14 @@ public partial class Player : CharacterBody2D
                 }
                 #endregion
                 #region  Climbing
-                else if (!Input.IsActionPressed("WallCatch") && _wallDetectNumber != 0 && _lastXMoveVector == _wallDetectNumber && _climbTimer < 0 && _climbBufer > 0 && !IsActBlocked[Act.Climb])
+                else if (!Input.IsActionPressed("WallCatch") && _wallDetectNumber != 0 && _lastXMoveVector == _wallDetectNumber && _climbTimer < 0 && _climbBuffer > 0 && !IsActBlocked[Act.Climb])
                 {
                     Action(Act.Climb);
                     if (_skinAnimationPlayerEnabled)
                         _animationPlayer.Play("Climb");
 
                     _climbTimer = 0.2f;
-                    _climbBufer--;
+                    _climbBuffer--;
                     Motion.Y = -JumpForce * 0.7f;
                     _climbUncontrollingTimer = 1;
                     _savedClimbWallNumber = _wallDetectNumber;
@@ -429,10 +435,10 @@ public partial class Player : CharacterBody2D
                     PlaySound("Climb");
 
                     _isDownDashing = false;
-                    _inertion = 0;
+                    _inertia = 0;
 
-                    var climbBar = GetNode<TextureProgressBar>("Camera2D/ClimbsBar");
-                    climbBar.Value = _climbBufer;
+                    var climbBar = GetNode<TextureProgressBar>("PlayerPinnedGUI/ClimbsBar");
+                    climbBar.Value = _climbBuffer;
 
                     var climbBarAnimation = climbBar.GetNode<AnimationPlayer>("AnimationPlayer");
                     climbBarAnimation.Stop();
@@ -467,11 +473,11 @@ public partial class Player : CharacterBody2D
             {
                 if (_state == State.Inerted)
                 {
-                    Motion.X += _inertion * Speed;
-                    _inertion -= _inertion > 0 ? 0.025f : -0.025f;
+                    Motion.X += _inertia * Speed;
+                    _inertia -= _inertia > 0 ? 0.025f : -0.025f;
 
-                    if (_inertion < 0.1f && _inertion > 0 || _inertion > -0.1f && _inertion < 0)
-                        _inertion = 0;
+                    if (_inertia < 0.1f && _inertia > 0 || _inertia > -0.1f && _inertia < 0)
+                        _inertia = 0;
                 }
 
                 if (_state != State.Inerted && _state != State.Climb && _state != State.InAir)
@@ -488,10 +494,10 @@ public partial class Player : CharacterBody2D
             {
                 Action(Act.Fall);
                 _savedWallNumber = 0;
-                _inertion = 0;
+                _inertia = 0;
                 _wallJumpTimer = 0.3f;
                 _climbTimer = 0.2f;
-                _climbBufer = MaxClimbs;
+                _climbBuffer = MaxClimbs;
                 _coyoteTimer = CoyoteTime;
 
                 if (_isDownDashing)
@@ -598,9 +604,9 @@ public partial class Player : CharacterBody2D
             _animationName = "Jump";
             _state = State.InAir;
 
-            if (_inertion != 0)
+            if (_inertia != 0)
             {
-                _inertion = 0;
+                _inertia = 0;
                 _climbUncontrollingTimer = 0;
             }
             _animatedSprite.Play();
@@ -802,13 +808,16 @@ public partial class Player : CharacterBody2D
         var resurrectionAnimation = resurrectionEffect.GetNode<AnimationPlayer>("AnimationPlayer");
         G.AdditionalGuiLayer.AddChild(resurrectionEffect);
         // The only time the animation changes is when the player must be resurrected
-        await ToSignal(resurrectionAnimation, "animation_changed");
+		try { 
+		await ToSignal(resurrectionAnimation, "animation_changed");} catch (ObjectDisposedException) {return;}
+
+		if (IsDisposed) return;
 
         // >>After resurrection
 
         preDeathParams.LoadParams();
 
-        // Resurrection immortability
+        // Resurrection immortality
         bool dmgCollisionDisabled = GetNode<CollisionShape2D>("Areas/PlayerDamageDetector/CollisionShape2D").Disabled;
         if (!dmgCollisionDisabled)
             AddImmortality(ResurrectionImmortalityTime);
@@ -828,27 +837,27 @@ public partial class Player : CharacterBody2D
 
     private void ImmortalityIsOver()
     {
-        var immortabilityShield = GetNode<TextureProgressBar>("Camera2D/ImmortalityShield");
-        immortabilityShield.Visible = false;
+        var immortalityShield = GetNode<TextureProgressBar>("PlayerPinnedGUI/ImmortalityShield");
+        immortalityShield.Visible = false;
 
         GetNode<CollisionShape2D>("Areas/PlayerDamageDetector/CollisionShape2D").SetDeferred("disabled", false);
     }
 
     public void AddImmortality(float time)
     {
-        var immortabilityShield = GetNode<TextureProgressBar>("Camera2D/ImmortalityShield");
-        var immortabilityTimer = immortabilityShield.GetNode<Timer>("Timer");
+        var immortalityShield = GetNode<TextureProgressBar>("PlayerPinnedGUI/ImmortalityShield");
+        var immortalityTimer = immortalityShield.GetNode<Timer>("Timer");
 
-        double timeLeft = immortabilityTimer.IsStopped() ? 0 : immortabilityTimer.TimeLeft;
+        double timeLeft = immortalityTimer.IsStopped() ? 0 : immortalityTimer.TimeLeft;
 
-        immortabilityTimer.Stop();
+        immortalityTimer.Stop();
 
         double newTime = timeLeft + time;
-        immortabilityTimer.Start(newTime);
-        immortabilityTimer.SetProcess(true);
+        immortalityTimer.Start(newTime);
+        immortalityTimer.SetProcess(true);
 
-        immortabilityShield.MaxValue = newTime;
-        immortabilityShield.Visible = true;
+        immortalityShield.MaxValue = newTime;
+        immortalityShield.Visible = true;
 
         GetNode<CollisionShape2D>("Areas/PlayerDamageDetector/CollisionShape2D").SetDeferred("disabled", true);
     }

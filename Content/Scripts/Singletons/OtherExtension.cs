@@ -504,7 +504,15 @@ namespace OtherExtension
         {
             return Mathf.Pi * (radius * radius);
         }
-    }
+
+		public static  Vector2 ApplyLimitsToVec(Vector2 vec, Rect2 limits)
+		{
+			return new Vector2(
+				Mathf.Clamp(vec.X, limits.Position.X, limits.Position.X + limits.Size.X),
+				Mathf.Clamp(vec.Y, limits.Position.Y, limits.Position.Y + limits.Size.Y)
+			);
+		}
+	}
 
     public static class MathTools
     {
@@ -885,7 +893,8 @@ namespace OtherExtension
         {
             var tween = node.CreateTween().TweenProperty(node, "modulate", new Color(1, 1, 1, 0), duration);
 
-            await node.ToSignal(tween, "finished");
+			try { 
+			await node.ToSignal(tween, "finished");} catch (ObjectDisposedException) {return;}
 			
             if (disableVisibility)
                 node.Visible = false;
@@ -896,7 +905,8 @@ namespace OtherExtension
             node.Visible = true;
             var tween = node.CreateTween().TweenProperty(node, "modulate", new Color(1, 1, 1, 1), duration);
 
-            await node.ToSignal(tween, "finished");
+			try { 
+			await node.ToSignal(tween, "finished");} catch (ObjectDisposedException) {return;}
         }
         public static void ActionWithANodeTree(Node treeRoot, Action<Node> action)
         {

@@ -2127,7 +2127,7 @@ script = ExtResource("2_6ioiu")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="LevelMusicPlayer"]
 libraries = {
-"": SubResource("AnimationLibrary_jcmm3")
+&"": SubResource("AnimationLibrary_jcmm3")
 }
 
 [node name="Level" type="Node2D" parent="."]
@@ -2158,10 +2158,7 @@ script = ExtResource("18_d522f")
 
 [node name="Pause" parent="." instance=ExtResource("20_gguq5")]
 
-[node name="PopupAchievementsLayer" type="CanvasLayer" parent="."]
-process_mode = 3
-layer = 100
-
 [connection signal="animation_finished" from="LevelMusicPlayer/AnimationPlayer" to="LevelMusicPlayer" method="MusicAnimationFinished"]
 
 [editable path="Level/Player"]
+[editable path="Level/Player/Camera2D/GUICanvas/GUI/AfterDeathElements/Buttons/ReturnToMenu"]

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://krufhsipwceq"]
+
+[ext_resource type="Script" uid="uid://c2ijxex52fi2x" path="res://Content/Scripts/Other/EnhancedArea2D.cs" id="1_nktog"]
+
+[node name="EnhancedArea2D" type="Area2D"]
+script = ExtResource("1_nktog")

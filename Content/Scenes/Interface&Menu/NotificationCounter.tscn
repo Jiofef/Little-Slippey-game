@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://cas00jlo5rgv1"]
 
-[ext_resource type="Script" uid="uid://b36mksf5b1pvp" path="res://Content/Scripts/Interface&Menu/NotificationCounter.cs" id="1_clxrb"]
+[ext_resource type="Script" uid="uid://b36mksf5b1pvp" path="res://Content/Scripts/InterfaceAndMenu/NotificationCounter.cs" id="1_clxrb"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ygsdd"]
 bg_color = Color(0.788235, 0.141176, 0.392157, 1)

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://hsan4k7aad1k"]
 
-[ext_resource type="Script" uid="uid://doqt7li037l1u" path="res://Content/Scripts/Interface&Menu/TurnOffMenu.cs" id="1_ai8b4"]
+[ext_resource type="Script" uid="uid://doqt7li037l1u" path="res://Content/Scripts/InterfaceAndMenu/TurnOffMenu.cs" id="1_ai8b4"]
 [ext_resource type="PackedScene" uid="uid://twinoyaw5kfj" path="res://Content/Scenes/Interface&Menu/ConfirmationWindow.tscn" id="1_w642o"]
 
 [node name="TurnOffMenu" instance=ExtResource("1_w642o")]

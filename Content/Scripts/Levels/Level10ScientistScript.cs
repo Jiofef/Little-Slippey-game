@@ -217,13 +217,17 @@ public partial class Level10ScientistScript : Node2D
         }
 
         // !Secret level test!
-        OtherExtension.ActionTools.BindEventSafelyTo(G.OnLevelStarted, (a) =>
-        {
-                G.TransitiveVariantD.Add("SavedScores", G.Scores);
-                G.TransitiveVariantD.Add("PlayerSavedPos", G.Player.Position);
-                GetTree().ChangeSceneToFile("res://Content/Scenes/Levels/FullParts/Level000000000.tscn");
-                return;
-        });
+		if (G.IsDebugEnabled)
+		{
+			OtherExtension.ActionTools.BindEventSafelyTo(G.OnLevelStarted, (a) =>
+			{
+				G.TransitiveVariantD.Add("SavedScores", G.Scores);
+				G.TransitiveVariantD.Add("PlayerSavedPos", G.Player.Position);
+				GetTree().ChangeSceneToFile("res://Content/Scenes/Levels/FullParts/Level000000000.tscn");
+				return;
+			});
+		}
+
 
     }
 

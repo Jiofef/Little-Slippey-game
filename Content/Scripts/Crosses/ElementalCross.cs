@@ -191,11 +191,15 @@ public partial class ElementalCross : UnusualCrossNode
         {
             if (_elementalType == ElementalType.Green)
             {
-                await ToSignal(element, "Exploded");
+				try {
+				await ToSignal(element, "Exploded");} catch (ObjectDisposedException) {return;}
+
                 if (_isDisposed) return;
                 CallDeferred("LastElementExploded");
             }
-            await ToSignal(element, "Finished");
+			try {
+			await ToSignal(element, "Finished");} catch (ObjectDisposedException) {return;}
+
             if (_isDisposed) return;
             CallDeferred("LastElementFinished");
         }

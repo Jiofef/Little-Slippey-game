@@ -9,7 +9,7 @@
 [ext_resource type="AudioStream" uid="uid://ca1ra0emtaeth" path="res://Content/Sounds/Interface&Menu/AchievementSound.mp3" id="4_338ko"]
 [ext_resource type="Texture2D" uid="uid://bmnjn4tqb7t5m" path="res://Content/Sprites/Interface/GoldenCrossesAnimation.png" id="6_kyk46"]
 [ext_resource type="Theme" uid="uid://dkitr1ftp0yhs" path="res://Content/Other/Menu.tres" id="6_ui8eo"]
-[ext_resource type="Script" uid="uid://lud5e1i1aqu8" path="res://Content/Scripts/Interface&Menu/AutoScrollContainer.cs" id="10_ictur"]
+[ext_resource type="Script" uid="uid://lud5e1i1aqu8" path="res://Content/Scripts/InterfaceAndMenu/AutoScrollContainer.cs" id="10_ictur"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_l7mjc"]
 atlas = ExtResource("4_7bny4")

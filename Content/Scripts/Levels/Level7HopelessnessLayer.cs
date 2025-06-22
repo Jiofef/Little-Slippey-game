@@ -118,7 +118,8 @@ public partial class Level7HopelessnessLayer : CanvasLayer
 
             G.PlayOneshotSound("Levels/Level7FilmJamming.mp3", this, "Master", 15);
 
-            await ToSignal(tween, "finished");
+			try { 
+			await ToSignal(tween, "finished");} catch (ObjectDisposedException) {return;}
 			if (_isDisposed) return;
 
             //* Need to do something with scores label

@@ -13,10 +13,10 @@ public partial class LevelMusicPlayer : AudioStreamPlayer
 
 	[ExportGroup("Music Restart")]
 	[Export] public bool RestartMusicWhenItFinished = true;
-	[Export]  public float RestartPosition = 0;
+	[Export] public float RestartPosition = 0;
 
 	[ExportGroup("Level Restart")]
-    [Export] public bool SaveTimeCodeWhenLevelResets = true, KeepPlayingWhenLevelResets = true;
+    [Export] public bool SaveTimeCodeWhenLevelResets = true, KeepPlayingWhenLevelResets = true, OverrideRestartedMusic = true;
 	
 	[ExportGroup("Stages")]
 	private StagesModeEnum _stagesMode = StagesModeEnum.NoStages;
@@ -63,10 +63,11 @@ public partial class LevelMusicPlayer : AudioStreamPlayer
         };
 
         Connect("finished", new Callable(this, "OnMusicFinished"));
-		if (KeepPlayingWhenLevelResets && G.MusicName != "")
+
+		if (_musicName != null && (!KeepPlayingWhenLevelResets || OverrideRestartedMusic || G.MusicName == ""))
+			OtherExtension.ActionTools.BindEventToNodeSafely(this, "PlayMusic", G.OnLevelStarted, _musicName, 0);
+		else if (KeepPlayingWhenLevelResets && G.MusicName != "")
             PlayMusic(G.MusicName, G.MusicStartPosition);
-		else if(_musicName != null)
-			PlayMusic(_musicName, 0);
     }
 
 	public override void _PhysicsProcess(double delta)

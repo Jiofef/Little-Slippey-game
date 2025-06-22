@@ -99,14 +99,14 @@ public partial class UnchangableMeta : Node
 
     public static void SaveVanillaRecords()
     {
-        int LastRecord = LevelRecords[Meta.Instance.Gameplay.Dificulty][G.CurrentLevel - 1];
+        int LastRecord = LevelRecords[Meta.Instance.Gameplay.Difficulty][G.CurrentLevel - 1];
         if ((int)G.Scores > LastRecord)
         {
-            LevelRecords[Meta.Instance.Gameplay.Dificulty][G.CurrentLevel - 1] = (int)G.Scores;
+            LevelRecords[Meta.Instance.Gameplay.Difficulty][G.CurrentLevel - 1] = (int)G.Scores;
             G.IsNewRecordReached = true;
-            if (G.Scores >= G.LevelCompleteTime && Meta.Instance.Gameplay.Dificulty + 1 > LevelCompleteStatus[G.CurrentLevel - 1])
+            if (G.Scores >= G.LevelCompleteTime && Meta.Instance.Gameplay.Difficulty + 1 > LevelCompleteStatus[G.CurrentLevel - 1])
             {
-                LevelCompleteStatus[G.CurrentLevel - 1] = Meta.Instance.Gameplay.Dificulty + 1;
+                LevelCompleteStatus[G.CurrentLevel - 1] = Meta.Instance.Gameplay.Difficulty + 1;
                 G.HasLevelBeenCompleted = true;
                 Achievements.GetLevelAchievements();
             }

@@ -109,7 +109,8 @@ public partial class ElementaryParticle : UnusualCrossNode
 
         RemoveFromGroup("UnstableCrosses");
 
-        await ToSignal(microParticles, "finished");
+		try {
+		await ToSignal(microParticles, "finished");} catch (ObjectDisposedException) {return;}
         OnFinished();
     }
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://5kfyvxsdpsk2"]
+[gd_scene load_steps=10 format=3 uid="uid://5kfyvxsdpsk2"]
 
 [ext_resource type="Script" uid="uid://cjbhhew83nwxn" path="res://Content/Scripts/Other/MainScript.cs" id="2"]
 [ext_resource type="Script" uid="uid://d23sexuaxdruy" path="res://Content/Scripts/Other/LevelMusicPlayer.cs" id="2_4qm76"]
@@ -6,7 +6,6 @@
 [ext_resource type="Script" uid="uid://dy61y3klqo4lg" path="res://Content/Scripts/Crosses/CrossSpawner.cs" id="4_ddpkh"]
 [ext_resource type="PackedScene" uid="uid://tjddwdxopw2u" path="res://Content/Scenes/Interface&Menu/Pause.tscn" id="4_s6iig"]
 [ext_resource type="PackedScene" uid="uid://c7psxdkakrw5x" path="res://Content/Scenes/Other/EpicIntro.tscn" id="5_qbkrh"]
-[ext_resource type="PackedScene" uid="uid://catydhrk62at1" path="res://Content/Scenes/Interface&Menu/AdditionalGuiLayer.tscn" id="6_58s1k"]
 
 [sub_resource type="Animation" id="Animation_p3npb"]
 resource_name = "MusicStarting"
@@ -69,7 +68,5 @@ script = ExtResource("4_ddpkh")
 [node name="Pause" parent="." instance=ExtResource("4_s6iig")]
 
 [node name="EpicIntro" parent="." instance=ExtResource("5_qbkrh")]
-
-[node name="AdditionalGUILayer" parent="." instance=ExtResource("6_58s1k")]
 
 [connection signal="animation_finished" from="LevelMusicPlayer/AnimationPlayer" to="LevelMusicPlayer" method="MusicAnimationFinished"]

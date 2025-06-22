@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=4 uid="uid://c2nxiddufnutu"]
+[gd_scene load_steps=57 format=4 uid="uid://c2nxiddufnutu"]
 
 [ext_resource type="Script" uid="uid://cjbhhew83nwxn" path="res://Content/Scripts/Other/MainScript.cs" id="1_52yug"]
 [ext_resource type="Script" uid="uid://bitlmjumwlhxc" path="res://Content/Scripts/Levels/Level10MusicPlayer.cs" id="2_1fwqt"]
@@ -22,7 +22,6 @@
 [ext_resource type="Script" uid="uid://dy61y3klqo4lg" path="res://Content/Scripts/Crosses/CrossSpawner.cs" id="20_ervhf"]
 [ext_resource type="PackedScene" uid="uid://tjddwdxopw2u" path="res://Content/Scenes/Interface&Menu/Pause.tscn" id="20_hj1ty"]
 [ext_resource type="PackedScene" uid="uid://c7psxdkakrw5x" path="res://Content/Scenes/Other/EpicIntro.tscn" id="21_qva4a"]
-[ext_resource type="PackedScene" uid="uid://catydhrk62at1" path="res://Content/Scenes/Interface&Menu/AdditionalGuiLayer.tscn" id="22_xxqx4"]
 
 [sub_resource type="Animation" id="Animation_lixp7"]
 resource_name = "Appearing"
@@ -1111,8 +1110,6 @@ script = ExtResource("20_ervhf")
 [node name="Pause" parent="." instance=ExtResource("20_hj1ty")]
 
 [node name="EpicIntro" parent="." instance=ExtResource("21_qva4a")]
-
-[node name="AdditionalGUILayer" parent="." instance=ExtResource("22_xxqx4")]
 
 [connection signal="finished" from="Level/ScientistNode/Megaphone" to="Level/ScientistNode" method="PhraseFinished" flags=3]
 [connection signal="TextAppearing" from="Level/ScientistNode/CanvasLayer/Subtitles" to="Level/ScientistNode/CanvasLayer/SubtitlesRect/AnimationPlayer" method="play" binds= ["Appearing"]]

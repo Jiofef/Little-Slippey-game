@@ -126,9 +126,9 @@ public partial class Achievements : Node
     {
         if (G.CurrentLevel != 0)
         {
-            for (int i = 0; i <= Meta.Instance.Gameplay.Dificulty; i ++)
+            for (int i = 0; i <= Meta.Instance.Gameplay.Difficulty; i ++)
             {
-                GetAchievement("Level" + G.CurrentLevel + Meta.Instance.Gameplay.DificultyNames[i]);
+                GetAchievement("Level" + G.CurrentLevel + Meta.Instance.Gameplay.DifficultyNames[i]);
             }
         }
     }
@@ -140,11 +140,11 @@ public partial class Achievements : Node
         {
             if (i <  levelStatus)
             {
-                GetAchievement("Level" + levelId + Meta.Instance.Gameplay.DificultyNames[i]);
+                GetAchievement("Level" + levelId + Meta.Instance.Gameplay.DifficultyNames[i]);
             }
             else
             {
-                RemoveAchievement("Level" + levelId + Meta.Instance.Gameplay.DificultyNames[i]);
+                RemoveAchievement("Level" + levelId + Meta.Instance.Gameplay.DifficultyNames[i]);
             }
         }
     }

@@ -1,4 +1,5 @@
 using Godot;
+using System;
 using System.Threading.Tasks;
 
 public partial class Level10DroneCapsule : Node2D
@@ -26,7 +27,9 @@ public partial class Level10DroneCapsule : Node2D
     {
         if (G.Scores > 300)
         {
-            await ToSignal(GetTree().CreateTimer(4.5f), SceneTreeTimer.SignalName.Timeout);
+			try { 
+			await ToSignal(GetTree().CreateTimer(4.5f), SceneTreeTimer.SignalName.Timeout);} catch (ObjectDisposedException) {return;}
+            
 
             GetNode<AnimationPlayer>("AnimationPlayer").Play("TakingSlippey");
 

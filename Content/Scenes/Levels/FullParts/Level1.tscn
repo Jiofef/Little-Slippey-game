@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=4 uid="uid://dlx8yjd3gp608"]
+[gd_scene load_steps=45 format=4 uid="uid://dlx8yjd3gp608"]
 
 [ext_resource type="PackedScene" uid="uid://5kfyvxsdpsk2" path="res://Content/Scenes/Other/LevelLayout.tscn" id="1_t253m"]
 [ext_resource type="Script" uid="uid://bapvfin3xna8k" path="res://Content/Scripts/Levels/Level1MainScript.cs" id="2_0n0cx"]
@@ -14,7 +14,6 @@
 [ext_resource type="Texture2D" uid="uid://ckh1sclq3fji3" path="res://Content/Sprites/Other/PointLight.png" id="10_1qjdh"]
 [ext_resource type="PackedScene" uid="uid://buj5ooik0q3l0" path="res://Content/Scenes/Achievements/AchievementArea.tscn" id="10_uiaak"]
 [ext_resource type="Texture2D" uid="uid://lb7nl781jkgt" path="res://Content/Sprites/Levels/FallenDawnTileset.png" id="12_mapxc"]
-[ext_resource type="PackedScene" uid="uid://d3u7pfig07yrs" path="res://Content/Scenes/Other/CrutchedArea2D.tscn" id="13_4r1fn"]
 [ext_resource type="Shader" uid="uid://breyoli2teo11" path="res://Content/Other/BrightnessShader.gdshader" id="14_xtgka"]
 [ext_resource type="Script" uid="uid://55p0trm68pg6" path="res://Content/Scripts/Other/PostProcessingRect.cs" id="15_xfrww"]
 [ext_resource type="Script" uid="uid://roj1d6dao8yt" path="res://Content/Scripts/Levels/Level1AdditionalBrightnessAnimationPlayer.cs" id="16_qypfv"]
@@ -225,9 +224,6 @@ physics_layer_0/physics_material = SubResource("PhysicsMaterial_ylmhp")
 sources/0 = SubResource("TileSetAtlasSource_mxbjq")
 sources/1 = SubResource("TileSetAtlasSource_mnnu6")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_x02e7"]
-size = Vector2(128, 128)
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2ybrq"]
 shader = ExtResource("14_xtgka")
 shader_parameter/brightness = 1.0
@@ -267,6 +263,10 @@ _data = {
 
 [node name="Main" instance=ExtResource("1_t253m")]
 script = ExtResource("2_0n0cx")
+
+[node name="LevelMusicPlayer" parent="." index="0"]
+_musicName = "TNT For Breakfast"
+RestartPosition = 17.5
 
 [node name="AnimationPlayer" parent="LevelMusicPlayer" index="0"]
 libraries = {
@@ -397,12 +397,6 @@ offset_bottom = 720.0
 color = Color(0, 1, 1, 0.0313726)
 metadata/_edit_use_anchors_ = true
 
-[node name="PlayMusicTrigger" parent="Level" index="6" instance=ExtResource("13_4r1fn")]
-position = Vector2(640, 375)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/PlayMusicTrigger" index="0"]
-shape = SubResource("RectangleShape2D_x02e7")
-
 [node name="AdditionalBrightnessLayer" type="CanvasLayer" parent="." index="4"]
 process_mode = 3
 
@@ -428,5 +422,4 @@ libraries = {
 }
 script = ExtResource("16_qypfv")
 
-[connection signal="ButtonPressed" from="Level/PlayMusicTrigger" to="LevelMusicPlayer" method="PlayMusic" flags=6 binds= ["TNT For Breakfast", 17.5, 0.0]]
 [connection signal="animation_finished" from="AdditionalBrightnessLayer/AdditionalBrightnessRect/AnimationPlayer" to="AdditionalBrightnessLayer/AdditionalBrightnessRect" method="queue_free" flags=6 unbinds=1]

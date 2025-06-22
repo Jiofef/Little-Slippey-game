@@ -35,8 +35,9 @@ public partial class Meta : Node
 
     public class GameplayClass
     {
-        public int Dificulty = 0;
-        public readonly string[] DificultyNames = ["Hard", "Insane", "Inferno"];
+        public int Difficulty = 0;
+        public readonly string[] DifficultyNames = ["Hard", "Insane", "Inferno"];
+		public string GetDifficultyName() => DifficultyNames[Difficulty];
         public bool[] AdditionStatuses = new bool[4];
         public string ChosenSkinKey = "Slippey";
 
@@ -78,7 +79,7 @@ public partial class Meta : Node
         ReturnMeta.Video.language = Video.language;
 
         //Gameplay
-        ReturnMeta.Gameplay.Dificulty = Gameplay.Dificulty;
+        ReturnMeta.Gameplay.Difficulty = Gameplay.Difficulty;
         for (int i = 0; i < Instance.Gameplay.AdditionStatuses.Length; i++)
             ReturnMeta.Gameplay.AdditionStatuses[i] = Gameplay.AdditionStatuses[i];
         ReturnMeta.Gameplay.ChosenSkinKey = Gameplay.ChosenSkinKey;
@@ -102,7 +103,7 @@ public partial class Meta : Node
             {"cross_rotation_when_spawning", Video.CrossRotationWhenSpawning},
             {"explosion_bloom", Video.ExplosionBloom},
             {"language", Convert.ToInt32(Video.language)},
-            {"dificulty", Gameplay.Dificulty},
+            {"dificulty", Gameplay.Difficulty},
             {"addition_statuses", Gameplay.AdditionStatuses},
             {"chosen_skin_key", Gameplay.ChosenSkinKey},
         };
@@ -136,7 +137,7 @@ public partial class Meta : Node
     {
         GameplayClass ReturnOptions = new GameplayClass();
 
-        ReturnOptions.Dificulty = 0;
+        ReturnOptions.Difficulty = 0;
         ReturnOptions.AdditionStatuses = new bool[4];
         ReturnOptions.ChosenSkinKey = "Slippey";
         ReturnOptions.IsSkinModded = false;
@@ -232,7 +233,7 @@ public partial class Meta : Node
         TryLoad<float>("camera_zoom", value => Video.CameraZoom = value,"camera_zoom" );
         TryLoad<int>("language",value => Video.language = (VideoClass.Language)value,"language" );
 
-        TryLoad<int>("dificulty",value => Gameplay.Dificulty = value, "dificulty");
+        TryLoad<int>("dificulty",value => Gameplay.Difficulty = value, "dificulty");
         TryLoad<string>("chosen_skin_key", value => Gameplay.ChosenSkinKey = value, "chosen_skin_key");
         TryLoadArray("addition_statuses",  value => Gameplay.AdditionStatuses = value, length => new bool[length], Gameplay.AdditionStatuses.Length, "addition_statuses");
     }

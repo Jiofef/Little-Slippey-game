@@ -21,7 +21,8 @@ public partial class Level8TileMapSpawner : Node2D
 		_previousTileMaps[0] = GetNode<TileMapLayer>("../TileMap");
 
         // CameraLimits is inadequately large at this level, so it would make more sense to spawn gold tags near the player
-        await ToSignal(GetTree(), "process_frame");
+		try { 
+		await ToSignal(GetTree(), "process_frame");} catch (ObjectDisposedException) {return;}
 
 		CurrentPackName = "LightweightTNT1.0 Modified";
 

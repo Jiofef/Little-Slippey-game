@@ -1,8 +1,8 @@
 [gd_scene load_steps=16 format=3 uid="uid://053iekkefhol"]
 
-[ext_resource type="Script" uid="uid://fypkna3v6i1q" path="res://Content/Scripts/Interface&Menu/OptionsMenu.cs" id="1_kmdmx"]
+[ext_resource type="Script" uid="uid://fypkna3v6i1q" path="res://Content/Scripts/InterfaceAndMenu/OptionsMenu.cs" id="1_kmdmx"]
 [ext_resource type="PackedScene" uid="uid://cb3550p76ubc8" path="res://Content/Scenes/Interface&Menu/DraggableWindow.tscn" id="1_tw6c3"]
-[ext_resource type="Script" uid="uid://bi023r03ov6ff" path="res://Content/Scripts/Interface&Menu/SpinBoxEnhanced.cs" id="5_w13me"]
+[ext_resource type="Script" uid="uid://bi023r03ov6ff" path="res://Content/Scripts/InterfaceAndMenu/SpinBoxEnhanced.cs" id="5_w13me"]
 [ext_resource type="Texture2D" uid="uid://vb7vdsdjg4xa" path="res://Content/Sprites/Interface/USADiscordFlag.png" id="7_3d3xi"]
 [ext_resource type="Texture2D" uid="uid://hcoc3411pyvj" path="res://Content/Sprites/Interface/RussiaDiscordFlag.png" id="8_42rvm"]
 [ext_resource type="Theme" uid="uid://dkitr1ftp0yhs" path="res://Content/Other/Menu.tres" id="8_ui2mu"]
@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://dsg7gc0ux6ng4" path="res://Content/Sprites/Interface/Buttons/4XSettingResetButton.png" id="10_lf0wq"]
 [ext_resource type="Texture2D" uid="uid://dqdsspefb6520" path="res://Content/Sprites/Interface/ControlsBox.png" id="10_orj3k"]
 [ext_resource type="Texture2D" uid="uid://b8abnpf38b77x" path="res://Content/Sprites/Interface/Buttons/4XAcceptButton.png" id="11_5wnor"]
-[ext_resource type="Script" uid="uid://cgelawnq1r5rc" path="res://Content/Scripts/Interface&Menu/ScrollableContainer.cs" id="11_qsm8k"]
+[ext_resource type="Script" uid="uid://cgelawnq1r5rc" path="res://Content/Scripts/InterfaceAndMenu/ScrollableContainer.cs" id="11_qsm8k"]
 [ext_resource type="Texture2D" uid="uid://ce4oq2adhljwh" path="res://Content/Sprites/Interface/Buttons/LevelsMenuIcon.png" id="12_balti"]
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_0o8lr"]

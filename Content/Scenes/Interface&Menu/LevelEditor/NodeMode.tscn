@@ -1,6 +1,6 @@
 [gd_scene load_steps=34 format=3 uid="uid://brbs3hjj1mae1"]
 
-[ext_resource type="Script" uid="uid://draji602osogd" path="res://Content/Scripts/Interface&Menu/LevelEditor/NodeMode.cs" id="1_bjd8r"]
+[ext_resource type="Script" uid="uid://draji602osogd" path="res://Content/Scripts/InterfaceAndMenu/LevelEditor/NodeMode.cs" id="1_bjd8r"]
 [ext_resource type="Theme" uid="uid://dkitr1ftp0yhs" path="res://Content/Other/Menu.tres" id="1_i3cqm"]
 [ext_resource type="Texture2D" uid="uid://bqoa0ymeusaxe" path="res://Content/Sprites/Interface/LevelEditor/ArrowOpened.png" id="2_4a0i0"]
 [ext_resource type="Texture2D" uid="uid://b0kg6nh2hqi73" path="res://Content/Sprites/Interface/LevelEditor/Arrow.png" id="3_3pgdq"]
@@ -8,7 +8,7 @@
 [ext_resource type="StyleBox" uid="uid://c24v6s0lhccbw" path="res://Content/Other/LevelEditor.tres" id="5_x03uh"]
 [ext_resource type="PackedScene" uid="uid://bwpstpk1xmkah" path="res://Content/Scenes/Interface&Menu/Button.tscn" id="6_5nli3"]
 [ext_resource type="Texture2D" uid="uid://c2oim5v4o8wh6" path="res://Content/Sprites/Interface/LevelEditor/NodeButton.png" id="7_mgmec"]
-[ext_resource type="Script" uid="uid://baq1ywruv0uwu" path="res://Content/Scripts/Interface&Menu/LevelEditor/LevelEditorCreateNodeButton.cs" id="8_mi0g4"]
+[ext_resource type="Script" uid="uid://baq1ywruv0uwu" path="res://Content/Scripts/InterfaceAndMenu/LevelEditor/LevelEditorCreateNodeButton.cs" id="8_mi0g4"]
 [ext_resource type="Texture2D" uid="uid://b1yvdl7jwsm2i" path="res://Content/Sprites/Interface/LevelEditor/Node.png" id="9_ovyhu"]
 [ext_resource type="Texture2D" uid="uid://bx7ylmwls0u3b" path="res://Content/Sprites/Interface/LevelEditor/Node2D.png" id="10_urtak"]
 [ext_resource type="Texture2D" uid="uid://cq6ok61no1qlr" path="res://Content/Sprites/Interface/LevelEditor/Sprite2D.png" id="11_b45yp"]

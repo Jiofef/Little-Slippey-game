@@ -1,4 +1,4 @@
-[gd_scene load_steps=66 format=4 uid="uid://cb5qp5c88hxxs"]
+[gd_scene load_steps=64 format=4 uid="uid://cb5qp5c88hxxs"]
 
 [ext_resource type="PackedScene" uid="uid://5kfyvxsdpsk2" path="res://Content/Scenes/Other/LevelLayout.tscn" id="1_k46p1"]
 [ext_resource type="Texture2D" uid="uid://cl251rqg2xbw0" path="res://Content/Sprites/Levels/Level6/Sky.png" id="2_suw6p"]
@@ -21,7 +21,6 @@
 [ext_resource type="Script" uid="uid://cljy5m8cpxjru" path="res://Content/Scripts/Levels/Level6FlyingCarSpawner.cs" id="13_528ge"]
 [ext_resource type="Script" uid="uid://cctuvf1t6dawi" path="res://Content/Scripts/Other/SeamlessBoundaryController.cs" id="13_nwujo"]
 [ext_resource type="Texture2D" uid="uid://c1a8v62iy3ybh" path="res://Content/Sprites/Levels/WhyIsItStillRainingTileset.png" id="13_wpl2e"]
-[ext_resource type="PackedScene" uid="uid://d3u7pfig07yrs" path="res://Content/Scenes/Other/CrutchedArea2D.tscn" id="15_uy6ib"]
 [ext_resource type="Script" uid="uid://c2ijxex52fi2x" path="res://Content/Scripts/Other/EnhancedArea2D.cs" id="16_j68af"]
 [ext_resource type="Texture2D" uid="uid://bxsdifl84h3j4" path="res://Content/Sprites/Levels/DEATHDEATHDEATHDEATH.png" id="18_3oav4"]
 
@@ -520,10 +519,11 @@ shader_parameter/brightness = 1.0
 shader_parameter/contrast = 1.25
 shader_parameter/saturation = 0.9
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ftna0"]
-size = Vector2(128, 128)
-
 [node name="Main" instance=ExtResource("1_k46p1")]
+
+[node name="LevelMusicPlayer" parent="." index="0"]
+_musicName = "Clair De Phare"
+RestartPosition = 10.19
 
 [node name="AnimationPlayer" parent="LevelMusicPlayer" index="0"]
 libraries = {
@@ -894,20 +894,11 @@ offset_right = 1280.0
 offset_bottom = 720.0
 mouse_filter = 2
 
-[node name="PlayMusicTrigger" parent="Level" index="10" instance=ExtResource("15_uy6ib")]
-position = Vector2(1920, 800)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/PlayMusicTrigger" index="0"]
-shape = SubResource("RectangleShape2D_ftna0")
-
 [connection signal="body_entered" from="Level/BuildingForeground/TileMap/ForegroundArea" to="Level/BuildingForeground" method="Hide" unbinds=1]
 [connection signal="body_entered" from="Level/BuildingForeground/TileMap/ForegroundArea" to="Level/BuildingForeground/TileMap/ForegroundArea" method="Entered" unbinds=1]
 [connection signal="body_exited" from="Level/BuildingForeground/TileMap/ForegroundArea" to="Level/BuildingForeground" method="Show" unbinds=1]
 [connection signal="body_exited" from="Level/BuildingForeground/TileMap/ForegroundArea" to="Level/BuildingForeground/TileMap/ForegroundArea" method="Exited" unbinds=1]
 [connection signal="AreaEnteredNoArgs" from="Level/BottomTeleportBorder" to="." method="TeleportPlayerTo" binds= [Vector2(3668, 2438)]]
-[connection signal="ButtonPressed" from="Level/PlayMusicTrigger" to="." method="SetProgressPaused" flags=6 binds= [false]]
-[connection signal="ButtonPressed" from="Level/PlayMusicTrigger" to="." method="SetCrossesSpawnMultiplier" flags=6 binds= [0.6]]
-[connection signal="ButtonPressed" from="Level/PlayMusicTrigger" to="LevelMusicPlayer" method="PlayMusic" flags=6 binds= ["Clair De Phare", 10.19, 0.0]]
 
 [editable path="Level/FlyingCarSpawner/Level6FlyingCar"]
 [editable path="Level/FlyingCarSpawner/Level6FlyingCar2"]

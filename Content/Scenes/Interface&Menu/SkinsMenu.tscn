@@ -1,12 +1,12 @@
 [gd_scene load_steps=71 format=3 uid="uid://ufrdtjstxptm"]
 
-[ext_resource type="Script" uid="uid://clbvop6lt140v" path="res://Content/Scripts/Interface&Menu/SkinsMenu.cs" id="1_81lvq"]
+[ext_resource type="Script" uid="uid://clbvop6lt140v" path="res://Content/Scripts/InterfaceAndMenu/SkinsMenu.cs" id="1_81lvq"]
 [ext_resource type="PackedScene" uid="uid://cb3550p76ubc8" path="res://Content/Scenes/Interface&Menu/DraggableWindow.tscn" id="1_w6uws"]
 [ext_resource type="Theme" uid="uid://dkitr1ftp0yhs" path="res://Content/Other/Menu.tres" id="3_16fyc"]
 [ext_resource type="Texture2D" uid="uid://060bgiw5i00k" path="res://Content/Sprites/PlayerSkins/Slippey.png" id="4_4fnp7"]
 [ext_resource type="PackedScene" uid="uid://75ikfwlafbnm" path="res://Content/Scenes/Interface&Menu/SkinButton.tscn" id="4_pnw2u"]
-[ext_resource type="Script" uid="uid://cwcfl6dk7i0v7" path="res://Content/Scripts/Interface&Menu/FixFlowContainer.cs" id="4_t6cmg"]
-[ext_resource type="Script" uid="uid://cgelawnq1r5rc" path="res://Content/Scripts/Interface&Menu/ScrollableContainer.cs" id="4_y3nwf"]
+[ext_resource type="Script" uid="uid://cwcfl6dk7i0v7" path="res://Content/Scripts/InterfaceAndMenu/FixFlowContainer.cs" id="4_t6cmg"]
+[ext_resource type="Script" uid="uid://cgelawnq1r5rc" path="res://Content/Scripts/InterfaceAndMenu/ScrollableContainer.cs" id="4_y3nwf"]
 [ext_resource type="Texture2D" uid="uid://bd15vnp18h7qk" path="res://Content/Sprites/PlayerSkins/Sanboy.png" id="7_o713s"]
 [ext_resource type="Texture2D" uid="uid://cxusn8e4odfu0" path="res://Content/Sprites/PlayerSkins/Samey.png" id="7_q6ji3"]
 [ext_resource type="Texture2D" uid="uid://vjcab56ymxqr" path="res://Content/Sprites/PlayerSkins/Pineplum.png" id="9_2om8k"]
@@ -622,9 +622,9 @@ autoplay = "default"
 [node name="ZParticles" type="CPUParticles2D" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button7/AnimatedSprite2D" index="0"]
 position = Vector2(0, -2)
 amount = 4
+texture = ExtResource("12_2pgon")
 lifetime = 4.0
 preprocess = 2.0
-texture = ExtResource("12_2pgon")
 direction = Vector2(1, -1)
 spread = 20.0
 gravity = Vector2(0, 0)
@@ -795,7 +795,7 @@ script = ExtResource("19_r3u0u")
 
 [node name="GlitchPlayer" type="AnimationPlayer" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button13/AnimatedSprite2D" index="0"]
 libraries = {
-"": SubResource("AnimationLibrary_35a7h")
+&"": SubResource("AnimationLibrary_35a7h")
 }
 
 [node name="Sprite2D" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button13/AnimatedSprite2D" index="1"]
@@ -861,7 +861,7 @@ region_rect = Rect2(16, 0, 2, 2)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="MarginContainer/VBoxContainer/ScrollContainer/SkinButtons/Button14/AnimatedSprite2D" index="4"]
 libraries = {
-"": SubResource("AnimationLibrary_dqx3r")
+&"": SubResource("AnimationLibrary_dqx3r")
 }
 autoplay = "Idle"
 

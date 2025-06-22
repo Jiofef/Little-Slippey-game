@@ -96,7 +96,9 @@ public partial class GoldenCross : UnusualCrossNode
         shineParticles.Emitting = false;
         GetNode<Area2D>("Path2D/Cross/CollectArea").SetDeferred("monitoring", false);
 
-        await ToSignal(shineParticles, "finished");
+		try {
+		await ToSignal(shineParticles, "finished");} catch (ObjectDisposedException) {return;}
+
         OnFinished();
     }
 
@@ -139,7 +141,9 @@ public partial class GoldenCross : UnusualCrossNode
         var shineParticles = GetNode<CpuParticles2D>("Path2D/Cross/ShineParticles");
         shineParticles.Emitting = false;
 
-        await ToSignal(shineParticles, "finished");
+		try {
+		await ToSignal(shineParticles, "finished");} catch (ObjectDisposedException) {return;}
+
         OnFinished();
     }
 

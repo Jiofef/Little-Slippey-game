@@ -110,21 +110,34 @@ public partial class MainScript : Node2D
         UnchangableMeta.SaveToFile();
     }
 
+	public void TeleportPlayerTo(Vector2 globalPos, bool disableGlitchEffect = false)
+    {
+        // Teleport visual effect
+
+		if (!disableGlitchEffect)
+        	_ = G.AdditionalGuiLayer.Glitch();
+
+		Vector2 Offset = globalPos - G.Player.GlobalPosition;
+        G.Player.GlobalPosition = globalPos;
+
+		G.Player.Camera.SmoothedPosition += Offset;
+    }
     public void TeleportPlayerTo(Node2D node, Vector2 pos)
     {
-        // Teleport visual effect
-        G.AdditionalGuiLayer.Glitch();
-
-        G.Player.GlobalPosition = node.GlobalPosition + pos;
+		TeleportPlayerTo(node.GlobalPosition + pos);
     }
-
-    public void TeleportPlayerTo(Vector2 globalPos)
+	public void TeleportPlayerTo(Node2D node, Vector2 pos, bool disableGlitchEffect = false)
     {
-        // Teleport visual effect
-        G.AdditionalGuiLayer.Glitch();
-
-        G.Player.GlobalPosition = globalPos;
+		TeleportPlayerTo(node.GlobalPosition + pos, disableGlitchEffect);
     }
+	public void TeleportPlayerTo(Vector2 globalPos)
+	{
+		TeleportPlayerTo(globalPos);
+	}
+
+
+
+
 
     public void SetCrossesEnabled(bool value)
     {

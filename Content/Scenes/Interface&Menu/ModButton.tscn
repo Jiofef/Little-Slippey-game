@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://duv6361wgul0d"]
 
 [ext_resource type="PackedScene" uid="uid://bwpstpk1xmkah" path="res://Content/Scenes/Interface&Menu/Button.tscn" id="1_ben1t"]
-[ext_resource type="Script" uid="uid://dbk1tiu7v3fsj" path="res://Content/Scripts/Interface&Menu/ScrollableRichTextLabel.cs" id="2_avp7q"]
+[ext_resource type="Script" uid="uid://dbk1tiu7v3fsj" path="res://Content/Scripts/InterfaceAndMenu/ScrollableRichTextLabel.cs" id="2_avp7q"]
 [ext_resource type="Theme" uid="uid://dkitr1ftp0yhs" path="res://Content/Other/Menu.tres" id="3_gfyb7"]
 
 [node name="Button" instance=ExtResource("1_ben1t")]

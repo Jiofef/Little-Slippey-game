@@ -6,7 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://ctpwmgkvyooy1" path="res://Content/Sounds/Player/Death.mp3" id="3_e2byo"]
 [ext_resource type="AudioStream" uid="uid://blkua1p6uqioe" path="res://Content/Sounds/Player/GroundHit.mp3" id="4_eqohp"]
 [ext_resource type="AudioStream" uid="uid://b3cwlsvshgdvx" path="res://Content/Sounds/Player/Jump.mp3" id="5_4c4de"]
-[ext_resource type="Script" uid="uid://bls2tesh0ap78" path="res://Content/Scripts/Interface&Menu/StandBar.cs" id="5_88r4t"]
+[ext_resource type="Script" uid="uid://bls2tesh0ap78" path="res://Content/Scripts/InterfaceAndMenu/StandBar.cs" id="5_88r4t"]
 [ext_resource type="Texture2D" uid="uid://cq27bdhehtatn" path="res://Content/Sprites/Interface/StandBarEmpty.png" id="6_ddctq"]
 [ext_resource type="AudioStream" uid="uid://p26mliplwayb" path="res://Content/Sounds/Player/PullDown.mp3" id="6_ouqh1"]
 [ext_resource type="Texture2D" uid="uid://c2vlstlfjauxy" path="res://Content/Sprites/Interface/StandBar.png" id="7_71iex"]
@@ -618,7 +618,9 @@ stream = ExtResource("12_jom63")
 volume_db = -5.0
 bus = &"Player"
 
-[node name="ImmortalityShield" type="TextureProgressBar" parent="Camera2D"]
+[node name="PlayerPinnedGUI" type="Node2D" parent="."]
+
+[node name="ImmortalityShield" type="TextureProgressBar" parent="PlayerPinnedGUI"]
 process_mode = 1
 visible = false
 offset_left = -32.0
@@ -631,7 +633,7 @@ fill_mode = 5
 nine_patch_stretch = true
 texture_progress = ExtResource("13_fc0ia")
 
-[node name="Timer" type="Timer" parent="Camera2D/ImmortalityShield" node_paths=PackedStringArray("NodeToUpdate")]
+[node name="Timer" type="Timer" parent="PlayerPinnedGUI/ImmortalityShield" node_paths=PackedStringArray("NodeToUpdate")]
 unique_name_in_owner = true
 one_shot = true
 script = ExtResource("15_4f468")
@@ -639,7 +641,7 @@ NodeToUpdate = NodePath("..")
 PropertyToUpdate = "value"
 ProcessStoppedWhenFinished = true
 
-[node name="ClimbsBar" type="TextureProgressBar" parent="Camera2D"]
+[node name="ClimbsBar" type="TextureProgressBar" parent="PlayerPinnedGUI"]
 visible = false
 z_index = 10
 offset_left = -48.0
@@ -653,7 +655,7 @@ value = 3.0
 texture_under = ExtResource("8_s2o7p")
 texture_progress = ExtResource("9_d4mc5")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Camera2D/ClimbsBar"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PlayerPinnedGUI/ClimbsBar"]
 libraries = {
 &"": SubResource("AnimationLibrary_vul4l")
 }
@@ -711,7 +713,7 @@ color_ramp = SubResource("Gradient_u843o")
 [connection signal="body_entered" from="Areas/WallDirectionRightDetector" to="." method="RightWallDetect" unbinds=1]
 [connection signal="body_exited" from="Areas/WallDirectionRightDetector" to="." method="WallUndetected" unbinds=1]
 [connection signal="pressed" from="Camera2D/GUICanvas/GUI/AfterDeathElements/Buttons/ReturnToMenu" to="Camera2D/GUICanvas/GUI" method="ReturnToMenu"]
-[connection signal="timeout" from="Camera2D/ImmortalityShield/Timer" to="." method="ImmortalityIsOver"]
-[connection signal="draw" from="Camera2D/ClimbsBar" to="Camera2D/ClimbsBar/AnimationPlayer" method="play" binds= ["Disappearing"]]
+[connection signal="timeout" from="PlayerPinnedGUI/ImmortalityShield/Timer" to="." method="ImmortalityIsOver"]
+[connection signal="draw" from="PlayerPinnedGUI/ClimbsBar" to="PlayerPinnedGUI/ClimbsBar/AnimationPlayer" method="play" binds= ["Disappearing"]]
 
 [editable path="Camera2D/GUICanvas/GUI/AfterDeathElements/Buttons/ReturnToMenu"]

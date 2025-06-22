@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://7ggxixinwr0a"]
 
-[ext_resource type="Script" uid="uid://bj2ksqwy2ljrc" path="res://Content/Scripts/Interface&Menu/FlexibleWindow.cs" id="1_1wqt2"]
+[ext_resource type="Script" uid="uid://bj2ksqwy2ljrc" path="res://Content/Scripts/InterfaceAndMenu/FlexibleWindow.cs" id="1_1wqt2"]
 [ext_resource type="Texture2D" uid="uid://w4gejppfm3h3" path="res://Content/Sprites/Interface/4XSmallWindowBase.png" id="1_g5l01"]
 
 [sub_resource type="Animation" id="Animation_j5cna"]
@@ -70,7 +70,7 @@ patch_margin_bottom = 8
 [node name="SmoothOpeningPlayer" type="AnimationPlayer" parent="NinePatchRect"]
 root_node = NodePath("../..")
 libraries = {
-"": SubResource("AnimationLibrary_i712u")
+&"": SubResource("AnimationLibrary_i712u")
 }
 autoplay = "SmoothOpening"
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=85 format=4 uid="uid://d1r7h4t8wdh0"]
+[gd_scene load_steps=83 format=4 uid="uid://d1r7h4t8wdh0"]
 
 [ext_resource type="PackedScene" uid="uid://5kfyvxsdpsk2" path="res://Content/Scenes/Other/LevelLayout.tscn" id="1_vycfr"]
 [ext_resource type="Texture2D" uid="uid://blju7km18lxu0" path="res://Content/Sprites/Levels/Level8/BackLayer.png" id="2_p6g40"]
@@ -22,7 +22,6 @@
 [ext_resource type="Texture2D" uid="uid://boyg80qmk1fn3" path="res://Content/Sprites/Levels/Level8/CompressMouthsAnimation.png" id="17_85d8f"]
 [ext_resource type="Texture2D" uid="uid://clft1m28fij1k" path="res://Content/Sprites/Levels/Level8/CompressPimplesAnimation.png" id="18_325kt"]
 [ext_resource type="Texture2D" uid="uid://cx6qktapp8l80" path="res://Content/Sprites/Levels/Level8/CompressFleshAnimation.png" id="19_7v02o"]
-[ext_resource type="PackedScene" uid="uid://d3u7pfig07yrs" path="res://Content/Scenes/Other/CrutchedArea2D.tscn" id="20_j8dm3"]
 
 [sub_resource type="Animation" id="Animation_p3npb"]
 resource_name = "MusicStarting"
@@ -653,10 +652,10 @@ shader_parameter/brightness = 1.1
 shader_parameter/contrast = 1.2
 shader_parameter/saturation = 0.85
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_47qvc"]
-size = Vector2(128, 128)
-
 [node name="Main" instance=ExtResource("1_vycfr")]
+
+[node name="LevelMusicPlayer" parent="." index="0"]
+_musicName = "the Atropy of frontal Cortex"
 
 [node name="AnimationPlayer" parent="LevelMusicPlayer" index="0"]
 libraries = {
@@ -910,11 +909,4 @@ offset_right = 1280.0
 offset_bottom = 720.0
 mouse_filter = 2
 
-[node name="PlayMusicTrigger" parent="Level" index="7" instance=ExtResource("20_j8dm3")]
-position = Vector2(832, 352)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/PlayMusicTrigger" index="0"]
-shape = SubResource("RectangleShape2D_47qvc")
-
 [connection signal="TileMapSpawned" from="Level/TileMapSpawner" to="Level/WallOfCompress" method="UpdateWallSpeedModificator"]
-[connection signal="ButtonPressed" from="Level/PlayMusicTrigger" to="LevelMusicPlayer" method="PlayMusic" flags=6 binds= ["the Atropy of frontal Cortex", 0.0, 0.0]]

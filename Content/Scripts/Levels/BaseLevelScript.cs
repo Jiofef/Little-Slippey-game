@@ -65,7 +65,7 @@ public partial class BaseLevelScript : Node2D
                 Crosses.UpdateCrossesWeight();
             }
 
-            if (Input.IsActionJustReleased("DecraseScoreDebug"))
+            if (Input.IsActionJustReleased("DecreaseScoreDebug"))
             {
                 G.Scores -= 5;
                 Crosses.UpdateCrossesWeight();
@@ -75,7 +75,7 @@ public partial class BaseLevelScript : Node2D
             {
                 var playerDamageDetector = GetNode<Area2D>("Player/Areas/PlayerDamageDetector");
                 playerDamageDetector.Monitoring = !playerDamageDetector.Monitoring;
-                GD.Print("Invinciblity: " + !playerDamageDetector.Monitoring);
+                GD.Print("Invincibility: " + !playerDamageDetector.Monitoring);
             }
 
             if (Input.IsActionJustPressed("PlayerPhysicsDebug"))
@@ -94,7 +94,7 @@ public partial class BaseLevelScript : Node2D
         if (!G.IsProgressPaused)
         {
             G.Scores += _floatDelta;
-            if(G.Scores > G.LevelCompleteTime && UnchangableMeta.LevelCompleteStatus[G.CurrentLevel - 1] < 1 + Meta.Instance.Gameplay.Dificulty && G.IsLevelVanilla)
+            if(G.Scores > G.LevelCompleteTime && UnchangableMeta.LevelCompleteStatus[G.CurrentLevel - 1] < 1 + Meta.Instance.Gameplay.Difficulty && G.IsLevelVanilla)
                 UnchangableMeta.SaveRecords();
         }
     }

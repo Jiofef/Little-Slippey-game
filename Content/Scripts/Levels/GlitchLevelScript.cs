@@ -137,6 +137,7 @@ public partial class GlitchLevelScript : BaseLevelScript
         // When film jams
         var darkeningTween =_dark.CreateTween();
         darkeningTween.TweenProperty(_dark, "modulate", new Color(1, 1, 1, 1), 4f);
+		try { 
         await ToSignal(darkeningTween, "finished");
 
         ChangeScene(Scenes.Level3);
@@ -159,6 +160,8 @@ public partial class GlitchLevelScript : BaseLevelScript
         await ToScore(75, () => _isDisposed);
 		Scores = 0;
         ChangeScene(Scenes.Level7);
+		} catch (ObjectDisposedException) {return;}
+
     }
 
 

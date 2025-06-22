@@ -1,6 +1,7 @@
 using Godot;
 using System.Linq;
 using System.IO;
+using System;
 
 [Tool]
 public partial class Achievement : Control
@@ -180,11 +181,13 @@ public partial class Achievement : Control
         TreeExited += () => _isDisposed = true;
 
         // wait until IsPopupVersion is set
-        await ToSignal(GetTree(), "process_frame");
+		try { 
+		await ToSignal(GetTree(), "process_frame");} catch (ObjectDisposedException) {return;}
 
         if (IsPopupVersion)
         {
-            await ToSignal(GetTree().CreateTimer(2f), SceneTreeTimer.SignalName.Timeout);
+			try { 
+			await ToSignal(GetTree().CreateTimer(2f), SceneTreeTimer.SignalName.Timeout);} catch (ObjectDisposedException) {return;}
 
             ScrollTexts();
             FocusMode = FocusModeEnum.None;
