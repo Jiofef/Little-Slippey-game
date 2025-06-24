@@ -63,10 +63,20 @@ public partial class UnchangableMeta : Node
         new int[G.LevelsInGameTotal],
         new int[G.LevelsInGameTotal]
     };
+	public static int[] GetLevelRecords(int levelId)
+	{
+		int[] array =
+		{
+			LevelRecords[0][levelId],
+			LevelRecords[1][levelId],
+			LevelRecords[2][levelId]
+		};
+		return array;
+	}
 
     //the values of the LevelsCompleteStatus array variables can be 0, 1, 2, 3. 0 means the level is not passed, 1 means it is passed at the minimum difficulty,
-    //correspondingly 2 at the average and 3 at the maximum difficulty.
-    public static int[] LevelCompleteStatus = new int[G.LevelsInGameTotal];
+	//correspondingly 2 at the average and 3 at the maximum difficulty.
+	public static int[] LevelCompleteStatus = new int[G.LevelsInGameTotal];
     public static int[] LevelPlayedStatus = new int[G.LevelsInGameTotal]; //I made it as byte[] because of retard Godot that can't save a boolean array >:( // UPD: On top of that, the JSON.Stringify method converts an array of bytes into a string. To avoid doing bdsm, I converted the bytes to int. Sorry.
 
     public static bool IsLanguageSetted = false, IsTutorialPlayed, IsLevel9PlatformSectionFirstTimeCompleted, IsLevel9PlatformSectionSkipAllowed, IsFakeLevel10SkipAllowed;

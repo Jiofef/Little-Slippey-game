@@ -46,7 +46,8 @@ public partial class AnnotationBox : Control
 
     public void UpdateRequiredSize()
     {
-        _requiredSize = GetNode<RichTextLabel>("RichTextLabel").Size + new Vector2(8, 12);
+		var richLabel = GetNode<RichTextLabel>("RichTextLabel");
+        _requiredSize = new Vector2(richLabel.GetContentWidth() + 16, richLabel.GetContentHeight() + 24);
     }
 
 	#region Pinning

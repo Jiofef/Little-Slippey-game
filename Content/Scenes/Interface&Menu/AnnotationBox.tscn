@@ -224,7 +224,7 @@ scroll_active = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_xtxak")
+&"": SubResource("AnimationLibrary_xtxak")
 }
 
 [connection signal="draw" from="RichTextLabel" to="." method="UpdateRequiredSize" flags=3]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://c2uognhpvxgor"]
+[gd_scene load_steps=45 format=3 uid="uid://c2uognhpvxgor"]
 
 [ext_resource type="PackedScene" uid="uid://cb3550p76ubc8" path="res://Content/Scenes/Interface&Menu/DraggableWindow.tscn" id="1_4ub5g"]
 [ext_resource type="Theme" uid="uid://dkitr1ftp0yhs" path="res://Content/Other/Menu.tres" id="2_j654u"]
@@ -19,6 +19,7 @@
 [ext_resource type="Script" uid="uid://dbk1tiu7v3fsj" path="res://Content/Scripts/InterfaceAndMenu/ScrollableRichTextLabel.cs" id="15_lsl66"]
 [ext_resource type="Texture2D" uid="uid://cykxpkslbhnie" path="res://Content/Sprites/Interface/Buttons/Additions/Thunderstorm.png" id="16_7dmad"]
 [ext_resource type="Texture2D" uid="uid://cd43brqsh8s0" path="res://Content/Sprites/Interface/Buttons/Additions/OldFilm.png" id="17_khfi6"]
+[ext_resource type="Texture2D" uid="uid://nroegcqob363" path="res://Content/Sprites/Interface/DifficultiesIcons.png" id="17_rmt2y"]
 [ext_resource type="Texture2D" uid="uid://dsmoby68u5xkd" path="res://Content/Sprites/Interface/Buttons/Additions/Jiofef's head.png" id="18_dr8e6"]
 [ext_resource type="Texture2D" uid="uid://vfvx4ihrhbuj" path="res://Content/Sprites/Interface/Buttons/Additions/EnhancedCrosses.png" id="19_mgyur"]
 [ext_resource type="Texture2D" uid="uid://mxd8dm5pbe7q" path="res://Content/Sprites/Interface/Buttons/LevelsMenuArrow.png" id="20_mcnqk"]
@@ -337,6 +338,10 @@ _data = {
 [sub_resource type="ButtonGroup" id="ButtonGroup_7b2j5"]
 resource_local_to_scene = false
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_at464"]
+atlas = ExtResource("17_rmt2y")
+region = Rect2(0, 0, 20, 20)
+
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_6lp01"]
 color = Color(0.643137, 0.654902, 0.556863, 1)
 thickness = 4
@@ -372,6 +377,7 @@ layout_mode = 2
 size_flags_vertical = 3
 
 [node name="Levels" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBC" index="0"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 
@@ -415,7 +421,7 @@ stretch = true
 handle_input_locally = false
 canvas_item_default_texture_filter = 0
 size = Vector2i(740, 420)
-render_target_update_mode = 4
+render_target_update_mode = 0
 
 [node name="WhiteNoise" type="AnimatedSprite2D" parent="MarginContainer/VBoxContainer/HBC/Levels/HBC/C/MC/LevelPresenter" index="1"]
 scale = Vector2(2.3125, 2.33333)
@@ -434,7 +440,7 @@ libraries = {
 &"": SubResource("AnimationLibrary_g0wyp")
 }
 
-[node name="HardBestResult" type="Label" parent="MarginContainer/VBoxContainer/HBC/Levels/HBC" index="1"]
+[node name="RecordsDifficulty" type="Label" parent="MarginContainer/VBoxContainer/HBC/Levels/HBC" index="1"]
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 0
@@ -452,7 +458,7 @@ Inferno:
 000000000
 
 Selected
-diffuculty:
+difficulty:
 Hard"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -954,7 +960,6 @@ texture_disabled = ExtResource("9_xwjii")
 
 [node name="Difficulties" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBC" index="1"]
 process_mode = 4
-visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 
@@ -970,7 +975,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 8
 toggle_mode = true
 button_group = SubResource("ButtonGroup_7b2j5")
-texture_normal = null
+texture_normal = SubResource("AtlasTexture_at464")
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBC/Difficulties/Hard" index="1"]
 layout_mode = 2
@@ -1007,7 +1012,6 @@ size_flags_horizontal = 4
 size_flags_vertical = 8
 toggle_mode = true
 button_group = SubResource("ButtonGroup_7b2j5")
-texture_normal = null
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBC/Difficulties/Insane" index="1"]
 layout_mode = 2
@@ -1222,7 +1226,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 0
 texture_normal = ExtResource("20_mcnqk")
 AnnotationEnabled = true
-AnnotationText = "BonusLevels"
+AnnotationText = "Levels"
 
 [node name="BonusLevels" parent="MarginContainer/VBoxContainer/HBC/C/MC/VBC" index="1" instance=ExtResource("12_lijiv")]
 visible = false
@@ -1231,6 +1235,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 0
 texture_normal = ExtResource("21_san4a")
 AnnotationEnabled = true
+AnnotationText = "Bonus Levels"
 
 [node name="Difficulties" parent="MarginContainer/VBoxContainer/HBC/C/MC/VBC" index="2" instance=ExtResource("12_lijiv")]
 layout_mode = 2

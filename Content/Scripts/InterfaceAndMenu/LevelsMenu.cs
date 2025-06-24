@@ -49,18 +49,49 @@ public partial class LevelsMenu : DraggableWindow
 	{
 		_selectedTab.Hide();
 		_selectedTab.ProcessMode = ProcessModeEnum.Disabled;
-		
+
 		_selectedTab = GetNode<Control>("MarginContainer/VBoxContainer/HBC/" + tab.ToString());
 		_selectedTab.Show();
 		_selectedTab.ProcessMode = ProcessModeEnum.Inherit;
+
+		switch (tab)
+		{
+			case LevelsMenuTab.Levels:
+				UpdateLevelsTab();
+				break;
+			case LevelsMenuTab.BonusLevels:
+				UpdateBonusLevelsTab();
+				break;
+			case LevelsMenuTab.Difficulties:
+				UpdateDifficultiesTab();
+				break;
+			case LevelsMenuTab.Additions:
+				UpdateAdditionsTab();
+				break;
+		}
 	}
 
 	#region Levels tab
 
+	public void UpdateLevelsTab()
+	{
+		UpdateRecordsDifficultyLabel();
+	}
+	private string GetRecordsDifficultyText()
+	{
+		int[] records = UnchangableMeta.GetLevelRecords(_chosenLevel - 1);
+		string text = $"{Tr(
+			"Records")}\n\n{Tr(
+			"Hard")}:\n{records[0]}\n\n{Tr(
+			"Insane")}:\n{records[1]}\n\n{Tr(
+			"Inferno")}:\n{records[2]}\n\n {Tr(
+			"Selected\ndifficulty:")}\n{Tr(
+			Meta.Instance.Gameplay.GetDifficultyName()
+			)}";
+		return text;
+	}
 	private void InitLevelsTab()
 	{
-		SetPresentedLevel(1, "");
-
 		int levelId;
 		void BindButtonSignals(LevelButton button)
 		{
@@ -89,26 +120,31 @@ public partial class LevelsMenu : DraggableWindow
 			else
 				break;
 		}
+
+		SetPresentedLevel(1, "");
 	}
 	private int _chosenLevel;
 	public void SetPresentedLevel(int value, string additionalLinkValue = "")
     {
         if (_chosenLevel != value || additionalLinkValue != _additionalLevelLink)
         {
+			_chosenLevel = value;
+            _additionalLevelLink = additionalLinkValue;
+
             var noiseAnimationPlayer = ContentContainer.GetNode<AnimationPlayer>("HBC/Levels/HBC/C/MC/LevelPresenter/WhiteNoise/AnimationPlayer");
             noiseAnimationPlayer.CurrentAnimation = null;
             noiseAnimationPlayer.Play(UnchangableMeta.LevelPlayedStatus[value - 1] == 1 ? "NoiseDisappearing" : "Noise");
 
-            _chosenLevel = value;
-            _additionalLevelLink = additionalLinkValue;
+			UpdateRecordsDifficultyLabel();
+
             LevelPresenterViewportUpdate();
         }
     }
-	public void UpdateRecordsLabel()
+	public void UpdateRecordsDifficultyLabel()
 	{
-		
+		var recordsDifficultyLabel = GetNode<Label>("MarginContainer/VBoxContainer/HBC/Levels/HBC/RecordsDifficulty");
+		recordsDifficultyLabel.Text = GetRecordsDifficultyText();
 	}
-	//public void LevelButtonPressed(int levelId)
 	public void StartLevelOpening(int value, string additionalLevelLink = "")
 	{
 		G.LevelAdditionalLink = additionalLevelLink;
@@ -178,7 +214,10 @@ public partial class LevelsMenu : DraggableWindow
 	#endregion
 
 	#region Bonus Levels tab
-	
+	public void UpdateBonusLevelsTab()
+	{
+
+	}
 	#endregion
 
 	#region Difficulties tab
