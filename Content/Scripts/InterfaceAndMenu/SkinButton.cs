@@ -53,10 +53,6 @@ public partial class SkinButton : EnhancedButton
     }
 
 
-    // Only for buying animation
-    private float _skinAppearCoeff = 0;
-    private const float SKIN_APPEAR_SPEED = 0.001f;
-
     public enum State {Locked, IsntBought, Bought}
 
     public void SetVisualState(State state)

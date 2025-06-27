@@ -19,6 +19,7 @@ public partial class AnnotationBox : Control
 	{
 		SetProcess(false);
 		UnPin();
+		_requiredSizeOverride = null;
 	}
 	public override void _Process(double delta)
     {
@@ -28,8 +29,10 @@ public partial class AnnotationBox : Control
         Position = new Vector2(Math.Min(Position.X, 1280 - Size.X), Math.Min(Position.Y, 720 - Size.Y));
     }
 
-    public void PopupWithText(string text)
+    public void PopupWithText(string text, Vector2? sizeOverride = null)
     {
+		_requiredSizeOverride = sizeOverride;
+		
         Show();
         SetProcess(true);
 
@@ -44,11 +47,12 @@ public partial class AnnotationBox : Control
         animationPlayer.Play("Appearing");
     }
 
-    public void UpdateRequiredSize()
-    {
+	private Vector2? _requiredSizeOverride = null;
+	public void UpdateRequiredSize()
+	{
 		var richLabel = GetNode<RichTextLabel>("RichTextLabel");
-        _requiredSize = new Vector2(richLabel.GetContentWidth() + 16, richLabel.GetContentHeight() + 24);
-    }
+		_requiredSize = _requiredSizeOverride ?? new Vector2(richLabel.GetContentWidth() + 16, richLabel.GetContentHeight() + 24);
+	}
 
 	#region Pinning
 	public Vector2 PinPosition {get; private set;}

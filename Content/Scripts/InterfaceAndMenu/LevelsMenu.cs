@@ -85,7 +85,7 @@ public partial class LevelsMenu : DraggableWindow
 			"Hard")}:\n{records[0]}\n\n{Tr(
 			"Insane")}:\n{records[1]}\n\n{Tr(
 			"Inferno")}:\n{records[2]}\n\n {Tr(
-			"Selected\ndifficulty:")}\n{Tr(
+			"Selected\ndifficulty")}:\n{Tr(
 			Meta.Instance.Gameplay.GetDifficultyName()
 			)}";
 		return text;

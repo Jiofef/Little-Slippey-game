@@ -7,40 +7,40 @@ public partial class EnhancedButton : TextureButton
 	ColorRect _focusRect;
 	public override void _Ready()
 	{
-        _focusRect = GetNode<ColorRect>("FocusRect");
+		_focusRect = GetNode<ColorRect>("FocusRect");
 
 		var downSoundCallable = new Callable(GetNode<AudioStreamPlayer>("DownSound"), "play");
-        if (!IsConnected("button_down", downSoundCallable))
-		Connect("button_down", downSoundCallable);
+		if (!IsConnected("button_down", downSoundCallable))
+			Connect("button_down", downSoundCallable);
 
-        var upSoundCallable = new Callable(GetNode<AudioStreamPlayer>("UpSound"), "play");
-        if (!IsConnected("button_up", upSoundCallable))
-            Connect("button_up", upSoundCallable);
-		
-		
+		var upSoundCallable = new Callable(GetNode<AudioStreamPlayer>("UpSound"), "play");
+		if (!IsConnected("button_up", upSoundCallable))
+			Connect("button_up", upSoundCallable);
+
+
 		FocusEntered += OnFocusEntered;
 		FocusExited += OnFocusExited;
 		MouseEntered += OnMouseEntered;
 		MouseExited += OnMouseExited;
-    }
+	}
 
 	public override void _PhysicsProcess(double delta)
 	{
 		Vector2 MousePos = GetLocalMousePosition();
 
-        if (IsHovered() && !HasFocus() && !Disabled && _previousFrameMousePos != MousePos)
-            GrabFocus();
+		if (IsHovered() && !HasFocus() && !Disabled && _previousFrameMousePos != MousePos)
+			GrabFocus();
 
 		_previousFrameMousePos = MousePos;
 
-        _focusRect.Modulate = new Color(
-		_focusRect.Modulate.R, _focusRect.Modulate.G, _focusRect.Modulate.B, 
+		_focusRect.Modulate = new Color(
+		_focusRect.Modulate.R, _focusRect.Modulate.G, _focusRect.Modulate.B,
 		Mathf.Clamp(HasFocus() ? _focusRect.Modulate.A + 0.2f : _focusRect.Modulate.A - 0.2f, 0, !Disabled ? 1 : 0.33f));
 		float Brightness = ButtonPressed ? 0.5f : 1;
 		Modulate = new Color(Brightness, Brightness, Brightness);
 
 		// Annotations
-		if (AnnotationEnabled && HasFocus() && !_wasAnnotationShowed)
+		if (AnnotationEnabled && HasFocus() && !_wasAnnotationShowed && !Disabled)
 		{
 			_annotationAppearingTimer -= G.FLOAT_DELTA;
 
@@ -53,12 +53,13 @@ public partial class EnhancedButton : TextureButton
 	[ExportGroup("Annotation properties")]
 	[Export] public bool AnnotationEnabled = false;
 	[Export(PropertyHint.MultilineText)] public string AnnotationText;
+	[Export] public Vector2 AnnotationBoxSizeOverride = Vector2.Zero;
 	[Export] public float AnnotationAppearingDelay = 0.5f;
 	private float _annotationAppearingTimer;
 	private bool _annotationShowed = false, _wasAnnotationShowed;
 	private void ShowAnnotation()
 	{
-		G.AdditionalGuiLayer.AnnotationBox.PopupWithText(AnnotationText);
+		G.AdditionalGuiLayer.AnnotationBox.PopupWithText(AnnotationText, AnnotationBoxSizeOverride != Vector2.Zero ? AnnotationBoxSizeOverride : null);
 		_annotationShowed = true;
 		_wasAnnotationShowed = true;
 		if (!IsHovered())
@@ -73,14 +74,14 @@ public partial class EnhancedButton : TextureButton
 
 	private void OnFocusEntered()
 	{
-		if (AnnotationEnabled)
+		if (AnnotationEnabled && !Disabled)
 		{
 			_annotationAppearingTimer = AnnotationAppearingDelay;
 		}
 	}
 	private void OnFocusExited()
 	{
-		if (AnnotationEnabled)
+		if (AnnotationEnabled && !Disabled)
 		{
 			_wasAnnotationShowed = false;
 			HideAnnotation();
@@ -88,7 +89,7 @@ public partial class EnhancedButton : TextureButton
 	}
 	private void OnMouseEntered()
 	{
-		if (AnnotationEnabled)
+		if (AnnotationEnabled && !Disabled)
 		{
 			if (_annotationShowed)
 			{
@@ -122,13 +123,14 @@ public partial class EnhancedButton : TextureButton
 	[Signal] public delegate void OnBoughtEventHandler();
 	public static Action AOnBought;
 
-    public override void _Pressed()
-    {
+	public override void _Pressed()
+	{
+
 		if (EnableBuying)
 			TryBuy();
-    }
+	}
 
-    public void TryBuy()
+	public void TryBuy()
 	{
 		if (UnchangableMeta.TryBuy(BuyingPrice))
 		{
@@ -143,5 +145,5 @@ public partial class EnhancedButton : TextureButton
 		}
 	}
 
-    #endregion
+	#endregion
 }

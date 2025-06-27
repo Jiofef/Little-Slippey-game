@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://c2uognhpvxgor"]
+[gd_scene load_steps=48 format=3 uid="uid://c2uognhpvxgor"]
 
 [ext_resource type="PackedScene" uid="uid://cb3550p76ubc8" path="res://Content/Scenes/Interface&Menu/DraggableWindow.tscn" id="1_4ub5g"]
 [ext_resource type="Theme" uid="uid://dkitr1ftp0yhs" path="res://Content/Other/Menu.tres" id="2_j654u"]
@@ -25,6 +25,7 @@
 [ext_resource type="Texture2D" uid="uid://mxd8dm5pbe7q" path="res://Content/Sprites/Interface/Buttons/LevelsMenuArrow.png" id="20_mcnqk"]
 [ext_resource type="Texture2D" uid="uid://c730u1vqdm1sy" path="res://Content/Sprites/Interface/Buttons/LevelsMenuBonusLevels.png" id="21_san4a"]
 [ext_resource type="Texture2D" uid="uid://nxpu4e4eswbw" path="res://Content/Sprites/Interface/Buttons/LevelsMenuDifficulties.png" id="22_emx4c"]
+[ext_resource type="PackedScene" uid="uid://1aqk32010t2c" path="res://Content/Scenes/Interface&Menu/ContentButton.tscn" id="23_at464"]
 [ext_resource type="Texture2D" uid="uid://cgnw0ryaidc3m" path="res://Content/Sprites/Interface/Buttons/MakeAModButton.png" id="23_cmhuv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_m23ck"]
@@ -340,7 +341,7 @@ resource_local_to_scene = false
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_at464"]
 atlas = ExtResource("17_rmt2y")
-region = Rect2(0, 0, 20, 20)
+region = Rect2(0, 0, 80, 80)
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_6lp01"]
 color = Color(0.643137, 0.654902, 0.556863, 1)
@@ -350,6 +351,14 @@ thickness = 4
 color = Color(0.643137, 0.654902, 0.556863, 1)
 thickness = 4
 vertical = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rmt2y"]
+atlas = ExtResource("17_rmt2y")
+region = Rect2(80, 0, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mno7b"]
+atlas = ExtResource("17_rmt2y")
+region = Rect2(160, 0, 80, 80)
 
 [node name="LevelsMenu" node_paths=PackedStringArray("LevelButtons") instance=ExtResource("1_4ub5g")]
 custom_minimum_size = Vector2(1100, 668)
@@ -365,6 +374,7 @@ script = ExtResource("3_00ycv")
 _levelRowsAmount = 3
 LevelButtons = [NodePath("MarginContainer/VBoxContainer/HBC/Levels/LevelsList/C/HBC/Level1Button"), NodePath("MarginContainer/VBoxContainer/HBC/Levels/LevelsList/C/HBC/Level2Button"), NodePath("MarginContainer/VBoxContainer/HBC/Levels/LevelsList/C/HBC/Level3Button"), NodePath("MarginContainer/VBoxContainer/HBC/Levels/LevelsList/C/HBC/Level4Button"), NodePath("MarginContainer/VBoxContainer/HBC/Levels/LevelsList/C/HBC/Level5Button"), NodePath("MarginContainer/VBoxContainer/HBC/Levels/LevelsList/C/HBC/Level6Button"), NodePath("MarginContainer/VBoxContainer/HBC/Levels/LevelsList/C/HBC/Level7Button"), NodePath("MarginContainer/VBoxContainer/HBC/Levels/LevelsList/C/HBC/Level8Button"), NodePath("MarginContainer/VBoxContainer/HBC/Levels/LevelsList/C/HBC/Level9Button"), NodePath("MarginContainer/VBoxContainer/HBC/Levels/LevelsList/C/HBC/Level10Button")]
 LevelRowHBC = NodePath("MarginContainer/VBoxContainer/HBC/Levels/LevelsList/C/HBC")
+WindowTitle = "Levels Menu"
 
 [node name="WindowTitle" parent="MarginContainer/VBoxContainer/BlueBox" index="1"]
 text = "Levels Menu"
@@ -377,7 +387,6 @@ layout_mode = 2
 size_flags_vertical = 3
 
 [node name="Levels" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBC" index="0"]
-visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 
@@ -421,7 +430,7 @@ stretch = true
 handle_input_locally = false
 canvas_item_default_texture_filter = 0
 size = Vector2i(740, 420)
-render_target_update_mode = 0
+render_target_update_mode = 4
 
 [node name="WhiteNoise" type="AnimatedSprite2D" parent="MarginContainer/VBoxContainer/HBC/Levels/HBC/C/MC/LevelPresenter" index="1"]
 scale = Vector2(2.3125, 2.33333)
@@ -960,6 +969,7 @@ texture_disabled = ExtResource("9_xwjii")
 
 [node name="Difficulties" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBC" index="1"]
 process_mode = 4
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 
@@ -991,9 +1001,9 @@ theme_override_styles/separator = SubResource("StyleBoxLine_6lp01")
 [node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer/HBC/Difficulties/Hard" index="3"]
 layout_mode = 2
 size_flags_vertical = 3
-text = "Стандартная сложность для подпивасов или просто новичков.
+text = "The default difficulty for chads who think pressing one button is already too hard.
 
-Золотых меток меньше всего из-за малого количества меток в принципе."
+-The fewest golden Crosses due to the low number of Crosses in general."
 script = ExtResource("15_lsl66")
 
 [node name="VSeparator" type="VSeparator" parent="MarginContainer/VBoxContainer/HBC/Difficulties" index="1"]
@@ -1012,6 +1022,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 8
 toggle_mode = true
 button_group = SubResource("ButtonGroup_7b2j5")
+texture_normal = SubResource("AtlasTexture_rmt2y")
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBC/Difficulties/Insane" index="1"]
 layout_mode = 2
@@ -1030,13 +1041,13 @@ theme_override_styles/separator = SubResource("StyleBoxLine_6lp01")
 [node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer/HBC/Difficulties/Insane" index="3"]
 layout_mode = 2
 size_flags_vertical = 3
-text = "Голова начинает болеть.
+text = "Your head will start to ache.
 
-На этой сложности:
+On this difficulty:
 
--Скорость заполнения шкалы пассивности увеличена
+-The passivity meter fills up faster
 
--Меток в полтора раза больше"
+-1.5 times more Crosses"
 script = ExtResource("15_lsl66")
 
 [node name="VSeparator2" type="VSeparator" parent="MarginContainer/VBoxContainer/HBC/Difficulties" index="3"]
@@ -1055,7 +1066,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 8
 toggle_mode = true
 button_group = SubResource("ButtonGroup_7b2j5")
-texture_normal = null
+texture_normal = SubResource("AtlasTexture_mno7b")
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBC/Difficulties/Inferno" index="1"]
 layout_mode = 2
@@ -1076,25 +1087,25 @@ theme_override_styles/separator = SubResource("StyleBoxLine_6lp01")
 [node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer/HBC/Difficulties/Inferno" index="3"]
 layout_mode = 2
 size_flags_vertical = 3
-text = "ГОСПОДИ ТОЛЬКО НЕ Я
+text = "GOD PLEASE NO, NOT ME
+On this difficulty:
 
+-All types of crosses appear from the very beginning
 
-На этой сложности:
-
--Все типы меток появляются с самого начала
-
--Меток в два раза больше"
+-Twice as many crosses"
 script = ExtResource("15_lsl66")
 
 [node name="Additions" type="ScrollContainer" parent="MarginContainer/VBoxContainer/HBC" index="2"]
+process_mode = 4
 visible = false
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 2
 
 [node name="VBC" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBC/Additions" index="0"]
-process_mode = 4
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 2
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBC/Additions/VBC" index="0"]
 layout_mode = 2
@@ -1139,52 +1150,45 @@ fit_content = true
 
 [node name="ChallengesContainer" type="HFlowContainer" parent="MarginContainer/VBoxContainer/HBC/Additions/VBC" index="9"]
 layout_mode = 2
+mouse_filter = 2
 theme_override_constants/h_separation = 16
 theme_override_constants/v_separation = 8
 
-[node name="Thunderstorm" parent="MarginContainer/VBoxContainer/HBC/Additions/VBC/ChallengesContainer" index="0" instance=ExtResource("12_lijiv")]
-custom_minimum_size = Vector2(128, 128)
+[node name="Thunderstorm" parent="MarginContainer/VBoxContainer/HBC/Additions/VBC/ChallengesContainer" index="0" instance=ExtResource("23_at464")]
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 8
-toggle_mode = true
-button_group = SubResource("ButtonGroup_7b2j5")
-texture_normal = ExtResource("16_7dmad")
+disabled = true
+_contentName = "Thunderstorm"
+_displayedName = "Thunderstorm"
+Icon = ExtResource("16_7dmad")
 AnnotationEnabled = true
-AnnotationText = "Rain"
+AnnotationText = "Включайте дождь из 5 уровня абсолютно везде. Ничего не видно. Зато вайбик"
 
-[node name="OldFilm" parent="MarginContainer/VBoxContainer/HBC/Additions/VBC/ChallengesContainer" index="1" instance=ExtResource("12_lijiv")]
-custom_minimum_size = Vector2(128, 128)
+[node name="OldFilm" parent="MarginContainer/VBoxContainer/HBC/Additions/VBC/ChallengesContainer" index="1" instance=ExtResource("23_at464")]
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 8
-toggle_mode = true
-button_group = SubResource("ButtonGroup_7b2j5")
-texture_normal = ExtResource("17_khfi6")
+disabled = true
+_contentName = "OldFilm"
+_displayedName = "Burning Film"
+Icon = ExtResource("17_khfi6")
 AnnotationEnabled = true
-AnnotationText = "Rain"
+AnnotationText = "√"
 
-[node name="JiofefsHead" parent="MarginContainer/VBoxContainer/HBC/Additions/VBC/ChallengesContainer" index="2" instance=ExtResource("12_lijiv")]
-custom_minimum_size = Vector2(128, 128)
+[node name="JiofefsHead" parent="MarginContainer/VBoxContainer/HBC/Additions/VBC/ChallengesContainer" index="2" instance=ExtResource("23_at464")]
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 8
-toggle_mode = true
-button_group = SubResource("ButtonGroup_7b2j5")
-texture_normal = ExtResource("18_dr8e6")
+disabled = true
+_contentName = "JiofefsHead"
+_displayedName = "Jiofef's Presence"
+Icon = ExtResource("18_dr8e6")
 AnnotationEnabled = true
-AnnotationText = "Rain"
+AnnotationText = "Джиофеф (Джио Иоба Фефски) пришёл в этот мир уже когда было поздно. Кажется очевидным обвинить во всех бедах мира существо с абсолютной властью, но Джиофеф - лишь отражение общества. Он не разрушит мир, но он будет держать его на грани, искуственно затевая войны и насылая жуткие катаклизмы, изредка беря под прицел своих издевательств совсем уж незначительных людей. Неизвестно, зачем он это делает. Ему нравится, или это своеобразный \"Великий план\". Как бы это ни было, последствия его действий заметны. И хоть большинство людей даже не слышали о его существовании, каждый должен быть наготове. Как только весть о его пришествии дошла до некоторых работников Giero, они организовали культ. Кто-то верит, что он действительно даст им что-то за верность и службу, а кто-то от чистого сердца хочет его этим усмирить, дабы спасти человечество от гнева его."
+AnnotationBoxSizeOverride = Vector2(980, 640)
 
-[node name="EnhancedCrosses" parent="MarginContainer/VBoxContainer/HBC/Additions/VBC/ChallengesContainer" index="3" instance=ExtResource("12_lijiv")]
-custom_minimum_size = Vector2(128, 128)
+[node name="EnhancedCrosses" parent="MarginContainer/VBoxContainer/HBC/Additions/VBC/ChallengesContainer" index="3" instance=ExtResource("23_at464")]
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 8
-toggle_mode = true
-button_group = SubResource("ButtonGroup_7b2j5")
-texture_normal = ExtResource("19_mgyur")
+disabled = true
+_contentName = "EnhancedCrosses"
+_displayedName = "Enhanced Crosses"
+Icon = ExtResource("19_mgyur")
 AnnotationEnabled = true
-AnnotationText = "Rain"
 
 [node name="C" type="Control" parent="MarginContainer/VBoxContainer/HBC" index="3"]
 custom_minimum_size = Vector2(112, 0)
@@ -1258,10 +1262,6 @@ AnnotationText = "Additions"
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBC/Difficulties/Hard/ToggleButton" to="." method="SetDifficulty" binds= [0]]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBC/Difficulties/Insane/ToggleButton" to="." method="SetDifficulty" binds= [1]]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBC/Difficulties/Inferno/ToggleButton" to="." method="SetDifficulty" binds= [2]]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HBC/Additions/VBC/ChallengesContainer/Thunderstorm" to="." method="SetDifficulty" binds= [0]]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HBC/Additions/VBC/ChallengesContainer/OldFilm" to="." method="SetDifficulty" binds= [0]]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HBC/Additions/VBC/ChallengesContainer/JiofefsHead" to="." method="SetDifficulty" binds= [0]]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HBC/Additions/VBC/ChallengesContainer/EnhancedCrosses" to="." method="SetDifficulty" binds= [0]]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBC/C/MC/VBC/Levels" to="." method="SelectTab" binds= [0]]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBC/C/MC/VBC/BonusLevels" to="." method="SelectTab" binds= [1]]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBC/C/MC/VBC/Difficulties" to="." method="SelectTab" binds= [2]]

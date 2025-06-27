@@ -1,3 +1,6 @@
+ColorRect
+AnimationPlayer
+TextureRect
 ScrollContainer
 HFlowContainer
 Node
@@ -9,7 +12,3 @@ VSeparator
 HBoxContainer
 Control
 MarginContainer
-VScrollBar
-TabContainer
-Parallax2D
-ColorRect
