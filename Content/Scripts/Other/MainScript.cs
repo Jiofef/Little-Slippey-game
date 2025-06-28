@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using static OtherExtension.ActionTools;
+using static ContentManager;
 public partial class MainScript : Node2D
 {
     [Signal] public delegate void RecalculateCrossWeightEventHandler();
@@ -66,24 +67,35 @@ public partial class MainScript : Node2D
         Achievements.GetAchievement(name);
     }
 
+	private void UnlockContent(ContentTypeEnum contentType, string contentName)
+	{
+		ContentManager.UnlockContent(contentType, contentName);
+	}
+	private void UnlockContentStr(string contentType, string contentName)
+	{
+		if (Enum.TryParse(contentType, out ContentTypeEnum contentTypeEnum))
+		{
+			UnlockContent(contentTypeEnum, contentName);
+		}
+	}
 
     //Methods from above are actively used in game scripts and their sloppy use can break some processes, use at your own risk.
-    //The methods below are made specifically for modding, use them however you want.
+	//The methods below are made specifically for modding, use them however you want.
 
 
-    public void LoadScene(string ScenePath)
-    {
-        if (G.IsLevelVanilla)
-            GetTree().ChangeSceneToFile(ScenePath);
-        else
-        {
-            G.ModMapPath = ScenePath;
-            GetTree().ChangeSceneToFile(ModManager.DefaultModsPath + G.ModMapPath);
-        }
+	public void LoadScene(string ScenePath)
+	{
+		if (G.IsLevelVanilla)
+			GetTree().ChangeSceneToFile(ScenePath);
+		else
+		{
+			G.ModMapPath = ScenePath;
+			GetTree().ChangeSceneToFile(ModManager.DefaultModsPath + G.ModMapPath);
+		}
 
-        if (IsInsideTree()) //In very rare cases (e.g. with a level 7 black screen), the node is not deleted correctly when the scene is changed. This fixes this bug.
-            QueueFree();
-    }
+		if (IsInsideTree()) //In very rare cases (e.g. with a level 7 black screen), the node is not deleted correctly when the scene is changed. This fixes this bug.
+			QueueFree();
+	}
     public void Reset()
     {
         G.WasTheLevelRestarted = true;

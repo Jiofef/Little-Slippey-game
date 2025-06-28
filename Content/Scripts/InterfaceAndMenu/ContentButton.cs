@@ -5,10 +5,10 @@ using static ContentManager;
 [Tool]
 public partial class ContentButton : EnhancedButton
 {
-	[Export] private ContentTypeEnum _contentType;
-	[Export] private string _contentName;
-	[Export] private string _displayedName;
-	private Texture2D _icon;
+	[Export] protected ContentTypeEnum _contentType;
+	[Export] protected string _contentName;
+	[Export] protected string _displayedName;
+	protected Texture2D _icon;
 	[Export] public Texture2D Icon { get => _icon; set => CallDeferred(nameof(SetIcon), value); }
 	public void SetIcon(Texture2D icon)
 	{
@@ -16,7 +16,7 @@ public partial class ContentButton : EnhancedButton
 		GetNode<TextureRect>("Icon").Texture = _icon;
 	}
 
-	private IContent _content;
+	protected IContent _content;
 
 
 	public void SetBindedContent(ContentTypeEnum contentType, string contentName)
@@ -34,7 +34,7 @@ public partial class ContentButton : EnhancedButton
 	public void UpdateName()
 	{
 		if (_content is not IUnlockableContent content || content.IsUnlocked)
-			GetNode<RichTextLabel>("ContentName/Text").Text = DISPLAYED_NAME_PART_1 + _displayedName;
+			GetNode<RichTextLabel>("ContentName/Text").Text = DISPLAYED_NAME_PART_1 + Tr(_displayedName);
 		else
 			GetNode<RichTextLabel>("ContentName/Text").Text = DISPLAYED_NAME_PART_1 + "???";
 	}
@@ -122,6 +122,9 @@ public partial class ContentButton : EnhancedButton
 		else
 		{
 			SetVisualState(State.Available);
+
+			if (_content is IToggleableContent tContent)
+				ButtonPressed = tContent.IsActivated;
 		}
 	}
 
@@ -161,6 +164,7 @@ public partial class ContentButton : EnhancedButton
 	public void BuyContent(IPurchasableContent pContent)
 	{
 		pContent.IsBought = true;
+		ContentManager.QueueSave();
 
 		SetVisualState(State.Available);
 
@@ -171,6 +175,6 @@ public partial class ContentButton : EnhancedButton
 	}
 
 	public virtual void HandleActivate()
-	{ }
+	{}
 	#endregion
 }

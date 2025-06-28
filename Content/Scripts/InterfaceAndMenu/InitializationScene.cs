@@ -28,6 +28,8 @@ public partial class InitializationScene : Control
         Meta.Instance.LoadOptions();
         Meta.Instance.ApplyOptions();
         UnchangableMeta.LoadSave();
+		ContentManager.LoadData();
+		ContentManager.QueueSave();
 
         UnchangableMeta.SetAutoSaveWhenClosing(true);
 

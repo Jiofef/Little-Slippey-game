@@ -176,6 +176,7 @@ visible = false
 [node name="Glare" parent="EpicIntro" index="2"]
 visible = false
 
+[connection signal="LevelFinished" from="Level" to="." method="UnlockContentStr" binds= ["Addition", "Thunderstorm"]]
 [connection signal="ButtonPressed" from="Level/PlayMusicTrigger" to="LevelMusicPlayer" method="PlayMusicBase" flags=6 binds= ["Envelope", 0.0, 0.0]]
 
 [editable path="EpicIntro"]

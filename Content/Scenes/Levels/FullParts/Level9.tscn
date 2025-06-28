@@ -2056,6 +2056,7 @@ visible = false
 visible = false
 
 [connection signal="animation_finished" from="LevelMusicPlayer/AnimationPlayer" to="." method="MusicAnimationFinished"]
+[connection signal="LevelFinished" from="Level" to="." method="UnlockContentStr" binds= ["Addition", "JiofefsHead"]]
 [connection signal="HeadDead" from="Level/JiofefHead" to="LevelMusicPlayer" method="StopMusic" flags=6 binds= [5.0]]
 [connection signal="ButtonPressed" from="Level/PlatformerSection/DisposableButton" to="Level/PlatformerSection/Background/BulpSound" method="play" flags=6]
 [connection signal="ButtonPressed" from="Level/PlatformerSection/DisposableButton" to="Level/PlatformerSection/DisposableButton/Darkness" method="queue_free"]

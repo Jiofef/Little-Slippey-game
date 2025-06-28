@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://c2uognhpvxgor"]
+[gd_scene load_steps=49 format=3 uid="uid://c2uognhpvxgor"]
 
 [ext_resource type="PackedScene" uid="uid://cb3550p76ubc8" path="res://Content/Scenes/Interface&Menu/DraggableWindow.tscn" id="1_4ub5g"]
 [ext_resource type="Theme" uid="uid://dkitr1ftp0yhs" path="res://Content/Other/Menu.tres" id="2_j654u"]
@@ -20,13 +20,14 @@
 [ext_resource type="Texture2D" uid="uid://cykxpkslbhnie" path="res://Content/Sprites/Interface/Buttons/Additions/Thunderstorm.png" id="16_7dmad"]
 [ext_resource type="Texture2D" uid="uid://cd43brqsh8s0" path="res://Content/Sprites/Interface/Buttons/Additions/OldFilm.png" id="17_khfi6"]
 [ext_resource type="Texture2D" uid="uid://nroegcqob363" path="res://Content/Sprites/Interface/DifficultiesIcons.png" id="17_rmt2y"]
-[ext_resource type="Texture2D" uid="uid://dsmoby68u5xkd" path="res://Content/Sprites/Interface/Buttons/Additions/Jiofef's head.png" id="18_dr8e6"]
 [ext_resource type="Texture2D" uid="uid://vfvx4ihrhbuj" path="res://Content/Sprites/Interface/Buttons/Additions/EnhancedCrosses.png" id="19_mgyur"]
 [ext_resource type="Texture2D" uid="uid://mxd8dm5pbe7q" path="res://Content/Sprites/Interface/Buttons/LevelsMenuArrow.png" id="20_mcnqk"]
 [ext_resource type="Texture2D" uid="uid://c730u1vqdm1sy" path="res://Content/Sprites/Interface/Buttons/LevelsMenuBonusLevels.png" id="21_san4a"]
+[ext_resource type="Script" uid="uid://igkc6e8484p6" path="res://Content/Scripts/InterfaceAndMenu/ToggleableContentButton.cs" id="22_at464"]
 [ext_resource type="Texture2D" uid="uid://nxpu4e4eswbw" path="res://Content/Sprites/Interface/Buttons/LevelsMenuDifficulties.png" id="22_emx4c"]
 [ext_resource type="PackedScene" uid="uid://1aqk32010t2c" path="res://Content/Scenes/Interface&Menu/ContentButton.tscn" id="23_at464"]
 [ext_resource type="Texture2D" uid="uid://cgnw0ryaidc3m" path="res://Content/Sprites/Interface/Buttons/MakeAModButton.png" id="23_cmhuv"]
+[ext_resource type="Texture2D" uid="uid://dsmoby68u5xkd" path="res://Content/Sprites/Interface/Buttons/Additions/Jiofef's head.png" id="23_mno7b"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_m23ck"]
 atlas = ExtResource("5_at464")
@@ -1107,7 +1108,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBC/Additions/VBC" index="0"]
+[node name="Neutral" type="Label" parent="MarginContainer/VBoxContainer/HBC/Additions/VBC" index="0"]
 layout_mode = 2
 text = "Neutral (0/0)"
 
@@ -1120,7 +1121,7 @@ theme_override_constants/v_separation = 8
 layout_mode = 2
 theme_override_styles/separator = SubResource("StyleBoxLine_6lp01")
 
-[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/HBC/Additions/VBC" index="3"]
+[node name="Cheats" type="Label" parent="MarginContainer/VBoxContainer/HBC/Additions/VBC" index="3"]
 layout_mode = 2
 text = "Cheats (0/0)"
 
@@ -1138,7 +1139,7 @@ theme_override_constants/v_separation = 8
 layout_mode = 2
 theme_override_styles/separator = SubResource("StyleBoxLine_6lp01")
 
-[node name="Label3" type="Label" parent="MarginContainer/VBoxContainer/HBC/Additions/VBC" index="7"]
+[node name="Challenges" type="Label" parent="MarginContainer/VBoxContainer/HBC/Additions/VBC" index="7"]
 layout_mode = 2
 text = "Challenges (0/0)"
 
@@ -1157,15 +1158,19 @@ theme_override_constants/v_separation = 8
 [node name="Thunderstorm" parent="MarginContainer/VBoxContainer/HBC/Additions/VBC/ChallengesContainer" index="0" instance=ExtResource("23_at464")]
 layout_mode = 2
 disabled = true
+toggle_mode = true
+script = ExtResource("22_at464")
 _contentName = "Thunderstorm"
 _displayedName = "Thunderstorm"
 Icon = ExtResource("16_7dmad")
 AnnotationEnabled = true
-AnnotationText = "Включайте дождь из 5 уровня абсолютно везде. Ничего не видно. Зато вайбик"
+AnnotationText = "Turn on the rain from level 5 absolutely everywhere. Nothing can be seen. You at least get vibe."
 
 [node name="OldFilm" parent="MarginContainer/VBoxContainer/HBC/Additions/VBC/ChallengesContainer" index="1" instance=ExtResource("23_at464")]
 layout_mode = 2
 disabled = true
+toggle_mode = true
+script = ExtResource("22_at464")
 _contentName = "OldFilm"
 _displayedName = "Burning Film"
 Icon = ExtResource("17_khfi6")
@@ -1175,20 +1180,25 @@ AnnotationText = "√"
 [node name="JiofefsHead" parent="MarginContainer/VBoxContainer/HBC/Additions/VBC/ChallengesContainer" index="2" instance=ExtResource("23_at464")]
 layout_mode = 2
 disabled = true
+toggle_mode = true
+script = ExtResource("22_at464")
 _contentName = "JiofefsHead"
 _displayedName = "Jiofef's Presence"
-Icon = ExtResource("18_dr8e6")
+Icon = ExtResource("23_mno7b")
 AnnotationEnabled = true
-AnnotationText = "Джиофеф (Джио Иоба Фефски) пришёл в этот мир уже когда было поздно. Кажется очевидным обвинить во всех бедах мира существо с абсолютной властью, но Джиофеф - лишь отражение общества. Он не разрушит мир, но он будет держать его на грани, искуственно затевая войны и насылая жуткие катаклизмы, изредка беря под прицел своих издевательств совсем уж незначительных людей. Неизвестно, зачем он это делает. Ему нравится, или это своеобразный \"Великий план\". Как бы это ни было, последствия его действий заметны. И хоть большинство людей даже не слышали о его существовании, каждый должен быть наготове. Как только весть о его пришествии дошла до некоторых работников Giero, они организовали культ. Кто-то верит, что он действительно даст им что-то за верность и службу, а кто-то от чистого сердца хочет его этим усмирить, дабы спасти человечество от гнева его."
-AnnotationBoxSizeOverride = Vector2(980, 640)
+AnnotationText = "Jiofef (Jio Yoba Fefski) arrived in this world when it was already too late. It might seem obvious to blame all the world’s suffering on a being with absolute power—but Jiofef is merely a reflection of society. He won’t destroy the world outright. Instead, he’ll keep it teetering on the edge, artificially sparking wars and unleashing horrific calamities, occasionally targeting utterly insignificant individuals for his cruel amusement. No one knows why he does this. Maybe he enjoys it. Maybe it’s part of some \"Grand Design.\" Whatever the case, the consequences of his actions are undeniable. And though most people remain unaware of his existence, everyone should stay vigilant. When word of his arrival reached certain Giero employees, they formed a cult. Some believe unwavering loyalty will earn them his favor, while others genuinely hope to appease him—sparing humanity from his wrath.
+Rumors claim Jiofef lacks full control over his actions. Of course, such nonsense couldn’t possibly be true. The sheer scale of his power is already almost impossible to comprehend. A being capable of controlling him? Unthinkable. Besides, the cultist who spread that rumor was committed to a psychiatric ward within a week. A month later, he died of heart failure. Who knows what really broke the poor bastard’s mind?"
 
 [node name="EnhancedCrosses" parent="MarginContainer/VBoxContainer/HBC/Additions/VBC/ChallengesContainer" index="3" instance=ExtResource("23_at464")]
 layout_mode = 2
 disabled = true
+toggle_mode = true
+script = ExtResource("22_at464")
 _contentName = "EnhancedCrosses"
 _displayedName = "Enhanced Crosses"
 Icon = ExtResource("19_mgyur")
 AnnotationEnabled = true
+AnnotationText = "The \"LW-TNT 2000\" was developed by Giero Labs as an upgrade to the more primitive \"LW-TNT 1000\"—yet it never left the testing phase. The amount of TNT in these markers is too low to cause any real damage, let alone be useful in mining or demolitions. Increasing the payload would make them too heavy, ruining their functionality. But hey, at least they siphoned some sweet cash during development."
 
 [node name="C" type="Control" parent="MarginContainer/VBoxContainer/HBC" index="3"]
 custom_minimum_size = Vector2(112, 0)

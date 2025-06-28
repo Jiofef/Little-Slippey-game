@@ -4,16 +4,18 @@ Options,Options,Настройки
 Skins,Skins,Скины
 Achievements,Achievements,Достижения
 Recycle Bin,Recycle Bin,Корзина
-Highest Time:,Highest Time:,Рекорд:
-Dificulties:,Dificulties:,Сложность:
+,,
+Levels Menu,Levels Menu,Меню Уровней
 "Selected
-difficulty:","Selected
-difficulty:","Выбранная
-сложность:"
+difficulty","Selected
+difficulty","Выбранная
+сложность"
 Records,Records,Рекорды
 Hard,Hard,Сложная
 Insane,Insane,Безумная
 Inferno,Inferno,Инферно
+,,
+Difficulties,Difficulties,Сложности
 "The default difficulty for chads who think pressing one button is already too hard.
 
 -The fewest golden Crosses due to the low number of Crosses in general.","The default difficulty for chads who think pressing one button is already too hard.
@@ -58,8 +60,25 @@ On this difficulty:
 -Все типы меток появляются с самого начала
 
 -Меток в два раза больше"
-Additions:,Additions:,Дополнения:
-Rain,Rain,Дождь
+,,
+Additions,Additions,Дополнения
+Neutral,Neutral,Нейтральные
+Cheats,Cheat,Читы
+Disables achievements,Disables achievements,Отключает достижения
+Challenges,Challenges,Челленджи
+Each challenge increases the amount of golden crosses you recieve,Each challenge increases the amount of golden crosses you recieve,Каждый челлендж увеличивает число получаемых золотых меток
+Thunderstorm,Thunderstorm,Гроза
+Turn on the rain from level 5 absolutely everywhere. Nothing can be seen. You at least get vibe.,Turn on the rain from level 5 absolutely everywhere. Nothing can be seen. You at least get vibe.,Включайте дождь из 5 уровня абсолютно везде. Ничего не видно. Зато вайбик
+Burning Film,Burning Film,Горящая Плёнка
+√,√,√
+Jiofef's Presence,Jiofef's Presence,Его присутствие
+"Jiofef (Jio Yoba Fefski) arrived in this world when it was already too late. It might seem obvious to blame all the world’s suffering on a being with absolute power—but Jiofef is merely a reflection of society. He won’t destroy the world outright. Instead, he’ll keep it teetering on the edge, artificially sparking wars and unleashing horrific calamities, occasionally targeting utterly insignificant individuals for his cruel amusement. No one knows why he does this. Maybe he enjoys it. Maybe it’s part of some ""Grand Design."" Whatever the case, the consequences of his actions are undeniable. And though most people remain unaware of his existence, everyone should stay vigilant. When word of his arrival reached certain Giero employees, they formed a cult. Some believe unwavering loyalty will earn them his favor, while others genuinely hope to appease him—sparing humanity from his wrath.
+Rumors claim Jiofef lacks full control over his actions. Of course, such nonsense couldn’t possibly be true. The sheer scale of his power is already almost impossible to comprehend. A being capable of controlling him? Unthinkable. Besides, the cultist who spread that rumor was committed to a psychiatric ward within a week. A month later, he died of heart failure. Who knows what really broke the poor bastard’s mind?","Jiofef (Jio Yoba Fefski) arrived in this world when it was already too late. It might seem obvious to blame all the world’s suffering on a being with absolute power—but Jiofef is merely a reflection of society. He won’t destroy the world outright. Instead, he’ll keep it teetering on the edge, artificially sparking wars and unleashing horrific calamities, occasionally targeting utterly insignificant individuals for his cruel amusement. No one knows why he does this. Maybe he enjoys it. Maybe it’s part of some ""Grand Design."" Whatever the case, the consequences of his actions are undeniable. And though most people remain unaware of his existence, everyone should stay vigilant. When word of his arrival reached certain Giero employees, they formed a cult. Some believe unwavering loyalty will earn them his favor, while others genuinely hope to appease him—sparing humanity from his wrath.
+Rumors claim Jiofef lacks full control over his actions. Of course, such nonsense couldn’t possibly be true. The sheer scale of his power is already almost impossible to comprehend. A being capable of controlling him? Unthinkable. Besides, the cultist who spread that rumor was committed to a psychiatric ward within a week. A month later, he died of heart failure. Who knows what really broke the poor bastard’s mind?","Джиофеф (Джио Иоба Фефски) пришёл в этот мир уже когда было поздно. Кажется очевидным обвинить во всех бедах мира существо с абсолютной властью, но Джиофеф - лишь отражение общества. Он не разрушит мир, но он будет держать его на грани, искусственно затевая войны и насылая жуткие катаклизмы, изредка беря под прицел своих издевательств совсем уж незначительных людей. Неизвестно, зачем он это делает. Ему нравится, или это своеобразный ""Великий план"". Как бы это ни было, последствия его действий заметны. И хоть большинство людей даже не слышали о его существовании, каждый должен быть наготове. Как только весть о его пришествии дошла до некоторых работников Giero, они организовали культ. Кто-то верит, что он действительно даст им что-то за верность и службу, а кто-то от чистого сердца хочет его этим усмирить, дабы спасти человечество от гнева его.
+Ходят слухи, мол, Джиофеф не обладает полной властью над своими действиями. Разумеется, такой бред не может иметь отношения к реальности. Его всеобьемлющую силу уже едва возможно уложить в голове. Существо, способное контролировать ЕГО, это за гранью понимания. К тому-же, культиста, распустившего этот слух, через неделю упекли в психиатрическую лечебницу, а через месяц он ушёл из жизни из-за сердечной недостаточности. Мало-ли, как крыша у мужичка поехала."
+Enhanced Crosses,Enhanced Crosses,Улучшенные Метки
+"The ""LW-TNT 2000"" was developed by Giero Labs as an upgrade to the more primitive ""LW-TNT 1000""—yet it never left the testing phase. The amount of TNT in these markers is too low to cause any real damage, let alone be useful in mining or demolitions. Increasing the payload would make them too heavy, ruining their functionality. But hey, at least they siphoned some sweet cash during development.","The ""LW-TNT 2000"" was developed by Giero Labs as an upgrade to the more primitive ""LW-TNT 1000""—yet it never left the testing phase. The amount of TNT in these markers is too low to cause any real damage, let alone be useful in mining or demolitions. Increasing the payload would make them too heavy, ruining their functionality. But hey, at least they siphoned some sweet cash during development.","""LW-TNT 2000"" созданы Giero Labs на базе примитивных ""LW-TNT 1000"", но так и не вышли за пределы лабораторий. Количество тротила в них слишком мало для серьёзных повреждений, а о шахтёрском деле или подрыве техники и речи нет. Увеличение заряда сделает метки слишком тяжёлыми, лишив их функциональности. Зато бабла на разработке попилили."
+,,
 Old film,Old film,Плёнка
 "Jiofef
 Head","Jiofef

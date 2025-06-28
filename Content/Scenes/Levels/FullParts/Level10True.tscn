@@ -1111,6 +1111,7 @@ script = ExtResource("20_ervhf")
 
 [node name="EpicIntro" parent="." instance=ExtResource("21_qva4a")]
 
+[connection signal="LevelFinished" from="Level" to="." method="UnlockContentStr" binds= ["Addition", "EnhancedCrosses"]]
 [connection signal="finished" from="Level/ScientistNode/Megaphone" to="Level/ScientistNode" method="PhraseFinished" flags=3]
 [connection signal="TextAppearing" from="Level/ScientistNode/CanvasLayer/Subtitles" to="Level/ScientistNode/CanvasLayer/SubtitlesRect/AnimationPlayer" method="play" binds= ["Appearing"]]
 [connection signal="TextClearing" from="Level/ScientistNode/CanvasLayer/Subtitles" to="Level/ScientistNode/CanvasLayer/SubtitlesRect/AnimationPlayer" method="play" binds= ["Disappearing"]]

@@ -38,7 +38,6 @@ public partial class Meta : Node
         public int Difficulty = 0;
         public readonly string[] DifficultyNames = ["Hard", "Insane", "Inferno"];
 		public string GetDifficultyName() => DifficultyNames[Difficulty];
-        public bool[] AdditionStatuses = new bool[4];
         public string ChosenSkinKey = "Slippey";
 
         public bool IsSkinModded = false;
@@ -80,8 +79,6 @@ public partial class Meta : Node
 
         //Gameplay
         ReturnMeta.Gameplay.Difficulty = Gameplay.Difficulty;
-        for (int i = 0; i < Instance.Gameplay.AdditionStatuses.Length; i++)
-            ReturnMeta.Gameplay.AdditionStatuses[i] = Gameplay.AdditionStatuses[i];
         ReturnMeta.Gameplay.ChosenSkinKey = Gameplay.ChosenSkinKey;
 
         return ReturnMeta;
@@ -104,7 +101,6 @@ public partial class Meta : Node
             {"explosion_bloom", Video.ExplosionBloom},
             {"language", Convert.ToInt32(Video.language)},
             {"dificulty", Gameplay.Difficulty},
-            {"addition_statuses", Gameplay.AdditionStatuses},
             {"chosen_skin_key", Gameplay.ChosenSkinKey},
         };
     }
@@ -138,7 +134,6 @@ public partial class Meta : Node
         GameplayClass ReturnOptions = new GameplayClass();
 
         ReturnOptions.Difficulty = 0;
-        ReturnOptions.AdditionStatuses = new bool[4];
         ReturnOptions.ChosenSkinKey = "Slippey";
         ReturnOptions.IsSkinModded = false;
         ReturnOptions.ChosenModSkin = null;
@@ -235,6 +230,5 @@ public partial class Meta : Node
 
         TryLoad<int>("dificulty",value => Gameplay.Difficulty = value, "dificulty");
         TryLoad<string>("chosen_skin_key", value => Gameplay.ChosenSkinKey = value, "chosen_skin_key");
-        TryLoadArray("addition_statuses",  value => Gameplay.AdditionStatuses = value, length => new bool[length], Gameplay.AdditionStatuses.Length, "addition_statuses");
     }
 }

@@ -164,41 +164,45 @@ public partial class UnchangableMeta : Node
     }
 
     private static Dictionary<string, object> _lastSave = new();
-    /// <summary>
-    /// If forceSave == false, saving is aborted if the data is the same as before except for some variables
-    /// </summary>
-    public static void SaveToFile(bool forceSave = false)
-    {
-        try
-        {
-            var SaveData = GetJsonSave();
-            if (SaveData == null || SaveData.Count == 0)
-            {
-                GD.PrintErr("Error: Save data is empty! Aborting save.");
-                return;
-            }
+	/// <summary>
+	/// If forceSave == false, saving is aborted if the data is the same as before except for some variables
+	/// </summary>
+	public static void SaveToFile(bool forceSave = false)
+	{
+		try
+		{
+			var SaveData = GetJsonSave();
+			if (SaveData == null || SaveData.Count == 0)
+			{
+				GD.PrintErr("Error: Save data is empty! Aborting save.");
+				goto skipSaving; // I was too lazy to figure out how to do it without goto. Yes, I’m a jerk, I’m a bad person. And what are you going to do? If you admit to someone that you have hacked into the code of my game, and also into this script for some reason, I think there will be more questions for you than for me
+			}
 
-            #region to avoid unnecessary overwriting of data unnecessarily (Yeah, guys, I'm worried about the kilobytes of overwriting your SSD.)
-            if (!forceSave)
-            {
-                string[] exceptKeys = ["deaths_number"];
-                if (AreDictionariesEqual(SaveData, _lastSave, exceptKeys))
-                {
-                    GD.Print("There are no changes, the file has not been overwritten");
-                    return;
-                }
-            }
-            _lastSave = SaveData.Copy();
-            #endregion
+			#region to avoid unnecessary overwriting of data unnecessarily (Yeah, guys, I'm worried about the kilobytes of overwriting your SSD.)
+			if (!forceSave)
+			{
+				string[] exceptKeys = ["deaths_number"];
+				if (AreDictionariesEqual(SaveData, _lastSave, exceptKeys))
+				{
+					GD.Print("There are no changes, the file has not been overwritten");
+					goto skipSaving;
+				}
+			}
+			_lastSave = SaveData.Copy();
+			#endregion
 
 
-            FileSystemExtension.SaveInJson(SaveData, "user://save.json");
-            GD.Print("Save completed successfully.");
-        }
-        catch (Exception e)
-        {
-            GD.PrintErr("Error during save: " + e.Message);
-        }
+			FileSystemExtension.SaveInJson(SaveData, "user://save.json");
+			GD.Print("Save completed successfully.");
+		}
+		catch (Exception e)
+		{
+			GD.PrintErr("Error during save: " + e.Message);
+		}
+		skipSaving: 
+
+		// Content data saving
+		ContentManager.SaveToFile();
     }
 
     public static void LoadSave()

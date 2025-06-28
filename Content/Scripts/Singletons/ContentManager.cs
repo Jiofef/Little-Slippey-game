@@ -1,9 +1,11 @@
 using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 using Godot;
 
 public partial class ContentManager : Node
 {
+	public const string SAVE_DATA_PATH = "user://content_data.json";
 	public static Dictionary<ContentTypeEnum, Dictionary<string, IContent>> ContentDic = new Dictionary<ContentTypeEnum, Dictionary<string, IContent>>
 	{
 		{
@@ -11,19 +13,36 @@ public partial class ContentManager : Node
 
 			new Dictionary<string, IContent> {
 			{ AdditionEnum.Thunderstorm.ToString(),
-			new Addition(1)},
+			new Addition(AdditionType.Challenge, 1)},
 			{AdditionEnum.OldFilm.ToString(),
-			new Addition(1)},
+			new Addition(AdditionType.Challenge, 1)},
 			{AdditionEnum.JiofefsHead.ToString(),
-			new Addition(2)},
+			new Addition(AdditionType.Challenge, 2)},
 			{AdditionEnum.EnhancedCrosses.ToString(),
-			new Addition(1)},
+			new Addition(AdditionType.Challenge, 1)},
 			}
 		},
 	};
 	public static bool IsAdditionActive(AdditionEnum addition)
 	{
 		return ((Addition)ContentDic[ContentTypeEnum.Addition][addition.ToString()]).IsActivated;
+	}
+	public static void UnlockContent(ContentTypeEnum contentType, string contentName)
+	{
+		var content = ContentDic[contentType][contentName];
+
+		if (content is IUnlockableContent uContent)
+		{
+			if (uContent.IsUnlocked) return;
+			
+			uContent.IsUnlocked = true;
+
+			QueueSave();
+		}
+		else
+		{
+			GD.PrintErr($"Trying to unlock not an unlockable content \"{contentName}\"");
+		}
 	}
 	public static C GetContent<C>(ContentTypeEnum contentType, string contentName) where C : IContent
 	{
@@ -47,53 +66,95 @@ public partial class ContentManager : Node
 	/// <summary>
 	/// forceSave if active, saves the file regardless of whether QueueSave was called after last saving
 	/// </summary>
-	public static void SaveData(bool forceSave = false)
+	public static void SaveToFile(bool forceSave = false)
 	{
 		if (_isQueuedToSave || forceSave)
 		{
-			_isQueuedToSave = false;
-			FileSystemExtension.SaveInJson(ContentDic, "user://content_data.json");
+			try
+			{
+				_isQueuedToSave = false;
+				FileSystemExtension.SaveInJson(ContentDic, SAVE_DATA_PATH);
+			}
+			catch (Exception e)
+			{
+				GD.PrintErr("Error during saving content data: " + e.Message);
+			}
 		}
 	}
 	public static void LoadData()
 	{
-		var model = FileSystemExtension.GetSystemJsonModel<ContentTypeEnum, Dictionary<string, IContent>>("user://content_data.json");
+		try
+		{
+			var model = FileSystemExtension.GetSystemJsonModel<ContentTypeEnum, Dictionary<string, IContent>>(SAVE_DATA_PATH);
 
-		if (model == null) return;
+			if (model == null) return;
 
-		ContentDic = model;
+			foreach (var (contentType, contentDict) in model)
+			{
+				foreach (var (contentName, contentValue) in contentDict)
+				{
+					if (!ContentDic.ContainsKey(contentType) || !ContentDic[contentType].ContainsKey(contentName)) continue;
+
+					var content = contentValue;
+					var defaultContent = ContentDic[contentType][contentName];
+
+					// Some values like "Cost" should not be loaded
+					if (content is IPurchasableContent)
+						((IPurchasableContent)content).Cost = ((IPurchasableContent)defaultContent).Cost;
+					if (content.GetType().GetInterface("ITypeHolder`1") != null)
+					{
+						dynamic dynamicHolder = (ITypeHolder)content;
+						dynamic defaultHolder = defaultContent;
+
+						dynamicHolder.Type = defaultHolder.Type;
+					}
+					
+					ContentDic[contentType][contentName] = content;
+				}
+			}
+		}
+		catch (Exception e)
+		{
+			GD.PrintErr("Error during loading content data: " + e.Message);
+		}
 	}
 }
+
 
 public enum ContentTypeEnum { Addition }
-public enum AdditionEnum { Thunderstorm, OldFilm, JiofefsHead, EnhancedCrosses };
-public class Addition : IPurchasableContent, IToggleableContent, IUnlockableContent
-{
-	public bool IsUnlocked { get; set; }
-	public bool IsBought { get; set; }
-	public int Cost { get; set; }
-	public bool IsActivated { get; set; }
-	public Addition(int cost = 0, bool isUnlocked = false, bool isBought = false, bool isActivated = false)
-	{
-		Cost = cost;
-		IsUnlocked = isUnlocked;
-		IsBought = isBought;
-		IsActivated = isActivated;
-	}
-}
-
-public interface IContent { }
+[JsonDerivedType(typeof(Addition), "addition")] public interface IContent { }
 public interface IUnlockableContent : IContent
 {
 	public bool IsUnlocked { get; set; }
 }
-public interface IPurchasableContent
+public interface IPurchasableContent : IContent
 {
 	public bool IsBought { get; set; }
-	public int Cost { get; set; }
+	[JsonIgnore] public int Cost { get; set; }
 }
 
 public interface IToggleableContent : IContent
 {
 	public bool IsActivated { get; set; }
+}
+
+public enum AdditionEnum { Thunderstorm, OldFilm, JiofefsHead, EnhancedCrosses };
+
+public enum AdditionType { Neutral, Cheat, Challenge }
+[Serializable]
+public class Addition : IPurchasableContent, IToggleableContent, IUnlockableContent, ITypeHolder<AdditionType>
+{
+	[JsonIgnore] public AdditionType Type { get; set; }
+	public bool IsUnlocked { get; set; }
+	public bool IsBought { get; set; }
+	[JsonIgnore] public int Cost { get; set; }
+	public bool IsActivated { get; set; }
+	public Addition(AdditionType type = AdditionType.Neutral, int cost = 0, bool isUnlocked = false, bool isBought = false, bool isActivated = false)
+	{
+		Type = type;
+		Cost = cost;
+		IsUnlocked = isUnlocked;
+		IsBought = isBought;
+		IsActivated = isActivated;
+	}
 }

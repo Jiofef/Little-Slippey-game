@@ -304,5 +304,6 @@ position = Vector2(1280, 640)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/PlayMusicTrigger" index="0"]
 shape = SubResource("CapsuleShape2D_l6rnk")
 
+[connection signal="LevelFinished" from="Level" to="." method="UnlockContentStr" binds= ["Addition", "JiofefsHead"]]
 [connection signal="HeadDead" from="Level/JiofefHead" to="LevelMusicPlayer" method="StopMusic" flags=6 binds= [5.0]]
 [connection signal="ButtonPressed" from="Level/PlayMusicTrigger" to="LevelMusicPlayer" method="PlayMusic" flags=6 binds= ["Nergis cuspair", 0.0, 5.0]]

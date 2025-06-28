@@ -23,27 +23,6 @@ public partial class LevelsMenu : DraggableWindow
 		_selectedTab = GetNode<Control>("MarginContainer/VBoxContainer/HBC/Levels");
 
 		InitLevelsTab();
-        // string[] ButtonNames = { "Rain", "OldFilm", "JiofefHead", "EnhancedCrosses"};
-        // int[] NeededLevelIndexes = { 4, 6, 8, 9 };
-        // for (int i = 0; i < ButtonNames.Length; i++)
-        // {
-        //     if (UnchangableMeta.LevelCompleteStatus[NeededLevelIndexes[i]] > 0)
-        //     {
-        //         GetNode<Sprite2D>("Visual/AdittionalButtons/Lock" + (i + 1)).QueueFree();
-        //         GetNode<Label>("Visual/AdittionalButtons/" + ButtonNames[i]).Visible = true;
-        //         var toggleButton = GetNode<CheckBox>("Visual/AdittionalButtons/Toggle" + ButtonNames[i] + "Button");
-        //         toggleButton.Disabled = false;
-        //         toggleButton.ButtonPressed = Meta.Instance.Gameplay.AdditionStatuses[i];
-        //         toggleButton.FocusMode = FocusModeEnum.All;
-        //     }   
-        // }
-
-        // for (int i = 0; i < _difficultiesNames.Length; i++)
-        //     GetNode<CheckBox>("Visual/DifficultyButtons/" + _difficultiesNames[i] + "ModeButton").ButtonPressed = Meta.Instance.Gameplay.Dificulty == i;
-
-        // UpdateGUIForCurrentDificulty();
-
-
     }
 	public void SelectTab(LevelsMenuTab tab)
 	{
@@ -237,17 +216,10 @@ public partial class LevelsMenu : DraggableWindow
 	#region Additions tab
 	public void UpdateAdditionsTab()
 	{
-
-	}
-	public void SetAdditionEnabled(bool value, int AdditionIndex)
-    {
-        Meta.Instance.Gameplay.AdditionStatuses[AdditionIndex] = value;
-        Meta.Instance.SaveToFile();
-    }
-
-	public void BuyAddition()
-	{
-
+		const string LINK = "MarginContainer/VBoxContainer/HBC/Additions/VBC/";
+		GetNode<Label>(LINK + "Neutral").Text = $"{Tr("Neutral")} (0/0)";
+		GetNode<Label>(LINK + "Cheats").Text = $"{Tr("Cheats")} (0/0)";
+		GetNode<Label>(LINK + "Challenges").Text = $"{Tr("Challenges")} (0/0)";
 	}
 	#endregion
 }
