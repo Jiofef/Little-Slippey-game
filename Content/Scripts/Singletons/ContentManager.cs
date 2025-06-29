@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text.Json.Serialization;
 using Godot;
 
@@ -23,6 +24,27 @@ public partial class ContentManager : Node
 			}
 		},
 	};
+	public static Dictionary<string, Addition> GetAdditions(AdditionType? type = null)
+	{
+		var additions = ContentDic[ContentTypeEnum.Addition].ToDictionary(kpv => kpv.Key, kvp => (Addition)kvp.Value);
+		if (type == null) return additions;
+		
+		var filteredDic = additions.Where(kvp => kvp.Value is ITypeHolder<AdditionType> taValue && taValue.Type == type).ToDictionary();
+
+		return filteredDic;
+	}
+	
+	public static int GetAdditionsAmount(AdditionType? type = null)
+	{
+		return GetAdditions(type).Count();
+	}
+	public static int GetAvailableAdditionsAmount(AdditionType? type = null)
+	{
+		var availableAdditions = GetAdditions(type).Where(kvp => kvp.Value.IsUnlocked && kvp.Value.IsBought);
+		int amount = availableAdditions.Count();
+		return amount;
+	}
+
 	public static bool IsAdditionActive(AdditionEnum addition)
 	{
 		return ((Addition)ContentDic[ContentTypeEnum.Addition][addition.ToString()]).IsActivated;

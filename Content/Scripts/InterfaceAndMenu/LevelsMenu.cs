@@ -1,5 +1,6 @@
 using Godot;
 using static OtherExtension.FastInstanceCreator;
+using static ContentManager;
 
 public partial class LevelsMenu : DraggableWindow
 {
@@ -217,9 +218,14 @@ public partial class LevelsMenu : DraggableWindow
 	public void UpdateAdditionsTab()
 	{
 		const string LINK = "MarginContainer/VBoxContainer/HBC/Additions/VBC/";
-		GetNode<Label>(LINK + "Neutral").Text = $"{Tr("Neutral")} (0/0)";
-		GetNode<Label>(LINK + "Cheats").Text = $"{Tr("Cheats")} (0/0)";
-		GetNode<Label>(LINK + "Challenges").Text = $"{Tr("Challenges")} (0/0)";
+		string AmountOf(AdditionType type)
+		{
+			return $"{GetAvailableAdditionsAmount(type)}/{GetAdditionsAmount(type)}";
+		}
+
+		GetNode<Label>(LINK + "Neutral").Text = $"{Tr("Neutral")} ({AmountOf(AdditionType.Neutral)})";
+		GetNode<Label>(LINK + "Cheats").Text = $"{Tr("Cheats")} ({AmountOf(AdditionType.Cheat)})";
+		GetNode<Label>(LINK + "Challenges").Text = $"{Tr("Challenges")} ({AmountOf(AdditionType.Challenge)})";
 	}
 	#endregion
 }
