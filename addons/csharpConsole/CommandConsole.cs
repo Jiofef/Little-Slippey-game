@@ -588,7 +588,7 @@ public partial class CommandConsole : Node
 
 		if (level_complete_Status < 0  && level_complete_Status <= G.DificultiesInGameTotal)
 		{
-			PrintLine("This dificulty does not exist", "red");
+			PrintLine("This difficulty does not exist", "red");
 			return;
 		}
 

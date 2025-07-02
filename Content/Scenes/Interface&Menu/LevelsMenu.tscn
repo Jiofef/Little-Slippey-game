@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://c2uognhpvxgor"]
+[gd_scene load_steps=51 format=3 uid="uid://c2uognhpvxgor"]
 
 [ext_resource type="PackedScene" uid="uid://cb3550p76ubc8" path="res://Content/Scenes/Interface&Menu/DraggableWindow.tscn" id="1_4ub5g"]
 [ext_resource type="Theme" uid="uid://dkitr1ftp0yhs" path="res://Content/Other/Menu.tres" id="2_j654u"]
@@ -28,6 +28,8 @@
 [ext_resource type="PackedScene" uid="uid://1aqk32010t2c" path="res://Content/Scenes/Interface&Menu/ContentButton.tscn" id="23_at464"]
 [ext_resource type="Texture2D" uid="uid://cgnw0ryaidc3m" path="res://Content/Sprites/Interface/Buttons/MakeAModButton.png" id="23_cmhuv"]
 [ext_resource type="Texture2D" uid="uid://dsmoby68u5xkd" path="res://Content/Sprites/Interface/Buttons/Additions/Jiofef's head.png" id="23_mno7b"]
+[ext_resource type="Script" uid="uid://4a4pj1y7haon" path="res://Content/Scripts/InterfaceAndMenu/RareScripts/GoldenCrossesMultiplierText.cs" id="25_p7elt"]
+[ext_resource type="PackedScene" uid="uid://cas00jlo5rgv1" path="res://Content/Scenes/Interface&Menu/NotificationCounter.tscn" id="29_hpeve"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_m23ck"]
 atlas = ExtResource("5_at464")
@@ -1200,6 +1202,17 @@ Icon = ExtResource("19_mgyur")
 AnnotationEnabled = true
 AnnotationText = "The \"LW-TNT 2000\" was developed by Giero Labs as an upgrade to the more primitive \"LW-TNT 1000\"—yet it never left the testing phase. The amount of TNT in these markers is too low to cause any real damage, let alone be useful in mining or demolitions. Increasing the payload would make them too heavy, ruining their functionality. But hey, at least they siphoned some sweet cash during development."
 
+[node name="GoldenCrossesMultiplierText" type="RichTextLabel" parent="MarginContainer/VBoxContainer/HBC/Additions/VBC/ChallengesContainer" index="4"]
+process_mode = 4
+custom_minimum_size = Vector2(256, 0)
+layout_mode = 2
+bbcode_enabled = true
+text = "[center]Golden crosses multiplier
+
+100%[img]res://Content/Sprites/Interface/4XMiniGoldenCross.png[/img]"
+fit_content = true
+script = ExtResource("25_p7elt")
+
 [node name="C" type="Control" parent="MarginContainer/VBoxContainer/HBC" index="3"]
 custom_minimum_size = Vector2(112, 0)
 layout_mode = 2
@@ -1267,6 +1280,13 @@ texture_normal = ExtResource("23_cmhuv")
 AnnotationEnabled = true
 AnnotationText = "Additions"
 
+[node name="NotificationCounter" parent="MarginContainer/VBoxContainer/HBC/C/MC/VBC/Additions" index="5" instance=ExtResource("29_hpeve")]
+offset_left = 56.0
+offset_top = 52.0
+offset_right = 56.0
+offset_bottom = 52.0
+AutoSettingDicKey = "Additions"
+
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBC/Levels/LevelsList/LeftScrollButton" to="." method="ChangeLevelRowToPast"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBC/Levels/LevelsList/RightScrollButton" to="." method="ChangeLevelRowToNext"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBC/Difficulties/Hard/ToggleButton" to="." method="SetDifficulty" binds= [0]]
@@ -1275,6 +1295,7 @@ AnnotationText = "Additions"
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBC/C/MC/VBC/Levels" to="." method="SelectTab" binds= [0]]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBC/C/MC/VBC/BonusLevels" to="." method="SelectTab" binds= [1]]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBC/C/MC/VBC/Difficulties" to="." method="SelectTab" binds= [2]]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBC/C/MC/VBC/Additions" to="MarginContainer/VBoxContainer/HBC/C/MC/VBC/Additions/NotificationCounter" method="Nullify"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBC/C/MC/VBC/Additions" to="." method="SelectTab" binds= [3]]
 
 [editable path="MarginContainer/VBoxContainer/HBC/Levels/LevelsList/C/HBC/Level1Button/StartOption/Yes"]

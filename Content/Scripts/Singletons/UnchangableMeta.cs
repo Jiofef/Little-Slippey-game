@@ -80,12 +80,15 @@ public partial class UnchangableMeta : Node
     public static int[] LevelPlayedStatus = new int[G.LevelsInGameTotal]; //I made it as byte[] because of retard Godot that can't save a boolean array >:( // UPD: On top of that, the JSON.Stringify method converts an array of bytes into a string. To avoid doing bdsm, I converted the bytes to int. Sorry.
 
     public static bool IsLanguageSetted = false, IsTutorialPlayed, IsLevel9PlatformSectionFirstTimeCompleted, IsLevel9PlatformSectionSkipAllowed, IsFakeLevel10SkipAllowed;
+	
 
+	public enum NotificationKeysEnum {RecycleBin, SkinsMenu, Additions};
     public static Dictionary<string, int> NotificationsAmount = new Dictionary<string, int>()
-    {
-        {"RecycleBin", 1},
-        {"SkinsMenu", 0},
-    };
+	{
+		{"RecycleBin", 1},
+		{"SkinsMenu", 0},
+		{"Additions", 0},
+	};
 
     public static bool DidModsCrushedTheGame = false;
     public static int[] HintsStatus = //1 - was showed. 0 - hasn't.

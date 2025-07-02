@@ -33,15 +33,48 @@ public partial class Meta : Node
     }
     public VideoClass Video = new VideoClass();
 
-    public class GameplayClass
-    {
-        public int Difficulty = 0;
-        public readonly string[] DifficultyNames = ["Hard", "Insane", "Inferno"];
-		public string GetDifficultyName() => DifficultyNames[Difficulty];
-        public string ChosenSkinKey = "Slippey";
+	public class GameplayClass
+	{
+		private int _difficulty = 0;
+		public int Difficulty { get => _difficulty; set
+			{
+				_difficulty = value;
 
-        public bool IsSkinModded = false;
-        public string ChosenModSkin;
+				// Default values for difficulties
+				DifficultyEffects.StandingBarGrowthMultiplier = 1f;
+				DifficultyEffects.CrossesSpawnMultiplier = 1f;
+				DifficultyEffects.IsCrossesProgressSkipped = false;
+				switch (_difficulty)
+				{
+					case 0:
+						// Default values
+						break;
+					case 1:
+						DifficultyEffects.StandingBarGrowthMultiplier = 1.5f;
+						DifficultyEffects.CrossesSpawnMultiplier = 1.5f;
+						break;
+					case 2:
+						DifficultyEffects.StandingBarGrowthMultiplier = 1.5f;
+						DifficultyEffects.CrossesSpawnMultiplier = 2;
+						DifficultyEffects.IsCrossesProgressSkipped = true;
+						break;
+				}
+			}
+		}
+		public readonly string[] DifficultyNames = ["Hard", "Insane", "Inferno"];
+		public string GetDifficultyName() => DifficultyNames[Difficulty];
+
+		public class DifficultyEffectsClass
+		{
+			public float StandingBarGrowthMultiplier = 1f;
+			public float CrossesSpawnMultiplier = 1f;
+			public bool IsCrossesProgressSkipped = false;
+		}
+		public DifficultyEffectsClass DifficultyEffects = new();
+		public string ChosenSkinKey = "Slippey";
+
+		public bool IsSkinModded = false;
+		public string ChosenModSkin;
     }
     public GameplayClass Gameplay = new GameplayClass();
 

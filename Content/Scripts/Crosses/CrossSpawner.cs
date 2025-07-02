@@ -22,18 +22,21 @@ public partial class CrossSpawner : Node2D
     Random _random = new Random();
     public Dictionary<string, object> EverythingImportant = new();
 
-    public override void _Ready()
-    {
-        // Apply local exported values to global state
+	public override void _Ready()
+	{
+		// Apply local exported values to global state
 		if (_crossesSpawnEnabled != true)
-        	CrossesSpawnEnabled = _crossesSpawnEnabled;
+			CrossesSpawnEnabled = _crossesSpawnEnabled;
 		if (_crossesAmountMultiplier != 1f)
-        	CrossesAmountMultiplier = _crossesAmountMultiplier;
+			CrossesAmountMultiplier = _crossesAmountMultiplier;
 		if (_crossesProgressMultiplier != 1f)
-        	CrossesProgressMultiplier = _crossesProgressMultiplier;
+			CrossesProgressMultiplier = _crossesProgressMultiplier;
 
-        if (G.Player != null)
-            G.Player.PlayerResurrected += OnPlayerResurrected;
+		if (G.Player != null)
+			G.Player.PlayerResurrected += OnPlayerResurrected;
+
+		if (Meta.Instance.Gameplay.DifficultyEffects.IsCrossesProgressSkipped)
+			Crosses.FinishCrossesEvolution();
     }
 
 
@@ -41,8 +44,8 @@ public partial class CrossSpawner : Node2D
 	{
         if (G.IsCrossesEnabled)
         {
-            int RandomRange = 20 - Meta.Instance.Gameplay.Difficulty * 5;
-            RandomRange = (int)((RandomRange - (RandomRange / 2 - G.PlayerMoveCoeff * RandomRange / 2)) / G.CrossSpawnMultiplier);
+            int RandomRange = 20;
+            RandomRange = (int)((RandomRange - (RandomRange / 2 - G.PlayerMoveCoeff * RandomRange / 2)) / G.FullCrossSpawnMultiplier);
 
             if (_random.Next(RandomRange) == 0)
             {

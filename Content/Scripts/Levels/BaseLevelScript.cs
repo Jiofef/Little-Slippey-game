@@ -15,37 +15,8 @@ public partial class BaseLevelScript : Node2D
 	public bool IsLevelFinished { get; private set; } = false;
 
     public override void _Ready()
-	{
-		bool IsCrossesEnhanced = G.CurrentLevel == 10 && G.LevelAdditionalLink == "True" || ContentManager.IsAdditionActive(AdditionEnum.EnhancedCrosses);
-		if (IsCrossesEnhanced)
-			SetEnhancedCrossesPack();
-		else
-			SetDefaultCrossesPack();
-
+	{		
 		AudioServer.SetBusMute(2, Meta.Instance.Sound.BusVolumes[2] <= -30);
-
-
-		if (G.CurrentLevel == 5 || ContentManager.IsAdditionActive(AdditionEnum.Thunderstorm))
-			AddChild((Node2D)ResourceLoader.Load<PackedScene>("res://Content/Scenes/Other/Level5Rain.tscn").Instantiate());
-		if (G.CurrentLevel == 7 || ContentManager.IsAdditionActive(AdditionEnum.OldFilm))
-		{
-			var level7HopelessnesLayer = (CanvasLayer)ResourceLoader.Load<PackedScene>("res://Content/Scenes/Other/Level7HopelessnesLayer.tscn").Instantiate();
-			if (G.CurrentLevel == 5 || ContentManager.IsAdditionActive(AdditionEnum.Thunderstorm))
-				level7HopelessnesLayer.GetNode<VideoStreamPlayer>("VintageFilter").Modulate = new Color(1, 0.8f, 0.55f, 0.2f);
-			AddChild(level7HopelessnesLayer);
-		}
-		if (ContentManager.IsAdditionActive(AdditionEnum.JiofefsHead))
-		{
-			var level9JiofefHead = (Node2D)ResourceLoader.Load<PackedScene>("res://Content/Scenes/Other/Level9JiofefHead.tscn").Instantiate();
-			level9JiofefHead.Position = G.CameraLimits.Position + G.CameraLimits.Size / 2;
-
-			if (G.CameraLimits.Size.X > 25600 || G.CameraLimits.Size.Y > 12800)
-				level9JiofefHead.Position = G.CameraLimits.Position + new Vector2(1280, 320);
-
-			AddChild(level9JiofefHead);
-		}
-
-
 
 		Steam.InputDeviceDisconnected += (junk) => GetParent().Call("ChangePause", true);
 	}

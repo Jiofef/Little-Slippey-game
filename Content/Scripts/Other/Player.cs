@@ -572,7 +572,14 @@ public partial class Player : CharacterBody2D
                 Vector2 CorrectedAveragePosition = GlobalPosition - _averagePosition;
                 CorrectedAveragePosition.Y *= 1.5f;
                 float MoveDist = Mathf.Sqrt(CorrectedAveragePosition.X * CorrectedAveragePosition.X + CorrectedAveragePosition.Y * CorrectedAveragePosition.Y);
-                _moveCoeff += (MoveDist < 300 ? -0.6f + MoveDist / 300 : 0.4f) / 60;
+
+				float MoveCoeffChangingSpeed = (MoveDist < 300 ? -0.6f + MoveDist / 300 : 0.4f) / 60f;
+				if (MoveCoeffChangingSpeed > 0)
+					MoveCoeffChangingSpeed /= Meta.Instance.Gameplay.DifficultyEffects.StandingBarGrowthMultiplier;
+				else 
+					MoveCoeffChangingSpeed *= Meta.Instance.Gameplay.DifficultyEffects.StandingBarGrowthMultiplier;
+
+                _moveCoeff += MoveCoeffChangingSpeed;
                 _moveCoeff = Mathf.Clamp(_moveCoeff, MinMoveCoeff, MaxMoveCoeff);
             }
 

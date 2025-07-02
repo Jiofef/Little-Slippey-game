@@ -18,10 +18,14 @@ public partial class EnhancedButton : TextureButton
 			Connect("button_up", upSoundCallable);
 
 
-		FocusEntered += OnFocusEntered;
-		FocusExited += OnFocusExited;
-		MouseEntered += OnMouseEntered;
-		MouseExited += OnMouseExited;
+		AnnotationComponent = GetNodeOrNull<AnnotationHandler>("AnnotationHandler");
+		if (AnnotationComponent != null)
+		{
+			AnnotationComponent.AnnotationEnabled = AnnotationEnabled;
+			AnnotationComponent.AnnotationDefaultText = AnnotationText;
+			AnnotationComponent.AnnotationBoxSizeOverride = AnnotationBoxSizeOverride;
+			AnnotationComponent.AnnotationAppearingDelay = AnnotationAppearingDelay;
+		}
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -38,77 +42,18 @@ public partial class EnhancedButton : TextureButton
 		Mathf.Clamp(HasFocus() ? _focusRect.Modulate.A + 0.2f : _focusRect.Modulate.A - 0.2f, 0, !Disabled ? 1 : 0.33f));
 		float Brightness = ButtonPressed ? 0.5f : 1;
 		Modulate = new Color(Brightness, Brightness, Brightness);
-
-		// Annotations
-		if (AnnotationEnabled && HasFocus() && !_wasAnnotationShowed && !Disabled)
-		{
-			_annotationAppearingTimer -= G.FLOAT_DELTA;
-
-			if (_annotationAppearingTimer < 0)
-				ShowAnnotation();
-		}
 	}
 
 	#region Annotation Segment
+	/// <summary>
+	/// If you want to change annotation properties in runtime, you should do it through AnnotationComponent
+	/// </summary>
+	public AnnotationHandler AnnotationComponent { get; private set; }
 	[ExportGroup("Annotation properties")]
-	[Export] public bool AnnotationEnabled = false;
-	[Export(PropertyHint.MultilineText)] public string AnnotationText;
-	[Export] public Vector2 AnnotationBoxSizeOverride = Vector2.Zero;
-	[Export] public float AnnotationAppearingDelay = 0.5f;
-	private float _annotationAppearingTimer;
-	private bool _annotationShowed = false, _wasAnnotationShowed;
-	private void ShowAnnotation()
-	{
-		G.AdditionalGuiLayer.AnnotationBox.PopupWithText(AnnotationText, AnnotationBoxSizeOverride != Vector2.Zero ? AnnotationBoxSizeOverride : null);
-		_annotationShowed = true;
-		_wasAnnotationShowed = true;
-		if (!IsHovered())
-			G.AdditionalGuiLayer.AnnotationBox.PinTo(GlobalPosition + Size * GetGlobalTransform().Scale / 2);
-	}
-	private void HideAnnotation()
-	{
-		_annotationShowed = false;
-		G.AdditionalGuiLayer.AnnotationBox.Hide();
-		_annotationAppearingTimer = AnnotationAppearingDelay;
-	}
-
-	private void OnFocusEntered()
-	{
-		if (AnnotationEnabled && !Disabled)
-		{
-			_annotationAppearingTimer = AnnotationAppearingDelay;
-		}
-	}
-	private void OnFocusExited()
-	{
-		if (AnnotationEnabled && !Disabled)
-		{
-			_wasAnnotationShowed = false;
-			HideAnnotation();
-		}
-	}
-	private void OnMouseEntered()
-	{
-		if (AnnotationEnabled && !Disabled)
-		{
-			if (_annotationShowed)
-			{
-				G.AdditionalGuiLayer.AnnotationBox.UnPin();
-			}
-			else
-			{
-				// Forcing to show annotation
-				_wasAnnotationShowed = false;
-			}
-		}
-	}
-	private void OnMouseExited()
-	{
-		if (AnnotationEnabled)
-		{
-			HideAnnotation();
-		}
-	}
+	[Export] private bool AnnotationEnabled = false;
+	[Export(PropertyHint.MultilineText)] private string AnnotationText;
+	[Export] private Vector2 AnnotationBoxSizeOverride = Vector2.Zero;
+	[Export] private float AnnotationAppearingDelay = 0.5f;
 	#endregion
 
 	#region Buy segment

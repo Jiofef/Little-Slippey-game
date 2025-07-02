@@ -33,29 +33,31 @@ public partial class InitializationScene : Control
 
         UnchangableMeta.SetAutoSaveWhenClosing(true);
 
+		Crosses.SetDefaultCrossesPack();
+
 
         if (!UnchangableMeta.IsLanguageSetted)
-        {
-            ModManager.CreateStandartTimerLib();
-            //GetNode<Control>("ChooseYourLanguage").Visible = true;
-            //GetNode<TextureButton>("ChooseYourLanguage/ChooseYourLanguageEng").GrabFocus();
-            Dictionary<string, Language> CountryCodes = new Dictionary <string, Language>()
-            {
-                {"RU", Language.ru},
-                {"BY", Language.ru},
-                {"UA", Language.ru},
-                {"AM", Language.ru},
-                {"MD", Language.ru},
-                {"KG", Language.ru},
-                {"KZ", Language.ru},
-                {"GE", Language.ru},
-                {"UZ", Language.ru},
-            };
-            if (CountryCodes.ContainsKey(CountryCode))
-                SetLanguage(CountryCodes[CountryCode]);
-            else 
-                SetLanguage(Language.en);
-        }
+		{
+			ModManager.CreateStandartTimerLib();
+			//GetNode<Control>("ChooseYourLanguage").Visible = true;
+			//GetNode<TextureButton>("ChooseYourLanguage/ChooseYourLanguageEng").GrabFocus();
+			Dictionary<string, Language> CountryCodes = new Dictionary<string, Language>()
+			{
+				{"RU", Language.ru},
+				{"BY", Language.ru},
+				{"UA", Language.ru},
+				{"AM", Language.ru},
+				{"MD", Language.ru},
+				{"KG", Language.ru},
+				{"KZ", Language.ru},
+				{"GE", Language.ru},
+				{"UZ", Language.ru},
+			};
+			if (CountryCodes.ContainsKey(CountryCode))
+				SetLanguage(CountryCodes[CountryCode]);
+			else
+				SetLanguage(Language.en);
+		}
 
 
         //Mods loading

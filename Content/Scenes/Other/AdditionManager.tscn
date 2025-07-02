@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://ovafqwkk3s6y"]
+
+[ext_resource type="Script" uid="uid://d38i72ptetlv6" path="res://Content/Scripts/Other/AdditionManager.cs" id="1_kmcew"]
+
+[node name="AdditionManager" type="Node"]
+script = ExtResource("1_kmcew")

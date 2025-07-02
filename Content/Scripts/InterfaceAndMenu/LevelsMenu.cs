@@ -1,6 +1,7 @@
 using Godot;
 using static OtherExtension.FastInstanceCreator;
 using static ContentManager;
+using static Additions;
 
 public partial class LevelsMenu : DraggableWindow
 {
@@ -22,6 +23,7 @@ public partial class LevelsMenu : DraggableWindow
 		// Initializing nodes
 		_welcomeToGOS = GetParentOrNull<WelcomeToGOS>();
 		_selectedTab = GetNode<Control>("MarginContainer/VBoxContainer/HBC/Levels");
+		ContentManager.Inst.Connect(nameof(ContentManager.Inst.SaveQueued), new Callable(this, nameof(UpdateAdditionsTab)));
 
 		InitLevelsTab();
     }
@@ -136,6 +138,7 @@ public partial class LevelsMenu : DraggableWindow
     public void OpenLevel()
     {
         G.ResetValues();
+		Additions.GameplayEffects.UpdateValues();
         GetTree().ChangeSceneToFile("res://Content/Scenes/Levels/FullParts/Level" + G.CurrentLevel + G.LevelAdditionalLink + ".tscn");
     }
 	[Export] private NodePath LevelRowHBC;

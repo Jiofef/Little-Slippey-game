@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://bwpstpk1xmkah"]
+[gd_scene load_steps=5 format=3 uid="uid://bwpstpk1xmkah"]
 
 [ext_resource type="AudioStream" uid="uid://tqadkdxweb8k" path="res://Content/Sounds/Interface&Menu/ButtonDown.mp3" id="2_ej45a"]
 [ext_resource type="Script" uid="uid://d0k3qtg5xrfr2" path="res://Content/Scripts/InterfaceAndMenu/EnhancedButton.cs" id="2_j2ehd"]
+[ext_resource type="PackedScene" uid="uid://cmxdnlujabr3u" path="res://Content/Scenes/Interface&Menu/AnnotationHandler.tscn" id="2_qfxup"]
 [ext_resource type="AudioStream" uid="uid://chdpssnfxb7o1" path="res://Content/Sounds/Interface&Menu/ButtonUp.mp3" id="3_vw7ai"]
 
 [node name="Button" type="TextureButton"]
@@ -11,6 +12,8 @@ offset_bottom = 16.0
 scale = Vector2(4, 4)
 ignore_texture_size = true
 script = ExtResource("2_j2ehd")
+
+[node name="AnnotationHandler" parent="." instance=ExtResource("2_qfxup")]
 
 [node name="FocusRect" type="ColorRect" parent="."]
 modulate = Color(1, 1, 1, 0)

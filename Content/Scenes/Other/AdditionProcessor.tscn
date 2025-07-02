@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://bu3fyeae8ryf4"]
-
-[ext_resource type="Script" uid="uid://dk1u7sfp5t7j4" path="res://Content/Scripts/Other/AdditionProcessor.cs" id="1_7ap3t"]
-
-[node name="AdditionProcessor" type="Node"]
-script = ExtResource("1_7ap3t")

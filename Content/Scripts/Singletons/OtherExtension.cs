@@ -674,43 +674,51 @@ namespace OtherExtension
 
     }
 
-    public static class FastInstanceCreator
-    {
+	public static class FastInstanceCreator
+	{
 
-        public const string DEFAULT_RES_SCENES_PATH = "res://Content/Scenes/";
-        /// <summary>
-        /// The paths starts from "res://Content/Scenes/"
-        /// </summary>
-        public static PackedScene LoadPackedResScene(string path)
-        {
-            return GD.Load<PackedScene>(DEFAULT_RES_SCENES_PATH + path);
-        }
-        public static PackedScene LoadPackedScene(string path)
-        {
-            return GD.Load<PackedScene>(path);
-        }
-        /// <summary>
-        /// The paths starts from "res://Content/Scenes/"
-        /// </summary>
-        public static T LoadResScene<T>(string path) where T : Node
-        {
-            return LoadScene<T>(DEFAULT_RES_SCENES_PATH + path);
-        }
-        public static Node LoadResScene(string path)
-        {
-            return LoadScene(DEFAULT_RES_SCENES_PATH + path);
-        }
+		public const string DEFAULT_RES_SCENES_PATH = "res://Content/Scenes/";
+		/// <summary>
+		/// The paths starts from "res://Content/Scenes/"
+		/// </summary>
+		public static PackedScene LoadPackedResScene(string path)
+		{
+			return GD.Load<PackedScene>(DEFAULT_RES_SCENES_PATH + path);
+		}
+		public static PackedScene LoadPackedScene(string path)
+		{
+			return GD.Load<PackedScene>(path);
+		}
+		/// <summary>
+		/// The paths starts from "res://Content/Scenes/"
+		/// </summary>
+		public static T LoadResScene<T>(string path) where T : Node
+		{
+			return LoadScene<T>(DEFAULT_RES_SCENES_PATH + path);
+		}
+		public static Node LoadResScene(string path)
+		{
+			return LoadScene(DEFAULT_RES_SCENES_PATH + path);
+		}
 
 
-        public static T LoadScene<T>(string path) where T : Node
-        {
-            return GD.Load<PackedScene>(path).Instantiate<T>();
-        }
-        public static Node LoadScene(string path)
-        {
-            return GD.Load<PackedScene>(path).Instantiate();
-        }
-    }
+		public static T LoadScene<T>(string path) where T : Node
+		{
+			return GD.Load<PackedScene>(path).Instantiate<T>();
+		}
+		public static Node LoadScene(string path)
+		{
+			return GD.Load<PackedScene>(path).Instantiate();
+		}
+		public static PackedScene GetPackedFrom(Node node)
+		{
+			var packedScene = new PackedScene();
+
+			packedScene.Pack(node);
+
+			return packedScene;
+		}
+	}
 
     // DON'T LOOK OVER HERE. GOT IT?
     public static class ActionTools

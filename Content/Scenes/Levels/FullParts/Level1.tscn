@@ -264,7 +264,7 @@ _data = {
 [node name="Main" instance=ExtResource("1_t253m")]
 script = ExtResource("2_0n0cx")
 
-[node name="LevelMusicPlayer" parent="." index="0"]
+[node name="LevelMusicPlayer" parent="." index="1"]
 _musicName = "TNT For Breakfast"
 RestartPosition = 17.5
 
@@ -272,9 +272,6 @@ RestartPosition = 17.5
 libraries = {
 &"": SubResource("AnimationLibrary_jcmm3")
 }
-
-[node name="Level" parent="." index="1"]
-BeforeResetCrossesSpawnStartTimer = 0.0
 
 [node name="Background" type="ParallaxBackground" parent="Level" index="0"]
 

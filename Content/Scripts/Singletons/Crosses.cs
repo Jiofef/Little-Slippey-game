@@ -291,8 +291,14 @@ public partial class Crosses : Node
     public static bool AreAllCrossWeightsSet;
     public static void UpdateCrossesWeight()
     {
+		if (Meta.Instance.Gameplay.DifficultyEffects.IsCrossesProgressSkipped)
+		{
+			FinishCrossesEvolution();
+			return;
+		}
+
         // Calculate the weight multiplier based on scores and progress coefficient
-        float weightMultiplier = Scores / 30 * CrossesProgressCoeff;
+			float weightMultiplier = Scores / 30 * CrossesProgressCoeff;
 
         CrossesWeight = new float[_defaultCrossesWeight.Length];
         LastAvailableCrossNumber = 0;
@@ -331,6 +337,13 @@ public partial class Crosses : Node
         OtherTools.PrintAnArray(CrossesWeight);
     }
 
+	public static void FinishCrossesEvolution()
+	{
+		CrossesWeight = new float[_defaultCrossesWeight.Length];
+		Array.Copy(_defaultCrossesWeight, CrossesWeight, _defaultCrossesWeight.Length);
+		AreAllCrossWeightsSet = true;
+		LastAvailableCrossNumber = CrossesWeight.Length - 1;
+	}
     private static float _lastWeightUpdateScore = 0;
     private static float _currentCrossWeightTimer = 0;
     private static void UpdateLastCrossWeight()

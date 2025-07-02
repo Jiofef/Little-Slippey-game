@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://5kfyvxsdpsk2"]
+[gd_scene load_steps=11 format=3 uid="uid://5kfyvxsdpsk2"]
 
 [ext_resource type="Script" uid="uid://cjbhhew83nwxn" path="res://Content/Scripts/Other/MainScript.cs" id="2"]
 [ext_resource type="Script" uid="uid://d23sexuaxdruy" path="res://Content/Scripts/Other/LevelMusicPlayer.cs" id="2_4qm76"]
+[ext_resource type="PackedScene" uid="uid://ovafqwkk3s6y" path="res://Content/Scenes/Other/AdditionManager.tscn" id="2_g4cwo"]
 [ext_resource type="Script" uid="uid://b55o38rlxdiq" path="res://Content/Scripts/Levels/BaseLevelScript.cs" id="3_mid8o"]
 [ext_resource type="Script" uid="uid://dy61y3klqo4lg" path="res://Content/Scripts/Crosses/CrossSpawner.cs" id="4_ddpkh"]
 [ext_resource type="PackedScene" uid="uid://tjddwdxopw2u" path="res://Content/Scenes/Interface&Menu/Pause.tscn" id="4_s6iig"]
@@ -48,6 +49,9 @@ process_mode = 1
 script = ExtResource("2")
 metadata/_edit_vertical_guides_ = [-234.0]
 
+[node name="AdditionManager" parent="." node_paths=PackedStringArray("AdditionsWorkPlace") instance=ExtResource("2_g4cwo")]
+AdditionsWorkPlace = NodePath("../Level")
+
 [node name="LevelMusicPlayer" type="AudioStreamPlayer" parent="."]
 process_mode = 3
 bus = &"Music"
@@ -60,7 +64,6 @@ libraries = {
 
 [node name="Level" type="Node2D" parent="."]
 script = ExtResource("3_mid8o")
-BeforeResetCrossesSpawnStartTimer = null
 
 [node name="CrossSpawner" type="Node2D" parent="."]
 script = ExtResource("4_ddpkh")

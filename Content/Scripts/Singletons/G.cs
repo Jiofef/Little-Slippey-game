@@ -149,6 +149,7 @@ public partial class G : Node
                        LevelCompleteTime = 150; // When this second comes, the level is passed. Can be used for different things
 
     public static bool IsOnLevel => CurrentLevel != 0;
+	public static float FullCrossSpawnMultiplier => CrossSpawnMultiplier * Meta.Instance.Gameplay.DifficultyEffects.CrossesSpawnMultiplier;
 
     public const int DEFAULT_RESURRECTION_COST = 75;
     public static int MinResurrectionCost = DEFAULT_RESURRECTION_COST;
@@ -345,26 +346,6 @@ public partial class G : Node
     /// 
     /// <para>wasIntroShown shows if the intro was shown this time. You can use this as a marker if the level was run for the first time (true if yes, false if not)</para>
     /// <para>Instead of using this event directly, you can use OnLevelStarted signal from "Main" or BindLevelStartEventToNodeSafely method for a simpler structure. </para>
-    /// <para>___</para>
-    /// <para>If you use it directly, here is one possible implementation to avoid NullReferenceException:</para>
-    /// <para>
-    /// <br>    private G.LevelStartedEventHandler _onLevelStartedHandler;</br>
-    /// <br>    public override void _Ready()</br>
-    /// <br>    {</br>
-    /// <br>        _onLevelStartedHandler = (bool wasIntroShown) => OnLevelStarted();</br>
-    /// <br>        G.OnLevelStarted += _onLevelStartedHandler;</br>
-    /// <br>    }</br>
-    /// <br>    private void OnLevelStarted()</br>
-    /// <br>    }</br>
-    /// <br>//your code</br>
-    /// <br>    }</br>
-    /// <br>    public override void _ExitTree()</br>
-    /// <br>    {</br>
-    /// <br>        if (_onLevelStartedHandler != null)</br>
-    /// <br>            G.OnLevelStarted -= _onLevelStartedHandler;</br>
-    /// <br>    {</br>
-    /// </para>
-    /// 
     /// </summary>
     public static EventWrapper1A<bool> OnLevelStarted = new();
 
@@ -418,11 +399,13 @@ public partial class G : Node
 		IsCrossesEnabled = true;
 		CrossesProgressCoeff = 1;
         CrossSpawnMultiplier = 1;
+		
+		Crosses.SetDefaultCrossesPack();
 
 
 
         //Music
-        MusicStartPosition = 0;
+		MusicStartPosition = 0;
         MusicStopTimeCode = 0;
         MusicName = "";
 

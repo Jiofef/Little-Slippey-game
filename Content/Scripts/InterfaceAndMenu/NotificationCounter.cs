@@ -16,7 +16,7 @@ public partial class NotificationCounter : Control
             _notificationsAmount = value;
         }
     }
-    [Export] public bool EnableAutoSetting = false;
+    [Export] public bool EnableAutoSetting = true;
     [Export] public string AutoSettingDicKey;
 
     public override void _Ready()

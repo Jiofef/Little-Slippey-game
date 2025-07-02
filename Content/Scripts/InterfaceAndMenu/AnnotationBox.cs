@@ -23,29 +23,31 @@ public partial class AnnotationBox : Control
 	}
 	public override void _Process(double delta)
     {
+		UpdateAnnotationTransform();
+    }
+
+	public void PopupWithText(string text, Vector2? sizeOverride = null)
+	{
+		_requiredSizeOverride = sizeOverride;
+		_sizeCoeff = 0;
+		var richTextLabel = GetNode<RichTextLabel>("RichTextLabel");
+		richTextLabel.Text = text;
+		richTextLabel.UpdateMinimumSize();
+		var animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
+		animationPlayer.Stop();
+		animationPlayer.Play("Appearing");
+
+		Show();
+		SetProcess(true);
+		UpdateAnnotationTransform();
+    }
+	public void UpdateAnnotationTransform()
+	{
         Size = _requiredSize * _sizeCoeff;
         Position = IsPinned ? PinPosition : _screenControl.GetLocalMousePosition();
 		// To keep the annotation from going off the screen
         Position = new Vector2(Math.Min(Position.X, 1280 - Size.X), Math.Min(Position.Y, 720 - Size.Y));
-    }
-
-    public void PopupWithText(string text, Vector2? sizeOverride = null)
-    {
-		_requiredSizeOverride = sizeOverride;
-		
-        Show();
-        SetProcess(true);
-
-
-
-        _sizeCoeff = 0;
-        var richTextLabel = GetNode<RichTextLabel>("RichTextLabel");
-        richTextLabel.Text = text;
-        richTextLabel.UpdateMinimumSize();
-        var animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
-        animationPlayer.Stop();
-        animationPlayer.Play("Appearing");
-    }
+	}
 
 	private Vector2? _requiredSizeOverride = null;
 	public void UpdateRequiredSize()

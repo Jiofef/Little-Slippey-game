@@ -7,7 +7,7 @@ public partial class Level5MusicStarter : Area2D
 
     new public void AreaEntered()
     {
-        if (ContentManager.IsAdditionActive(AdditionEnum.OldFilm))
+        if (Additions.IsAdditionActive(Additions.AdditionEnum.OldFilm))
             EmitSignal("ButtonPressed");
     }
 }

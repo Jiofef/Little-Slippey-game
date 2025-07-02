@@ -1,9 +1,11 @@
-[gd_scene load_steps=57 format=4 uid="uid://c2nxiddufnutu"]
+[gd_scene load_steps=59 format=4 uid="uid://c2nxiddufnutu"]
 
 [ext_resource type="Script" uid="uid://cjbhhew83nwxn" path="res://Content/Scripts/Other/MainScript.cs" id="1_52yug"]
 [ext_resource type="Script" uid="uid://bitlmjumwlhxc" path="res://Content/Scripts/Levels/Level10MusicPlayer.cs" id="2_1fwqt"]
 [ext_resource type="Script" uid="uid://b55o38rlxdiq" path="res://Content/Scripts/Levels/BaseLevelScript.cs" id="2_8e3wu"]
+[ext_resource type="PackedScene" uid="uid://ovafqwkk3s6y" path="res://Content/Scenes/Other/AdditionManager.tscn" id="2_15bqw"]
 [ext_resource type="Script" uid="uid://dd1vl1isxpmcm" path="res://Content/Scripts/Levels/Level10ScientistScript.cs" id="3_dwaxd"]
+[ext_resource type="Script" uid="uid://ct2hd36jhv2ys" path="res://Content/Scripts/Other/Additions/EnhancedCrossesAddition.cs" id="3_fo2dt"]
 [ext_resource type="Texture2D" uid="uid://bif1cr6n4hvie" path="res://Content/Sprites/Levels/Level10/TestChamber.png" id="4_i3a5a"]
 [ext_resource type="Texture2D" uid="uid://cp7kra2fyq5jn" path="res://Content/Sprites/Levels/Level10/BackPipes.png" id="5_rf2xq"]
 [ext_resource type="Script" uid="uid://dt8ylokjenq8a" path="res://Content/Scripts/Levels/Subtitles.cs" id="5_rw6aw"]
@@ -813,6 +815,12 @@ _data = {
 process_mode = 1
 script = ExtResource("1_52yug")
 metadata/_edit_vertical_guides_ = [-234.0]
+
+[node name="AdditionManager" parent="." node_paths=PackedStringArray("AdditionsWorkPlace") instance=ExtResource("2_15bqw")]
+AdditionsWorkPlace = NodePath("")
+
+[node name="EnhancedCrosses" type="Node" parent="AdditionManager"]
+script = ExtResource("3_fo2dt")
 
 [node name="LevelMusicPlayer" type="AudioStreamPlayer" parent="."]
 process_mode = 3

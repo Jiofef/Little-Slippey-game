@@ -1,10 +1,10 @@
+RichTextLabel
+Node
 ColorRect
 AnimationPlayer
 TextureRect
 ScrollContainer
 HFlowContainer
-Node
-RichTextLabel
 Label
 VBoxContainer
 HSeparator

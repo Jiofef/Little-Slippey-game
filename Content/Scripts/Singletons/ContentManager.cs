@@ -1,54 +1,26 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text.Json.Serialization;
 using Godot;
+using static OtherExtension.FastInstanceCreator;
+using static OtherExtension.ActionTools;
+using static Additions;
 
 public partial class ContentManager : Node
 {
+	public static ContentManager Inst { get; private set; }
+	[Signal] public delegate void AdditionsGameplayEffectsUpdatedEventHandler();
+	[Signal] public delegate void SavingEventHandler();
+	[Signal] public delegate void SaveQueuedEventHandler();
 	public const string SAVE_DATA_PATH = "user://content_data.json";
-	public static Dictionary<ContentTypeEnum, Dictionary<string, IContent>> ContentDic = new Dictionary<ContentTypeEnum, Dictionary<string, IContent>>
+	public static Dictionary<ContentTypeEnum, Dictionary<string, IContent>> ContentDic = new Dictionary<ContentTypeEnum, Dictionary<string, IContent>>{};
+	public override void _Ready()
 	{
-		{
-			ContentTypeEnum.Addition,
-
-			new Dictionary<string, IContent> {
-			{ AdditionEnum.Thunderstorm.ToString(),
-			new Addition(AdditionType.Challenge, 1)},
-			{AdditionEnum.OldFilm.ToString(),
-			new Addition(AdditionType.Challenge, 1)},
-			{AdditionEnum.JiofefsHead.ToString(),
-			new Addition(AdditionType.Challenge, 2)},
-			{AdditionEnum.EnhancedCrosses.ToString(),
-			new Addition(AdditionType.Challenge, 1)},
-			}
-		},
-	};
-	public static Dictionary<string, Addition> GetAdditions(AdditionType? type = null)
-	{
-		var additions = ContentDic[ContentTypeEnum.Addition].ToDictionary(kpv => kpv.Key, kvp => (Addition)kvp.Value);
-		if (type == null) return additions;
-		
-		var filteredDic = additions.Where(kvp => kvp.Value is ITypeHolder<AdditionType> taValue && taValue.Type == type).ToDictionary();
-
-		return filteredDic;
+		Inst = this;
+		Additions.Init();
 	}
+
 	
-	public static int GetAdditionsAmount(AdditionType? type = null)
-	{
-		return GetAdditions(type).Count();
-	}
-	public static int GetAvailableAdditionsAmount(AdditionType? type = null)
-	{
-		var availableAdditions = GetAdditions(type).Where(kvp => kvp.Value.IsUnlocked && kvp.Value.IsBought);
-		int amount = availableAdditions.Count();
-		return amount;
-	}
-
-	public static bool IsAdditionActive(AdditionEnum addition)
-	{
-		return ((Addition)ContentDic[ContentTypeEnum.Addition][addition.ToString()]).IsActivated;
-	}
 	public static void UnlockContent(ContentTypeEnum contentType, string contentName)
 	{
 		var content = ContentDic[contentType][contentName];
@@ -56,8 +28,8 @@ public partial class ContentManager : Node
 		if (content is IUnlockableContent uContent)
 		{
 			if (uContent.IsUnlocked) return;
-			
-			uContent.IsUnlocked = true;
+
+			uContent.Unlock();
 
 			QueueSave();
 		}
@@ -83,6 +55,7 @@ public partial class ContentManager : Node
 	public static void QueueSave()
 	{
 		_isQueuedToSave = true;
+		Inst.EmitSignal(nameof(Inst.SaveQueued));
 	}
 
 	/// <summary>
@@ -96,6 +69,7 @@ public partial class ContentManager : Node
 			{
 				_isQueuedToSave = false;
 				FileSystemExtension.SaveInJson(ContentDic, SAVE_DATA_PATH);
+				Inst.EmitSignal(nameof(Inst.Saving));
 			}
 			catch (Exception e)
 			{
@@ -130,6 +104,14 @@ public partial class ContentManager : Node
 
 						dynamicHolder.Type = defaultHolder.Type;
 					}
+					if (content is IPackedSceneHolder)
+					{
+						((IPackedSceneHolder)content)._PackedScene = ((IPackedSceneHolder)defaultContent)._PackedScene;
+					}
+					if (content is ChallengeAddition)
+					{
+						((ChallengeAddition)content).RewardsMultiplier = ((ChallengeAddition)defaultContent).RewardsMultiplier;
+					}
 					
 					ContentDic[contentType][contentName] = content;
 				}
@@ -144,10 +126,19 @@ public partial class ContentManager : Node
 
 
 public enum ContentTypeEnum { Addition }
-[JsonDerivedType(typeof(Addition), "addition")] public interface IContent { }
+
+[JsonDerivedType(typeof(Addition), "addition")]
+[JsonDerivedType(typeof(ChallengeAddition), "challenge_addition")]
+ public interface IContent { }
 public interface IUnlockableContent : IContent
 {
 	public bool IsUnlocked { get; set; }
+	public void Unlock()
+	{
+		if (IsUnlocked) return;
+
+		IsUnlocked = true;
+	}
 }
 public interface IPurchasableContent : IContent
 {
@@ -160,23 +151,3 @@ public interface IToggleableContent : IContent
 	public bool IsActivated { get; set; }
 }
 
-public enum AdditionEnum { Thunderstorm, OldFilm, JiofefsHead, EnhancedCrosses };
-
-public enum AdditionType { Neutral, Cheat, Challenge }
-[Serializable]
-public class Addition : IPurchasableContent, IToggleableContent, IUnlockableContent, ITypeHolder<AdditionType>
-{
-	[JsonIgnore] public AdditionType Type { get; set; }
-	public bool IsUnlocked { get; set; }
-	public bool IsBought { get; set; }
-	[JsonIgnore] public int Cost { get; set; }
-	public bool IsActivated { get; set; }
-	public Addition(AdditionType type = AdditionType.Neutral, int cost = 0, bool isUnlocked = false, bool isBought = false, bool isActivated = false)
-	{
-		Type = type;
-		Cost = cost;
-		IsUnlocked = isUnlocked;
-		IsBought = isBought;
-		IsActivated = isActivated;
-	}
-}

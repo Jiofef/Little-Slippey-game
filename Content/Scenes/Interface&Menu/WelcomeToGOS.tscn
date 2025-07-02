@@ -399,7 +399,6 @@ offset_top = 11.0
 offset_right = 10.0
 offset_bottom = 11.0
 scale = Vector2(0.25, 0.25)
-EnableAutoSetting = true
 AutoSettingDicKey = "SkinsMenu"
 
 [node name="Skins" type="Label" parent="Buttons"]
@@ -445,7 +444,6 @@ offset_top = 11.0
 offset_right = 10.0
 offset_bottom = 11.0
 scale = Vector2(0.25, 0.25)
-EnableAutoSetting = true
 AutoSettingDicKey = "RecycleBin"
 
 [node name="RecycleBin" type="Label" parent="Buttons"]

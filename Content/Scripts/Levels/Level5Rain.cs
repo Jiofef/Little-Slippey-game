@@ -14,12 +14,7 @@ public partial class Level5Rain : Node2D
         _fog = GetNode<ColorRect>("CanvasLayer/Fog?");
         _thunderLight = GetNode<ColorRect>("CanvasLayer/ThunderLight");
 
-        BindEventToNodeSafelyWithoutArgs(this, "OnLevelStarted", G.OnLevelStarted);
-    }
-
-    public void OnLevelStarted()
-    {
-        ThunderStart();
+    	ThunderStart();
         GetNode<AudioStreamPlayer>("RainSound").Playing = true;
     }
 

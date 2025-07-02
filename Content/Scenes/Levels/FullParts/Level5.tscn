@@ -1,6 +1,7 @@
-[gd_scene load_steps=16 format=4 uid="uid://dkyfagv681w7p"]
+[gd_scene load_steps=17 format=4 uid="uid://dkyfagv681w7p"]
 
 [ext_resource type="PackedScene" uid="uid://5kfyvxsdpsk2" path="res://Content/Scenes/Other/LevelLayout.tscn" id="1_e0lt1"]
+[ext_resource type="Script" uid="uid://p1y1s0kdnslt" path="res://Content/Scripts/Other/Additions/ThunderStormAddition.cs" id="2_qsn57"]
 [ext_resource type="Texture2D" uid="uid://08yjrts0y3be" path="res://Content/Sprites/Levels/Level5/Sky.png" id="2_vj6ws"]
 [ext_resource type="Texture2D" uid="uid://3arwpxm41m0a" path="res://Content/Sprites/Levels/Level5/HomeSweetHome.png" id="3_rganm"]
 [ext_resource type="Texture2D" uid="uid://c1a8v62iy3ybh" path="res://Content/Sprites/Levels/WhyIsItStillRainingTileset.png" id="4_qdehb"]
@@ -116,8 +117,8 @@ size = Vector2(128, 128)
 
 [node name="Main" instance=ExtResource("1_e0lt1")]
 
-[node name="Level" parent="." index="1"]
-BeforeResetCrossesSpawnStartTimer = 0.0
+[node name="ThunderStormAddition" type="Node" parent="AdditionManager" index="0"]
+script = ExtResource("2_qsn57")
 
 [node name="Background" type="ParallaxBackground" parent="Level" index="0"]
 
@@ -175,8 +176,5 @@ visible = false
 
 [node name="Glare" parent="EpicIntro" index="2"]
 visible = false
-
-[connection signal="LevelFinished" from="Level" to="." method="UnlockContentStr" binds= ["Addition", "Thunderstorm"]]
-[connection signal="ButtonPressed" from="Level/PlayMusicTrigger" to="LevelMusicPlayer" method="PlayMusicBase" flags=6 binds= ["Envelope", 0.0, 0.0]]
 
 [editable path="EpicIntro"]

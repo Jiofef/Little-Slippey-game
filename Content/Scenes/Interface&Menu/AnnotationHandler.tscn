@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cmxdnlujabr3u"]
+
+[ext_resource type="Script" uid="uid://cy8vukbo5r35s" path="res://Content/Scripts/Components/AnnotationHandler.cs" id="1_h7b73"]
+
+[node name="AnnotationHandler" type="Node"]
+script = ExtResource("1_h7b73")
