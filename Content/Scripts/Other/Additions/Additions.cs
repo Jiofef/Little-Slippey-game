@@ -13,6 +13,9 @@ public static class Additions
 	{
 		ContentDic.Add(ContentTypeEnum.Addition, new Dictionary<string, IContent>
 			{
+			{ AdditionEnum.TechAGrav.ToString(),
+			new ChallengeAddition(GetPackedFrom(new TechAGrav()), AdditionType.Neutral, 40)},
+
 			{ AdditionEnum.Thunderstorm.ToString(),
 			new ChallengeAddition(GetPackedFrom(new ThunderStormAddition()), AdditionType.Challenge, 1)},
 
@@ -29,7 +32,7 @@ public static class Additions
 		ContentManager.Inst.SaveQueued += GameplayEffects.UpdateValues;
 	}
 	public static void Init() { }
-	public enum AdditionEnum { Thunderstorm, OldFilm, JiofefsHead, EnhancedCrosses };
+	public enum AdditionEnum { TechAGrav, Thunderstorm, OldFilm, JiofefsHead, EnhancedCrosses };
 
 	public enum AdditionType { Neutral, Cheat, Challenge }
 	[Serializable]

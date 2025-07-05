@@ -219,11 +219,10 @@ public partial class Level10ScientistScript : Node2D
         // !Secret level test!
 		if (G.IsDebugEnabled)
 		{
-			OtherExtension.ActionTools.BindEventSafelyTo(G.OnLevelStarted, (a) =>
+			OtherExtension.ActionTools.BindEventSafelyTo(G.OnLevelStarted, async (a) =>
 			{
-				G.TransitiveVariantD.Add("SavedScores", G.Scores);
-				G.TransitiveVariantD.Add("PlayerSavedPos", G.Player.Position);
-				GetTree().ChangeSceneToFile("res://Content/Scenes/Levels/FullParts/Level000000000.tscn");
+				await G.WaitFor(1f);
+				CallDeferred(nameof(SwitchTo000000000Level));
 				return;
 			});
 		}
@@ -343,9 +342,7 @@ public partial class Level10ScientistScript : Node2D
             // Switch to secret level
             if (_level.SavedScores < 0 && ModManager.IsStandartTimerLibLoaded && !ModManager.IsModsDisabled)
             {
-                G.TransitiveVariantD.Add("SavedScores", G.Scores);
-                G.TransitiveVariantD.Add("PlayerSavedPos", _player.Position);
-                GetTree().ChangeSceneToFile("res://Content/Scenes/Levels/FullParts/Level000000000.tscn");
+				SwitchTo000000000Level();
                 return;
             }
 
@@ -364,24 +361,30 @@ public partial class Level10ScientistScript : Node2D
             SetPhysicsProcess(false);
         }
     }
+	public void SwitchTo000000000Level()
+	{
+		G.TransitiveVariantD.Add("SavedScores", G.Scores);
+		G.TransitiveVariantD.Add("PlayerSavedPos", G.Player.Position);
+		G.Main.LoadScene("res://Content/Scenes/Levels/FullParts/Level000000000.tscn");
+	}
 
 
     public void OnLevelReset()
-    {
-        _level.DeathCount++;
-        G.TransitiveVariant[0] = _megaphone.Stream; // Saving the megaphone stream
-        _level.MegaphoneTimer = _megaphonePhraseTimer;
-        _level.MusicPlayerVolume = _musicPlayer.VolumeDb;
-        _level.MegaphonePlaybackPosition = _megaphone.GetPlaybackPosition();
-        _level.ShowIntro = false;
+	{
+		_level.DeathCount++;
+		G.TransitiveVariant[0] = _megaphone.Stream; // Saving the megaphone stream
+		_level.MegaphoneTimer = _megaphonePhraseTimer;
+		_level.MusicPlayerVolume = _musicPlayer.VolumeDb;
+		_level.MegaphonePlaybackPosition = _megaphone.GetPlaybackPosition();
+		_level.ShowIntro = false;
 
-        G.TransitiveObject[0] = _level;
-        G.TransitiveObject[1] = _subtitles;
+		G.TransitiveObject[0] = _level;
+		G.TransitiveObject[1] = _subtitles;
 
-        SaveSubtitlesState();
+		SaveSubtitlesState();
 
-        G.MusicStopTimeCode = _musicPlayer.GetPlaybackPosition();
-    }
+		G.MusicStopTimeCode = _musicPlayer.GetPlaybackPosition();
+	}
 
     public void OnLevelCompleted()
     {

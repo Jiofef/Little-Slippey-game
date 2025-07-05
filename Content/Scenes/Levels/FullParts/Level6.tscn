@@ -521,7 +521,7 @@ shader_parameter/saturation = 0.9
 
 [node name="Main" instance=ExtResource("1_k46p1")]
 
-[node name="LevelMusicPlayer" parent="." index="0"]
+[node name="LevelMusicPlayer" parent="." index="1"]
 _musicName = "Clair De Phare"
 RestartPosition = 10.19
 
@@ -529,9 +529,6 @@ RestartPosition = 10.19
 libraries = {
 &"": SubResource("AnimationLibrary_jcmm3")
 }
-
-[node name="Level" parent="." index="1"]
-BeforeResetCrossesSpawnStartTimer = 0.0
 
 [node name="Background" type="ParallaxBackground" parent="Level" index="0"]
 
@@ -708,6 +705,7 @@ position = Vector2(1920, 800)
 _initialCameraLimits = Rect2(0, 0, 3840, 2560)
 
 [node name="PlayerHolder" type="Node" parent="Level" index="3" node_paths=PackedStringArray("NodeToKeepInBorders")]
+process_mode = 4
 script = ExtResource("13_nwujo")
 NodeToKeepInBorders = NodePath("../Player")
 GlobalBorders2D = Rect2(640, 128, 2560, 1280)
@@ -894,6 +892,7 @@ offset_right = 1280.0
 offset_bottom = 720.0
 mouse_filter = 2
 
+[connection signal="LevelFinished" from="Level" to="." method="UnlockContentStr" binds= ["Addition", "TechAGrav"]]
 [connection signal="body_entered" from="Level/BuildingForeground/TileMap/ForegroundArea" to="Level/BuildingForeground" method="Hide" unbinds=1]
 [connection signal="body_entered" from="Level/BuildingForeground/TileMap/ForegroundArea" to="Level/BuildingForeground/TileMap/ForegroundArea" method="Entered" unbinds=1]
 [connection signal="body_exited" from="Level/BuildingForeground/TileMap/ForegroundArea" to="Level/BuildingForeground" method="Show" unbinds=1]

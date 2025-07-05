@@ -12,7 +12,7 @@ public partial class AdditionManager : Node
 	{
 		// Registration of pre-created additions
 		UpdateRegisteredAdditions();
-
+		
 		foreach (var addition in GetAdditions().Values.Where(v => v.IsActivated))
 		{
 			AddAddition(addition._PackedScene);
@@ -45,6 +45,9 @@ public partial class AdditionManager : Node
 	public void AddAddition(AdditionNode addition)
 	{
 		if (RegisterAddition(addition))
-			AddChild(addition);
+		{
+			CallDeferred(MethodName.AddChild, addition);
+		}
+
 	}
 }

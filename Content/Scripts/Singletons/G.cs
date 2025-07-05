@@ -149,8 +149,6 @@ public partial class G : Node
                        LevelCompleteTime = 150; // When this second comes, the level is passed. Can be used for different things
 
     public static bool IsOnLevel => CurrentLevel != 0;
-	public static float FullCrossSpawnMultiplier => CrossSpawnMultiplier * Meta.Instance.Gameplay.DifficultyEffects.CrossesSpawnMultiplier;
-
     public const int DEFAULT_RESURRECTION_COST = 75;
     public static int MinResurrectionCost = DEFAULT_RESURRECTION_COST;
 

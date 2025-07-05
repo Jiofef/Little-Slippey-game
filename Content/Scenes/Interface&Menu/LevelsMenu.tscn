@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://c2uognhpvxgor"]
+[gd_scene load_steps=52 format=3 uid="uid://c2uognhpvxgor"]
 
 [ext_resource type="PackedScene" uid="uid://cb3550p76ubc8" path="res://Content/Scenes/Interface&Menu/DraggableWindow.tscn" id="1_4ub5g"]
 [ext_resource type="Theme" uid="uid://dkitr1ftp0yhs" path="res://Content/Other/Menu.tres" id="2_j654u"]
@@ -23,6 +23,7 @@
 [ext_resource type="Texture2D" uid="uid://vfvx4ihrhbuj" path="res://Content/Sprites/Interface/Buttons/Additions/EnhancedCrosses.png" id="19_mgyur"]
 [ext_resource type="Texture2D" uid="uid://mxd8dm5pbe7q" path="res://Content/Sprites/Interface/Buttons/LevelsMenuArrow.png" id="20_mcnqk"]
 [ext_resource type="Texture2D" uid="uid://c730u1vqdm1sy" path="res://Content/Sprites/Interface/Buttons/LevelsMenuBonusLevels.png" id="21_san4a"]
+[ext_resource type="Texture2D" uid="uid://b1nyrphympdit" path="res://Content/Sprites/Interface/Buttons/Additions/TechAGrav.png" id="21_xwjii"]
 [ext_resource type="Script" uid="uid://igkc6e8484p6" path="res://Content/Scripts/InterfaceAndMenu/ToggleableContentButton.cs" id="22_at464"]
 [ext_resource type="Texture2D" uid="uid://nxpu4e4eswbw" path="res://Content/Sprites/Interface/Buttons/LevelsMenuDifficulties.png" id="22_emx4c"]
 [ext_resource type="PackedScene" uid="uid://1aqk32010t2c" path="res://Content/Scenes/Interface&Menu/ContentButton.tscn" id="23_at464"]
@@ -1118,6 +1119,18 @@ text = "Neutral (0/0)"
 layout_mode = 2
 theme_override_constants/h_separation = 16
 theme_override_constants/v_separation = 8
+
+[node name="TechAGrav" parent="MarginContainer/VBoxContainer/HBC/Additions/VBC/NeutralContainer" index="0" instance=ExtResource("23_at464")]
+layout_mode = 2
+disabled = true
+toggle_mode = true
+script = ExtResource("22_at464")
+_contentName = "TechAGrav"
+_displayedName = "Tech A-Grav"
+Icon = ExtResource("21_xwjii")
+AnnotationEnabled = true
+AnnotationText = "Включает анти-гравитационное поле под уровнем, переворачивая его с ног на голову.
+Вы не подумайте, это ни в коем случае не отсылка. Просто наглое воровство"
 
 [node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer/HBC/Additions/VBC" index="2"]
 layout_mode = 2

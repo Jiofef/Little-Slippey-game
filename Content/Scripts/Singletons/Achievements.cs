@@ -151,6 +151,8 @@ public partial class Achievements : Node
     public static int AchievementPopupTimerMultiplier = 0;
     public static void GetAchievement(string name) // Do not ruin someone else's experience and do not give away game achievements for nothing. If you are making a cheat map or mod, mark it in the title/preview
     {
+		if (Additions.GameplayEffects.AchievementsDisabled) return;
+		
         Steam.SetAchievement(name);
 
         Data achievement = AllTheAchievements[name];

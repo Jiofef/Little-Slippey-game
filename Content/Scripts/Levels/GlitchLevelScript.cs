@@ -30,8 +30,8 @@ public partial class GlitchLevelScript : BaseLevelScript
 	private float _scoresUpdateChance = 10f;
 	private bool _enableGlitchedTilesSpawning = false;
 
-    // For async methods
-    private bool _isDisposed = false;
+	// For async methods
+	private DisposeController _disposeController;
 
     public class GlitchShader
     {
@@ -81,7 +81,7 @@ public partial class GlitchLevelScript : BaseLevelScript
 
         _dark = GetNode<ColorRect>("CanvasLayer/Dark");
 
-        _glitchShader.Shader = ((ShaderMaterial)GetNode<ColorRect>("../AdditionalGUILayer/GlitchRect").Material).Shader;
+        _glitchShader.Shader = ((ShaderMaterial)GetNode<ColorRect>("CanvasLayer/GlitchRect").Material).Shader;
 
         // "Caching" the level parts
         foreach (var levelPart in GetNode("LevelParts").GetChildren().OfType<Node2D>())
@@ -89,12 +89,10 @@ public partial class GlitchLevelScript : BaseLevelScript
 
         GetNode<AudioStreamPlayer>("CanvasLayer/Glare/ShuttingDownTheTestChamber").Play();
 
-        // For async methods
-        TreeExited += () => _isDisposed = true;
-		TreeEntered += () => _isDisposed = false;
+		_disposeController = new(this);
 
         //Removing transitive values from level 10
-        G.TransitiveVariant[0] = "";
+		G.TransitiveVariant[0] = "";
         G.TransitiveObject[0] = null;
         G.TransitiveObject[1] = null;
 
@@ -145,19 +143,19 @@ public partial class GlitchLevelScript : BaseLevelScript
         lighteringTween.TweenProperty(_dark, "modulate", new Color(1, 1, 1, 0.235f), 4f);
         await ToSignal(lighteringTween, "finished");
         
-        await ToScore(75, () => _isDisposed);
+        await ToScore(75, () => _disposeController.IsDisposed);
 		Scores = 0;
         ChangeScene(Scenes.Level4);
 
-        await ToScore(75, () => _isDisposed);
+        await ToScore(75, () => _disposeController.IsDisposed);
 		Scores = 0;
         ChangeScene(Scenes.Level5);
 
-        await ToScore(75, () => _isDisposed);
+        await ToScore(75, () => _disposeController.IsDisposed);
 		Scores = 0;
         ChangeScene(Scenes.Level6);
 
-        await ToScore(75, () => _isDisposed);
+        await ToScore(75, () => _disposeController.IsDisposed);
 		Scores = 0;
         ChangeScene(Scenes.Level7);
 		} catch (ObjectDisposedException) {return;}

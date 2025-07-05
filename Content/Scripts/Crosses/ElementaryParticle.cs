@@ -38,7 +38,7 @@ public partial class ElementaryParticle : UnusualCrossNode
         RotationSpeed = OtherExtension.RandomTools.RandomIn(-MAX_ROTATION_SPEED, MAX_ROTATION_SPEED);
 
         // Price determination
-        Price = _random.Next(DEFAULT_MIN_PRICE, DEFAULT_MAX_PRICE);
+        Price = BalanceCenter.GetRandomGoldenCrossesAmount(DEFAULT_MIN_PRICE, DEFAULT_MAX_PRICE);
 
         AddToGroup("UnusualCrosses");
 
@@ -202,7 +202,7 @@ public partial class ElementaryParticle : UnusualCrossNode
         RotationSpeed = OtherExtension.RandomTools.RandomIn(-MAX_ROTATION_SPEED, MAX_ROTATION_SPEED);
 
         LifeTime = 15f;
-        Price = _random.Next(DEFAULT_MIN_PRICE, DEFAULT_MAX_PRICE);
+        Price = BalanceCenter.GetRandomGoldenCrossesAmount(DEFAULT_MIN_PRICE, DEFAULT_MAX_PRICE);
 
         SetAreaDisabled(false);
         var animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");

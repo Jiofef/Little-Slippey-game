@@ -817,7 +817,7 @@ script = ExtResource("1_52yug")
 metadata/_edit_vertical_guides_ = [-234.0]
 
 [node name="AdditionManager" parent="." node_paths=PackedStringArray("AdditionsWorkPlace") instance=ExtResource("2_15bqw")]
-AdditionsWorkPlace = NodePath("")
+AdditionsWorkPlace = NodePath("../Level")
 
 [node name="EnhancedCrosses" type="Node" parent="AdditionManager"]
 script = ExtResource("3_fo2dt")

@@ -1,7 +1,8 @@
-[gd_scene load_steps=65 format=4 uid="uid://cma82s1tmg4rd"]
+[gd_scene load_steps=66 format=4 uid="uid://cma82s1tmg4rd"]
 
 [ext_resource type="Script" uid="uid://cjbhhew83nwxn" path="res://Content/Scripts/Other/MainScript.cs" id="1_r4pva"]
 [ext_resource type="Script" uid="uid://rufr4p4sxl1l" path="res://Content/Scripts/Levels/Level10RealityDissector.cs" id="2_a7alo"]
+[ext_resource type="PackedScene" uid="uid://ovafqwkk3s6y" path="res://Content/Scenes/Other/AdditionManager.tscn" id="2_fl5m2"]
 [ext_resource type="Script" uid="uid://d23sexuaxdruy" path="res://Content/Scripts/Other/LevelMusicPlayer.cs" id="2_s5qx3"]
 [ext_resource type="Script" uid="uid://d2jn0oh6nkh6" path="res://Content/Scripts/Levels/Level8DisposableButton.cs" id="3_7iv8k"]
 [ext_resource type="Script" uid="uid://b55o38rlxdiq" path="res://Content/Scripts/Levels/BaseLevelScript.cs" id="3_dk2ue"]
@@ -620,6 +621,9 @@ shader_parameter/brightness = 1.0
 process_mode = 1
 script = ExtResource("1_r4pva")
 metadata/_edit_vertical_guides_ = [-234.0]
+
+[node name="AdditionManager" parent="." node_paths=PackedStringArray("AdditionsWorkPlace") instance=ExtResource("2_fl5m2")]
+AdditionsWorkPlace = NodePath("../Level")
 
 [node name="LevelMusicPlayer" type="AudioStreamPlayer" parent="."]
 process_mode = 3

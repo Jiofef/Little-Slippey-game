@@ -7,8 +7,10 @@ public interface IActivatableLevelObj
 	public enum ActivationConditionEnum { OnReady, CustomActivate, OnTreeExited, OnLevelStarted, OnLevelFinished, OnPlayedDead }
 	public ActivationConditionEnum ActivationCondition { get; }
 	public virtual void Activate() { }
-	public void InitIActivatableLevelObj(Node node)
+	public void InitIActivatableLevelObj()
 	{
+		if (this is not Node node) return;
+		
 		switch (ActivationCondition)
 		{
 			case ActivationConditionEnum.OnReady:
@@ -18,7 +20,10 @@ public interface IActivatableLevelObj
 				node.Connect(Node.SignalName.TreeExited, new Callable(node, nameof(Activate)));
 				break;
 			case ActivationConditionEnum.OnLevelStarted:
-				ActionTools.BindEventToNodeSafelyWithoutArgs(node, nameof(Activate), G.OnLevelStarted);
+				if (!G.DidLevelIntroPassed)
+					ActionTools.BindEventToNodeSafelyWithoutArgs(node, nameof(Activate), G.OnLevelStarted);
+				else
+					node.CallDeferred(nameof(Activate));
 				break;
 		}
 	}

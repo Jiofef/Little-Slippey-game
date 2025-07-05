@@ -46,7 +46,7 @@ public partial class GoldenCross : UnusualCrossNode
         LifeTime = 3f + LIFETIME_PER_100PX * GlobalPosition.DistanceTo(G.Player.GlobalPosition) / 100;
 
         // Price determination
-        Price = _random.Next(DEFAULT_MIN_PRICE, DEFAULT_MAX_PRICE);
+        Price = BalanceCenter.GetRandomGoldenCrossesAmount(DEFAULT_MIN_PRICE, DEFAULT_MAX_PRICE);
 
         // Connecting a pointer to hide when player dies
         Callable updateOffscreenPointer = new Callable(this, "UpdateOffscreenPointer");
@@ -166,7 +166,7 @@ public partial class GoldenCross : UnusualCrossNode
         RotationAcceleration = -MAX_ROTATION_ACCELERATION + (_random.NextSingle() * MAX_ROTATION_ACCELERATION * 2);
 
         LifeTime = 3f + (GlobalPosition.DistanceTo(G.Player.GlobalPosition) / 100 * LIFETIME_PER_100PX);
-        Price = _random.Next(DEFAULT_MIN_PRICE, DEFAULT_MAX_PRICE);
+        Price = BalanceCenter.GetRandomGoldenCrossesAmount(DEFAULT_MIN_PRICE, DEFAULT_MAX_PRICE);
 
         GetNode<Area2D>("Path2D/Cross/CollectArea").SetDeferred("monitoring", true);
         var animationPlayer = GetNode<AnimationPlayer>("Path2D/Cross/AnimationPlayer");

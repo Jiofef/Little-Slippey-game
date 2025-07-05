@@ -1,7 +1,8 @@
-[gd_scene load_steps=109 format=4 uid="uid://cyguctos1c5pv"]
+[gd_scene load_steps=110 format=4 uid="uid://cyguctos1c5pv"]
 
 [ext_resource type="Script" uid="uid://cjbhhew83nwxn" path="res://Content/Scripts/Other/MainScript.cs" id="1_evesd"]
 [ext_resource type="Script" uid="uid://d23sexuaxdruy" path="res://Content/Scripts/Other/LevelMusicPlayer.cs" id="2_78ana"]
+[ext_resource type="PackedScene" uid="uid://ovafqwkk3s6y" path="res://Content/Scenes/Other/AdditionManager.tscn" id="2_bor8p"]
 [ext_resource type="Texture2D" uid="uid://dsbmsydekaqyb" path="res://Content/Sprites/Levels/Level9/VolcanoInterior.png" id="2_jrbcf"]
 [ext_resource type="Texture2D" uid="uid://cwlb2ggj7gmuh" path="res://Content/Sprites/Levels/Level9/VulcanInteriorLavaAnimation.png" id="3_72pi6"]
 [ext_resource type="Script" uid="uid://b55o38rlxdiq" path="res://Content/Scripts/Levels/BaseLevelScript.cs" id="3_ql480"]
@@ -833,6 +834,9 @@ height = 450.0
 process_mode = 1
 script = ExtResource("1_evesd")
 metadata/_edit_vertical_guides_ = [-234.0]
+
+[node name="AdditionManager" parent="." node_paths=PackedStringArray("AdditionsWorkPlace") instance=ExtResource("2_bor8p")]
+AdditionsWorkPlace = NodePath("../Level")
 
 [node name="LevelMusicPlayer" type="AudioStreamPlayer" parent="."]
 process_mode = 3

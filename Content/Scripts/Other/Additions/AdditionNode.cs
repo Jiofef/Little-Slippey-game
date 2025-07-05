@@ -11,7 +11,7 @@ public abstract partial class AdditionNode : Node, IActivatableLevelObj
 	{
 		ActivationCondition = ActivationConditionEnum.OnLevelStarted;
 	}
-	protected AdditionManager ParentManager => GetParent<AdditionManager>();
+	protected AdditionManager ParentManager;
 	public override void _Ready()
 	{
 		if (GetParentOrNull<AdditionManager>() == null)
@@ -20,8 +20,9 @@ public abstract partial class AdditionNode : Node, IActivatableLevelObj
 			QueueFree();
 			return;
 		}
+		ParentManager = GetParent<AdditionManager>();
 
-		((IActivatableLevelObj)this).InitIActivatableLevelObj(this);
+		((IActivatableLevelObj)this).InitIActivatableLevelObj();
 	}
 
 	public void AddToLevel(Node node)

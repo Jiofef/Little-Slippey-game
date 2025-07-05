@@ -33,14 +33,14 @@ public partial class MainScript : Node2D
 
         Connect("RecalculateCrossWeight", new Callable(GetNode(LevelNodePath), "RecalculateCrossWeight"));
 
-        if (G.DidLevelIntroPassed || DoIgnoreIntro)
-        {
-            GetTree().Paused = false;
-            GetNode<CanvasLayer>("EpicIntro")?.QueueFree();
-            CallDeferred("CallOnLevelStarted", false);
+		if (G.DidLevelIntroPassed || DoIgnoreIntro)
+		{
+			GetTree().Paused = false;
+			GetNode<CanvasLayer>("EpicIntro")?.QueueFree();
+			CallDeferred("CallOnLevelStarted", false);
         }
-        else
-            GetTree().Paused = true;
+		else
+			GetTree().Paused = true;
 
 
         if (G.IsLevelVanilla && UnchangableMeta.LevelPlayedStatus[G.CurrentLevel - 1] != 1)
