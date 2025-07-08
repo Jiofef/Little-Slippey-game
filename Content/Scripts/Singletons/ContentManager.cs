@@ -77,11 +77,13 @@ public partial class ContentManager : Node
 			}
 		}
 	}
-	public static void LoadData()
+	public static void LoadData(SaveBible saveBible = null)
 	{
 		try
 		{
 			var model = FileSystemExtension.GetSystemJsonModel<ContentTypeEnum, Dictionary<string, IContent>>(SAVE_DATA_PATH);
+
+			if (saveBible != null) saveBible.ContentModel = model;
 
 			if (model == null) return;
 

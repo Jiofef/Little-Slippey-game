@@ -5,7 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text.Json;
 
-public partial class FileSystemExtension : Node
+public static class FileSystemExtension
 {
 	public static void CopyResourceFileTo(string sourcePath, string targetPath)
 	{

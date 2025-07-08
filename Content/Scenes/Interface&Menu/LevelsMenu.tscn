@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://c2uognhpvxgor"]
+[gd_scene load_steps=54 format=3 uid="uid://c2uognhpvxgor"]
 
 [ext_resource type="PackedScene" uid="uid://cb3550p76ubc8" path="res://Content/Scenes/Interface&Menu/DraggableWindow.tscn" id="1_4ub5g"]
 [ext_resource type="Theme" uid="uid://dkitr1ftp0yhs" path="res://Content/Other/Menu.tres" id="2_j654u"]
@@ -26,6 +26,7 @@
 [ext_resource type="Texture2D" uid="uid://b1nyrphympdit" path="res://Content/Sprites/Interface/Buttons/Additions/TechAGrav.png" id="21_xwjii"]
 [ext_resource type="Script" uid="uid://igkc6e8484p6" path="res://Content/Scripts/InterfaceAndMenu/ToggleableContentButton.cs" id="22_at464"]
 [ext_resource type="Texture2D" uid="uid://nxpu4e4eswbw" path="res://Content/Sprites/Interface/Buttons/LevelsMenuDifficulties.png" id="22_emx4c"]
+[ext_resource type="Texture2D" uid="uid://dtfdj67ntrymu" path="res://Content/Sprites/Interface/Buttons/Additions/Fatty.png" id="22_yi4s4"]
 [ext_resource type="PackedScene" uid="uid://1aqk32010t2c" path="res://Content/Scenes/Interface&Menu/ContentButton.tscn" id="23_at464"]
 [ext_resource type="Texture2D" uid="uid://cgnw0ryaidc3m" path="res://Content/Sprites/Interface/Buttons/MakeAModButton.png" id="23_cmhuv"]
 [ext_resource type="Texture2D" uid="uid://dsmoby68u5xkd" path="res://Content/Sprites/Interface/Buttons/Additions/Jiofef's head.png" id="23_mno7b"]
@@ -340,6 +341,18 @@ _data = {
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mpjkh"]
 
+[sub_resource type="CSharpScript" id="CSharpScript_xwjii"]
+script/source = "using Godot;
+using System;
+
+public partial class LevelButtonSecretTest : EnhancedButton
+{
+	// public  void _Ready()
+	// {
+
+	// }
+}"
+
 [sub_resource type="ButtonGroup" id="ButtonGroup_7b2j5"]
 resource_local_to_scene = false
 
@@ -510,7 +523,7 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 385.0
+offset_right = 400.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -950,6 +963,11 @@ _additionalLevelLink = ""
 StartOptionDisabled = false
 OptionButtons = []
 
+[node name="SecretLevelDebugButton" parent="MarginContainer/VBoxContainer/HBC/Levels/LevelsList/C/HBC" index="11" instance=ExtResource("11_skq2j")]
+custom_minimum_size = Vector2(46, 0)
+layout_mode = 2
+script = SubResource("CSharpScript_xwjii")
+
 [node name="LeftScrollButton" parent="MarginContainer/VBoxContainer/HBC/Levels/LevelsList" index="2" instance=ExtResource("7_hpeve")]
 layout_mode = 0
 offset_left = 10.0
@@ -1126,11 +1144,22 @@ disabled = true
 toggle_mode = true
 script = ExtResource("22_at464")
 _contentName = "TechAGrav"
-_displayedName = "Tech A-Grav"
+_displayedName = "Tech A-Grav™"
 Icon = ExtResource("21_xwjii")
 AnnotationEnabled = true
-AnnotationText = "Включает анти-гравитационное поле под уровнем, переворачивая его с ног на голову.
-Вы не подумайте, это ни в коем случае не отсылка. Просто наглое воровство"
+AnnotationText = "Activates an anti-gravity field beneath the level, flipping it upside down.
+And no, this isn’t a reference. This is just shameless theft"
+
+[node name="Fatty" parent="MarginContainer/VBoxContainer/HBC/Additions/VBC/NeutralContainer" index="1" instance=ExtResource("23_at464")]
+layout_mode = 2
+disabled = true
+toggle_mode = true
+script = ExtResource("22_at464")
+_contentName = "Fatty"
+_displayedName = "Thicc"
+Icon = ExtResource("22_yi4s4")
+AnnotationEnabled = true
+AnnotationText = "We acknowledge that our game will be played by diverse individuals, including those of non-standard body proportions. We respect their life choices, and thus, we’ve added the option to play as THICC Slippy. Now you can project yourself onto him more comfortably. (Disclaimer: May cause hitbox-related existential crises."
 
 [node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer/HBC/Additions/VBC" index="2"]
 layout_mode = 2

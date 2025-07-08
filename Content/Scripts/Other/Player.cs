@@ -339,7 +339,7 @@ public partial class Player : CharacterBody2D
 
             #region Jumping off one way platforms
             if (isOnFloor && Input.IsActionJustPressed("DownDash"))
-                Position += new Vector2(0, 1);
+                Position += -UpDirection;
             #endregion
 
 
@@ -585,9 +585,10 @@ public partial class Player : CharacterBody2D
 
             G.PlayerMoveCoeff = _moveCoeff;
 
-            Velocity = Motion;
+			float gravitationAngle = UpDirection.Angle();
+            Velocity = Motion.Rotated(gravitationAngle + Mathf.DegToRad(90));
             MoveAndSlide();
-            Velocity = new Vector2(0, Velocity.Y);
+            Velocity = new Vector2(0, Velocity.Y).Rotated(gravitationAngle + Mathf.DegToRad(90));
 
             if (EnableRigidBodyPhysics)
             {

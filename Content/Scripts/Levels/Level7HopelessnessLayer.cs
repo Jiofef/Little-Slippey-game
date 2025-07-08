@@ -106,23 +106,21 @@ public partial class Level7HopelessnessLayer : CanvasLayer
 
             // Jaming the film
             var vintageFilm = GetNode<VideoStreamPlayer>("VintageFilter");
-            G.PlayOneshotSound("Levels/Level10WTH.mp3", this, "Master", 12);
+            G.PlayOneshotSound("Levels/Level10WTH.mp3", this, "Master", 9);
             vintageFilm.Stream = GD.Load<VideoStreamTheora>("res://Content/Other/FilmJam.ogv");
 
             vintageFilm.Play();
-            _ = OtherExtension.GodotExtensions.ShowNodeSlowly(vintageFilm, 1f);
-            await G.WaitFor(4f, false);
+            _ = OtherExtension.GodotExtensions.ShowNodeSlowly(vintageFilm, 0.5f);
+            await G.WaitFor(3f, false);
 			if (_isDisposed) return;
             var tween = CreateTween();
             tween.TweenProperty(vintageFilm, "position", new Vector2(0, -720), 0.2f);
 
-            G.PlayOneshotSound("Levels/Level7FilmJamming.mp3", this, "Master", 15);
+            G.PlayOneshotSound("Levels/Level7FilmJamming.mp3", GetParent(), "Master", 12);
 
 			try { 
 			await ToSignal(tween, "finished");} catch (ObjectDisposedException) {return;}
 			if (_isDisposed) return;
-
-            //* Need to do something with scores label
 
             QueueFree();
         }

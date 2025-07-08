@@ -7,9 +7,11 @@ using static Additions;
 public partial class AdditionManager : Node
 {
 	private Dictionary<string, AdditionNode> LoadedAdditions = new Dictionary<string, AdditionNode> { };
-	[Export] public Node AdditionsWorkPlace;
+	[Export] private NodePath _additionsWorkPlacePath;
+	public Node AdditionsWorkPlace;
 	public override void _Ready()
 	{
+		AdditionsWorkPlace = GetNode(_additionsWorkPlacePath);
 		// Registration of pre-created additions
 		UpdateRegisteredAdditions();
 		

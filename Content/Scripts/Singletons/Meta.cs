@@ -177,10 +177,11 @@ public partial class Meta : Node
     {
         SaveInJson(Instance.GetJson(), "user://options.json");
     }
-    public void LoadOptions()
+    public void LoadOptions(SaveBible saveBible = null)
     {
         var model = GetSystemJsonModel("user://options.json");
-
+		if (saveBible != null) saveBible.SettingsModel = model;
+		
         if (model == null) return;
 
         void TryLoad<T>(string key, Action<T> setValue, string errorLog = null)

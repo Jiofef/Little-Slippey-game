@@ -412,16 +412,16 @@ cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
 [sub_resource type="Theme" id="Theme_k7n4i"]
 default_font = SubResource("FontFile_i8clp")
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rq5hu"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fl5m2"]
 texture = ExtResource("15_pem8j")
 4:1/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_6ilgd"]
-sources/0 = SubResource("TileSetAtlasSource_rq5hu")
+sources/0 = SubResource("TileSetAtlasSource_fl5m2")
 
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_x5li7"]
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ax4uf"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gis40"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_d8beu"]
 texture = ExtResource("15_pem8j")
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -473,7 +473,7 @@ texture = ExtResource("15_pem8j")
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_x6gsv"]
 load_path = "res://.godot/imported/BaseTileSet.png-dac811be5d14166fafb0b92137c4ede6.ctex"
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hmabq"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yoxnk"]
 texture = SubResource("CompressedTexture2D_x6gsv")
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -485,9 +485,9 @@ texture = SubResource("CompressedTexture2D_x6gsv")
 [sub_resource type="TileSet" id="TileSet_grnbr"]
 physics_layer_0/collision_layer = 4
 physics_layer_0/collision_mask = 3
-physics_layer_0/physics_material = SubResource("PhysicsMaterial_x5li7")
-sources/2 = SubResource("TileSetAtlasSource_hmabq")
-sources/0 = SubResource("TileSetAtlasSource_gis40")
+physics_layer_0/physics_material = SubResource("PhysicsMaterial_ax4uf")
+sources/2 = SubResource("TileSetAtlasSource_yoxnk")
+sources/0 = SubResource("TileSetAtlasSource_d8beu")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qx4ic"]
 size = Vector2(192, 29504)
@@ -622,8 +622,7 @@ process_mode = 1
 script = ExtResource("1_r4pva")
 metadata/_edit_vertical_guides_ = [-234.0]
 
-[node name="AdditionManager" parent="." node_paths=PackedStringArray("AdditionsWorkPlace") instance=ExtResource("2_fl5m2")]
-AdditionsWorkPlace = NodePath("../Level")
+[node name="AdditionManager" parent="." instance=ExtResource("2_fl5m2")]
 
 [node name="LevelMusicPlayer" type="AudioStreamPlayer" parent="."]
 process_mode = 3

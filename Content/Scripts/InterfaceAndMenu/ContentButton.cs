@@ -63,6 +63,8 @@ public partial class ContentButton : EnhancedButton
 				DarkeningRect.Modulate = new Color(1, 1, 1);
 
 				IconNode.Visible = false;
+
+				AnnotationComponent.AnnotationEnabled = false;
 				break;
 
 			case State.IsntBought:
@@ -76,6 +78,8 @@ public partial class ContentButton : EnhancedButton
 				DarkeningRect.Modulate = new Color(1, 1, 1);
 
 				IconNode.Visible = true;
+
+				AnnotationComponent.AnnotationEnabled = true;
 				break;
 
 			case State.Available:
@@ -89,6 +93,8 @@ public partial class ContentButton : EnhancedButton
 				DarkeningRect.Modulate = new Color(1, 1, 1, 0);
 
 				IconNode.Visible = true;
+
+				AnnotationComponent.AnnotationEnabled = true;
 				break;
 		}
 	}

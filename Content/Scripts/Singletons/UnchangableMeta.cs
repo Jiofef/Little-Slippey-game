@@ -208,118 +208,113 @@ public partial class UnchangableMeta : Node
 		ContentManager.SaveToFile();
     }
 
-    public static void LoadSave()
-    {
-        
-        try
-        {
-            // Save file
-            {
-                var model = FileSystemExtension.GetSystemJsonModel("user://save.json");
+	public static void LoadSave(SaveBible saveBible = null)
+	{
+		try
+		{
+			// Save file
+			{
+				Dictionary<string, object> model = FileSystemExtension.GetSystemJsonModel("user://save.json");
+				if (saveBible != null) saveBible.SaveModel = model;
 
-                if (model == null) return;
+				if (model == null) return;
 
-                void TryLoad<T>(string key, Action<T> setValue, string errorLog = null)
-                {
-                    try
-                    {
-                        var loadedValue = JsonSerializer.Deserialize<T>(JsonSerializer.Serialize(model[key]));
-                        setValue(loadedValue);
-                    }
-                    catch
-                    {
-                        GD.Print(errorLog ?? key);
-                    }
-                }
-                void TryLoadArray<T>(string key, Action<T[]> setValue, Func<int, T[]> defaultArray, int expectedLength, string errorLog = null)
-                {
-                    try
-                    {
-                        var loadedArray = JsonSerializer.Deserialize<T[]>(JsonSerializer.Serialize(model[key]));
-                        var newArray = defaultArray(expectedLength);
+				void TryLoad<T>(string key, Action<T> setValue, string errorLog = null)
+				{
+					try
+					{
+						var loadedValue = JsonSerializer.Deserialize<T>(JsonSerializer.Serialize(model[key]));
+						setValue(loadedValue);
+					}
+					catch
+					{
+						GD.Print(errorLog ?? key);
+					}
+				}
+				void TryLoadArray<T>(string key, Action<T[]> setValue, Func<int, T[]> defaultArray, int expectedLength, string errorLog = null)
+				{
+					try
+					{
+						var loadedArray = JsonSerializer.Deserialize<T[]>(JsonSerializer.Serialize(model[key]));
+						var newArray = defaultArray(expectedLength);
 
-                        if (loadedArray != null)
-                        {
-                            for (int i = 0; i < Math.Min(loadedArray.Length, expectedLength); i++)
-                            {
-                                newArray[i] = loadedArray[i];
-                            }
-                        }
+						if (loadedArray != null)
+						{
+							for (int i = 0; i < Math.Min(loadedArray.Length, expectedLength); i++)
+							{
+								newArray[i] = loadedArray[i];
+							}
+						}
 
-                        setValue(newArray);
-                    }
-                    catch
-                    {
-                        GD.Print(errorLog ?? key);
-                    }
-                }
-                void TryLoadDictionary<TKey, TValue>(string key, Action<Dictionary<TKey, TValue>> setValue, Func<Dictionary<TKey, TValue>> getDefaultDictionary, bool doNotAddUnknownValues = false, string errorLog = null)
-                {
-                    try
-                    {
-                        var loadedDictionary = JsonSerializer.Deserialize<Dictionary<TKey, TValue>>(JsonSerializer.Serialize(model[key]));
+						setValue(newArray);
+					}
+					catch
+					{
+						GD.Print(errorLog ?? key);
+					}
+				}
+				void TryLoadDictionary<TKey, TValue>(string key, Action<Dictionary<TKey, TValue>> setValue, Func<Dictionary<TKey, TValue>> getDefaultDictionary, bool doNotAddUnknownValues = false, string errorLog = null)
+				{
+					try
+					{
+						var loadedDictionary = JsonSerializer.Deserialize<Dictionary<TKey, TValue>>(JsonSerializer.Serialize(model[key]));
 
-                        var defaultDictionary = getDefaultDictionary();
+						var defaultDictionary = getDefaultDictionary();
 
-                        if (loadedDictionary != null)
-                        {
-                            foreach (var kvp in loadedDictionary)
-                            {
-                                if (defaultDictionary.ContainsKey(kvp.Key))
-                                    defaultDictionary[kvp.Key] = kvp.Value;
-                                else if (!doNotAddUnknownValues)
-                                    defaultDictionary.Add(kvp.Key, kvp.Value);
-                            }
-                        }
+						if (loadedDictionary != null)
+						{
+							foreach (var kvp in loadedDictionary)
+							{
+								if (defaultDictionary.ContainsKey(kvp.Key))
+									defaultDictionary[kvp.Key] = kvp.Value;
+								else if (!doNotAddUnknownValues)
+									defaultDictionary.Add(kvp.Key, kvp.Value);
+							}
+						}
 
-                        setValue(defaultDictionary);
-                    }
-                    catch
-                    {
-                        GD.Print(errorLog ?? key);
+						setValue(defaultDictionary);
+					}
+					catch
+					{
+						GD.Print(errorLog ?? key);
 
-                        setValue(getDefaultDictionary());
-                    }
-                }
-
-
-                TryLoad<bool>("did_mods_crushed_the_game", value => DidModsCrushedTheGame = value);
-
-                TryLoad<int>("golden_crosses_amount", value => GoldenCrossesAmount = value);
-
-                for (int i = 0; i < LevelRecords.Length; i++)
-                {
-                    TryLoadArray($"level_records{i}", value => LevelRecords[i] = value, length => new int[length], LevelRecords[i].Length, $"level_records{i}");
-                }
-
-                TryLoadArray("level_complete_status", value => LevelCompleteStatus = value, length => new int[length], LevelCompleteStatus.Length);
-
-                TryLoadArray("level_played_status", value => LevelPlayedStatus = value, length => new int[length], LevelPlayedStatus.Length);
-
-                TryLoadArray("hints_status", value => HintsStatus = value, length => new int[length], HintsStatus.Length);
-
-                TryLoadDictionary("notifications_amount", value => NotificationsAmount = value, () => NotificationsAmount, true, "notifications_amount");
-
-                TryLoadDictionary("is_skin_bought_dic", value => Skins.IsSkinBoughtDic = value, () => Skins.IsSkinBoughtDic, true, "is_skin_bought_dic");
+						setValue(getDefaultDictionary());
+					}
+				}
 
 
-                TryLoad<long>("deaths_number", value => DeathsNumber = value);
-                TryLoad<bool>("is_language_setted", value => IsLanguageSetted = value);
-                TryLoad<bool>("is_tutorial_played", value => IsTutorialPlayed = value);
-                TryLoad<bool>("is_level9_platform_section_first_time_completed", value => IsLevel9PlatformSectionFirstTimeCompleted = value);
-                TryLoad<bool>("is_level9_platform_section_skip_is_allowed", value => IsLevel9PlatformSectionSkipAllowed = value);
-                TryLoad<bool>("is_fake_level10_skip_allowed", value => IsFakeLevel10SkipAllowed = value);
-            }
-            //Achievements file
-            Achievements.LoadAchievementStatuses();
+				TryLoad<bool>("did_mods_crushed_the_game", value => DidModsCrushedTheGame = value);
+
+				TryLoad<int>("golden_crosses_amount", value => GoldenCrossesAmount = value);
+
+				for (int i = 0; i < LevelRecords.Length; i++)
+				{
+					TryLoadArray($"level_records{i}", value => LevelRecords[i] = value, length => new int[length], LevelRecords[i].Length, $"level_records{i}");
+				}
+
+				TryLoadArray("level_complete_status", value => LevelCompleteStatus = value, length => new int[length], LevelCompleteStatus.Length);
+
+				TryLoadArray("level_played_status", value => LevelPlayedStatus = value, length => new int[length], LevelPlayedStatus.Length);
+
+				TryLoadArray("hints_status", value => HintsStatus = value, length => new int[length], HintsStatus.Length);
+
+				TryLoadDictionary("notifications_amount", value => NotificationsAmount = value, () => NotificationsAmount, true, "notifications_amount");
+
+				TryLoadDictionary("is_skin_bought_dic", value => Skins.IsSkinBoughtDic = value, () => Skins.IsSkinBoughtDic, true, "is_skin_bought_dic");
 
 
-
-        } catch (Exception e)
-        { 
-            GD.Print("Error during loading:" + e.Message); 
-        }
-
+				TryLoad<long>("deaths_number", value => DeathsNumber = value);
+				TryLoad<bool>("is_language_setted", value => IsLanguageSetted = value);
+				TryLoad<bool>("is_tutorial_played", value => IsTutorialPlayed = value);
+				TryLoad<bool>("is_level9_platform_section_first_time_completed", value => IsLevel9PlatformSectionFirstTimeCompleted = value);
+				TryLoad<bool>("is_level9_platform_section_skip_is_allowed", value => IsLevel9PlatformSectionSkipAllowed = value);
+				TryLoad<bool>("is_fake_level10_skip_allowed", value => IsFakeLevel10SkipAllowed = value);
+			}
+		}
+		catch (Exception e)
+		{
+			GD.Print("Error during loading:" + e.Message);
+		}
     }
 
 

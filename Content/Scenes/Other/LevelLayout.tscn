@@ -49,8 +49,8 @@ process_mode = 1
 script = ExtResource("2")
 metadata/_edit_vertical_guides_ = [-234.0]
 
-[node name="AdditionManager" parent="." node_paths=PackedStringArray("AdditionsWorkPlace") instance=ExtResource("2_g4cwo")]
-AdditionsWorkPlace = NodePath("../Level")
+[node name="AdditionManager" parent="." instance=ExtResource("2_g4cwo")]
+_additionsWorkPlacePath = NodePath("../Level")
 
 [node name="LevelMusicPlayer" type="AudioStreamPlayer" parent="."]
 process_mode = 3

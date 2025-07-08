@@ -25,11 +25,21 @@ public partial class InitializationScene : Control
 
         ModDataManager.CleanDeletedModsData();
 
-        Meta.Instance.LoadOptions();
+		//
+		SaveBible saveBible = new();
+
+        Meta.Instance.LoadOptions(saveBible);
         Meta.Instance.ApplyOptions();
-        UnchangableMeta.LoadSave();
-		ContentManager.LoadData();
+
+        UnchangableMeta.LoadSave(saveBible);
+
+		Achievements.LoadAchievementStatuses(saveBible);
+
+		ContentManager.LoadData(saveBible);
 		ContentManager.QueueSave();
+
+		MigrationController.Inst.MigrateIfNeeded(saveBible);
+		//
 
         UnchangableMeta.SetAutoSaveWhenClosing(true);
 

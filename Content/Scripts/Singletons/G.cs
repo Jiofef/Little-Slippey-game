@@ -236,19 +236,22 @@ public partial class G : Node
 	/// Using example: await G.ToScore(30f, () => _isDisposed);
 	/// <para>you can update bool _isDisposed with _EnterTree() and _ExitTree()</para>
 	/// </summary>
-    public static async Task ToScore(float scoreTarget, Func<bool> isNodeDisposed, int checkDelay = 100)
+    public static async Task ToScore(float scoreTarget, DisposeController disposeController, int checkDelay = 100)
     {
-        while (Scores < scoreTarget && !isNodeDisposed())
+        while (Scores < scoreTarget && !disposeController.IsDisposed)
         {
             await Task.Delay(checkDelay);
         }
     }
 
-    public static async Task WaitFor(float timeSec, bool ignorePause = true)
-    {
-        var timer = SceneTree.CreateTimer(timeSec, ignorePause);
+	public static async Task WaitFor(float timeSec, bool ignorePause = true, bool waitForFrameInTheEnd = true)
+	{
+		var timer = SceneTree.CreateTimer(timeSec, ignorePause);
 
-        await timer.ToSignal(timer, "timeout");
+		await timer.ToSignal(timer, "timeout");
+		
+		if (waitForFrameInTheEnd)
+			await WaitForFrame(); // So you don’t have to call it every time after using the method for synchronization with the engine
     }
 
     public static async Task WaitForFrame()
@@ -257,14 +260,14 @@ public partial class G : Node
     }
 
     /// <summary>
-    /// Requires a CanvasItem to get the associated Viewport. Most often you can just insert 'this'
-    /// </summary>
-    public static Rect2 GetCameraRect(CanvasItem anyCanvasItem)
-    {
-        var CanvasTransfrom = anyCanvasItem.GetCanvasTransform();
+	/// Requires a CanvasItem to get the associated Viewport. Most often you can just insert 'this'
+	/// </summary>
+	public static Rect2 GetCameraRect(CanvasItem anyCanvasItem)
+	{
+		var CanvasTransfrom = anyCanvasItem.GetCanvasTransform();
 
-        return new Rect2(-CanvasTransfrom.Origin, anyCanvasItem.GetViewportRect().Size / CanvasTransfrom.Scale);
-    }
+		return new Rect2(-CanvasTransfrom.Origin, anyCanvasItem.GetViewportRect().Size / CanvasTransfrom.Scale);
+	}
 
     public static void ResetMusicVariables()
     {

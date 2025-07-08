@@ -1,3 +1,4 @@
+Node2D
 ColorRect
 RichTextLabel
 Node
@@ -11,4 +12,3 @@ HSeparator
 VSeparator
 HBoxContainer
 Control
-MarginContainer

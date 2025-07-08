@@ -419,4 +419,5 @@ libraries = {
 }
 script = ExtResource("16_qypfv")
 
+[connection signal="LevelFinished" from="Level" to="." method="UnlockContentStr" binds= ["Addition", "Fatty"]]
 [connection signal="animation_finished" from="AdditionalBrightnessLayer/AdditionalBrightnessRect/AnimationPlayer" to="AdditionalBrightnessLayer/AdditionalBrightnessRect" method="queue_free" flags=6 unbinds=1]

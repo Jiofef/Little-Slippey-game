@@ -12,9 +12,6 @@ public partial class SceneChanger : Node
 	// }
 	// public override async void _EnterTree()
 	// {
-	// 	await G.WaitFor(0.1f);
-	// 	GD.Print("STARTED");
 	// 	GetTree().ChangeSceneToFile(ScenePath);
-	// 	GD.Print("FINISHED");
 	// }
 }

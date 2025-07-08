@@ -3,6 +3,7 @@ using System;
 using OtherExtension;
 using GodotPlugins.Game;
 using static IActivatableLevelObj;
+using System.Threading.Tasks;
 
 public abstract partial class AdditionNode : Node, IActivatableLevelObj
 {
@@ -14,14 +15,13 @@ public abstract partial class AdditionNode : Node, IActivatableLevelObj
 	protected AdditionManager ParentManager;
 	public override void _Ready()
 	{
-		if (GetParentOrNull<AdditionManager>() == null)
+		ParentManager = GetParentOrNull<AdditionManager>();
+		if (ParentManager == null)
 		{
 			GD.PrintErr($"Additions can be only \"AdditionManager\"'s children. The {Name} cannot be loaded");
 			QueueFree();
 			return;
 		}
-		ParentManager = GetParent<AdditionManager>();
-
 		((IActivatableLevelObj)this).InitIActivatableLevelObj();
 	}
 

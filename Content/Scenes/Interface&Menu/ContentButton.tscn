@@ -46,27 +46,16 @@ _data = {
 &"RESET": SubResource("Animation_fjej2")
 }
 
-[node name="ContentButton" node_paths=PackedStringArray("_focusRect", "QuestionMark", "PriceLabel", "NameLabel", "IconNode", "DarkeningRect") instance=ExtResource("1_i6ph4")]
+[node name="ContentButton" instance=ExtResource("1_i6ph4")]
 custom_minimum_size = Vector2(128, 160)
 offset_right = 128.0
 offset_bottom = 129.0
 scale = Vector2(1, 1)
 script = ExtResource("2_i6ph4")
-_previousFrameMousePos = Vector2(-147.018, -30.9988)
-_focusRect = NodePath("FocusRect")
-_annotationAppearingTimer = 0.0
-_annotationShowed = false
-_wasAnnotationShowed = false
-Icon = null
 _contentType = 0
 _contentName = ""
 _displayedName = ""
-_icon = null
-QuestionMark = NodePath("?")
-PriceLabel = NodePath("BuyingPrice")
-NameLabel = NodePath("ContentName/Text")
-IconNode = NodePath("Icon")
-DarkeningRect = NodePath("Darkening")
+Icon = null
 
 [node name="NinePatchRect" type="NinePatchRect" parent="." index="0"]
 show_behind_parent = true
@@ -126,10 +115,6 @@ mouse_filter = 2
 horizontal_scroll_mode = 3
 vertical_scroll_mode = 3
 script = ExtResource("5_b0b3v")
-ScrollSpeed = null
-PauseDuration = null
-EnableCycleScrolling = null
-AutoStart = null
 
 [node name="Text" type="RichTextLabel" parent="ContentName" index="0"]
 clip_contents = false

@@ -7,7 +7,6 @@ using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using static OtherExtension.OtherTools;
 
-// is neither a script nor a singleton, but a namespace. Since it is one of a kind, I don't want to create a separate folder for it
 namespace OtherExtension
 {
     public static class RandomTools

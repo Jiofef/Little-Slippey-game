@@ -221,13 +221,10 @@ public partial class Level10ScientistScript : Node2D
 		{
 			OtherExtension.ActionTools.BindEventSafelyTo(G.OnLevelStarted, async (a) =>
 			{
-				await G.WaitFor(1f);
 				CallDeferred(nameof(SwitchTo000000000Level));
 				return;
 			});
 		}
-
-
     }
 
     public void LoadMegaphoneInitialState()

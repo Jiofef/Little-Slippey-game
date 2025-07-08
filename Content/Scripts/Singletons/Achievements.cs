@@ -148,6 +148,10 @@ public partial class Achievements : Node
             }
         }
     }
+	public static bool HasAchievement(string name)
+	{
+		return AllTheAchievements[name].IsReceived;
+	}
     public static int AchievementPopupTimerMultiplier = 0;
     public static void GetAchievement(string name) // Do not ruin someone else's experience and do not give away game achievements for nothing. If you are making a cheat map or mod, mark it in the title/preview
     {
@@ -215,12 +219,13 @@ public partial class Achievements : Node
         }
         catch { }
     }
-    public static void LoadAchievementStatuses()
+    public static void LoadAchievementStatuses(SaveBible saveBible = null)
     {
         try
         {
             var model = FileSystemExtension.GetSystemJsonModel<bool>("user://achievements.json");
-
+			if (saveBible != null) saveBible.AchievementsModel = model;
+			
             if (model == null) return;
 
             foreach (var achievement in model)
