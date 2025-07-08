@@ -1,8 +1,11 @@
-Node2D
+MeshInstance2D
+Sprite2D
+AnimationPlayer
 ColorRect
+CanvasLayer
+Node2D
 RichTextLabel
 Node
-AnimationPlayer
 TextureRect
 ScrollContainer
 HFlowContainer
@@ -10,5 +13,3 @@ Label
 VBoxContainer
 HSeparator
 VSeparator
-HBoxContainer
-Control

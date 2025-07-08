@@ -38,38 +38,42 @@ public partial class GlitchLevelScript : BaseLevelScript
 
 	public class GlitchShader
 	{
-		public Shader Shader;
+		public ShaderMaterial Shader;
+		public GlitchShader(ShaderMaterial glitchShader)
+		{
+			Shader = glitchShader;
+		}
 		public float ShakePower
 		{
-			get => (float)Shader.Get("shake_power");
-			set => Shader.Set("shake_power", value);
+			get => (float)Shader.Get("shader_parameter/shake_power");
+			set => Shader.Set("shader_parameter/shake_power", value);
 		}
 
 		public float ShakeRate
 		{
-			get => (float)Shader.Get("shake_rate");
-			set => Shader.Set("shake_rate", value);
+			get => (float)Shader.Get("shader_parameter/shake_rate");
+			set => Shader.Set("shader_parameter/shake_rate", value);
 		}
 
 		public float ShakeSpeed
 		{
-			get => (float)Shader.Get("shake_speed");
-			set => Shader.Set("shake_speed", value);
+			get => (float)Shader.Get("shader_parameter/shake_speed");
+			set => Shader.Set("shader_parameter/shake_speed", value);
 		}
 
 		public float ShakeBlockSize
 		{
-			get => (float)Shader.Get("shake_block_size");
-			set => Shader.Set("shake_block_size", value);
+			get => (float)Shader.Get("shader_parameter/shake_block_size");
+			set => Shader.Set("shader_parameter/shake_block_size", value);
 		}
 
 		public float ShakeColorRate
 		{
-			get => (float)Shader.Get("shake_color_rate");
-			set => Shader.Set("shake_color_rate", value);
+			get => (float)Shader.Get("shader_parameter/shake_color_rate");
+			set => Shader.Set("shader_parameter/shake_color_rate", value);
 		}
 	}
-	GlitchShader _glitchShader = new();
+	GlitchShader _glitchShader;
 
 	public override async void _Ready()
 	{
@@ -85,7 +89,7 @@ public partial class GlitchLevelScript : BaseLevelScript
 
 		_dark = GetNode<ColorRect>("CanvasLayer/Dark");
 
-		_glitchShader.Shader = ((ShaderMaterial)GetNode<ColorRect>("CanvasLayer/GlitchRect").Material).Shader;
+		_glitchShader = new((ShaderMaterial)GetNode<ColorRect>("CanvasLayer/GlitchRect").Material);
 
 		// "Caching" the level parts
 		foreach (var levelPart in GetNode("LevelParts").GetChildren().OfType<Node2D>())
@@ -124,16 +128,29 @@ public partial class GlitchLevelScript : BaseLevelScript
 			filmLayer.NegativeValueSquared += ProgressScript;
 		}
 	}
+	public override void _ExitTree()
+	{
+		// To make the settings of the shader standard after leaving the level. This is a reference type, so changes in the level affect it throughout the game.
+		_glitchShader.ShakePower = 0.03f;
+		_glitchShader.ShakeRate = 0;
+		_glitchShader.ShakeSpeed = 5.0f;
+		_glitchShader.ShakeBlockSize = 30.5f;
+		_glitchShader.ShakeColorRate = 0.01f;
+
+		// Remove the effects of a bus animation from the end of the level
+		int busId = AudioServer.GetBusIndex("GlobalBuffer");
+		int mutedBusId = AudioServer.GetBusIndex("MutingBus");
+		AudioServer.SetBusSend(busId, "Master");
+
+		if (mutedBusId != -1)
+			AudioServer.RemoveBus(mutedBusId);
+	}
+
 
 	public void OnLevelReset()
 	{
 		G.TransitiveVariantD.Add("ImFromLevel000000000", true);
 		LevelAdditionalLink = "True";
-	}
-
-	public override void _PhysicsProcess(double delta)
-	{
-		base._PhysicsProcess(delta);
 	}
 
 	public async void ProgressScript() // Starts when the timer brokes due to the root of the negative number
@@ -161,8 +178,11 @@ public partial class GlitchLevelScript : BaseLevelScript
 			ChangeScene(Scenes.Level6);
 
 			await ToScore(60, _disposeController);
-			Scores = 0;
 			ChangeScene(Scenes.Level7);
+
+			await WaitFor(15, false);
+			Scores = 0;
+			ChangeScene(Scenes.Revelation);
 
 			await ToScore(60, _disposeController);
 			Scores = 0;
@@ -170,12 +190,6 @@ public partial class GlitchLevelScript : BaseLevelScript
 		}
 		catch (ObjectDisposedException) { return; }
 
-	}
-
-
-	public override void _EnterTree()
-	{
-		base._EnterTree();
 	}
 	public async void GlitchTheScreen()
 	{
@@ -286,10 +300,11 @@ public partial class GlitchLevelScript : BaseLevelScript
 		{ Effects.Level7BackgroundChanging, false },
 		{ Effects.Level7SadWritings, false },
 	};
+	private bool IsEffectActive(Effects effect) => EffectsCycleDic[effect];
 	public async void CycleTheEffect(Effects effect, Func<Task> task)
 	{
 		EffectsCycleDic[effect] = true;
-		while (EffectsCycleDic[effect])
+		while (IsEffectActive(effect))
 		{
 			await task();
 		}
@@ -298,8 +313,8 @@ public partial class GlitchLevelScript : BaseLevelScript
 	{
 		EffectsCycleDic[effect] = false;
 	}
-	public enum Effects { GlitchBlocksSpawning, Level7BackgroundChanging, Level7SadWritings }
-	public async Task ActivateEffect(Effects effect)
+	public enum Effects { GlitchBlocksSpawning, Level7BackgroundChanging, Level7SadWritings, GlitchShakePowerRandomizing}
+	public async void ActivateEffect(Effects effect)
 	{
 		switch (effect)
 		{
@@ -322,7 +337,7 @@ public partial class GlitchLevelScript : BaseLevelScript
 						DespawnRandomGlitchBlock();
 					}
 
-					int waitTime = _random.Next((int)(CYCLE_DELAY_MS /	 _glitchBlockDeSpawnSpeed));
+					int waitTime = _random.Next((int)(CYCLE_DELAY_MS / _glitchBlockDeSpawnSpeed));
 					await Task.Delay(waitTime);
 				});
 				break;
@@ -330,8 +345,8 @@ public partial class GlitchLevelScript : BaseLevelScript
 			case Effects.Level7BackgroundChanging:
 				CycleTheEffect(effect, async () =>
 				{
-					var level7Background1 = GetNode<ParallaxBackground>("Level/LevelParts/Level7/Background");
-					var level7Background2 = GetNode<ParallaxBackground>("Level/LevelParts/Level7/Background2");
+					var level7Background1 = GetNode<ParallaxBackground>("LevelParts/Level7/Background");
+					var level7Background2 = GetNode<ParallaxBackground>("LevelParts/Level7/Background2");
 
 					level7Background1.Visible = true;
 					level7Background2.Visible = false;
@@ -341,8 +356,9 @@ public partial class GlitchLevelScript : BaseLevelScript
 
 					level7Background1.Visible = false;
 					level7Background2.Visible = true;
+					GlitchTheScreen();
 
-					await Task.Delay(_random.Next(MAX_MS_DELAY));
+					await Task.Delay(_random.Next(MAX_MS_DELAY / 5));
 				});
 				break;
 
@@ -354,7 +370,7 @@ public partial class GlitchLevelScript : BaseLevelScript
 				writings1.SetAppearing(true);
 
 				await ToSignal(writings1, "AppearingFinished");
-				await Task.Delay(2000);
+				await Task.Delay(4000);
 
 				writings1.Hide();
 
@@ -368,13 +384,31 @@ public partial class GlitchLevelScript : BaseLevelScript
 
 				ChangeScene(Scenes.Revelation);
 				break;
+			case Effects.GlitchShakePowerRandomizing:
+				CycleTheEffect(effect, async () =>
+				{
+					const int MAX_MS_DELAY = 4259;
+
+					if (!IsEffectActive(Effects.GlitchShakePowerRandomizing)) return;
+
+					_glitchShader.ShakePower = _random.NextSingle() * 0.04f;
+					await Task.Delay(_random.Next(MAX_MS_DELAY));
+
+					if (!IsEffectActive(Effects.GlitchShakePowerRandomizing)) return;
+
+					_glitchShader.ShakePower = 1f;
+					await Task.Delay(_random.Next(MAX_MS_DELAY / 5));
+				});
+				break;
 		}
 	}
 
 	public void GlareEffect()
 	{
 		var colorRect = GetNode<ColorRect>("CanvasLayer/Glare");
-		colorRect.GetNode<AnimationPlayer>("AnimationPlayer").Play();
+		var animationPlayer = colorRect.GetNode<AnimationPlayer>("AnimationPlayer");
+		animationPlayer.Stop();
+		animationPlayer.Play();
 
 		colorRect.GetNode<AudioStreamPlayer>("LampBulp").Play();
 	}
@@ -414,7 +448,8 @@ public partial class GlitchLevelScript : BaseLevelScript
 				_unHologramedTiles.CollisionEnabled = false;
 				_unHologramedTiles.Visible = false;
 				_player.GlobalPosition = new Vector2(1280, 640);
-				_glitchShader.ShakeRate = 0.05f;
+				_glitchShader.ShakeRate = 0.02f;
+				_glitchShader.ShakePower = 0.03f;
 
 				SwitchSceneNode(LevelParts["Default"], LevelParts["Level3"]);
 
@@ -450,11 +485,10 @@ public partial class GlitchLevelScript : BaseLevelScript
 				LevelParts["Level4"].ProcessMode = ProcessModeEnum.Inherit;
 				SetChildrenTileMapsEnabled(LevelParts["Level4"].GetNode("TileMap"), true);
 				LevelParts["Level4"].GetNode<ParallaxBackground>("Background").Show();
-				_glitchShader.ShakeRate = 0.1f;
+				_glitchShader.ShakeRate = 0.05f;
+				_glitchShader.ShakePower = 0.05f;
 				
 				GlareEffect();
-
-
 				break;
 
 			case Scenes.Level5:
@@ -476,7 +510,8 @@ public partial class GlitchLevelScript : BaseLevelScript
 				SwitchSceneNode(LevelParts["Level4"], LevelParts["Level5"]);
 				LevelParts["Level5"].ProcessMode = ProcessModeEnum.Inherit;
 				LevelParts["Level5"].GetNode<ParallaxBackground>("Background").Show();
-				_glitchShader.ShakeRate = 0.15f;
+				_glitchShader.ShakeRate = 0.1f;
+				_glitchShader.ShakePower = 0.1f;
 
 				GlareEffect();
 
@@ -500,7 +535,10 @@ public partial class GlitchLevelScript : BaseLevelScript
 				SwitchSceneNode(LevelParts["Level5"], LevelParts["Level6"]);
 				LevelParts["Level6"].ProcessMode = ProcessModeEnum.Inherit;
 
-				_glitchShader.ShakeRate = 0.45f;
+				ActivateEffect(Effects.GlitchShakePowerRandomizing);
+				_glitchShader.ShakeRate = 1f;
+				_glitchShader.ShakeSpeed = 15f;
+				_player.Gravity = Player.DEFAULT_GRAVITY / 5;
 				
 				var toEnable = LevelParts["Level6"].GetNode<TileMapLayer>("ToEnable");
 				var toDisable = LevelParts["Level6"].GetNode<TileMapLayer>("ToDisable");
@@ -531,9 +569,14 @@ public partial class GlitchLevelScript : BaseLevelScript
 				CopyToUnHologramedTileMap(LevelParts["Level6"].GetNode<TileMapLayer>("TileMap"), LevelParts["Level6"].GetNode<TileMapLayer>("ToEnable"));
 				_player.AddImmortality(5f);
 				GlitchTheScreen();
+				StopEffectCycle(Effects.GlitchShakePowerRandomizing);
 
 				SetChildrenTileMapsCollision(LevelParts["Level6"], false);
 				await Task.WhenAll(MoveNodeTo(_player, new Vector2(640, 320)), HideNodeSlowly(LevelParts["Level6"]));
+
+				_glitchShader.ShakePower = 0.005f;
+				_glitchShader.ShakeColorRate = 0;
+				_player.Gravity = Player.DEFAULT_GRAVITY;
 
 				Crosses.RemoveAllSpawnedCrosses();
 				Crosses.UpdateCrossesWeight();
@@ -542,14 +585,19 @@ public partial class GlitchLevelScript : BaseLevelScript
 				LevelParts["Level7"].ProcessMode = ProcessModeEnum.Inherit;
 				LevelParts["Level7"].GetNode<ParallaxBackground>("Background").Show();
 				GlareEffect();
-				CycleTheEffect(Effects.Level7BackgroundChanging, async () => await ActivateEffect(Effects.Level7BackgroundChanging));
-				_ = ActivateEffect(Effects.Level7SadWritings);
+
+				ActivateEffect(Effects.Level7BackgroundChanging);
+				ActivateEffect(Effects.Level7SadWritings);
+
+				IsProgressPaused = true;
+				IsCrossesEnabled = false;
 
 				Scores = 0;
 				break;
 
 			case Scenes.Revelation:
 				_scoresUpdateChance = 80f;
+				DespawnAllTheRandomGlitchBlocks();
 				SetGlitchBlockSpawning(false);
 				// Removing the floor
 				Rect2I rectToRemove = (Rect2I)PosEndRect(new Vector2I(0, 10), new Vector2(19, 12));
@@ -559,12 +607,63 @@ public partial class GlitchLevelScript : BaseLevelScript
 				// Snap sound
 				GetNode<AudioStreamPlayer>("LevelParts/Level7/Level000000000ReverbSnap").Play();
 				StopEffectCycle(Effects.Level7BackgroundChanging);
+				// Camera borders are gone
+				CameraLimits = new Rect2(-100000, -100000, 200000, 200000);
 
+				SetChildrenTileMapsCollision(LevelParts["Level7"], false);
+				await HideNodeSlowly(LevelParts["Level7"]);
+
+				SwitchSceneNode(LevelParts["Level7"], LevelParts["Revelation"]);
+				LevelParts["Revelation"].Modulate = new Color(1, 1, 1, 0);
+				_ = ShowNodeSlowly(LevelParts["Revelation"]);
+				GetNode<AudioStreamPlayer>("LevelParts/Revelation/Ost").Play();
 				_player.Gravity = Player.DEFAULT_GRAVITY / 2;
+				IsProgressPaused = false;
+				IsCrossesEnabled = true;
+
 				break;
 			case Scenes.Level10:
+				Crosses.RemoveAllSpawnedCrosses();
+				IsCrossesEnabled = false;
+				_glitchShader.ShakePower = 0;
+				MusicPlayer.PlayMusic("On Second Volume");
+				G.Main.TeleportPlayerTo(new Vector2(1280, 1248), true);
+
+				SwitchSceneNode(LevelParts["Revelation"], LevelParts["Level10"]);
+
+				LevelParts["Level10"].GetNode<ParallaxBackground>("Background").Show();
+				LevelParts["Level10"].GetNode<CanvasLayer>("CanvasLayer").Show();
+				LevelParts["Level10"].GetNode<AnimationPlayer>("CanvasLayer/Blur/AnimationPlayer").Play("SlowBluring");
+				GetNode<Timer>("GlitchActionsTimer").Stop();
+				_player.GUI.SetScoresText("-0");
+
+				// Bus muting effects
+
+				// Creating a tween
+				AudioServer.AddBus(1);
+				const string BUS_NAME = "MutingBus";
+				const int BUS_ID = 1;
+				AudioServer.SetBusName(1, BUS_NAME);
+
+				AudioServer.SetBusSend(AudioServer.GetBusIndex("GlobalBuffer"), BUS_NAME);
+
+				// Creating an effect
+				var reverbEffect = new AudioEffectReverb() {RoomSize = 0, Damping = 1, Wet = 0.75f};
+				AudioServer.AddBusEffect(BUS_ID, reverbEffect);
+
+				// Animating an effect
+				var reverbTween = CreateTween();
+				reverbTween.TweenProperty(reverbTween, AudioEffectReverb.PropertyName.RoomSize.ToString(), 1, 70);
+				reverbTween.TweenProperty(reverbTween, AudioEffectReverb.PropertyName.Dry.ToString(), 0, 50);
+				reverbTween.TweenProperty(reverbTween, AudioEffectReverb.PropertyName.Wet.ToString(), 0, 70);
+				reverbTween.TweenProperty(reverbTween, AudioEffectReverb.PropertyName.Damping.ToString(), 0, 70);
 				break;
 		}
+	}
+
+	public void OnFinalFinished()
+	{
+		GetTree().ChangeSceneToFile("res://Content/Scenes/Other/Level000000000Revelation.tscn");
 	}
 
 	public void SwitchSceneNode(Node2D from, Node2D to)

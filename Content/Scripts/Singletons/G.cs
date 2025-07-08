@@ -1,6 +1,7 @@
 using Godot;
 using Godot.Collections;
 using System;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -159,12 +160,16 @@ public partial class G : Node
         get { return _cameraLimits; }
         set 
         {
+			if (value.Size.X < 0 || value.Size.Y < 0)
+			{
+				GD.PushError($"Something is trying to set negative limits to the camera. I don't like it! >:(");
+				return;	
+			}
             _cameraLimits = value;
-            OnCameraLimitsChanged?.Invoke(value);
+			Inst.EmitSignal(nameof(Inst.CameraLimitsChanged), value);
         }
     }
-    public delegate void CameraLimitsChangedEventHandler(Rect2 limits);
-    public static event CameraLimitsChangedEventHandler OnCameraLimitsChanged = delegate { };
+	[Signal] public delegate void CameraLimitsChangedEventHandler(Rect2 limits);
 
     public static Variant[] TransitiveVariant = new Variant[64]; // You can store almost anything here for anything. The game deletes the data only after entering the menu. If you need to save some data after restarting a level or moving to another scene, this option is perfect for you
     public static object[] TransitiveObject = new object[64]; // Addition to Variant, if some required data types are not supported
@@ -410,11 +415,13 @@ public partial class G : Node
         MusicStopTimeCode = 0;
         MusicName = "";
 
-        //Sounds (I don't remember why this code is here, I'm afraid to remove it, just shhhh.)
-        AudioServer.SetBusEffectEnabled(2, 0, false);
-		AudioServer.SetBusEffectEnabled(6, 0, false);
+        //Sounds
+		int musicBusId = AudioServer.GetBusIndex("Master");
+		int environmentBusId = AudioServer.GetBusIndex("Enviromnment");
+		AudioServer.SetBusEffectEnabled(musicBusId, 0, false);
+		AudioServer.SetBusEffectEnabled(environmentBusId, 0, false);
         
-                for (int i = 0; i < TransitiveVariant.Length; i++)
+        for (int i = 0; i < TransitiveVariant.Length; i++)
             TransitiveVariant[i] = "";
 
         for (int i = 0; i < TransitiveObject.Length; i++)

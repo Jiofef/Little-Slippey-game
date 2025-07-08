@@ -81,8 +81,10 @@ public partial class Pause : CanvasLayer
         {
             G.AdditionalGuiLayer.AlwaysShowGoldenCrossesAmount = true;
             // Muting the music and environment
-            AudioServer.SetBusEffectEnabled(2, 0, true);
-            AudioServer.SetBusEffectEnabled(6, 0, true);
+           	int musicBusId = AudioServer.GetBusIndex("Master");
+			int environmentBusId = AudioServer.GetBusIndex("Enviromnment");
+            AudioServer.SetBusEffectEnabled(musicBusId, 0, false);
+            AudioServer.SetBusEffectEnabled(environmentBusId, 0, false);
 
             // UI preparation
             _lastFocusedControl = GetViewport().GuiGetFocusOwner();
@@ -110,9 +112,11 @@ public partial class Pause : CanvasLayer
         else
         {
             G.AdditionalGuiLayer.AlwaysShowGoldenCrossesAmount = false;
-            // Unmuting the music and environment
-            AudioServer.SetBusEffectEnabled(2, 0, false);
-            AudioServer.SetBusEffectEnabled(6, 0, false);
+			// Unmuting the music and environment
+			int musicBusId = AudioServer.GetBusIndex("Master");
+			int environmentBusId = AudioServer.GetBusIndex("Enviromnment");
+            AudioServer.SetBusEffectEnabled(musicBusId, 0, false);
+            AudioServer.SetBusEffectEnabled(environmentBusId, 0, false);
 
             // A return of focus, if there's anything to it
             _lastFocusedControl?.GrabFocus();

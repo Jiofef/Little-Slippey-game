@@ -40,20 +40,11 @@ public partial class Camera : Camera2D
         G.CameraLimits = new Rect2(0, 0, G.LevelXYSizes[G.CurrentLevel].X, G.LevelXYSizes[G.CurrentLevel].Y);
         SetTheLimitsAddition(true);
 
-        _onCameraLimitsChangedHandler = OnCameraLimitsChanged;
-        G.OnCameraLimitsChanged += _onCameraLimitsChangedHandler;
-
-
+		G.Inst.Connect(nameof(G.Inst.CameraLimitsChanged), new Callable(this, nameof(OnCameraLimitsChanged)));
 
         ApplyGUIOptions(true);
 
         preDeathParams = new PreDeathParams(this);
-    }
-    private G.CameraLimitsChangedEventHandler _onCameraLimitsChangedHandler;
-    public override void _ExitTree()
-    {
-        if (_onCameraLimitsChangedHandler != null)
-            G.OnCameraLimitsChanged -= _onCameraLimitsChangedHandler;
     }
 
 	public Rect2 GetLimitsRect()

@@ -7,31 +7,31 @@ using static Meta.VideoClass;
 
 public partial class InitializationScene : Control
 {
-    private const uint _appId = 3288650;
-    public override void _Ready()
+	private const uint _appId = 3288650;
+	public override void _Ready()
 	{
-        OS.SetEnvironment("SteamAppId", _appId.ToString());
-        OS.SetEnvironment("SteamGameId", _appId.ToString());
+		OS.SetEnvironment("SteamAppId", _appId.ToString());
+		OS.SetEnvironment("SteamGameId", _appId.ToString());
 
-        Steam.RestartAppIfNecessary(_appId);
-        Steam.SteamInit();
+		Steam.RestartAppIfNecessary(_appId);
+		Steam.SteamInit();
 
-        string CountryCode = Steam.GetIPCountry();
+		string CountryCode = Steam.GetIPCountry();
 
 
-        
-        Directory.CreateDirectory(ModManager.DefaultModsPath); // Creating mod directory if it isn't exist
-        Directory.CreateDirectory(ModDataManager.DefaultModLocalDataPath); // Creating mod local data directory if it isn't exist
 
-        ModDataManager.CleanDeletedModsData();
+		Directory.CreateDirectory(ModManager.DefaultModsPath); // Creating mod directory if it isn't exist
+		Directory.CreateDirectory(ModDataManager.DefaultModLocalDataPath); // Creating mod local data directory if it isn't exist
+
+		ModDataManager.CleanDeletedModsData();
 
 		//
 		SaveBible saveBible = new();
 
-        Meta.Instance.LoadOptions(saveBible);
-        Meta.Instance.ApplyOptions();
+		Meta.Instance.LoadOptions(saveBible);
+		Meta.Instance.ApplyOptions();
 
-        UnchangableMeta.LoadSave(saveBible);
+		UnchangableMeta.LoadSave(saveBible);
 
 		Achievements.LoadAchievementStatuses(saveBible);
 
@@ -41,12 +41,12 @@ public partial class InitializationScene : Control
 		MigrationController.Inst.MigrateIfNeeded(saveBible);
 		//
 
-        UnchangableMeta.SetAutoSaveWhenClosing(true);
+		UnchangableMeta.SetAutoSaveWhenClosing(true);
 
 		Crosses.SetDefaultCrossesPack();
 
 
-        if (!UnchangableMeta.IsLanguageSetted)
+		if (!UnchangableMeta.IsLanguageSetted)
 		{
 			ModManager.CreateStandartTimerLib();
 			//GetNode<Control>("ChooseYourLanguage").Visible = true;
@@ -70,33 +70,41 @@ public partial class InitializationScene : Control
 		}
 
 
-        //Mods loading
-        if (!UnchangableMeta.DidModsCrushedTheGame && !ModManager.IsModsDisabled) // temporarily disabled
-        {
-            UnchangableMeta.DidModsCrushedTheGame = true;
-            UnchangableMeta.SaveToFile();
+		//Mods loading
+		if (!UnchangableMeta.DidModsCrushedTheGame && !ModManager.IsModsDisabled) // temporarily disabled
+		{
+			UnchangableMeta.DidModsCrushedTheGame = true;
+			UnchangableMeta.SaveToFile();
 
-            ModDataManager.LoadAllModDataSafely();
-            ModDataManager.CleanDeletedModsData();
-            ModDataManager.AddMissingDefaultModData();
+			ModDataManager.LoadAllModDataSafely();
+			ModDataManager.CleanDeletedModsData();
+			ModDataManager.AddMissingDefaultModData();
 
 
-            ModManager.LoadMods();
+			ModManager.LoadMods();
 
-            UnchangableMeta.DidModsCrushedTheGame = false;
-            UnchangableMeta.SaveToFile();
-        }
+			UnchangableMeta.DidModsCrushedTheGame = false;
+			UnchangableMeta.SaveToFile();
+		}
 
-        GetTree().CallDeferred("change_scene_to_file", "res://Content/Scenes/Interface&Menu/WelcomeToGOS.tscn");
-    }
+		GetTree().CallDeferred("change_scene_to_file", "res://Content/Scenes/Interface&Menu/WelcomeToGOS.tscn");
 
-    public void SetLanguage(Language language)
-    {
-        Meta.Instance.Video.language = language;
-        UnchangableMeta.IsLanguageSetted = true;
-        Meta.Instance.ApplyOptions();
+		TestingThings();
+	}
 
-        Meta.Instance.SaveToFile();
-        UnchangableMeta.SaveToFile();
-    }
+	public void SetLanguage(Language language)
+	{
+		Meta.Instance.Video.language = language;
+		UnchangableMeta.IsLanguageSetted = true;
+		Meta.Instance.ApplyOptions();
+
+		Meta.Instance.SaveToFile();
+		UnchangableMeta.SaveToFile();
+	}
+
+	// For debug
+	public void TestingThings()
+	{
+
+	}
 }
