@@ -1,6 +1,6 @@
 Репозиторий аркадной игры **Little Slippey**
 Краткое описание: Уклоняйся от тонны летящих в тебя ракет. Тренируй реакцию, запоминай структуру карт и адаптируйся к постоянно меняющимся правилам на них.
-![preview_readme_image.png](.assets\preview_readme_image.png)
+![preview_readme_image.png](.assets/preview_readme_image.png)
 ---
 
 Игра разработана на движке Godot для Desktop платформ 

@@ -1,7 +1,7 @@
 ## Little Slippey Arcade Game Repository
 Brief description: Dodge tons of missiles flying at you. Train your reaction, memorize map structures, and adapt to constantly changing rules on them.
 
-![preview_readme_image.png](.assets\preview_readme_image.png)
+![preview_readme_image.png](.assets/preview_readme_image.png)
 
 ---
 
